@@ -4,7 +4,7 @@ import pick from 'lodash/pick';
 import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', function ($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToastError, OvhApiMe, TelephonyMediator) {
+angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', function TelecomTelephonyLineTonesCtrl($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToastError, OvhApiMe, TelephonyMediator) {
   const self = this;
   const disabledFeatureError = {};
 
@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
     });
   }
 
-  self.getToneTypeLabel = function (toneType) {
+  self.getToneTypeLabel = function getToneTypeLabel(toneType) {
     let label = '';
     if (angular.isString(toneType)) {
       const toneId = snakeCase(toneType);
@@ -47,7 +47,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
     return label;
   };
 
-  self.filterValidExtension = function (file) {
+  self.filterValidExtension = function filterValidExtension(file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
     const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
@@ -57,7 +57,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
     return found;
   };
 
-  self.updateTone = function (toneType) {
+  self.updateTone = function updateTone(toneType) {
     // only update tone if it is not a file upload and if tone changed
     if (self.tonesForm[toneType] !== 'Custom sound' && self.tonesForm[toneType] !== self.tones[toneType]) {
       const tonesParam = self.tones;
@@ -79,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
     return $q.when(true);
   };
 
-  self.uploadTone = function (toneType) {
+  self.uploadTone = function uploadTone(toneType) {
     self.tonesForm[`${toneType}Uploading`] = true;
 
     // upload document

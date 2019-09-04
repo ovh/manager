@@ -6,7 +6,7 @@ export default /* @ngInject */ function ($timeout) {
     =            HELPERS            =
     =============================== */
 
-  self.askForRepaint = function () {
+  self.askForRepaint = function askForRepaint() {
     if (repaintTimeout) {
       $timeout.cancel(repaintTimeout);
     }

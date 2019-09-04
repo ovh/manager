@@ -2,7 +2,7 @@ angular.module('App').controller('DedicatedCloudSecurityPolicyModifyCtrl', ($sco
   $scope.entryToModify = angular.copy($scope.currentActionData);
   $scope.regex = REGEX;
 
-  $scope.modifyEntry = function () {
+  $scope.modifyEntry = function modifyEntry() {
     $scope.resetAction();
     DedicatedCloud.modifySecurityPolicy($stateParams.productId, $scope.entryToModify).then(
       () => {

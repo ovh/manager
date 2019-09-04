@@ -14,8 +14,17 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
   '$translate',
   'AVAILABLE_LANGUAGE',
   'Alerter',
-  function (Contacts, $scope, $stateParams, $q, $location, $timeout, $translate,
-    AVAILABLE_LANGUAGE, Alerter) {
+  function UserAccountUpdateController(
+    Contacts,
+    $scope,
+    $stateParams,
+    $q,
+    $location,
+    $timeout,
+    $translate,
+    AVAILABLE_LANGUAGE,
+    Alerter,
+  ) {
     $scope.languages = AVAILABLE_LANGUAGE;
     $scope.forms = {};
     $scope.today = new Date();
@@ -46,6 +55,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
           $scope.form.accountForm[camelCase(field)].$setValidity('badInfos', false);
           $scope.form.accountForm[camelCase(field)].$setDirty(true);
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.log('field : ', field);
         }
       });
@@ -61,6 +71,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
         try {
           $scope.form.accountForm[camelCase(key)].$setValidity('badInfos', true);
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.log('field : ', key);
         }
       }

@@ -10,8 +10,18 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
   '$window',
   'Alerter',
 
-  function ($scope, $translate, License, $stateParams, $timeout, $location, constants, billingUrls,
-    $window, Alerter) {
+  function LicenseDetailsCtrl(
+    $scope,
+    $translate,
+    License,
+    $stateParams,
+    $timeout,
+    $location,
+    constants,
+    billingUrls,
+    $window,
+    Alerter,
+  ) {
     $scope.loadLicense = true;
 
     $scope.licenseTypes = {

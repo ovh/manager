@@ -2,7 +2,7 @@ import omit from 'lodash/omit';
 import uniq from 'lodash/uniq';
 import without from 'lodash/without';
 
-angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $scope, $stateParams, $translate, Server, Alerter, $q) {
+angular.module('App').controller('MonitoringUpdateCtrl', function MonitoringUpdateCtrl($rootScope, $scope, $stateParams, $translate, Server, Alerter, $q) {
   const self = this;
   self.validator = validator;
   self.loaders = {
@@ -13,17 +13,17 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
   self.emailNotificationsToDelete = [];
   self.smsNotificationsToDelete = [];
 
-  self.init = function (monitoring) {
+  self.init = function init(monitoring) {
     self.loaders.init = true;
     self.monitoring = angular.copy(monitoring);
     self.baseMonitoring = angular.copy(monitoring);
   };
 
-  self.compare = function (x, y) {
+  self.compare = function compare(x, y) {
     return parseInt(x, 10) - parseInt(y, 10);
   };
 
-  self.addEMailNotification = function () {
+  self.addEMailNotification = function addEMailNotification() {
     if (!self.monitoring.emailNotifications) {
       self.monitoring.emailNotifications = [];
     }
@@ -33,7 +33,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     });
   };
 
-  self.removeEMailNotification = function (notification) {
+  self.removeEMailNotification = function removeEMailNotification(notification) {
     if (!notification.alertId) {
       self.monitoring.emailNotifications = without(
         self.monitoring.emailNotifications,
@@ -44,11 +44,11 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     }
   };
 
-  self.cancelDeleteEMailNotification = function (notification) {
+  self.cancelDeleteEMailNotification = function cancelDeleteEMailNotification(notification) {
     self.emailNotificationsToDelete = without(self.emailNotificationsToDelete, notification);
   };
 
-  self.addSmsNotification = function () {
+  self.addSmsNotification = function addSmsNotification() {
     if (!self.monitoring.smsNotifications) {
       self.monitoring.smsNotifications = [];
     }
@@ -61,7 +61,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     });
   };
 
-  self.removeSmsNotification = function (notification) {
+  self.removeSmsNotification = function removeSmsNotification(notification) {
     if (!notification.alertId) {
       self.monitoring.smsNotifications = without(self.monitoring.smsNotifications, notification);
     } else {
@@ -69,7 +69,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     }
   };
 
-  self.cancelDeleteSmslNotification = function (notification) {
+  self.cancelDeleteSmslNotification = function cancelDeleteSmslNotification(notification) {
     self.smsNotificationsToDelete = without(self.smsNotificationsToDelete, notification);
   };
 
@@ -103,7 +103,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     return d;
   }
 
-  self.updateEmailNotifications = function () {
+  self.updateEmailNotifications = function updateEmailNotifications() {
     let promises = [];
 
     // Remove email notification mark as deleted
@@ -150,7 +150,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     return $q.allSettled(promises);
   };
 
-  self.updateSmsNotifications = function () {
+  self.updateSmsNotifications = function updateSmsNotifications() {
     let promises = [];
 
     // Remove sms notification mark as deleted
@@ -199,7 +199,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function ($rootScope, $
     return $q.allSettled(promises);
   };
 
-  self.updateMonitoring = function () {
+  self.updateMonitoring = function updateMonitoring() {
     self.loaders.update = true;
     const promises = [];
 

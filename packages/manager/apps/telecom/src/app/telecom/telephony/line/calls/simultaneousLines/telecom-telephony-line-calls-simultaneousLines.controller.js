@@ -26,11 +26,11 @@ angular.module('managerApp')
     self.orderUrl = null;
     self.showBulkOrderSummary = false;
 
-    self.needSave = function () {
+    self.needSave = function needSave() {
       return self.options.simultaneousLines !== self.saved.simultaneousLines;
     };
 
-    self.doOrder = function () {
+    self.doOrder = function doOrder() {
       self.loading.doOrder = true;
 
       return apiResources.orderSimultaneousLines({
@@ -79,7 +79,7 @@ angular.module('managerApp')
         });
     }
 
-    self.doRemoveSimultaneousLines = function () {
+    self.doRemoveSimultaneousLines = function doRemoveSimultaneousLines() {
       self.loading.save = true;
 
       return OvhApiTelephony.Line().v6().removeSimultaneousLine({
@@ -102,12 +102,12 @@ angular.module('managerApp')
       });
     };
 
-    self.cancelRemove = function () {
+    self.cancelRemove = function cancelRemove() {
       self.showDoRemoveButtons = false;
       self.options.simultaneousLines = self.saved.simultaneousLines;
     };
 
-    self.save = function () {
+    self.save = function save() {
       self.prices = null;
       self.contractsAccepted = false;
       self.showDoRemoveButtons = false;
@@ -126,7 +126,7 @@ angular.module('managerApp')
       }
     };
 
-    self.recalculatePrices = function () {
+    self.recalculatePrices = function recalculatePrices() {
       const quantity = self.options.simultaneousLines - self.saved.simultaneousLines;
 
       self.prices = {
@@ -225,15 +225,15 @@ angular.module('managerApp')
       },
     };
 
-    self.filterServices = function (services) {
+    self.filterServices = function filterServices(services) {
       return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1 && service.hasValidPublicOffer() && !service.isSipTrunkRates());
     };
 
-    self.getBulkParams = function () {
+    self.getBulkParams = function getBulkParams() {
       return self.options.simultaneousLines;
     };
 
-    self.onBulkSuccess = function (bulkResult) {
+    self.onBulkSuccess = function onBulkSuccess(bulkResult) {
       // display message of success or error
       tucTelephonyBulk.getTucToastInfos(bulkResult, {
         fullSuccess: $translate.instant('telephony_line_actions_line_calls_simultaneous_bulk_all_success'),
@@ -252,11 +252,11 @@ angular.module('managerApp')
       }
     };
 
-    self.onBulkError = function (error) {
+    self.onBulkError = function onBulkError(error) {
       TucToast.error([$translate.instant('telephony_line_actions_line_calls_simultaneous_bulk_on_error'), get(error, 'msg.data')].join(' '));
     };
 
-    self.buildOrderSummary = function (orders) {
+    self.buildOrderSummary = function buildOrderSummary(orders) {
       self.bulkOrders = map(
         filter(
           flatten(

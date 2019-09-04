@@ -17,7 +17,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($sc
     fragment: true,
   };
 
-  $scope.resetOptionField = function () {
+  $scope.resetOptionField = function resetOptionField() {
     if ($scope.rule.protocol !== 'tcp') {
       delete $scope.rule.tcpOptions;
     } else {
@@ -33,7 +33,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($sc
     }
   };
 
-  $scope.removeAlert = function () {
+  $scope.removeAlert = function removeAlert() {
     Alerter.alertFromSWS(null, null, 'addRuleAlert');
   };
 
@@ -50,7 +50,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($sc
     $scope.constants = constants;
   });
 
-  $scope.isFirewallRuleFormValid = function () {
+  $scope.isFirewallRuleFormValid = function isFirewallRuleFormValid() {
     const sourceIp = /^(0+\.)+0+$/; // Test only here because it's a firewall specitic case
 
     // Required field
@@ -95,7 +95,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($sc
       && $scope.validator.fragment;
   };
 
-  $scope.addRule = function () {
+  $scope.addRule = function addRule() {
     $scope.loading = true;
 
     // set empty string to null values to avoid API error

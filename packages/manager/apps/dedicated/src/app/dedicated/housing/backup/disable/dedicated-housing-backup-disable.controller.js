@@ -5,7 +5,7 @@ angular.module('App').controller('HousingDeleteFtpBackupCtrl', ($scope, $statePa
   $scope.ftpBackup = $scope.currentActionData;
   $scope.loading = false;
 
-  $scope.deleteFtpBackup = function () {
+  $scope.deleteFtpBackup = function deleteFtpBackup() {
     $scope.loading = true;
 
     Housing.deleteFtpBackup($stateParams.productId)

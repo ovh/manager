@@ -7,7 +7,7 @@ angular.module('Module.ip.controllers').controller('IplbBackendSetWeightCtrl', (
 
   /* Action */
 
-  $scope.setWeight = function () {
+  $scope.setWeight = function setWeight() {
     if ($scope.data.backend && $scope.data.backend.weight === $scope.model.weight) {
       Alerter.success($translate.instant('iplb_backend_setweight_success'));
       $scope.resetAction();

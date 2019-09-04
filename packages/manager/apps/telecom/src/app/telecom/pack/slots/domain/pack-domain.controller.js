@@ -1,7 +1,7 @@
-angular.module('managerApp').controller('PackDomainCtrl', function ($scope, OvhApiPackXdslDomainActivation, $stateParams, $window, REDIRECT_URLS) {
+angular.module('managerApp').controller('PackDomainCtrl', function PackDomainCtrl($scope, OvhApiPackXdslDomainActivation, $stateParams, $window, REDIRECT_URLS) {
   const self = this;
 
-  this.getWebDomain = function (domainName) {
+  this.getWebDomain = function getWebDomain(domainName) {
     return REDIRECT_URLS.domain.replace('{domain}', domainName);
   };
 

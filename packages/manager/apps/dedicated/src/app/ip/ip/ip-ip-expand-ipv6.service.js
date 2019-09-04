@@ -1,10 +1,10 @@
-angular.module('Module.ip.services').service('IpExpandIpv6', function () {
+angular.module('Module.ip.services').service('IpExpandIpv6', function IpExpandIpv6() {
   // [JS] Expand Abbreviated IPv6 Addresses
   // by Christopher Miller
   // http://forrst.com/posts/JS_Expand_Abbreviated_IPv6_Addresses-1OR
   // Modified to work with embedded IPv4 addresses
   /* jshint ignore:start */
-  this.expandIPv6Address = function (_address) {
+  this.expandIPv6Address = function expandIPv6Address(_address) {
     let address = _address;
     let fullAddress = '';
     let expandedAddress = '';

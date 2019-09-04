@@ -5,7 +5,7 @@ angular.module('App').controller('DedicatedCloudSecurityPolicyDeleteCtrl', ($sco
 
   $scope.entriesToDelete = $scope.currentActionData.selectedPolicies;
 
-  $scope.deleteEntries = function () {
+  $scope.deleteEntries = function deleteEntries() {
     $scope.resetAction();
     DedicatedCloud[$scope.entriesToDelete.length > 1 ? 'deleteSecurityPolicies' : 'deleteSecurityPolicy']($stateParams.productId, $scope.entriesToDelete)
       .then(() => Alerter.success(
@@ -22,7 +22,7 @@ angular.module('App').controller('DedicatedCloudSecurityPolicyDeleteCtrl', ($sco
       ));
   };
 
-  $scope.getPolicyIP = function (id) {
+  $scope.getPolicyIP = function getPolicyIP(id) {
     return find(policies, { id }).network;
   };
 });

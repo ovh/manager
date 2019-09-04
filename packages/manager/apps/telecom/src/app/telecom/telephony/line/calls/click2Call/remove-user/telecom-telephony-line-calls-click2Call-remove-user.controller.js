@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineClick2CallRemoveUserCtrl', function ($uibModalInstance, $q, $timeout, TelephonyGroupLineClick2CallUser, line, user) {
+angular.module('managerApp').controller('TelecomTelephonyLineClick2CallRemoveUserCtrl', function TelecomTelephonyLineClick2CallRemoveUserCtrl($uibModalInstance, $q, $timeout, TelephonyGroupLineClick2CallUser, line, user) {
   const self = this;
 
   self.loading = {
@@ -15,7 +15,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallRemoveUse
     id: user.id,
   });
 
-  self.remove = function () {
+  self.remove = function remove() {
     self.loading.removeUser = true;
 
     return $q.all([
@@ -32,11 +32,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallRemoveUse
     }));
   };
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 });

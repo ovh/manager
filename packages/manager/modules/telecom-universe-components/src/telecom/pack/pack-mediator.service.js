@@ -9,7 +9,7 @@ import set from 'lodash/set';
 export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhApiXdsl) {
   const self = this;
 
-  self.fetchLinesByIds = function (ids) {
+  self.fetchLinesByIds = function fetchLinesByIds(ids) {
     if (!angular.isArray(ids) || ids.length === 0) {
       return $q.when([]);
     }
@@ -24,7 +24,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
       .then(chunkResult => flatten(chunkResult)).then(result => flatten(result));
   };
 
-  self.fetchPackAccessByIds = function (ids) {
+  self.fetchPackAccessByIds = function fetchPackAccessByIds(ids) {
     if (!angular.isArray(ids) || ids.length === 0) {
       return $q.when([]);
     }
@@ -33,7 +33,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
     return $q.all(map(chunk(ids, 200), chunkIds => OvhApiPackXdsl.v7().access().batch('packName', [''].concat(chunkIds), ',').execute().$promise)).then(chunkResult => flatten(chunkResult)).then(result => flatten(result));
   };
 
-  self.fetchXdslByIds = function (ids) {
+  self.fetchXdslByIds = function fetchXdslByIds(ids) {
     if (!angular.isArray(ids) || ids.length === 0) {
       return $q.when([]);
     }
@@ -48,7 +48,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
       .then(chunkResult => flatten(chunkResult)).then(result => flatten(result));
   };
 
-  self.fetchXdslByNumber = function () {
+  self.fetchXdslByNumber = function fetchXdslByNumber() {
     return OvhApiXdsl.Lines().v7().get().aggregate('serviceName')
       .execute().$promise.then(result => self.fetchXdslByIds(map(result, (item) => {
         if (item && item.path) {
@@ -59,7 +59,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
       })));
   };
 
-  self.fetchPacks = function () {
+  self.fetchPacks = function fetchPacks() {
     const request = OvhApiPackXdsl.v7().query().sort(['description', 'offerDescription', 'packName']);
     let packList = [];
     return request.expand().execute().$promise.then((result) => {
@@ -112,7 +112,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
       .then(() => packList);
   };
 
-  self.fetchXdsl = function (xdslType) {
+  self.fetchXdsl = function fetchXdsl(xdslType) {
     const request = OvhApiXdsl.v7().query().addFilter('accessType', 'eq', xdslType).sort(['description', 'accessName']);
     let xdslList = [];
     return request.expand().execute().$promise.then((result) => {
@@ -137,7 +137,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
     });
   };
 
-  self.getPackStatus = function (packId) {
+  self.getPackStatus = function getPackStatus(packId) {
     return OvhApiPackXdsl.v6().getServiceInfos({
       packId,
     }).$promise.then(info => info.status).catch(() => 'error');
@@ -147,7 +147,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
     =            SIDEBAR HELPERS            =
     ======================================= */
 
-  self.getCount = function () {
+  self.getCount = function getCount() {
     return $q.all({
       pack: OvhApiPackXdsl.v7().query().execute().$promise,
       xdsl: OvhApiXdsl.v7().query().addFilter('status', 'ne', 'deleting').execute().$promise,

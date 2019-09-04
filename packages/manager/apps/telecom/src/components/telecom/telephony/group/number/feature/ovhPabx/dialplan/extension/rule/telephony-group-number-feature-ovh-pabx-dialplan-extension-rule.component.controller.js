@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionRuleCtrl', function ($q, $translate, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionRuleCtrl', function telephonyNumberOvhPabxDialplanExtensionRuleCtrl($q, $translate, TelephonyMediator, TucToast) {
   const self = this;
 
   self.popoverStatus = {
@@ -22,28 +22,28 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     self.extensionCtrl.extension.removeRule(self.rule);
   }
 
-  self.isLoading = function () {
+  self.isLoading = function isLoading() {
     return ['SAVING', 'CREATING', 'DELETING', 'MOVING'].indexOf(self.rule.status) > -1;
   };
 
-  self.getActionFamily = function () {
+  self.getActionFamily = function getActionFamily() {
     return self.rule.getActionFamily(self.rule.inEdition
       ? self.rule.saveForEdition.action : self.rule.action);
   };
 
-  self.getRuleAttribute = function (attr) {
+  self.getRuleAttribute = function getRuleAttribute(attr) {
     return get(self.rule.inEdition ? self.rule.saveForEdition : self.rule, attr);
   };
 
-  self.getVoicemailInfos = function () {
+  self.getVoicemailInfos = function getVoicemailInfos() {
     return TelephonyMediator.findService(self.getRuleAttribute('actionParam'));
   };
 
-  self.getMenu = function () {
+  self.getMenu = function getMenu() {
     return self.rule.ivrMenu || self.ovhPabx.getMenu(self.getRuleAttribute('actionParam'));
   };
 
-  self.getRealRulePosition = function () {
+  self.getRealRulePosition = function getRealRulePosition() {
     return indexOf(self.rule.negativeAction
       ? self.extension.negativeRules : self.extension.rules, self.rule) + 1;
   };
@@ -54,11 +54,11 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     =            EVENTS            =
     ============================== */
 
-  self.onDeleteButtonClick = function () {
+  self.onDeleteButtonClick = function onDeleteButtonClick() {
     self.rule.status = 'DELETE_CONFIRM';
   };
 
-  self.onConfirmDeleteButtonClick = function () {
+  self.onConfirmDeleteButtonClick = function onConfirmDeleteButtonClick() {
     if (self.rule.status === 'DRAFT') {
       // should not append
       return refreshSubwayPlan();
@@ -77,7 +77,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     });
   };
 
-  self.onRuleOutsideClick = function () {
+  self.onRuleOutsideClick = function onRuleOutsideClick() {
     if (!self.deletePending) {
       return;
     }
@@ -92,7 +92,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     // check if popover needs to be opened
     self.popoverStatus.isOpen = self.rule.status === 'DRAFT';
 

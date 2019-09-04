@@ -91,7 +91,7 @@ export default /* @ngInject */ function (
     }).$promise;
   };
 
-  self.orderCheckout = function () {
+  self.orderCheckout = function orderCheckout() {
     return OvhApiOrder.Telephony().v6().orderAccessories({
       billingAccount: orderProcess.billingAccount,
     }, {
@@ -109,7 +109,7 @@ export default /* @ngInject */ function (
     =            INITIALIZATION            =
     ====================================== */
 
-  self.init = function (billingAccount) {
+  self.init = function init(billingAccount) {
     orderProcess = {
       billingAccount,
       currentView: 'choice',

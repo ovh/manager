@@ -4,7 +4,7 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTollfreeHistoryCtrl', function ($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTollfreeHistoryCtrl', function TelecomTelephonyBillingAccountBillingTollfreeHistoryCtrl($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
   const self = this;
 
   self.group = null;
@@ -40,8 +40,8 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTo
       });
   }
 
-  self.fetchFile = function (consumption) {
-    const tryDownload = function () {
+  self.fetchFile = function fetchFile(consumption) {
+    const tryDownload = function tryDownload() {
       return OvhApiTelephony.HistoryTollfreeConsumption().v6().getDocument({
         billingAccount: $stateParams.billingAccount,
         date: consumption.date,
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTo
   =            ACTIONS            =
   =============================== */
 
-  self.download = function (consumption) {
+  self.download = function download(consumption) {
     return self.fetchFile(consumption).then((info) => {
       $window.location.href = info.url; // eslint-disable-line
     }).catch((err) => {
@@ -82,7 +82,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTo
   =            INITIALIZATION            =
   ====================================== */
 
-  this.$onInit = function () {
+  this.$onInit = function $onInit() {
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
       self.group = group;
       return fetchHistory().then((consumptions) => {

@@ -6,12 +6,12 @@ angular.module('App').controller('CdnModifyBackendCtrl', ($scope, $stateParams, 
   $scope.existingBackend = {};
   $scope.newBackend = {};
 
-  $scope.loadBackendData = function () {
+  $scope.loadBackendData = function loadBackendData() {
     $scope.loadBackend();
     $scope.loadBackends();
   };
 
-  $scope.loadBackend = function () {
+  $scope.loadBackend = function loadBackend() {
     CdnDomain.getSelected($stateParams.productId, $stateParams.domain).then(
       (data) => {
         $scope.currentBackend = data.backend.ipv4;
@@ -23,7 +23,7 @@ angular.module('App').controller('CdnModifyBackendCtrl', ($scope, $stateParams, 
     );
   };
 
-  $scope.loadBackends = function () {
+  $scope.loadBackends = function loadBackends() {
     if (!$scope.backends) {
       Cdn.getBackends($stateParams.productId).then((backends) => {
         $scope.backends = backends;
@@ -31,7 +31,7 @@ angular.module('App').controller('CdnModifyBackendCtrl', ($scope, $stateParams, 
     }
   };
 
-  $scope.maxBackendsReached = function () {
+  $scope.maxBackendsReached = function maxBackendsReached() {
     return $scope.backends
       && $scope.backends.backendsMax
       && $scope.backends.backendsMax === $scope.backends.results.length;
@@ -59,11 +59,11 @@ angular.module('App').controller('CdnModifyBackendCtrl', ($scope, $stateParams, 
     true,
   );
 
-  $scope.buyDomains = function () {
+  $scope.buyDomains = function buyDomains() {
     $scope.setAction('../backend/order/cdn-dedicated-backend-order');
   };
 
-  $scope.modifyBackend = function () {
+  $scope.modifyBackend = function modifyBackend() {
     if ($scope.newBackend.value) {
       $scope.existingBackend.value = $scope.newBackend.value;
     }

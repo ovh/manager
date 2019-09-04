@@ -1,6 +1,6 @@
 angular.module('UserAccount').directive('sshkeySwitch', [
   'sshkey-regex',
-  function (SSHKEY_REGEX) {
+  function sshkeySwitchDirective(SSHKEY_REGEX) {
     return {
       template: '<div><span class="label label-default ml-2" data-ng-class="{\'label-primary\': selectedType == keytype.name}" data-ng-repeat="keytype in keytypes" data-ng-bind="keytype.name"></span></div>',
       restrict: 'A',

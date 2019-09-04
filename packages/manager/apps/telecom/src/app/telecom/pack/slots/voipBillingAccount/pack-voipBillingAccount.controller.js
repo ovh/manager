@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackVoipBillingAccountCtrl', function ($scope, OvhApiPackXdslVoipBillingAccount, $stateParams) {
+angular.module('managerApp').controller('PackVoipBillingAccountCtrl', function PackVoipBillingAccountCtrl($scope, OvhApiPackXdslVoipBillingAccount, $stateParams) {
   const self = this;
 
   const init = function init() {

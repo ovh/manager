@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineAssistCtrl', function ($q, $translate, $stateParams, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistCtrl', function TelecomTelephonyLineAssistCtrl($q, $translate, $stateParams, TelephonyMediator, TucToast) {
   const self = this;
   let sectionLine = null;
 

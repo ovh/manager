@@ -1,4 +1,4 @@
-angular.module('Module.ip.filters').filter('ipFilterByService', () => function (dataset, services, filter) {
+angular.module('Module.ip.filters').filter('ipFilterByService', () => function ipFilterByServiceFilter(dataset, services, filter) {
   if (!filter) {
     return dataset;
   }

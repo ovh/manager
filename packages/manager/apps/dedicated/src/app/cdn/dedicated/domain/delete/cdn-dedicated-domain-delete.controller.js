@@ -1,7 +1,7 @@
 angular.module('App').controller('CdnDeleteDomainCtrl', ($scope, $stateParams, $translate, CdnDomain) => {
   $scope.domain = $stateParams.domain;
 
-  $scope.deleteEntry = function () {
+  $scope.deleteEntry = function deleteEntry() {
     $scope.resetAction();
     CdnDomain.deleteDomain($stateParams.productId, $stateParams.domain).then(
       () => {

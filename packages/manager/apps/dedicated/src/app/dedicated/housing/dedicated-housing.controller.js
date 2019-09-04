@@ -10,7 +10,7 @@ angular.module('App').controller('HousingCtrl', [
   'Housing',
   'ovhUserPref',
   'User',
-  function (
+  function HousingCtrl(
     $scope,
     $stateParams,
     $timeout,
@@ -73,16 +73,16 @@ angular.module('App').controller('HousingCtrl', [
       });
     }
 
-    $scope.setToBigModalDialog = function (active) {
+    $scope.setToBigModalDialog = function setToBigModalDialog(active) {
       $scope.bigModalDialog = active;
     };
 
-    $scope.resetAction = function () {
+    $scope.resetAction = function resetAction() {
       $scope.setAction(false);
       $scope.setToBigModalDialog(false);
     };
 
-    $scope.setAction = function (action, data) {
+    $scope.setAction = function setAction(action, data) {
       if (action) {
         $scope.currentAction = action;
         $scope.currentActionData = data;
@@ -101,7 +101,7 @@ angular.module('App').controller('HousingCtrl', [
       }
     };
 
-    $scope.createStopBotherUserPref = function () {
+    $scope.createStopBotherUserPref = function createStopBotherUserPref() {
       ovhUserPref.create('HOUSING_SUPPORT_PHONE_STOP_BOTHER', true);
     };
 

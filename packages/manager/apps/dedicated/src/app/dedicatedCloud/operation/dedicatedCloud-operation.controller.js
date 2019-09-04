@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
 
-angular.module('App').controller('DedicatedCloudOperationsCtrl', function ($q, $scope, $state, $stateParams, $translate, $window, BillingOrders, Alerter, DedicatedCloud, ouiDatagridService, $uibModal) {
+angular.module('App').controller('DedicatedCloudOperationsCtrl', function DedicatedCloudOperationsCtrl($q, $scope, $state, $stateParams, $translate, $window, BillingOrders, Alerter, DedicatedCloud, ouiDatagridService, $uibModal) {
   const self = this;
 
   function init() {

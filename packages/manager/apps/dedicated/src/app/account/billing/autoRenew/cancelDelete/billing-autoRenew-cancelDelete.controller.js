@@ -9,7 +9,7 @@ import set from 'lodash/set';
 angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.cancelDelete', ($rootScope, $scope, $q, BillingAutoRenew, Alerter, AUTORENEW_EVENT, $translate) => {
   $scope.selectedServices = $scope.currentActionData;
 
-  $scope.deleteRenew = function () {
+  $scope.deleteRenew = function deleteRenew() {
     const result = [];
     angular.forEach($scope.selectedServices, (service) => {
       set(service, 'renew.deleteAtExpiration', false);

@@ -1,4 +1,4 @@
-angular.module('App').controller('NasPartitionAccessCtrl', function ($scope, $stateParams, $translate, Nas, Alerter) {
+angular.module('App').controller('NasPartitionAccessCtrl', function NasPartitionAccessCtrl($scope, $stateParams, $translate, Nas, Alerter) {
   const alerterId = 'NasAlert';
   const self = this;
 
@@ -14,7 +14,7 @@ angular.module('App').controller('NasPartitionAccessCtrl', function ($scope, $st
 
   self.partitionName = $stateParams.partitionName;
 
-  self.getAccess = function (forceRefresh) {
+  self.getAccess = function getAccess(forceRefresh) {
     self.loaders.table = true;
 
     return Nas.getAccessIds($stateParams.nasId, self.partitionName, forceRefresh)

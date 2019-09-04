@@ -3,7 +3,7 @@ angular.module('Module.ip.controllers').controller('IpDeleteVirtualMacCtrl', ($s
 
   /* Action */
 
-  $scope.deleteVirtualMac = function () {
+  $scope.deleteVirtualMac = function deleteVirtualMac() {
     $scope.loading = true;
     IpVirtualMac
       .deleteVirtualMac(

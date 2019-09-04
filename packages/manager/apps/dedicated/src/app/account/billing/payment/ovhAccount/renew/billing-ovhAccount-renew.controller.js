@@ -8,7 +8,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     erreurFormat: false,
   };
 
-  $scope.loadAmount = function () {
+  $scope.loadAmount = function loadAmount() {
     $scope.accountRenew.account = $scope.currentActionData;
     $scope.accountRenew.amount = ($scope.accountRenew.account.balance.value < 0
       && $scope.accountRenew.account.balance.value * -1) || 10;
@@ -26,7 +26,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     return null;
   }
 
-  $scope.getBC = function () {
+  $scope.getBC = function getBC() {
     $scope.accountRenew.loading = true;
 
     /* avoid display old value, even few milliseconds */
@@ -47,7 +47,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     );
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.resetAction();
     $scope.setMessage($translate.instant('ovhAccount_renew_step2_success', {
       t0: $scope.accountRenew.BC.url,
@@ -56,7 +56,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     window.open($scope.accountRenew.BC.url, '_blank');
   };
 
-  $scope.checkAmount = function () {
+  $scope.checkAmount = function checkAmount() {
     let oldBalance;
     let balance;
 
@@ -86,7 +86,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     }
   };
 
-  $scope.currency = function (cur) {
+  $scope.currency = function currency(cur) {
     const currencies = { EUR: '€', USD: '$' };
     const value = currencies[cur];
     if (value) {
@@ -95,7 +95,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     return cur;
   };
 
-  $scope.renewStepValidator = function () {
+  $scope.renewStepValidator = function renewStepValidator() {
     return !($scope.accountRenew.erreurMin
       || $scope.accountRenew.erreurFormat
       || !$scope.accountRenew.amount);

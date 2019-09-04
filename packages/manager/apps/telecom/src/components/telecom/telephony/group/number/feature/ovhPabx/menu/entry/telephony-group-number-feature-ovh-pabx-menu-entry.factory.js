@@ -51,7 +51,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
 
   /* -----  End of CONSTRUCTOR  ------*/
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.setInfos = function (menuEntryOptions) {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.setInfos = function setInfos(
+    menuEntryOptions,
+  ) {
     const self = this;
 
     self.action = menuEntryOptions.action || 'setCallerName';
@@ -75,7 +77,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.create = function () {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.create = function create() {
     const self = this;
 
     self.status = 'IN_CREATION';
@@ -100,7 +102,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
       });
   };
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.save = function () {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.save = function save() {
     const self = this;
 
     self.status = 'SAVING';
@@ -122,7 +124,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
       });
   };
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.remove = function () {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.remove = function remove() {
     const self = this;
 
     self.status = 'DELETING';
@@ -141,7 +143,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.startEdition = function () {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -156,7 +158,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.stopEdition = function (cancel, saveForEdition) {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.stopEdition = function stopEdition(
+    cancel,
+    saveForEdition,
+  ) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -179,7 +184,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxMenuEntry.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberOvhPabxMenuEntry.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {

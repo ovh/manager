@@ -1,6 +1,6 @@
 import forOwn from 'lodash/forOwn';
 
-angular.module('Billing.services').service('BillingOrders', function ($q, $cacheFactory, OvhHttp, BillingAuth) {
+angular.module('Billing.services').service('BillingOrders', function BillingOrders($q, $cacheFactory, OvhHttp, BillingAuth) {
   const self = this;
   let currentTimePromise;
   const cache = {
@@ -11,11 +11,11 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
     orderBillDetails: 'UNIVERS_BILLING_ORDER_BILL_DETAILS',
   };
 
-  this.init = function () {
+  this.init = function init() {
     currentTimePromise = BillingAuth.getCurrentTimestamp().then(timestamp => moment(timestamp));
   };
 
-  this.getOrders = function (opts) {
+  this.getOrders = function getOrders(opts) {
     if (opts.forceRefresh) {
       self.clearCache();
     }
@@ -25,7 +25,7 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
     });
   };
 
-  this.getOrder = function (orderId) {
+  this.getOrder = function getOrder(orderId) {
     const propertiesPromise = OvhHttp.get('/me/order/{id}', {
       rootPath: 'apiv7',
       urlParams: {
@@ -46,7 +46,7 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
       });
   };
 
-  this.getOrderBill = function (orderId) {
+  this.getOrderBill = function getOrderBill(orderId) {
     return OvhHttp.get('/me/order/{id}/associatedObject', {
       rootPath: 'apiv7',
       urlParams: { id: orderId },
@@ -74,7 +74,7 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
       });
   };
 
-  this.getOrderPayment = function (orderId) {
+  this.getOrderPayment = function getOrderPayment(orderId) {
     return OvhHttp.get('/me/order/{id}/payment', {
       rootPath: 'apiv7',
       urlParams: { id: orderId },
@@ -82,7 +82,7 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
     }).catch(() => null);
   };
 
-  this.retractOrder = function (orderId, reason = 'other') {
+  this.retractOrder = function retractOrder(orderId, reason = 'other') {
     return OvhHttp.post('/me/order/{id}/retraction', {
       rootPath: 'apiv6',
       urlParams: { id: orderId },
@@ -92,7 +92,7 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
     });
   };
 
-  this.clearCache = function () {
+  this.clearCache = function clearCache() {
     forOwn(cache, (cacheName) => {
       const cacheInstance = $cacheFactory.get(cacheName);
       if (cacheInstance) {

@@ -7,7 +7,7 @@ angular.module('Module.ip.controllers').controller('IpAntispamCtrl', ($rootScope
     $scope.ipSpamming = params.ipSpamming;
   }
 
-  $scope.loadAntispam = function (count, offset) {
+  $scope.loadAntispam = function loadAntispam(count, offset) {
     if (!$scope.block) {
       return;
     }
@@ -40,7 +40,7 @@ angular.module('Module.ip.controllers').controller('IpAntispamCtrl', ($rootScope
     );
   };
 
-  $scope.hideAntispam = function () {
+  $scope.hideAntispam = function hideAntispam() {
     IpSpam.killPollSpamState();
     $rootScope.$broadcast('ips.display', 'table');
     $rootScope.$broadcast('ips.table.reload');
@@ -50,7 +50,7 @@ angular.module('Module.ip.controllers').controller('IpAntispamCtrl', ($rootScope
     IpSpam.killPollSpamState();
   });
 
-  $scope.unblockIp = function () {
+  $scope.unblockIp = function unblockIp() {
     IpSpam.unblockIp($scope.block, $scope.ipspam.ip).then(
       () => {
         init({ ip: $scope.block, ipSpamming: $scope.ipSpamming });

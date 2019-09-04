@@ -20,11 +20,11 @@ angular.module('Billing.controllers').controller('Billing.controllers.Fidelity',
         $scope.fidelityLoading = false;
       });
   }
-  $scope.onDateRangeChanged = function () {
+  $scope.onDateRangeChanged = function onDateRangeChanged() {
     getItems();
   };
 
-  $scope.setMessage = function (message, data) {
+  $scope.setMessage = function setMessage(message, data) {
     const msg = BillingmessageParser(message, data);
     $scope.message = msg.message;
     $scope.alertType = msg.alertType;
@@ -43,7 +43,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Fidelity',
   * if you want transform item must return transformated item
   * item is the current item to transform
   */
-  $scope.transformItem = function (item) {
+  $scope.transformItem = function transformItem(item) {
     return BillingFidelity.getMovementsDetails(item);
   };
 
@@ -51,7 +51,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Fidelity',
   * call when a item of current page is transformed
   * taskDetails contains the transformated items
   */
-  $scope.onTransformItemNotify = function (taskDetails) {
+  $scope.onTransformItemNotify = function onTransformItemNotify(taskDetails) {
     $scope.tasksDetails.push(taskDetails);
   };
 
@@ -59,18 +59,18 @@ angular.module('Billing.controllers').controller('Billing.controllers.Fidelity',
   * call when all item of current page are transformed
   * tasksDetails contains transformated item
   */
-  $scope.onTransformItemDone = function () {
+  $scope.onTransformItemDone = function onTransformItemDone() {
     $scope.loaders.tasks = false;
   };
 
-  $scope.getLastUpdate = function (format) {
+  $scope.getLastUpdate = function getLastUpdate(format) {
     if ($scope.fidelityAccount) {
       return $filter('date')($scope.fidelityAccount.lastUpdate, format);
     }
     return '';
   };
 
-  $scope.setAction = function (action, data) {
+  $scope.setAction = function setAction(action, data) {
     if (action) {
       $scope.currentAction = action;
       $scope.currentActionData = data;
@@ -90,7 +90,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Fidelity',
     }
   };
 
-  $scope.resetAction = function () {
+  $scope.resetAction = function resetAction() {
     $scope.setAction(false);
   };
 

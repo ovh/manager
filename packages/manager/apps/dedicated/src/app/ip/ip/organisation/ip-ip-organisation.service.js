@@ -5,11 +5,11 @@ angular.module('Module.ip.services').service('IpOrganisation', [
   'constants',
   'OvhHttp',
   'Poll',
-  function ($http, $q, $rootScope, constants, OvhHttp, Poll) {
+  function IpOrganisationService($http, $q, $rootScope, constants, OvhHttp, Poll) {
     const self = this;
     const swsProxypassPath = 'apiv6';
 
-    this.getIpOrganisation = function () {
+    this.getIpOrganisation = function getIpOrganisation() {
       return $http.get([swsProxypassPath, 'me/ipOrganisation'].join('/')).then(
         (data) => {
           const queue = [];
@@ -27,11 +27,11 @@ angular.module('Module.ip.services').service('IpOrganisation', [
       );
     };
 
-    this.getIpOrganisationDetails = function (orgId) {
+    this.getIpOrganisationDetails = function getIpOrganisationDetails(orgId) {
       return $http.get([swsProxypassPath, 'me/ipOrganisation', orgId].join('/')).then(data => data.data);
     };
 
-    this.getAccountRegexp = function (country, ovhSubsidiary) {
+    this.getAccountRegexp = function getAccountRegexp(country, ovhSubsidiary) {
       return $http
         .get([swsProxypassPath, 'newAccount/creationRules'].join('/'), {
           params: {
@@ -44,7 +44,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
         .then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.postOrganisation = function (params) {
+    this.postOrganisation = function postOrganisation(params) {
       return $http.post([swsProxypassPath, 'me/ipOrganisation'].join('/'), params).then(
         (data) => {
           $rootScope.$broadcast('ips.organisation.display');
@@ -54,7 +54,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
       );
     };
 
-    this.putOrganisation = function (params) {
+    this.putOrganisation = function putOrganisation(params) {
       // sale
       const paramsToSend = angular.copy(params);
       delete paramsToSend.organisationId;
@@ -67,7 +67,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
       );
     };
 
-    this.changeOrganisation = function (params) {
+    this.changeOrganisation = function changeOrganisation(params) {
       return OvhHttp.post('/ip/{ip}/changeOrg', {
         rootPath: 'apiv6',
         urlParams: {
@@ -89,7 +89,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
       });
     };
 
-    this.poll = function (opts) {
+    this.poll = function poll(opts) {
       return Poll.poll([swsProxypassPath, 'ip', encodeURIComponent(opts.ipBlock), 'task', opts.taskId].join('/'), null, {
         namespace: opts.namespace,
       }).then((resp) => {
@@ -98,7 +98,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
       });
     };
 
-    this.killAllPolling = function () {
+    this.killAllPolling = function killAllPolling() {
       Poll.kill({ namespace: 'organisation.change' });
     };
   },

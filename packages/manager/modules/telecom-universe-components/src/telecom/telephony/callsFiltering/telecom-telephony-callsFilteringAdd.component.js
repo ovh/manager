@@ -126,11 +126,11 @@ export default /* @ngInject */ {
       }).catch(err => new TucToastError(err));
     };
 
-    self.getNumberValidationPattern = (function () {
+    self.getNumberValidationPattern = (function getNumberValidationPattern() {
       const shortNumber = /^[0-9]+$/;
       const internationalNumber = /^(\+|00)[0-9]+$/;
       const validAll = /.*/;
-      return function () {
+      return function getNumberValidationPatternFunc() {
         if (self.disableNature) {
           return validAll;
         }

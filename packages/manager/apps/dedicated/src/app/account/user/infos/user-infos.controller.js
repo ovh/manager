@@ -10,7 +10,15 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
   'Alerter',
   'coreConfig',
 
-  function ($scope, $q, $location, $translate, UseraccountInfos, Alerter, coreConfig) {
+  function UserAccountInfosController(
+    $scope,
+    $q,
+    $location,
+    $translate,
+    UseraccountInfos,
+    Alerter,
+    coreConfig,
+  ) {
     /* Be carefull, a part of this controller is url driven.
          * See the bottom of this file for more detail */
     let searchParams;
@@ -96,12 +104,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       );
     }
 
-    $scope.onProfileUpdate = function () {
+    $scope.onProfileUpdate = function onProfileUpdate() {
       $scope.user = null;
       loadUserInfos();
     };
 
-    $scope.resetInfoView = function () {
+    $scope.resetInfoView = function resetInfoView() {
       $location.search('validateEmailChange', null);
       $location.search('taskId', null);
       $location.search('token', null);
@@ -112,7 +120,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       loadUserInfos();
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function cancel() {
       $scope.edit = false;
     };
 
@@ -177,15 +185,15 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       }
     }
 
-    $scope.acceptEmail = function () {
+    $scope.acceptEmail = function acceptEmail() {
       acceptOrRefuseEmail(true);
     };
 
-    $scope.refuseEmail = function () {
+    $scope.refuseEmail = function refuseEmail() {
       acceptOrRefuseEmail();
     };
 
-    $scope.validateTaskWithToken = function () {
+    $scope.validateTaskWithToken = function validateTaskWithToken() {
       $location.search({
         validateEmailChange: 'true', // string not boolean
         taskId: $scope.controls.taskEmailChangeTodo.id,
@@ -203,11 +211,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       loadTaskForEmailValidation($scope.controls.validateEmailChange.taskId);
     };
 
-    $scope.isMandatory = function (field) {
+    $scope.isMandatory = function isMandatory(field) {
       return $scope.edit && $scope.creationRules[field].mandatory;
     };
 
-    $scope.getRegexp = function (field) {
+    $scope.getRegexp = function getRegexp(field) {
       let pattern = '';
       if ($scope.edit && $scope.creationRules[field].regularExpression) {
         pattern = $scope.creationRules[field].regularExpression;
@@ -215,7 +223,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       return pattern;
     };
 
-    $scope.getInputClass = function (field) {
+    $scope.getInputClass = function getInputClass(field) {
       let accountField;
 
       if ($scope.edit) {

@@ -53,7 +53,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootS
     value: 'infos',
   };
 
-  $scope.selectTab = function (_value) {
+  $scope.selectTab = function selectTab(_value) {
     let value = _value;
 
     if (value !== 'infos' && value !== 'disk') {
@@ -62,18 +62,18 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootS
     $scope.selectedTab.value = value;
   };
 
-  $scope.changePeriod = function () {
+  $scope.changePeriod = function changePeriod() {
     $rootScope.$broadcast('reloadChart');
   };
 
-  $scope.changeRtmOptions = function () {
+  $scope.changeRtmOptions = function changeRtmOptions() {
     if ($scope.rtmOptions.value.type === 'charts') {
       $rootScope.$broadcast('reloadChart');
     }
     $location.hash('rtmData');
   };
 
-  $scope.openRtmData = function () {
+  $scope.openRtmData = function openRtmData() {
     if ($scope.rtmShow) {
       $rootScope.$broadcast('chart.reflow', 'chartRtm');
       $location.hash('rtmData');
@@ -86,7 +86,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootS
     $location.hash('rtmCharts');
   });
 
-  $scope.switchOptionRtm = function (type) {
+  $scope.switchOptionRtm = function switchOptionRtm(type) {
     if ($scope.rtmOptions.value && $scope.rtmOptions.value.type === type) {
       return;
     }

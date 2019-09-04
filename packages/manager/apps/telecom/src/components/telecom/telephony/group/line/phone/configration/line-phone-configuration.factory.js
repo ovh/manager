@@ -30,7 +30,10 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneConfiguration', () 
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupLinePhoneConfiguration.prototype.setValues = function (currentValue, defaultValue) {
+  TelephonyGroupLinePhoneConfiguration.prototype.setValues = function setValues(
+    currentValue,
+    defaultValue,
+  ) {
     const self = this;
 
     switch (self.type) {
@@ -50,7 +53,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneConfiguration', () 
     self.resetPrevValue();
   };
 
-  TelephonyGroupLinePhoneConfiguration.prototype.resetPrevValue = function () {
+  TelephonyGroupLinePhoneConfiguration.prototype.resetPrevValue = function resetPrevValue() {
     const self = this;
 
     self.prevValue = self.value;

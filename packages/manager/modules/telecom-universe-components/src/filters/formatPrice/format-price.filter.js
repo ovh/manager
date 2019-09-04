@@ -1,6 +1,9 @@
 import angular from 'angular';
 
-export default /* @ngInject */ ($sce, $translate) => function (priceText, options) {
+export default /* @ngInject */ (
+  $sce,
+  $translate,
+) => function formatPriceFilter(priceText, options) {
   let additionalTag;
   let formatedPrice;
 

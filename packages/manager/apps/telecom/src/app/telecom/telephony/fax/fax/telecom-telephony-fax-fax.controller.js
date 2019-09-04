@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyFaxFaxCtrl', function ($q, $stateParams, $translate, TelecomMediator, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyFaxFaxCtrl', function TelecomTelephonyFaxFaxCtrl($q, $stateParams, $translate, TelecomMediator, TelephonyMediator, TucToast) {
   const self = this;
 
   self.loading = {
@@ -45,7 +45,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxFaxCtrl', function (
     self.actions = actions;
   }
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

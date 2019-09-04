@@ -1,8 +1,8 @@
 angular.module('Billing.filters').filter('autorenewFrequenceText', [
-  function ($translate) {
+  function autorenewFrequenceTextFilter($translate) {
     const BASE_I18N_SLUG = 'autorenew_service_renew_';
 
-    return function (period) {
+    return function autorenewFrequenceText(period) {
       let slug;
       switch (period) {
         case 1:

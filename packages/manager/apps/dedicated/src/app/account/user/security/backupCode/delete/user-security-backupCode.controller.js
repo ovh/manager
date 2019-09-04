@@ -6,7 +6,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
   '$translate',
   'UserAccount.services.doubleAuth.backupCode',
   'Alerter',
-  function ($rootScope, $scope, $translate, DoubleAuthBackupCodeService, Alerter) {
+  function UserAccountDoubleAuthBackupCodeDeleteController(
+    $rootScope,
+    $scope,
+    $translate,
+    DoubleAuthBackupCodeService,
+    Alerter,
+  ) {
     $scope.backupCode = {
       sotpAccount: get($scope, 'currentActionData', {}),
       code: '',

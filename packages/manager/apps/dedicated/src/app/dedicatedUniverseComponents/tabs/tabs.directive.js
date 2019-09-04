@@ -3,7 +3,7 @@ import set from 'lodash/set';
 
 import template from './tabs.html';
 
-export default /* @ngInject */ function (Navigator, $rootScope) {
+export default /* @ngInject */ function tabsDirective(Navigator, $rootScope) {
   return {
     restrict: 'E',
     template,

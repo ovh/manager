@@ -3,7 +3,7 @@ angular.module('App').controller('NasPartitionAccessDeleteCtrl', ($scope, $state
 
   $scope.toDelete = $scope.currentActionData;
 
-  $scope.deleteAccess = function () {
+  $scope.deleteAccess = function deleteAccess() {
     $scope.resetAction();
     Nas
       .deleteAccess($stateParams.nasId, $scope.toDelete.partitionName, $scope.toDelete.access)

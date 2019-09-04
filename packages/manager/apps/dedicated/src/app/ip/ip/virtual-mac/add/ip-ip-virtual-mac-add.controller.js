@@ -24,7 +24,7 @@ angular.module('Module.ip.controllers').controller('IpAddVirtualMacCtrl', ($scop
 
   /* Action */
 
-  $scope.addVirtualMac = function () {
+  $scope.addVirtualMac = function addVirtualMac() {
     $scope.loading = true;
     if ($scope.model.choice === 'new') {
       IpVirtualMac
@@ -60,7 +60,7 @@ angular.module('Module.ip.controllers').controller('IpAddVirtualMacCtrl', ($scop
     }
   };
 
-  $scope.isValid = function () {
+  $scope.isValid = function isValid() {
     switch ($scope.model.choice) {
       case 'new':
         return $scope.model.type && $scope.model.virtualMachineName;

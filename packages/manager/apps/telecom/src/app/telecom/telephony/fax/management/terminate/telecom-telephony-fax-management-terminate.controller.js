@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateCtrl', function ($q, $stateParams, $translate, TelephonyMediator, voipServiceOfferTask, TucToast, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateCtrl', function TelecomTelephonyFaxManagementTerminateCtrl($q, $stateParams, $translate, TelephonyMediator, voipServiceOfferTask, TucToast, tucTelephonyBulk) {
   const self = this;
 
   self.loading = {
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
     });
   }
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
@@ -63,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
   =            EVENTS            =
   ============================== */
 
-  self.onTerminateFormSubmit = function () {
+  self.onTerminateFormSubmit = function onTerminateFormSubmit() {
     self.loading.terminate = true;
 
     return self.fax.terminate().then(() => getTerminateTask()).catch((error) => {
@@ -77,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
       });
   };
 
-  self.onCancelTerminationClick = function () {
+  self.onCancelTerminationClick = function onCancelTerminationClick() {
     self.loading.cancel = true;
 
     return self.fax.cancelTermination().then(() => {
@@ -109,11 +109,11 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {
       reason: self.reason,
       details: self.details,
@@ -122,7 +122,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_group_fax_management_terminate_bulk_all_success'),
@@ -139,7 +139,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
     self.$onInit();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_group_fax_management_terminate_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

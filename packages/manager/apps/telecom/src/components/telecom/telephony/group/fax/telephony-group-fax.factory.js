@@ -61,7 +61,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupFax.prototype.getDisplayedName = function () {
+  TelephonyGroupFax.prototype.getDisplayedName = function getDisplayedName() {
     const self = this;
 
     return self.description || self.serviceName;
@@ -69,7 +69,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupFax.prototype.save = function () {
+  TelephonyGroupFax.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.Fax().v6().edit({
@@ -81,7 +81,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     }).$promise;
   };
 
-  TelephonyGroupFax.prototype.terminate = function (reason, details) {
+  TelephonyGroupFax.prototype.terminate = function terminate(reason, details) {
     const self = this;
 
     return OvhApiTelephony.Service().v6().delete({
@@ -93,7 +93,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     }).$promise;
   };
 
-  TelephonyGroupFax.prototype.cancelTermination = function () {
+  TelephonyGroupFax.prototype.cancelTermination = function cancelTermination() {
     const self = this;
 
     return OvhApiTelephony.Service().v6().cancelTermination({
@@ -104,7 +104,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
 
   /* ----------  TASK  ----------*/
 
-  TelephonyGroupFax.prototype.getTerminationTask = function () {
+  TelephonyGroupFax.prototype.getTerminationTask = function getTerminationTask() {
     const self = this;
 
     return OvhApiTelephony.Service().OfferTask().v6()
@@ -128,7 +128,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupFax.prototype.startEdition = function () {
+  TelephonyGroupFax.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -141,7 +141,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     return self;
   };
 
-  TelephonyGroupFax.prototype.stopEdition = function (cancel) {
+  TelephonyGroupFax.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -155,7 +155,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     return self;
   };
 
-  TelephonyGroupFax.prototype.hasChange = function (path) {
+  TelephonyGroupFax.prototype.hasChange = function hasChange(path) {
     const self = this;
 
     return get(self.saveForEdition, path) !== get(self, path);

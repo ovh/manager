@@ -28,7 +28,7 @@ export default function () {
      *
      * @param {string} _loginUrl url
      */
-  this.setLoginUrl = function (_loginUrl) {
+  this.setLoginUrl = function setLoginUrl(_loginUrl) {
     loginUrl = _loginUrl;
   };
 
@@ -42,7 +42,7 @@ export default function () {
      *
      * @param {string} _logoutUrl url
      */
-  this.setLogoutUrl = function (_logoutUrl) {
+  this.setLogoutUrl = function setLogoutUrl(_logoutUrl) {
     logoutUrl = _logoutUrl;
   };
 
@@ -56,7 +56,7 @@ export default function () {
      *
      * @param {string} _userUrl url
      */
-  this.setUserUrl = function (_userUrl) {
+  this.setUserUrl = function setUserUrl(_userUrl) {
     userUrl = _userUrl;
   };
 
@@ -70,7 +70,7 @@ export default function () {
      *
      * @param {bool} _rules Configuration rules
      */
-  this.setConfig = function (_rules) {
+  this.setConfig = function setConfig(_rules) {
     rules = _rules;
   };
 
@@ -85,7 +85,7 @@ export default function () {
      *
      * @param {string} _ovhSubsidiary OVH subsidiary country code
      */
-  this.setOvhSubsidiary = function (_ovhSubsidiary) {
+  this.setOvhSubsidiary = function setOvhSubsidiary(_ovhSubsidiary) {
     ovhSubsidiary = _ovhSubsidiary;
   };
 
@@ -100,7 +100,7 @@ export default function () {
      *
      * @param {boolean} _allowIncompleteNic true to allow incomplete nic to login, false otherwise.
    */
-  this.allowIncompleteNic = function (_allowIncompleteNic) {
+  this.allowIncompleteNic = function allowIncompleteNicFunc(_allowIncompleteNic) {
     allowIncompleteNic = _allowIncompleteNic;
   };
 
@@ -114,7 +114,7 @@ export default function () {
      *
      * @param {string} _signUpUrl The url to redirect to in case of not allowed incomplete nic.
      */
-  this.setSignUpUrl = function (_signUpUrl) {
+  this.setSignUpUrl = function setSignUpUrl(_signUpUrl) {
     signUpUrl = _signUpUrl;
   };
 
@@ -127,7 +127,7 @@ export default function () {
      * @description
      * Authentication for SSO
      */
-  const Authentication = function ($q, $timeout, $location, $window, $cookies) {
+  const Authentication = function Authentication($q, $timeout, $location, $window, $cookies) {
     let isLogged = false;
     const headers = {
       'Content-Type': 'application/json;charset=utf-8',
@@ -153,7 +153,7 @@ export default function () {
          * @description
          * Get login page url
          */
-    this.getLoginUrl = function () {
+    this.getLoginUrl = function getLoginUrl() {
       return loginUrl;
     };
 
@@ -165,7 +165,7 @@ export default function () {
          * @description
          * Get logout url
          */
-    this.getLogoutUrl = function () {
+    this.getLogoutUrl = function getLogoutUrl() {
       return logoutUrl;
     };
 
@@ -177,7 +177,7 @@ export default function () {
          * @description
          * Get user informations url (/me)
          */
-    this.getUserUrl = function () {
+    this.getUserUrl = function getUserUrl() {
       return userUrl;
     };
 
@@ -189,7 +189,7 @@ export default function () {
          * @description
          * Get url prefix for serviceType
          */
-    this.getUrlPrefix = function (serviceType) {
+    this.getUrlPrefix = function getUrlPrefix(serviceType) {
       if (!rules || !Array.isArray(rules) || !rules.length) {
         return urlPrefix;
       }
@@ -225,7 +225,7 @@ export default function () {
          * @description
          * Get login status
          */
-    this.isLogged = function () {
+    this.isLogged = function isLoggedFunc() {
       return deferredObj.login.promise.then(() => isLogged);
     };
 
@@ -237,7 +237,7 @@ export default function () {
          * @description
          * Get request promise
          */
-    this.getRequestPromise = function () {
+    this.getRequestPromise = function getRequestPromise() {
       return this.isLogged().then((logged) => {
         if (!logged) {
           // user not logged in: cancel the request
@@ -252,7 +252,7 @@ export default function () {
     // ---
 
     // /!\ For testing purpose only
-    this.setIsLoggedIn = function () {
+    this.setIsLoggedIn = function setIsLoggedIn() {
       isLogged = true;
       deferredObj.login.resolve();
     };
@@ -267,7 +267,7 @@ export default function () {
          * @description
          * Check session and logout if not logged
          */
-    this.sessionCheckOrGoLogin = function () {
+    this.sessionCheckOrGoLogin = function sessionCheckOrGoLogin() {
       const self = this;
       return this.isLogged().then((logged) => {
         if (!logged) {
@@ -287,7 +287,7 @@ export default function () {
          * @description
          * Get headers
          */
-    this.getHeaders = function () {
+    this.getHeaders = function getHeaders() {
       return headers;
     };
 
@@ -299,7 +299,7 @@ export default function () {
          * @description
          * Get USERID cookie
          */
-    this.getUserIdCookie = function () {
+    this.getUserIdCookie = function getUserIdCookie() {
       return typeof $cookies.get === 'function' ? $cookies.get('USERID') : $cookies.USERID;
     };
 
@@ -311,7 +311,7 @@ export default function () {
          * @description
          * Perform login (need to be done at the app init)
          */
-    this.login = function () {
+    this.login = function login() {
       const self = this;
 
       // use jQuery ajax for checking if SESSION cookie setted
@@ -344,7 +344,7 @@ export default function () {
          * @description
          * Handle the session modified
          */
-    this.handleSwitchSession = function () {
+    this.handleSwitchSession = function handleSwitchSession() {
       // By default, reload the page
       $window.location.reload();
 
@@ -360,7 +360,7 @@ export default function () {
          * @description
          * Get pending login promise
          */
-    this.getSsoAuthPendingPromise = function () {
+    this.getSsoAuthPendingPromise = function getSsoAuthPendingPromise() {
       const self = this;
 
       return deferredObj.login.promise.then(() => {
@@ -380,7 +380,7 @@ export default function () {
          * @description
          * Perform logout
          */
-    this.logout = function (url) {
+    this.logout = function logout(url) {
       if (!deferredObj.logout) {
         deferredObj.logout = $q.defer();
         isLogged = false;
@@ -407,7 +407,7 @@ export default function () {
          * @description
          * Redirect to login page
          */
-    this.goToLoginPage = function (url) {
+    this.goToLoginPage = function goToLoginPage(url) {
       if (!deferredObj.loginPage) {
         deferredObj.loginPage = $q.defer();
 
@@ -437,7 +437,7 @@ export default function () {
          * @description
          * Redirect to configured sign-up page
          */
-    this.goToSignUpPage = function (url) {
+    this.goToSignUpPage = function goToSignUpPage(url) {
       if (!deferredObj.signUpPage) {
         deferredObj.signUpPage = $q.defer();
 
@@ -472,7 +472,7 @@ export default function () {
     };
   };
 
-  this.$get = /* @ngInject */ function ($q, $timeout, $location, $window, $cookies) {
+  this.$get = /* @ngInject */ function $get($q, $timeout, $location, $window, $cookies) {
     return new Authentication($q, $timeout, $location, $window, $cookies);
   };
 }

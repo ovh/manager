@@ -15,7 +15,7 @@ angular.module('App').controller('DedicatedCloudUserResetPasswordCtrl', ($stateP
     users: 'dedicatedCloud.alerts.dashboardUsers',
   };
 
-  $scope.resetPassword = function () {
+  $scope.resetPassword = function resetPassword() {
     $scope.isReseting = true;
     return DedicatedCloud
       .resetUserPassword($stateParams.productId, $scope.user, $scope.user.password)
@@ -31,7 +31,7 @@ angular.module('App').controller('DedicatedCloudUserResetPasswordCtrl', ($stateP
       });
   };
 
-  $scope.checkPassword = function (data) {
+  $scope.checkPassword = function checkPassword(data) {
     $scope.user.password = data;
     $scope.showError.checkPassword = false;
 
@@ -44,7 +44,7 @@ angular.module('App').controller('DedicatedCloudUserResetPasswordCtrl', ($stateP
     });
   }
 
-  $scope.checkOptionsStates = function () {
+  $scope.checkOptionsStates = function checkOptionsStates() {
     $scope.loading = true;
     return DedicatedCloud.hasSecurityOption($stateParams.productId)
       .then((hasSecurityOption) => {

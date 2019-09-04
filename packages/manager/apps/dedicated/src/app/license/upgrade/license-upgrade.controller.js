@@ -132,7 +132,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
       });
   }
 
-  $scope.isPleskVersion10 = function (plesk) {
+  $scope.isPleskVersion10 = function isPleskVersion10(plesk) {
     return !!/^PLESK_10.+$/.test(plesk.version);
   };
 
@@ -160,13 +160,13 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
     },
   };
 
-  $scope.hasMoreOptions = function () {
+  $scope.hasMoreOptions = function hasMoreOptions() {
     return $scope.license
       && $scope.selected.options
       && $scope.selected.options[$scope.license.type] !== null;
   };
 
-  $scope.isSelectionValid = function () {
+  $scope.isSelectionValid = function isSelectionValid() {
     let valid = true;
     let atLeastOne = false;
     let moreOptions;
@@ -186,7 +186,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
     return valid && atLeastOne;
   };
 
-  $scope.getOptionVersions = function () {
+  $scope.getOptionVersions = function getOptionVersions() {
     return filter(
       $scope.types[$scope.license.type].options[0].options,
       version => $scope.license.version.value !== version.value,
@@ -216,7 +216,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
 
   $scope.durations = getResetedDurations();
 
-  $scope.getDuration = function () {
+  $scope.getDuration = function getDuration() {
     if (!$scope.loaders.durations && $scope.isSelectionValid()) {
       $scope.loaders.durations = true;
       const asking = getWhatToSendFromSelected();
@@ -243,13 +243,13 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
     value: null,
   };
 
-  $scope.selectDuration = function () {
+  $scope.selectDuration = function selectDuration() {
     $scope.contractsValidated = {
       value: null,
     };
   };
 
-  $scope.generateBc = function () {
+  $scope.generateBc = function generateBc() {
     $scope.loaders.bc = true;
     const opt = getWhatToSendFromSelected();
     angular.extend(opt, { duration: $scope.selected.duration });
@@ -265,13 +265,13 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
     );
   };
 
-  $scope.openBc = function () {
+  $scope.openBc = function openBc() {
     window.open($scope.order.url);
   };
 
   $scope.order = null;
 
-  $scope.getWindowsSqlOptionsList = function () {
+  $scope.getWindowsSqlOptionsList = function getWindowsSqlOptionsList() {
     if ($scope.selected.options && $scope.selected.options.WINDOWS.version) {
       return $scope.selected.options.WINDOWS.version.options;
     }

@@ -1,8 +1,8 @@
-angular.module('Billing.services').service('BillingOvhAccount', function ($http, $q, $cacheFactory) {
+angular.module('Billing.services').service('BillingOvhAccount', function BillingOvhAccount($http, $q, $cacheFactory) {
   const billingAccountCache = $cacheFactory('UNIVERS_BILLING_OVHACCOUNT_LIST');
   const self = this;
 
-  this.getBillingOvhAccount = function ({
+  this.getBillingOvhAccount = function getBillingOvhAccount({
     ovhAccount, count, offset, date, dateTo,
   }) {
     const data = {};
@@ -33,7 +33,7 @@ angular.module('Billing.services').service('BillingOvhAccount', function ($http,
       .then(response => response.data);
   };
 
-  this.getOvhAccount = function () {
+  this.getOvhAccount = function getOvhAccount() {
     return $http
       .get('apiv6/me/ovhAccount', {
         cache: billingAccountCache,
@@ -46,7 +46,7 @@ angular.module('Billing.services').service('BillingOvhAccount', function ($http,
       });
   };
 
-  this.getOvhAccountDetails = function (ovhAccountId) {
+  this.getOvhAccountDetails = function getOvhAccountDetails(ovhAccountId) {
     return $http
       .get(['apiv6/me/ovhAccount', ovhAccountId].join('/'), {
         cache: billingAccountCache,
@@ -54,11 +54,11 @@ angular.module('Billing.services').service('BillingOvhAccount', function ($http,
       .then(response => response.data);
   };
 
-  this.putOvhAccountDetails = function (ovhAccountId, ovhAccountInfos) {
+  this.putOvhAccountDetails = function putOvhAccountDetails(ovhAccountId, ovhAccountInfos) {
     return $http.put(['apiv6/me/ovhAccount', ovhAccountId].join('/'), ovhAccountInfos).then(response => response.data);
   };
 
-  this.creditOvhAccount = function (ovhAccountId, amount) {
+  this.creditOvhAccount = function creditOvhAccount(ovhAccountId, amount) {
     return $http
       .post(['apiv6/me/ovhAccount', ovhAccountId, 'creditOrder'].join('/'), {
         amount: Math.round(amount * 100),

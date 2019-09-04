@@ -4,7 +4,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
   '$q',
   '$window',
   'OvhHttp',
-  function ($q, $window, OvhHttp) {
+  function UserAccountDoubleAuthU2fService($q, $window, OvhHttp) {
     const TIMEOUT_SECONDS = 15;
 
     /**

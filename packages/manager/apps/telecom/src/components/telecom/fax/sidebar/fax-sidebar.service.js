@@ -1,6 +1,6 @@
 import sortBy from 'lodash/sortBy';
 
-angular.module('managerApp').service('FaxSidebar', function ($translate, SidebarMenu, OvhApiFreeFax) {
+angular.module('managerApp').service('FaxSidebar', function FaxSidebar($translate, SidebarMenu, OvhApiFreeFax) {
   const self = this;
 
   self.mainSectionItem = null;
@@ -9,7 +9,7 @@ angular.module('managerApp').service('FaxSidebar', function ($translate, Sidebar
     =            SUBITEMS LOADING            =
     ======================================== */
 
-  self.loadFaxMainSection = function () {
+  self.loadFaxMainSection = function loadFaxMainSection() {
     return OvhApiFreeFax.v6().query().$promise.then((faxList) => {
       sortBy(faxList, 'number').forEach((fax) => {
         SidebarMenu.addMenuItem({
@@ -30,7 +30,7 @@ angular.module('managerApp').service('FaxSidebar', function ($translate, Sidebar
     =            INITIALIZATION            =
     ====================================== */
 
-  self.init = function () {
+  self.init = function init() {
     self.mainSectionItem = SidebarMenu.addMenuItem({
       title: $translate.instant('telecom_sidebar_section_fax'),
       error: $translate.instant('telecom_sidebar_load_error'),

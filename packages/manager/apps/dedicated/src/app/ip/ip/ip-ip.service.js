@@ -4,7 +4,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import union from 'lodash/union';
 
-angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, $q, constants, IpRange, $location, OvhHttp) {
+angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http, $q, constants, IpRange, $location, OvhHttp) {
   const self = this;
   const aapiIpPath = '/sws/module/ip';
   const swsProxypassPath = 'apiv6';
@@ -221,7 +221,7 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
     ipsListDeferredObjs = [];
   };
 
-  // this.getServiceInfos = function (serviceType, serviceName) {
+  // this.getServiceInfos = function getServiceInfos(serviceType, serviceName) {
   //   return $http
   //   .get([swsIpPath, serviceType, serviceName].join("/"))
   //   .then(function (response) {
@@ -229,7 +229,7 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
   //   });
   // };
 
-  // this.getServiceDescription = function (serviceType, serviceName) {
+  // this.getServiceDescription = function getServiceDescription(serviceType, serviceName) {
   //   switch(serviceType) {
   //     case "DEDICATED":
   //       return $http
@@ -298,15 +298,15 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
         =            IP MOVE            =
         =============================== */
 
-  this.getDedicatedServicesList = function () {
+  this.getDedicatedServicesList = function getDedicatedServicesList() {
     return $http.get([swsProxypassPath, 'dedicated/server'].join('/')).then(data => data.data.sort(), http => $q.reject(http.data));
   };
 
-  this.checkIfIpCanBeMovedTo = function (serviceName, ip) {
+  this.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo(serviceName, ip) {
     return $http.get(`${swsProxypassPath}/dedicated/server/${serviceName}/ipCanBeMovedTo?ip=${window.encodeURIComponent(ip)}`).then(data => data.data, http => $q.reject(http.data));
   };
 
-  this.moveIpBlock = function (serviceName, block, nexthop) {
+  this.moveIpBlock = function moveIpBlock(serviceName, block, nexthop) {
     return $http.post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`, { to: serviceName, nexthop }).then(data => data.data, http => $q.reject(http.data));
   };
 

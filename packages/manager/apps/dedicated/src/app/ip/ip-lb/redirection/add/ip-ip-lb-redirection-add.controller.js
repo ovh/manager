@@ -14,7 +14,7 @@ angular.module('Module.ip.controllers').controller('IplbPortsRedirectionAddCtrl'
 
   /* Action */
 
-  $scope.addPortsRedirection = function () {
+  $scope.addPortsRedirection = function addPortsRedirection() {
     $scope.loading = true;
     Iplb.addPortsRedirection($scope.data.value, $scope.model)
       .then(

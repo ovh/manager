@@ -25,7 +25,7 @@ export default {
 
     const self = this;
 
-    this.$onInit = function () {
+    this.$onInit = function $onInit() {
       self.filter = {
         perPage: PAGINATION_PER_PAGE,
       };
@@ -40,7 +40,7 @@ export default {
      * @param  {Object} abbreviatedNumber Full object
      * @return {Promise}
      */
-    this.remove = function (abbreviatedNumber) {
+    this.remove = function remove(abbreviatedNumber) {
       return $q.when(this.removeCallback({ value: abbreviatedNumber }))
         .then(() => {
           TucToast.success($translate.instant('telephony_abbreviated_numbers_remove_success', abbreviatedNumber));
@@ -56,7 +56,7 @@ export default {
     /**
      * Add a new abbreviated number
      */
-    this.add = function () {
+    this.add = function add() {
       const addModalInstance = $uibModal.open({
         animation: true,
         template: templateAddOrUpdate,
@@ -85,7 +85,7 @@ export default {
     /**
      * Open the import dialog
      */
-    this.openImport = function () {
+    this.openImport = function openImport() {
       const importModalInstance = $uibModal.open({
         animation: true,
         template: templateImport,
@@ -114,7 +114,7 @@ export default {
     /**
      * Open the "Trash All" dialog
      */
-    this.trashAll = function () {
+    this.trashAll = function trashAll() {
       const importModalInstance = $uibModal.open({
         animation: true,
         template: templateTrashAll,
@@ -140,7 +140,7 @@ export default {
     /**
      * Get the header line of the CSV
      */
-    this.getCsvHeader = function () {
+    this.getCsvHeader = function getCsvHeader() {
       return {
         abbreviatedNumber: $translate.instant('telephony_abbreviated_numbers_id'),
         destinationNumber: $translate.instant('telephony_abbreviated_numbers_number'),
@@ -152,7 +152,7 @@ export default {
     /**
      * Get the order of fields in the CSV
      */
-    this.getCsvOrder = function () {
+    this.getCsvOrder = function getCsvOrder() {
       return ['abbreviatedNumber', 'destinationNumber', 'name', 'surname'];
     };
 
@@ -160,7 +160,7 @@ export default {
      * Update an abbreviated number
      * @param  {Object} abbreviatedNumber Abbreviated number to update
      */
-    this.update = function (abbreviatedNumber) {
+    this.update = function update(abbreviatedNumber) {
       set(abbreviatedNumber, 'updating', true);
       const addModalInstance = $uibModal.open({
         animation: true,

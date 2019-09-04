@@ -83,7 +83,7 @@ angular.module('App').controller('CdnCtrl', ($scope, $timeout) => {
     $scope.message = messageToSend;
   };
 
-  $scope.setAction = function (action, data) {
+  $scope.setAction = function setAction(action, data) {
     if (action) {
       $scope.currentAction = action;
       $scope.currentActionData = data;

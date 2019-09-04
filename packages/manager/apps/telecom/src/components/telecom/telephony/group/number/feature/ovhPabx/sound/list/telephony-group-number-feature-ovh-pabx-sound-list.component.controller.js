@@ -1,7 +1,7 @@
 import head from 'lodash/head';
 import isFunction from 'lodash/isFunction';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', function ($timeout, $translate, $translatePartialLoader) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', function telephonyNumberOvhPabxSoundListCtrl($timeout, $translate, $translatePartialLoader) {
   const self = this;
 
   self.loading = {
@@ -16,7 +16,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', f
     =            EVENTS            =
     ============================== */
 
-  self.onSelectedSoundChanged = function (sound) {
+  self.onSelectedSoundChanged = function onSelectedSoundChanged(sound) {
     $timeout(() => {
       if (self.onSoundSelected && isFunction(self.onSoundSelected())) {
         self.onSoundSelected()(sound);
@@ -24,7 +24,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', f
     });
   };
 
-  self.onSoundeDeleteConfirm = function (sound) {
+  self.onSoundeDeleteConfirm = function onSoundeDeleteConfirm(sound) {
     return sound.remove().then(() => {
       self.ovhPabx.removeSound(sound);
     }).finally(() => {
@@ -51,7 +51,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', f
 
   /* ----------  Component initialization  ----------*/
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     if (!self.numberCtrl && !self.ovhPabx) {
       throw new Error('telephonyNumberOvhPabxSoundList must have telephonyNumber component as parent or must have ovhPabx attribute specified');
     }

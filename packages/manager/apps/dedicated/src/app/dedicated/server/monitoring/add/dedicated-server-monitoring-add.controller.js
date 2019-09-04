@@ -1,7 +1,7 @@
 import uniq from 'lodash/uniq';
 import without from 'lodash/without';
 
-angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $scope, $stateParams, $translate, Server, Alerter, $q) {
+angular.module('App').controller('MonitoringAddCtrl', function MonitoringAddCtrl($rootScope, $scope, $stateParams, $translate, Server, Alerter, $q) {
   const self = this;
 
   self.validator = validator;
@@ -42,11 +42,11 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
     sms: false,
   };
 
-  self.init = function () {
+  self.init = function init() {
     self.loaders.init = true;
   };
 
-  self.toggle = function (feat) {
+  self.toggle = function toggle(feat) {
     angular.forEach(self.show, (value, key) => {
       if (key !== feat) {
         self.show[key] = false;
@@ -56,18 +56,18 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
     self.show[feat] = !self.show[feat];
   };
 
-  self.addEMailNotification = function () {
+  self.addEMailNotification = function addEMailNotification() {
     self.emailNotifications.push({
       email: null,
       language: null,
     });
   };
 
-  self.removeEMailNotification = function (notification) {
+  self.removeEMailNotification = function removeEMailNotification(notification) {
     self.emailNotifications = without(self.emailNotifications, notification);
   };
 
-  self.addSmsNotification = function () {
+  self.addSmsNotification = function addSmsNotification() {
     self.smsNotifications.push({
       smsAccount: null,
       phoneNumberTo: null,
@@ -77,7 +77,7 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
     });
   };
 
-  self.removeSmsNotification = function (notification) {
+  self.removeSmsNotification = function removeSmsNotification(notification) {
     self.smsNotifications = without(self.smsNotifications, notification);
   };
 
@@ -128,7 +128,7 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
     });
   }
 
-  self.addMonitoring = function () {
+  self.addMonitoring = function addMonitoring() {
     self.loaders.add = true;
 
     Server.addServiceMonitoring($stateParams.productId, self.monitoring)

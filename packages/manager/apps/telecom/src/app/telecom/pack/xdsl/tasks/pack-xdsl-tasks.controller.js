@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('XdslTasksCtrl', function ($scope, $stateParams, $translate, OvhApiXdsl, TucToast, PAGINATION_PER_PAGE) {
+  .controller('XdslTasksCtrl', function XdslTasksCtrl($scope, $stateParams, $translate, OvhApiXdsl, TucToast, PAGINATION_PER_PAGE) {
     const self = this;
 
     self.taskIds = [];
@@ -9,11 +9,11 @@ angular.module('managerApp')
       perPage: PAGINATION_PER_PAGE,
     };
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.getTasks();
     };
 
-    self.getTasks = function () {
+    self.getTasks = function getTasks() {
       self.isLoading = true;
       self.taskIds = null;
       return OvhApiXdsl.v6().getTasks({ xdslId: $stateParams.serviceName }).$promise.then(
@@ -28,7 +28,7 @@ angular.module('managerApp')
       });
     };
 
-    self.transformItem = function (id) {
+    self.transformItem = function transformItem(id) {
       return OvhApiXdsl.v6()
         .getTask({ xdslId: $stateParams.serviceName, taskId: id }).$promise.then(
           task => task,
@@ -38,7 +38,7 @@ angular.module('managerApp')
         );
     };
 
-    self.refresh = function () {
+    self.refresh = function refresh() {
       self.getTasks();
     };
   });

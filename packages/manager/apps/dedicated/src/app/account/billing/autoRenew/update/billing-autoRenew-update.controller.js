@@ -19,7 +19,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
   'BillingAutoRenew',
   'AUTORENEW_EVENT',
   'DucUserContractService',
-  function (
+  function BillingAutorenewUpdateController(
     $q,
     $rootScope,
     $scope,
@@ -96,7 +96,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
     };
     /* eslint-enable no-return-assign */
 
-    $scope.updateRenew = function () {
+    $scope.updateRenew = function updateRenew() {
       const result = [];
       angular.forEach($scope.selectedServices, (service) => {
         if ($scope.hasChange(service)) {
@@ -157,7 +157,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       promise.finally(() => $scope.closeAction());
     };
 
-    $scope.onChange = function () {
+    $scope.onChange = function onChange() {
       $scope.hasChanged = false;
       angular.forEach($scope.selectedServices, (service) => {
         if (service.renew.automatic || service.renew.forced) {
@@ -175,7 +175,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       });
     };
 
-    $scope.hasChange = function (service) {
+    $scope.hasChange = function hasChange(service) {
       if (service.renew.automatic && service.newRenewType === 'manuel') {
         return true;
       }
@@ -191,7 +191,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       return false;
     };
 
-    $scope.getPeriodTranslation = function (period) {
+    $scope.getPeriodTranslation = function getPeriodTranslation(period) {
       let message = '';
       switch (period) {
         case 0:
@@ -208,7 +208,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       return message;
     };
 
-    $scope.closeAction = function () {
+    $scope.closeAction = function closeAction() {
       $rootScope.$broadcast(AutoRenew.events.AUTORENEW_CHANGED);
       $scope.resetAction();
     };

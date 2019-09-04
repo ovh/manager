@@ -2,7 +2,7 @@ import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
 
-angular.module('Billing').controller('Billing.PaymentsCtrl', function (
+angular.module('Billing').controller('Billing.PaymentsCtrl', function BillingPaymentsCtrl(
   $filter,
   $q,
   $state,

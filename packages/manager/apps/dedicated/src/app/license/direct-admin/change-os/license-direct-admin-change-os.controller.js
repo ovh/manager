@@ -50,7 +50,7 @@ angular.module('Module.license').controller('LicenseDirectAdminChangeOsCtrl', ($
       });
   }
 
-  $scope.changeOs = function () {
+  $scope.changeOs = function changeOs() {
     if ($scope.model.selectedOs && !$scope.model.modifying) {
       $scope.model.modifying = true;
       License.changeOs($scope.model.license, $scope.model.selectedOs)
@@ -68,11 +68,11 @@ angular.module('Module.license').controller('LicenseDirectAdminChangeOsCtrl', ($
     }
   };
 
-  $scope.isValid = function () {
+  $scope.isValid = function isValid() {
     return $scope.model.selectedOs !== '' && $scope.model.selectedOs !== $scope.model.currentOs && !$scope.model.operationIsPending && !$scope.model.loading;
   };
 
-  $scope.exit = function (osChanged) {
+  $scope.exit = function exit(osChanged) {
     if (osChanged) {
       $scope.$emit('License.Details.Refresh');
     }

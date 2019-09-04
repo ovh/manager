@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineFaxCtrl', function ($translate, TelecomMediator) {
+angular.module('managerApp').controller('TelecomTelephonyLineFaxCtrl', function TelecomTelephonyLineFaxCtrl($translate, TelecomMediator) {
   const self = this;
 
   self.actions = null;

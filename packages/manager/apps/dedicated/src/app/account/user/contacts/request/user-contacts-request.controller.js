@@ -10,7 +10,15 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
   '$q',
   '$stateParams',
   '$translate',
-  function ($scope, Contacts, Alerter, User, $q, $stateParams, $translate) {
+  function UserAccountContactsRequestsController(
+    $scope,
+    Contacts,
+    Alerter,
+    User,
+    $q,
+    $stateParams,
+    $translate,
+  ) {
     const self = this;
     self.contactTasksDetails = [];
     self.hasToken = false;
@@ -62,7 +70,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
         });
     }
 
-    self.getContactChangeTasks = function () {
+    self.getContactChangeTasks = function getContactChangeTasks() {
       const params = {};
       self.loaders.tasks = true;
       self.contactTasksIds = [];
@@ -84,12 +92,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
         });
     };
 
-    self.transformItem = function (id) {
+    self.transformItem = function transformItem(id) {
       self.loaders.tasks = true;
       return Contacts.getContactChangeTaskDetail(id);
     };
 
-    self.onTransformItemDone = function () {
+    self.onTransformItemDone = function onTransformItemDone() {
       self.loaders.tasks = false;
       setTimeout(() => {
         Contacts.killAllPolling({ namespace: 'user.contacts.sendRequest' });
@@ -149,7 +157,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       }, 0);
     };
 
-    self.onTaskStateChanged = function () {
+    self.onTaskStateChanged = function onTaskStateChanged() {
       self.getContactChangeTasks();
     };
 

@@ -6,7 +6,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
   '$translate',
   'UserAccount.services.doubleAuth.sms',
   'Alerter',
-  function ($rootScope, $scope, $translate, DoubleAuthSmsService, Alerter) {
+  function UserAccountDoubleAuthSmsEditController(
+    $rootScope,
+    $scope,
+    $translate,
+    DoubleAuthSmsService,
+    Alerter,
+  ) {
     $scope.sms = {
       smsAccount: get($scope, 'currentActionData', {}),
       description: get($scope, 'currentActionData.description', ''),

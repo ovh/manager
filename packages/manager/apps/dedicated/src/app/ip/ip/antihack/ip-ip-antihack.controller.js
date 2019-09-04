@@ -10,7 +10,7 @@ angular.module('Module.ip.controllers').controller('IpViewAntihackCtrl', ($scope
       $scope.loading = false;
     });
 
-  $scope.unblockAntihack = function () {
+  $scope.unblockAntihack = function unblockAntihack() {
     $scope.loading = true;
     IpAntihack.unblockIp($scope.data.ipBlock.ipBlock, $scope.data.ip.ip)
       .then(

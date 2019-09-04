@@ -1,6 +1,6 @@
 import filter from 'lodash/filter';
 
-angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $translate, PAGINATION_PER_PAGE, TASK_STATUS, OvhApiPackXdslTask, TucToastError) {
+angular.module('managerApp').controller('PackTaskCtrl', function PackTaskCtrl($scope, $translate, PAGINATION_PER_PAGE, TASK_STATUS, OvhApiPackXdslTask, TucToastError) {
   const self = this;
   this.allTasks = [];
   this.statusFilteredTasks = [];
@@ -10,7 +10,7 @@ angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $trans
     page: 1,
   };
 
-  const getData = function () {
+  const getData = function getData() {
     return OvhApiPackXdslTask.Aapi().details({
       packName: $scope.Pack.pack.packName,
     }).$promise.then(
@@ -21,7 +21,7 @@ angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $trans
     );
   };
 
-  const assignStatusToTasks = function () {
+  const assignStatusToTasks = function assignStatusToTasks() {
     for (let i = 0; i < self.allTasks.length; i += 1) {
       const status = self.allTasks[i].status; // eslint-disable-line
       self.allTasks[i].status = self.status[self.allTasks[i].status];
@@ -32,7 +32,7 @@ angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $trans
     }
   };
 
-  self.updateFilteredTasks = function () {
+  self.updateFilteredTasks = function updateFilteredTasks() {
     let result = self.allTasks;
 
     if (self.filter.status) {
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $trans
     self.statusFilteredTasks = result;
   };
 
-  self.getStatusFilter = function () {
+  self.getStatusFilter = function getStatusFilter() {
     const result = [{
       icon: '',
       title: $translate.instant('telecom_task_status'),
@@ -64,12 +64,12 @@ angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $trans
     return result;
   };
 
-  self.filterTasksByStatus = function (item) {
+  self.filterTasksByStatus = function filterTasksByStatus(item) {
     self.filter.status = item.status;
     self.updateFilteredTasks();
   };
 
-  const init = function () {
+  const init = function init() {
     self.status = TASK_STATUS;
     self.filterChoices = self.getStatusFilter();
     self.filterSelect = {

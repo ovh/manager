@@ -4,10 +4,16 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
   '$translate',
   'UserAccount.services.ipRestrictions',
   'Alerter',
-  function ($rootScope, $scope, $translate, Service, Alerter) {
+  function UserAccountIpRestrictionsDeleteController(
+    $rootScope,
+    $scope,
+    $translate,
+    Service,
+    Alerter,
+  ) {
     $scope.data = $scope.currentActionData;
 
-    $scope.deleteRestriction = function () {
+    $scope.deleteRestriction = function deleteRestriction() {
       $scope.resetAction();
       Service.deleteRestriction($scope.data).then(
         () => {

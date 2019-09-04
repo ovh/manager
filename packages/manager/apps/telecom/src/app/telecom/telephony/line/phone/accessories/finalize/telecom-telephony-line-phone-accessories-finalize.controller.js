@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesFinalizeCtrl', function ($q, TucTelephonyAccessoriesOrderProcess) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesFinalizeCtrl', function TelecomTelephonyLinePhoneAccessoriesFinalizeCtrl($q, TucTelephonyAccessoriesOrderProcess) {
   const self = this;
 
   self.process = null;

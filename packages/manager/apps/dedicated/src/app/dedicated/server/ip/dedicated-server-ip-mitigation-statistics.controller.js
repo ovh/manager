@@ -8,13 +8,20 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
   '$timeout',
   '$translate',
 
-  function ($scope, Server, statisticsScale, $filter, $timeout, $translate) {
+  function ServerIpMitigationStatisticsCtrl(
+    $scope,
+    Server,
+    statisticsScale,
+    $filter,
+    $timeout,
+    $translate,
+  ) {
     $scope.selectedIpAndBlock = $scope.currentActionData;
     $scope.statsLoading = false;
 
     $scope.statisticsScalesAvailable = null;
 
-    $scope.loadStatisticsScale = function () {
+    $scope.loadStatisticsScale = function loadStatisticsScale() {
       Server.getMitigationStatisticsScale().then((data) => {
         $scope.statisticsScalesAvailable = data;
         if (data.length > 0) {
@@ -24,7 +31,7 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
       });
     };
 
-    const createChart = function () {
+    const createChart = function createChart() {
       let series = [];
       let plotOptionSeries = {};
       let d = new Date();
@@ -121,12 +128,12 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
       };
     };
     let timeout = null;
-    const clearTO = function () {
+    const clearTO = function clearTO() {
       if (timeout) {
         $timeout.cancel(timeout);
       }
     };
-    const realTimeStats = function () {
+    const realTimeStats = function realTimeStats() {
       clearTO();
       if ($scope.statisticsScalesAvailable && $scope.statisticsScalesAvailable.length > 0) {
         $scope.statsLoading = true;
@@ -175,7 +182,7 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
       mode: null,
     };
 
-    $scope.getStatistics = function () {
+    $scope.getStatistics = function getStatistics() {
       if ($scope.model.from && $scope.model.scale) {
         $scope.statsLoading = true;
         Server
@@ -207,7 +214,7 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
       }
     });
 
-    $scope.closeAction = function () {
+    $scope.closeAction = function closeAction() {
       clearTO();
       $scope.resetAction();
     };

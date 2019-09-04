@@ -5,13 +5,20 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.dedicated.
   'Alerter',
   'atInternet',
   'UserAccount.services.ssh',
-  function ($scope, $timeout, $translate, Alerter, atInternet, UseraccountSsh) {
+  function UserAccountSshDedicatedAddController(
+    $scope,
+    $timeout,
+    $translate,
+    Alerter,
+    atInternet,
+    UseraccountSsh,
+  ) {
     const fullSshList = $scope.currentActionData || [];
 
     $scope.model = {};
     $scope.sshKeyAlreadyCreatedError = false;
 
-    $scope.addDedicatedSshKey = function () {
+    $scope.addDedicatedSshKey = function addDedicatedSshKey() {
       UseraccountSsh.addDedicatedSshKey($scope.model).then(
         () => {
           Alerter.success($translate.instant('user_ssh_add_success_message'));
@@ -32,7 +39,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.dedicated.
       $scope.resetAction();
     };
 
-    $scope.formIsValid = function () {
+    $scope.formIsValid = function formIsValid() {
       if ($scope.model.keyName && ~fullSshList.indexOf($scope.model.keyName)) {
         $scope.sshKeyAlreadyCreatedError = true;
         return false;

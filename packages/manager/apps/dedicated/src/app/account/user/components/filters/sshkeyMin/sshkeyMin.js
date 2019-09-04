@@ -1,6 +1,6 @@
 angular.module('UserAccount').filter('sshkeyMin', [
   'sshkey-regex',
-  function (SSHKEY_REGEX) {
+  function sshkeyMinFilter(SSHKEY_REGEX) {
     let splitted;
     let minLength;
     let innerkeyLength;
@@ -10,7 +10,7 @@ angular.module('UserAccount').filter('sshkeyMin', [
     let type = false;
     let i;
 
-    return function (keyParam) {
+    return function sshkeyMin(keyParam) {
       let key = keyParam;
 
       key = key.trim().replace(/\n/, '');

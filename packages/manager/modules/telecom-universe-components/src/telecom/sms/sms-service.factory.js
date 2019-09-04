@@ -35,7 +35,7 @@ export default /* @ngInject */ (OvhApiSms) => {
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TucSmsService.prototype.setInfos = function (options) {
+  TucSmsService.prototype.setInfos = function setInfos(options) {
     const self = this;
 
     angular.forEach(keys(options), (optionKey) => {
@@ -45,7 +45,7 @@ export default /* @ngInject */ (OvhApiSms) => {
     return self;
   };
 
-  TucSmsService.prototype.getDisplayedName = function () {
+  TucSmsService.prototype.getDisplayedName = function getDisplayedName() {
     const self = this;
 
     return self.description || self.name;
@@ -53,7 +53,7 @@ export default /* @ngInject */ (OvhApiSms) => {
 
   /* ----------  API CALLS  ----------*/
 
-  TucSmsService.prototype.save = function () {
+  TucSmsService.prototype.save = function save() {
     const self = this;
 
     return OvhApiSms.v6().edit({
@@ -65,7 +65,7 @@ export default /* @ngInject */ (OvhApiSms) => {
 
   /* ----------  EDITION  ----------*/
 
-  TucSmsService.prototype.startEdition = function () {
+  TucSmsService.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -77,7 +77,7 @@ export default /* @ngInject */ (OvhApiSms) => {
     return self;
   };
 
-  TucSmsService.prototype.stopEdition = function (cancel) {
+  TucSmsService.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {

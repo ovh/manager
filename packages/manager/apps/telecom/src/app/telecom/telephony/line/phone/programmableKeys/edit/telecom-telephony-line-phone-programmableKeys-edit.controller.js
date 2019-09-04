@@ -7,7 +7,7 @@ import set from 'lodash/set';
 import uniqBy from 'lodash/uniqBy';
 
 angular.module('managerApp')
-  .controller('TelecomTelephonyLinePhoneProgammableKeysEditCtrl', function (
+  .controller('TelecomTelephonyLinePhoneProgammableKeysEditCtrl', function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
     $uibModalInstance, $stateParams, $q, $translate, $timeout,
     TelephonyGroupLinePhoneFunction, functionKey, TelephonyMediator, OvhApiMe,
     OvhApiTelephonyFax, OvhApiTelephonyMiniPabx, OvhApiTelephonyOvhPabx, OvhApiTelephonyEasyPabx,
@@ -29,7 +29,7 @@ angular.module('managerApp')
     this.availableFunctions = [];
     this.availableParameters = [];
 
-    this.save = function () {
+    this.save = function save() {
       self.loading.save = true;
       self.saved = false;
 
@@ -52,11 +52,11 @@ angular.module('managerApp')
       });
     };
 
-    this.cancel = function (message) {
+    this.cancel = function cancel(message) {
       return $uibModalInstance.dismiss(message);
     };
 
-    this.close = function () {
+    this.close = function close() {
       return $uibModalInstance.close(true);
     };
 
@@ -90,7 +90,7 @@ angular.module('managerApp')
       return find(self.availableFunctions, f => f.value === func.function);
     }
 
-    this.getParameterFunctions = function () {
+    this.getParameterFunctions = function getParameterFunctions() {
       const type = {
         NONE: null,
         DIAL: 'number', // numero telephone,
@@ -260,7 +260,7 @@ angular.module('managerApp')
       }, () => []);
     }
 
-    self.setParameters = function () {
+    self.setParameters = function setParameters() {
       let request;
 
       // self.FunctionKey.parameter = null;

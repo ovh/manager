@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasSvaGeneratorCtrl', function ($stateParams, OvhApiTelephony, TucToastError, SvaGeneratorConfig) {
+angular.module('managerApp').controller('TelecomTelephonyAliasSvaGeneratorCtrl', function TelecomTelephonyAliasSvaGeneratorCtrl($stateParams, OvhApiTelephony, TucToastError, SvaGeneratorConfig) {
   const self = this;
 
   function init() {

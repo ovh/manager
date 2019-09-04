@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', function ($q, $translate, TucPackMigrationProcess, TucToast) {
+angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', function TelecomPackMigrationOffersCtrl($q, $translate, TucPackMigrationProcess, TucToast) {
   const self = this;
 
   self.process = null;
@@ -15,7 +15,7 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
   =            ACTIONS            =
   =============================== */
 
-  self.updateOfferDisplayedPrice = function (value, offer) {
+  self.updateOfferDisplayedPrice = function updateOfferDisplayedPrice(value, offer) {
     let totalOfferPrice = offer.price.value;
 
     angular.forEach(offer.options, (option) => {
@@ -29,7 +29,7 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
     set(offer, 'displayedPrice', TucPackMigrationProcess.getPriceStruct(totalOfferPrice));
   };
 
-  self.selectOffer = function (offer) {
+  self.selectOffer = function selectOffer(offer) {
     TucPackMigrationProcess.selectOffer(offer);
   };
 
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
   =            HELPERS            =
   =============================== */
 
-  self.hasOfferWithSubServicesToDelete = function () {
+  self.hasOfferWithSubServicesToDelete = function hasOfferWithSubServicesToDelete() {
     return !!find(
       self.process.migrationOffers.result.offers,
       offer => offer.totalSubServiceToDelete > 0,

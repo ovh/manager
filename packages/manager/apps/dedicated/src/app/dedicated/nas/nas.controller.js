@@ -1,5 +1,5 @@
 angular.module('App').controller('NasCtrl', ($scope, $timeout) => {
-  $scope.resetAction = function () {
+  $scope.resetAction = function resetAction() {
     $scope.setAction(false);
   };
 
@@ -7,7 +7,7 @@ angular.module('App').controller('NasCtrl', ($scope, $timeout) => {
     $scope.resetAction();
   });
 
-  $scope.setAction = function (action, data) {
+  $scope.setAction = function setAction(action, data) {
     if (action) {
       $scope.currentAction = action;
       $scope.currentActionData = data;

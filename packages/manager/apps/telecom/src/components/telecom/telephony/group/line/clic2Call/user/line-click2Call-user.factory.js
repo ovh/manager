@@ -43,7 +43,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
         =            PROTOTYPE METHODS            =
         ========================================= */
 
-  TelephonyGroupLineClick2CallUser.prototype.setInfos = function (options) {
+  TelephonyGroupLineClick2CallUser.prototype.setInfos = function setInfos(options) {
     const self = this;
     angular.forEach(keys(options), (optionKey) => {
       self[optionKey] = options[optionKey];
@@ -52,7 +52,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
     return self;
   };
 
-  TelephonyGroupLineClick2CallUser.prototype.getUser = function () {
+  TelephonyGroupLineClick2CallUser.prototype.getUser = function getUser() {
     const self = this;
     return OvhApiTelephony.Line().Click2Call().User().v6()
       .get({
@@ -62,7 +62,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
       }).$promise.then(phoneOptions => phoneOptions, error => $q.reject(error));
   };
 
-  TelephonyGroupLineClick2CallUser.prototype.call = function (calledNumber) {
+  TelephonyGroupLineClick2CallUser.prototype.call = function call(calledNumber) {
     const self = this;
 
     return OvhApiTelephony.Line().Click2Call().User().v6()
@@ -74,7 +74,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
       }).$promise.then(voidResponse => voidResponse, error => $q.reject(error));
   };
 
-  TelephonyGroupLineClick2CallUser.prototype.add = function (userOptionsParam) {
+  TelephonyGroupLineClick2CallUser.prototype.add = function add(userOptionsParam) {
     const self = this;
     let userOptions = userOptionsParam;
 
@@ -95,7 +95,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
       });
   };
 
-  TelephonyGroupLineClick2CallUser.prototype.remove = function (userOptionsParam) {
+  TelephonyGroupLineClick2CallUser.prototype.remove = function remove(userOptionsParam) {
     const self = this;
     let userOptions = userOptionsParam;
 
@@ -116,7 +116,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
       });
   };
 
-  TelephonyGroupLineClick2CallUser.prototype.changePassword = function (password) {
+  TelephonyGroupLineClick2CallUser.prototype.changePassword = function changePassword(password) {
     const self = this;
 
     return OvhApiTelephony.Line().Click2Call().User().v6()

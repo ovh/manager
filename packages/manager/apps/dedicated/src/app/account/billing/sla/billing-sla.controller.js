@@ -17,7 +17,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Sla', ($sc
     $scope.getSlas(true);
   }
 
-  $scope.getSlas = function (forceRefresh) {
+  $scope.getSlas = function getSlas(forceRefresh) {
     $scope.slaIds = [];
     $scope.loaders.slas = true;
     return BillingSla.getSlas({ forceRefresh }).then(
@@ -33,7 +33,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Sla', ($sc
     );
   };
 
-  $scope.transformItem = function (item) {
+  $scope.transformItem = function transformItem(item) {
     $scope.loaders.slas = true;
     return $q
       .all({
@@ -53,11 +53,11 @@ angular.module('Billing.controllers').controller('Billing.controllers.Sla', ($sc
       });
   };
 
-  $scope.onTransformItemDone = function () {
+  $scope.onTransformItemDone = function onTransformItemDone() {
     $scope.loaders.slas = false;
   };
 
-  $scope.applySla = function (sla) {
+  $scope.applySla = function applySla(sla) {
     $scope.loaders.applySla = true;
     atInternet.trackClick({
       type: 'action',
@@ -79,15 +79,15 @@ angular.module('Billing.controllers').controller('Billing.controllers.Sla', ($sc
       });
   };
 
-  $scope.allNotApplicable = function () {
+  $scope.allNotApplicable = function allNotApplicable() {
     return every($scope.slas, { status: 'notApplicable' });
   };
 
-  $scope.allRequested = function () {
+  $scope.allRequested = function allRequested() {
     return every($scope.slas, { status: 'requested' });
   };
 
-  $scope.allCompleted = function () {
+  $scope.allCompleted = function allCompleted() {
     return every($scope.slas, { status: 'completed' });
   };
 

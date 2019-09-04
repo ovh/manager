@@ -7,7 +7,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
   '$translate',
   'UserAccount.services.doubleAuth.sms',
   'Alerter',
-  function ($scope, $q, $translate, DoubleAuthSmsService, Alerter) {
+  function UserAccountDoubleAuthSmsController(
+    $scope,
+    $q,
+    $translate,
+    DoubleAuthSmsService,
+    Alerter,
+  ) {
     $scope.sms = {
       smsAccounts: null,
       isLoading: false,

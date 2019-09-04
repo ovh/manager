@@ -31,8 +31,18 @@ angular.module('ovhSignupApp').component('newAccountForm', {
     'UserAccount.constants',
     'UserAccount.services.Infos',
     '$translate',
-    function ($scope, $q, $http, $timeout, coreConfig, NewAccountFormConfig, Alerter,
-      UserAccountConstants, UserAccountServiceInfos, $translate) {
+    function newAccountFormController(
+      $scope,
+      $q,
+      $http,
+      $timeout,
+      coreConfig,
+      NewAccountFormConfig,
+      Alerter,
+      UserAccountConstants,
+      UserAccountServiceInfos,
+      $translate,
+    ) {
       this.isLoading = false; // true when fetching data from api
       this.initError = null; // initialization error if any
       this.submitError = null;

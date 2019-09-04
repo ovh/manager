@@ -5,7 +5,7 @@ angular.module('Module.ip.controllers').controller('IplbBackendDeleteCtrl', ($sc
 
   /* Action */
 
-  $scope.deleteBackend = function () {
+  $scope.deleteBackend = function deleteBackend() {
     $scope.loading = true;
     Iplb.deleteBackend($scope.data.selectedIplb.value, $scope.data.backend.backend)
       .then(

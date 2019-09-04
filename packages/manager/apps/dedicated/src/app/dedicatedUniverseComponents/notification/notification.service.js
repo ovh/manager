@@ -1,6 +1,6 @@
 import indexOf from 'lodash/indexOf';
 
-export default /* @ngInject */ function ($q, ovhUserPref) {
+export default /* @ngInject */ function notificationService($q, ovhUserPref) {
   const self = this;
 
   function createNotificationUserPref(userPrefName, subject) {

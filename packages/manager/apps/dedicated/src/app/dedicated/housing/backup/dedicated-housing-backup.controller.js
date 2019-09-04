@@ -112,24 +112,24 @@ angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateP
 
   init();
 
-  $scope.transformItem = function (id) {
+  $scope.transformItem = function transformItem(id) {
     return Housing.getFtpBackupIpDetail($stateParams.productId, id);
   };
 
-  $scope.onTransformItemDone = function () {
+  $scope.onTransformItemDone = function onTransformItemDone() {
     $scope.loaders.table = false;
   };
 
   // --------------TABLE ACCESS LOADING------------------
 
-  $scope.reloadIpsBackup = function () {
+  $scope.reloadIpsBackup = function reloadIpsBackup() {
     $scope.loaders.table = true;
     loadFtpBackupIps();
   };
 
   // --------------EDIT ACCESS------------------
 
-  $scope.setIpBackupCurrentEdit = function (ipbackup, _inputToRevert) {
+  $scope.setIpBackupCurrentEdit = function setIpBackupCurrentEdit(ipbackup, _inputToRevert) {
     let inputToRevert = _inputToRevert;
     $scope.ipbackupCurrentEdit = angular.copy(ipbackup);
     $scope.ipbackupCurrentEdit[inputToRevert] = !$scope.ipbackupCurrentEdit[inputToRevert];
@@ -156,7 +156,7 @@ angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateP
     }
   }
 
-  $scope.saveIpBackupCurrentEdit = function () {
+  $scope.saveIpBackupCurrentEdit = function saveIpBackupCurrentEdit() {
     if ($scope.ipbackupCurrentEdit.cifs
       || $scope.ipbackupCurrentEdit.ftp
       || $scope.ipbackupCurrentEdit.nfs) {
@@ -188,7 +188,7 @@ angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateP
     }
   };
 
-  $scope.cancelIpBackupCurrentEdit = function () {
+  $scope.cancelIpBackupCurrentEdit = function cancelIpBackupCurrentEdit() {
     $scope.ipbackupCurrentEdit = null;
     $scope.ipbackupCurrentEditBack = null;
     conditionnalReloadAccess();

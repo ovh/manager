@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomPackMigrationConfirmCtrl', function ($q, $translate, TucPackMigrationProcess, TucToast) {
+angular.module('managerApp').controller('TelecomPackMigrationConfirmCtrl', function TelecomPackMigrationConfirmCtrl($q, $translate, TucPackMigrationProcess, TucToast) {
   const self = this;
 
   self.process = null;
@@ -19,16 +19,16 @@ angular.module('managerApp').controller('TelecomPackMigrationConfirmCtrl', funct
   =            HELPERS            =
   =============================== */
 
-  self.getOptionPrice = function (option) {
+  self.getOptionPrice = function getOptionPrice(option) {
     return TucPackMigrationProcess.getPriceStruct(option.optionalPrice.value * option.choosedValue);
   };
 
-  self.getFirstMensuality = function () {
+  self.getFirstMensuality = function getFirstMensuality() {
     return TucPackMigrationProcess
       .getPriceStruct(self.process.selectedOffer.displayedPrice.value + 9.99);
   };
 
-  self.getServiceToDeleteList = function (subService) {
+  self.getServiceToDeleteList = function getServiceToDeleteList(subService) {
     return map(filter(subService.services, {
       selected: true,
     }), 'name').join(', ');
@@ -40,7 +40,7 @@ angular.module('managerApp').controller('TelecomPackMigrationConfirmCtrl', funct
   =            ACTIONS            =
   =============================== */
 
-  self.startMigration = function () {
+  self.startMigration = function startMigration() {
     self.loading.migrate = true;
     return TucPackMigrationProcess.startMigration().then((migrationTask) => {
       self.process.migrationTaskId = migrationTask.id;

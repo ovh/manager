@@ -10,7 +10,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Vouchers.M
     $scope.getMovements();
   }
 
-  $scope.getMovements = function (forceRefresh) {
+  $scope.getMovements = function getMovements(forceRefresh) {
     $scope.movementIds = [];
     $scope.loaders.movements = true;
     return BillingVouchers.getMovements({
@@ -30,7 +30,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Vouchers.M
     );
   };
 
-  $scope.transformItem = function (item) {
+  $scope.transformItem = function transformItem(item) {
     $scope.loaders.movements = true;
     return BillingVouchers.getMovement({
       id: $scope.voucherAccountId,
@@ -38,7 +38,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Vouchers.M
     });
   };
 
-  $scope.onTransformItemDone = function () {
+  $scope.onTransformItemDone = function onTransformItemDone() {
     $scope.loaders.movements = false;
   };
 

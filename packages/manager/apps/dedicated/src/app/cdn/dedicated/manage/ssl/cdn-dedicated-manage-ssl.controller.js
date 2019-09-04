@@ -6,7 +6,7 @@ angular.module('App').controller('CdnTabSslCtrl', ($scope, $translate, Cdn, $sta
   $scope.task = null;
   $scope.loading = true;
 
-  $scope.getBadgeClass = function (status) {
+  $scope.getBadgeClass = function getBadgeClass(status) {
     switch (status) {
       case 'CHECKING':
       case 'REMOVING':
@@ -35,7 +35,7 @@ angular.module('App').controller('CdnTabSslCtrl', ($scope, $translate, Cdn, $sta
     });
   }
 
-  $scope.loadSsl = function () {
+  $scope.loadSsl = function loadSsl() {
     $scope.loading = true;
     Cdn.getSsl($stateParams.productId).then(
       (ssl) => {
@@ -79,7 +79,7 @@ angular.module('App').controller('CdnTabSslCtrl', ($scope, $translate, Cdn, $sta
     Cdn.killAllPolling();
   });
 
-  $scope.disableDelCertificat = function () {
+  $scope.disableDelCertificat = function disableDelCertificat() {
     return $scope.taskErrorMessage || ($scope.ssl && $scope.ssl.status !== 'OFF' && $scope.ssl.status !== 'ON');
   };
 

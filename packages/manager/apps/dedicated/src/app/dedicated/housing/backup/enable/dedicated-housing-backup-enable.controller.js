@@ -5,7 +5,7 @@ angular.module('App').controller('HousingActivateFtpBackupCtrl', ($scope, $state
 
   $scope.loading = false;
 
-  $scope.activateFtpBackup = function () {
+  $scope.activateFtpBackup = function activateFtpBackup() {
     $scope.loading = true;
 
     Housing.activateFtpBackup($stateParams.productId)

@@ -1,9 +1,17 @@
-angular.module('Billing.controllers').controller('Billing.controllers.OrderRetractionCtrl', function ($log, $scope, $state, $stateParams, $translate, Alerter, BillingOrders) {
+angular.module('Billing.controllers').controller('Billing.controllers.OrderRetractionCtrl', function BillingOrderRetractionCtrl(
+  $log,
+  $scope,
+  $state,
+  $stateParams,
+  $translate,
+  Alerter,
+  BillingOrders,
+) {
   $scope.orderId = $stateParams.id;
 
   this.$state = $state;
 
-  this.retract = function () {
+  this.retract = function retract() {
     $scope.success = false;
 
     BillingOrders.retractOrder($scope.orderId)

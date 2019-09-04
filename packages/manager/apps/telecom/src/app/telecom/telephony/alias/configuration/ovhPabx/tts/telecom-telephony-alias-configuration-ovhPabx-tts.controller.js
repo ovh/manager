@@ -1,6 +1,13 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPabxTtsCtrl', function ($q, $filter, $stateParams, $translate, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPabxTtsCtrl', function TelecomTelephonyAliasConfigurationOvhPabxTtsCtrl(
+  $q,
+  $filter,
+  $stateParams,
+  $translate,
+  TelephonyMediator,
+  TucToast,
+) {
   const self = this;
 
   self.loading = {
@@ -24,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     =            HELPERS            =
     =============================== */
 
-  self.sortTts = function () {
+  self.sortTts = function sortTts() {
     self.tts.sorted = $filter('orderBy')(
       self.tts.raw,
       self.state.orderBy,
@@ -32,11 +39,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     );
   };
 
-  self.isDeleting = function (tts) {
+  self.isDeleting = function isDeleting(tts) {
     return ['PENDING_DELETE', 'DELETING'].indexOf(tts.status) > -1;
   };
 
-  self.orderBy = function (orderBy) {
+  self.orderBy = function orderByFunction(orderBy) {
     self.state.orderBy = orderBy;
     self.state.orderDesc = !self.state.orderDesc;
   };
@@ -47,17 +54,17 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     =            EVENTS            =
     ============================== */
 
-  self.onCreationCancel = function () {
+  self.onCreationCancel = function onCreationCancel() {
     self.state.collapse = false;
   };
 
-  self.onCreationSuccess = function () {
+  self.onCreationSuccess = function onCreationSuccess() {
     self.tts.raw = self.number.feature.tts;
     self.sortTts();
     self.state.collapse = false;
   };
 
-  self.onTtsDeleteBtnClick = function (tts) {
+  self.onTtsDeleteBtnClick = function onTtsDeleteBtnClick(tts) {
     return tts.remove().then(() => {
       self.number.feature.removeTts(tts);
       self.tts.raw = self.number.feature.tts;
@@ -74,7 +81,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

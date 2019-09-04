@@ -5,7 +5,7 @@ angular.module('App').controller('DedicatedCloudLicencesSplaEnableLegacyCtrl', (
     loading: false,
   };
 
-  $scope.loadActiveSpla = function () {
+  $scope.loadActiveSpla = function loadActiveSpla() {
     $scope.spla.loading = true;
     DedicatedCloud.getSplaOrder($stateParams.productId).then(
       (order) => {
@@ -20,7 +20,7 @@ angular.module('App').controller('DedicatedCloudLicencesSplaEnableLegacyCtrl', (
     );
   };
 
-  $scope.enableSpla = function () {
+  $scope.enableSpla = function enableSpla() {
     $scope.spla.loading = true;
     DedicatedCloud.postSplaOrder($stateParams.productId).then(
       (data) => {

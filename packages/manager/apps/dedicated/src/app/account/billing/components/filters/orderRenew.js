@@ -8,7 +8,7 @@ angular.module('Billing.filters').filter('orderRenew', ($translate, $filter) => 
     return value;
   }
 
-  return function (services, predicate, reverse) {
+  return function orderRenew(services, predicate, reverse) {
     let output = services;
 
     if (predicate === 'serviceId') {

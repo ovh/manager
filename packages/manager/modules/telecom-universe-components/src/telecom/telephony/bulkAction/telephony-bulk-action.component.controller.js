@@ -23,7 +23,7 @@ export default /* @ngInject */ function (
     =            EVENTS            =
     ============================== */
 
-  self.onBulkActionBtnClick = function () {
+  self.onBulkActionBtnClick = function onBulkActionBtnClick() {
     if (self.onOpen && isFunction(self.onOpen())) {
       self.onOpen()();
     }
@@ -73,7 +73,7 @@ export default /* @ngInject */ function (
     return $translate.refresh();
   }
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     self.previouslyUpdatedServices = tucTelephonyBulkActionUpdatedServicesContainer

@@ -7,7 +7,7 @@ angular.module('Module.ip.controllers').controller('IpOrganisationViewCtrl', (
   $scope.data = $scope.currentActionData;
   $scope.loading = true;
 
-  $scope.showState = function () {
+  $scope.showState = function showState() {
     return ipFeatureAvailability.showState();
   };
 

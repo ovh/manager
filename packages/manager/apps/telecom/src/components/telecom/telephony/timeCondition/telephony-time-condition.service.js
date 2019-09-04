@@ -10,7 +10,13 @@ import padStart from 'lodash/padStart';
 import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
-angular.module('managerApp').service('voipTimeCondition', function voipTimeCondition($q, $translate, OvhApiTelephony, VOIP_TIME_CONDITION, VOIP_TIMECONDITION_ORDERED_DAYS) {
+angular.module('managerApp').service('voipTimeCondition', function voipTimeCondition(
+  $q,
+  $translate,
+  OvhApiTelephony,
+  VOIP_TIME_CONDITION,
+  VOIP_TIMECONDITION_ORDERED_DAYS,
+) {
   const self = this;
 
   const timeConditionResources = {
@@ -34,7 +40,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     =            HELPERS FOR PARSING SIP HOURS            =
     ===================================================== */
 
-  self.getSipTime = function (time, isEnd) {
+  self.getSipTime = function getSipTime(time, isEnd) {
     const splittedTime = time.split(':');
     let hours = get(splittedTime, '[0]');
     let minutes = get(splittedTime, '[1]');
@@ -52,7 +58,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     return [hours, minutes].join('');
   };
 
-  self.parseSipTime = function (timeStr, modulo) {
+  self.parseSipTime = function parseSipTime(timeStr, modulo) {
     let hour = timeStr.substring(0, 2);
     let minute = timeStr.substring(2);
     let second = modulo ? '59' : '00';
@@ -72,7 +78,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     return [hour, minute, second].join(':');
   };
 
-  self.parseTime = function (timeStr) {
+  self.parseTime = function parseTime(timeStr) {
     const splittedTimeStr = timeStr.split(':');
     const hour = splittedTimeStr[0];
     const minute = splittedTimeStr[1];
@@ -87,17 +93,17 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
 
   /* -----  End of HELPERS FOR PARSING SIP HOURS  ------*/
 
-  self.getAvailableSlotsCount = function (featureType) {
+  self.getAvailableSlotsCount = function getAvailableSlotsCount(featureType) {
     return get(VOIP_TIME_CONDITION, `slotTypesCount.${featureType}`, 0);
   };
 
-  self.getResource = function (resourceType, featureType) {
+  self.getResource = function getResource(resourceType, featureType) {
     return get(timeConditionResources, `${featureType}.${resourceType}`, {
       $promise: $q.when({}),
     });
   };
 
-  self.getResourceCallParams = function (timeCondition) {
+  self.getResourceCallParams = function getResourceCallParams(timeCondition) {
     const params = {
       billingAccount: timeCondition.billingAccount,
       serviceName: timeCondition.serviceName,
@@ -111,7 +117,10 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     return params;
   };
 
-  self.getConditionResourceCallParams = function (conditionObject, conditionId) {
+  self.getConditionResourceCallParams = function getConditionResourceCallParams(
+    conditionObject,
+    conditionId,
+  ) {
     const params = self.getResourceCallParams(conditionObject);
 
     if (conditionId !== null) {
@@ -121,7 +130,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     return params;
   };
 
-  self.getResourceCallActionParams = function (timeCondition) {
+  self.getResourceCallActionParams = function getResourceCallActionParams(timeCondition) {
     const actionParams = {};
 
     if (timeCondition.featureType === 'ovhPabx') {
@@ -144,7 +153,9 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     return actionParams;
   };
 
-  self.getConditionResourceCallActionParams = function (condition) {
+  self.getConditionResourceCallActionParams = function getConditionResourceCallActionParams(
+    condition,
+  ) {
     const actionParams = {};
 
     // set timeFrom => hourEnd for sip

@@ -5,10 +5,15 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
   '$translate',
   'UserAccount.services.ssh',
   'Alerter',
-  function ($scope, $translate, UseraccountSsh, Alerter) {
+  function UserAccountSshDeleteController(
+    $scope,
+    $translate,
+    UseraccountSsh,
+    Alerter,
+  ) {
     $scope.data = $scope.currentActionData;
 
-    $scope.deleteSshKey = function () {
+    $scope.deleteSshKey = function deleteSshKey() {
       $scope.resetAction();
       const promise = $scope.data.category === 'dedicated' ? UseraccountSsh.deleteDedicatedSshKey($scope.data.keyName) : UseraccountSsh.deleteCloudSshKey($scope.data.serviceName, $scope.data.id);
 

@@ -6,7 +6,7 @@ angular.module('App').controller('CacherulesActivateAllCtrl', ($scope, $translat
   };
   $scope.alert = 'cdn_domain_tab_rules_alert';
 
-  $scope.activate = function () {
+  $scope.activate = function activate() {
     $scope.resetAction();
     CdnDomain.updateAllCacheruleStatus($stateParams.productId, $stateParams.domain, 'ON').then(
       (data) => {

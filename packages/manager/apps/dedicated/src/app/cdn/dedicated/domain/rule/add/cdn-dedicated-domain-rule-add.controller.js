@@ -9,7 +9,7 @@ angular.module('App').controller('CacherulesCreateCtrl', ($scope, $stateParams, 
     }
   });
 
-  $scope.loadCacheRulesInfos = function () {
+  $scope.loadCacheRulesInfos = function loadCacheRulesInfos() {
     CdnDomain.getCacheRulesGeneralInformations().then(
       (data) => {
         $scope.infos = data;
@@ -20,7 +20,7 @@ angular.module('App').controller('CacherulesCreateCtrl', ($scope, $stateParams, 
     );
   };
 
-  $scope.isValidRule = function () {
+  $scope.isValidRule = function isValidRule() {
     const areFieldsValid = $scope.entry.ttl >= 0
       && $scope.entry.cacheType
       && $scope.entry.fileMatch
@@ -45,7 +45,7 @@ angular.module('App').controller('CacherulesCreateCtrl', ($scope, $stateParams, 
     return areFieldsValid && isFileTypeValid;
   };
 
-  $scope.create = function () {
+  $scope.create = function create() {
     $scope.resetAction();
     CdnDomain
       .createCacherule(

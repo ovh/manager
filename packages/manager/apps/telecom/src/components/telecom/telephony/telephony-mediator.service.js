@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 
-angular.module('managerApp').service('TelephonyMediator', function ($q, $stateParams, OvhApiTelephony, TelephonyVoipService, REDIRECT_URLS, REDIRECT_V4_HASH) {
+angular.module('managerApp').service('TelephonyMediator', function TelephonyMediator($q, $stateParams, OvhApiTelephony, TelephonyVoipService, REDIRECT_URLS, REDIRECT_V4_HASH) {
   const self = this;
   let currentGroup = null;
 
@@ -14,7 +14,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
   self.getAllDeferred = null;
   self.apiScheme = null;
 
-  self.getApiScheme = function () {
+  self.getApiScheme = function getApiScheme() {
     if (!self.apiScheme) {
       return OvhApiTelephony.v6().schema().$promise.then((scheme) => {
         self.apiScheme = scheme;
@@ -28,7 +28,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
     =            V6 to V4 redirection            =
     ============================================ */
 
-  self.getV6ToV4RedirectionUrl = function (constantPath) {
+  self.getV6ToV4RedirectionUrl = function getV6ToV4RedirectionUrl(constantPath) {
     let url = REDIRECT_URLS.telephonyV4 + get(REDIRECT_V4_HASH, constantPath);
 
     if ($stateParams.serviceName) {
@@ -40,7 +40,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
   /* -----  End of V6 to V4 redirection  ------*/
 
   /* ------ Awesome code from perl -----------*/
-  self.IsValidNumber = function (number) {
+  self.IsValidNumber = function IsValidNumber(number) {
     return !!(
       number
             && number.match(/^\+?(\d|\.| |#|-)+$/)
@@ -52,11 +52,11 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
     =            API MODELS            =
     ================================== */
 
-  self.getApiModels = function () {
+  self.getApiModels = function getApiModels() {
     return OvhApiTelephony.v6().schema().$promise.then(schemas => schemas.models);
   };
 
-  self.getApiModelEnum = function (modelName) {
+  self.getApiModelEnum = function getApiModelEnum(modelName) {
     return self.getApiModels().then(models => models[modelName].enum);
   };
 
@@ -69,7 +69,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
   /* ----------  SERVICES  ----------*/
 
   // @TODO refactor to use the getAll function instead of self.groups
-  self.findService = function (serviceName) {
+  self.findService = function findService(serviceName) {
     let tmpGroup = null;
     let tmpService = null;
 
@@ -85,7 +85,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
     return null;
   };
 
-  self.getAll = function (force) {
+  self.getAll = function getAll(force) {
     if (self.getAllDeferred && !force) {
       return self.getAllDeferred.promise;
     }
@@ -101,7 +101,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
 
   /* ----------  ACTIONS  ----------*/
 
-  self.getGroup = function (billingAccount, force) {
+  self.getGroup = function getGroup(billingAccount, force) {
     return self.getAll(force).then(groups => groups[billingAccount]);
   };
 
@@ -109,19 +109,19 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
      * @TODO refactor, this should be useless now, just call getAll
      * with force attribute to have fresh data.
      */
-  self.resetAllCache = function () {
+  self.resetAllCache = function resetAllCache() {
     self.getAllDeferred = null;
     self.groups = {};
   };
 
   /* ----------  CURRENT GROUP  ----------*/
 
-  self.setCurrentGroup = function (group) {
+  self.setCurrentGroup = function setCurrentGroup(group) {
     currentGroup = group;
     return currentGroup;
   };
 
-  self.getCurrentGroup = function () {
+  self.getCurrentGroup = function getCurrentGroup() {
     return currentGroup;
   };
 
@@ -133,7 +133,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
 
   /* ----------  COUNT  ----------*/
 
-  self.getCount = function (force) {
+  self.getCount = function getCount(force) {
     return self.getAll(force).then(groups => keys(groups).length);
   };
 
@@ -143,7 +143,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
     =            INITIALIZATION            =
     ====================================== */
 
-  self.init = function (force) {
+  self.init = function init(force) {
     return self.getAll(force).then((groups) => {
       self.groups = groups; // only because of findService function
       return groups;

@@ -21,11 +21,11 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       =            HELPERS            =
       =============================== */
 
-    self.isEnumHasToBeTranslated = function (configName) {
+    self.isEnumHasToBeTranslated = function isEnumHasToBeTranslated(configName) {
       return LINE_PHONE_CONFIGURATION.configEnumsToTranslate.indexOf(configName) > -1;
     };
 
-    self.getConfigValue = function (config) {
+    self.getConfigValue = function getConfigValue(config) {
       switch (config.type) {
         case 'boolean':
           return config.value ? $translate.instant('telephony_line_phone_configuration_config_yes') : $translate.instant('telephony_line_phone_configuration_config_no');
@@ -36,7 +36,7 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       }
     };
 
-    self.getPlaceholderTranslation = function (configName) {
+    self.getPlaceholderTranslation = function getPlaceholderTranslation(configName) {
       const trKey = ['telephony_line_phone_configuration_config', snakeCase(configName)].join('_');
       const translated = $translate.instant(trKey);
       return translated !== trKey ? translated : configName;
@@ -48,7 +48,7 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       =            EVENTS            =
       ============================== */
 
-    self.onTextInputBlur = function (config) {
+    self.onTextInputBlur = function onTextInputBlur(config) {
       if (isEmpty(config.value)) {
         set(config, 'value', config.prevValue);
       }

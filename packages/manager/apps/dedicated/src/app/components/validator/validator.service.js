@@ -1,8 +1,8 @@
 angular.module('services').service('Validator', [
-  function () {
+  function ValidatorService() {
     const self = this;
 
-    this.isValidIpv4 = function (ip) {
+    this.isValidIpv4 = function isValidIpv4(ip) {
       let isValid;
       try {
         // Coz sometimes ipaddr is buggy
@@ -15,7 +15,7 @@ angular.module('services').service('Validator', [
     };
 
     // @todo use a regexp instead
-    this.isValidIpv4Block = function (block) {
+    this.isValidIpv4Block = function isValidIpv4Block(block) {
       const split = block.split('/');
       return split.length === 2
         && this.isValidIpv4(split[0])
@@ -23,7 +23,7 @@ angular.module('services').service('Validator', [
         && parseInt(split[1], 10) < 33;
     };
 
-    this.isValidIpv6 = function (ip) {
+    this.isValidIpv6 = function isValidIpv6(ip) {
       let isValid;
       try {
         // Coz sometimes ipaddr is buggy
@@ -36,7 +36,7 @@ angular.module('services').service('Validator', [
     };
 
     // TODO use a regexp instead
-    this.isValidIpv6Block = function (block) {
+    this.isValidIpv6Block = function isValidIpv6Block(block) {
       const split = block.split('/');
       return split.length === 2
         && this.isValidIpv6(split[0])
@@ -46,7 +46,7 @@ angular.module('services').service('Validator', [
 
     // opts.canBeginWithUnderscore = specifics NDD can be like: _foo._bar.example.com
     // opts.canBeginWithWildcard = specifics NDD can be like: *.foo.bar.example.com
-    this.isValidDomain = function (domain, _opts) {
+    this.isValidDomain = function isValidDomain(domain, _opts) {
       let opts = _opts;
       if (!opts) {
         opts = {};
@@ -89,7 +89,7 @@ angular.module('services').service('Validator', [
       return !inError;
     };
 
-    this.isValidSubDomain = function (subDomain, opts) {
+    this.isValidSubDomain = function isValidSubDomain(subDomain, opts) {
       return self.isValidDomain(`${subDomain}.example.com`, opts);
     };
   },

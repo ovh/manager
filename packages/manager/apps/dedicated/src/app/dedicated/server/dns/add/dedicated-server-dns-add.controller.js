@@ -15,7 +15,7 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
   };
   $scope.loading = false;
 
-  $scope.loadIpList = function () {
+  $scope.loadIpList = function loadIpList() {
     $scope.loading = true;
     Server.listIps($stateParams.productId).then(
       (_data) => {
@@ -60,7 +60,7 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
     );
   };
 
-  $scope.loadToken = function () {
+  $scope.loadToken = function loadToken() {
     $scope.loadTokenLoading = true;
 
     Server.getDomainZoneInformation($stateParams.productId, $scope.entry.domain).then(
@@ -75,7 +75,7 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
     );
   };
 
-  $scope.addSecondaryDns = function () {
+  $scope.addSecondaryDns = function addSecondaryDns() {
     $scope.loading = true;
     Server.addSecondaryDns($stateParams.productId, $scope.entry.domain, $scope.entry.ip).then(
       () => {

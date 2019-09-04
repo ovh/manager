@@ -27,7 +27,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallCtrl', ($scope, $r
     reloadRules();
   });
 
-  $scope.loadRules = function (rulesCount, offset) {
+  $scope.loadRules = function loadRules(rulesCount, offset) {
     if ($scope.selectedIp) {
       $scope.rulesLoading = true;
 
@@ -76,7 +76,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallCtrl', ($scope, $r
     }
   };
 
-  $scope.hideFirewall = function () {
+  $scope.hideFirewall = function hideFirewall() {
     Ip.cancelActionParam('firewall');
     IpFirewall.killPollFirewallRule();
     $rootScope.$broadcast('ips.display', 'table');

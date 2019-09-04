@@ -11,7 +11,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderDatastoresCtrl',
   };
   $scope.dedicatedCloud = null;
 
-  $scope.loadDatastoresProfiles = function () {
+  $scope.loadDatastoresProfiles = function loadDatastoresProfiles() {
     $scope.orderDatastores.loading = true;
     $scope.orderDatastores.datacenter = $scope.currentActionData;
 
@@ -56,7 +56,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderDatastoresCtrl',
     }
   });
 
-  $scope.getDatastoreSelected = function () {
+  $scope.getDatastoreSelected = function getDatastoreSelected() {
     $scope.orderDatastores.loading = true;
     $scope.orderDatastores.selectedModel = $scope.orderDatastores
       .model[$scope.orderDatastores.selected];
@@ -81,7 +81,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderDatastoresCtrl',
       });
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.orderDatastores.loading = true;
     DedicatedCloud
       .orderDatastores(

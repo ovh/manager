@@ -55,7 +55,7 @@ export default /* @ngInject */ (OvhApiTelephony) => {
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TucVoipScreenScreenList.prototype.setOptions = function (screenListOptions) {
+  TucVoipScreenScreenList.prototype.setOptions = function setOptions(screenListOptions) {
     const self = this;
 
     self.callNumber = get(screenListOptions, self.featureType === 'sip' ? 'callNumber' : 'callerIdNumber', null);
@@ -70,7 +70,7 @@ export default /* @ngInject */ (OvhApiTelephony) => {
 
   /* ----------  API CALLS  ----------*/
 
-  TucVoipScreenScreenList.prototype.create = function () {
+  TucVoipScreenScreenList.prototype.create = function create() {
     const self = this;
 
     if (self.featureType !== 'ovhPabx') {
@@ -96,7 +96,7 @@ export default /* @ngInject */ (OvhApiTelephony) => {
       });
   };
 
-  TucVoipScreenScreenList.prototype.remove = function () {
+  TucVoipScreenScreenList.prototype.remove = function remove() {
     const self = this;
 
     if (self.featureType !== 'ovhPabx') {

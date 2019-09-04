@@ -3,10 +3,10 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', function ($scope, $state, $stateParams, TucToast, $q, $translate, OvhApiTelephony, tucTelephonyBulk, tucVoipLine) {
+angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', function TelecomTelephonyLinePasswordCtrl($scope, $state, $stateParams, TucToast, $q, $translate, OvhApiTelephony, tucTelephonyBulk, tucVoipLine) {
   const self = this;
 
-  self.init = function () {
+  self.init = function init() {
     self.password = null;
   };
 
@@ -28,13 +28,13 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
     },
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       password: self.password,
     };
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     const filteredServices = filter(services, service => ['sip'].indexOf(service.featureType) > -1);
 
     const promises = map(filteredServices, service => tucVoipLine.fetchLineInfo(service));
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
       )));
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_password_bulk_all_success'),
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
     self.init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_password_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
@@ -120,14 +120,14 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
     },
   ];
 
-  this.getStrength = function (value) {
+  this.getStrength = function getStrength(value) {
     return (value.length - 8) / 12;
   };
 
   /**
    * Cancel modifications and leave the page
    */
-  this.cancel = function () {
+  this.cancel = function cancel() {
     $state.go(
       $state.current.name.split('.').slice(0, -1).join('.'),
       $stateParams,
@@ -141,7 +141,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
    * Save the passwords
    * @return {Promise}
    */
-  this.save = function () {
+  this.save = function save() {
     if (!$scope.passwordForm.$invalid) {
       self.loading.save = true;
       return OvhApiTelephony.Line().v6().changePassword(

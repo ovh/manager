@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookRemoveCtrl', function ($q, $stateParams, $timeout, $uibModalInstance, OvhApiTelephony, phonebook) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookRemoveCtrl', function TelecomTelephonyLinePhonePhonebookRemoveCtrl($q, $stateParams, $timeout, $uibModalInstance, OvhApiTelephony, phonebook) {
   const self = this;
 
   self.isRemoving = false;
@@ -9,7 +9,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookRemov
     =            ACTIONS            =
     =============================== */
 
-  self.remove = function () {
+  self.remove = function remove() {
     self.isRemoving = true;
     return $q.all([
       OvhApiTelephony.Line().Phone().Phonebook().v6()
@@ -29,11 +29,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookRemov
     }));
   };
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 

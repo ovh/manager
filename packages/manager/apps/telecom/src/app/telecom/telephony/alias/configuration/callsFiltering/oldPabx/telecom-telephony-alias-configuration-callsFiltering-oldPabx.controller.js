@@ -5,17 +5,17 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCallsFilteringOldPabxCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, TucToastError, tucTelephonyBulk, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCallsFilteringOldPabxCtrl', function TelecomTelephonyAliasConfigurationCallsFilteringOldPabxCtrl($stateParams, $q, $translate, OvhApiTelephony, TucToastError, tucTelephonyBulk, TucToast) {
   const self = this;
 
-  self.fetchStatus = function () {
+  self.fetchStatus = function fetchStatus() {
     return OvhApiTelephony.Screen().v6().get({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }).$promise;
   };
 
-  self.fetchScreenLists = function () {
+  self.fetchScreenLists = function fetchScreenLists() {
     OvhApiTelephony.Screen().ScreenLists().v6().resetAllCache();
     return OvhApiTelephony.Screen().ScreenLists().v6()
       .query({
@@ -40,7 +40,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
         }));
   };
 
-  self.removeScreenList = function (screen) {
+  self.removeScreenList = function removeScreenList(screen) {
     return OvhApiTelephony.Screen().ScreenLists().v6().remove({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     }).$promise;
   };
 
-  self.addScreenList = function (screen) {
+  self.addScreenList = function addScreenList(screen) {
     return OvhApiTelephony.Screen().ScreenLists().v6().create({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -59,11 +59,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     }).$promise;
   };
 
-  self.onScreenListAdded = function () {
+  self.onScreenListAdded = function onScreenListAdded() {
     self.screenLists.update();
   };
 
-  self.updateScreen = function () {
+  self.updateScreen = function updateScreen() {
     self.screenStatus.isLoading = true;
     return OvhApiTelephony.Screen().v6().change({
       billingAccount: $stateParams.billingAccount,
@@ -119,17 +119,17 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     },
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       incomingScreenList: get(self, 'screenStatus.modified'),
     };
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_calls_filtering_bulk_all_success'),
@@ -146,7 +146,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     window.location.reload();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_calls_filtering_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 });

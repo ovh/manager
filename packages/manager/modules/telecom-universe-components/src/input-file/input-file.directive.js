@@ -51,7 +51,7 @@ export default () => ({
       });
     });
 
-    $scope.clearFile = function () {
+    $scope.clearFile = function clearFile() {
       $scope.selected = false;
       $timeout(() => {
         $scope.ngModel = null;

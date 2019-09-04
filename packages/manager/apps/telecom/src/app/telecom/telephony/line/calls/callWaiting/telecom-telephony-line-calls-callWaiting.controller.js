@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtrl', function ($q, $stateParams, $translate, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtrl', function TelecomTelephonyLineCallsCallWaitingCtrl($q, $stateParams, $translate, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator, tucTelephonyBulk) {
   const self = this;
 
   function setIntercomGetter(obj) {
@@ -13,17 +13,17 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
     });
   }
 
-  this.needSave = function () {
+  this.needSave = function needSave() {
     return (this.options.callWaiting !== self.saved.callWaiting)
       || (this.options.intercom !== self.saved.intercom);
   };
 
-  this.cancel = function () {
+  this.cancel = function cancel() {
     this.options = angular.copy(this.saved);
     setIntercomGetter(this.options);
   };
 
-  this.save = function () {
+  this.save = function save() {
     const data = {
       intercom: this.options.intercom,
     };
@@ -113,11 +113,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {
       callWaiting: self.options.callWaiting,
       intercom: self.options.intercom,
@@ -126,7 +126,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_actions_line_calls_cw_intercom_bulk_all_success'),
@@ -145,7 +145,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_actions_line_calls_cw_intercom_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

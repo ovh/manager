@@ -1,4 +1,7 @@
-angular.module('Billing.filters').filter('renewal', $translate => function (services, renew) {
+angular.module('Billing.filters').filter('renewal', $translate => function renewalFilter(
+  services,
+  renew,
+) {
   let output = services;
 
   if (services) {

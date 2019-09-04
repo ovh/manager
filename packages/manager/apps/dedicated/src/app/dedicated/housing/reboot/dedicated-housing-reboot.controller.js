@@ -1,5 +1,5 @@
 angular.module('App').controller('HousingRebootCtrl', ($scope, $stateParams, $translate, Housing, Alerter) => {
-  $scope.getRebootPrices = function () {
+  $scope.getRebootPrices = function getRebootPrices() {
     $scope.loading = true;
     Housing.getRebootPrices($stateParams.productId)
       .then(
@@ -15,7 +15,7 @@ angular.module('App').controller('HousingRebootCtrl', ($scope, $stateParams, $tr
       });
   };
 
-  $scope.reboot = function () {
+  $scope.reboot = function reboot() {
     $scope.loading = true;
     Housing.rebootOrder($stateParams.productId)
       .then(

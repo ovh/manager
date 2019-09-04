@@ -2,10 +2,14 @@ import chunk from 'lodash/chunk';
 import camelCase from 'lodash/camelCase';
 import compact from 'lodash/compact';
 import find from 'lodash/find';
+import findLastIndex from 'lodash/findLastIndex';
+import forEachRight from 'lodash/forEachRight';
 import get from 'lodash/get';
+import head from 'lodash/head';
 import includes from 'lodash/includes';
 import map from 'lodash/map';
 import range from 'lodash/range';
+import set from 'lodash/set';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
@@ -83,12 +87,17 @@ angular
       desktopType: [],
       familyType: [],
       distributionList: null,
-      warningExistPartition: false, // true if a partition has personnalisation in progress (use if user back in distriction list)
+      // warningExistPartition: true if a partition has personnalisation
+      // in progress(use if user back in distriction list)
+      warningExistPartition: false,
+
       // STEP1 SELECT
       selectDesktopType: null,
       selectFamily: null,
       selectDistribution: null,
-      saveSelectDistribution: null, // save new distribution if a partition has personnalisation in progress (see setSelectDistribution())
+      // saveSelectDistribution : save new distribution if a partition
+      // has personnalisation in progress(see setSelectDistribution())
+      saveSelectDistribution: null,
       selectLanguage: null,
       diskGroup: null,
       customInstall: false, // load personnalisation partition screen
@@ -109,7 +118,9 @@ angular
       selectPartitionScheme: null, // select hight priority partition scheme
       partitionSchemeModels: null, // detail of partitionScheme selected
       nbDiskUse: null, // if nbPhysicalDisk > 2 user can select nb disk to use
-      dirtyPartition: true, // true if variable partition size has been customized (change to false in loadPartiton())
+      // dirtyPartition: true if variable partition size
+      // has been customized(change to false in loadPartiton())
+      dirtyPartition: true,
       // STEP3
       gabaritNameSave: null,
       options: {
@@ -133,7 +144,9 @@ angular
     $scope.informations = {
       totalSize: 0,
       diskSize: 0,
-      nbDisk: 0, // Nb of disk use for partitionning. If server has Raid controller, nbDisk = 1, nbPhysicalDisk = n
+      // nbDisk: Nb of disk use for partitionning.
+      // If server has Raid controller, nbDisk = 1, nbPhysicalDisk = n
+      nbDisk: 0,
       nbPhysicalDisk: 0, // Nb physical Disk
       typeDisk: null,
       otherDisk: [],
@@ -247,7 +260,7 @@ angular
     $scope.sshList = [];
 
     // ------STEP1------
-    $scope.load = function () {
+    $scope.load = function load() {
       $scope.loader.loading = true;
 
       const getHardRaid = $scope.getHardwareRaid();
@@ -256,7 +269,7 @@ angular
           $scope.installation.desktopType = templateList.category;
           $scope.installation.familyType = templateList.family;
           $scope.installation.distributionList = templateList.templates.results;
-          $scope.installation.selectDesktopType = $scope.installation.desktopType[0];
+          $scope.installation.selectDesktopType = head($scope.installation.desktopType);
           $scope.installation.selectFamily = $scope.constants.warningLINUX;
         })
         .catch((data) => {
@@ -272,7 +285,7 @@ angular
       });
     };
 
-    $scope.getCountFilter = function (itemFamily) {
+    $scope.getCountFilter = function getCountFilter(itemFamily) {
       const tab = $filter('filter')($scope.installation.distributionList, { family: itemFamily, category: $scope.installation.selectDesktopType });
       $scope.countFilter[itemFamily] = tab.length;
       if ($scope.countFilter[itemFamily] > 0) {
@@ -282,16 +295,30 @@ angular
       return tab;
     };
 
-    $scope.setSelectDistribution = function (distribution, bypass) {
-      // if saveSelectDistribution is not null, a partition has personnalisation in progress and confirmation to delete is already display
+    function resetDiskGroup() {
+      $scope.installation.diskGroup = head($scope.informations.diskGroups);
+    }
+
+    function getHardwareSpecification() {
+      return Server.getHardwareSpecifications($stateParams.productId).then((spec) => {
+        $scope.informations.diskGroups = spec.diskGroups;
+        resetDiskGroup();
+      });
+    }
+
+    $scope.setSelectDistribution = function setSelectDistribution(distribution, bypass) {
+      // if saveSelectDistribution is not null, a partition has personnalisation
+      // in progress and confirmation to delete is already display
       if ($scope.installation.saveSelectDistribution && !bypass) {
         $scope.installation.saveSelectDistribution = distribution;
-      } else if (!$scope.installation.saveSelectDistribution && $scope.installation.partitionSchemeModels) {
+      } else if (!$scope.installation.saveSelectDistribution
+        && $scope.installation.partitionSchemeModels) {
         // a partition has personnalisation in progress beacause partitionSchemeModels is not null
         $scope.installation.warningExistPartition = true; // confirmation to delete display
         $scope.installation.saveSelectDistribution = distribution; // save new (futur?) distribution
       } else {
-        // No partition is currently in personnalisation or confirmation to delete currently partitions (bypass = true)
+        // No partition is currently in personnalisation or confirmation
+        // to delete currently partitions(bypass = true)
         $scope.installation.warningExistPartition = false;
         $scope.installation.partitionSchemeModels = null;
 
@@ -311,7 +338,10 @@ angular
               $scope.loader.loadingCapabilities = false;
             });
 
-          $scope.installation.selectLanguage = $scope.installation.selectDistribution.defaultLanguage;
+          $scope.installation.selectLanguage = $scope
+            .installation
+            .selectDistribution
+            .defaultLanguage;
         } else {
           resetDiskGroup();
         }
@@ -320,25 +350,44 @@ angular
         $scope.informations.gabaritName = null;
       }
 
-      if ($scope.installation.selectDistribution && $scope.installation.selectDistribution.hardRaidConfiguration === false) {
+      if ($scope.installation.selectDistribution
+        && $scope.installation.selectDistribution.hardRaidConfiguration === false) {
         $scope.installation.raidSetup = false;
       }
     };
 
-    $scope.cancelSetSelectDistribution = function () {
+    $scope.cancelSetSelectDistribution = function cancelSetSelectDistribution() {
       $scope.installation.warningExistPartition = false;
       $scope.installation.saveSelectDistribution = null;
     };
 
     // ------STEP Hard Raid------
 
-    $scope.getHardwareRaid = function () {
+
+    function getHardwareRaidProfile() {
+      return Server.getHardwareRaidProfile($stateParams.productId).then((raidProfile) => {
+        $scope.informations.hardwareRaid.profile = raidProfile;
+        if (some(get(raidProfile, 'controllers'))) {
+          $scope.installation.hardwareRaid.controller = head(raidProfile.controllers);
+        }
+      });
+    }
+
+    $scope.getHardwareRaid = function getHardwareRaid() {
       if (!$scope.informations.hardwareRaid.profile) {
         $scope.loader.loading = true;
         return $q.all([getHardwareRaidProfile(), getHardwareSpecification()]).catch((error) => {
-          $scope.informations.hardwareRaid.error.wrongLocation = Server.isHardRaidLocationError(error);
-          $scope.informations.hardwareRaid.error.notAvailable = Server.isHardRaidUnavailableError(error);
-          if (!$scope.informations.hardwareRaid.error.wrongLocation && !$scope.informations.hardwareRaid.error.notAvailable) {
+          $scope
+            .informations
+            .hardwareRaid.error
+            .wrongLocation = Server.isHardRaidLocationError(error);
+          $scope
+            .informations
+            .hardwareRaid
+            .error
+            .notAvailable = Server.isHardRaidUnavailableError(error);
+          if (!$scope.informations.hardwareRaid.error.wrongLocation
+            && !$scope.informations.hardwareRaid.error.notAvailable) {
             $scope.resetAction();
             Alerter.alertFromSWS($translate.instant('server_configuration_installation_ovh_stephardraid_loading_error'), error.data, 'server_dashboard_alert');
           }
@@ -347,29 +396,127 @@ angular
       return $q.when({});
     };
 
-    function getHardwareRaidProfile() {
-      return Server.getHardwareRaidProfile($stateParams.productId).then((raidProfile) => {
-        $scope.informations.hardwareRaid.profile = raidProfile;
-        if (some(get(raidProfile, 'controllers'))) {
-          $scope.installation.hardwareRaid.controller = raidProfile.controllers[0];
+    // Delete all Error message after cancel action
+    function clearError() {
+      angular.forEach($scope.warning, (value, key) => {
+        $scope.warning[key] = false;
+      });
+      angular.forEach($scope.errorInst, (value, key) => {
+        $scope.errorInst[key] = false;
+      });
+    }
+
+    // get real use size for partition with 0 in size (in fact remaining size)
+    function getRealRemainingSize(raid) {
+      const remainingSize = $scope.getRemainingSize();
+      let realRemainingSize = 0;
+
+      if (!Number.isNaN(remainingSize)) {
+        if ($scope.installation.nbDiskUse === 1 || $scope.informations.raidController) {
+          realRemainingSize = remainingSize;
+        } else if (raid) {
+          switch (raid) {
+            case '_0':
+              realRemainingSize = remainingSize;
+              break;
+            case '_1':
+              realRemainingSize = remainingSize / $scope.installation.nbDiskUse;
+              break;
+            case '_5':
+              realRemainingSize = remainingSize - (remainingSize / $scope.installation.nbDiskUse);
+              break;
+            case '_6':
+              realRemainingSize = remainingSize
+                - ((remainingSize / $scope.installation.nbDiskUse) * 2);
+              break;
+            case '_10':
+              realRemainingSize = remainingSize / ($scope.installation.nbDiskUse / 2);
+              break;
+            default:
+              break;
+          }
         }
-      });
+      }
+
+      if (!$scope.installation.selectDistribution.supportsGpt
+        && realRemainingSize > $scope.constants.maxSizePartition) {
+        return $scope.constants.maxSizePartition;
+      }
+
+      return realRemainingSize;
     }
 
-    function getHardwareSpecification() {
-      return Server.getHardwareSpecifications($stateParams.productId).then((spec) => {
-        $scope.informations.diskGroups = spec.diskGroups;
-        resetDiskGroup();
-      });
-    }
+    function showPartition() {
+      // Select hight priority partition scheme
+      $scope.installation.selectPartitionScheme = $scope.installation.partitionSchemesList[
+        $scope.installation.partitionSchemesList.length - 1
+      ];
 
-    function resetDiskGroup() {
-      $scope.installation.diskGroup = $scope.informations.diskGroups[0];
+      // Get Partition list of largest partition scheme
+      Server.getOvhPartitionSchemesTemplatesDetail(
+        $scope.informations.gabaritName,
+        $scope.installation.selectPartitionScheme.name,
+      ).then(
+        (partitionSchemeModels) => {
+          $scope.loader.loading = false;
+          $scope.installation.partitionSchemeModels = partitionSchemeModels.results;
+
+          // get total use size (remainingSize),
+          // assign random color
+          // rename order by orderTable
+          angular.forEach($scope.installation.partitionSchemeModels, (partition, _index) => {
+            set(partition, 'progressColor', $scope.getRandomColor(_index));
+            set(partition, 'orderTable', angular.copy(partition.order));
+          });
+
+          // if one partition has size = 0 => replace by remaining size
+          let hasEmptyPartitionSize = false;
+
+          forEachRight(
+            partitionSchemeModels.results,
+            (partitionSchemeModel, partitionIndex) => {
+              if (!hasEmptyPartitionSize) {
+                set($scope.installation.partitionSchemeModels[partitionIndex], 'hasWarning', false);
+
+                if (get($scope.installation.partitionSchemeModels[partitionIndex], 'partitionSize') === 0) {
+                  set(
+                    $scope.installation.partitionSchemeModels[partitionIndex],
+                    'partitionSize',
+                    getRealRemainingSize(
+                      $scope.installation.partitionSchemeModels[partitionIndex].raid,
+                    ),
+                  );
+
+                  // To save information if user change nb disque
+                  // installation and personnalisation is not dirty
+                  set(
+                    partitionSchemeModels[partitionIndex],
+                    'isRemainingSizePartition',
+                    true,
+                  );
+                  $scope.installation.dirtyPartition = false;
+                  hasEmptyPartitionSize = true;
+                }
+              }
+            },
+          );
+
+          // for refresh progress bar
+          $scope.getRemainingSize();
+        },
+        (data) => {
+          $scope.loader.loading = false;
+          $scope.resetAction();
+          set(data, 'type', 'ERROR');
+          $scope.setMessage($translate.instant('server_configuration_installation_ovh_fail_partition_schemes', { t0: $scope.constants.server.name }), data.data);
+        },
+      );
     }
 
     // ------STEP2------
-    $scope.loadPartiton = function () {
-      if (!$scope.installation.partitionSchemeModels || $scope.informations.totalSize !== $scope.installation.hardwareRaid.availableSpace) {
+    $scope.loadPartiton = function loadPartiton() {
+      if (!$scope.installation.partitionSchemeModels
+        || $scope.informations.totalSize !== $scope.installation.hardwareRaid.availableSpace) {
         $scope.loader.loading = true;
 
         // init
@@ -379,7 +526,12 @@ angular
         $scope.setPartition.delModel = null;
         clearError();
 
-        Server.getOvhPartitionSchemesTemplates($stateParams.productId, $scope.installation.selectDistribution.id, $scope.installation.selectLanguage, $scope.informations.customInstall).then(
+        Server.getOvhPartitionSchemesTemplates(
+          $stateParams.productId,
+          $scope.installation.selectDistribution.id,
+          $scope.installation.selectLanguage,
+          $scope.informations.customInstall,
+        ).then(
           (partitionSchemesList) => {
             $scope.installation.partitionSchemesList = partitionSchemesList.results;
 
@@ -394,11 +546,22 @@ angular
                 name: `hardwareRaid-${$scope.installation.hardwareRaid.raid}`,
                 priority: 50,
               };
-              return Server.createPartitioningScheme($stateParams.productId, $scope.informations.gabaritName, newPartitioningScheme)
-                .then(() => Server.cloneDefaultPartitioningScheme($stateParams.productId, $scope.informations.gabaritName, `hardwareRaid-${$scope.installation.hardwareRaid.raid}`))
+              return Server.createPartitioningScheme(
+                $stateParams.productId,
+                $scope.informations.gabaritName,
+                newPartitioningScheme,
+              )
+                .then(() => Server.cloneDefaultPartitioningScheme(
+                  $stateParams.productId,
+                  $scope.informations.gabaritName,
+                  `hardwareRaid-${$scope.installation.hardwareRaid.raid}`,
+                ))
                 .then(() => {
                   $scope.installation.partitionSchemesList.push(newPartitioningScheme);
-                  $scope.installation.partitionSchemesList = sortBy($scope.installation.partitionSchemesList, 'priority');
+                  $scope.installation.partitionSchemesList = sortBy(
+                    $scope.installation.partitionSchemesList,
+                    'priority',
+                  );
                   showPartition();
                 })
                 .catch((error) => {
@@ -452,51 +615,6 @@ angular
       return size.value * multiplicator;
     }
 
-    function showPartition() {
-      // Select hight priority partition scheme
-      $scope.installation.selectPartitionScheme = $scope.installation.partitionSchemesList[$scope.installation.partitionSchemesList.length - 1];
-
-      // Get Partition list of largest partition scheme
-      Server.getOvhPartitionSchemesTemplatesDetail($scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name).then(
-        (partitionSchemeModels) => {
-          let index = partitionSchemeModels.results.length;
-
-          $scope.loader.loading = false;
-          $scope.installation.partitionSchemeModels = partitionSchemeModels.results;
-
-          // get total use size (remainingSize),
-          // assign random color
-          // rename order by orderTable
-          angular.forEach($scope.installation.partitionSchemeModels, (partition, _index) => {
-            partition.progressColor = $scope.getRandomColor(_index);
-            partition.orderTable = angular.copy(partition.order);
-          });
-
-          // if one partition has size = 0 => replace by remaining size
-          for (index; index--;) {
-            $scope.installation.partitionSchemeModels[index].hasWarning = false;
-            if ($scope.installation.partitionSchemeModels[index] && $scope.installation.partitionSchemeModels[index].partitionSize === 0) {
-              $scope.installation.partitionSchemeModels[index].partitionSize = getRealRemainingSize($scope.installation.partitionSchemeModels[index].raid);
-
-              // To save information if user change nb disque installation and personnalisation is not dirty
-              $scope.installation.partitionSchemeModels[index].isRemainingSizePartition = true;
-              $scope.installation.dirtyPartition = false;
-              break;
-            }
-          }
-
-          // for refresh progress bar
-          $scope.getRemainingSize();
-        },
-        (data) => {
-          $scope.loader.loading = false;
-          $scope.resetAction();
-          data.type = 'ERROR';
-          $scope.setMessage($translate.instant('server_configuration_installation_ovh_fail_partition_schemes', { t0: $scope.constants.server.name }), data.data);
-        },
-      );
-    }
-
     // If the diskGroup is not the first disk group, we need to disable raid setup if it is enabled.
     $scope.$watch('installation.diskGroup', (newValue) => {
       if (newValue) {
@@ -507,13 +625,15 @@ angular
       }
     });
 
-    $scope.refreshDiskGroupInfos = function (newDiskGroup) {
+    $scope.refreshDiskGroupInfos = function refreshDiskGroupInfos(newDiskGroup) {
       $scope.informations.isCachecade = newDiskGroup.raidController === 'cache';
       $scope.informations.raidController = newDiskGroup.raidController !== null;
       $scope.informations.typeDisk = newDiskGroup.diskType;
       $scope.informations.nbPhysicalDisk = newDiskGroup.numberOfDisks;
       $scope.informations.diskSize = Math.round(toBytes(newDiskGroup.diskSize) / 1000 / 1000);
-      $scope.informations.nbDisk = newDiskGroup.raidController !== null ? 1 : newDiskGroup.numberOfDisks;
+      $scope.informations.nbDisk = newDiskGroup.raidController !== null
+        ? 1
+        : newDiskGroup.numberOfDisks;
       $scope.installation.nbDiskUse = $scope.informations.nbDisk;
 
       if ($scope.installation.hardwareRaid.availableSpace) {
@@ -522,7 +642,10 @@ angular
         $scope.informations.totalSize = newDiskGroup.raidController !== null ? Math.round(toBytes(newDiskGroup.diskSize) / 1000 / 1000) : Math.round(toBytes(newDiskGroup.diskSize) / 1000 / 1000) * get(newDiskGroup, 'numberOfDisks', 0);
       }
 
-      const otherDisk = find($scope.informations.diskGroups, diskGroup => diskGroup.diskGroupId !== newDiskGroup.diskGroupId);
+      const otherDisk = find(
+        $scope.informations.diskGroups,
+        diskGroup => diskGroup.diskGroupId !== newDiskGroup.diskGroupId,
+      );
       $scope.informations.otherDisk = map(compact([otherDisk]), disk => ({
         typeDisk: disk.diskType,
         nbDisk: disk.numberOfDisks,
@@ -530,18 +653,115 @@ angular
       }));
     };
 
+    function validationNbDiskUse(nbDisk) {
+      let indexVarPartition = null;
+      const raidList = $scope.getRaidList(nbDisk);
+
+      $scope.configError.raidDiskUse = false;
+
+      if (nbDisk !== 1) {
+        forEachRight(
+          $scope.installation.partitionSchemeModels,
+          (partitionSchemeModel, partitionSchemeModelIndex) => {
+            if (!$scope.installation.dirtyPartition
+              && indexVarPartition === null
+              && partitionSchemeModel
+              && partitionSchemeModel.isRemainingSizePartition) {
+              indexVarPartition = partitionSchemeModelIndex;
+            }
+
+            if ($scope.informations.nbDisk > 2
+              && !includes(raidList, partitionSchemeModel.raid)) {
+              $scope.configError.raidDiskUse = true;
+              set(partitionSchemeModel, 'hasWarning', true);
+            } else {
+              set(partitionSchemeModel, 'hasWarning', false);
+            }
+          },
+        );
+      }
+
+      if (!$scope.installation.hardwareRaid.raid) {
+        $scope.informations.totalSize = $scope.informations.diskSize
+          * $scope.installation.nbDiskUse;
+      }
+
+      if (!$scope.configError.raidDiskUse && indexVarPartition !== null) {
+        $scope.installation.partitionSchemeModels[indexVarPartition].partitionSize = 0;
+        $scope
+          .installation
+          .partitionSchemeModels[indexVarPartition]
+          .partitionSize = getRealRemainingSize(
+            $scope.installation.partitionSchemeModels[indexVarPartition].raid,
+          );
+      }
+
+      $scope.getRemainingSize();
+    }
+
     $scope.$watch('installation.nbDiskUse', (newValue) => {
       if ($scope.installation.partitionSchemeModels) {
         validationNbDiskUse(newValue);
       }
     });
 
+    function validationTypePrimary(forNewPartition) {
+      let nbPrimary = 0;
+      let nbOther = 0;
+
+      angular.forEach($scope.installation.partitionSchemeModels, (partition2) => {
+        if (partition2.typePartition === $scope.constants.warningPrimary) {
+          nbPrimary += 1;
+        } else {
+          nbOther += 1;
+        }
+      });
+      if (forNewPartition) {
+        return nbPrimary === 4;
+      }
+      return (nbPrimary === 4 && nbOther > 0) || nbPrimary > 4;
+    }
+
+    // ------VALIDATION TOOLS------
+    // Create table of boolean with key = the propertie and value = true
+    // because this propertie is already use
+    function updateNoAllowProperties(excludedPartition) {
+      $scope.validation.orderList = [];
+      $scope.validation.mountPointList = [];
+      $scope.validation.volumeNameList = [];
+      $scope.validation.hasSwap = false;
+      $scope.validation.maxOrder = 0;
+      angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
+        if ($scope.validation.maxOrder < partition.order) {
+          $scope.validation.maxOrder = partition.order;
+        }
+        if (!excludedPartition || excludedPartition.order !== partition.order) {
+          $scope.validation.orderList[partition.order] = true;
+        }
+        if (!excludedPartition || excludedPartition.mountPoint !== partition.mountPoint) {
+          $scope.validation.mountPointList[partition.mountPoint.toLowerCase()] = true;
+        }
+        if (partition.volumeName
+          && (!excludedPartition || excludedPartition.volumeName !== partition.volumeName)) {
+          $scope.validation.volumeNameList[partition.volumeName.toLowerCase()] = true;
+        }
+        if (partition.fileSystem === $scope.constants.warningSwap
+          && (!excludedPartition
+            || excludedPartition.fileSystem !== $scope.constants.warningSwap)) {
+          $scope.validation.hasSwap = true;
+        }
+      });
+    }
+
+    // ------END VALIDATION TOOLS------
+
     // ------Add partition------
 
-    $scope.displayNewPartition = function () {
+    $scope.displayNewPartition = function displayNewPartition() {
       const raidList = $scope.getRaidList($scope.installation.nbDiskUse);
       clearError();
-      $scope.newPartition.raid = (raidList.length > 0 && raidList[raidList.length - 1]) || $scope.constants.warningRaid1;
+      $scope.newPartition.raid = (raidList.length > 0 && raidList[raidList.length - 1])
+        || $scope.constants.warningRaid1;
       $scope.newPartition.partitionSize = getRealRemainingSize($scope.newPartition.raid);
 
       if (includes($scope.constants.partitionTypeList, $scope.constants.warningLogical)) {
@@ -564,7 +784,8 @@ angular
       $scope.newPartition.progressColor = $scope.getRandomColor();
       if (validationTypePrimary(true)) {
         $scope.errorInst.typePrimary = true;
-      } else if ($scope.installation.selectDistribution.family === $scope.constants.warningWindows && $scope.newPartition.partitionSize < $scope.constants.minSizeWindows) {
+      } else if ($scope.installation.selectDistribution.family === $scope.constants.warningWindows
+        && $scope.newPartition.partitionSize < $scope.constants.minSizeWindows) {
         $scope.errorInst.partitionSizeWindows = true;
       } else if ($scope.newPartition.partitionSize < $scope.constants.minSizePartition) {
         $scope.errorInst.partitionSizeToAdd = true;
@@ -575,7 +796,30 @@ angular
       $scope.newPartition.order = $scope.validation.maxOrder + 1;
       $scope.getRemainingSize();
     };
-    $scope.validAddPartition = function (bypassRaid) {
+
+    function checkall(partition) {
+      $scope.validationMountPoint(partition);
+
+      // $scope.validationOrder // load by validationMountPoint
+      // $scope.validationType //load by validationOrder
+      // $scope.validationRaid(partition); //load by /$scope.validationType
+      $scope.validationVolumeName(partition);
+      $scope.validationFileSystem(partition);
+
+      // $scope.validationSize //load by validationRaid
+    }
+
+    function isValidPartition() {
+      return !$scope.hasErrorOrder()
+        && !$scope.hasErrorType()
+        && !$scope.hasErrorFileSystem()
+        && !$scope.hasErrorMountPoint()
+        && !$scope.hasErrorVolumeName()
+        && !$scope.hasErrorRaid()
+        && !$scope.hasErrorSize();
+    }
+
+    $scope.validAddPartition = function validAddPartition(bypassRaid) {
       let trueSize = 0;
       $scope.buttonControl.addInProgress = true;
       checkall($scope.newPartition);
@@ -593,16 +837,20 @@ angular
             $scope.newPartition.raid = null;
           }
 
-          Server.postAddPartition($scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name, {
-            raid: $scope.newPartition.raid,
-            fileSystem: $scope.newPartition.fileSystem,
-            typePartition: $scope.newPartition.typePartition,
-            volumeName: $scope.newPartition.volumeName,
-            order: $scope.newPartition.order,
-            mountPoint: $scope.newPartition.mountPoint,
-            oldMountPoint: $scope.newPartition.mountPoint,
-            partitionSize: trueSize,
-          }).then(
+          Server.postAddPartition(
+            $scope.informations.gabaritName,
+            $scope.installation.selectPartitionScheme.name,
+            {
+              raid: $scope.newPartition.raid,
+              fileSystem: $scope.newPartition.fileSystem,
+              typePartition: $scope.newPartition.typePartition,
+              volumeName: $scope.newPartition.volumeName,
+              order: $scope.newPartition.order,
+              mountPoint: $scope.newPartition.mountPoint,
+              oldMountPoint: $scope.newPartition.mountPoint,
+              partitionSize: trueSize,
+            },
+          ).then(
             () => {
               $scope.warning.raid0 = false;
               $scope.newPartition.partitionSize = trueSize;
@@ -639,7 +887,7 @@ angular
       }
       $scope.getRemainingSize();
     };
-    $scope.cancelAddPartition = function () {
+    $scope.cancelAddPartition = function cancelAddPartition() {
       $scope.newPartition.display = false;
       $scope.getRemainingSize();
       clearError();
@@ -647,7 +895,15 @@ angular
 
     // ------Set partition------
 
-    $scope.displaySetPartition = function (partition) {
+    // Get index in partitionSchemeModels table where partition is located
+    function getIndexOfPartition(partition) {
+      return findLastIndex(
+        $scope.installation.partitionSchemeModels,
+        partitionSchemeModel => get(partitionSchemeModel, 'order') === partition.order,
+      );
+    }
+
+    $scope.displaySetPartition = function displaySetPartition(partition) {
       // Use index for save what partition is changed
       const index = getIndexOfPartition(partition);
       clearError();
@@ -656,8 +912,10 @@ angular
       updateNoAllowProperties(partition);
       $scope.getRemainingSize();
     };
-    $scope.validSetPartition = function (bypassRaid) {
-      const partitionToSet = $scope.installation.partitionSchemeModels[$scope.setPartition.indexSet];
+    $scope.validSetPartition = function validSetPartition(bypassRaid) {
+      const partitionToSet = $scope.installation.partitionSchemeModels[
+        $scope.setPartition.indexSet
+      ];
       let trueSize = 0;
       $scope.buttonControl.setInProgress = true;
       checkall(partitionToSet);
@@ -671,16 +929,20 @@ angular
             partitionToSet.volumeName = null;
           }
 
-          Server.putSetPartition($scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name, {
-            raid: partitionToSet.raid,
-            fileSystem: partitionToSet.fileSystem,
-            typePartition: partitionToSet.typePartition,
-            volumeName: partitionToSet.volumeName,
-            order: partitionToSet.order,
-            mountPoint: partitionToSet.mountPoint,
-            oldMountPoint: $scope.setPartition.save.mountPoint,
-            partitionSize: trueSize,
-          }).then(
+          Server.putSetPartition(
+            $scope.informations.gabaritName,
+            $scope.installation.selectPartitionScheme.name,
+            {
+              raid: partitionToSet.raid,
+              fileSystem: partitionToSet.fileSystem,
+              typePartition: partitionToSet.typePartition,
+              volumeName: partitionToSet.volumeName,
+              order: partitionToSet.order,
+              mountPoint: partitionToSet.mountPoint,
+              oldMountPoint: $scope.setPartition.save.mountPoint,
+              partitionSize: trueSize,
+            },
+          ).then(
             () => {
               if (partitionToSet.isRemainingSizePartition) {
                 $scope.installation.dirtyPartition = true;
@@ -712,8 +974,12 @@ angular
       }
       $scope.getRemainingSize();
     };
-    $scope.cancelSetPartition = function () {
-      $scope.installation.partitionSchemeModels[$scope.setPartition.indexSet] = angular.copy($scope.setPartition.save);
+    $scope.cancelSetPartition = function cancelSetPartition() {
+      $scope
+        .installation
+        .partitionSchemeModels[$scope.setPartition.indexSet] = angular.copy(
+          $scope.setPartition.save,
+        );
       $scope.setPartition.save = null;
       $scope.setPartition.indexSet = -1;
       $scope.getRemainingSize();
@@ -722,15 +988,21 @@ angular
 
     // ------Delete partition------
 
-    $scope.deletePartition = function (partition) {
+    $scope.deletePartition = function deletePartition(partition) {
       $scope.setPartition.delModel = getIndexOfPartition(partition);
       $scope.getRemainingSize();
     };
-    $scope.deleteValidPartition = function () {
+    $scope.deleteValidPartition = function deleteValidPartition() {
       $scope.buttonControl.deleteInProgress = true;
-      Server.deleteSetPartition($scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name, $scope.installation.partitionSchemeModels[$scope.setPartition.delModel].mountPoint).then(
+      Server.deleteSetPartition(
+        $scope.informations.gabaritName,
+        $scope.installation.selectPartitionScheme.name,
+        $scope.installation.partitionSchemeModels[$scope.setPartition.delModel].mountPoint,
+      ).then(
         () => {
-          if ($scope.installation.partitionSchemeModels[$scope.setPartition.delModel].isRemainingSizePartition) {
+          if ($scope.installation
+            .partitionSchemeModels[$scope.setPartition.delModel]
+            .isRemainingSizePartition) {
             $scope.installation.dirtyPartition = true;
           }
           $scope.installation.partitionSchemeModels.splice($scope.setPartition.delModel, 1);
@@ -749,19 +1021,19 @@ angular
         },
       );
     };
-    $scope.deleteCancelPartition = function () {
+    $scope.deleteCancelPartition = function deleteCancelPartition() {
       $scope.setPartition.delModel = null;
       $scope.getRemainingSize();
     };
 
     // ------Common partition------
 
-    $scope.cancelRaid0Partition = function () {
+    $scope.cancelRaid0Partition = function cancelRaid0Partition() {
       $scope.buttonControl.displayAddConfirmation = false;
       $scope.getRemainingSize();
     };
 
-    $scope.validPartition = function () {
+    $scope.validPartition = function validPartition() {
       if ($scope.newPartition.display && !$scope.buttonControl.addInProgress) {
         $scope.validAddPartition(true);
       } else if (!$scope.buttonControl.setInProgress && $scope.setPartition.save) {
@@ -769,38 +1041,22 @@ angular
       }
     };
 
-    // ------VALIDATION------
 
-    function isValidPartition() {
-      return !$scope.hasErrorOrder() && !$scope.hasErrorType() && !$scope.hasErrorFileSystem() && !$scope.hasErrorMountPoint() && !$scope.hasErrorVolumeName() && !$scope.hasErrorRaid() && !$scope.hasErrorSize();
-    }
-
-    function checkall(partition) {
-      $scope.validationMountPoint(partition);
-
-      // $scope.validationOrder // load by validationMountPoint
-      // $scope.validationType //load by validationOrder
-      // $scope.validationRaid(partition); //load by /$scope.validationType
-      $scope.validationVolumeName(partition);
-      $scope.validationFileSystem(partition);
-
-      // $scope.validationSize //load by validationRaid
-    }
-
-    // ------ORDER VALIDATION------
-
-    $scope.hasErrorOrder = function () {
-      return $scope.errorInst.order || $scope.errorInst.orderFirst || $scope.errorInst.orderType || $scope.errorInst.orderFirstWin;
+    $scope.hasErrorOrder = function hasErrorOrder() {
+      return $scope.errorInst.order
+        || $scope.errorInst.orderFirst
+        || $scope.errorInst.orderType
+        || $scope.errorInst.orderFirstWin;
     };
-    $scope.validationOrder = function (partition) {
+    $scope.validationOrder = function validationOrder(partition) {
       let firstPartition = partition;
       let hasBoot = false;
 
       if (!partition.order) {
         if ($scope.newPartition.display) {
-          partition.order = $scope.installation.partitionSchemeModels.length + 1;
+          set(partition, 'order', $scope.installation.partitionSchemeModels.length + 1);
         } else {
-          partition.order = angular.copy($scope.setPartition.save.order);
+          set(partition, 'order', angular.copy($scope.setPartition.save.order));
         }
       }
       $scope.errorInst.order = $scope.validation.orderList[partition.order];
@@ -820,27 +1076,48 @@ angular
           }
         }
         if ($scope.installation.selectDistribution.family !== $scope.constants.warningWindows) {
-          $scope.errorInst.orderFirst = (hasBoot && firstPartition.mountPoint !== $scope.constants.warningBoot) || (!hasBoot && firstPartition.mountPoint !== $scope.constants.warningRoot && firstPartition.mountPoint !== $scope.constants.warningBoot);
+          $scope.errorInst.orderFirst = (hasBoot
+            && firstPartition.mountPoint !== $scope.constants.warningBoot)
+            || (!hasBoot
+              && firstPartition.mountPoint !== $scope.constants.warningRoot
+              && firstPartition.mountPoint !== $scope.constants.warningBoot);
         } else {
-          $scope.errorInst.orderFirstWin = firstPartition.mountPoint !== $scope.constants.warningCwin;
+          $scope
+            .errorInst
+            .orderFirstWin = firstPartition.mountPoint !== $scope.constants.warningCwin;
         }
       }
       $scope.validationType(partition);
     };
 
     // ------TYPE VALIDATION------
+    function validationVolumeNameByType(partition) {
+      $scope.errorInst.volumeNameEmpty = !$scope.errorInst.typeLvSwap
+        && !$scope.errorInst.typeLogicalLv
+        && partition.typePartition === $scope.constants.warningLV
+        && (!partition.volumeName || partition.volumeName === '');
+    }
 
-    $scope.hasErrorType = function () {
-      return $scope.errorInst.orderType || $scope.errorInst.typePrimary || $scope.errorInst.typeLvSwap || $scope.errorInst.typeLogicalLv || $scope.errorInst.mountPointPrimary;
+    $scope.hasErrorType = function hasErrorType() {
+      return $scope.errorInst.orderType
+      || $scope.errorInst.typePrimary
+      || $scope.errorInst.typeLvSwap
+      || $scope.errorInst.typeLogicalLv
+      || $scope.errorInst.mountPointPrimary;
     };
-    $scope.validationType = function (partition) {
+
+    $scope.validationType = function validationType(partition) {
       let nbLv = 0;
       let nbLogical = 0;
 
-      $scope.errorInst.typeLvSwap = partition.typePartition === $scope.constants.warningLV && partition.fileSystem === $scope.constants.warningSwap;
+      $scope.errorInst.typeLvSwap = partition.typePartition === $scope.constants.warningLV
+        && partition.fileSystem === $scope.constants.warningSwap;
 
-      if ($scope.installation.selectDistribution.family === $scope.constants.warningWindows && partition.mountPoint === $scope.constants.warningCwin) {
-        $scope.errorInst.mountPointPrimary = partition.typePartition !== $scope.constants.warningPrimary;
+      if ($scope.installation.selectDistribution.family === $scope.constants.warningWindows
+        && partition.mountPoint === $scope.constants.warningCwin) {
+        $scope
+          .errorInst
+          .mountPointPrimary = partition.typePartition !== $scope.constants.warningPrimary;
       } else {
         $scope.errorInst.mountPointPrimary = false;
       }
@@ -849,26 +1126,33 @@ angular
 
       // $scope.errorInst.orderLv = false;
       $scope.errorInst.typeLogicalLv = false;
-      if (!$scope.errorInst.order && !$scope.errorInst.orderFirst && !$scope.errorInst.typeLvSwap && !$scope.errorInst.mountPointPrimary) {
+      if (!$scope.errorInst.order
+        && !$scope.errorInst.orderFirst
+        && !$scope.errorInst.typeLvSwap
+        && !$scope.errorInst.mountPointPrimary) {
         angular.forEach($scope.installation.partitionSchemeModels, (partition2) => {
           // Primary first Test
           if (
-            (partition2.order < partition.order && partition2.typePartition !== $scope.constants.warningPrimary && partition.typePartition === $scope.constants.warningPrimary)
-                            || (partition2.order > partition.order && partition2.typePartition === $scope.constants.warningPrimary && partition.typePartition !== $scope.constants.warningPrimary)
+            (partition2.order < partition.order
+              && partition2.typePartition !== $scope.constants.warningPrimary
+              && partition.typePartition === $scope.constants.warningPrimary)
+            || (partition2.order > partition.order
+              && partition2.typePartition === $scope.constants.warningPrimary
+              && partition.typePartition !== $scope.constants.warningPrimary)
           ) {
             $scope.errorInst.orderType = true;
           }
           if (partition2.typePartition === $scope.constants.warningLV) {
-            nbLv++;
+            nbLv += 1;
           } else if (partition2.typePartition === $scope.constants.warningLogical) {
-            nbLogical++;
+            nbLogical += 1;
           }
         });
         if ($scope.newPartition.display) {
           if (partition.typePartition === $scope.constants.warningLV) {
-            nbLv++;
+            nbLv += 1;
           } else if (partition.typePartition === $scope.constants.warningLogical) {
-            nbLogical++;
+            nbLogical += 1;
           }
         }
         if (nbLv !== 0 && nbLogical !== 0) {
@@ -880,34 +1164,26 @@ angular
       $scope.validationRaid(partition);
       validationVolumeNameByType(partition);
     };
-    function validationTypePrimary(forNewPartition) {
-      let nbPrimary = 0;
-      let nbOther = 0;
 
-      angular.forEach($scope.installation.partitionSchemeModels, (partition2) => {
-        if (partition2.typePartition === $scope.constants.warningPrimary) {
-          nbPrimary++;
-        } else {
-          nbOther++;
-        }
-      });
-      if (forNewPartition) {
-        return nbPrimary === 4;
-      }
-      return (nbPrimary === 4 && nbOther > 0) || nbPrimary > 4;
-    }
 
     // ------FILE SYSTEM VALIDATION------
 
-    $scope.hasErrorFileSystem = function () {
+    $scope.hasErrorFileSystem = function hasErrorFileSystem() {
       return $scope.errorInst.fileSystemSwap || $scope.errorInst.fileSystemNoSwap;
     };
-    $scope.validationFileSystem = function (partition) {
-      $scope.errorInst.fileSystemSwap = $scope.validation.hasSwap && partition.fileSystem === $scope.constants.warningSwap;
-      $scope.errorInst.fileSystemNoSwap = $scope.installation.selectDistribution.family !== $scope.constants.warningWindows && !$scope.validation.hasSwap && partition.fileSystem !== $scope.constants.warningSwap;
+    $scope.validationFileSystem = function validationFileSystem(partition) {
+      $scope.errorInst.fileSystemSwap = $scope.validation.hasSwap
+        && partition.fileSystem === $scope.constants.warningSwap;
+      $scope
+        .errorInst
+        .fileSystemNoSwap = $scope.installation.selectDistribution.family !== $scope
+          .constants
+          .warningWindows
+        && !$scope.validation.hasSwap
+        && partition.fileSystem !== $scope.constants.warningSwap;
       if (!$scope.errorInst.fileSystemSwap) {
         if (partition.fileSystem === $scope.constants.warningSwap) {
-          partition.mountPoint = $scope.constants.swapLabel;
+          set(partition, 'mountPoint', $scope.constants.swapLabel);
           $scope.validationMountPoint(partition);
         }
         $scope.validationSize(partition);
@@ -916,7 +1192,7 @@ angular
 
     // ------MOUNT POINT VALIDATION------
 
-    $scope.hasErrorMountPoint = function () {
+    $scope.hasErrorMountPoint = function hasErrorMountPoint() {
       return (
         $scope.errorInst.mountPointUse
                     || $scope.errorInst.mountPointEmpty
@@ -927,27 +1203,33 @@ angular
                     || $scope.errorInst.orderFirstWin
       );
     };
-    $scope.validationMountPoint = function (partition) {
+    $scope.validationMountPoint = function validationMountPoint(partition) {
       $scope.errorInst.mountPointEmpty = !partition.mountPoint;
-      $scope.errorInst.mountPointUse = !$scope.errorInst.mountPointEmpty && $scope.validation.mountPointList[partition.mountPoint.toLowerCase()];
+      $scope.errorInst.mountPointUse = !$scope.errorInst.mountPointEmpty
+        && $scope.validation.mountPointList[partition.mountPoint.toLowerCase()];
 
       if (partition.fileSystem !== $scope.constants.warningSwap) {
         if ($scope.installation.selectDistribution.family !== $scope.constants.warningWindows) {
           $scope.errorInst.mountPoint = !$scope.errorInst.mountPointEmpty
                             && !$scope.errorInst.mountPointUse
-                            && (!!~$scope.constants.forbiddenMountPoint.indexOf(partition.mountPoint.toLowerCase())
+                            && (!!~$scope.constants.forbiddenMountPoint.indexOf(
+                              partition.mountPoint.toLowerCase(),
+                            )
                             || /\/\.{1,2}(\/|$)/.test(partition.mountPoint) // /../
-                            || /\/\-/.test(partition.mountPoint) // /-
+                            || /\/-/.test(partition.mountPoint) // /-
                             || /\/\//.test(partition.mountPoint) // //
-                                || !/^\/[A-Za-z0-9\._\-\/]{0,254}$/.test(partition.mountPoint));
+                                || !/^\/[A-Za-z0-9._\-/]{0,254}$/.test(partition.mountPoint));
 
           $scope.errorInst.mountPoint2 = !$scope.errorInst.mountPointEmpty
                             && !$scope.errorInst.mountPointUse
                             && !$scope.errorInst.mountPoint
                             && /^\/var\/log/.test(partition.mountPoint.toLowerCase())
                             && /^(ovh|gentoo-ovh_64|gentoo-ovh)$/.test($scope.installation.selectDistribution.family);
-        } else if ($scope.installation.selectDistribution.family === $scope.constants.warningWindows) {
-          $scope.errorInst.mountPointWindows = !$scope.errorInst.mountPointEmpty && !$scope.errorInst.mountPointUse && !/^[c-z]\:$/.test(partition.mountPoint.toLowerCase());
+        } else if ($scope
+          .installation
+          .selectDistribution
+          .family === $scope.constants.warningWindows) {
+          $scope.errorInst.mountPointWindows = !$scope.errorInst.mountPointEmpty && !$scope.errorInst.mountPointUse && !/^[c-z]:$/.test(partition.mountPoint.toLowerCase());
         }
       } else {
         $scope.errorInst.mountPoint = false;
@@ -959,10 +1241,14 @@ angular
 
     // ------VOLUME NAME VALIDATION------
 
-    $scope.hasErrorVolumeName = function () {
-      return $scope.errorInst.volumeNameEmpty || $scope.errorInst.volumeName || $scope.errorInst.volumeNameUse;
+    $scope.hasErrorVolumeName = function hasErrorVolumeName() {
+      return $scope.errorInst.volumeNameEmpty
+        || $scope.errorInst.volumeName
+        || $scope.errorInst.volumeNameUse;
     };
-    $scope.validationVolumeName = function (partition) {
+
+
+    $scope.validationVolumeName = function validationVolumeName(partition) {
       validationVolumeNameByType(partition);
       $scope.errorInst.volumeName = !$scope.errorInst.typeLvSwap
                     && !$scope.errorInst.typeLogicalLv
@@ -976,24 +1262,30 @@ angular
                     && partition.typePartition === $scope.constants.warningLV
                     && $scope.validation.volumeNameList[partition.volumeName.toLowerCase()];
     };
-    function validationVolumeNameByType(partition) {
-      $scope.errorInst.volumeNameEmpty = !$scope.errorInst.typeLvSwap && !$scope.errorInst.typeLogicalLv && partition.typePartition === $scope.constants.warningLV && (!partition.volumeName || partition.volumeName === '');
-    }
+
 
     // ------Soft RAID VALIDATION------
 
-    $scope.hasErrorRaid = function () {
+    $scope.hasErrorRaid = function hasErrorRaid() {
       return $scope.errorInst.raid0 || $scope.errorInst.raidLv;
     };
-    $scope.validationRaid = function (partition) {
+    $scope.validationRaid = function validationRaid(partition) {
       $scope.errorInst.raidLv = false;
       if ($scope.installation.nbDiskUse > 1 && !$scope.informations.raidController) {
-        $scope.errorInst.raid0 = partition.raid !== $scope.constants.warningRaid1 && partition.raid !== $scope.constants.warningRaid0 && (partition.mountPoint === $scope.constants.warningBoot || partition.mountPoint === $scope.constants.warningRoot);
-        $scope.warning.raid0 = !$scope.errorInst.raid0 && partition.raid === $scope.constants.warningRaid0 && partition.fileSystem !== $scope.constants.warningSwap;
+        $scope.errorInst.raid0 = partition.raid !== $scope.constants.warningRaid1
+          && partition.raid !== $scope.constants.warningRaid0
+          && (partition.mountPoint === $scope.constants.warningBoot
+            || partition.mountPoint === $scope.constants.warningRoot);
+        $scope.warning.raid0 = !$scope.errorInst.raid0
+          && partition.raid === $scope.constants.warningRaid0
+          && partition.fileSystem !== $scope.constants.warningSwap;
       }
-      if ($scope.installation.nbDiskUse > 1 && !$scope.informations.raidController && partition.typePartition === $scope.constants.warningLV) {
+      if ($scope.installation.nbDiskUse > 1
+        && !$scope.informations.raidController
+        && partition.typePartition === $scope.constants.warningLV) {
         angular.forEach($scope.installation.partitionSchemeModels, (partition2) => {
-          if (partition2.typePartition === $scope.constants.warningLV && partition2.raid !== partition.raid) {
+          if (partition2.typePartition === $scope.constants.warningLV
+            && partition2.raid !== partition.raid) {
             $scope.errorInst.raidLv = true;
           }
         });
@@ -1001,42 +1293,11 @@ angular
 
       $scope.validationSize(partition);
     };
-    function validationNbDiskUse(nbDisk) {
-      let index = $scope.installation.partitionSchemeModels.length;
-      let indexVarPartition = null;
-      const raidList = $scope.getRaidList(nbDisk);
 
-      $scope.configError.raidDiskUse = false;
-
-      if (nbDisk !== 1) {
-        for (index; index--;) {
-          if (!$scope.installation.dirtyPartition && indexVarPartition === null && $scope.installation.partitionSchemeModels[index] && $scope.installation.partitionSchemeModels[index].isRemainingSizePartition) {
-            indexVarPartition = index;
-          }
-          if ($scope.informations.nbDisk > 2 && !includes(raidList, $scope.installation.partitionSchemeModels[index].raid)) {
-            $scope.configError.raidDiskUse = true;
-            $scope.installation.partitionSchemeModels[index].hasWarning = true;
-          } else {
-            $scope.installation.partitionSchemeModels[index].hasWarning = false;
-          }
-        }
-      }
-
-      if (!$scope.installation.hardwareRaid.raid) {
-        $scope.informations.totalSize = $scope.informations.diskSize * $scope.installation.nbDiskUse;
-      }
-
-      if (!$scope.configError.raidDiskUse && indexVarPartition !== null) {
-        $scope.installation.partitionSchemeModels[indexVarPartition].partitionSize = 0;
-        $scope.installation.partitionSchemeModels[indexVarPartition].partitionSize = getRealRemainingSize($scope.installation.partitionSchemeModels[indexVarPartition].raid);
-      }
-
-      $scope.getRemainingSize();
-    }
 
     // ------SIZE VALIDATION------
 
-    $scope.hasErrorSize = function () {
+    $scope.hasErrorSize = function hasErrorSize() {
       return (
         $scope.errorInst.partitionSizeOver
                     || $scope.errorInst.partitionSizeSwap
@@ -1048,9 +1309,80 @@ angular
                     || $scope.errorInst.partitionSizeRequired
       );
     };
-    $scope.validationSize = function (partition) {
+
+    // swap size > 30Go = error
+    function validationSizeSwap(partition) {
+      $scope.errorInst.partitionSizeSwap = partition.fileSystem === $scope.constants.warningSwap
+        && $scope.getRealDisplaySize({
+          partition,
+          notDisplay: true,
+          noRaid: true,
+        }) > $scope.constants.maxSizeSwap;
+      return $scope.errorInst.partitionSizeSwap;
+    }
+
+    // partition size > 2To = error
+    function validationSizeMax(partition) {
+      $scope.errorInst.partitionSize = partition.fileSystem !== $scope.constants.warningZFS
+        && !$scope.installation.selectDistribution.supportsGpt
+        && $scope.getRealDisplaySize({
+          partition,
+          notDisplay: true,
+          noRaid: true,
+        }) > $scope.constants.maxSizePartition;
+      return $scope.errorInst.partitionSize;
+    }
+
+    // boot size < 50Mo = error
+    function validationSizeBoot(partition) {
+      $scope.errorInst.partitionSizeBoot = partition.mountPoint === $scope.constants.warningBoot
+        && $scope.getRealDisplaySize({
+          partition,
+          notDisplay: true,
+          noRaid: true,
+        }) < $scope.constants.minSizeBoot;
+      return $scope.errorInst.partitionSizeBoot;
+    }
+
+    // reiserfs size < 32Mo = error
+    function validationSizeReiserfs(partition) {
+      $scope.errorInst.partitionSizeReiserfs = partition
+        .fileSystem === $scope.constants.warningReiserfs
+        && $scope.getRealDisplaySize({
+          partition,
+          notDisplay: true,
+          noRaid: true,
+        }) < $scope.constants.minSizeReiserfs;
+      return $scope.errorInst.partitionSizeReiserfs;
+    }
+
+    // windows size < 20Go = error
+    function validationSizeWindowsMin(partition) {
+      $scope.errorInst.partitionSizeWindows = $scope
+        .installation
+        .selectDistribution
+        .family === $scope.constants.warningWindows
+        && $scope.getRealDisplaySize({
+          partition,
+          notDisplay: true,
+          noRaid: true,
+        }) < $scope.constants.minSizeWindows;
+      return $scope.errorInst.partitionSizeWindows;
+    }
+
+    // partition size < 10Mo = error
+    function validationSizeMin(partition) {
+      $scope.errorInst.partitionSizeMin = $scope.getRealDisplaySize({
+        partition,
+        notDisplay: true,
+        noRaid: true,
+      }) < $scope.constants.minSizePartition;
+      return $scope.errorInst.partitionSizeMin;
+    }
+
+    $scope.validationSize = function validationSize(partition) {
       if (partition.partitionSize) {
-        partition.partitionSize = parseInt(partition.partitionSize.toString().replace('.', ''), 10);
+        set(partition, 'partitionSize', parseInt(partition.partitionSize.toString().replace('.', ''), 10));
       }
       $scope.errorInst.partitionSizeRequired = !/^[0-9]{1,20}$/.test(partition.partitionSize);
 
@@ -1066,87 +1398,12 @@ angular
       );
     };
 
-    // swap size > 30Go = error
-    function validationSizeSwap(partition) {
-      $scope.errorInst.partitionSizeSwap = partition.fileSystem === $scope.constants.warningSwap && $scope.getRealDisplaySize({ partition, notDisplay: true, noRaid: true }) > $scope.constants.maxSizeSwap;
-      return $scope.errorInst.partitionSizeSwap;
-    }
-
-    // partition size > 2To = error
-    function validationSizeMax(partition) {
-      $scope.errorInst.partitionSize = partition.fileSystem !== $scope.constants.warningZFS && !$scope.installation.selectDistribution.supportsGpt && $scope.getRealDisplaySize({ partition, notDisplay: true, noRaid: true }) > $scope.constants.maxSizePartition;
-      return $scope.errorInst.partitionSize;
-    }
-
-    // boot size < 50Mo = error
-    function validationSizeBoot(partition) {
-      $scope.errorInst.partitionSizeBoot = partition.mountPoint === $scope.constants.warningBoot && $scope.getRealDisplaySize({ partition, notDisplay: true, noRaid: true }) < $scope.constants.minSizeBoot;
-      return $scope.errorInst.partitionSizeBoot;
-    }
-
-    // reiserfs size < 32Mo = error
-    function validationSizeReiserfs(partition) {
-      $scope.errorInst.partitionSizeReiserfs = partition.fileSystem === $scope.constants.warningReiserfs && $scope.getRealDisplaySize({ partition, notDisplay: true, noRaid: true }) < $scope.constants.minSizeReiserfs;
-      return $scope.errorInst.partitionSizeReiserfs;
-    }
-
-    // windows size < 20Go = error
-    function validationSizeWindowsMin(partition) {
-      $scope.errorInst.partitionSizeWindows = $scope.installation.selectDistribution.family === $scope.constants.warningWindows && $scope.getRealDisplaySize({ partition, notDisplay: true, noRaid: true }) < $scope.constants.minSizeWindows;
-      return $scope.errorInst.partitionSizeWindows;
-    }
-
-    // partition size < 10Mo = error
-    function validationSizeMin(partition) {
-      $scope.errorInst.partitionSizeMin = $scope.getRealDisplaySize({ partition, notDisplay: true, noRaid: true }) < $scope.constants.minSizePartition;
-      return $scope.errorInst.partitionSizeMin;
-    }
-
     // ------END VALIDATION------
-
-    // ------VALIDATION TOOLS------
-    // Create table of boolean with key = the propertie and value = true because this propertie is already use
-    function updateNoAllowProperties(excludedPartition) {
-      $scope.validation.orderList = [];
-      $scope.validation.mountPointList = [];
-      $scope.validation.volumeNameList = [];
-      $scope.validation.hasSwap = false;
-      $scope.validation.maxOrder = 0;
-      angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
-        if ($scope.validation.maxOrder < partition.order) {
-          $scope.validation.maxOrder = partition.order;
-        }
-        if (!excludedPartition || excludedPartition.order !== partition.order) {
-          $scope.validation.orderList[partition.order] = true;
-        }
-        if (!excludedPartition || excludedPartition.mountPoint !== partition.mountPoint) {
-          $scope.validation.mountPointList[partition.mountPoint.toLowerCase()] = true;
-        }
-        if (partition.volumeName && (!excludedPartition || excludedPartition.volumeName !== partition.volumeName)) {
-          $scope.validation.volumeNameList[partition.volumeName.toLowerCase()] = true;
-        }
-        if (partition.fileSystem === $scope.constants.warningSwap && (!excludedPartition || excludedPartition.fileSystem !== $scope.constants.warningSwap)) {
-          $scope.validation.hasSwap = true;
-        }
-      });
-    }
-
-    // Delete all Error message after cancel action
-    function clearError() {
-      angular.forEach($scope.warning, (value, key) => {
-        $scope.warning[key] = false;
-      });
-      angular.forEach($scope.errorInst, (value, key) => {
-        $scope.errorInst[key] = false;
-      });
-    }
-
-    // ------END VALIDATION TOOLS------
 
     // ------TOOLS------
 
     // return range between 1 and nbdisque of server if > 1
-    $scope.getNbDisqueList = function (nbdisk) {
+    $scope.getNbDisqueList = function getNbDisqueList(nbdisk) {
       if (nbdisk > 1) {
         return range(1, nbdisk + 1);
       }
@@ -1154,7 +1411,7 @@ angular
     };
 
     // return list of available raid
-    $scope.getRaidList = function (nbDisk) {
+    $scope.getRaidList = function getRaidList(nbDisk) {
       if (nbDisk !== null && $scope.constants.raidList !== null) {
         if (nbDisk >= 4) {
           if (nbDisk % 2 === 0) {
@@ -1167,65 +1424,18 @@ angular
       return [];
     };
 
-    // Get index in partitionSchemeModels table where partition is located
-    function getIndexOfPartition(partition) {
-      let index = $scope.installation.partitionSchemeModels.length;
-      for (index; index--;) {
-        if ($scope.installation.partitionSchemeModels[index] && $scope.installation.partitionSchemeModels[index].order && $scope.installation.partitionSchemeModels[index].order === partition.order) {
-          break;
-        }
-      }
-      return index;
-    }
 
     // Reture true if partition is in edit mode
-    $scope.isSetPartition = function (partition) {
+    $scope.isSetPartition = function isSetPartition(partition) {
       return $scope.installation.partitionSchemeModels[$scope.setPartition.indexSet] === partition;
     };
 
-    // get real use size for partition with 0 in size (in fact remaining size)
-    function getRealRemainingSize(raid) {
-      const remainingSize = $scope.getRemainingSize();
-      let realRemainingSize = 0;
-
-      if (!isNaN(remainingSize)) {
-        if ($scope.installation.nbDiskUse === 1 || $scope.informations.raidController) {
-          realRemainingSize = remainingSize;
-        } else if (raid) {
-          switch (raid) {
-            case '_0':
-              realRemainingSize = remainingSize;
-              break;
-            case '_1':
-              realRemainingSize = remainingSize / $scope.installation.nbDiskUse;
-              break;
-            case '_5':
-              realRemainingSize = remainingSize - (remainingSize / $scope.installation.nbDiskUse);
-              break;
-            case '_6':
-              realRemainingSize = remainingSize - ((remainingSize / $scope.installation.nbDiskUse) * 2);
-              break;
-            case '_10':
-              realRemainingSize = remainingSize / ($scope.installation.nbDiskUse / 2);
-              break;
-            default:
-              break;
-          }
-        }
-      }
-
-      if (!$scope.installation.selectDistribution.supportsGpt && realRemainingSize > $scope.constants.maxSizePartition) {
-        return $scope.constants.maxSizePartition;
-      }
-
-      return realRemainingSize;
-    }
 
     // Display size with unit (recursive)
-    $scope.getDisplaySize = function (octetsSize, _unitIndex) {
+    $scope.getDisplaySize = function getDisplaySize(octetsSize, _unitIndex) {
       let unitIndex = _unitIndex;
-      if (!isNaN(octetsSize)) {
-        if (isNaN(unitIndex)) {
+      if (!Number.isNaN(octetsSize)) {
+        if (Number.isNaN(unitIndex)) {
           unitIndex = 0;
         }
         if (octetsSize >= 1000 && unitIndex < $scope.units.model.length - 1) {
@@ -1236,37 +1446,39 @@ angular
       return '';
     };
 
-    $scope.getFullSize = function (partition) {
-      partition.partitionSize = 0; // important
-      partition.partitionSize = getRealRemainingSize(partition.raid);
+    $scope.getFullSize = function getFullSize(partition) {
+      set(partition, 'partitionSize', 0); // important
+      set(partition, 'partitionSize', getRealRemainingSize(partition.raid));
       $scope.validationSize(partition);
     };
 
     // Display real space depending on the raid. if setting or adding,
     // {partition, notDisplay, noRaid}
-    $scope.getRealDisplaySize = function (option) {
+    $scope.getRealDisplaySize = function getRealDisplaySize(option) {
       if (option.partition && option.partition.takeRemainingSpace) {
         return $scope.getDisplaySize($scope.getRemainingSize());
       }
-      if (option.partition && !isNaN(option.partition.partitionSize)) {
-        if (option.noRaid || $scope.installation.nbDiskUse === 1 || $scope.informations.raidController) {
-          option.partition.realSize = option.partition.partitionSize;
+      if (option.partition && !Number.isNaN(option.partition.partitionSize)) {
+        if (option.noRaid
+          || $scope.installation.nbDiskUse === 1
+          || $scope.informations.raidController) {
+          set(option, 'partition.realSize', option.partition.partitionSize);
         } else if (option.partition.raid) {
           switch (option.partition.raid) {
             case '_0':
-              option.partition.realSize = option.partition.partitionSize;
+              set(option, 'partition.realSize', option.partition.partitionSize);
               break;
             case '_1':
-              option.partition.realSize = option.partition.partitionSize * $scope.installation.nbDiskUse;
+              set(option, 'partition.realSize', option.partition.partitionSize * $scope.installation.nbDiskUse);
               break;
             case '_5':
-              option.partition.realSize = option.partition.partitionSize + (option.partition.partitionSize / ($scope.installation.nbDiskUse - 1));
+              set(option, 'partition.realSize', option.partition.partitionSize + (option.partition.partitionSize / ($scope.installation.nbDiskUse - 1)));
               break;
             case '_6':
-              option.partition.realSize = option.partition.partitionSize * 2;
+              set(option, 'partition.realSize', option.partition.partitionSize * 2);
               break;
             case '_10':
-              option.partition.realSize = option.partition.partitionSize * ($scope.installation.nbDiskUse / 2);
+              set(option, 'partition.realSize', option.partition.partitionSize * ($scope.installation.nbDiskUse / 2));
               break;
             default:
               break;
@@ -1281,7 +1493,7 @@ angular
     };
 
     // get remaining size
-    $scope.getRemainingSize = function () {
+    $scope.getRemainingSize = function getRemainingSize() {
       let remainingSize = $scope.informations.totalSize;
 
       // all partition
@@ -1292,13 +1504,23 @@ angular
       });
 
       // new partition
-      if ($scope.newPartition.display && !isNaN($scope.newPartition.partitionSize)) {
-        remainingSize -= $scope.getRealDisplaySize({ partition: $scope.newPartition, notDisplay: true });
+      if ($scope.newPartition.display && !Number.isNaN($scope.newPartition.partitionSize)) {
+        remainingSize -= $scope.getRealDisplaySize({
+          partition: $scope.newPartition,
+          notDisplay: true,
+        });
       }
 
       // delete partition
-      if ($scope.setPartition.delModel && $scope.installation.partitionSchemeModels[$scope.setPartition.delModel] && !isNaN($scope.installation.partitionSchemeModels[$scope.setPartition.delModel].partitionSize)) {
-        remainingSize += $scope.getRealDisplaySize({ partition: $scope.installation.partitionSchemeModels[$scope.setPartition.delModel], notDisplay: true });
+      if ($scope.setPartition.delModel
+        && $scope.installation.partitionSchemeModels[$scope.setPartition.delModel]
+        && !Number.isNaN(
+          $scope.installation.partitionSchemeModels[$scope.setPartition.delModel].partitionSize,
+        )) {
+        remainingSize += $scope.getRealDisplaySize({
+          partition: $scope.installation.partitionSchemeModels[$scope.setPartition.delModel],
+          notDisplay: true,
+        });
       }
 
       $scope.informations.remainingSize = remainingSize;
@@ -1313,7 +1535,7 @@ angular
       return $scope.informations.remainingSize;
     };
 
-    $scope.getRandomColor = function (index, partition) {
+    $scope.getRandomColor = function getRandomColor(index, partition) {
       const colorSequence = ['#E91E63', '#3F51B5', '#00BCD4', '#8BC34A', '#FFC107', '#795548', '#9C27B0', '#2196F3', '#009688', '#CDDC39', '#FF9800', '#607D8B'];
 
       let color = colorSequence[Math.floor(Math.random() * (colorSequence.length - 1))];
@@ -1322,7 +1544,7 @@ angular
       }
 
       if (partition) {
-        partition.progressColor = color;
+        set(partition, 'progressColor', color);
       }
       return color;
     };
@@ -1331,20 +1553,11 @@ angular
       $scope.refreshBar();
     });
 
-    $scope.refreshBar = function () {
-      $scope.bar.progress = [];
-      $scope.bar.total = 0;
-
-      angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
-        getProgress(partition);
-      });
-      if ($scope.newPartition.display) {
-        getProgress($scope.newPartition);
-      }
-    };
-
     function getBarWidth(partition) {
-      return parseFloat($scope.getRealDisplaySize({ partition, notDisplay: true }) * 100 / $scope.informations.totalSize).toFixed(1);
+      return parseFloat($scope.getRealDisplaySize({
+        partition,
+        notDisplay: true,
+      }) * 100 / $scope.informations.totalSize).toFixed(1);
     }
 
     function getProgress(partition) {
@@ -1358,8 +1571,20 @@ angular
           progressSize: progress,
         });
       }
-      $scope.bar.total = $scope.bar.total + progress;
+      $scope.bar.total += progress;
     }
+
+    $scope.refreshBar = function refreshBar() {
+      $scope.bar.progress = [];
+      $scope.bar.total = 0;
+
+      angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
+        getProgress(partition);
+      });
+      if ($scope.newPartition.display) {
+        getProgress($scope.newPartition);
+      }
+    };
 
     // ------ HARDWARE RAID TOOL--------
     $scope.$watch('installation.hardwareRaid.controller', () => {
@@ -1384,37 +1609,51 @@ angular
       }
     });
 
-    $scope.recalculateAvailableRaid = function () {
+    $scope.recalculateAvailableRaid = function recalculateAvailableRaid() {
       if ($scope.installation.hardwareRaid.controller) {
         const nbOfDisk = $scope.installation.hardwareRaid.controller.disks[0].names.length;
         $scope.installation.hardwareRaid.raid = null;
         $scope.informations.hardwareRaid.availableDisks = [];
         $scope.informations.hardwareRaid.availableRaids = [];
 
-        for (let i = 1; i < nbOfDisk + 1; i++) {
+        for (let i = 1; i < nbOfDisk + 1; i += 1) {
           $scope.informations.hardwareRaid.availableDisks.push(i);
         }
         if (nbOfDisk >= 8) {
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60);
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60,
+          );
         }
         if (nbOfDisk >= 6) {
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50);
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid50,
+          );
         }
         if (nbOfDisk >= 4) {
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6);
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10);
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid6,
+          );
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid10,
+          );
         }
         if (nbOfDisk >= 3) {
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid5);
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid5,
+          );
         }
         if (nbOfDisk >= 2) {
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid1);
-          $scope.informations.hardwareRaid.availableRaids.push(TEMPLATE_OS_HARDWARE_RAID_ENUM.raid0);
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid1,
+          );
+          $scope.informations.hardwareRaid.availableRaids.push(
+            TEMPLATE_OS_HARDWARE_RAID_ENUM.raid0,
+          );
         }
       }
     };
 
-    $scope.recalculateAvailableRaidDisks = function () {
+    $scope.recalculateAvailableRaidDisks = function recalculateAvailableRaidDisks() {
       if ($scope.installation.hardwareRaid.controller) {
         const nbOfDisk = $scope.installation.hardwareRaid.controller.disks[0].names.length;
         let minDisks = 1;
@@ -1457,7 +1696,7 @@ angular
       }
     };
 
-    $scope.recalculateAvailableArrays = function () {
+    $scope.recalculateAvailableArrays = function recalculateAvailableArrays() {
       if ($scope.installation.hardwareRaid.disks && $scope.installation.hardwareRaid.controller) {
         let maxNumberArray = $scope.installation.hardwareRaid.controller.disks[0].names.length;
         let minNumberArray = 1;
@@ -1486,7 +1725,7 @@ angular
         }
 
         if (isMultipleArrays) {
-          for (let i = minNumberArray; i <= maxNumberArray; i++) {
+          for (let i = minNumberArray; i <= maxNumberArray; i += 1) {
             if ($scope.installation.hardwareRaid.disks % i === 0) {
               $scope.informations.hardwareRaid.availableArrays.push(i);
             }
@@ -1499,8 +1738,10 @@ angular
       }
     };
 
-    $scope.recalculateSpace = function () {
-      if ($scope.installation.hardwareRaid.disks && $scope.installation.hardwareRaid.arrays && $scope.installation.hardwareRaid.controller) {
+    $scope.recalculateSpace = function recalculateSpace() {
+      if ($scope.installation.hardwareRaid.disks
+        && $scope.installation.hardwareRaid.arrays
+        && $scope.installation.hardwareRaid.controller) {
         let diskSize = $scope.installation.hardwareRaid.controller.disks[0].capacity.value;
         const grappe = $scope.installation.hardwareRaid.arrays;
         const nbOfDisks = $scope.installation.hardwareRaid.disks;
@@ -1511,7 +1752,9 @@ angular
           }
         });
 
-        $scope.installation.hardwareRaid.totalSpace = $scope.installation.hardwareRaid.disks * diskSize;
+        $scope
+          .installation.hardwareRaid
+          .totalSpace = $scope.installation.hardwareRaid.disks * diskSize;
         switch ($scope.installation.hardwareRaid.raid) {
           case TEMPLATE_OS_HARDWARE_RAID_ENUM.raid60:
             $scope.installation.hardwareRaid.availableSpace = (nbOfDisks - (2 * grappe)) * diskSize;
@@ -1532,22 +1775,28 @@ angular
             $scope.installation.hardwareRaid.availableSpace = diskSize;
             break;
           default:
-            $scope.installation.hardwareRaid.availableSpace = $scope.installation.hardwareRaid.totalSpace;
+            $scope
+              .installation
+              .hardwareRaid
+              .availableSpace = $scope.installation.hardwareRaid.totalSpace;
         }
       }
     };
 
-    $scope.invalidHardRaid = function () {
+    $scope.invalidHardRaid = function invalidHardRaid() {
       return $scope.installation.hardwareRaid.disks % $scope.installation.hardwareRaid.arrays !== 0;
     };
 
-    $scope.clearHardwareRaidSpace = function () {
+    $scope.clearHardwareRaidSpace = function clearHardwareRaidSpace() {
       $scope.installation.hardwareRaid.availableSpace = null;
       $scope.installation.hardwareRaid.totalSpace = null;
     };
 
     function prepareDiskList() {
-      const disksPerArray = $scope.installation.hardwareRaid.disks / $scope.installation.hardwareRaid.arrays;
+      const disksPerArray = $scope
+        .installation
+        .hardwareRaid
+        .disks / $scope.installation.hardwareRaid.arrays;
       if ($scope.installation.hardwareRaid.arrays === 1) {
         return take(
           $scope.installation.hardwareRaid.controller.disks[0].names,
@@ -1575,14 +1824,14 @@ angular
     }
 
     // ------CUSTOME STEP MODAL------
-    $scope.reduceModal = function () {
+    $scope.reduceModal = function reduceModal() {
       $scope.setToBigModalDialog(false);
     };
-    $scope.extendModal = function () {
+    $scope.extendModal = function extendModal() {
       $scope.setToBigModalDialog(true);
     };
 
-    $scope.checkNextStep1 = function () {
+    $scope.checkNextStep1 = function checkNextStep1() {
       if (!$scope.installation.raidSetup) {
         if ($scope.installation.customInstall) {
           $scope.extendModal();
@@ -1594,14 +1843,14 @@ angular
       }
     };
 
-    $scope.checkNextStep2 = function () {
+    $scope.checkNextStep2 = function checkNextStep2() {
       $scope.extendModal();
       if (!$scope.installation.customInstall) {
         $rootScope.$broadcast('wizard-goToStep', 4);
       }
     };
 
-    $scope.checkPrev1 = function () {
+    $scope.checkPrev1 = function checkPrev1() {
       if (!$scope.installation.raidSetup) {
         $scope.reduceModal();
         $rootScope.$broadcast('wizard-goToStep', 1);
@@ -1610,7 +1859,7 @@ angular
       }
     };
 
-    $scope.checkCustomPrevFinal = function () {
+    $scope.checkCustomPrevFinal = function checkCustomPrevFinal() {
       if (!$scope.installation.customInstall) {
         if (!$scope.installation.raidSetup) {
           $scope.reduceModal();
@@ -1624,7 +1873,30 @@ angular
       }
     };
 
-    $scope.checkIntegrity = function () {
+    function addRemainingSize() {
+      const remainingSize = $scope.getRemainingSize();
+
+      if (
+        ($scope.constants.minSizePartition > remainingSize
+          && $scope.installation.selectDistribution.family !== $scope.constants.warningWindows)
+        || ($scope.constants.minSizeWindows > remainingSize
+          && $scope.installation.selectDistribution.family === $scope.constants.warningWindows)
+      ) {
+        angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
+          if (!$scope.installation.options.variablePartition
+            || ($scope
+              .installation
+              .options
+              .variablePartition.partitionSize < partition.partitionSize
+              && $scope.installation.options.variablePartition.partitionSize !== 0)) {
+            $scope.installation.options.variablePartition = partition;
+            $scope.installation.variablePartition = true;
+          }
+        });
+      }
+    }
+
+    $scope.checkIntegrity = function checkIntegrity() {
       $scope.errorInst.ws = null;
       $scope.installation.variablePartition = false;
       $scope.installation.options = {
@@ -1659,11 +1931,11 @@ angular
     };
 
     // ------INSTALL------
-    $scope.validationGabaritName = function () {
-      $scope.errorInst.gabaritName = !/^[a-zA-Z0-9_\-]{1,50}$/.test($scope.installation.gabaritNameSave);
+    $scope.validationGabaritName = function validationGabaritName() {
+      $scope.errorInst.gabaritName = !/^[a-zA-Z0-9_-]{1,50}$/.test($scope.installation.gabaritNameSave);
     };
 
-    $scope.getMountPoint = function () {
+    $scope.getMountPoint = function getMountPoint() {
       const list = [];
       angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
         if (partition.fileSystem !== $scope.constants.warningSwap) {
@@ -1673,23 +1945,7 @@ angular
       return list;
     };
 
-    function addRemainingSize() {
-      const remainingSize = $scope.getRemainingSize();
-
-      if (
-        ($scope.constants.minSizePartition > remainingSize && $scope.installation.selectDistribution.family !== $scope.constants.warningWindows)
-                    || ($scope.constants.minSizeWindows > remainingSize && $scope.installation.selectDistribution.family === $scope.constants.warningWindows)
-      ) {
-        angular.forEach($scope.installation.partitionSchemeModels, (partition) => {
-          if (!$scope.installation.options.variablePartition || ($scope.installation.options.variablePartition.partitionSize < partition.partitionSize && $scope.installation.options.variablePartition.partitionSize !== 0)) {
-            $scope.installation.options.variablePartition = partition;
-            $scope.installation.variablePartition = true;
-          }
-        });
-      }
-    }
-
-    $scope.saveRemainingSize = function (_size, stop) {
+    $scope.saveRemainingSize = function saveRemainingSize(_size, stop) {
       let size = _size;
 
       if (!stop) {
@@ -1700,7 +1956,11 @@ angular
         if (!size) {
           size = 0;
           if ($scope.installation.options.variablePartition) {
-            $scope.installation.saveSize = $scope.installation.options.variablePartition.partitionSize;
+            $scope.installation.saveSize = $scope
+              .installation
+              .options
+              .variablePartition
+              .partitionSize;
           }
         }
 
@@ -1711,16 +1971,20 @@ angular
 
         if ($scope.installation.options.variablePartition) {
           $scope.loader.loading = true;
-          Server.putSetPartition($scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name, {
-            raid: $scope.installation.options.variablePartition.raid,
-            fileSystem: $scope.installation.options.variablePartition.fileSystem,
-            typePartition: $scope.installation.options.variablePartition.typePartition,
-            volumeName: $scope.installation.options.variablePartition.volumeName,
-            order: $scope.installation.options.variablePartition.order,
-            mountPoint: $scope.installation.options.variablePartition.mountPoint,
-            oldMountPoint: $scope.installation.options.variablePartition.mountPoint,
-            partitionSize: size,
-          }).then(
+          Server.putSetPartition(
+            $scope.informations.gabaritName,
+            $scope.installation.selectPartitionScheme.name,
+            {
+              raid: $scope.installation.options.variablePartition.raid,
+              fileSystem: $scope.installation.options.variablePartition.fileSystem,
+              typePartition: $scope.installation.options.variablePartition.typePartition,
+              volumeName: $scope.installation.options.variablePartition.volumeName,
+              order: $scope.installation.options.variablePartition.order,
+              mountPoint: $scope.installation.options.variablePartition.mountPoint,
+              oldMountPoint: $scope.installation.options.variablePartition.mountPoint,
+              partitionSize: size,
+            },
+          ).then(
             () => {
               if (!stop) {
                 $scope.install();
@@ -1746,86 +2010,8 @@ angular
       }
     };
 
-    $scope.install = function () {
-      if ($scope.installation.options.saveGabarit) {
-        $scope.loader.loading = true;
-        setGabarit();
-      } else if ($scope.installation.hardwareRaid.raid) {
-        $scope.installation.options.gabaritNameSave = `tmp-mgr-hardwareRaid-${moment().unix()}`;
-        setGabarit();
-      } else {
-        startInstall();
-      }
-    };
-
-    $scope.canPersonnalizeRaid = function () {
-      return $scope.raidIsPersonnalizable() && isDefaultDiskGroup($scope.installation.diskGroup);
-    };
-
-    $scope.raidIsPersonnalizable = function () {
-      return (
-        $scope.constants.server.raidController
-                    && get($scope.installation, 'selectDistribution.hardRaidConfiguration') !== false
-                    && !$scope.informations.hardwareRaid.error.wrongLocation
-                    && !$scope.informations.hardwareRaid.error.notAvailable
-      );
-    };
-
-    $scope.canEditDiskGroup = function () {
-      return $scope.informations.diskGroups.length > 1 && $scope.installation.isHybridCompatible;
-    };
-
-    $scope.hasVirtualDesktop = function () {
-      return !includes(get($scope.installation, 'selectDistribution.id'), 'hyperv');
-    };
-
-    $scope.hasLicencedOs = function () {
-      return find($scope.installation.distributionList, distribution => distribution.family === 'WINDOWS');
-    };
-
-    function setGabarit() {
-      Server.putSetGabarit($stateParams.productId, $scope.informations.gabaritName, $scope.installation.options.gabaritNameSave, {
-        changeLog: $scope.installation.options.changeLog,
-        customHostname: $scope.installation.options.customHostname,
-        postInstallationScriptLink: $scope.installation.options.postInstallationScriptLink,
-        postInstallationScriptReturn: $scope.installation.options.postInstallationScriptLink ? $scope.installation.options.postInstallationScriptReturn : null,
-        sshKeyName: $scope.installation.options.sshKeyName,
-        useDistributionKernel: $scope.installation.options.useDistributionKernel,
-      }).then(
-        () => {
-          $scope.informations.gabaritName = angular.copy($scope.installation.options.gabaritNameSave);
-          if ($scope.installation.hardwareRaid.raid) {
-            setHardwareRaid();
-          } else {
-            startInstall();
-          }
-        },
-        (data) => {
-          $scope.loader.loading = false;
-          $scope.saveRemainingSize($scope.installation.saveSize, true);
-          $scope.errorInst.wsinstall = $translate.instant('server_configuration_installation_error_save', { t0: data.data.message });
-        },
-      );
-    }
-
-    function setHardwareRaid() {
-      const disks = prepareDiskList();
-
-      Server.postHardwareRaid($stateParams.productId, $scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name, disks, $scope.installation.hardwareRaid.raid)
-        .catch((error) => {
-          if (error.status === 409) {
-            return Server.putHardwareRaid($stateParams.productId, $scope.informations.gabaritName, $scope.installation.selectPartitionScheme.name, disks, $scope.installation.hardwareRaid.raid);
-          }
-          return $q.reject(error);
-        })
-        .then(() => {
-          startInstall();
-        })
-        .catch(() => {
-          $scope.loader.loading = false;
-          $scope.saveRemainingSize($scope.installation.saveSize, true);
-          $scope.errorInst.wsinstall = $translate.instant('server_configuration_installation_error_hardwareRaid');
-        });
+    function isDefaultDiskGroup(diskGroup) {
+      return diskGroup && $scope.informations.diskGroups[0].diskGroupId === diskGroup.diskGroupId;
     }
 
     function startInstall() {
@@ -1835,17 +2021,23 @@ angular
         customHostname: $scope.installation.options.customHostname,
         installSqlServer: $scope.installation.options.installSqlServer,
         postInstallationScriptLink: $scope.installation.options.postInstallationScriptLink,
-        postInstallationScriptReturn: $scope.installation.options.postInstallationScriptLink ? $scope.installation.options.postInstallationScriptReturn : null,
+        postInstallationScriptReturn: $scope.installation.options.postInstallationScriptLink
+          ? $scope.installation.options.postInstallationScriptReturn
+          : null,
         sshKeyName: $scope.installation.options.sshKeyName,
         useDistribKernel: $scope.installation.options.useDistributionKernel,
         useSpla: $scope.installation.options.useSpla,
-        softRaidDevices: $scope.informations.nbDisk > 2 && $scope.installation.nbDiskUse > 1 ? $scope.installation.nbDiskUse : null,
+        softRaidDevices: $scope.informations.nbDisk > 2 && $scope.installation.nbDiskUse > 1
+          ? $scope.installation.nbDiskUse
+          : null,
         noRaid: $scope.installation.nbDiskUse === 1 && !$scope.informations.raidController,
-        diskGroupId: !isDefaultDiskGroup($scope.installation.diskGroup) ? $scope.installation.diskGroup.diskGroupId : null,
+        diskGroupId: !isDefaultDiskGroup($scope.installation.diskGroup)
+          ? $scope.installation.diskGroup.diskGroupId
+          : null,
         resetHwRaid: !isDefaultDiskGroup($scope.installation.diskGroup),
       }).then(
         (task) => {
-          task.id = task.taskId;
+          set(task, 'id', task.taskId);
           $scope.reduceModal();
           $scope.setMessage(null);
           $rootScope.$broadcast('dedicated.informations.reinstall', task);
@@ -1865,9 +2057,109 @@ angular
       );
     }
 
-    function isDefaultDiskGroup(diskGroup) {
-      return diskGroup && $scope.informations.diskGroups[0].diskGroupId === diskGroup.diskGroupId;
+    function setHardwareRaid() {
+      const disks = prepareDiskList();
+
+      Server.postHardwareRaid(
+        $stateParams.productId,
+        $scope.informations.gabaritName,
+        $scope.installation.selectPartitionScheme.name,
+        disks,
+        $scope.installation.hardwareRaid.raid,
+      )
+        .catch((error) => {
+          if (error.status === 409) {
+            return Server.putHardwareRaid(
+              $stateParams.productId,
+              $scope.informations.gabaritName,
+              $scope.installation.selectPartitionScheme.name,
+              disks,
+              $scope.installation.hardwareRaid.raid,
+            );
+          }
+          return $q.reject(error);
+        })
+        .then(() => {
+          startInstall();
+        })
+        .catch(() => {
+          $scope.loader.loading = false;
+          $scope.saveRemainingSize($scope.installation.saveSize, true);
+          $scope.errorInst.wsinstall = $translate.instant('server_configuration_installation_error_hardwareRaid');
+        });
     }
+
+    function setGabarit() {
+      Server.putSetGabarit(
+        $stateParams.productId,
+        $scope.informations.gabaritName,
+        $scope.installation.options.gabaritNameSave,
+        {
+          changeLog: $scope.installation.options.changeLog,
+          customHostname: $scope.installation.options.customHostname,
+          postInstallationScriptLink: $scope.installation.options.postInstallationScriptLink,
+          postInstallationScriptReturn: $scope.installation.options.postInstallationScriptLink
+            ? $scope.installation.options.postInstallationScriptReturn
+            : null,
+          sshKeyName: $scope.installation.options.sshKeyName,
+          useDistributionKernel: $scope.installation.options.useDistributionKernel,
+        },
+      ).then(
+        () => {
+          $scope.informations.gabaritName = angular.copy(
+            $scope.installation.options.gabaritNameSave,
+          );
+          if ($scope.installation.hardwareRaid.raid) {
+            setHardwareRaid();
+          } else {
+            startInstall();
+          }
+        },
+        (data) => {
+          $scope.loader.loading = false;
+          $scope.saveRemainingSize($scope.installation.saveSize, true);
+          $scope.errorInst.wsinstall = $translate.instant('server_configuration_installation_error_save', { t0: data.data.message });
+        },
+      );
+    }
+
+    $scope.install = function install() {
+      if ($scope.installation.options.saveGabarit) {
+        $scope.loader.loading = true;
+        setGabarit();
+      } else if ($scope.installation.hardwareRaid.raid) {
+        $scope.installation.options.gabaritNameSave = `tmp-mgr-hardwareRaid-${moment().unix()}`;
+        setGabarit();
+      } else {
+        startInstall();
+      }
+    };
+
+
+    $scope.canPersonnalizeRaid = function canPersonnalizeRaid() {
+      return $scope.raidIsPersonnalizable() && isDefaultDiskGroup($scope.installation.diskGroup);
+    };
+
+    $scope.raidIsPersonnalizable = function raidIsPersonnalizable() {
+      return (
+        $scope.constants.server.raidController
+                    && get($scope.installation, 'selectDistribution.hardRaidConfiguration') !== false
+                    && !$scope.informations.hardwareRaid.error.wrongLocation
+                    && !$scope.informations.hardwareRaid.error.notAvailable
+      );
+    };
+
+    $scope.canEditDiskGroup = function canEditDiskGroup() {
+      return $scope.informations.diskGroups.length > 1 && $scope.installation.isHybridCompatible;
+    };
+
+    $scope.hasVirtualDesktop = function hasVirtualDesktop() {
+      return !includes(get($scope.installation, 'selectDistribution.id'), 'hyperv');
+    };
+
+    $scope.hasLicencedOs = function hasLicencedOs() {
+      return find($scope.installation.distributionList, distribution => distribution.family === 'WINDOWS');
+    };
 
     $scope.$on('dedicated.informations.reinstall.form.update', (e, validForm) => {
       $scope.installation.options.validForm = validForm;

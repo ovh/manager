@@ -6,7 +6,7 @@ angular.module('Module.ip.controllers').controller('IplbImportCustomSslCtrl', ($
 
   /* Action */
 
-  $scope.importCustomSsl = function () {
+  $scope.importCustomSsl = function importCustomSsl() {
     $scope.loading = true;
     Iplb.importCustomSsl($scope.data.value, $scope.model)
       .then(

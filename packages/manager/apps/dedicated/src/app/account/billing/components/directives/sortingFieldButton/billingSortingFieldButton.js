@@ -1,5 +1,5 @@
 angular.module('Billing.directives').directive('billingSortingFieldButton', [
-  function () {
+  function billingSortingFieldButtonDirective() {
     return {
       restrict: 'A',
       scope: {

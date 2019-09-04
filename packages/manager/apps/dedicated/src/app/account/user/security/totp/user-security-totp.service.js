@@ -1,6 +1,6 @@
 angular.module('UserAccount').service('UserAccount.services.doubleAuth.totp', [
   'OvhHttp',
-  function (OvhHttp) {
+  function UserAccountDoubleAuthTotpService(OvhHttp) {
     /**
          * Get TOTP accounts ids.
          * @return {Promise}

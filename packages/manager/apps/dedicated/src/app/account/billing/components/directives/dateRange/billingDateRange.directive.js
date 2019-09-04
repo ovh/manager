@@ -1,6 +1,6 @@
 angular.module('Billing.directives').directive('billingDateRange', [
   'BILLING_BASE_URL',
-  function (BILLING_BASE_URL) {
+  function billingDateRangeDirective(BILLING_BASE_URL) {
     return {
       restrict: 'A',
       scope: {

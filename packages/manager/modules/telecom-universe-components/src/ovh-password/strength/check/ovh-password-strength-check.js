@@ -4,19 +4,19 @@ export default () => ({
   link($scope, elem, attr, ngModel) {
     const tests = {};
 
-    tests.oneLowercase = function (value) {
+    tests.oneLowercase = function oneLowercase(value) {
       return value.search(/[a-z]/g) !== -1;
     };
 
-    tests.oneUppercase = function (value) {
+    tests.oneUppercase = function oneUppercase(value) {
       return value.search(/[A-Z]/g) !== -1;
     };
 
-    tests.oneNumber = function (value) {
+    tests.oneNumber = function oneNumber(value) {
       return value.search(/[0-9]/g) !== -1;
     };
 
-    tests.minChars = function (value) {
+    tests.minChars = function minChars(value) {
       return value.length >= 8;
     };
 

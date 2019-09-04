@@ -4,7 +4,7 @@ angular.module('Billing.services').service('BillingAutoRenew', [
   '$q',
   'OvhApiEmailExchange',
   'OvhHttp',
-  function ($q, OvhApiEmailExchange, OvhHttp) {
+  function BillingAutoRenewService($q, OvhApiEmailExchange, OvhHttp) {
     const AUTORENEW_CONTRACT_CA = 1752;
     const AUTORENEW_CONTRACT_WE = 1754;
     const AUTORENEW_CONTRACT_WS = 1755;

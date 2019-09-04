@@ -8,7 +8,14 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
   'FIREWALL_RULE_PROTOCOLS',
   'REGEX',
 
-  function ($scope, $translate, Server, firewallRuleActions, firewallRuleProtocols, regex) {
+  function ServerFirewallAddRuleCtrl(
+    $scope,
+    $translate,
+    Server,
+    firewallRuleActions,
+    firewallRuleProtocols,
+    regex,
+  ) {
     $scope.data = $scope.currentActionData;
 
     $scope.firewallRuleProtocols = firewallRuleProtocols;
@@ -42,7 +49,7 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
 
     /* Select list */
 
-    $scope.getAvailableSequences = function () {
+    $scope.getAvailableSequences = function getAvailableSequences() {
       const sequences = [];
       let i = 0;
       for (; i < 100; i += 1) {
@@ -51,11 +58,11 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
       return sequences;
     };
 
-    $scope.getAvailableActions = function () {
+    $scope.getAvailableActions = function getAvailableActions() {
       return [firewallRuleActions.ALLOW, firewallRuleActions.DENY];
     };
 
-    $scope.getAvailableProtocols = function () {
+    $scope.getAvailableProtocols = function getAvailableProtocols() {
       return [
         firewallRuleProtocols.IPV_4,
         firewallRuleProtocols.UDP,
@@ -66,13 +73,13 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
 
     /* Conditions */
 
-    $scope.isIpv4IcmpOrUdpFrag = function () {
+    $scope.isIpv4IcmpOrUdpFrag = function isIpv4IcmpOrUdpFrag() {
       return $scope.rule.protocol === firewallRuleProtocols.IPV_4
         || $scope.rule.protocol === firewallRuleProtocols.ICMP
         || ($scope.rule.protocol === firewallRuleProtocols.UDP && $scope.rule.udpOptions.fragments);
     };
 
-    $scope.isDestinationPortToDisabled = function () {
+    $scope.isDestinationPortToDisabled = function isDestinationPortToDisabled() {
       return $scope.rule.protocol !== firewallRuleProtocols.TCP
         && $scope.rule.protocol !== firewallRuleProtocols.UDP
         && $scope.rule.protocol !== firewallRuleProtocols.ICMP;
@@ -80,7 +87,7 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
 
     /* Validator */
 
-    $scope.updateCheckedTcpOptions = function (option) {
+    $scope.updateCheckedTcpOptions = function updateCheckedTcpOptions(option) {
       if ($scope.rule.protocol === firewallRuleProtocols.TCP) {
         if (option === 'established') {
           $scope.rule.tcpOptions.ack = false;
@@ -91,7 +98,7 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
       }
     };
 
-    $scope.isValid = function () {
+    $scope.isValid = function isValid() {
       return ($scope.rule.sequence !== null
         && $scope.rule.action !== null
         && $scope.rule.protocol !== null
@@ -150,7 +157,7 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
       return options.join('<br>');
     }
 
-    $scope.setDisplayPortRanges = function () {
+    $scope.setDisplayPortRanges = function setDisplayPortRanges() {
       $scope.rule.sourcePort.display = getSourcePortRange();
       $scope.rule.destinationPort.display = getDestinationPortRange();
       $scope.rule.tcpOptionsDisplay = getTcpOptionsDisplay();
@@ -159,7 +166,7 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
 
     /* Action */
 
-    $scope.addRule = function () {
+    $scope.addRule = function addRule() {
       $scope.resetAction();
 
       const { protocol } = $scope.rule;
@@ -194,7 +201,7 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
 angular.module('App').controller('FirewallRemoveRuleCtrl', ($scope, $translate, Server) => {
   $scope.data = $scope.currentActionData;
 
-  $scope.removeRule = function () {
+  $scope.removeRule = function removeRule() {
     $scope.resetAction();
 
     Server
@@ -218,7 +225,7 @@ angular.module('App').controller('ServerIpToggleFirewallCtrl', [
   'Server',
   'FIREWALL_STATUSES',
 
-  function ($scope, $translate, Server, firewallStatuses) {
+  function ServerIpToggleFirewallCtrl($scope, $translate, Server, firewallStatuses) {
     $scope.data = $scope.currentActionData;
 
     $scope.firewallStatuses = firewallStatuses;
@@ -236,7 +243,7 @@ angular.module('App').controller('ServerIpToggleFirewallCtrl', [
       $scope.translations.wizardQuestion = $translate.instant('server_configuration_firewall_new_question', { t0: $scope.data.ip.ip });
     }
 
-    $scope.toggleFirewall = function () {
+    $scope.toggleFirewall = function toggleFirewall() {
       $scope.resetAction();
 
       let newStatus = $scope.firewallStatuses.NOT_CONFIGURED;

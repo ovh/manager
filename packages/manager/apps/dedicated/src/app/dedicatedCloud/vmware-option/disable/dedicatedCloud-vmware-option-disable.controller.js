@@ -8,7 +8,7 @@ angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scop
     loading: true,
   };
 
-  $scope.loadDisablingPrices = function () {
+  $scope.loadDisablingPrices = function loadDisablingPrices() {
     $scope.loaders.loading = true;
     return $q
       .all({
@@ -36,7 +36,7 @@ angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scop
       });
   };
 
-  $scope.disable = function () {
+  $scope.disable = function disable() {
     $scope.loaders.loading = true;
     DedicatedCloud.disableOption($stateParams.productId, $scope.option)
       .then(() => {

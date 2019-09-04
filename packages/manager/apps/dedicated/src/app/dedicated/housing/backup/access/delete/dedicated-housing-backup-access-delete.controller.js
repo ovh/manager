@@ -6,7 +6,7 @@ angular.module('App').controller('HousingDeleteAccessFtpBackupCtrl', ($rootScope
   $scope.access = $scope.currentActionData.ipBlock;
   $scope.loading = false;
 
-  $scope.deleteAccessFtpBackup = function () {
+  $scope.deleteAccessFtpBackup = function deleteAccessFtpBackup() {
     $scope.loading = true;
 
     Housing.deleteFtpBackupIp($stateParams.productId, $scope.access)

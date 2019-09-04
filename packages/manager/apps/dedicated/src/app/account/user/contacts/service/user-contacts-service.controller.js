@@ -10,7 +10,16 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
   'User',
   '$q',
   '$translate',
-  function ($scope, Contacts, Alerter, $stateParams, $location, User, $q, $translate) {
+  function UserAccountContactsServicesController(
+    $scope,
+    Contacts,
+    Alerter,
+    $stateParams,
+    $location,
+    User,
+    $q,
+    $translate,
+  ) {
     const self = this;
     let allServicesIds = [];
     const servicesTemp = {};
@@ -57,7 +66,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
         });
     }
 
-    self.getServices = function (forceRefresh) {
+    self.getServices = function getServices(forceRefresh) {
       self.loaders.services = true;
       self.categoryFilter = null;
       self.serviceFilter = null;
@@ -89,7 +98,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
         });
     };
 
-    self.transformItem = function (id) {
+    self.transformItem = function transformItem(id) {
       self.loaders.services = true;
       return Contacts
         .getServiceInfos({
@@ -112,7 +121,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
         });
     };
 
-    self.onTransformItemDone = function () {
+    self.onTransformItemDone = function onTransformItemDone() {
       if (!self.loaders.init) {
         self.loaders.services = false;
         if (servicesToDelete.length > 0) {
@@ -121,7 +130,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
       }
     };
 
-    self.updateFilters = function () {
+    self.updateFilters = function updateFilters() {
       self.servicesIds = allServicesIds
         .filter(id => (self.categoryFilter ? id.indexOf(self.categoryFilter) === 0 : true))
         .filter(id => (self.serviceFilter
@@ -129,14 +138,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
           : true));
     };
 
-    self.openEditLine = function (index, service) {
+    self.openEditLine = function openEditLine(index, service) {
       self.editLine = index;
       set(service, 'newContactAdmin', service.contactAdmin);
       set(service, 'newContactTech', service.contactTech);
       set(service, 'newContactBilling', service.contactBilling);
     };
 
-    self.changeContact = function (service) {
+    self.changeContact = function changeContact(service) {
       self.loaders.changeContact = true;
       Contacts.changeContact({
         service,

@@ -10,7 +10,7 @@ export default function () {
   /**
      *  Directive initialization
      */
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     if (!self.target) {
       throw new Error('target options must be specified when instanciating a jsplumb connection.');
     }

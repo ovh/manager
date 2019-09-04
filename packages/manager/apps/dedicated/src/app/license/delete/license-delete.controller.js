@@ -7,7 +7,7 @@ angular.module('Module.license').controller('LicenseDeleteCtrl', ($scope, $trans
     deleted: false,
   };
 
-  $scope.deleteLicense = function () {
+  $scope.deleteLicense = function deleteLicense() {
     if (!$scope.model.deleting && !$scope.model.deleted) {
       $scope.model.deleting = true;
       License.terminate($scope.model.license.id, $scope.model.license)

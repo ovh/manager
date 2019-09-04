@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl', function ($translate, $stateParams, $q, OvhApiTelephony, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl', function TelecomTelephonyAliasPortabilitiesCtrl($translate, $stateParams, $q, OvhApiTelephony, TucToast) {
   const self = this;
 
   self.loading = {
@@ -61,7 +61,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl'
     });
   }
 
-  self.confirmCancelPortability = function (portability) {
+  self.confirmCancelPortability = function confirmCancelPortability(portability) {
     self.loading.cancel = true;
 
     return OvhApiTelephony.Portability().v6().cancel({

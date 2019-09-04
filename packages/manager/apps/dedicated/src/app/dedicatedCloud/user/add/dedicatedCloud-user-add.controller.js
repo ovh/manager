@@ -28,7 +28,7 @@ angular.module('App').controller('DedicatedCloudUserAddCtrl', ($scope, $statePar
 
   $scope.passwordPolicy = $scope.currentActionData;
 
-  $scope.addUser = function () {
+  $scope.addUser = function addUser() {
     $scope.loaders.add = true;
     DedicatedCloud.addUser($stateParams.productId, $scope.newUser)
       .then(
@@ -45,7 +45,7 @@ angular.module('App').controller('DedicatedCloudUserAddCtrl', ($scope, $statePar
       });
   };
 
-  $scope.caseControl = function () {
+  $scope.caseControl = function caseControl() {
     if ($scope.newUser.name === undefined) {
       $scope.newUser.errorCase = false;
     } else if (regCase.test($scope.newUser.name)) {
@@ -54,7 +54,7 @@ angular.module('App').controller('DedicatedCloudUserAddCtrl', ($scope, $statePar
     }
   };
 
-  $scope.checkOptionsStates = function () {
+  $scope.checkOptionsStates = function checkOptionsStates() {
     $scope.loaders.init = true;
     return DedicatedCloud.hasSecurityOption($stateParams.productId)
       .then((hasSecurityOption) => {
@@ -76,18 +76,18 @@ angular.module('App').controller('DedicatedCloudUserAddFormCtrl', ($scope, Dedic
     $scope.formUser.formValid = $scope.userForm.$valid;
   });
 
-  $scope.getClassLabel = function (label, noDirty) {
+  $scope.getClassLabel = function getClassLabel(label, noDirty) {
     if (label && (noDirty || label.$dirty)) {
       return (label.$invalid && 'has-error') || 'has-success';
     }
     return '';
   };
 
-  $scope.hasError = function (label) {
+  $scope.hasError = function hasError(label) {
     return label.$invalid && label.$dirty;
   };
 
-  $scope.checkPassword = function (password) {
+  $scope.checkPassword = function checkPassword(password) {
     if (!password || password === '') {
       $scope.showError.checkPassword = false;
       return true;
@@ -101,7 +101,7 @@ angular.module('App').controller('DedicatedCloudUserAddFormCtrl', ($scope, Dedic
     return passwordIsCorrect;
   };
 
-  $scope.validEmail = function (value) {
+  $scope.validEmail = function validEmail(value) {
     if (!value || value === '') {
       return true;
     }

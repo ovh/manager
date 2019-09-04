@@ -6,7 +6,7 @@ import some from 'lodash/some';
 export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
   const self = this;
 
-  self.getContactData = function (contact) {
+  self.getContactData = function getContactData(contact) {
     if (!contact) {
       return null;
     }
@@ -21,7 +21,7 @@ export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
     };
   };
 
-  self.hasAtLeastOnePhoneNumber = function (contact) {
+  self.hasAtLeastOnePhoneNumber = function hasAtLeastOnePhoneNumber(contact) {
     if (!contact) {
       return null;
     }

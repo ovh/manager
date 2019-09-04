@@ -2,7 +2,7 @@ angular.module('Module.ip.controllers').controller('IpOrganisationDeleteCtrl', (
   $scope.alert = 'ip_organisation_alerter';
   $scope.load = false;
 
-  $scope.deleteOrganisation = function () {
+  $scope.deleteOrganisation = function deleteOrganisation() {
     $scope.load = true;
     IpOrganisation.deleteOrganisation($scope.currentActionData).then(
       () => {

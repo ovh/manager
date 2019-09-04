@@ -1,4 +1,4 @@
-angular.module('services').service('cdnDedicatedOrderQuota', function (OvhHttp) {
+angular.module('services').service('cdnDedicatedOrderQuota', function cdnDedicatedOrderQuota(OvhHttp) {
   this.getOrderQuotaInformations = serviceName => OvhHttp.get('/sws/dedicated/cdn/{serviceName}/order/quota', {
     rootPath: '2api',
     urlParams: {

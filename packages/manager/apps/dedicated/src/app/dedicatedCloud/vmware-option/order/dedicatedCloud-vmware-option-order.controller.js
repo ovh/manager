@@ -8,7 +8,7 @@ angular.module('App').controller('DedicatedCloudOrderVMwareOptionCtrl', ($scope,
     loading: false,
   };
 
-  $scope.loadPrices = function () {
+  $scope.loadPrices = function loadPrices() {
     $scope.loaders.loading = true;
     return $q
       .all({
@@ -36,7 +36,7 @@ angular.module('App').controller('DedicatedCloudOrderVMwareOptionCtrl', ($scope,
       });
   };
 
-  $scope.order = function () {
+  $scope.order = function order() {
     $scope.loaders.loading = true;
     DedicatedCloud.enableOption($stateParams.productId, $scope.option)
       .then(() => {

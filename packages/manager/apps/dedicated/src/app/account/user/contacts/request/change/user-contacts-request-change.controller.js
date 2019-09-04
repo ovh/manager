@@ -7,7 +7,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
   'UserAccount.services.Contacts',
   'Alerter',
   'User',
-  function ($scope, $stateParams, $translate, Contacts, Alerter, User) {
+  function UserAccountContactsRequestController(
+    $scope,
+    $stateParams,
+    $translate,
+    Contacts,
+    Alerter,
+    User,
+  ) {
     $scope.task = angular.copy($scope.currentActionData.task);
     $scope.action = $scope.currentActionData.action;
     $scope.method = $scope.currentActionData.method;
@@ -40,7 +47,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       loading: false,
     };
 
-    $scope.getIcon = function () {
+    $scope.getIcon = function getIcon() {
       switch ($scope.action) {
         case 'ACCEPT':
           return 'fa white fa-3x fa-check';
@@ -53,11 +60,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       }
     };
 
-    $scope.getWizardTitle = function () {
+    $scope.getWizardTitle = function getWizardTitle() {
       return $translate.instant(CONTACT_REQUEST_WIZARD_TITLES[$scope.action]);
     };
 
-    $scope.changeContactRequest = function () {
+    $scope.changeContactRequest = function changeContactRequest() {
       let promise = null;
 
       switch ($scope.action) {

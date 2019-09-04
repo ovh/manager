@@ -3,7 +3,7 @@ angular.module('App').controller('ActivateFtpBackupCtrl', ($scope, $stateParams,
 
   $scope.loading = false;
 
-  $scope.activateFtpBackup = function () {
+  $scope.activateFtpBackup = function activateFtpBackup() {
     $scope.loading = true;
 
     Server.activateFtpBackup($stateParams.productId)

@@ -3,10 +3,10 @@ angular.module('App').controller('UserCtrl', [
   '$http',
   'User',
   'ssoAuthentication',
-  function ($scope, $http, User, authentication) {
+  function UserCtrl($scope, $http, User, authentication) {
     $scope.user = null;
 
-    $scope.logout = function () {
+    $scope.logout = function logout() {
       authentication.logout();
     };
 

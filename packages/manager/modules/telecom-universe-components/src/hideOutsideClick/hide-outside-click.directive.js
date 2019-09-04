@@ -11,7 +11,7 @@ import $ from 'jquery';
 export default /* @ngInject */ ($parse, $timeout) => ({
   restrict: 'A',
   link(scope, element, attrs) {
-    const handler = function (event) {
+    const handler = function handler(event) {
       if (!$(event.target).closest(element).length) {
         scope.$apply(() => {
           $parse(attrs.tucHideOutsideClick)(scope);

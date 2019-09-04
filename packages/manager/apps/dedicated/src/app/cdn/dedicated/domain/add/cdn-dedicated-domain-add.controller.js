@@ -4,11 +4,11 @@ angular.module('App').controller('CdnAddDomainsCtrl', ($scope, $stateParams, $tr
   $scope.domain = {};
   $scope.newBackend = {};
 
-  $scope.isSecondStepValid = function () {
+  $scope.isSecondStepValid = function isSecondStepValid() {
     return $scope.domain.backend || ($scope.newBackend.value && !$scope.maxBackendsReached());
   };
 
-  $scope.loadBackends = function () {
+  $scope.loadBackends = function loadBackends() {
     if (!$scope.backends) {
       Cdn.getBackends($stateParams.productId).then((backends) => {
         $scope.backends = backends;
@@ -16,7 +16,7 @@ angular.module('App').controller('CdnAddDomainsCtrl', ($scope, $stateParams, $tr
     }
   };
 
-  $scope.maxBackendsReached = function () {
+  $scope.maxBackendsReached = function maxBackendsReached() {
     return $scope.backends
       && $scope.backends.backendsMax
       && $scope.backends.backendsMax === $scope.backends.results.length;
@@ -44,7 +44,7 @@ angular.module('App').controller('CdnAddDomainsCtrl', ($scope, $stateParams, $tr
     true,
   );
 
-  $scope.addDomain = function () {
+  $scope.addDomain = function addDomain() {
     if ($scope.newBackend.value) {
       $scope.domain.backend = $scope.newBackend.value;
     }

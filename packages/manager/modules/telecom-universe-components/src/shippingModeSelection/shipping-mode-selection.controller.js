@@ -41,7 +41,7 @@ export default function () {
     =            ACTIONS            =
     =============================== */
 
-  self.resetValues = function () {
+  self.resetValues = function resetValues() {
     if (self.selectedMode === 'mondialRelay' && !self.options.forceContactSelect) {
       self.shippingContact = null;
     } else if (self.selectedMode === 'transporter') {
@@ -55,7 +55,7 @@ export default function () {
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     checkOptions();

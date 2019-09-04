@@ -6,7 +6,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add'
   '$window',
   'atInternet',
   'UserAccount.services.ssh',
-  function ($scope, $window, atInternet, UseraccountSshService) {
+  function UserAccountSshCloudAddController($scope, $window, atInternet, UseraccountSshService) {
     $scope.model = {};
     $scope.data = {
       projects: [],
@@ -22,7 +22,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add'
         $scope.data.loader = false;
       });
 
-    $scope.addCloudSshKey = function () {
+    $scope.addCloudSshKey = function addCloudSshKey() {
       $scope.resetAction();
       set($window, 'location.href', UseraccountSshService.getSshCloudUrl($scope.data.selectedProject.id));
       atInternet.trackClick({
@@ -34,7 +34,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add'
       });
     };
 
-    $scope.formIsValid = function () {
+    $scope.formIsValid = function formIsValid() {
       return isObject($scope.data.selectedProject);
     };
   },

@@ -32,7 +32,7 @@ angular.module('managerApp')
     =============================== */
 
 
-      self.refreshBankHolidaysList = function () {
+      self.refreshBankHolidaysList = function refreshBankHolidaysList() {
         self.holidaysLists = {};
 
         angular.forEach(self.yearList, (year) => {
@@ -41,7 +41,7 @@ angular.module('managerApp')
         });
       };
 
-      self.filterEvents = function (year) {
+      self.filterEvents = function filterEvents(year) {
         if (year) {
           return filter(
             self.holidaysLists[year],
@@ -61,15 +61,15 @@ angular.module('managerApp')
     =            ACTIONS            =
     =============================== */
 
-      self.cancel = function (message) {
+      self.cancel = function cancel(message) {
         return $uibModalInstance.dismiss(message);
       };
 
-      self.close = function (datas) {
+      self.close = function close(datas) {
         return $uibModalInstance.close(datas);
       };
 
-      self.manageInject = function () {
+      self.manageInject = function manageInject() {
         return self.close({
           newEvents: self.filterEvents(),
         });

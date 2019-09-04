@@ -23,10 +23,17 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
     'atInternet',
     'NewAccountFormConfig',
 
-    function ($filter, $scope, $timeout, $translate, atInternet, NewAccountFormConfig) {
+    function newAccountFormFieldController(
+      $filter,
+      $scope,
+      $timeout,
+      $translate,
+      atInternet,
+      NewAccountFormConfig,
+    ) {
       $scope.getTemplateUrl = () => 'account/user/components/newAccountForm/field/new-account-form-field-component.html';
 
-      this.$onInit = function () {
+      this.$onInit = function $onInit() {
         // unique field identifier
         this.id = `ovh_field_${this.rule.fieldName}`;
 

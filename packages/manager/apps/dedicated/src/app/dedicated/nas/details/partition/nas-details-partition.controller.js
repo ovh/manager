@@ -1,4 +1,4 @@
-angular.module('App').controller('PartitionCtrl', function ($stateParams, $scope, $state, $translate, Nas, Alerter) {
+angular.module('App').controller('PartitionCtrl', function PartitionCtrl($stateParams, $scope, $state, $translate, Nas, Alerter) {
   const alerterId = 'NasAlert';
   const self = this;
 
@@ -22,7 +22,7 @@ angular.module('App').controller('PartitionCtrl', function ($stateParams, $scope
 
   // LOAD
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     $scope.backToPartition();
     self.getPartitions();
 
@@ -41,7 +41,7 @@ angular.module('App').controller('PartitionCtrl', function ($stateParams, $scope
     };
   });
 
-  self.getPartitions = function (forceRefresh) {
+  self.getPartitions = function getPartitions(forceRefresh) {
     self.loaders.table = true;
 
     return Nas.getPartitionsIds($stateParams.nasId, forceRefresh)
@@ -67,7 +67,7 @@ angular.module('App').controller('PartitionCtrl', function ($stateParams, $scope
     self.getPartitions(true);
   });
 
-  self.transformItem = function (partition) {
+  self.transformItem = function transformItem(partition) {
     return Nas.getPartition($stateParams.nasId, partition.id);
   };
 
@@ -81,16 +81,16 @@ angular.module('App').controller('PartitionCtrl', function ($stateParams, $scope
 
   // TOOLS
 
-  self.isNasha = function () {
+  self.isNasha = function isNasha() {
     return $stateParams.nasId.indexOf('nasha') !== -1;
   };
 
-  self.goToSubTable = function (subTable, data) {
+  self.goToSubTable = function goToSubTable(subTable, data) {
     $scope.context = `dedicated/nas/partition/${subTable}/nas-partition-${subTable}.html`;
     $scope.currentActionParams = data;
   };
 
-  $scope.backToPartition = function () {
+  $scope.backToPartition = function backToPartition() {
     $scope.context = 'dedicated/nas/partition/nas-partition-information.html';
   };
 });

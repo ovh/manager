@@ -55,7 +55,7 @@ export default () => {
     });
   }
 
-  return function (tel) {
+  return function phoneNumberFilter(tel) {
     return prettifyNumber(tel);
   };
 };

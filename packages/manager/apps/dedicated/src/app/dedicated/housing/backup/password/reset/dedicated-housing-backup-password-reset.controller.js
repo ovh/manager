@@ -5,7 +5,7 @@ angular.module('App').controller('HousingRequestFtpBackupPasswordCtrl', ($scope,
   $scope.ftpBackup = $scope.currentActionData;
   $scope.loading = false;
 
-  $scope.requestFtpBackupPassword = function () {
+  $scope.requestFtpBackupPassword = function requestFtpBackupPassword() {
     $scope.loading = true;
 
     Housing.requestFtpBackupPassword($stateParams.productId)

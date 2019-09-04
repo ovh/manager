@@ -35,7 +35,7 @@ export default {
 
     this.resiliationChoices = this.resiliationChoices.filter(elt => !self.tucResiliationReasonFilter || (self.tucResiliationReasonFilter.split(',').indexOf(elt.name) > -1));
 
-    this.canResiliate = function () {
+    this.canResiliate = function canResiliate() {
       if (self.resiliationReasonModel) {
         const model = find(self.resiliationChoices, {
           name: self.resiliationReasonModel.type,
@@ -45,7 +45,7 @@ export default {
       return false;
     };
 
-    this.resiliate = function () {
+    this.resiliate = function resiliate() {
       self.panel = false;
       self.onChange({
         ELEMENT: self.tucResiliationReason,
@@ -54,7 +54,7 @@ export default {
       });
     };
 
-    this.reject = function () {
+    this.reject = function reject() {
       self.panel = false;
       self.onChange({
         ELEMENT: self.tucResiliationReason,
@@ -63,7 +63,7 @@ export default {
       });
     };
 
-    this.openConfirmation = function () {
+    this.openConfirmation = function openConfirmation() {
       $uibModal.open({
         template: templateConfirmation,
         controllerAs: 'ResiliationModelCtrl',

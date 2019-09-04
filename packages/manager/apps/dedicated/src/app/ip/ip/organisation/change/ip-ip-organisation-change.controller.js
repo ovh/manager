@@ -10,7 +10,7 @@ angular.module('Module.ip.controllers').controller('IpOrganisationChangeCtrl', (
     value: {},
   };
 
-  $scope.load = function () {
+  $scope.load = function load() {
     $scope.loader = true;
 
     IpOrganisation.getIpOrganisation()
@@ -26,7 +26,7 @@ angular.module('Module.ip.controllers').controller('IpOrganisationChangeCtrl', (
       });
   };
 
-  $scope.changeOrganisation = function () {
+  $scope.changeOrganisation = function changeOrganisation() {
     $scope.loader = true;
 
     IpOrganisation.changeOrganisation({

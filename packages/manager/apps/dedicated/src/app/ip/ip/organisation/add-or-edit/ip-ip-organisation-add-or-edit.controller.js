@@ -37,12 +37,12 @@ angular.module('Module.ip.controllers').controller('IpOrganisationAddCtrl', (
     edit: false,
   };
 
-  $scope.orderByCountryAlias = function (a) {
+  $scope.orderByCountryAlias = function orderByCountryAlias(a) {
     const result = $translate.instant(`country_${a}`);
     return result === 'country_' ? a : result;
   };
 
-  $scope.load = function () {
+  $scope.load = function load() {
     const queue = [];
     $scope.load.loading = true;
 
@@ -80,15 +80,15 @@ angular.module('Module.ip.controllers').controller('IpOrganisationAddCtrl', (
     );
   };
 
-  $scope.resetAlertOranisation = function () {
+  $scope.resetAlertOranisation = function resetAlertOranisation() {
     Alerter.resetMessage($scope.alert);
   };
 
-  $scope.showState = function () {
+  $scope.showState = function showState() {
     return ipFeatureAvailability.showState();
   };
 
-  $scope.addOrganisation = function () {
+  $scope.addOrganisation = function addOrganisation() {
     $scope.load.loading = true;
     $scope.resetAlertOranisation();
     if ($scope.formOrganisation.edit) {
@@ -126,18 +126,18 @@ angular.module('Module.ip.controllers').controller('IpOrganisationAddFormCtrl', 
     $scope.formOrganisation.formValid = $scope.organisationForm.$valid;
   });
 
-  $scope.showState = function () {
+  $scope.showState = function showState() {
     return ipFeatureAvailability.showState();
   };
 
-  $scope.getClassLabel = function (label, noDirty) {
+  $scope.getClassLabel = function getClassLabel(label, noDirty) {
     if (label && (noDirty || label.$dirty)) {
       return (label.$invalid && 'error') || 'success';
     }
     return '';
   };
 
-  $scope.hasError = function (label) {
+  $scope.hasError = function hasError(label) {
     return label.$invalid && label.$dirty;
   };
 });

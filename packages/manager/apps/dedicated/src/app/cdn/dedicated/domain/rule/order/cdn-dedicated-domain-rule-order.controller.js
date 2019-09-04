@@ -10,7 +10,7 @@ angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $tr
   };
   $scope.contractsValidated = {};
 
-  $scope.loadCacherulesPrice = function () {
+  $scope.loadCacherulesPrice = function loadCacherulesPrice() {
     $scope.cacheRulesLoading = true;
 
     if (!$scope.prices) {
@@ -25,7 +25,7 @@ angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $tr
     }
   };
 
-  $scope.loadCacherulesOrders = function () {
+  $scope.loadCacherulesOrders = function loadCacherulesOrders() {
     $scope.orders = null;
     cdnDedicatedOrderRule.getCacheruleOrders($stateParams.productId, $scope.choices.count).then(
       (orders) => {
@@ -42,7 +42,7 @@ angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $tr
     );
   };
 
-  $scope.updateOrder = function () {
+  $scope.updateOrder = function updateOrder() {
     const choosenOrder = $.grep(
       $scope.orders,
       e => e.duration.duration === $scope.choices.duration,
@@ -52,7 +52,7 @@ angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $tr
     }
   };
 
-  $scope.orderCacherules = function () {
+  $scope.orderCacherules = function orderCacherules() {
     $scope.url = null;
     cdnDedicatedOrderRule
       .orderCacherules(
@@ -69,7 +69,7 @@ angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $tr
       });
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.resetAction();
     window.open($scope.url, '_blank');
   };

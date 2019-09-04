@@ -45,7 +45,7 @@ angular.module('App').controller('ServerOrderProUseCtrl', ($scope, $stateParams,
     );
   }
 
-  $scope.getDurations = function () {
+  $scope.getDurations = function getDurations() {
     $scope.loading.durations = true;
 
     Server
@@ -60,7 +60,7 @@ angular.module('App').controller('ServerOrderProUseCtrl', ($scope, $stateParams,
 
   //= ==============STEP 3===============
 
-  $scope.loadContracts = function () {
+  $scope.loadContracts = function loadContracts() {
     $scope.model.agree = false;
     if (!$scope.durations.details[$scope.model.duration].contracts
       || !$scope.durations.details[$scope.model.duration].contracts.length) {
@@ -68,7 +68,7 @@ angular.module('App').controller('ServerOrderProUseCtrl', ($scope, $stateParams,
     }
   };
 
-  $scope.backToContracts = function () {
+  $scope.backToContracts = function backToContracts() {
     if (!$scope.durations.details[$scope.model.duration].contracts
       || !$scope.durations.details[$scope.model.duration].contracts.length) {
       $rootScope.$broadcast('wizard-goToStep', 2);
@@ -77,13 +77,13 @@ angular.module('App').controller('ServerOrderProUseCtrl', ($scope, $stateParams,
 
   //= ==============STEP 4===============
 
-  $scope.getResumePrice = function (price) {
+  $scope.getResumePrice = function getResumePrice(price) {
     return price.value === 0
       ? $translate.instant('price_free')
       : $translate.instant('price_ht_label', { t0: price.text });
   };
 
-  $scope.orderProUse = function () {
+  $scope.orderProUse = function orderProUse() {
     $scope.loading.validation = true;
     Server.orderProUse($stateParams.productId, $scope.model.duration).then(
       (order) => {

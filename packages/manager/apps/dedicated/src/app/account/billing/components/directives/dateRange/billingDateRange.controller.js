@@ -1,7 +1,11 @@
 import head from 'lodash/head';
 import set from 'lodash/set';
 
-angular.module('Billing.directives').controller('Billing.directives.billingDateRangeCtrl', function ($timeout, $translate, BillingdateRangeSelection) {
+angular.module('Billing.directives').controller('Billing.directives.billingDateRangeCtrl', function BillingDateRangeCOntroller(
+  $timeout,
+  $translate,
+  BillingdateRangeSelection,
+) {
   this.today = moment();
   this.CUSTOM_RANGE_MODE = 'custom';
   this.model = {};

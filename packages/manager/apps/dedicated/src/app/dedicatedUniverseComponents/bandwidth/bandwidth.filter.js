@@ -86,7 +86,7 @@ export default /* @ngInject */ ($translate) => {
     return bandwidth.value;
   }
 
-  return function (bandwidth, _mode, _precision, toUnit) {
+  return function bandwidthFilter(bandwidth, _mode, _precision, toUnit) {
     let mode = _mode;
     let precision = _precision;
     if (!bandwidth) {

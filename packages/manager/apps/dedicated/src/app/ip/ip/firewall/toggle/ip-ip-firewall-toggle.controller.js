@@ -22,7 +22,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallToggleCtrl', ($sco
     }
   }
 
-  $scope.toggleFirewall = function () {
+  $scope.toggleFirewall = function toggleFirewall() {
     $scope.loading = true;
 
     let newStatus = 'NOT_CONFIGURED';
@@ -104,7 +104,7 @@ angular.module('Module.ip.controllers').controller('IpFirewallToggleCtrl', ($sco
     init();
   }
 
-  $scope.cancelAction = function () {
+  $scope.cancelAction = function cancelAction() {
     Ip.cancelActionParam('toggleFirewall');
     $scope.resetAction();
   };

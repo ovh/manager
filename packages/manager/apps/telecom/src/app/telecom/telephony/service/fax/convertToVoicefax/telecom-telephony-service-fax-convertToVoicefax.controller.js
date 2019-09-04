@@ -5,7 +5,7 @@ import indexOf from 'lodash/indexOf';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxConvertToVoicefaxCtrl', function ($q, $stateParams, $timeout, $translate, OvhApiOrder, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxConvertToVoicefaxCtrl', function TelecomTelephonyServiceFaxConvertToVoicefaxCtrl($q, $stateParams, $timeout, $translate, OvhApiOrder, TucToast) {
   const self = this;
 
   /* ===============================
@@ -43,7 +43,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxConvertToVoic
   =            EVENTS            =
   =============================== */
 
-  self.changeNumberToConvert = function () {
+  self.changeNumberToConvert = function changeNumberToConvert() {
     self.convertToVoicefaxForm.isChanging = true;
     return $timeout(angular.noop, 500).finally(() => {
       self.convertToVoicefaxForm.isChanging = false;
@@ -56,7 +56,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxConvertToVoic
   =            ACTIONS            =
   =============================== */
 
-  self.orderConvertToVoicefax = function () {
+  self.orderConvertToVoicefax = function orderConvertToVoicefax() {
     self.convertToVoicefaxForm.isOrdering = true;
     return OvhApiOrder.Freefax().v6().orderConvertToVoicefax({
       serviceName: get(self.convertToVoicefaxForm, 'serviceName.service'),

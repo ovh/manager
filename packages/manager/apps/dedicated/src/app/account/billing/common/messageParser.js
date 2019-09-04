@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import get from 'lodash/get';
 
 angular.module('Billing.services').service('BillingmessageParser', [
-  function () {
+  function BillingMessageParserService() {
     const ALERT_LEVELS = {
       SUCCESS: 'alert-success',
       WARNING: 'alert',
@@ -22,7 +22,7 @@ angular.module('Billing.services').service('BillingmessageParser', [
          * @param {object|string} data - additional data to parse
          * @return {object}
          */
-    return function (message, data) {
+    return function billingMessageParser(message, data) {
       let alertType = '';
       if (!data) {
         return { message, alertType: '' };

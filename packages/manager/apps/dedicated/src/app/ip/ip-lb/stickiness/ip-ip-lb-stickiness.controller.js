@@ -8,7 +8,7 @@ angular.module('Module.ip.controllers').controller('IplbSetStickinessCtrl', ($sc
 
   /* Action */
 
-  $scope.setStickiness = function () {
+  $scope.setStickiness = function setStickiness() {
     $scope.loading = true;
     Iplb.setStickiness($scope.data.value, $scope.model.choice)
       .then(

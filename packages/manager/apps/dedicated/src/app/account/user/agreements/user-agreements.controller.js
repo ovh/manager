@@ -5,7 +5,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
   '$translate',
   'UserAccount.services.agreements',
   'Alerter',
-  function ($scope, $translate, Service, Alerter) {
+  function UserAccountAgreementsController($scope, $translate, Service, Alerter) {
     function init() {
       $scope.loading = true;
       $scope.list = [];
@@ -22,7 +22,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
 
     $scope.agreed = {};
 
-    $scope.loadAgreementsList = function (count, offset) {
+    $scope.loadAgreementsList = function loadAgreementsList(count, offset) {
       init();
 
       Service.getList(count, offset)
@@ -36,7 +36,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
         });
     };
 
-    $scope.getToValidate = function () {
+    $scope.getToValidate = function getToValidate() {
       $scope.toActivate = [];
       $scope.loaders.toActivate = true;
 
@@ -53,7 +53,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
       );
     };
 
-    $scope.accept = function (contractId) {
+    $scope.accept = function accept(contractId) {
       $scope.loaders[`accept_${contractId}`] = true;
 
       Service.accept(contractId).then(
@@ -67,7 +67,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
       );
     };
 
-    $scope.resetMessages = function () {
+    $scope.resetMessages = function resetMessages() {
       Alerter.resetMessage('agreements_alerter');
     };
   },

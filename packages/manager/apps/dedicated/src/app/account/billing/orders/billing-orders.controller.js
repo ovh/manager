@@ -38,7 +38,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Orders', (
       .then(() => $scope.getOrders());
   }
 
-  $scope.getOrders = function (forceRefresh) {
+  $scope.getOrders = function getOrders(forceRefresh) {
     $scope.orderIds = [];
     $scope.loaders.orders = true;
     Alerter.alertFromSWS(null);
@@ -103,7 +103,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Orders', (
       });
   };
 
-  $scope.transformItem = function (item) {
+  $scope.transformItem = function transformItem(item) {
     $scope.loaders.orders = true;
     return BillingOrders.getOrder(item)
       .then((order) => {
@@ -133,11 +133,11 @@ angular.module('Billing.controllers').controller('Billing.controllers.Orders', (
       }));
   };
 
-  $scope.onTransformItemDone = function () {
+  $scope.onTransformItemDone = function onTransformItemDone() {
     $scope.loaders.orders = false;
   };
 
-  $scope.refreshOrders = function () {
+  $scope.refreshOrders = function refreshOrders() {
     $scope.getOrders(true);
   };
 

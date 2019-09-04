@@ -5,7 +5,7 @@ export default /* @ngInject */ function (OvhApiFreeFax) {
     =            COUNT            =
     ============================= */
 
-  self.getCount = function () {
+  self.getCount = function getCount() {
     return OvhApiFreeFax.v7().query().execute().$promise.then(freeFaxIds => freeFaxIds.length);
   };
 

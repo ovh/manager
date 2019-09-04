@@ -16,7 +16,7 @@ angular.module('managerApp').component('telecomTelephonyBillingAccountOrderAlias
       },
     };
 
-    this.getValidator = function () {
+    this.getValidator = function getValidator() {
       if (this.regionCode) {
         OvhApiNewAccount.CreationRules().v6().get({
           country: this.regionCode === 'uk' ? 'GB' : this.regionCode.toUpperCase(),
@@ -26,7 +26,7 @@ angular.module('managerApp').component('telecomTelephonyBillingAccountOrderAlias
         }).$promise.then((rules) => {
           const zipCodeRegexp = get(rules, 'zip.regularExpression');
           if (zipCodeRegexp) {
-            self.validator.isZipcode = function (value) {
+            self.validator.isZipcode = function isZipcode(value) {
               return new RegExp(zipCodeRegexp).test(value);
             };
           }
@@ -41,7 +41,7 @@ angular.module('managerApp').component('telecomTelephonyBillingAccountOrderAlias
       }
     });
 
-    this.$onInit = function () {
+    this.$onInit = function $onInit() {
       return this.getValidator();
     };
   },

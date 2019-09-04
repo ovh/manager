@@ -5,7 +5,7 @@ angular.module('Billing.services').service('BillingPayments', [
   '$http',
   '$q',
   '$cacheFactory',
-  function ($http, $q, $cacheFactory) {
+  function BillingPaymentsService($http, $q, $cacheFactory) {
     const billingCache = $cacheFactory('UNIVERS_BILLING_PAYMENTS');
     const batchSeparator = ',';
 

@@ -16,7 +16,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
   'BillingAutoRenew',
   'AUTORENEW_EVENT',
   'DucUserContractService',
-  function (
+  function BillingAutoRenewActivationController(
     $filter,
     $q,
     $rootScope,
@@ -34,7 +34,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       contracts: false,
     };
 
-    $scope.disableAutoRenew = function () {
+    $scope.disableAutoRenew = function disableAutoRenew() {
       const result = $scope.selectedServices.map((service) => {
         set(service, 'renew.manualPayment', true);
         return pick(service, ['serviceId', 'serviceType', 'renew']);
@@ -54,7 +54,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
         });
     };
 
-    $scope.enableAutoRenew = function () {
+    $scope.enableAutoRenew = function enableAutoRenew() {
       const result = $scope.selectedServices.map((service) => {
         set(service, 'renew.manualPayment', false);
         set(service, 'renew.automatic', true);
