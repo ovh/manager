@@ -1,5 +1,5 @@
 const CA = {
-  ticket: 'https://ca.ovh.com/manager/index.html#/ticket',
+  supportTicket: 'https://ca.ovh.com/manager/index.html#/support',
   support: {
     ASIA: 'https://www.ovh.com/asia/support/',
     AU: 'https://www.ovh.com.au/support/',
@@ -32,7 +32,7 @@ const CA = {
 };
 
 const EU = {
-  ticket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
+  supportTicket: 'https://www.ovh.com/manager/dedicated/index.html#/support',
   support: {
     CZ: 'http://www.ovh.cz/podpora/',
     DE: 'http://www.ovh.de/support/',
@@ -89,7 +89,7 @@ const EU = {
 };
 
 const US = {
-  ticket: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
+  supportTicket: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
   support: {
     US: 'https://us.ovhcloud.com/support/',
   },
