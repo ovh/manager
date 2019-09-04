@@ -1936,22 +1936,6 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@^7.1.10":
-  version "7.1.10"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.10.tgz#9899810547a28c4d8789e4705c2eb715368fbe5f"
-  integrity sha512-+ZTPq2lD5v5dMwRiuH0tnXK6+rNjzYkMHbPd5iwEYDNsLAPcElR+X2HCMImV4KYHdK/1mqOs8OP2cCdywEwPWw==
-  dependencies:
-    draggable "^4.2.0"
-    lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-otrs@^7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.4.tgz#e49c9696dc9a86281ae4bd3f71c43c1fc4a7a36c"
-  integrity sha512-z+h5clMBoB/9Mxd+k15PLkeZMKQbDKpoPfztaPhcHJBsaK9aJWUZPN2YdxOc1Im4dWkWI4soPF+zI1wFdQGBhA==
-  dependencies:
-    draggable "^4.2.0"
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-otrs@^9.0.1":
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-9.0.1.tgz#c3ec49648880c1f0125df427aae806a4d88466d7"
@@ -6057,11 +6041,6 @@ dot-prop@^4.1.1, dot-prop@^4.2.0:
   integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
   dependencies:
     is-obj "^1.0.0"
-
-draggable@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/draggable/-/draggable-4.2.0.tgz#149c0ca176df6d8b512048c8e451f499fc047b9a"
-  integrity sha1-FJwMoXbfbYtRIEjI5FH0mfwEe5o=
 
 drange@^1.0.0:
   version "1.1.1"
