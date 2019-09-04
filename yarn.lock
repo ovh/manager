@@ -1952,6 +1952,13 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-otrs@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-9.0.1.tgz#c3ec49648880c1f0125df427aae806a4d88466d7"
+  integrity sha512-EwjPIQ3XZ9RNFY1xgjwuzhGu2PmQtjlIeLtgcgENGFxPYnzQbbJQauQrz2hpCg3rkO3SgLhxdKgjyw0RLbkK/Q==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-payment-method@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.2.0.tgz#a36b20c0c12e5d87cde1ff095a598b3f7b7e4514"
@@ -7175,7 +7182,7 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.2.6"
 
-font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0, font-awesome@~4.7.0:
+font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0, font-awesome@^4.7.0, font-awesome@~4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
