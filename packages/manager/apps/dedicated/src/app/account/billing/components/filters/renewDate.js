@@ -1,5 +1,5 @@
 angular.module('Billing.filters').filter('renewDate', [
-  function () {
+  function renewDateFilter() {
     function filterByExpDate(service, renew) {
       if (!service) {
         return false;
@@ -15,7 +15,7 @@ angular.module('Billing.filters').filter('renewDate', [
       return moment().isAfter(expDate) && !service.renew.automatic && !service.renew.forced;
     }
 
-    return function (services, renew) {
+    return function renewDate(services, renew) {
       let output = services;
       if (renew) {
         output = services.filter((service) => {

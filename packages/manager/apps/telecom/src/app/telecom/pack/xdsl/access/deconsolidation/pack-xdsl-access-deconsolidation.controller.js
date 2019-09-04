@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('XdslDeconsolidationCtrl', function (
+  .controller('XdslDeconsolidationCtrl', function XdslDeconsolidationCtrl(
     $scope,
     $state,
     $timeout,
@@ -22,7 +22,7 @@ angular.module('managerApp')
     };
     this.rioCodeIsValid = false;
 
-    this.openConfirmModal = function () {
+    this.openConfirmModal = function openConfirmModal() {
       const modal = $uibModal.open({
         animation: true,
         templateUrl: 'app/telecom/pack/xdsl/access/deconsolidation/contract/pack-xdsl-access-deconsolidation-contract.modal.html',
@@ -48,11 +48,11 @@ angular.module('managerApp')
       });
     };
 
-    this.getOldV6TransfertUrl = function () {
+    this.getOldV6TransfertUrl = function getOldV6TransfertUrl() {
       return REDIRECT_URLS.oldV6ServiceTransfert;
     };
 
-    this.checkRioCode = function () {
+    this.checkRioCode = function checkRioCode() {
       this.rioCodeIsValid = tucValidator.tucIsRio(self.model.rio, $stateParams.number);
     };
 

@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStatsOvhPabxCtrl', function ($scope, $stateParams, $q, $timeout, OvhApiTelephony, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStatsOvhPabxCtrl', function TelecomTelephonyAliasConfigurationStatsOvhPabxCtrl($scope, $stateParams, $q, $timeout, OvhApiTelephony, TucToastError) {
   const self = this;
   let poller = null;
   let stopPolling = false;
@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
     self.pollGlobalStats();
   }
 
-  self.fetchQueues = function () {
+  self.fetchQueues = function fetchQueues() {
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .query({
         billingAccount: $stateParams.billingAccount,
@@ -50,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
         }))));
   };
 
-  self.fetchGlobalStats = function () {
+  self.fetchGlobalStats = function fetchGlobalStats() {
     const result = {
       callsAnswered: 0,
       callsLost: 0,
@@ -77,8 +77,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
         })))).then(() => result);
   };
 
-  self.pollGlobalStats = function () {
-    const periodicRefresh = function () {
+  self.pollGlobalStats = function pollGlobalStats() {
+    const periodicRefresh = function periodicRefresh() {
       self.fetchGlobalStats().then((stats) => {
         self.stats = stats;
       }).finally(() => {
@@ -90,15 +90,15 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
     $timeout(periodicRefresh, 2000);
   };
 
-  self.getAverageWaitTime = function () {
+  self.getAverageWaitTime = function getAverageWaitTime() {
     return self.stats.totalWaitingDuration / self.stats.callsTotal;
   };
 
-  self.getAverageCallTime = function () {
+  self.getAverageCallTime = function getAverageCallTime() {
     return self.stats.totalCallDuration / self.stats.callsAnswered;
   };
 
-  self.getQoS = function () {
+  self.getQoS = function getQoS() {
     // percentage rounded with two decimals
     return Math.round((self.stats.callsAnswered / self.stats.callsTotal) * 100 * 100) / 100;
   };

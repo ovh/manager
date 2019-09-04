@@ -27,7 +27,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     =            PROCESS            =
     =============================== */
 
-  self.getMigrationProcess = function () {
+  self.getMigrationProcess = function getMigrationProcess() {
     return migrationProcess;
   };
 
@@ -37,7 +37,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     =            HELPERS            =
     =============================== */
 
-  self.getPriceStruct = function (value) {
+  self.getPriceStruct = function getPriceStruct(value) {
     // pack will be our model to build price struct
     return {
       currencyCode: migrationProcess.pack.offerPrice.currencyCode,
@@ -46,7 +46,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     };
   };
 
-  self.getOptionsSelected = function () {
+  self.getOptionsSelected = function getOptionsSelected() {
     return filter(values(migrationProcess.selectedOffer.options), option => option.optional && option.choosedValue > 0 && option.name !== 'gtr_ovh');
   };
 
@@ -64,14 +64,14 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     }).$promise;
   }
 
-  self.checkForPendingMigration = function () {
+  self.checkForPendingMigration = function checkForPendingMigration() {
     return $q.all({
       todo: getMigrationTaskByStatus('todo'),
       doing: getMigrationTaskByStatus('doing'),
     }).then(tasksIds => tasksIds.todo.concat(tasksIds.doing));
   };
 
-  self.startMigration = function () {
+  self.startMigration = function startMigration() {
     const postParams = {
       acceptContracts: true,
       offerName: migrationProcess.selectedOffer.offerName,
@@ -137,13 +137,13 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     }, postParams).$promise;
   };
 
-  self.startTaskPolling = function () {
+  self.startTaskPolling = function startTaskPolling() {
     return Poller.poll(['/pack/xdsl', migrationProcess.pack.packName, 'tasks', migrationProcess.migrationTaskId].join('/'), null, {
       namespace: 'xdsl_pack_migration',
     });
   };
 
-  self.stopTaskPolling = function () {
+  self.stopTaskPolling = function stopTaskPolling() {
     Poller.kill({
       namespace: 'xdsl_pack_migration',
     });
@@ -218,14 +218,14 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     });
   }
 
-  self.initOffersView = function () {
+  self.initOffersView = function initOffersView() {
     return $q.all({
       pack: getPackDetails(),
       offers: getMigrationOffers(),
     }).then(() => migrationProcess);
   };
 
-  self.selectOffer = function (offer) {
+  self.selectOffer = function selectOffer(offer) {
     migrationProcess.selectedOffer = offer;
     if (includes(migrationProcess.selectedOffer.offerName.toLowerCase(), 'ftth')) {
       // Check if the current offer is already FTTH
@@ -249,7 +249,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     =            INITIALIZATION            =
     ====================================== */
 
-  self.cancelMigration = function () {
+  self.cancelMigration = function cancelMigration() {
     migrationProcess.shipping = {
       mode: null,
       relay: null,
@@ -260,7 +260,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     migrationProcess.selectedOffer = null;
   };
 
-  self.init = function (packName) {
+  self.init = function init(packName) {
     migrationProcess = {
       pack: {
         packName,

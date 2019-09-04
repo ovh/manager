@@ -8,7 +8,12 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition, VoipTimeConditionCondition, VoipTimeConditionSlot) => {
+angular.module('managerApp').factory('VoipTimeCondition', (
+  $q,
+  voipTimeCondition,
+  VoipTimeConditionCondition,
+  VoipTimeConditionSlot,
+) => {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
@@ -58,7 +63,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  VoipTimeCondition.prototype.setOptions = function (options) {
+  VoipTimeCondition.prototype.setOptions = function setOptions(options) {
     const self = this;
     let tmpSlotNumber;
     let tmpSlotName;
@@ -142,7 +147,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
 
   /* ----------  API Calls  ----------*/
 
-  VoipTimeCondition.prototype.init = function () {
+  VoipTimeCondition.prototype.init = function init() {
     const self = this;
     const getResource = voipTimeCondition.getResource('init', self.featureType);
 
@@ -151,7 +156,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
       .then(options => self.setOptions(options));
   };
 
-  VoipTimeCondition.prototype.save = function () {
+  VoipTimeCondition.prototype.save = function save() {
     const self = this;
     const saveResource = voipTimeCondition.getResource('save', self.featureType);
 
@@ -161,7 +166,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     ).$promise;
   };
 
-  VoipTimeCondition.prototype.saveConditions = function () {
+  VoipTimeCondition.prototype.saveConditions = function saveConditions() {
     const self = this;
     const savePromises = [];
     let actionPromise;
@@ -190,7 +195,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
 
   /* ----------  CONDITIONS  ----------*/
 
-  VoipTimeCondition.prototype.getConditions = function () {
+  VoipTimeCondition.prototype.getConditions = function getConditions() {
     const self = this;
     const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
 
@@ -211,7 +216,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
         .then(() => self));
   };
 
-  VoipTimeCondition.prototype.addCondition = function (conditionOptions) {
+  VoipTimeCondition.prototype.addCondition = function addCondition(conditionOptions) {
     const self = this;
     let condition = null;
     const opts = conditionOptions || {};
@@ -239,7 +244,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return condition;
   };
 
-  VoipTimeCondition.prototype.removeCondition = function (condition) {
+  VoipTimeCondition.prototype.removeCondition = function removeCondition(condition) {
     const self = this;
 
     remove(self.conditions, condition);
@@ -247,7 +252,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return self;
   };
 
-  VoipTimeCondition.prototype.getCondition = function (conditionId) {
+  VoipTimeCondition.prototype.getCondition = function getCondition(conditionId) {
     const self = this;
 
     return find(self.conditions, {
@@ -257,7 +262,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
 
   /* ----------  EDITION  ----------*/
 
-  VoipTimeCondition.prototype.startEdition = function () {
+  VoipTimeCondition.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -279,7 +284,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return self;
   };
 
-  VoipTimeCondition.prototype.stopEdition = function (cancel) {
+  VoipTimeCondition.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.featureType !== 'ovhPabx' && self.saveForEdition && cancel) {
@@ -298,8 +303,11 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return self;
   };
 
-  VoipTimeCondition.prototype.stopSlotsEdition = function (cancel, cancelOriginalSave,
-    resetOriginalSave) {
+  VoipTimeCondition.prototype.stopSlotsEdition = function stopSlotsEdition(
+    cancel,
+    cancelOriginalSave,
+    resetOriginalSave,
+  ) {
     const self = this;
 
     angular.forEach(self.slots, (slot) => {
@@ -309,8 +317,11 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return self;
   };
 
-  VoipTimeCondition.prototype.stopConditionsEdition = function (cancel, cancelOriginalSave,
-    resetOriginalSave) {
+  VoipTimeCondition.prototype.stopConditionsEdition = function stopConditionsEdition(
+    cancel,
+    cancelOriginalSave,
+    resetOriginalSave,
+  ) {
     const self = this;
 
     angular.forEach(self.conditions, (condition) => {
@@ -327,7 +338,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return self;
   };
 
-  VoipTimeCondition.prototype.hasChange = function (property) {
+  VoipTimeCondition.prototype.hasChange = function hasChange(property) {
     const self = this;
 
     if (!self.saveForEdition) {

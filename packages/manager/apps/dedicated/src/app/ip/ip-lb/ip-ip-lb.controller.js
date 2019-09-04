@@ -45,7 +45,7 @@ angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', ['$locat
     });
   }
 
-  $scope.selectIplb = function (iplb) {
+  $scope.selectIplb = function selectIplb(iplb) {
     $scope.selectedIplb = {
       value: iplb,
       polling: {},
@@ -91,7 +91,7 @@ angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', ['$locat
 
   // --- Zones (pop)
 
-  $scope.selectTabZone = function (value) {
+  $scope.selectTabZone = function selectTabZone(value) {
     $scope.selectedIplb.zone.selected = value;
     $scope.selectedIplb.zone.internalNatIp = null;
     $scope.selectedIplb.zone.probeIp = null;
@@ -119,21 +119,21 @@ angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', ['$locat
 
   // --- Backends
 
-  $scope.transformItemBackend = function (item) {
+  $scope.transformItemBackend = function transformItemBackend(item) {
     $scope.loading.backends = true;
     return Iplb.getBackend($scope.selectedIplb.value, item);
   };
-  $scope.onTransformItemBackendDone = function () {
+  $scope.onTransformItemBackendDone = function onTransformItemBackendDone() {
     $scope.loading.backends = false;
   };
 
   // --- Ports redirection
 
-  $scope.transformItemPortsRedirection = function (item) {
+  $scope.transformItemPortsRedirection = function transformItemPortsRedirection(item) {
     $scope.loading.ports = true;
     return Iplb.getPortsRedirection($scope.selectedIplb.value, item);
   };
-  $scope.onTransformItemPortsRedirectionDone = function () {
+  $scope.onTransformItemPortsRedirectionDone = function onTransformItemPortsRedirectionDone() {
     $scope.loading.ports = false;
   };
 

@@ -2,7 +2,7 @@ import includes from 'lodash/includes';
 import omit from 'lodash/omit';
 import set from 'lodash/set';
 
-angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope, $translate, Server, IpRange, Alerter, $q, $stateParams) {
+angular.module('App').controller('MonitoringCtrl', function MonitoringCtrl($rootScope, $scope, $translate, Server, IpRange, Alerter, $q, $stateParams) {
   const self = this;
   self.currentMonitoring = { value: null };
   self.ips = [];
@@ -21,16 +21,16 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
     smsNotifications: false,
   };
 
-  self.compare = function (x, y) {
+  self.compare = function compare(x, y) {
     return parseInt(x, 10) - parseInt(y, 10);
   };
 
-  self.isAllowedToMonitoringWithSms = function () {
+  self.isAllowedToMonitoringWithSms = function isAllowedToMonitoringWithSms() {
     const excludedFromMonitoring = new RegExp('BHS|SGP|SYD', 'g');
     return self.sms && !excludedFromMonitoring.test($scope.server.datacenter);
   };
 
-  const init = function () {
+  const init = function init() {
     Server.getModels()
       .then(
         (models) => {
@@ -48,7 +48,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
     $q.allSettled([self.refreshTableMonitoring(), self.getSms(), self.getIps()]);
   };
 
-  self.getSms = function () {
+  self.getSms = function getSms() {
     return Server.getSms($stateParams.productId).then(
       (sms) => {
         self.sms = sms.filter(data => data.status === 'enable' && data.creditsLeft > 0);
@@ -61,7 +61,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
     );
   };
 
-  self.getIps = function () {
+  self.getIps = function getIps() {
     return Server.listIps($stateParams.productId).then(
       (ips) => {
         ips.forEach((ip) => {
@@ -76,7 +76,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
     );
   };
 
-  self.toggleStatus = function (monitoring) {
+  self.toggleStatus = function toggleStatus(monitoring) {
     self.loaders.monitorings = true;
     set(monitoring, 'enabled', !monitoring.enabled);
     Server.updateServiceMonitoring($stateParams.productId, monitoring.monitoringId, omit(monitoring, ['emailNotifications', 'smsNotifications']))
@@ -91,7 +91,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
   };
 
   /* -- Table monitoring --*/
-  self.refreshTableMonitoring = function () {
+  self.refreshTableMonitoring = function refreshTableMonitoring() {
     self.loaders.monitorings = true;
     self.monitoringServicesIds = [];
     Server.getServiceMonitoringIds($stateParams.productId)
@@ -108,11 +108,11 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
       });
   };
 
-  self.getMonitoringDetail = function (item) {
+  self.getMonitoringDetail = function getMonitoringDetail(item) {
     return Server.getServiceMonitoring($stateParams.productId, item);
   };
 
-  self.onTransformItemNotify = function (item) {
+  self.onTransformItemNotify = function onTransformItemNotify(item) {
     $q
       .allSettled([
         Server.getServiceMonitoringNotificationsIds($stateParams.productId, {
@@ -152,14 +152,14 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
       });
   };
 
-  self.tableMonitoringPageLoaded = function () {
+  self.tableMonitoringPageLoaded = function tableMonitoringPageLoaded() {
     self.loaders.monitorings = false;
   };
 
   $scope.$on('server.monitoring.reload', self.refreshTableMonitoring);
 
   /* --  email notifications --*/
-  self.getNotificationEmailDetail = function (opts) {
+  self.getNotificationEmailDetail = function getNotificationEmailDetail(opts) {
     return Server.getServiceMonitoringNotifications($stateParams.productId, {
       alertId: opts.alertId,
       monitoringId: opts.monitoringId,
@@ -168,7 +168,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
   };
 
   /* -- SMS notifications --*/
-  self.getNotificationSMSDetail = function (opts) {
+  self.getNotificationSMSDetail = function getNotificationSMSDetail(opts) {
     return Server.getServiceMonitoringNotifications($stateParams.productId, {
       alertId: opts.alertId,
       monitoringId: opts.monitoringId,
@@ -176,13 +176,13 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
     });
   };
 
-  self.resetEditMode = function () {
+  self.resetEditMode = function resetEditMode() {
     angular.forEach(self.editModeView, (value, key) => {
       self.editModeView[key] = false;
     });
   };
 
-  self.toggleEditModePart = function (feat, reset) {
+  self.toggleEditModePart = function toggleEditModePart(feat, reset) {
     if (reset) {
       self.resetEditMode();
     } else {

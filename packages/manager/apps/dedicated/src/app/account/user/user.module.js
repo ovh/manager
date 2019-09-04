@@ -22,7 +22,7 @@ angular
   .config([
     '$stateProvider',
     'UserAccount.constants',
-    function ($stateProvider, userAccountConstants) {
+    ($stateProvider, userAccountConstants) => {
       const { target } = userAccountConstants;
       const baseUrl = 'account/user/';
 
@@ -108,7 +108,7 @@ angular
   .run([
     '$rootScope',
     'UserAccount.constants',
-    function ($rootScope, userAccountConstants) {
+    ($rootScope, userAccountConstants) => {
       set($rootScope, 'target', userAccountConstants.target);
       set($rootScope, 'worldPart', userAccountConstants.target);
     },

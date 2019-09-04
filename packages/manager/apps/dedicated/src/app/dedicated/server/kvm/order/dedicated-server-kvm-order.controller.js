@@ -12,7 +12,7 @@ angular.module('App').controller('KvmOrderCtrl', ($scope, $rootScope, $statePara
   /*= =============================
 =            STEP 1            =
 ============================== */
-  $scope.loadOptionDetails = function () {
+  $scope.loadOptionDetails = function loadOptionDetails() {
     $scope.loaders.details = true;
     Server.getKvmOrderDurations($stateParams.productId)
       .then(
@@ -43,12 +43,12 @@ angular.module('App').controller('KvmOrderCtrl', ($scope, $rootScope, $statePara
   /*= =============================
     =            STEP 2           =
 ============================== */
-  $scope.loadDetail = function () {
+  $scope.loadDetail = function loadDetail() {
     $scope.orderDetail = $scope.order.details
       .filter(detail => detail.duration === $scope.order.durationSelected)[0] || {};
   };
 
-  $scope.confirmOrder = function () {
+  $scope.confirmOrder = function confirmOrder() {
     $scope.loaders.validation = true;
     Server.postKvmOrderInfos($stateParams.productId, $scope.order.durationSelected)
       .then(

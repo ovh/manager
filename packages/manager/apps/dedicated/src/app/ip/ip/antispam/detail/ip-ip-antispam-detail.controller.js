@@ -29,7 +29,7 @@ angular.module('Module.ip.controllers').controller('IpAntispamDetailsCtrl', ($sc
     true,
   );
 
-  $scope.loadSpams = function (count, offset) {
+  $scope.loadSpams = function loadSpams(count, offset) {
     $scope.tableLoading = true;
     IpSpam
       .getIpSpamStats(

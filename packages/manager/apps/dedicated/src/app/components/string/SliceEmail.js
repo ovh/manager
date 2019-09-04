@@ -4,7 +4,7 @@
  * Example : azertyuiop@ovh.net  >  azer...@ovh.net if index=4
  */
 angular.module('filters').filter('sliceEmail', () => {
-  const slice = function (content, _index) {
+  const slice = function slice(content, _index) {
     let index = _index;
     index = index && index > 0 ? index : 50;
     let result = content.slice(0, index);
@@ -14,7 +14,7 @@ angular.module('filters').filter('sliceEmail', () => {
     return result;
   };
 
-  return function (content, index) {
+  return function sliceEmailFilter(content, index) {
     if (content) {
       const indexOfAt = content.indexOf('@');
       const login = content.slice(0, indexOfAt);

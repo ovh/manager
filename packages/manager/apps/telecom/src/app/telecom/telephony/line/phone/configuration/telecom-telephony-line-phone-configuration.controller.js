@@ -110,14 +110,14 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     self.model.reboot = false;
   }
 
-  self.getModifiedConfigs = function () {
+  self.getModifiedConfigs = function getModifiedConfigs() {
     return filter(
       self.line.phone.configurations,
       config => !isEqual(config.value, config.prevValue),
     );
   };
 
-  self.getNonDefaultConfigs = function () {
+  self.getNonDefaultConfigs = function getNonDefaultConfigs() {
     return filter(
       self.line.phone.configurations,
       config => !isEqual(config.value, config.default),
@@ -130,7 +130,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     =            ACTIONS            =
     ============================== */
 
-  self.onExpertModeChange = function () {
+  self.onExpertModeChange = function onExpertModeChange() {
     self.loading.grouping = true;
 
     // use of timeout because display is bad when using ovh-form-flat selects
@@ -140,13 +140,13 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     });
   };
 
-  self.onTextInputBlur = function (config) {
+  self.onTextInputBlur = function onTextInputBlur(config) {
     if (isEmpty(config.value)) {
       set(config, 'value', config.prevValue);
     }
   };
 
-  self.reinitValues = function () {
+  self.reinitValues = function reinitValues() {
     angular.forEach(self.getModifiedConfigs(), (config) => {
       set(config, 'value', config.prevValue);
     });
@@ -156,7 +156,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     self.model.reboot = false;
   };
 
-  self.defaultValues = function () {
+  self.defaultValues = function defaultValues() {
     angular.forEach(self.getNonDefaultConfigs(), (config) => {
       set(config, 'value', config.default);
     });
@@ -166,7 +166,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     }
   };
 
-  self.saveNewConfigurations = function () {
+  self.saveNewConfigurations = function saveNewConfigurations() {
     let savePromise;
     let dynamicConfigs = [];
 

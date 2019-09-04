@@ -29,7 +29,7 @@ angular.module('Module.ip.controllers').controller('IpMoveIpBlockCtrl', ($scope,
     });
   }
 
-  $scope.checkIfIpCanBeMovedTo = function () {
+  $scope.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo() {
     if ($scope.model.serviceName !== '_PARK') {
       $scope.ipCanBeMovedToError = '';
       $scope.loading.ipCanBeMovedTo = true;
@@ -54,7 +54,7 @@ angular.module('Module.ip.controllers').controller('IpMoveIpBlockCtrl', ($scope,
     }
   };
 
-  $scope.moveIpBlock = function () {
+  $scope.moveIpBlock = function moveIpBlock() {
     $scope.loading.save = true;
     if ($scope.model.serviceName.serviceType === '_PARK') {
       Ip.moveIpBlockToPark($scope.data.ipBlock.ipBlock)

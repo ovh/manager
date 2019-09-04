@@ -12,11 +12,11 @@ export default /* @ngInject */ function ($q, $translate, $uibModalInstance, data
   self.numberPattern = /^00\d{2,3}[\s\d]+$/;
   self.namePattern = /^[a-zA-Z0-9\s]*$/;
 
-  self.cancel = function () {
+  self.cancel = function cancel() {
     $uibModalInstance.dismiss('cancel');
   };
 
-  self.send = function () {
+  self.send = function send() {
     self.errorMessage = null;
     self.loading.updating = true;
     $q.when(self.saveCallback({ value: self.data })).then(

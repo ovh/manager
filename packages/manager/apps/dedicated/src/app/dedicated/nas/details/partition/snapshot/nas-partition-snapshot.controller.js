@@ -1,4 +1,4 @@
-angular.module('App').controller('NasPartitionSnapshotCtrl', function ($scope, $stateParams, $rootScope, $translate, Nas, Alerter) {
+angular.module('App').controller('NasPartitionSnapshotCtrl', function NasPartitionSnapshotCtrl($scope, $stateParams, $rootScope, $translate, Nas, Alerter) {
   const alerterId = 'NasAlert';
   const self = this;
 
@@ -36,16 +36,16 @@ angular.module('App').controller('NasPartitionSnapshotCtrl', function ($scope, $
     getTaskInProgress();
   }
 
-  self.editSnapshot = function () {
+  self.editSnapshot = function editSnapshot() {
     self.snapshots.save = angular.copy(self.snapshots.model);
   };
 
-  self.cancelSnapshot = function () {
+  self.cancelSnapshot = function cancelSnapshot() {
     self.snapshots.model = angular.copy(self.snapshots.save);
     self.snapshots.save = null;
   };
 
-  self.setSnapshot = function () {
+  self.setSnapshot = function setSnapshot() {
     const tabChange = [];
     const tabTmp = [];
     self.loading = true;

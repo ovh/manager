@@ -3,14 +3,19 @@ import has from 'lodash/has';
 import includes from 'lodash/includes';
 import some from 'lodash/some';
 
-angular.module('Module.otrs.services').service('Module.otrs.services.Intervention', function ($q, OvhHttp, User, constants) {
+angular.module('Module.otrs.services').service('Module.otrs.services.Intervention', function OtrsInterventionService(
+  $q,
+  OvhHttp,
+  User,
+  constants,
+) {
   const self = this;
 
   const cacheServer = {
     all: 'UNIVERS_DEDICATED_SERVER',
   };
 
-  self.sendDiskReplacement = function (serviceName, disk) {
+  self.sendDiskReplacement = function sendDiskReplacement(serviceName, disk) {
     const diskToSend = assign({}, disk);
     if (!diskToSend.comment) {
       diskToSend.comment = 'No message';
@@ -60,7 +65,7 @@ angular.module('Module.otrs.services').service('Module.otrs.services.Interventio
     };
   }
 
-  self.getServerInterventionInfo = function (serviceName) {
+  self.getServerInterventionInfo = function getServerInterventionInfo(serviceName) {
     return $q
       .all({
         serverInfo: getServerInfo(serviceName),
@@ -73,7 +78,7 @@ angular.module('Module.otrs.services').service('Module.otrs.services.Interventio
       }));
   };
 
-  self.getGuidesForDiskIntervention = function () {
+  self.getGuidesForDiskIntervention = function getGuidesForDiskIntervention() {
     return User.getUser().then((user) => {
       if (user && has(constants.urls, [user.ovhSubsidiary, 'guides'])) {
         return {

@@ -1,10 +1,10 @@
 angular.module('Billing.services').service('BillingApiSchema', [
   '$cacheFactory',
   'OvhHttp',
-  function ($cacheFactory, OvhHttp) {
+  function BillingApiSchemaService($cacheFactory, OvhHttp) {
     const cacheName = 'UNIVERS_BILLING_API_SCHEMA';
 
-    this.getSchema = function (apiName) {
+    this.getSchema = function getSchema(apiName) {
       if (!apiName || !angular.isString(apiName)) {
         throw new TypeError('ApiSchema.getSchema expects the api name in one string');
       }
@@ -18,7 +18,7 @@ angular.module('Billing.services').service('BillingApiSchema', [
       });
     };
 
-    this.clearCache = function () {
+    this.clearCache = function clearCache() {
       const cacheInstance = $cacheFactory.get(cacheName);
       if (cacheInstance) {
         cacheInstance.removeAll();

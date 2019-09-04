@@ -1,9 +1,9 @@
-export default /* @ngInject */ ($timeout, $q) => function (func, wait, immediate) {
+export default /* @ngInject */ ($timeout, $q) => function debounceFactory(func, wait, immediate) {
   let timeout;
   let deferred = $q.defer();
 
-  return function (...args) {
-    const later = function () {
+  return function debounceFactoryFunction(...args) {
+    const later = function later() {
       timeout = null;
       if (!immediate) {
         deferred.resolve(func.apply(this, args));

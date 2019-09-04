@@ -39,7 +39,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.FidelityCr
     getFidelityAccount();
   }
 
-  $scope.getBC = function () {
+  $scope.getBC = function getBC() {
     $scope.creditOrder.loading = true;
     $scope.creditOrder.BC = null;
 
@@ -60,7 +60,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.FidelityCr
     }
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.resetAction();
     $scope.setMessage($translate.instant('fidelity_creditOrder_step2_success', {
       t0: $scope.creditOrder.BC.url,
@@ -75,7 +75,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.FidelityCr
     });
   };
 
-  $scope.checkAmount = function () {
+  $scope.checkAmount = function checkAmount() {
     let oldBalance;
     let balance;
 
@@ -113,7 +113,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.FidelityCr
     }
   };
 
-  $scope.renewStepValidator = function () {
+  $scope.renewStepValidator = function renewStepValidator() {
     return !($scope.creditOrder.erreurMin
       || $scope.creditOrder.erreurMax
       || $scope.creditOrder.erreurFormat

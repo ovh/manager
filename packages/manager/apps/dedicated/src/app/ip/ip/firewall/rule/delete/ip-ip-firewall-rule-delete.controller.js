@@ -1,7 +1,7 @@
 angular.module('Module.ip.controllers').controller('IpFirewallRemoveRuleCtrl', ($scope, $rootScope, $translate, Ip, IpFirewall, Alerter) => {
   $scope.data = $scope.currentActionData;
 
-  $scope.removeRule = function () {
+  $scope.removeRule = function removeRule() {
     $scope.loading = true;
     IpFirewall.removeFirewallRule($scope.data.ipBlock, $scope.data.ip, $scope.data.rule.sequence)
       .then(

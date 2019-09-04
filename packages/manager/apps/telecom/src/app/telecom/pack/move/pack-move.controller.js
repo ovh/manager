@@ -6,7 +6,7 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('PackMoveCtrl', function (
+angular.module('managerApp').controller('PackMoveCtrl', function PackMoveCtrl(
   $scope, $compile, $state, $timeout, $translate, $uibModal, $filter, $q, $stateParams,
   REDIRECT_URLS, OvhApiPackXdslMove, Poller, TucToast, TucToastError,
   OvhApiPackXdslTask, OvhApiPackXdsl, OvhApiXdsl, uiCalendarConfig, tucValidator,
@@ -198,7 +198,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
   /**
    * Open the confirm model and then launch the move
    */
-  this.openConfirmModal = function () {
+  this.openConfirmModal = function openConfirmModal() {
     if (self.moveValidationError) {
       self.moveValidationError = false;
       return;
@@ -235,7 +235,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
    * Test if the form is valid
    * @returns {boolean}
    */
-  this.isFormValid = function () {
+  this.isFormValid = function isFormValid() {
     const keepLine = !self.form.futureLandline.keepLineNumber
       || tucValidator.tucIsRio(self.form.futureLandline.rio, self.form.futureLandline.lineNumber);
     const ftMeeting = (self.offer.selected && self.offer.meetingSlots)
@@ -251,7 +251,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
    * Compute the offers
    * @param offers
    */
-  this.computeOffer = function (offers) {
+  this.computeOffer = function computeOffer(offers) {
     self.testLine = {
       canMove: offers.length,
     };
@@ -275,7 +275,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
   /**
    * Launched before testing eligibility
    */
-  this.ongoingTest = function () {
+  this.ongoingTest = function ongoingTest() {
     self.testLine = {
       loading: true,
       canMove: false,
@@ -294,7 +294,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
    * Get URL of oldV6 pack move
    * @returns {string}
    */
-  this.getOldV6TransfertUrl = function () {
+  this.getOldV6TransfertUrl = function getOldV6TransfertUrl() {
     return REDIRECT_URLS.oldV6ServiceTransfert;
   };
 
@@ -302,7 +302,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
    * Invoked when an offer is selected
    * @param offer
    */
-  this.offerSelected = function () {
+  this.offerSelected = function offerSelected() {
     this.offer.meetingSlots = {
       fakeMeeting: false,
     };
@@ -320,7 +320,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
    * Check if can keep line number
    * @returns {boolean}
    */
-  this.canKeepLineNumber = function () {
+  this.canKeepLineNumber = function canKeepLineNumber() {
     const canKeep = this.offer.selected.portability.eligible && this.offer.selected.unbundling !== 'partial';
     if (!canKeep) {
       self.form.futureLandline.keepLineNumber = false;

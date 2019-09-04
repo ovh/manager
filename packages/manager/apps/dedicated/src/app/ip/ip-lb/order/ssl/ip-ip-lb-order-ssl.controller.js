@@ -19,21 +19,21 @@ angular.module('Module.ip.controllers').controller('IplbOrderSslCtrl', ($scope, 
     });
   });
 
-  $scope.isValid = function () {
+  $scope.isValid = function isValid() {
     return $scope.model.domain && Validator.isValidDomain($scope.model.domain);
   };
 
-  $scope.backToContracts = function () {
+  $scope.backToContracts = function backToContracts() {
     if (!$scope.order.contracts || !$scope.order.contracts.length) {
       $rootScope.$broadcast('wizard-goToStep', 1);
     }
   };
 
-  $scope.getResumePrice = function (price) {
+  $scope.getResumePrice = function getResumePrice(price) {
     return price.value === 0 ? $translate.instant('price_free') : $translate.instant('price_ht_label', { t0: price.text });
   };
 
-  $scope.getOrder = function () {
+  $scope.getOrder = function getOrder() {
     $scope.agree.value = false;
     $scope.loading.contracts = true;
     Iplb.getOrderSsl($scope.data.value, $scope.model.domain).then(
@@ -51,7 +51,7 @@ angular.module('Module.ip.controllers').controller('IplbOrderSslCtrl', ($scope, 
     );
   };
 
-  $scope.confirmOrder = function () {
+  $scope.confirmOrder = function confirmOrder() {
     $scope.loading.validation = true;
     Iplb.postOrderSsl($scope.data.value, $scope.model.domain)
       .then(

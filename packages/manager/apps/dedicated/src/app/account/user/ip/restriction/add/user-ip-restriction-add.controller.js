@@ -8,7 +8,15 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
   'atInternet',
   'UserAccount.services.ipRestrictions',
   'UserValidator',
-  function ($rootScope, $scope, $translate, Alerter, atInternet, Service, Validator) {
+  function UserAccountIpRestrictionsAddController(
+    $rootScope,
+    $scope,
+    $translate,
+    Alerter,
+    atInternet,
+    Service,
+    Validator,
+  ) {
     $scope.isValid = false;
     $scope.restriction = {
       ip: null,
@@ -29,7 +37,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
       }, 100),
     );
 
-    $scope.addRestriction = function () {
+    $scope.addRestriction = function addRestriction() {
       $scope.resetAction();
       Service.addRestriction($scope.restriction).then(
         () => {

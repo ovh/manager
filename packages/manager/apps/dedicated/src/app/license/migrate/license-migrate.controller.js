@@ -47,7 +47,7 @@ angular.module('Module.license').controller('LicenseMigrateCtrl', ($scope, $tran
     });
   }
 
-  $scope.getIps = function () {
+  $scope.getIps = function getIps() {
     $scope.loaders.ips = true;
 
     return License.ips({
@@ -68,7 +68,7 @@ angular.module('Module.license').controller('LicenseMigrateCtrl', ($scope, $tran
     });
   };
 
-  $scope.getBlockDisplay = function (ip) {
+  $scope.getBlockDisplay = function getBlockDisplay(ip) {
     return ip.block + (ip.reverse ? ` (${ip.reverse})` : '');
   };
 
@@ -107,12 +107,12 @@ angular.module('Module.license').controller('LicenseMigrateCtrl', ($scope, $tran
     }
   });
 
-  $scope.areMigrationOptionsValids = function () {
+  $scope.areMigrationOptionsValids = function areMigrationOptionsValids() {
     return $scope.license.canBeMoved === true
       && $scope.ipValid.value && $scope.ipCanBeMoved.value === true;
   };
 
-  $scope.ipIsValid = function () {
+  $scope.ipIsValid = function ipIsValid() {
     if ($scope.selected.ipBlock) {
       const block = $scope.selected.ipBlock.block.split('/');
       const mask = block[1];
@@ -135,7 +135,7 @@ angular.module('Module.license').controller('LicenseMigrateCtrl', ($scope, $tran
     }
   };
 
-  $scope.migrate = function () {
+  $scope.migrate = function migrate() {
     $scope.loaders.migrate = true;
 
     return License.migrate({

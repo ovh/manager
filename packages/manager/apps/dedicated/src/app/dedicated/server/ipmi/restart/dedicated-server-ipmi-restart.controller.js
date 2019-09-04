@@ -2,7 +2,7 @@ angular.module('App').controller('ServerIpmiRestartCtrl', ($scope, $stateParams,
   $scope.loading = false;
   $scope.alert = 'server_tab_ipmi_alert';
 
-  $scope.restartIpmi = function () {
+  $scope.restartIpmi = function restartIpmi() {
     $scope.loading = true;
     Server.ipmiRestart($stateParams.productId).then(
       () => {

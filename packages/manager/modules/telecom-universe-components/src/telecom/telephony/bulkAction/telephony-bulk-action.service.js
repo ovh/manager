@@ -3,7 +3,7 @@ import map from 'lodash/map';
 export default function () {
   const self = this;
 
-  self.getTucToastInfos = function (bulkResult, messages, noDetails) {
+  self.getTucToastInfos = function getTucToastInfos(bulkResult, messages, noDetails) {
     const infos = [];
 
     // manage full success

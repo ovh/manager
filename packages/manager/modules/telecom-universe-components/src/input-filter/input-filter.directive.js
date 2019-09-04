@@ -5,7 +5,7 @@
  *
  *     <input tuc-input-filter="$ctrl.myFilter" />
  *
- *     $ctrl.myFilter = function (value) {
+ *     $ctrl.myFilter = function myFilter(value) {
  *         return value.replace(/\w/g, "");
  *     };
  */

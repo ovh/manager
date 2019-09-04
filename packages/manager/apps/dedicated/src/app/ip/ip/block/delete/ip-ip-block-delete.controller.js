@@ -3,7 +3,7 @@ angular.module('Module.ip.controllers').controller('IpDeleteIpBlockCtrl', ($scop
 
   $scope.loading = false;
 
-  $scope.deleteIpBlock = function () {
+  $scope.deleteIpBlock = function deleteIpBlock() {
     $scope.loading = true;
     Ip.deleteIpBlock($scope.data.ipBlock.ipBlock)
       .then(

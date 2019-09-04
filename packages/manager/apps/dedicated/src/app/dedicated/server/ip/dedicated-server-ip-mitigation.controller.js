@@ -14,7 +14,7 @@ angular.module('App').controller('ServerIpMitigationCtrl', ($scope, $translate, 
     $scope.translations.wizardQuestion = $translate.instant('server_configuration_mitigation_auto_question', { t0: $scope.selectedIpAndBlock.ip.ip });
   }
 
-  $scope.updateMitigation = function () {
+  $scope.updateMitigation = function updateMitigation() {
     $scope.resetAction();
 
     // Toggle between the two mitigation status that can be changed

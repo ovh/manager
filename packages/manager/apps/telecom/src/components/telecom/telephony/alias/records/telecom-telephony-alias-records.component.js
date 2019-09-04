@@ -51,11 +51,11 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       });
     }
 
-    self.hasChanges = function () {
+    self.hasChanges = function hasChanges() {
       return !angular.equals(self.queues.selected, self.queueForm);
     };
 
-    self.getSelection = function () {
+    self.getSelection = function getSelection() {
       return filter(
         self.records.raw,
         record => self.records.selected && self.records.selected[record.id],
@@ -68,7 +68,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
         =            ACTIONS            =
         =============================== */
 
-    self.changeQueue = function () {
+    self.changeQueue = function changeQueue() {
       self.queues.isLoading = true;
       $timeout(angular.noop, 100).finally(() => {
         self.queueForm = angular.copy(self.queues.selected);
@@ -76,7 +76,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       });
     };
 
-    self.submitQueueChanges = function () {
+    self.submitQueueChanges = function submitQueueChanges() {
       const attrs = ['record', 'askForRecordDisabling', 'recordDisablingLanguage', 'recordDisablingDigit'];
       self.queues.isUpdating = true;
       return self.api.updateQueue(self.queueForm).then(() => {
@@ -86,11 +86,11 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       });
     };
 
-    self.undoChanges = function () {
+    self.undoChanges = function undoChanges() {
       self.queueForm = angular.copy(self.queues.selected);
     };
 
-    self.sortRecords = function () {
+    self.sortRecords = function sortRecords() {
       let data = angular.copy(self.records.raw);
       data = $filter('orderBy')(
         data,
@@ -105,7 +105,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       }
     };
 
-    self.orderRecordsBy = function (by) {
+    self.orderRecordsBy = function orderRecordsBy(by) {
       if (self.records.orderBy === by) {
         self.records.orderDesc = !self.records.orderDesc;
       } else {
@@ -114,7 +114,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       self.sortRecords();
     };
 
-    self.deleteSelectedRecords = function () {
+    self.deleteSelectedRecords = function deleteSelectedRecords() {
       const records = self.getSelection();
       self.records.isDeleting = true;
       TucToast.info($translate.instant('telephony_alias_configuration_records_list_delete_success'));
@@ -132,7 +132,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
         =            INITIALIZATION            =
         ====================================== */
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.enums = null;
       self.queues = {
         raw: [],

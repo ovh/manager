@@ -1,7 +1,7 @@
 import forOwn from 'lodash/forOwn';
 import map from 'lodash/map';
 
-angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $http, $cacheFactory) {
+angular.module('Billing.services').service('BillingOrdersApiv7', function BillingOrdersApiv7($q, $http, $cacheFactory) {
   const cache = {
     orderQuery: $cacheFactory('UNIVERS_BILLING_ORDERS_APIV7_ORDER_QUERY'),
     status: $cacheFactory('UNIVERS_BILLING_ORDERS_APIV7_STATUS'),
@@ -11,7 +11,7 @@ angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $
     return map(params, (val, key) => [encodeURIComponent(key), encodeURIComponent(val)].join('=')).join('&');
   }
 
-  this.getExpiredOrderIds = function () {
+  this.getExpiredOrderIds = function getExpiredOrderIds() {
     const params = {
       'expirationDate:lt': moment().format(),
     };
@@ -31,7 +31,7 @@ angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $
     });
   };
 
-  this.getOrderIdsByStatus = function (opts) {
+  this.getOrderIdsByStatus = function getOrderIdsByStatus(opts) {
     const params = { $aggreg: 1 };
 
     if (opts.statusList && opts.statusList.length > 0) {
@@ -61,7 +61,7 @@ angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $
     });
   };
 
-  this.clearCache = function () {
+  this.clearCache = function clearCache() {
     forOwn(cache, (cacheInstance) => {
       if (cacheInstance) {
         cacheInstance.removeAll();

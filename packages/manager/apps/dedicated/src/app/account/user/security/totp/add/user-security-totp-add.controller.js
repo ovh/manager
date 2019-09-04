@@ -8,7 +8,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
   '$translate',
   'UserAccount.services.doubleAuth.totp',
   'Alerter',
-  function ($rootScope, $scope, $q, $translate, DoubleAuthTotpService, Alerter) {
+  function UserAccountDoubleAuthTotpAddController(
+    $rootScope,
+    $scope,
+    $q,
+    $translate,
+    DoubleAuthTotpService,
+    Alerter,
+  ) {
     $scope.totp = {
       qrCode: null,
       size: 220,

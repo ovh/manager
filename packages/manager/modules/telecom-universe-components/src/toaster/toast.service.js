@@ -34,39 +34,39 @@ export default /* @ngInject */ function ($timeout) {
     }
   }
 
-  self.success = function (message, opts) {
+  self.success = function success(message, opts) {
     pushMessage(message, 'success', opts);
   };
 
-  self.info = function (message, opts) {
+  self.info = function info(message, opts) {
     pushMessage(message, 'info', opts);
   };
 
-  self.warn = function (message, opts) {
+  self.warn = function warn(message, opts) {
     pushMessage(message, 'warning', opts);
   };
 
-  self.error = function (message, opts) {
+  self.error = function error(message, opts) {
     pushMessage(message, 'error', opts);
   };
 
-  self.clearMessages = function () {
+  self.clearMessages = function clearMessages() {
     messages = [];
   };
 
-  self.clearMessage = function (message) {
+  self.clearMessage = function clearMessage(message) {
     messages = filter(messages, msg => msg !== message);
   };
 
-  self.clearMessagesByType = function (type) {
+  self.clearMessagesByType = function clearMessagesByType(type) {
     messages = filter(messages, msg => msg.type !== type);
   };
 
-  self.getMessages = function () {
+  self.getMessages = function getMessages() {
     return messages;
   };
 
-  self.getMessagesByType = function (type) {
+  self.getMessagesByType = function getMessagesByType(type) {
     return filter(messages, { type });
   };
 }

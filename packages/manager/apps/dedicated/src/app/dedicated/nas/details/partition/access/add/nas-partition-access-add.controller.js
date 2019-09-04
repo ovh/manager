@@ -18,11 +18,11 @@ angular.module('App').controller('NasPartitionAccessAddCtrl', ($scope, $statePar
     $scope.loading = false;
   });
 
-  $scope.isValid = function () {
+  $scope.isValid = function isValid() {
     return $scope.newAccess.ip !== null && $scope.newAccess.ip.ip.match(REGEX.ROUTABLE_BLOCK_OR_IP) && $scope.newAccess.ip.ip.indexOf('0.0.0.0') === -1;
   };
 
-  $scope.addAccess = function () {
+  $scope.addAccess = function addAccess() {
     $scope.resetAction();
     Nas.addAccess($stateParams.nasId, $scope.partitionName, $scope.newAccess.ip.ip).then(
       (task) => {
@@ -35,7 +35,7 @@ angular.module('App').controller('NasPartitionAccessAddCtrl', ($scope, $statePar
     );
   };
 
-  $scope.getLabel = function (ip) {
+  $scope.getLabel = function getLabel(ip) {
     return ip.ip + (ip.description ? ` - ${ip.description}` : '');
   };
 });

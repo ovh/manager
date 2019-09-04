@@ -30,7 +30,7 @@ import head from 'lodash/head';
  */
 
 export default (jsPlumb, jsPlumbUtil) => {
-  const TucTwoSegments = function (params) {
+  const TucTwoSegments = function TucTwoSegments(params) {
     const _super = jsPlumb.Connectors.AbstractConnector.apply(this, arguments);
     this.type = 'TucTwoSegments';
 
@@ -333,7 +333,7 @@ export default (jsPlumb, jsPlumbUtil) => {
          * @param paintInfo
          * @private
          */
-    this._compute = function (paintInfo/* , paintParams */) {
+    this._compute = function _compute(paintInfo/* , paintParams */) {
       const radius = parameters.radius;
 
       // Try to connect

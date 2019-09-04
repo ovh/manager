@@ -9,14 +9,14 @@ export default {
   controller($scope) {
     'ngInject';
 
-    this.getSort = function () {
+    this.getSort = function getSort() {
       $scope.$parent.sort = $scope.$parent.sort ? $scope.$parent.sort : {
         fieldName: null,
         descending: null,
       };
       return $scope.$parent.sort;
     };
-    this.sortElement = function () {
+    this.sortElement = function sortElement() {
       const sort = this.getSort();
       sort.descending = sort.fieldName !== this.fieldName ? false : !sort.descending;
       sort.fieldName = this.fieldName;

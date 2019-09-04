@@ -1,3 +1,3 @@
-angular.module('managerApp').controller('TelecomOrdersShowCtrl', function ($stateParams) {
+angular.module('managerApp').controller('TelecomOrdersShowCtrl', function TelecomOrdersShowCtrl($stateParams) {
   this.serviceName = $stateParams.serviceName;
 });

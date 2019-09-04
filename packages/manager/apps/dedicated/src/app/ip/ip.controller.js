@@ -9,7 +9,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
   'Alerter',
   'coreConfig',
   'ipFeatureAvailability',
-  function (
+  function IpMainCtrl(
     $scope,
     $timeout,
     $stateParams,
@@ -29,7 +29,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
     $scope.worldPart = coreConfig.getRegion();
     $scope.toKebabCase = kebabCase;
 
-    $scope.setSelectedTab = function (tab) {
+    $scope.setSelectedTab = function setSelectedTab(tab) {
       if (tab !== undefined && tab !== null && tab !== '') {
         $scope.selectedTab = tab;
       } else {
@@ -47,7 +47,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
 
     // ---
 
-    $scope.resetAction = function () {
+    $scope.resetAction = function resetAction() {
       $scope.setAction(false);
     };
 
@@ -55,7 +55,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
       $scope.resetAction();
     });
 
-    $scope.setAction = function (action, data) {
+    $scope.setAction = function setAction(action, data) {
       $scope.currentAction = action;
       $scope.currentActionData = data;
       if ($scope.currentAction) {

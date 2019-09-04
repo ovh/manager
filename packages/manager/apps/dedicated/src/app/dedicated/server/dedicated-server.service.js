@@ -1359,7 +1359,7 @@ angular
       }).then(details => details, () => null);
     };
 
-    this.getValidBandwidthPlans = function (plans, existingBandwidth) {
+    this.getValidBandwidthPlans = function getValidBandwidthPlans(plans, existingBandwidth) {
       const list = map(plans, (plan) => {
         // Not to include already included plans (existing plan)
         if (!plan.planCode.includes('included')) {
@@ -1377,11 +1377,16 @@ angular
       return compact(list);
     };
 
-    this.getBareMetalPublicBandwidthOptions = function (serviceName) {
+    this.getBareMetalPublicBandwidthOptions = function getBareMetalPublicBandwidthOptions(
+      serviceName,
+    ) {
       return this.OvhApiOrderBaremetalPublicBW.getPublicBandwidthOptions({ serviceName }).$promise;
     };
 
-    this.getBareMetalPublicBandwidthOrder = function (serviceName, planCode) {
+    this.getBareMetalPublicBandwidthOrder = function getBareMetalPublicBandwidthOrder(
+      serviceName,
+      planCode,
+    ) {
       this.OvhApiOrderBaremetalPublicBW.resetCache();
       this.OvhApiOrderBaremetalPublicBW.resetQueryCache();
       return this.OvhApiOrderBaremetalPublicBW.getPublicBandwidthOrder({
@@ -1392,7 +1397,11 @@ angular
       }).$promise;
     };
 
-    this.bareMetalPublicBandwidthPlaceOrder = function (serviceName, planCode, autoPay) {
+    this.bareMetalPublicBandwidthPlaceOrder = function bareMetalPublicBandwidthPlaceOrder(
+      serviceName,
+      planCode,
+      autoPay,
+    ) {
       return this.OvhApiOrderBaremetalPublicBW.postPublicBandwidthPlaceOrder({
         serviceName,
         planCode,
@@ -1402,12 +1411,17 @@ angular
       }).$promise;
     };
 
-    this.getBareMetalPrivateBandwidthOptions = function (serviceName) {
+    this.getBareMetalPrivateBandwidthOptions = function getBareMetalPrivateBandwidthOptions(
+      serviceName,
+    ) {
       return this.OvhApiOrderBaremetalPrivateBW.getPrivateBandwidthOptions({ serviceName })
         .$promise;
     };
 
-    this.getBareMetalPrivateBandwidthOrder = function (serviceName, planCode) {
+    this.getBareMetalPrivateBandwidthOrder = function getBareMetalPrivateBandwidthOrder(
+      serviceName,
+      planCode,
+    ) {
       this.OvhApiOrderBaremetalPrivateBW.resetCache();
       this.OvhApiOrderBaremetalPrivateBW.resetQueryCache();
       return this.OvhApiOrderBaremetalPrivateBW.getPrivateBandwidthOrder({
@@ -1418,7 +1432,11 @@ angular
       }).$promise;
     };
 
-    this.bareMetalPrivateBandwidthPlaceOrder = function (serviceName, planCode, autoPay) {
+    this.bareMetalPrivateBandwidthPlaceOrder = function bareMetalPrivateBandwidthPlaceOrder(
+      serviceName,
+      planCode,
+      autoPay,
+    ) {
       return this.OvhApiOrderBaremetalPrivateBW.postPrivateBandwidthPlaceOrder({
         serviceName,
         planCode,

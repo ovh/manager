@@ -9,7 +9,7 @@ angular.module('Module.ip.controllers').controller('IplbBackendUnsetBackupStateC
 
   /* Action */
 
-  $scope.unsetBackupState = function () {
+  $scope.unsetBackupState = function unsetBackupState() {
     $scope.loading = true;
     Iplb.setBackupState($scope.data.selectedIplb.value, $scope.data.backend.backend, $scope.model)
       .then(

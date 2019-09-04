@@ -3,6 +3,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
+import set from 'lodash/set';
 import values from 'lodash/values';
 
 angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
@@ -55,23 +56,36 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
   $scope.canOrderIPFO = () => ipFeatureAvailability.allowIPFailoverOrder();
   $scope.canOrderAgoraIPFO = () => ipFeatureAvailability.allowIPFailoverAgoraOrder();
 
-  $scope.canReverseDelegations = function (ipBlock) {
+  $scope.canReverseDelegations = function canReverseDelegations(ipBlock) {
     return ipBlock.version === 'IPV6' && /(\/64|\/56)$/.test(ipBlock.ipBlock);
   };
 
-  $scope.getReverseDelegations = function (ipBlock) {
-    ipBlock.reverseDelegationsRefresh = true;
+  $scope.getReverseDelegations = function getReverseDelegations(ipBlock) {
+    set(ipBlock, 'reverseDelegationsRefresh', true);
     return IpReverse.getDelegations(ipBlock.ipBlock)
       .then((reverseDelegations) => {
-        ipBlock.reverseDelegations = reverseDelegations;
+        set(ipBlock, 'reverseDelegations', reverseDelegations);
       })
       .catch((err) => {
-        ipBlock.reverseDelegationsErr = err;
+        set(ipBlock, 'reverseDelegationsErr', err);
       })
       .finally(() => {
-        ipBlock.reverseDelegationsRefresh = false;
+        set(ipBlock, 'reverseDelegationsRefresh', false);
       });
   };
+
+  function sortIp(a, b) {
+    if (a.version === 'IPV4') {
+      const aa = a.ipBlock.replace(/\/\d+$/, '').split('.');
+      const bb = b.ipBlock.replace(/\/\d+$/, '').split('.');
+
+      const resulta = (aa[0] * 0x1000000) + (aa[1] * 0x10000) + (aa[2] * 0x100) + aa[3];
+      const resultb = (bb[0] * 0x1000000) + (bb[1] * 0x10000) + (bb[2] * 0x100) + bb[3];
+
+      return resulta - resultb;
+    }
+    return 0;
+  }
 
   function loadDashboard() {
     $scope.loading.init = true;
@@ -99,7 +113,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
         );
 
         // Select service "ALL" by default
-        $scope.filters.service = $scope.services[0];
+        $scope.filters.service = head($scope.services);
 
         // If serviceName in URL param
         if ($stateParams.serviceName) {
@@ -116,9 +130,95 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
       });
   }
 
+  function checkIps(ipBlock) {
+    if (!(ipBlock.ips && ipBlock.ips.length)) {
+      return;
+    }
+
+    // Refresh alerts for this ipBlock
+    set(ipBlock, 'alerts', {
+      mitigation: [],
+      antihack: [],
+      arp: [],
+      spam: [],
+    });
+
+    angular.forEach(ipBlock.ips, (ip) => {
+      // Stop all pending polling for this ipBlock/ip
+      IpFirewall.killPollFirewallState(ipBlock, ip);
+      // Stop all pending polling for this ipBlock/ip
+      IpMitigation.killPollMitigationState(ipBlock, ip);
+
+      // Poll mitigation state
+      if (ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING') {
+        IpMitigation.pollMitigationState(ipBlock, ip).then(() => {
+          Ip.getIpsForIpBlock(
+            ipBlock.ipBlock,
+            ipBlock.service.serviceName,
+            ipBlock.service.category,
+          )
+            .then((ips) => {
+              const newIp = find(ips, { ip: ip.ip });
+              angular.extend(ip, newIp);
+            });
+        });
+      }
+
+      // Poll firewall state
+      if (ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING') {
+        IpFirewall.pollFirewallState(ipBlock, ip).then(() => {
+          Ip.getIpsForIpBlock(
+            ipBlock.ipBlock,
+            ipBlock.service.serviceName,
+            ipBlock.service.category,
+          )
+            .then((ips) => {
+              const newIp = find(ips, { ip: ip.ip });
+              angular.extend(ip, newIp);
+            });
+        });
+      }
+
+      // Alerts
+      if (ip.spam === 'BLOCKED_FOR_SPAM') {
+        ipBlock.alerts.spam.push(ip.ip);
+      }
+      if (ip.antihack === 'BLOCKED') {
+        ipBlock.alerts.antihack.push(ip.ip);
+      }
+      if (ip.arp === 'BLOCKED') {
+        ipBlock.alerts.arp.push(ip.ip);
+      }
+      if (ip.mitigation === 'FORCED') {
+        ipBlock.alerts.mitigation.push(ip.ip);
+      }
+    });
+  }
+
+  function checkCloudIpSubtype(ipBlock) {
+    const isCloud = ipBlock && ipBlock.service && ipBlock.service.category === 'CLOUD';
+    const isFailover = ipBlock && ipBlock.type === 'FAILOVER';
+
+    if (isCloud && isFailover && ipBlock.ips && ipBlock.ips.length) {
+      // since ips have the same subType in a given ipBlock,
+      // we are only checking the subType of the first IP to guess the block subType
+      return Ip.getCloudIpSubType(ipBlock.service.serviceName, head(ipBlock.ips).ip)
+        .then((subType) => {
+          set(ipBlock, 'subType', subType);
+        });
+    }
+    return $q.when();
+  }
+
+  function pollVirtualMacs(service) {
+    IpVirtualMac.pollVirtualMacs(service).then((vmacInfos) => {
+      set(service, 'virtualmac', vmacInfos);
+    });
+  }
+
   function loadService(service) {
-    service.loading = {};
-    service.detailsLoaded = false;
+    set(service, 'loading', {});
+    set(service, 'detailsLoaded', false);
 
     return Ip.getIpsListForService(service.serviceName).then((_ipBlocks) => {
       let ipBlocks = _ipBlocks;
@@ -129,7 +229,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
 
       angular.forEach(ipBlocks, (ipBlock) => {
         // Add service pointer to each ipBlock
-        ipBlock.service = service;
+        set(ipBlock, 'service', service);
 
         // Sanitize IPs
         checkIps(ipBlock);
@@ -152,96 +252,29 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
 
       // if service DEDICATED: get vmacs
       if (service.category === 'DEDICATED') {
-        service.loading.virtualmac = true;
+        set(service, 'loading.virtualmac', true);
         virtualMacPromise = IpVirtualMac.getVirtualMacList(service)
           .then((vmacInfos) => {
-            service.virtualmac = vmacInfos;
+            set(service, 'virtualmac', vmacInfos);
 
             if (vmacInfos && vmacInfos.status === 'PENDING') {
               pollVirtualMacs(service);
             }
           })
           .finally(() => {
-            service.loading.virtualmac = false;
+            set(service, 'loading.virtualmac', false);
           });
       }
 
       $q.all([reverseDelegationPromise, virtualMacPromise, cloudIpSubTypePromise]).then(() => {
-        service.detailsLoaded = true;
+        set(service, 'detailsLoaded', true);
       });
 
       return ipBlocks;
     });
   }
 
-  function checkCloudIpSubtype(ipBlock) {
-    const isCloud = ipBlock && ipBlock.service && ipBlock.service.category === 'CLOUD';
-    const isFailover = ipBlock && ipBlock.type === 'FAILOVER';
-
-    if (isCloud && isFailover && ipBlock.ips && ipBlock.ips.length) {
-      // since ips have the same subType in a given ipBlock,
-      // we are only checking the subType of the first IP to guess the block subType
-      return Ip.getCloudIpSubType(ipBlock.service.serviceName, head(ipBlock.ips).ip).then((subType) => {
-        ipBlock.subType = subType;
-      });
-    }
-    return $q.when();
-  }
-
-  function checkIps(ipBlock) {
-    if (!(ipBlock.ips && ipBlock.ips.length)) {
-      return;
-    }
-
-    // Refresh alerts for this ipBlock
-    ipBlock.alerts = {
-      mitigation: [],
-      antihack: [],
-      arp: [],
-      spam: [],
-    };
-
-    angular.forEach(ipBlock.ips, (ip) => {
-      IpFirewall.killPollFirewallState(ipBlock, ip); // Stop all pending polling for this ipBlock/ip
-      IpMitigation.killPollMitigationState(ipBlock, ip); // Stop all pending polling for this ipBlock/ip
-
-      // Poll mitigation state
-      if (ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING') {
-        IpMitigation.pollMitigationState(ipBlock, ip).then(() => {
-          Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category).then((ips) => {
-            const newIp = find(ips, { ip: ip.ip });
-            angular.extend(ip, newIp);
-          });
-        });
-      }
-
-      // Poll firewall state
-      if (ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING') {
-        IpFirewall.pollFirewallState(ipBlock, ip).then(() => {
-          Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category).then((ips) => {
-            const newIp = find(ips, { ip: ip.ip });
-            angular.extend(ip, newIp);
-          });
-        });
-      }
-
-      // Alerts
-      if (ip.spam === 'BLOCKED_FOR_SPAM') {
-        ipBlock.alerts.spam.push(ip.ip);
-      }
-      if (ip.antihack === 'BLOCKED') {
-        ipBlock.alerts.antihack.push(ip.ip);
-      }
-      if (ip.arp === 'BLOCKED') {
-        ipBlock.alerts.arp.push(ip.ip);
-      }
-      if (ip.mitigation === 'FORCED') {
-        ipBlock.alerts.mitigation.push(ip.ip);
-      }
-    });
-  }
-
-  $scope.getVirtualMacMessage = function (ipBlock) {
+  $scope.getVirtualMacMessage = function getVirtualMacMessage(ipBlock) {
     if (ipBlock.service && ipBlock.service.category) {
       if (ipBlock.service.category !== 'DEDICATED') {
         return $translate.instant('ip_virtualmac_add_impossible_server');
@@ -260,79 +293,13 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
     return null;
   };
 
-  // If service selected: load only this service,
-  // else, load all of them
-  let mainQueue;
-  $scope.selectService = function () {
-    killAllPolling();
-
-    $scope.getAll = $scope.state.total === $scope.state.loaded;
-
-    $q
-      .when(mainQueue)
-      .then(() => {
-        // We already have all services loaded, filter to select the one desired.
-        if ($scope.containsAllServices && get($scope, 'filters.service.serviceName') === 'ALL') {
-          $scope.ipsList = filter($scope.allIpsList, { routedTo: $scope.filters.service.serviceName });
-          return null;
-        }
-
-        let queue = [];
-        $scope.ipsList = [];
-        $scope.servicesInError = [];
-        $scope.state.loaded = 0;
-        $scope.loading.table = true;
-
-        if ($scope.filters.service && $scope.filters.service.serviceName === '_ALL') {
-          $scope.state.total = $scope.services.length - 1; // -1 = "_ALL"
-
-          queue = $scope.services.map((service) => {
-            if (service.serviceName !== '_ALL') {
-              return loadService(service)
-                .then((ipBlocks) => {
-                  $scope.ipsList = $scope.ipsList.concat(ipBlocks);
-                })
-                .catch(() => {
-                  $scope.servicesInError.push(service.serviceName);
-                })
-                .finally(() => {
-                  $scope.state.loaded++;
-                });
-            }
-            return null;
-          });
-        } else {
-          $scope.state.total = 1;
-          queue.push(
-            loadService($scope.filters.service)
-              .then((ipBlocks) => {
-                $scope.ipsList = $scope.ipsList.concat(ipBlocks);
-              })
-              .catch(() => {
-                $scope.servicesInError.push($scope.filters.service.serviceName);
-              })
-              .finally(() => {
-                $scope.state.loaded++;
-              }),
-          );
-        }
-
-        mainQueue = $q.all(queue).then(() => {
-          if ($scope.servicesInError.length) {
-            Alerter.error($translate.instant('ip_services_error', {
-              t0: $scope.servicesInError.join(', '),
-            }));
-          }
-          $scope.containsAllServices = $scope.getAll && $scope.filters.service.serviceName === '_ALL';
-        });
-
-        return mainQueue;
-      })
-      .finally(() => {
-        $scope.loading.table = false;
-        refreshAlerts();
-      });
-  };
+  function killAllPolling() {
+    Ip.killAllGetIpsListForService();
+    IpVirtualMac.killPollVirtualMacs();
+    IpFirewall.killPollFirewallState();
+    IpMitigation.killPollMitigationState();
+    IpOrganisation.killAllPolling();
+  }
 
   function refreshAlerts() {
     $scope.alerts = {
@@ -359,14 +326,92 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
     });
   }
 
-  $scope.alertsCount = function (ipBlock) {
-    if (ipBlock) {
-      return ipBlock.alerts.spam.length + ipBlock.alerts.antihack.length + ipBlock.alerts.arp.length + ipBlock.alerts.mitigation.length;
-    }
-    return $scope.alerts.spam.length + $scope.alerts.antihack.length + $scope.alerts.arp.length + $scope.alerts.mitigation.length;
+  // If service selected: load only this service,
+  // else, load all of them
+  let mainQueue;
+  $scope.selectService = function selectService() {
+    killAllPolling();
+
+    $scope.getAll = $scope.state.total === $scope.state.loaded;
+
+    $q
+      .when(mainQueue)
+      .then(() => {
+        // We already have all services loaded, filter to select the one desired.
+        if ($scope.containsAllServices && get($scope, 'filters.service.serviceName') === 'ALL') {
+          $scope.ipsList = filter($scope.allIpsList, {
+            routedTo: $scope.filters.service.serviceName,
+          });
+          return null;
+        }
+
+        let queue = [];
+        $scope.ipsList = [];
+        $scope.servicesInError = [];
+        $scope.state.loaded = 0;
+        $scope.loading.table = true;
+
+        if ($scope.filters.service && $scope.filters.service.serviceName === '_ALL') {
+          $scope.state.total = $scope.services.length - 1; // -1 = "_ALL"
+
+          queue = $scope.services.map((service) => {
+            if (service.serviceName !== '_ALL') {
+              return loadService(service)
+                .then((ipBlocks) => {
+                  $scope.ipsList = $scope.ipsList.concat(ipBlocks);
+                })
+                .catch(() => {
+                  $scope.servicesInError.push(service.serviceName);
+                })
+                .finally(() => {
+                  $scope.state.loaded += 1;
+                });
+            }
+            return null;
+          });
+        } else {
+          $scope.state.total = 1;
+          queue.push(
+            loadService($scope.filters.service)
+              .then((ipBlocks) => {
+                $scope.ipsList = $scope.ipsList.concat(ipBlocks);
+              })
+              .catch(() => {
+                $scope.servicesInError.push($scope.filters.service.serviceName);
+              })
+              .finally(() => {
+                $scope.state.loaded += 1;
+              }),
+          );
+        }
+
+        mainQueue = $q.all(queue).then(() => {
+          if ($scope.servicesInError.length) {
+            Alerter.error($translate.instant('ip_services_error', {
+              t0: $scope.servicesInError.join(', '),
+            }));
+          }
+          $scope.containsAllServices = $scope.getAll && $scope.filters.service.serviceName === '_ALL';
+        });
+
+        return mainQueue;
+      })
+      .finally(() => {
+        $scope.loading.table = false;
+        refreshAlerts();
+      });
   };
 
-  $scope.alertsTooltip = function (ipBlock) {
+  $scope.alertsCount = function alertsCount(ipBlock) {
+    if (ipBlock) {
+      return ipBlock.alerts.spam.length + ipBlock.alerts.antihack.length
+        + ipBlock.alerts.arp.length + ipBlock.alerts.mitigation.length;
+    }
+    return $scope.alerts.spam.length + $scope.alerts.antihack.length
+      + $scope.alerts.arp.length + $scope.alerts.mitigation.length;
+  };
+
+  $scope.alertsTooltip = function alertsTooltip(ipBlock) {
     const spam = $translate.instant('ip_alerts_spam_other').replace('{}', ipBlock.alerts.spam.length);
     const hack = $translate.instant('ip_alerts_antihack_other').replace('{}', ipBlock.alerts.antihack.length);
     const arp = $translate.instant('ip_alerts_arp_other').replace('{}', ipBlock.alerts.arp.length);
@@ -376,31 +421,35 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
 
   // Return a promise !
   // 'forceOpen' param is optional
-  $scope.toggleIp = function (ipBlock, forceOpen) {
+  $scope.toggleIp = function toggleIp(ipBlock, forceOpen) {
     if (ipBlock.loading) {
       // If loading, do nothing
       return $q.when(true);
     } if (ipBlock.loaded) {
       // If loaded and not loading, just toggle
       return $q.when(true).then(() => {
-        ipBlock.collapsed = forceOpen ? false : !ipBlock.collapsed;
+        set(ipBlock, 'collapsed', forceOpen ? false : !ipBlock.collapsed);
       });
     }
 
     // Else, get it
-    ipBlock.loading = true;
-    return Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category)
+    set(ipBlock, 'loading', true);
+    return Ip.getIpsForIpBlock(
+      ipBlock.ipBlock,
+      ipBlock.service.serviceName,
+      ipBlock.service.category,
+    )
       .then((data) => {
-        ipBlock.ips = data;
+        set(ipBlock, 'ips', data);
         checkIps(ipBlock);
-        ipBlock.collapsed = false;
-        ipBlock.loaded = true;
+        set(ipBlock, 'collapsed', false);
+        set(ipBlock, 'loaded', true);
       })
       .catch((err) => {
         Alerter.alertFromSWS($translate.instant('ip_service_error', { t0: ipBlock.ipBlock }), err.data);
       })
       .finally(() => {
-        ipBlock.loading = false;
+        set(ipBlock, 'loading', false);
       });
   };
 
@@ -408,48 +457,35 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
     killAllPolling();
   });
 
-  function killAllPolling() {
-    Ip.killAllGetIpsListForService();
-    IpVirtualMac.killPollVirtualMacs();
-    IpFirewall.killPollFirewallState();
-    IpMitigation.killPollMitigationState();
-    IpOrganisation.killAllPolling();
-  }
-
-  function pollVirtualMacs(service) {
-    IpVirtualMac.pollVirtualMacs(service).then((vmacInfos) => {
-      service.virtualmac = vmacInfos;
-    });
-  }
-
   // ---
 
   $scope.$on('ips.table.refreshBlock', (e, ipBlock) => {
-    ipBlock.refreshing = true;
+    set(ipBlock, 'refreshing', true);
     if ($scope.canReverseDelegations(ipBlock)) {
       $scope.getReverseDelegations(ipBlock);
     }
 
-    Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category).then((data) => {
-      ipBlock.ips = data;
-      checkIps(ipBlock);
-      ipBlock.refreshing = false;
-    });
+    Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category)
+      .then((data) => {
+        set(ipBlock, 'ips', data);
+        checkIps(ipBlock);
+        set(ipBlock, 'refreshing', false);
+      });
   });
 
   $scope.$on('ips.table.refreshVmac', (e, ipBlock) => {
     if (ipBlock.service.category === 'DEDICATED') {
-      ipBlock.service.loading.virtualmac = true;
+      set(ipBlock, 'service.loading.virtualmac', true);
       IpVirtualMac.getVirtualMacList(ipBlock.service)
         .then((vmacInfos) => {
-          ipBlock.service.virtualmac = vmacInfos;
+          set(ipBlock, 'service.virtualmac', vmacInfos);
 
           if (vmacInfos && vmacInfos.status === 'PENDING') {
             pollVirtualMacs(ipBlock.service);
           }
         })
         .finally(() => {
-          ipBlock.service.loading.virtualmac = false;
+          set(ipBlock, 'service.loading.virtualmac', false);
         });
     }
   });
@@ -489,71 +525,58 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
       $scope.displayOrganisation();
     }
   });
-  $scope.displayAntispam = function (ipBlock, ip) {
+  $scope.displayAntispam = function displayAntispam(ipBlock, ip) {
     $scope.currentView = 'antispam';
     $rootScope.$broadcast('ips.antispam.display', { ip: ipBlock.ipBlock, ipSpamming: ip.ip });
   };
-  $scope.displayFirewall = function (ipBlock, ip) {
+  $scope.displayFirewall = function displayFirewall(ipBlock, ip) {
     $scope.currentView = 'firewall';
     $scope.$broadcast('ips.firewall.display', { ipBlock, ip });
   };
-  $scope.displayGameFirewall = function (ipBlock, ip) {
+  $scope.displayGameFirewall = function displayGameFirewall(ipBlock, ip) {
     $scope.currentView = 'gameFirewall';
     $scope.$broadcast('ips.gameFirewall.display', { ipBlock, ip });
   };
-  $scope.displayOrganisation = function () {
+  $scope.displayOrganisation = function displayOrganisation() {
     $scope.currentView = 'organisation';
     $scope.$broadcast('ips.organisation.display');
   };
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  $scope.getStatePercent = function () {
+  $scope.getStatePercent = function getStatePercent() {
     return Math.ceil($scope.state.loaded / $scope.state.total * 100);
   };
 
-  function sortIp(a, b) {
-    if (a.version === 'IPV4') {
-      const aa = a.ipBlock.replace(/\/\d+$/, '').split('.');
-      const bb = b.ipBlock.replace(/\/\d+$/, '').split('.');
-
-      const resulta = (aa[0] * 0x1000000) + (aa[1] * 0x10000) + (aa[2] * 0x100) + aa[3];
-      const resultb = (bb[0] * 0x1000000) + (bb[1] * 0x10000) + (bb[2] * 0x100) + bb[3];
-
-      return resulta - resultb;
-    }
-    return 0;
-  }
-
   /*= =========  Reverse inline  ========== */
 
-  $scope.reverseIsValid = function (reverse) {
+  $scope.reverseIsValid = function reverseIsValid(reverse) {
     return !reverse || (reverse && Validator.isValidDomain(reverse.replace(/\.$/, '')));
   };
-  $scope.editReverseInline = function (ipBlock, ip) {
+  $scope.editReverseInline = function editReverseInline(ipBlock, ip) {
     if (ip.reverseEdit === true) {
       return;
     }
-    ip.reverseEditValue = angular.copy(ip.reverse ? punycode.toUnicode(ip.reverse) : '');
-    ip.reverseEdit = true;
+    set(ip, 'reverseEditValue', angular.copy(ip.reverse ? punycode.toUnicode(ip.reverse) : ''));
+    set(ip, 'reverseEdit', true);
   };
-  $scope.editReverseInlineApply = function (ipBlock, ip, e) {
+  $scope.editReverseInlineApply = function editReverseInlineApply(ipBlock, ip, e) {
     e.stopPropagation();
-    ipBlock.refreshing = true;
+    set(ipBlock, 'refreshing', true);
     IpReverse.updateReverse(ipBlock, ip.ip, ip.reverseEditValue).then(
       () => {
         $rootScope.$broadcast('ips.table.refreshBlock', ipBlock);
         Alerter.success($translate.instant('ip_table_manage_reverse_success'));
       },
       (data) => {
-        ipBlock.refreshing = false;
+        set(ipBlock, 'refreshing', false);
         Alerter.alertFromSWS($translate.instant('ip_table_manage_reverse_failure'), data);
       },
     );
   };
-  $scope.editReverseInlineCancel = function (ipBlock, ip, e) {
+  $scope.editReverseInlineCancel = function editReverseInlineCancel(ipBlock, ip, e) {
     e.stopPropagation();
-    ip.reverseEdit = false;
+    set(ip, 'reverseEdit', false);
   };
 
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

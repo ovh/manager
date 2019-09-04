@@ -52,7 +52,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
   /* ----------  FEATURE OPTIONS  ----------*/
 
   TelephonyGroupLineFunctionPhone.prototype
-    .setPhoneFunctionInfos = function (phoneFunctionOptions) {
+    .setPhoneFunctionInfos = function setPhoneFunctionInfos(phoneFunctionOptions) {
       const self = this;
 
       angular.forEach(keys(phoneFunctionOptions), (phoneFunctionOptionsKey) => {
@@ -64,20 +64,22 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
       return self;
     };
 
-  TelephonyGroupLineFunctionPhone.prototype.getAvailableFunctions = function () {
-    const self = this;
-    return OvhApiTelephony.Line().Phone().FunctionKey().v6()
-      .availableFunctions({
-        billingAccount: self.billingAccount,
-        serviceName: self.serviceName,
-        keyNum: self.keyNum,
-      }).$promise.then(availableFunction => availableFunction, (error) => {
-        const message = error.data && error.data.message;
-        return $q.reject(message);
-      });
-  };
+  TelephonyGroupLineFunctionPhone
+    .prototype
+    .getAvailableFunctions = function getAvailableFunctions() {
+      const self = this;
+      return OvhApiTelephony.Line().Phone().FunctionKey().v6()
+        .availableFunctions({
+          billingAccount: self.billingAccount,
+          serviceName: self.serviceName,
+          keyNum: self.keyNum,
+        }).$promise.then(availableFunction => availableFunction, (error) => {
+          const message = error.data && error.data.message;
+          return $q.reject(message);
+        });
+    };
 
-  TelephonyGroupLineFunctionPhone.prototype.save = function () {
+  TelephonyGroupLineFunctionPhone.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.Line().Phone().FunctionKey().v6()

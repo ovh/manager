@@ -16,8 +16,17 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
   'Alerter',
   'coreConfig',
   'OTRS_POPUP_UNIVERSES',
-  function ($rootScope, $scope, $location, $translate, OtrsPopupService, Otrs, Alerter, coreConfig,
-    OTRS_POPUP_UNIVERSES) {
+  function otrsCtrl(
+    $rootScope,
+    $scope,
+    $location,
+    $translate,
+    OtrsPopupService,
+    Otrs,
+    Alerter,
+    coreConfig,
+    OTRS_POPUP_UNIVERSES,
+  ) {
     let firstLoading = false;
 
     $scope.itemsPerPage = 10;
@@ -44,7 +53,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       }
     }
 
-    $scope.init = function () {
+    $scope.init = function init() {
       $scope.loaders = {
         tickets: true,
         services: false,
@@ -126,7 +135,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       true,
     );
 
-    $scope.getTicketsIds = function () {
+    $scope.getTicketsIds = function getTicketsIds() {
       $scope.loaders.tickets = true;
 
       const filters = angular.copy($scope.search);
@@ -162,7 +171,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
         });
     };
 
-    $scope.transformItem = function (ticket) {
+    $scope.transformItem = function transformItem(ticket) {
       $scope.loaders.tickets = true;
 
       return Otrs.getTicket(ticket).then((_ticket) => {
@@ -174,7 +183,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       });
     };
 
-    $scope.getServiceDescription = function (ticket) {
+    $scope.getServiceDescription = function getServiceDescription(ticket) {
       let description;
       let serviceMap;
 
@@ -192,7 +201,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       return description;
     };
 
-    $scope.onTransformItemDone = function () {
+    $scope.onTransformItemDone = function onTransformItemDone() {
       $scope.loaders.tickets = false;
       if (!firstLoading) {
         $scope.currentPage = $location.search() && $location.search().currentPage != null
@@ -203,7 +212,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       }
     };
 
-    $scope.getServices = function () {
+    $scope.getServices = function getServices() {
       $scope.list.services = [];
       if (!$scope.selection.universe) {
         return;
@@ -246,7 +255,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
         });
     };
 
-    $scope.openDialog = function () {
+    $scope.openDialog = function openDialog() {
       if (!OtrsPopupService.isLoaded()) {
         OtrsPopupService.init();
       } else {
@@ -254,17 +263,17 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       }
     };
 
-    $scope.goTo = function (url) {
+    $scope.goTo = function goTo(url) {
       $location.path(url).search({ previousPage: $scope.currentPage });
     };
 
     $rootScope.$on('ticket.otrs.reload', $scope.getTicketsIds);
 
-    $scope.minCreationDate = function () {
+    $scope.minCreationDate = function minCreationDate() {
       $scope.minCreationDateSearch.opened = true;
     };
 
-    $scope.maxCreationDate = function () {
+    $scope.maxCreationDate = function maxCreationDate() {
       $scope.maxCreationDateSearch.opened = true;
     };
 

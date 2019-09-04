@@ -6,7 +6,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 import trim from 'lodash/trim';
 
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', function ($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk, tucVoipLinePhone) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', function TelecomTelephonyLinePhoneCodecCtrl($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk, tucVoipLinePhone) {
   const self = this;
   let codecsAuto = null;
 
@@ -44,13 +44,13 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
     }
   }
 
-  self.isAutomaticCodecEnabled = function () {
+  self.isAutomaticCodecEnabled = function isAutomaticCodecEnabled() {
     return every(self.line.availableCodecs, {
       automatic: true,
     });
   };
 
-  self.hasChanged = function () {
+  self.hasChanged = function hasChanged() {
     return (self.model.codecs && self.codecs.value !== self.model.codecs.value)
       || self.model.auto !== codecsAuto;
   };
@@ -61,7 +61,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
     =            ACTIONS            =
     =============================== */
 
-  self.saveNewCodec = function () {
+  self.saveNewCodec = function saveNewCodec() {
     self.loading.save = true;
 
     return self.line.saveOption('codecs', self.model.auto ? `${self.model.codecs.value}_a` : self.model.codecs.value).then(() => {
@@ -123,7 +123,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     return tucVoipLinePhone
@@ -134,7 +134,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
       })));
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {
       codecs: self.model.auto ? `${self.model.codecs.value}_a` : self.model.codecs.value,
     };
@@ -142,7 +142,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_phone_codec_bulk_all_success'),
@@ -163,7 +163,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_phone_codec_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

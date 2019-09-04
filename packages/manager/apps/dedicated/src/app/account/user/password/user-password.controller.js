@@ -4,7 +4,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.pas
   'Alerter',
   'atInternet',
   'UserAccount.services.Infos',
-  function ($scope, $translate, Alerter, atInternet, UseraccountInfos) {
+  function UserAccountDoubleAuthPasswordController(
+    $scope,
+    $translate,
+    Alerter,
+    atInternet,
+    UseraccountInfos,
+  ) {
     $scope.loaders = {
       loading: false,
     };

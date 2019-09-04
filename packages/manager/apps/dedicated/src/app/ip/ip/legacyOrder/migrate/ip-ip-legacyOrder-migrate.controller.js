@@ -30,7 +30,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     =            STEP 1            =
     ============================== */
 
-  $scope.isValidIp = function (ip) {
+  $scope.isValidIp = function isValidIp(ip) {
     if (ip != null) {
       const ipslash = ip.split('/');
       if (ipslash.length > 1) {
@@ -49,7 +49,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     =            STEP 2            =
     ============================== */
 
-  $scope.getServices = function () {
+  $scope.getServices = function getServices() {
     const queue = [];
     $scope.loading.step2 = true;
     Alerter.resetMessage('otrs_alert_migration');
@@ -82,7 +82,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     );
   };
 
-  $scope.checkServiceMigrateable = function () {
+  $scope.checkServiceMigrateable = function checkServiceMigrateable() {
     $scope.loading.checkServiceMigrateable = true;
     $scope.durations = {
       available: [],
@@ -133,7 +133,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     =            STEP 3            =
     ============================== */
 
-  $scope.getDurations = function () {
+  $scope.getDurations = function getDurations() {
     const queue = [];
     $scope.loading.prices = true;
 
@@ -163,7 +163,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     =            STEP 4            =
     ============================== */
 
-  $scope.loadContracts = function () {
+  $scope.loadContracts = function loadContracts() {
     $scope.agree.value = false;
     if (!$scope.durations.details[$scope.migrate.duration].contracts
       || !$scope.durations.details[$scope.migrate.duration].contracts.length) {
@@ -171,7 +171,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     }
   };
 
-  $scope.backToContracts = function () {
+  $scope.backToContracts = function backToContracts() {
     if (!$scope.durations.details[$scope.migrate.duration].contracts
       || !$scope.durations.details[$scope.migrate.duration].contracts.length) {
       $rootScope.$broadcast('wizard-goToStep', 4);
@@ -182,13 +182,13 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     =            STEP 5            =
     ============================== */
 
-  $scope.getResumePrice = function (price) {
+  $scope.getResumePrice = function getResumePrice(price) {
     return price.value === 0
       ? $translate.instant('price_free')
       : $translate.instant('price_ht_label', { t0: price.text });
   };
 
-  $scope.migrateIp = function () {
+  $scope.migrateIp = function migrateIp() {
     $scope.loading.validation = true;
     IpLegacyOrder.postMigrateIpOrder($scope.migrate)
       .then(

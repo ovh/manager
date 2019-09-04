@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyFaxVoicemailActivationCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyFaxVoicemailActivationCtrl', function TelecomTelephonyFaxVoicemailActivationCtrl($q, $translate, $stateParams, OvhApiTelephony, TucToast) {
   const self = this;
 
   self.loading = {
@@ -14,7 +14,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxVoicemailActivationC
     =            EVENTS            =
     ============================== */
 
-  self.onChangeRoutingBtnClick = function () {
+  self.onChangeRoutingBtnClick = function onChangeRoutingBtnClick() {
     self.loading.save = true;
 
     return OvhApiTelephony.Voicemail().v6().changeRouting({
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxVoicemailActivationC
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return OvhApiTelephony.Voicemail().v6().routing({

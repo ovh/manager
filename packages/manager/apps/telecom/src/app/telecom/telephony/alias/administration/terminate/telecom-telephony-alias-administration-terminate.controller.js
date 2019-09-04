@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerminateCtrl', function ($q, $stateParams, $translate, OvhApiTelephony, TelephonyMediator, TucToast, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerminateCtrl', function TelecomTelephonyAliasAdministrationTerminateCtrl($q, $stateParams, $translate, OvhApiTelephony, TelephonyMediator, TucToast, TucToastError) {
   const self = this;
 
   function getTerminationReasons() {
@@ -30,14 +30,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
     });
   }
 
-  self.hasValidReason = function () {
+  self.hasValidReason = function hasValidReason() {
     if (self.reason === 'missingOptions' || self.reason === 'other') {
       return self.details;
     }
     return self.reason;
   };
 
-  self.terminate = function () {
+  self.terminate = function terminate() {
     self.isTerminating = true;
     OvhApiTelephony.Service().v6().delete({
       billingAccount: $stateParams.billingAccount,
@@ -52,7 +52,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
     });
   };
 
-  self.cancelTermination = function () {
+  self.cancelTermination = function cancelTermination() {
     self.isCancelling = true;
     OvhApiTelephony.Service().v6().cancelTermination({
       billingAccount: $stateParams.billingAccount,

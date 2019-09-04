@@ -7,13 +7,13 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
   '$q',
   'UserAccount.constants',
   '$window',
-  function ($http, $q, constants, $window) {
+  function UserAccountInfosService($http, $q, constants, $window) {
     const swsUseraccountInfosPath = `${constants.swsProxyRootPath}me`;
     const cache = {
       me: 'UNIVERS_USER_ME',
     };
 
-    this.getUseraccountInfos = function () {
+    this.getUseraccountInfos = function getUseraccountInfos() {
       return $http.get(swsUseraccountInfosPath).then((response) => {
         const { data } = response;
         if (response.status < 300) {
@@ -26,7 +26,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.updateUseraccountInfos = function (data) {
+    this.updateUseraccountInfos = function updateUseraccountInfos(data) {
       return $http.put(swsUseraccountInfosPath, data).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -35,7 +35,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.changePassword = function () {
+    this.changePassword = function changePassword() {
       return $http.post([swsUseraccountInfosPath, 'changePassword'].join('/')).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -44,7 +44,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.changeEmail = function (email) {
+    this.changeEmail = function changeEmail(email) {
       return $http.post([swsUseraccountInfosPath, 'changeEmail'].join('/'), { newEmail: email }).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -53,7 +53,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.fetchConsentDecision = function (campaignName) {
+    this.fetchConsentDecision = function fetchConsentDecision(campaignName) {
       return $http.get([swsUseraccountInfosPath, 'consent', campaignName, 'decision'].join('/')).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -63,7 +63,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.updateConsentDecision = function (campaignName, value) {
+    this.updateConsentDecision = function updateConsentDecision(campaignName, value) {
       return $http.put([swsUseraccountInfosPath, 'consent', campaignName, 'decision'].join('/'), { value }).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -73,7 +73,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.taskEmailChanges = function (state) {
+    this.taskEmailChanges = function taskEmailChanges(state) {
       let options;
       if (state) {
         options = {
@@ -90,7 +90,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.taskEmailChange = function (id) {
+    this.taskEmailChange = function taskEmailChange(id) {
       return $http.get([swsUseraccountInfosPath, 'task', 'emailChange', $window.encodeURIComponent(id)].join('/')).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -99,7 +99,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.taskEmailChangeAccept = function (id, token) {
+    this.taskEmailChangeAccept = function taskEmailChangeAccept(id, token) {
       return $http.post([swsUseraccountInfosPath, 'task', 'emailChange', $window.encodeURIComponent(id), 'accept'].join('/'), { token }).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -108,7 +108,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.taskEmailChangeRefuse = function (id, token) {
+    this.taskEmailChangeRefuse = function taskEmailChangeRefuse(id, token) {
       return $http.post([swsUseraccountInfosPath, 'task', 'emailChange', $window.encodeURIComponent(id), 'refuse'].join('/'), { token }).then((response) => {
         if (response.status < 300) {
           return response.data;
@@ -117,7 +117,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.getListOfRulesFieldName = function () {
+    this.getListOfRulesFieldName = function getListOfRulesFieldName() {
       return $http.get(`${constants.swsProxyRootPath}newAccount.json`).then((response) => {
         let result = [];
         const models = get(response, 'data.models');
@@ -133,7 +133,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.getCreationRules = function (params) {
+    this.getCreationRules = function getCreationRules(params) {
       // Get creation Rules by user
       return $http
         .get([constants.swsProxyRootPath, 'newAccount/creationRules'].join(''), {
@@ -215,11 +215,11 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
         ));
     };
 
-    this.getMeModels = function () {
+    this.getMeModels = function getMeModels() {
       return $http.get([constants.swsProxyRootPath, 'me.json'].join(''), { cache: cache.me }).then(response => response.data.models);
     };
 
-    this.getDeveloperMode = function () {
+    this.getDeveloperMode = function getDeveloperMode() {
       return $http.get(`${swsUseraccountInfosPath}/accessRestriction/developerMode`).then((response) => {
         if (response.status === 200) {
           return response.data;
@@ -228,7 +228,7 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
       });
     };
 
-    this.updateDeveloperMode = function (developmentMode) {
+    this.updateDeveloperMode = function updateDeveloperMode(developmentMode) {
       return $http.put(`${swsUseraccountInfosPath}/accessRestriction/developerMode`, developmentMode).then((response) => {
         if (response.status === 200) {
           return response.data;

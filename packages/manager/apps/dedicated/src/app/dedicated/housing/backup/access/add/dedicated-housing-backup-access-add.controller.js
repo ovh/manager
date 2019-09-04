@@ -17,7 +17,7 @@ angular.module('App').controller('HousingAddAccessFtpBackupCtrl', ($rootScope, $
   };
   $scope.loading = false;
 
-  $scope.load = function () {
+  $scope.load = function load() {
     $scope.loading = true;
     Housing.getAuthorizableBlocks($stateParams.productId).then(
       (list) => {
@@ -32,7 +32,7 @@ angular.module('App').controller('HousingAddAccessFtpBackupCtrl', ($rootScope, $
     );
   };
 
-  $scope.addFtpBackup = function () {
+  $scope.addFtpBackup = function addFtpBackup() {
     const resultMessages = {
       OK: $translate.instant('housing_configuration_ftpbackup_access_add_success'),
       PARTIAL: $translate.instant('housing_configuration_ftpbackup_access_add_partial'),

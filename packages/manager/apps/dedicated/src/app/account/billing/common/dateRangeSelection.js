@@ -1,6 +1,6 @@
 angular.module('Billing.services').service('BillingdateRangeSelection', [
   '$window',
-  function ($window) {
+  function BillingDateRangeSelectionService($window) {
     const STORAGE_KEY_PREFIX = 'billingDateRangeSelection';
 
     function loadDateFromStorage(dateType, defaultDate) {

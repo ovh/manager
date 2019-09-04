@@ -5,7 +5,7 @@ import last from 'lodash/last';
 import pull from 'lodash/pull';
 import words from 'lodash/words';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddCtrl', function ($q, $stateParams, $translate, $timeout, $uibModalInstance, OvhApiTelephony, OvhApiMe, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddCtrl', function TelecomTelephonyServiceFaxCampaignsAddCtrl($q, $stateParams, $translate, $timeout, $uibModalInstance, OvhApiTelephony, OvhApiMe, TucToastError) {
   const self = this;
 
   /* ===============================
@@ -30,7 +30,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     return self.campaign.sendDate;
   }
 
-  self.checkValidPdfExtention = function (file) {
+  self.checkValidPdfExtention = function checkValidPdfExtention(file) {
     const fileName = file ? file.name : '';
     const found = endsWith(fileName.toLowerCase(), 'pdf');
     if (!found) {
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     return found;
   };
 
-  self.checkValidTextExtention = function (file) {
+  self.checkValidTextExtention = function checkValidTextExtention(file) {
     const fileName = file ? file.name : '';
     const found = endsWith(fileName.toLowerCase(), 'txt');
     if (!found) {
@@ -91,7 +91,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     =            EVENTS            =
     =============================== */
 
-  self.openDatePicker = function ($event) {
+  self.openDatePicker = function openDatePicker($event) {
     $event.preventDefault();
     $event.stopPropagation();
     self.picker.dateOpened = true;
@@ -103,7 +103,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     =            ACTIONS            =
     =============================== */
 
-  self.add = function () {
+  self.add = function add() {
     self.loading.add = true;
     return uploadDocuments().then(docs => $q.all([
       createCampaign(docs),
@@ -118,11 +118,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     }));
   };
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 

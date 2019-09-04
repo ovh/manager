@@ -12,14 +12,14 @@ angular.module('Module.ip.controllers').controller('IplbBackendSetProbeCtrl', ($
     $scope.loading = false;
   });
 
-  $scope.orderByProbeAlias = function (a) {
+  $scope.orderByProbeAlias = function orderByProbeAlias(a) {
     const result = $translate.instant(`iplb_backend_probe_${a.toUpperCase()}`);
     return result === 'iplb_backend_probe_' ? a.toUpperCase() : result;
   };
 
   /* Action */
 
-  $scope.setProbe = function () {
+  $scope.setProbe = function setProbe() {
     $scope.loading = true;
     Iplb
       .putBackend(

@@ -1,4 +1,4 @@
-angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', function ($scope, $rootScope, $translate, Alerter, Ip, IpGameFirewall) {
+angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', function AddGameFirewallRuleCtrl($scope, $rootScope, $translate, Alerter, Ip, IpGameFirewall) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
   const alertadd = 'ip_game_firewall_add_alert';
@@ -27,7 +27,7 @@ angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', fu
 
   self.loading = false;
 
-  $scope.getProtocoleText = function (protocol) {
+  $scope.getProtocoleText = function getProtocoleText(protocol) {
     const tradText = $translate.instant(`ip_game_mitigation_rule_add_protocol_enum_${protocol}`);
     return !/^\/!\\.*/.test(tradText) ? tradText : protocol;
   };
@@ -50,7 +50,7 @@ angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', fu
       });
   }
 
-  $scope.addGameFirewallRule = function () {
+  $scope.addGameFirewallRule = function addGameFirewallRule() {
     self.loading = true;
 
     if (self.rule.ports.to === null) {
@@ -77,7 +77,7 @@ angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', fu
     );
   };
 
-  $scope.getClassLabel = function (label) {
+  $scope.getClassLabel = function getClassLabel(label) {
     if (label && label.$dirty) {
       return (label.$invalid && 'has-error') || 'has-success';
     }

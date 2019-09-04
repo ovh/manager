@@ -19,7 +19,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
     }
   };
 
-  $scope.loadBackendOrders = function () {
+  $scope.loadBackendOrders = function loadBackendOrders() {
     Cdn.getBackendOrders($stateParams.productId, $scope.choices.count).then(
       (orders) => {
         let i = 0;
@@ -35,7 +35,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
     );
   };
 
-  $scope.updateOrder = function () {
+  $scope.updateOrder = function updateOrder() {
     const choosenOrder = $.grep(
       $scope.orders,
       e => e.duration.duration === $scope.choices.duration,
@@ -45,7 +45,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
     }
   };
 
-  $scope.orderBackends = function () {
+  $scope.orderBackends = function orderBackends() {
     $scope.url = null;
     Cdn
       .orderBackends(
@@ -62,7 +62,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
       });
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.resetAction();
     window.open($scope.url, '_blank');
   };

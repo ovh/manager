@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import method from 'lodash/method';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', function ($q, $stateParams, $translate, OvhApiPackXdslVoipLine, OvhApiTelephony, TelephonyMediator, TucToast, TucToastError, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', function TelecomTelephonyLineConvertCtrl($q, $stateParams, $translate, OvhApiPackXdslVoipLine, OvhApiTelephony, TelephonyMediator, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
   function init() {
@@ -24,7 +24,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
       });
   }
 
-  self.convertToNumber = function () {
+  self.convertToNumber = function convertToNumber() {
     self.isConverting = true;
     return OvhApiTelephony.Line().v6().convertToNumber({
       billingAccount: $stateParams.billingAccount,
@@ -37,7 +37,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     });
   };
 
-  self.cancelConvertToNumber = function () {
+  self.cancelConvertToNumber = function cancelConvertToNumber() {
     self.isCancelling = true;
     return OvhApiTelephony.Line().v6().cancelConvertToNumber({
       billingAccount: $stateParams.billingAccount,
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     let filteredServices = filter(services, service => !some(service.offers, method('includes', 'individual')));
 
     filteredServices = filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
@@ -81,11 +81,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     });
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return { };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_convert_bulk_all_success'),
@@ -104,7 +104,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     });
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_convert_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

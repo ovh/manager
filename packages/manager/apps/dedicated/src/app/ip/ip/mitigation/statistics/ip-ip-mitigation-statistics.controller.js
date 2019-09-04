@@ -9,7 +9,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
 
   $scope.statisticsScalesAvailable = null;
 
-  $scope.loadStatisticsScale = function () {
+  $scope.loadStatisticsScale = function loadStatisticsScale() {
     IpMitigation.getMitigationStatisticsScale().then((data) => {
       $scope.statisticsScalesAvailable = data;
       if (data.length > 0) {
@@ -19,7 +19,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     });
   };
 
-  const createChart = function () {
+  const createChart = function createChart() {
     const dataSets = [get($scope.stats, 'valuesIn'), get($scope.stats, 'valuesOut')];
 
     $scope.chartData = [];
@@ -53,12 +53,12 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     };
   };
   let timeout = null;
-  const clearTO = function () {
+  const clearTO = function clearTO() {
     if (timeout) {
       $timeout.cancel(timeout);
     }
   };
-  const realTimeStats = function () {
+  const realTimeStats = function realTimeStats() {
     clearTO();
     if ($scope.statisticsScalesAvailable && $scope.statisticsScalesAvailable.length > 0) {
       $scope.statsLoading = true;
@@ -106,7 +106,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     maxDate: new Date(),
   };
 
-  $scope.getStatistics = function () {
+  $scope.getStatistics = function getStatistics() {
     if ($scope.model.from && $scope.model.scale) {
       $scope.statsLoading = true;
       IpMitigation
@@ -134,7 +134,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     }
   });
 
-  $scope.closeAction = function () {
+  $scope.closeAction = function closeAction() {
     clearTO();
     $scope.resetAction();
   };

@@ -6,7 +6,7 @@ angular.module('App').controller('CacherulesDesactivateAllCtrl', ($scope, $state
   };
   $scope.alert = 'cdn_domain_tab_rules_alert';
 
-  $scope.desactivate = function () {
+  $scope.desactivate = function desactivate() {
     $scope.resetAction();
     CdnDomain.updateAllCacheruleStatus($stateParams.productId, $stateParams.domain, 'OFF').then(
       (data) => {

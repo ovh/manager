@@ -1,7 +1,7 @@
-angular.module('Billing.services').service('BillingRefunds', function ($http, $cacheFactory) {
+angular.module('Billing.services').service('BillingRefunds', function BillingRefunds($http, $cacheFactory) {
   const billingCache = $cacheFactory('UNIVERS_BILLING_REFUNDS');
 
-  this.getBillingRefunds = function ({
+  this.getBillingRefunds = function getBillingRefunds({
     count, offset, date, dateTo,
   }) {
     const data = {};

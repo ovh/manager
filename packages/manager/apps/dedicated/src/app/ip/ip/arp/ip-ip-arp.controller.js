@@ -10,7 +10,7 @@ angular.module('Module.ip.controllers').controller('IpViewArpCtrl', ($scope, $ro
       $scope.loading = false;
     });
 
-  $scope.unblockArp = function () {
+  $scope.unblockArp = function unblockArp() {
     $scope.loading = true;
     IpArp.unblockIp($scope.data.ipBlock.ipBlock, $scope.data.ip.ip)
       .then(

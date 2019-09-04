@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-angular.module('managerApp').controller('TelecomTelephonyLineCtrl', function ($q, $stateParams, $translate, TelephonyMediator, SidebarMenu, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyLineCtrl', function TelecomTelephonyLineCtrl($q, $stateParams, $translate, TelephonyMediator, SidebarMenu, TucToast) {
   const self = this;
 
   self.loading = {
@@ -16,7 +16,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCtrl', function ($q
     =            ACTIONS            =
     =============================== */
 
-  self.lineNameSave = function (newServiceDescription) {
+  self.lineNameSave = function lineNameSave(newServiceDescription) {
     self.line.startEdition();
     self.line.description = newServiceDescription;
     return self.line.save().then(() => {

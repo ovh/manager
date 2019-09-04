@@ -1,6 +1,6 @@
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('XdslModemLanCtrl', function ($stateParams, $translate, OvhApiXdsl, PackXdslModemLanObject, tucValidator, $q, TucToast, TucPackXdslModemMediator) {
+angular.module('managerApp').controller('XdslModemLanCtrl', function XdslModemLanCtrl($stateParams, $translate, OvhApiXdsl, PackXdslModemLanObject, tucValidator, $q, TucToast, TucPackXdslModemMediator) {
   const self = this;
 
   this.validator = tucValidator;
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('XdslModemLanCtrl', function ($statePara
      * @param {PackXdslModemLanObject} lan    lan to update
      * @param                {Boolean} valid  Form valid ?
      */
-  this.watchKey = function ($event, lan, valid) {
+  this.watchKey = function watchKey($event, lan, valid) {
     if ($event.keyCode === 13 && valid) {
       self.submit(lan);
     }
@@ -26,7 +26,7 @@ angular.module('managerApp').controller('XdslModemLanCtrl', function ($statePara
      * @param {PackXdslModemLanObject} lan LAN to update
      * @return {Promise}
      */
-  this.submit = function (lan) {
+  this.submit = function submit(lan) {
     return lan.save($stateParams.serviceName);
   };
 

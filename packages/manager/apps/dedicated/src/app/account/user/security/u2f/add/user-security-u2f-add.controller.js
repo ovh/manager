@@ -7,7 +7,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
   '$translate',
   'UserAccount.services.doubleAuth.u2f',
   'Alerter',
-  function ($rootScope, $scope, $translate, DoubleAuthU2fService, Alerter) {
+  function UserAccountDoubleAuthU2fAddController(
+    $rootScope,
+    $scope,
+    $translate,
+    DoubleAuthU2fService,
+    Alerter,
+  ) {
     $scope.u2f = {
       u2fAccount: get($scope, 'currentActionData', {}),
       registerChallenge: null,

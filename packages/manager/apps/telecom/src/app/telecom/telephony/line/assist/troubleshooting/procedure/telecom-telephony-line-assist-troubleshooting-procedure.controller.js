@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 
-angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingProcedureCtrl', function ($stateParams, $scope, troubleshootingProcess, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingProcedureCtrl', function TelecomTelephonyLineAssistTroubleshootingProcedureCtrl($stateParams, $scope, troubleshootingProcess, OvhApiTelephony) {
   const self = this;
 
   self.process = null;

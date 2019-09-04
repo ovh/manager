@@ -70,14 +70,14 @@ angular.module('Module.ip.controllers').controller('IplbBackendAddCtrl', ($scope
     });
   }
 
-  $scope.orderByProbeAlias = function (a) {
+  $scope.orderByProbeAlias = function orderByProbeAlias(a) {
     const result = $translate.instant(`iplb_backend_probe_${a.toUpperCase()}`);
     return result === 'iplb_backend_probe_' ? a.toUpperCase() : result;
   };
 
   /* Action */
 
-  $scope.addBackend = function () {
+  $scope.addBackend = function addBackend() {
     const dataToSend = JSON.parse(JSON.stringify($scope.model));
     delete dataToSend.ipblockBackend;
 

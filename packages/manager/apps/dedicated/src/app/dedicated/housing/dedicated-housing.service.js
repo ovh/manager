@@ -1,11 +1,11 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
 
-angular.module('services').service('Housing', function ($q, constants, $rootScope, Polling, OvhHttp) {
+angular.module('services').service('Housing', function Housing($q, constants, $rootScope, Polling, OvhHttp) {
   const self = this;
   const urlRootHousing = '/dedicated/housing/{serviceName}';
 
-  this.getDescription = function (serviceName) {
+  this.getDescription = function getDescription(serviceName) {
     return OvhHttp.get(urlRootHousing.concat('/serviceInfos'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -14,7 +14,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getSelected = function (serviceName) {
+  this.getSelected = function getSelected(serviceName) {
     return OvhHttp.get(urlRootHousing, {
       rootPath: 'apiv6',
       urlParams: {
@@ -27,7 +27,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     * APC
     */
 
-  this.getOrderableApc = function (serviceName) {
+  this.getOrderableApc = function getOrderableApc(serviceName) {
     return OvhHttp.get(urlRootHousing.concat('/orderable/APC'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -36,7 +36,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getApcDurations = function (serviceName) {
+  this.getApcDurations = function getApcDurations(serviceName) {
     return OvhHttp.get('/order/dedicated/housing/{serviceName}/APC', {
       rootPath: 'apiv6',
       urlParams: {
@@ -45,7 +45,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getRebootPrices = function (serviceName) {
+  this.getRebootPrices = function getRebootPrices(serviceName) {
     return self.getApcDurations(serviceName).then(duration => OvhHttp.get(`/order/dedicated/housing/{serviceName}/APC/${duration}`, {
       rootPath: 'apiv6',
       urlParams: {
@@ -54,7 +54,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     }));
   };
 
-  this.rebootOrder = function (serviceName) {
+  this.rebootOrder = function rebootOrder(serviceName) {
     return self.getApcDurations(serviceName).then(duration => OvhHttp.post(`/order/dedicated/housing/{serviceName}/APC/${duration}`, {
       rootPath: 'apiv6',
       urlParams: {
@@ -68,11 +68,11 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     *  TASKS
     */
 
-  this.getTaskPath = function (serviceName, taskId) {
+  this.getTaskPath = function getTaskPath(serviceName, taskId) {
     return `apiv6/dedicated/housing/${serviceName}/task/${taskId}`;
   };
 
-  this.getTaskIds = function (serviceName, params) {
+  this.getTaskIds = function getTaskIds(serviceName, params) {
     const urlParams = {
       rootPath: 'apiv6',
       urlParams: {
@@ -82,7 +82,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     return OvhHttp.get(urlRootHousing.concat('/task'), assign(urlParams, params));
   };
 
-  this.getTask = function (serviceName, id) {
+  this.getTask = function getTask(serviceName, id) {
     return OvhHttp.get(urlRootHousing.concat(['/task', id].join('/')), {
       rootPath: 'apiv6',
       urlParams: {
@@ -91,7 +91,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getTasks = function (serviceName) {
+  this.getTasks = function getTasks(serviceName) {
     return self.getTaskIds(serviceName).then((ids) => {
       const taskPromises = map(ids, id => self.getTask(serviceName, id));
 
@@ -99,7 +99,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getTaskInProgress = function (serviceName, type) {
+  this.getTaskInProgress = function getTaskInProgress(serviceName, type) {
     let params = null;
     if (type) {
       params = {
@@ -123,7 +123,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     );
   };
 
-  this.addTask = function (serviceName, task, scopeId) {
+  this.addTask = function addTask(serviceName, task, scopeId) {
     const pollPromise = $q.defer();
 
     Polling.addTask(self.getTaskPath(serviceName, task.id), task, scopeId).then(
@@ -142,7 +142,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     return pollPromise.promise;
   };
 
-  this.addTaskFast = function (serviceName, task, scopeId) {
+  this.addTaskFast = function addTaskFast(serviceName, task, scopeId) {
     const pollPromise = $q.defer();
 
     Polling.addTaskFast(self.getTaskPath(serviceName, task.data.taskId), task.data, scopeId).then(
@@ -164,7 +164,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     *  FTP BACKUP
     */
 
-  this.activateFtpBackup = function (serviceName) {
+  this.activateFtpBackup = function activateFtpBackup(serviceName) {
     return OvhHttp.post(urlRootHousing.concat('/features/backupFTP'), {
       rootPath: 'apiv6',
       data: {},
@@ -175,7 +175,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.deleteFtpBackup = function (serviceName) {
+  this.deleteFtpBackup = function deleteFtpBackup(serviceName) {
     return OvhHttp.delete(urlRootHousing.concat('/features/backupFTP'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -185,7 +185,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getFtpBackup = function (serviceName) {
+  this.getFtpBackup = function getFtpBackup(serviceName) {
     return OvhHttp.get(urlRootHousing.concat('/features/backupFTP'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -194,7 +194,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getFtpBackupIps = function (serviceName) {
+  this.getFtpBackupIps = function getFtpBackupIps(serviceName) {
     return OvhHttp.get(urlRootHousing.concat('/features/backupFTP/access'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -203,7 +203,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getFtpBackupIpDetail = function (serviceName, ipBlock) {
+  this.getFtpBackupIpDetail = function getFtpBackupIpDetail(serviceName, ipBlock) {
     return OvhHttp.get(urlRootHousing.concat('/features/backupFTP/access/{ipBlock}'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -213,7 +213,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.getAuthorizableBlocks = function (serviceName) {
+  this.getAuthorizableBlocks = function getAuthorizableBlocks(serviceName) {
     return OvhHttp.get(urlRootHousing.concat('/features/backupFTP/authorizableBlocks'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -222,7 +222,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.postFtpBackupIp = function (serviceName, ipBlock, ftp, nfs, cifs) {
+  this.postFtpBackupIp = function postFtpBackupIp(serviceName, ipBlock, ftp, nfs, cifs) {
     const accessPromises = map(ipBlock, ip => OvhHttp.post(urlRootHousing.concat('/features/backupFTP/access'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -240,7 +240,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     return $q.all(accessPromises);
   };
 
-  this.putFtpBackupIp = function (serviceName, ipBlock, ftp, nfs, cifs) {
+  this.putFtpBackupIp = function putFtpBackupIp(serviceName, ipBlock, ftp, nfs, cifs) {
     const ipEncoded = encodeURIComponent(ipBlock);
     return OvhHttp.put(urlRootHousing.concat(['/features/backupFTP/access', ipEncoded].join('/')), {
       rootPath: 'apiv6',
@@ -256,7 +256,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.requestFtpBackupPassword = function (serviceName) {
+  this.requestFtpBackupPassword = function requestFtpBackupPassword(serviceName) {
     return OvhHttp.post(urlRootHousing.concat('/features/backupFTP/password'), {
       rootPath: 'apiv6',
       urlParams: {
@@ -267,7 +267,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     });
   };
 
-  this.deleteFtpBackupIp = function (serviceName, ipBlock) {
+  this.deleteFtpBackupIp = function deleteFtpBackupIp(serviceName, ipBlock) {
     const ipEncoded = encodeURIComponent(ipBlock);
     return OvhHttp.delete(urlRootHousing.concat(['/features/backupFTP/access', ipEncoded].join('/')), {
       rootPath: 'apiv6',

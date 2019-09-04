@@ -26,7 +26,7 @@ angular.module('App').controller('CdnDomainTabCacheRuleCtrl', ($scope, $statePar
     true,
   );
 
-  $scope.loadCacheRules = function (cacheRuleCount, offset) {
+  $scope.loadCacheRules = function loadCacheRules(cacheRuleCount, offset) {
     $scope.searchLoading = true;
     CdnDomain
       .getCacheRules(

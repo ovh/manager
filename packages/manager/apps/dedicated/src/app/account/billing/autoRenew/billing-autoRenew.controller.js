@@ -47,7 +47,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
   'DOMAINS_AUTORENEW_BATCH_CERTIFICATE',
   'SUBSIDIARIES_WITH_RECENT_AUTORENEW',
 
-  function (
+  function BillingAutoRenewController(
     $filter,
     $location,
     $q,
@@ -141,7 +141,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       return labels;
     }, {});
 
-    $scope.getRenewLabel = function (renewFilterId) {
+    $scope.getRenewLabel = function getRenewLabel(renewFilterId) {
       return renewHelper.getRenewLabel(renewFilterId);
     };
 
@@ -213,7 +213,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       },
     };
 
-    $scope.onAutoRenewChange = function () {
+    $scope.onAutoRenewChange = function onAutoRenewChange() {
       $scope.nicRenew.setNicRenewParam();
     };
 
@@ -320,7 +320,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
      * @param {int} count Number of results by page
      * @param {int} offset Page offset
      */
-    $scope.getServices = function (count, offset) {
+    $scope.getServices = function getServices(count, offset) {
       $scope.count = count;
       $scope.offset = offset;
 
@@ -403,7 +403,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     /**
      * Called by select all checkbox on table header
      */
-    $scope.checkboxStateChange = function (state) {
+    $scope.checkboxStateChange = function checkboxStateChange(state) {
       const newDelegationValue = state !== 0;
       if (!newDelegationValue) {
         uncheckAll();
@@ -415,11 +415,11 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       });
     };
 
-    $scope.clearSelectedServices = function () {
+    $scope.clearSelectedServices = function clearSelectedServices() {
       uncheckAll();
     };
 
-    $scope.updateServices = function (service) {
+    $scope.updateServices = function updateServices(service) {
       if (service) {
         $scope.services.selected = [service];
       }
@@ -432,7 +432,9 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       }
     };
 
-    $scope.verifyUserHasAutoRenewRightOnService = function (service) {
+    $scope.verifyUserHasAutoRenewRightOnService = function verifyUserHasAutoRenewRightOnService(
+      service,
+    ) {
       return userIsBillingOrAdmin(service, $scope.user);
     };
 
@@ -454,7 +456,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       return serviceToResiliate;
     }
 
-    $scope.resiliateService = function (service) {
+    $scope.resiliateService = function resiliateService(service) {
       $scope.serviceToKeep = service;
       const serviceToResiliate = getServiceToResiliate(service);
 
@@ -465,7 +467,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       }
     };
 
-    $scope.cancelDeleteService = function (service) {
+    $scope.cancelDeleteService = function cancelDeleteService(service) {
       const serviceToResiliate = getServiceToResiliate(service);
 
       $scope.setAction('cancelDelete', cloneDeep(serviceToResiliate), 'autoRenew');
@@ -474,7 +476,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     /**
      * Select all auto renew services
      */
-    $scope.selectAutomatic = function () {
+    $scope.selectAutomatic = function selectAutomatic() {
       const autoList = selectByRenewalMode(true);
       $scope.services.selected = cloneDeep(autoList);
     };
@@ -482,7 +484,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     /**
      * Select all manual renew services
      */
-    $scope.selectManual = function () {
+    $scope.selectManual = function selectManual() {
       const manualList = selectByRenewalMode(false);
       $scope.services.selected = cloneDeep(manualList);
     };
@@ -515,11 +517,13 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       );
     });
 
-    $scope.editionDisabled = function ({ renew: { deleteAtExpiration, manualPayment } }) {
+    $scope.editionDisabled = function editionDisabled(
+      { renew: { deleteAtExpiration, manualPayment } },
+    ) {
       return deleteAtExpiration || manualPayment;
     };
 
-    $scope.getExpirationClass = function (service) {
+    $scope.getExpirationClass = function getExpirationClass(service) {
       if (renewHelper.serviceHasAutomaticRenew(service)) {
         return '';
       }
@@ -538,7 +542,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       return '';
     };
 
-    $scope.getRenewUrl = function () {
+    $scope.getRenewUrl = function getRenewUrl() {
       const subsidiary = get($scope, 'user.ovhSubsidiary', false);
       if (!subsidiary || !billingUrls.renew[subsidiary]) {
         return constants.renew.replace('{serviceName}', '');
@@ -548,7 +552,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     };
 
 
-    $scope.manualRenew = function () {
+    $scope.manualRenew = function manualRenew() {
       const services = $scope.services.selected
         .filter(service => !renewHelper.serviceHasAutomaticRenew(service));
       $scope.$emit(AUTORENEW_EVENT.PAY, services);
@@ -557,7 +561,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       $window.open($scope.getRenewUrl() + parameters.join('%20'), '_blank');
     };
 
-    $scope.getDatasToExport = function () {
+    $scope.getDatasToExport = function getDatasToExport() {
       $scope.exportCSV.load = true;
 
       const datasToReturn = [[$translate.instant('autorenew_service_type'), $translate.instant('autorenew_service_name'), $translate.instant('autorenew_service_date'), $translate.instant('autorenew_service_renew_frequency_title')]];
@@ -574,52 +578,52 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       reverse: false,
     };
 
-    $scope.order = function (predicate) {
+    $scope.order = function order(predicate) {
       $scope.orderByState.predicate = predicate;
       $scope.orderByState.reverse = !$scope.orderByState.reverse;
       $scope.$broadcast('paginationServerSide.loadPage', 1, 'serviceTable');
     };
 
-    $scope.terminateHostingWeb = function (service) {
+    $scope.terminateHostingWeb = function terminateHostingWeb(service) {
       $scope.setAction('terminateHostingWeb', cloneDeep([service]), 'autoRenew');
     };
 
-    $scope.terminateEmail = function (service) {
+    $scope.terminateEmail = function terminateEmail(service) {
       $scope.setAction('terminateEmail', cloneDeep([service]), 'autoRenew');
     };
 
-    $scope.terminatePrivateDatabase = function (service) {
+    $scope.terminatePrivateDatabase = function terminatePrivateDatabase(service) {
       $scope.setAction('terminatePrivateDatabase', cloneDeep([service]), 'autoRenew');
     };
 
-    $scope.canResiliate = function (service, user) {
+    $scope.canResiliate = function canResiliate(service, user) {
       const canDeleteAtExpiration = service.canDeleteAtExpiration
         || (service.service && service.service.canDeleteAtExpiration);
       return canDeleteAtExpiration && userIsBillingOrAdmin(service, user);
     };
 
-    $scope.canCancelResiliation = function (service, user) {
+    $scope.canCancelResiliation = function canCancelResiliation(service, user) {
       return service.renew
         && service.renew.deleteAtExpiration
         && !service.renew.manualPayment && userIsBillingOrAdmin(service, user);
     };
 
-    $scope.canEnableAutorenew = function (service) {
+    $scope.canEnableAutorenew = function canEnableAutorenew(service) {
       return service.renewalType !== 'oneShot' && service.renew && (service.renew.manualPayment || !service.renew.automatic);
     };
 
-    $scope.enableAutorenew = function (service) {
+    $scope.enableAutorenew = function enableAutorenew(service) {
       if (!$scope.hasDefaultValidPaymentMean) {
         return $scope.setAction('warnPaymentMean', clone([service]), 'autoRenew');
       }
       return $scope.setAction('enable', clone([service]), 'autoRenew');
     };
 
-    $scope.disableAutorenew = function (service) {
+    $scope.disableAutorenew = function disableAutorenew(service) {
       $scope.setAction('disable', clone([service]), 'autoRenew');
     };
 
-    $scope.disableAutorenewForDomains = function () {
+    $scope.disableAutorenewForDomains = function disableAutorenewForDomains() {
       $scope.setAction('disableAutoRenewDomains', null, 'autoRenew');
     };
 
@@ -628,7 +632,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       $scope.$broadcast('paginationServerSide.loadPage', 1, 'serviceTable');
     };
 
-    $scope.onSelectedTypeChanged = function () {
+    $scope.onSelectedTypeChanged = function onSelectedTypeChanged() {
       const type = $scope.serviceTypeObject.value;
       $scope.services.selectedType = type ? type.key : null;
 

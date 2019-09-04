@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 
-angular.module('managerApp').controller('XdslAccessPortResetCtrl', function ($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, TucToastError) {
-  this.resetDslam = function () {
+angular.module('managerApp').controller('XdslAccessPortResetCtrl', function XdslAccessPortResetCtrl($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, TucToastError) {
+  this.resetDslam = function resetDslam() {
     if (isEmpty($stateParams.serviceName) || isEmpty($stateParams.number)) {
       TucToast.error($translate.instant('xdsl_access_dslam_reset_an_error_ocurred'));
     }

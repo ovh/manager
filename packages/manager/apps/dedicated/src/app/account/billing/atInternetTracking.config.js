@@ -1,6 +1,12 @@
 angular.module('Billing.services').run(['$rootScope', 'atInternet', 'AUTORENEW_EVENT', 'PAYMENT_EVENT', 'OVH_ACCOUNT_EVENT', 'FIDELITY_EVENT',
-  function ($rootScope, atInternet, AUTORENEW_EVENT, PAYMENT_EVENT, OVH_ACCOUNT_EVENT,
-    FIDELITY_EVENT) {
+  function BillingServicesRun(
+    $rootScope,
+    atInternet,
+    AUTORENEW_EVENT,
+    PAYMENT_EVENT,
+    OVH_ACCOUNT_EVENT,
+    FIDELITY_EVENT,
+  ) {
     function trackClickEvent(event) {
       return atInternet.trackClick({
         name: event.name,

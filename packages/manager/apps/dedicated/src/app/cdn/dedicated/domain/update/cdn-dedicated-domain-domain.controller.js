@@ -1,7 +1,7 @@
 angular.module('App').controller('CdnUpdateDomainCtrl', ($scope, $stateParams, $translate, CdnDomain) => {
   $scope.domain = $scope.currentActionData;
 
-  $scope.updateDomain = function () {
+  $scope.updateDomain = function updateDomain() {
     $scope.resetAction();
     const currentStatus = $scope.domain.mode === 'ON';
     CdnDomain.updateDomain($stateParams.productId, $stateParams.domain, !currentStatus).then(

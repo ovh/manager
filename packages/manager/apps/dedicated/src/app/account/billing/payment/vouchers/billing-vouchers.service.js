@@ -1,4 +1,4 @@
-angular.module('Billing.services').service('BillingVouchers', function (OvhHttp) {
+angular.module('Billing.services').service('BillingVouchers', function BillingVouchers(OvhHttp) {
   const cache = {
     vouchers: 'UNIVERS_BILLING_VOUCHERS',
     voucher: 'UNIVERS_BILLING_VOUCHER',
@@ -6,7 +6,7 @@ angular.module('Billing.services').service('BillingVouchers', function (OvhHttp)
     movement: 'UNIVERS_BILLING_VOUCHER_MOVEMENT',
   };
 
-  this.getVouchers = function (opts) {
+  this.getVouchers = function getVouchers(opts) {
     return OvhHttp.get('/me/voucherAccount', {
       rootPath: 'apiv6',
       cache: cache.vouchers,
@@ -14,7 +14,7 @@ angular.module('Billing.services').service('BillingVouchers', function (OvhHttp)
     });
   };
 
-  this.getVoucher = function (opts) {
+  this.getVoucher = function getVoucher(opts) {
     return OvhHttp.get('/me/voucherAccount/{id}', {
       rootPath: 'apiv6',
       urlParams: {
@@ -24,7 +24,7 @@ angular.module('Billing.services').service('BillingVouchers', function (OvhHttp)
     });
   };
 
-  this.getMovements = function (opts) {
+  this.getMovements = function getMovements(opts) {
     return OvhHttp.get('/me/voucherAccount/{id}/movements', {
       rootPath: 'apiv6',
       urlParams: {
@@ -35,7 +35,7 @@ angular.module('Billing.services').service('BillingVouchers', function (OvhHttp)
     });
   };
 
-  this.getMovement = function (opts) {
+  this.getMovement = function getMovement(opts) {
     return OvhHttp.get('/me/voucherAccount/{id}/movements/{movementId}', {
       rootPath: 'apiv6',
       urlParams: {

@@ -53,7 +53,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
     loading: false,
   };
 
-  $scope.load = function () {
+  $scope.load = function load() {
     $scope.loader.loading = true;
     $scope.installation.selectGabarit = null;
     $scope.installation.selectFamily = null;
@@ -76,7 +76,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
       });
   };
 
-  $scope.getCountFilter = function (itemFamily) {
+  $scope.getCountFilter = function getCountFilter(itemFamily) {
     const tab = $filter('filter')($scope.installation.distributionList, { family: itemFamily });
     $scope.countFilter[itemFamily] = tab.length;
 
@@ -89,12 +89,12 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
     return tab;
   };
 
-  $scope.setSelectGabarit = function (gabarit) {
+  $scope.setSelectGabarit = function setSelectGabarit(gabarit) {
     $scope.installation.selectGabarit = gabarit;
     $scope.installation.selectLanguage = $scope.installation.selectGabarit.defaultLanguage;
   };
 
-  $scope.clearErrorPersonalTemplate = function () {
+  $scope.clearErrorPersonalTemplate = function clearErrorPersonalTemplate() {
     $scope.errorGab.ws = null;
   };
 
@@ -111,7 +111,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
   }
 
   // call after select gabarit
-  $scope.loadStep2 = function () {
+  $scope.loadStep2 = function loadStep2() {
     let tempHardwareRaid;
     $scope.loader.loading = true;
     $scope.informations.hardwareRaid = null;
@@ -192,7 +192,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
     $scope.load();
   });
 
-  $scope.deleteGabarit = function () {
+  $scope.deleteGabarit = function deleteGabarit() {
     $scope.loader.loading = true;
 
     Server.deleteGabarit($stateParams.productId, $scope.installation.deleteGabarit.id).then(
@@ -248,7 +248,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
       });
   }
 
-  $scope.install = function () {
+  $scope.install = function install() {
     if ($scope.installation.options.saveGabarit) {
       $scope.loader.loading = true;
       Server
@@ -288,7 +288,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
   });
 
   // return range between 1 and nbdisque of server if > 1
-  $scope.getNbDisqueList = function (nbdisk) {
+  $scope.getNbDisqueList = function getNbDisqueList(nbdisk) {
     if (nbdisk > 1) {
       return range(1, nbdisk + 1);
     }

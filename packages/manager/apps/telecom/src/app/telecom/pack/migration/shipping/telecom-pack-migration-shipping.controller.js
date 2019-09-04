@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', function ($q, $translate, TucPackMigrationProcess, OvhContact, OvhApiPackXdsl, TucToast) {
+angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', function TelecomPackMigrationShippingCtrl($q, $translate, TucPackMigrationProcess, OvhContact, OvhApiPackXdsl, TucToast) {
   const self = this;
 
   self.process = null;
@@ -24,7 +24,7 @@ angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', func
   =            ACTIONS            =
   =============================== */
 
-  self.cancelMigration = function () {
+  self.cancelMigration = function cancelMigration() {
     TucPackMigrationProcess.cancelMigration();
   };
 

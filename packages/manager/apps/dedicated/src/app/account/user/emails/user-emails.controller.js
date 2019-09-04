@@ -6,7 +6,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails', [
   'UserAccount.services.emails',
   'Alerter',
 
-  function ($q, $location, $scope, $translate, Emails, Alerter) {
+  function UserAccountEmailsController($q, $location, $scope, $translate, Emails, Alerter) {
     const self = this;
 
     $scope.itemsPerPage = 10;

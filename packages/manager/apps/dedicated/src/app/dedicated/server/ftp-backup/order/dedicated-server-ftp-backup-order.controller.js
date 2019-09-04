@@ -8,7 +8,7 @@ angular.module('App').controller('FtpBackupOrdercontroller', ($scope, $statePara
     agreeContract: false,
   };
 
-  $scope.load = function () {
+  $scope.load = function load() {
     $scope.loading = true;
     Server.getFtpBackupOrder($stateParams.productId).then(
       (data) => {
@@ -23,7 +23,7 @@ angular.module('App').controller('FtpBackupOrdercontroller', ($scope, $statePara
     );
   };
 
-  $scope.getDetail = function () {
+  $scope.getDetail = function getDetail() {
     $scope.loading = true;
     Server
       .getFtpBackupOrderDetail(
@@ -46,7 +46,7 @@ angular.module('App').controller('FtpBackupOrdercontroller', ($scope, $statePara
       );
   };
 
-  $scope.orderCapacity = function () {
+  $scope.orderCapacity = function orderCapacity() {
     $scope.loading = true;
     Server
       .postFtpBackupOrderDetail(

@@ -6,7 +6,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
   '$translate',
   'UserAccount.services.doubleAuth.totp',
   'Alerter',
-  function ($rootScope, $scope, $translate, DoubleAuthTotpService, Alerter) {
+  function UserAccountDoubleAuthTotpEditController(
+    $rootScope,
+    $scope,
+    $translate,
+    DoubleAuthTotpService,
+    Alerter,
+  ) {
     $scope.totp = {
       totpAccount: get($scope, 'currentActionData', {}),
       description: get($scope, 'currentActionData.description', ''),

@@ -1,10 +1,10 @@
-angular.module('Billing.services').service('BillingFidelity', function ($http, $cacheFactory) {
+angular.module('Billing.services').service('BillingFidelity', function BillingFidelity($http, $cacheFactory) {
   const fidelityProxyPath = 'apiv6/me/fidelityAccount';
 
   const fidelityAccountCache = $cacheFactory('UNIVERS_BILLING_FIDELITYACCOUNT');
   const movementsCache = $cacheFactory('UNIVERS_BILLING_FIDELITYMOVEMENTS');
 
-  this.getFidelityAccount = function () {
+  this.getFidelityAccount = function getFidelityAccount() {
     return $http
       .get(fidelityProxyPath, {
         cache: fidelityAccountCache,
@@ -12,7 +12,7 @@ angular.module('Billing.services').service('BillingFidelity', function ($http, $
       .then(response => response.data);
   };
 
-  this.getMovements = function (_dateStart, _dateEnd) {
+  this.getMovements = function getMovements(_dateStart, _dateEnd) {
     let dateStart = _dateStart;
     let dateEnd = _dateEnd;
 
@@ -38,7 +38,7 @@ angular.module('Billing.services').service('BillingFidelity', function ($http, $
       .then(response => response.data);
   };
 
-  this.getMovementsDetails = function (movementId) {
+  this.getMovementsDetails = function getMovementsDetails(movementId) {
     return $http
       .get([fidelityProxyPath, 'movements', movementId].join('/'), {
         cache: movementsCache,
@@ -46,7 +46,7 @@ angular.module('Billing.services').service('BillingFidelity', function ($http, $
       .then(response => response.data);
   };
 
-  this.creditOrder = function (amount) {
+  this.creditOrder = function creditOrder(amount) {
     return $http
       .post([fidelityProxyPath, 'creditOrder'].join('/'), {
         amount,

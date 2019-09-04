@@ -7,19 +7,19 @@ angular.module('Billing').controller('BillingCtrl', ($scope, $location, BILLING_
   $scope.today = new Date();
   $scope.firstDayOfMonth = +new Date($scope.today.getFullYear(), $scope.today.getMonth(), 1);
 
-  $scope.isCurrentMonth = function (date) {
+  $scope.isCurrentMonth = function isCurrentMonth(date) {
     return +new Date(date.getFullYear(), date.getMonth(), 1) === $scope.firstDayOfMonth;
   };
 
-  $scope.getDateFormatted = function (date, type) {
+  $scope.getDateFormatted = function getDateFormatted(date, type) {
     return $filter('date')(date, type);
   };
 
-  $scope.getDayDateFormatted = function (date) {
+  $scope.getDayDateFormatted = function getDayDateFormatted(date) {
     return $filter('date')(date, 'dd');
   };
 
-  $scope.setAction = function (action, data, viewName) {
+  $scope.setAction = function setAction(action, data, viewName) {
     $scope.currentAction = action;
     $scope.currentActionData = data;
 
@@ -39,7 +39,7 @@ angular.module('Billing').controller('BillingCtrl', ($scope, $location, BILLING_
     }
   };
 
-  $scope.resetAction = function () {
+  $scope.resetAction = function resetAction() {
     $scope.setAction();
   };
 });

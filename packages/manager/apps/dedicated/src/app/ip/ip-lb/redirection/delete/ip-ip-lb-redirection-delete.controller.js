@@ -5,7 +5,7 @@ angular.module('Module.ip.controllers').controller('IplbPortsRedirectionDeleteCt
 
   /* Action */
 
-  $scope.deletePortsRedirection = function () {
+  $scope.deletePortsRedirection = function deletePortsRedirection() {
     $scope.loading = true;
     Iplb.deletePortsRedirection($scope.data.selectedIplb.value, $scope.data.srcPort)
       .then(

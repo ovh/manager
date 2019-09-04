@@ -7,7 +7,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
   '$translate',
   'UserAccount.services.doubleAuth.totp',
   'Alerter',
-  function ($scope, $q, $translate, DoubleAuthTotpService, Alerter) {
+  function UserAccountDoubleAuthTotpController(
+    $scope,
+    $q,
+    $translate,
+    DoubleAuthTotpService,
+    Alerter,
+  ) {
     $scope.totp = {
       totpAccounts: null,
       isLoading: false,

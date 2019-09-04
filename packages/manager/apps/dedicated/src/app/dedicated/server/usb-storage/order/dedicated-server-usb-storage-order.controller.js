@@ -55,7 +55,7 @@ angular.module('App').controller('UsbStorageOrderCtrl', ($rootScope, $scope, $q,
     );
   }
 
-  $scope.getDurations = function () {
+  $scope.getDurations = function getDurations() {
     $scope.durations = {
       available: null,
       details: {},
@@ -75,7 +75,7 @@ angular.module('App').controller('UsbStorageOrderCtrl', ($rootScope, $scope, $q,
   =            STEP 3            =
   ============================== */
 
-  $scope.loadContracts = function () {
+  $scope.loadContracts = function loadContracts() {
     $scope.agree.value = false;
     if (!$scope.durations.details[$scope.model.duration].contracts
       || !$scope.durations.details[$scope.model.duration].contracts.length) {
@@ -83,7 +83,7 @@ angular.module('App').controller('UsbStorageOrderCtrl', ($rootScope, $scope, $q,
     }
   };
 
-  $scope.backToContracts = function () {
+  $scope.backToContracts = function backToContracts() {
     if (!$scope.durations.details[$scope.model.duration].contracts
       || !$scope.durations.details[$scope.model.duration].contracts.length) {
       $rootScope.$broadcast('wizard-goToStep', 2);
@@ -94,11 +94,11 @@ angular.module('App').controller('UsbStorageOrderCtrl', ($rootScope, $scope, $q,
         =            STEP 4            =
         ============================== */
 
-  $scope.getResumePrice = function (price) {
+  $scope.getResumePrice = function getResumePrice(price) {
     return price.value === 0 ? $translate.instant('price_free') : $translate.instant('price_ht_label', { price: price.text });
   };
 
-  $scope.orderUsbDisk = function () {
+  $scope.orderUsbDisk = function orderUsbDisk() {
     $scope.loading.validation = true;
     Server
       .orderUsbStorage($stateParams.productId, $scope.model.capacity, $scope.model.duration)

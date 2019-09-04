@@ -49,7 +49,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     return $scope.types[licenseType].existingServiceName;
   }
 
-  const getOrderableVersion = function () {
+  const getOrderableVersion = function getOrderableVersion() {
     $scope.loaders.orderableVersion = true;
 
     if ($scope.ipValid.value) {
@@ -137,11 +137,11 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     },
   };
 
-  $scope.hasMoreOptions = function () {
+  $scope.hasMoreOptions = function hasMoreOptions() {
     return $scope.selected.options[$scope.selected.licenseType] !== null;
   };
 
-  $scope.isSelectionValid = function () {
+  $scope.isSelectionValid = function isSelectionValid() {
     let valid = $scope.selected.licenseType !== null
       && $scope.selected.version !== null
       && $scope.selected.ip !== null;
@@ -179,7 +179,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     value: false,
   };
 
-  $scope.selectType = function (type) {
+  $scope.selectType = function selectType(type) {
     if (type
         && type !== $scope.selected.licenseType
         && $scope.isAvailable(type)
@@ -214,7 +214,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     }
   };
 
-  $scope.isAvailable = function (type) {
+  $scope.isAvailable = function isAvailable(type) {
     if ($scope.types) {
       return !!$scope.types[type]
         && $scope.types[type].options
@@ -226,11 +226,11 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     return false;
   };
 
-  $scope.resetAction = function () {
+  $scope.resetAction = function resetAction() {
     $scope.setAction(false);
   };
 
-  $scope.setAction = function (action, data) {
+  $scope.setAction = function setAction(action, data) {
     if (action) {
       $scope.currentAction = action;
       $scope.currentActionData = data;
@@ -275,7 +275,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     });
   }
 
-  $scope.ipIsValid = function () {
+  $scope.ipIsValid = function ipIsValid() {
     const block = $scope.selected.ipBlock.block.split('/');
     const mask = block[1];
     const range = block[0];
@@ -366,7 +366,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
   /**
    *  For plesk powerpack option only (and only for agora order)
    */
-  $scope.onPowerpackOptionChange = function () {
+  $scope.onPowerpackOptionChange = function onPowerpackOptionChange() {
     $scope.selected.options.PLESK.powerpack = $scope.powerpackModel.value
       ? { value: $scope.selected.version.more.powerPackPlanCode }
       : null;
@@ -385,7 +385,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     true,
   );
 
-  $scope.recheckIpBlockContained = function () {
+  $scope.recheckIpBlockContained = function recheckIpBlockContained() {
     if (!includes(getFilteredIps(), $scope.selected.ipBlock)) {
       $scope.selected.ipBlock = null;
       $scope.selected.ip = null;
@@ -416,7 +416,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     };
   }
 
-  $scope.getDuration = function () {
+  $scope.getDuration = function getDuration() {
     if (!$scope.loaders.durations && $scope.isSelectionValid()) {
       $scope.loaders.durations = true;
       const asking = getWhatToSendFromSelected();
@@ -443,13 +443,13 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     value: null,
   };
 
-  $scope.selectDuration = function () {
+  $scope.selectDuration = function selectDuration() {
     $scope.contractsValidated = {
       value: null,
     };
   };
 
-  $scope.generateBc = function () {
+  $scope.generateBc = function generateBc() {
     $scope.loaders.bc = true;
     License.orderLicenseOrderForDuration({
       licenseType: $scope.selected.licenseType,
@@ -463,7 +463,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     });
   };
 
-  $scope.getAgoraUrl = function () {
+  $scope.getAgoraUrl = function getAgoraUrl() {
     const asking = assign({ duration: $scope.selected.duration }, getWhatToSendFromSelected());
     $scope.selected.agoraUrl = '';
 
@@ -477,15 +477,15 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
       });
   };
 
-  $scope.openBc = function () {
+  $scope.openBc = function openBc() {
     window.open($scope.order.url);
   };
 
-  $scope.getBlockDisplay = function (ip) {
+  $scope.getBlockDisplay = function getBlockDisplay(ip) {
     return ip.block + (ip.reverse ? ` (${ip.reverse})` : '');
   };
 
-  $scope.filterBlocks = function () {
+  $scope.filterBlocks = function filterBlocks() {
     $('#licenseOrderBlockFilters').click();
   };
 

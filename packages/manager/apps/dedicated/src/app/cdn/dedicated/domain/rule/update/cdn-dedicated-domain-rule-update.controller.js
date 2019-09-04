@@ -5,7 +5,7 @@ angular.module('App').controller('CacherulesModifyTtlCtrl', ($scope, $stateParam
     ttl: null,
   };
 
-  $scope.modify = function () {
+  $scope.modify = function modify() {
     $scope.resetAction();
     CdnDomain
       .updateCacheruleTtl(

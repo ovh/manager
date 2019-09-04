@@ -27,7 +27,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
     root: null,
   };
 
-  $scope.getCurrent = function () {
+  $scope.getCurrent = function getCurrent() {
     angular.forEach($scope.netboots, (eachNetboot, netbootType) => {
       $scope.currentNetboot[netbootType] = '';
 
@@ -53,7 +53,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
     }
   };
 
-  $scope.firstStepValidation = function () {
+  $scope.firstStepValidation = function firstStepValidation() {
     return (
       $scope.currentNetboot.type === $scope.HARDDISK
             || ($scope.currentNetboot.type === $scope.RESCUE && $scope.currentNetboot.rescue !== '' && $scope.isValid.rescueMail)
@@ -68,7 +68,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
       || regRootDevice4.test($scope.rootDevice.root);
   }
 
-  $scope.getActiveOptions = function (networkOption) {
+  $scope.getActiveOptions = function getActiveOptions(networkOption) {
     return networkOption.value !== 'N';
   };
 
@@ -95,7 +95,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
     }, 300),
   );
 
-  $scope.setNetboot = function () {
+  $scope.setNetboot = function setNetboot() {
     const netbootId = $scope.currentNetboot[$scope.currentNetboot.type].id;
     const rootDevice = ($scope.currentNetboot.type === $scope.NETWORK && $scope.rootDevice.root)
       || $scope.server.rootDevice;
@@ -143,7 +143,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
     );
   }
 
-  $scope.loadNetboots = function () {
+  $scope.loadNetboots = function loadNetboots() {
     $scope.loading.init = true;
     Server.getNetboot($stateParams.productId)
       .then(

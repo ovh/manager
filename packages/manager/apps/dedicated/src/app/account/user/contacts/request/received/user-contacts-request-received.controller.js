@@ -7,7 +7,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
   'Alerter',
   'User',
 
-  function ($scope, $translate, Contacts, Alerter, User) {
+  function UserAccountContactsRequestReceivedController(
+    $scope,
+    $translate,
+    Contacts,
+    Alerter,
+    User,
+  ) {
     const self = this;
 
     self.loaders = {
@@ -33,7 +39,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       });
     }
 
-    self.getContactChangeTasks = function () {
+    self.getContactChangeTasks = function getContactChangeTasks() {
       self.loaders.tasks = true;
       self.contactTasksIds = [];
       self.contactTasksDetails = [];
@@ -61,12 +67,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
         });
     };
 
-    self.transformItem = function (id) {
+    self.transformItem = function transformItem(id) {
       self.loaders.tasks = true;
       return Contacts.getContactChangeTaskDetail(id);
     };
 
-    self.onTransformItemDone = function () {
+    self.onTransformItemDone = function onTransformItemDone() {
       self.loaders.tasks = false;
       setTimeout(() => {
         Contacts.killAllPolling({ namespace: 'user.contacts.receivedRequest' });

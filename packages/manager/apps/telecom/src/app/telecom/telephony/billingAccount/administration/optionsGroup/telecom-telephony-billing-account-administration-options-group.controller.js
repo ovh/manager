@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationOptionsGroup', function ($q, $state, $stateParams, $translate, OvhApiTelephony, OvhApiMe, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationOptionsGroup', function TelecomTelephonyBillingAccountAdministrationOptionsGroup($q, $state, $stateParams, $translate, OvhApiTelephony, OvhApiMe, TucToast) {
   const self = this;
 
   this.$state = $state;
@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     });
   }
 
-  self.hasChanges = function () {
+  self.hasChanges = function hasChanges() {
     return !(
       angular.equals(self.telephonySettings, self.optionsGroupForm.telephony)
             && angular.equals(self.userSettings, self.optionsGroupForm.user)
@@ -35,7 +35,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     =            ACTIONS            =
     =============================== */
 
-  self.changeSettings = function () {
+  self.changeSettings = function changeSettings() {
     if (self.optionsGroupSettings.$invalid || self.isChanging) {
       return this.$q.reject();
     }
@@ -60,7 +60,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     });
   };
 
-  self.cancelChange = function () {
+  self.cancelChange = function cancelChange() {
     self.optionsGroupForm.telephony = angular.copy(self.telephonySettings);
     self.optionsGroupForm.user = angular.copy(self.userSettings);
   };

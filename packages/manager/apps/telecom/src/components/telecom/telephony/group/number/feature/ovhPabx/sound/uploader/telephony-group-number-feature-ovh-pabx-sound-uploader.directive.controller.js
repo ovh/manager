@@ -2,7 +2,7 @@ import endsWith from 'lodash/endsWith';
 import last from 'lodash/last';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl', function ($q, $translate, TucToast) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl', function telephonyNumberOvhPabxSoundUploaderCtrl($q, $translate, TucToast) {
   const self = this;
 
   /*= ==============================
@@ -57,7 +57,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl
     =            EVENTS            =
     ============================== */
 
-  self.onSoundFileChoosed = function (file) {
+  self.onSoundFileChoosed = function onSoundFileChoosed(file) {
     // set model
     self.file = file;
 
@@ -99,7 +99,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.$errors = {
       extension: false,
       size: false,

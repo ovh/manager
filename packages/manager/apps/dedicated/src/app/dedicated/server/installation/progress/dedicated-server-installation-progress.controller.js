@@ -67,7 +67,7 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
     );
   }
 
-  $scope.load = function () {
+  $scope.load = function load() {
     Server.getTaskInProgress($stateParams.productId, 'reinstallServer').then(
       (taskTab) => {
         if (taskTab.length > 0) {
@@ -82,7 +82,7 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
     );
   };
 
-  $scope.refreshStepProgress = function () {
+  $scope.refreshStepProgress = function refreshStepProgress() {
     $scope.progress.currentStep = '';
     $scope.progress.errorMessage = null;
     $scope.progress.endStep = 0;
@@ -111,7 +111,7 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
       * 100 / $scope.progress.nbStep;
   };
 
-  $scope.cancelInstall = function () {
+  $scope.cancelInstall = function cancelInstall() {
     Server.cancelTask($stateParams.productId, $scope.progress.task.id).then(
       () => {
         $scope.progress.disableCancel = true;
@@ -124,7 +124,7 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
     );
   };
 
-  $scope.reduce = function () {
+  $scope.reduce = function reduce() {
     Polling.addKilledScope($scope.$id);
     $scope.resetAction();
   };

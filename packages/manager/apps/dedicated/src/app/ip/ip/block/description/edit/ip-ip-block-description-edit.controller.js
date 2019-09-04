@@ -13,7 +13,7 @@ angular.module('Module.ip.controllers').controller('IpEditIpDescriptionCtrl', ($
 
   /* Action */
 
-  $scope.editIpDescription = function () {
+  $scope.editIpDescription = function editIpDescription() {
     $scope.loading = true;
     Ip.editIpDescription($scope.data.ipBlock.ipBlock, $scope.model.description || '')
       .then(

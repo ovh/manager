@@ -94,21 +94,21 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupLine.prototype.getDisplayedName = function () {
+  TelephonyGroupLine.prototype.getDisplayedName = function getDisplayedName() {
     const self = this;
 
     return self.description || self.serviceName;
   };
 
-  TelephonyGroupLine.prototype.getOffers = function (params) {
+  TelephonyGroupLine.prototype.getOffers = function getOffers(params) {
     return OvhApiTelephony.Line().Offers().v6().query(params).$promise;
   };
 
-  TelephonyGroupLine.prototype.getOfferPhones = function (params) {
+  TelephonyGroupLine.prototype.getOfferPhones = function getOfferPhones(params) {
     return OvhApiTelephony.Line().Offers().v6().phones(params).$promise;
   };
 
-  TelephonyGroupLine.prototype.getOfferTypes = function () {
+  TelephonyGroupLine.prototype.getOfferTypes = function getOfferTypes() {
     return map(this.offers, (offer) => {
       const cleaned = offer
         .replace(/^voip\.main\.offer\./, '')
@@ -117,34 +117,34 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     });
   };
 
-  TelephonyGroupLine.prototype.isOffer = function (name) {
+  TelephonyGroupLine.prototype.isOffer = function isOffer(name) {
     const offerPrefix = `voip.main.offer.${name}`;
     return some(this.offers, offer => startsWith(offer, offerPrefix));
   };
 
-  TelephonyGroupLine.prototype.isIndividual = function () {
+  TelephonyGroupLine.prototype.isIndividual = function isIndividual() {
     return this.isOffer('individual');
   };
 
-  TelephonyGroupLine.prototype.isSipfax = function () {
+  TelephonyGroupLine.prototype.isSipfax = function isSipfax() {
     return this.isOffer('sipfax');
   };
 
-  TelephonyGroupLine.prototype.isVoicefax = function () {
+  TelephonyGroupLine.prototype.isVoicefax = function isVoicefax() {
     return get(this, 'getPublicOffer.name') === 'voicefax' || this.isOffer('voicefax');
   };
 
-  TelephonyGroupLine.prototype.isPriceplan = function () {
+  TelephonyGroupLine.prototype.isPriceplan = function isPriceplan() {
     return this.isOffer('priceplan');
   };
 
-  TelephonyGroupLine.prototype.isTrunk = function () {
+  TelephonyGroupLine.prototype.isTrunk = function isTrunk() {
     return get(this, 'getPublicOffer.name') === 'trunk' || this.isOffer('trunk');
   };
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupLine.prototype.save = function () {
+  TelephonyGroupLine.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.Line().v6().edit({
@@ -156,7 +156,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     }).$promise;
   };
 
-  TelephonyGroupLine.prototype.supportsPhonebook = function () {
+  TelephonyGroupLine.prototype.supportsPhonebook = function supportsPhonebook() {
     const self = this;
 
     if (isUndefined(self.hasSupportsPhonebook)) {
@@ -174,7 +174,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return $q.when(self.hasSupportsPhonebook);
   };
 
-  TelephonyGroupLine.prototype.getPhone = function () {
+  TelephonyGroupLine.prototype.getPhone = function getPhone() {
     const self = this;
 
     if (!self.phone && isUndefined(self.hasPhone)) {
@@ -198,7 +198,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return $q.when(self.phone);
   };
 
-  TelephonyGroupLine.prototype.getClick2Call = function () {
+  TelephonyGroupLine.prototype.getClick2Call = function getClick2Call() {
     const self = this;
 
     self.click2Call = new TelephonyGroupLineClick2Call({
@@ -209,11 +209,13 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return self.click2Call;
   };
 
-  TelephonyGroupLine.prototype.getAvailableTerminationReasons = function () {
-    return OvhApiTelephony.Line().v6().schema().$promise.then(schema => schema);
-  };
+  TelephonyGroupLine
+    .prototype
+    .getAvailableTerminationReasons = function getAvailableTerminationReasons() {
+      return OvhApiTelephony.Line().v6().schema().$promise.then(schema => schema);
+    };
 
-  TelephonyGroupLine.prototype.hasPendingOfferTasks = function () {
+  TelephonyGroupLine.prototype.hasPendingOfferTasks = function hasPendingOfferTasks() {
     const self = this;
 
     return OvhApiTelephony.Service().OfferTask().v6()
@@ -228,7 +230,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
       }).$promise))).then(tasks => filter(tasks, task => task.status === 'todo' || task.status === 'doing' || task.status === 'pause').length > 0);
   };
 
-  TelephonyGroupLine.prototype.getTerminating = function () {
+  TelephonyGroupLine.prototype.getTerminating = function getTerminating() {
     const self = this;
 
     return OvhApiTelephony.Service().OfferTask().v6().query({
@@ -254,7 +256,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   };
 
   // Get convert line to alias task
-  TelephonyGroupLine.prototype.getConvertionTask = function () {
+  TelephonyGroupLine.prototype.getConvertionTask = function getConvertionTask() {
     const self = this;
 
     return OvhApiTelephony.Service().OfferTask().v6().query({
@@ -277,7 +279,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   };
 
   /* Terminate/Resiliate Service */
-  TelephonyGroupLine.prototype.terminate = function (options) {
+  TelephonyGroupLine.prototype.terminate = function terminate(options) {
     const self = this;
     const params = {
       reason: options.id,
@@ -293,7 +295,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   };
 
   /* Cancel an Termination service */
-  TelephonyGroupLine.prototype.cancelTermination = function () {
+  TelephonyGroupLine.prototype.cancelTermination = function cancelTermination() {
     const self = this;
 
     return OvhApiTelephony.Line().v6().cancelTermination({
@@ -302,7 +304,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     }).$promise;
   };
 
-  TelephonyGroupLine.prototype.isIncludedInXdslPack = function () {
+  TelephonyGroupLine.prototype.isIncludedInXdslPack = function isIncludedInXdslPack() {
     const self = this;
 
     return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(lines => some(lines, { key: self.serviceName }));
@@ -310,7 +312,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  OPTIONS  ----------*/
 
-  TelephonyGroupLine.prototype.getOptions = function () {
+  TelephonyGroupLine.prototype.getOptions = function getOptions() {
     const self = this;
 
     if (!self.options) {
@@ -336,7 +338,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return $q.when(self.options);
   };
 
-  TelephonyGroupLine.prototype.saveOption = function (optionName, optionValue) {
+  TelephonyGroupLine.prototype.saveOption = function saveOption(optionName, optionValue) {
     const self = this;
     const lineOptions = {};
 
@@ -384,7 +386,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  IPS  ----------*/
 
-  TelephonyGroupLine.prototype.getIps = function () {
+  TelephonyGroupLine.prototype.getIps = function getIps() {
     const self = this;
 
     return OvhApiTelephony.Line().v6().ips({
@@ -398,7 +400,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  LAST REGISTRATIONS  ----------*/
 
-  TelephonyGroupLine.prototype.getLastRegistrations = function () {
+  TelephonyGroupLine.prototype.getLastRegistrations = function getLastRegistrations() {
     const self = this;
 
     return OvhApiTelephony.Line().v6().lastRegistrations({
@@ -418,20 +420,22 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
    *
    *  @return {Promise} That return an Object representing the current offer informations.
    */
-  TelephonyGroupLine.prototype.getCurrentOfferInformations = function () {
-    const self = this;
+  TelephonyGroupLine
+    .prototype
+    .getCurrentOfferInformations = function getCurrentOfferInformations() {
+      const self = this;
 
-    return OvhApiTelephony.Line().v6().offer({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-    }).$promise.then((infos) => {
-      self.offerInformations = new TelephonyGroupLineOffer(angular.extend(infos, {
-        details: self.offers,
-      }));
+      return OvhApiTelephony.Line().v6().offer({
+        billingAccount: self.billingAccount,
+        serviceName: self.serviceName,
+      }).$promise.then((infos) => {
+        self.offerInformations = new TelephonyGroupLineOffer(angular.extend(infos, {
+          details: self.offers,
+        }));
 
-      return infos;
-    });
-  };
+        return infos;
+      });
+    };
 
   /**
    *  Get available offers for a offerChange operation.
@@ -439,7 +443,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
    *
    *  @return {Promise} That return an Array of Object representing offers.
    */
-  TelephonyGroupLine.prototype.getAvailableOffers = function () {
+  TelephonyGroupLine.prototype.getAvailableOffers = function getAvailableOffers() {
     const self = this;
 
     return OvhApiTelephony.Service().v6().offerChanges({
@@ -460,7 +464,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
    *
    *  @return {Promise} That return the current instance of line.
    */
-  TelephonyGroupLine.prototype.changeOffer = function (newOffer) {
+  TelephonyGroupLine.prototype.changeOffer = function changeOffer(newOffer) {
     const self = this;
 
     return OvhApiTelephony.Service().v6().changeOffer({
@@ -480,7 +484,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
    *
    *  @return {Promise} That return an object representing the new offer.
    */
-  TelephonyGroupLine.prototype.getOfferChange = function () {
+  TelephonyGroupLine.prototype.getOfferChange = function getOfferChange() {
     const self = this;
 
     return OvhApiTelephony.Service().v6().offerChange({
@@ -506,7 +510,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
    *
    *  @return {Promise} That return current instance of GroupLine.
    */
-  TelephonyGroupLine.prototype.cancelOfferChange = function () {
+  TelephonyGroupLine.prototype.cancelOfferChange = function cancelOfferChange() {
     const self = this;
 
     return OvhApiTelephony.Service().v6().cancelOfferChange({
@@ -520,7 +524,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  SIP DOMAIN  ----------*/
 
-  TelephonyGroupLine.prototype.getAvailableSipDomains = function () {
+  TelephonyGroupLine.prototype.getAvailableSipDomains = function getAvailableSipDomains() {
     const self = this;
 
     return OvhApiTelephony.Line().v6().sipDomains({
@@ -531,7 +535,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  SCHEDULER  ----------*/
 
-  TelephonyGroupLine.prototype.getScheduler = function () {
+  TelephonyGroupLine.prototype.getScheduler = function getScheduler() {
     const self = this;
 
     if (!self.scheduler) {
@@ -546,7 +550,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  TIME CONDITION  ----------*/
 
-  TelephonyGroupLine.prototype.getTimeCondition = function () {
+  TelephonyGroupLine.prototype.getTimeCondition = function getTimeCondition() {
     const self = this;
 
     if (!self.timeCondition) {
@@ -562,7 +566,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupLine.prototype.startEdition = function () {
+  TelephonyGroupLine.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -576,7 +580,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return self;
   };
 
-  TelephonyGroupLine.prototype.stopEdition = function (cancel) {
+  TelephonyGroupLine.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -591,7 +595,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return self;
   };
 
-  TelephonyGroupLine.prototype.hasChange = function (path) {
+  TelephonyGroupLine.prototype.hasChange = function hasChange(path) {
     const self = this;
 
     return get(self.saveForEdition, path) !== get(self, path);

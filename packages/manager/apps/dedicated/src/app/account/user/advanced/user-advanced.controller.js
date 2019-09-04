@@ -2,7 +2,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.advanced', [
   'UserAccount.services.Infos',
   'Alerter',
   '$translate',
-  function (userAccountServiceInfos, Alerter, $translate) {
+  function UserAccountAdvancedController(userAccountServiceInfos, Alerter, $translate) {
     this.isLoadingDeveloperMode = false;
 
     this.$ngInit = () => {

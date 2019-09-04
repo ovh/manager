@@ -34,7 +34,7 @@ export default () => ({
 
           if (isAcceptedFile) {
             const reader = new $window.FileReader();
-            reader.onload = function () {
+            reader.onload = function onload() {
               $timeout(() => {
                 if (angular.isDefined($attrs.ngRead)) {
                   self.ngRead({ data: reader.result });

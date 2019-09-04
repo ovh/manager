@@ -5,7 +5,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements.det
   'Alerter',
   '$translate',
   'User',
-  function ($stateParams, $q, Service, Alerter, $translate, User) {
+  function UserAccountAgreementsDtailsController(
+    $stateParams,
+    $q,
+    Service,
+    Alerter,
+    $translate,
+    User,
+  ) {
     const CGV_AGREEMENT_ID = 1635;
 
     this.$ngInit = () => {

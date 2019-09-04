@@ -1,13 +1,13 @@
 angular.module('services').service('dedicatedCloudMailingList', [
   'OvhHttp',
-  function (OvhHttp) {
-    this.getAvailableMailingLists = function () {
+  function dedicatedCloudMailingListService(OvhHttp) {
+    this.getAvailableMailingLists = function getAvailableMailingLists() {
       return OvhHttp.get('/me/mailingList/availableLists', {
         rootPath: 'apiv6',
       });
     };
 
-    this.postMailingList = function (email, mailingList) {
+    this.postMailingList = function postMailingList(email, mailingList) {
       return OvhHttp.post('/me/mailingList/subscribe', {
         rootPath: 'apiv6',
         data: {

@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
 
-angular.module('Module.ip.controllers').controller('IpGameFirewallCtrl', function ($scope, $rootScope, $translate, Ip, IpGameFirewall, Alerter, $q) {
+angular.module('Module.ip.controllers').controller('IpGameFirewallCtrl', function IpGameFirewallCtrl($scope, $rootScope, $translate, Ip, IpGameFirewall, Alerter, $q) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
 
@@ -134,11 +134,11 @@ angular.module('Module.ip.controllers').controller('IpGameFirewallCtrl', functio
       });
   }
 
-  self.refreshRules = function () {
+  self.refreshRules = function refreshRules() {
     getRules();
   };
 
-  self.hideGameFirewall = function () {
+  self.hideGameFirewall = function hideGameFirewall() {
     $rootScope.$broadcast('ips.display', 'table');
   };
 

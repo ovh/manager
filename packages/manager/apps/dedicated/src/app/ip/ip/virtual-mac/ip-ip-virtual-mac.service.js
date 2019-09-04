@@ -5,7 +5,7 @@ angular.module('Module.ip.services').service('IpVirtualMac', [
   '$q',
   'constants',
   'Poll',
-  function ($http, $q, constants, Poll) {
+  function IpVirtualMacService($http, $q, constants, Poll) {
     const swsIpPath = '2api/sws/module/ip';
     const swsProxypassPath = 'apiv6';
 

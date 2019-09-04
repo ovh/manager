@@ -6,7 +6,7 @@
 angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.activate', ($scope, $translate, BillingAutoRenew, Alerter) => {
   $scope.nicRenew = $scope.currentActionData.nicRenew;
 
-  $scope.activeAutoRenew = function () {
+  $scope.activeAutoRenew = function activeAutoRenew() {
     const { renewDay } = $scope.nicRenew;
     const active = true;
     const promise = !$scope.nicRenew.initialized

@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('App').controller('DedicatedCloudUserRightsCtrl', function ($scope, $stateParams, $translate, DedicatedCloud) {
+angular.module('App').controller('DedicatedCloudUserRightsCtrl', function DedicatedCloudUserRightsCtrl($scope, $stateParams, $translate, DedicatedCloud) {
   const self = this;
   self.selectedUser = null;
   self.loading = {
@@ -19,7 +19,7 @@ angular.module('App').controller('DedicatedCloudUserRightsCtrl', function ($scop
     },
   }));
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return DedicatedCloud

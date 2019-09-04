@@ -3,8 +3,17 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 
 angular.module('managerApp').controller('XdslModemDhcpCtrl',
-  function ($q, $stateParams, $translate, $uibModal, OvhApiXdsl, PackXdslModemDhcpObject,
-    TucPackXdslModemMediator, TucToast, tucValidator) {
+  function XdslModemDhcpCtrl(
+    $q,
+    $stateParams,
+    $translate,
+    $uibModal,
+    OvhApiXdsl,
+    PackXdslModemDhcpObject,
+    TucPackXdslModemMediator,
+    TucToast,
+    tucValidator,
+  ) {
     const self = this;
     this.validator = tucValidator;
     this.mediator = TucPackXdslModemMediator;
@@ -15,7 +24,7 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
      * @param {PackXdslModemDhcpObject} dhcp   dhcp to update
      * @param                 {Boolean} valid  Form valid ?
      */
-    this.watchKey = function ($event, dhcp, valid) {
+    this.watchKey = function watchKey($event, dhcp, valid) {
       if ($event.keyCode === 13 && valid) {
         self.submit(dhcp);
       }
@@ -29,11 +38,11 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
      * @param {PackXdslModemDhcpObject} lan LAN to update
      * @return {Promise}
      */
-    this.submit = function (dhcp) {
+    this.submit = function submit(dhcp) {
       return dhcp.save($stateParams.serviceName);
     };
 
-    this.isIpInOrder = function (ip1Param, ip2Param) {
+    this.isIpInOrder = function isIpInOrder(ip1Param, ip2Param) {
       let ip1 = ip1Param;
       let ip2 = ip2Param;
       ip1 = map(ip1.split(/\./), elt => parseInt(elt, 10));

@@ -8,7 +8,7 @@ angular.module('App').controller('NasOrderCtrl', [
   '$translate',
   '$filter',
   'Alerter',
-  function (NASHA_URL, $scope, Nas, $timeout, $translate, $filter, Alerter) {
+  function NasOrderCtrl(NASHA_URL, $scope, Nas, $timeout, $translate, $filter, Alerter) {
     $scope.nasOrder = {
       model: null,
       loading: false,
@@ -23,7 +23,7 @@ angular.module('App').controller('NasOrderCtrl', [
 
     $scope.redirectToCloud = `${NASHA_URL}/new`;
 
-    $scope.load = function () {
+    $scope.load = function load() {
       $scope.nasOrder.loading = true;
       Nas.getOrderList().then(
         (nasOrder) => {
@@ -41,7 +41,7 @@ angular.module('App').controller('NasOrderCtrl', [
       );
     };
 
-    $scope.selectNas = function (nas, index) {
+    $scope.selectNas = function selectNas(nas, index) {
       $scope.nasOrder.nashaSelectedIndex = null;
       $scope.nasOrder.nashaSelected = null;
       if (index != null) {
@@ -61,7 +61,7 @@ angular.module('App').controller('NasOrderCtrl', [
       return true;
     };
 
-    $scope.selectNasha = function (nas, index) {
+    $scope.selectNasha = function selectNasha(nas, index) {
       $scope.nasOrder.nasSelectedIndex = null;
       $scope.nasOrder.nasSelected = null;
       if (index != null) {
@@ -82,7 +82,7 @@ angular.module('App').controller('NasOrderCtrl', [
       return true;
     };
 
-    $scope.getInfoOrder = function () {
+    $scope.getInfoOrder = function getInfoOrder() {
       if ($scope.nasOrder.nashaSelectedIndex != null) {
         return {
           nasha: true,

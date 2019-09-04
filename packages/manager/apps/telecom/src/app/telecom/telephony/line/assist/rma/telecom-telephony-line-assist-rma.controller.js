@@ -1,7 +1,7 @@
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', function ($stateParams, $q, $translate, TucToast, TucToastError, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', function TelecomTelephonyLineAssistRmaCtrl($stateParams, $q, $translate, TucToast, TucToastError, OvhApiTelephony) {
   const self = this;
 
   function init() {
@@ -11,14 +11,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
     }).catch(err => new TucToastError(err));
   }
 
-  self.fetchPhone = function () {
+  self.fetchPhone = function fetchPhone() {
     return OvhApiTelephony.Line().Phone().v6().get({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }).$promise;
   };
 
-  self.fetchRma = function () {
+  self.fetchRma = function fetchRma() {
     return OvhApiTelephony.Line().Phone().RMA().v6()
       .query({
         billingAccount: $stateParams.billingAccount,
@@ -36,7 +36,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
         }).$promise)));
   };
 
-  self.cancelRma = function (rma) {
+  self.cancelRma = function cancelRma(rma) {
     set(rma, 'isCancelling', true);
     return OvhApiTelephony.Line().Phone().RMA().v6()
       .cancel({
@@ -53,12 +53,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
       });
   };
 
-  self.formatEquipementReference = function (ref) {
+  self.formatEquipementReference = function formatEquipementReference(ref) {
     // example : 'AB12345' => 'AB:12:34:5'
     return ((ref || '').match(/\w{1,2}/g) || []).join(':');
   };
 
-  self.getPdfUrl = function (rma) {
+  self.getPdfUrl = function getPdfUrl(rma) {
     return `http://www.ovh.com/cgi-bin/telephony/rma.pl?reference=${rma.id}`;
   };
 

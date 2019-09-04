@@ -12,7 +12,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Vouchers',
     $scope.getVouchers();
   }
 
-  $scope.getVouchers = function (forceRefresh) {
+  $scope.getVouchers = function getVouchers(forceRefresh) {
     $scope.voucherIds = [];
     $scope.loaders.vouchers = true;
     return BillingVouchers.getVouchers({ forceRefresh }).then(
@@ -28,12 +28,12 @@ angular.module('Billing.controllers').controller('Billing.controllers.Vouchers',
     );
   };
 
-  $scope.transformItem = function (item) {
+  $scope.transformItem = function transformItem(item) {
     $scope.loaders.vouchers = true;
     return BillingVouchers.getVoucher({ id: item });
   };
 
-  $scope.onTransformItemDone = function () {
+  $scope.onTransformItemDone = function onTransformItemDone() {
     $scope.loaders.vouchers = false;
   };
 

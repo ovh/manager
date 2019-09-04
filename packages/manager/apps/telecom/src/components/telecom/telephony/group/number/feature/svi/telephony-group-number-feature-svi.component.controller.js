@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 
-angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, $translate, tucValidator, TucToast) {
+angular.module('managerApp').controller('TelephonyNumberSviCtrl', function TelephonyNumberSviCtrl($q, $translate, tucValidator, TucToast) {
   const self = this;
   const protocolRegexp = new RegExp(/^(http(s)?:\/\/|ftp:\/\/|mailto:)/, 'g');
   const v4UrlRegexp = new RegExp(/^(?:(?:[\w\.\-\+%!$&"\(\)*\+,;=]+:)*[\w\.\-\+%!$&"\(\)*\+,;=]+@)?(?:[a-z0-9\-\.%]+)\.[a-z]{1,5}(?::[0-9]+)?(?:[\/|\?][\w#!:\.\?\+=&%@!$"~*,;\/\(\)\[\]\-]*)?\/$/); // eslint-disable-line
@@ -38,11 +38,11 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
     return get(url.match(protocolRegexp), '[0]') || 'http://';
   }
 
-  self.isValidURL = function (value) {
+  self.isValidURL = function isValidURL(value) {
     return tucValidator.isURL(value) && tucValidator.tucIsValidDomain(value.split('/')[0]);
   };
 
-  self.isValidUrlRecord = function (value) {
+  self.isValidUrlRecord = function isValidUrlRecord(value) {
     if (!value) {
       return true;
     } if (self.model.urlRecordProtocol === 'mailto:') {
@@ -59,14 +59,14 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
     =            GETTER SETTER FOR NG MODELS            =
     =================================================== */
 
-  self.urlModel = function (newUrl) {
+  self.urlModel = function urlModel(newUrl) {
     if (arguments.length) {
       return (self.numberCtrl.number.feature.url = !isEmpty(newUrl) ? self.model.urlProtocol + newUrl : ''); // eslint-disable-line
     }
     return self.numberCtrl.number.feature.url.replace(protocolRegexp, '');
   };
 
-  self.urlRecordModel = function (newUrl) {
+  self.urlRecordModel = function urlRecordModel(newUrl) {
     if (arguments.length) {
       return (self.numberCtrl.number.feature.urlRecord = !isEmpty(newUrl) ? self.model.urlRecordProtocol + newUrl : ''); // eslint-disable-line
     }
@@ -82,7 +82,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   /**
    *  Called when url protocol change. Update the url value of the feature.
    */
-  self.updateUrlProtocol = function () {
+  self.updateUrlProtocol = function updateUrlProtocol() {
     const urlValue = self.numberCtrl.number.feature.url.replace(protocolRegexp, '');
     self.sviConfigForm.url.$setDirty(true);
     self.numberCtrl.number.feature.url = !isEmpty(urlValue) ? self.model.urlProtocol + urlValue : '';
@@ -91,7 +91,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   /**
    *  Called when url record protocol change. Update the urlRecord value of the feature.
    */
-  self.updateUrlRecordProtocol = function () {
+  self.updateUrlRecordProtocol = function updateUrlRecordProtocol() {
     const urlValue = self.numberCtrl.number.feature.urlRecord.replace(protocolRegexp, '');
     self.sviConfigForm.urlRecord.$setDirty(true);
     self.numberCtrl.number.feature.urlRecord = !isEmpty(urlValue) ? self.model.urlRecordProtocol + urlValue : '';
@@ -100,7 +100,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   /**
    *  Called on config button clicked.
    */
-  self.togglePopover = function () {
+  self.togglePopover = function togglePopover() {
     self.popoverOpen = !self.popoverOpen;
     if (self.popoverOpen) {
       self.numberCtrl.number.feature.startEdition();
@@ -114,7 +114,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   /**
    *  Called when submit is clicked. Configuration is OK, so we start to save the svi feature.
    */
-  self.onPopoverValidate = function () {
+  self.onPopoverValidate = function onPopoverValidate() {
     self.popoverOpen = false;
     return self.numberCtrl.saveNumber();
   };
@@ -123,7 +123,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
    *  Called when cancel button is clicked.
    *  We stop feature configuration and rollback to previous configuration.
    */
-  self.onPopoverCancel = function () {
+  self.onPopoverCancel = function onPopoverCancel() {
     self.popoverOpen = false;
     self.numberCtrl.number.feature.stopEdition(true);
   };
@@ -137,7 +137,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   /**
    *  Component initialization
    */
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     // set save feature function
     self.numberCtrl.saveFeature = saveFeature;
   };
@@ -145,7 +145,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   /**
    *  Stop feature when component is destroyed.
    */
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     self.numberCtrl.number.feature.stopEdition(true);
   };
 

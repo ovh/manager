@@ -4,7 +4,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
   '$translate',
   'UserAccount.services.ipRestrictions',
   'Alerter',
-  function ($rootScope, $scope, $translate, Service, Alerter) {
+  function UserAccountIpRestrictionsController(
+    $rootScope,
+    $scope,
+    $translate,
+    Service,
+    Alerter,
+  ) {
     $scope.ipRestrictionCurrentEdit = null;
     $scope.ipRestrictionCurrentEditBack = null;
 
@@ -22,7 +28,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
       $scope.updateRestrictionButtonDisabled();
     });
 
-    $scope.initIpRestrictions = function () {
+    $scope.initIpRestrictions = function initIpRestrictions() {
       $scope
         .loadDefaultRule()
         .then(() => $scope.loadIpRestrictionsList())
@@ -33,11 +39,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
         });
     };
 
-    $scope.ipRestrictionsShow = function () {
+    $scope.ipRestrictionsShow = function ipRestrictionsShow() {
       $scope.ipRestrictionsVisible = true;
     };
 
-    $scope.loadDefaultRule = function () {
+    $scope.loadDefaultRule = function loadDefaultRule() {
       $scope.loaders.defaultRule = true;
       return Service.getDefaultRule()
         .then(
@@ -55,7 +61,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
         });
     };
 
-    $scope.updateDefaultRule = function () {
+    $scope.updateDefaultRule = function updateDefaultRule() {
       $scope.loaders.defaultRule = true;
       Service.updateDefaultRule($scope.defaultRule)
         .then(
@@ -71,11 +77,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
         });
     };
 
-    $scope.updateRestrictionButtonDisabled = function () {
+    $scope.updateRestrictionButtonDisabled = function updateRestrictionButtonDisabled() {
       $scope.defaultConfDisabled = !$scope.loaders.list && !$scope.loaders.defaultRule && (!$scope.list || $scope.list.length === 0) && (!$scope.defaultRule || $scope.defaultRule.rule === 'deny');
     };
 
-    $scope.loadIpRestrictionsList = function () {
+    $scope.loadIpRestrictionsList = function loadIpRestrictionsList() {
       $scope.loaders.list = true;
       return Service.getList()
         .then(
@@ -92,12 +98,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
         });
     };
 
-    $scope.setIpRestrictionCurrentEdit = function (restriction) {
+    $scope.setIpRestrictionCurrentEdit = function setIpRestrictionCurrentEdit(restriction) {
       $scope.ipRestrictionCurrentEdit = angular.copy(restriction);
       $scope.ipRestrictionCurrentEditBack = restriction;
     };
 
-    $scope.saveIpRestrictionCurrentEdit = function () {
+    $scope.saveIpRestrictionCurrentEdit = function saveIpRestrictionCurrentEdit() {
       // TODO call SERVICE
       Service.updateRestriction($scope.ipRestrictionCurrentEdit)
         .then(
@@ -114,7 +120,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
         });
     };
 
-    $scope.cancelIpRestrictionCurrentEdit = function () {
+    $scope.cancelIpRestrictionCurrentEdit = function cancelIpRestrictionCurrentEdit() {
       $scope.ipRestrictionCurrentEdit = null;
       $scope.ipRestrictionCurrentEditBack = null;
     };

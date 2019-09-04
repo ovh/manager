@@ -5,7 +5,7 @@ angular.module('Module.ip.controllers').controller('IplbRestoreSslCtrl', ($scope
 
   /* Action */
 
-  $scope.restoreSsl = function () {
+  $scope.restoreSsl = function restoreSsl() {
     $scope.loading = true;
     Iplb.restoreSsl($scope.data.value)
       .then(

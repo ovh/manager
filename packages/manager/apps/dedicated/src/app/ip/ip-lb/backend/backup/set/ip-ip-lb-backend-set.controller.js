@@ -41,7 +41,7 @@ angular.module('Module.ip.controllers').controller('IplbBackendSetBackupStateCtr
 
   /* Action */
 
-  $scope.setBackupState = function () {
+  $scope.setBackupState = function setBackupState() {
     $scope.loading = true;
     Iplb.setBackupState($scope.data.selectedIplb.value, $scope.data.backend.backend, $scope.model)
       .then(

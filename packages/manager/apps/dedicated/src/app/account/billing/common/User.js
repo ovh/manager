@@ -1,6 +1,6 @@
 angular.module('Billing.services').service('BillingUser', [
   'OvhHttp',
-  function (OvhHttp) {
+  function BillingUserService(OvhHttp) {
     /*
     * get user by SWS
     */

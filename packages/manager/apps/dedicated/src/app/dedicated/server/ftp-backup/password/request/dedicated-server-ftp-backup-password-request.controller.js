@@ -3,7 +3,7 @@ angular.module('App').controller('RequestFtpBackupPasswordCtrl', ($scope, $state
   $scope.ftpBackup = $scope.currentActionData;
   $scope.loading = false;
 
-  $scope.requestFtpBackupPassword = function () {
+  $scope.requestFtpBackupPassword = function requestFtpBackupPassword() {
     $scope.loading = true;
 
     Server.requestFtpBackupPassword($stateParams.productId)

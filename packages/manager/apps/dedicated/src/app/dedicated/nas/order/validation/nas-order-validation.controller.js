@@ -17,7 +17,7 @@ angular.module('App').controller('NasOrderValidationCtrl', ($scope, Nas, $rootSc
     Alerter.alertFromSWS($translate.instant('nas_order_bc_loading_error'), data);
   }
 
-  $scope.load = function () {
+  $scope.load = function load() {
     $scope.bc.loading = true;
     if ($scope.choice.nasha) {
       Nas
@@ -47,7 +47,7 @@ angular.module('App').controller('NasOrderValidationCtrl', ($scope, Nas, $rootSc
     Alerter.alertFromSWS($translate.instant('nas_order_bc_finish_fail'), data);
   }
 
-  $scope.orderNas = function () {
+  $scope.orderNas = function orderNas() {
     $scope.bc.loading = true;
     if ($scope.choice.nasha) {
       Nas

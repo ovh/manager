@@ -1,7 +1,7 @@
 angular.module('App').controller('CdnFlushDomainsCtrl', ($scope, $stateParams, $translate, CdnDomain) => {
   $scope.domain = $scope.currentActionData;
 
-  $scope.flushDomain = function () {
+  $scope.flushDomain = function flushDomain() {
     $scope.resetAction();
     CdnDomain.flushDomain($stateParams.productId, $stateParams.domain).then(
       () => {

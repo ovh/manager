@@ -50,7 +50,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberFeature.prototype.setInfos = function (featureOptions) {
+  TelephonyGroupNumberFeature.prototype.setInfos = function setInfos(featureOptions) {
     const self = this;
 
     angular.forEach(keys(featureOptions), (featureOptionKey) => {
@@ -62,7 +62,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberFeature.prototype.startEdition = function (attrsToSave) {
+  TelephonyGroupNumberFeature.prototype.startEdition = function startEdition(attrsToSave) {
     const self = this;
 
     self.inEdition = true;
@@ -75,7 +75,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
     return self;
   };
 
-  TelephonyGroupNumberFeature.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberFeature.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -90,7 +90,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
     return self;
   };
 
-  TelephonyGroupNumberFeature.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberFeature.prototype.hasChange = function hasChangeFunction(attr) {
     const self = this;
     let hasChange = false;
 
@@ -112,13 +112,13 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberFeature.prototype.inPendingState = function () {
+  TelephonyGroupNumberFeature.prototype.inPendingState = function inPendingState() {
     return false;
   };
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupNumberFeature.prototype.init = function () {
+  TelephonyGroupNumberFeature.prototype.init = function init() {
     const self = this;
 
     return $q.when(self);

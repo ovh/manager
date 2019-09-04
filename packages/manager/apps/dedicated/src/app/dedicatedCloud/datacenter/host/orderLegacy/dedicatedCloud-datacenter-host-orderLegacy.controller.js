@@ -11,7 +11,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderHostsLegacyCtrl'
   };
   $scope.dedicatedCloud = null;
 
-  $scope.loadHostsProfiles = function () {
+  $scope.loadHostsProfiles = function loadHostsProfiles() {
     $scope.orderHosts.loading = true;
     $scope.orderHosts.datacenter = $scope.currentActionData;
 
@@ -56,7 +56,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderHostsLegacyCtrl'
     }
   });
 
-  $scope.getHostSelected = function () {
+  $scope.getHostSelected = function getHostSelected() {
     $scope.orderHosts.loading = true;
     $scope.orderHosts.selectedModel = $scope.orderHosts.model[$scope.orderHosts.selected];
 
@@ -81,7 +81,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderHostsLegacyCtrl'
       });
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.orderHosts.loading = true;
 
     DedicatedCloud

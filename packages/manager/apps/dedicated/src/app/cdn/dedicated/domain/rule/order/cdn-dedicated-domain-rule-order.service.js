@@ -1,4 +1,4 @@
-angular.module('services').service('cdnDedicatedOrderRule', function (OvhHttp) {
+angular.module('services').service('cdnDedicatedOrderRule', function cdnDedicatedOrderRule(OvhHttp) {
   this.getCacherulePrices = serviceName => OvhHttp.get('/sws/dedicated/cdn/{serviceName}/prices/cacherules', {
     rootPath: '2api',
     urlParams: {
@@ -9,7 +9,7 @@ angular.module('services').service('cdnDedicatedOrderRule', function (OvhHttp) {
   /*
         * get the cache rules orders for the cdn.
         */
-  this.getCacheruleOrders = function (serviceName, quantity) {
+  this.getCacheruleOrders = function getCacheruleOrders(serviceName, quantity) {
     return OvhHttp.get('/sws/dedicated/cdn/{serviceName}/order/cacherules', {
       rootPath: '2api',
       urlParams: {

@@ -2,40 +2,40 @@
 import angular from 'angular';
 
 export default /* @ngInject */ ($timeout) => {
-  const angularize = function (element) {
+  const angularize = function angularize(element) {
     return angular.element(element);
   };
 
-  const pixelize = function (position) {
+  const pixelize = function pixelize(position) {
     return `${position}px`;
   };
 
-  const offset = function (element, position) {
+  const offset = function offset(element, position) {
     return element.css({
       left: position,
     });
   };
 
-  const halfWidth = function (element) {
+  const halfWidth = function halfWidth(element) {
     return element[0].offsetWidth / 2;
   };
 
-  const offsetLeft = function (element) {
+  const offsetLeft = function offsetLeft(element) {
     return element[0].offsetLeft;
   };
 
-  const width = function (element) {
+  const width = function width(element) {
     return element[0].offsetWidth;
   };
 
-  const contain = function (value) {
+  const contain = function contain(value) {
     if (isNaN(value)) {
       return value;
     }
     return Math.min(Math.max(0, value), 100);
   };
 
-  const roundStep = function (value, precision, step, floor) {
+  const roundStep = function roundStep(value, precision, step, floor) {
     let decimals;
     let remainder;
     let roundedValue;
@@ -167,7 +167,7 @@ export default /* @ngInject */ ($timeout) => {
             }
           }
 
-          scope.display = function () {
+          scope.display = function display() {
             const currentValue = scope.values && scope.values.length ? scope.values[scope.local.ngModelLow || scope.local.ngModel || 0] : scope.local.ngModelLow || scope.local.ngModel || 0;
             if (typeof attributes.displayCallback !== 'undefined') {
               return scope.displayCallback({ value: currentValue });
@@ -383,7 +383,7 @@ export default /* @ngInject */ ($timeout) => {
             }
             return setPointers();
           };
-          const refresher = function () {
+          const refresher = function refresher() {
             $timeout(updateDOM);
           };
           $timeout(updateDOM);

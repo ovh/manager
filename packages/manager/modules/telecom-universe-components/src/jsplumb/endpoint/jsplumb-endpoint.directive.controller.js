@@ -9,7 +9,7 @@ export default function () {
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     if (!self.uuid) {
       self.uuid = uniqueId('endpoint_');
     }

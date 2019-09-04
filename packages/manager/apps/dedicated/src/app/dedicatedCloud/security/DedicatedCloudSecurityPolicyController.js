@@ -1,5 +1,2 @@
-/* eslint-disable */
-angular.module("App").controller("SecurityPolicyUpdateCtrl", function () {
-
-});
-/* eslint-enable */
+angular.module('App')
+  .controller('SecurityPolicyUpdateCtrl', () => {});

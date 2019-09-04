@@ -8,7 +8,7 @@ export const TUC_UI_SORTABLE_HELPERS = {
     const helpTop = ui.position.top;
     const helpBottom = helpTop + helpHeight;
 
-    container.children().each(function () {
+    container.children().each(function itemFunction() {
       const item = $(this);
 
       if (!item.hasClass('ui-sortable-helper') && !item.hasClass('ui-sortable-placeholder')) {

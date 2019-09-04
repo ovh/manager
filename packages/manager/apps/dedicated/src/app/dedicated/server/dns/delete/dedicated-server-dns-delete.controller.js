@@ -4,7 +4,7 @@ angular.module('App').controller('DeleteSecondaryDnsCtrl', ($scope, $stateParams
   $scope.secdns = $scope.currentActionData;
   $scope.loadingDelete = false;
 
-  $scope.deleteSecondaryDns = function () {
+  $scope.deleteSecondaryDns = function deleteSecondaryDns() {
     $scope.loadingDelete = true;
     Server.deleteSecondaryDns($stateParams.productId, $scope.secdns.domain).then(
       () => {

@@ -1,7 +1,7 @@
 import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomOrdersCtrl', function (OvhApiXdslOrderFollowup, TucToastError, ORDER_STATUS, PAGINATION_PER_PAGE) {
+angular.module('managerApp').controller('TelecomOrdersCtrl', function TelecomOrdersCtrl(OvhApiXdslOrderFollowup, TucToastError, ORDER_STATUS, PAGINATION_PER_PAGE) {
   const self = this;
 
   self.ordersDetails = null;
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('TelecomOrdersCtrl', function (OvhApiXds
   =            INITIALIZATION            =
   ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     OvhApiXdslOrderFollowup.Aapi().query().$promise.then((result) => {
       self.orders = result;
 

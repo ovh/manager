@@ -3,7 +3,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
   '$translate',
   'UserAccount.services.doubleAuth.backupCode',
   'Alerter',
-  function ($scope, $translate, DoubleAuthBackupCodeService, Alerter) {
+  function UserAccountDoubleAuthBackupCodeController(
+    $scope,
+    $translate,
+    DoubleAuthBackupCodeService,
+    Alerter,
+  ) {
     $scope.backupCode = {
       sotpAccount: null,
       isLoading: false,

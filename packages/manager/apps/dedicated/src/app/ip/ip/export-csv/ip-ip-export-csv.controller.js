@@ -50,7 +50,7 @@ angular.module('Module.ip.controllers').controller('IpToCsvCtrl', ($scope, $q, $
     $scope.resetAction();
   }
 
-  $scope.exportAccounts = function () {
+  $scope.exportAccounts = function exportAccounts() {
     $scope.loading.exportCsv = true;
 
     // check timeout
@@ -79,7 +79,7 @@ angular.module('Module.ip.controllers').controller('IpToCsvCtrl', ($scope, $q, $
     });
   };
 
-  $scope.cancelExport = function () {
+  $scope.cancelExport = function cancelExport() {
     timeoutObject = null;
     $scope.resetAction();
   };

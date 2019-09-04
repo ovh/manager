@@ -3,7 +3,7 @@ angular.module('Module.ip.controllers').controller('IpIpv6ReverseDelegationDelet
   $scope.reverse = $scope.currentActionData.reverse;
 
   /* Action */
-  $scope.deleteIpv6ReverseDelegation = function () {
+  $scope.deleteIpv6ReverseDelegation = function deleteIpv6ReverseDelegation() {
     $scope.resetAction();
 
     IpReverse.deleteDelegation($scope.ipBlock.ipBlock, $scope.reverse).then(

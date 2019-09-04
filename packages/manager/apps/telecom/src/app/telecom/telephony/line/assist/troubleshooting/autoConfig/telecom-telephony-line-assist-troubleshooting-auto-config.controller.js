@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl', function ($q, troubleshootingProcess, tucValidator, OvhApiMyIp) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl', function TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl($q, troubleshootingProcess, tucValidator, OvhApiMyIp) {
   const self = this;
 
   self.loading = {
@@ -24,7 +24,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     =            ACTIONS            =
     =============================== */
 
-  self.startAutoConfig = function () {
+  self.startAutoConfig = function startAutoConfig() {
     self.resetConfigError = null;
     self.resetConfigResult = null;
 
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     });
   };
 
-  self.resetIp = function () {
+  self.resetIp = function resetIp() {
     self.status = 'CHECKIP';
     self.step.isFinalized = false;
   };

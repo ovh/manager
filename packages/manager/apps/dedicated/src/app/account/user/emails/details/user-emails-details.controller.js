@@ -6,7 +6,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.emails.details
   '$location',
   '$translate',
 
-  function ($scope, $stateParams, Emails, Alerter, $location, $translate) {
+  function UserAccountEmailsDetailsController(
+    $scope,
+    $stateParams,
+    Emails,
+    Alerter,
+    $location,
+    $translate,
+  ) {
     $scope.previousPage = $location.search()
       && $location.search().previousPage ? $location.search().previousPage : 1;
 

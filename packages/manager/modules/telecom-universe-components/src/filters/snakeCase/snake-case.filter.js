@@ -1,5 +1,5 @@
 import snakeCase from 'lodash/snakeCase';
 
-export default () => function (text) {
+export default () => function snakeCaseFilter(text) {
   return snakeCase(text);
 };

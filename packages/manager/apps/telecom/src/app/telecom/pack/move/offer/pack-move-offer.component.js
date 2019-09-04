@@ -11,11 +11,11 @@ angular.module('managerApp').component('packMoveOffer', {
 
     this.KbPerMb = 1024;
 
-    this.changeOffer = function () {
+    this.changeOffer = function changeOffer() {
       this.change({ OFFER: self.offer });
     };
 
-    this.$onInit = function () {
+    this.$onInit = function $onInit() {
       Object.defineProperties(self.offer, {
         _patternReseller: {
           enumerable: false,

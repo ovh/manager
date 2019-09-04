@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default () => function (items, props) {
+export default () => function propsFilter(items, props) {
   let out = [];
 
   if (angular.isArray(items)) {

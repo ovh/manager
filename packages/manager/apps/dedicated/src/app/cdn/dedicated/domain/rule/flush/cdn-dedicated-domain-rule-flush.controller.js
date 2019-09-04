@@ -2,7 +2,7 @@ angular.module('App').controller('CdnFlushRuleCtrl', ($scope, $stateParams, $tra
   $scope.alert = 'cdn_domain_tab_rules_alert';
   $scope.cacheRule = $scope.currentActionData;
 
-  $scope.flushRule = function () {
+  $scope.flushRule = function flushRule() {
     $scope.resetAction();
     CdnDomain.flushRule($stateParams.productId, $stateParams.domain, $scope.cacheRule)
       .then(() => Alerter.alertFromSWS($translate.instant('cdn_configuration_flush_rule_success'), true, $scope.alert))

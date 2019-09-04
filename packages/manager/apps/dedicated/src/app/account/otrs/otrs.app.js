@@ -17,7 +17,7 @@ angular
   })
   .run([
     'Module.otrs.services.otrs',
-    function (Otrs) {
+    (Otrs) => {
       Otrs.init();
     },
   ]);

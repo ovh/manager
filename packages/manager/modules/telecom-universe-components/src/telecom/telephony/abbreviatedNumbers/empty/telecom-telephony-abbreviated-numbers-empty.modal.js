@@ -10,11 +10,11 @@ export default /* @ngInject */ function ($q, $uibModalInstance, data) {
 
   angular.extend(this, data);
 
-  this.cancel = function () {
+  this.cancel = function cancel() {
     $uibModalInstance.dismiss('cancel');
   };
 
-  this.send = function () {
+  this.send = function send() {
     this.removing = true;
     this.total = this.abbreviatedNumbers.length;
     this.progress = 0;

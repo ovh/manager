@@ -4,7 +4,7 @@ angular.module('App').controller('MonitoringDeleteCtrl', ($rootScope, $scope, $s
     deleting: false,
   };
 
-  $scope.deleteMonitoring = function () {
+  $scope.deleteMonitoring = function deleteMonitoring() {
     $scope.loaders.deleting = true;
     Server.deleteServiceMonitoring($stateParams.productId, $scope.monitoring.monitoringId)
       .then(

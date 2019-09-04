@@ -47,7 +47,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
   };
 
   /* eslint-disable no-return-assign, max-len */
-  $scope.loadBandwidthInformations = function () {
+  $scope.loadBandwidthInformations = function loadBandwidthInformations() {
     $q
       .all([
         Server.getBandwidth($stateParams.productId)
@@ -112,7 +112,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
   /**
    * LOADER
    */
-  $scope.loadStatistics = function () {
+  $scope.loadStatistics = function loadStatistics() {
     const nameServer = null;
     $scope.serverStatsLoad.loading = true;
     $scope.serverStatsLoad.error = false;
@@ -168,7 +168,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
       });
   };
 
-  $scope.removeHack = function () {
+  $scope.removeHack = function removeHack() {
     Server.removeHack($stateParams.productId).then(
       () => {
         $scope.setMessage($translate.instant('server_remove_hack_success'));
@@ -180,7 +180,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
     );
   };
 
-  $scope.rebootServer = function () {
+  $scope.rebootServer = function rebootServer() {
     return $state.go('app.dedicated.server.dashboard.reboot');
   };
 
@@ -188,7 +188,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
     $scope.getStatistics();
   });
 
-  $scope.getStatistics = function () {
+  $scope.getStatistics = function getStatistics() {
     $scope.serverStatsLoad.loading = true;
     $scope.serverStatsLoad.error = false;
     Server.getStatistics($stateParams.productId, $scope.serverStats.networkChoice, $scope.serverStats.typeChoice, $scope.serverStats.periodeChoice)

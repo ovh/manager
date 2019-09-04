@@ -1,10 +1,10 @@
 angular.module('Billing.services').service('BillingApi', [
   '$http',
   '$q',
-  function ($http, $q) {
+  function BillingApiService($http, $q) {
     const self = this;
 
-    this.operation = function (opt) {
+    this.operation = function operation(opt) {
       const requestUrl = URI.expand(opt.url, opt.urlParams || {})
         .search(opt.params || {})
         .toString();
@@ -24,7 +24,7 @@ angular.module('Billing.services').service('BillingApi', [
     };
 
     angular.forEach(['get', 'put', 'post', 'delete'], (operationType) => {
-      self[operationType] = function (url, opt) {
+      self[operationType] = function operation(url, opt) {
         const options = angular.extend({}, opt);
         options.method = angular.uppercase(operationType);
         options.url = url;

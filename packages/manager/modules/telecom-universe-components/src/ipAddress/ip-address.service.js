@@ -8,21 +8,21 @@ export default function () {
   /**
      * Returns a new instance of Address6.
      */
-  this.address6 = function (...args) {
+  this.address6 = function address6(...args) {
     return new Address6(...args);
   };
 
   /**
      * Returns a new instance of Address4.
      */
-  this.address4 = function (...args) {
+  this.address4 = function address4(...args) {
     return new Address4(...args);
   };
 
   /**
      * Shortcut method to test if a given ip string is a valid IPv4 or IPv6.
      */
-  this.isValidIp = function (ip) {
+  this.isValidIp = function isValidIp(ip) {
     let addr = this.address4(ip);
     let valid = addr.isValid();
     if (!valid) {
@@ -32,7 +32,7 @@ export default function () {
     return valid;
   };
 
-  this.isValidPublicIp4 = function (ip) {
+  this.isValidPublicIp4 = function isValidPublicIp4(ip) {
     const addr = this.address4(ip);
     let valid = false;
     if (addr.isValid()) {

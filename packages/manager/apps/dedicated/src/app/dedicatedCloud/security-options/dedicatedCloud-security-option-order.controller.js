@@ -101,7 +101,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
     return DedicatedCloud.isOptionToggable($stateParams.productId, $scope.optionName, 'disabled', false);
   }
 
-  $scope.checkCompliance = function () {
+  $scope.checkCompliance = function checkCompliance() {
     function checkStep(step) {
       switch (step) {
         case 1:
@@ -126,11 +126,11 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
     return checkStep($scope.currentStep);
   };
 
-  $scope.optionCanBeEnabled = function () {
+  $scope.optionCanBeEnabled = function optionCanBeEnabled() {
     return $scope.commercialRanges && !$scope.commercialRanges.error;
   };
 
-  $scope.getCheckItemClass = function (item) {
+  $scope.getCheckItemClass = function getCheckItemClass(item) {
     if ($scope.loaders.checks[item]) {
       return 'checklist__item_loading';
     }
@@ -138,14 +138,14 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
     return $scope.checks[item] ? 'checklist__item_success' : 'checklist__item_failure';
   };
 
-  $scope.getItemStatusText = function (item) {
+  $scope.getItemStatusText = function getItemStatusText(item) {
     if ($scope.checks[item]) {
       return 'dedicatedCloud_options_security_enabled';
     }
     return 'dedicatedCloud_options_security_disabled';
   };
 
-  $scope.loadPrices = function () {
+  $scope.loadPrices = function loadPrices() {
     $scope.loaders.loading = true;
     return DedicatedCloud.getSelected($stateParams.productId)
       .then(pcc => DedicatedCloud.fetchAllHostsPrices(
@@ -169,7 +169,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
       });
   };
 
-  $scope.subscribeOption = function () {
+  $scope.subscribeOption = function subscribeOption() {
     $scope.loaders.loading = true;
 
     DedicatedCloud.enableOption($stateParams.productId, $scope.optionName)

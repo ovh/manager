@@ -3,7 +3,7 @@ angular.module('Module.ip.services').service('IpSpam', [
   '$q',
   'constants',
   'Poll',
-  function ($http, $q, constants, Poll) {
+  function IpSpamService($http, $q, constants, Poll) {
     const aapiIpPath = '/sws/module/ip';
 
     this.pollSpamState = (block, ipSpamming) => Poll.poll(`2api${aapiIpPath}/${window.encodeURIComponent(block)}/antispam/${ipSpamming}`, null, { successRule: { state: 'UNBLOCKED' }, namespace: 'ip.antispam' });

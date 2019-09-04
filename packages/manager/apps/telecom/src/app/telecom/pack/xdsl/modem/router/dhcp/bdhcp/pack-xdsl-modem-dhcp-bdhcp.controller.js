@@ -3,7 +3,7 @@ import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
 
-angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($stateParams, $translate, TucToast, tucValidator, PackXdslModemDhcpBdhcpObject, OvhApiXdsl, $q, TucPackXdslModemMediator) {
+angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function XdslModemDhcpBdhcpCtrl($stateParams, $translate, TucToast, tucValidator, PackXdslModemDhcpBdhcpObject, OvhApiXdsl, $q, TucPackXdslModemMediator) {
   const self = this;
 
   this.validator = tucValidator;
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
   /**
    * submit / unsubmit with keys
    */
-  this.watchKey = function ($event, bdhcp, valid) {
+  this.watchKey = function watchKey($event, bdhcp, valid) {
     if ($event.keyCode === 13 && valid) {
       self.update(bdhcp);
     }
@@ -25,7 +25,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
    * Cancel the edition of a BDHCP
    * @param {PackXdslModemDhcpBdhcpObject} bdhcp Static Address Description
    */
-  this.cancel = function (bdhcp) {
+  this.cancel = function cancel(bdhcp) {
     if (!bdhcp.cancel()) {
       remove(self.bdhcps, bdhcp);
     }
@@ -36,14 +36,14 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
    * @param {PackXdslModemDhcpBdhcpObject} bdhcp Static Address Description
    * @return {Promise}
    */
-  this.update = function (bdhcp) {
+  this.update = function update(bdhcp) {
     return bdhcp.save($stateParams.serviceName, self.lanName, self.dhcpName);
   };
 
   /**
    * Add a BDHCP
    */
-  this.add = function () {
+  this.add = function add() {
     const newBdhcp = new PackXdslModemDhcpBdhcpObject();
     self.bdhcps.push(newBdhcp);
     newBdhcp.edit();
@@ -54,7 +54,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
    * @param {PackXdslModemDhcpBdhcpObject} bdhcp Static Address Description
    * @return {Promise}
    */
-  this.delete = function (bdhcp) {
+  this.delete = function deleteFunction(bdhcp) {
     return bdhcp
       .remove($stateParams.serviceName, self.lanName, self.dhcpName)
       .then(deletedBdhcp => remove(self.bdhcps, deletedBdhcp));

@@ -1,19 +1,19 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveCallsEavesdropCtrl', function ($uibModalInstance, $translate, TucToast, params) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveCallsEavesdropCtrl', function TelecomTelephonyAliasConfigurationLiveCallsEavesdropCtrl($uibModalInstance, $translate, TucToast, params) {
   const self = this;
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.number = null;
     self.error = null;
     self.isSubmitting = false;
   };
 
-  self.cancel = function () {
+  self.cancel = function cancel() {
     $uibModalInstance.dismiss();
   };
 
-  self.submit = function () {
+  self.submit = function submit() {
     let promise = null;
     self.isSubmitting = true;
     self.error = null;

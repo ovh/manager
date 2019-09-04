@@ -1,10 +1,10 @@
 angular.module('Module.ip.services').service('IpAntihack', [
   '$http',
   '$q',
-  function ($http, $q) {
+  function IpAntihackService($http, $q) {
     const swsProxypassPath = 'apiv6';
 
-    this.getAntihackDetails = function (ipBlock, ip) {
+    this.getAntihackDetails = function getAntihackDetails(ipBlock, ip) {
       // return $q.when(true).then(function () {
       //     return {
       //         state: 'blocked',
@@ -25,7 +25,7 @@ angular.module('Module.ip.services').service('IpAntihack', [
       return $http.get([swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}`].join('/')).then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.unblockIp = function (ipBlock, ip) {
+    this.unblockIp = function unblockIp(ipBlock, ip) {
       return $http.post([swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/antihack/${ip}/unblock`].join('/')).then(
         data => data.data,
         http => $q.reject(http.data),

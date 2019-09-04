@@ -1,6 +1,6 @@
 angular.module('Billing.services').service('BillingAuth', [
   '$http',
-  function ($http) {
+  function BillingAuthService($http) {
     /*
          * Get server's current timestamp
          */

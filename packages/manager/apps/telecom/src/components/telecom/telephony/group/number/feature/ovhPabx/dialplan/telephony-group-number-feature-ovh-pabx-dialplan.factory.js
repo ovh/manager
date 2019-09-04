@@ -55,7 +55,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.setInfos = function (dialplanOptionsParam) {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.setInfos = function setInfos(dialplanOptionsParam) {
     const self = this;
     let dialplanOptions = dialplanOptionsParam;
 
@@ -74,7 +74,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.startEdition = function () {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -88,7 +88,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -104,7 +104,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -122,7 +122,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
   /**
      *  Create a dialplan by calling POST /telephony/{billingAccount}/ovhPabx/{serviceName}/dialplan
      */
-  TelephonyGroupNumberOvhPabxDialplan.prototype.create = function () {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.create = function create() {
     const self = this;
 
     self.status = 'IN_CREATION';
@@ -149,7 +149,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
    *  Save the dialplan by calling
    *  PUT /telephony/{billingAccount}/ovhPabx/{serviceName}/dialplan/{dialplanId}
    */
-  TelephonyGroupNumberOvhPabxDialplan.prototype.save = function () {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.save = function save() {
     const self = this;
 
     self.status = 'SAVING';
@@ -169,7 +169,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     });
   };
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.remove = function () {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.remove = function removeFunction() {
     const self = this;
 
     self.status = 'DELETING';
@@ -186,7 +186,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
 
   /* ----------  EXTENSIONS  ----------*/
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.getExtensions = function () {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.getExtensions = function getExtensions() {
     const self = this;
 
     return OvhApiTelephony.OvhPabx().Dialplan().Extension().v6()
@@ -222,7 +222,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
         .then(() => self));
   };
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.addExtension = function (extensionOptionsParam) {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.addExtension = function addExtension(
+    extensionOptionsParam,
+  ) {
     const self = this;
     let extension = null;
     let extensionOptions = extensionOptionsParam;
@@ -254,7 +256,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     return extension;
   };
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.removeExtension = function (extension) {
+  TelephonyGroupNumberOvhPabxDialplan.prototype.removeExtension = function removeExtension(
+    extension,
+  ) {
     const self = this;
 
     remove(self.extensions, extension);
@@ -262,19 +266,21 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxDialplan.prototype.updateExtensionsPositions = function (from) {
-    const self = this;
-    const updatePositionPromises = [];
-    const extensionsToUpdate = from
-      ? filter(self.extensions, extension => extension.position > from) : self.extensions;
+  TelephonyGroupNumberOvhPabxDialplan
+    .prototype
+    .updateExtensionsPositions = function updateExtensionsPositions(from) {
+      const self = this;
+      const updatePositionPromises = [];
+      const extensionsToUpdate = from
+        ? filter(self.extensions, extension => extension.position > from) : self.extensions;
 
-    angular.forEach(extensionsToUpdate, (extension) => {
-      updatePositionPromises.push(extension.move(from
-        ? extension.position - 1 : extension.position));
-    });
+      angular.forEach(extensionsToUpdate, (extension) => {
+        updatePositionPromises.push(extension.move(from
+          ? extension.position - 1 : extension.position));
+      });
 
-    return $q.allSettled(updatePositionPromises);
-  };
+      return $q.allSettled(updatePositionPromises);
+    };
 
   /* -----  End of PROTOTYPE METHODS  ------*/
 

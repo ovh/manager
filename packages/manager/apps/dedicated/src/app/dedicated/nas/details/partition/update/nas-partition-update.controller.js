@@ -7,13 +7,13 @@ angular.module('App').controller('NasPartitionUpdateCtrl', ($scope, $stateParams
     sizeP: $scope.partition.size,
   };
 
-  $scope.checkSize = function () {
+  $scope.checkSize = function checkSize() {
     if ($scope.updateValue.sizeP) {
       $scope.updateValue.sizeP = parseInt($scope.updateValue.sizeP.toString().replace('.', ''), 10);
     }
   };
 
-  $scope.updateSize = function () {
+  $scope.updateSize = function updateSize() {
     $scope.resetAction();
     Nas
       .updatePartitionSize(

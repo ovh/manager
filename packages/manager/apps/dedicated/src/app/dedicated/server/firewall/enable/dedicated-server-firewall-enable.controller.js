@@ -3,7 +3,7 @@ import set from 'lodash/set';
 angular.module('App').controller('ServerFirewallAsaEnableCtrl', ($scope, $stateParams, $translate, Server, ServerFirewallAsa) => {
   $scope.model = null;
 
-  $scope.load = function () {
+  $scope.load = function load() {
     Server.getSelected($stateParams.productId).then(
       (data) => {
         $scope.model = data;
@@ -16,7 +16,7 @@ angular.module('App').controller('ServerFirewallAsaEnableCtrl', ($scope, $stateP
     );
   };
 
-  $scope.enable = function () {
+  $scope.enable = function enable() {
     $scope.resetAction();
     ServerFirewallAsa.changeFirewallState($stateParams.productId, true).then(
       (data) => {

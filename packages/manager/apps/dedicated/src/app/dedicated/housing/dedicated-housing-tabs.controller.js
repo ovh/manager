@@ -5,7 +5,7 @@ angular.module('App').controller('HousingTabsCtrl', [
   '$stateParams',
   '$location',
 
-  function ($scope, $stateParams, $location) {
+  function HousingTabsCtrl($scope, $stateParams, $location) {
     $scope.toKebabCase = kebabCase;
     const defaultTab = 'dashboard';
     $scope.tabs = ['dashboard', 'backup', 'task'];

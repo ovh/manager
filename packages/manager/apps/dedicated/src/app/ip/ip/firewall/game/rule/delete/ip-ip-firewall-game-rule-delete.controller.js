@@ -1,11 +1,11 @@
-angular.module('Module.ip.controllers').controller('RemoveGameFirewallRuleCtrl', function ($scope, $translate, Ip, $rootScope, Alerter, IpGameFirewall) {
+angular.module('Module.ip.controllers').controller('RemoveGameFirewallRuleCtrl', function RemoveGameFirewallRuleCtrl($scope, $translate, Ip, $rootScope, Alerter, IpGameFirewall) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
 
   self.datas = $scope.currentActionData;
   self.loading = false;
 
-  $scope.removeGameFirewallRule = function () {
+  $scope.removeGameFirewallRule = function removeGameFirewallRule() {
     self.loading = true;
 
     IpGameFirewall.deleteRule(self.datas.ipblock, self.datas.ip, self.datas.rule.id)

@@ -1,10 +1,10 @@
-angular.module('Billing.services').service('BillingSla', function (OvhHttp) {
+angular.module('Billing.services').service('BillingSla', function BillingSla(OvhHttp) {
   const cache = {
     slas: 'UNIVERS_BILLING_SLAS',
     sla: 'UNIVERS_BILLING_SLA',
   };
 
-  this.getSlas = function (opts) {
+  this.getSlas = function getSlas(opts) {
     return OvhHttp.get('/me/sla', {
       rootPath: 'apiv6',
       cache: cache.slas,
@@ -12,7 +12,7 @@ angular.module('Billing.services').service('BillingSla', function (OvhHttp) {
     });
   };
 
-  this.getSla = function (opts) {
+  this.getSla = function getSla(opts) {
     return OvhHttp.get('/me/sla/{id}', {
       rootPath: 'apiv6',
       urlParams: {
@@ -22,7 +22,7 @@ angular.module('Billing.services').service('BillingSla', function (OvhHttp) {
     });
   };
 
-  this.applySla = function (opts) {
+  this.applySla = function applySla(opts) {
     return OvhHttp.post('/me/sla/{id}/apply', {
       rootPath: 'apiv6',
       urlParams: {
@@ -32,7 +32,7 @@ angular.module('Billing.services').service('BillingSla', function (OvhHttp) {
     });
   };
 
-  this.canBeApplied = function (opts) {
+  this.canBeApplied = function canBeApplied(opts) {
     return OvhHttp.get('/me/sla/{id}/canBeApplied', {
       rootPath: 'apiv6',
       urlParams: {
@@ -41,7 +41,7 @@ angular.module('Billing.services').service('BillingSla', function (OvhHttp) {
     });
   };
 
-  this.getServices = function (opts) {
+  this.getServices = function getServices(opts) {
     return OvhHttp.get('/me/sla/{id}/services', {
       rootPath: 'apiv6',
       urlParams: {
@@ -50,7 +50,7 @@ angular.module('Billing.services').service('BillingSla', function (OvhHttp) {
     });
   };
 
-  this.getStatus = function (opts) {
+  this.getStatus = function getStatus(opts) {
     return OvhHttp.get('/me/sla/{id}/status', {
       rootPath: 'apiv6',
       urlParams: {

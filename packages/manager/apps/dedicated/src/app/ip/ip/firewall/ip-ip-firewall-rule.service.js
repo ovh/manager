@@ -3,17 +3,17 @@ angular.module('Module.ip.services').service('IpFirewall', [
   '$q',
   'constants',
   'Poll',
-  function ($http, $q, constants, Poll) {
+  function IpFirewallService($http, $q, constants, Poll) {
     const swsProxypassPath = 'apiv6';
     const self = this;
 
     /* POLLING : state */
 
-    this.pollFirewallState = function (ipBlock, ip) {
+    this.pollFirewallState = function pollFirewallState(ipBlock, ip) {
       return Poll.poll([swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock.ipBlock)}/firewall/${ip.ip}`].join('/'), null, { successRule: { state: 'ok' }, namespace: 'ip.firewall' });
     };
 
-    this.killPollFirewallState = function (ipBlock, ip) {
+    this.killPollFirewallState = function killPollFirewallState(ipBlock, ip) {
       let pattern;
       if (ipBlock && ip) {
         pattern = { url: [swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock.ipBlock)}/firewall/${ip.ip}`].join('/') };
@@ -25,11 +25,11 @@ angular.module('Module.ip.services').service('IpFirewall', [
 
     /* POLLING : rule state */
 
-    this.pollFirewallRule = function (ipBlock, ip, sequence) {
+    this.pollFirewallRule = function pollFirewallRule(ipBlock, ip, sequence) {
       return Poll.poll([swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/firewall/${ip}/rule/${sequence}`].join('/'), null, { successRule: { state: 'ok' }, namespace: 'ip.firewall.rule' });
     };
 
-    this.killPollFirewallRule = function (ipBlock, ip, sequence) {
+    this.killPollFirewallRule = function killPollFirewallRule(ipBlock, ip, sequence) {
       let pattern;
       if (ipBlock && ip) {
         pattern = { url: [swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/firewall/${ip}/rule/${sequence}`].join('/') };
@@ -41,7 +41,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
 
     // ---
 
-    this.getIpModels = function () {
+    this.getIpModels = function getIpModels() {
       return $http.get([swsProxypassPath, 'ip.json'].join('/'), { cache: true }).then((response) => {
         if (response && response.data && response.data.models) {
           return response.data.models;
@@ -50,7 +50,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
       });
     };
 
-    this.addFirewall = function (ipBlock, ip) {
+    this.addFirewall = function addFirewall(ipBlock, ip) {
       return $http
         .post(
           [swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/firewall`].join('/'),
@@ -64,7 +64,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
         .then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.toggleFirewall = function (ipBlock, ip, enabled) {
+    this.toggleFirewall = function toggleFirewall(ipBlock, ip, enabled) {
       return $http
         .put(
           [swsProxypassPath, `ip/${window.encodeURIComponent(ipBlock)}/firewall/${ip}`].join('/'),
@@ -78,12 +78,12 @@ angular.module('Module.ip.services').service('IpFirewall', [
         .then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.getFirewallDetails = function (ipBlock, ip) {
+    this.getFirewallDetails = function getFirewallDetails(ipBlock, ip) {
       const url = ['/ip', window.encodeURIComponent(ipBlock), 'firewall', ip].join('/');
       return $http.get(url, { serviceType: 'apiv6' }).then(result => result.data, http => $q.reject(http.data));
     };
 
-    this.getFirewallRuleConstants = function () {
+    this.getFirewallRuleConstants = function getFirewallRuleConstants() {
       return self.getIpModels().then(ipModels => ({
         actions: ipModels['ip.FirewallActionEnum'].enum,
         protocols: ipModels['ip.FirewallProtocolEnum'].enum,
@@ -92,7 +92,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
       }));
     };
 
-    this.getFirewallRules = function (ipBlock, ip, elementsToDisplay, fromIndex) {
+    this.getFirewallRules = function getFirewallRules(ipBlock, ip, elementsToDisplay, fromIndex) {
       return $http
         .get(['/sws/module/ip', window.encodeURIComponent(ipBlock), 'firewall', ip, 'rules'].join('/'), {
           params: {
@@ -104,7 +104,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
         .then(result => result.data, http => $q.reject(http.data));
     };
 
-    this.addFirewallRule = function (ipBlock, ip, rule) {
+    this.addFirewallRule = function addFirewallRule(ipBlock, ip, rule) {
       if (rule.tcpOptions && rule.tcpOptions.option === 'NONE') {
         delete rule.tcpOptions.option; // eslint-disable-line
       }
@@ -126,7 +126,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
       return $http.post(url, cleanRule, { serviceType: 'apiv6' }).then(data => data.data);
     };
 
-    this.removeFirewallRule = function (ipBlock, ip, sequence) {
+    this.removeFirewallRule = function removeFirewallRule(ipBlock, ip, sequence) {
       return $http.delete(['/ip', window.encodeURIComponent(ipBlock), 'firewall', ip, 'rule', sequence].join('/'), { serviceType: 'apiv6' }).then(data => data.data, http => $q.reject(http.data));
     };
   },

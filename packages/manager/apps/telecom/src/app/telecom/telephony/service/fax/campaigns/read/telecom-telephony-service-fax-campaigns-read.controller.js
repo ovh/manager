@@ -1,6 +1,6 @@
 import assign from 'lodash/assign';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsReadCtrl', function ($stateParams, $q, $uibModalInstance, OvhApiTelephony, campaign, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsReadCtrl', function TelecomTelephonyServiceFaxCampaignsReadCtrl($stateParams, $q, $uibModalInstance, OvhApiTelephony, campaign, TucToastError) {
   const self = this;
 
   /*= ==============================
@@ -21,7 +21,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRead
   =            ACTIONS            =
   =============================== */
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 

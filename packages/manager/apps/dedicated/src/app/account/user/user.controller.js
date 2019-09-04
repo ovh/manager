@@ -6,12 +6,12 @@ angular.module('UserAccount').controller('UserAccount.controllers.main', [
   '$location',
   '$timeout',
   '$state',
-  function ($scope, $window, $location, $timeout, $state) {
+  function UserAccountMainController($scope, $window, $location, $timeout, $state) {
     $scope.USERACCOUNT_BASE_URL = 'account/user/';
 
     $scope.originUrl = $location.search().redirectTo || $location.search().redirectto;
 
-    $scope.redirectToOrigin = function () {
+    $scope.redirectToOrigin = function redirectToOrigin() {
       if ($scope.originUrl) {
         set($window, 'location.href', $scope.originUrl);
       } else {
@@ -23,11 +23,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.main', [
     $scope.currentAction = null;
     $scope.currentActionData = null;
 
-    $scope.resetAction = function () {
+    $scope.resetAction = function resetAction() {
       $scope.setAction(false);
     };
 
-    $scope.setAction = function (action, data) {
+    $scope.setAction = function setAction(action, data) {
       $scope.currentAction = action;
       $scope.currentActionData = data;
       if (action) {

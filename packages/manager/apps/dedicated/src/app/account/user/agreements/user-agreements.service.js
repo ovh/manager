@@ -8,7 +8,14 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
   'UserAccount.constants',
   '$cacheFactory',
   'GDPR_AGREEMENTS_INFOS',
-  function ($http, $q, $translate, constants, cache, GDPR_AGREEMENTS_INFOS) {
+  function UserAccountAgreementsService(
+    $http,
+    $q,
+    $translate,
+    constants,
+    cache,
+    GDPR_AGREEMENTS_INFOS,
+  ) {
     const userAgreementsCache = cache('USER_AGREEMENTS');
 
     const proxyPath = `${constants.swsProxyRootPath}me`;
@@ -28,7 +35,7 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
       return response;
     }
 
-    this.getList = function (count, offset) {
+    this.getList = function getList(count, offset) {
       return $http
         .get('/sws/agreements', {
           cache: userAgreementsCache,
@@ -42,7 +49,7 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
         .then(getSuccessDataOrReject);
     };
 
-    this.getAgreement = function (agreementId) {
+    this.getAgreement = function getAgreement(agreementId) {
       return $http.get(`${proxyPath}/agreements/${agreementId}`)
         .then((response) => {
           if (response.data && response.data.contractId) {
@@ -62,11 +69,11 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
         .then(getSuccessDataOrReject);
     };
 
-    this.getContract = function (contractId) {
+    this.getContract = function getContract(contractId) {
       return $http.get(`${proxyPath}/agreements/${contractId}/contract`).then(getSuccessDataOrReject);
     };
 
-    this.getToValidate = function () {
+    this.getToValidate = function getToValidate() {
       return $http
         .get('/sws/agreements', {
           cache: userAgreementsCache,
@@ -81,7 +88,7 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
         .then(getSuccessDataOrReject);
     };
 
-    this.accept = function (contractId) {
+    this.accept = function accept(contractId) {
       return $http
         .post(`${proxyPath}/agreements/${contractId}/accept`)
         .then(formatList)

@@ -10,7 +10,7 @@ angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $statePa
     validContract: false,
   };
 
-  $scope.loadOptionDetails = function () {
+  $scope.loadOptionDetails = function loadOptionDetails() {
     if (!$scope.model.optionDetails) {
       Server.getSelected($stateParams.productId).then(
         (data) => {
@@ -35,12 +35,12 @@ angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $statePa
     }
   };
 
-  $scope.evalWantedModel = function () {
+  $scope.evalWantedModel = function evalWantedModel() {
     $scope.model.wanted = $scope.$eval($scope.model.wantedAsText);
     $scope.model.validContract = false;
   };
 
-  $scope.order = function () {
+  $scope.order = function orderFunction() {
     $scope.model.url = null;
     ServerFirewallAsa
       .orderOption(
@@ -58,7 +58,7 @@ angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $statePa
       });
   };
 
-  $scope.displayBC = function () {
+  $scope.displayBC = function displayBC() {
     $scope.resetAction();
     window.open($scope.model.url, '_blank');
   };

@@ -1,6 +1,6 @@
 import set from 'lodash/set';
 
-angular.module('App').controller('DedicatedCloudUserCtrl', function ($q, $scope, $state, $stateParams, $timeout, $translate, DedicatedCloud, ouiDatagridService) {
+angular.module('App').controller('DedicatedCloudUserCtrl', function DedicatedCloudUserCtrl($q, $scope, $state, $stateParams, $timeout, $translate, DedicatedCloud, ouiDatagridService) {
   this.loading = false;
   this.usersEntrySearchSelected = null;
 

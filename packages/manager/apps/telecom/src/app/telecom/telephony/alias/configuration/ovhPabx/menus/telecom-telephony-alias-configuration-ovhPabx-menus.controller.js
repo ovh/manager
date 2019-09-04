@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPabxMenusCtrl', function ($scope, $q, $stateParams, $translate, $timeout, TelephonyMediator, TucToast, tucJsPlumbService, TELPHONY_NUMBER_JSPLUMB_INSTANCE_OPTIONS) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPabxMenusCtrl', function TelecomTelephonyAliasConfigurationOvhPabxMenusCtrl($scope, $q, $stateParams, $translate, $timeout, TelephonyMediator, TucToast, tucJsPlumbService, TELPHONY_NUMBER_JSPLUMB_INSTANCE_OPTIONS) {
   const self = this;
 
   self.loading = {
@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     });
   }
 
-  self.onAddMenuBtnClick = function () {
+  self.onAddMenuBtnClick = function onAddMenuBtnClick() {
     manageMenuDisplayChange(self.number.feature.addMenu({
       name: $translate.instant('telephony_alias_ovh_pabx_menus_new_menu_name', {
         index: self.number.feature.menus.length + 1,
@@ -45,7 +45,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     });
   };
 
-  self.onMenuSelected = function (menu) {
+  self.onMenuSelected = function onMenuSelected(menu) {
     manageMenuDisplayChange(menu ? self.number.feature.getMenu(menu.menuId) : null);
   };
 
@@ -55,7 +55,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     let initPromises;
 
     self.loading.init = true;

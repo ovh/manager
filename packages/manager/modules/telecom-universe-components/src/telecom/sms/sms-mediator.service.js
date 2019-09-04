@@ -22,7 +22,7 @@ export default /* @ngInject */ function (
   self.initDeferred = null;
   self.apiScheme = null;
 
-  self.getApiScheme = function () {
+  self.getApiScheme = function getApiScheme() {
     if (!self.apiScheme) {
       return OvhApiSms.v6().schema().$promise.then((scheme) => {
         self.apiScheme = scheme;
@@ -36,18 +36,18 @@ export default /* @ngInject */ function (
         =         SMS SERVICE         =
         ============================= */
 
-  self.getAccounts = function () {
+  self.getAccounts = function getAccounts() {
     return self.smsServices;
   };
 
   /* ----------  CURRENT SMS SERVICE  ----------*/
 
-  self.setCurrentSmsService = function (smsService) {
+  self.setCurrentSmsService = function setCurrentSmsService(smsService) {
     currentSms = smsService;
     return currentSms;
   };
 
-  self.getCurrentSmsService = function () {
+  self.getCurrentSmsService = function getCurrentSmsService() {
     if (!currentSms) { throw new Error('SMS service is not set'); }
     return currentSms;
   };
@@ -70,7 +70,7 @@ export default /* @ngInject */ function (
         =            COUNT            =
         ============================= */
 
-  self.getCount = function () {
+  self.getCount = function getCount() {
     // return OvhApiSms.v7().query().execute().$promise.then(function (smsIds) {
     return OvhApiSms.v6().query().$promise.then(smsIds => smsIds.length);
   };
@@ -81,7 +81,7 @@ export default /* @ngInject */ function (
         =            GET SMS INFO TEXT            =
         ========================================= */
 
-  self.getSmsInfoText = function (messageParam, suffix, threshold) {
+  self.getSmsInfoText = function getSmsInfoText(messageParam, suffix, threshold) {
     const message = messageParam || '';
     smsText.threshold = threshold || 255;
 
@@ -140,7 +140,7 @@ export default /* @ngInject */ function (
         =            INITIALIZATION            =
         ====================================== */
 
-  self.initAll = function (force) {
+  self.initAll = function initAll(force) {
     if (self.initDeferred && !force) {
       return self.initDeferred.promise;
     }

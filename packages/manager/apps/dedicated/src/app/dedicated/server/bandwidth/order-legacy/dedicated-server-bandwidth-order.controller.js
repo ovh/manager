@@ -28,7 +28,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
     *  ORDERABLE
     *
     */
-  $scope.getOrderableVersion = function () {
+  $scope.getOrderableVersion = function getOrderableVersion() {
     $scope.loaders.orderableVersion = true;
     $scope.orderableBandwidth.value = [];
     $scope.user = {
@@ -77,7 +77,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
       });
   };
 
-  $scope.selectBandwidthType = function (type) {
+  $scope.selectBandwidthType = function selectBandwidthType(type) {
     if ($scope.orderable[type].length === 1) {
       $scope.selectedBandwidthTypes.value = type;
       $scope.selectedBandwidth.value = head($scope.orderable[type]);
@@ -100,7 +100,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
     value: null,
   };
 
-  $scope.getDuration = function () {
+  $scope.getDuration = function getDuration() {
     $scope.durations.value = {};
     $scope.loaders.durations = true;
 
@@ -133,7 +133,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
   };
 
   let bcUrl;
-  $scope.displayBc = function () {
+  $scope.displayBc = function displayBc() {
     $scope.loaders.bc = true;
     bcUrl = null;
 
@@ -165,7 +165,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
     *  OPEN BC
     *
     */
-  $scope.openBC = function () {
+  $scope.openBC = function openBC() {
     $scope.resetAction();
     window.open(bcUrl);
   };

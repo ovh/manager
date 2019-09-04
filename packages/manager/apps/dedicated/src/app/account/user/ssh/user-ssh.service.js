@@ -10,11 +10,11 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
   'OvhHttp',
   '$q',
   'constants',
-  function (OvhHttp, $q, constants) {
+  function UserAccountSshService(OvhHttp, $q, constants) {
     const CLOUD_CACHE_KEY = 'UNIVERS_DEDICATED_USER_ACCOUNT_SSH_CLOUD';
     const self = this;
 
-    self.getAllSshKeyList = function (_filter) {
+    self.getAllSshKeyList = function getAllSshKeyList(_filter) {
       const categoryFilter = get(_filter, 'categoryFilter', null);
 
       const promises = [];
@@ -36,7 +36,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.getDedicatedSshList = function () {
+    self.getDedicatedSshList = function getDedicatedSshList() {
       return OvhHttp.get('/me/sshKey', {
         rootPath: 'apiv6',
       }).then((keyNames) => {
@@ -45,7 +45,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.getDedicatedSshKey = function (keyName) {
+    self.getDedicatedSshKey = function getDedicatedSshKey(keyName) {
       return OvhHttp.get('/me/sshKey/{keyName}', {
         rootPath: 'apiv6',
         urlParams: {
@@ -57,7 +57,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.getCloudProjects = function () {
+    self.getCloudProjects = function getCloudProjects() {
       return OvhHttp.get('/cloud/project', {
         rootPath: 'apiv6',
         cache: CLOUD_CACHE_KEY,
@@ -79,7 +79,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
         })));
     };
 
-    self.getCloudSshList = function () {
+    self.getCloudSshList = function getCloudSshList() {
       return self
         .getCloudProjects()
         .then((projects) => {
@@ -102,7 +102,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
         .then(keysByProjet => flatten(keysByProjet));
     };
 
-    self.addDedicatedSshKey = function (sshkeyObj) {
+    self.addDedicatedSshKey = function addDedicatedSshKey(sshkeyObj) {
       return OvhHttp.post('/me/sshKey', {
         rootPath: 'apiv6',
         data: {
@@ -113,7 +113,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.setDefaultDedicatedSshKey = function (sshkeyObj) {
+    self.setDefaultDedicatedSshKey = function setDefaultDedicatedSshKey(sshkeyObj) {
       return OvhHttp.put('/me/sshKey/{keyName}', {
         rootPath: 'apiv6',
         urlParams: {
@@ -126,7 +126,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.deleteDedicatedSshKey = function (key) {
+    self.deleteDedicatedSshKey = function deleteDedicatedSshKey(key) {
       return OvhHttp.delete('/me/sshKey/{keyName}', {
         rootPath: 'apiv6',
         urlParams: {
@@ -136,7 +136,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.deleteCloudSshKey = function (serviceName, id) {
+    self.deleteCloudSshKey = function deleteCloudSshKey(serviceName, id) {
       return OvhHttp.delete('/cloud/project/{serviceName}/sshkey/{keyId}', {
         rootPath: 'apiv6',
         urlParams: {
@@ -147,7 +147,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       });
     };
 
-    self.getSshCloudUrl = function (serviceName) {
+    self.getSshCloudUrl = function getSshCloudUrl(serviceName) {
       return `${constants.MANAGER_URLS.publicCloud}pci/projects/${serviceName}/ssh/add`;
     };
   },

@@ -1,12 +1,12 @@
 angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
   '$http',
   '$q',
-  function ($http, $q) {
+  function UserAccountIpRestrictionsService($http, $q) {
     function getSuccessDataOrReject(response) {
       return response.status < 300 ? response.data : $q.reject(response.data);
     }
 
-    this.getList = function () {
+    this.getList = function getList() {
       return $http
         .get('/sws/me-access-restriction-ip', {
           serviceType: 'aapi',
@@ -14,7 +14,7 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         .then(getSuccessDataOrReject);
     };
 
-    this.updateRestriction = function (restriction) {
+    this.updateRestriction = function updateRestriction(restriction) {
       return $http
         .put(
           ['/me/accessRestriction/ip', restriction.id].join('/'),
@@ -29,7 +29,7 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         .then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.deleteRestriction = function (restriction) {
+    this.deleteRestriction = function deleteRestriction(restriction) {
       return $http
         .delete(['/me/accessRestriction/ip', restriction.id].join('/'), {
           serviceType: 'apiv6',
@@ -37,7 +37,7 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         .then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.addRestriction = function (restriction) {
+    this.addRestriction = function addRestriction(restriction) {
       return $http
         .post(
           '/me/accessRestriction/ip',
@@ -53,7 +53,7 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         .then(data => data.data, http => $q.reject(http.data));
     };
 
-    this.getDefaultRule = function () {
+    this.getDefaultRule = function getDefaultRule() {
       return $http
         .get('/me/accessRestriction/ipDefaultRule', {
           serviceType: 'apiv6',
@@ -61,7 +61,7 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         .then(getSuccessDataOrReject);
     };
 
-    this.updateDefaultRule = function (opts) {
+    this.updateDefaultRule = function updateDefaultRule(opts) {
       return $http.put(
         '/me/accessRestriction/ipDefaultRule',
         {

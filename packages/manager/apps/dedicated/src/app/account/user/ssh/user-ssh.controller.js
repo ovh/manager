@@ -9,12 +9,21 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh', [
   'constants',
   '$log',
   'Alerter',
-  function ($scope, $q, $translate, UseraccountSshService, User, constants, $log, Alerter) {
+  function UserAccountSshController(
+    $scope,
+    $q,
+    $translate,
+    UseraccountSshService,
+    User,
+    constants,
+    $log,
+    Alerter,
+  ) {
     const self = this;
 
     self.filters = {};
 
-    self.init = function () {
+    self.init = function init() {
       self.sshKeyList = [];
       self.sshLoading = true;
       UseraccountSshService.getAllSshKeyList(self.filters)
@@ -29,11 +38,11 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh', [
         });
     };
 
-    self.onTransformItemDone = function () {
+    self.onTransformItemDone = function onTransformItemDone() {
       self.sshLoading = false;
     };
 
-    self.setDefaultDedicatedSshKey = function (sshObj) {
+    self.setDefaultDedicatedSshKey = function setDefaultDedicatedSshKey(sshObj) {
       UseraccountSshService.setDefaultDedicatedSshKey(sshObj).then(
         () => {
           if (!sshObj.default) {
@@ -50,7 +59,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh', [
       );
     };
 
-    self.onCategoryFilterChanged = function () {
+    self.onCategoryFilterChanged = function onCategoryFilterChanged() {
       self.init();
     };
 

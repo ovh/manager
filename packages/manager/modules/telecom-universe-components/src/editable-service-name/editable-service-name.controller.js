@@ -16,7 +16,7 @@ export default /* @ngInject */ function ($translate) {
     =            ACTIONS            =
     =============================== */
 
-  self.startEdition = function () {
+  self.startEdition = function startEdition() {
     self.inEdition = true;
     self.model.serviceName = self.title;
     if (self.onEditStart) {
@@ -24,7 +24,7 @@ export default /* @ngInject */ function ($translate) {
     }
   };
 
-  self.cancelEdition = function () {
+  self.cancelEdition = function cancelEdition() {
     self.inEdition = false;
     self.model.serviceName = null;
     if (self.onEditCancel) {
@@ -32,7 +32,7 @@ export default /* @ngInject */ function ($translate) {
     }
   };
 
-  self.saveServiceName = function () {
+  self.saveServiceName = function saveServiceName() {
     self.loading.save = true;
     return self.onSave()(self.model.serviceName).finally(() => {
       self.cancelEdition();
@@ -40,7 +40,7 @@ export default /* @ngInject */ function ($translate) {
     });
   };
 
-  self.getTitle = function () {
+  self.getTitle = function getTitle() {
     return $translate.instant('common_service_name_edit_title', { title: this.title }, null, null, (value, mode) => {
       if (mode === 'params') {
         const sanitized = {};

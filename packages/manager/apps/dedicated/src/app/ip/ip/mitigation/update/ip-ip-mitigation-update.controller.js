@@ -19,7 +19,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationUpdateCtrl', ($s
     }
   }
 
-  $scope.updateMitigation = function () {
+  $scope.updateMitigation = function updateMitigation() {
     $scope.loading = true;
 
     // Toggle between the two mitigation status that can be changed
@@ -91,7 +91,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationUpdateCtrl', ($s
     init();
   }
 
-  $scope.cancelAction = function () {
+  $scope.cancelAction = function cancelAction() {
     Ip.cancelActionParam('mitigation');
     $scope.resetAction();
   };

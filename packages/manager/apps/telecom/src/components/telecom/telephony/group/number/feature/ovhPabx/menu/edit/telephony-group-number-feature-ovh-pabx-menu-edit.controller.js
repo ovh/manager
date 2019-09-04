@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', function ($scope) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', function telephonyNumberOvhPabxMenuEditCtrl($scope) {
   const self = this;
 
   self.model = {
@@ -24,20 +24,20 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
     =            HELPERS            =
     =============================== */
 
-  self.hasSoundFileError = function () {
+  self.hasSoundFileError = function hasSoundFileError() {
     return self.uploadErrors.extension
       || self.uploadErrors.size
       || self.uploadErrors.exists
       || self.uploadErrors.name;
   };
 
-  self.getSoundInfos = function (soundType) {
+  self.getSoundInfos = function getSoundInfos(soundType) {
     const isTts = ['greetSoundTts', 'invalidSoundTts'].indexOf(soundType) > -1;
 
     return !isTts ? get(self.menuCtrl.ovhPabx.getSound(get(self.menu, soundType)), 'name') : get(self.menuCtrl.ovhPabx.getSingleTts(get(self.menu, soundType)), 'text');
   };
 
-  self.soundListModel = function (soundId) {
+  self.soundListModel = function soundListModel(soundId) {
     if (arguments.length) {
       // setter
       if (self.menuCtrl.popoverStatus.rightPage === 'greetSound') {
@@ -52,14 +52,14 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
 
   /* ----------  FORM VALIDATION  ----------*/
 
-  self.hasChange = function () {
+  self.hasChange = function hasChange() {
     if (!self.menu) {
       return false;
     }
     return self.menu.status !== 'DRAFT' ? self.menu.hasChange() : true;
   };
 
-  self.isMenuValid = function () {
+  self.isMenuValid = function isMenuValid() {
     if (self.menu.greetSound || self.menu.greetSoundTts) {
       if (self.menuCtrl.ovhPabx.isTtsAvailable() && self.model.invalidSoundType !== 'none' && !self.menu.invalidSound && !self.menu.invalidSoundTts) {
         return false;
@@ -71,7 +71,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
     return false;
   };
 
-  self.isFormValid = function () {
+  self.isFormValid = function isFormValid() {
     const ttsForm = get(self.menuOptionsForm, '$ctrl.ttsCreateForm');
     if (ttsForm) {
       return ttsForm.$dirty ? self.menuOptionsForm.$valid : true;
@@ -90,7 +90,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
   /**
      *  On popover cancel button click
      */
-  self.onCancelBtnClick = function () {
+  self.onCancelBtnClick = function onCancelBtnClick() {
     self.menuCtrl.popoverStatus.isOpen = false;
     self.menuCtrl.popoverStatus.move = false;
     self.menu.stopEdition(true);
@@ -128,7 +128,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
   /**
      *  On popover validate button click
      */
-  self.onValidateBtnClick = function () {
+  self.onValidateBtnClick = function onValidateBtnClick() {
     let validatePromise = null;
 
     self.menuCtrl.popoverStatus.isOpen = false;
@@ -157,12 +157,12 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
 
   /* ----------  Greet sound type  ----------*/
 
-  self.onSoundTypeChoiceButtonClick = function (soundType) {
+  self.onSoundTypeChoiceButtonClick = function onSoundTypeChoiceButtonClick(soundType) {
     self.menuCtrl.popoverStatus.move = true;
     self.menuCtrl.popoverStatus.rightPage = soundType;
   };
 
-  self.onSoudTypeChange = function () {
+  self.onSoudTypeChange = function onSoudTypeChange() {
     if (self.menuCtrl.popoverStatus.rightPage === 'greetSoundType') {
       self.menu.greetSound = null;
       self.menu.greetSoundTts = null;
@@ -175,12 +175,12 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
 
   /* ----------  Sound file selection  ----------*/
 
-  self.onSoundChoiceButtonClick = function (soundType) {
+  self.onSoundChoiceButtonClick = function onSoundChoiceButtonClick(soundType) {
     self.menuCtrl.popoverStatus.move = true;
     self.menuCtrl.popoverStatus.rightPage = soundType;
   };
 
-  self.onSoundSelected = function (sound) {
+  self.onSoundSelected = function onSoundSelected(sound) {
     self.menuCtrl.popoverStatus.move = false;
     if (self.menuCtrl.popoverStatus.rightPage === 'greetSound') {
       self.menu.greetSound = sound.soundId;
@@ -191,15 +191,15 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
 
   /* ----------  Tts sound  ----------*/
 
-  self.onAddTtsButtonClick = function () {
+  self.onAddTtsButtonClick = function onAddTtsButtonClick() {
     self.state.collapse = true;
   };
 
-  self.onTtsCreationCancel = function () {
+  self.onTtsCreationCancel = function onTtsCreationCancel() {
     self.state.collapse = false;
   };
 
-  self.onTtsCreationSuccess = function (tts) {
+  self.onTtsCreationSuccess = function onTtsCreationSuccess(tts) {
     set(self.menuCtrl.menu, self.menuCtrl.popoverStatus.rightPage, tts.id);
     self.state.collapse = false;
     self.menuCtrl.popoverStatus.move = false;
@@ -211,7 +211,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.menuCtrl = $scope.$parent.$ctrl;
 
     // set menu to edit

@@ -1,4 +1,11 @@
-angular.module('Billing').controller('Billing.PaymentDetailsCtrl', function ($q, $state, $stateParams, $translate, Alerter, BillingPayments) {
+angular.module('Billing').controller('Billing.PaymentDetailsCtrl', function BillingPaymentDetailsCtrl(
+  $q,
+  $state,
+  $stateParams,
+  $translate,
+  Alerter,
+  BillingPayments,
+) {
   this.paymentId = $stateParams.id;
   this.payment = {};
 

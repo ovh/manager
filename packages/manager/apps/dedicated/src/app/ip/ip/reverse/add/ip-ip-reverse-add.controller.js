@@ -4,7 +4,7 @@ angular.module('Module.ip.controllers').controller('IpAddIpv6Ctrl', ($scope, $ro
 
   /* Action */
 
-  $scope.addIpv6 = function () {
+  $scope.addIpv6 = function addIpv6() {
     IpReverse
       .updateReverse(
         $scope.data.ipBlock,

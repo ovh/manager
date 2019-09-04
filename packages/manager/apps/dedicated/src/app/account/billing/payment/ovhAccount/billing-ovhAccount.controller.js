@@ -45,12 +45,12 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
       });
   }
 
-  $scope.changeOvhAccount = function () {
+  $scope.changeOvhAccount = function changeOvhAccount() {
     $scope.ovhAccount.model = null;
     $scope.$broadcast('paginationServerSide.loadPage', '1', 'accountTable');
   };
 
-  $scope.loadOvhAccount = function (count, offset) {
+  $scope.loadOvhAccount = function loadOvhAccount(count, offset) {
     $scope.ovhAccountLoading = true;
 
     const date = BillingdateRangeSelection.dateFrom;
@@ -73,11 +73,11 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
       });
   };
 
-  $scope.onDateRangeChanged = function () {
+  $scope.onDateRangeChanged = function onDateRangeChanged() {
     $scope.$broadcast('paginationServerSide.loadPage', '1', 'accountTable');
   };
 
-  $scope.getPriceClasses = function (price) {
+  $scope.getPriceClasses = function getPriceClasses(price) {
     if (price >= 0) {
       return 'bold';
     }
@@ -88,13 +88,13 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     $scope.ovhAccount.refresh = true;
   });
 
-  $scope.refreshCredit = function () {
+  $scope.refreshCredit = function refreshCredit() {
     $scope.ovhAccount.refresh = false;
     $scope.ovhAccount.model = null;
     $scope.loadOvhAccount();
   };
 
-  $scope.setAction = function (action, data) {
+  $scope.setAction = function setAction(action, data) {
     if (action) {
       $scope.currentAction = action;
       $scope.currentActionData = data;
@@ -114,17 +114,17 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     }
   };
 
-  $scope.resetAction = function () {
+  $scope.resetAction = function resetAction() {
     $scope.setAction(false);
   };
 
-  $scope.setMessage = function (message, data) {
+  $scope.setMessage = function setMessage(message, data) {
     const msg = BillingmessageParser(message, data);
     $scope.message = msg.message;
     $scope.alertType = msg.alertType;
   };
 
-  $scope.getDatasToExport = function () {
+  $scope.getDatasToExport = function getDatasToExport() {
     const datasToReturn = [[$translate.instant('ovhAccount_table_head_id'), $translate.instant('ovhAccount_table_head_date'), $translate.instant('ovhAccount_table_head_debit'), $translate.instant('ovhAccount_table_head_credit')]];
     $scope.csvLoading = true;
     return BillingOvhAccount.getBillingOvhAccount({
@@ -143,7 +143,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
     });
   };
 
-  $scope.trackCSVExport = function () {
+  $scope.trackCSVExport = function trackCSVExport() {
     atInternet.trackClick({
       name: 'export_csv',
       type: 'action',

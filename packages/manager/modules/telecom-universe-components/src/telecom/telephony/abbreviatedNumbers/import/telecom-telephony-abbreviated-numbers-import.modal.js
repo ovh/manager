@@ -85,15 +85,15 @@ export default /* @ngInject */ function (
   this.numberPattern = /^00\d{2,3}[\s\d]+$/;
   this.namePattern = /^[a-zA-Z0-9\s]+$/;
 
-  this.cancel = function () {
+  this.cancel = function cancel() {
     $uibModalInstance.dismiss('cancel');
   };
 
-  this.close = function () {
+  this.close = function close() {
     $uibModalInstance.close(this.imported);
   };
 
-  this.loadCsv = function (file) {
+  this.loadCsv = function loadCsv(file) {
     self.total = 10000;
     self.progress = 0;
     self.canImport = false;
@@ -119,7 +119,7 @@ export default /* @ngInject */ function (
     }
   };
 
-  this.send = function () {
+  this.send = function send() {
     this.importing = true;
     this.imported = [];
     const validData = map(

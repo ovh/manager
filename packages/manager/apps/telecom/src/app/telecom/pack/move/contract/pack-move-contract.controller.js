@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackMoveContractCtrl', function ($uibModalInstance, data) {
+angular.module('managerApp').controller('PackMoveContractCtrl', function PackMoveContractCtrl($uibModalInstance, data) {
   const self = this;
   this.form = data.form;
   this.offer = data.offer;
@@ -6,11 +6,11 @@ angular.module('managerApp').controller('PackMoveContractCtrl', function ($uibMo
   this.checkboxSelected = false;
   this.loading = false;
 
-  this.cancel = function () {
+  this.cancel = function cancel() {
     $uibModalInstance.dismiss('cancel');
   };
 
-  this.confirm = function () {
+  this.confirm = function confirm() {
     self.loading = true;
     $uibModalInstance.close(true);
   };

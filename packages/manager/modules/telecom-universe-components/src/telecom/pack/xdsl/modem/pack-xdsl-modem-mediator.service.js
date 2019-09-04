@@ -12,7 +12,7 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
   this.tasks = {};
   this.info = {};
 
-  const pollModem = function (namespace, serviceName, callbackError) {
+  const pollModem = function pollModem(namespace, serviceName, callbackError) {
     function success(results) {
       self.capabilities = results.capabilities.data;
 
@@ -47,15 +47,15 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
     );
   };
 
-  this.setTask = function (name) {
+  this.setTask = function setTask(name) {
     this.tasks[name] = true;
   };
 
-  this.unsetTask = function (name) {
+  this.unsetTask = function unsetTask(name) {
     delete this.tasks[name];
   };
 
-  this.disableCapabilities = function () {
+  this.disableCapabilities = function disableCapabilities() {
     this.capabilities = mapValues(this.capabilities, (val, key) => {
       if (['canBeManagedByOvh', 'canChangeMtu', 'canChangeFirmware'].indexOf(key)) {
         return val;
@@ -64,7 +64,7 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
     });
   };
 
-  this.raiseTask = function (name, state, byPassFlag) {
+  this.raiseTask = function raiseTask(name, state, byPassFlag) {
     $rootScope.$broadcast(`pack_xdsl_modem_task_${name}`, state);
     if (state) {
       this.setTask(name);
@@ -76,7 +76,7 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
     }
   };
 
-  this.open = function (serviceName, callbackError) {
+  this.open = function open(serviceName, callbackError) {
     return OvhApiXdsl.Modem().Aapi().get({
       xdslId: serviceName,
     }).$promise.then((data) => {
@@ -87,7 +87,7 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
     }).catch(err => $q.reject(err));
   };
 
-  this.close = function () {
+  this.close = function close() {
     Poller.kill({
       namespace: 'packXdslModemTasks',
     });

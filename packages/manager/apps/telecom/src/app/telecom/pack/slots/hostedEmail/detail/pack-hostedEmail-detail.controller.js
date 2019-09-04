@@ -37,7 +37,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
    * Load pack information
    * @return {Promise}
    */
-  this.loadPackInfo = function () {
+  this.loadPackInfo = function loadPackInfo() {
     return OvhApiPackXdsl.Aapi().get({
       packId: $stateParams.packName,
     }).$promise.then((packInfo) => {
@@ -90,7 +90,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
    * Get account information
    * @return {Promise}
    */
-  this.getAccount = function () {
+  this.getAccount = function getAccount() {
     const params = encodeURIComponent(JSON.stringify({
       account: {
         primaryEmailAddress: $stateParams.serviceName,
@@ -117,7 +117,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
    * Change the password
    * @return {Promise}
    */
-  this.changePassword = function () {
+  this.changePassword = function changePassword() {
     this.changingPassword = true;
     const params = encodeURIComponent(JSON.stringify({
       account: {
@@ -143,7 +143,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
     });
   };
 
-  this.getStrength = function (val) {
+  this.getStrength = function getStrength(val) {
     return (val.length - 8) / 12;
   };
 
@@ -151,7 +151,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
   =            DELETE ACCOUNT            =
   ====================================== */
 
-  self.onDeleteAccountConfirmClick = function () {
+  self.onDeleteAccountConfirmClick = function onDeleteAccountConfirmClick() {
     self.accountDeleting = true;
 
     const params = encodeURIComponent(JSON.stringify({
@@ -181,7 +181,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
   /**
    * Controller Initialization
    */
-  this.$onInit = function () {
+  this.$onInit = function $onInit() {
     this.loading = true;
 
     this.passwordRules = [

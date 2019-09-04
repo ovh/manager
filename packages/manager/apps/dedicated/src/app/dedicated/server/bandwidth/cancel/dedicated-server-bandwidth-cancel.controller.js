@@ -5,7 +5,7 @@ angular.module('App').controller('ServerCancelBandwidthCtrl', ($rootScope, $scop
     loading: true,
   };
 
-  $scope.cancelOption = function () {
+  $scope.cancelOption = function cancelOption() {
     $scope.loader.loading = true;
 
     Server.cancelBandwidthOption($stateParams.productId)

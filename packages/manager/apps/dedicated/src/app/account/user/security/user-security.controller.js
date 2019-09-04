@@ -13,8 +13,16 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
   'UserAccount.services.doubleAuth.u2f',
   'UserAccount.services.doubleAuth.backupCode',
   'Alerter',
-  function ($scope, $q, $translate, DoubleAuthSmsService, DoubleAuthTotpService,
-    DoubleAuthU2fService, DoubleAuthBackupCodeService, Alerter) {
+  function UserAccountDoubleAuthController(
+    $scope,
+    $q,
+    $translate,
+    DoubleAuthSmsService,
+    DoubleAuthTotpService,
+    DoubleAuthU2fService,
+    DoubleAuthBackupCodeService,
+    Alerter,
+  ) {
     $scope.doubleAuth = {
       sms: 'disabled',
       totp: 'disabled',

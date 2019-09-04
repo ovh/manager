@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 angular.module('UserAccount').directive('checkboxSwitch', [
   '$timeout',
-  function ($timeout) {
+  function checkboxSwitchDirective($timeout) {
     return {
       template:
                 '<div class="has-switch" data-ng-class="{ deactivate: ngDisabled }">'
@@ -26,7 +26,7 @@ angular.module('UserAccount').directive('checkboxSwitch', [
         const elCursor = el.find('label');
         const elWrapper = el.find('.switch-wrapper');
 
-        $scope.changeStatusTo = function (state) {
+        $scope.changeStatusTo = function changeStatusTo(state) {
           if (!$scope.ngDisabled && state !== $scope.ngModel) {
             $timeout(() => {
               $scope.ngModel = state;

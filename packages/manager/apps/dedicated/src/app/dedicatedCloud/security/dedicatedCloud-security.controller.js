@@ -2,7 +2,7 @@ import upperFirst from 'lodash/upperFirst';
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 
-angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootScope, $stateParams, $scope, $uibModal, DedicatedCloud, OvhApiDedicatedCloud, $translate) {
+angular.module('App').controller('DedicatedCloudSecurityCtrl', function DedicatedCloudSecurityCtrl($rootScope, $stateParams, $scope, $uibModal, DedicatedCloud, OvhApiDedicatedCloud, $translate) {
   const self = this;
   let forceRefresh = false;
 
@@ -30,7 +30,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     $rootScope.$broadcast('dedicatedcloud.informations.reload');
   });
 
-  $scope.loadInfo = function () {
+  $scope.loadInfo = function loadInfo() {
     $scope.loaders.policiesInfo = true;
 
     DedicatedCloud.getSecurityInformations($stateParams.productId).then(
@@ -45,7 +45,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     );
   };
 
-  $scope.loadPaginated = function (count, offset) {
+  $scope.loadPaginated = function loadPaginated(count, offset) {
     $scope.loaders.search = true;
     $scope.loaders.table = true;
 
@@ -84,14 +84,14 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     self.reloadCurrentPage();
   });
 
-  self.reloadCurrentPage = function () {
+  self.reloadCurrentPage = function reloadCurrentPage() {
     if (!$scope.loaders.table) {
       forceRefresh = true;
       $scope.$broadcast('paginationServerSide.reload');
     }
   };
 
-  self.formatKmsStatus = function (state) {
+  self.formatKmsStatus = function formatKmsStatus(state) {
     switch (state) {
       case 'creating':
       case 'updating':
@@ -109,7 +109,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     }
   };
 
-  $scope.globalCheckboxPoliciesStateChange = function (state) {
+  $scope.globalCheckboxPoliciesStateChange = function globalCheckboxPoliciesStateChange(state) {
     if ($scope.policies
       && $scope.policies.model
       && $scope.policies.model.list
@@ -140,7 +140,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     }
   };
 
-  $scope.togglePolicy = function (entry) {
+  $scope.togglePolicy = function togglePolicy(entry) {
     const index = $scope.selectedPolicies.indexOf(entry);
     if (~index) {
       $scope.selectedPolicies.splice(index, 1);
@@ -149,12 +149,12 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     }
   };
 
-  self.endRequest = function () {
+  self.endRequest = function endRequest() {
     $scope.loaders.table = false;
     $scope.loaders.search = false;
   };
 
-  self.onError = function (error) {
+  self.onError = function onError(error) {
     $scope.setMessage($translate.instant('dedicatedCloud_dashboard_loading_error'), get(error, 'data', error));
   };
 
@@ -168,7 +168,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     });
   }
 
-  self.addKms = function () {
+  self.addKms = function addKms() {
     const kmsCreationModal = createModalObject('add');
 
     kmsCreationModal.result.then(() => {
@@ -180,7 +180,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     });
   };
 
-  self.deleteKms = function (kmsToDelete) {
+  self.deleteKms = function deleteKms(kmsToDelete) {
     const resolveKms = {
       kmsToDelete: () => kmsToDelete,
     };
@@ -195,7 +195,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     });
   };
 
-  self.editKms = function (kmsToEdit) {
+  self.editKms = function editKms(kmsToEdit) {
     const resolveKms = {
       kmsToEdit: () => clone(kmsToEdit),
     };
@@ -210,7 +210,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     });
   };
 
-  self.getVMEncryptionKMSList = function ({ offset, pageSize }) {
+  self.getVMEncryptionKMSList = function getVMEncryptionKMSList({ offset, pageSize }) {
     return DedicatedCloud.getVMEncryptionKMSList($stateParams.productId).then(kmsIds => ({
       data: kmsIds
         .slice(offset - 1, offset - 1 + pageSize)
@@ -221,7 +221,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
     }));
   };
 
-  self.getVMEncryptionKMSDetail = function (id) {
+  self.getVMEncryptionKMSDetail = function getVMEncryptionKMSDetail(id) {
     return DedicatedCloud.getVMEncryptionKMSDetail($stateParams.productId, id);
   };
 

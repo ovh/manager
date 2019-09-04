@@ -7,7 +7,7 @@ angular.module('App').controller('DedicatedCloudDatacentersAddCtrl', ($scope, $s
     constants: COMMERCIAL_RANGE_ENUM,
   };
 
-  $scope.load = function () {
+  $scope.load = function load() {
     $scope.loader = true;
 
     DedicatedCloud.getCommercialRangeList($stateParams.productId)
@@ -25,7 +25,7 @@ angular.module('App').controller('DedicatedCloudDatacentersAddCtrl', ($scope, $s
       });
   };
 
-  $scope.addDatacenter = function () {
+  $scope.addDatacenter = function addDatacenter() {
     $scope.resetAction();
     DedicatedCloud.addDatacenter($stateParams.productId, $scope.commercialRange.model).then(
       () => {

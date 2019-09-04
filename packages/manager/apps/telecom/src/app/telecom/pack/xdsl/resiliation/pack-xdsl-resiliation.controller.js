@@ -1,6 +1,6 @@
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, TucToastError, OvhApiXdslResiliation, TucToast, tucValidator) {
+angular.module('managerApp').controller('PackXdslResiliationCtrl', function PackXdslResiliationCtrl($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, TucToastError, OvhApiXdslResiliation, TucToast, tucValidator) {
   const self = this;
 
   this.loading = true;
@@ -9,7 +9,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
     minDate: null,
   };
 
-  this.init = function () {
+  this.init = function init() {
     self.serviceDetails = null;
     self.resiliationTerms = null;
     self.loading = true;
@@ -54,7 +54,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
    * @param  {Object} survey  Reason to resiliate
    * @param {Boolean} accept  If true the resiliation must be done
    */
-  this.resiliateService = function (service, survey, accept) {
+  this.resiliateService = function resiliateService(service, survey, accept) {
     if (accept) {
       self.loading = true;
       return OvhApiXdslResiliation.v6().resiliate({
@@ -76,7 +76,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
    * Validator for the resiliationDate
    * @param {Date} specifiedDate Date to validate
    */
-  this.checkDate = function (specifiedDate) {
+  this.checkDate = function checkDate(specifiedDate) {
     return !specifiedDate
       || (tucValidator.isDate(specifiedDate) && (specifiedDate >= self.minResiliationDate));
   };
@@ -85,7 +85,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
    * Open the date picker
    * @param event
    */
-  this.openDatePicker = function (event) {
+  this.openDatePicker = function openDatePicker(event) {
     self.pickerOpened = true;
     self.pickerOpenedPreventConflict = true;
     event.stopPropagation();
@@ -101,7 +101,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
    *
    * @param event
    */
-  this.switchDatePickerState = function (event) {
+  this.switchDatePickerState = function switchDatePickerState(event) {
     if (!self.pickerOpenedPreventConflict) {
       self.pickerOpened = !self.pickerOpened;
     }
@@ -112,7 +112,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
    * Compute the new price
    * @returns {*}
    */
-  this.computePrice = function () {
+  this.computePrice = function computePrice() {
     self.computingPrice = true;
     return OvhApiXdslResiliation.v6().resiliationTerms({
       serviceName: $stateParams.serviceName,
@@ -130,7 +130,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
    * Cancel an on-going resiliation
    * @param  {Object} service Service to cancel resiliation
    */
-  this.cancelServiceResiliation = function (service) {
+  this.cancelServiceResiliation = function cancelServiceResiliation(service) {
     self.loading = true;
     return OvhApiXdslResiliation.v6().cancelResiliation({
       serviceName: service.serviceName,

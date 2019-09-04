@@ -25,11 +25,11 @@ angular.module('App').controller('ServerInstallationFormCtrl', ($rootScope, $sco
     $rootScope.$broadcast('dedicated.informations.reinstall.form.update', $scope.optionForm.$valid);
   });
 
-  $scope.nameGabaritValidator = function () {
+  $scope.nameGabaritValidator = function nameGabaritValidator() {
     $scope.optionForm.gabaritNameSave.$setValidity('pattern', !$scope.installation.options.saveGabarit || /^[a-zA-Z0-9-]{1,50}$/.test($scope.installation.options.gabaritNameSave));
   };
 
-  $scope.postInstallationScriptLinkValidator = function () {
+  $scope.postInstallationScriptLinkValidator = function postInstallationScriptLinkValidator() {
     const input = $scope.optionForm.postInstallationScriptLink;
     const val = $scope.installation.options.postInstallationScriptLink;
     const regexpCheckPort = /^(((https|http|ftp|ftps|ftpes)?:\/\/)?(([^:/]*\.?)*))(:(\d+))?(\/|$)/g;

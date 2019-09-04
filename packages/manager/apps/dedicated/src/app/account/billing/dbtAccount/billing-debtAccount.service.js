@@ -1,13 +1,13 @@
 import forOwn from 'lodash/forOwn';
 
-angular.module('Billing.services').service('BillingDebtAccount', function ($q, $cacheFactory, OvhHttp) {
+angular.module('Billing.services').service('BillingDebtAccount', function BillingDebtAccount($q, $cacheFactory, OvhHttp) {
   const cache = {
     debtAccount: 'UNIVERS_BILLING_DEBT_CREDITS_ACCOUNT',
     debts: 'UNIVERS_BILLING_DEBT_CREDITS_DEBTS',
     debtOperations: 'UNIVERS_BILLING_DEBT_CREDITS_OPERATIONS',
   };
 
-  this.getDebtAccount = function () {
+  this.getDebtAccount = function getDebtAccount() {
     return OvhHttp.get('/me/debtAccount', {
       rootPath: 'apiv6',
       cache: cache.debtAccount,
@@ -15,14 +15,14 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
     });
   };
 
-  this.getDebts = function () {
+  this.getDebts = function getDebts() {
     return OvhHttp.get('/me/debtAccount/debt', {
       rootPath: 'apiv6',
       cache: cache.debts,
     });
   };
 
-  this.getDebtDetails = function (debtId) {
+  this.getDebtDetails = function getDebtDetails(debtId) {
     return OvhHttp.get('/me/debtAccount/debt/{debtId}', {
       rootPath: 'apiv6',
       urlParams: {
@@ -32,7 +32,7 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
     });
   };
 
-  this.getDebtOperations = function (debtId) {
+  this.getDebtOperations = function getDebtOperations(debtId) {
     return OvhHttp.get('/me/debtAccount/debt/{debtId}/operation', {
       rootPath: 'apiv6',
       urlParams: {
@@ -42,7 +42,7 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
     });
   };
 
-  this.getDebtOperationDetail = function (debtId, operationId) {
+  this.getDebtOperationDetail = function getDebtOperationDetail(debtId, operationId) {
     return OvhHttp.get('/me/debtAccount/debt/{debtId}/operation/{operationId}', {
       rootPath: 'apiv6',
       urlParams: {
@@ -56,7 +56,7 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
   /**
      * Creates a BC that allows the payment of outstanding debts.
      */
-  this.payDebt = function (debt) {
+  this.payDebt = function payDebt(debt) {
     if (debt && debt.debtId) {
       return OvhHttp.post('/me/debtAccount/debt/{debtId}/pay', {
         rootPath: 'apiv6',
@@ -71,7 +71,7 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
     });
   };
 
-  this.payDebtWithPaymentMethod = function (paymentMethodId) {
+  this.payDebtWithPaymentMethod = function payDebtWithPaymentMethod(paymentMethodId) {
     return OvhHttp.post('/me/debtAccount/pay', {
       rootPath: 'apiv6',
       data: {
@@ -80,7 +80,7 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
     });
   };
 
-  this.clearCache = function () {
+  this.clearCache = function clearCache() {
     forOwn(cache, (cacheName) => {
       const cacheInstance = $cacheFactory.get(cacheName);
       if (cacheInstance) {

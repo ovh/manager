@@ -10,7 +10,7 @@ angular.module('App').controller('ServerIpCtrl', [
   'FIREWALL_STATUSES',
   'MITIGATION_STATUSES',
 
-  function ($rootScope, $scope, $timeout, $translate, Server, firewallStatuses,
+  function ServerIpCtrl($rootScope, $scope, $timeout, $translate, Server, firewallStatuses,
     mitigationStatuses) {
     $scope.firewallStatuses = firewallStatuses;
     $scope.mitigationStatuses = mitigationStatuses;
@@ -52,23 +52,25 @@ angular.module('App').controller('ServerIpCtrl', [
       }
     });
 
-    $scope.canDisplayEnableFirewall = function (ip) {
+    $scope.canDisplayEnableFirewall = function canDisplayEnableFirewall(ip) {
       return ip.mitigationStatus !== mitigationStatuses.FORCED
         && ip.firewallStatus === firewallStatuses.DEACTIVATED;
     };
 
-    $scope.canDisplayDisableFirewall = function (ip) {
+    $scope.canDisplayDisableFirewall = function canDisplayDisableFirewall(ip) {
       return ip.mitigationStatus === mitigationStatuses.AUTO
         && ip.firewallStatus === firewallStatuses.ACTIVATED;
     };
 
-    $scope.canDisplayDisableFirewallMitigationActivated = function (ip) {
+    $scope.canDisplayDisableFirewallMitigationActivated = function displayDisableFirewallMitigation(
+      ip,
+    ) {
       return !$scope.canDisplayEnableFirewall(ip)
         && !$scope.canDisplayDisableFirewall(ip)
         && ip.firewallStatus !== firewallStatuses.NOT_CONFIGURED;
     };
 
-    $scope.loadBlocks = function () {
+    $scope.loadBlocks = function loadBlocks() {
       Server.getBlocks().then(
         (blocks) => {
           $scope.blocks = blocks;
@@ -89,13 +91,13 @@ angular.module('App').controller('ServerIpCtrl', [
       );
     };
 
-    $scope.reloadIps = function () {
+    $scope.reloadIps = function reloadIps() {
       if ($scope.selectedBlock.value !== null) {
         $scope.$broadcast('paginationServerSide.reload', 'ipsTable');
       }
     };
 
-    $scope.loadIps = function (ipsCount, offset) {
+    $scope.loadIps = function loadIps(ipsCount, offset) {
       $scope.manageable = true;
       if ($scope.selectedBlock.value) {
         if ($scope.selectedBlock.value.manageable === true) {
@@ -117,7 +119,7 @@ angular.module('App').controller('ServerIpCtrl', [
       }
     };
 
-    $scope.displayFirewall = function (ip, $event) {
+    $scope.displayFirewall = function displayFirewall(ip, $event) {
       $scope.selectedIp = ip;
       $scope.displayed = false;
       $rootScope.$broadcast('ips.firewall.display', { block: $scope.selectedBlock, ip: $scope.selectedIp });
@@ -133,7 +135,7 @@ angular.module('App').controller('ServerIpCtrl', [
       set($event, 'returnValue', false);
     };
 
-    $scope.displayAntispam = function (ip, ipSpamming) {
+    $scope.displayAntispam = function displayAntispam(ip, ipSpamming) {
       $scope.displayed = false;
 
       $rootScope.$broadcast('ips.antispam.display', { ip, ipSpamming });
@@ -149,7 +151,7 @@ angular.module('App').controller('ServerIpCtrl', [
       // $event.returnValue = false;
     };
 
-    $scope.getSelectedBlockAndIp = function (ip) {
+    $scope.getSelectedBlockAndIp = function getSelectedBlockAndIp(ip) {
       return { ip, block: $scope.selectedBlock.value };
     };
 
@@ -164,7 +166,7 @@ angular.module('App').controller('ServerIpFirewallCtrl', [
   'Server',
   'FIREWALL_STATUSES',
 
-  function ($rootScope, $scope, $translate, Server, firewallStatuses) {
+  function ServerIpFirewallCtrl($rootScope, $scope, $translate, Server, firewallStatuses) {
     $scope.selectedBlock = null;
     $scope.selectedIp = null;
     $scope.loading = true;
@@ -186,11 +188,11 @@ angular.module('App').controller('ServerIpFirewallCtrl', [
       $scope.reloadRules();
     });
 
-    $scope.reloadRules = function () {
+    $scope.reloadRules = function reloadRules() {
       $scope.$broadcast('paginationServerSide.reload', 'rulesTable');
     };
 
-    $scope.loadRules = function (rulesCount, offset) {
+    $scope.loadRules = function loadRules(rulesCount, offset) {
       if ($scope.selectedIp && $scope.selectedIp.ip) {
         $scope.rulesLoading = true;
         Server
@@ -219,7 +221,7 @@ angular.module('App').controller('ServerIpFirewallCtrl', [
       }
     };
 
-    $scope.hideFirewall = function () {
+    $scope.hideFirewall = function hideFirewall() {
       $scope.displayed = false;
       $rootScope.$broadcast('ips.display');
     };
@@ -249,7 +251,7 @@ angular.module('App').controller('ServerIpAntispamCtrl', ($rootScope, $scope, $l
     $scope.ipSpamparam = params.ipSpamming;
   }
 
-  $scope.loadAntispam = function (count, offset) {
+  $scope.loadAntispam = function loadAntispam(count, offset) {
     if ($scope.displayedAntispam) {
       $scope.antispamLoadingError = null;
       $scope.loadingAntiSpam = true;
@@ -287,12 +289,12 @@ angular.module('App').controller('ServerIpAntispamCtrl', ($rootScope, $scope, $l
     $scope.$broadcast('paginationServerSide.loadPage', 1, 'antispamPeriods');
   });
 
-  $scope.hideAntispam = function () {
+  $scope.hideAntispam = function hideAntispam() {
     $scope.displayedAntispam = false;
     $rootScope.$broadcast('ips.display');
   };
 
-  $scope.unblockIp = function () {
+  $scope.unblockIp = function unblockIp() {
     if ($scope.canBeUnblocking()) {
       Server.unblockIp($scope.block, $scope.ipspam.ipSpamming).then(
         () => {
@@ -307,14 +309,14 @@ angular.module('App').controller('ServerIpAntispamCtrl', ($rootScope, $scope, $l
     }
   };
 
-  $scope.canBeUnblocking = function () {
+  $scope.canBeUnblocking = function canBeUnblocking() {
     if ($scope.endDate) {
       return $scope.endDate <= new Date(Date.now());
     }
     return false;
   };
 
-  $scope.isIpSpamming = function () {
+  $scope.isIpSpamming = function isIpSpamming() {
     return $scope.ipspam && $scope.ipspam.state === $scope.status.BLOCKED_FOR_SPAM;
   };
 });
@@ -357,7 +359,7 @@ angular.module('App').controller('ServerIpAntispamDetailsCtrl', ($scope, $transl
     true,
   );
 
-  $scope.loadSpams = function (count, offset) {
+  $scope.loadSpams = function loadSpams(count, offset) {
     $scope.tableLoading = true;
     Server
       .getIpSpamStats(
