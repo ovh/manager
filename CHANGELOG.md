@@ -1,3 +1,52 @@
+# [10.34.0](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.33.3...v10.34.0) (2019-09-02)
+
+
+
+## [10.33.3](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.33.2...v10.33.3) (2019-08-29)
+
+
+### Bug Fixes
+
+* **telephony.alias:** remove api error detail message ([#1493](https://github.com/ovh-ux/ovh-manager-telecom/issues/1493)) ([6f35032](https://github.com/ovh-ux/ovh-manager-telecom/commit/6f35032))
+
+
+
+## [10.33.2](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.33.1...v10.33.2) (2019-08-27)
+
+
+
+## [10.33.1](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.33.0...v10.33.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 20] ([77828f0](https://github.com/ovh-ux/ovh-manager-telecom/commit/77828f0))
+* **i18n:** add missing translations [CDS 21] ([6b4c8f4](https://github.com/ovh-ux/ovh-manager-telecom/commit/6b4c8f4))
+* **i18n:** add missing translations [CDS 22] ([04fd9d8](https://github.com/ovh-ux/ovh-manager-telecom/commit/04fd9d8))
+
+
+
+# [10.33.0](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.32.1...v10.33.0) (2019-08-20)
+
+
+### Features
+
+* add @ovh-ux/ng-ovh-request-tagger ([#1484](https://github.com/ovh-ux/ovh-manager-telecom/issues/1484)) ([8c0df2b](https://github.com/ovh-ux/ovh-manager-telecom/commit/8c0df2b))
+* **xdsl.modem:** add button to reconfigure voip line ([9ab11bc](https://github.com/ovh-ux/ovh-manager-telecom/commit/9ab11bc))
+* **xdsl.modem:** reconfigure voip on modem with correct error label ([bcede4f](https://github.com/ovh-ux/ovh-manager-telecom/commit/bcede4f))
+* **xdsl.modem:** update reconfigure voip line ([fd683eb](https://github.com/ovh-ux/ovh-manager-telecom/commit/fd683eb))
+
+
+
+## [10.32.1](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.32.0...v10.32.1) (2019-08-19)
+
+
+### Bug Fixes
+
+* **pack.slots:** prevent include the missing no-element partial ([#1487](https://github.com/ovh-ux/ovh-manager-telecom/issues/1487)) ([5dbb304](https://github.com/ovh-ux/ovh-manager-telecom/commit/5dbb304))
+
+
+
 # [10.32.0](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.31.6...v10.32.0) (2019-08-12)
 
 

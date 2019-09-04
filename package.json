@@ -1,6 +1,6 @@
 {
   "name": "ovh-manager-telecom",
-  "version": "10.32.0",
+  "version": "10.34.0",
   "private": true,
   "description": "OVH Control Panel Telecom UI",
   "keywords": [
@@ -41,7 +41,7 @@
     "@bower_components/international-phone-number": "mareczek/international-phone-number#^0.0.16",
     "@bower_components/matchmedia": "paulirish/matchMedia.js#~0.2.0",
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.0.0",
+    "@ovh-ux/manager-core": "^7.1.2",
     "@ovh-ux/manager-freefax": "^5.2.1",
     "@ovh-ux/manager-navbar": "^1.2.3",
     "@ovh-ux/manager-overthebox": "^4.3.1",
@@ -59,7 +59,7 @@
     "@ovh-ux/ng-ovh-mondial-relay": "^6.0.1",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.2.1",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^3.0.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.7",
