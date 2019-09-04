@@ -150,8 +150,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
         if (error.status === 403) {
           errorTranslationKey = 'telephony_number_feature_ovh_pabx_menu_action_delete_error_used';
         }
-        TucToast.error([$translate.instant(errorTranslationKey), get(error, 'data.message') || ''].join(' '));
-        return $q.reject(error);
+        TucToast.error($translate.instant(errorTranslationKey));
       });
     }
     if (self.menuEntry) {
