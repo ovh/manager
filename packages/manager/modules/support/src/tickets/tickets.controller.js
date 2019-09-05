@@ -94,6 +94,7 @@ export default class SupportController {
     );
 
     this.onGridParamsChange({
+      pageNumber: 1,
       filters,
     });
   }

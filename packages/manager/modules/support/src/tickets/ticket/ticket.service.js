@@ -1,16 +1,19 @@
+import cloneDeep from 'lodash/cloneDeep';
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import isString from 'lodash/isString';
+import lowerCase from 'lodash/lowerCase';
 import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import uniqBy from 'lodash/uniqBy';
 
 import Ticket from './ticket.class';
 
-export default class {
+export default class TicketService {
   /* @ngInject */
   constructor(
     $q,
@@ -96,18 +99,6 @@ export default class {
       .offset(pageNumber)
       .sort(sortBy, sortOrder);
 
-    const FILTER_OPERATORS = {
-      contains: 'like',
-      is: 'eq',
-      isAfter: 'gt',
-      isBefore: 'lt',
-      isNot: 'ne',
-      smaller: 'lt',
-      bigger: 'gt',
-      startsWith: 'like',
-      endsWith: 'like',
-    };
-
     const nonSearchFilters = filter(
       filters,
       ({ field }) => isString(field),
@@ -115,26 +106,9 @@ export default class {
 
     forEach(
       nonSearchFilters,
-      ({ field, comparator, reference }) => {
-        request = request.addFilter(
-          field,
-          FILTER_OPERATORS[comparator],
-          map(
-            reference,
-            (val) => {
-              switch (comparator.toUpperCase()) {
-                case 'CONTAINS':
-                  return `%25${val}%25`;
-                case 'STARTSWITH':
-                  return `${val}%25`;
-                case 'ENDSWITH':
-                  return `%25${val}`;
-                default:
-                  return val;
-              }
-            },
-          ),
-        );
+      (nonSearchFilter) => {
+        request = TicketService
+          .addFilter(request, nonSearchFilter);
       },
     );
 
@@ -154,18 +128,22 @@ export default class {
     ];
 
     forEach(
-      searchFilters,
-      ({ comparator, reference }) => {
+      searchableColumnNames,
+      (columnName) => {
+        let initialRequest = cloneDeep(request);
+
         forEach(
-          searchableColumnNames,
-          columnName => requests.push(
-            request.addFilter(
-              columnName,
-              FILTER_OPERATORS[comparator],
-              `%25${reference}%25`,
-            ),
-          ),
+          searchFilters,
+          (searchFilter) => {
+            initialRequest = TicketService
+              .addFilter(initialRequest, {
+                ...searchFilter,
+                field: columnName,
+              });
+          },
         );
+
+        requests.push(initialRequest);
       },
     );
 
@@ -196,14 +174,30 @@ export default class {
           },
         );
 
-        const tickets = uniqBy(
-          reduce(
-            results,
-            (acc, result) => acc.concat(result.data),
-            [],
+        const tickets = orderBy(
+          uniqBy(
+            reduce(
+              results,
+              (acc, result) => acc.concat(result.data),
+              [],
+            ),
+            'ticketNumber',
           ),
-          'ticketNumber',
+          sortBy,
+          lowerCase(sortOrder),
         );
+
+        if (isEmpty(tickets) && pageNumber !== 1) {
+          return this
+            .query({
+              cleanCache,
+              filters,
+              pageNumber: 1,
+              pageSize,
+              sortBy,
+              sortOrder,
+            });
+        }
 
         return {
           ...results[0],
@@ -214,6 +208,40 @@ export default class {
           ),
         };
       });
+  }
+
+  static addFilter(request, { comparator, field, reference }) {
+    const FILTER_OPERATORS = {
+      contains: 'like',
+      is: 'eq',
+      isAfter: 'gt',
+      isBefore: 'lt',
+      isNot: 'ne',
+      smaller: 'lt',
+      bigger: 'gt',
+      startsWith: 'like',
+      endsWith: 'like',
+    };
+
+    return request.addFilter(
+      field,
+      FILTER_OPERATORS[comparator],
+      map(
+        reference,
+        (val) => {
+          switch (comparator.toUpperCase()) {
+            case 'CONTAINS':
+              return `%25${val}%25`;
+            case 'STARTSWITH':
+              return `${val}%25`;
+            case 'ENDSWITH':
+              return `%25${val}`;
+            default:
+              return val;
+          }
+        },
+      ),
+    );
   }
 
   reopen(id, body) {
