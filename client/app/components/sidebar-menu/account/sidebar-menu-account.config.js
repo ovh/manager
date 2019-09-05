@@ -37,11 +37,6 @@ angular
           }, myAccountMenu);
         }
 
-        SidebarMenu.addMenuItem({
-          title: $translate.instant('menu_ssh'),
-          state: 'app.account.useraccount.ssh',
-        }, myAccountMenu);
-
         if (coreConfig.getRegion() === 'EU' || coreConfig.getRegion() === 'CA') {
           SidebarMenu.addMenuItem({
             title: $translate.instant('menu_advanced'),
@@ -74,36 +69,13 @@ angular
         }
       }
 
-      function buildServicesMenu(curUser) {
-        if (coreConfig.getRegion() === 'EU' || coreConfig.getRegion() === 'CA') {
-          if (!curUser.isEnterprise) {
-            const servicesMenu = SidebarMenu.addMenuItem({
-              name: 'servicesMenu',
-              title: $translate.instant('menu_services'),
-              allowSubItems: true,
-              allowSearch: true,
-              loadOnState: 'app.account.billing.service',
-              namespace: 'account',
-            });
-
-            SidebarMenu.addMenuItem({
-              title: $translate.instant('menu_services_management'),
-              state: 'app.account.billing.service.autoRenew',
-            }, servicesMenu);
-
-            SidebarMenu.addMenuItem({
-              title: $translate.instant('menu_agreements'),
-              state: 'app.account.billing.service.agreements',
-            }, servicesMenu);
-          } else {
-            SidebarMenu.addMenuItem({
-              name: 'servicesMenuAgreements',
-              title: $translate.instant('menu_agreements'),
-              state: 'app.account.billing.service.agreements',
-              namespace: 'account',
-            });
-          }
-        }
+      function buildServicesMenu(user) {
+        SidebarMenu.addMenuItem({
+          name: 'servicesMenu',
+          title: $translate.instant('menu_services'),
+          state: user.isEnterprise ? 'app.account.billing.autorenew.ssh' : 'app.account.billing.autorenew',
+          namespace: 'account',
+        });
       }
 
       function buildPaymentMenu() {

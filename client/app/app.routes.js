@@ -1,10 +1,13 @@
+import UserModel from './user/User.class';
+
 angular
   .module('App')
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app', {
       abstract: true,
       resolve: {
-        currentUser: /* @ngInject */ User => User.getUser(),
+        currentUser: /* @ngInject */ User => User.getUser()
+          .then(user => new UserModel(user)),
       },
       templateUrl: 'app.html',
       translations: { value: ['common', 'double-authentication', 'user-contracts'], format: 'json' },

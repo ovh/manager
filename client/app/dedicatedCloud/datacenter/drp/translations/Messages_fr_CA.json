@@ -9,6 +9,10 @@
   "dedicatedCloud_datacenter_activate_zerto_drp": "Activer Zerto PRA",
   "dedicatedCloud_datacenter_ovh_step_one": "Datacenter principal",
   "dedicatedCloud_datacenter_ovh_step_two": "Datacenter secondaire",
-  "dedicatedCloud_datacenter_ovh_step_three": "Confirmation",
-  "dedicatedCloud_datacenter_drp_get_state_error": "Une erreur est survenue lors de la récupération des informations de votre PRA."
+
+  "dedicatedCloud_datacenter_drp_get_state_error": "Une erreur est survenue lors de la récupération des informations de votre PRA.",
+  "dedicatedCloud_datacenter_onPremise_step_one": "Datacenter OVH",
+  "dedicatedCloud_datacenter_onPremise_step_two": "Datacenter on premises",
+  "dedicatedCloud_datacenter_install_plan": "Installer",
+  "dedicatedCloud_datacenter_install_in_error": "Une erreur est survenue durant l'installation du plan. Veuillez contacter le support"
 }

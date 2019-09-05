@@ -294,7 +294,6 @@
   "ip_game_mitigation_rule_add_error": "An error occurred when adding a new rule.",
   "ip_game_mitigation_rule_add_title": "Add a new rule",
   "ip_game_mitigation_rule_add_protocol": "Protocol:",
-  "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half life/source",
   "ip_game_mitigation_rule_add_port_from": "Outgoing port:",
   "ip_game_mitigation_rule_add_port_number": "The port must be a number.",
   "ip_game_mitigation_rule_add_port_pattern": "The port must be a whole number greater than zero.",

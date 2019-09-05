@@ -1,0 +1,6 @@
+{
+  "autorenew_service_debt_warn_title": "Informazione importante",
+  "autorenew_service_debt_warn_settle": "Salda",
+  "autorenew_service_debt_warn_cancel": "Annulla",
+  "autorenew_service_debt_warn_deletion": "Per disattivare il servizio è prima necessario saldare l'importo in sospeso.  Accedi alla sezione 'Fatturazione' per effettuare il pagamento del servizio <strong>{{service}}</strong>."
+}

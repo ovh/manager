@@ -294,7 +294,6 @@
   "ip_game_mitigation_rule_add_error": "Tapahtui virhe lisättäessä sääntöä.",
   "ip_game_mitigation_rule_add_title": "Lisää uusi sääntö",
   "ip_game_mitigation_rule_add_protocol": "Protokolla:",
-  "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half life/source",
   "ip_game_mitigation_rule_add_port_from": "Lähtöportti:",
   "ip_game_mitigation_rule_add_port_number": "Portin on oltava luku.",
   "ip_game_mitigation_rule_add_port_pattern": "Portin on oltava positiivinen kokonaisluku.",

@@ -624,6 +624,20 @@ const constants = {
     REDIRECT_URLS: {
       listTicket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
     },
+    SUPPORT: {
+      CZ: '+420 246 030 899',
+      DE: '+49 (0)681 906730',
+      ES: '902 106 113',
+      FI: '(09) 477 8910',
+      FR: '1007',
+      GB: '0333 370 0425',
+      IE: '+353 (0)1 293 7844',
+      IT: '02 5560 0423',
+      LT: '+370 5 243 00 10',
+      NL: '+31 (0)20 808 6057',
+      PL: '71 750 02 00',
+      PT: '+351 213 155 642',
+    },
   },
   CA: {
     RENEW_URL: 'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
@@ -954,6 +968,15 @@ const constants = {
     REDIRECT_URLS: {
       listTicket: 'https://ca.ovh.com/manager/index.html#/ticket',
     },
+    SUPPORT: {
+      ASIA: '+65 3163 8340',
+      AU: '1300 OVH AUS (684 287)',
+      CA: '1-855-684-5463',
+      QC: '1-855-684-5463',
+      SG: '+65 3163 8340',
+      WE: '1-855-684-5463',
+      WS: '1-855-684-5463',
+    },
   },
   US: {
     RENEW_URL: '/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
@@ -1088,6 +1111,9 @@ const constants = {
     },
     REDIRECT_URLS: {
       listTicket: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
+    },
+    SUPPORT: {
+      US: '1-855-684-5463',
     },
   },
 };

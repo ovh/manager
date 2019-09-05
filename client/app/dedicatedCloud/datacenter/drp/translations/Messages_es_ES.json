@@ -10,5 +10,9 @@
   "dedicatedCloud_datacenter_ovh_step_one": "Datacenter principal",
   "dedicatedCloud_datacenter_ovh_step_two": "Datacenter secundario",
   "dedicatedCloud_datacenter_ovh_step_three": "Confirmar",
-  "dedicatedCloud_datacenter_drp_get_state_error": "Se ha producido un error al cargar la información de su DRP."
+  "dedicatedCloud_datacenter_drp_get_state_error": "Se ha producido un error al cargar la información de su DRP.",
+  "dedicatedCloud_datacenter_onPremise_step_one": "Datacenter de OVH",
+  "dedicatedCloud_datacenter_onPremise_step_two": "Datacenter «on-premises»",
+  "dedicatedCloud_datacenter_install_plan": "Instalar",
+  "dedicatedCloud_datacenter_install_in_error": "Se ha producido un error durante la instalación. Por favor, contacte con el soporte."
 }

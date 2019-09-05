@@ -14,6 +14,7 @@
                 filterable
                 sortable="$ctrl.getSorting('name')"
                 type="string">
+                <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}">{{$value}}</a>
             </oui-column>
             <oui-column title=":: 'dedicated_servers_reverse' | translate"
                 property="reverse"
@@ -21,7 +22,6 @@
                 filterable
                 sortable="$ctrl.getSorting('reverse')"
                 type="string">
-                <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}">{{$value}}</a>
             </oui-column>
             <oui-column title=":: 'dedicated_servers_model' | translate"
                 property="commercialRange"
@@ -55,6 +55,9 @@
             </oui-column>
             <extra-top>
                 <a class="oui-button oui-button_primary oui-button_secondary oui-button_icon-right"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="dedicated::dedicated::servers::order"
                     target="_blank" rel="noopener"
                     data-ng-href="{{:: $ctrl.orderUrl }}">
                     <span data-translate="dedicated_servers_order"></span>

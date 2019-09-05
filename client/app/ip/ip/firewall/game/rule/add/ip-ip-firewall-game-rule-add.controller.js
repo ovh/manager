@@ -1,3 +1,5 @@
+import { IP_MITIGIATION_RULE_PROTOCOL_GAMES } from '../../ip-ip-firewall-game.constants';
+
 angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', function ($scope, $rootScope, $translate, Alerter, Ip, IpGameFirewall) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
@@ -28,8 +30,7 @@ angular.module('Module.ip.controllers').controller('AddGameFirewallRuleCtrl', fu
   self.loading = false;
 
   $scope.getProtocoleText = function (protocol) {
-    const tradText = $translate.instant(`ip_game_mitigation_rule_add_protocol_enum_${protocol}`);
-    return !/^\/!\\.*/.test(tradText) ? tradText : protocol;
+    return IP_MITIGIATION_RULE_PROTOCOL_GAMES[protocol] || _.startCase(protocol);
   };
 
   function init() {

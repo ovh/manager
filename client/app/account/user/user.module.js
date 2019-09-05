@@ -40,13 +40,6 @@ angular
         translations: { value: ['.'], format: 'json' },
       });
 
-      $stateProvider.state('app.account.useraccount.ssh', {
-        url: '/ssh',
-        templateUrl: `${baseUrl}ssh/user-ssh.html`,
-        controller: 'UserAccount.controllers.ssh',
-        controllerAs: 'ctrlSsh',
-      });
-
       $stateProvider.state('app.account.useraccount.advanced', {
         url: '/advanced',
         templateUrl: `${baseUrl}advanced/user-advanced.html`,

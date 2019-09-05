@@ -115,6 +115,7 @@ angular
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     DEFAULT_LANGUAGE: config.constants.DEFAULT_LANGUAGE,
     FALLBACK_LANGUAGE: config.constants.FALLBACK_LANGUAGE,
+    SUPPORT: config.constants.SUPPORT,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
@@ -139,14 +140,8 @@ angular
   })
   /* ========== AT-INTERNET ========== */
   .config((atInternetProvider, atInternetUiRouterPluginProvider, constants) => {
-    const level2 = constants.target === 'US' ? '57' : '10';
-
     atInternetProvider.setEnabled(constants.prodMode && window.location.port.length <= 3);
     atInternetProvider.setDebug(!constants.prodMode);
-
-    atInternetProvider.setDefaults({
-      level2,
-    });
 
     atInternetUiRouterPluginProvider.setTrackStateChange(constants.prodMode
       && window.location.port.length <= 3);
@@ -210,5 +205,18 @@ angular
   })
   .run(($translate) => {
     moment.locale(_.first($translate.use().split('_')));
+  })
+  .run((constants, atInternet, OvhApiMe) => {
+    const level2 = constants.target === 'US' ? '57' : '10';
+
+    OvhApiMe.v6().get().$promise
+      .then((me) => {
+        atInternet.setDefaults({
+          level2,
+          countryCode: me.country,
+          currencyCode: me.currency && me.currency.code,
+          visitorId: me.customerCode,
+        });
+      });
   })
   .constant('UNIVERSE', 'DEDICATED');

@@ -1,0 +1,7 @@
+{
+  "autorenew_service_debt_before_paying_title": "Information importante",
+  "autorenew_service_debt_before_paying_1": "Avant de vous engager sur une nouvelle période de temps, nous vous invitons à d'abord régler votre dette restante.",
+  "autorenew_service_debt_before_paying_2": "Rendez-vous dans l’espace facturation afin de régulariser la facturation pour le service <strong>{{service}}</strong>.",
+  "autorenew_service_debt_before_paying_settle": "Régulariser",
+  "autorenew_service_debt_before_paying_cancel": "Annuler"
+}

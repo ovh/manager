@@ -1,0 +1,9 @@
+{
+  "autorenew_privateDatabase_dashboard_close_service": "Eliminar imediatamente o meu alojamento SQL privado",
+  "autorenew_privateDatabase_dashboard_close_service_success": "O seu pedido de desativação do alojamento SQL privado foi registado. Um e-mail com o procedimento foi-lhe enviado.",
+  "autorenew_privateDatabase_dashboard_close_service_error": "Ocorreu um erro ao solicitar o encerramento do seu alojamento SQL privado:",
+  "autorenew_privateDatabase_dashboard_close_service_warning": "A eliminação de um alojamento apaga definitivamente todos os dados correspondentes. A operação de eliminação de um alojamento não garante o direito a reembolso.",
+  "autorenew_privateDatabase_dashboard_close_service_desc1": "Receberá por e-mail o procedimento de encerramento do seu alojamento, e assim que o confirmar, a eliminação será imediata.",
+  "autorenew_privateDatabase_dashboard_close_confirm": "Validar",
+  "autorenew_privateDatabase_dashboard_close_cancel": "Anular"
+}

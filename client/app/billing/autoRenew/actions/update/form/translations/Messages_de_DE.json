@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_update_form_description": "Wählen Sie die gewünschte Verlängerungsart aus (automatisch oder manuell). Bei der automatischen Verlängerung können Sie auch das gewünschte Zahlungsintervall auswählen.",
+  "billing_autorenew_service_update_form_service_renewal": "Verlängerungsart",
+  "billing_autorenew_service_update_form_service_automatic": "Automatisch",
+  "billing_autorenew_service_update_form_service_manualPayment": "Manuell",
+  "billing_autorenew_service_update_form_service_period": "Intervall",
+  "billing_autorenew_service_update_form_service_period_value": "{{ month }} Monate"
+}

@@ -1,0 +1,15 @@
+<oui-modal
+    data-heading="{{:: 'autorenew_service_cancel_resiliation_title' | translate }}"
+    data-primary-action="$ctrl.confirmResiliationCancel()"
+    data-primary-label="{{:: 'autorenew_service_cancel_resiliation_validate' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'autorenew_service_cancel_resiliation_cancel' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()">
+    <p
+        data-translate="autorenew_service_cancel_resiliation_confirm"
+        data-translate-values="{
+            service: $ctrl.service.domain
+        }">
+    </p>
+</oui-modal>

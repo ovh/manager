@@ -1,6 +1,6 @@
 {
-  "page_load_error": "Tapahtui virhe sivun latauksessa.",
-  "page_load_error_common": "Pyydettyä sivua ei löytynyt.",
-  "page_load_error_forbidden_billing_access": "Tällä tilillä ei ole pääsyä \"Laskutus\" -osioon.",
-  "page_load_error_back_to_home": "Paluu hallintapaneelin etusivulle"
+  "page_load_error": "An error has occurred loading the page.",
+  "page_load_error_common": "The page you requested was not found.",
+  "page_load_error_forbidden_billing_access": "The \"Billing\" section cannot be accessed from this account.",
+  "page_load_error_back_to_home": "Return to the OVH Control Panel home page"
 }
