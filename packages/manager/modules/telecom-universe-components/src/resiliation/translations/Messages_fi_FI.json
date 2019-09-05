@@ -1,1 +1,20 @@
-{"resiliation_message1":"Ymmärrän, että tuotteeni irtisanominen johtaa Internet-yhteyteni sekä kaikkien niiden tuotteiden ja palveluiden, mitä en erikseen ole pyytänyt säilytettävän, katkaisuun. ","resiliation_message2":"Ymärrän, että olen tarvittaessa velvoitettu maksamaan summan, joka vastaa kuukausikuluja sitoutumisjaksoni loppuun asti yltävältä ajalta. Liittymäpaketin ylimenevät kulut kuluvalta tai valitulta kuukaudelta lisätään laskuun. ","resiliation_resiliate":"Irtisano {{typeName}} {{name}}","resiliation_button":"Irtisano","resiliation_confirm":"Haluan irtisanoa","resiliation_confirm_title":"Tilaukseni irtisanominen","resiliation_reason":"Miksi haluat irtisanoa palvelun?","resiliation_choice_addressMove":"Muutto","resiliation_choice_billingProblems":"sopimaton laskutusjärjestelmä","resiliation_choice_cessationOfActivity":"Aktiivisuuden päättyminen","resiliation_choice_changeOfTerms":"Muutokset yleisissä käyttöehdoissa","resiliation_choice_ftth":"Kuituyhteys (FTTH)","resiliation_choice_goToCompetitor":"Siirtyminen kilpailijan tuotteeseen","resiliation_choice_other":"Muu","resiliation_choice_technicalProblems":"Tekniset ongelmat","resiliation_cancel":"Peru meneillään oleva irtisanominen","resiliation_common_cancel":"Peruuta","resiliation_resiliation":"Irtisano"}
+{
+  "resiliation_message1": "I acknowledge that cancelling my solution will result in my internet access being cut off, as well as access to all of the products and services that I have not explicitly requested to keep.",
+  "resiliation_message2": "I acknowledge that if I choose to keep any services, I will be charged the corresponding sum on a pro rata basis as monthly payments, until the end of my subscription period. Communications that fall outside of the ongoing monthly plan will be added to my bill.",
+  "resiliation_resiliate": "Cancel {{typeName}} {{name}}",
+  "resiliation_button": "Cancel",
+  "resiliation_confirm": "Cancel",
+  "resiliation_confirm_title": "Cancelling your subscription",
+  "resiliation_reason": "Why do you want to cancel?",
+  "resiliation_choice_addressMove": "Moving",
+  "resiliation_choice_billingProblems": "The billing system isn’t well-adapted to my needs",
+  "resiliation_choice_cessationOfActivity": "No longer in business",
+  "resiliation_choice_changeOfTerms": "Changes to the general conditions of use",
+  "resiliation_choice_ftth": "Switching to fibre (FTTH)",
+  "resiliation_choice_goToCompetitor": "Switching to a competitor solution ",
+  "resiliation_choice_other": "Other",
+  "resiliation_choice_technicalProblems": "Technical issues",
+  "resiliation_cancel": "Stop ongoing cancellation",
+  "resiliation_common_cancel": "Cancel",
+  "resiliation_resiliation": "Cancel"
+}

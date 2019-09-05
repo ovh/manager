@@ -1,1 +1,13 @@
-{"ovh_password_TEMP_must_be_lower_than_8_letters":"täytyy sisältää vähintään 8 merkkiä","ovh_password_TEMP_must_content_a_figure":"täytyy sisältää numeron","ovh_password_TEMP_must_content_a_lowercase":"täytyy sisältää pienen kirjaimen","ovh_password_TEMP_must_content_an_uppercase":"täytyy sisältää ison alkukirjaimen","ovh_password_TEMP_the_password":"Salasana","ovh_password_low":"Heikko","ovh_password_medium":"Keskimääräinen","ovh_password_security_level":"Tietoturvataso","ovh_password_strong":"Vahva","ovh_password_password":"Salasana","ovh_password_password_confirmation":"Vahvista"}
+{
+  "ovh_password_TEMP_must_be_lower_than_8_letters": "must contain at least 8 characters",
+  "ovh_password_TEMP_must_content_a_figure": "must contain a number",
+  "ovh_password_TEMP_must_content_a_lowercase": "must contain a lower-case letter",
+  "ovh_password_TEMP_must_content_an_uppercase": "must contain an upper-case letter",
+  "ovh_password_TEMP_the_password": "Password",
+  "ovh_password_low": "Weak",
+  "ovh_password_medium": "Average",
+  "ovh_password_security_level": "Security level",
+  "ovh_password_strong": "Strong",
+  "ovh_password_password": "Password",
+  "ovh_password_password_confirmation": "Confirm"
+}
