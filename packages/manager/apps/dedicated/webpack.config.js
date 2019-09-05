@@ -6,7 +6,7 @@ const glob = require('glob');
 const _ = require('lodash');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
-const folder = './src/app';
+const folder = './client/app';
 const bundles = {};
 
 function foundNodeModulesFolder(checkedDir, cwd = '.') {
@@ -37,17 +37,17 @@ const ovhUtilsAngularDir = foundNodeModulesFolder('@ovh-ux/ovh-utils-angular');
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
-    template: './src/app/index.html',
-    basePath: './src/app',
+    template: './client/app/index.html',
+    basePath: './client/app',
     lessPath: [
       './node_modules',
     ],
     lessJavascriptEnabled: true,
-    root: path.resolve(__dirname, './src/app'),
+    root: path.resolve(__dirname, './client/app'),
     assets: {
       files: [
-        { from: path.resolve(__dirname, './src/**/*.html'), context: 'src/app' },
-        { from: path.resolve(__dirname, './src/app/images/**/*.*'), context: 'src/app' },
+        { from: path.resolve(__dirname, './client/**/*.html'), context: 'client/app' },
+        { from: path.resolve(__dirname, './client/app/images/**/*.*'), context: 'client/app' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
         { from: `${ovhUtilsAngularDir}/src/**/*.html`, context: `${ovhUtilsAngularDir}/src`, to: 'components/ovh-utils-angular' },
@@ -68,12 +68,12 @@ module.exports = (env = {}) => {
   return merge(config, {
     entry: _.assign({
       app: [
-        './src/app/index.js',
-        './src/app/app.js',
-        './src/app/app.routes.js',
+        './client/app/index.js',
+        './client/app/app.js',
+        './client/app/app.routes.js',
       ]
-        .concat(glob.sync('./src/app/**/*.module.js'))
-        .concat(glob.sync('./src/app/components/**/!(*.module).js')),
+        .concat(glob.sync('./client/app/**/*.module.js'))
+        .concat(glob.sync('./client/app/components/**/!(*.module).js')),
     }, bundles, extras.length > 0 ? { extras } : {}),
     output: {
       path: path.resolve(__dirname, 'dist'),
