@@ -11537,10 +11537,10 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.5.1:
-  version "9.5.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.5.1.tgz#26989bda6bf568c4f385a8c6a42d26911dfa1d62"
-  integrity sha512-KRDNMbMyNVZ/Naqj3MiKVAT13+tGreUAC9KLQO5VasTZdhvfPZEEW7PPhGv/72YfFiTAH/qgMh+l3ON750NXjA==
+ovh-api-services@^9.7.0:
+  version "9.7.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.7.0.tgz#e26ad3865d655221bb486bb966f4f41739a4e1e1"
+  integrity sha512-HzamNxusimGGfzWWWXzY2eB2q+mfLvikE980VfeqMYAC68tCTqXO+4TKLJatFEbSdBj878ZhnAlXRV+Xl6i+3A==
   dependencies:
     lodash "^4.17.15"
 
@@ -15164,10 +15164,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.5.3:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.2.tgz#105b0f1934119dde543ac8eb71af3a91009efe54"
-  integrity sha512-lmQ4L+J6mnu3xweP8+rOrUwzmN+MRAj7TgtJtDaXE5PMyX2kCrklhg3rvOsOIfNeAWMQWO2F1GPc1kMD2vLAfw==
+typescript@~3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
+  integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
 u2f-api-polyfill@^0.4.3:
   version "0.4.4"
