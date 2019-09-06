@@ -6,7 +6,6 @@ import angularTranslate from 'angular-translate';
 import 'ovh-ui-angular';
 
 import component from './new-ticket.component';
-import { state } from './new-ticket.routing';
 import creationFormComponent from './creation-form/creation-form.component';
 import issuesSelectorComponent from './issues-selector/issues-selector.component';
 import issuesFormComponent from './issues-form/issues-form.component';

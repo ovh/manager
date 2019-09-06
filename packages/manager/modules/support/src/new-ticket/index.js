@@ -3,8 +3,6 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import oclazyload from 'oclazyload';
 
-import { state } from './new-ticket.routing';
-
 const moduleName = 'ovhManagerSupportNewLazyLoading';
 
 angular
@@ -20,7 +18,7 @@ angular
         return import('./new-ticket.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-      url: state.url,
+      url: '/new',
     });
   });
 
