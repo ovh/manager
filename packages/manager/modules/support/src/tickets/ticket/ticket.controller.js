@@ -16,7 +16,7 @@ export default class {
     return this
       .ticketService
       .close(this.ticket.ticketId)
-      .then(() => this.reload({ cleanCache: true }))
+      .then(() => this.reload())
       .finally(() => {
         this.$scope.$emit(EVENT_NAMES.stopLoading);
       });
@@ -28,7 +28,7 @@ export default class {
     return this
       .ticketService
       .reply(this.ticket.ticketId, this.replyMessage)
-      .then(() => this.reload({ cleanCache: true }))
+      .then(() => this.reload())
       .finally(() => {
         this.$scope.$emit(EVENT_NAMES.stopLoading);
       });

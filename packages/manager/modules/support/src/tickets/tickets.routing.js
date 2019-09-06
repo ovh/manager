@@ -5,10 +5,6 @@ import component from './tickets.component';
 export const state = {
   name: 'support.tickets',
   params: {
-    cleanCache: {
-      value: false,
-      type: 'bool',
-    },
     filters: {
       array: true,
       squash: true,

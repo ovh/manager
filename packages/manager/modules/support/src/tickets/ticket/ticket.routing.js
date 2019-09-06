@@ -4,20 +4,13 @@ import { state as ticketsState } from '../tickets.routing';
 export const state = {
   name: 'support.tickets.ticket',
   params: {
-    cleanCache: {
-      squash: true,
-      type: 'bool',
-      value: false,
-    },
     id: {
       type: 'int',
     },
   },
   resolve: {
-    cleanCache: /* @ngInject */ $transition$ => $transition$
-      .params().cleanCache,
-    goBack: /* @ngInject */ $state => cleanCache => $state
-      .go(ticketsState.name, { cleanCache }),
+    goBack: /* @ngInject */ $state => () => $state
+      .go(ticketsState.name),
     reload: /* @ngInject */ $state => params => $state
       .transitionTo(
         $state.current,

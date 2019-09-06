@@ -1,11 +1,11 @@
 <oui-datagrid
-    data-criteria="$ctrl.criteria"
+    data-criteria=":: $ctrl.criteria"
     id="tickets"
-    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
-    data-on-page-change="$ctrl.onPageChange($pagination)"
-    data-on-sort-change="$ctrl.onSortChange($sort)"
-    data-page-size="{{ $ctrl.pageSize }}"
-    data-rows-loader="$ctrl.getTickets()">
+    data-on-criteria-change=":: $ctrl.onCriteriaChange($criteria)"
+    data-on-page-change=":: $ctrl.onPageChange($pagination)"
+    data-on-sort-change=":: $ctrl.onSortChange($sort)"
+    data-page-size="{{:: $ctrl.pageSize }}"
+    data-rows-loader=":: $ctrl.getTickets()">
     <oui-column
         data-property="ticketNumber"
         data-searchable
