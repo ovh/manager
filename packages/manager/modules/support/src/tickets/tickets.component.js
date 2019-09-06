@@ -5,6 +5,7 @@ export default {
   bindings: {
     filters: '<',
     goToTicket: '<',
+    goToTicketCreation: '<',
     gridColumnLastMessageFromTypeOptions: '<',
     gridColumnStateTypeOptions: '<',
     onGridParamsChange: '<',

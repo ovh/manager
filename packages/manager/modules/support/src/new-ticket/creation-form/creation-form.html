@@ -1,0 +1,48 @@
+<form novalidate
+      name="supportNewCreationForm">
+
+  <oui-field data-ng-if="!$ctrl.subject"
+             data-label="{{ 'ovhManagerSupport_new_creation_subject' | translate }}"
+             data-size="xl">
+    <input type="text"
+           id="customSubject"
+           name="customSubject"
+           data-required="true"
+           data-ng-model="$ctrl.customSubject"
+           class="oui-input" />
+  </oui-field>
+  
+  <div data-ng-repeat="issue in $ctrl.issues">
+    <oui-field data-ng-repeat="field in issue.fields"
+               data-label="{{ field.label }}"
+               data-size="xl">
+      <input type="text"
+             data-ng-if="field.type === 'text'"
+             id="{{ 'field-' + field.id }}"
+             name="{{ 'field-' + field.id }}"
+             placeholder="{{ field.description }}"
+             required="{{ field.mandatory }}"
+             data-ng-model="field.default"
+             class="oui-input" />
+      <oui-textarea
+             data-ng-if="field.type === 'text_multi'"
+             id="{{ 'field-' + field.id }}"
+             name="{{ 'field-' + field.id }}"
+             data-placeholder="{{ field.description }}"
+             data-required="field.mandatory"
+             data-model="field.default"
+             data-rows="5">
+      </oui-textarea>
+    </oui-field>
+  </div>
+
+  <oui-button data-variant="secondary"
+              data-text="{{ 'ovhManagerSupport_new_creation_cancel' | translate }}"
+              data-on-click="$ctrl.submitForm(false)">
+  </oui-button>
+  <oui-button data-variant="primary"
+              data-text="{{ 'ovhManagerSupport_new_creation_submit' | translate }}"
+              data-disabled="supportNewCreationForm.$invalid"
+              data-on-click="$ctrl.submitForm(true)">
+  </oui-button>
+</form>

@@ -1,0 +1,112 @@
+<form novalidate
+      name="supportNewIssuesForm">
+
+  <div class="text-center">
+    <oui-spinner data-ng-if="$ctrl.loading"
+                 data-size="l">
+    </oui-spinner>
+  </div>
+
+  <div data-ng-if="!$ctrl.loading">
+    <oui-field data-label="{{ 'ovhManagerSupport_new_category' | translate }}"
+               data-size="xl">
+      <oui-select name="category"
+                  data-model="$ctrl.category"
+                  data-items="$ctrl.categories"
+                  data-match="label"
+                  data-on-change="$ctrl.onCategoryChange()">
+      </oui-select>
+    </oui-field>
+    <oui-field data-label="{{ 'ovhManagerSupport_new_serviceType' | translate }}"
+               data-ng-if="$ctrl.category.id !== 'business'"
+               data-size="xl">
+      <oui-select name="serviceType"
+                  data-model="$ctrl.serviceType"
+                  data-items="$ctrl.serviceTypes"
+                  data-match="label"
+                  data-on-change="$ctrl.onServiceTypeChange()">
+      </oui-select>
+    </oui-field>
+    <oui-field data-label="{{ 'ovhManagerSupport_new_service' | translate }}"
+               data-ng-if="$ctrl.category.id !== 'business'"
+               data-size="xl">
+      <oui-select name="service"
+                  data-model="$ctrl.service"
+                  data-items="$ctrl.services"
+                  data-match="displayName"
+                  data-disabled="!$ctrl.services.length"
+                  data-on-change="$ctrl.onServiceChange()"
+                  data-searchable>
+      </oui-select>
+      <oui-checkbox data-model="$ctrl.isUnknownService"
+                    data-disabled="!$ctrl.services.length"
+                    data-on-change="$ctrl.onUnknownServiceChange()">
+        {{ 'ovhManagerSupport_new_service_unknown' | translate }}
+      </oui-checkbox>
+    </oui-field>
+
+    <support-issues-selector
+      data-root="true"
+      data-category="$ctrl.category"
+      data-service-type="$ctrl.serviceType"
+      data-on-issues="$ctrl.onIssues(issues)">
+    </support-issues-selector>
+
+    <div data-ng-if="$ctrl.issues && $ctrl.issues.length > 0">
+      <oui-tile data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
+        <h2 data-translate="ovhManagerSupport_new_guides"
+            data-ng-if="$ctrl.guides.length">
+        </h2>
+        <ul>
+          <li data-ng-repeat="guide in $ctrl.guides">
+            <a data-href="{{ guide.url }}"
+               data-ng-bind="guide.label">
+            </a>
+          </li>
+        </ul>
+        <h2 data-translate="ovhManagerSupport_new_tips"
+            data-ng-if="$ctrl.tips.length">
+        </h2>
+        <ul>
+          <li data-ng-repeat="tip in $ctrl.tips"
+              data-ng-bind="tip.label">
+          </li>
+        </ul>
+      </oui-tile>
+      <p class="mt-4"
+         data-translate="ovhManagerSupport_new_helpfull">
+      </p>
+      <oui-button data-variant="secondary"
+                  data-text="{{ 'ovhManagerSupport_new_helpfull_no' | translate }}"
+                  data-on-click="$ctrl.submitForm(false)">
+      </oui-button>
+      <oui-button data-variant="primary"
+                  data-text="{{ 'ovhManagerSupport_new_helpfull_yes' | translate }}"
+                  data-on-click="$ctrl.submitForm(true)">
+      </oui-button>
+    </div>
+    <div data-ng-if="$ctrl.issues.length === 0">
+      <oui-button data-variant="primary"
+                  data-text="{{ 'ovhManagerSupport_new_create' | translate }}"
+                  data-on-click="$ctrl.submitForm(false)">
+      </oui-button>
+    </div>
+  </div>
+
+  <oui-message data-type="info"
+               data-dismissable="false"
+               data-ng-if="$ctrl.category.id === 'business'">
+    <p data-translate="ovhManagerSupport_new_business_1"></p>
+    <p data-translate="ovhManagerSupport_new_business_2"></p>
+    <dl>
+      <dt data-translate="ovhManagerSupport_new_business_web"></dt>
+      <dd data-ng-bind="$ctrl.email.business_web"></dd>
+      <dt data-translate="ovhManagerSupport_new_business_telecom"></dt>
+      <dd data-ng-bind="$ctrl.email.business_telecom"></dd>
+      <dt data-translate="ovhManagerSupport_new_business_cloud"></dt>
+      <dd data-ng-bind="$ctrl.email.business_cloud"></dd>
+    </dl>
+    <p data-translate="ovhManagerSupport_new_business_3"></p>
+  </oui-message>
+
+</form>
