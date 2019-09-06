@@ -42,7 +42,6 @@ export default class SupportController {
         .reload
         .bind(this,
           {
-            cleanCache: true,
             filters: this.filters,
             pageNumber: this.pageNumber,
             pageSize: this.pageSize,

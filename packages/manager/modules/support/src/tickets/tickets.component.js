@@ -3,7 +3,6 @@ import template from './tickets.html';
 
 export default {
   bindings: {
-    cleanCache: '<',
     filters: '<',
     goToTicket: '<',
     gridColumnLastMessageFromTypeOptions: '<',

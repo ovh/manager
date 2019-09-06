@@ -3,7 +3,6 @@ import template from './ticket.html';
 
 export default {
   bindings: {
-    cleanCache: '<',
     goBack: '<',
     reload: '<',
     ticket: '<',

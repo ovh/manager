@@ -83,7 +83,6 @@ export default class TicketService {
   }
 
   query({
-    cleanCache,
     filters,
     pageNumber,
     pageSize,
@@ -127,32 +126,34 @@ export default class TicketService {
       'subject',
     ];
 
-    forEach(
-      searchableColumnNames,
-      (columnName) => {
-        let initialRequest = cloneDeep(request);
+    if (!isEmpty(searchFilters)) {
+      forEach(
+        searchableColumnNames,
+        (columnName) => {
+          let initialRequest = cloneDeep(request);
 
-        forEach(
-          searchFilters,
-          (searchFilter) => {
-            initialRequest = TicketService
-              .addFilter(initialRequest, {
-                ...searchFilter,
-                field: columnName,
-              });
-          },
-        );
+          forEach(
+            searchFilters,
+            (searchFilter) => {
+              initialRequest = TicketService
+                .addFilter(initialRequest, {
+                  ...searchFilter,
+                  field: columnName,
+                });
+            },
+          );
 
-        requests.push(initialRequest);
-      },
-    );
+          requests.push(initialRequest);
+        },
+      );
+    }
 
     return this
       .$q
       .all(map(
         requests,
         r => r
-          .execute({}, cleanCache)
+          .execute({}, true)
           .$promise,
       ))
       .then((results) => {
@@ -190,7 +191,6 @@ export default class TicketService {
         if (isEmpty(tickets) && pageNumber !== 1) {
           return this
             .query({
-              cleanCache,
               filters,
               pageNumber: 1,
               pageSize,
