@@ -1,1 +1,13 @@
-{"ovh_password_TEMP_must_be_lower_than_8_letters":"Turi būti mažiausiai 8 simboliai","ovh_password_TEMP_must_content_a_figure":"Turi būti skaičius","ovh_password_TEMP_must_content_a_lowercase":"turi būti mažoji raidė","ovh_password_TEMP_must_content_an_uppercase":"turi būti didžioji raidė","ovh_password_TEMP_the_password":"Slaptažodis","ovh_password_low":"Mažas","ovh_password_medium":"Vidutinis","ovh_password_security_level":"Saugumo lygis","ovh_password_strong":"Didelis","ovh_password_password":"Slaptažodis","ovh_password_password_confirmation":"Patvirtinimas"}
+{
+  "ovh_password_TEMP_must_be_lower_than_8_letters": "must contain at least 8 characters",
+  "ovh_password_TEMP_must_content_a_figure": "must contain a number",
+  "ovh_password_TEMP_must_content_a_lowercase": "must contain a lower-case letter",
+  "ovh_password_TEMP_must_content_an_uppercase": "must contain an upper-case letter",
+  "ovh_password_TEMP_the_password": "Password",
+  "ovh_password_low": "Weak",
+  "ovh_password_medium": "Average",
+  "ovh_password_security_level": "Security level",
+  "ovh_password_strong": "Strong",
+  "ovh_password_password": "Password",
+  "ovh_password_password_confirmation": "Confirm"
+}
