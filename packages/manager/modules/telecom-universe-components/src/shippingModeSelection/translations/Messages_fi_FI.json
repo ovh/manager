@@ -1,1 +1,6 @@
-{"shipping_mode_selection_mode_mondial_relay":"Maksuton toimitus Mondial Relay -pisteeseen 48h kuluessa (lähetyksestä)","shipping_mode_selection_mode_mondial_relay_not_free":"Toimitus Mondial Relay -pisteeseen(+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">ALV0</span>) 48h kuluessa (lähetyksestä)","shipping_mode_selection_mode_transporter":"Toimitus kuriiripalveluna(+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">ALV0</span>) 24h kuluessa (lähetyksestä)","shipping_mode_selection_mode_transporter_free":"Maksuton toimitus kuljetuspalvelulla 24h kuluessa (lähetyksestä)"}
+{
+  "shipping_mode_selection_mode_mondial_relay": "Free delivery by Mondial Relay within 48 hours (after sending)",
+  "shipping_mode_selection_mode_mondial_relay_not_free": "Free delivery by Mondial Relay (+ <span class=\"text-price\">€{{ price }}</span> <span class=\"text-infos\">ex. VAT</span>) within 48 hours (after sending)",
+  "shipping_mode_selection_mode_transporter": "Delivery by transporter (+ <span class=\"text-price\">€{{ price }}</span> <span class=\"text-infos\">ex. VAT</span>) within 48 hours (after sending)",
+  "shipping_mode_selection_mode_transporter_free": "Free delivery by transporter within 24 hours (after sending)"
+}
