@@ -5,7 +5,7 @@
   "dedicatedCloud_datacenter_secondary_datacenter_name_placeholder": "Seleccione el datacenter secundario",
   "dedicatedCloud_datacenter_secondary_ip_address_pool_available": "Pool de direcciones IP públicas disponible en el Private Cloud secundario",
   "dedicatedCloud_datacenter_order_ip_secondary_pcc": "No tiene ningún pool de direcciones IP disponible en este Private Cloud. Puede elegir entre <a ui-sref=\"{{sref}}\">contratar</a> uno o seleccionar otro Private Cloud.",
-  "dedicatedCloud_datacenter_secondary_ip_address_pool_available_placeholder": "Seleccione una IP pública libre",
+  "dedicatedCloud_datacenter_secondary_ip_address_pool_available_placeholder": "Seleccione una dirección IP pública libre",
   "dedicatedCloud_datacenter_secondary_datacenter_ip_public": "IP pública",
   "dedicatedCloud_datacenter_secondary_datacenter_ip_public_placeholder": "Dirección IP pública",
   "dedicatedCloud_datacenter_secondary_datacenter_gateway": "Puerta de enlace",

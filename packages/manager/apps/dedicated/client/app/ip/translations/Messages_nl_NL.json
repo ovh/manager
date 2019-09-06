@@ -294,7 +294,6 @@
   "ip_game_mitigation_rule_add_error": "Er is een fout opgetreden bij het toevoegen van deze regel.",
   "ip_game_mitigation_rule_add_title": "Een nieuwe regel toevoegen",
   "ip_game_mitigation_rule_add_protocol": "Protocol:",
-  "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half life/source",
   "ip_game_mitigation_rule_add_port_from": "Uitgaande port:",
   "ip_game_mitigation_rule_add_port_number": "De port moet een getal zijn.",
   "ip_game_mitigation_rule_add_port_pattern": "De port moet een geheel getal, groter dan nul zijn.",

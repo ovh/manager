@@ -1936,10 +1936,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@^7.1.10":
-  version "7.1.10"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.10.tgz#9899810547a28c4d8789e4705c2eb715368fbe5f"
-  integrity sha512-+ZTPq2lD5v5dMwRiuH0tnXK6+rNjzYkMHbPd5iwEYDNsLAPcElR+X2HCMImV4KYHdK/1mqOs8OP2cCdywEwPWw==
+"@ovh-ux/ng-ovh-otrs@7.1.11":
+  version "7.1.11"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.11.tgz#39fec6c9f6cdf8cb4c292e8ed4dca759c4cd1acf"
+  integrity sha512-vZzTWZZkVfEuNrAuBNRjZB+4MCdTDaB4qMpLuQy6l5TrflJLrx4H9qzt5DcpEvNWwTzXVMfuOwq+qHrkJQKfwg==
   dependencies:
     draggable "^4.2.0"
     lodash "^4.17.11"
@@ -1959,10 +1959,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.3.0.tgz#2a13e629837989a50ae20944c586f493f8e82767"
-  integrity sha512-EMIrUdF7sQg0QGLZAvN8W0ND/QhHDjzxN2+Crtf2z+JuPFiaNCh54hohm59NQzlETVE7eVaRK2y3nkrni+Vb2A==
+"@ovh-ux/ng-ovh-payment-method@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-4.1.0.tgz#b51d844293c26d7de3ad8e33f59399d2f5554c1f"
+  integrity sha512-zw6bGHfpr076KDM0h62JnYcB1/wG8vNqeBnUVnzmTLuMbeABbwdgwtUw2t7BjOGD1HSDiO0mAyMxJloI5Aszgw==
   dependencies:
     lodash "^4.17.11"
 

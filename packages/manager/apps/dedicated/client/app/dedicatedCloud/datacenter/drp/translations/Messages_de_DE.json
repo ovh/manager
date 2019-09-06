@@ -10,5 +10,9 @@
   "dedicatedCloud_datacenter_ovh_step_one": "Primäres Datacenter",
   "dedicatedCloud_datacenter_ovh_step_two": "Sekundäres Datacenter",
   "dedicatedCloud_datacenter_ovh_step_three": "Bestätigen",
-  "dedicatedCloud_datacenter_drp_get_state_error": "Beim Abrufen der Daten Ihres DRP ist ein Fehler aufgetreten."
+  "dedicatedCloud_datacenter_drp_get_state_error": "Beim Abrufen der Daten Ihres DRP ist ein Fehler aufgetreten.",
+  "dedicatedCloud_datacenter_onPremise_step_one": "OVH Datacenter",
+  "dedicatedCloud_datacenter_onPremise_step_two": "On-Premise-Datacenter",
+  "dedicatedCloud_datacenter_install_plan": "Installieren",
+  "dedicatedCloud_datacenter_install_in_error": "Bei der Installation des Plans ist ein Fehler aufgetreten. Bitte kontaktieren Sie den Support"
 }

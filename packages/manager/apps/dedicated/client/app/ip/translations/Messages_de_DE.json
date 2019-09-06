@@ -295,7 +295,6 @@
  "ip_game_mitigation_rule_add_error": "Beim Erstellen der Regel ist ein Fehler aufgetreten.",
  "ip_game_mitigation_rule_add_title": "Neue Regel erstellen",
  "ip_game_mitigation_rule_add_protocol": "Protokoll:",
- "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half Life / Source",
  "ip_game_mitigation_rule_add_port_from": "Ausgehender Port:",
  "ip_game_mitigation_rule_add_port_number": "Der Port muss eine Zahl sein.",
  "ip_game_mitigation_rule_add_port_pattern": "Der Port muss eine ganze Zahl größer 0 sein.",

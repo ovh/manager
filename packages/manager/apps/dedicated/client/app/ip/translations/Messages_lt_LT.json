@@ -294,7 +294,6 @@
   "ip_game_mitigation_rule_add_error": "Klaida pridedant šią taisyklę.",
   "ip_game_mitigation_rule_add_title": "Naujos taisyklės pridėjimas",
   "ip_game_mitigation_rule_add_protocol": "Protokolas:",
-  "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half life / source",
   "ip_game_mitigation_rule_add_port_from": "Pradžios prievadas:",
   "ip_game_mitigation_rule_add_port_number": "Prievadas turi būti skaičius.",
   "ip_game_mitigation_rule_add_port_pattern": "Prievadas turi būti teigiamas skaičius.",

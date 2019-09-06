@@ -4,7 +4,7 @@
   "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Choisissez votre datacenter principal",
   "dedicatedCloud_datacenter_order_ip": "Vous n’avez aucun pool d’adresses IP disponible. Veuillez en <a ui-sref=\"{{sref}}\">commander</a>",
   "dedicatedCloud_datacenter_main_ip_address_pool_available": "Pool d’adresses IP publiques disponible",
-  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Choisissez une IP publique libre",
+  "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Choisissez une adresse IP publique libre",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Votre PRA Zerto a été créé avec succès !",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_two": "Vous avez reçu votre mot de passe ZSSP sur l’adresse email {{email}}.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Votre PRA Zerto est en cours d’activation. L’opération peut prendre jusqu’à une heure de délai.",

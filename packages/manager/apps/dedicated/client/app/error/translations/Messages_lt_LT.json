@@ -1,6 +1,6 @@
 {
-  "page_load_error": "Klaida įkeliant puslapį.",
-  "page_load_error_common": "Ieškomas puslapis nerastas.",
-  "page_load_error_forbidden_billing_access": "Skiltis „Sąskaitos ir mokėjimai“ neprieinama naudojant šią paskyrą.",
-  "page_load_error_back_to_home": "Grįžti į kliento valdymo sąsajos pagrindinį puslapį"
+  "page_load_error": "An error has occurred loading the page.",
+  "page_load_error_common": "The page you requested was not found.",
+  "page_load_error_forbidden_billing_access": "The \"Billing\" section cannot be accessed from this account.",
+  "page_load_error_back_to_home": "Return to the OVH Control Panel home page"
 }

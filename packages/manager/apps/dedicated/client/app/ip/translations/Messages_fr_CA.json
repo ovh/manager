@@ -294,7 +294,6 @@
   "ip_game_mitigation_rule_add_error": "Une erreur est survenue lors de l'ajout de cette règle.",
   "ip_game_mitigation_rule_add_title": "Ajout d'une nouvelle règle",
   "ip_game_mitigation_rule_add_protocol": "Protocole:",
-  "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half life / source",
   "ip_game_mitigation_rule_add_port_from": "Port de départ:",
   "ip_game_mitigation_rule_add_port_number": "Le port doit être un nombre.",
   "ip_game_mitigation_rule_add_port_pattern": "Le port doit être un nombre entier positif.",

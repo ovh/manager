@@ -33,14 +33,26 @@ export default /* @ngInject */ ($stateProvider) => {
       filter: /* @ngInject */ $transition$ => $transition$.params().filter,
       orderUrl: /* @ngInject */ User => User.getUrlOf('dedicatedOrder'),
       getServerDashboardLink: /* @ngInject */ $state => server => $state.href('app.dedicated.server', { productId: server.name }),
-      dedicatedServers: /* @ngInject */ (iceberg, $stateParams) => {
-        const filters = JSON.parse($stateParams.filter);
+      dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
+        const {
+          filter,
+          pageSize,
+          sort,
+          sortOrder,
+        } = $transition$.params();
+        let { page } = $transition$.params();
+        const filtersParsed = JSON.parse(filter);
+
+        if (filtersParsed.length > 0) {
+          page = 1;
+        }
+
         let request = iceberg('/dedicated/server')
           .query()
           .expand('CachedObjectList-Pages')
-          .limit($stateParams.pageSize)
-          .offset($stateParams.page)
-          .sort($stateParams.sort, $stateParams.sortOrder);
+          .limit(pageSize)
+          .offset(page)
+          .sort(sort, sortOrder);
 
         const FILTER_OPERATORS = {
           contains: 'like',
@@ -54,7 +66,7 @@ export default /* @ngInject */ ($stateProvider) => {
           endsWith: 'like',
         };
 
-        filters.forEach(({ field, comparator, reference }) => {
+        filtersParsed.forEach(({ field, comparator, reference }) => {
           request = request.addFilter(
             field,
             get(FILTER_OPERATORS, comparator),

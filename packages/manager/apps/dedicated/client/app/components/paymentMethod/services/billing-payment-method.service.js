@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -32,7 +31,7 @@ angular.module('services').service(
     }
 
     filterByValidStatus(paymentMethods) {
-      return filter(paymentMethods, bind('status', 'VALID'));
+      return filter(paymentMethods, { status: 'VALID' });
     }
 
     filterOnlyOneWithId(paymentMethods) {

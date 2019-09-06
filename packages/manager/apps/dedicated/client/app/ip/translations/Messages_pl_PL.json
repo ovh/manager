@@ -295,7 +295,6 @@
  "ip_game_mitigation_rule_add_error": "Wystąpił błąd podczas dodawania tej reguły.",
  "ip_game_mitigation_rule_add_title": "Dodanie nowej reguły",
  "ip_game_mitigation_rule_add_protocol": "Protokół:",
- "ip_game_mitigation_rule_add_protocol_enum_hl2Source": "Half life / source",
  "ip_game_mitigation_rule_add_port_from": "Port początkowy:",
  "ip_game_mitigation_rule_add_port_number": "Port musi być liczbą.",
  "ip_game_mitigation_rule_add_port_pattern": "Port musi być dodatnią liczbą całkowitą.",

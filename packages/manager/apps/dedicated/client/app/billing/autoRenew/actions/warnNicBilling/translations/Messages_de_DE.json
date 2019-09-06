@@ -1,0 +1,5 @@
+{
+  "autorenew_service_warn_nic_billing_title": "Wichtige Information",
+  "autorenew_service_warn_nic_billing_ok": "OK",
+  "autorenew_service_debt_nic_billing": "Um diesen Dienst zu bezahlen, loggen Sie sich über den Account des Rechnungskontakts {{ nicBilling }} ein."
+}

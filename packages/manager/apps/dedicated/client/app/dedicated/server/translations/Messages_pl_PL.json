@@ -1156,5 +1156,7 @@
   "server_datacenter_VIN_1": "Vint Hill (VIN1) - Stany Zjednoczone",
   "server_datacenter_WAW_1": "Warszawa (WAW1) - Polska",
   "server_usage_chart_yaxis_label": "Zużycie (w %)",
-  "server_usage_chart_xaxis_label": "Czas"
+  "server_usage_chart_xaxis_label": "Czas",
+  "server_configuration_upgrade_title": "Wzmocnij Twoją infrastrukturę",
+  "server_configuration_upgrade_badge": "Nowość"
 }

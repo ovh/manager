@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import find from 'lodash/find';
 
 class ServerOrderBandwidthVrackCtrl {
@@ -45,7 +44,7 @@ class ServerOrderBandwidthVrackCtrl {
           return this.Server
             .getBareMetalPrivateBandwidthOrder(this.$stateParams.productId, this.model.plan)
             .then((res) => {
-              res.bandwidth = find(this.plans, bind('planCode', this.model.plan)).bandwidth;
+              res.bandwidth = find(this.plans, { planCode: this.model.plan }).bandwidth;
               res.planCode = this.model.plan;
               this.provisionalPlan = res;
             })
