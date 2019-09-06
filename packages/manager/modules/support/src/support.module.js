@@ -5,6 +5,7 @@ import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
 import 'ovh-ui-angular';
 
+import newTicket from './new-ticket';
 import tickets from './tickets';
 
 import component from './support.component';
@@ -21,6 +22,7 @@ const moduleName = 'ovhManagerSupport';
 angular
   .module(moduleName, [
     angularTranslate,
+    newTicket,
     ngTranslateAsyncLoader,
     'oui',
     tickets,

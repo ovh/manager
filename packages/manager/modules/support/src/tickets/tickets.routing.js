@@ -41,6 +41,8 @@ export const state = {
       .params().filters,
     goToTicket: /* @ngInject */ $state => id => $state
       .go('support.tickets.ticket', { id }),
+    goToTicketCreation: /* @ngInject */ $state => () => $state
+      .go('support.new'),
     gridColumnLastMessageFromTypeOptions: /* @ngInject */ ticketsService => ticketsService
       .buildGridColumnLastMessageFromTypeOptions(),
     gridColumnStateTypeOptions: /* @ngInject */ ticketsService => ticketsService

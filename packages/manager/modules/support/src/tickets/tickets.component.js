@@ -6,6 +6,7 @@ export default {
     cleanCache: '<',
     filters: '<',
     goToTicket: '<',
+    goToTicketCreation: '<',
     gridColumnLastMessageFromTypeOptions: '<',
     gridColumnStateTypeOptions: '<',
     onGridParamsChange: '<',
