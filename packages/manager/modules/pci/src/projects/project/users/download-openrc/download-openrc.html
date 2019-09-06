@@ -33,6 +33,6 @@
                 data-match="label">
             </oui-select>
         </oui-field>
-        <span data-ng-if="$ctrl.hasGlobalRegions" data-translate="pci_projects_project_users_download-openrc_info_global"></span>
+        <span data-ng-if="$ctrl.getOpenRcApiVersion() === 3" data-translate="pci_projects_project_users_download-openrc_info_global"></span>
     </oui-modal>
 </form>
