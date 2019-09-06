@@ -2,12 +2,13 @@ import constants from './issues-form.constant.js';
 
 export default class SupportNewIssuesFormController {
   /* @ngInject */
-  constructor($q, $state, $translate, OvhApiService, OvhApiSupport) {
+  constructor($q, $state, $translate, OvhApiService, OvhApiSupport, OvhApiMe) {
     this.$q = $q;
     this.$state = $state;
     this.$translate = $translate;
     this.OvhApiService = OvhApiService;
     this.OvhApiSupport = OvhApiSupport;
+    this.OvhApiMe = OvhApiMe;
     this.categories = null;
     this.serviceTypes = null;
     this.services = null;
@@ -20,20 +21,24 @@ export default class SupportNewIssuesFormController {
     return this.$q.all({
       schema: this.OvhApiSupport.v6().schema().$promise,
       serviceTypes: this.OvhApiSupport.v6().getServiceTypes().$promise,
-    }).then(({ schema, serviceTypes }) => {
+      supportLevel : this.OvhApiMe.v6().supportLevel().$promise,
+    }).then(({ schema, serviceTypes, supportLevel }) => {
       this.categories = schema.models['support.tickets.CategoryEnum'].enum.map(categoryId => ({
         id: categoryId,
         label: this.$translate.instant(`ovhManagerSupport_new_category_${categoryId}`),
       }));
-      this.categories.push({
-        id: 'business',
-        label: this.$translate.instant(`ovhManagerSupport_new_category_business`),
-      });
+      if (supportLevel.level === 'standard') {
+        this.categories.push({
+          id: 'business',
+          label: this.$translate.instant(`ovhManagerSupport_new_category_business`),
+        });
+      }
       this.serviceTypes = serviceTypes.map(({ name, route }) => ({
         name,
         route,
         label: this.$translate.instant(`ovhManagerSupport_new_serviceType_${name}`),
       }));
+      this.supportLevel = supportLevel.level;
     }).finally(() => {
       this.loading = false;
     });
