@@ -1,10 +1,32 @@
+import get from 'lodash/get';
+
+import { HOME_PAGE } from './constants';
+
 export default class SignUpCtrl {
   /* @ngInject */
-  constructor($window) {
-    this.$window = $window;
+  constructor(ssoAuthentication) {
+    // dependencies injections
+    this.ssoAuthentication = ssoAuthentication;
+
+    // other attributes used in view
+    this.logoUrl = null;
   }
 
+  /* ============================
+  =            Hooks            =
+  ============================= */
+
   $onInit() {
-    this.logoUrl = this.$window.location.href;
+    return this.ssoAuthentication
+      .getSsoAuthPendingPromise()
+      .then(() => {
+        this.logoUrl = get(
+          HOME_PAGE,
+          this.ssoAuthentication.user.ovhSubsidiary,
+          HOME_PAGE.default,
+        );
+      });
   }
+
+  /* -----  End of Hooks  ------ */
 }
