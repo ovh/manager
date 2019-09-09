@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeEditCtrl', function ($timeout, $uibModalInstance, $translate, currentLine) {
+angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeEditCtrl', function TelecomTelephonyLineManagementOfferChangeEditCtrl($timeout, $uibModalInstance, $translate, currentLine) {
   const self = this;
 
   self.line = null;
@@ -23,15 +23,15 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     =            ACTIONS            =
     =============================== */
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 
-  self.saveNewOffer = function () {
+  self.saveNewOffer = function saveNewOffer() {
     self.loading.save = true;
 
     return self.line.changeOffer(self.model.offer).then(() => {

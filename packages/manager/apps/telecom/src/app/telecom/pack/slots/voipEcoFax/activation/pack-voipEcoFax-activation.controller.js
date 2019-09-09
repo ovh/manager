@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 
-angular.module('managerApp').controller('PackFaxActivationCtrl', function ($stateParams, OvhApiPackXdsl, OvhApiPackXdslVoipEcofax, URLS) {
+angular.module('managerApp').controller('PackFaxActivationCtrl', function PackFaxActivationCtrl($stateParams, OvhApiPackXdsl, OvhApiPackXdslVoipEcofax, URLS) {
   const self = this;
 
   const packId = $stateParams.packName;
@@ -30,7 +30,7 @@ angular.module('managerApp').controller('PackFaxActivationCtrl', function ($stat
     return self;
   }
 
-  self.activateFax = function () {
+  self.activateFax = function activateFax() {
     self.loading = true;
     self.error = null;
 

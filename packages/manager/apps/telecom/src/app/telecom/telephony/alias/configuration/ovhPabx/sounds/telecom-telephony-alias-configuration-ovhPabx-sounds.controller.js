@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPabxSoundsCtrl', function ($q, $stateParams, $translate, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPabxSoundsCtrl', function TelecomTelephonyAliasConfigurationOvhPabxSoundsCtrl($q, $stateParams, $translate, TelephonyMediator, TucToast) {
   const self = this;
 
   self.loading = {
@@ -16,7 +16,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
   =            HELPERS            =
   =============================== */
 
-  self.hasError = function () {
+  self.hasError = function hasError() {
     return self.uploadErrors.extension
       || self.uploadErrors.size
       || self.uploadErrors.name
@@ -29,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationOvhPa
   =            INITIALIZATION            =
   ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

@@ -1,3 +1,16 @@
+## [1.1.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.6...@ovh-ux/manager-exchange@1.1.7) (2019-09-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 51] ([66a6bc3](https://github.com/ovh-ux/manager/commit/66a6bc3))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* **i18n:** add missing translations [CDS 57] ([b216e28](https://github.com/ovh-ux/manager/commit/b216e28))
+* fix version for wuc ([6eb2e21](https://github.com/ovh-ux/manager/commit/6eb2e21))
+
+
+
 ## [1.1.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.5...@ovh-ux/manager-exchange@1.1.6) (2019-08-26)
 
 

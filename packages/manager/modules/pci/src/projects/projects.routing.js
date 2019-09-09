@@ -2,6 +2,8 @@ import map from 'lodash/map';
 
 import Project from './Project.class';
 
+import { GUIDES_URL } from '../components/project/guides-header/guides-header.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects', {
@@ -43,6 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+        guideUrl: () => GUIDES_URL,
         projects: /* @ngInject */ OvhApiCloudProject => OvhApiCloudProject
           .v6()
           .query()

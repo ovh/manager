@@ -20,7 +20,7 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
    * @param  {Object} forwards       Data to save
    * @return {Promise}
    */
-  this.saveForwards = function (billingAccount, serviceName, forwards) {
+  this.saveForwards = function saveForwards(billingAccount, serviceName, forwards) {
     const dataToSave = {};
     forEach(forwards, (elt) => {
       assignIn(dataToSave, elt.saveData);
@@ -38,7 +38,7 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
    * Load all the natures of number
    * @return {Promise}
    */
-  this.loadNatures = function () {
+  this.loadNatures = function loadNatures() {
     return OvhApiTelephony.v6().schema().$promise.then((schema) => {
       if (schema.models && schema.models['telephony.LineOptionForwardNatureTypeEnum'] && schema.models['telephony.LineOptionForwardNatureTypeEnum'].enum) {
         return map(
@@ -93,7 +93,7 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
    * @param   {Array} allOvhNumbers                   All numbers from all billing accounts
    * @return {Promise}
    */
-  this.loadForwards = function (
+  this.loadForwards = function loadForwards(
     billingAccount, serviceName, lineOptionForwardNatureTypeEnum,
     allOvhNumbers,
   ) {
@@ -130,7 +130,7 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
     });
   };
 
-  this.resetAllCache = function () {
+  this.resetAllCache = function resetAllCache() {
     OvhApiTelephony.Number().resetCache();
     OvhApiTelephony.Line().Options().resetCache();
     OvhApiTelephony.v6().resetCache();

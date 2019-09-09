@@ -101,13 +101,13 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
       eventScope.scheduler = telephonySchedulerCtrl.scheduler;
       eventScope.timeCondition = telephonySchedulerCtrl.timeCondition;
 
-      eventScope.onSave = function () {
+      eventScope.onSave = function onSave() {
         manageSave(schedulerEvent, uiCalEvent);
       };
-      eventScope.onCancel = function () {
+      eventScope.onCancel = function onCancel() {
         manageCancel();
       };
-      eventScope.onDelete = function (ev) {
+      eventScope.onDelete = function onDelete(ev) {
         manageDelete(ev, uiCalEvent);
       };
 

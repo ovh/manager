@@ -1,7 +1,14 @@
 import get from 'lodash/get';
 
 angular.module('managerApp').controller('TelephonyNumberOvhPabxCtrl',
-  function ($q, $translate, $translatePartialLoader, asyncLoader, TelephonyMediator, TucToast) {
+  function TelephonyNumberOvhPabxCtrl(
+    $q,
+    $translate,
+    $translatePartialLoader,
+    asyncLoader,
+    TelephonyMediator,
+    TucToast,
+  ) {
     const self = this;
 
     self.popoverDatas = {
@@ -21,12 +28,12 @@ angular.module('managerApp').controller('TelephonyNumberOvhPabxCtrl',
     =            HELPERS            =
     =============================== */
 
-    self.refreshDisplayedDialplan = function () {
+    self.refreshDisplayedDialplan = function refreshDisplayedDialplan() {
     // for the moment it will only have one dialplan per ovhPabx. So we take the first.
       self.dialplan = get(self.numberCtrl.number.feature.dialplans, '[0]');
     };
 
-    self.displayedFeatureType = function () {
+    self.displayedFeatureType = function displayedFeatureType() {
       const { featureType } = self.numberCtrl.number.feature;
       asyncLoader.addTranslations(
       import(`./types/${featureType}/translations/Messages_${$translate.use()}.json`)
@@ -62,7 +69,7 @@ angular.module('managerApp').controller('TelephonyNumberOvhPabxCtrl',
 
     /* ----------  Component initialization  ----------*/
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       let initPromises;
 
       // set loading

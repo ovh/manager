@@ -12,7 +12,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
   controller($q, $translate, $translatePartialLoader, $uibModal, TucToast, TucToastError) {
     const self = this;
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.addMemberForm = {
         numbers: [null],
         options: {},
@@ -35,11 +35,11 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       });
     };
 
-    self.onChooseServicePopover = function (service, pos) {
+    self.onChooseServicePopover = function onChooseServicePopover(service, pos) {
       self.addMemberForm.numbers[pos] = service.serviceName;
     };
 
-    self.resetMemberAddForm = function () {
+    self.resetMemberAddForm = function resetMemberAddForm() {
       self.addMemberForm.numbers = [null];
       self.addMemberForm.options = {
         timeout: 20,
@@ -49,7 +49,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       };
     };
 
-    self.getServicesToExclude = function () {
+    self.getServicesToExclude = function getServicesToExclude() {
       const services = map(self.api.getMemberList(), 'number').concat(self.addMemberForm.numbers);
       self.servicesToExclude.splice(0, self.servicesToExclude.length);
       forEach(services, (s) => {
@@ -87,7 +87,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       });
     };
 
-    self.removeMemberAt = function (index) {
+    self.removeMemberAt = function removeMemberAt(index) {
       if (index === 0 && self.addMemberForm.numbers.length === 1) {
         self.addMemberForm.numbers[0] = null;
       } else {

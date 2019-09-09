@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     =            HELPERS            =
     =============================== */
 
-  self.fetchEvents = function (start, end) {
+  self.fetchEvents = function fetchEvents(start, end) {
     self.loading.events = true;
 
     return self.scheduler.getEvents({
@@ -64,21 +64,21 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     );
   };
 
-  self.getCalendarTitle = function () {
+  self.getCalendarTitle = function getCalendarTitle() {
     return $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar('getView').title;
   };
 
-  self.getCurrentDay = function () {
+  self.getCurrentDay = function getCurrentDay() {
     return moment().format('DD');
   };
 
-  self.hasEventInEdition = function () {
+  self.hasEventInEdition = function hasEventInEdition() {
     return !!find(self.scheduler.events, {
       inEdition: true,
     });
   };
 
-  self.hasChange = function () {
+  self.hasChange = function hasChange() {
     return self.scheduler.hasChange() || (self.timeCondition && self.timeCondition.hasChange());
   };
 
@@ -102,7 +102,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
 
   /* ----------  Scheduler actions  ----------*/
 
-  self.cancelEdition = function () {
+  self.cancelEdition = function cancelEdition() {
     // stop the scheduler edition
     self.scheduler.stopEdition(true, false, true).startEdition();
 
@@ -115,7 +115,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar('refetchEvents');
   };
 
-  self.saveScheduler = function () {
+  self.saveScheduler = function saveScheduler() {
     self.loading.save = true;
 
     const allPromises = {
@@ -147,16 +147,16 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
 
   /* ----------  Calendar actions  ----------*/
 
-  self.onCalendarNavigate = function (direction) {
+  self.onCalendarNavigate = function onCalendarNavigate(direction) {
     $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar(direction);
   };
 
-  self.onChangeCalendarView = function (viewName) {
+  self.onChangeCalendarView = function onChangeCalendarView(viewName) {
     self.model.currentView = viewName;
     $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar('changeView', viewName);
   };
 
-  self.createEvent = function (dateStart, dateEnd) {
+  self.createEvent = function createEvent(dateStart, dateEnd) {
     return new VoipSchedulerEvent({
       billingAccount: self.scheduler.billingAccount,
       serviceName: self.scheduler.serviceName,
@@ -168,13 +168,13 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
 
   /* ----------  Communication between components  ----------*/
 
-  self.onFiltersChange = function () {
+  self.onFiltersChange = function onFiltersChange() {
     $(uiCalendarConfig.calendars.eventsCalendar).fullCalendar('refetchEvents');
   };
 
   /* ----------  Actions menu  ----------*/
 
-  self.manageAdd = function () {
+  self.manageAdd = function manageAdd() {
     if (self.model.currentView === 'month') {
       $location.hash('scheduler-calendar');
       $anchorScroll();
@@ -184,7 +184,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     self.status.displayActions = false;
   };
 
-  self.manageImport = function () {
+  self.manageImport = function manageImport() {
     const importModal = $uibModal.open({
       animation: true,
       backdrop: 'static',
@@ -232,7 +232,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     return importModal;
   };
 
-  self.manageExport = function () {
+  self.manageExport = function manageExport() {
     const exportModal = $uibModal.open({
       animation: true,
       backdrop: 'static',
@@ -262,7 +262,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     return exportModal;
   };
 
-  self.manageBankHolidays = function () {
+  self.manageBankHolidays = function manageBankHolidays() {
     const bankHolidaysModal = $uibModal.open({
       animation: true,
       backdrop: 'static',
@@ -298,7 +298,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     return bankHolidaysModal;
   };
 
-  self.manageDeleteAll = function () {
+  self.manageDeleteAll = function manageDeleteAll() {
     self.loading.deleteAll = true;
 
     $uibModal.open({
@@ -346,7 +346,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
 
   /* ----------  Component initialization  ----------*/
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return getTranslations().then(() => {
@@ -372,7 +372,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
 
   /* ----------  Component destroy  ----------*/
 
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     self.scheduler.stopEdition(true);
     if (self.timeCondition) {
       self.timeCondition.stopEdition(true);

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "OVH Sharepoint module",
   "keywords": [
@@ -17,9 +17,9 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-utils": "^14.0.3",
-    "@ovh-ux/web-universe-components": "^5.0.0",
+    "@ovh-ux/web-universe-components": "^7.0.0",
     "angular": "^1.7.5",
-    "ovh-api-services": "^8.3.0",
+    "ovh-api-services": "^9.7.0",
     "ovh-ui-angular": "^3.7.2",
     "ovh-ui-kit": "^2.33.3"
   }

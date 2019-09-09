@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackxdslaccesslinediagnosticCtrl', function ($state, $stateParams, OvhApiMeVipStatus) {
+angular.module('managerApp').controller('PackxdslaccesslinediagnosticCtrl', function PackxdslaccesslinediagnosticCtrl($state, $stateParams, OvhApiMeVipStatus) {
   const self = this;
 
   self.loading = {

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineClick2CallChangePasswordCtrl', function ($q, $stateParams, $state, $translate, TelephonyGroupLineClick2CallUser, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyLineClick2CallChangePasswordCtrl', function TelecomTelephonyLineClick2CallChangePasswordCtrl($q, $stateParams, $state, $translate, TelephonyGroupLineClick2CallUser, TucToast) {
   const self = this;
 
   this.rules = [
@@ -17,11 +17,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallChangePas
     },
   ];
 
-  this.getStrength = function (val) {
+  this.getStrength = function getStrength(val) {
     return (val.length - 8) / 12;
   };
 
-  this.changePassword = function () {
+  this.changePassword = function changePassword() {
     this.loading.changePassword = true;
 
     return this.user.changePassword(self.password).then(() => {
@@ -36,7 +36,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallChangePas
     });
   };
 
-  this.close = function () {
+  this.close = function close() {
     $state.go('telecom.telephony.line.click2call', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,

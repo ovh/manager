@@ -5,14 +5,14 @@ import map from 'lodash/map';
 import pick from 'lodash/pick';
 import sortBy from 'lodash/sortBy';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecordsOvhPabxCtrl', function ($q, $stateParams, TelephonyMediator, OvhApiTelephony, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecordsOvhPabxCtrl', function TelecomTelephonyAliasConfigurationRecordsOvhPabxCtrl($q, $stateParams, TelephonyMediator, OvhApiTelephony, TucToastError) {
   const self = this;
 
   /*= ==============================
   =            HELPERS            =
   =============================== */
 
-  self.fetchQueues = function () {
+  self.fetchQueues = function fetchQueues() {
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .query({
         billingAccount: $stateParams.billingAccount,
@@ -26,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
         }).$promise)).then(queues => sortBy(queues, 'queueId')));
   };
 
-  self.fetchRecords = function () {
+  self.fetchRecords = function fetchRecords() {
     OvhApiTelephony.OvhPabx().Records().v6().resetAllCache();
     return OvhApiTelephony.OvhPabx().Records().v6()
       .query({
@@ -51,7 +51,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
   =            ACTIONS            =
   =============================== */
 
-  self.updateQueue = function (queue) {
+  self.updateQueue = function updateQueue(queue) {
     const attrs = ['record', 'askForRecordDisabling', 'recordDisablingLanguage', 'recordDisablingDigit'];
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .change({
@@ -61,7 +61,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
       }, pick(queue, attrs)).$promise;
   };
 
-  self.deleteSelectedRecords = function (records) {
+  self.deleteSelectedRecords = function deleteSelectedRecords(records) {
     return $q.all(map(records, record => OvhApiTelephony.OvhPabx().Records().v6().remove({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,

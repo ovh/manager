@@ -2,6 +2,13 @@
     <oui-page-header
         class="mb-2"
         data-heading="{{ ::'analytics_data_platform_title' | translate }}">
+        <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+            <oui-guide-menu-item
+                href="{{ $ctrl.guideUrl }}"
+                data-external>
+                <span data-translate="pci_project_guides_header_all_guides"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
     </oui-page-header>
     <div>
         <!-- error messages -->

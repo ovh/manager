@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', function ($q, $timeout, $translate, TucToast, TUC_UI_SORTABLE_HELPERS) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', function telephonyNumberOvhPabxDialplanCtrl($q, $timeout, $translate, TucToast, TUC_UI_SORTABLE_HELPERS) {
   const self = this;
 
   self.loading = {
@@ -27,11 +27,11 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', fu
     =            HELPERS            =
     =============================== */
 
-  self.isLoading = function () {
+  self.isLoading = function isLoading() {
     return self.loading.init || (self.dialplan && ['OK', 'DRAFT', 'DELETE_PENDING'].indexOf(self.dialplan.status) === -1);
   };
 
-  self.hasInCreationExtension = function () {
+  self.hasInCreationExtension = function hasInCreationExtension() {
     return some(self.dialplan.extensions, {
       status: 'IN_CREATION',
     });
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', fu
      *  Used to determine if extensions must be displayed or not.
      *  Used by telephonyNumberOvhPabxDialplanExtensionCtrl when an extension is deleted.
      */
-  self.checkForDisplayHelpers = function () {
+  self.checkForDisplayHelpers = function checkForDisplayHelpers() {
     if (!self.dialplan.extensions.length) {
       self.displayHelpers.collapsed = true;
       self.displayHelpers.expanded = false;
@@ -80,7 +80,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', fu
     =            EVENTS            =
     ============================== */
 
-  self.onDialplanOutsideClick = function () {
+  self.onDialplanOutsideClick = function onDialplanOutsideClick() {
     if (self.dialplan.status !== 'DELETE_PENDING') {
       return;
     }
@@ -89,32 +89,32 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', fu
     self.dialplan.status = 'OK';
   };
 
-  self.onEditDialplanBtnClick = function () {
+  self.onEditDialplanBtnClick = function onEditDialplanBtnClick() {
     self.popoverStatus.isOpen = true;
   };
 
-  self.onDialplanCollapsed = function () {
+  self.onDialplanCollapsed = function onDialplanCollapsed() {
     self.numberCtrl.jsplumbInstance.customRepaint().then(() => {
       setConnectionVisibility(true);
       self.displayHelpers.expanded = false;
     });
   };
 
-  self.onDialplanExpanded = function () {
+  self.onDialplanExpanded = function onDialplanExpanded() {
     self.numberCtrl.jsplumbInstance.customRepaint().then(() => {
       setConnectionVisibility(true);
     });
   };
 
-  self.onDialplanCollapsing = function () {
+  self.onDialplanCollapsing = function onDialplanCollapsing() {
     setConnectionVisibility(false);
   };
 
-  self.onDialplanExpanding = function () {
+  self.onDialplanExpanding = function onDialplanExpanding() {
     self.displayHelpers.expanded = true;
   };
 
-  self.onExtensionAddBtnClick = function () {
+  self.onExtensionAddBtnClick = function onExtensionAddBtnClick() {
     self.displayHelpers.collapsed = false;
     self.displayHelpers.expanded = true;
 
@@ -131,7 +131,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', fu
    *  Deleting a dialplan means deleting its configuration (extension, rules, ...).
    *  Once dialplan is deleted, create a new one with default title.
    */
-  self.onDialplanDeleteConfirmBtnClick = function () {
+  self.onDialplanDeleteConfirmBtnClick = function onDialplanDeleteConfirmBtnClick() {
     return self.dialplan.remove().then(() => {
       self.ovhPabx.removeDialplan(self.dialplan);
       return createDialplan();
@@ -149,7 +149,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanCtrl', fu
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     let sortInterval = null;
     let initPromise = $q.when(true);
     self.loading.init = true;

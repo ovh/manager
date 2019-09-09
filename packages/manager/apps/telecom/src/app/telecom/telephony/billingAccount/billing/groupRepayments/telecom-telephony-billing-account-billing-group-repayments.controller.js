@@ -107,7 +107,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingGr
   =            EVENTS            =
   ============================== */
 
-  self.askHistoryRepaymentConsumption = function () {
+  self.askHistoryRepaymentConsumption = function askHistoryRepaymentConsumption() {
     self.groupRepaymentsForm.isAsking = true;
 
     return OvhApiTelephony.HistoryRepaymentConsumption().v6().create({

@@ -1,0 +1,11 @@
+{
+  "extends": "../../../../.eslintrc.js",
+  "plugins": [
+    "markdown"
+  ],
+  "globals": {
+    "Chart": true,
+    "JustGage": true,
+    "URI": true
+  }
+}

@@ -4,7 +4,7 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
 
-angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', function ($translate, $stateParams, TelephonyMediator) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', function TelecomTelephonyLineCallsCtrl($translate, $stateParams, TelephonyMediator) {
   const self = this;
 
   self.line = null;

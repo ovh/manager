@@ -48,7 +48,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberEasyPabx.prototype.setOptions = function () {
+  TelephonyGroupNumberEasyPabx.prototype.setOptions = function setOptions() {
     const self = this;
 
     return self;
@@ -58,7 +58,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberEasyPabx.prototype.startEdition = function () {
+  TelephonyGroupNumberEasyPabx.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -69,7 +69,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
     return self;
   };
 
-  TelephonyGroupNumberEasyPabx.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberEasyPabx.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -82,7 +82,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
     return self;
   };
 
-  TelephonyGroupNumberEasyPabx.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberEasyPabx.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -97,7 +97,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
 
   /* ----------  SCHEDULER  ----------*/
 
-  TelephonyGroupNumberEasyPabx.prototype.getScheduler = function () {
+  TelephonyGroupNumberEasyPabx.prototype.getScheduler = function getScheduler() {
     const self = this;
 
     if (!self.scheduler) {
@@ -112,7 +112,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
 
   /* ----------  TIMECONDITION  ----------*/
 
-  TelephonyGroupNumberEasyPabx.prototype.getTimeCondition = function () {
+  TelephonyGroupNumberEasyPabx.prototype.getTimeCondition = function getTimeCondition() {
     const self = this;
 
     if (!self.timeCondition) {
@@ -128,13 +128,13 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberEasyPabx.prototype.inPendingState = function () {
+  TelephonyGroupNumberEasyPabx.prototype.inPendingState = function inPendingState() {
     return false;
   };
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupNumberEasyPabx.prototype.init = function () {
+  TelephonyGroupNumberEasyPabx.prototype.init = function init() {
     const self = this;
 
     return OvhApiTelephonyEasyPabx.v6().get({

@@ -5,6 +5,11 @@
         data-description="{{ $ctrl.platformDetails.data.projectId }}">
         <!-- guide menu -->
         <oui-guide-menu data-text="{{ ::'analytics_data_platform_header_guides' | translate }}">
+            <oui-guide-menu-item
+                href="{{ $ctrl.guideUrl }}"
+                data-external>
+                <span data-translate="pci_project_guides_header_all_guides"></span>
+            </oui-guide-menu-item>
             <oui-guide-menu-item data-text="{{ ::'analytics_data_platform_header_guides_analytics_data_platform' | translate }}"
                                  data-href="{{ ::$ctrl.guideLinks.general_link }}"
                                  data-external></oui-guide-menu-item>

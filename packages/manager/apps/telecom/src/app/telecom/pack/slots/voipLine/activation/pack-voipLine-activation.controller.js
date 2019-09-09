@@ -12,7 +12,7 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import sum from 'lodash/sum';
 
-angular.module('managerApp').controller('PackVoipLineActivationCtrl', function ($scope, $stateParams, OvhApiPackXdsl, OvhApiPackXdslVoipLine, costs, $q, $translate, TucToastError) {
+angular.module('managerApp').controller('PackVoipLineActivationCtrl', function PackVoipLineActivationCtrl($scope, $stateParams, OvhApiPackXdsl, OvhApiPackXdslVoipLine, costs, $q, $translate, TucToastError) {
   const self = this;
   this.transporterCost = costs.voip.shipping.transporter.value;
   this.canUncheckOrderablePhones = true;
@@ -21,7 +21,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Build the select object
     * @param {Integer} count Number of available slots
     */
-  this.buildSlotCount = function (count) {
+  this.buildSlotCount = function buildSlotCount(count) {
     if (count > 1) {
       self.orderCountSelect.push({
         value: 0,
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * @param {Integer} id Pack id
     * @returns {Promise}
     */
-  this.loadData = function (id) {
+  this.loadData = function loadData(id) {
     self.loading = true;
     return $q.all([
       OvhApiPackXdsl.v6().getServices({
@@ -73,7 +73,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     *                                  data are ignored
     * @returns {Array}
     */
-  this.buildFramedObject = function (arrayData, largeParam, callbackParam) {
+  this.buildFramedObject = function buildFramedObject(arrayData, largeParam, callbackParam) {
     const framedData = [];
     let localIndex = 0;
     let callback = callbackParam;
@@ -85,9 +85,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
       large = 2;
     }
     if (typeof callback === 'undefined') {
-      callback = function (val) {
-        return val;
-      };
+      callback = val => val;
     }
     arrayData.forEach((data, index) => {
       const computedData = callback(data, localIndex, index);
@@ -108,7 +106,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * hardware.
     * Aka: if not needed, hardware must be null.
     */
-  this.checkIfStillCanUncheckOrderablePhones = function () {
+  this.checkIfStillCanUncheckOrderablePhones = function checkIfStillCanUncheckOrderablePhones() {
     const uncheckedPhones = sum(map(flatten(self.framedLines), (framedLine) => {
       if (!framedLine.line.needHardware && framedLine.line.hardware) {
         set(framedLine, 'line.hardware', null);
@@ -124,7 +122,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Set the number of hardware to order
     * @param {Integer} number Number of hardware to order
     */
-  this.setOrderCount = function (number, isInitialSelection) {
+  this.setOrderCount = function setOrderCount(number, isInitialSelection) {
     if (typeof number !== 'undefined') {
       self.orderCount = find(self.orderCountSelect, { value: number });
     }
@@ -158,7 +156,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * @param {array} data List of addresses
     * @returns {array}
     */
-  this.removeDuplicateAddress = function (dataParam) {
+  this.removeDuplicateAddress = function removeDuplicateAddress(dataParam) {
     let sameAddress = true;
     let data = dataParam;
     forEach(keys(pick(data[0], ['firstName', 'zipCode', 'cityName', 'lastName', 'address', 'countryCode'])), (key) => {
@@ -180,7 +178,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Check if all hardware are configured
     * @returns {boolean} True if ready
     */
-  this.isHardwareConfigured = function () {
+  this.isHardwareConfigured = function isHardwareConfigured() {
     if (self.modem.lines) {
       let ready = true;
       self.modem.lines.forEach((line) => {
@@ -197,7 +195,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Check if something needs to be shipped
     * @returns {boolean} True if ready
     */
-  this.isShipping = function () {
+  this.isShipping = function isShipping() {
     if (self.modem.lines) {
       let shipping = false;
       self.modem.lines.forEach((line) => {
@@ -214,7 +212,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Check if transport is configured
     * @returns {boolean} True if ready
     */
-  this.isTransportConfigured = function () {
+  this.isTransportConfigured = function isTransportConfigured() {
     switch (self.shippingMode) {
       case 'mondialRelay':
         return !!self.mondialRelay;
@@ -225,7 +223,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     }
   };
 
-  this.getTransporter = function () {
+  this.getTransporter = function getTransporter() {
     switch (self.shippingMode) {
       case 'mondialRelay':
         return {
@@ -244,7 +242,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Check if the order is ready
     * @returns {boolean}
     */
-  this.isOrderReady = function () {
+  this.isOrderReady = function isOrderReady() {
     const needNoHardware = self.isHardwareConfigured() && !self.isShipping();
     const needHardware = self.isHardwareConfigured() && self.isShipping()
       && self.isTransportConfigured();
@@ -254,7 +252,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
   /**
     * Launch a new Order
     */
-  this.launchOrder = function () {
+  this.launchOrder = function launchOrder() {
     self.orderPending = true;
     const data = [];
     self.modem.lines.forEach((line) => {
@@ -281,7 +279,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
   /**
     * Initialize the controller
     */
-  this.init = function () {
+  this.init = function init() {
     self.shippingMode = 'mondialRelay';
     self.mondialRelay = null;
     self.bill = {

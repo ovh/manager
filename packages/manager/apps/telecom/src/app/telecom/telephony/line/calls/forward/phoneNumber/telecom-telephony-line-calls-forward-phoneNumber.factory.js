@@ -17,7 +17,7 @@ angular.module('managerApp').factory('TelecomTelephonyLineCallsForwardPhoneNumbe
     }
   };
 
-  TelecomTelephonyLineCallsForwardPhoneNumber.prototype.toString = function () {
+  TelecomTelephonyLineCallsForwardPhoneNumber.prototype.toString = function toString() {
     return this.description
       ? this.description + ['(', ')'].join(this.serviceName) : this.serviceName;
   };

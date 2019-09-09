@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackVoipLineCtrl', function ($scope, OvhApiPackXdslVoipLine, $stateParams) {
+angular.module('managerApp').controller('PackVoipLineCtrl', function PackVoipLineCtrl($scope, OvhApiPackXdslVoipLine, $stateParams) {
   const self = this;
 
   const init = function init() {

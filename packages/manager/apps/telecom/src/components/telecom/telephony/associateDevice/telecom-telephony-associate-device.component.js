@@ -25,7 +25,7 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
   ) {
     const self = this;
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.isInitialized = false;
       self.selectedMac = null;
       self.ipAddress = null;
@@ -43,7 +43,7 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
         });
     };
 
-    self.fetchAssociablesPhones = function () {
+    self.fetchAssociablesPhones = function fetchAssociablesPhones() {
       return OvhApiTelephony.Line().v6()
         .listAssociablePhones({
           billingAccount: self.billingAccount,
@@ -70,11 +70,11 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
         })));
     };
 
-    self.findPhoneByMac = function (mac) {
+    self.findPhoneByMac = function findPhoneByMac(mac) {
       return find(self.phones, { macAddress: mac });
     };
 
-    self.attachDevice = function () {
+    self.attachDevice = function attachDevice() {
       self.isAttaching = true;
       return OvhApiTelephony.Line().v6().associateDevice({
         billingAccount: self.billingAccount,

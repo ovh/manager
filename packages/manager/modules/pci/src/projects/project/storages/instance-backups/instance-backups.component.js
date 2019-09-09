@@ -5,10 +5,11 @@ export default {
   controller,
   template,
   bindings: {
-    projectId: '<',
     addInstanceBackup: '<',
-    instanceBackups: '<',
     createInstance: '<',
     deleteInstanceBackup: '<',
+    instanceBackups: '<',
+    guideUrl: '<',
+    projectId: '<',
   },
 };

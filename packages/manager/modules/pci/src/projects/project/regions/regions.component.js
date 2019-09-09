@@ -4,6 +4,7 @@ import template from './regions.html';
 export default {
   bindings: {
     availableRegions: '<',
+    guideUrl: '<',
     projectId: '<',
     regions: '<',
   },

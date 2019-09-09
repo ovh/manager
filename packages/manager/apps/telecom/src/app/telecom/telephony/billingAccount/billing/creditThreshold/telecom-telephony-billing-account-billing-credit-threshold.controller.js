@@ -1,6 +1,6 @@
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCreditThresholdCtrl', function ($q, $state, $stateParams, $translate, $timeout, OvhApiOrderTelephony, OvhApiTelephony, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCreditThresholdCtrl', function TelecomTelephonyBillingAccountBillingCreditThresholdCtrl($q, $state, $stateParams, $translate, $timeout, OvhApiOrderTelephony, OvhApiTelephony, TucToastError) {
   const self = this;
 
   self.loading = {
@@ -41,13 +41,13 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCr
     });
   }
 
-  self.onChangeCredit = function () {
+  self.onChangeCredit = function onChangeCredit() {
     if (self.credit) {
       self.newCredit = self.credit.value;
     }
   };
 
-  self.submit = function () {
+  self.submit = function submit() {
     self.loading.submit = true;
 
     return OvhApiTelephony.v6().edit({
@@ -64,19 +64,19 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCr
     });
   };
 
-  self.getBillingAccount = function () {
+  self.getBillingAccount = function getBillingAccount() {
     return OvhApiTelephony.v6().get({
       billingAccount: $stateParams.billingAccount,
     }).$promise;
   };
 
-  self.getAllowedCreditThreshold = function () {
+  self.getAllowedCreditThreshold = function getAllowedCreditThreshold() {
     return OvhApiTelephony.v6().allowedCreditThreshold({
       billingAccount: $stateParams.billingAccount,
     }).$promise;
   };
 
-  self.getContracts = function () {
+  self.getContracts = function getContracts() {
     return OvhApiOrderTelephony.v6().getNewBillingAccount().$promise;
   };
 

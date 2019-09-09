@@ -38,7 +38,7 @@ angular.module('managerApp').factory('TelephonyGroupLineOffer', ($translate) => 
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupLineOffer.prototype.getType = function () {
+  TelephonyGroupLineOffer.prototype.getType = function getType() {
     const self = this;
     let intersect;
 
@@ -51,7 +51,7 @@ angular.module('managerApp').factory('TelephonyGroupLineOffer', ($translate) => 
     return undefined;
   };
 
-  TelephonyGroupLineOffer.prototype.getFullDescription = function () {
+  TelephonyGroupLineOffer.prototype.getFullDescription = function getFullDescription() {
     const self = this;
 
     return self.type && self.type !== 'trunk' ? [$translate.instant(`telephony_line_offer_type_${self.type}`), self.description].join(' - ') : self.description;

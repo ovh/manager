@@ -1,3 +1,29 @@
+# [10.34.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.33.1...@ovh-ux/manager-telecom@10.34.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* **telecom:** add missing lodash imports ([3d5a735](https://github.com/ovh-ux/manager/commit/3d5a735))
+* **telecom:** fix line diagnostics ([#1254](https://github.com/ovh-ux/manager/issues/1254)) ([5c4a9ab](https://github.com/ovh-ux/manager/commit/5c4a9ab))
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+* remove use of lodash bind ([#1255](https://github.com/ovh-ux/manager/issues/1255)) ([d33d704](https://github.com/ovh-ux/manager/commit/d33d704))
+
+
+### Features
+
+* import tuc ([47de237](https://github.com/ovh-ux/manager/commit/47de237))
+
+
+
+## [10.33.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.33.0...@ovh-ux/manager-telecom@10.33.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
 # [10.33.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.32.0...@ovh-ux/manager-telecom@10.33.0) (2019-08-26)
 
 

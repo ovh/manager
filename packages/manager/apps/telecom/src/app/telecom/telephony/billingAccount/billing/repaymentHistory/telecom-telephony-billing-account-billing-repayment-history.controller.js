@@ -4,7 +4,7 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRepaymentHistoryCtrl', function ($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRepaymentHistoryCtrl', function TelecomTelephonyBillingAccountBillingRepaymentHistoryCtrl($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
   const self = this;
 
   self.group = null;
@@ -43,8 +43,8 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRe
   }
 
 
-  self.fetchFile = function (consumption) {
-    const tryDownload = function () {
+  self.fetchFile = function fetchFile(consumption) {
+    const tryDownload = function tryDownload() {
       return OvhApiTelephony.HistoryRepaymentConsumption().v6().getDocument({
         billingAccount: $stateParams.billingAccount,
         date: consumption.date,
@@ -70,7 +70,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRe
   =            ACTIONS            =
   =============================== */
 
-  self.download = function (consumption) {
+  self.download = function download(consumption) {
     set(consumption, 'downloading', true);
 
     return self.fetchFile(consumption).then((info) => {
@@ -87,7 +87,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRe
   =            INITIALIZATION            =
   ====================================== */
 
-  this.$onInit = function () {
+  this.$onInit = function $onInit() {
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
       self.group = group;
 

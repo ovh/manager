@@ -54,9 +54,7 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
         .append('path')
         .attr('d', arc)
         .attr('class', d => d.data.label)
-        .each(function (d) {
-          return this._current === d;
-        });
+        .each(d => this._current === d);
 
       /* var pathAnim = function (arc, dir) {
                 switch (dir) {
@@ -111,12 +109,10 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
             .duration(duration)
             .ease(d3.easeBounce)
             .attr('class', d => d.data.label)
-            .attrTween('d', function (a) {
+            .attrTween('d', function d(a) {
               const i = d3.interpolate(this._current, a);
               this._current = i(0);
-              return function (t) {
-                return arc(i(t));
-              };
+              return t => arc(i(t));
             });
         }
       });

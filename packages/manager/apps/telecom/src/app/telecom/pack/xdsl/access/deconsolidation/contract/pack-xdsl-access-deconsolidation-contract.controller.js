@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslDeconsolidationContractCtrl', function ($uibModalInstance, data, TucToastError, URLS, OvhApiXdslDeconsolidation, OvhApiMeVipStatus, $q) {
+angular.module('managerApp').controller('XdslDeconsolidationContractCtrl', function XdslDeconsolidationContractCtrl($uibModalInstance, data, TucToastError, URLS, OvhApiXdslDeconsolidation, OvhApiMeVipStatus, $q) {
   const self = this;
 
   this.rio = data.rio;
@@ -13,7 +13,7 @@ angular.module('managerApp').controller('XdslDeconsolidationContractCtrl', funct
   this.packAdslPro2013 = URLS.generalConditions.packAdslPro2013;
   this.packAdslEnterprise2013 = URLS.generalConditions.packAdslEnterprise2013;
 
-  this.cancel = function () {
+  this.cancel = function cancel() {
     $uibModalInstance.dismiss('cancel');
   };
 
@@ -40,7 +40,7 @@ angular.module('managerApp').controller('XdslDeconsolidationContractCtrl', funct
     );
   }
 
-  this.confirm = function () {
+  this.confirm = function confirm() {
     self.loading = true;
     OvhApiXdslDeconsolidation.v6().requestTotalDeconsolidation({
       serviceName: self.serviceName,

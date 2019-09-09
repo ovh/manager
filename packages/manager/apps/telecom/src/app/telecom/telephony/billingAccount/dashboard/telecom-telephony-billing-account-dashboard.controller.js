@@ -5,7 +5,7 @@ import set from 'lodash/set';
 import slice from 'lodash/slice';
 
 angular.module('managerApp')
-  .controller('TelecomTelephonyBillingAccountDashboardCtrl', function (
+  .controller('TelecomTelephonyBillingAccountDashboardCtrl', function TelecomTelephonyBillingAccountDashboardCtrl(
     $translate, $scope, $stateParams, $state, $q, $window, $timeout,
     TelephonyMediator, OvhApiTelephony, TucToastError, TelephonyGroupLinePhone,
     TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS,
@@ -168,7 +168,7 @@ angular.module('managerApp')
     }
 
     function getFile(consumption, type) {
-      const tryDownload = function () {
+      const tryDownload = function tryDownload() {
         return OvhApiTelephony.HistoryConsumption().v6().getFile({
           billingAccount: $stateParams.billingAccount,
           date: consumption.date,
@@ -202,7 +202,7 @@ angular.module('managerApp')
     =            INITIALIZATION            =
     ====================================== */
 
-    this.$onInit = function () {
+    this.$onInit = function $onInit() {
       self.loading = { };
       self.groupHasAtLeastOnePhone = false;
 

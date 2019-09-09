@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl', function ($q, $scope, $translate, TucToast) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl', function telephonyNumberOvhPabxDialplanEditCtrl($q, $scope, $translate, TucToast) {
   const self = this;
 
   self.dialplanCtrl = null;
@@ -14,7 +14,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl'
   /**
      *  Called on form submit
      */
-  self.onValidateBtnClick = function () {
+  self.onValidateBtnClick = function onValidateBtnClick() {
     self.dialplanCtrl.popoverStatus.isOpen = false;
 
     const savePromise = self.dialplan.status !== 'DRAFT' ? self.dialplan.save() : self.dialplan.create();
@@ -34,7 +34,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl'
   /**
      *  Called on cancel button clicked
      */
-  self.onCancelBtnClick = function () {
+  self.onCancelBtnClick = function onCancelBtnClick() {
     // close popover
     self.dialplanCtrl.popoverStatus.isOpen = false;
     self.dialplanCtrl.popoverStatus.move = false;
@@ -51,7 +51,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl'
   /**
      *  Called on show caller number choice button is clicked
      */
-  self.changeShowCallerNumberChoice = function () {
+  self.changeShowCallerNumberChoice = function changeShowCallerNumberChoice() {
     self.dialplanCtrl.popoverStatus.rightPage = 'callerNumber';
     self.dialplanCtrl.popoverStatus.move = true;
   };
@@ -65,7 +65,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl'
   /**
      *  Component init
      */
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     // set parent ctrl to get dialplan to edit
     self.dialplanCtrl = $scope.$parent.$ctrl;
 
@@ -82,7 +82,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanEditCtrl'
   /**
      *  Component destroy
      */
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     if (self.dialplan && !self.dialplanCtrl.isLoading()) {
       self.dialplan.stopEdition(true);
     }

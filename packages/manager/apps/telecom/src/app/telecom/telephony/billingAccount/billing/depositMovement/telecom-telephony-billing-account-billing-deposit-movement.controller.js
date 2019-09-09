@@ -6,7 +6,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDepositMovementCtrl', function ($q, $state, $timeout, $translate, OvhApiTelephony, TucToastError, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDepositMovementCtrl', function TelecomTelephonyBillingAccountBillingDepositMovementCtrl($q, $state, $timeout, $translate, OvhApiTelephony, TucToastError, TucToast) {
   const self = this;
 
   self.loading = {
@@ -37,7 +37,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
     });
   }
 
-  self.submit = function () {
+  self.submit = function submit() {
     self.loading.submit = true;
 
     return OvhApiTelephony.v6().transferSecurityDeposit({
@@ -55,7 +55,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
     });
   };
 
-  self.onChangeSource = function () {
+  self.onChangeSource = function onChangeSource() {
     self.targets = [];
     self.currency = self.source.securityDeposit.currencyCode === 'EUR' ? '€' : self.source.securityDeposit.currencyCode;
     self.amount = 0;
@@ -97,11 +97,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       });
   };
 
-  self.getEnabledBillingAccounts = function () {
+  self.getEnabledBillingAccounts = function getEnabledBillingAccounts() {
     return OvhApiTelephony.Aapi().billingAccounts().$promise.then(billingAccounts => filter(billingAccounts, { status: 'enabled' }));
   };
 
-  self.getServiceInfos = function (billingAccount) {
+  self.getServiceInfos = function getServiceInfos(billingAccount) {
     return OvhApiTelephony.v6().getServiceInfos({
       billingAccount,
     }).$promise;

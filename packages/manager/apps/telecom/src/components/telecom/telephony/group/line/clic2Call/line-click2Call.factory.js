@@ -37,7 +37,7 @@ angular.module('managerApp').factory(
         =            PROTOTYPE METHODS            =
         ========================================= */
 
-    TelephonyGroupLineClickToCall.prototype.getUsers = function () {
+    TelephonyGroupLineClickToCall.prototype.getUsers = function getUsers() {
       const self = this;
       self.users = [];
 
@@ -66,7 +66,7 @@ angular.module('managerApp').factory(
         }, () => $q.when(self.users));
     };
 
-    TelephonyGroupLineClickToCall.prototype.call = function (calledNumber) {
+    TelephonyGroupLineClickToCall.prototype.call = function call(calledNumber) {
       const self = this;
 
       return OvhApiTelephony.Line().Click2Call().v6().post({

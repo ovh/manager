@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelephonySchedulerParamsCtrl', function ($q, $translate, telephonyScheduler) {
+angular.module('managerApp').controller('TelephonySchedulerParamsCtrl', function TelephonySchedulerParamsCtrl($q, $translate, telephonyScheduler) {
   const self = this;
 
   self.loading = {
@@ -17,7 +17,7 @@ angular.module('managerApp').controller('TelephonySchedulerParamsCtrl', function
     });
   }
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
     self.telephonySchedulerCtrl.loading.params = true;
 

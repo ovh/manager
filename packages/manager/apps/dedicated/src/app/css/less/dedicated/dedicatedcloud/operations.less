@@ -1,0 +1,100 @@
+table.pcc-operations {
+  th {
+    white-space: nowrap;
+  }
+
+  td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 1px;
+    background: white;
+  }
+
+  th.op-id {
+    width: 60px;
+  }
+
+  th.op-name {
+    min-width: 100px;
+  }
+
+  th.op-progress {
+    min-width: 150px;
+    width: 200px;
+  }
+
+  th.op-date {
+    min-width: 50px;
+  }
+
+  .progress {
+    background: #cdcdcd;
+    margin: 0;
+
+    span {
+      text-shadow: 0 0 1px #333, 1px 1px 1px #333;
+      font-weight: bold;
+    }
+  }
+
+  .progress-text {
+    margin: 0;
+  }
+
+  .progress-cancelled .bar,
+  .progress {
+    background-color: #f2f2f2;
+    background-image: linear-gradient(to bottom, #b2b2b2, #a1a1a1);
+    background-repeat: repeat-x;
+  }
+
+  .exec-date {
+    position: relative;
+
+    > span {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: block;
+      margin-right: 20px;
+    }
+
+    > button {
+      position: absolute;
+      right: 0;
+      top: -5px;
+    }
+  }
+
+  .exec-date-edit {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
+    position: absolute;
+    margin-top: -15px;
+    margin-left: -6px;
+    background-color: inherit;
+
+    input {
+      width: auto;
+    }
+  }
+
+  ul {
+    position: relative;
+
+    .related-services-list {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    .related-task-expanded {
+      position: absolute;
+      right: 0;
+    }
+
+    .related-task-collapsed {
+      position: absolute;
+      right: 0;
+    }
+  }
+}

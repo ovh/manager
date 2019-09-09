@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCtrl', function ($q, $stateParams, $translate, TucIpAddress, OvhApiTelephony, OvhApiMe, TucToast, TucToastError, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCtrl', function TelecomTelephonyLineMgcpIpRestrictionCtrl($q, $stateParams, $translate, TucIpAddress, OvhApiTelephony, OvhApiMe, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
   /*= ==============================
@@ -26,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
       }).$promise))).then(ips => find(ips, { type: 'mgcp' }));
   }
 
-  self.ipValidator = (function () {
+  self.ipValidator = (function ipValidator() {
     return {
       test(value) {
         return TucIpAddress.isValidPublicIp4(value);
@@ -34,14 +34,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
     };
   }());
 
-  self.hasMgcpIpRestrictionChanged = function () {
+  self.hasMgcpIpRestrictionChanged = function hasMgcpIpRestrictionChanged() {
     return !angular.equals(
       self.mgcpIpRestrictionForm.mgcpIpRestriction,
       self.mgcpIpRestriction.mgcpIpRestriction,
     );
   };
 
-  self.hasMgcpDefaultIpRestrictionChanged = function () {
+  self.hasMgcpDefaultIpRestrictionChanged = function hasMgcpDefaultIpRestrictionChanged() {
     return !angular.equals(self.mgcpDefaultIpRestriction, self.mgcpDefaultIpRestrictionForm);
   };
 
@@ -51,7 +51,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
     =            ACTIONS            =
     =============================== */
 
-  self.setMgcpIpRestriction = function () {
+  self.setMgcpIpRestriction = function setMgcpIpRestriction() {
     self.isChangingMgcpIpRestriction = true;
     return OvhApiTelephony.Line().Phone().v6().edit({
       billingAccount: $stateParams.billingAccount,
@@ -73,7 +73,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
     });
   };
 
-  self.setMgcpDefaultIpRestriction = function () {
+  self.setMgcpDefaultIpRestriction = function setMgcpDefaultIpRestriction() {
     self.isChangingMgcpDefaultIpRestriction = true;
     let promise = $q.when();
     let subnet = get(self.mgcpDefaultIpRestrictionForm, 'subnet');
@@ -147,17 +147,17 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       mgcpIpRestriction: self.mgcpIpRestrictionForm.mgcpIpRestriction || null,
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_mgcp_ip_restriction_bulk_all_success'),
@@ -176,7 +176,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_mgcp_ip_restriction_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

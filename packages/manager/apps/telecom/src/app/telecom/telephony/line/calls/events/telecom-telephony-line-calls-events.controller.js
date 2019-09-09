@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsEventsCtrl', function ($q, $translate, $stateParams, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsEventsCtrl', function TelecomTelephonyLineCallsEventsCtrl($q, $translate, $stateParams, TelephonyMediator, TucToast) {
   const self = this;
 
   self.loading = {

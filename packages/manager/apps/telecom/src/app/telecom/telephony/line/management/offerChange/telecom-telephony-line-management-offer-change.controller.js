@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
@@ -6,7 +5,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 import times from 'lodash/times';
 
-angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeCtrl', function ($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeCtrl', function TelecomTelephonyLineManagementOfferChangeCtrl($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk) {
   const self = this;
 
   self.loading = {
@@ -45,7 +44,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
    * Has changed.
    * @return {Boolean}
    */
-  self.hasChanged = function () {
+  self.hasChanged = function hasChanged() {
     return !angular.equals(self.line.offerInformations.name, self.model.offer.name);
   };
 
@@ -94,14 +93,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
   /**
    * Toggle edit mode.
    */
-  self.toggleEditMode = function () {
+  self.toggleEditMode = function toggleEditMode() {
     self.model.isEditing = !self.model.isEditing;
   };
 
   /**
    * Toggle edit mode.
    */
-  self.toggleCancelMode = function () {
+  self.toggleCancelMode = function toggleCancelMode() {
     self.model.isCanceling = !self.model.isCanceling;
   };
 
@@ -109,7 +108,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
    * Change offer.
    * @return {Promise}
    */
-  self.changeOffer = function () {
+  self.changeOffer = function changeOffer() {
     self.loading.save = true;
     return self.line.changeOffer(self.model.offer).then(() => {
       self.toggleEditMode();
@@ -125,7 +124,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
    * Cancel offer change.
    * @return {Promise}
    */
-  self.cancelOfferChange = function () {
+  self.cancelOfferChange = function cancelOfferChange() {
     self.loading.cancel = true;
     return self.line
       .cancelOfferChange()
@@ -157,12 +156,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     function filterServicesByOffer(paramServices, listOffers) {
       const servicesFiltered = [];
 
       times(listOffers.length, (index) => {
-        if (some(listOffers[index], bind('name', self.model.offer.name))) {
+        if (some(listOffers[index], { name: self.model.offer.name })) {
           servicesFiltered.push(paramServices[index]);
         }
       });
@@ -190,13 +189,13 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
       .catch(listOffers => filterServicesByOffer(filteredServices, listOffers));
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       offer: self.model.offer.name,
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_management_change_offer_bulk_all_success'),
@@ -217,7 +216,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_management_change_offer_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 
-angular.module('managerApp').controller('TelecomPackMigrationCtrl', function ($q, $stateParams, $translate, TucPackMigrationProcess, TucToast) {
+angular.module('managerApp').controller('TelecomPackMigrationCtrl', function TelecomPackMigrationCtrl($q, $stateParams, $translate, TucPackMigrationProcess, TucToast) {
   const self = this;
 
   self.process = null;

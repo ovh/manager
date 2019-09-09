@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneCtrl', function ($q, $stateParams, $translate, TelephonyMediator) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneCtrl', function TelecomTelephonyLinePhoneCtrl($q, $stateParams, $translate, TelephonyMediator) {
   const self = this;
 
   self.actions = null;

@@ -1,0 +1,10 @@
+{
+  "sso_modal_title": "OVH - Authenticatie ",
+  "sso_modal_loading": "Aan het laden....",
+  "sso_modal_user_title": "U was ingelogd als:",
+  "sso_modal_currentuser_title": "U bent nu ingelogd als: ",
+  "sso_modal_disconnected": "U bent nu uitgelogd. ",
+  "sso_modal_what": "Wat wilt u doen?",
+  "sso_modal_action_reload": "Ga verder als <strong>{{name}}</strong>",
+  "sso_modal_action_logout": "Ga naar de inlogpagina"
+}

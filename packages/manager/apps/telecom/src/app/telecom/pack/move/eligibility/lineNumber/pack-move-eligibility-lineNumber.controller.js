@@ -25,7 +25,7 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
     const self = this;
     this.phoneNumberRegex = '^0[1-5]([\\s\\-]?([0-9]){2}){4}$';
 
-    this.updateLineAccessibility = function () {
+    this.updateLineAccessibility = function updateLineAccessibility() {
       this.loading = true;
       this.lineNumber = self.testLine.lineNumber.replace(/[^0-9]/g, '');
       self.submited();

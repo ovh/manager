@@ -55,7 +55,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberRedirect.prototype.setInfos = function (featureOptionsParam) {
+  TelephonyGroupNumberRedirect.prototype.setInfos = function setInfos(featureOptionsParam) {
     const self = this;
     let featureOptions = featureOptionsParam;
 
@@ -70,7 +70,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberRedirect.prototype.startEdition = function () {
+  TelephonyGroupNumberRedirect.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -83,7 +83,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
     return self;
   };
 
-  TelephonyGroupNumberRedirect.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberRedirect.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -97,7 +97,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
     return self;
   };
 
-  TelephonyGroupNumberRedirect.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberRedirect.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -110,7 +110,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
     return self.hasChange('featureType') || self.hasChange('destination');
   };
 
-  TelephonyGroupNumberRedirect.prototype.save = function () {
+  TelephonyGroupNumberRedirect.prototype.save = function save() {
     const self = this;
 
     if (!self.hasChange('destination')) {
@@ -128,14 +128,14 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberRedirect.prototype.inPendingState = function () {
+  TelephonyGroupNumberRedirect.prototype.inPendingState = function inPendingState() {
     const self = this;
     return self.destination === 'pending';
   };
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupNumberRedirect.prototype.init = function () {
+  TelephonyGroupNumberRedirect.prototype.init = function init() {
     const self = this;
 
     return OvhApiTelephony.Redirect().v6().get({

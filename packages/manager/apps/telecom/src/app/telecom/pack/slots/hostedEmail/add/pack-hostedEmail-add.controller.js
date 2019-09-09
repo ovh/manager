@@ -1,10 +1,10 @@
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('PackHostedEmailAddCtrl', function ($q, $scope, $stateParams, OvhApiPackXdslHostedEmail, TucToast, $translate, $location, tucValidator) {
+angular.module('managerApp').controller('PackHostedEmailAddCtrl', function PackHostedEmailAddCtrl($q, $scope, $stateParams, OvhApiPackXdslHostedEmail, TucToast, $translate, $location, tucValidator) {
   const self = this;
 
-  this.add = function () {
+  this.add = function add() {
     this.pendingOrder = true;
 
     TucToast.info($translate.instant('in_validation'));
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('PackHostedEmailAddCtrl', function ($q, 
     });
   };
 
-  this.init = function () {
+  this.init = function init() {
     $scope.domains = [];
 
     OvhApiPackXdslHostedEmail.v6().getDomains({ packId: $stateParams.packName }, (domains) => {

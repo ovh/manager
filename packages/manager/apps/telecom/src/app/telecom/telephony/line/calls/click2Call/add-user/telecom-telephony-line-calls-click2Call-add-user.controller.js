@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import method from 'lodash/method';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCtrl', function ($q, $stateParams, $state, $translate, OvhApiTelephony, TelephonyGroupLineClick2CallUser, TucToast, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCtrl', function TelecomTelephonyLineClick2CallAddUserCtrl($q, $stateParams, $state, $translate, OvhApiTelephony, TelephonyGroupLineClick2CallUser, TucToast, tucTelephonyBulk) {
   const self = this;
 
   this.rules = [
@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
     },
   ];
 
-  this.getStrength = function (val) {
+  this.getStrength = function getStrength(val) {
     return (val.length - 8) / 12;
   };
 
@@ -30,7 +30,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
     addUser: false,
   };
 
-  this.add = function () {
+  this.add = function add() {
     this.loading.addUser = true;
 
     this.user = new TelephonyGroupLineClick2CallUser({
@@ -52,7 +52,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
     });
   };
 
-  this.close = function () {
+  this.close = function close() {
     $state.go('telecom.telephony.line.click2call', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -77,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     // TODO : remove once bulk action is available for fax
@@ -89,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
       || some(service.offers, method('includes', 'priceplan')));
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {
       login: self.login,
       password: self.password,
@@ -98,7 +98,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_group_line_calls_click2call_addUser_bulk_all_success'),
@@ -117,7 +117,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
     self.close();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_group_line_calls_click2call_addUser_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

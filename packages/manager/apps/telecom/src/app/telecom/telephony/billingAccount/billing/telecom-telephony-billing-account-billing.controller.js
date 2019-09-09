@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCtrl', function ($translate, TelephonyMediator, REDIRECT_URLS) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCtrl', function TelecomTelephonyBillingAccountBillingCtrl($translate, TelephonyMediator, REDIRECT_URLS) {
   const self = this;
 
   self.actions = null;

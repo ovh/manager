@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineConsumptionCtrl', function ($translate) {
+angular.module('managerApp').controller('TelecomTelephonyLineConsumptionCtrl', function TelecomTelephonyLineConsumptionCtrl($translate) {
   const self = this;
 
   self.actions = null;

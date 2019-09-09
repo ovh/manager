@@ -6,7 +6,7 @@ import last from 'lodash/last';
 import now from 'lodash/now';
 import random from 'lodash/random';
 
-angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingCtrl', function ($anchorScroll, $timeout, $stateParams, troubleshootingProcess, TelephonyMediator, TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingCtrl', function TelecomTelephonyLineAssistTroubleshootingCtrl($anchorScroll, $timeout, $stateParams, troubleshootingProcess, TelephonyMediator, TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS) {
   const self = this;
 
   const commonSteps = {
@@ -62,11 +62,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     return 'unkown';
   }
 
-  self.isCurrentStepLastStep = function () {
+  self.isCurrentStepLastStep = function isCurrentStepLastStep() {
     return isEqual(self.process.activeStep.id, last(self.steps).id);
   };
 
-  self.addStep = function (stepOptions) {
+  self.addStep = function addStep(stepOptions) {
     const step = angular.extend({
       active: false,
       display: false,
@@ -85,7 +85,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     =            ACTIONS            =
     =============================== */
 
-  self.refreshSteps = function (steps) {
+  self.refreshSteps = function refreshSteps(steps) {
     // reset steps
     self.steps = [];
 
@@ -111,7 +111,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     self.process.activeStep = head(self.steps);
   };
 
-  self.manageItWorks = function () {
+  self.manageItWorks = function manageItWorks() {
     const activeStepIndex = findIndex(self.steps, {
       active: true,
     });
@@ -135,7 +135,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     });
   };
 
-  self.manageItStillDoesnttWork = function () {
+  self.manageItStillDoesnttWork = function manageItStillDoesnttWork() {
     const activeStepIndex = findIndex(self.steps, {
       active: true,
     });

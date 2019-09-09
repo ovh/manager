@@ -4,7 +4,7 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import sumBy from 'lodash/sumBy';
 
-angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncomingFaxCtrl', function ($stateParams, $q, $translate, $filter, $timeout, OvhApiTelephony, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncomingFaxCtrl', function TelecomTelephonyLineConsumptionIncomingFaxCtrl($stateParams, $q, $translate, $filter, $timeout, OvhApiTelephony, TucToastError) {
   const self = this;
 
   function fetchIncomingConsumption() {
@@ -62,13 +62,13 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
     });
   }
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     OvhApiTelephony.Service().FaxConsumption().v6().resetCache();
     OvhApiTelephony.Service().FaxConsumption().v6().resetQueryCache();
     init();
   };
 
-  self.applySorting = function () {
+  self.applySorting = function applySorting() {
     let data = angular.copy(self.consumption.raw);
     data = $filter('filter')(data, self.consumption.filterBy);
     data = $filter('orderBy')(
@@ -79,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
     self.consumption.sorted = data;
   };
 
-  self.toggleShowFilter = function () {
+  self.toggleShowFilter = function toggleShowFilter() {
     self.consumption.showFilter = !self.consumption.showFilter;
     self.consumption.filterBy = {
       calling: undefined,
@@ -87,7 +87,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
     self.applySorting();
   };
 
-  self.orderBy = function (by) {
+  self.orderBy = function orderBy(by) {
     if (self.consumption.orderBy === by) {
       self.consumption.orderDesc = !self.consumption.orderDesc;
     } else {

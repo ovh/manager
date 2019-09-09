@@ -25,7 +25,7 @@ angular.module('managerApp').controller('TelephonySchedulerExportCtrl', function
     =            HELPERS            =
     =============================== */
 
-  self.convertCategoryToSlot = function (category) {
+  self.convertCategoryToSlot = function convertCategoryToSlot(category) {
     return find(self.timeCondition.slots, {
       name: get(SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE, category),
     });
@@ -37,11 +37,11 @@ angular.module('managerApp').controller('TelephonySchedulerExportCtrl', function
     =            ACTIONS            =
     =============================== */
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function (datas) {
+  self.close = function close(datas) {
     return $uibModalInstance.close(datas);
   };
 

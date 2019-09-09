@@ -1,13 +1,13 @@
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('PackHostedEmailCtrl', function ($q, $translate, $stateParams, TucToast, OvhApiPackXdslHostedEmail) {
+angular.module('managerApp').controller('PackHostedEmailCtrl', function PackHostedEmailCtrl($q, $translate, $stateParams, TucToast, OvhApiPackXdslHostedEmail) {
   const self = this;
 
   /**
      * Get the list of all hosted emails
      * @return {Promise}
      */
-  this.loadServices = function () {
+  this.loadServices = function loadServices() {
     this.loaders.services = true;
 
     return OvhApiPackXdslHostedEmail.v6().query({

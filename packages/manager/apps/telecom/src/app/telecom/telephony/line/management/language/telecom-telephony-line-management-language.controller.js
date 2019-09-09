@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import snakeCase from 'lodash/snakeCase';
 
-angular.module('managerApp').controller('TelecomTelephonyLineManagementLanguageCtrl', function ($translate, $q, $stateParams, $timeout, TucToast, OvhApiTelephony, $filter) {
+angular.module('managerApp').controller('TelecomTelephonyLineManagementLanguageCtrl', function TelecomTelephonyLineManagementLanguageCtrl($translate, $q, $stateParams, $timeout, TucToast, OvhApiTelephony, $filter) {
   const self = this;
 
   this.loaders = {
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementLanguageC
   this.language = null;
   this.changeSuccess = false;
 
-  this.changeLanguage = function () {
+  this.changeLanguage = function changeLanguage() {
     self.loaders.change = true;
 
     return OvhApiTelephony.Line().Options().v6().update({

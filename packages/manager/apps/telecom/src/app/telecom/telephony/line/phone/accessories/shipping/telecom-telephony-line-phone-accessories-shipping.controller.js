@@ -96,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesShi
     =            ACTIONS            =
     =============================== */
 
-  self.onShippingModeInitialized = function () {
+  self.onShippingModeInitialized = function onShippingModeInitialized() {
     self.loading.init = false;
   };
 

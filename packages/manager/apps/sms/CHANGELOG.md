@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@7.1.0...@ovh-ux/manager-sms-app@7.1.1) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+
+
+
 # [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@7.0.1...@ovh-ux/manager-sms-app@7.1.0) (2019-08-12)
 
 

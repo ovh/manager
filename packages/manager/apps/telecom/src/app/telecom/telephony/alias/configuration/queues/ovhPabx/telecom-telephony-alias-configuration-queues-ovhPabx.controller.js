@@ -15,7 +15,7 @@ import sortBy from 'lodash/sortBy';
 import { NUMBER_EXTERNAL_TYPE } from './telecom-telephony-alias-configuration-queues-ovhPabx.constants';
 import modalTemplate from './telecom-telephony-alias-configuration-queues-ovhPabx-modal.html';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl', function ($stateParams, $q, $translate, $timeout, $uibModal, OvhApiTelephony, TucToast, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl', function TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl($stateParams, $q, $translate, $timeout, $uibModal, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
   function init() {
@@ -36,13 +36,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     }).catch(err => new TucToastError(err));
   }
 
-  self.fetchEnums = function () {
+  self.fetchEnums = function fetchEnums() {
     return OvhApiTelephony.v6().schema().$promise.then(result => ({
       strategy: get(result, ['models', 'telephony.OvhPabxHuntingQueueStrategyEnum', 'enum']),
     }));
   };
 
-  self.fetchQueues = function () {
+  self.fetchQueues = function fetchQueues() {
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .query({
         billingAccount: $stateParams.billingAccount,
@@ -61,7 +61,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
         }))));
   };
 
-  self.bindQueueAgentsApi = function (queue) {
+  self.bindQueueAgentsApi = function bindQueueAgentsApi(queue) {
     set(queue, 'agentsApi', {
       getMemberList: angular.noop, // api provided by component
       addMembersToList: angular.noop, // api provided by component
@@ -83,7 +83,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     return queue;
   };
 
-  self.fetchSounds = function () {
+  self.fetchSounds = function fetchSounds() {
     return OvhApiTelephony.OvhPabx().Sound().v6().query({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -94,11 +94,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     }).$promise)));
   };
 
-  self.findSoundById = function (soundId) {
+  self.findSoundById = function findSoundById(soundId) {
     return find(self.sounds, { soundId: parseInt(`${soundId}`, 10) });
   };
 
-  self.fetchAgents = function () {
+  self.fetchAgents = function fetchAgents() {
     return OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
       .query({
         billingAccount: $stateParams.billingAccount,
@@ -117,7 +117,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
         .then(chunkResult => map(flatten(chunkResult), 'value')));
   };
 
-  self.fetchAgentsOfQueue = function (queue) {
+  self.fetchAgentsOfQueue = function fetchAgentsOfQueue(queue) {
     return OvhApiTelephony.OvhPabx().Hunting().Queue().Agent()
       .v6()
       .query({
@@ -137,14 +137,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
         )).then(chunkResult => map(flatten(chunkResult), 'value')));
   };
 
-  self.fetchAgentDescription = function (agent) {
+  self.fetchAgentDescription = function fetchAgentDescription(agent) {
     return OvhApiTelephony.Service().v6().get({
       billingAccount: $stateParams.billingAccount,
       serviceName: agent.number,
     }).$promise.then(service => service.description);
   };
 
-  self.reorderAgentsOfQueue = function (queue, agents) {
+  self.reorderAgentsOfQueue = function reorderAgentsOfQueue(queue, agents) {
     const ids = map(agents, 'agentId');
     OvhApiTelephony.OvhPabx().Hunting().Queue().Agent()
       .v6()
@@ -172,7 +172,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       });
   };
 
-  self.swapAgentsOfQueue = function (queue, fromAgent, toAgent) {
+  self.swapAgentsOfQueue = function swapAgentsOfQueue(queue, fromAgent, toAgent) {
     return OvhApiTelephony.OvhPabx().Hunting().Queue().Agent()
       .v6()
       .change({
@@ -185,7 +185,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       }).$promise;
   };
 
-  self.updateAgent = function (agent) {
+  self.updateAgent = function updateAgent(agent) {
     const attrs = ['status', 'timeout', 'wrapUpTime', 'simultaneousLines'];
     return OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
       .change({
@@ -195,7 +195,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       }, pick(agent, attrs)).$promise;
   };
 
-  self.deleteAgentFromQueue = function (queue, toDelete) {
+  self.deleteAgentFromQueue = function deleteAgentFromQueue(queue, toDelete) {
     return OvhApiTelephony.OvhPabx().Hunting().Queue().Agent()
       .v6()
       .remove({
@@ -206,7 +206,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       }).$promise;
   };
 
-  self.createQueue = function () {
+  self.createQueue = function createQueue() {
     self.isCreating = true;
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .create({
@@ -224,7 +224,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       });
   };
 
-  self.deleteQueue = function (queue) {
+  self.deleteQueue = function deleteQueue(queue) {
     self.isDeleting = true;
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .remove({
@@ -239,12 +239,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       });
   };
 
-  self.getAgentsQueueToAdd = function (queue) {
+  self.getAgentsQueueToAdd = function getAgentsQueueToAdd(queue) {
     const queueAgents = queue.agentsApi.getMemberList();
     return filter(self.agents, agent => !find(queueAgents, { agentId: agent.agentId }));
   };
 
-  self.addAgentToQueue = function (queue) {
+  self.addAgentToQueue = function addAgentToQueue(queue) {
     let confirm = $q.when();
     if (queue.agentToAdd.type === NUMBER_EXTERNAL_TYPE) {
       confirm = $uibModal.open({
@@ -277,7 +277,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     });
   };
 
-  self.startQueueEdition = function (queue) {
+  self.startQueueEdition = function startQueueEdition(queue) {
     set(queue, 'inEdition', pick(queue, [
       'description',
       'strategy',
@@ -289,7 +289,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     ]));
   };
 
-  self.hasQueueInEditionChanges = function (queue) {
+  self.hasQueueInEditionChanges = function hasQueueInEditionChanges(queue) {
     const attrs = [
       'description',
       'strategy',
@@ -302,7 +302,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     return !angular.equals(pick(queue, attrs), pick(queue.inEdition, attrs));
   };
 
-  self.updateQueue = function (queue) {
+  self.updateQueue = function updateQueue(queue) {
     set(queue, 'isUpdating', true);
     return OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
       .change({
@@ -327,7 +327,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       });
   };
 
-  self.openManageSoundsHelper = function (queue, toneType) {
+  self.openManageSoundsHelper = function openManageSoundsHelper(queue, toneType) {
     self.managingSounds = true;
     const modal = $uibModal.open({
       animation: true,
@@ -360,7 +360,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     return modal;
   };
 
-  self.filterDescription = function (valueParam) {
+  self.filterDescription = function filterDescription(valueParam) {
     let value = valueParam;
     if (value) {
       // limits description characters range

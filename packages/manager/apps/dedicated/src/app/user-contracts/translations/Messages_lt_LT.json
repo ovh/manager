@@ -1,0 +1,12 @@
+{
+  "user_contracts_modal_title": "Teisinė informacija",
+  "user_contracts_modal_term_of_service_updated_text": "Mūsų sąlygos pasikeitė.",
+  "user_contracts_modal_term_of_service_updated_explanation": "Norint toliau naudotis OVH paslaugomis, įskaitant naudojimąsi valdymo sąsaja, būtina sutikti su sutartimis:",
+  "user_contracts_modal_checkbox_label_both": "Sutinku su atnaujintomis naudojimo sąlygomis ir konfidencialumo nuostatais",
+  "user_contracts_modal_checkbox_label_tos": "Sutinku su atnaujintomis naudojimo sąlygomis",
+  "user_contracts_modal_checkbox_label_pp": "Sutinku su atnaujintomis konfidencialumo sąlygomis",
+  "user_contracts_modal_submit_button": "Tęsti",
+  "user_contracts_modal_submit_error": "Klaida. Prašome bandyti vėliau.",
+  "user_contracts_modal_display_text_tos": "Paslaugos naudojimo sąlygos",
+  "user_contracts_modal_display_text_pp": "Konfidencialumo nuostatos"
+}

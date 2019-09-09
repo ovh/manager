@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 
-angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function ($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, TucToast, TucToastError, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function TelecomTelephonyLineCallsDisplayNumberCtrl($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
   function getLineOptions() {
@@ -38,16 +38,16 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     });
   }
 
-  self.onChooseService = function (service) {
+  self.onChooseService = function onChooseService(service) {
     self.form.displayedService = service.serviceName;
   };
 
-  self.hasChanges = function () {
+  self.hasChanges = function hasChanges() {
     return !angular.equals(self.displayedService, self.form.displayedService)
                || self.identificationRestriction !== self.form.identificationRestriction;
   };
 
-  self.reset = function () {
+  self.reset = function reset() {
     // $timeout is here so flat-checkbox is corretly refreshed ...
     $timeout(() => {
       self.form.displayedService = angular.copy(self.displayedService);
@@ -55,7 +55,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     });
   };
 
-  self.update = function () {
+  self.update = function update() {
     const data = {
       identificationRestriction: self.form.identificationRestriction,
     };
@@ -95,11 +95,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {
       identificationRestriction: self.form.identificationRestriction,
     };
@@ -111,7 +111,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_actions_line_calls_display_number_bulk_all_success'),
@@ -130,7 +130,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_actions_line_calls_display_number_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

@@ -3,7 +3,7 @@ import isFunction from 'lodash/isFunction';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', function ($q, $translate, $translatePartialLoader, TelephonyGroupNumberOvhPabxTts, TelephonyMediator, TucToast, TucToastError) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', function telephonyNumberOvhPabxTtsCreateCtrl($q, $translate, $translatePartialLoader, TelephonyGroupNumberOvhPabxTts, TelephonyMediator, TucToast, TucToastError) {
   const self = this;
 
   self.loading = {
@@ -35,7 +35,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
     =            EVENTS            =
     ============================== */
 
-  self.onTtsCreateFormSubmit = function () {
+  self.onTtsCreateFormSubmit = function onTtsCreateFormSubmit() {
     self.loading.creating = true;
 
     const tts = new TelephonyGroupNumberOvhPabxTts({
@@ -60,7 +60,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
     });
   };
 
-  self.onCancelTtsBtnClick = function () {
+  self.onCancelTtsBtnClick = function onCancelTtsBtnClick() {
     resetTtsModel();
     if (self.onTtsCreationCancel && isFunction(self.onTtsCreationCancel())) {
       self.onTtsCreationCancel()();
@@ -98,7 +98,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
 
   /* ----------  Component initialization  ----------*/
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     if (!self.numberCtrl && !self.ovhPabx) {
       throw new Error('telephonyNumberOvhPabxTtsCreate must have telephonyNumber component as parent or must have ovhPabx attribute specified');
     }

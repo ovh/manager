@@ -19,7 +19,7 @@ import sampleSize from 'lodash/sampleSize';
  *  @param  {String} options.uid Unique id of the scheduler event.
  */
 angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY) => {
-  const generateUid = function () {
+  const generateUid = function generateUid() {
     const random = sampleSize('abcdefghijklmnopqrstufwxyzABCDEFGHIJKLMNOPQRSTUFWXYZ1234567890', 8);
     return `${moment().format('YYYYMMDDhhmmss') + random.join('')}@ovh.com`;
   };
@@ -70,7 +70,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {VoipSchedulerEvent} The current scheduler event instance.
    */
-  VoipSchedulerEvent.prototype.setOptions = function (options) {
+  VoipSchedulerEvent.prototype.setOptions = function setOptions(options) {
     const self = this;
 
     if (!options) {
@@ -92,7 +92,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {Object} A compatible full calendar object.
    */
-  VoipSchedulerEvent.prototype.toFullCalendarEvent = function () {
+  VoipSchedulerEvent.prototype.toFullCalendarEvent = function toFullCalendarEvent() {
     const self = this;
 
     return {
@@ -103,10 +103,10 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
     };
   };
 
-  VoipSchedulerEvent.prototype.toIcsVEvent = function (schedulerTimeZone) {
+  VoipSchedulerEvent.prototype.toIcsVEvent = function toIcsVEvent(schedulerTimeZone) {
     const self = this;
 
-    const convertToVEventEntry = function (entryParam, attribute) {
+    const convertToVEventEntry = function convertToVEventEntry(entryParam, attribute) {
       let entry = entryParam;
       let attributeValue;
 
@@ -146,12 +146,12 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {Boolean} True if duration between begin and end dates is bigger or equal to 1 day.
    */
-  VoipSchedulerEvent.prototype.isFullDay = function () {
+  VoipSchedulerEvent.prototype.isFullDay = function isFullDay() {
     const self = this;
     const momentEndDate = moment(self.dateEnd);
     const momentStartDate = moment(self.dateStart);
 
-    const durationCheck = function (duration) {
+    const durationCheck = function durationCheck(duration) {
       return duration.get('days') >= 1 && duration.get('hours') === 0 && duration.get('minutes') === 0 && duration.get('months') === 0 && duration.get('seconds') === 0 && duration.get('years') === 0;
     };
 
@@ -169,7 +169,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {Promise} That returns the current instance of scheduler event if resolved.
    */
-  VoipSchedulerEvent.prototype.save = function () {
+  VoipSchedulerEvent.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.Scheduler().Events().v6().save({
@@ -191,7 +191,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {Promise} That returns the current instance of scheduler event if resolved.
    */
-  VoipSchedulerEvent.prototype.create = function () {
+  VoipSchedulerEvent.prototype.create = function create() {
     const self = this;
 
     return OvhApiTelephony.Scheduler().Events().v6().create({
@@ -213,7 +213,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {Promise} That returns the current instance of scheduler event if resolved.
    */
-  VoipSchedulerEvent.prototype.remove = function () {
+  VoipSchedulerEvent.prototype.remove = function remove() {
     const self = this;
 
     return OvhApiTelephony.Scheduler().Events().v6().remove({
@@ -230,7 +230,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {VoipSchedulerEvent} The current scheduler event instance.
    */
-  VoipSchedulerEvent.prototype.startEdition = function () {
+  VoipSchedulerEvent.prototype.startEdition = function startEdition() {
     const self = this;
 
     if (self.inEdition) {
@@ -263,7 +263,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {VoipSchedulerEvent} The current scheduler event instance.
    */
-  VoipSchedulerEvent.prototype.stopEdition = function (rollbackSaveForEdition,
+  VoipSchedulerEvent.prototype.stopEdition = function stopEdition(rollbackSaveForEdition,
     rollbackOriginalSave) {
     const self = this;
 
@@ -296,7 +296,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {VoipSchedulerEvent} Current instance of scheduler event.
    */
-  VoipSchedulerEvent.prototype.resetOriginalSave = function () {
+  VoipSchedulerEvent.prototype.resetOriginalSave = function resetOriginalSave() {
     const self = this;
 
     self.originalSave = null;
@@ -312,7 +312,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
    *
    *  @return {Boolean}   true if at least one change has been found, false if no changes.
    */
-  VoipSchedulerEvent.prototype.hasChange = function (property, fromOriginal) {
+  VoipSchedulerEvent.prototype.hasChange = function hasChange(property, fromOriginal) {
     const self = this;
 
     if (fromOriginal && !self.originalSave) {

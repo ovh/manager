@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl', function ($filter, $q, $translate, $stateParams, OvhApiTelephony, OvhApiMeOrder, TelephonyMediator) {
+angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl', function TelecomTelephonyServiceAssistOrdersCtrl($filter, $q, $translate, $stateParams, OvhApiTelephony, OvhApiMeOrder, TelephonyMediator) {
   const self = this;
   self.service = null;
 
@@ -26,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl
   =            INITIALIZATION            =
   ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.ordersRaw = null;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then(() => {
