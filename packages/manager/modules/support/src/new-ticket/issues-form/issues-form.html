@@ -50,12 +50,14 @@
       </oui-checkbox>
     </oui-field>
 
-    <support-issues-selector
-      data-root="true"
-      data-category="$ctrl.category"
-      data-service-type="$ctrl.serviceType"
-      data-on-issues="$ctrl.onIssues(issues)">
-    </support-issues-selector>
+    <div data-ng-if="$ctrl.services.length">
+      <support-issues-selector
+        data-root="true"
+        data-category="$ctrl.category"
+        data-service-type="$ctrl.serviceType"
+        data-on-issues="$ctrl.onIssues(issues)">
+      </support-issues-selector>
+    </div>
 
     <div data-ng-if="$ctrl.issues && $ctrl.issues.length > 0">
       <oui-tile data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
