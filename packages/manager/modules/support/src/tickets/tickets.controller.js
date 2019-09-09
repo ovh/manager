@@ -52,14 +52,12 @@ export default class SupportController {
   }
 
   openSupport() {
-    this.goToTicketCreation();
-    /*
+    // this.goToTicketCreation();
     if (!this.OtrsPopupService.isLoaded()) {
       this.OtrsPopupService.init();
     } else {
       this.OtrsPopupService.toggle();
     }
-    */
   }
 
   getTickets() {
