@@ -1,3 +1,13 @@
+## [4.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.0...@ovh-ux/ng-ovh-telecom-universe-components@4.1.1) (2019-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 60] ([d24bce3](https://github.com/ovh-ux/manager/commit/d24bce3))
+* **i18n:** add missing translations [CDS 62] ([4ddc678](https://github.com/ovh-ux/manager/commit/4ddc678))
+
+
+
 # [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.0.0...@ovh-ux/ng-ovh-telecom-universe-components@4.1.0) (2019-09-03)
 
 
