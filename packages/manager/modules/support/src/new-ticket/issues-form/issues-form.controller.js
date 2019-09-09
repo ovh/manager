@@ -11,7 +11,7 @@ export default class SupportNewIssuesFormController {
     this.OvhApiMe = OvhApiMe;
     this.categories = null;
     this.serviceTypes = null;
-    this.services = null;
+    this.services = [];
     this.issues = null;
     this.email = constants.email;
   }

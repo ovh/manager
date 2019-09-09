@@ -27,8 +27,12 @@
                   data-on-change="$ctrl.onServiceTypeChange()">
       </oui-select>
     </oui-field>
+    <div data-ng-if="$ctrl.services === null">
+      <oui-spinner data-size="m">
+      </oui-spinner>
+    </div>
     <oui-field data-label="{{ 'ovhManagerSupport_new_service' | translate }}"
-               data-ng-if="$ctrl.category.id !== 'business'"
+               data-ng-if="$ctrl.category.id !== 'business' && $ctrl.services.length"
                data-size="xl">
       <oui-select name="service"
                   data-model="$ctrl.service"
@@ -36,6 +40,7 @@
                   data-match="displayName"
                   data-disabled="!$ctrl.services.length"
                   data-on-change="$ctrl.onServiceChange()"
+                  data-ng-show="!$ctrl.isUnknownService"
                   data-searchable>
       </oui-select>
       <oui-checkbox data-model="$ctrl.isUnknownService"
