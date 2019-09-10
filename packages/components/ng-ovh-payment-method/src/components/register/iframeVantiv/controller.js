@@ -23,6 +23,7 @@ export default class OvhPaymentMethodRegisterIframeVantivCtrl {
   init() {
     // create the register instance
     this.registerInstance = new IframeVantivInstance({
+      onBeforeSubmit: this.insertThreatMetric.bind(this), // declared in directive's link function
       callback: this.onIframeSubmitted.bind(this),
     });
     // callback to parent controller

@@ -1,3 +1,15 @@
+export const THREAT_METRIC = {
+  PAGE_ID: 1,
+  SCRIPT: {
+    id: 'threat_metric_script',
+    src: 'https://h.online-metrix.net/fp/tags.js',
+  },
+  IFRAME: {
+    id: 'threat_metric_iframe',
+    src: ' https://us.ovhcloud.com/order/threatmetrix',
+  },
+};
+
 export const VANTIV_IFRAME_CONFIGURATION = {
   paypageId: 'ThwL3YY9YEnWXTFb',
   style: 'ovhcss',
@@ -65,6 +77,7 @@ export const VANTIV_SCRIPT = {
 };
 
 export default {
+  THREAT_METRIC,
   VANTIV_IFRAME_CONFIGURATION,
   VANTIV_RESPONSE_CODE,
   VANTIV_SCRIPT,
