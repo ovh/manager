@@ -1,3 +1,12 @@
+## [3.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.2...@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.3) (2019-09-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 65] ([eafe0bc](https://github.com/ovh-ux/manager/commit/eafe0bc))
+
+
+
 ## [3.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.1...@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.2) (2019-09-09)
 
 
