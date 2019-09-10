@@ -82,7 +82,7 @@
     "angularjs-scroll-glue": "^2.2.0",
     "animate.css": "^3.7.2",
     "babel-polyfill": "^6.26.0",
-    "bootstrap": "~3.3.7",
+    "bootstrap": "~3.4.1",
     "bootstrap-datetimepicker": "tarruda/bootstrap-datetimepicker#~0.0.11",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "chart.js": "^2.7.1",

@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0",
-    "bootstrap": "~3.3.7"
+    "bootstrap": "~3.4.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
