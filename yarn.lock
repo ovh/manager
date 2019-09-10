@@ -11551,13 +11551,6 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.7.0:
-  version "9.7.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.7.0.tgz#e26ad3865d655221bb486bb966f4f41739a4e1e1"
-  integrity sha512-HzamNxusimGGfzWWWXzY2eB2q+mfLvikE980VfeqMYAC68tCTqXO+4TKLJatFEbSdBj878ZhnAlXRV+Xl6i+3A==
-  dependencies:
-    lodash "^4.17.15"
-
 ovh-api-services@^9.8.0:
   version "9.8.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.8.0.tgz#9764da1793ba3bd01bf897c2be6298a9de6cc2cb"
