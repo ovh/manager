@@ -14,7 +14,6 @@ export default {
     sortBy: '<',
     sortOrder: '<',
     tickets: '<',
-    totalNumberOfItems: '<',
   },
   controller,
   name: 'supportTickets',

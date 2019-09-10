@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 import component from './tickets.component';
 
 export const state = {
@@ -7,7 +5,6 @@ export const state = {
   params: {
     filters: {
       array: true,
-      squash: true,
       type: 'json',
       value: [],
     },
@@ -31,6 +28,11 @@ export const state = {
       type: 'string',
       value: 'DESC',
     },
+    tickets: {
+      array: true,
+      type: 'json',
+      value: null,
+    },
   },
   resolve: {
     filters: /* @ngInject */ $transition$ => $transition$
@@ -47,30 +49,22 @@ export const state = {
         { ...$state.params, ...params },
         { notify: false },
       ),
-    pageNumber: /* @ngInject */ tickets => parseInt(
-      get(tickets.headers, 'x-pagination-number'),
-      10,
-    ),
-    pageSize: /* @ngInject */ tickets => parseInt(
-      get(tickets.headers, 'x-pagination-size'),
-      10,
-    ),
-    totalNumberOfItems: /* @ngInject */ tickets => parseInt(
-      get(tickets.headers, 'x-pagination-elements'),
-      10,
-    ),
-    sortBy: /* @ngInject */ tickets => tickets
-      .headers['x-pagination-sort'],
-    sortOrder: /* @ngInject */ tickets => tickets
-      .headers['x-pagination-sort-order'],
+    pageNumber: /* @ngInject */ $transition$ => $transition$
+      .params().pageNumber,
+    pageSize: /* @ngInject */ $transition$ => $transition$
+      .params().pageSize,
     reload: /* @ngInject */ $state => params => $state
       .transitionTo(
         $state.current,
         { ...$state.params, ...params },
         { reload: true, inherit: false },
       ),
-    tickets: /* @ngInject */ ($transition$, ticketService) => ticketService
-      .query($transition$.params()),
+    sortBy: /* @ngInject */ $transition$ => $transition$
+      .params().sortBy,
+    sortOrder: /* @ngInject */ $transition$ => $transition$
+      .params().sortOrder,
+    tickets: /* @ngInject */ ($transition$, ticketService) => $transition$
+      .params().tickets || ticketService.query($transition$.params()),
   },
   url: '/tickets?filters&pageNumber&pageSize&sortBy&sortOrder',
   views: {
