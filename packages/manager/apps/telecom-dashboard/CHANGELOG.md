@@ -1,3 +1,12 @@
+# [4.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard-app@4.2.1...@ovh-ux/manager-telecom-dashboard-app@4.3.0) (2019-09-10)
+
+
+### Features
+
+* **telecom-dashboard:** add manager banner ([2ffa978](https://github.com/ovh-ux/manager/commit/2ffa978))
+
+
+
 ## [4.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard-app@4.2.0...@ovh-ux/manager-telecom-dashboard-app@4.2.1) (2019-09-03)
 
 
