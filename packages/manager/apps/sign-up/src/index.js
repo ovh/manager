@@ -8,9 +8,10 @@ import 'script-loader!lodash';
 
 // lodash imports
 import get from 'lodash/get';
-
+import head from 'lodash/head';
 // deps
 import angular from 'angular';
+import 'angular-sanitize';
 import 'angular-translate';
 import '@uirouter/angularjs';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -23,6 +24,7 @@ import activityState from './activity';
 import { registerState } from './routing';
 
 import controller from './index.controller';
+import { SANITIZATION } from './constants';
 
 // styles
 import './assets/theme/index.less';
@@ -35,6 +37,7 @@ angular
   .module('ovhSignUpApp', [
     __NG_APP_INJECTIONS__,
     'ui.router',
+    'ngSanitize',
     'pascalprecht.translate',
     ovhManagerCore,
     ngOvhSsoAuth,
@@ -60,13 +63,28 @@ angular
       }
       return '';
     };
-    const urlLanguage = getQueryVariable('lang') || 'fr';
-    const userLocale = TranslateServiceProvider.findLanguage(urlLanguage, urlLanguage);
+    const navigatorLg = window.navigator.language || window.navigator.userLanguage;
+    let language;
+    if (navigatorLg) {
+      language = head(navigatorLg.split('-'));
+    }
+
+    if (!language) {
+      language = getQueryVariable('lang') || 'fr';
+    }
+
+    const userLocale = TranslateServiceProvider.findLanguage(language, language);
     TranslateServiceProvider.setUserLocale(userLocale);
     $translateProvider.use(userLocale);
   })
   .config(/* @ngInject */ (ssoAuthenticationProvider) => {
     ssoAuthenticationProvider.allowIncompleteNic(true);
+  })
+  .config(/* @ngInject */ ($compileProvider) => {
+    // SECURITY: authorise only trusted hostname in href and img
+    // @see https://docs.angularjs.org/api/ng/provider/$compileProvider#aHrefSanitizationWhitelist
+    $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
+    $compileProvider.imgSrcSanitizationWhitelist(SANITIZATION.regex);
   })
   .config(registerState)
   .run(/* @ngInject */ ($transitions) => {

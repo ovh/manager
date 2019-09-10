@@ -2682,7 +2682,7 @@ angular-route@1.7.x, angular-route@^1.6.0:
   resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.7.8.tgz#d502aa605dcbb253a93e844c0adf51c9bc36b9fa"
   integrity sha512-VVk89PH0fsY5kfbx+N7IVX1IwnaPWYhMGY0uA+rjej2v1sjvrTx1SLkxUK4E0UpW1hXeLJhN7ncBcwoBiPtAtA==
 
-angular-sanitize@1.7.x, angular-sanitize@^1.6.9, angular-sanitize@^1.7.5, angular-sanitize@^1.x:
+angular-sanitize@1.7.x, angular-sanitize@^1.6.9, angular-sanitize@^1.7.5, angular-sanitize@^1.7.8, angular-sanitize@^1.x:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.8.tgz#87d59f754bb18d286dfd9d6ce867299c094c6719"
   integrity sha512-sVq51is1cVNiPytH4JIEd7iRW0OBIRQGNETWkz1c/jnLv2sBf9oDxEd8enwDz/W2ULBIpqJPK/3AsIxmZyh9pA==
@@ -11551,10 +11551,10 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.7.0:
-  version "9.7.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.7.0.tgz#e26ad3865d655221bb486bb966f4f41739a4e1e1"
-  integrity sha512-HzamNxusimGGfzWWWXzY2eB2q+mfLvikE980VfeqMYAC68tCTqXO+4TKLJatFEbSdBj878ZhnAlXRV+Xl6i+3A==
+ovh-api-services@^9.8.0:
+  version "9.8.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.8.0.tgz#9764da1793ba3bd01bf897c2be6298a9de6cc2cb"
+  integrity sha512-WI9TfBkxkR5TZvQU1Xx8NIRwpS3TVqa7gQwRye+3Wj+b2UIGKAOmf0/fjGTsXSQBPsnMo3U4P+9YmjSO0OX5/A==
   dependencies:
     lodash "^4.17.15"
 
