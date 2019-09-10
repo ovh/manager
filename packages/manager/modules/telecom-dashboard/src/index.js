@@ -6,6 +6,9 @@ import '@ovh-ux/ng-uirouter-title';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
+import 'angular-translate';
+import '@ovh-ux/manager-banner';
+import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -29,7 +32,10 @@ angular
     'ngAtInternet',
     'ngAtInternetUiRouterPlugin',
     'ngUirouterTitle',
+    'ovh-api-services',
+    'ovhManagerBanner',
     'ovhManagerCore',
+    'pascalprecht.translate',
     'ngOvhTelecomUniverseComponents',
     'ui.router',
   ])
