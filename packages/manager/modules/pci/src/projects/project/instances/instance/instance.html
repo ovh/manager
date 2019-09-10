@@ -224,6 +224,12 @@
                             <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV6()" data-model="$ctrl.instance.publicIpV6[0].ip|| ''"></oui-clipboard>
                             <span data-ng-if="!$ctrl.instance.hasPublicIpV6()">-</span>
                         </dd>
+                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_gateway"></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV6()"
+                                           data-model="$ctrl.instance.publicIpV6[0].gatewayIp"></oui-clipboard>
+                            <span data-ng-if="!$ctrl.instance.publicIpV6[0].gatewayIp">-</span>
+                        </dd>
                         <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_reverse_ip_label"></dt>
                         <dd class="oui-tile__description">
                             <oui-clipboard data-ng-if="$ctrl.instance.ipReverse" data-model="$ctrl.instance.ipReverse.reverse"></oui-clipboard>
