@@ -28,9 +28,9 @@ export default class SupportNewController {
     // generate ticket body from list of issue's fields
     let body = '';
     issues.forEach((issue) => {
-      body += `${issue.subject}\n\n`;
+      body += `${issue.subject}\n`;
       issue.fields.forEach((field) => {
-        body += `${field.label}\n${field.default}\n\n`;
+        body += `${field.label}\n${field.default}\n`;
       });
       body += '\n';
     });
@@ -53,6 +53,7 @@ export default class SupportNewController {
         serviceName: get(this.service, 'serviceName'),
         subject: result.subject,
         body: SupportNewController.generateBody(result.issues),
+        urgency: get(result, 'urgency.id'),
       }).$promise.then(({ ticketId }) => {
         this.step = 'created';
         this.ticketId = ticketId;
