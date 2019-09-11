@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class SupportIssuesSelectorController {
   /* @ngInject */
   constructor($q, $translate, OvhApiSupport) {
@@ -49,15 +51,20 @@ export default class SupportIssuesSelectorController {
     return parentIssues.concat(this.issueType);
   }
 
+  canFetchIssues() {
+    return this.rootValue
+      && this.categoryValue
+      && this.categoryValue.id !== 'business'
+      && (this.serviceTypeValue || this.categoryValue.id === 'account');
+  }
+
   fetchIssueTypes() {
-    if (!this.categoryValue) return this.$q.when();
-    if (!this.serviceTypeValue) return this.$q.when();
-    if (!this.rootValue) return this.$q.when();
+    if (!this.canFetchIssues()) return this.$q.when();
     return this.OvhApiSupport.v6().getIssueTypes({
       category: this.categoryValue.id,
       issueTypeId: this.root === true ? undefined : this.root,
       language: this.$translate.use(),
-      serviceType: this.serviceTypeValue.name,
+      serviceType: get(this.serviceTypeValue, 'name'),
     }).$promise.then((items) => {
       this.issueTypes = items;
       if (items.length === 0) {

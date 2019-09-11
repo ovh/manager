@@ -13,7 +13,7 @@
   </oui-field>
   
   <div data-ng-repeat="issue in $ctrl.issues">
-    <oui-field data-ng-repeat="field in issue.fields"
+    <oui-field data-ng-repeat="field in issue.fields track by field.id"
                data-label="{{ field.label }}"
                data-size="xl">
       <input type="text"
