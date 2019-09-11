@@ -1,5 +1,5 @@
 <oui-back-button data-state="support.tickets">
-  {{ 'ovhManagerSupport_new_back' | translate }}
+  {{:: 'ovhManagerSupport_new_back' | translate }}
 </oui-back-button>
 
 <support-new-issues-form
@@ -24,7 +24,31 @@
   <span data-translate="ovhManagerSupport_new_creation_success"
         data-translate-values="{ url: $ctrl.getTicketURL($ctrl.ticketId), id: $ctrl.ticketId }">
   </span>
+  <span data-translate="ovhManagerSupport_new_creation_success_back"
+        data-translate-values="{ url: $ctrl.getTicketsURL() }">
+  </span>
 </oui-message>
+
+<div data-ng-if="$ctrl.step === 'created'">
+  <p data-translate="ovhManagerSupport_new_creation_tip_1"></p>
+  <p data-ng-if="$ctrl.guideURL">
+    <span data-translate="ovhManagerSupport_new_creation_tip_guides"></span>
+    <a data-ng-href="{{ $ctrl.guideURL }}"
+       target="_blank"
+       data-ng-bind="$ctrl.guideURL">
+    </a>
+  </p>
+  <p data-ng-if="$ctrl.forumURL">
+    <span data-translate="ovhManagerSupport_new_creation_tip_forum"></span>
+    <a data-ng-href="{{ $ctrl.forumURL }}"
+       target="_blank"
+       data-ng-bind="$ctrl.forumURL">
+    </a>
+  </p>
+  <p data-translate="ovhManagerSupport_new_creation_tip_2"></p>
+  <p data-translate="ovhManagerSupport_new_creation_tip_3"
+     data-translate-values="{ url: $ctrl.getTicketURL($ctrl.ticketId) }"></p>
+</div>
 
 <oui-message data-type="error"
   data-ng-if="$ctrl.step === 'error'">
@@ -37,7 +61,7 @@
     <small data-ng-bind="$ctrl.error.queryId"></small>
   </p>
   <oui-button data-variant="secondary"
-              data-text="{{ 'ovhManagerSupport_new_creation_cancel' | translate }}"
+              data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
               data-on-click="$ctrl.goToTickets()">
   </oui-button>
 </oui-message>

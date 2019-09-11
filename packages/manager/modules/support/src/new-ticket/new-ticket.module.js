@@ -1,4 +1,5 @@
 import angular from 'angular';
+import get from 'lodash/get';
 
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
@@ -30,6 +31,11 @@ angular
       name: 'support.new',
       resolve: {
         goToTickets: /* @ngInject */ $state => () => $state.go('support.tickets'),
+        urls: /* @ngInject */ (OvhApiMe, CORE_URLS) => OvhApiMe.v6()
+          .get().$promise.then(me => ({
+            guide: get(CORE_URLS, `guides.home.${me.ovhSubsidiary}`),
+            forum: get(CORE_URLS, `forum.${me.ovhSubsidiary}`),
+          })),
       },
       url: '/new',
       views: {
