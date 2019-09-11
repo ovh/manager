@@ -304,6 +304,9 @@ export const URLS = {
       TN: "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'logs-basic~productId~'logs))",
     },
   },
+  forum: {
+    FR: 'https://community.ovh.com',
+  },
   guides: {
     home: {
       CZ: 'https://docs.ovh.com/cz/cs/',
