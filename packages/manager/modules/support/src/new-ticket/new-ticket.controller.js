@@ -4,11 +4,18 @@ import last from 'lodash/last';
 
 export default class SupportNewController {
   /* @ngInject */
-  constructor($state, $window, OvhApiSupport) {
+  constructor($state, $window, CORE_URLS, OvhApiMe, OvhApiSupport) {
     this.step = 'issues';
     this.$state = $state;
     this.$window = $window;
+    this.CORE_URLS = CORE_URLS;
+    this.OvhApiMe = OvhApiMe;
     this.OvhApiSupport = OvhApiSupport;
+  }
+
+  $onInit() {
+    this.guideURL = this.urls.guide;
+    this.forumURL = this.urls.forum;
   }
 
   onIssuesFormSubmit(result) {
@@ -40,8 +47,11 @@ export default class SupportNewController {
   getTicketURL(id) {
     return this.$state.href('support.tickets.ticket', {
       id,
-      cleanCache: true,
     });
+  }
+
+  getTicketsURL() {
+    return this.$state.href('support.tickets');
   }
 
   onCreationFormSubmit(result) {
