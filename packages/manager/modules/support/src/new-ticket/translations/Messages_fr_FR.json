@@ -6,6 +6,11 @@
   "ovhManagerSupport_new_category_account": "Gestion du compte",
   "ovhManagerSupport_new_category_business": "Contact commercial",
 
+  "ovhManagerSupport_new_urgency": "Degré de priorité",
+  "ovhManagerSupport_new_urgency_low": "Faible",
+  "ovhManagerSupport_new_urgency_medium": "Normal",
+  "ovhManagerSupport_new_urgency_high": "Élevé",
+
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dédié",
   "ovhManagerSupport_new_serviceType_email_exchange": "Exchange",

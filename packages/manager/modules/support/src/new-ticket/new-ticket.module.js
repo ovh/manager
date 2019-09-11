@@ -10,6 +10,7 @@ import component from './new-ticket.component';
 import creationFormComponent from './creation-form/creation-form.component';
 import issuesSelectorComponent from './issues-selector/issues-selector.component';
 import issuesFormComponent from './issues-form/issues-form.component';
+import { name as serviceName, definition as serviceDefinition } from './new-ticket.service';
 
 import 'ovh-ui-kit/dist/oui.css';
 
@@ -26,6 +27,7 @@ angular
   .component(creationFormComponent.name, creationFormComponent)
   .component(issuesSelectorComponent.name, issuesSelectorComponent)
   .component(issuesFormComponent.name, issuesFormComponent)
+  .service(serviceName, serviceDefinition)
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state({
       name: 'support.new',
