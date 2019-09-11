@@ -1,12 +1,12 @@
 {
- "sign_up_details_field_legalform": "Razón social ",
- "sign_up_details_field_country": "País de residencia",
- "sign_up_details_field_phone": "Teléfono",
- "sign_up_details_field_language": "Idioma hablado",
- "sign_up_details_field_zip": "Código postal",
- "sign_up_details_field_city": "Localidad",
- "sign_up_details_field_address": "Dirección",
- "sign_up_details_field_area": "Región",
- "sign_up_details_field_state": "Estado",
- "sign_up_details_field_province": "Provincia"
+  "sign_up_details_field_legalform": "Tipo de cuenta",
+  "sign_up_details_field_country": "País de residencia",
+  "sign_up_details_field_phone": "Teléfono",
+  "sign_up_details_field_language": "Idioma hablado",
+  "sign_up_details_field_zip": "Código postal",
+  "sign_up_details_field_city": "Localidad",
+  "sign_up_details_field_address": "Dirección",
+  "sign_up_details_field_area": "Región",
+  "sign_up_details_field_state": "Estado",
+  "sign_up_details_field_province": "Provincia"
 }
