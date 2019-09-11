@@ -1,8 +1,8 @@
-<oui-spinner data-ng-if="$ctrl.category && $ctrl.serviceType && !$ctrl.issueTypes">
+<oui-spinner data-ng-if="$ctrl.canFetchIssues() && !$ctrl.issueTypes">
 </oui-spinner>
 
 <oui-field data-label="{{ ('ovhManagerSupport_new_issue' | translate) + ' ' + $ctrl.rank }}"
-           data-ng-if="$ctrl.issueTypes.length"
+           data-ng-if="$ctrl.canFetchIssues() && $ctrl.issueTypes.length"
            data-size="xl">
   <oui-select name="issue"
               data-model="$ctrl.issueType"
@@ -14,7 +14,7 @@
 </oui-field>
 
 <support-issues-selector
-  data-ng-if="$ctrl.issueType"
+  data-ng-if="$ctrl.issueType.hasChildren"
   data-rank="$ctrl.rank + 1"
   data-root="$ctrl.issueType.id"
   data-parent="$ctrl"

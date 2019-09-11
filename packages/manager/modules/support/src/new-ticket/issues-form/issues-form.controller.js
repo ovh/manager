@@ -70,6 +70,7 @@ export default class SupportNewIssuesFormController {
 
   onCategoryChange() {
     this.issues = null;
+    this.serviceType = null;
     if (this.category !== 'business') {
       this.fetchServices();
     }

@@ -18,13 +18,14 @@
       </oui-select>
     </oui-field>
     <oui-field data-label="{{ 'ovhManagerSupport_new_serviceType' | translate }}"
-               data-ng-if="$ctrl.category.id !== 'business'"
+               data-ng-if="$ctrl.category && $ctrl.category.id !== 'business' && $ctrl.category.id !== 'account'"
                data-size="xl">
       <oui-select name="serviceType"
                   data-model="$ctrl.serviceType"
                   data-items="$ctrl.serviceTypes"
                   data-match="label"
-                  data-on-change="$ctrl.onServiceTypeChange()">
+                  data-on-change="$ctrl.onServiceTypeChange()"
+                  data-searchable>
       </oui-select>
     </oui-field>
     <div data-ng-if="$ctrl.services === null">
@@ -32,7 +33,7 @@
       </oui-spinner>
     </div>
     <oui-field data-label="{{ 'ovhManagerSupport_new_service' | translate }}"
-               data-ng-if="$ctrl.category.id !== 'business' && $ctrl.services.length"
+               data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'business' && $ctrl.category.id !== 'account' && $ctrl.services.length"
                data-size="xl">
       <oui-select name="service"
                   data-model="$ctrl.service"
@@ -50,7 +51,7 @@
       </oui-checkbox>
     </oui-field>
 
-    <div data-ng-if="$ctrl.services.length">
+    <div data-ng-if="$ctrl.services.length || $ctrl.category.id === 'account'">
       <support-issues-selector
         data-root="true"
         data-category="$ctrl.category"
@@ -66,7 +67,8 @@
         </h2>
         <ul>
           <li data-ng-repeat="guide in $ctrl.guides">
-            <a data-href="{{ guide.url }}"
+            <a href="{{ guide.url }}"
+               target="_blank"
                data-ng-bind="guide.label">
             </a>
           </li>
@@ -90,12 +92,6 @@
       <oui-button data-variant="primary"
                   data-text="{{ 'ovhManagerSupport_new_helpfull_yes' | translate }}"
                   data-on-click="$ctrl.submitForm(true)">
-      </oui-button>
-    </div>
-    <div data-ng-if="$ctrl.issues.length === 0">
-      <oui-button data-variant="primary"
-                  data-text="{{ 'ovhManagerSupport_new_create' | translate }}"
-                  data-on-click="$ctrl.submitForm(false)">
       </oui-button>
     </div>
   </div>
