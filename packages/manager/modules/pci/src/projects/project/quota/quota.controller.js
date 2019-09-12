@@ -1,28 +1,18 @@
-import { RESTRICTED_CORES, RESTRICTED_RAM, RESTRICTED_INSTANCES } from './quota.constants';
-
 export default class {
   /* @ngInject */
   constructor(
-    $state,
-    $translate,
     CucCloudMessage,
     CucRegionService,
     OtrsPopupService,
-    OvhApiCloudProject,
     PCI_REDIRECT_URLS,
   ) {
-    this.$state = $state;
-    this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.OtrsPopupService = OtrsPopupService;
-    this.OvhApiCloudProject = OvhApiCloudProject;
     this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
   }
 
   $onInit() {
-    this.isLoading = false;
-
     this.loadMessages();
 
     this.paymentmeanUrl = this.PCI_REDIRECT_URLS[this.region].paymentMeans;
@@ -43,35 +33,11 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
-  isQuotaRestricted() {
-    const [quota] = this.quotas;
-    return !quota
-    || (
-      quota.maxInstances === RESTRICTED_INSTANCES
-      && quota.maxCores === RESTRICTED_CORES
-      && quota.maxRam === RESTRICTED_RAM
-    );
-  }
-
   openSupport() {
     if (!this.OtrsPopupService.isLoaded()) {
       this.OtrsPopupService.init();
     } else {
       this.OtrsPopupService.toggle();
     }
-  }
-
-  unleashAccount() {
-    this.isLoading = true;
-    return this.OvhApiCloudProject.v6().unleash({
-      serviceName: this.projectId,
-    }, {}).$promise.then(() => this.$state.reload())
-      .catch(({ status }) => {
-        if (status === 403) {
-          this.CucCloudMessage.error(this.$translate.instant('pci_projects_project_quota_already_unleashed'));
-        } else {
-          this.CucCloudMessage.error(this.$translate.instant('pci_projects_project_quota_unleash_error'));
-        }
-      });
   }
 }

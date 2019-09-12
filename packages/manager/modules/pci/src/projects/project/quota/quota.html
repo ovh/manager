@@ -7,53 +7,27 @@
 </div>
 
 <div data-ng-if="!$ctrl.isLoading">
-    <!-- THERE IS NO PAYMENT MEAN - SHOW A MESSAGE TO ADD IT -->
-    <div class="oui-box" data-ng-if="$ctrl.isQuotaRestricted() && !$ctrl.defaultPaymentMean">
-        <p class="font-weight-bold" data-translate="pci_projects_project_quota_restricted_account"></p>
-        <p data-translate="pci_projects_project_quota_restricted_account_unlock"
-            data-translate-values="{'url': $ctrl.paymentmeanUrl}">
-        </p>
-    </div>
+    <div class="oui-box">
+        <p data-translate="pci_projects_project_quota_presentation"></p>
 
-    <!-- THERE IS A PAYMENT MEAN BUT QUOTA IS RESTRICTED -  -->
-    <div class="oui-box" data-ng-if="$ctrl.isQuotaRestricted() && $ctrl.defaultPaymentMean">
-        <p class="font-weight-bold" data-translate="pci_projects_project_quota_restricted_paymentmean_active"></p>
-        <button class="oui-button oui-button_primary"
-                type="button"
-                data-ng-click="$ctrl.unleashAccount()"
-                data-translate="pci_projects_project_quota_restricted_unlock_button">
-        </button>
-    </div>
+        <div data-write-right-required>
+            <p data-translate="pci_projects_project_quota_protect_more"></p>
 
-    <!-- ITS NOT RESTRICTED AND THERE IS A PAYMENT MEAN -->
-    <div class="oui-box" data-ng-if="!$ctrl.isQuotaRestricted()">
-        <p class="font-weight-bold" data-translate="pci_projects_project_quota_protect_explain"></p>
-        <p write-right-required>{{ :: 'pci_projects_project_quota_protect_more' | translate }}</p>
-        <button type="button"
-                class="oui-button oui-button_primary"
-                data-ng-if="$ctrl.region !== 'US'"
-                data-ng-disabled="!$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
-                data-ng-click="$ctrl.openSupport()"
-                write-right-required
-                data-translate="pci_projects_project_quota_protect_more_btn">
-        </button>
-
-        <div data-ng-if="$ctrl.region === 'US'"
-                data-write-right-required>
-            <button type="button"
-                    class="oui-button oui-button_primary no-transition"
-                    data-ng-if="!$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
-                    data-ng-disabled="true"
-                    data-translate="pci_projects_project_quota_protect_more_btn">
+            <button
+                class="oui-button oui-button_primary no-transition"
+                data-ng-click=":: $ctrl.openSupport()"
+                data-ng-if=":: $ctrl.region !== 'US'"
+                data-translate="pci_projects_project_quota_protect_more_btn"
+                type="button">
             </button>
 
-            <a class="oui-button oui-button_primary no-transition"
-                data-ng-if="$ctrl.quotas.length"
-                data-ng-href="{{ $ctrl.supportUrl }}"
+            <a
+                class="oui-button oui-button_primary no-transition"
+                data-ng-href="{{:: $ctrl.supportUrl }}"
+                data-ng-if=":: $ctrl.region === 'US'"
                 data-translate="pci_projects_project_quota_protect_more_btn">
             </a>
         </div>
-
     </div>
 
     <!-- QUOTA TABLE -->
