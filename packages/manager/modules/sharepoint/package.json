@@ -11,6 +11,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "angular": "^1.7.5",
     "filesize": "^3.5.11",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15"
