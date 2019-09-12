@@ -51,6 +51,8 @@ export const SERVICE_STATUS = {
   RESILIATED: 'expired',
 };
 
+export const URL_PARAMETER_SEPARATOR = '%20';
+
 export default {
   AUTORENEW_EVENT,
   CONTRACTS_IDS,
@@ -60,4 +62,5 @@ export default {
   RENEW_URL,
   SERVICE_EXPIRATION,
   SERVICE_STATUS,
+  URL_PARAMETER_SEPARATOR,
 };

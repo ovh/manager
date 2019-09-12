@@ -629,5 +629,6 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Oups ! Une erreur est survenue lors de la suppression des codes de secours :",
   "user_account_security_ip_restrictions_alt": "Restriction d’accès par IP",
   "user_account_title_infos": "Mon profil",
-  "user_account_title_subscriptions": "Mes abonnements"
+  "user_account_title_subscriptions": "Mes abonnements",
+  "user_agreements_accepting": "En cours..."
 }

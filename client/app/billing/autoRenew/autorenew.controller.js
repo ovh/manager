@@ -1,4 +1,4 @@
-import { NIC_ALL } from './autorenew.constants';
+import { NIC_ALL, RENEW_URL, URL_PARAMETER_SEPARATOR } from './autorenew.constants';
 
 export default class AutorenewCtrl {
   /* @ngInject */
@@ -106,6 +106,7 @@ export default class AutorenewCtrl {
 
   onRowSelection($rows) {
     this.selectedServices = $rows;
+    this.manualRenewUrl = this.getManualRenewUrl();
   }
 
   trackCSVExport() {
@@ -187,5 +188,13 @@ export default class AutorenewCtrl {
       .finally(() => {
         this.nicRenewLoading = false;
       });
+  }
+
+  getManualRenewUrl() {
+    const urlParameterDomains = this.selectedServices
+      .map(({ domain }) => domain)
+      .join(URL_PARAMETER_SEPARATOR);
+
+    return `${RENEW_URL[this.currentUser.ovhSubsidiary]}${urlParameterDomains}`;
   }
 }

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 angular.module('controllers').controller('controllers.Server.Stats.Rtm.General', (
   $scope, $translate, $stateParams, Server,
 ) => {

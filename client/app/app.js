@@ -17,6 +17,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerCore from '@ovh-ux/manager-core';
+import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
@@ -84,6 +85,7 @@ angular
     'ovh-utils-angular',
     'ovhBrowserAlert',
     ovhContacts,
+    ovhManagerBanner,
     ovhManagerNavbar,
     ovhPaymentMethod,
     'pascalprecht.translate',
@@ -117,7 +119,6 @@ angular
     FALLBACK_LANGUAGE: config.constants.FALLBACK_LANGUAGE,
     SUPPORT: config.constants.SUPPORT,
   })
-  .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .config(/* @ngInject */(ovhProxyRequestProvider) => {
     ovhProxyRequestProvider.proxy('$http');

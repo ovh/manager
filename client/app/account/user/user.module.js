@@ -12,7 +12,6 @@ angular
     swsProxyRootPath: config.swsProxyRootPath,
     target: config.target,
   })
-  .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('CountryConstants', {
     support: config.constants.URLS.support,
   })

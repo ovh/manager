@@ -1,3 +1,77 @@
+<a name="10.28.3"></a>
+## [10.28.3](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.2...v10.28.3) (2019-09-11)
+
+
+### Bug Fixes
+
+* add missing translations for language fr_FR ([0c59cd1](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0c59cd1))
+* **rtm:** add missing lodash import ([2151675](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2151675))
+
+
+### Features
+
+* **autorenew:** add manual renew action ([#1379](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1379)) ([bf79ccc](https://github.com/ovh-ux/ovh-manager-dedicated/commit/bf79ccc))
+* add manager banner ([#1383](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1383)) ([d9b905d](https://github.com/ovh-ux/ovh-manager-dedicated/commit/d9b905d))
+* allow sorting by effect date ([049435b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/049435b))
+
+
+
+<a name="10.28.2"></a>
+## [10.28.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.1...v10.28.2) (2019-09-06)
+
+
+### Bug Fixes
+
+* pagination works correctly on services page ([f6f6110](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f6f6110))
+
+
+
+<a name="10.28.1"></a>
+## [10.28.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.0...v10.28.1) (2019-09-05)
+
+
+### Bug Fixes
+
+* redirect old aurorenew url ([1c296af](https://github.com/ovh-ux/ovh-manager-dedicated/commit/1c296af))
+
+
+
+<a name="10.28.0"></a>
+# [10.28.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.27.0...v10.28.0) (2019-09-05)
+
+
+### Bug Fixes
+
+* **autorenew:** allow access to my services page even (no autorenew) ([051e774](https://github.com/ovh-ux/ovh-manager-dedicated/commit/051e774))
+* **billing.autorenew:** correct transation ([#1357](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1357)) ([044a2c2](https://github.com/ovh-ux/ovh-manager-dedicated/commit/044a2c2))
+* **deps:** upgrade ng-ovh-otrs to v7.1.11 ([#1354](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1354)) ([72c3b55](https://github.com/ovh-ux/ovh-manager-dedicated/commit/72c3b55))
+* **i18n:** add missing translations [CDS 24] ([91e0011](https://github.com/ovh-ux/ovh-manager-dedicated/commit/91e0011))
+* **i18n:** add missing translations [CDS 25] ([9e710c0](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9e710c0))
+* **i18n:** add missing translations [CDS 27] ([599025e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/599025e))
+* **i18n:** add missing translations [CDS 28] ([4e73aea](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4e73aea))
+* **i18n:** add missing translations [CDS 30] ([9ad53d2](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9ad53d2))
+* **i18n:** add missing translations [CDS 32] ([9cfc191](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9cfc191))
+* **i18n:** add missing translations [CDS 34] ([0b0a639](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0b0a639))
+* remove console.log ([#1367](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1367)) ([79a5ed4](https://github.com/ovh-ux/ovh-manager-dedicated/commit/79a5ed4))
+* **i18n:** add missing translations [CDS 35] ([f875550](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f875550))
+* **i18n:** add missing translations [CDS 37] ([e93a679](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e93a679))
+* **i18n:** add missing translations [CDS 38] ([425a91d](https://github.com/ovh-ux/ovh-manager-dedicated/commit/425a91d))
+* **i18n:** add missing translations [CDS 39] ([b1068ae](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b1068ae))
+* **user:** fix link to details of a contract ([613ede5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/613ede5))
+
+
+### Features
+
+* **billing.autorenew.actions:** add tracking ([#1353](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1353)) ([0b7841e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0b7841e))
+* **billing.users.contracts:** add a link for details of agreements ([#1363](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1363)) ([f477d40](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f477d40))
+
+
+
+<a name="10.27.0"></a>
+# [10.27.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.26.2...v10.27.0) (2019-09-02)
+
+
+
 <a name="10.26.2"></a>
 ## [10.26.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.26.1...v10.26.2) (2019-08-27)
 
