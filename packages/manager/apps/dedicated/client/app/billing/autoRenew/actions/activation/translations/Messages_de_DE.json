@@ -1,0 +1,8 @@
+{
+  "billing_autorenew_service_activation_title": "Automatische Verlängerung aktivieren",
+  "billing_autorenew_service_activation_success": "Die automatische Verlängerung wurde aktiviert.",
+  "billing_autorenew_service_activation_error": "Beim Aktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}",
+  "billing_autorenew_service_activation_confirm": "Bestätigen",
+  "billing_autorenew_service_activation_cancel": "Abbrechen",
+  "billing_autorenew_service_activation_confirmation": "Möchten Sie die automatische Verlängerung aktivieren?"
+}

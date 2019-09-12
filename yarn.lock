@@ -1830,6 +1830,13 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/manager-banner@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-banner/-/manager-banner-1.1.0.tgz#8b85ce7dee2c73208de045136cd06eb76fb41cf7"
+  integrity sha512-z3HEaoZrr9RnQCpm9hTCca7eiN5ABEqnDhvQXcUoXUf9czXTdD6zwrU1KCqnQ0pRIqpaJnhR5O2cZmdPRRJN9w==
+  dependencies:
+    lodash "^4.17.15"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
@@ -1936,10 +1943,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@^7.1.10":
-  version "7.1.10"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.10.tgz#9899810547a28c4d8789e4705c2eb715368fbe5f"
-  integrity sha512-+ZTPq2lD5v5dMwRiuH0tnXK6+rNjzYkMHbPd5iwEYDNsLAPcElR+X2HCMImV4KYHdK/1mqOs8OP2cCdywEwPWw==
+"@ovh-ux/ng-ovh-otrs@7.1.11":
+  version "7.1.11"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.11.tgz#39fec6c9f6cdf8cb4c292e8ed4dca759c4cd1acf"
+  integrity sha512-vZzTWZZkVfEuNrAuBNRjZB+4MCdTDaB4qMpLuQy6l5TrflJLrx4H9qzt5DcpEvNWwTzXVMfuOwq+qHrkJQKfwg==
   dependencies:
     draggable "^4.2.0"
     lodash "^4.17.11"
@@ -1967,10 +1974,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.3.0.tgz#2a13e629837989a50ae20944c586f493f8e82767"
-  integrity sha512-EMIrUdF7sQg0QGLZAvN8W0ND/QhHDjzxN2+Crtf2z+JuPFiaNCh54hohm59NQzlETVE7eVaRK2y3nkrni+Vb2A==
+"@ovh-ux/ng-ovh-payment-method@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-4.1.0.tgz#b51d844293c26d7de3ad8e33f59399d2f5554c1f"
+  integrity sha512-zw6bGHfpr076KDM0h62JnYcB1/wG8vNqeBnUVnzmTLuMbeABbwdgwtUw2t7BjOGD1HSDiO0mAyMxJloI5Aszgw==
   dependencies:
     lodash "^4.17.11"
 
@@ -11595,10 +11602,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.7.4:
-  version "3.7.4"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.4.tgz#fa211e2a4445c83fcf973ad596637be859a67d13"
-  integrity sha512-b6a0G4F1seoivqTY9sczjF8P2DlqZcqCdCSxFl6cq4HGVDqGcTZ/Su5gRGOsBP4CmmuvXjCsS7Veno8fPqISkw==
+ovh-ui-angular@^3.7.6:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.6.tgz#542636e472426a1db07cbb4392d86d08e0c00e2f"
+  integrity sha512-Nq+BfbztNUB5cldCEDGazTS2lgtK21HUREkyZKlUxnyVW4DX2+MIUplABXrd1XXhv+cSCrTxgbSQz+Y8rMGCqw==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
