@@ -45,9 +45,12 @@ export default class {
 
   isQuotaRestricted() {
     const [quota] = this.quotas;
-    return quota.maxInstances === RESTRICTED_INSTANCES
-    && quota.maxCores === RESTRICTED_CORES
-    && quota.maxRam === RESTRICTED_RAM;
+    return !quota
+    || (
+      quota.maxInstances === RESTRICTED_INSTANCES
+      && quota.maxCores === RESTRICTED_CORES
+      && quota.maxRam === RESTRICTED_RAM
+    );
   }
 
   openSupport() {
