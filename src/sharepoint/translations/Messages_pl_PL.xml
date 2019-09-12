@@ -205,9 +205,9 @@
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Zbyt proste hasło</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Hasło nie może zawierać części lub całej nazwy do wyświetlenia lub loginu Exchange.</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different" qtlid="139637">Różne hasła</translation>
-   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="sharepoint_exchange_ACTION_order_accounts_button" qtlid="139169">Zamówienie kont</translation>
-   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">Konto e-mail</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">Konta e-mail</translation>
    <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message" qtlid="190849">Istniejący adres email</translation>
    <translation id="sharepoint_exchange_tab_account_remove_account" qtlid="137725">Usuń konto</translation>
    <translation id="sharepoint_exchange_tab_account_remove_email_label" qtlid="33862">Konto</translation>

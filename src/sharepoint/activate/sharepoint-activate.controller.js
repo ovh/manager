@@ -27,10 +27,10 @@ angular
           .then(() => {
             this.alerter.success(
               this.$translate.instant('sharepoint_action_activate_office_licence_success_message', { t0: this.account.userPrincipalName }),
-              this.$scope.alerts.dashboard,
+              this.$scope.alerts.main,
             );
           })
-          .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.dashboard))
+          .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.main))
           .finally(() => this.$scope.resetAction());
       };
     }
