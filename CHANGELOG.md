@@ -1,3 +1,19 @@
+# [13.30.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.29.0...v13.30.0) (2019-09-11)
+
+
+### Bug Fixes
+
+* remove ng-ovh-otrs dependency ([ba0c101](https://github.com/ovh-ux/ovh-manager-web/commit/ba0c101))
+* **i18n:** add missing translations [CDS 32] ([b983c04](https://github.com/ovh-ux/ovh-manager-web/commit/b983c04))
+* restore OTRS usage ([#1234](https://github.com/ovh-ux/ovh-manager-web/issues/1234)) ([9fe2853](https://github.com/ovh-ux/ovh-manager-web/commit/9fe2853))
+
+
+### Features
+
+* add manager banner ([#1235](https://github.com/ovh-ux/ovh-manager-web/issues/1235)) ([c634086](https://github.com/ovh-ux/ovh-manager-web/commit/c634086))
+
+
+
 # [13.29.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.28.2...v13.29.0) (2019-09-02)
 
 
