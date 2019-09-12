@@ -1952,6 +1952,14 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-otrs@^7.1.6":
+  version "7.1.11"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.11.tgz#39fec6c9f6cdf8cb4c292e8ed4dca759c4cd1acf"
+  integrity sha512-vZzTWZZkVfEuNrAuBNRjZB+4MCdTDaB4qMpLuQy6l5TrflJLrx4H9qzt5DcpEvNWwTzXVMfuOwq+qHrkJQKfwg==
+  dependencies:
+    draggable "^4.2.0"
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-payment-method@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.2.0.tgz#a36b20c0c12e5d87cde1ff095a598b3f7b7e4514"
