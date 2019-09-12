@@ -98,6 +98,10 @@
             <extra-top>
                 <oui-action-menu data-text="{{:: 'autorenew_service_action_title' | translate }}">
                     <div data-ng-if="$ctrl.selectedServices.length > 0">
+                        <oui-action-menu-item data-href="{{ $ctrl.manualRenewUrl }}"
+                                              data-external>
+                            <span data-translate="billing_autorenew_renew_action"></span>
+                        </oui-action-menu-item>
                         <oui-action-menu-item
                             data-on-click="$ctrl.disableBulkAutorenew($ctrl.selectedServices)">
                             <span data-translate="billing_autorenew_service_disable_autorenew"></span>
@@ -106,7 +110,7 @@
                             data-on-click="$ctrl.enableBulkAutorenew($ctrl.selectedServices)">
                             <span data-translate="billing_autorenew_service_enable_autorenew"></span>
                         </oui-action-menu-item>
-                        <oui-action-menu-divider ></oui-action-menu-divider>
+                        <oui-action-menu-divider></oui-action-menu-divider>
                     </div>
                     <button type="button"
                         class="oui-dropdown-option"
@@ -165,7 +169,8 @@
                 data-property="status"
                 data-type="options"
                 data-type-options="$ctrl.filtersOptions.status"
-                data-filterable>
+                data-filterable
+>
                 <span class="oui-status oui-status_error"
                     data-ng-if="$row.hasDebt()"
                     data-translate="billing_autorenew_service_status_pending_debt">
@@ -180,7 +185,8 @@
                 data-property="expiration"
                 data-type="options"
                 data-type-options="$ctrl.filtersOptions.expiration"
-                data-filterable>
+                data-filterable
+                data-sortable>
                 <span data-ng-if="$row.isOneShot()">-</span>
                 <span
                     data-ng-if="$row.hasManualRenew() && !$row.isResiliated() || $row.hasDebt()"

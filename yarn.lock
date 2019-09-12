@@ -1830,6 +1830,13 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/manager-banner@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-banner/-/manager-banner-1.1.0.tgz#8b85ce7dee2c73208de045136cd06eb76fb41cf7"
+  integrity sha512-z3HEaoZrr9RnQCpm9hTCca7eiN5ABEqnDhvQXcUoXUf9czXTdD6zwrU1KCqnQ0pRIqpaJnhR5O2cZmdPRRJN9w==
+  dependencies:
+    lodash "^4.17.15"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
@@ -11558,6 +11565,13 @@ ovh-api-services@^9.6.0:
   dependencies:
     lodash "^4.17.15"
 
+ovh-api-services@^9.8.0:
+  version "9.8.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.8.0.tgz#9764da1793ba3bd01bf897c2be6298a9de6cc2cb"
+  integrity sha512-WI9TfBkxkR5TZvQU1Xx8NIRwpS3TVqa7gQwRye+3Wj+b2UIGKAOmf0/fjGTsXSQBPsnMo3U4P+9YmjSO0OX5/A==
+  dependencies:
+    lodash "^4.17.15"
+
 ovh-common-style@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-3.2.2.tgz#66f4637c7393d1bd5118b05b63b034f26120a41f"
@@ -11591,6 +11605,18 @@ ovh-ui-angular@^3.7.4:
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.4.tgz#fa211e2a4445c83fcf973ad596637be859a67d13"
   integrity sha512-b6a0G4F1seoivqTY9sczjF8P2DlqZcqCdCSxFl6cq4HGVDqGcTZ/Su5gRGOsBP4CmmuvXjCsS7Veno8fPqISkw==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    flatpickr "^4.5.2"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
+ovh-ui-angular@^3.7.6:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.6.tgz#542636e472426a1db07cbb4392d86d08e0c00e2f"
+  integrity sha512-Nq+BfbztNUB5cldCEDGazTS2lgtK21HUREkyZKlUxnyVW4DX2+MIUplABXrd1XXhv+cSCrTxgbSQz+Y8rMGCqw==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"

@@ -6,6 +6,11 @@ import BillingService from './BillingService.class';
 import { NIC_ALL } from './autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
+  $stateProvider.state('app.account.billing.autorenewRedirection', {
+    url: '/autoRenew?selectedType&pageSize&pageNumber&filters&searchText&nicBilling&sort',
+    redirectTo: 'app.account.billing.autorenew',
+  });
+
   $stateProvider.state('app.account.billing.autorenew', {
     url: '/autorenew?selectedType&pageSize&pageNumber&filters&searchText&nicBilling&sort',
     component: 'autoRenew',
@@ -137,7 +142,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         sort,
       ) => BillingAutoRenew.getServices(
         pageSize,
-        pageNumber - 1,
+        pageSize * (pageNumber - 1),
         searchText,
         selectedType,
         filters.expiration,
