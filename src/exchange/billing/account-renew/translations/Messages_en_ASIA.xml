@@ -11,15 +11,15 @@
    <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Current value</translation>
    <translation id="exchange_update_billing_periode_label" qtlid="168172">Renewal</translation>
    <translation id="exchange_update_billing_header_new_periode" qtlid="190992">New period</translation>
-   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
-   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
-   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Change to "Monthly"</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Change to "Yearly"</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Change to "Close on expiry"</translation>
    <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Monthly</translation>
    <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Yearly </translation>
    <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Expires on end</translation>
    <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Please note that this choice implies that the service will expire on the expiry date and the data will be lost. It will be then impossible to recover the account data.</translation>
    <translation id="exchange_update_billing_periode_resume" qtlid="191005">You are about to change the renewal period of your accounts:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">The renewal periods have been updated for the accounts selected.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Some renewal periods have not been updated.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">An error has occurred updating the account renewal periods</translation>
 </translations>

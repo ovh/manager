@@ -11,15 +11,15 @@
    <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Aktualna wartość</translation>
    <translation id="exchange_update_billing_periode_label" qtlid="168172">Odnowienie</translation>
    <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nowy okres</translation>
-   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
-   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
-   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Zmień na "Co miesiąc".</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Zmień na "Co rok".</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Zmień na "Wygasa w określonym terminie"</translation>
    <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Co miesiąc</translation>
    <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Co rok</translation>
    <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Wygasa z końcem</translation>
    <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Uwaga! Ten wybór sprawi, że usługa wygaśnie a dane zostaną usunięte. Nie będziesz mógł odzyskać danych z konta.</translation>
    <translation id="exchange_update_billing_periode_resume" qtlid="191005">Zmienisz okres odnowienia dla kont:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">Okres odnowienia wybranych kont został zaktualizowany.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Niektóre okresy odnowienia nie zostały zaktualizowane.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Wystąpił błąd podczas aktualizacji odnowienia kont.</translation>
 </translations>
