@@ -9,20 +9,29 @@ import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 import ngOvhFormFlat from '@ovh-ux/ng-ovh-form-flat';
+import ngOvhJsplumb from '@ovh-ux/ng-ovh-jsplumb';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
+import ngOvhResponsiveTabs from '@ovh-ux/ng-ovh-responsive-tabs';
+import ngOvhSlider from '@ovh-ux/ng-ovh-slider';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhStopEvent from '@ovh-ux/ng-ovh-stop-event';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
+import ngOvhToaster from '@ovh-ux/ng-ovh-toaster';
 import ngOvhUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
+import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
@@ -61,15 +70,15 @@ angular.module('managerApp', [
   ngOvhUiRouterLineProgress,
   'ovh-api-services',
   'ovh-common-style',
-  'ovh-angular-q-allSettled',
+  ngQAllSettled,
   'angularMoment',
-  'ovh-angular-toaster',
+  ngOvhToaster,
   'oui',
   'oui.list-view',
   'chart.js',
 
-  'ovh-angular-pagination-front',
-  'ovh-angular-responsive-tabs',
+  ngPaginationFront,
+  ngOvhResponsiveTabs,
   'mgcrea.ngStrap.popover',
   'mgcrea.ngStrap.tooltip',
   'mgcrea.ngStrap.helpers.dimensions',
@@ -77,13 +86,13 @@ angular.module('managerApp', [
   'ovh-angular-responsive-page-switcher',
 
   'ng-slide-down',
-  'ovh-angular-jsplumb',
+  ngOvhJsplumb,
   'tmh.dynamicLocale',
 
   'ovh-jquery-ui-draggable-ng',
-  'ovh-angular-jquery-ui-droppable',
-  'ovh-angular-slider',
-  'ovh-angular-tail-logs',
+  ngOvhJqueryUiDroppable,
+  ngOvhSlider,
+  ngTailLogs,
   'matchmedia-ng',
   'ovhBrowserAlert',
   'angular-websocket',
