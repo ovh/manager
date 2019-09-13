@@ -1,0 +1,11 @@
+{
+ "veeam_enterprise_tab_dashboard": "Home",
+ "veeam_enterprise_infos_general_load_error": "Er is een fout opgetreden bij het laden van de algemene informatie.",
+ "veeam_enterprise_infos_configuration_load_error": "Er is een fout opgetreden tijdens het laden van de configuratie-informatie. ",
+ "veeam_enterprise_infos_subscription_load_error": "Er is een fout opgetreden tijdens het laden van de abonnementinformatie. ",
+ "veeam_enterprise_infos_license_register_error": "Er is een fout opgetreden bij het activeren van uw Veeam Enterprise licentie.",
+ "veeam_enterprise_infos_license_register_success": "Uw Veeam Enterprise licentie wordt geactiveerd.",
+ "veeam_enterprise_infos_license_update_error": "Er is een fout opgetreden bij het updaten van uw Veeam Enterprise licentie.",
+ "veeam_enterprise_infos_license_update_success": "Uw Veeam Enterprise licentie wordt geüpdatet.",
+ "veeam_enterprise_infos_license_already_registered_error": "U hebt uw Veeam Enterprise licentie al geactiveerd."
+}

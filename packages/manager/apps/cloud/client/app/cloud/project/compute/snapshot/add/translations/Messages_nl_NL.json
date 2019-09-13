@@ -1,0 +1,14 @@
+{
+ "cpc_snapshot_add_title": "Een snapshot maken",
+ "cpc_snapshot_add_cancel": "Annuleren",
+ "cpc_snapshot_add_info": "Voer de naam van uw snapshot in:",
+ "cpc_snapshot_add_name_required_error": "U moet een naam aan uw snapshot geven.",
+ "cpc_snapshot_add_name_max_error": "Deze naam is te lang.",
+ "cpc_snapshot_add_name": "Naam van de snapshot",
+ "cpc_snapshot_add_valid": "Maak een snapshot",
+ "cpc_snapshot_add_doing": "We zijn uw snapshot verzoek aan het behandelen",
+ "cpc_snapshot_add_success": "De {{snapshotname}} snapshot zal worden genomen en zal binnen enkele ogenblikken beschikbaar zijn.",
+ "cpc_snapshot_add_availibility": "Uw server zal enkele seconden worden stilgelegd, lees/schrijfprestaties kunnen mogelijk beïnvloed worden totdat het snapshot proces klaar is.  ",
+ "cpc_snapshot_add_error": "We kunnen geen snapshot van deze server maken.",
+ "cpc_snapshot_add_total": "({{size | bytes:2}}, is ongeveer {{price}} excl. BTW/maand)"
+}

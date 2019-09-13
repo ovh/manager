@@ -1,0 +1,6 @@
+{
+ "veeam_storage_add_title": "Storage toevoegen",
+ "veeam_storage_add_confirmation": "Weet u zeker dat u opslagruimte wilt toevoegen?",
+ "veeam_storage_add_confirm": "Toevoegen",
+ "veeam_storage_add_cancel": "Annuleren"
+}

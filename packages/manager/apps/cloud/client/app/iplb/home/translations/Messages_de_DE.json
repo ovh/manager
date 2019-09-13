@@ -1,0 +1,21 @@
+{
+ "iplb_home_tile_status": "Status",
+ "iplb_home_tile_status_frontends": "{{number}} Frontends",
+ "iplb_home_tile_status_farms": "{{number}} Serverfarmen",
+ "iplb_home_tile_status_servers": "{{number}} Server",
+ "iplb_home_tile_usage": "Verwendung",
+ "iplb_home_tile_graph": "Graphen",
+ "iplb_home_tile_infos": "Informationen",
+ "iplb_home_tile_infos_ipv4": "IPv4",
+ "iplb_home_tile_infos_ipv6": "IPv6",
+ "iplb_home_tile_infos_ip_failover": "Failover-IP",
+ "iplb_home_tile_infos_ip_outbound": "Ausgehende IPv4",
+ "iplb_home_tile_configuration": "Konfiguration",
+ "iplb_home_tile_configuration_name": "Name",
+ "iplb_home_tile_configuration_quota_max": "Quota pro Monat",
+ "iplb_home_tile_configuration_quota_alert": "Warnschwelle",
+ "iplb_home_tile_configuration_quota_unlimited": "Unbegrenzt",
+ "iplb_home_tile_configuration_quota_cipher": "Ciphers",
+ "iplb_home_tile_configuration_quota_datacenter": "Verfügbarkeitszonen",
+ "iplb_home_tile_configuration_private_network": "Private Netzwerke"
+}

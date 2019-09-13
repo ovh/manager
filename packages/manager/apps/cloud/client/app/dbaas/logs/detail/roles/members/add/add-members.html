@@ -1,0 +1,28 @@
+<form novalidate name="ctrl.form">
+    <oui-modal data-title="{{ ::ctrl.title | translate }}"
+               data-primary-action="ctrl.addMember()"
+               data-primary-label="{{ ::'common_save' | translate }}"
+               data-secondary-action="ctrl.cancel()"
+               data-secondary-label="{{ ::'common_cancel' | translate }}"
+               data-on-dismiss="ctrl.cancel()"
+               data-loading="ctrl.saving.loading">
+        <oui-field data-label="{{::'logs_roles_members_modal_user' | translate}}">
+            <cloud-auto-complete
+                data-id="userName"
+                data-ng-model="ctrl.member.username"
+                data-ng-disabled="ctrl.saving"
+                data-options="ctrl.logs.data"
+                data-display-property="username"
+                data-placeholder="logs-XX-XXXXX"
+                required cuc-autofocus></cloud-auto-complete>
+        </oui-field>
+
+        <oui-field data-label="{{::'logs_roles_members_note' | translate}}">
+            <textarea type="text" id="note" name="note"
+                data-ng-disabled="ctrl.saving"
+                class="oui-textarea" data-ng-model="ctrl.member.note"
+                data-ng-class="{'oui-textarea_error': ctrl.form.$submitted && ctrl.form.note.$invalid}"
+                required></textarea>
+        </oui-field>
+   </oui-modal>
+</form>

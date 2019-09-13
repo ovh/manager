@@ -1,0 +1,71 @@
+/* Table */
+@table-background-color: white;
+@table-margin: 2 * @global-margin;
+
+#ovh {
+  .table (
+    @margin: @table-margin
+  ) {
+    width: 100%;
+    margin: @margin 0;
+
+    &_fixed {
+      table-layout: fixed;
+    }
+
+    &-header {
+      min-height: 4.2rem;
+      background-color: @concrete;
+    }
+
+    &-cell {
+      text-align: left;
+      font-size: 1.4rem;
+      font-weight: 400;
+      height: 4.2rem;
+      border-top: solid 1px transparent;
+      border-bottom: solid 1px @gallery;
+      color: @dove;
+      padding-right: 1rem;
+
+      &:first-child {
+        padding-left: 1rem;
+      }
+
+      &_header {
+        user-select: none;
+        color: @mineshaft;
+        font-weight: @font-semi-bold;
+        border-bottom: 0;
+      }
+
+      &_tiny {
+        width: 5rem;
+      }
+
+      &_small {
+        width: 12rem;
+      }
+
+      &_medium {
+        width: 18rem;
+      }
+
+      &_large {
+        width: 30rem;
+      }
+
+      &_xlarge {
+        width: 40rem;
+      }
+    }
+
+    &-row:hover > &-cell {
+      background-color: @concrete;
+    }
+  }
+}
+
+.ovh-table {
+  #ovh > .table();
+}

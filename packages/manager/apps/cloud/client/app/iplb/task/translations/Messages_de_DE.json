@@ -1,0 +1,16 @@
+{
+ "iplb_task_title": "Tasks",
+ "iplb_task_intro_text": "Laufende Tasks für Ihren Loadbalancer werden automatisch aus der Liste entfernt, wenn sie vor mehr als 48 Stunden abgeschlossen wurden.",
+ "iplb_task_list_col_creation_date": "Erstellungsdatum",
+ "iplb_task_list_col_task": "Task",
+ "iplb_task_list_col_progress": "Fortschritt ",
+ "iplb_task_list_col_status": "Status ",
+ "iplb_task_list_col_action": "Aktion",
+ "iplb_task_preview_title": "Task-Übersicht",
+ "iplb_task_preview_creation_date": "Erstellungsdatum",
+ "iplb_task_preview_task": "Task",
+ "iplb_task_preview_progress": "Fortschritt ",
+ "iplb_task_preview_status": "Status ",
+ "iplb_task_preview_id": "Kennung",
+ "iplb_task_no_task": "Keine laufenden Tasks"
+}

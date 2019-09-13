@@ -1,0 +1,19 @@
+{
+ "nasha_partitions_zfs_title": "Z File System (ZFS) instellingen",
+ "nasha_partitions_zfs_atime_label": "Access time update (atime)",
+ "nasha_partitions_zfs_atime_disable": "Deactiveren",
+ "nasha_partitions_zfs_atime_description": "Deactiveert de behoefte van de kernel om de file access time te updaten bij elk verzoek. ",
+ "nasha_partitions_zfs_recordsize_label": "ZFS recordsize",
+ "nasha_partitions_zfs_recordsize_default": "(Standaard)",
+ "nasha_partitions_zfs_sync_label": "Sync",
+ "nasha_partitions_zfs_sync_standard": "Standard",
+ "nasha_partitions_zfs_sync_description_standard": "Beveiligd profiel: combineert stabiliteit met een goede performance. Eerst worden bestanden geschreven en vervolgens worden alle elementen gewist om data stabiliteit te verzekeren. ",
+ "nasha_partitions_zfs_sync_always": "Always",
+ "nasha_partitions_zfs_sync_description_always": "Zwaar beveiligd profiel: uw file transfers zullen stabieler zijn, wat ten koste kan gaan van performance. ",
+ "nasha_partitions_zfs_sync_disabled": "Uitgeschakeld",
+ "nasha_partitions_zfs_sync_description_disabled": "Onbeveiligd profiel: zeer hoge performance maar gevaarlijk omdat de ZFS synchrone transfer-verzoeken (BDD, NFS, etc.) negeert. ",
+ "nasha_partitions_zfs_sync_description_disabled_warning": "Administrators dienen deze optie enkel in te zetten als ze volledig op de hoogte zijn van de risico's. ",
+ "nasha_partitions_zfs_modal_success": "De ZFS-opties zullen zodra worden gewijzigd. ",
+ "nasha_partitions_zfs_modal_fail": "Er is een fout opgetreden tijdens het wijzigen van de ZFS-opties. ",
+ "nasha_partitions_zfs_modal_loading_fail": "Er is een fout opgetreden tijdens het laden van de ZFS-opties. "
+}

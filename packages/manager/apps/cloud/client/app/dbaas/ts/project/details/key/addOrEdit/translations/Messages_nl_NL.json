@@ -1,0 +1,14 @@
+{
+ "dtpdt_key_add_title": "Nouvelle clé d'API",
+ "dtpdt_key_edit_title": "Modifier la clé d'API",
+ "dtpdt_name": "Key naam",
+ "dtpdt_permission": "Toestemming",
+ "dtpdt_description": "Beschrijving",
+ "dtpdt_tags": "Tags",
+ "dtpdt_add_tag": "Ajouter un tag",
+ "dtpdt_remove_tag": "Verwijderen",
+ "dtpdt_tag_key": "Naam",
+ "dtpdt_tag_value": "Waarde",
+ "dtpdt_add_key": "Aanmaken",
+ "dtpdt_edit_key": "Wijzigen"
+}

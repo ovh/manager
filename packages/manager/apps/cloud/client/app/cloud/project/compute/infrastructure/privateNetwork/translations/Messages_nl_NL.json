@@ -1,0 +1,17 @@
+{
+ "cpci_private_network_list_header_title": "Privénetwerken",
+ "cpci_private_network_list_header_disabled_notice": "Gedeactiveerd",
+ "cpci_private_network_list_vrack_unnamed": "zonder naam",
+ "cpci_private_network_list_untagged_vlan": "Geen vLAN",
+ "cpci_private_network_activateVrack_description": "Zodra uw project is verbonden met de vRack, kunt u een uw Dedicated Servers, Public Cloud en Private Cloud instances koppelen, in alle OVH datacenters. U kunt tot bijna 4.000 VLAN's creëren!",
+ "cpci_private_network_activateVrack_activate": "Activeer de vRack",
+ "cpci_private_network_creating": "Privénetwerk wordt aangemaakt",
+ "cpci_private_network_creating_description": "Deze bewerking kan enkele minuten duren",
+ "cpci_private_network_list_private_network_query_error": "Er is een fout opgetreden tijdens het ophalen van informatie over de privénetwerken. ",
+ "cpci_private_network_add_vrack_error": "Er is een fout opgetreden tijdens het inschakelen van privénetwerken.",
+ "cpci_private_network_remove_vrack_error": "Er is een fout opgetreden tijdens het uitschakelen van privénetwerken.",
+ "cpci_private_network_add_vrack_success": "Privénetwerken zijn ingeschakeld.",
+ "cpci_private_network_remove_vrack_success": "Privénetwerken zijn uitgeschakeld.",
+ "private_network_deactivate_confirmation_vlans": "Alle vLANs zijn verwijderd. ",
+ "cpci_private_network_activateVrack_loading": "Uw vRack wordt momenteel geactiveerd. De operatie kan enkele minuten duren."
+}
