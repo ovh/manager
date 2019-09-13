@@ -16,3 +16,5 @@ angular
   .directive('responsiveTabs', directive)
   .directive('responsiveTab', tabDirective)
   .directive('responsiveTabMore', moreDirective);
+
+export default moduleName;
