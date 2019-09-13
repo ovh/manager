@@ -182,6 +182,7 @@ export = opts => {
                   require.resolve('@babel/plugin-syntax-dynamic-import'), // dynamic es6 imports
                   require.resolve('babel-plugin-angularjs-annotate'), // ng annotate
                 ],
+                shouldPrintComment: (val) => !/@ngInject/.test(val),
               },
             },
           ],
