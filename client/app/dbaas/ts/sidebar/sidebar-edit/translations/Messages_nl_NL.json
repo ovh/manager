@@ -1,0 +1,8 @@
+{
+ "dbaasts_project_delete_title": "Verwijdering van een project",
+ "dbaasts_project_delete_info": "Binnen 24 uur ontvangt u een e-mail met de bevestiging van de definitieve verwijdering van alle project resources. Deze actie is onomkeerbaar. Alle data wordt direct verwijderd. Alle API keys zullen niet langer geldig zijn.",
+ "dbaasts_project_delete_info_bill": "Binnen 24 uur na bevestiging zal er een laatste factuur over uw on demand verbruik aan u worden verzonden. ",
+ "dbaasts_project_delete_info_credits": "Uw ongebruikte krediet zal ook verloren gaan en kan niet worden terugbetaald.",
+ "dbaasts_project_delete_email_sent": "Binnen 24 uur zult u een e-mail ter bevestiging ontvangen. ",
+ "dbaasts_sidebar_edit_name_error": "Er is een fout opgetreden tijdens de naamswijziging. "
+}

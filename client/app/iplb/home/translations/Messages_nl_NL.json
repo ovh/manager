@@ -1,0 +1,21 @@
+{
+ "iplb_home_tile_status": "Status",
+ "iplb_home_tile_status_frontends": "{{number}} front-ends",
+ "iplb_home_tile_status_farms": "{{number}} server farms",
+ "iplb_home_tile_status_servers": "{{number}} servers",
+ "iplb_home_tile_usage": "Gebruik",
+ "iplb_home_tile_graph": "Graphics",
+ "iplb_home_tile_infos": "Informatie",
+ "iplb_home_tile_infos_ipv4": "IPv4",
+ "iplb_home_tile_infos_ipv6": "IPv6",
+ "iplb_home_tile_infos_ip_failover": "Failover IP",
+ "iplb_home_tile_infos_ip_outbound": "Outbound IPv4",
+ "iplb_home_tile_configuration": "Configuratie",
+ "iplb_home_tile_configuration_name": "Naam",
+ "iplb_home_tile_configuration_quota_max": "Quota per maand",
+ "iplb_home_tile_configuration_quota_alert": "Waarschuwingsdrempel",
+ "iplb_home_tile_configuration_quota_unlimited": "Onbeperkt",
+ "iplb_home_tile_configuration_quota_cipher": "Ciphers",
+ "iplb_home_tile_configuration_quota_datacenter": "Beschikbaarheidszones",
+ "iplb_home_tile_configuration_private_network": "Privénetwerken"
+}
