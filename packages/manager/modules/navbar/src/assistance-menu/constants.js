@@ -1,4 +1,5 @@
 const CA = {
+  supportLevel: 'https://ca.ovh.com/manager/index.html#/useraccount/support/level',
   ticket: 'https://ca.ovh.com/manager/index.html#/ticket',
   support: {
     ASIA: 'https://www.ovh.com/asia/support/',
@@ -32,6 +33,7 @@ const CA = {
 };
 
 const EU = {
+  supportLevel: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/support/level',
   ticket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
   support: {
     CZ: 'http://www.ovh.cz/podpora/',
@@ -89,6 +91,7 @@ const EU = {
 };
 
 const US = {
+  supportLevel: 'https://us.ovhcloud.com/manager/dedicated/index.html#/useraccount/support/level',
   ticket: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
   support: {
     US: 'https://us.ovhcloud.com/support/',
@@ -117,7 +120,10 @@ export const CHATBOT_SUBSIDIARIES = [
   'FR',
 ];
 
+export const AVAILABLE_SUPPORT_LEVEL = ['business', 'enterprise'];
+
 export default {
+  AVAILABLE_SUPPORT_LEVEL,
   CHATBOT_SUBSIDIARIES,
   HELP_CENTER_SUBSIDIARIES,
   ASSISTANCE_URLS,

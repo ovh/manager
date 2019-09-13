@@ -16,7 +16,8 @@ export default class {
   }
 
   getSupportLevel() {
-    return this.OvhApiMe.v6().supportLevel().$promise;
+    return this.OvhApiMe.v6().supportLevel().$promise
+      .catch(() => Promise.resolve(null));
   }
 
   getUniverses(version) {

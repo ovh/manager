@@ -1,6 +1,9 @@
+import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 
-import { CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS } from './constants';
+import {
+  AVAILABLE_SUPPORT_LEVEL, CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS,
+} from './constants';
 
 export default class {
   /* @ngInject */
@@ -35,7 +38,13 @@ export default class {
       supportLevel: this.Navbar.getSupportLevel(),
     })
       .then(({ supportLevel }) => {
-        this.supportLevel = supportLevel;
+        if (supportLevel) {
+          this.supportLevel = {
+            ...supportLevel,
+            displayedLevel: capitalize(supportLevel.level),
+          };
+          this.isSupportLevelAvailable = AVAILABLE_SUPPORT_LEVEL.includes(supportLevel.level);
+        }
       })
       .then(() => this.getMenuTitle())
       .then((menuTitle) => {

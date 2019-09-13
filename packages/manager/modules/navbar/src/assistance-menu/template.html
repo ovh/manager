@@ -8,8 +8,16 @@
     data-text="{{:: $ctrl.menuTitle }}"
     data-icon-class="oui-icon oui-icon-help">
     <oui-navbar-menu
+        data-ng-if="$ctrl.isSupportLevelAvailable"
         data-header-breadcrumb="{{:: 'navbar_assistance_support_level' | translate }}"
-        data-header-title="{{:: $ctrl.supportLevel.level }}"
+        data-header-href="{{:: $ctrl.URLS.supportLevel }}"
+        data-header-title="{{:: $ctrl.supportLevel.displayedLevel }}"
+        data-links="::$ctrl.sublinks"
+        data-align="end"
+        data-fixed>
+    </oui-navbar-menu>
+    <oui-navbar-menu
+        data-ng-if="!$ctrl.isSupportLevelAvailable"
         data-links="::$ctrl.sublinks"
         data-align="end"
         data-fixed>
