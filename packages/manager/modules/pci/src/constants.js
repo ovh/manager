@@ -196,7 +196,7 @@ export const PCI_REDIRECT_URLS = {
     ipAction: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
     paymentMeans: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
     paymentMethods: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method',
-    support: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
+    support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
     vRack: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
   },
   CA: {
@@ -207,7 +207,7 @@ export const PCI_REDIRECT_URLS = {
     ipAction: 'https://ca.ovh.com/manager/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
     paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean', // should not be used anymore
     paymentMethods: 'https://ca.ovh.com/manager/index.html#/billing/payment/method',
-    support: 'https://ca.ovh.com/manager/index.html#/ticket',
+    support: 'https://ca.ovh.com/manager/index.html#/support',
     vRack: 'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
   },
   US: {
@@ -218,7 +218,7 @@ export const PCI_REDIRECT_URLS = {
     ipAction: 'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
     paymentMeans: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
     paymentMethods: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method',
-    support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
+    support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
     vRack: 'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
   },
 };

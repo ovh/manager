@@ -3,12 +3,10 @@ export default class {
   constructor(
     CucCloudMessage,
     CucRegionService,
-    OtrsPopupService,
     PCI_REDIRECT_URLS,
   ) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
-    this.OtrsPopupService = OtrsPopupService;
     this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
   }
 
@@ -31,13 +29,5 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
-  }
-
-  openSupport() {
-    if (!this.OtrsPopupService.isLoaded()) {
-      this.OtrsPopupService.init();
-    } else {
-      this.OtrsPopupService.toggle();
-    }
   }
 }

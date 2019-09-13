@@ -13,18 +13,9 @@
         <div data-write-right-required>
             <p data-translate="pci_projects_project_quota_protect_more"></p>
 
-            <button
-                class="oui-button oui-button_primary no-transition"
-                data-ng-click=":: $ctrl.openSupport()"
-                data-ng-if=":: $ctrl.region !== 'US'"
-                data-translate="pci_projects_project_quota_protect_more_btn"
-                type="button">
-            </button>
-
             <a
                 class="oui-button oui-button_primary no-transition"
                 data-ng-href="{{:: $ctrl.supportUrl }}"
-                data-ng-if=":: $ctrl.region === 'US'"
                 data-translate="pci_projects_project_quota_protect_more_btn">
             </a>
         </div>
