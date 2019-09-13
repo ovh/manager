@@ -11,7 +11,7 @@ angular
     uiRouter,
   ])
   .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('support.new.**', {
+    $stateProvider.state('support.tickets.new.**', {
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

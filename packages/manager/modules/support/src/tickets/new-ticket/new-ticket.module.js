@@ -30,7 +30,7 @@ angular
   .service(serviceName, serviceDefinition)
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state({
-      name: 'support.new',
+      name: 'support.tickets.new',
       resolve: {
         goToTickets: /* @ngInject */ $state => () => $state.go('support.tickets'),
         urls: /* @ngInject */ (OvhApiMe, CORE_URLS) => OvhApiMe.v6()
