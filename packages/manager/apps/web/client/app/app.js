@@ -40,6 +40,9 @@ import domainOptin from './domain/optin/index';
 import config from './config/config';
 import navbar from './components/navbar';
 
+import './css/source.less';
+import './css/source.scss';
+
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
