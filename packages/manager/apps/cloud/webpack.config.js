@@ -24,6 +24,8 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 module.exports = (env = {}) => {
+  const REGION = process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : 'EU';
+
   const { config } = webpackConfig({
     template: './client/index.html',
     basePath: './client',
@@ -51,22 +53,27 @@ module.exports = (env = {}) => {
       main: './client/app/index.js',
       components: glob.sync('./client/components/**/!(*.spec|*.mock).js'),
       config: [
-        `./client/app/config/all.${env.region ? env.region : 'eu'}.js`,
-        `./client/app/config/${env.production ? 'prod' : 'dev'}.${env.region ? env.region : 'eu'}.js`,
+        `./client/app/config/all.${REGION.toLowerCase()}.js`,
+        `./client/app/config/${env.production ? 'prod' : 'dev'}.${REGION.toLowerCase()}.js`,
       ],
     }, bundles, extras.length > 0 ? { extras } : {}),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
     },
-    // resolve: {
-    //   alias: {
-    //     jquery: path.resolve(__dirname, 'node_modules/jquery'),
-    //   },
-    // },
+    resolve: {
+      modules: [
+        './node_modules',
+        path.resolve(__dirname, 'node_modules'),
+        path.resolve(__dirname, '../../../node_modules'),
+      ],
+      // alias: {
+      //   jquery: path.resolve(__dirname, 'node_modules/jquery'),
+      // },
+    },
     plugins: [
       new webpack.DefinePlugin({
-        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
+        __WEBPACK_REGION__: `'${REGION}'`,
       }),
     ],
   });
