@@ -28,6 +28,6 @@
     "angular-ui-bootstrap": "~1.3.3",
     "ng-ckeditor": "^2.0.5",
     "ovh-api-services": "^9.7.0",
-    "ovh-ui-angular": "^3.7.4"
+    "ovh-ui-angular": "^3.7.7"
   }
 }
