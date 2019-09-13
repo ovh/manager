@@ -47,7 +47,7 @@ export const LANGUAGES = {
 };
 
 export const REDIRECT_URLS = {
-  support: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
+  support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
   billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
   billingPayments: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
   billingMean: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
