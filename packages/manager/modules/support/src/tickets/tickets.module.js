@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
@@ -23,7 +22,6 @@ angular
   .module(moduleName, [
     angularTranslate,
     newTicket,
-    ngOvhOtrs,
     ngTranslateAsyncLoader,
     'oui',
     ticket,

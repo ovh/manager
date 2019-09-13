@@ -25,17 +25,13 @@ export default class SupportController {
   /* @ngInject */
   constructor(
     $q,
-    $rootScope,
     $state,
     $translate,
-    OtrsPopupService,
     ouiDatagridService,
   ) {
     this.$q = $q;
-    this.$rootScope = $rootScope;
     this.$state = $state;
     this.$translate = $translate;
-    this.OtrsPopupService = OtrsPopupService;
     this.ouiDatagridService = ouiDatagridService;
   }
 
@@ -66,31 +62,6 @@ export default class SupportController {
         totalCount: this.tickets.length,
       },
     };
-
-    this
-      .$rootScope
-      .$on('ticket.otrs.reload', this
-        .reload
-        .bind(this,
-          {
-            filters: this.filters,
-            pageNumber: this.pageNumber,
-            pageSize: this.pageSize,
-            sortBy: this.sortBy,
-            sortOrder: this.sortOrder,
-            totalNumberOfItems: this.totalNumberOfItems,
-          }));
-  }
-
-  openSupport() {
-    this.goToTicketCreation();
-    /*
-    if (!this.OtrsPopupService.isLoaded()) {
-      this.OtrsPopupService.init();
-    } else {
-      this.OtrsPopupService.toggle();
-    }
-    */
   }
 
   getTickets() {
