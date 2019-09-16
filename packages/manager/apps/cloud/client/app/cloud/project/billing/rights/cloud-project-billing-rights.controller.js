@@ -1,7 +1,16 @@
 angular.module('managerApp')
   .controller('CloudProjectBillingRightsCtrl',
-    function (OvhApiCloud, OvhApiCloudProjectServiceInfos, OvhApiMe, $stateParams, CucCloudMessage,
-      CucControllerHelper, $translate, REDIRECT_URLS, $window) {
+    function CloudProjectBillingRightsCtrl(
+      OvhApiCloud,
+      OvhApiCloudProjectServiceInfos,
+      OvhApiMe,
+      $stateParams,
+      CucCloudMessage,
+      CucControllerHelper,
+      $translate,
+      REDIRECT_URLS,
+      $window,
+    ) {
       const self = this;
       const serviceName = $stateParams.projectId;
 
@@ -69,7 +78,7 @@ angular.module('managerApp')
         });
       }
 
-      self.init = function () {
+      self.init = function init() {
         self.getRights();
         initContact();
       };
@@ -78,11 +87,11 @@ angular.module('managerApp')
          * Owner contact form
          */
 
-      self.canChangeContacts = function () {
+      self.canChangeContacts = function canChangeContacts() {
         return REDIRECT_URLS.contacts;
       };
 
-      self.openContacts = function () {
+      self.openContacts = function openContacts() {
         if (self.canChangeContacts()) {
           let redirectUrl = REDIRECT_URLS.contacts;
           redirectUrl = redirectUrl.replace('{serviceName}', serviceName);
@@ -91,7 +100,7 @@ angular.module('managerApp')
       };
 
       // show or hide (toggle) the owner contact field
-      self.toggleEditOwner = function () {
+      self.toggleEditOwner = function toggleEditOwner() {
         self.toggle.owner = !self.toggle.owner;
         if (self.toggle.owner) {
           $('#ownerContactInput').focus();
@@ -99,7 +108,7 @@ angular.module('managerApp')
       };
 
       // watch for escape/enter keys when editing owner contact field
-      self.watchOwnerInput = function (ev) {
+      self.watchOwnerInput = function watchOwnerInput(ev) {
         if (ev && ev.keyCode === 27) { // escape key
           ev.stopPropagation();
           ev.preventDefault();
@@ -113,7 +122,7 @@ angular.module('managerApp')
          */
 
       // show or hide (toggle) the billing contact field
-      self.toggleEditBilling = function () {
+      self.toggleEditBilling = function toggleEditBilling() {
         self.toggle.billing = !self.toggle.billing;
         if (self.toggle.billing) {
           $('#billingContactInput').focus();
@@ -121,7 +130,7 @@ angular.module('managerApp')
       };
 
       // watch for escape/enter keys when editing billing contact field
-      self.watchBillingInput = function (ev) {
+      self.watchBillingInput = function watchBillingInput(ev) {
         if (ev && ev.keyCode === 27) { // escape key
           ev.stopPropagation();
           ev.preventDefault();
@@ -134,7 +143,7 @@ angular.module('managerApp')
          * Rights table
          */
 
-      self.showAddRight = function () {
+      self.showAddRight = function showAddRight() {
         CucControllerHelper.modal.showModal({
           modalConfig: {
             templateUrl: 'app/cloud/project/billing/rights/addRights/cloud-project-billing-rights-add.html',
@@ -157,7 +166,7 @@ angular.module('managerApp')
           });
       };
 
-      self.getRights = function (clearCache) {
+      self.getRights = function getRights(clearCache) {
         self.loader = true;
         if (clearCache) {
           OvhApiCloud.Project().Acl().v6().resetQueryCache();
@@ -177,7 +186,7 @@ angular.module('managerApp')
           });
       };
 
-      self.removeRight = function (account) {
+      self.removeRight = function removeRight(account) {
         self.loader = true;
         self.removeRight.accountId = account.accountId;
 
@@ -202,7 +211,7 @@ angular.module('managerApp')
           });
       };
 
-      this.transformItem = function (account) {
+      this.transformItem = function transformItem(account) {
         return OvhApiCloud.Project().Acl().v6().get({
           serviceName,
           accountId: account.accountId,

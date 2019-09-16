@@ -9,7 +9,7 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
     self.monthBilling = null;
     self.billingUrl = REDIRECT_URLS.billing;
 
-    self.getHourlyBillingDateInfo = function () {
+    self.getHourlyBillingDateInfo = function getHourlyBillingDateInfo() {
       const prev = moment(self.monthBilling).subtract(1, 'month');
       return {
         month: prev.format('MMMM'),
@@ -17,7 +17,7 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
       };
     };
 
-    self.getBillingDateInfo = function () {
+    self.getBillingDateInfo = function getBillingDateInfo() {
       return {
         month: self.monthBilling.format('MMMM'),
         year: self.monthBilling.year(),

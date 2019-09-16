@@ -6,16 +6,27 @@
  *  This orchestrator is used to init and manage a Cloud Volumes list.
  */
 angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
-  function ($q, $translate, $rootScope, $timeout, CLOUD_INSTANCE_DEFAULTS, Poller, CucUserPref,
-    OvhApiCloudProjectVolume, OvhApiCloudProjectVolumeSnapshot, CloudProjectComputeVolumesFactory,
-    OvhApiCloudProjectRegion, Toast) {
+  function CloudProjectComputeVolumesOrchestratorService(
+    $q,
+    $translate,
+    $rootScope,
+    $timeout,
+    CLOUD_INSTANCE_DEFAULTS,
+    Poller,
+    CucUserPref,
+    OvhApiCloudProjectVolume,
+    OvhApiCloudProjectVolumeSnapshot,
+    CloudProjectComputeVolumesFactory,
+    OvhApiCloudProjectRegion,
+    Toast,
+  ) {
     // Warning: all values must be reset at init (see resetDatas())
     const self = this;
     let editedVolume;
     let paramEdition = null;
     // enum NAME, SIZE
     let currentVolumesMovePending;
-    const resetDatas = function () {
+    const resetDatas = function resetDatas() {
       // The full volumes list to display
       self.volumes = null;
 
@@ -65,7 +76,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Get the default volume configuration options
      */
-    const getDefaultVolumeConfiguration = function () {
+    const getDefaultVolumeConfiguration = function getDefaultVolumeConfiguration() {
       return OvhApiCloudProjectRegion.v6().query({
         serviceName: self.volumes.serviceName,
       }).$promise.then((regionList) => {
@@ -81,7 +92,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Add a volume into project Volumes list
      */
-    this.addNewVolumeToList = function (targetId) {
+    this.addNewVolumeToList = function addNewVolumeToList(targetId) {
       let volume;
       return $q.when(true).then(() => getDefaultVolumeConfiguration()).then((options) => {
         volume = self.volumes.addVolumeToList(options, targetId);
@@ -94,7 +105,10 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      * Add a volume from a given snapshot into project Volumes list
      */
-    this.addNewVolumeFromSnapshotToList = function (targetId, snapshot) {
+    this.addNewVolumeFromSnapshotToList = function addNewVolumeFromSnapshotToList(
+      targetId,
+      snapshot,
+    ) {
       const getVolumeFromSnapshot = function (snapshot) { // eslint-disable-line
         if (!snapshot || !snapshot.id) {
           return $q.reject({ data: { message: 'Snapshot id cannot be found' } });
@@ -131,7 +145,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Launch the volume creation.
      */
-    this.saveNewVolume = function (volume) {
+    this.saveNewVolume = function saveNewVolume(volume) {
       return volume.create().then(() => {
         self.saveToUserPref();
         self.pollVolumes(); // WARNING: Never return promise because pulling had to live on her side
@@ -141,7 +155,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Set the volume that is currently in edition
      */
-    this.turnOnVolumeEdition = function (volume) {
+    this.turnOnVolumeEdition = function turnOnVolumeEdition(volume) {
       editedVolume = volume;
       editedVolume.startEdition();
     };
@@ -149,7 +163,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Close/Reset the volume that is currently in edition
      */
-    this.turnOffVolumeEdition = function (reset) {
+    this.turnOffVolumeEdition = function turnOffVolumeEdition(reset) {
       editedVolume.stopEdition(!!reset);
       delete editedVolume.snapshot; // in case of snapshot restore, we delete snapshot reference
       editedVolume = null;
@@ -158,28 +172,28 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Get the volume that is currently in edition
      */
-    this.getEditedVolume = function () {
+    this.getEditedVolume = function getEditedVolume() {
       return editedVolume;
     };
 
     /**
      *  Get parameters for current edition
      */
-    this.getEditVolumeParam = function () {
+    this.getEditVolumeParam = function getEditVolumeParam() {
       return paramEdition;
     };
 
     /**
      *  Get parameters for current edition
      */
-    this.setEditVolumeParam = function (param) {
+    this.setEditVolumeParam = function setEditVolumeParam(param) {
       paramEdition = param;
     };
 
     /**
      *  Save the volume modifications
      */
-    this.saveEditedVolume = function (volume) {
+    this.saveEditedVolume = function saveEditedVolume(volume) {
       return volume.edit().then(() => {
         self.saveToUserPref();
         self.pollVolumes(); // WARNING: Never return promise because pulling had to live on her side
@@ -189,7 +203,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
          *  Delete volume
          */
-    this.deleteVolume = function (volumeOrVolumeId) {
+    this.deleteVolume = function deleteVolume(volumeOrVolumeId) {
       const volume = typeof volumeOrVolumeId === 'string' || typeof volumeOrVolumeId === 'number' ? self.volumes.getVolumeById(volumeOrVolumeId) : null;
 
       if (!volume) {
@@ -212,7 +226,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
          *  Move a volume.
          *  If targetId: move it to a vm, if not: move it to "parking"
          */
-    this.moveVolume = function (volumeOrVolumeId, targetId) {
+    this.moveVolume = function moveVolume(volumeOrVolumeId, targetId) {
       const volume = typeof volumeOrVolumeId === 'string' || typeof volumeOrVolumeId === 'number' ? self.volumes.getVolumeById(volumeOrVolumeId) : null;
       targetId = targetId || 'unlinked'; // eslint-disable-line
 
@@ -251,7 +265,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      * Create a snapshot of given volume.
      */
-    this.snapshotVolume = function (volume, snapshotName) {
+    this.snapshotVolume = function snapshotVolume(volume, snapshotName) {
       return OvhApiCloudProjectVolumeSnapshot.v6().create({
         serviceName: self.volumes.serviceName,
         volumeId: volume.id,
@@ -410,7 +424,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
      *
      *  Poll Volumes query
      */
-    this.pollVolumes = function () {
+    this.pollVolumes = function pollVolumes() {
       const continueStatus = [
         'creating',
         'attaching',
@@ -432,6 +446,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
         updateVolumesFromPolling(volumes);
       }, (err) => {
         if (err && err.status) {
+          // eslint-disable-next-line no-console
           console.warn('pollVolumes', err);
           // @todo add bugkiller here
         }
@@ -445,7 +460,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
      *
      *  Kill the Poll Volumes query
      */
-    this.killPollVolumes = function () {
+    this.killPollVolumes = function killPollVolumes() {
       Poller.kill({ namespace: 'cloud.volumes' });
     };
 
@@ -456,12 +471,12 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
         =            userPref                =
         ==================================== */
 
-    this.saveToUserPref = function () {
+    this.saveToUserPref = function saveToUserPref() {
       return CucUserPref.set(`cloud_project_${self.volumes.serviceName}_volumes`,
         self.volumes.prepareToJson());
     };
 
-    this.createFromUserPref = function (serviceName) {
+    this.createFromUserPref = function createFromUserPref(serviceName) {
       const key = `cloud_project_${serviceName}_volumes`;
       return CucUserPref.get(key).then((volumes) => {
         _.set(volumes, 'serviceName', serviceName);
@@ -527,7 +542,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     /**
      *  Initialize a new Volumes list, depending of the project's type.
      */
-    this.init = function (opts) {
+    this.init = function init(opts) {
       resetDatas();
       return initExistingProject(opts);
     };

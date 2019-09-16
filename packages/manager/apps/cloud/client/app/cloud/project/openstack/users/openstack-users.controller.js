@@ -51,7 +51,7 @@ angular.module('managerApp')
 
       // ---------TOOLS---------
 
-      self.getSelectedCount = function () {
+      self.getSelectedCount = function getSelectedCount() {
         return Object.keys(self.table.selected).length;
       };
 
@@ -84,7 +84,7 @@ angular.module('managerApp')
 
       // ---------ORDER---------
 
-      self.orderBy = function (by) {
+      self.orderBy = function orderByFn(by) {
         if (by) {
           if (self.order.by === by) {
             self.order.reverse = !self.order.reverse;
@@ -99,7 +99,7 @@ angular.module('managerApp')
         );
       };
 
-      self.selectUser = function (id, active) {
+      self.selectUser = function selectUser(id, active) {
         if (active) {
           setTimeout(() => {
             const areaheight = $(`#user_${id}`).prop('scrollHeight');
@@ -118,7 +118,7 @@ angular.module('managerApp')
         self.loaders.table.user = false;
       }
 
-      self.getUsers = function () {
+      self.getUsers = function getUsers() {
         if (!self.loaders.table.user) {
           self.table.users = [];
           self.loaders.table.user = true;
@@ -151,7 +151,7 @@ angular.module('managerApp')
         Poller.kill({ namespace: 'cloud.users.query' });
       });
 
-      self.regeneratePassword = function (currentUser) {
+      self.regeneratePassword = function regeneratePassword(currentUser) {
         if (!self.loaders.regeneratePassword) {
           self.loaders.regeneratePassword = currentUser.id;
           return OvhApiCloud.Project().User().v6().password({
@@ -173,7 +173,7 @@ angular.module('managerApp')
         return null;
       };
 
-      self.downloadOpenrcFile = function (currentUser) {
+      self.downloadOpenrcFile = function downloadOpenrcFile(currentUser) {
         CucControllerHelper.modal.showModal({
           modalConfig: {
             templateUrl: 'app/cloud/project/openstack/users/openrc/openstack-users-openrc.html',
@@ -186,7 +186,7 @@ angular.module('managerApp')
         });
       };
 
-      self.downloadRcloneFile = function (currentUser) {
+      self.downloadRcloneFile = function downloadRcloneFile(currentUser) {
         CucControllerHelper.modal.showModal({
           modalConfig: {
             templateUrl: 'app/cloud/project/openstack/users/rclone/openstack-users-rclone.modal.html',
@@ -201,7 +201,7 @@ angular.module('managerApp')
         });
       };
 
-      self.generateToken = function (currentUser) {
+      self.generateToken = function generateToken(currentUser) {
         CucControllerHelper.modal.showModal({
           modalConfig: {
             templateUrl: 'app/cloud/project/openstack/users/token/openstack-users-token.html',
@@ -213,7 +213,7 @@ angular.module('managerApp')
           },
         });
       };
-      self.openAddUser = function () {
+      self.openAddUser = function openAddUser() {
         CucControllerHelper.modal.showModal({
           modalConfig: {
             templateUrl: 'app/cloud/project/openstack/users/add/openstack-users-add.html',
@@ -226,7 +226,7 @@ angular.module('managerApp')
           successHandler: () => self.getUsers(),
         });
       };
-      self.openDeleteUser = function (currentUser) {
+      self.openDeleteUser = function openDeleteUser(currentUser) {
         CucControllerHelper.modal.showModal({
           modalConfig: {
             templateUrl: 'app/cloud/project/openstack/users/delete/openstack-users-delete.html',
@@ -246,15 +246,15 @@ angular.module('managerApp')
       };
 
       // Open Openstack Horizon in a new navigator window, pre-filling the user login
-      self.openHorizon = function (user) {
+      self.openHorizon = function openHorizon(user) {
         $window.open(REDIRECT_URLS.horizon.replace('{username}', user.username), '_blank');
       };
 
-      self.getPassword = function (currentUser) {
+      self.getPassword = function getPassword(currentUser) {
         return OpenstackUsersPassword.get(self.projectId, currentUser.id);
       };
 
-      self.removeFromList = function (user) {
+      self.removeFromList = function removeFromList(user) {
         const index = _.findIndex(self.table.users, { id: user.id });
         if (index !== -1) {
           self.table.users.splice(index, 1);

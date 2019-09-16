@@ -1,12 +1,15 @@
 
 
 angular.module('managerApp').controller('CloudProjectBillingHistoryCtrl',
-  function ($state, validParams) {
+  function CloudProjectBillingHistoryCtrl(
+    $state,
+    validParams,
+  ) {
     const self = this;
     self.data = {};
     self.firstDayCurrentMonth = null;
 
-    self.previousMonth = function () {
+    self.previousMonth = function previousMonth() {
       const lastMonth = self.data.monthBilling.subtract(1, 'month');
       $state.go('iaas.pci-project.billing.history', {
         year: lastMonth.year(),
@@ -14,7 +17,7 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryCtrl',
       });
     };
 
-    self.nextMonth = function () {
+    self.nextMonth = function nextMonthFn() {
       const nextMonth = self.data.monthBilling.add(1, 'month');
       $state.go('iaas.pci-project.billing.history', {
         year: nextMonth.year(),
@@ -22,11 +25,11 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryCtrl',
       });
     };
 
-    self.isLimitReached = function () {
+    self.isLimitReached = function isLimitReached() {
       return self.data.monthBilling.isSameOrAfter(self.firstDayCurrentMonth, 'day');
     };
 
-    self.getBillingDateInfo = function () {
+    self.getBillingDateInfo = function getBillingDateInfo() {
       if (self.data.monthBilling.isValid()) {
         return {
           month: self.data.monthBilling.format('MMMM'),

@@ -1,8 +1,12 @@
 angular.module('managerApp').controller('RA.modalCtrl',
-  ['$scope', '$timeout', 'RA.modalService', function ($scope, $timeout, Modal) {
+  ['$scope', '$timeout', 'RA.modalService', function RAModalCtrl(
+    $scope,
+    $timeout,
+    Modal,
+  ) {
     const self = this;
 
-    $scope.setAction = function (action, data, largeSize) {
+    $scope.setAction = function setAction(action, data, largeSize) {
       // Avoid modal hiding before it's been created
       if (action === false && !$scope.currentAction) {
         return;
@@ -34,7 +38,7 @@ angular.module('managerApp').controller('RA.modalCtrl',
 
     $scope.stepPath = '';
 
-    $scope.resetAction = function () {
+    $scope.resetAction = function resetAction() {
       $scope.setAction(false);
     };
 
@@ -43,7 +47,6 @@ angular.module('managerApp').controller('RA.modalCtrl',
     });
 
     $scope.$on('RA.modal.setAction', (evt, route, data) => {
-      console.log('okokoko');
       $scope.setAction(route, data, false);
     });
   }]);

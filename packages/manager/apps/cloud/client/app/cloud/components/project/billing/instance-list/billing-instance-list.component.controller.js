@@ -110,7 +110,7 @@ angular.module('managerApp')
         });
     };
 
-    self.prepareMonthlyPaymentActivation = function (instance) {
+    self.prepareMonthlyPaymentActivation = function prepareMonthlyPaymentActivation(instance) {
       self.instanceToMonthly = instance.instanceId;
       self.data.instanceToMonthlyPrice = null;
       self.loaders.monthlyBilling = true;
@@ -132,7 +132,7 @@ angular.module('managerApp')
       });
     };
 
-    self.confirmMonthlyPaymentActivation = function () {
+    self.confirmMonthlyPaymentActivation = function confirmMonthlyPaymentActivation() {
       self.loaders.monthlyBilling = true;
 
       OvhApiCloudProjectInstance.v6().activeMonthlyBilling({
@@ -149,7 +149,7 @@ angular.module('managerApp')
       });
     };
 
-    self.endInstanceToMonthlyConversion = function () {
+    self.endInstanceToMonthlyConversion = function endInstanceToMonthlyConversion() {
       self.instanceToMonthly = null;
     };
   });

@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaUserDetailsPermissionListCtrl', function ($q, $stateParams, $translate, CucCloudMessage, OvhApiDedicatedCeph, CdaUserPermissionService) {
+  .controller('CdaUserDetailsPermissionListCtrl', function CdaUserDetailsPermissionListCtrl($q, $stateParams, $translate, CucCloudMessage, OvhApiDedicatedCeph, CdaUserPermissionService) {
     const self = this;
     self.loading = false;
 

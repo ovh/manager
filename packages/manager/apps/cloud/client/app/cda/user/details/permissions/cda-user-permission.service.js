@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .service('CdaUserPermissionService', function ($q) {
+  .service('CdaUserPermissionService', function CdaUserPermissionService($q) {
     const self = this;
 
     self.accessTypes = {
@@ -10,7 +10,7 @@ angular.module('managerApp')
       classWrite: false,
     };
 
-    self.computePoolsDisplay = function (userPermissions, pools) {
+    self.computePoolsDisplay = function computePoolsDisplay(userPermissions, pools) {
       const permissionsObject = {};
       _.forEach(userPermissions, (userPermission) => {
         permissionsObject[userPermission.poolName] = userPermission;

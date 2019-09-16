@@ -7,7 +7,7 @@ angular.module('managerApp').factory('CloudProjectFactory',
      *  @param    {String}  options.serviceName     - Name (the unique id) of the CloudProject
      *  @param    {Object}  options.compute         - Options of the CloudProject compute part
      */
-    const ProjectFactory = (function () {
+    const ProjectFactory = (function ProjectFactory() {
       return function CloudProjectFactory(optionsParam) {
         let options = optionsParam;
 
@@ -35,7 +35,7 @@ angular.module('managerApp').factory('CloudProjectFactory',
     /**
      *  Prepare object to json encode function to avoid function being encoded.
      */
-    ProjectFactory.prototype.prepareToJson = function () {
+    ProjectFactory.prototype.prepareToJson = function prepareToJson() {
       return {
         serviceName: this.serviceName,
         compute: this.compute.prepareToJson(),

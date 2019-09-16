@@ -1,14 +1,15 @@
-angular.module('managerApp').service('RA.modalService', ['$rootScope', function ($rootScope) {
+angular.module('managerApp').service('RA.modalService', ['$rootScope', function RAModalService(
+  $rootScope,
+) {
   const self = this;
 
   this.data = null;
 
-  this.setAction = function (path, data) {
-    console.log('jaja');
+  this.setAction = function setAction(path, data) {
     $rootScope.$broadcast('RA.modal.setAction', path, data);
   };
 
-  this.setData = function (data) {
+  this.setData = function setData(data) {
     if (data) {
       self.data = data;
     } else {
@@ -16,11 +17,11 @@ angular.module('managerApp').service('RA.modalService', ['$rootScope', function 
     }
   };
 
-  this.getData = function () {
+  this.getData = function getData() {
     return self.data;
   };
 
-  this.resetAction = function () {
+  this.resetAction = function resetAction() {
     self.setAction();
   };
 }]);

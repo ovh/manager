@@ -1,7 +1,7 @@
 
 
 angular.module('managerApp').controller('DBaasTsProjectCtrl',
-  function ($scope, $state) {
+  function DBaasTsProjectCtrl($scope, $state) {
     const self = this;
 
     self.loaders = {
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('DBaasTsProjectCtrl',
       project: null,
     };
 
-    self.includes = function (stateName) {
+    self.includes = function includes(stateName) {
       return $state.includes(stateName);
     };
   });

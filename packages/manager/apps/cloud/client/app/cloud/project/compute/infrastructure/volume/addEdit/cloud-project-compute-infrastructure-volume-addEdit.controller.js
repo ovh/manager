@@ -128,7 +128,7 @@ angular.module('managerApp')
 
       let oldVolumeName = null;
 
-      self.toggleEditVolumeName = function (cancel, ev) {
+      self.toggleEditVolumeName = function toggleEditVolumeName(cancel, ev) {
         // If [escape], close name edition
         if (ev) {
           if (ev.keyCode === 27) {
@@ -159,23 +159,23 @@ angular.module('managerApp')
       });
 
       // Open panel if toggle.editDetail is different of editDetail otherwise close this panel
-      self.openEditDetail = function (editDetail) {
+      self.openEditDetail = function openEditDetail(editDetail) {
         self.toggle.editDetail = editDetail;
         self.activeSwitchPageIndex = 1;
       };
 
-      self.backToMenu = function () {
+      self.backToMenu = function backToMenu() {
         if (self.switcher.getDisplayMode() === 'switch') {
           self.activeSwitchPageIndex = 0;
           self.toggle.editDetail = null;
         }
       };
 
-      self.isSwitchMode = function () {
+      self.isSwitchMode = function isSwitchMode() {
         return self.switcher.getDisplayMode() === 'switch';
       };
 
-      const closeOnEscapeKey = function (evt) {
+      const closeOnEscapeKey = function closeOnEscapeKey(evt) {
         if (evt.which === 27) {
           self.cancelVolume();
         }
@@ -200,7 +200,7 @@ angular.module('managerApp')
 
       // --------- REGIONS panel ---------
 
-      self.getRegions = function () {
+      self.getRegions = function getRegions() {
         if (!self.loaders.panelsData.regions) {
           self.loaders.panelsData.regions = true;
 
@@ -241,7 +241,7 @@ angular.module('managerApp')
       });
 
       // --------- QUOTAS ---------
-      self.computeQuotas = function (region) {
+      self.computeQuotas = function computeQuotas(region) {
         if (self.panelsData.quotas) {
           const quota = _.find(self.panelsData.quotas, { region });
           if (quota && quota.volume) {
@@ -329,7 +329,7 @@ angular.module('managerApp')
       };
 
       // we cannot change size and type at the same time
-      this.sectionCanBeModifiedInEdition = function (section) {
+      this.sectionCanBeModifiedInEdition = function sectionCanBeModifiedInEdition(section) {
         switch (section) {
           case 'region':
             return !self.volumeInEdition.snapshot;

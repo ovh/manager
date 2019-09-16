@@ -5,7 +5,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
      *
      *  /!\ Take care when modifying this!!! Check setInfos, and prepareToJson too.
      */
-    const VolumeFactory = (function () {
+    const VolumeFactory = (function VolumeFactory() {
       return function CloudProjectComputeVolumesVolumeFactory(optionsParam) {
         let options = optionsParam;
 
@@ -36,7 +36,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
      *  Set customs options (for init, and updates)
      *  -> @devs: put your customs values here
      */
-    VolumeFactory.prototype.getCustomOptions = function (options) {
+    VolumeFactory.prototype.getCustomOptions = function getCustomOptions(options) {
       return angular.extend(options, {
         attachedTo: options.attachedTo
           ? _.flatten([options.attachedTo])
@@ -47,7 +47,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  Set infos after initialization
      */
-    VolumeFactory.prototype.setInfos = function (optionsParam) {
+    VolumeFactory.prototype.setInfos = function setInfos(optionsParam) {
       let options = optionsParam;
 
       // Set custom values
@@ -63,7 +63,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  [API] Get the item from API using its id
      */
-    VolumeFactory.prototype.get = function () {
+    VolumeFactory.prototype.get = function get() {
       const self = this;
 
       return OvhApiCloudProjectVolume.v6().get({
@@ -76,7 +76,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
      *  [API] Get additional informations about volume (price)
      *  Create a volumePricesMap attribute like { 'planCode' : { 'price' : {} } }
      */
-    VolumeFactory.prototype.getFullInformations = function () {
+    VolumeFactory.prototype.getFullInformations = function getFullInformations() {
       const self = this;
       return OvhCloudPriceHelper.getPrices(this.serviceName).then((response) => {
         self.volumePricesMap = response;
@@ -86,11 +86,11 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  Calculate price with GB price and volume size
      */
-    VolumeFactory.prototype.calculatePrice = function () {
+    VolumeFactory.prototype.calculatePrice = function calculatePrice() {
       return this.getPrice(this.region, this.type, this.size);
     };
 
-    VolumeFactory.prototype.getPrice = function (region, type, size = 1) {
+    VolumeFactory.prototype.getPrice = function getPrice(region, type, size = 1) {
       // in case if getFullInformations is not resolved yet
       if (this.volumePricesMap) {
         const volumeByRegionAndTypePrice = this.volumePricesMap[this.planCode] || this.volumePricesMap[`volume.${type}.consumption.${region}`] || this.volumePricesMap[`volume.${type}.consumption`];
@@ -121,7 +121,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *   Get type of status.
      */
-    VolumeFactory.prototype.getStatusGroup = function () {
+    VolumeFactory.prototype.getStatusGroup = function getStatusGroup() {
       if (~['available', 'in-use'].indexOf(this.status)) {
         return 'ACTIVE';
       } if (~['creating', 'attaching', 'detaching', 'deleting', 'backing-up', 'restoring-backup', 'snapshotting'].indexOf(this.status)) {
@@ -135,7 +135,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  [API] Create new volume. POST informations for creating a volume to API
      */
-    VolumeFactory.prototype.create = function () {
+    VolumeFactory.prototype.create = function create() {
       const self = this;
 
       return OvhApiCloudProjectVolume.v6().save({
@@ -158,7 +158,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  [API] Delete a volume.
      */
-    VolumeFactory.prototype.remove = function () {
+    VolumeFactory.prototype.remove = function remove() {
       const self = this;
 
       return OvhApiCloudProjectVolume.v6().remove({
@@ -173,7 +173,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  [API] Edit the volume
      */
-    VolumeFactory.prototype.edit = function () {
+    VolumeFactory.prototype.edit = function edit() {
       const self = this;
 
 
@@ -218,7 +218,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  Enable the edition mode.
      */
-    VolumeFactory.prototype.startEdition = function () {
+    VolumeFactory.prototype.startEdition = function startEdition() {
       const self = this;
       // Edit
       if (self.getStatusGroup() === 'ACTIVE') {
@@ -235,7 +235,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      *  Disable the edition mode.
      */
-    VolumeFactory.prototype.stopEdition = function (cancel) {
+    VolumeFactory.prototype.stopEdition = function stopEdition(cancel) {
       const self = this;
       // Edit
       if (self.saveForEdition && cancel) {
@@ -251,7 +251,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      * [EDIT] Item has changes ?
      */
-    VolumeFactory.prototype.hasChange = function (targetSection) {
+    VolumeFactory.prototype.hasChange = function hasChange(targetSection) {
       const self = this;
 
       if (!self.saveForEdition) {
@@ -282,7 +282,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
      * Attach a volume to a vm
      */
-    VolumeFactory.prototype.attach = function (vmId) {
+    VolumeFactory.prototype.attach = function attach(vmId) {
       const self = this;
       return OvhApiCloudProjectVolume.v6().attach({
         serviceName: this.serviceName,
@@ -297,7 +297,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
          * Detach a volume from a vm
          */
-    VolumeFactory.prototype.detach = function (vmId) {
+    VolumeFactory.prototype.detach = function detach(vmId) {
       const self = this;
       return OvhApiCloudProjectVolume.v6().detach({
         serviceName: this.serviceName,
@@ -315,7 +315,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     /**
          *  Prepare a vm to be JSON stringified by returning only attributes.
          */
-    VolumeFactory.prototype.prepareToJson = function () {
+    VolumeFactory.prototype.prepareToJson = function prepareToJson() {
       if (this.status === 'DRAFT') {
         return {
           id: this.id,

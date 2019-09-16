@@ -148,7 +148,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
     });
   }
 
-  self.openModal = function (template, controller, params) {
+  self.openModal = function openModal(template, controller, params) {
     const modal = $uibModal.open({
       windowTopClass: 'cui-modal',
       templateUrl: template,
@@ -174,7 +174,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
       });
   }
 
-  self.load = function (resetCache) {
+  self.load = function load(resetCache) {
     self.loaders.table = true;
     $q.all([
       initNasha(),
@@ -192,11 +192,11 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
       });
   };
 
-  self.hasTaskInProgress = function (partition) {
+  self.hasTaskInProgress = function hasTaskInProgress(partition) {
     return _.any(self.data.partitionsTasks[partition.partitionName]);
   };
 
-  self.updatePartition = function (partition) {
+  self.updatePartition = function updatePartition(partition) {
     return self.getPartition(partition.partitionName)
       .then((updatedPartition) => {
         _.set(partition, 'size', updatedPartition.size);
@@ -211,7 +211,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
       });
   };
 
-  self.goToNashaPartitionAccess = function (partitionName) {
+  self.goToNashaPartitionAccess = function goToNashaPartitionAccess(partitionName) {
     $state.go('paas.nasha.nasha-partition-access', {
       partitionName,
     });

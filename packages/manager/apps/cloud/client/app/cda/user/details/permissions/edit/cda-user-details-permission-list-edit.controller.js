@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaUserDetailsPermissionListEditCtrl', function ($q, $stateParams, $translate, $state, CucCloudMessage, OvhApiDedicatedCeph, CdaUserPermissionService) {
+  .controller('CdaUserDetailsPermissionListEditCtrl', function CdaUserDetailsPermissionListEditCtrl($q, $stateParams, $translate, $state, CucCloudMessage, OvhApiDedicatedCeph, CdaUserPermissionService) {
     const self = this;
 
     self.loading = false;
@@ -73,7 +73,7 @@ angular.module('managerApp')
       return _.findIndex(permissions, value => value === true) !== -1;
     }
 
-    self.saveUserPermissions = function () {
+    self.saveUserPermissions = function saveUserPermissions() {
       self.saving = true;
       const typeKeys = _.keys(self.accessTypes);
       const permissionsToSave = _.filter(self.datas.poolsDisplay, (pool) => {

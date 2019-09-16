@@ -6,7 +6,7 @@ angular.module('managerApp').controller('DBaasTsSidebarDeleteCtrl',
       const self = this;
       self.loaders = {};
 
-      self.confirm = function () {
+      self.confirm = function confirm() {
         self.loaders.deleting = true;
 
         OvhApiDBaasTsProject.v6().delete({

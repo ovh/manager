@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function ($stateParams, $scope, $uibModalInstance, $q, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function NashaPartitionSnapshotCtrl($stateParams, $scope, $uibModalInstance, $q, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
 
   self.snapshotEnum = null;
@@ -13,15 +13,15 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function (
     after: [],
   };
 
-  self.isSelectionChanged = function () {
+  self.isSelectionChanged = function isSelectionChanged() {
     return !_.isEqual(self.snapshots.before, self.snapshots.after);
   };
 
-  self.isScheduled = function (snapshot) {
+  self.isScheduled = function isScheduled(snapshot) {
     return _.indexOf(self.snapshots.after, snapshot) > -1;
   };
 
-  self.changeSchedule = function (snapshot, checked) {
+  self.changeSchedule = function changeSchedule(snapshot, checked) {
     if (checked) {
       self.snapshots.after.push(snapshot);
     } else {
@@ -29,7 +29,7 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function (
     }
   };
 
-  self.applyScheduleChanges = function () {
+  self.applyScheduleChanges = function applyScheduleChanges() {
     self.loading = true;
     const promises = [];
     self.getAddSchedulesPromises(promises);
@@ -46,7 +46,7 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function (
       });
   };
 
-  self.getAddSchedulesPromises = function (promises) {
+  self.getAddSchedulesPromises = function getAddSchedulesPromises(promises) {
     const addToSchedule = _.difference(self.snapshots.after, self.snapshots.before);
     _.forEach(addToSchedule, (schedule) => {
       promises.push(OvhApiDedicatedNasha.Partition().Snapshot().v6().add({
@@ -58,7 +58,7 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function (
     });
   };
 
-  self.getDeleteSchedulesPromises = function (promises) {
+  self.getDeleteSchedulesPromises = function getDeleteSchedulesPromises(promises) {
     const deleteFromSchedule = _.difference(self.snapshots.before, self.snapshots.after);
     _.forEach(deleteFromSchedule, (schedule) => {
       promises.push(OvhApiDedicatedNasha.Partition().Snapshot().v6().remove({
@@ -69,7 +69,7 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function (
     });
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionAccessDeleteCtrl', function ($scope, $translate, $uibModalInstance, OvhApiDedicatedNasha, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionAccessDeleteCtrl', function NashaPartitionAccessDeleteCtrl($scope, $translate, $uibModalInstance, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
   self.loading = false;
   self.toRemove = {
@@ -7,7 +7,7 @@ angular.module('managerApp').controller('NashaPartitionAccessDeleteCtrl', functi
     access: $scope.$resolve.items.access,
   };
 
-  self.removeAccess = function () {
+  self.removeAccess = function removeAccess() {
     self.loading = true;
     OvhApiDedicatedNasha.Partition().Access().v6().remove({
       serviceName: self.toRemove.serviceName,
@@ -24,7 +24,7 @@ angular.module('managerApp').controller('NashaPartitionAccessDeleteCtrl', functi
     });
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 });

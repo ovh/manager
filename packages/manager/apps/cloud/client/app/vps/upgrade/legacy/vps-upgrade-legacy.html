@@ -26,8 +26,8 @@
                         <span class="oui-radio__section">
                             <span class="d-flex flex-wrap">
                                 <span data-translate="vps_configuration_upgradevps_label_core"></span>
-                                <span class="ml-auto">
-                                    {{ upgrade.vcore }} {{ 'vps_configuration_upgradevps_step1_table_vcore_' + (upgrade.vcore>1?'other':'1') | translate }}
+                                <span class="ml-auto"
+                                data-ng-bind="upgrade.vcore + ' ' + ('vps_configuration_upgradevps_step1_table_vcore_' + (upgrade.vcore > 1 ? 'other' : '1') | translate)">
                                 </span>
                             </span>
                             <span class="d-flex flex-wrap">

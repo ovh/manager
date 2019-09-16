@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionUpdateCtrl', function ($stateParams, $scope, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionUpdateCtrl', function NashaPartitionUpdateCtrl($stateParams, $scope, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
   self.loading = false;
 
@@ -8,11 +8,11 @@ angular.module('managerApp').controller('NashaPartitionUpdateCtrl', function ($s
     newSize: $scope.$resolve.items.size,
   };
 
-  self.isSizeChanged = function () {
+  self.isSizeChanged = function isSizeChanged() {
     return $scope.$resolve.items.size !== self.data.newSize;
   };
 
-  self.checkSize = function () {
+  self.checkSize = function checkSize() {
     if (self.data.newSize) {
       self.data.newSize = parseInt(self.data.newSize.toString().replace('.', ''), 10);
     }
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('NashaPartitionUpdateCtrl', function ($s
       });
   }
 
-  self.updatePartition = function () {
+  self.updatePartition = function updatePartition() {
     self.loading = true;
     OvhApiDedicatedNasha.Partition().v6().update({
       serviceName: self.data.nashaId,
@@ -51,7 +51,7 @@ angular.module('managerApp').controller('NashaPartitionUpdateCtrl', function ($s
     });
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 });

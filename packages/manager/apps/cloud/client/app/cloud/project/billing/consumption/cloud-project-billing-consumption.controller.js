@@ -1,7 +1,7 @@
 
 
 angular.module('managerApp').controller('CloudProjectBillingConsumptionCtrl',
-  function ($state) {
+  function CloudProjectBillingConsumptionCtrl($state) {
     const self = this;
 
     function init() {
@@ -10,7 +10,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionCtrl',
       $state.go('iaas.pci-project.billing.consumption.current');
     }
 
-    self.getBillingDateInfo = function () {
+    self.getBillingDateInfo = function getBillingDateInfo() {
       return {
         date: self.currentDate.format('LL'),
       };

@@ -70,7 +70,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateA
       });
     }
 
-    self.saveAlert = function () {
+    self.saveAlert = function saveAlert() {
       this.loaders.saveAlert = true;
       (!self.alerting.id ? createAlert() : editAlert(self.alerting.id))
         .catch((err) => {
@@ -81,7 +81,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateA
         });
     };
 
-    self.closeModal = function () {
+    self.closeModal = function closeModal() {
       $uibModalInstance.dismiss();
     };
 

@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaDetailsHomeCtrl', function ($q, $state, $stateParams, $scope, $interval, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage, CdaService) {
+  .controller('CdaDetailsHomeCtrl', function CdaDetailsHomeCtrl($q, $state, $stateParams, $scope, $interval, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage, CdaService) {
     const self = this;
     let taskPoll;
 
@@ -120,7 +120,7 @@ angular.module('managerApp')
       });
     }
 
-    self.openEditModal = function () {
+    self.openEditModal = function openEditModal() {
       openModal(
         self.modals.edit.templateUrl,
         self.modals.edit.controller,

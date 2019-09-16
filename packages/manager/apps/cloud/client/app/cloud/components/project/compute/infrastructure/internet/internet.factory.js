@@ -8,7 +8,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraInternetFactory',
      *  @param    {Array}   optionsParam.ipList
      *                      List of ips present in CloudProjectComputeInfraInternet instance
      */
-    const InternetFactory = (function () {
+    const InternetFactory = (function InternetFactory() {
       return function CloudProjectComputeInfraInternetFactory(optionsParam) {
         const self = this;
         let options = optionsParam;
@@ -51,14 +51,14 @@ angular.module('managerApp').factory('CloudProjectComputeInfraInternetFactory',
     /**
      *  Get an infra ip from its ID.
      */
-    InternetFactory.prototype.getIpById = function (ipId) {
+    InternetFactory.prototype.getIpById = function getIpById(ipId) {
       return this.ipList.get(ipId);
     };
 
     /**
      *  Get next index in IPs list.
      */
-    InternetFactory.prototype.getNextIpIndex = function () {
+    InternetFactory.prototype.getNextIpIndex = function getNextIpIndex() {
       return this.ipList.length();
     };
 
@@ -67,7 +67,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraInternetFactory',
     /**
      *  Add an ip into ip list.
      */
-    InternetFactory.prototype.addIpToList = function (ip) {
+    InternetFactory.prototype.addIpToList = function addIpToList(ip) {
       _.set(ip, 'serviceName', this.serviceName); // Add projectId to IP
       ip = checkIp(ip); // eslint-disable-line
       this.ipList.push(ip);
@@ -77,7 +77,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraInternetFactory',
     /**
      *  Remove given IP from ipList
      */
-    InternetFactory.prototype.removeIpFromList = function (ipToDelete) {
+    InternetFactory.prototype.removeIpFromList = function removeIpFromList(ipToDelete) {
       this.ipList.removeItem(ipToDelete);
       return ipToDelete;
     };
@@ -87,7 +87,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraInternetFactory',
     /**
      *  Prepare object to json encode function to avoid function being encoded
      */
-    InternetFactory.prototype.prepareToJson = function () {
+    InternetFactory.prototype.prepareToJson = function prepareToJson() {
       const self = this;
       return {
         ipList: _.map(this.ipList.sortedKeys, ipId => self.ipList.get(ipId).prepareToJson()),

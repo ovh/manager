@@ -1,5 +1,10 @@
 angular.module('managerApp').service('CloudProjectRightService',
-  function (OvhApiCloud, OvhApiCloudProjectServiceInfos, OvhApiMe, $q) {
+  function CloudProjectRightServiceService(
+    OvhApiCloud,
+    OvhApiCloudProjectServiceInfos,
+    OvhApiMe,
+    $q,
+  ) {
     function getReadWriteAccounts(projectId) {
       return OvhApiCloud.Project().Acl().v6().query({
         serviceName: projectId,
@@ -19,7 +24,7 @@ angular.module('managerApp').service('CloudProjectRightService',
         .then(project => project.contactAdmin);
     }
 
-    this.userHaveReadWriteRights = function (projectId) {
+    this.userHaveReadWriteRights = function userHaveReadWriteRights(projectId) {
       return $q.all({
         readWriteAccounts: getReadWriteAccounts(projectId),
         currentUserNic: getCurrentUserNic(),

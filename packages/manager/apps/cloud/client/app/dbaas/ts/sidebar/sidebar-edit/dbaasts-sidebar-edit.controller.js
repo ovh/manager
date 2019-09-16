@@ -22,21 +22,21 @@ angular.module('managerApp').controller('DBaasTsSidebarEditCtrl', [
       name: locals.project.name,
     };
 
-    self.init = function () {
+    self.init = function init() {
       DBaasTsSidebarEditMediator.startEdition($scope);
       // if state change, abort edition
       DBaasTsSidebarEditMediator.watchForLeavingEdition();
     };
 
-    $scope.resetTemplate = function () {
+    $scope.resetTemplate = function resetTemplate() {
       managerSidebarMenuItemController.loadDefaultTemplate();
     };
 
-    $scope.cancelEdition = function () {
+    $scope.cancelEdition = function cancelEdition() {
       DBaasTsSidebarEditMediator.stopEdition();
     };
 
-    $scope.saveName = function () {
+    $scope.saveName = function saveName() {
       $scope.loader.save = true;
 
       OvhApiDBaasTsProject.v6().setup({
@@ -58,7 +58,7 @@ angular.module('managerApp').controller('DBaasTsSidebarEditCtrl', [
       });
     };
 
-    $scope.watchForEscapeKey = function ($event) {
+    $scope.watchForEscapeKey = function watchForEscapeKey($event) {
       if ($event.keyCode === 27) { // escape key code
         $scope.cancelEdition();
       }

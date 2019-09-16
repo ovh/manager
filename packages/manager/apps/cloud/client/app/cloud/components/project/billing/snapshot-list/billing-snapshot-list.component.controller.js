@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('BillingSnapshotListComponentCtrl', function ($q, $translate, $filter, OvhApiMe, Toast, CucRegionService) {
+  .controller('BillingSnapshotListComponentCtrl', function BillingSnapshotListComponentCtrl($q, $translate, $filter, OvhApiMe, Toast, CucRegionService) {
     const self = this;
 
     self.CucRegionService = CucRegionService;
@@ -27,7 +27,7 @@ angular.module('managerApp')
         });
     };
 
-    self.getSnapshotPriceInfoTooltip = function (snapshot) {
+    self.getSnapshotPriceInfoTooltip = function getSnapshotPriceInfoTooltip(snapshot) {
       return $translate.instant('cpbc_snapshot_col_usage_info_part1')
         .concat($translate.instant('cpbc_snapshot_col_usage_info_part2', {
           amount: snapshot.instance.quantity.value,

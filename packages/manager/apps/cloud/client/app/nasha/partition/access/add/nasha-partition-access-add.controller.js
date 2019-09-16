@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function ($scope, $translate, $q, $uibModalInstance, OvhApiDedicatedNasha, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function NashaPartitionAccessAddCtrl($scope, $translate, $q, $uibModalInstance, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
 
   self.loading = false;
@@ -11,7 +11,7 @@ angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function 
     type: 'readwrite', // readonly or readwrite
   };
 
-  self.loadAccessList = function () {
+  self.loadAccessList = function loadAccessList() {
     self.loading = true;
     OvhApiDedicatedNasha.Partition().Access().Aapi()
       .authorizableIps({
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function 
       });
   };
 
-  self.addAccess = function () {
+  self.addAccess = function addAccess() {
     self.loading = true;
     OvhApiDedicatedNasha.Partition().Access().v6().add({
       serviceName: self.data.serviceName,
@@ -59,7 +59,7 @@ angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function 
     });
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 

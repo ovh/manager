@@ -9,11 +9,11 @@ angular.module('managerApp').controller('RA.storage.deleteContainer',
       value: true,
     };
 
-    $scope.confirm = function () {
+    $scope.confirm = function confirm() {
       $uibModalInstance.close();
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function cancel() {
       $uibModalInstance.dismiss();
     };
   });

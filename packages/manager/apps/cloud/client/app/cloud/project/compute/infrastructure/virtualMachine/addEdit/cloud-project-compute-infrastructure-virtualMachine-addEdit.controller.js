@@ -1349,7 +1349,7 @@ angular.module('managerApp')
         }
       };
 
-      self.viewFlavorsList = function (orderBy, category) { // eslint-disable-line
+      self.viewFlavorsList = function viewFlavorsList(orderBy, category) { // eslint-disable-line
         self.toggle.editFlavor = 'flavors';
         self.orderBy(orderBy, category, self.order.reverse);
       };

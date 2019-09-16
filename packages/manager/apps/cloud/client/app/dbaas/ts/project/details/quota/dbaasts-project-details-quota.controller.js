@@ -41,12 +41,12 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsQuotaCtrl',
 
     // --
 
-    self.refresh = function () {
+    self.refresh = function refresh() {
       OvhApiDBaasTsProjectQuota.v6().resetQueryCache();
       init();
     };
 
-    self.openIncreaseQuotaPopup = function () {
+    self.openIncreaseQuotaPopup = function openIncreaseQuotaPopup() {
       $uibModal.open({
         templateUrl: 'app/dbaas/ts/project/details/quota/dbaasts-project-details-quota-enlarge.html',
         controller($scope) { // eslint-disable-line

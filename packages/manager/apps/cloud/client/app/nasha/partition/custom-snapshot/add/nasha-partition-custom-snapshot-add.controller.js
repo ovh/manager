@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionCustomSnapshotAddCtrl', function ($scope, $stateParams, $translate, $uibModalInstance, OvhApiDedicatedNashaPartition, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionCustomSnapshotAddCtrl', function NashaPartitionCustomSnapshotAddCtrl($scope, $stateParams, $translate, $uibModalInstance, OvhApiDedicatedNashaPartition, CucCloudMessage) {
   const self = this;
 
   self.saving = false;
@@ -30,7 +30,7 @@ angular.module('managerApp').controller('NashaPartitionCustomSnapshotAddCtrl', f
     computeDefaultSnapshotName();
   }
 
-  self.addCustomSnapshot = function () {
+  self.addCustomSnapshot = function addCustomSnapshot() {
     self.saving = true;
     OvhApiDedicatedNashaPartition.CustomSnapshot().v6().add({
       serviceName: $stateParams.nashaId,
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('NashaPartitionCustomSnapshotAddCtrl', f
     });
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 

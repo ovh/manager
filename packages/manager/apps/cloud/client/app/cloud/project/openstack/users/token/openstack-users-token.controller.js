@@ -30,7 +30,7 @@ angular.module('managerApp')
       return urls[self.tokenGuide.lang.toUpperCase()];
     }
 
-    self.generate = function () {
+    self.generate = function generate() {
       if (!self.loaders.generateToken) {
         self.loaders.generateToken = true;
         return $q.allSettled([
@@ -57,11 +57,11 @@ angular.module('managerApp')
       return null;
     };
 
-    self.close = function () {
+    self.close = function close() {
       $uibModalInstance.close();
     };
 
-    self.cancel = function () {
+    self.cancel = function cancel() {
       $uibModalInstance.dismiss();
     };
 

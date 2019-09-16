@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaUserDetailsCtrl', function ($state, $stateParams) {
+  .controller('CdaUserDetailsCtrl', function CdaUserDetailsCtrl($state, $stateParams) {
     const self = this;
     self.userName = '';
     self.loading = false;

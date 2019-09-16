@@ -67,12 +67,12 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
     };
 
 
-    self.loadMessage = function () {
+    self.loadMessage = function loadMessage() {
       CucCloudMessage.unSubscribe('deskaas.details');
       self.messageHandler = CucCloudMessage.subscribe('deskaas.details', { onMessage: () => self.refreshMessage() });
     };
 
-    self.refreshMessage = function () {
+    self.refreshMessage = function refreshMessage() {
       self.messages = self.messageHandler.getMessages();
     };
 
@@ -224,7 +224,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
     }
 
     // Task handler
-    const TasksHandler = function () {
+    const TasksHandler = function TasksHandler() {
       // FIXME we do not check if some new task are created in another session
       // List of tasks to poll
       const selfTask = this;
@@ -232,7 +232,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       selfTask.cleanTasks = [];
       const allowedTask = []; // use getAllowedTask to populate the array
 
-      this.getAllowedTasks = function () {
+      this.getAllowedTasks = function getAllowedTasks() {
         if (allowedTask.length === 0) {
           // Get taskName from actions constant
           Object.keys(DESKAAS_ACTIONS).forEach((taskName) => {
@@ -243,16 +243,16 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       };
 
       // Do we already know this task
-      this.isIn = function (task) {
+      this.isIn = function isIn(task) {
         return typeof selfTask.tasks[task.taskId] !== 'undefined';
       };
 
-      this.length = function () {
+      this.length = function length() {
         return Object.keys(selfTask.tasks).length;
       };
 
       // Check if we have running task
-      this.tasksIsRunning = function () {
+      this.tasksIsRunning = function tasksIsRunning() {
         let isRunning = false;
         Object.keys(selfTask.tasks).forEach((key) => {
           const value = selfTask.tasks[key];
@@ -264,12 +264,12 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         return isRunning;
       };
 
-      this.getCleanTasks = function () {
+      this.getCleanTasks = function getCleanTasks() {
         return _.mapValues(selfTask.tasks, value => value);
       };
 
       // Check if we have a task on error
-      this.taskOnError = function () {
+      this.taskOnError = function taskOnError() {
         let onError = false;
         Object.keys(selfTask.tasks).forEach((key) => {
           const value = selfTask.tasks[key];
@@ -280,7 +280,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         return onError;
       };
 
-      this.addOrUpdate = function (task, isUserTask) {
+      this.addOrUpdate = function addOrUpdate(task, isUserTask) {
         if (typeof task.taskId === 'undefined') {
           return;
         }
@@ -406,7 +406,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    self.getConsole = function () {
+    self.getConsole = function getConsoleFn() {
       return CucControllerHelper.modal.showModal({
         modalConfig: {
           templateUrl: 'app/deskaas/deskaas-get-console-access/deskaas-get-console-access.html',
@@ -424,7 +424,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.deleteService = function () {
+    self.deleteService = function deleteService() {
       return CucControllerHelper.modal.showConfirmationModal({
         titleText: $translate.instant('vdi_btn_delete'),
         text: $translate.instant('vdi_confirm_delete'),
@@ -468,7 +468,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    self.resetPassword = function () {
+    self.resetPassword = function resetPasswordFn() {
       const modal = $uibModal.open({
         templateUrl: 'app/deskaas/deskaas-change-password/deskaas-change-password.html',
         controller: 'DeskaasChangePasswordCtrl',
@@ -489,7 +489,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       });
     };
 
-    self.restoreService = function () {
+    self.restoreService = function restoreService() {
       return CucControllerHelper.modal.showConfirmationModal({
         titleText: $translate.instant('vdi_btn_restore'),
         text: $translate.instant('vdi_confirm_restore'),
@@ -509,7 +509,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.rebootService = function () {
+    self.rebootService = function rebootService() {
       return CucControllerHelper.modal.showConfirmationModal({
         titleText: $translate.instant('vdi_btn_reboot'),
         text: $translate.instant('vdi_confirm_reboot'),
@@ -529,7 +529,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.serviceInfos = function () {
+    self.serviceInfos = function serviceInfos() {
       self.flags.init.serviceInfos = true;
 
       const promise = OvhApiDeskaasService.v6()
@@ -546,7 +546,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.hasValidAlias = function () {
+    self.hasValidAlias = function hasValidAlias() {
       const alias = _.get(self, 'details.alias', 'noAlias');
       return alias && alias !== 'noAlias';
     };
@@ -575,7 +575,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    self.changeAlias = function () {
+    self.changeAlias = function changeAliasFn() {
       CucControllerHelper.modal.showNameChangeModal({
         serviceName: self.details.serviceName,
         displayName: self.details.alias !== 'noAlias' ? self.details.alias : '',
@@ -588,7 +588,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.upgrade = function () {
+    self.upgrade = function upgrade() {
       $state.go('deskaas.details.upgrade', {
         serviceName: self.serviceName,
         references: self.upgradeOptions,
@@ -619,7 +619,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    self.changeUsername = function () {
+    self.changeUsername = function changeUsernameFn() {
       const modal = $uibModal.open({
         templateUrl: 'app/deskaas/deskaas-change-username/deskaas-change-username.html',
         controller: 'DeskaasChangeUsernameCtrl',
@@ -665,7 +665,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    self.confirmTerminate = function () {
+    self.confirmTerminate = function confirmTerminateFn() {
       return CucControllerHelper.modal.showModal({
         modalConfig: {
           templateUrl: 'app/deskaas/deskaas-confirm-terminate/deskaas-confirm-terminate.html',
@@ -687,7 +687,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.getDetails = function () {
+    self.getDetails = function getDetails() {
       self.flags.init.details = true;
 
       const promise = DeskaasService.getDetails($stateParams.serviceName);
@@ -705,7 +705,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.getUser = function () {
+    self.getUser = function getUser() {
       self.flags.init.user = true;
 
       const promise = OvhApiDeskaasService.v6()
@@ -722,7 +722,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     };
 
-    self.taskBackgroud = function (task) {
+    self.taskBackgroud = function taskBackgroud(task) {
       if (task.state === 'error') {
         return 'bg-danger';
       }
@@ -758,14 +758,14 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    self.changeMenuTitle = function (serviceName, displayName) {
+    self.changeMenuTitle = function changeMenuTitle(serviceName, displayName) {
       const menuItem = SidebarMenu.getItemById(serviceName);
       if (menuItem) {
         menuItem.title = displayName;
       }
     };
 
-    self.getRunningTasks = function () {
+    self.getRunningTasks = function getRunningTasks() {
       self.flags.init.getTasks = true;
 
       return $q.all([

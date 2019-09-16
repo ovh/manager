@@ -10,9 +10,15 @@
  *      - use this service to trigger cross sections actions (e.g.: create a vm from snapshot)
  */
 angular.module('managerApp').service('CloudProjectOrchestrator',
-  function ($q, CloudProjectFactory, CloudProjectComputeInfrastructureOrchestrator,
+  function CloudProjectOrchestratorService(
+    $q,
+    CloudProjectFactory,
+    CloudProjectComputeInfrastructureOrchestrator,
     CloudProjectComputeVolumesOrchestrator,
-    OvhApiCloudProject, OvhApiCloudProjectIpV6, CLOUD_PROJECT_OVERVIEW_THRESHOLD) {
+    OvhApiCloudProject,
+    OvhApiCloudProjectIpV6,
+    CLOUD_PROJECT_OVERVIEW_THRESHOLD,
+  ) {
     const self = this;
 
     this.project = {}; // by serviceName
@@ -23,19 +29,19 @@ angular.module('managerApp').service('CloudProjectOrchestrator',
     /**
      *  At next infrastructure init, ask to create a vm via a snapshot.
      */
-    this.askToCreateInstanceFromSnapshot = function (snapshot) {
+    this.askToCreateInstanceFromSnapshot = function askToCreateInstanceFromSnapshot(snapshot) {
       createInstanceFromSnapshot = snapshot;
       return $q.when(true);
     };
 
-    this.hasTooManyInstances = function (projectId) {
+    this.hasTooManyInstances = function hasTooManyInstances(projectId) {
       return OvhApiCloudProject.Instance().v6().query({
         serviceName: projectId,
       }).$promise
         .then(instances => instances.length > CLOUD_PROJECT_OVERVIEW_THRESHOLD.instances);
     };
 
-    this.hasTooManyIps = function (projectId) {
+    this.hasTooManyIps = function hasTooManyIps(projectId) {
       return OvhApiCloudProjectIpV6.query({
         serviceName: projectId,
       }).$promise
@@ -47,7 +53,7 @@ angular.module('managerApp').service('CloudProjectOrchestrator',
     ====================================== */
 
     // Init Project factory, or return it if already created
-    this.init = function (opts) {
+    this.init = function init(opts) {
       if (self.project[opts.serviceName]) {
         return $q.when(self.project[opts.serviceName]);
       }
@@ -91,12 +97,12 @@ angular.module('managerApp').service('CloudProjectOrchestrator',
     }
 
     // Init infrastructure factory only
-    this.initInfrastructure = function (opts) {
+    this.initInfrastructure = function initInfrastructureFn(opts) {
       return this.init(opts).then(() => initInfrastructure(opts));
     };
 
     // Init volumes factory only
-    this.initVolumes = function (opts) {
+    this.initVolumes = function initVolumesFn(opts) {
       return this.init(opts).then(() => initVolumes(opts));
     };
   });

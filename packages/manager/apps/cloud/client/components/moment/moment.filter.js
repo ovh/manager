@@ -1,6 +1,4 @@
 
 
 angular.module('managerApp')
-  .filter('momentFormat', moment => function (value, format) {
-    return moment(value).format(format);
-  });
+  .filter('momentFormat', moment => (value, format) => moment(value).format(format));

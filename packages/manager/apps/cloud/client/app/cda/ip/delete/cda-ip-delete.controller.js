@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaIpDeleteCtrl', function ($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
+  .controller('CdaIpDeleteCtrl', function CdaIpDeleteCtrl($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
     const self = this;
 
     self.ip = {};
@@ -10,11 +10,11 @@ angular.module('managerApp')
       self.ip = $scope.$resolve.items.ip;
     }
 
-    self.closeModal = function () {
+    self.closeModal = function closeModal() {
       $uibModalInstance.dismiss();
     };
 
-    self.deleteIp = function () {
+    self.deleteIp = function deleteIp() {
       self.saving = true;
       OvhApiDedicatedCeph.Acl().v6().delete({
         serviceName: $stateParams.serviceName,

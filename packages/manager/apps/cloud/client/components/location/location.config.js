@@ -1,3 +1,3 @@
-angular.module('managerApp').config(['$locationProvider', function ($locationProvider) {
+angular.module('managerApp').config(/* @ngInject */ ($locationProvider) => {
   $locationProvider.hashPrefix('');
-}]);
+});

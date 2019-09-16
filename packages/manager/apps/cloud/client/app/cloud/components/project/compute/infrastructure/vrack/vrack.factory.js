@@ -8,7 +8,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
      *  @param    {Array}   options.publicCloud
      *                      List of VirtualMachine options or VirtualMachine instances
      */
-    const VrackFactory = (function () {
+    const VrackFactory = (function VrackFactory() {
       return function CloudProjectComputeInfraVrackFactory(optionsParam) {
         const self = this;
         let options = optionsParam;
@@ -36,14 +36,14 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     /**
      *  Get a vm from its id. Check first in public cloud and then in private cloud.
      */
-    VrackFactory.prototype.getVmById = function (vmId) {
+    VrackFactory.prototype.getVmById = function getVmById(vmId) {
       return this.publicCloud.get(vmId);
     };
 
     /**
      *  Get next index of vm in current Vrack (used for giving the default vm name option)
      */
-    VrackFactory.prototype.getNextIndex = function () {
+    VrackFactory.prototype.getNextIndex = function getNextIndex() {
       return this.publicCloud.length();
     };
 
@@ -52,7 +52,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     /**
      *  Add a public vm into Vrack list
      */
-    VrackFactory.prototype.addVmToPublicCloudList = function (vm) {
+    VrackFactory.prototype.addVmToPublicCloudList = function addVmToPublicCloudList(vm) {
       _.set(vm, 'serviceName', this.serviceName); // Add projectId to VM
       vm = checkVm(vm); // eslint-disable-line
       // Avoid conflict of adding an existing vm
@@ -66,7 +66,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     /**
      *  Remove given Virtual Machine from vrack public cloud list
      */
-    VrackFactory.prototype.removeVmFromPublicCloudList = function (vm) {
+    VrackFactory.prototype.removeVmFromPublicCloudList = function removeVmFromPublicCloudList(vm) {
       this.publicCloud.removeItem(vm);
       return vm;
     };
@@ -75,7 +75,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     /**
      *  Collapse all Vms
      */
-    VrackFactory.prototype.collapseAll = function () {
+    VrackFactory.prototype.collapseAll = function collapseAll() {
       const items = this.publicCloud.getItems();
       angular.forEach(items, (vm) => {
         _.set(vm, 'collapsed', true);
@@ -85,7 +85,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     /**
      *  Uncollapse all Vms
      */
-    VrackFactory.prototype.uncollapseAll = function () {
+    VrackFactory.prototype.uncollapseAll = function uncollapseAll() {
       const items = this.publicCloud.getItems();
       angular.forEach(items, (vm) => {
         _.set(vm, 'collapsed', false);
@@ -95,7 +95,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     /**
      *  Prepare object to json encode function to avoid function being encoded.
      */
-    VrackFactory.prototype.prepareToJson = function () {
+    VrackFactory.prototype.prepareToJson = function prepareToJson() {
       const self = this;
       return {
         publicCloud: _.map(

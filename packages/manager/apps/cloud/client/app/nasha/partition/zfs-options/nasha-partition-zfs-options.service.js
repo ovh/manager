@@ -1,7 +1,12 @@
 angular.module('managerApp').service('NashaPartitionZFSOptionsService',
-  function ($q, $filter, OvhApiDedicatedNasha, NASHA_ZFS_OPTIONS_DEFAULT) {
+  function NashaPartitionZFSOptionsService(
+    $q,
+    $filter,
+    OvhApiDedicatedNasha,
+    NASHA_ZFS_OPTIONS_DEFAULT,
+  ) {
     const self = this;
-    self.getZFSOptionsEnums = function () {
+    self.getZFSOptionsEnums = function getZFSOptionsEnums() {
       return OvhApiDedicatedNasha.v6().schema().$promise
         .then((schema) => {
           const enums = {};
@@ -26,7 +31,7 @@ angular.module('managerApp').service('NashaPartitionZFSOptionsService',
         });
     };
 
-    self.getCurrentZFSOptions = function (nashaId, partitionName) {
+    self.getCurrentZFSOptions = function getCurrentZFSOptions(nashaId, partitionName) {
       const options = {
         atime: NASHA_ZFS_OPTIONS_DEFAULT.atime === 'on',
         recordsize: NASHA_ZFS_OPTIONS_DEFAULT.recordsize,

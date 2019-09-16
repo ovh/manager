@@ -2,9 +2,9 @@
 
 #oui {
   .table-base(
-    @width: @oui-table-width,
-    @margin: @oui-table-margin
-  ) {
+  @width: @oui-table-width,
+  @margin: @oui-table-margin
+) {
     width: @width;
     border: 0;
     border-collapse: separate;
@@ -14,8 +14,8 @@
   }
 
   .table-row(
-    @background-color: @oui-table-row-background-color
-  ) {
+  @background-color: @oui-table-row-background-color
+) {
     #oui > .animate();
 
     background: fade(@background-color, 0);
@@ -28,22 +28,22 @@
   }
 
   .table-header(
-    @background-color: @oui-table-header-background-color,
-    @font-color: @oui-table-header-font-color
-  ) {
+  @background-color: @oui-table-header-background-color,
+  @font-color: @oui-table-header-font-color
+) {
     background-color: @background-color;
     color: @font-color;
     font-weight: @oui-font-regular;
   }
 
   .table-cell(
-    @selector,
-    @background-color: @oui-table-cell-background-color,
-    @border-color: @oui-table-cell-border-color,
-    @font-color: @oui-table-cell-font-color,
-    @padding: @oui-table-cell-padding,
-    @table-cell-action-elements: @oui-table-cell-action-elements
-  ) {
+  @selector,
+  @background-color: @oui-table-cell-background-color,
+  @border-color: @oui-table-cell-border-color,
+  @font-color: @oui-table-cell-font-color,
+  @padding: @oui-table-cell-padding,
+  @table-cell-action-elements: @oui-table-cell-action-elements
+) {
     position: relative;
     padding: @padding;
     border-bottom: 1px solid @border-color;
@@ -82,8 +82,8 @@
   }
 
   .table-cell-sortable(
-    @arrow-size: @oui-table-arrow-size
-  ) {
+  @arrow-size: @oui-table-arrow-size
+) {
     &,
     &.oui-table__header {
       #oui > .animate();
@@ -99,9 +99,9 @@
   }
 
   .table-header-arrow(
-    @arrow-color: @oui-table-arrow-color,
-    @arrow-size: @oui-table-arrow-size
-  ) {
+  @arrow-color: @oui-table-arrow-color,
+  @arrow-size: @oui-table-arrow-size
+) {
     display: inline-block;
     width: ~"calc(@{arrow-size} * 2)";
     height: @arrow-size;
@@ -115,9 +115,9 @@
   }
 
   .table-arrow-asc(
-    @arrow-color: @oui-table-arrow-color,
-    @arrow-size: @oui-table-arrow-size
-  ) {
+  @arrow-color: @oui-table-arrow-color,
+  @arrow-size: @oui-table-arrow-size
+) {
     &,
     &.oui-table__header {
       font-weight: @oui-font-bold;
@@ -145,9 +145,9 @@
   }
 
   .table-arrow-desc(
-    @arrow-color: @oui-table-arrow-color,
-    @arrow-size: @oui-table-arrow-size
-  ) {
+  @arrow-color: @oui-table-arrow-color,
+  @arrow-size: @oui-table-arrow-size
+) {
     &,
     &.oui-table__header {
       font-weight: @oui-font-bold;
@@ -175,7 +175,7 @@
   }
 
   .table-cell-sorted(
-  ) {
+) {
     &.oui-table__header {
       &::after,
       &:hover::after,
@@ -188,10 +188,10 @@
 
   // stylelint-disable
   .table-responsive(
-    @selector,
-    @table-cell-action-elements: @oui-table-cell-action-elements,
-    @table-cell-action-tablet-padding: @oui-table-cell-action-tablet-padding
-  ) {
+  @selector,
+  @table-cell-action-elements: @oui-table-cell-action-elements,
+  @table-cell-action-tablet-padding: @oui-table-cell-action-tablet-padding
+) {
     /* stylelint-disable indentation */
     .tablet({
       .@{selector}__headers {
@@ -326,9 +326,9 @@
 
   // stylelint-disable max-nesting-depth
   .table-container(
-    @selector,
-    @margin: @oui-table-container-margin
-  ) {
+  @selector,
+  @margin: @oui-table-container-margin
+) {
     margin: @margin;
 
     &__headers {

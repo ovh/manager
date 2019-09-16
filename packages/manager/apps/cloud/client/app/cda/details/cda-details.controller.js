@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaDetailsCtrl', function ($stateParams, $translate, CdaService, CucCloudMessage, URLS, OvhApiMe) {
+  .controller('CdaDetailsCtrl', function CdaDetailsCtrl($stateParams, $translate, CdaService, CucCloudMessage, URLS, OvhApiMe) {
     const self = this;
 
     self.CdaService = CdaService;
@@ -16,16 +16,16 @@ angular.module('managerApp')
       footer: $translate.instant('cda_guide_footer'),
     };
 
-    self.refreshMessage = function () {
+    self.refreshMessage = function refreshMessage() {
       self.messages = self.messageHandler.getMessages();
     };
 
-    self.loadMessage = function () {
+    self.loadMessage = function loadMessage() {
       CucCloudMessage.unSubscribe('paas.cda');
       self.messageHandler = CucCloudMessage.subscribe('paas.cda', { onMessage: () => self.refreshMessage() });
     };
 
-    self.loadGuides = function () {
+    self.loadGuides = function loadGuides() {
       return OvhApiMe.v6()
         .get().$promise
         .then((me) => {

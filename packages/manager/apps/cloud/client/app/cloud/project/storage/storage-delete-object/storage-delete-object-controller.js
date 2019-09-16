@@ -9,15 +9,15 @@ angular.module('managerApp').controller('RA.storage.deleteObject',
       value: true,
     };
 
-    $scope.names = function () {
+    $scope.names = function names() {
       return _.map($scope.elem, 'name').join('<br />');
     };
 
-    $scope.confirm = function () {
+    $scope.confirm = function confirm() {
       $uibModalInstance.close($scope.elem);
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function cancel() {
       $uibModalInstance.dismiss();
     };
   });

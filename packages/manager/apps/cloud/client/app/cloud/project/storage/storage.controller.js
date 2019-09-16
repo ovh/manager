@@ -11,9 +11,20 @@ angular.module('managerApp').controller('RA.storageCtrl', [
   'CucCloudMessage',
   'ovhDocUrl',
   'CucRegionService',
-  function ($filter, $rootScope, $scope, $stateParams, $translate, $uibModal, CloudStorageContainer,
-    CloudStorageContainers, CloudStorageContainerTasksRunner, CucCloudMessage, ovhDocUrl,
-    CucRegionService) {
+  function RAStorageCtrl(
+    $filter,
+    $rootScope,
+    $scope,
+    $stateParams,
+    $translate,
+    $uibModal,
+    CloudStorageContainer,
+    CloudStorageContainers,
+    CloudStorageContainerTasksRunner,
+    CucCloudMessage,
+    ovhDocUrl,
+    CucRegionService,
+  ) {
     $scope.projectId = $stateParams.projectId;
     $scope.loaders = {
       storages: true,
@@ -100,17 +111,17 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     });
 
     // Search callbacks
-    $scope.search = function (value) {
+    $scope.search = function search(value) {
       const regexp = new RegExp(value, 'i');
       $scope.storagesFiltered = _.filter($scope.storages, storage => regexp.test(storage.name));
     };
 
-    $scope.showAll = function () {
+    $scope.showAll = function showAll() {
       $scope.storagesFiltered = $scope.storages;
     };
 
     // Filtering and ordering
-    $scope.orderStorages = function (by) {
+    $scope.orderStorages = function orderStorages(by) {
       if (by) {
         if ($scope.order.by === by) {
           $scope.order.reverse = !$scope.order.reverse;
@@ -124,7 +135,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
       );
     };
 
-    $scope.filterStorages = function () {
+    $scope.filterStorages = function filterStorages() {
       if ($scope.filter.enabled) {
         $scope.storagesFiltered = _.filter(
           $scope.storages,
@@ -141,7 +152,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     /* Delete (a) container(s) */
     function deleteContainer(container) {
       function createDeleteObjectTask(object) {
-        return function () {
+        return function createDeleteObjectTaskFn() {
           return CloudStorageContainer.delete($scope.projectId, container.id, object.name);
         };
       }
@@ -153,7 +164,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
       }
 
       function createDeleteContainerTask() {
-        return function () {
+        return function createDeleteContainerTaskFn() {
           _.set(container, 'status', 'deleting');
           return CloudStorageContainers.delete($scope.projectId, container.id)
             .then((result) => {
@@ -190,7 +201,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
         });
     }
 
-    $scope.delete = function (container) {
+    $scope.delete = function deleteFn(container) {
       $uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: 'app/cloud/project/storage/storage-delete-container/modal.html',

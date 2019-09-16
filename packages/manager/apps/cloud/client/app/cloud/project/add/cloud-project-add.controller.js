@@ -51,7 +51,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
     /**
      * Launch project creation process
      */
-    this.createProject = function () {
+    this.createProject = function createProject() {
       atInternet.trackClick({
         name: 'pci-project_new-project-create',
         type: 'action',
@@ -153,16 +153,16 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
     };
 
     // returns true if user has at least one bill and no debt
-    this.isTrustedUser = function () {
+    this.isTrustedUser = function isTrustedUser() {
       return this.has3dsCreditCard() || (self.data.hasBill && !self.data.hasDebt);
     };
 
     // returns true if user has at least one 3D secure registered credit card
-    this.has3dsCreditCard = function () {
+    this.has3dsCreditCard = function has3dsCreditCard() {
       return angular.isDefined(_.find(self.data.creditCards, 'threeDsValidated'));
     };
 
-    this.canCreateProject = function () {
+    this.canCreateProject = function canCreateProject() {
       let canCreate = false;
       if (self.model.voucher) {
         canCreate = true;
@@ -174,7 +174,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
       return canCreate;
     };
 
-    this.paymentRegister = function () {
+    this.paymentRegister = function paymentRegister() {
       atInternet.trackClick({
         name: 'pci-project_payment-means-register',
         type: 'action',

@@ -13,7 +13,7 @@ angular.module('managerApp').filter('bytes', ($translate) => {
   const translatedUnits = _.map(units, translateUnit);
   const translatedUnitsKibi = _.map(unitsKibi, translateUnit);
 
-  return function (bytesParams, precisionParam, toKibi, fromUnit, toRawBytes) {
+  return function bytesFilter(bytesParams, precisionParam, toKibi, fromUnit, toRawBytes) {
     let bytes = bytesParams;
     let precision = precisionParam;
 

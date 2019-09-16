@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('BillingHourlyResourceListComponentCtrl', function () {
+  .controller('BillingHourlyResourceListComponentCtrl', function BillingHourlyResourceListComponentCtrl() {
     const self = this;
     self.toggle = {
       accordions: {

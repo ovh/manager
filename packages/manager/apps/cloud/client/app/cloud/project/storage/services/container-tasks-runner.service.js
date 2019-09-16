@@ -13,7 +13,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
     /**
      * Flush tasks.
      */
-    self.flush = function () {
+    self.flush = function flush() {
       taskQueues = {};
     };
 
@@ -21,7 +21,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * Get queue list.
      * @return {Array} queue list
      */
-    self.getQueues = function () {
+    self.getQueues = function getQueues() {
       return taskQueues;
     };
 
@@ -29,7 +29,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * Count number of running tasks.
      * @return {number} number of running tasks
      */
-    self.countRunningTasks = function () {
+    self.countRunningTasks = function countRunningTasks() {
       return self.countTasks('running');
     };
 
@@ -37,7 +37,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * Count total number of tasks.
      * @return {number} total number of tasks
      */
-    self.countTotalTasks = function () {
+    self.countTotalTasks = function countTotalTasks() {
       return self.countTasks('total');
     };
 
@@ -45,7 +45,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * Count number of pending tasks.
      * @return {number} number of pending tasks
      */
-    self.countPendingTasks = function () {
+    self.countPendingTasks = function countPendingTasks() {
       return self.countTotalTasks() - self.countDoneTasks() - self.countErrorTasks();
     };
 
@@ -53,7 +53,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * Count number of done tasks.
      * @return {number} number of done tasks
      */
-    self.countDoneTasks = function () {
+    self.countDoneTasks = function countDoneTasks() {
       return self.countTasks('success');
     };
 
@@ -61,7 +61,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * Count tasks in error.
      * @return {number} number of tasks in error
      */
-    self.countErrorTasks = function () {
+    self.countErrorTasks = function countErrorTasks() {
       return self.countTasks('error');
     };
 
@@ -70,7 +70,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * @params {...string} states to count
      * @return {number} number of tasks in theses states
      */
-    self.countTasks = function () {
+    self.countTasks = function countTasks() {
       const states = arguments; // eslint-disable-line
       return _.chain(_.values(taskQueues))
         .reduce((result, queue) => {
@@ -86,7 +86,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * @param  {Function}  task       List of functions returning promises
      * @return {Promise} the promise for all this task queue
      */
-    self.addTask = function (queueName, task) {
+    self.addTask = function addTask(queueName, task) {
       if (!task) {
         task = queueName;
         queueName = defaultQueueName;
@@ -128,7 +128,7 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * @param  {number}           limit       Concurrency limit (default: 3)
      * @return {Promise} the promise for all this task queue
      */
-    self.enqueue = function (queueName, tasks, limit) {
+    self.enqueue = function enqueue(queueName, tasks, limit) {
       if (_.isArray(queueName)) {
         tasks = queueName;
         limit = tasks;

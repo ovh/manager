@@ -31,8 +31,10 @@
     <tbody data-ng-if="storagesPaginated.length > 0" class="oui-datagrid__body">
         <tr data-ng-repeat="storage in storagesPaginated | filter:filter.name track by storage.id" class="oui-datagrid__row" tabindex="0">
             <td class="oui-datagrid__cell" data-title="{{ 'storage_type' | translate }}">
-                <img class="storage-table-type-icon" data-ng-if="storage.shortcut && storage.shortcut !== 'error'"
-                        data-ng-src="assets/images/add/storage/{{ storage.shortcut }}.svg" />
+                <img class="storage-table-type-icon"
+                    data-ng-if="storage.shortcut && storage.shortcut !== 'error'"
+                    data-ng-src="assets/images/add/storage/{{ storage.shortcut }}.svg"
+                    alt="" />
                 <span data-ng-if="!storage.shortcut" class="text-center">
                     <oui-spinner size="s"></oui-spinner>
                 </span>

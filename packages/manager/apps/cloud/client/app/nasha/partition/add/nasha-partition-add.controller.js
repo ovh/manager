@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionAddCtrl', function ($stateParams, $scope, $q, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionAddCtrl', function NashaPartitionAddCtrl($stateParams, $scope, $q, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
 
   self.nasha = null;
@@ -18,7 +18,7 @@ angular.module('managerApp').controller('NashaPartitionAddCtrl', function ($stat
 
   self.namePattern = /^[A-Za-z0-9]{1,20}$/;
 
-  self.isPartitionValid = function () {
+  self.isPartitionValid = function isPartitionValid() {
     return self.newPartition.partitionName // Partition name is set
       && self.newPartition.size // partition size is set
       && self.newPartition.protocol // protocol is set
@@ -27,7 +27,7 @@ angular.module('managerApp').controller('NashaPartitionAddCtrl', function ($stat
       && self.newPartition.size <= self.nasha.zpoolSize;
   };
 
-  self.addPartition = function () {
+  self.addPartition = function addPartition() {
     self.loading = true;
     OvhApiDedicatedNasha.Partition().v6().create({
       serviceName: self.nasha.serviceName,
@@ -50,7 +50,7 @@ angular.module('managerApp').controller('NashaPartitionAddCtrl', function ($stat
     });
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 

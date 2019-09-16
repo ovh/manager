@@ -2,15 +2,15 @@
 
 angular.module('managerApp')
   .controller('DeskaasGetConsoleAccessCtrl',
-    function ($scope, $location, $uibModalInstance) {
+    function DeskaasGetConsoleAccessCtrl($scope, $location, $uibModalInstance) {
       const self = this;
 
-      self.cancel = function () {
+      self.cancel = function cancel() {
         // Remove popup
         $uibModalInstance.dismiss('cancel');
       };
 
-      self.ok = function () {
+      self.ok = function ok() {
         // Call POST /console to create the task, an email will be sent to the user
         $uibModalInstance.close(self.values);
       };

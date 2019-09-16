@@ -18,11 +18,11 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
       deleteAlert: false,
     };
 
-    self.getCurrentMonth = function () {
+    self.getCurrentMonth = function getCurrentMonth() {
       return moment();
     };
 
-    self.getNextMonth = function () {
+    self.getNextMonth = function getNextMonth() {
       return moment().add(1, 'month');
     };
 
@@ -139,7 +139,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
       });
     }
 
-    self.openAlertAddModal = function () {
+    self.openAlertAddModal = function openAlertAddModal() {
       const modal = $uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: 'app/cloud/project/billing/consumption/estimate/alert/add/cloud-project-billing-consumption-estimate-alert-add.html',
@@ -157,7 +157,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
       });
     };
 
-    self.deleteAlert = function () {
+    self.deleteAlert = function deleteAlert() {
       self.loaders.deleteAlert = true;
       // we query alerts to check if an alert already exists, in this case we delete it
       OvhApiCloudProjectAlerting.v6().getIds({

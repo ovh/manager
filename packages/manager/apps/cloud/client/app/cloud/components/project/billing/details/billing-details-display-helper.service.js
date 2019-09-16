@@ -1,6 +1,6 @@
 
 
-angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', function () {
+angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', function CloudProjectBillingDetailsDisplayHelper() {
   let activeDayInfo = null;
 
 
@@ -16,11 +16,11 @@ angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', 
     =            Active day dot            =
     ====================================== */
 
-  this.setActiveDayInfo = function (info) {
+  this.setActiveDayInfo = function setActiveDayInfo(info) {
     activeDayInfo = info;
   };
 
-  this.getActiveDayInfo = function () {
+  this.getActiveDayInfo = function getActiveDayInfo() {
     return activeDayInfo;
   };
 
@@ -28,11 +28,11 @@ angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', 
     =            First day dot            =
     ===================================== */
 
-  this.setFirstDayInfo = function (info) {
+  this.setFirstDayInfo = function setFirstDayInfo(info) {
     firstDayInfo = info;
   };
 
-  this.getFirstDayInfo = function () {
+  this.getFirstDayInfo = function getFirstDayInfo() {
     return firstDayInfo;
   };
 
@@ -40,11 +40,11 @@ angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', 
     =            Last day dot            =
     ==================================== */
 
-  this.setLastDayInfo = function (info) {
+  this.setLastDayInfo = function setLastDayInfo(info) {
     lastDayInfo = info;
   };
 
-  this.getLastDayInfo = function () {
+  this.getLastDayInfo = function getLastDayInfo() {
     return lastDayInfo;
   };
 
@@ -52,11 +52,11 @@ angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', 
     =            Hovered day dot            =
     ======================================= */
 
-  this.setHoveredDayInfo = function (info) {
+  this.setHoveredDayInfo = function setHoveredDayInfo(info) {
     hoveredDayInfo = info;
   };
 
-  this.getHoveredDayInfo = function () {
+  this.getHoveredDayInfo = function getHoveredDayInfo() {
     return hoveredDayInfo;
   };
 });

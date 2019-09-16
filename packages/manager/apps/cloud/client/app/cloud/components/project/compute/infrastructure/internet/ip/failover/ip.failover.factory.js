@@ -5,7 +5,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
      *
      *  /!\ Take care when modifying this!!! Check setInfos, and prepareToJson too.
      */
-    const IpFailoverFactory = (function () {
+    const IpFailoverFactory = (function IpFailoverFactory() {
       return function CloudProjectComputeInfraIpFailoverFactory(optionsParam) {
         let options = optionsParam;
         if (!options) {
@@ -31,7 +31,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
      *  Set customs options (for init, and updates)
      *  -> @devs: put your customs values here
      */
-    IpFailoverFactory.prototype.getCustomOptions = function (options) {
+    IpFailoverFactory.prototype.getCustomOptions = function getCustomOptions(options) {
       return angular.extend(options, {
         type: 'failover',
         routedTo: options.routedTo
@@ -43,7 +43,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
     /**
      *  Set infos after initialization
      */
-    IpFailoverFactory.prototype.setInfos = function (optionsParam) {
+    IpFailoverFactory.prototype.setInfos = function setInfos(optionsParam) {
       let options = optionsParam;
       // Set custom values
       options = this.getCustomOptions(options || {});
@@ -57,7 +57,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
     /**
      * Attach an IP to a vm
      */
-    IpFailoverFactory.prototype.attach = function (vmId) {
+    IpFailoverFactory.prototype.attach = function attach(vmId) {
       const self = this;
       return OvhApiCloudProjectIpFailover.v6().attach({
         serviceName: this.serviceName,
@@ -72,7 +72,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
     /**
      * Detach an IP from a vm
      */
-    IpFailoverFactory.prototype.detach = function () {
+    IpFailoverFactory.prototype.detach = function detach() {
       const self = this;
       return OvhApiCloudProjectIpFailover.v6().detach({
         serviceName: this.serviceName,
@@ -85,7 +85,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
     /**
      * Park the IP
      */
-    IpFailoverFactory.prototype.park = function () {
+    IpFailoverFactory.prototype.park = function park() {
       const self = this;
       return OvhApiIpReverse.v6().park({
         ip: this.ip,
@@ -97,7 +97,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
     /**
      *  Prepare object to json encode function to avoid function being encoded.
      */
-    IpFailoverFactory.prototype.prepareToJson = function () {
+    IpFailoverFactory.prototype.prepareToJson = function prepareToJson() {
       return {
         id: this.id,
         type: this.type,

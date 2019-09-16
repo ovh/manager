@@ -1,8 +1,8 @@
 angular.module('managerApp')
-  .controller('IpDropdownComponentCtrl', function ($translate, $window, REDIRECT_URLS, OvhApiIp, CucCloudMessage, CLOUD_GEOLOCALISATION) {
+  .controller('IpDropdownComponentCtrl', function IpDropdownComponentCtrl($translate, $window, REDIRECT_URLS, OvhApiIp, CucCloudMessage, CLOUD_GEOLOCALISATION) {
     const self = this;
 
-    self.failoverAttach = function (ip) {
+    self.failoverAttach = function failoverAttach(ip) {
       self.onFailoverAttach({ ip });
     };
 
@@ -13,7 +13,7 @@ angular.module('managerApp')
       reverse: ipActionUrlWithSession.replace('{action}', 'reverse'),
     };
 
-    self.ipActionRedirect = function (action, ip) {
+    self.ipActionRedirect = function ipActionRedirect(action, ip) {
       let url = null;
       const ipActionUrlWithSession = REDIRECT_URLS.ipAction; // eslint-disable-line
       switch (action) {
@@ -33,13 +33,13 @@ angular.module('managerApp')
       }
     };
 
-    self.isIpUserSameContinent = function (ip) {
+    self.isIpUserSameContinent = function isIpUserSameContinent(ip) {
       const userContinent = self.getUserContinent();
       const ipContinent = self.getIpContinent(ip);
       return userContinent && ipContinent && userContinent === ipContinent;
     };
 
-    self.getUserContinent = function () {
+    self.getUserContinent = function getUserContinent() {
       let continent = null;
       if (self.user) {
         continent = _.first(_.keys(_.pick(
@@ -50,7 +50,7 @@ angular.module('managerApp')
       return continent;
     };
 
-    self.getIpContinent = function (ip) {
+    self.getIpContinent = function getIpContinent(ip) {
       let continent = null;
       let linkedVmId;
       switch (ip.type) {

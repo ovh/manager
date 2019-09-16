@@ -10,7 +10,7 @@ angular.module('managerApp').factory('CloudProjectComputeFactory',
      *  @param    {Object}  options.volumes
      *                      Options of the CloudProjectCompute volumes
      */
-    const ComputeFactory = (function () {
+    const ComputeFactory = (function ComputeFactory() {
       return function CloudProjectComputeFactory(optionsParam) {
         let options = optionsParam;
         if (!options) {
@@ -37,7 +37,7 @@ angular.module('managerApp').factory('CloudProjectComputeFactory',
     /**
      *  Prepare object to json encode function to avoid function being encoded
      */
-    ComputeFactory.prototype.prepareToJson = function () {
+    ComputeFactory.prototype.prepareToJson = function prepareToJson() {
       return {
         infrastructure: this.infrastructure.prepareToJson(),
       };

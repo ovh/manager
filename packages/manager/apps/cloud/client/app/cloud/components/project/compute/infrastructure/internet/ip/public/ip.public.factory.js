@@ -4,7 +4,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpPublicFactory', 
    *
    *  /!\ Take care when modifying this!!! Check setInfos, and prepareToJson too.
    */
-  const IpPublicFactory = (function () {
+  const IpPublicFactory = (function IpPublicFactory() {
     return function CloudProjectComputeInfraIpPublicFactory(optionsParam) {
       let options = optionsParam;
       if (!options) {
@@ -30,7 +30,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpPublicFactory', 
    *  Set customs options (for init, and updates)
    *  -> @devs: put your customs values here
    */
-  IpPublicFactory.prototype.getCustomOptions = function (options) {
+  IpPublicFactory.prototype.getCustomOptions = function getCustomOptions(options) {
     return angular.extend(options, {
       type: 'public',
       routedTo: options.routedTo
@@ -42,7 +42,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpPublicFactory', 
   /**
    *  Set infos after initialization
    */
-  IpPublicFactory.prototype.setInfos = function (optionsParam) {
+  IpPublicFactory.prototype.setInfos = function setInfos(optionsParam) {
     let options = optionsParam;
 
     // Set custom values
@@ -57,7 +57,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpPublicFactory', 
   /**
    *  Prepare object to json encode function to avoid function being encoded.
    */
-  IpPublicFactory.prototype.prepareToJson = function () {
+  IpPublicFactory.prototype.prepareToJson = function prepareToJson() {
     return {
       id: this.id,
       type: this.type,

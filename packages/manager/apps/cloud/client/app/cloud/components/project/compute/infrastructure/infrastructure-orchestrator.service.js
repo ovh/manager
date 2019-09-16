@@ -694,6 +694,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         updateInstancesFromPolling(vms);
       }, (err) => {
         if (err && err.status) {
+          // eslint-disable-next-line no-console
           console.warn('pollVms', err);
           // @todo add bugkiller here
         }
@@ -731,6 +732,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         updateIpsFromPolling(ips, type);
       }, (err) => {
         if (err && err.status) {
+          // eslint-disable-next-line no-console
           console.warn('pollIps', err);
           // @todo add bugkiller here
         }

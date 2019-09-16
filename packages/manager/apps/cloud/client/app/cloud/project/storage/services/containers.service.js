@@ -12,7 +12,7 @@ angular.module('managerApp').service('CloudStorageContainers', [
      * @param  {string} projectId    project id
      * @return {Promise}
      */
-    self.list = function (projectId) {
+    self.list = function list(projectId) {
       function saveNameAndRegion(container) {
         const data = storageContainerConfig.containerMetaCache.get(projectId, container.id);
         if (!data) {
@@ -40,7 +40,7 @@ angular.module('managerApp').service('CloudStorageContainers', [
      * @param  {string} type          storage type (swift_cname|swift_public|swift_private|pca)
      * @return {Promise}
      */
-    self.create = function (projectId, containerName, region, type) {
+    self.create = function create(projectId, containerName, region, type) {
       const data = {
         containerName,
         region,
@@ -85,7 +85,7 @@ angular.module('managerApp').service('CloudStorageContainers', [
      * @param  {string} containerId container id
      * @return {Promise}
      */
-    self.delete = function (projectId, containerId) {
+    self.delete = function deleteFn(projectId, containerId) {
       return OvhApiCloudProjectStorage.v6().get({
         projectId,
         containerId,

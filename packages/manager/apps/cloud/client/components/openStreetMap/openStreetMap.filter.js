@@ -1,4 +1,4 @@
-angular.module('managerApp').filter('openStreetMap', (CucRegionService) => {
+angular.module('managerApp').filter('openStreetMap', /* @ngInject */ (CucRegionService) => {
   const regionMap = {
     GRA: 'https://www.openstreetmap.org/?mlat=50.98583&mlon=2.12833#map=3/50.00/0.00',
     SBG: 'https://www.openstreetmap.org/?mlat=48.58333&mlon=7.75000#map=3/50.00/0.00',
@@ -10,7 +10,7 @@ angular.module('managerApp').filter('openStreetMap', (CucRegionService) => {
     SGP: 'https://www.openstreetmap.org/?mlat=1.290270&mlon=103.851959#map=8/1.290/103.852',
   };
 
-  return function (region) {
+  return function openStreetMapFilter(region) {
     const macroRegion = CucRegionService.constructor.getMacroRegion(region);
     return regionMap[macroRegion];
   };

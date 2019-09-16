@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaUserListCtrl', function ($q, $state, $stateParams, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage, CdaService) {
+  .controller('CdaUserListCtrl', function CdaUserListCtrl($q, $state, $stateParams, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage, CdaService) {
     const self = this;
 
     self.datas = {
@@ -45,15 +45,15 @@ angular.module('managerApp')
     }
 
 
-    self.openAddModal = function () {
+    self.openAddModal = function openAddModal() {
       self.openModal(self.modals.add.templateUrl, self.modals.add.controller);
     };
 
-    self.openDeleteModal = function (user) {
+    self.openDeleteModal = function openDeleteModal(user) {
       self.openModal(self.modals.remove.templateUrl, self.modals.remove.controller, user);
     };
 
-    self.openModal = function (template, controller, params) {
+    self.openModal = function openModal(template, controller, params) {
       const modal = $uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: template,
@@ -69,11 +69,11 @@ angular.module('managerApp')
       });
     };
 
-    self.viewPermissions = function (name) {
+    self.viewPermissions = function viewPermissions(name) {
       return $state.go('paas.cda.cda-details.cda-user.cda-user-details.cda-user-details-permission-list', { userName: name });
     };
 
-    self.isTruncatedPoolArray = function (poolArray, index) {
+    self.isTruncatedPoolArray = function isTruncatedPoolArray(poolArray, index) {
       return poolArray.length - 1 > index;
     };
 

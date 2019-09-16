@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaIpListCtrl', function ($q, $stateParams, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage) {
+  .controller('CdaIpListCtrl', function CdaIpListCtrl($q, $stateParams, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage) {
     const self = this;
 
     self.loading = false;
@@ -44,15 +44,15 @@ angular.module('managerApp')
         });
     }
 
-    self.openAddModal = function () {
+    self.openAddModal = function openAddModal() {
       self.openModal(self.modals.add.templateUrl, self.modals.add.controller);
     };
 
-    self.openDeleteModal = function (ip) {
+    self.openDeleteModal = function openDeleteModal(ip) {
       self.openModal(self.modals.remove.templateUrl, self.modals.remove.controller, { ip });
     };
 
-    self.openModal = function (template, controller, params) {
+    self.openModal = function openModal(template, controller, params) {
       const modal = $uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: template,

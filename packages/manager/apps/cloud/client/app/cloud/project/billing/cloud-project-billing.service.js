@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .service('CloudProjectBillingService', function ($q, OvhApiMe) {
+  .service('CloudProjectBillingService', function CloudProjectBillingService($q, OvhApiMe) {
     const self = this;
 
     function roundNumber(number, decimals) {
@@ -203,7 +203,10 @@ angular.module('managerApp')
       self.data.totals.hourly.bandwidth = roundNumber(self.data.totals.hourly.bandwidth, 2);
     }
 
-    self.getConsumptionDetails = function (hourlyBillingInfo, monthlyBillingInfo) {
+    self.getConsumptionDetails = function getConsumptionDetails(
+      hourlyBillingInfo,
+      monthlyBillingInfo,
+    ) {
       return self.getDataInitialized()
         .then(() => {
           self.data.hourlyBilling = hourlyBillingInfo;
@@ -246,7 +249,7 @@ angular.module('managerApp')
         });
     };
 
-    self.getDataInitialized = function () {
+    self.getDataInitialized = function getDataInitialized() {
       self.data = {
         hourlyInstances: [],
         monthlyInstances: [],

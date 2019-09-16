@@ -117,7 +117,7 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
       });
     }
 
-    self.confirm = function () {
+    self.confirm = function confirm() {
       return deleteProject().then(() => {
         CucCloudMessage.success($translate.instant('cloud_project_delete_email_sent'));
         $uibModalInstance.close();
@@ -128,12 +128,12 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
 
     self.cancel = $uibModalInstance.dismiss;
 
-    self.goToSupport = function () {
+    self.goToSupport = function goToSupport() {
       self.cancel();
       $state.go('otrs-list');
     };
 
-    self.resetCache = function () {
+    self.resetCache = function resetCache() {
       OvhApiCloudProjectInstance.v6().resetQueryCache();
       OvhApiCloudProjectVolume.v6().resetQueryCache();
       OvhApiCloudProjectSnapshot.v6().resetQueryCache();

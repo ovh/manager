@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaPoolDeleteCtrl', function ($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
+  .controller('CdaPoolDeleteCtrl', function CdaPoolDeleteCtrl($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
     const self = this;
 
     self.pool = {};
@@ -10,11 +10,11 @@ angular.module('managerApp')
       self.pool = $scope.$resolve.items.pool;
     }
 
-    self.closeModal = function () {
+    self.closeModal = function closeModal() {
       $uibModalInstance.dismiss();
     };
 
-    self.deletePool = function () {
+    self.deletePool = function deletePool() {
       self.saving = true;
       OvhApiDedicatedCeph.Pool().v6().delete({
         serviceName: $stateParams.serviceName,

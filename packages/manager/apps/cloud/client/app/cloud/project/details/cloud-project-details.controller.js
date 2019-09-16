@@ -120,7 +120,7 @@ angular.module('managerApp').controller('CloudProjectDetailsCtrl',
         });
     }
 
-    this.cancelProjectCreation = function () {
+    this.cancelProjectCreation = function cancelProjectCreation() {
       self.loaders.cancelCreation = true;
 
       return OvhApiCloudProject.v6().cancelCreation({

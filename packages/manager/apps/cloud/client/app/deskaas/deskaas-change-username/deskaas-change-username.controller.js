@@ -2,7 +2,7 @@
 
 angular.module('managerApp')
   .controller('DeskaasChangeUsernameCtrl',
-    function ($uibModalInstance) {
+    function DeskaasChangeUsernameCtrl($uibModalInstance) {
       const self = this;
 
       self.policies = {};
@@ -15,11 +15,11 @@ angular.module('managerApp')
         init: false,
       };
 
-      self.cancel = function () {
+      self.cancel = function cancel() {
         $uibModalInstance.dismiss('cancel');
       };
 
-      self.ok = function () {
+      self.ok = function ok() {
         if (!self.values.newUsername) {
           $uibModalInstance.dismiss('cancel');
           return;

@@ -1,6 +1,9 @@
 angular.module('managerApp')
   .service('CloudStorageContainersConfiguration', [
-    '$cacheFactory', '$parse', function ($cacheFactory, $parse) {
+    '$cacheFactory', '$parse', function CloudStorageContainersConfigurationService(
+      $cacheFactory,
+      $parse,
+    ) {
       const self = this;
 
       function Cache(ngCache) {

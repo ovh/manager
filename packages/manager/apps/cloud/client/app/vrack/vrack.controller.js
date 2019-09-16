@@ -58,11 +58,11 @@ angular.module('managerApp').controller('VrackCtrl',
         },
       },
     };
-    self.refreshMessage = function () {
+    self.refreshMessage = function refreshMessage() {
       self.messages = self.messageHandler.getMessages();
     };
 
-    self.loadMessage = function () {
+    self.loadMessage = function loadMessage() {
       CucCloudMessage.unSubscribe('vrack');
       self.messageHandler = CucCloudMessage.subscribe('vrack', { onMessage: () => self.refreshMessage() });
     };
@@ -72,7 +72,7 @@ angular.module('managerApp').controller('VrackCtrl',
       dedicatedServerInterface: 'dedicatedServer.niceName',
     };
 
-    self.getDisplayName = function (serviceType) {
+    self.getDisplayName = function getDisplayName(serviceType) {
       return $translate.instant(`vrack_service_type_${serviceType.toLowerCase()}`);
     };
 
@@ -190,7 +190,7 @@ angular.module('managerApp').controller('VrackCtrl',
       return formattedService;
     }
 
-    self.getAllowedServices = function () {
+    self.getAllowedServices = function getAllowedServices() {
       return OvhApiVrack.Aapi().allowedServices({ serviceName: self.serviceName }).$promise
         .then((allServicesParam) => {
           let allServices = allServicesParam;
@@ -219,7 +219,7 @@ angular.module('managerApp').controller('VrackCtrl',
         });
     };
 
-    self.getVrackServices = function () {
+    self.getVrackServices = function getVrackServices() {
       return OvhApiVrack.Aapi().services({ serviceName: self.serviceName }).$promise
         .then((allServicesParam) => {
           let allServices = allServicesParam;
@@ -256,7 +256,7 @@ angular.module('managerApp').controller('VrackCtrl',
         });
     };
 
-    self.getPendingTasks = function () {
+    self.getPendingTasks = function getPendingTasks() {
       return OvhApiVrack.v6()
         .tasks({
           serviceName: self.serviceName,
@@ -271,7 +271,7 @@ angular.module('managerApp').controller('VrackCtrl',
           .then(tasks => _.without(tasks, null)));
     };
 
-    self.resetCache = function () {
+    self.resetCache = function resetCache() {
       OvhApiVrack.v6().resetCache();
       OvhApiVrack.CloudProject().v6().resetQueryCache();
       OvhApiVrack.IpLoadBalancing().v6().resetQueryCache();
@@ -283,7 +283,11 @@ angular.module('managerApp').controller('VrackCtrl',
       OvhApiVrack.Aapi().resetAllCache();
     };
 
-    self.moveDisplayedService = function (serviceId, allServicesSource, allServicesDestination) {
+    self.moveDisplayedService = function moveDisplayedService(
+      serviceId,
+      allServicesSource,
+      allServicesDestination,
+    ) {
       let serviceToMove = null;
       let typeToMove = null;
       let isGroupedServicesType = false;
@@ -324,7 +328,7 @@ angular.module('managerApp').controller('VrackCtrl',
       }
     };
 
-    self.refreshData = function () {
+    self.refreshData = function refreshData() {
       let poll = true;
       return self.getPendingTasks().then((tasks) => {
         /**
@@ -379,7 +383,7 @@ angular.module('managerApp').controller('VrackCtrl',
       });
     };
 
-    self.isSelected = function (serviceType, serviceId) {
+    self.isSelected = function isSelected(serviceType, serviceId) {
       return angular.isDefined(_.find(self.form.servicesToAdd, {
         type: serviceType,
         id: serviceId,
@@ -391,12 +395,12 @@ angular.module('managerApp').controller('VrackCtrl',
        || _.isEqual(self.form.serviceToMove, { type: serviceType, id: serviceId });
     };
 
-    self.isPending = function (serviceId) {
+    self.isPending = function isPending(serviceId) {
       const ids = _.uniq(_.pluck(self.data.pendingTasks, 'targetDomain'));
       return ids.indexOf(serviceId) >= 0;
     };
 
-    self.toggleAddService = function (serviceType, serviceId) {
+    self.toggleAddService = function toggleAddService(serviceType, serviceId) {
       if (!self.isPending(serviceId) && !self.loaders.adding && !self.loaders.deleting) {
         const toAdd = { type: serviceType, id: serviceId };
         if (_.find(self.form.servicesToAdd, toAdd)) {
@@ -409,7 +413,7 @@ angular.module('managerApp').controller('VrackCtrl',
       }
     };
 
-    self.toggleDeleteService = function (serviceType, serviceId) {
+    self.toggleDeleteService = function toggleDeleteService(serviceType, serviceId) {
       if (!self.isPending(serviceId) && !self.loaders.adding && !self.loaders.deleting) {
         const toDelete = { type: serviceType, id: serviceId };
         if (_.find(self.form.servicesToDelete, toDelete)) {
@@ -422,7 +426,7 @@ angular.module('managerApp').controller('VrackCtrl',
       }
     };
 
-    self.toggleMoveService = function (serviceType, serviceId) {
+    self.toggleMoveService = function toggleMoveService(serviceType, serviceId) {
       if (self.isPending(serviceId) || self.loaders.moving) {
         return;
       }
@@ -436,17 +440,17 @@ angular.module('managerApp').controller('VrackCtrl',
       }
     };
 
-    self.editName = function () {
+    self.editName = function editName() {
       self.nameEditing = true;
       self.nameBackup = self.name;
     };
 
-    self.cancelEditName = function () {
+    self.cancelEditName = function cancelEditName() {
       self.nameEditing = false;
       self.name = self.nameBackup;
     };
 
-    self.saveName = function () {
+    self.saveName = function saveName() {
       self.nameEditing = false;
 
       OvhApiVrack.v6().edit({ serviceName: self.serviceName }, { name: self.name }).$promise
@@ -463,17 +467,17 @@ angular.module('managerApp').controller('VrackCtrl',
         });
     };
 
-    self.editDescription = function () {
+    self.editDescription = function editDescription() {
       self.descriptionEditing = true;
       self.descriptionBackup = self.description;
     };
 
-    self.cancelEditDescription = function () {
+    self.cancelEditDescription = function cancelEditDescription() {
       self.descriptionEditing = false;
       self.description = self.descriptionBackup;
     };
 
-    self.saveDescription = function () {
+    self.saveDescription = function saveDescription() {
       self.descriptionEditing = false;
       OvhApiVrack.v6()
         .edit({ serviceName: self.serviceName }, { description: self.description }).$promise
@@ -486,7 +490,7 @@ angular.module('managerApp').controller('VrackCtrl',
         });
     };
 
-    self.addSelectedServices = function () {
+    self.addSelectedServices = function addSelectedServices() {
       self.loaders.adding = true;
       return $q.all(_.map(self.form.servicesToAdd, (service) => {
         let task = $q.reject('Unknown service type');
@@ -553,7 +557,7 @@ angular.module('managerApp').controller('VrackCtrl',
       });
     };
 
-    self.deleteSelectedServices = function () {
+    self.deleteSelectedServices = function deleteSelectedServices() {
       self.loaders.deleting = true;
       return $q.all(_.map(self.form.servicesToDelete, (service) => {
         let task = $q.reject('Unknown service type');
@@ -613,7 +617,7 @@ angular.module('managerApp').controller('VrackCtrl',
       });
     };
 
-    self.moveSelectedService = function () {
+    self.moveSelectedService = function moveSelectedService() {
       self.modals.move = $uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: 'app/vrack/move-dialog/vrack-move-dialog.html',
@@ -634,11 +638,11 @@ angular.module('managerApp').controller('VrackCtrl',
       });
     };
 
-    self.setAccordionState = function (side, kind, offset, value) {
+    self.setAccordionState = function setAccordionState(side, kind, offset, value) {
       self.states.accordions[side][kind][offset] = value;
     };
 
-    self.getAccordionState = function (side, kind, offset) {
+    self.getAccordionState = function getAccordionState(side, kind, offset) {
       if (!_.has(self.states.accordions, [side, kind, offset])) {
         return true;
       }
@@ -646,27 +650,27 @@ angular.module('managerApp').controller('VrackCtrl',
       return self.states.accordions[side][kind][offset];
     };
 
-    self.toggleAccordion = function (side, kind, offset) {
+    self.toggleAccordion = function toggleAccordion(side, kind, offset) {
       self.states.accordions[side][kind][offset] = !self.states.accordions[side][kind][offset];
     };
 
-    self.isAdding = function () {
+    self.isAdding = function isAdding() {
       return self.form.servicesToAdd.length > 0 && !self.loaders.adding;
     };
 
-    self.isRemoving = function () {
+    self.isRemoving = function isRemoving() {
       return self.form.servicesToDelete.length > 0 && !self.loaders.deleting;
     };
 
-    self.isMoving = function () {
+    self.isMoving = function isMoving() {
       return self.form.serviceToMove !== null && !self.loaders.moving;
     };
 
-    self.hasVrackGuideUrl = function () {
+    self.hasVrackGuideUrl = function hasVrackGuideUrl() {
       return false;
     };
 
-    self.hasServices = function (services) {
+    self.hasServices = function hasServices(services) {
       return _.keys(services).length > 0;
     };
 

@@ -1,4 +1,4 @@
-angular.module('managerApp').filter('infrastructureFlavor', () => function (enumType, option) {
+angular.module('managerApp').filter('infrastructureFlavor', () => (enumType, option) => {
   let out;
 
   if (option === 'icon') {

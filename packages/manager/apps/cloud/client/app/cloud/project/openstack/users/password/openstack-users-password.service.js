@@ -1,11 +1,11 @@
 
 
 angular.module('managerApp').service('OpenstackUsersPassword',
-  function () {
+  function OpenstackUsersPasswordService() {
     const passwords = {};
     const self = this;
 
-    self.put = function (projectId, userId, password) {
+    self.put = function put(projectId, userId, password) {
       if (!passwords[projectId]) {
         passwords[projectId] = {};
       }
@@ -14,14 +14,14 @@ angular.module('managerApp').service('OpenstackUsersPassword',
       return true;
     };
 
-    self.get = function (projectId, userId) {
+    self.get = function get(projectId, userId) {
       if (!passwords[projectId]) {
         return undefined;
       }
       return passwords[projectId][userId];
     };
 
-    self.delete = function (projectId, userId) {
+    self.delete = function deleteFn(projectId, userId) {
       if (passwords[projectId] && passwords[projectId][userId]) {
         delete passwords[projectId][userId];
       }

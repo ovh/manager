@@ -68,7 +68,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsSettingsCtrl',
 
     // ---------Edit project---------
 
-    self.editProject = function () {
+    self.editProject = function editProject() {
       const project = self.model;
 
       const config = {

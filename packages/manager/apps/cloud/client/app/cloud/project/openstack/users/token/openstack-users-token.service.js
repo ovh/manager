@@ -1,11 +1,11 @@
 
 
 angular.module('managerApp')
-  .service('OpenstackUsersToken', function () {
+  .service('OpenstackUsersToken', function OpenstackUsersToken() {
     const tokens = {};
     const self = this;
 
-    self.put = function (projectId, userId, openstackTokens) {
+    self.put = function put(projectId, userId, openstackTokens) {
       if (!tokens[projectId]) {
         tokens[projectId] = {};
       }
@@ -14,14 +14,14 @@ angular.module('managerApp')
       return true;
     };
 
-    self.get = function (projectId, userId) {
+    self.get = function get(projectId, userId) {
       if (!tokens[projectId]) {
         return undefined;
       }
       return tokens[projectId][userId];
     };
 
-    self.delete = function (projectId, userId) {
+    self.delete = function deleteFn(projectId, userId) {
       if (tokens[projectId] && tokens[projectId][userId]) {
         delete tokens[projectId][userId];
       }

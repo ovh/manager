@@ -4,7 +4,7 @@ angular.module('managerApp').directive('filelistener', () => ({
   replace: true,
   require: 'ngModel',
   link(scope, element, attr, ctrl) {
-    const listener = function () {
+    const listener = function filelistenerListener() {
       scope.$apply(() => {
         ctrl.$setViewValue(null);
       });

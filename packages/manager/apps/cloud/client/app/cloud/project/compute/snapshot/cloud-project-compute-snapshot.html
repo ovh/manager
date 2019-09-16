@@ -219,7 +219,8 @@
                                      data-ng-if="snapshot.isInstalledOnVm"
                                      data-uib-tooltip="{{ snapshot.installedVmNames.join(', ') }}">
                                    <i class="fa fa-exclamation-circle right-space-m4"></i>
-                                   <strong>{{ (snapshot.installedVm.length > 1 ? 'cpc_snapshot_installed_info_plural' : 'cpc_snapshot_installed_info') | translate:{nbVms: snapshot.installedVm.length} }}</strong>
+                                   <strong
+                                    data-ng-bind="(snapshot.installedVm.length > 1 ? 'cpc_snapshot_installed_info_plural' : 'cpc_snapshot_installed_info') | translate:{nbVms: snapshot.installedVm.length}"></strong>
                                </span>
                         </label>
                     </td>
@@ -299,8 +300,8 @@
                                                 || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
                                                 || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
                                                 || snapshot.status !== 'active'" >
-                                <span class="fa-stack fa-lg" style="width:1em; height:1em; line-height:1em;">
-                                    <i style="font-size:0.7em; top: -5px;" class="fa fa-arrow-down fa-stack-1x"></i>
+                                <span class="fa-stack fa-lg" style="width: 1em; height: 1em; line-height: 1em;">
+                                    <i style="font-size: 0.7em; top: -5px;" class="fa fa-arrow-down fa-stack-1x"></i>
                                     <i class="fa fa-hdd-o fa-stack-1x"></i>
                                 </span>
                             </button>
@@ -315,8 +316,8 @@
                                                 || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti
                                                 || CloudProjectComputeSnapshotCtrl.toggle.openDeleteMultiConfirm
                                                 || snapshot.status !== 'available'">
-                                <span class="fa-stack fa-lg" style="width:1em; height:1em; line-height:1em;">
-                                    <i style="font-size:0.7em; top: -5px;" class="fa fa-arrow-down fa-stack-1x"></i>
+                                <span class="fa-stack fa-lg" style="width: 1em; height: 1em; line-height: 1em;">
+                                    <i style="font-size: 0.7em; top: -5px;" class="fa fa-arrow-down fa-stack-1x"></i>
                                     <i class="fa fa-hdd-o fa-stack-1x"></i>
                                 </span>
                             </button>

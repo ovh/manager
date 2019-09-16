@@ -1,5 +1,5 @@
 angular.module('managerApp').filter('showByte',
-  [function () {
+  [function showByteFilter() {
     const oneEB = 1152921504606846976;
     const onePB = 1125899906842624;
     const oneTB = 1099511627776;
@@ -7,7 +7,7 @@ angular.module('managerApp').filter('showByte',
     const oneMB = 1048576;
     const oneKB = 1024;
 
-    return function (bytes) {
+    return function showByte(bytes) {
       if (bytes >= oneEB) {
         return `${(bytes / oneEB).toFixed(2)}EB`;
       }

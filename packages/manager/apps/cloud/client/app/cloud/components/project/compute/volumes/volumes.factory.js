@@ -8,7 +8,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
      *  @param    {Object}  optionsParam.volumes
      *                      List of Volumes with its options
      */
-    const VolumesFactory = (function () {
+    const VolumesFactory = (function VolumesFactory() {
       return function CloudProjectComputeVolumesFactory(optionsParam) {
         let options = optionsParam;
         const self = this;
@@ -45,7 +45,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     /**
      *  Get volume by volume ID.
      */
-    VolumesFactory.prototype.getVolumeById = function (volumeId) {
+    VolumesFactory.prototype.getVolumeById = function getVolumeById(volumeId) {
       let vol;
       angular.forEach(this.volumes, (volume) => {
         if (!vol) {
@@ -58,7 +58,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     /**
      *  Add a volume into list
      */
-    VolumesFactory.prototype.addVolumeToList = function (volume, targetIdParam) {
+    VolumesFactory.prototype.addVolumeToList = function addVolumeToList(volume, targetIdParam) {
       let targetId = targetIdParam;
 
       targetId = targetId || 'unlinked';
@@ -81,7 +81,10 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     /**
      *  Remove given volume from list
      */
-    VolumesFactory.prototype.removeVolumeFromList = function (volume, targetIdParam) {
+    VolumesFactory.prototype.removeVolumeFromList = function removeVolumeFromList(
+      volume,
+      targetIdParam,
+    ) {
       let targetId = targetIdParam;
       targetId = targetId || 'unlinked';
       _.remove(this.volumes[targetId], { id: volume.id });
@@ -93,7 +96,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     /**
      *  Prepare object to json encode function to avoid function being encoded
      */
-    VolumesFactory.prototype.prepareToJson = function () {
+    VolumesFactory.prototype.prepareToJson = function prepareToJson() {
       const preparedToJson = {};
       angular.forEach(this.volumes, (volumes, targetId) => {
         preparedToJson[targetId] = _.map(volumes, volume => volume.prepareToJson());

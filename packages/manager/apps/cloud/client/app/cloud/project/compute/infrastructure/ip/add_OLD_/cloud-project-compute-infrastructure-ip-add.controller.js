@@ -1,19 +1,27 @@
 //     THIS IS CODE IS OBSOLETE
 angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpAddCtrl',
-  function ($rootScope, $scope, $timeout, $translate, $q, OvhApiCloud,
-    CloudProjectComputeInfrastructureOrchestrator, CucRegionService) {
+  function CloudProjectComputeInfrastructureIpAddCtrl(
+    $rootScope,
+    $scope,
+    $timeout,
+    $translate,
+    $q,
+    OvhApiCloud,
+    CloudProjectComputeInfrastructureOrchestrator,
+    CucRegionService,
+  ) {
     const self = this;
     self.regionService = CucRegionService;
 
     // -------------- QUANTITY AND GEOLOC CHANGES
 
-    self.decrementQuantity = function () {
+    self.decrementQuantity = function decrementQuantity() {
       if (self.model.quantity > self.minQuantity) {
         self.model.quantity -= 1;
       }
     };
 
-    self.incrementQuantity = function () {
+    self.incrementQuantity = function incrementQuantity() {
       if (self.model.quantity < self.maxQuantity) {
         self.model.quantity += 1;
       }
@@ -29,7 +37,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpAddC
 
     // -------------- MENU ACTIONS
 
-    self.openEditDetail = function () {
+    self.openEditDetail = function openEditDetail() {
       $scope.$broadcast('adaptative.switch.page.goToPage', 2);
 
       $timeout(() => {
@@ -42,7 +50,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpAddC
       }, 99);
     };
 
-    self.backToMenu = function () {
+    self.backToMenu = function backToMenu() {
       $scope.$broadcast('adaptative.switch.page.goToPage', 1);
     };
 
@@ -50,13 +58,13 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpAddC
 
     // -------------- LEFT PAGE FOOTER ACTIONS
 
-    self.cancelIpAdd = function () {
+    self.cancelIpAdd = function cancelIpAdd() {
       $rootScope.$broadcast('ip.add.cancel');
       // reset overlay
       $rootScope.$broadcast('cuc-highlighted-element.hide');
     };
 
-    self.launchIpCreation = function () {
+    self.launchIpCreation = function launchIpCreation() {
       CloudProjectComputeInfrastructureOrchestrator.createNewIps(this.model);
       // close popover and hide overlay
       self.cancelIpAdd();

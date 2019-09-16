@@ -40,9 +40,10 @@ class DeskaasService {
           ref.push(this.DESKAAS_REFERENCES[upgrade]);
         }
       });
-    } else {
-      console.log(`Error: PlanCode ${planCode} not known`);
     }
+    // else {
+    //   console.log(`Error: PlanCode ${planCode} not known`);
+    // }
     return ref;
   }
 

@@ -1,6 +1,14 @@
 angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivateNetworkDialogCtrl',
-  function ($rootScope, $scope, $q, $timeout, $translate, $stateParams,
-    CloudProjectComputeInfrastructurePrivateNetworkDialogService, CucRegionService) {
+  function CloudProjectComputeInfrastructurePrivateNetworkDialogCtrl(
+    $rootScope,
+    $scope,
+    $q,
+    $timeout,
+    $translate,
+    $stateParams,
+    CloudProjectComputeInfrastructurePrivateNetworkDialogService,
+    CucRegionService,
+  ) {
     const self = this;
 
     self.projectId = $stateParams.projectId;
@@ -63,7 +71,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       });
     }
 
-    self.fetchPrivateNetworks = function () {
+    self.fetchPrivateNetworks = function fetchPrivateNetworks() {
       if (self.service.arePrivateNetworksLoading()) {
         return $q.when();
       }
@@ -85,23 +93,23 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       });
     };
 
-    self.getGlobalNetwork = function () {
+    self.getGlobalNetwork = function getGlobalNetwork() {
       return [self.models.subnet.address, self.models.subnet.mask].join('/');
     };
 
-    self.getPrivateNetwork = function () {
+    self.getPrivateNetwork = function getPrivateNetwork() {
       return self.models.privateNetwork;
     };
 
-    self.getSubnetTemplate = function () {
+    self.getSubnetTemplate = function getSubnetTemplate() {
       return self.models.subnet;
     };
 
-    self.isDHCPEnabled = function () {
+    self.isDHCPEnabled = function isDHCPEnabled() {
       return self.models.subnet.dhcp;
     };
 
-    self.fetchRegions = function () {
+    self.fetchRegions = function fetchRegions() {
       if (self.service.areRegionsLoading()) {
         return $q.when();
       }
@@ -114,15 +122,15 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       });
     };
 
-    self.getRegions = function () {
+    self.getRegions = function getRegions() {
       return self.collections.regions;
     };
 
-    self.hasRegion = function (region) {
+    self.hasRegion = function hasRegion(region) {
       return _.indexOf(self.collections.regions, region) !== -1;
     };
 
-    self.toggleActiveRegion = function (region) {
+    self.toggleActiveRegion = function toggleActiveRegion(region) {
       if (!self.hasRegion(region)) {
         return;
       }
@@ -136,27 +144,27 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       self.presetNetwork();
     };
 
-    self.hasActiveRegion = function (region) {
+    self.hasActiveRegion = function hasActiveRegion(region) {
       return _.indexOf(self.models.privateNetwork.regions, region) !== -1;
     };
 
-    self.getActiveRegions = function () {
+    self.getActiveRegions = function getActiveRegions() {
       return self.models.privateNetwork.regions;
     };
 
-    self.isRegionTogglingDisabled = function (region) {
+    self.isRegionTogglingDisabled = function isRegionTogglingDisabled(region) {
       return self.models.privateNetwork.regions.length <= 1 && self.hasActiveRegion(region);
     };
 
-    self.getSubnetsDescription = function () {
+    self.getSubnetsDescription = function getSubnetsDescription() {
       return _.filter(this.models.privateNetwork.regions, _.isString).join(', ');
     };
 
-    self.toggleEditDescription = function () {
+    self.toggleEditDescription = function toggleEditDescription() {
       self.states.description.edit = !self.states.description.edit;
     };
 
-    self.hasErrors = function (ngModel) {
+    self.hasErrors = function hasErrors(ngModel) {
       if (!ngModel) {
         return false;
       }
@@ -164,7 +172,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       return ngModel.$invalid;
     };
 
-    self.getGroupClasses = function (ngModel) {
+    self.getGroupClasses = function getGroupClasses(ngModel) {
       if (!ngModel) {
         return {};
       }
@@ -175,11 +183,11 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       };
     };
 
-    self.getActivePage = function () {
+    self.getActivePage = function getActivePage() {
       return self.states.page;
     };
 
-    self.getActivePageIndex = function () {
+    self.getActivePageIndex = function getActivePageIndex() {
       switch (self.states.page) {
         case 'common':
         case 'subnets': return 1;
@@ -187,7 +195,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       }
     };
 
-    self.isActivePage = function (page) {
+    self.isActivePage = function isActivePage(page) {
       if (!self.states.page) {
         return false;
       }
@@ -195,11 +203,11 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       return self.states.page === page;
     };
 
-    self.setActivePage = function (page) {
+    self.setActivePage = function setActivePage(page) {
       self.states.page = page;
     };
 
-    self.isSwitchMode = function () {
+    self.isSwitchMode = function isSwitchMode() {
       if (!self.states.switch) {
         return false;
       }
@@ -207,7 +215,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       return self.states.switch.getDisplayMode() === 'switch';
     };
 
-    self.submit = function () {
+    self.submit = function submit() {
       if (!self.form.$valid || self.service.isSavePending()) {
         return;
       }
@@ -223,7 +231,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       $rootScope.$emit('private-networks:create', options);
     };
 
-    self.getApiUrl = function () {
+    self.getApiUrl = function getApiUrl() {
       return self.service.getUrls().api || '';
     };
 
@@ -249,7 +257,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       }
     }
 
-    self.presetNetwork = function (id) {
+    self.presetNetwork = function presetNetwork(id) {
       if (id) {
         resetSubnetAddress(id);
       }
@@ -257,17 +265,17 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     };
 
 
-    self.hasPendingLoaders = function () {
+    self.hasPendingLoaders = function hasPendingLoaders() {
       return self.service.areRegionsLoading()
         || self.service.arePrivateNetworksLoading()
         || self.service.isSavePending();
     };
 
-    self.hasUntaggedVlan = function (networks) {
+    self.hasUntaggedVlan = function hasUntaggedVlan(networks) {
       return self.findVlanWithID(networks, 0);
     };
 
-    self.getNextId = function (networks) {
+    self.getNextId = function getNextId(networks) {
       for (let i = self.constraints.vlanId.min; i < self.constraints.vlanId.max; i += 1) {
         const vlanExists = self.findVlanWithID(networks, i);
         if (!vlanExists) {
@@ -277,15 +285,15 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       return false;
     };
 
-    self.findVlanWithID = function (networks, id) {
+    self.findVlanWithID = function findVlanWithID(networks, id) {
       return _.findWhere(networks, { vlanId: id });
     };
 
-    self.close = function () {
+    self.close = function close() {
       $rootScope.$emit('private-network-dialog:hide');
     };
 
-    self.changeSubnets = function (region) {
+    self.changeSubnets = function changeSubnets(region) {
       self.models.subnets[region].noGateway = !self.models.subnets[region].gateway;
     };
 

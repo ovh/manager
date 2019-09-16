@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('BillingObjectStorageListComponentCtrl', function ($q, $filter, $translate, OvhApiMe, Toast, CucRegionService) {
+  .controller('BillingObjectStorageListComponentCtrl', function BillingObjectStorageListComponentCtrl($q, $filter, $translate, OvhApiMe, Toast, CucRegionService) {
     const self = this;
     self.CucRegionService = CucRegionService;
 
@@ -26,14 +26,14 @@ angular.module('managerApp')
         });
     };
 
-    self.getStorageVolumeInfoTooltip = function (storage) {
+    self.getStorageVolumeInfoTooltip = function getStorageVolumeInfoTooltip(storage) {
       return $translate.instant('cpbc_object_storage_consumption_info_part1')
         .concat($translate.instant('cpbc_object_storage_consumption_info_part2', {
           amount: (storage.stored ? storage.stored.quantity.value : 0),
         }));
     };
 
-    self.getStorageBandwidthInfoTooltip = function (storage) {
+    self.getStorageBandwidthInfoTooltip = function getStorageBandwidthInfoTooltip(storage) {
       return $translate.instant('cpbc_object_storage_output_traffic_info_part1')
         .concat($translate.instant('cpbc_object_storage_output_traffic_info_part2', {
           amount: storage.outgoingBandwidth.quantity.value,

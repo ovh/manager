@@ -12,11 +12,11 @@ angular.module('managerApp').controller('NashaPartitionZFSOptionsCtrl',
     };
     self.model = {};
 
-    self.dismiss = function () {
+    self.dismiss = function dismiss() {
       $uibModalInstance.dismiss();
     };
 
-    self.applyZFSOptionsChanges = function () {
+    self.applyZFSOptionsChanges = function applyZFSOptionsChanges() {
       self.states.saving = true;
       OvhApiDedicatedNasha.Partition().Options().v6().save({
         serviceName: $stateParams.nashaId,
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('NashaPartitionZFSOptionsCtrl',
         });
     };
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.loaders = true;
       self.data.partition = $scope.$resolve.items;
       NashaPartitionZFSOptionsService.getZFSOptionsEnums()

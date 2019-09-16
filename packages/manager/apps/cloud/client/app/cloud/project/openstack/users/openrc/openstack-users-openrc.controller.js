@@ -78,7 +78,7 @@ angular.module('managerApp')
       return url;
     }
 
-    self.downloadOpenrcFile = function () {
+    self.downloadOpenrcFile = function downloadOpenrcFile() {
       const url = buildOpenrcUrl();
       const link = document.createElement('a');
       link.setAttribute('href', url);
@@ -90,11 +90,11 @@ angular.module('managerApp')
       self.close();
     };
 
-    self.close = function () {
+    self.close = function close() {
       $uibModalInstance.close();
     };
 
-    self.cancel = function () {
+    self.cancel = function cancel() {
       $uibModalInstance.dismiss();
     };
 

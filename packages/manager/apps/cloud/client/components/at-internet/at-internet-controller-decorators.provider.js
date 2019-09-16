@@ -3,10 +3,10 @@
  *  Decorate functions at runtime for at-internet tracking
  * */
 angular.module('managerApp')
-  .provider('atInternetControllerDecorators', function ($provide) {
-    this.decorate = function (config) {
+  .provider('atInternetControllerDecorators', function atInternetControllerDecorators($provide) {
+    this.decorate = function decorate(config) {
       $provide.decorator('$controller', ($delegate, atInternet) => {
-        const getController = function (constructor) {
+        const getController = function getControllerFn(constructor) {
           const controller = $delegate(...arguments);
 
           const decorators = getControllerDecorators(constructor);
@@ -14,7 +14,7 @@ angular.module('managerApp')
           if (decorators) {
             const isLazyInstantiation = _.get(arguments, [2], false);
             if (isLazyInstantiation) {
-              return function () {
+              return function lazyInstantiationFn() {
                 // force controller constructor execution for to decorate functions
                 return getDecoratedController(controller(), decorators);
               };
@@ -32,7 +32,7 @@ angular.module('managerApp')
               throw new Error('Specified function to decorate is not a function');
             }
 
-            controllerToDecorate[functionToDecorate] = function () {
+            controllerToDecorate[functionToDecorate] = function controllerToDecorateFn() {
               behavior(atInternet, controllerToDecorate, arguments);
               originFunction.apply(controllerToDecorate, arguments);
             };
@@ -52,6 +52,6 @@ angular.module('managerApp')
       });
     };
 
-    this.$get = function () {};
+    this.$get = function $get() {};
   });
 /* eslint-enable no-param-reassign, prefer-rest-params, no-use-before-define */

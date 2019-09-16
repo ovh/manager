@@ -6,9 +6,9 @@ class CloudProjectComputeSnapshotPriceService {
   getSnapshotPrice({ size, serviceName, region }) {
     return this.OvhCloudPriceHelper.getPrices(serviceName).then((prices) => {
       let snapshotPrice = prices[`snapshot.consumption.${region}`] || prices['snapshot.consumption'];
-      if (!snapshotPrice) {
-        console.warn('price not found for this snapshot');
-      }
+      // if (!snapshotPrice) {
+      //   console.warn('price not found for this snapshot');
+      // }
       snapshotPrice = {
         price: angular.copy(snapshotPrice.price),
         priceInUcents: snapshotPrice.priceInUcents,

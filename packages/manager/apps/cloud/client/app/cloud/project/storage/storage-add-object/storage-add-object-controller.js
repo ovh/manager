@@ -27,7 +27,7 @@ angular.module('managerApp').controller('RA.storage.addObject',
       }
     });
 
-    $scope.cancel = function () {
+    $scope.cancel = function cancel() {
       $uibModalInstance.dismiss();
     };
   });

@@ -1,5 +1,10 @@
 angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl.exampleUseToken',
-  function (params, OvhApiMe, $uibModalInstance, DBaasTsConstants) {
+  function DBaasTsProjectDetailsKeyCtrlExampleUseTokenCtrl(
+    params,
+    OvhApiMe,
+    $uibModalInstance,
+    DBaasTsConstants,
+  ) {
     // -- Variables declaration
     const self = this;
 
@@ -26,7 +31,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl.exampleUse
 
     // --
 
-    self.close = function () {
+    self.close = function close() {
       $uibModalInstance.close();
     };
   });

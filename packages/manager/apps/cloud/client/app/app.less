@@ -36,39 +36,49 @@
 @screen-md-min: @oui-responsive-breakpoint-tablet;
 @screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
 @screen-lg-min: @oui-responsive-breakpoint-medium;
-@component-offset-horizontal : 200px;
+
+@component-offset-horizontal: 200px;
 @modal-backdrop-bg: @oui-color-shuttle;
 
 // Params use by bootstrap and app
-@v6-min-with : 801px;
-@v6-max-with : 800px;
+@v6-min-with: 801px;
 
-@font-size-base : 12px;
+@v6-max-with: 800px;
 
-@border-radius-base  : 2px;
-@border-radius-large : 2px;
-@border-radius-small : 1px;
-@top_bar_height : 80px;
+@font-size-base: 12px;
+
+@border-radius-base: 2px;
+
+@border-radius-large: 2px;
+
+@border-radius-small: 1px;
+
+@top_bar_height: 80px;
 
 // App params structure
-@TopNavHeight           : 44px;
-@MobileTopNavHeight     : @TopNavHeight;
+@TopNavHeight: 44px;
 
-@TopTabBackground       : #e0e0e0;
-@TopNavBackground       : @TopTabBackground;
+@MobileTopNavHeight: @TopNavHeight;
 
-@UNIVERS       : #edc200;
-@UNIVERS_HOVER : #e9d473;
-@UNIVERS_SECONDARY       : hsl(168, 32%, 54%); //#65afa0;
-@UNIVERS_SECONDARY_HOVER : lighten(@UNIVERS_SECONDARY, 8%);
+@TopTabBackground: #e0e0e0;
 
-@DefaultFontSize : 12px;
+@TopNavBackground: @TopTabBackground;
+
+@UNIVERS: #edc200;
+
+@UNIVERS_HOVER: #e9d473;
+
+@UNIVERS_SECONDARY: hsl(168, 32%, 54%); //#65afa0;
+
+@UNIVERS_SECONDARY_HOVER: lighten(@UNIVERS_SECONDARY, 8%);
+
+@DefaultFontSize: 12px;
 
 // Zindex
-@zIndexFullOverlay        : 1040;
+@zIndexFullOverlay: 1040;
 @imgPath: '../assets/';
 
-@table-header-background-color : @UNIVERS_SECONDARY;
+@table-header-background-color: @UNIVERS_SECONDARY;
 
 .cui-modal {
   .modal-content {
@@ -146,7 +156,7 @@ html {
     display: block;
 
     // &[class*="sidebar"] {
-    //     z-index : @zIndexFullOverlaySidebar;
+    //     z-index: @zIndexFullOverlaySidebar;
     // }
   }
 }

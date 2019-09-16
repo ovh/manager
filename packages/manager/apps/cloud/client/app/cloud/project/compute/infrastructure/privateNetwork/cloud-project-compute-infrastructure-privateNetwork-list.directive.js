@@ -275,7 +275,7 @@ class PrivateNetworkListCtrl {
       .map(subnet => _.assign(subnet, { dhcp: args.isDHCPEnabled, network: args.globalNetwork }))
       .value();
 
-    const onNetworkCreated = function (network) {
+    const onNetworkCreated = function onNetworkCreated(network) {
       const promises = _.map(subnets, subnet => this.service
         .saveSubnet(args.projectId, network.id, subnet).$promise, this);
       return this.$q.all(promises).then(() => this.fetchPrivateNetworks());

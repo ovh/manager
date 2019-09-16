@@ -8,7 +8,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
    *
    *  /!\ Take care when modifying this!!! Check setInfos, and prepareToJson too.
    */
-  const VirtualMachineFactory = (function () {
+  const VirtualMachineFactory = (function VirtualMachineFactory() {
     return function CloudProjectComputeInfraVrackVmFactory(optionsParam) {
       let options = optionsParam;
       if (!options) {
@@ -39,7 +39,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
      *  Set customs options (for init, and updates)
      *  -> @devs: put your customs values here
      */
-  VirtualMachineFactory.prototype.getCustomOptions = function (options) {
+  VirtualMachineFactory.prototype.getCustomOptions = function getCustomOptions(options) {
     return angular.extend(options, {
       routedTo: options.routedTo
         ? _.flatten([options.routedTo])
@@ -51,7 +51,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Set infos after initialization
      */
-  VirtualMachineFactory.prototype.setInfos = function (optionsParam) {
+  VirtualMachineFactory.prototype.setInfos = function setInfos(optionsParam) {
     let options = optionsParam;
 
     // Set custom values
@@ -67,7 +67,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Get the virtual machine from API using its id
      */
-  VirtualMachineFactory.prototype.get = function () {
+  VirtualMachineFactory.prototype.get = function get() {
     const self = this;
 
     return OvhApiCloudProjectInstance.v6().get({
@@ -79,7 +79,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Get additional informations
      */
-  VirtualMachineFactory.prototype.updatePrice = function () {
+  VirtualMachineFactory.prototype.updatePrice = function updatePrice() {
     const self = this;
     return OvhCloudPriceHelper.getPrices(self.serviceName).then((prices) => {
       self.price = prices[self.planCode];
@@ -90,7 +90,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
     });
   };
 
-  VirtualMachineFactory.prototype.getFullInformations = function () {
+  VirtualMachineFactory.prototype.getFullInformations = function getFullInformations() {
     const queue = [];
     const self = this;
 
@@ -169,7 +169,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *   Get type of status.
      */
-  VirtualMachineFactory.prototype.getStatusGroup = function () {
+  VirtualMachineFactory.prototype.getStatusGroup = function getStatusGroup() {
     if (~CLOUD_VM_STATE.pending.indexOf(this.status)) {
       return 'PENDING';
     } if (~CLOUD_VM_STATE.openstack.indexOf(this.status)) {
@@ -184,22 +184,22 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Get ip flagged with private type
      */
-  VirtualMachineFactory.prototype.getPrivateIp = function () {
+  VirtualMachineFactory.prototype.getPrivateIp = function getPrivateIp() {
     return _.find(this.ipAddresses, ip => ip.type === 'private');
   };
 
-  VirtualMachineFactory.prototype.getPublicIpv4 = function () {
+  VirtualMachineFactory.prototype.getPublicIpv4 = function getPublicIpv4() {
     return _.get(_.find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 4), 'ip', '');
   };
 
-  VirtualMachineFactory.prototype.getPublicIpv6 = function () {
+  VirtualMachineFactory.prototype.getPublicIpv6 = function getPublicIpv6() {
     return _.get(_.find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 6), 'ip', _.get(this.ipAddresses[0], 'ipV6.ip', ''));
   };
 
   /**
      *  [API] Launch the virtual machine. POST informations for creating an instance to API
      */
-  VirtualMachineFactory.prototype.launchCreation = function () {
+  VirtualMachineFactory.prototype.launchCreation = function launchCreation() {
     const self = this;
 
     return OvhApiCloudProjectInstance.v6().save({
@@ -224,7 +224,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Delete a virtual machine.
      */
-  VirtualMachineFactory.prototype.remove = function () {
+  VirtualMachineFactory.prototype.remove = function remove() {
     const self = this;
     const oldStatus = self.status;
 
@@ -242,7 +242,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Edit the VM (name)
      */
-  VirtualMachineFactory.prototype.edit = function () {
+  VirtualMachineFactory.prototype.edit = function edit() {
     const self = this;
     const promises = [];
 
@@ -306,7 +306,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      * Init saveForEdition attribute.
      */
-  VirtualMachineFactory.prototype.initEdition = function () {
+  VirtualMachineFactory.prototype.initEdition = function initEdition() {
     const self = this;
     self.saveForEdition = {
       name: angular.copy(self.name),
@@ -319,7 +319,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Enable the edition mode.
      */
-  VirtualMachineFactory.prototype.startEdition = function () {
+  VirtualMachineFactory.prototype.startEdition = function startEdition() {
     const self = this;
     // Edit
     if (self.status === 'ACTIVE') {
@@ -333,7 +333,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Disable the edition mode.
      */
-  VirtualMachineFactory.prototype.stopEdition = function (cancel, vmWithChanges) {
+  VirtualMachineFactory.prototype.stopEdition = function stopEdition(cancel, vmWithChanges) {
     const self = this;
 
     if (!cancel && vmWithChanges) {
@@ -351,7 +351,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Enable the monitoring mode.
      */
-  VirtualMachineFactory.prototype.startMonitoring = function () {
+  VirtualMachineFactory.prototype.startMonitoring = function startMonitoring() {
     this.openMonitoring = true;
     this.openDetail = false;
   };
@@ -359,14 +359,14 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Disable the monitoring mode.
      */
-  VirtualMachineFactory.prototype.stopMonitoring = function () {
+  VirtualMachineFactory.prototype.stopMonitoring = function stopMonitoring() {
     this.openMonitoring = false;
   };
 
   /**
      * [EDIT] Item has changes ?
      */
-  VirtualMachineFactory.prototype.hasChange = function (targetSection) {
+  VirtualMachineFactory.prototype.hasChange = function hasChange(targetSection) {
     const self = this;
 
     if (!self.saveForEdition) {
@@ -400,7 +400,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Reinstall a vm.
      */
-  VirtualMachineFactory.prototype.reinstall = function (imageId) {
+  VirtualMachineFactory.prototype.reinstall = function reinstall(imageId) {
     const self = this;
     const oldStatus = self.status;
     return OvhApiCloudProjectInstance.v6().reinstall({
@@ -421,7 +421,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Rescue a virtual machine.
      */
-  VirtualMachineFactory.prototype.rescueMode = function (enable, image) {
+  VirtualMachineFactory.prototype.rescueMode = function rescueMode(enable, image) {
     const self = this;
     const oldStatus = self.status;
     this.status = enable ? 'RESCUING' : 'UNRESCUING';
@@ -438,7 +438,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Reboot [soft|hard] a virtual machine.
      */
-  VirtualMachineFactory.prototype.reboot = function (type) {
+  VirtualMachineFactory.prototype.reboot = function reboot(type) {
     const self = this;
     const oldStatus = self.status;
     return OvhApiCloudProjectInstance.v6().reboot({
@@ -456,7 +456,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Resume a virtual machine.
      */
-  VirtualMachineFactory.prototype.resume = function () {
+  VirtualMachineFactory.prototype.resume = function resume() {
     return OvhApiCloudProjectInstance.v6().resume({
       serviceName: this.serviceName,
       instanceId: this.id,
@@ -466,7 +466,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Create snapshot.
      */
-  VirtualMachineFactory.prototype.backup = function (snapshotName) {
+  VirtualMachineFactory.prototype.backup = function backup(snapshotName) {
     const self = this;
     const oldStatus = self.status;
     return OvhApiCloudProjectInstance.v6().backup({
@@ -486,7 +486,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  Prepare a vm to be JSON stringified by returning only attributes.
      */
-  VirtualMachineFactory.prototype.prepareToJson = function () {
+  VirtualMachineFactory.prototype.prepareToJson = function prepareToJson() {
     if (this.status === 'DRAFT') {
       return {
         id: this.id,
@@ -509,51 +509,53 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
     };
   };
 
-  VirtualMachineFactory.prototype.generateMonitoringInference = function () {
-    const self = this;
-    if (self.monitoringData && self.monitoringData.raw) {
-      const rawData = this.monitoringData.raw;
-      let maxPeriod;
+  VirtualMachineFactory
+    .prototype
+    .generateMonitoringInference = function generateMonitoringInference() {
+      const self = this;
+      if (self.monitoringData && self.monitoringData.raw) {
+        const rawData = this.monitoringData.raw;
+        let maxPeriod;
 
-      // ----- CPU -----
-      if (rawData['cpu:used'] && !_.isEmpty(rawData['cpu:used'].values)) {
-        maxPeriod = _.max(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
-        this.monitoringData.cpu = {
-          now: _.last(rawData['cpu:used'].values), // current CPU usage
-          // does CPU reach alerting threshold over period?
-          needUpgrade: maxPeriod.value >= CLOUD_MONITORING.vm.upgradeAlertThreshold,
-          maxPeriod, // max CPU usage over given period
-        };
-      }
+        // ----- CPU -----
+        if (rawData['cpu:used'] && !_.isEmpty(rawData['cpu:used'].values)) {
+          maxPeriod = _.max(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+          this.monitoringData.cpu = {
+            now: _.last(rawData['cpu:used'].values), // current CPU usage
+            // does CPU reach alerting threshold over period?
+            needUpgrade: maxPeriod.value >= CLOUD_MONITORING.vm.upgradeAlertThreshold,
+            maxPeriod, // max CPU usage over given period
+          };
+        }
 
-      // ----- RAM -----
-      if (rawData['mem:used'] && rawData['mem:max'] && !_.isEmpty(rawData['mem:used'].values) && !_.isEmpty(rawData['mem:max'].values)) {
-        const memTotal = _.first(rawData['mem:max'].values);
-        maxPeriod = null;
-        if (memTotal && memTotal.value > 0) {
-          maxPeriod = _.max(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
-        }
-        this.monitoringData.mem = {
-          now: _.last(rawData['mem:used'].values), // current RAM usage
-          total: memTotal, // total RAM available
-          // does RAM reach alerting threshold over period ?
-          needUpgrade: maxPeriod.value / memTotal.value * 100.0 >= CLOUD_MONITORING.vm
-            .upgradeAlertThreshold,
-          maxPeriod, // max RAM usage over given period
-          unit: rawData['mem:used'].unit, // RAM units (MB GB ...)
-        };
-        if (this.monitoringData.mem.now && memTotal) {
-          // current RAM usage in percent
-          this.monitoringData.mem.nowPercent = this.monitoringData.mem.now.value / memTotal.value;
+        // ----- RAM -----
+        if (rawData['mem:used'] && rawData['mem:max'] && !_.isEmpty(rawData['mem:used'].values) && !_.isEmpty(rawData['mem:max'].values)) {
+          const memTotal = _.first(rawData['mem:max'].values);
+          maxPeriod = null;
+          if (memTotal && memTotal.value > 0) {
+            maxPeriod = _.max(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+          }
+          this.monitoringData.mem = {
+            now: _.last(rawData['mem:used'].values), // current RAM usage
+            total: memTotal, // total RAM available
+            // does RAM reach alerting threshold over period ?
+            needUpgrade: maxPeriod.value / memTotal.value * 100.0 >= CLOUD_MONITORING.vm
+              .upgradeAlertThreshold,
+            maxPeriod, // max RAM usage over given period
+            unit: rawData['mem:used'].unit, // RAM units (MB GB ...)
+          };
+          if (this.monitoringData.mem.now && memTotal) {
+            // current RAM usage in percent
+            this.monitoringData.mem.nowPercent = this.monitoringData.mem.now.value / memTotal.value;
+          }
         }
       }
-    }
-  };
+    };
 
   /**
      *  Get vm monitoring informations
      */
-  VirtualMachineFactory.prototype.getMonitoringData = function () {
+  VirtualMachineFactory.prototype.getMonitoringData = function getMonitoringData() {
     const self = this;
     const promiseToExecute = [];
 

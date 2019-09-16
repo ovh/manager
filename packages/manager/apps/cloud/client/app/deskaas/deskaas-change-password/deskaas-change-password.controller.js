@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function ($uibModalInstance, OvhApiDeskaasService, service) {
+angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function DeskaasChangePasswordCtrl($uibModalInstance, OvhApiDeskaasService, service) {
   const self = this;
 
   self.policies = {};
@@ -12,11 +12,11 @@ angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function ($
     init: false,
   };
 
-  self.cancel = function () {
+  self.cancel = function cancel() {
     $uibModalInstance.dismiss('cancel');
   };
 
-  self.ok = function () {
+  self.ok = function ok() {
     if (!self.values.generatePwd && !self.values.password) {
       $uibModalInstance.dismiss('cancel');
       return;

@@ -11,7 +11,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfrastructureFactory',
      *  @param    {Object}  optionsParam.internet
      *                      Options of the CloudProjectComputeInfrastructure Internet
      */
-    const InfrastructureFactory = (function () {
+    const InfrastructureFactory = (function InfrastructureFactory() {
       return function CloudProjectComputeInfrastructureFactory(optionsParam) {
         let options = optionsParam;
         if (!options) {
@@ -48,7 +48,9 @@ angular.module('managerApp').factory('CloudProjectComputeInfrastructureFactory',
      *  jsPlumb will not draw a link if the endpoint is not present.
      *  /!\ Please put only REAL links in routedTo (aka present in API), not fake one.
      */
-    InfrastructureFactory.prototype.refreshVmsRoutedToFromIp = function (ip) {
+    InfrastructureFactory.prototype.refreshVmsRoutedToFromIp = function refreshVmsRoutedToFromIp(
+      ip,
+    ) {
       let routedVm;
 
 
@@ -80,7 +82,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfrastructureFactory',
     /**
          *  Prepare object to json encode function to avoid function being encoded
          */
-    InfrastructureFactory.prototype.prepareToJson = function () {
+    InfrastructureFactory.prototype.prepareToJson = function prepareToJson() {
       return {
         vrack: this.vrack.prepareToJson(),
         internet: this.internet.prepareToJson(),

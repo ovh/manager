@@ -36,7 +36,7 @@ angular.module('managerApp').directive('contracts', () => ({
       _.set(ContractsCtrl, 'disabled', true);
 
       // Fake Anchor
-      topMenu.delegate('a', 'click', function (e) {
+      topMenu.delegate('a', 'click', function click(e) {
         const href = $(this).attr('data-fake-href');
 
         $('.contracts-list').stop().scrollTo(href, scrollToOptions);
@@ -64,7 +64,7 @@ angular.module('managerApp').directive('contracts', () => ({
         const fromTop = $elm.find('.contracts-list').height() / 2 + $elm.find('.contracts-list').offset().top;
 
         if (scrollItems === undefined) {
-          scrollItems = menuItems.map(function () {
+          scrollItems = menuItems.map(function scrollItemsFn() {
             const item = $($(this).attr('data-fake-href'));
             if (initialOffSet === undefined) {
               initialOffSet = item.offset().top;
@@ -77,7 +77,7 @@ angular.module('managerApp').directive('contracts', () => ({
         }
 
         // Get id of current scroll item
-        let cur = scrollItems.map(function () {
+        let cur = scrollItems.map(function mapScrollItem() {
           if ($(this).offset().top <= fromTop) {
             return this;
           }

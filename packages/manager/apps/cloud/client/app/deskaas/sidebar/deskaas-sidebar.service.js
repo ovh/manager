@@ -1,4 +1,4 @@
-angular.module('managerApp').service('deskaasSidebar', function ($rootScope, OvhApiDeskaasService, $q, SidebarMenu) {
+angular.module('managerApp').service('deskaasSidebar', function deskaasSidebar($rootScope, OvhApiDeskaasService, $q, SidebarMenu) {
   const self = this;
 
   /*= ===================================
@@ -7,7 +7,7 @@ angular.module('managerApp').service('deskaasSidebar', function ($rootScope, Ovh
 
   /* ----------  API CALL  ----------*/
 
-  self.getServices = function () {
+  self.getServices = function getServices() {
     return $q((resolve) => {
       OvhApiDeskaasService.v6().query()
         .$promise
@@ -37,14 +37,14 @@ angular.module('managerApp').service('deskaasSidebar', function ($rootScope, Ovh
     });
   };
 
-  self.getEntryMenu = function (service) {
+  self.getEntryMenu = function getEntryMenu(service) {
     const id = `deskaas_${service.serviceName}`;
     const title = service.alias === 'noAlias' || service.alias === '' ? service.serviceName : `${service.alias} (${service.serviceName})`;
     return { id, title };
   };
 
   /* */
-  self.updateItem = function (service) {
+  self.updateItem = function updateItem(service) {
     const entry = self.getEntryMenu(service);
     if (self.section) {
       SidebarMenu.updateItemDisplay({
@@ -55,7 +55,7 @@ angular.module('managerApp').service('deskaasSidebar', function ($rootScope, Ovh
 
   /* ----------  FILL  ----------*/
 
-  self.loadIntoSection = function (section, servicesParams) {
+  self.loadIntoSection = function loadIntoSection(section, servicesParams) {
     let services = servicesParams;
     self.section = section;
     services = services.sort();

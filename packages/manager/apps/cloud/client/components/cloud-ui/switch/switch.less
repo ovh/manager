@@ -23,22 +23,22 @@
 @switch-paddle-background-color_disabled: @concrete;
 
 #ovh {
-  .switch (
-    @label-font-weight: @switch-label-font-weight,
-    @label-font-size: @switch-label-font-size,
-    @label-font-size_large: @switch-label-font-size_large,
-    @paddle-background-color_off: @switch-paddle-background-color_off,
-    @paddle-background-color_on: @switch-paddle-background-color_on,
-    @rail-background-color_off: @switch-rail-background-color_off,
-    @rail-background-color_on: @switch-rail-background-color_on,
-    @paddle-box-shadow_on: 0 2px 0 0 @pacific,
-    @paddle-box-shadow_off: 0 2px 0 0 rgba(0, 0, 0, 0.1),
-    @rail-box-shadow_on: 0 2px 0 0 @pacific inset,
-    @rail-box-shadow_off: 0 2px 0 0 @heather inset,
-    @paddle-border-radius: @switch-paddle-border-radius,
-    @rail-border-radius: @switch-rail-border-radius,
-    @paddle-z-index: @switch-paddle-z-index
-  ) {
+  .switch(
+  @label-font-weight: @switch-label-font-weight,
+  @label-font-size: @switch-label-font-size,
+  @label-font-size_large: @switch-label-font-size_large,
+  @paddle-background-color_off: @switch-paddle-background-color_off,
+  @paddle-background-color_on: @switch-paddle-background-color_on,
+  @rail-background-color_off: @switch-rail-background-color_off,
+  @rail-background-color_on: @switch-rail-background-color_on,
+  @paddle-box-shadow_on: 0 2px 0 0 @pacific,
+  @paddle-box-shadow_off: 0 2px 0 0 rgba(0, 0, 0, 0.1),
+  @rail-box-shadow_on: 0 2px 0 0 @pacific inset,
+  @rail-box-shadow_off: 0 2px 0 0 @heather inset,
+  @paddle-border-radius: @switch-paddle-border-radius,
+  @rail-border-radius: @switch-rail-border-radius,
+  @paddle-z-index: @switch-paddle-z-index
+) {
     position: relative;
     display: block;
     padding-right: 5rem;
@@ -108,10 +108,10 @@
     }
   }
 
-  .switch-level (
-    @picto-color: @switch-level-picto-color,
-    @picto-color_disabled: @switch-level-picto-color_disabled
-  ) {
+  .switch-level(
+  @picto-color: @switch-level-picto-color,
+  @picto-color_disabled: @switch-level-picto-color_disabled
+) {
     &__level {
       user-select: none;
       cursor: pointer;
@@ -163,10 +163,10 @@
     }
   }
 
-  .switch-disabled (
-    @background-color: @switch-background-color_disabled,
-    @paddle-background-color: @switch-paddle-background-color_disabled
-  ) {
+  .switch-disabled(
+  @background-color: @switch-background-color_disabled,
+  @paddle-background-color: @switch-paddle-background-color_disabled
+) {
     &__input[disabled] ~ &__paddle,
     &__input[disabled] ~ &__level {
       cursor: not-allowed;

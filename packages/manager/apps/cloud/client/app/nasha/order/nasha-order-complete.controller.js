@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaOrderCompleteCtrl', function ($stateParams) {
+angular.module('managerApp').controller('NashaOrderCompleteCtrl', function NashaOrderCompleteCtrl($stateParams) {
   const self = this;
 
   function init() {

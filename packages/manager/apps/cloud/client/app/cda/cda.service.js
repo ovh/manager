@@ -1,10 +1,10 @@
 angular.module('managerApp')
-  .service('CdaService', function ($q, $translate, OvhApiDedicatedCeph, SidebarMenu, CucCloudMessage) {
+  .service('CdaService', function CdaService($q, $translate, OvhApiDedicatedCeph, SidebarMenu, CucCloudMessage) {
     const self = this;
 
     self.currentService = {};
 
-    self.initDetails = function (serviceName, forceRefresh) {
+    self.initDetails = function initDetails(serviceName, forceRefresh) {
       if (!serviceName) {
         self.currentService = {};
         return $q.reject();
@@ -24,7 +24,7 @@ angular.module('managerApp')
       return $q.when(self.currentService);
     };
 
-    self.updateDetails = function (serviceName, label, crushTunable) {
+    self.updateDetails = function updateDetails(serviceName, label, crushTunable) {
       self.saving = true;
       return OvhApiDedicatedCeph.v6().put({
         serviceName,
@@ -42,14 +42,14 @@ angular.module('managerApp')
       }).catch(error => $q.reject(error));
     };
 
-    self.changeMenuTitle = function (serviceName, label) {
+    self.changeMenuTitle = function changeMenuTitle(serviceName, label) {
       const menuItem = SidebarMenu.getItemById(serviceName);
       if (menuItem) {
         menuItem.title = label;
       }
     };
 
-    self.getUsers = function (params) {
+    self.getUsers = function getUsers(params) {
       OvhApiDedicatedCeph.User().Aapi().resetCache();
 
       return OvhApiDedicatedCeph.User().Aapi().users({

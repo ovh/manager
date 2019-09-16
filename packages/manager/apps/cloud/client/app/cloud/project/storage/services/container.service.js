@@ -5,8 +5,14 @@ angular.module('managerApp').service('CloudStorageContainer', [
   'OvhApiCloudProjectStorage',
   'CloudStorageContainersConfiguration',
   'CLOUD_PCA_FILE_STATE',
-  function ($cacheFactory, $http, $q,
-    OvhApiCloudProjectStorage, storageContainerConfig, CLOUD_PCA_FILE_STATE) {
+  function CloudStorageContainerService(
+    $cacheFactory,
+    $http,
+    $q,
+    OvhApiCloudProjectStorage,
+    storageContainerConfig,
+    CLOUD_PCA_FILE_STATE,
+  ) {
     const self = this;
 
     // Openstack headers
@@ -93,7 +99,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @param  {string} containerId   container id
      * @return {Promise<Object>}      container metadata
      */
-    self.getMetaData = function (projectId, containerId) {
+    self.getMetaData = function getMetaData(projectId, containerId) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
         .then(containerMeta => requestContainer(
@@ -125,7 +131,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @param  {string} containerId   container id
      * @return {Promise<Object>}      object containing the list of objects
      */
-    self.list = function (projectId, containerId) {
+    self.list = function list(projectId, containerId) {
       return OvhApiCloudProjectStorage.v6().get({
         projectId,
         containerId,
@@ -141,7 +147,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
       const deferred = $q.defer();
       const xhr = new XMLHttpRequest();
 
-      const uploadProgress = function (e) {
+      const uploadProgress = function uploadProgress(e) {
         let res;
         if (e.lengthComputable) {
           res = Math.round(e.loaded * 100 / e.total);
@@ -154,7 +160,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
         }
       };
 
-      const uploadComplete = function (e) {
+      const uploadComplete = function uploadComplete(e) {
         const xhr = e.srcElement || e.target;
         if (xhr.status >= 200 && xhr.status < 300) { // successful upload
           deferred.resolve(xhr);
@@ -163,12 +169,12 @@ angular.module('managerApp').service('CloudStorageContainer', [
         }
       };
 
-      const uploadFailed = function (e) {
+      const uploadFailed = function uploadFailed(e) {
         const xhr = e.srcElement || e.target;
         deferred.reject(xhr);
       };
 
-      const uploadCanceled = function (e) {
+      const uploadCanceled = function uploadCanceled(e) {
         const xhr = e.srcElement || e.target;
         deferred.reject(xhr);
       };
@@ -201,7 +207,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @param  {Object} object      object to download
      * @return {Promise}
      */
-    self.download = function (projectId, containerId, file) {
+    self.download = function download(projectId, containerId, file) {
       const weekDurationInMilliseconds = 6.048e+8;
       const expiration = new Date(Date.now() + weekDurationInMilliseconds);
 
@@ -238,7 +244,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @param  {Object} opts          upload opts
      * @return {Promise}
      */
-    self.upload = function (projectId, containerId, opts) {
+    self.upload = function uploadFn(projectId, containerId, opts) {
       if (!opts.file) {
         return $q.reject({
           errorCode: 'BAD_PARAMETERS',
@@ -274,7 +280,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @param  {string} file        file name
      * @return {Promise}
      */
-    self.delete = function (projectId, containerId, file) {
+    self.delete = function deleteFn(projectId, containerId, file) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
         .then(containerMeta => requestContainer(
@@ -293,7 +299,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
      * @param {string} containerId container id
      * @return {Promise}
      */
-    self.setAsPublic = function (projectId, containerId) {
+    self.setAsPublic = function setAsPublic(projectId, containerId) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
         .then((containerMeta) => {

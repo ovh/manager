@@ -1,6 +1,6 @@
 
 
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFailoverBuyAgoraCtrl', function ($http, $q, $stateParams, $translate, $uibModalInstance, $window, CucCloudMessage, OvhApiCloudProjectInstance) {
+angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFailoverBuyAgoraCtrl', function CloudProjectComputeInfrastructureIpFailoverBuyAgoraCtrl($http, $q, $stateParams, $translate, $uibModalInstance, $window, CucCloudMessage, OvhApiCloudProjectInstance) {
   const self = this;
 
   function getIpfoCatalog() {

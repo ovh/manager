@@ -66,7 +66,7 @@ angular.module('managerApp')
      * Fetch informations for every IPFO (we need to check if ipfo is already linked
      * to current project and if his region is compatible)
      */
-    self.initIps = function (ips) {
+    self.initIps = function initIps(ips) {
       const queries = [];
       self.datas.ipsFo = [];
 
@@ -95,15 +95,15 @@ angular.module('managerApp')
       }
     }, true);
 
-    self.refreshIpsFo = function () {
+    self.refreshIpsFo = function refreshIpsFo() {
       getIpsFo(true);
     };
 
-    self.getSelectedCount = function () {
+    self.getSelectedCount = function getSelectedCount() {
       return Object.keys(self.datas.selected).length;
     };
 
-    self.getInfoSelect = function () {
+    self.getInfoSelect = function getInfoSelect() {
       if (Object.keys(self.datas.selected).length === 1) {
         return Object.keys(self.datas.selected)[0];
       }
@@ -115,7 +115,7 @@ angular.module('managerApp')
 
     // ---------MODAL---------
 
-    self.confirm = function () {
+    self.confirm = function confirm() {
       if (!self.loaders.table.importIpsFo) {
         const listPromise = [];
 
@@ -175,7 +175,7 @@ angular.module('managerApp')
       }
     };
 
-    self.cancel = function () {
+    self.cancel = function cancel() {
       $uibModalInstance.dismiss();
     };
 

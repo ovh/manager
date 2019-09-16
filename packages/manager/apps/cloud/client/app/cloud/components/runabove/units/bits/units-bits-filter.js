@@ -1,7 +1,7 @@
 angular.module('managerApp').filter('RAUnitsBits', () => {
   const tabUnits = ['B', 'KB', 'MB', 'GB', 'TB'];
 
-  return function (size) {
+  return function RAUnitsBitsFilter(size) {
     let rest = +size;
     let idx = 0;
 

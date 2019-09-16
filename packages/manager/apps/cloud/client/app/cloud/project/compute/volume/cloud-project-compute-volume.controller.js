@@ -72,7 +72,7 @@ angular.module('managerApp')
 
     // ---------TOOLS---------
 
-    self.getSelectedCount = function () {
+    self.getSelectedCount = function getSelectedCount() {
       return Object.keys(self.table.selected).length;
     };
 
@@ -96,7 +96,7 @@ angular.module('managerApp')
       }
     }, true);
 
-    self.toggleDeleteMultiConfirm = function () {
+    self.toggleDeleteMultiConfirm = function toggleDeleteMultiConfirm() {
       if (self.toggle.openDeleteMultiConfirm) {
         self.table.selected = {};
       }
@@ -159,7 +159,7 @@ angular.module('managerApp')
           self.order.by = by;
         }
       }
-      const orderByExpression = self.order.by !== 'price' ? self.order.by : function (volume) {
+      const orderByExpression = self.order.by !== 'price' ? self.order.by : function orderByFn(volume) {
         return volume.calculatePrice().monthlyPrice.value;
       };
 
@@ -278,7 +278,7 @@ angular.module('managerApp')
       }
     }, true);
 
-    self.createNewVolume = function () {
+    self.createNewVolume = function createNewVolume() {
       CucCloudMessage.info($translate.instant('cpc_volume_create_volume_button_info'));
       $timeout(() => {
         $state.go('iaas.pci-project.compute.infrastructure.diagram', {
@@ -287,7 +287,7 @@ angular.module('managerApp')
       }, 99);
     };
 
-    self.openDeleteVolume = function (volume) {
+    self.openDeleteVolume = function openDeleteVolume(volume) {
       CucControllerHelper.modal.showModal({
         modalConfig: {
           templateUrl: 'app/cloud/project/compute/volume/delete/cloud-project-compute-volume-delete.html',

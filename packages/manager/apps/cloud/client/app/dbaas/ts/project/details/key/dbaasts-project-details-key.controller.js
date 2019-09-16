@@ -14,13 +14,13 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
 
     // -- Edit key --
 
-    self.edit = function (key) {
+    self.edit = function edit(key) {
       return $state.go('^.dbaasts-project-details-key-edit', { keyId: key.id });
     };
 
     // -- Delete key --
 
-    self.delete = function (key) {
+    self.delete = function deleteFn(key) {
       $uibModal.open({
         templateUrl: 'app/dbaas/ts/project/details/key/delete/modal.html',
         controllerAs: 'ctrl',
@@ -28,7 +28,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
           const modalSelf = this;
           modalSelf.loaders = { deleting: false };
 
-          modalSelf.confirm = function () {
+          modalSelf.confirm = function confirm() {
             modalSelf.loaders.deleting = true;
 
             DBaasTsProjectKey.v6().remove({
@@ -53,7 +53,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
 
     // -- Example of using a key --
 
-    self.showExample = function (key) {
+    self.showExample = function showExample(key) {
       $uibModal.open({
         templateUrl: 'app/dbaas/ts/project/details/key/example/modal.html',
         controller: 'DBaasTsProjectDetailsKeyCtrl.exampleUseToken',
@@ -69,7 +69,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
       });
     };
 
-    self.showRegionInfo = function () {
+    self.showRegionInfo = function showRegionInfo() {
       $uibModal.open({
         templateUrl: 'app/dbaas/ts/project/details/key/region-help/modal.html',
         controllerAs: 'ctrl',
@@ -80,19 +80,19 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
       });
     };
 
-    self.refresh = function () {
+    self.refresh = function refresh() {
       DBaasTsProjectKey.v6().resetQueryCache();
       self.init();
     };
 
-    this.resetCache = function () {
+    this.resetCache = function resetCache() {
       self.loaders.init = true;
       window.location.reload();
     };
 
     // ---------INITIALIZATION---------
 
-    self.init = function () {
+    self.init = function init() {
       self.loaders.init = true;
 
       const futureProject = OvhApiDBaasTsProject.v6().get({

@@ -28,21 +28,25 @@ angular.module('managerApp')
         });
     };
 
-    self.getStorageVolumeInfoTooltip = function (storage) {
+    self.getStorageVolumeInfoTooltip = function getStorageVolumeInfoTooltip(storage) {
       return $translate.instant('cpbc_archive_storage_consumption_info_part1')
         .concat($translate.instant('cpbc_archive_storage_consumption_info_part2', {
           amount: (storage.stored ? storage.stored.quantity.value : 0),
         }));
     };
 
-    self.getStorageOutgoingBandwidthInfoTooltip = function (storage) {
+    self.getStorageOutgoingBandwidthInfoTooltip = function getStorageOutgoingBandwidthInfoTooltip(
+      storage,
+    ) {
       return $translate.instant('cpbc_archive_storage_output_traffic_info_part1')
         .concat($translate.instant('cpbc_archive_storage_output_traffic_info_part2', {
           amount: (storage.outgoingBandwidth ? storage.outgoingBandwidth.quantity.value : 0),
         }));
     };
 
-    self.getStorageIncomingBandwidthInfoTooltip = function (storage) {
+    self.getStorageIncomingBandwidthInfoTooltip = function getStorageIncomingBandwidthInfoTooltip(
+      storage,
+    ) {
       return $translate.instant('cpbc_archive_storage_input_traffic_info_part1')
         .concat($translate.instant('cpbc_archive_storage_input_traffic_info_part2', {
           amount: (storage.incomingBandwidth ? storage.incomingBandwidth.quantity.value : 0),

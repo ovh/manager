@@ -322,8 +322,8 @@
                                         {{:: 'cpcivm_addedit_sshkey_key_choose' | translate}}
                                         <span data-ng-if="VmAddEditCtrl.sshKeyRequired" class="red">*</span>
                                     </h3>
-                                    <h3 class="no-space" data-ng-if="VmAddEditCtrl.model.sshKeyId">
-                                        {{ (VmAddEditCtrl.vmInEdition.sshKey.name | limitTo:20) + ((VmAddEditCtrl.vmInEdition.sshKey.name.length > 20) ? '...' : '') }}
+                                    <h3 class="no-space" data-ng-if="VmAddEditCtrl.model.sshKeyId"
+                                        data-ng-bind="(VmAddEditCtrl.vmInEdition.sshKey.name | limitTo:20) + ((VmAddEditCtrl.vmInEdition.sshKey.name.length > 20) ? '...' : '')">
                                     </h3>
                                 </div>
                             </div>
@@ -378,7 +378,9 @@
                        <span translate="cpcivm_addedit_payement_info"></span>
                     </p>
 
-                    <div data-ng-if="VmAddEditCtrl.vmInEdition.monthlyBilling.status !== 'activationPending'" class="row top-space-p12 bottom-space-p12 space-m0 monthlyBillingChoice" style="background:white;">
+                    <div
+                        data-ng-if="VmAddEditCtrl.vmInEdition.monthlyBilling.status !== 'activationPending'"
+                        class="row top-space-p12 bottom-space-p12 space-m0 monthlyBillingChoice" style="background: white;">
 
                         <button class="no-style col-xs-5 text-center space-p0 no-outline"
                             data-ng-disabled="VmAddEditCtrl.vmInEdition.monthlyBilling"
@@ -390,7 +392,7 @@
                         </button>
 
                         <div class="col-xs-2 top-space-p4">
-                            <flat-switch style="margin:auto;">
+                            <flat-switch style="margin: auto;">
                                 <input type="checkbox" data-ng-class="{ 'pointer' : !VmAddEditCtrl.vmInEdition.monthlyBilling }"
                                     data-ng-disabled="VmAddEditCtrl.vmInEdition.monthlyBilling"
                                     data-ng-model="VmAddEditCtrl.vmInEdition.monthlyBillingBoolean">
@@ -595,11 +597,11 @@
                                  data-uib-tooltip="{{::'cpcivm_addedit_flavor_quota_ram'|translate}}"
                                  data-tooltip-placement="bottom">
                                 <i class="ovh-font ovh-font-cloudram inline-block vertical-middle"></i>
-                                <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam === -1" class="vertical-middle fs10">
-                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | bytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: 'cloud_common_unlimited' | translate }}
+                                <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam === -1" class="vertical-middle fs10"
+                                    data-ng-bind="(VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | bytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM ) + ' / ' + ('cloud_common_unlimited' | translate)">
                                 </span>
-                                <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam > -1" class="vertical-middle fs10">
-                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | bytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: (VmAddEditCtrl.displayData.quota.instance.maxRam * 1000000) | bytes:2 }}
+                                <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam > -1" class="vertical-middle fs10"
+                                    data-ng-bind="( VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | bytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM ) + ' / '+ ((VmAddEditCtrl.displayData.quota.instance.maxRam * 1000000) | bytes:2)">
                                 </span>
                             </div>
                         </div>
@@ -1567,8 +1569,8 @@
                                 <tr ng-show="VmAddEditCtrl.displayData.sshKeyUnavailables">
                                     <td colspan="3" class="text-center well well-sm low-padding">
                                         <p class="text-center text-muted fs11 no-space"
-                                           data-ng-init="translateValues = {count : VmAddEditCtrl.displayData.sshKeyUnavailables, region : VmAddEditCtrl.regionService.getTranslatedMicroRegion(VmAddEditCtrl.vmInEdition.region)}">
-                                           {{ :: VmAddEditCtrl.displayData.sshKeys.outRegion.length > 1 ? ('cpcivm_add_ssh_key_out_region_plural' | translate:translateValues) : ('cpcivm_add_ssh_key_out_region' | translate:translateValues) }}
+                                           data-ng-init="translateValues = {count : VmAddEditCtrl.displayData.sshKeyUnavailables, region : VmAddEditCtrl.regionService.getTranslatedMicroRegion(VmAddEditCtrl.vmInEdition.region)}"
+                                           data-ng-bind="VmAddEditCtrl.displayData.sshKeys.outRegion.length > 1 ? ('cpcivm_add_ssh_key_out_region_plural' | translate:translateValues) : ('cpcivm_add_ssh_key_out_region' | translate:translateValues)">
                                         </p>
                                     </td>
                                 </tr>

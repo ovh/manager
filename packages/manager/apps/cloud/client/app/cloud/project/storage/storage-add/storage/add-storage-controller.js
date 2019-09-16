@@ -48,19 +48,19 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
       $scope.messageHandler = CucCloudMessage.subscribe('iaas.pci-project.compute.storage', { onMessage: () => refreshMessage() });
     }
 
-    $scope.loadStep = function (step) {
+    $scope.loadStep = function loadStep(step) {
       $scope.steps[step].enable = true;
       $scope.historyStep.push(step);
     };
 
-    $scope.isValid = function () {
-      const isDefined = function (expr) { return !_.isUndefined(expr); };
+    $scope.isValid = function isValid() {
+      const isDefined = function isDefined(expr) { return !_.isUndefined(expr); };
       return isDefined($scope.model.region)
                    && isDefined($scope.model.containerType)
                    && isDefined($scope.model.name);
     };
 
-    $scope.addStorage = function () {
+    $scope.addStorage = function addStorage() {
       $scope.loaders.post = true;
 
       return CloudStorageContainers.create(

@@ -13,19 +13,19 @@ function SearchController($scope, $element, $attrs) {
     this.onSearch = $scope.$ctrl.onSearch;
 
     if (typeof this.onSearch !== 'function') {
-      console.warn('Without a data-on-notify callback the searchbox wont do anything');
-      this.onSearch = function () { /* do nothing */ };
+      // console.warn('Without a data-on-notify callback the searchbox wont do anything');
+      this.onSearch = function onSearch() { /* do nothing */ };
     }
 
     this.onClear = $scope.$ctrl.onClear;
     if (typeof this.onClear !== 'function') {
-      console.warn('Without a data-on-clear callback the searchbox wont do anything');
-      this.onClear = function () { /* do nothing */ };
+      // console.warn('Without a data-on-clear callback the searchbox wont do anything');
+      this.onClear = function onClear() { /* do nothing */ };
     }
   };
 }
 
-SearchController.prototype.change = function () {
+SearchController.prototype.change = function change() {
   if (Number.isInteger(this.threshold) && this.search.length >= this.threshold) {
     this.onSearch(this.search);
   }
@@ -35,7 +35,7 @@ SearchController.prototype.change = function () {
   }
 };
 
-SearchController.prototype.blur = function () {
+SearchController.prototype.blur = function blur() {
   this.focused = false;
   if (this.threshold === 'blur') {
     this.onSearch(this.search);

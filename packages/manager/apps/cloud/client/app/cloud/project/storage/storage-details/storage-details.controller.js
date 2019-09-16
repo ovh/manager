@@ -13,9 +13,22 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
   'CloudStorageContainersConfiguration',
   'CucCloudMessage',
   'ovhDocUrl',
-  function RAStorageDetailsCtrl($interval, $rootScope, $scope, $stateParams, $translate, $uibModal, $window, CLOUD_PCA_FILE_STATE,
-    OvhApiCloudProjectUser, CloudStorageContainer, CloudStorageContainerTasksRunner,
-    CloudStorageContainersConfiguration, CucCloudMessage, ovhDocUrl) {
+  function RAStorageDetailsCtrl(
+    $interval,
+    $rootScope,
+    $scope,
+    $stateParams,
+    $translate,
+    $uibModal,
+    $window,
+    CLOUD_PCA_FILE_STATE,
+    OvhApiCloudProjectUser,
+    CloudStorageContainer,
+    CloudStorageContainerTasksRunner,
+    CloudStorageContainersConfiguration,
+    CucCloudMessage,
+    ovhDocUrl,
+  ) {
     $scope.projectId = $stateParams.projectId;
     $scope.storageId = $stateParams.storageId;
 
@@ -58,11 +71,196 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       $scope.messageHandler = CucCloudMessage.subscribe('iaas.pci-project.compute.storage.details', { onMessage: () => refreshMessage() });
     }
 
-    $scope.computeStorageSize = function () {
+    function sortAlpha(a, b) {
+      if (a < b) {
+        return -1;
+      }
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    }
+
+    function locationOf(element, array) {
+      let low = 0;
+      let high = array.length;
+      let mid = -1;
+      let c = 0;
+      while (low < high) {
+        mid = parseInt((low + high) / 2, 10);
+        c = sortAlpha(array[mid].name, element);
+        if (c < 0) {
+          low = mid + 1;
+        } else if (c > 0) {
+          high = mid;
+        } else {
+          return mid;
+        }
+      }
+      return low;
+    }
+
+    function resetSelectionModel() {
+      $scope.model.selected = [];
+      $scope.model.allSelected = false;
+    }
+
+    function retrivalCountdownText(delay) {
+      if (delay === 0) {
+        return $translate.instant('storage_availability_unsealed');
+      }
+      const hours = Math.floor(delay / 3600);
+      const minutes = Math.floor((delay - hours * 3600) / 60);
+      const seconds = delay - hours * 3600 - minutes * 60;
+      const delayText = _.map([hours, minutes, seconds], time => _.padLeft(time, 2, '0')).join(':');
+      return $translate.instant('storage_availability_unsealing', { delay: delayText });
+    }
+
+    function startUnsealingCountdown(file) {
+      _.set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
+      _.set(file, 'interval', $interval(() => {
+        _.set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
+        _.set(file, 'retrievalDelay', file.retrievalDelay - 1);
+        if (file.retrievalDelay === 0) {
+          _.set(file, 'retrievalState', CLOUD_PCA_FILE_STATE.UNSEALED);
+          _.set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
+        }
+      }, 1000, file.retrievalDelay));
+    }
+
+    function setFileStateText(file) {
+      switch (file.retrievalState) {
+        case CLOUD_PCA_FILE_STATE.SEALED:
+          _.set(file, 'stateText', $translate.instant('storage_availability_sealed'));
+          break;
+        case CLOUD_PCA_FILE_STATE.UNSEALED:
+          _.set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
+          break;
+        case CLOUD_PCA_FILE_STATE.UNSEALING:
+          startUnsealingCountdown(file);
+          break;
+        default:
+          _.set(file, 'stateText', '');
+      }
+    }
+
+    function deleteObject(elem) {
+      function createDeleteTask(element) {
+        return function createDeleteTaskFn() {
+          const index = _.findIndex(
+            $scope.objects,
+            {
+              name: element.name,
+              lastModified: element.lastModified,
+              contentType: element.contentType,
+            },
+          );
+          if (index === -1) {
+            return;
+          }
+          // eslint-disable-next-line consistent-return
+          return CloudStorageContainer.delete(
+            $scope.projectId,
+            $stateParams.storageId,
+            element.name,
+          )
+            .then((result) => {
+              $rootScope.$broadcast('delete_object', [$scope.storage.name, element.name]);
+              return result;
+            });
+        };
+      }
+
+      const queuePromise = CloudStorageContainerTasksRunner.addTask(`upload_${$scope.projectId}_${$stateParams.storageId}`, createDeleteTask(elem));
+      queuePromise.then(() => {
+        if (CloudStorageContainerTasksRunner.countErrorTasks()) {
+          CucCloudMessage.error($translate.instant('storage_object_delete_error'));
+        }
+      });
+      return queuePromise;
+    }
+
+    function insertIntoStorageList(element) {
+      if (!$scope.objects || $scope.objects.length === 0) {
+        $scope.objects = [element];
+        return;
+      }
+
+      const index = locationOf(element.name, $scope.objects);
+
+      if (index >= $scope.objects.length) {
+        $scope.objects.push(element);
+        return;
+      }
+
+      if ($scope.objects[index].name !== element.name) {
+        $scope.objects.splice(index, 0, element);
+      }
+    }
+
+    function uploadObject(files, prefix) {
+      const cleanPrefix = prefix.substr(1);
+      let queuePromise;
+
+      function createUploadTask(file, uploadTaskPrefix) {
+        function refreshList() {
+          try {
+            const newFile = {
+              name: uploadTaskPrefix + file.name,
+              lastModified: Date.now(),
+              size: file.size,
+              contentType: file.type,
+              retrievalState: $scope.storage.shortcut === 'pca' ? CLOUD_PCA_FILE_STATE.SEALED : CLOUD_PCA_FILE_STATE.UNSEALED,
+              region: $scope.storage.region,
+            };
+            setFileStateText(newFile);
+            insertIntoStorageList(newFile);
+            $scope.storage.stored += file.size;
+          // eslint-disable-next-line no-empty
+          } catch (e) {}
+        }
+
+        return function createUploadTaskFn() {
+          $scope.loaders.uploading = true;
+          return CloudStorageContainer.upload($scope.projectId, $stateParams.storageId, {
+            file,
+            prefix: uploadTaskPrefix,
+          })
+            .then((result) => {
+              refreshList();
+              return result;
+            })
+            .finally(() => {
+              $scope.loaders.uploading = false;
+            });
+        };
+      }
+
+      angular.forEach(files, (file) => {
+        queuePromise = CloudStorageContainerTasksRunner.addTask(`upload_${$scope.projectId}_${$stateParams.storageId}`, createUploadTask(file, cleanPrefix));
+      });
+
+      queuePromise.then(() => {
+        if (CloudStorageContainerTasksRunner.countErrorTasks()) {
+          CucCloudMessage.error($translate.instant('storage_object_upload_error'));
+        }
+      });
+    }
+
+    function getObject(name) {
+      return CloudStorageContainer.list($scope.projectId, $stateParams.storageId)
+        .then((details) => {
+          const file = _.find(details.objects, { name });
+          file.region = details.region;
+          return file;
+        });
+    }
+
+    $scope.computeStorageSize = function computeStorageSize() {
       return _.sum(_.map($scope.objects, 'size'));
     };
 
-    $scope.openDNSHelp = function () {
+    $scope.openDNSHelp = function openDNSHelp() {
       $uibModal.open({
         templateUrl: 'app/cloud/project/storage/storage-hosting-help/modal.html',
         controller: 'RA.storage.dnsHelp',
@@ -73,7 +271,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       });
     };
 
-    $scope.getPcaPassword = function () {
+    $scope.getPcaPassword = function getPcaPassword() {
       const { connectionInformation } = $scope;
       return [
         connectionInformation.osTenantName || '<tenant_name>',
@@ -82,7 +280,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       ].join('.');
     };
 
-    $scope.addObjects = function () {
+    $scope.addObjects = function addObjects() {
       $uibModal.open({
         templateUrl: 'app/cloud/project/storage/storage-add-object/modal.html',
         controller: 'RA.storage.addObject',
@@ -92,9 +290,10 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       });
     };
 
-    $scope.fileDownload = function (file) {
+    $scope.fileDownload = function fileDownload(file) {
+      let index;
       if (file.retrievalState === CLOUD_PCA_FILE_STATE.SEALED) {
-        var index = locationOf(file.name, $scope.objects);
+        index = locationOf(file.name, $scope.objects);
         if (index > -1) {
           $scope.objects[index] = _.assign(file, { sealingStateLoading: true });
         }
@@ -118,11 +317,11 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
             .then(setFileStateText);
         })
         .finally(() => {
-          file.sealingStateLoading = false;
+          _.set(file, 'sealingStateLoading', false);
         });
     };
 
-    $scope.delete = function (element) {
+    $scope.delete = function deleteFn(element) {
       $uibModal.open({
         templateUrl: 'app/cloud/project/storage/storage-delete-object/modal.html',
         controller: 'RA.storage.deleteObject',
@@ -138,8 +337,13 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       });
     };
 
-    $scope.deleteAll = function () {
-      const toDelete = _.compact(_.map($scope.model.selected, (selected, index) => (selected ? $scope.files[index] : null)));
+    $scope.deleteAll = function deleteAll() {
+      const toDelete = _.compact(
+        _.map(
+          $scope.model.selected,
+          (selected, index) => (selected ? $scope.files[index] : null),
+        ),
+      );
       $uibModal.open({
         templateUrl: 'app/cloud/project/storage/storage-delete-object/modal.html',
         controller: 'RA.storage.deleteObject',
@@ -157,19 +361,20 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       });
     };
 
-    $scope.selectAll = function () {
+    $scope.selectAll = function selectAll() {
       $scope.model.selected = _.times($scope.files.length, () => $scope.model.allSelected);
     };
 
-    $scope.select = function () {
-      $scope.model.allSelected = $scope.model.selected.length === $scope.files.length && _.all($scope.model.selected, select => select);
+    $scope.select = function selectFn() {
+      $scope.model.allSelected = $scope.model.selected.length === $scope.files.length
+        && _.all($scope.model.selected, select => select);
     };
 
-    $scope.manySelected = function () {
+    $scope.manySelected = function manySelected() {
       return $scope.selectionCount() > 1;
     };
 
-    $scope.selectionCount = function () {
+    $scope.selectionCount = function selectionCount() {
       return _.size(_.filter($scope.model.selected, value => value));
     };
 
@@ -182,87 +387,36 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       }
     });
 
-    init();
+    function loadConnectionInformation(region) {
+      const request = {
+        serviceName: $stateParams.projectId,
+      };
 
-    function uploadObject(files, prefix) {
-      prefix = prefix.substr(1);
-
-      let queuePromise;
-
-      angular.forEach(files, (file) => {
-        queuePromise = CloudStorageContainerTasksRunner.addTask(`upload_${$scope.projectId}_${$stateParams.storageId}`, createUploadTask(file, prefix));
-      });
-
-      queuePromise.then(() => {
-        if (CloudStorageContainerTasksRunner.countErrorTasks()) {
-          CucCloudMessage.error($translate.instant('storage_object_upload_error'));
-        }
-      });
-
-      function createUploadTask(file, prefix) {
-        return function () {
-          $scope.loaders.uploading = true;
-          return CloudStorageContainer.upload($scope.projectId, $stateParams.storageId, {
-            file,
-            prefix,
-          })
-            .then((result) => {
-              refreshList();
-              return result;
-            })
-            .finally(() => {
-              $scope.loaders.uploading = false;
-            });
-        };
-
-        function refreshList() {
-          try {
-            const newFile = {
-              name: prefix + file.name,
-              lastModified: Date.now(),
-              size: file.size,
-              contentType: file.type,
-              retrievalState: $scope.storage.shortcut === 'pca' ? CLOUD_PCA_FILE_STATE.SEALED : CLOUD_PCA_FILE_STATE.UNSEALED,
-              region: $scope.storage.region,
-            };
-            setFileStateText(newFile);
-            insertIntoStorageList(newFile);
-            $scope.storage.stored += file.size;
-          } catch (e) {}
-        }
+      if ($scope.storage.shortcut !== 'pca') {
+        return;
       }
-    }
 
-    function deleteObject(elem) {
-      const queuePromise = CloudStorageContainerTasksRunner.addTask(`upload_${$scope.projectId}_${$stateParams.storageId}`, createDeleteTask(elem));
-      queuePromise.then(() => {
-        if (CloudStorageContainerTasksRunner.countErrorTasks()) {
-          CucCloudMessage.error($translate.instant('storage_object_delete_error'));
-        }
-      });
-      return queuePromise;
-
-      function createDeleteTask(elem) {
-        return function () {
-          const index = _.findIndex($scope.objects, { name: elem.name, lastModified: elem.lastModified, contentType: elem.contentType });
-          if (index === -1) {
+      // eslint-disable-next-line consistent-return
+      return OvhApiCloudProjectUser.v6().query(request).$promise
+        .then((users) => {
+          $scope.users = users;
+          if (users.length > 0) {
+            request.userId = users[0].id;
+            request.region = region;
+            return OvhApiCloudProjectUser.Aapi().openrc(request).$promise;
+          }
+          return null;
+        })
+        .then((response) => {
+          if (!response) {
             return;
           }
-          return CloudStorageContainer.delete($scope.projectId, $stateParams.storageId, elem.name)
-            .then((result) => {
-              $rootScope.$broadcast('delete_object', [$scope.storage.name, elem.name]);
-              return result;
-            });
-        };
-      }
-    }
 
-    function getObject(name) {
-      return CloudStorageContainer.list($scope.projectId, $stateParams.storageId)
-        .then((details) => {
-          const file = _.find(details.objects, { name });
-          file.region = details.region;
-          return file;
+          $scope.connectionInformation = response;
+
+          if ($scope.users.length > 1) {
+            $scope.connectionInformation.osUsername = null;
+          }
         });
     }
 
@@ -298,7 +452,12 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
             $scope.getObjectList(encodeURIComponent(_.last($scope.objects).name));
           } else {
             const { accessCache } = CloudStorageContainersConfiguration;
-            const endpoint = _.find(accessCache.get($scope.projectId).endpoints, { region: $scope.storage.region });
+            const endpoint = _.find(
+              accessCache.get($scope.projectId).endpoints,
+              {
+                region: $scope.storage.region,
+              },
+            );
             $scope.url = `${endpoint.url}/${encodeURIComponent($scope.storage.name)}`;
             $scope.loaders.pager = false;
           }
@@ -320,135 +479,14 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
         });
     }
 
-    function setFileStateText(file) {
-      switch (file.retrievalState) {
-        case CLOUD_PCA_FILE_STATE.SEALED:
-          file.stateText = $translate.instant('storage_availability_sealed');
-          break;
-        case CLOUD_PCA_FILE_STATE.UNSEALED:
-          file.stateText = $translate.instant('storage_availability_unsealed');
-          break;
-        case CLOUD_PCA_FILE_STATE.UNSEALING:
-          startUnsealingCountdown(file);
-          break;
-        default:
-          file.stateText = '';
-      }
-    }
-
-    function startUnsealingCountdown(file) {
-      file.stateText = retrivalCountdownText(file.retrievalDelay);
-      file.interval = $interval(() => {
-        file.stateText = retrivalCountdownText(file.retrievalDelay);
-        file.retrievalDelay -= 1;
-        if (file.retrievalDelay === 0) {
-          file.retrievalState = CLOUD_PCA_FILE_STATE.UNSEALED;
-          file.stateText = $translate.instant('storage_availability_unsealed');
-        }
-      }, 1000, file.retrievalDelay);
-    }
-
-    function loadConnectionInformation(region) {
-      const request = {
-        serviceName: $stateParams.projectId,
-      };
-
-      if ($scope.storage.shortcut !== 'pca') {
-        return;
-      }
-
-      return OvhApiCloudProjectUser.v6().query(request).$promise
-        .then((users) => {
-          $scope.users = users;
-          if (users.length > 0) {
-            request.userId = users[0].id;
-            request.region = region;
-            return OvhApiCloudProjectUser.Aapi().openrc(request).$promise;
-          }
-          return null;
-        })
-        .then((response) => {
-          if (!response) {
-            return;
-          }
-
-          $scope.connectionInformation = response;
-
-          if ($scope.users.length > 1) {
-            $scope.connectionInformation.osUsername = null;
-          }
-        });
-    }
-
-    function retrivalCountdownText(delay) {
-      if (delay === 0) {
-        return $translate.instant('storage_availability_unsealed');
-      }
-      const hours = Math.floor(delay / 3600);
-      const minutes = Math.floor((delay - hours * 3600) / 60);
-      const seconds = delay - hours * 3600 - minutes * 60;
-      const delayText = _.map([hours, minutes, seconds], time => _.padLeft(time, 2, '0')).join(':');
-      return $translate.instant('storage_availability_unsealing', { delay: delayText });
-    }
-
-    function insertIntoStorageList(element) {
-      if (!$scope.objects || $scope.objects.length === 0) {
-        $scope.objects = [element];
-        return;
-      }
-
-      const index = locationOf(element.name, $scope.objects);
-
-      if (index >= $scope.objects.length) {
-        $scope.objects.push(element);
-        return;
-      }
-
-      if ($scope.objects[index].name !== element.name) {
-        $scope.objects.splice(index, 0, element);
-      }
-    }
-
-    function locationOf(element, array) {
-      let low = 0;
-      let high = array.length;
-      let mid = -1;
-      let c = 0;
-      while (low < high) {
-        mid = parseInt((low + high) / 2, 10);
-        c = sortAlpha(array[mid].name, element);
-        if (c < 0) {
-          low = mid + 1;
-        } else if (c > 0) {
-          high = mid;
-        } else {
-          return mid;
-        }
-      }
-      return low;
-    }
-
-    function sortAlpha(a, b) {
-      if (a < b) {
-        return -1;
-      }
-      if (a > b) {
-        return 1;
-      }
-      return 0;
-    }
-
     $scope.$watch('currentPage', () => {
       resetSelectionModel();
     });
-
-    function resetSelectionModel() {
-      $scope.model.selected = [];
-      $scope.model.allSelected = false;
-    }
 
     function init() {
       getObjectList();
       loadMessage();
     }
+
+    init();
   }]);

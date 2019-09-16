@@ -24,13 +24,13 @@
 @hollow-button-box-shadow-color_active: rgba(0, 0, 0, 0.15);
 
 #ovh {
-  .button (
-    @font-size: @button-font-size,
-    @font-weight: @button-font-weight,
-    @padding: @button-padding,
-    @radius: @button-radius,
-    @min-height: @button-min-height
-  ) {
+  .button(
+  @font-size: @button-font-size,
+  @font-weight: @button-font-weight,
+  @padding: @button-padding,
+  @radius: @button-radius,
+  @min-height: @button-min-height
+) {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
@@ -79,12 +79,12 @@
   }
 
   .filled-button(
-    @background-color: @filled-button-background-color,
-    @background-color_hover: @filled-button-background-color_hover,
-    @box-shadow-color_active: @filled-button-box-shadow-color_active,
-    @background-color_disabled: @filled-button-background-color_disabled,
-    @font-color_disabled: @filled-button-font-color_disabled
-  ) {
+  @background-color: @filled-button-background-color,
+  @background-color_hover: @filled-button-background-color_hover,
+  @box-shadow-color_active: @filled-button-box-shadow-color_active,
+  @background-color_disabled: @filled-button-background-color_disabled,
+  @font-color_disabled: @filled-button-font-color_disabled
+) {
     background-color: @background-color;
     border: 1px solid transparent;
 
@@ -106,16 +106,16 @@
   }
 
   .hollow-button(
-    @background-color: @hollow-button-background-color,
-    @font-color: @hollow-button-font-color,
-    @font-color_hover: @hollow-button-font-color_hover,
-    @border-color: @hollow-button-border-color,
-    @border-color_hover: @hollow-button-border-color_hover,
-    @box-shadow-color_active: @hollow-button-box-shadow-color_active,
-    @background-color_disabled: @hollow-button-background-color_disabled,
-    @font-color_disabled: @hollow-button-font-color_disabled,
-    @border-color_disabled: @hollow-button-border-color_disabled,
-  ) {
+  @background-color: @hollow-button-background-color,
+  @font-color: @hollow-button-font-color,
+  @font-color_hover: @hollow-button-font-color_hover,
+  @border-color: @hollow-button-border-color,
+  @border-color_hover: @hollow-button-border-color_hover,
+  @box-shadow-color_active: @hollow-button-box-shadow-color_active,
+  @background-color_disabled: @hollow-button-background-color_disabled,
+  @font-color_disabled: @hollow-button-font-color_disabled,
+  @border-color_disabled: @hollow-button-border-color_disabled,
+) {
     border-width: 1px;
     border-style: solid;
     border-color: @border-color;

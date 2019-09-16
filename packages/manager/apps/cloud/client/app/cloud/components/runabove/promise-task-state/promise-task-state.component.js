@@ -1,6 +1,9 @@
 angular.module('managerApp').component('promiseTaskState', {
   templateUrl: 'app/cloud/components/runabove/promise-task-state/promise-task-state.html',
-  controller: ['$timeout', 'CloudStorageContainerTasksRunner', function ($timeout, CloudStorageContainerTasksRunner) {
+  controller: /* @ngInject */ function CloudStorageContainerTasksRunnerController(
+    $timeout,
+    CloudStorageContainerTasksRunner,
+  ) {
     const self = this;
 
     self.showDetails = false;
@@ -8,11 +11,11 @@ angular.module('managerApp').component('promiseTaskState', {
     self.closeTimeout = null;
     self.runner = CloudStorageContainerTasksRunner;
 
-    self.sumTasks = function () {
+    self.sumTasks = function sumTasks() {
       return CloudStorageContainerTasksRunner.countTotalTasks();
     };
 
-    self.getGlobalProgress = function (state) {
+    self.getGlobalProgress = function getGlobalProgress(state) {
       let percents;
       switch (state) {
         case 'done':
@@ -38,7 +41,7 @@ angular.module('managerApp').component('promiseTaskState', {
       return percents;
     };
 
-    self.show = function (state) {
+    self.show = function show(state) {
       if (self.showDetails === state) {
         self.showDetails = false;
         return;
@@ -46,20 +49,20 @@ angular.module('managerApp').component('promiseTaskState', {
       self.showDetails = state;
     };
 
-    // self.retry = function (task) {
+    // self.retry = function retry(task) {
     //     Task.retry(task);
     // };
 
-    // self.abort = function (task) {
+    // self.abort = function abort(task) {
     //     Task.abort(task);
     // };
 
-    self.close = function () {
+    self.close = function close() {
       if (self.closeTimeout) {
         $timeout.cancel(self.closeTimeout);
         self.closeTimeout = null;
       }
       CloudStorageContainerTasksRunner.flush();
     };
-  }],
+  },
 });

@@ -1,5 +1,11 @@
 angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', ['$scope', '$translate', 'URLS', 'TranslateService', 'OvhApiMe',
-  function ($scope, $translate, URLS, TranslateService, OvhApiMe) {
+  function RAAddStorageStepContainerTypeCtrl(
+    $scope,
+    $translate,
+    URLS,
+    TranslateService,
+    OvhApiMe,
+  ) {
     const self = this;
 
     $scope.childStep = 'name';
@@ -46,11 +52,11 @@ angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', 
       }],
     }];
 
-    $scope.clickOnContainerType = function () {
+    $scope.clickOnContainerType = function clickOnContainerType() {
       $scope.loadStep($scope.childStep);
     };
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       OvhApiMe.v6().get().$promise.then((me) => {
         const lang = me.ovhSubsidiary;
         _.forEach($scope.categories, (category) => {

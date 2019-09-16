@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('CdaUserDeleteCtrl', function ($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
+  .controller('CdaUserDeleteCtrl', function CdaUserDeleteCtrl($uibModalInstance, $translate, $stateParams, $scope, CucCloudMessage, OvhApiDedicatedCeph) {
     const self = this;
 
     self.user = {};
@@ -10,11 +10,11 @@ angular.module('managerApp')
       self.user = $scope.$resolve.items.user;
     }
 
-    self.closeModal = function () {
+    self.closeModal = function closeModal() {
       $uibModalInstance.dismiss();
     };
 
-    self.deleteUser = function () {
+    self.deleteUser = function deleteUser() {
       self.saving = true;
       OvhApiDedicatedCeph.User().v6().delete({
         serviceName: $stateParams.serviceName,

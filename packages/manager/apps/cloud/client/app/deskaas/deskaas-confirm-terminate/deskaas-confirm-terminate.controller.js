@@ -1,6 +1,11 @@
 angular.module('managerApp')
   .controller('DeskaasConfirmTerminateCtrl',
-    function ($scope, $location, $uibModalInstance, token) {
+    function DeskaasConfirmTerminateCtrl(
+      $scope,
+      $location,
+      $uibModalInstance,
+      token,
+    ) {
       const self = this;
 
       self.values = {
@@ -24,14 +29,14 @@ angular.module('managerApp')
         $location.$$compose();
       }
 
-      self.cancel = function () {
+      self.cancel = function cancel() {
         // clear params needed to display confirmation
         removeConfirmationParams();
         // Remove popup
         $uibModalInstance.dismiss('cancel');
       };
 
-      self.ok = function () {
+      self.ok = function ok() {
         // clear params needed to display confirmation
         removeConfirmationParams();
         if (!self.values.token && !self.values.reason) {

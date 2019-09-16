@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($scope, $state, $stateParams, $translate, $uibModal, $q, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
+angular.module('managerApp').controller('NashaPartitionAccessCtrl', function NashaPartitionAccessCtrl($scope, $state, $stateParams, $translate, $uibModal, $q, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
   const self = this;
 
   self.$state = $state;
@@ -19,7 +19,7 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($s
     table: false,
   };
 
-  self.load = function (resetCache) {
+  self.load = function load(resetCache) {
     self.loaders.table = true;
     if (resetCache) {
       OvhApiDedicatedNasha.Partition().Access().v6().resetCache();
@@ -53,7 +53,7 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($s
     });
   };
 
-  self.getAccessForIp = function (accessIp) {
+  self.getAccessForIp = function getAccessForIp(accessIp) {
     // If the access is being added, return the local data
     const accessAddInProgress = _.find(self.data.addAccessInProgress, item => item.ip === accessIp);
     if (accessAddInProgress) {
@@ -68,11 +68,11 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($s
     }).$promise.then(data => data);
   };
 
-  self.transformItem = function (access) {
+  self.transformItem = function transformItem(access) {
     return self.getAccessForIp(access.ip);
   };
 
-  self.removeAccess = function (access) {
+  self.removeAccess = function removeAccess(access) {
     self.openModal('app/nasha/partition/access/delete/nasha-partition-access-delete.html', 'NashaPartitionAccessDeleteCtrl', {
       serviceName: self.data.nasha.serviceName,
       access,
@@ -80,7 +80,7 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($s
     });
   };
 
-  self.addAccess = function () {
+  self.addAccess = function addAccess() {
     self.openModal('app/nasha/partition/access/add/nasha-partition-access-add.html', 'NashaPartitionAccessAddCtrl', {
       serviceName: self.data.nasha.serviceName,
       partition: self.data.partition,
@@ -122,7 +122,7 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($s
     Poller.kill({ namespace: 'nasha.access' });
   });
 
-  self.openModal = function (template, controller, params) {
+  self.openModal = function openModal(template, controller, params) {
     const modal = $uibModal.open({
       templateUrl: template,
       controller,
@@ -144,11 +144,11 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function ($s
     });
   };
 
-  self.updateAccess = function () {
+  self.updateAccess = function updateAccess() {
     self.load(true);
   };
 
-  self.hasTaskInProgress = function (access) {
+  self.hasTaskInProgress = function hasTaskInProgress(access) {
     return _.some(self.data.taskForAccess, { access });
   };
 

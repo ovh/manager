@@ -1,5 +1,5 @@
 angular.module('managerApp').directive('raModal',
-  [function () {
+  [function raModal() {
     return {
       restrict: 'A',
       scope: false,
@@ -11,7 +11,7 @@ angular.module('managerApp').directive('raModal',
         let modal;
         const ctrl = ctrlParam;
 
-        ctrl.show = function () {
+        ctrl.show = function show() {
           if (!modal) {
             modal = $('#currentAction').modal({
               backdrop: 'static',
@@ -21,7 +21,7 @@ angular.module('managerApp').directive('raModal',
           }
         };
 
-        ctrl.hide = function () {
+        ctrl.hide = function hide() {
           if (modal) {
             modal.modal('hide');
           }

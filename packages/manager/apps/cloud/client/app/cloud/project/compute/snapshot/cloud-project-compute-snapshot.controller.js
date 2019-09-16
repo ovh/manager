@@ -125,7 +125,7 @@ angular.module('managerApp')
 
       // ---------TOOLS---------
 
-      self.getSelectedCount = function () {
+      self.getSelectedCount = function getSelectedCount() {
         return Object.keys(self.table.selected).length;
       };
 
@@ -152,7 +152,7 @@ angular.module('managerApp')
         }
       }, true);
 
-      self.toggleDeleteMultiConfirm = function () {
+      self.toggleDeleteMultiConfirm = function toggleDeleteMultiConfirm() {
         if (self.toggle.openDeleteMultiConfirm) {
           self.table.selected = {};
         }
@@ -210,7 +210,7 @@ angular.module('managerApp')
 
       // ---------ORDER---------
 
-      self.orderBy = function (by) {
+      self.orderBy = function orderByFn(by) {
         if (by) {
           if (self.order.by === by) {
             self.order.reverse = !self.order.reverse;
@@ -431,13 +431,13 @@ angular.module('managerApp')
         }
       };
 
-      self.createVmBySnapshot = function (snapshot) {
+      self.createVmBySnapshot = function createVmBySnapshot(snapshot) {
         CucCloudMessage.info($translate.instant('cpc_snapshot_create_vm_button_info'));
         CloudProjectOrchestrator.askToCreateInstanceFromSnapshot(snapshot);
         $state.go('iaas.pci-project.compute.infrastructure.diagram');
       };
 
-      self.createVolumeBySnapshot = function (snapshot) {
+      self.createVolumeBySnapshot = function createVolumeBySnapshot(snapshot) {
         CucCloudMessage.info($translate.instant('cpc_snapshot_create_volume_button_info'));
         $timeout(() => {
           $state.go('iaas.pci-project.compute.infrastructure.diagram', {
@@ -448,7 +448,7 @@ angular.module('managerApp')
         }, 99);
       };
 
-      self.openDeleteSnapshot = function (snapshot) {
+      self.openDeleteSnapshot = function openDeleteSnapshot(snapshot) {
         $uibModal.open({
           windowTopClass: 'cui-modal',
           templateUrl: 'app/cloud/project/compute/snapshot/delete/compute-snapshot-delete.html',
