@@ -1,5 +1,3 @@
-import constants from './issues-form.constant';
-
 export default class SupportNewIssuesFormController {
   /* @ngInject */
   constructor(
@@ -22,7 +20,6 @@ export default class SupportNewIssuesFormController {
     this.serviceTypes = null;
     this.services = [];
     this.issues = null;
-    this.email = constants.email;
   }
 
   $onInit() {
@@ -30,21 +27,13 @@ export default class SupportNewIssuesFormController {
     return this.$q.all({
       categories: this.SupportNewTicketService.getCategories(),
       serviceTypes: this.OvhApiSupport.v6().getServiceTypes().$promise,
-      supportLevel: this.OvhApiMe.v6().supportLevel().$promise,
-    }).then(({ categories, serviceTypes, supportLevel }) => {
+    }).then(({ categories, serviceTypes }) => {
       this.categories = categories;
-      if (supportLevel.level === 'standard') {
-        this.categories.push({
-          id: 'business',
-          label: this.$translate.instant('ovhManagerSupport_new_category_business'),
-        });
-      }
       this.serviceTypes = serviceTypes.map(({ name, route }) => ({
         name,
         route,
         label: this.$translate.instant(`ovhManagerSupport_new_serviceType_${name}`),
       }));
-      this.supportLevel = supportLevel.level;
     }).finally(() => {
       this.loading = false;
     });
@@ -77,9 +66,7 @@ export default class SupportNewIssuesFormController {
   onCategoryChange() {
     this.issues = null;
     this.serviceType = null;
-    if (this.category !== 'business') {
-      this.fetchServices();
-    }
+    this.fetchServices();
   }
 
   onServiceTypeChange() {
