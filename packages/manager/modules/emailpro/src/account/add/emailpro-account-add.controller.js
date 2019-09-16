@@ -1,6 +1,7 @@
 import angular from 'angular';
 import head from 'lodash/head';
 import set from 'lodash/set';
+import includes from 'lodash/includes';
 
 export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, EmailProPassword) => {
   $scope.valid = { legalWarning: false };
@@ -13,6 +14,7 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
     $scope.simplePasswordFlag = false;
     $scope.containsNameFlag = false;
     $scope.containsSameAccountNameFlag = false;
+    $scope.containsSpace = false;
 
     set(selectedAccount, 'password', selectedAccount.password || '');
     set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
@@ -27,6 +29,12 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
       if (!$scope.simplePasswordFlag
           && selectedAccount.password !== selectedAccount.passwordConfirmation) {
         $scope.differentPasswordFlag = true;
+      }
+
+      if (includes(selectedAccount.password, ' ')) {
+        $scope.containsSpace = true;
+      } else {
+        $scope.containsSpace = false;
       }
 
       /*
@@ -125,7 +133,10 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
     // $scope.setPasswordsFlag($scope.accountToAdd);
     if (!$scope.valid.legalWarning) {
       return false;
-    } if ($scope.simplePasswordFlag || $scope.differentPasswordFlag || $scope.containsNameFlag) {
+    } if ($scope.simplePasswordFlag
+      || $scope.differentPasswordFlag
+      || $scope.containsNameFlag
+      || $scope.containsSpace) {
       return false;
     } if (!$scope.accountToAdd.completeDomain
       || $scope.accountToAdd.completeDomain.name === undefined) {

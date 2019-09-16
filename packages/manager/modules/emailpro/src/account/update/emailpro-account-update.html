@@ -90,7 +90,12 @@
                     </div>
                 </div>
                 <div class="form-group"
-                     data-ng-class="{ 'has-error': $ctrl.simplePasswordFlag || $ctrl.containsNameFlag || $ctrl.containsSamAccountNameFlag }">
+                     data-ng-class="{
+                         'has-error': $ctrl.simplePasswordFlag
+                                   || $ctrl.containsNameFlag
+                                   || $ctrl.containsSamAccountNameFlag
+                                   || $ctrl.containsSpace
+                    }">
                     <label for="password" class="col-md-3 control-label"
                            data-ng-class="{ 'required': !$ctrl.selectedAccount.canBeConfigured }"
                            data-translate="emailpro_ACTION_update_account_step1_password_label"></label>
@@ -106,6 +111,9 @@
                              data-translate="{{ exchange.billingPlan + '_ACTION_update_account_step1_password_contains_name' }}"></span>
                         <span class="help-block" data-ng-if="$ctrl.containsSamAccountNameFlag"
                              data-ng-bind="$ctrl.containsSamAccountNameLabel"></span>
+                        <span class="help-block"
+                              data-ng-if="$ctrl.containsSpace"
+                              data-translate="emailpro_ACTION_update_account_step1_password_contains_space"></span>
                     </div>
                 </div>
                 <div class="form-group"

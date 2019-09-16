@@ -65,6 +65,7 @@
   "emailpro_ACTION_add_account_error_message": "Une erreur est survenue lors de la création du compte E-mail Pro.",
   "emailpro-mxplan_ACTION_add_account_error_message": "Une erreur est survenue lors de la création du compte E-mail MX Plan.",
   "emailpro_ACTION_update_account_step1_password_contains_name": "Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login E-mail Pro.",
+  "emailpro_ACTION_update_account_step1_password_contains_space": "Le mot de passe ne peut pas contenir d'espaces.",
   "emailpro-mxplan_ACTION_update_account_step1_password_contains_name": "Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Mx Plan.",
   "emailpro_ACTION_update_account_step1_exchange_guid_label": "Exchange GUID",
   "emailpro-mxplan_ACTION_update_account_step1_exchange_guid_label": "E-mail MX Plan GUID",

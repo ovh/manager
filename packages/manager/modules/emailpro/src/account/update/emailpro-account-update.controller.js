@@ -1,6 +1,7 @@
 import angular from 'angular';
 import head from 'lodash/head';
 import set from 'lodash/set';
+import includes from 'lodash/includes';
 
 export default class EmailProUpdateAccountCtrl {
   /* @ngInject */
@@ -46,7 +47,8 @@ export default class EmailProUpdateAccountCtrl {
     const account = this.selectedAccount;
     if (this.simplePasswordFlag
       || this.differentPasswordFlag
-      || this.containsNameFlag) {
+      || this.containsNameFlag
+      || this.containsSpace) {
       return false;
     } if (account && /\s/.test(account.password)) {
       return false;
@@ -119,6 +121,7 @@ export default class EmailProUpdateAccountCtrl {
     this.simplePasswordFlag = false;
     this.containsNameFlag = false;
     this.containsSameAccountNameFlag = false;
+    this.containsSpace = false;
 
     set(selectedAccount, 'password', selectedAccount.password || '');
     set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
@@ -133,6 +136,12 @@ export default class EmailProUpdateAccountCtrl {
         true,
         this.newAccountOptions.minPasswordLength,
       );
+
+      if (includes(selectedAccount.password, ' ')) {
+        this.containsSpace = true;
+      } else {
+        this.containsSpace = false;
+      }
 
       /*
         see the password complexity requirements of Microsoft Windows Server (like EmailPro)
