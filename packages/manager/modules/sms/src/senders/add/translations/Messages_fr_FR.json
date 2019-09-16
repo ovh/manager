@@ -31,5 +31,6 @@
   "sms_senders_add_sender_sr_only": "Ajouter {{ sender }}",
   "sms_senders_add_sender": "Ajouter l’expéditeur sélectionné",
   "sms_senders_add_senders": "Ajouter les {{ count }} expéditeurs sélectionnés",
-  "sms_senders_add_senders_success": "Ajout en cours…"
+  "sms_senders_add_senders_success": "Ajout en cours…",
+  "sms_senders_add_no_test_account": "Les expéditeurs personnalisés ne sont pas autorisés sur les comptes de tests."
 }
