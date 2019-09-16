@@ -54,7 +54,6 @@ export default class SupportIssuesSelectorController {
   canFetchIssues() {
     return this.rootValue
       && this.categoryValue
-      && this.categoryValue.id !== 'business'
       && (this.serviceTypeValue || this.categoryValue.id === 'account');
   }
 

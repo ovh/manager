@@ -18,7 +18,7 @@
       </oui-select>
     </oui-field>
     <oui-field data-label="{{ 'ovhManagerSupport_new_serviceType' | translate }}"
-               data-ng-if="$ctrl.category && $ctrl.category.id !== 'business' && $ctrl.category.id !== 'account'"
+               data-ng-if="$ctrl.category && $ctrl.category.id !== 'account'"
                data-size="xl">
       <oui-select name="serviceType"
                   data-model="$ctrl.serviceType"
@@ -33,7 +33,7 @@
       </oui-spinner>
     </div>
     <oui-field data-label="{{ 'ovhManagerSupport_new_service' | translate }}"
-               data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'business' && $ctrl.category.id !== 'account' && $ctrl.services.length"
+               data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'account' && $ctrl.services.length"
                data-size="xl">
       <oui-select name="service"
                   data-model="$ctrl.service"
@@ -95,21 +95,5 @@
       </oui-button>
     </div>
   </div>
-
-  <oui-message data-type="info"
-               data-dismissable="false"
-               data-ng-if="$ctrl.category.id === 'business'">
-    <p data-translate="ovhManagerSupport_new_business_1"></p>
-    <p data-translate="ovhManagerSupport_new_business_2"></p>
-    <dl>
-      <dt data-translate="ovhManagerSupport_new_business_web"></dt>
-      <dd data-ng-bind="$ctrl.email.business_web"></dd>
-      <dt data-translate="ovhManagerSupport_new_business_telecom"></dt>
-      <dd data-ng-bind="$ctrl.email.business_telecom"></dd>
-      <dt data-translate="ovhManagerSupport_new_business_cloud"></dt>
-      <dd data-ng-bind="$ctrl.email.business_cloud"></dd>
-    </dl>
-    <p data-translate="ovhManagerSupport_new_business_3"></p>
-  </oui-message>
 
 </form>
