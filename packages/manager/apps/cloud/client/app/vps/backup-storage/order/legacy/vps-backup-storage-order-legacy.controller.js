@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 export default class VpsBackupStorageOrderlegacyOrderController {
   /* @ngInject */
   constructor($stateParams, $translate, $window, CucCloudMessage, CucCloudNavigation,
@@ -20,7 +22,7 @@ export default class VpsBackupStorageOrderlegacyOrderController {
   $onInit() {
     this.VpsService.getOptionDetails(this.serviceName, 'ftpbackup')
       .then((option) => {
-        this.model.optionDetails = _.first(option.results);
+        this.model.optionDetails = head(option.results);
       })
       .catch((error) => {
         this.CucCloudMessage.error(`${this.$translate.instant('vps_dashboard_loading_error')} ${error.data}`);

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class ErrorCtrl {
   /* @ngInject */
   constructor($transition$) {
@@ -5,9 +7,9 @@ export default class ErrorCtrl {
   }
 
   $onInit() {
-    this.error = _.get(this.$transition$.params(), 'error');
+    this.error = get(this.$transition$.params(), 'error');
 
-    if (_.get(this.error, 'code') === 'LOADING_STATE_ERROR') {
+    if (get(this.error, 'code') === 'LOADING_STATE_ERROR') {
       // remove code to display common message
       this.error.code = null;
     }

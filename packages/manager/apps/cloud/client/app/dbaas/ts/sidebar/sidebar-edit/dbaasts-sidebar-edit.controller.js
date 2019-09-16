@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 // our sidebar edit controller
 angular.module('managerApp').controller('DBaasTsSidebarEditCtrl', [
   '$rootScope',
@@ -45,8 +47,8 @@ angular.module('managerApp').controller('DBaasTsSidebarEditCtrl', [
         displayName: $scope.model.name || '',
       }).$promise.then(() => {
         // Update the project name in sidebar
-        _.set(locals, 'sidebarElt.name', $scope.model.name);
-        _.set(locals, 'project.name', $scope.model.name);
+        set(locals, 'sidebarElt.name', $scope.model.name);
+        set(locals, 'project.name', $scope.model.name);
 
         $rootScope.$broadcast('dbaasts-reloadproject', locals.project.serviceName);
       }, (err) => {

@@ -1,3 +1,4 @@
+import pick from 'lodash/pick';
 
 
 angular.module('managerApp').controller('VrackAddCtrl',
@@ -41,7 +42,7 @@ angular.module('managerApp').controller('VrackAddCtrl',
       return OvhApiOrder.Vrack().New().v6().create({
         quantity: this.model.quantityToOrder,
       }, {}).$promise.then((data) => {
-        CucCloudMessage.success($translate.instant('vrack_adding_success', { data: _.pick(data, ['url', 'orderId']) }));
+        CucCloudMessage.success($translate.instant('vrack_adding_success', { data: pick(data, ['url', 'orderId']) }));
         self.model.purchaseOrderUrl = data.url;
         self.loaders.validationPending = true;
       }).catch((error) => {

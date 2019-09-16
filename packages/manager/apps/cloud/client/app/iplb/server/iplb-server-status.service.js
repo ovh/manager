@@ -1,16 +1,20 @@
+import get from 'lodash/get';
+import last from 'lodash/last';
+import sortBy from 'lodash/sortBy';
+
 class IpblServerStatusService {
   static hasIssue(server) {
     return server.probe
       && server.serverState
       && server.serverState.length
-      && _.get(_.last(_.sortBy(server.serverState), 'checkTime'), 'status') === 'DOWN';
+      && get(last(sortBy(server.serverState), 'checkTime'), 'status') === 'DOWN';
   }
 
   static hasNoInfo(server) {
     return !server.probe
       || !server.serverState
       || server.serverState.length === 0
-      || _.get(_.last(_.sortBy(server.serverState), 'checkTime'), 'status') === 'no check';
+      || get(last(sortBy(server.serverState), 'checkTime'), 'status') === 'no check';
   }
 
   getStatusIcon(server) {

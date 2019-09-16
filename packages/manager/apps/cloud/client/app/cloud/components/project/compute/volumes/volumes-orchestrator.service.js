@@ -1,3 +1,16 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import groupBy from 'lodash/groupBy';
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import keys from 'lodash/keys';
+import last from 'lodash/last';
+import pull from 'lodash/pull';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import values from 'lodash/values';
+
 /**
  *  Cloud Volumes list Orchestrator. Heal the world we live in, save it for our children
  *  ====================================================================================
@@ -60,9 +73,9 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       // @todo: enums toussa
 
       return $q.allSettled(optionsQueue).then(() => {
-        if (_.keys(self.volumes.volumes).length > 0) {
+        if (keys(self.volumes.volumes).length > 0) {
           // use the most recent volume parameters
-          const mostRecentVolume = _.last(_.sortBy(_.flatten(_.values(self.volumes.volumes)), 'creationDate'));
+          const mostRecentVolume = last(sortBy(flatten(values(self.volumes.volumes)), 'creationDate'));
           if (mostRecentVolume) {
             options.region = mostRecentVolume.region;
             options.size = mostRecentVolume.size;
@@ -82,8 +95,8 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       }).$promise.then((regionList) => {
         // check if the default region exists
         let { region } = CLOUD_INSTANCE_DEFAULTS;
-        if (_.indexOf(regionList, region) === -1) {
-          region = _.first(regionList);
+        if (indexOf(regionList, region) === -1) {
+          region = head(regionList);
         }
         return getDefaultVolumeConfigurationForRegion(region);
       });
@@ -257,7 +270,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
         // revert
         self.volumes.addVolumeToList(volume, sourceId);
         self.volumes.removeVolumeFromList(volume, targetId);
-        _.pull(currentVolumesMovePending, volume.id);
+        pull(currentVolumesMovePending, volume.id);
         return $q.reject(err);
       });
     };
@@ -272,7 +285,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       }, {
         name: snapshotName,
       }).$promise.then(() => {
-        _.set(volume, 'status', 'snapshotting');
+        set(volume, 'status', 'snapshotting');
         self.pollVolumes();
       }, err => $q.reject(err));
     };
@@ -299,7 +312,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
         }
 
         angular.forEach(volumesFromFactory, (volumeFromFactory) => {
-          const volumeFromApi = _.find(volumesFromApi[targetId], { id: volumeFromFactory.id });
+          const volumeFromApi = find(volumesFromApi[targetId], { id: volumeFromFactory.id });
 
           if (!volumeFromApi) {
             return;
@@ -307,7 +320,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
 
           // If the volume was in pending move, and now active, remove it from pendingArray.
           if (~currentVolumesMovePending.indexOf(volumeFromFactory.id) && ~['available', 'in-use'].indexOf(volumeFromApi.status)) {
-            _.pull(currentVolumesMovePending, volumeFromFactory.id);
+            pull(currentVolumesMovePending, volumeFromFactory.id);
           }
 
           // If the volume was in snapshotting, and now active display success message
@@ -319,7 +332,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
             // Update status
             if (volumeFromFactory.status !== volumeFromApi.status) {
               haveChanges = true;
-              _.set(volumeFromFactory, 'status', volumeFromApi.status);
+              set(volumeFromFactory, 'status', volumeFromApi.status);
             }
           } else {
             // Updates all infos
@@ -344,12 +357,12 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       /*= =========  Remove deleted volumes  ========== */
 
       angular.forEach(self.volumes.volumes, (volumesFromFactory, targetId) => {
-        const deletedVolumes = _.filter(volumesFromFactory, (vol) => {
+        const deletedVolumes = filter(volumesFromFactory, (vol) => {
           // don't remove drafts!
           if (!forceRemoveDrafts && vol.status === 'DRAFT') {
             return false;
           }
-          return !volumesFromApi[targetId] || !_.find(volumesFromApi[targetId], { id: vol.id });
+          return !volumesFromApi[targetId] || !find(volumesFromApi[targetId], { id: vol.id });
         });
 
         angular.forEach(deletedVolumes, (vol) => {
@@ -371,9 +384,9 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
         if (!self.volumes.volumes[targetId] || !self.volumes.volumes[targetId].length) {
           addedVolumes = volumesFromApi;
         } else {
-          addedVolumes = _.filter(
+          addedVolumes = filter(
             volumesFromApi,
-            vol => !_.find(self.volumes.volumes[targetId], { id: vol.id }),
+            vol => !find(self.volumes.volumes[targetId], { id: vol.id }),
           );
         }
 
@@ -405,7 +418,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       let haveChanges = false;
 
       // Group by attachedTo
-      volumes = _.groupBy(volumes, vol => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'));
+      volumes = groupBy(volumes, vol => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'));
 
       // Update existing Volumes
       haveChanges = updateVolumesWithVolumesFromApi(volumes, true) || haveChanges;
@@ -479,7 +492,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
     this.createFromUserPref = function createFromUserPref(serviceName) {
       const key = `cloud_project_${serviceName}_volumes`;
       return CucUserPref.get(key).then((volumes) => {
-        _.set(volumes, 'serviceName', serviceName);
+        set(volumes, 'serviceName', serviceName);
         return new CloudProjectComputeVolumesFactory(volumes);
       }, () => new CloudProjectComputeVolumesFactory({
         serviceName,
@@ -520,7 +533,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
             let volumes = volumesParam;
 
             // Group by attachedTo
-            volumes = _.groupBy(
+            volumes = groupBy(
               volumes,
               vol => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'),
             );

@@ -1,3 +1,7 @@
+import find from 'lodash/find';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+
 class IpLoadBalancerServerFarmProbeEditCtrl {
   constructor($uibModalInstance, IpLoadBalancerConstant, availableProbes, edition, farm) {
     this.$uibModalInstance = $uibModalInstance;
@@ -13,7 +17,7 @@ class IpLoadBalancerServerFarmProbeEditCtrl {
     this.matches = IpLoadBalancerConstant.probeMatches;
     this.rules = this.getRules();
 
-    if (!_.includes(this.getMatches(), this.farm.probe.match)) {
+    if (!includes(this.getMatches(), this.farm.probe.match)) {
       this.farmProbe.match = null;
       this.farmProbe.pattern = null;
       this.farmProbe.negate = null;
@@ -46,7 +50,7 @@ class IpLoadBalancerServerFarmProbeEditCtrl {
       return this.farmProbe.match !== 'default';
     }
 
-    if (field === 'match' && _.isArray(this.rules.matches)
+    if (field === 'match' && isArray(this.rules.matches)
             && this.rules.matches.length === 1) {
       return false;
     }
@@ -60,7 +64,7 @@ class IpLoadBalancerServerFarmProbeEditCtrl {
   }
 
   getRules() {
-    return _.find(this.availableProbes, {
+    return find(this.availableProbes, {
       type: this.farmProbe.type,
     });
   }

@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 class IpLoadBalancerServerService {
   constructor($q, $translate, IpLoadBalancerConfigurationService, OvhApiIpLoadBalancing,
     CucServiceHelper, CucRegionService) {
@@ -63,7 +65,7 @@ class IpLoadBalancerServerService {
     return this.IpLoadBalancing.Farm().v6().query({ serviceName })
       .$promise
       .then((farms) => {
-        const farm = _.find(farms, { id: parseInt(farmId, 10) });
+        const farm = find(farms, { id: parseInt(farmId, 10) });
         return farm;
       })
       .then((farm) => {

@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 class LogsIndexService {
   constructor($q, $translate, CucCloudPoll, CucControllerHelper, LogsHelperService, OvhApiDbaas,
     CucServiceHelper, LogsOptionsService, LogsConstants) {
@@ -67,10 +69,10 @@ class LogsIndexService {
 
   static transformAapiIndex(index) {
     if (index.info.currentStorage < 0) {
-      _.set(index, 'info.currentStorage', 0);
+      set(index, 'info.currentStorage', 0);
     }
     if (index.info.maxSize < 0) {
-      _.set(index, 'info.maxSize', 0);
+      set(index, 'info.maxSize', 0);
     }
     return index;
   }

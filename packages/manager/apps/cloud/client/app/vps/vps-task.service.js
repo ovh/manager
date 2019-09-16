@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import includes from 'lodash/includes';
+import set from 'lodash/set';
+
 class VpsTaskService {
   constructor($http, $q, $rootScope, $translate, CucCloudMessage, CucOvhPoll) {
     this.$http = $http;
@@ -40,7 +44,7 @@ class VpsTaskService {
     this.poller = this.CucOvhPoll.pollArray({
       items: tasks,
       pollFunction: task => this.getTask(serviceName, task.id),
-      stopCondition: task => _.includes(['done', 'error'], task.state),
+      stopCondition: task => includes(['done', 'error'], task.state),
       onItemUpdated: task => this.manageMessage(containerName, task),
       onItemDone: () => this.manageSuccess(serviceName, containerName),
     });
@@ -76,12 +80,12 @@ class VpsTaskService {
   }
 
   flushMessages(containerName, task) {
-    _.forEach(this.CucCloudMessage.getMessages(containerName), (message) => {
+    forEach(this.CucCloudMessage.getMessages(containerName), (message) => {
       if (message.class === 'task') {
-        _.set(message, 'dismissed', true);
+        set(message, 'dismissed', true);
       }
       if (task && task.id === message.id) {
-        _.set(message, 'dismissed', true);
+        set(message, 'dismissed', true);
       }
     });
   }

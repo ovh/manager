@@ -1,3 +1,11 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+
 export default class {
   /* @ngInject */
   constructor($filter, $q, $scope, $state, $stateParams, $translate, CucCloudMessage,
@@ -74,13 +82,13 @@ export default class {
   loadIps() {
     this.loaders.ips = true;
     this.VpsService.getIps(this.serviceName).then((ips) => {
-      this.vps.data.ipv6Gateway = _.get(_.find(ips.results, { version: 'v6' }), 'gateway');
+      this.vps.data.ipv6Gateway = get(find(ips.results, { version: 'v6' }), 'gateway');
       this.loaders.ips = false;
     });
   }
 
   hasAdditionalDiskOption() {
-    if (!_.include(this.vps.data.availableOptions, 'ADDITIONAL_DISK')) {
+    if (!includes(this.vps.data.availableOptions, 'ADDITIONAL_DISK')) {
       this.hasAdditionalDisk = false;
       return this.hasAdditionalDisk;
     }
@@ -92,11 +100,11 @@ export default class {
     this.hasAdditionalDisk = true;
     this.VpsService.getDisks(this.serviceName)
       .then((data) => {
-        const promises = _.map(data, elem => this.VpsService.getDiskInfo(this.serviceName, elem));
+        const promises = map(data, elem => this.VpsService.getDiskInfo(this.serviceName, elem));
         return this.$q.all(promises)
           .then((diskInfos) => {
             this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(diskInfos);
-            this.canOrderDisk = _.isEmpty(this.additionnalDisks);
+            this.canOrderDisk = isEmpty(this.additionnalDisks);
           });
       })
       .catch((error) => {
@@ -228,17 +236,17 @@ export default class {
       },
       manageAutorenew: {
         text: this.$translate.instant('common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'VPS' }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'VPS' }),
         isAvailable: () => !this.vps.loading && !this.loaders.plan,
       },
       manageContact: {
         text: this.$translate.instant('common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
         isAvailable: () => !this.vps.loading,
       },
       manageIps: {
         text: this.$translate.instant('vps_configuration_add_ipv4_title_button'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'ip'), { serviceName: this.serviceName }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'ip'), { serviceName: this.serviceName }),
         isAvailable: () => !this.vps.loading && !this.loaders.ip,
       },
       displayIps: {
@@ -304,21 +312,21 @@ export default class {
         isAvailable: () => !this.loaders.polling && !this.vps.loading,
       },
     };
-    this.CucControllerHelper.navigation.getConstant(_.get(this.URLS, 'changeOwner', '')).then((url) => { this.actions.changeOwner.href = url; });
+    this.CucControllerHelper.navigation.getConstant(get(this.URLS, 'changeOwner', '')).then((url) => { this.actions.changeOwner.href = url; });
   }
 
   getRegionsGroup(regions) {
     this.regionsGroup = [];
     if (regions) {
-      this.detailedRegions = !_.isArray(regions)
+      this.detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
-        : _.map(regions, region => this.CucRegionService.getRegion(region));
+        : map(regions, region => this.CucRegionService.getRegion(region));
     }
-    this.regionsGroup = _.groupBy(this.detailedRegions, 'country');
+    this.regionsGroup = groupBy(this.detailedRegions, 'country');
   }
 
   hasMultipleRegions() {
-    return _(this.detailedRegions).isArray() && this.detailedRegions.length > 1;
+    return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
   }
 
   static getActionStateParamString(params) {

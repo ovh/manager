@@ -1,3 +1,5 @@
+import endsWith from 'lodash/endsWith';
+
 class CloudProjectBillingRightsAddCtrl {
   constructor(
     $stateParams,
@@ -46,7 +48,7 @@ class CloudProjectBillingRightsAddCtrl {
     if (/[@.]+/.test(name)) {
       return name;
     }
-    return _.endsWith(name, '-ovh') ? name : `${name}-ovh`;
+    return endsWith(name, '-ovh') ? name : `${name}-ovh`;
   }
 }
 

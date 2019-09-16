@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+
 export default class {
   /* @ngInject */
   constructor($q, $stateParams, $translate, CucCloudMessage, VpsActionService, VpsService) {
@@ -37,7 +40,7 @@ export default class {
     this.loaders.disk = true;
     this.VpsService.getDisks(this.serviceName)
       .then((data) => {
-        const promises = _.map(data, elem => this.VpsService.getDiskInfo(this.serviceName, elem));
+        const promises = map(data, elem => this.VpsService.getDiskInfo(this.serviceName, elem));
         return this.$q.all(promises)
           .then((diskInfos) => {
             this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(diskInfos);
@@ -51,6 +54,6 @@ export default class {
   }
 
   canOrder() {
-    return _.isEmpty(this.additionnalDisks);
+    return isEmpty(this.additionnalDisks);
   }
 }

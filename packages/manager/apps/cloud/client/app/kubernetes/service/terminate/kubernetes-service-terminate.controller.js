@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class kubernetesTerminateCtrl {
   constructor($rootScope, $stateParams, $translate, $uibModalInstance, CucCloudMessage,
     CucControllerHelper, Kubernetes, KUBERNETES) {
@@ -45,7 +47,7 @@ class kubernetesTerminateCtrl {
       loaderFunction: () => this.Kubernetes
         .terminate(this.serviceName)
         .then(() => this.CucCloudMessage.success(this.$translate.instant('kube_service_terminate_success')))
-        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_terminate_error', { message: _.get(err, 'data.message', '') })))
+        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_terminate_error', { message: get(err, 'data.message', '') })))
         .finally(() => {
           this.loading.terminate = false;
           this.CucControllerHelper.scrollPageToTop();

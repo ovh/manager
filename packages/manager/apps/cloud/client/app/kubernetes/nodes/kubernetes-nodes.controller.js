@@ -1,3 +1,7 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesNodesCtrl {
   constructor(
     $q, $state, $stateParams, $timeout, $translate, $uibModal,
@@ -38,7 +42,7 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
       .then((cluster) => { this.cluster = cluster; })
       .catch((error) => {
         this.cluster = { id: this.serviceName, name: this.serviceName };
-        this.CucCloudMessage.error(this.$translate.instant('kube_error', { message: _.get(error, 'data.message') }));
+        this.CucCloudMessage.error(this.$translate.instant('kube_error', { message: get(error, 'data.message') }));
       });
   }
 
@@ -58,12 +62,12 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
   getAssociatedFlavor(node) {
     return this.Kubernetes.getFlavors(node.projectId)
       .then((flavors) => {
-        _.set(node, 'formattedFlavor', this.Kubernetes.formatFlavor(
-          _.find(flavors, { name: node.flavor }),
+        set(node, 'formattedFlavor', this.Kubernetes.formatFlavor(
+          find(flavors, { name: node.flavor }),
         ));
       })
       .catch(() => {
-        _.set(node, 'formattedFlavor', this.$translate.instant('kube_nodes_flavor_error'));
+        set(node, 'formattedFlavor', this.$translate.instant('kube_nodes_flavor_error'));
       });
   }
 

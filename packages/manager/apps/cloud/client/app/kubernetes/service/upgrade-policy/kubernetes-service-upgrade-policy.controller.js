@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class kubernetesUpgradePolicyCtrl {
   constructor($stateParams, $translate, $uibModalInstance, CucCloudMessage,
     CucControllerHelper, Kubernetes, upgradePolicy) {
@@ -33,7 +35,7 @@ class kubernetesUpgradePolicyCtrl {
         .then(() => this.CucCloudMessage.success(
           this.$translate.instant('kube_service_upgrade_policy_success'),
         ))
-        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_upgrade_policy_error', { message: _.get(err, 'data.message', '') })))
+        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_upgrade_policy_error', { message: get(err, 'data.message', '') })))
         .finally(() => {
           this.CucControllerHelper.scrollPageToTop();
           this.$uibModalInstance.close(this.selectedUpgradePolicy);

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 (() => {
   class MetricsDashboardCtrl {
     constructor($scope, $stateParams, $q, $translate, CucCloudMessage, CucControllerHelper,
@@ -96,12 +98,12 @@
       this.actions = {
         autorenew: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'METRICS' }),
+          href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'METRICS' }),
           isAvailable: () => true,
         },
         contacts: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
+          href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
           isAvailable: () => this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
         },
         editName: {

@@ -1,3 +1,5 @@
+import forEach from 'lodash/forEach';
+
 export default class VpsWindowsOrderLegacyCtrl {
   /* @ngInject */
   constructor($q, $stateParams, $translate, $window, CucCloudMessage,
@@ -47,7 +49,7 @@ export default class VpsWindowsOrderLegacyCtrl {
     const queue = [];
     this.loaders.prices = true;
 
-    _.forEach(durations, (duration) => {
+    forEach(durations, (duration) => {
       queue.push(this.VpsService.getWindowsOptionOrder(this.serviceName, duration)
         .then((details) => { this.durations.details[duration] = details; }));
     });

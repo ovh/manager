@@ -1,3 +1,7 @@
+import head from 'lodash/head';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+
 class IpLoadBalancerSslCertificateOrderCtrl {
   constructor($q, $state, $stateParams, $window, CucCloudMessage, CucControllerHelper,
     IpLoadBalancerConstant, IpLoadBalancerSslCertificateService) {
@@ -18,13 +22,13 @@ class IpLoadBalancerSslCertificateOrderCtrl {
       )
         .then((offers) => {
           this.offers = offers;
-          this.sslTypes = _.map(offers, 'planCode').map(planCode => planCode.replace(/-/g, '_'));
+          this.sslTypes = map(offers, 'planCode').map(planCode => planCode.replace(/-/g, '_'));
 
           // Add separate free certificate in first position.
           this.sslTypes.unshift('free');
 
           // Select first by default
-          this.newSsl.type = _.first(this.sslTypes);
+          this.newSsl.type = head(this.sslTypes);
         }),
     });
 
@@ -56,7 +60,7 @@ class IpLoadBalancerSslCertificateOrderCtrl {
       return null;
     }
 
-    const options = Object.assign(_.pick(sslOffer.prices[0], [
+    const options = Object.assign(pick(sslOffer.prices[0], [
       'duration',
       'pricingMode',
     ]), {

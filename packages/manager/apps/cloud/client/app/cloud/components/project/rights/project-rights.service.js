@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('managerApp').service('CloudProjectRightService',
   function CloudProjectRightServiceService(
     OvhApiCloud,
@@ -31,6 +33,6 @@ angular.module('managerApp').service('CloudProjectRightService',
         projectAdminNic: getProjectAdminNic(projectId),
       })
         .then(result => result.projectAdminNic === result.currentUserNic
-          || _.find(result.readWriteAccounts, nicWrite => nicWrite === result.currentUserNic));
+          || find(result.readWriteAccounts, nicWrite => nicWrite === result.currentUserNic));
     };
   });

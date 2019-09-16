@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import keyBy from 'lodash/keyBy';
+
 angular.module('managerApp').controller('DBaasTsProjectDetailsKeyAddOrEditCtrl',
   function DBaasTsProjectDetailsKeyAddOrEditCtrl($q, $state, $stateParams, $translate,
     OvhApiDBaasTsProjectKey, Toast) {
@@ -12,7 +15,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyAddOrEditCtrl',
     };
 
     self.data = {
-      permissions: _.indexBy(['READ', 'WRITE']),
+      permissions: keyBy(['READ', 'WRITE']),
       // Detect edition if a key id is present
       edition: !!keyId,
     };
@@ -58,7 +61,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyAddOrEditCtrl',
       let req;
 
       // Filter empty keys in the tags
-      self.model.tags = _.filter(self.model.tags, tag => tag.key);
+      self.model.tags = filter(self.model.tags, tag => tag.key);
 
       self.model.serviceName = serviceName;
 

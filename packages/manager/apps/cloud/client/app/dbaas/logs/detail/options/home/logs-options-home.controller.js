@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+
 class LogsOptionsCtrl {
   constructor($state, $stateParams, $window, CucControllerHelper, LogsConstants, LogsOfferService,
     LogsOptionsService, CucCurrencyService, CucOrderHelperService, LogsDetailService) {
@@ -56,7 +61,7 @@ class LogsOptionsCtrl {
    * @memberof LogsOptionsCtrl
    */
   getTotalPrice() {
-    return _.reduce(
+    return reduce(
       this.options.data,
       (total, option) => total + option.quantity * option.price, 0,
     ).toFixed(2);
@@ -73,9 +78,9 @@ class LogsOptionsCtrl {
   }
 
   updateOptionToOrder(newValue, selectedOption) {
-    const option = _.find(this.options.data, { planCode: selectedOption.planCode });
-    if (!_.isEmpty(option)) {
-      _.set(option, 'quantity', newValue);
+    const option = find(this.options.data, { planCode: selectedOption.planCode });
+    if (!isEmpty(option)) {
+      set(option, 'quantity', newValue);
     }
   }
 

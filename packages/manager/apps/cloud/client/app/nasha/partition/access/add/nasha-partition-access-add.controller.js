@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function NashaPartitionAccessAddCtrl($scope, $translate, $q, $uibModalInstance, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
 
@@ -22,7 +24,7 @@ angular.module('managerApp').controller('NashaPartitionAccessAddCtrl', function 
           if (!ip.description) {
             // ng-options groupby won't group items with undefined group.
             // We have to replace null with undefined.
-            _.set(ip, 'description', undefined);
+            set(ip, 'description', undefined);
           }
         });
         self.data.accessAvailable = result;

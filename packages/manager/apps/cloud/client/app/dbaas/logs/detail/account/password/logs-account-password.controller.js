@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 class LogsAccountPasswordCtrl {
   constructor($q, $state, $stateParams, $uibModalInstance, CucControllerHelper, CucCloudMessage,
     LogsAccountService) {
@@ -18,12 +21,12 @@ class LogsAccountPasswordCtrl {
 
   validatePassword() {
     let allValid = true;
-    _.each(this.passwordRules, (rule) => {
-      _.set(rule, 'isValid', rule.validator(this.newPassword));
+    forEach(this.passwordRules, (rule) => {
+      set(rule, 'isValid', rule.validator(this.newPassword));
       if (allValid) {
         allValid = rule.isValid;
       }
-      _.set(rule, 'isValidated', true);
+      set(rule, 'isValidated', true);
     });
     this.passwordValid = allValid;
   }

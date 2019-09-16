@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 class CloudProjectComputeInfrastructureOpenstackClientCtrl {
   constructor($interval, $q, $stateParams, $translate, CucCloudMessage,
     CloudProjectComputeInfrastructureOpenstackClientService, CucControllerHelper,
@@ -35,14 +39,14 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
   }
 
   initWithConfig(config) {
-    this.actions = _.get(config, 'actions', this.actions);
-    this.region = _.get(config, 'region', this.region);
-    const session = _.get(config, 'session');
+    this.actions = get(config, 'actions', this.actions);
+    this.region = get(config, 'region', this.region);
+    const session = get(config, 'session');
 
     if (session) {
       this.minimized = false;
       this.maximized = false;
-      _.set(this.session, 'data', this.Service.setSession(session, this.term));
+      set(this.session, 'data', this.Service.setSession(session, this.term));
     }
 
     this.load();
@@ -109,7 +113,7 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
     }
 
     // No cache as it's POST
-    if (!this.session.loading && (this.session.hasErrors || _.isEmpty(this.session.data))) {
+    if (!this.session.loading && (this.session.hasErrors || isEmpty(this.session.data))) {
       this.session.load();
     }
     this.regions.load();

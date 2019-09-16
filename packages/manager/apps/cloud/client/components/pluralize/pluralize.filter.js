@@ -1,3 +1,5 @@
+import defaults from 'lodash/defaults';
+
 angular.module('managerApp').filter('pluralize', ($translate, $log) => {
   const exist = translateId => $translate.instant(translateId) !== translateId;
 
@@ -30,7 +32,7 @@ angular.module('managerApp').filter('pluralize', ($translate, $log) => {
       $log.warn('[pluralize] counter must be a number! (%o)', counter);
     }
 
-    _.defaults(vars, { count: counter });
+    defaults(vars, { count: counter });
 
     return $translate.instant(key || translateId, vars || {});
   };

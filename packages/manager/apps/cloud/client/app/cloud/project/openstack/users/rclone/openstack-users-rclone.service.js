@@ -1,3 +1,7 @@
+import assign from 'lodash/assign';
+import find from 'lodash/find';
+import map from 'lodash/map';
+
 class CloudProjectOpenstackUsersRcloneService {
   constructor(
     $httpParamSerializer,
@@ -18,13 +22,13 @@ class CloudProjectOpenstackUsersRcloneService {
   getValidRcloneRegions(projectId) {
     return this.OvhApiCloud.Project().Region().v6().query({ serviceName: projectId })
       .$promise
-      .then(regions => _.map(regions, region => this.CucRegionService.getRegion(region)))
+      .then(regions => map(regions, region => this.CucRegionService.getRegion(region)))
       .catch(this.CucServiceHelper.errorHandler('cpou_rclone_modal_loading_error'));
   }
 
   getRcloneFileInfo(projectId, userId, region) {
     let url = [
-      (_.find(this.CONFIG_API.apis, { serviceType: 'apiv6' }) || {}).urlPrefix,
+      (find(this.CONFIG_API.apis, { serviceType: 'apiv6' }) || {}).urlPrefix,
       this.OvhApiCloud.Project().User().v6().services.rclone.url,
       '?',
       this.$httpParamSerializer({
@@ -45,7 +49,7 @@ class CloudProjectOpenstackUsersRcloneService {
       .rclone({ serviceName: projectId, userId, region }, { })
       .$promise
       .then((response) => {
-        _.assign(response, { url });
+        assign(response, { url });
         return response;
       });
   }

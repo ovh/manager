@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 class IpLoadBalancerCipherService {
   constructor($translate, OvhApiIpLoadBalancing, CucServiceHelper) {
     this.$translate = $translate;
@@ -17,7 +19,7 @@ class IpLoadBalancerCipherService {
       .$promise
       .then((response) => {
         const types = response.models['ipLoadbalancing.SslConfigurationEnum'].enum;
-        const mappedTypes = _.map(types, type => this.transformCipher(type));
+        const mappedTypes = map(types, type => this.transformCipher(type));
 
         return mappedTypes;
       })

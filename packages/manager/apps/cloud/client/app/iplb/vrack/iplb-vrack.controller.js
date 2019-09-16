@@ -1,3 +1,6 @@
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+
 class IpLoadBalancerVrackCtrl {
   constructor($state, $stateParams, $translate, CucControllerHelper, IpLoadBalancerVrackService,
     IpLoadBalancerVrackHelper, CucVrackService, OvhApiIpLoadBalancing) {
@@ -53,7 +56,7 @@ class IpLoadBalancerVrackCtrl {
           && !this.creationRules.hasErrors
           && this.creationRules.data.vrackEligibility
           && this.creationRules.data.status === 'inactive'
-          && _.isEmpty(this.creationRules.data.tasks),
+          && isEmpty(this.creationRules.data.tasks),
       },
       deActivateVrack: {
         text: this.$translate.instant('common_deactivate'),
@@ -61,7 +64,7 @@ class IpLoadBalancerVrackCtrl {
           .then(() => this.IpLoadBalancerVrackHelper
             .deAssociateVrack(this.serviceName, this.creationRules.data)),
         isAvailable: () => !this.creationRules.loading && !this.creationRules.hasErrors && this.creationRules.data.status === 'active'
-                    && _.isEmpty(this.creationRules.data.tasks),
+                    && isEmpty(this.creationRules.data.tasks),
       },
       addPrivateNetwork: {
         text: this.$translate.instant('iplb_vrack_private_network_add'),
@@ -71,7 +74,7 @@ class IpLoadBalancerVrackCtrl {
       editPrivateNetwork: {
         text: this.$translate.instant('common_modify'),
         callback: network => this.$state.go('network.iplb.detail.vrack.edit', { serviceName: this.serviceName, networkId: network.vrackNetworkId }),
-        isAvailable: () => !this.creationRules.loading && _.includes(['active', 'inactive'], this.creationRules.data.status),
+        isAvailable: () => !this.creationRules.loading && includes(['active', 'inactive'], this.creationRules.data.status),
       },
       deletePrivateNetwork: {
         text: this.$translate.instant('common_delete'),
@@ -80,7 +83,7 @@ class IpLoadBalancerVrackCtrl {
           text: this.$translate.instant('iplb_vrack_private_network_delete_text', { network: network.displayName }),
         })
           .then(() => this.deletePrivateNetwork(network)),
-        isAvailable: () => !this.creationRules.loading && _.includes(['active', 'inactive'], this.creationRules.data.status),
+        isAvailable: () => !this.creationRules.loading && includes(['active', 'inactive'], this.creationRules.data.status),
       },
     };
   }

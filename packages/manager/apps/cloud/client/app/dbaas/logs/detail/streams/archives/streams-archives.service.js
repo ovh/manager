@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 class LogsStreamsArchivesService {
   constructor($http, $q, LogsConstants, OvhApiDbaas, CucServiceHelper) {
     this.$http = $http;
@@ -92,7 +94,7 @@ class LogsStreamsArchivesService {
    * @memberof LogsStreamsArchivesService
    */
   transformArchive(archive) {
-    _.set(archive, 'retrievalStateType', this.LogsConstants.stateType[archive.retrievalState]);
+    set(archive, 'retrievalStateType', this.LogsConstants.stateType[archive.retrievalState]);
   }
 }
 

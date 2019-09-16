@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+
 class LogsAliasesLinkCtrl {
   constructor($q, $stateParams, $translate, LogsAliasesService, CucControllerHelper,
     LogsStreamsService, LogsIndexService, CucCloudMessage, CucServiceHelper) {
@@ -62,10 +65,10 @@ class LogsAliasesLinkCtrl {
 
     this.$q.all([this.alias.promise, this.streams.promise])
       .then((result) => {
-        const diff = _.filter(
+        const diff = filter(
           result[1],
           aapiStream => aapiStream.info.isEditable
-            && !_.find(
+            && !find(
               result[0].streams,
               attachedAapiStream => attachedAapiStream.info.streamId === aapiStream.info.streamId,
             ),
@@ -75,10 +78,10 @@ class LogsAliasesLinkCtrl {
 
     this.$q.all([this.alias.promise, this.indices.promise])
       .then((result) => {
-        const diff = _.filter(
+        const diff = filter(
           result[1],
           aapiIndex => aapiIndex.info.isEditable
-            && !_.find(
+            && !find(
               result[0].indexes,
               attachedAapiIndex => attachedAapiIndex.info.indexId === aapiIndex.info.indexId,
             ),

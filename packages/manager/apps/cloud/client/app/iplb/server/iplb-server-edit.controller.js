@@ -1,3 +1,5 @@
+import omit from 'lodash/omit';
+
 class IpLoadBalancerServerEditCtrl {
   constructor($q, $state, $stateParams, CucCloudMessage, CucControllerHelper,
     IpLoadBalancerConstant, IpLoadBalancerServerService) {
@@ -74,7 +76,7 @@ class IpLoadBalancerServerEditCtrl {
 
   getCleanServer() {
     if (this.farmType === 'udp') {
-      return _.omit(this.server, [
+      return omit(this.server, [
         'ssl',
         'cookie',
         'chain',

@@ -1,3 +1,10 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 class CloudProjectComputeInfrastructureListCtrl {
   constructor($scope, $q, $stateParams, $translate, $timeout, atInternet,
     CloudFlavorService, CucCloudMessage, CucCloudNavigation, CloudProjectOrchestrator,
@@ -56,7 +63,7 @@ class CloudProjectComputeInfrastructureListCtrl {
       values: this.CucRegionService.getAllTranslatedMacroRegion(),
     };
 
-    this.$scope.$watchCollection(() => _.get(this.infra, 'vrack.publicCloud.sortedKeys'), (newValues, oldValues) => {
+    this.$scope.$watchCollection(() => get(this.infra, 'vrack.publicCloud.sortedKeys'), (newValues, oldValues) => {
       this.addOrRemoveInstance(newValues, oldValues);
     });
 
@@ -80,12 +87,12 @@ class CloudProjectComputeInfrastructureListCtrl {
       volumes: this.CloudProjectOrchestrator
         .initVolumes({ serviceName: this.serviceName })
         .then((volumes) => {
-          this.volumes = _.get(volumes, 'volumes');
+          this.volumes = get(volumes, 'volumes');
         }),
     }).then(({ infra }) => {
       this.infra = infra;
       return this.$q
-        .all(_.map(
+        .all(map(
           this.infra.vrack.publicCloud.items,
           instance => this.OvhApiCloudProjectFlavor.v6()
             .get({ serviceName: this.serviceName, flavorId: instance.flavorId }).$promise
@@ -94,7 +101,7 @@ class CloudProjectComputeInfrastructureListCtrl {
         .then((instances) => { this.table.items = instances; });
     }).catch((err) => {
       this.table.items = [];
-      this.CucCloudMessage.error(`${this.$translate.instant('cpci_errors_init_title')} : ${_.get(err, 'data.message', '')}`);
+      this.CucCloudMessage.error(`${this.$translate.instant('cpci_errors_init_title')} : ${get(err, 'data.message', '')}`);
       return this.$q.reject(err);
     }).finally(() => {
       this.loaders.infra = false;
@@ -102,12 +109,12 @@ class CloudProjectComputeInfrastructureListCtrl {
   }
 
   updateInstance(instance, flavor) {
-    _.set(instance, 'volumes', _.get(this.volumes, instance.id, []));
-    _.set(instance, 'ipv4', instance.getPublicIpv4());
-    _.set(instance, 'ipv6', instance.getPublicIpv6());
-    _.set(instance, 'statusToTranslate', this.constructor.getStatusToTranslate(instance));
-    _.set(instance, 'macroRegion', this.CucRegionService.constructor.getMacroRegion(instance.region));
-    _.set(instance, 'flavorTranslated', this.CloudFlavorService.formatFlavorName(flavor.name));
+    set(instance, 'volumes', get(this.volumes, instance.id, []));
+    set(instance, 'ipv4', instance.getPublicIpv4());
+    set(instance, 'ipv6', instance.getPublicIpv6());
+    set(instance, 'statusToTranslate', this.constructor.getStatusToTranslate(instance));
+    set(instance, 'macroRegion', this.CucRegionService.constructor.getMacroRegion(instance.region));
+    set(instance, 'flavorTranslated', this.CloudFlavorService.formatFlavorName(flavor.name));
     return instance;
   }
 
@@ -125,15 +132,15 @@ class CloudProjectComputeInfrastructureListCtrl {
   addOrRemoveInstance(newIds, oldIds) {
     if (oldIds != null) {
       if (newIds.length > oldIds.length) {
-        const foundId = _.find(newIds, key => _.indexOf(oldIds, key) === -1);
+        const foundId = find(newIds, key => indexOf(oldIds, key) === -1);
         const foundItem = this.infra.vrack.publicCloud.items[foundId];
         if (foundItem) {
-          _.set(foundItem, 'volumes', _.get(this.volumes, foundItem.id, []));
+          set(foundItem, 'volumes', get(this.volumes, foundItem.id, []));
           this.table.items.push(foundItem);
         }
       } else if (newIds.length < oldIds.length) {
-        const foundId = _.find(oldIds, key => _.indexOf(newIds, key) === -1);
-        _.remove(this.table.items, item => item.id === foundId);
+        const foundId = find(oldIds, key => indexOf(newIds, key) === -1);
+        remove(this.table.items, item => item.id === foundId);
       }
     }
   }

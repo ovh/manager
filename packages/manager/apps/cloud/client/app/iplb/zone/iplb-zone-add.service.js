@@ -1,3 +1,7 @@
+import assignIn from 'lodash/assignIn';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
 class IpLoadBalancerZoneAddService {
   constructor($q, $translate, $window, CucCloudMessage, CucOrderHelperService,
     OvhApiIpLoadBalancing, CucRegionService, CucServiceHelper) {
@@ -21,12 +25,12 @@ class IpLoadBalancerZoneAddService {
     })
       .then((response) => {
         const availableZones = response.orderableZones.concat(response.suspendedZones);
-        return _.map(
+        return map(
           availableZones,
-          zone => _.extend(zone, this.CucRegionService.getRegion(zone.name)),
+          zone => assignIn(zone, this.CucRegionService.getRegion(zone.name)),
         );
       })
-      .then(availableZones => _.map(availableZones, zone => _.extend(zone, {
+      .then(availableZones => map(availableZones, zone => assignIn(zone, {
         selectable: {
           value: true,
           reason: zone.state === 'released' ? this.$translate.instant('iplb_zone_add_available_released') : '',
@@ -41,8 +45,8 @@ class IpLoadBalancerZoneAddService {
     }
 
     return this.$q.all({
-      created: this.createZones(serviceName, _.filter(zones, zone => zone.state !== 'released')),
-      activated: this.activateZones(serviceName, _.filter(zones, zone => zone.state === 'released')),
+      created: this.createZones(serviceName, filter(zones, zone => zone.state !== 'released')),
+      activated: this.activateZones(serviceName, filter(zones, zone => zone.state === 'released')),
     })
       .then((response) => {
         if (response.created.quantity > 0) {
@@ -72,7 +76,7 @@ class IpLoadBalancerZoneAddService {
       return emptyResponse;
     }
 
-    return this.CucOrderHelperService.getExpressOrderUrl(_.map(zones, zone => ({
+    return this.CucOrderHelperService.getExpressOrderUrl(map(zones, zone => ({
       productId: 'ipLoadbalancing',
       serviceName,
       planCode: zone.planCode,
@@ -93,7 +97,7 @@ class IpLoadBalancerZoneAddService {
       return emptyResponse;
     }
 
-    const promises = _.map(
+    const promises = map(
       zones,
       zone => this.OvhApiIpLoadBalancing.Zone().v6()
         .cancelDelete({ serviceName, name: zone.name }, {}).$promise,
@@ -112,14 +116,14 @@ class IpLoadBalancerZoneAddService {
     return this.OvhApiIpLoadBalancing.Zone().v6().query({ serviceName })
       .$promise
       .then((zoneIds) => {
-        const promises = _.map(
+        const promises = map(
           zoneIds,
           zoneId => this.OvhApiIpLoadBalancing.Zone().v6()
             .get({ serviceName, name: zoneId }).$promise,
         );
         return this.$q.all(promises);
       })
-      .then(zones => _.filter(zones, zone => zone.state === 'released'));
+      .then(zones => filter(zones, zone => zone.state === 'released'));
   }
 }
 

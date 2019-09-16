@@ -1,3 +1,9 @@
+import assign from 'lodash/assign';
+import find from 'lodash/find';
+import includes from 'lodash/includes';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+
 class IpLoadBalancerServerFarmEditCtrl {
   constructor($q, $state, $stateParams, CucCloudMessage, CucControllerHelper,
     IpLoadBalancerConstant, IpLoadBalancerServerFarmService,
@@ -32,7 +38,7 @@ class IpLoadBalancerServerFarmEditCtrl {
         this.$stateParams.serviceName,
       )
         .then((farms) => {
-          const farm = _.find(farms, {
+          const farm = find(farms, {
             id: parseInt(this.$stateParams.farmId, 10),
           });
           return this.IpLoadBalancerServerFarmService.getServerFarm(
@@ -133,12 +139,12 @@ class IpLoadBalancerServerFarmEditCtrl {
   parseFarm(farm) {
     this.type = farm.type;
     this.protocol = farm.type;
-    _.set(farm, 'port', parseInt(farm.port, 10));
+    set(farm, 'port', parseInt(farm.port, 10));
     if (!farm.probe || (farm.probe && !farm.probe.type)) {
-      _.set(farm, 'probe', { type: '' });
+      set(farm, 'probe', { type: '' });
     }
     if (!farm.stickiness) {
-      _.set(farm, 'stickiness', 'none');
+      set(farm, 'stickiness', 'none');
     }
     this.updateStickinessList();
     this.farm = angular.copy(farm);
@@ -185,7 +191,7 @@ class IpLoadBalancerServerFarmEditCtrl {
         break;
       case 'tcp':
         pickList.push('port');
-        if (_.includes(['default', 'contains', 'matches'], request.probe.match)) {
+        if (includes(['default', 'contains', 'matches'], request.probe.match)) {
           pickList.push('match');
         } else {
           request.probe.pattern = '';
@@ -198,7 +204,7 @@ class IpLoadBalancerServerFarmEditCtrl {
         request.probe = {};
     }
 
-    return _.pick(request.probe, pickList);
+    return pick(request.probe, pickList);
   }
 
   editProbe() {
@@ -215,7 +221,7 @@ class IpLoadBalancerServerFarmEditCtrl {
         },
       },
     }).then((probe) => {
-      _.assign(this.farm, { probe });
+      assign(this.farm, { probe });
     });
   }
 

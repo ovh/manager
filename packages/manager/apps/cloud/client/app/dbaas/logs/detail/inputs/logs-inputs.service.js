@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 class LogsInputsService {
   constructor(
     $q,
@@ -334,9 +336,9 @@ class LogsInputsService {
    * @memberof LogsInputsService
    */
   transformInput(input) {
-    _.set(input, 'info.engine.software', [input.info.engine.name, input.info.engine.version].join(' '));
-    _.set(input, 'info.exposedPort', parseInt(input.info.exposedPort, 10));
-    _.set(input, 'actionsMap', input.actions.reduce((actions, action) => {
+    set(input, 'info.engine.software', [input.info.engine.name, input.info.engine.version].join(' '));
+    set(input, 'info.exposedPort', parseInt(input.info.exposedPort, 10));
+    set(input, 'actionsMap', input.actions.reduce((actions, action) => {
       actions[action.type] = action.isAllowed; // eslint-disable-line
       return actions;
     }, {}));
@@ -350,14 +352,14 @@ class LogsInputsService {
     const isRunning = input.info.status === this.LogsConstants.inputStatus.RUNNING;
 
     /* eslint-disable no-nested-ternary */
-    _.set(input, 'info.state', isProcessing ? this.LogsConstants.inputState.PROCESSING
+    set(input, 'info.state', isProcessing ? this.LogsConstants.inputState.PROCESSING
       : input.info.isRestartRequired ? this.LogsConstants.inputState.RESTART_REQUIRED
         : isToBeConfigured ? this.LogsConstants.inputState.TO_CONFIGURE
           : isPending ? this.LogsConstants.inputState.PENDING
             : isRunning ? this.LogsConstants.inputState.RUNNING
               : this.LogsConstants.inputState.UNKNOWN);
     /* eslint-disable no-nested-ternary */
-    _.set(input, 'info.stateType', this.LogsConstants.inputStateType[input.info.state]);
+    set(input, 'info.stateType', this.LogsConstants.inputStateType[input.info.state]);
     return input;
   }
 
@@ -469,7 +471,7 @@ class LogsInputsService {
   static transformDetails(details) {
     details.engines.forEach((engine) => {
       if (!engine.isDeprecated) {
-        _.set(engine, 'name', engine.name.charAt(0).toUpperCase() + engine.name.toLowerCase().slice(1));
+        set(engine, 'name', engine.name.charAt(0).toUpperCase() + engine.name.toLowerCase().slice(1));
       }
     });
     return details;

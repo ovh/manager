@@ -1,3 +1,7 @@
+import find from 'lodash/find';
+import remove from 'lodash/remove';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('NashaPartitionAccessCtrl', function NashaPartitionAccessCtrl($scope, $state, $stateParams, $translate, $uibModal, $q, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
   const self = this;
 
@@ -55,7 +59,7 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function Nas
 
   self.getAccessForIp = function getAccessForIp(accessIp) {
     // If the access is being added, return the local data
-    const accessAddInProgress = _.find(self.data.addAccessInProgress, item => item.ip === accessIp);
+    const accessAddInProgress = find(self.data.addAccessInProgress, item => item.ip === accessIp);
     if (accessAddInProgress) {
       return accessAddInProgress;
     }
@@ -109,10 +113,10 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function Nas
     launchPolling(taskId)
       .finally(() => {
         // Remove from the polling list
-        _.remove(self.data.taskForAccess, item => item.task === taskId);
+        remove(self.data.taskForAccess, item => item.task === taskId);
 
         // If the partition was in creation, remove it from the creation list
-        _.remove(self.data.addAccessInProgress, item => item.ip === access.ip);
+        remove(self.data.addAccessInProgress, item => item.ip === access.ip);
 
         self.updateAccess(access);
       });
@@ -149,7 +153,7 @@ angular.module('managerApp').controller('NashaPartitionAccessCtrl', function Nas
   };
 
   self.hasTaskInProgress = function hasTaskInProgress(access) {
-    return _.some(self.data.taskForAccess, { access });
+    return some(self.data.taskForAccess, { access });
   };
 
   self.load();

@@ -1,3 +1,6 @@
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 class VpsPasswordCtrl {
   constructor($translate, $uibModalInstance, CucControllerHelper, CucCloudMessage, ovhDocUrl,
     serviceName, VpsService) {
@@ -19,7 +22,7 @@ class VpsPasswordCtrl {
     this.tasks = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.getTaskInError(this.serviceName)
         .then((tasks) => {
-          if (_(tasks).isArray() && !_(tasks).isEmpty()) {
+          if (isArray(tasks) && !isEmpty(tasks)) {
             this.CucCloudMessage.error(this.$translate.instant('vps_configuration_polling_fail'));
           }
         })

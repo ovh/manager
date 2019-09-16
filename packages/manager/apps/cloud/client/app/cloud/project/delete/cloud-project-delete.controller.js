@@ -1,3 +1,5 @@
+import mapValues from 'lodash/mapValues';
+
 angular.module('managerApp').controller('CloudProjectDeleteCtrl',
   function CloudProjectDeleteCtrl(
     $scope,
@@ -80,7 +82,7 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
         ipFailoverOvh: OvhApiCloudProjectIpFailover.v6().query({ serviceName: projectId }).$promise,
         ipFailoverCloud: OvhApiCloudProjectIpV6.query({ serviceName: projectId }).$promise,
       }).then((result) => {
-        self.resources = _.mapValues(result, arr => arr.length);
+        self.resources = mapValues(result, arr => arr.length);
       });
     }
 

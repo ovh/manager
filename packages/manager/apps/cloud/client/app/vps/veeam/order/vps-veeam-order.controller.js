@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 export default class VpsVeeamOrderCtrl {
   /* @ngInject */
   constructor($q, $translate, $window, CucCloudMessage, connectedUser,
@@ -23,10 +26,10 @@ export default class VpsVeeamOrderCtrl {
   }
 
   static getVeeamMonthlyPrice(option) {
-    const price = _.find(option.prices, {
+    const price = find(option.prices, {
       duration: 'P1M',
     });
-    return _.get(price, 'price');
+    return get(price, 'price');
   }
 
   /* =============================
@@ -34,7 +37,7 @@ export default class VpsVeeamOrderCtrl {
   ============================== */
 
   onVeeamOrderStepperFinish() {
-    let expressOrderUrl = _.get(
+    let expressOrderUrl = get(
       this.URLS,
       `website_order.express_base.${this.connectedUser.ovhSubsidiary}`,
     );
@@ -75,7 +78,7 @@ export default class VpsVeeamOrderCtrl {
     }).$promise
       .then((response) => {
         // take the automatedBackup option from the list
-        this.veeamOption = _.find(response, {
+        this.veeamOption = find(response, {
           family: 'automatedBackup',
         });
 
@@ -93,7 +96,7 @@ export default class VpsVeeamOrderCtrl {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_configuration_veeam_order_load_error'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {

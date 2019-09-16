@@ -1,3 +1,7 @@
+import forOwn from 'lodash/forOwn';
+import get from 'lodash/get';
+import isString from 'lodash/isString';
+
 /* eslint-disable no-param-reassign, prefer-rest-params, no-use-before-define */
 /**
  *  Decorate functions at runtime for at-internet tracking
@@ -12,7 +16,7 @@ angular.module('managerApp')
           const decorators = getControllerDecorators(constructor);
 
           if (decorators) {
-            const isLazyInstantiation = _.get(arguments, [2], false);
+            const isLazyInstantiation = get(arguments, [2], false);
             if (isLazyInstantiation) {
               return function lazyInstantiationFn() {
                 // force controller constructor execution for to decorate functions
@@ -25,7 +29,7 @@ angular.module('managerApp')
         };
 
         function getDecoratedController(controllerToDecorate, decorators) {
-          _.forOwn(decorators, (behavior, functionToDecorate) => {
+          forOwn(decorators, (behavior, functionToDecorate) => {
             const originFunction = controllerToDecorate[functionToDecorate];
 
             if (!angular.isFunction(originFunction)) {
@@ -42,7 +46,7 @@ angular.module('managerApp')
         }
 
         function getControllerDecorators(constructor) {
-          if (_.isString(constructor)) {
+          if (isString(constructor)) {
             return config[constructor.split(' ')[0]];
           }
           return undefined;

@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 class IpLoadBalancerTaskCtrl {
   constructor($scope, $stateParams, CucControllerHelper, CucCloudPoll, IpLoadBalancerTaskService,
     CucServiceHelper) {
@@ -28,7 +30,7 @@ class IpLoadBalancerTaskCtrl {
     this.poller = this.CucCloudPoll.pollArray({
       items: this.tasks.data,
       pollFunction: task => this.IpLoadBalancerTaskService.getTask(this.serviceName, task.id),
-      stopCondition: task => _.includes(['done', 'error'], task.status),
+      stopCondition: task => includes(['done', 'error'], task.status),
     });
   }
 

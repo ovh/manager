@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 class AddBackupStorageCtrl {
   constructor($translate, $uibModalInstance, CucControllerHelper, CucCloudMessage, serviceName,
     VpsService) {
@@ -27,7 +30,7 @@ class AddBackupStorageCtrl {
   }
 
   isAvailable() {
-    return !_.isEmpty(this.available);
+    return !isEmpty(this.available);
   }
 
   validateCheckboxes() {
@@ -64,7 +67,7 @@ class AddBackupStorageCtrl {
         )
         .then((data) => {
           if (data.state === 'ERROR') {
-            this.CucCloudMessage.error(_.get(data, 'messages[0].message', false) || this.$translate.instant('vps_backup_storage_access_add_failure'));
+            this.CucCloudMessage.error(get(data, 'messages[0].message', false) || this.$translate.instant('vps_backup_storage_access_add_failure'));
           } else {
             this.CucCloudMessage.success(this.$translate.instant('vps_backup_storage_access_add_success'));
           }

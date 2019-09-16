@@ -1,3 +1,5 @@
+import has from 'lodash/has';
+
 class EditBackupStorageCtrl {
   constructor($translate, $uibModalInstance, CucControllerHelper, row, CucCloudMessage, serviceName,
     VpsService) {
@@ -36,7 +38,7 @@ class EditBackupStorageCtrl {
         )
         .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_tab_backup_storage_set_success', { access: this.row.ipBlock })))
         .catch((err) => {
-          if (_(err).has('data.message')) {
+          if (has(err, 'data.message')) {
             this.CucCloudMessage.error(err.data.message);
           }
           this.CucCloudMessage.error(this.$translate.instant('vps_tab_backup_storage_set_fail', { access: this.row.ipBlock }));

@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import keyBy from 'lodash/keyBy';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('CloudProjectAddCtrl',
   function CloudProjectAddCtrl($q, $state, $translate, atInternet, Toast, REDIRECT_URLS,
     CucFeatureAvailabilityService, OvhApiCloud, OvhApiMe, OvhApiVrack, $window,
@@ -30,7 +35,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
       contractsAccepted: false,
       voucher: null,
       paymentMethod: null, // user choosen payment method (either MEAN or BC)
-      noPaymentMethodEnum: _.indexBy(['MEAN', 'BC']),
+      noPaymentMethodEnum: keyBy(['MEAN', 'BC']),
       catalogVersion: null, //  null == latest 1 === old catalog
     };
 
@@ -68,7 +73,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
           queueContracts.push(OvhApiMe.Agreements().v6().accept({
             id: contract.id,
           }, {}).$promise.then(() => {
-            _.remove(self.data.agreements, {
+            remove(self.data.agreements, {
               id: contract.id,
             });
           }));
@@ -116,7 +121,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
                 queue.push(OvhApiMe.Agreements().v6().contract({
                   id: contractId,
                 }).$promise.then((contract) => {
-                  _.set(contract, 'id', contractId);
+                  set(contract, 'id', contractId);
                   self.data.agreements.push(contract);
                 }));
               });
@@ -159,7 +164,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
 
     // returns true if user has at least one 3D secure registered credit card
     this.has3dsCreditCard = function has3dsCreditCard() {
-      return angular.isDefined(_.find(self.data.creditCards, 'threeDsValidated'));
+      return angular.isDefined(find(self.data.creditCards, 'threeDsValidated'));
     };
 
     this.canCreateProject = function canCreateProject() {

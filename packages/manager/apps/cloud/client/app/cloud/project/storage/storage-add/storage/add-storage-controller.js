@@ -1,3 +1,5 @@
+import isUndefined from 'lodash/isUndefined';
+
 angular.module('managerApp').controller('RA.add.storageCtrl', [
   '$q',
   '$scope',
@@ -54,7 +56,7 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
     };
 
     $scope.isValid = function isValid() {
-      const isDefined = function isDefined(expr) { return !_.isUndefined(expr); };
+      const isDefined = function isDefined(expr) { return !isUndefined(expr); };
       return isDefined($scope.model.region)
                    && isDefined($scope.model.containerType)
                    && isDefined($scope.model.name);

@@ -1,3 +1,9 @@
+import debounce from 'lodash/debounce';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('RA.storageCtrl', [
   '$filter',
   '$rootScope',
@@ -75,13 +81,13 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     }
 
     // Do things on page change...
-    $scope.$watch('storagesPaginated', _.debounce((storages) => {
+    $scope.$watch('storagesPaginated', debounce((storages) => {
       if (!storages || !storages.length) {
         return;
       }
 
       function getStorage(name, region) {
-        return _.find($scope.storagesFiltered, { name, region });
+        return find($scope.storagesFiltered, { name, region });
       }
 
       // ... like load metadata for each container
@@ -113,7 +119,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     // Search callbacks
     $scope.search = function search(value) {
       const regexp = new RegExp(value, 'i');
-      $scope.storagesFiltered = _.filter($scope.storages, storage => regexp.test(storage.name));
+      $scope.storagesFiltered = filter($scope.storages, storage => regexp.test(storage.name));
     };
 
     $scope.showAll = function showAll() {
@@ -137,7 +143,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
 
     $scope.filterStorages = function filterStorages() {
       if ($scope.filter.enabled) {
-        $scope.storagesFiltered = _.filter(
+        $scope.storagesFiltered = filter(
           $scope.storages,
           storage => storage.name
             && storage.name.toLowerCase().indexOf($scope.filter.name.toLowerCase()) !== -1,
@@ -159,13 +165,13 @@ angular.module('managerApp').controller('RA.storageCtrl', [
 
       function refreshView() {
         $rootScope.$broadcast('delete_container', [container.name]);
-        $scope.storages = _.filter($scope.storages, storage => storage.id !== container.id);
+        $scope.storages = filter($scope.storages, storage => storage.id !== container.id);
         $scope.filterStorages();
       }
 
       function createDeleteContainerTask() {
         return function createDeleteContainerTaskFn() {
-          _.set(container, 'status', 'deleting');
+          set(container, 'status', 'deleting');
           return CloudStorageContainers.delete($scope.projectId, container.id)
             .then((result) => {
               refreshView();
@@ -189,7 +195,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
       return CloudStorageContainer.list($scope.projectId, container.id)
         .then(containerData => containerData.objects)
         .then((objects) => {
-          const deleteObjectTasks = _.map(objects, createDeleteObjectTask);
+          const deleteObjectTasks = map(objects, createDeleteObjectTask);
           return CloudStorageContainerTasksRunner
             .enqueue(`delete_objects_${$scope.projectId}_${container.id}`, deleteObjectTasks);
         })

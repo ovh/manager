@@ -1,3 +1,5 @@
+import forEach from 'lodash/forEach';
+
 angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function DeskaasChangePasswordCtrl($uibModalInstance, OvhApiDeskaasService, service) {
   const self = this;
 
@@ -49,7 +51,7 @@ angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function De
 
     // match to filter on invalid chars and length
     if (policies.deniedChars && policies.deniedChars.length > 0) {
-      _.forEach(policies.deniedChars, (char) => {
+      forEach(policies.deniedChars, (char) => {
         exp += `\\x${char.charCodeAt(0).toString(16)}`;
       });
     }

@@ -1,4 +1,6 @@
+import set from 'lodash/set';
+
 angular.module('managerApp')
   .config((uibDatepickerConfig) => {
-    _.set(uibDatepickerConfig, 'showWeeks', false);
+    set(uibDatepickerConfig, 'showWeeks', false);
   });

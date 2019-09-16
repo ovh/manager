@@ -1,3 +1,6 @@
+import difference from 'lodash/difference';
+import set from 'lodash/set';
+
 angular.module('managerApp').factory('CloudProjectComputeInfrastructureFactory',
   (CloudProjectComputeInfraVrackFactory, CloudProjectComputeInfraInternetFactory,
     CloudProjectComputeInfraVrackVlanFactory) => {
@@ -72,7 +75,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfrastructureFactory',
 
       // VMs are not present anymore: delete the VMs ID from IP's routedTo
       if (routedToToRemove.length) {
-        _.set(ip, 'routedTo', _.difference(ip.routedTo, routedToToRemove));
+        set(ip, 'routedTo', difference(ip.routedTo, routedToToRemove));
       }
       return ip;
     };

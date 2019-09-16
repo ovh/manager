@@ -1,3 +1,5 @@
+import max from 'lodash/max';
+
 class LogsHomeCtrl {
   constructor($q, $scope, $state, $stateParams, $translate, bytesFilter, CucControllerHelper,
     LogsConstants, LogsHomeService, LogsTokensService, LogsHelperService, LogsDetailService) {
@@ -64,7 +66,7 @@ class LogsHomeCtrl {
   prepareDataUsageGraphData() {
     const offerLimit = this.account.data.offer
       .esStorage * this.LogsConstants.OFFER_STORAGE_MULTIPLIER;
-    const maxDataReceived = _.max(this.storageData.data.usageData[0]);
+    const maxDataReceived = max(this.storageData.data.usageData[0]);
     this.dataUsageGraphData.labels = this.storageData.data.timestamps.map(timestamp => moment(timestamp).format('DD MMM'));
     this.dataUsageGraphData.data = this.storageData.data.usageData;
     this.dataUsageGraphData.series = [this.$translate.instant('logs_home_data_received'), this.$translate.instant('logs_home_number_of_documents')];
@@ -79,7 +81,7 @@ class LogsHomeCtrl {
     };
     this.dataUsageGraphData.options.scales.yAxes[1].ticks = {
       suggestedMin: 0,
-      suggestedMax: _.max(this.dataUsageGraphData.data[1]) * 1.3 || 5,
+      suggestedMax: max(this.dataUsageGraphData.data[1]) * 1.3 || 5,
       callback: value => (value % 1 === 0 ? value : ''),
     };
 

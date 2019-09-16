@@ -1,3 +1,6 @@
+import keyBy from 'lodash/keyBy';
+import set from 'lodash/set';
+
 class LogsAliasesService {
   constructor($q, $translate, OvhApiDbaas, CucServiceHelper, CucCloudPoll, LogsHelperService,
     LogsOptionsService, LogsConstants, CucUrlHelper, CucCloudMessage, LogsStreamsService,
@@ -18,7 +21,7 @@ class LogsAliasesService {
     this.LogsStreamsService = LogsStreamsService;
     this.LogsIndexService = LogsIndexService;
 
-    this.contentTypeEnum = _.indexBy(['STREAMS', 'INDICES']);
+    this.contentTypeEnum = keyBy(['STREAMS', 'INDICES']);
     this.contents = [
       { value: this.contentTypeEnum.STREAMS, name: 'logs_streams_title' },
       { value: this.contentTypeEnum.INDICES, name: 'logs_index_title' },
@@ -117,14 +120,14 @@ class LogsAliasesService {
           const promises = alias.streams
             .map(streamId => this.LogsStreamsService.getAapiStream(serviceName, streamId));
           return this.$q.all(promises).then((streams) => {
-            _.set(alias, 'streams', streams);
+            set(alias, 'streams', streams);
             return alias;
           });
         } if (alias.indexes.length > 0) {
           const promises = alias.indexes
             .map(indexId => this.LogsIndexService.getIndexDetails(serviceName, indexId));
           return this.$q.all(promises).then((indices) => {
-            _.set(alias, 'indexes', indices);
+            set(alias, 'indexes', indices);
             return alias;
           });
         }

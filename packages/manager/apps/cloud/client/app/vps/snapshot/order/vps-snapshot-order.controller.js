@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 export default class VpsSnapshotOrderCtrl {
   /* @ngInject */
   constructor($q, $translate, $window, CucCloudMessage, connectedUser,
@@ -23,10 +26,10 @@ export default class VpsSnapshotOrderCtrl {
   }
 
   static getSnapshotMonthlyPrice(snapshot) {
-    const price = _.find(snapshot.prices, {
+    const price = find(snapshot.prices, {
       duration: 'P1M',
     });
-    return _.get(price, 'price');
+    return get(price, 'price');
   }
 
   /* =============================
@@ -34,7 +37,7 @@ export default class VpsSnapshotOrderCtrl {
   ============================== */
 
   onSnapshotOrderStepperFinish() {
-    let expressOrderUrl = _.get(
+    let expressOrderUrl = get(
       this.URLS,
       `website_order.express_base.${this.connectedUser.ovhSubsidiary}`,
     );
@@ -74,7 +77,7 @@ export default class VpsSnapshotOrderCtrl {
     }).$promise
       .then((response) => {
         // take the snapshot option from the list
-        this.snapshotOption = _.find(response, {
+        this.snapshotOption = find(response, {
           family: 'snapshot',
         });
 
@@ -92,7 +95,7 @@ export default class VpsSnapshotOrderCtrl {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_configuration_activate_snapshot_load_error'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {

@@ -1,3 +1,5 @@
+import flatten from 'lodash/flatten';
+
 angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
   ($q, OvhApiCloudProjectVolume, OvhCloudPriceHelper) => {
     /**
@@ -39,7 +41,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
     VolumeFactory.prototype.getCustomOptions = function getCustomOptions(options) {
       return angular.extend(options, {
         attachedTo: options.attachedTo
-          ? _.flatten([options.attachedTo])
+          ? flatten([options.attachedTo])
           : [], // Ensure attachedTo is always an array
       });
     };

@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
+import keys from 'lodash/keys';
+import some from 'lodash/some';
+
 angular.module('managerApp')
   .controller('CloudProjectOpenstackUsersCtrl',
     function CloudProjectOpenstackUsersCtrl(OvhApiCloud, $translate, CucCloudMessage, $stateParams,
@@ -57,15 +65,15 @@ angular.module('managerApp')
 
       $scope.$watch('CloudProjectOpenstackUsersCtrl.table.selected', () => {
         // if some line were not removed => recheck or if polling happened.
-        if (!_.isEmpty(self.table.autoSelected)) {
+        if (!isEmpty(self.table.autoSelected)) {
           // Selected (and autoselected) are represented as object: Not array of objects
           // or array of arrays.
           // Therefore, we have to loop through the keys (which represent a UserId)
           // and then compare it to the
           // userId in the user object. User.id is a number and userId a string
           // (it is an object key) so the .ToString is mandatory in order to use === instead of ==.
-          _.forEach(_.keys(self.table.autoSelected), (userId) => {
-            const isInUserTable = _.some(self.table.users, user => user.id.toString() === userId);
+          forEach(keys(self.table.autoSelected), (userId) => {
+            const isInUserTable = some(self.table.users, user => user.id.toString() === userId);
             if (isInUserTable) {
               self.table.selected[userId] = true;
             }
@@ -75,7 +83,7 @@ angular.module('managerApp')
       }, true);
 
       function getSelectableUserList(userList) {
-        return _.filter(userList, user => user.status !== 'disabled');
+        return filter(userList, user => user.status !== 'disabled');
       }
 
       $scope.$watch('CloudProjectComputeSnapshotCtrl.table.usersCurrentPage', (users) => {
@@ -158,7 +166,7 @@ angular.module('managerApp')
             serviceName: self.projectId,
             userId: currentUser.id,
           }, {}).$promise.then((newUser) => {
-            const currentUserFound = _.find(
+            const currentUserFound = find(
               self.table.users,
               user => user.username === currentUser.username,
             );
@@ -255,7 +263,7 @@ angular.module('managerApp')
       };
 
       self.removeFromList = function removeFromList(user) {
-        const index = _.findIndex(self.table.users, { id: user.id });
+        const index = findIndex(self.table.users, { id: user.id });
         if (index !== -1) {
           self.table.users.splice(index, 1);
         }

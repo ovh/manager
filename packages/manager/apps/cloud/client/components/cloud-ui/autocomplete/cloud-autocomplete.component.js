@@ -1,3 +1,8 @@
+import findIndex from 'lodash/findIndex';
+import groupBy from 'lodash/groupBy';
+import isUndefined from 'lodash/isUndefined';
+import set from 'lodash/set';
+
 function AutoCompleteController($timeout, $filter, $element) {
   const self = this;
 
@@ -107,7 +112,7 @@ AutoCompleteController.prototype.filterOptions = function filterOptions(filter) 
     const regExp = new RegExp(filter, 'g');
     angular.forEach(this.options, (item) => {
       if (item[displayProperty].indexOf(filter) !== -1) {
-        _.set(item, 'filteredProperty', item[displayProperty].replace(regExp, `<strong>${filter}</strong>`));
+        set(item, 'filteredProperty', item[displayProperty].replace(regExp, `<strong>${filter}</strong>`));
         filtered.push(item);
       }
     });
@@ -115,7 +120,7 @@ AutoCompleteController.prototype.filterOptions = function filterOptions(filter) 
     this.filteredOptions = filtered;
   } else {
     angular.forEach(this.options, (item) => {
-      _.set(item, 'filteredProperty', undefined);
+      set(item, 'filteredProperty', undefined);
     });
     this.filteredOptions = this.options;
   }
@@ -123,7 +128,7 @@ AutoCompleteController.prototype.filterOptions = function filterOptions(filter) 
 
 AutoCompleteController.prototype.groupOptions = function groupOptions() {
   if (this.groupBy) {
-    this.groupedOptions = _.groupBy(this.filteredOptions, this.groupBy);
+    this.groupedOptions = groupBy(this.filteredOptions, this.groupBy);
   }
 };
 
@@ -301,7 +306,7 @@ AutoCompleteController.prototype.placeHighlightOnModel = function placeHighlight
   // we have to scroll and highlight the selected item.
   if (this.ngModel && !this.ngModel.isNew) {
     const selectedModel = this.ngModel;
-    this.highlightIndex = _.findIndex(this.options, item => item === selectedModel);
+    this.highlightIndex = findIndex(this.options, item => item === selectedModel);
 
     if (this.groupBy) {
       this.highlightedGroupKey = this.getArrangedGroupName(
@@ -309,7 +314,7 @@ AutoCompleteController.prototype.placeHighlightOnModel = function placeHighlight
       );
 
       const optionToFind = this.options[this.highlightIndex];
-      this.highlightedGroupIndex = _.findIndex(
+      this.highlightedGroupIndex = findIndex(
         this.groupedOptions[this.highlightedGroupKey],
         item => item === optionToFind,
       );
@@ -328,7 +333,7 @@ AutoCompleteController.prototype.resetHighlight = function resetHighlight() {
 };
 
 AutoCompleteController.prototype.getArrangedGroupName = function getArrangedGroupName(groupName) {
-  return _.isUndefined(groupName) ? 'undefined' : groupName;
+  return isUndefined(groupName) ? 'undefined' : groupName;
 };
 
 angular.module('managerApp').component('cloudAutoComplete', {

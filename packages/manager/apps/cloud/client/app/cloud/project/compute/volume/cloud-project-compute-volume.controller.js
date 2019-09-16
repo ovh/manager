@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import set from 'lodash/set';
 
 
 angular.module('managerApp')
@@ -84,7 +87,7 @@ angular.module('managerApp')
           if (self.table.selected[volumeId] === false) {
             delete self.table.selected[volumeId];
           } else {
-            const isInVolumeTable = _.find(self.table.volume, volume => volume.id === volumeId && volume.status === 'active');
+            const isInVolumeTable = find(self.table.volume, volume => volume.id === volumeId && volume.status === 'active');
             if (isInVolumeTable && self.table.selected[volumeId]) {
               self.table.selected[volumeId] = true;
             }
@@ -105,7 +108,7 @@ angular.module('managerApp')
     };
 
     $scope.$watch('CloudProjectComputeVolumeCtrl.table.volumeFilterPage', (pageVolumes) => {
-      self.table.volumeFilterCheckboxPage = _.filter(pageVolumes, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
+      self.table.volumeFilterCheckboxPage = filter(pageVolumes, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
     });
 
     // ---------SEARCH BAR---------
@@ -113,7 +116,7 @@ angular.module('managerApp')
     function filterVolume() {
       if ($scope.searchVolumeForm && $scope.searchVolumeForm.$valid) {
         let tab = self.table.volume;
-        tab = _.filter(self.table.volume, (volume) => {
+        tab = filter(self.table.volume, (volume) => {
           let result = true;
 
           if (self.search.name && volume.name) {
@@ -134,7 +137,7 @@ angular.module('managerApp')
         });
 
         self.table.volumeFilter = tab;
-        self.table.volumeFilterCheckbox = _.filter(tab, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
+        self.table.volumeFilterCheckbox = filter(tab, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
 
         if (self.table.volumeFilter.length) {
           self.orderBy();
@@ -168,7 +171,7 @@ angular.module('managerApp')
         orderByExpression,
         self.order.reverse,
       );
-      self.table.volumeFilterCheckbox = _.filter(self.table.volumeFilter, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
+      self.table.volumeFilterCheckbox = filter(self.table.volumeFilter, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
     };
 
     // ---------VOLUME---------
@@ -198,21 +201,21 @@ angular.module('managerApp')
         self.totalResume.price.currencyCode = 0;
 
         angular.forEach(self.table.volume, (volume) => {
-          _.set(volume, 'attachedToDetails', []);
+          set(volume, 'attachedToDetails', []);
           // calculate total capacity
           self.totalResume.capacity += volume.size;
           // calculate total price value
           self.totalResume.price.value += volume.calculatePrice().monthlyPrice.value;
 
           angular.forEach(volume.attachedTo, (instanceId) => {
-            tmpInstanceDetail = _.find(self.table.instance, { id: instanceId });
+            tmpInstanceDetail = find(self.table.instance, { id: instanceId });
             if (tmpInstanceDetail) {
               volume.attachedToDetails.push(tmpInstanceDetail.name);
             }
           });
 
           // check if the volume is linked to one or more snapshots
-          _.set(volume, 'snapshotted', !!_.find(self.table.snapshots, { volumeId: volume.id }));
+          set(volume, 'snapshotted', !!find(self.table.snapshots, { volumeId: volume.id }));
         });
 
         if (self.table.volume.length) {

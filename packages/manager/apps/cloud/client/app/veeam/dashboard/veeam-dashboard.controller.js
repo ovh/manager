@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 (() => {
   class VeeamDashboardCtrl {
     constructor($stateParams, $translate, CucControllerHelper, CucFeatureAvailabilityService,
@@ -71,12 +73,12 @@
         },
         manageAutorenew: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'VEEAM_CLOUD_CONNECT' }),
+          href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'VEEAM_CLOUD_CONNECT' }),
           isAvailable: () => true,
         },
         manageContact: {
           text: this.$translate.instant('common_manage'),
-          href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
+          href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
           isAvailable: () => this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
         },
       };

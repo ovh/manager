@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 class VpsReverseDnsCtrl {
   constructor($translate, $uibModalInstance, CucCloudMessage, serviceName, VpsService) {
     this.$translate = $translate;
@@ -44,7 +46,7 @@ class VpsReverseDnsCtrl {
     this.VpsService.setReversesDns(this.serviceName, this.structuredData)
       .then((data) => {
         if (data && data.state) {
-          const messages = !_.isEmpty(data.messages) ? data.messages : [];
+          const messages = !isEmpty(data.messages) ? data.messages : [];
           switch (data.state) {
             case 'ERROR':
               this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reversedns_fail'));

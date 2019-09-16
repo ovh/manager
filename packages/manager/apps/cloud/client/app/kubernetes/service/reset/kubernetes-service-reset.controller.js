@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class kubernetesResetCtrl {
   constructor($rootScope, $stateParams, $translate, $uibModalInstance, CucCloudMessage,
     CucControllerHelper, Kubernetes, KUBERNETES) {
@@ -34,12 +36,12 @@ class kubernetesResetCtrl {
     // get the available options value for versions
     return this.Kubernetes.getSchema()
       .then((kubeSchema) => {
-        this.availableVersions = _.get(kubeSchema, 'models[\'kube.Version\'].enum');
+        this.availableVersions = get(kubeSchema, 'models[\'kube.Version\'].enum');
       })
       .catch((error) => {
         this.CucCloudMessage.error(
           this.$translate.instant('kube_service_reset_load_error', {
-            message: _.get(error, 'data.message', ''),
+            message: get(error, 'data.message', ''),
           }),
         );
         this.$uibModalInstance.close();
@@ -73,7 +75,7 @@ class kubernetesResetCtrl {
           version: this.model.version,
         })
         .then(() => this.CucCloudMessage.success(this.$translate.instant('kube_service_reset_success')))
-        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_reset_error', { message: _.get(err, 'data.message', '') })))
+        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_reset_error', { message: get(err, 'data.message', '') })))
         .finally(() => {
           this.loading = false;
           this.CucControllerHelper.scrollPageToTop();

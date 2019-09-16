@@ -1,3 +1,5 @@
+import padStart from 'lodash/padStart';
+
 /* eslint-disable no-bitwise */
 class CloudProjectComputeInfrastructurePrivateNetworkDialogService {
   constructor($timeout, OvhApiCloudProjectNetworkPrivate,
@@ -268,7 +270,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkDialogService {
     const ipParts = ip.split('.');
     let byteString = '';
     for (let i = 0; i < ipParts.length; i += 1) {
-      byteString += _.padLeft(parseInt(ipParts[i], 10).toString(2), 8, '0');
+      byteString += padStart(parseInt(ipParts[i], 10).toString(2), 8, '0');
     }
 
     if (reverse) {

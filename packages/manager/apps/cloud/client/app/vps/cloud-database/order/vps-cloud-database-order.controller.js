@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+import some from 'lodash/some';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -69,7 +73,7 @@ export default class {
       })
       .catch(error => this.CucCloudMessage.error([
         this.$translate.instant('vps_tab_cloud_database_order_fetch_capacities_failed'),
-        _(error).get('data.message', error),
+        get(error, 'data.message', error),
       ].join(' ')));
   }
 
@@ -89,13 +93,13 @@ export default class {
     this.loading.durations = true;
     return this.ApiOrderDb.getNew({ version, ram, datacenter }).$promise
       .then((durations) => {
-        this.durations = _.map(durations, duration => ({ value: duration, prices: null }));
+        this.durations = map(durations, duration => ({ value: duration, prices: null }));
         // we run this in parallel, so no return
         this.getPricesForEachDuration(this.durations, version, ram, datacenter);
       })
       .catch(error => this.CucCloudMessage.error([
         this.$translate.instant('vps_tab_cloud_database_order_fetch_duration_failed'),
-        _(error).get('data.message', error),
+        get(error, 'data.message', error),
       ].join(' ')))
       .finally(() => {
         this.loading.durations = false;
@@ -113,12 +117,12 @@ export default class {
   }
 
   getPricesForEachDuration(durations, version, ram, datacenter) {
-    return this.$q.all(_.map(
+    return this.$q.all(map(
       durations,
       duration => this.getPrices(duration, version, ram, datacenter),
     )).catch(error => this.CucCloudMessage.error([
       this.$translate.instant('vps_tab_cloud_database_order_fetch_prices_failed'),
-      _(error).get('data.message', error),
+      get(error, 'data.message', error),
     ].join(' ')));
   }
 
@@ -134,7 +138,7 @@ export default class {
   }
 
   canOrder() {
-    return !_.any(this.loading)
+    return !some(this.loading)
       && this.currentOrder.version
       && this.currentOrder.ram
       && this.currentOrder.datacenter
@@ -163,7 +167,7 @@ export default class {
       })
       .catch(error => this.CucCloudMessage.error([
         this.$translate.instant('vps_tab_cloud_database_order_failed'),
-        _(error).get('data.message', error),
+        get(error, 'data.message', error),
       ].join(' ')))
       .finally(() => {
         this.loading.purchaseOrder = false;

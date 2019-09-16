@@ -1,3 +1,10 @@
+import find from 'lodash/find';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import trim from 'lodash/trim';
+
 class IpLoadBalancerFrontendsEditCtrl {
   constructor($q, $state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
     IpLoadBalancerConstant, IpLoadBalancerFailoverIpService,
@@ -44,7 +51,7 @@ class IpLoadBalancerFrontendsEditCtrl {
         this.$stateParams.serviceName,
       )
         .then((frontends) => {
-          const frontend = _.find(frontends, {
+          const frontend = find(frontends, {
             id: parseInt(this.$stateParams.frontendId, 10),
           });
           return this.IpLoadBalancerFrontendsService.getFrontend(
@@ -198,8 +205,8 @@ class IpLoadBalancerFrontendsEditCtrl {
       default: break;
     }
 
-    if (_.has(frontend, 'allowedSource.length')) {
-      _.set(frontend, 'allowedSource', frontend.allowedSource.join(', '));
+    if (has(frontend, 'allowedSource.length')) {
+      set(frontend, 'allowedSource', frontend.allowedSource.join(', '));
     }
 
     this.frontend = angular.copy(frontend);
@@ -216,7 +223,7 @@ class IpLoadBalancerFrontendsEditCtrl {
       delete request.ssl;
     }
 
-    if (_.includes(['udp', 'tcp'], this.type)) {
+    if (includes(['udp', 'tcp'], this.type)) {
       delete request.hsts;
     }
 
@@ -229,7 +236,7 @@ class IpLoadBalancerFrontendsEditCtrl {
       request.defaultFarmId = null;
     }
     if (this.frontend.allowedSource) {
-      request.allowedSource = _.map(this.frontend.allowedSource.split(','), source => _.trim(source));
+      request.allowedSource = map(this.frontend.allowedSource.split(','), source => trim(source));
     } else {
       request.allowedSource = [];
     }

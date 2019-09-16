@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import pull from 'lodash/pull';
+
 (() => {
   class CloudOfferCtrl {
     constructor($q, $stateParams, $translate, CucFeatureAvailabilityService, CloudProjectAdd,
@@ -127,7 +130,7 @@
       if (this.acceptedAgreements[agreementId]) {
         this.data.agreementsAccepted.push(agreementId);
       } else {
-        _.pull(this.data.agreementsAccepted, agreementId);
+        pull(this.data.agreementsAccepted, agreementId);
       }
       this.state.allAgreementsAccepted = this.data.agreementsAccepted.length === this.data
         .agreements.length;
@@ -139,7 +142,7 @@
 
     acceptAllAgreements() {
       const agreements = [];
-      _.forEach(this.data.agreements, (agreement) => {
+      forEach(this.data.agreements, (agreement) => {
         agreements.push(this.acceptAgreement(agreement.id));
       });
       return this.$q.all(agreements)

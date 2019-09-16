@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class CloudProjectComputeLoadbalancerCtrl {
   constructor(
     $q, $translate, $state, $stateParams, CloudProjectComputeLoadbalancerService,
@@ -65,13 +69,13 @@ class CloudProjectComputeLoadbalancerCtrl {
           .query()
           .$promise
           .then(response => this.$q.all(
-            _.map(response, id => this.CloudProjectComputeLoadbalancerService.getLoadbalancer(id)),
+            map(response, id => this.CloudProjectComputeLoadbalancerService.getLoadbalancer(id)),
           )),
         loadbalancersImportedArray:
                     this.OvhApiCloudProjectIplb.v6().query({
                       serviceName: this.serviceName,
                     }).$promise.then(ids => this.$q.all(
-                      _.map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
+                      map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
                         serviceName: this.serviceName,
                         id,
                       }).$promise),
@@ -79,14 +83,14 @@ class CloudProjectComputeLoadbalancerCtrl {
       }).then(({ loadbalancers, loadbalancersImportedArray }) => {
         // Create a map of imported loadbalancers
         const loadBalancerImported = {};
-        _.forEach(loadbalancersImportedArray, (lb) => { loadBalancerImported[lb.iplb] = lb; });
+        forEach(loadbalancersImportedArray, (lb) => { loadBalancerImported[lb.iplb] = lb; });
 
         // Set openstack importation status
-        this.table.loadbalancer = _.map(loadbalancers, (lb) => {
+        this.table.loadbalancer = map(loadbalancers, (lb) => {
           if (loadBalancerImported[lb.serviceName]) {
-            _.set(lb, 'openstack', loadBalancerImported[lb.serviceName].status);
+            set(lb, 'openstack', loadBalancerImported[lb.serviceName].status);
           } else {
-            _.set(lb, 'openstack', 'not_imported');
+            set(lb, 'openstack', 'not_imported');
           }
           return lb;
         });

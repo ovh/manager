@@ -1,3 +1,15 @@
+import difference from 'lodash/difference';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import groupBy from 'lodash/groupBy';
+import indexOf from 'lodash/indexOf';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import sum from 'lodash/sum';
+import uniqBy from 'lodash/uniqBy';
+
 (() => {
   const taskMessages = {
     updateRepositoryQuota: 'veeam_storage_update_quota_',
@@ -40,8 +52,8 @@
     }
 
     transformConfigurationInfos(infos) {
-      _.set(infos, 'detail.location', this.CucRegionService.getRegion(infos.detail.location));
-      _.set(infos, 'detail.backupCount', infos.inventoryNames.length);
+      set(infos, 'detail.location', this.CucRegionService.getRegion(infos.detail.location));
+      set(infos, 'detail.backupCount', infos.inventoryNames.length);
       return infos.detail;
     }
 
@@ -75,11 +87,11 @@
 
     transformSubscriptionInfos(data) {
       const renewalType = data.serviceInfo.renew.automatic === true ? 'automatic' : 'manual';
-      _.set(data, 'serviceInfo.offer', data.details.productOffer);
-      _.set(data, 'serviceInfo.renewalType', renewalType);
-      _.set(data, 'serviceInfo.renewalTypeDescription', this.$translate.instant(`veeam_infos_subscription_renew_${renewalType}_description`));
-      _.set(data, 'serviceInfo.isOnTrial', data.serviceInfo.offer === 'demo');
-      _.set(data, 'serviceInfo.subscriptionTimeRemaining', (moment(data.serviceInfo.expiration)).diff(moment(), 'days'));
+      set(data, 'serviceInfo.offer', data.details.productOffer);
+      set(data, 'serviceInfo.renewalType', renewalType);
+      set(data, 'serviceInfo.renewalTypeDescription', this.$translate.instant(`veeam_infos_subscription_renew_${renewalType}_description`));
+      set(data, 'serviceInfo.isOnTrial', data.serviceInfo.offer === 'demo');
+      set(data, 'serviceInfo.subscriptionTimeRemaining', (moment(data.serviceInfo.expiration)).diff(moment(), 'days'));
 
       return data.serviceInfo;
     }
@@ -97,12 +109,12 @@
         serviceName,
       }).$promise
         .then((offers) => {
-          const promises = _.map(offers, offer => this.getUpgradeOptionDurations(serviceName, offer)
-            .then(durations => _.map(durations.data, duration => ({ offer, duration }))));
-          return this.$q.all(promises).then(durations => _.flatten(durations));
+          const promises = map(offers, offer => this.getUpgradeOptionDurations(serviceName, offer)
+            .then(durations => map(durations.data, duration => ({ offer, duration }))));
+          return this.$q.all(promises).then(durations => flatten(durations));
         })
         .then((durations) => {
-          const promises = _.map(
+          const promises = map(
             durations,
             duration => this.getUpgradeOptionPrices(serviceName, duration.offer, duration.duration)
               .then(price => ({
@@ -211,19 +223,25 @@
     }
 
     calculateUsage(storages) {
-      const usage = _.chain(storages)
-        .map((storage) => {
-          if (storage.quotaUsed && storage.quotaUsed.value && storage.quotaUsed.unit) {
-            return this.$filter('bytes')(storage.quotaUsed.value, 0, false, storage.quotaUsed.unit, true);
-          }
-          return 0;
-        })
-        .sum()
-        .value();
-      const available = _.chain(storages)
-        .map(storage => this.$filter('bytes')(storage.quota.value, 0, false, storage.quota.unit, true))
-        .sum()
-        .value();
+      const usage = sum(
+        map(
+          storages,
+          (storage) => {
+            if (storage.quotaUsed && storage.quotaUsed.value && storage.quotaUsed.unit) {
+              return this.$filter('bytes')(storage.quotaUsed.value, 0, false, storage.quotaUsed.unit, true);
+            }
+            return 0;
+          },
+        ),
+      );
+
+      const available = sum(
+        map(
+          storages,
+          storage => this.$filter('bytes')(storage.quota.value, 0, false, storage.quota.unit, true),
+        ),
+      );
+
       return 100 * usage / available;
     }
 
@@ -232,7 +250,7 @@
         serviceName,
       }, options)).$promise
         .then((tasks) => {
-          const promises = _.map(tasks, task => this.veeam.task({
+          const promises = map(tasks, task => this.veeam.task({
             serviceName,
             taskId: task,
           }).$promise);
@@ -259,7 +277,7 @@
           this.getTasks(serviceName, { state: 'doing' }),
           this.getTasks(serviceName, { state: 'todo' }),
         ])
-          .then(result => _.flatten(result))
+          .then(result => flatten(result))
           .then((tasks) => {
             this.checkTasks(serviceName, tasks);
           })
@@ -298,8 +316,8 @@
     }
 
     getPendingTasksMessages() {
-      let messagesByTaskName = _.groupBy(_.uniq(this.unitOfWork.tasks, 'taskId'), 'name');
-      messagesByTaskName = _.forEach(messagesByTaskName, (task, taskName) => {
+      let messagesByTaskName = groupBy(uniqBy(this.unitOfWork.tasks, 'taskId'), 'name');
+      messagesByTaskName = forEach(messagesByTaskName, (task, taskName) => {
         const taskMessage = taskMessages[taskName];
 
         // We only watch some tasks.
@@ -314,9 +332,9 @@
     }
 
     checkTasks(serviceName, tasks) {
-      const oldTasksIds = _.map(this.unitOfWork.tasks, 'taskId');
-      const tasksIds = _.map(tasks, 'taskId');
-      const completedTasksIds = _.difference(oldTasksIds, tasksIds);
+      const oldTasksIds = map(this.unitOfWork.tasks, 'taskId');
+      const tasksIds = map(tasks, 'taskId');
+      const completedTasksIds = difference(oldTasksIds, tasksIds);
       if (completedTasksIds.length) {
         const completedTasks = this.unitOfWork.tasks
           .filter(task => completedTasksIds.indexOf(task.taskId) >= 0);
@@ -347,9 +365,9 @@
             }
           });
         })).then(() => {
-          this.unitOfWork.tasks = _.filter(
+          this.unitOfWork.tasks = filter(
             tasks,
-            task => _.indexOf(_.keys(taskMessages), task.name) >= 0,
+            task => indexOf(keys(taskMessages), task.name) >= 0,
           );
           if (!this.unitOfWork.tasks.length) {
             this.stopPolling();

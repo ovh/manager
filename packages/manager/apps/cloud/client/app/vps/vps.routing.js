@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import detailComponent from './detail/vps-detail.component';
 import headerComponent from './header/vps-header.component';
 
@@ -17,10 +19,10 @@ export default /* @ngInject */($stateProvider) => {
       redirectTo: 'iaas.vps.detail.dashboard',
       resolve: {
         stateVps: /* @ngInject */ ($transition$, $q, OvhApiVps) => OvhApiVps.v6().get({
-          serviceName: _.get($transition$.params(), 'serviceName'),
+          serviceName: get($transition$.params(), 'serviceName'),
         }).$promise
           .then(stateVps => OvhApiVps.v6().version({
-            serviceName: _.get($transition$.params(), 'serviceName'),
+            serviceName: get($transition$.params(), 'serviceName'),
           }).$promise.then((response) => {
             const vpsState = stateVps;
             vpsState.isLegacy = response.version !== 2;

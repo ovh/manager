@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class VeeamEnterpriseService {
   constructor($q, $translate, OvhApiVeeamEnterprise) {
     this.$q = $q;
@@ -47,7 +49,7 @@ class VeeamEnterpriseService {
           this.$translate.instant('veeam_enterprise_infos_license_register_success'),
         ))
         .catch((response) => {
-          const alreadyRegistered = _.get(response, 'data.message') === 'This backup server enterprise has already been registered';
+          const alreadyRegistered = get(response, 'data.message') === 'This backup server enterprise has already been registered';
           const message = alreadyRegistered
             ? this.$translate.instant('veeam_enterprise_infos_license_already_registered_error')
             : this.$translate.instant('veeam_enterprise_infos_license_register_error');

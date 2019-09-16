@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import head from 'lodash/head';
+
 angular.module('managerApp')
   .controller('OpenstackUsersOpenrcCtrl', function OpenstackUsersOpenrcCtrl($httpParamSerializer,
     $stateParams, $uibModalInstance, CLOUD_OPENRC_VERSION, CONFIG_API, openstackUser,
@@ -41,7 +44,7 @@ angular.module('managerApp')
       }).$promise.then((regions) => {
         self.form.regions = regions;
         if (self.form.regions) {
-          self.data.region = _.first(self.form.regions);
+          self.data.region = head(self.form.regions);
         }
       }).finally(() => {
         self.loaders.regions = false;
@@ -55,7 +58,7 @@ angular.module('managerApp')
 
     function buildOpenrcUrl() {
       let url = [
-        (_.find(CONFIG_API.apis, { serviceType: 'aapi' }) || {}).urlPrefix,
+        (find(CONFIG_API.apis, { serviceType: 'aapi' }) || {}).urlPrefix,
         OvhApiCloud.Project().User().Aapi().services.openrc.url,
         '?',
         $httpParamSerializer({

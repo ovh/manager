@@ -1,3 +1,8 @@
+import forEach from 'lodash/forEach';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+
 class IpLoadBalancerHomeStatusService {
   constructor($q, $translate, OvhApiIpLoadBalancing, CucServiceHelper) {
     this.$q = $q;
@@ -25,8 +30,8 @@ class IpLoadBalancerHomeStatusService {
       .$promise
       .then((response) => {
         const transformedResponse = {};
-        const promises = _.map(
-          _.keys(_.pick(response, _.keys(this.iplbItemWeight))),
+        const promises = map(
+          keys(pick(response, keys(this.iplbItemWeight))),
           (iplbItem) => {
             response[iplbItem].itemName = iplbItem;
             return this.transformIplbItem(serviceName, response[iplbItem]).then((item) => {
@@ -38,7 +43,7 @@ class IpLoadBalancerHomeStatusService {
         return this.$q.all(promises)
           .then(() => {
             if (config.toArray) {
-              return _.map(_.keys(transformedResponse), iplbItem => transformedResponse[iplbItem]);
+              return map(keys(transformedResponse), iplbItem => transformedResponse[iplbItem]);
             }
             return transformedResponse;
           });
@@ -82,7 +87,7 @@ class IpLoadBalancerHomeStatusService {
       weight: this.iplbItemWeight[iplbItem],
     };
 
-    _.forEach(_.keys(iplbItem.status), (status) => {
+    forEach(keys(iplbItem.status), (status) => {
       transformedItem.status[this.apiToUiStatus[status]] = {
         code: this.apiToUiStatus[status],
         number: iplbItem.status[status],

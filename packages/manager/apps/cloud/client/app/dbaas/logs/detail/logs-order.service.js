@@ -1,3 +1,7 @@
+import assignIn from 'lodash/assignIn';
+import find from 'lodash/find';
+import map from 'lodash/map';
+
 class LogsOrderService {
   constructor($q, OvhApiDbaas, CucServiceHelper, LogsOfferService) {
     this.$q = $q;
@@ -13,9 +17,9 @@ class LogsOrderService {
       .then((plans) => {
         const promises = plans.map(plan => this.LogsOfferService.getOfferDetail(plan.planCode));
         return this.$q.all(promises).then((planDetails) => {
-          const list = _.map(
+          const list = map(
             plans,
-            item => _.extend(item, _.findWhere(planDetails, { reference: item.planCode }),
+            item => assignIn(item, find(planDetails, { reference: item.planCode }),
               { renewalPrice: this.constructor.getRenewalPrice(item) }),
           );
           const sortedList = list.sort((a, b) => a.renewalPrice.value - b.renewalPrice.value);

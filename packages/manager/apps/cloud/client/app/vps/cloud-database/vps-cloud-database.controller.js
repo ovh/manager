@@ -1,3 +1,12 @@
+import defaults from 'lodash/defaults';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -29,7 +38,7 @@ export default class {
     this.serviceName = this.$stateParams.serviceName;
 
     this.statusFilterOptions = {
-      values: _.reduce(
+      values: reduce(
         ['detached', 'restartPending', 'startPending', 'started', 'stopPending', 'stopped'],
         (result, key) => Object.assign({}, result, { [key]: this.$translate.instant(`common_database_status_${key}`) }),
         {},
@@ -46,13 +55,16 @@ export default class {
     this.loading = true;
     return this.loadIps()
       .then(({ results }) => {
-        if (_(results).isString()) {
+        if (isString(results)) {
           throw new Error('Temporary error from the API');
         }
-        this.ipv4 = _(results).chain()
-          .find({ version: 'v4' })
-          .get('ipAddress')
-          .value();
+        this.ipv4 = get(
+          find(
+            results,
+            { version: 'v4' },
+          ),
+          'ipAddress',
+        );
       })
       .then(() => this.loadDatabases())
       .then((databases) => {
@@ -68,20 +80,20 @@ export default class {
   loadDatabases() {
     return this.ApiPrivateDb.query().$promise
       .then(serviceNames => this.$q.all(
-        _.map(
+        map(
           serviceNames,
           serviceName => this.ApiPrivateDb.get({ serviceName }).$promise,
         ),
       ))
-      .then(databases => _.filter(databases, { offer: 'public' }))
+      .then(databases => filter(databases, { offer: 'public' }))
       .then(databases => this.$q.all(
-        _.map(
+        map(
           databases,
           database => this.isVpsAuthorized(database.serviceName)
-            .then(vpsAuthorized => _.defaults({ vpsAuthorized }, database)),
+            .then(vpsAuthorized => defaults({ vpsAuthorized }, database)),
         ),
       ))
-      .then(databases => _.map(databases, database => _.defaults(
+      .then(databases => map(databases, database => defaults(
         {
           name: database.displayName || database.serviceName,
         }, database,
@@ -89,14 +101,14 @@ export default class {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_tab_cloud_database_fetch_error'),
-          _(error).get('data.message', ''),
+          get(error, 'data.message', ''),
         ].join(' '));
       });
   }
 
   isVpsAuthorized(serviceName) {
     return this.ApiWhitelist.query({ serviceName, ip: this.ipv4, service: true }).$promise
-      .then(whitelist => !_.isEmpty(whitelist));
+      .then(whitelist => !isEmpty(whitelist));
   }
 
   addAuthorizedIp(database) {
@@ -122,7 +134,7 @@ export default class {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_tab_cloud_database_whitelist_add_error'),
-          _(error).get('data.message', ''),
+          get(error, 'data.message', ''),
         ].join(' '));
       });
   }
@@ -139,7 +151,7 @@ export default class {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_tab_cloud_database_whitelist_remove_error'),
-          _(error).get('data.message', ''),
+          get(error, 'data.message', ''),
         ].join(' '));
       });
   }
@@ -147,7 +159,7 @@ export default class {
   goToCloudDatabase(database) {
     const { serviceName } = database;
     this.$window.open(this.CucControllerHelper.navigation.constructor.getUrl(
-      _.get(this.REDIRECT_URLS, 'privateDatabase'),
+      get(this.REDIRECT_URLS, 'privateDatabase'),
       { serviceName },
     ));
   }

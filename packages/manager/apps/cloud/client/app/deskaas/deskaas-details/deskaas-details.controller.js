@@ -1,3 +1,10 @@
+import difference from 'lodash/difference';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+import mapValues from 'lodash/mapValues';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('DeskaasDetailsCtrl',
   function DeskaasDetailsCtrl(OvhApiDeskaasService, $stateParams, $scope, CucControllerHelper,
     CucCloudMessage, $translate, $state, $q, DESKAAS_ACTIONS, $uibModal, OvhApiMe, deskaasSidebar,
@@ -56,12 +63,12 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       },
       manageAutorenew: {
         text: $translate.instant('common_manage'),
-        href: CucControllerHelper.navigation.constructor.getUrl(_.get(REDIRECT_URLS, 'renew'), { serviceName: $stateParams.serviceName, serviceType: 'DESKAAS' }),
+        href: CucControllerHelper.navigation.constructor.getUrl(get(REDIRECT_URLS, 'renew'), { serviceName: $stateParams.serviceName, serviceType: 'DESKAAS' }),
         isAvailable: () => true,
       },
       manageContact: {
         text: $translate.instant('common_manage'),
-        href: CucControllerHelper.navigation.constructor.getUrl(_.get(REDIRECT_URLS, 'contacts'), { serviceName: $stateParams.serviceName }),
+        href: CucControllerHelper.navigation.constructor.getUrl(get(REDIRECT_URLS, 'contacts'), { serviceName: $stateParams.serviceName }),
         isAvailable: () => CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
       },
     };
@@ -163,7 +170,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
     }
 
     function onTaskError(taskDetails) {
-      if (!_.isEmpty(taskDetails)) {
+      if (!isEmpty(taskDetails)) {
         CucCloudMessage.error($translate.instant('vdi_task_error', taskDetails));
       } else {
         CucCloudMessage.error($translate.instant('common_api_error'));
@@ -265,7 +272,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       };
 
       this.getCleanTasks = function getCleanTasks() {
-        return _.mapValues(selfTask.tasks, value => value);
+        return mapValues(selfTask.tasks, value => value);
       };
 
       // Check if we have a task on error
@@ -293,9 +300,9 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
           taskId: task.taskId,
           isUserTask,
         };
-        _.set(task, 'displayState', $translate.instant(`vdi_task_state_${task.state}`));
-        _.set(task, 'displayName', $translate.instant(`vdi_task_name_${task.name}`));
-        _.set(task, 'status', task.state);
+        set(task, 'displayState', $translate.instant(`vdi_task_state_${task.state}`));
+        set(task, 'displayName', $translate.instant(`vdi_task_name_${task.name}`));
+        set(task, 'status', task.state);
         if (selfTask.isIn(task)) {
           // we have the task, we need to update
           // TODO If task change from one status to error or problem we need to display a message
@@ -318,9 +325,9 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
           }
           return;
         }
-        _.set(task, 'serviceName', $stateParams.serviceName);
-        _.set(task, 'isUserTask', false);
-        _.set(task, 'poller', OvhApiDeskaasService.pollTask($scope, opts).then(selfTask.addOrUpdate, selfTask.addOrUpdate, selfTask.addOrUpdate));
+        set(task, 'serviceName', $stateParams.serviceName);
+        set(task, 'isUserTask', false);
+        set(task, 'poller', OvhApiDeskaasService.pollTask($scope, opts).then(selfTask.addOrUpdate, selfTask.addOrUpdate, selfTask.addOrUpdate));
         // Add a new entry in the map
         selfTask.tasks[task.taskId] = task;
         selfTask.cleanTasks.push(task);
@@ -337,7 +344,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       can_upgrade() {
         let ref = [];
         // Tasks are retrieved, no upgrading and planCode and offers are retrieved
-        if (!self.flags.init.getTasks && !self.flags.upgrading && _.has(self, 'details.planCode') && self.OrderPlanOffers.length !== 0) {
+        if (!self.flags.init.getTasks && !self.flags.upgrading && has(self, 'details.planCode') && self.OrderPlanOffers.length !== 0) {
           ref = DeskaasService.getUpgradeOptions(self.details.planCode);
         }
         self.upgradeOptions = ref;
@@ -370,7 +377,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       return promise
         .then(success)
         .catch((err) => {
-          const msg = _.get(err, 'data.message', '');
+          const msg = get(err, 'data.message', '');
           CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
           return $q.reject(err);
         });
@@ -418,7 +425,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       })
         .then(() => {
           getConsole().catch((err) => {
-            const msg = _.get(err, 'data.message', '');
+            const msg = get(err, 'data.message', '');
             CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
           });
         });
@@ -483,7 +490,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       modal.result.then((modalValues) => {
         resetPassword(modalValues)
           .catch((err) => {
-            const msg = _.get(err, 'data.message', '');
+            const msg = get(err, 'data.message', '');
             CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
           });
       });
@@ -547,7 +554,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
     };
 
     self.hasValidAlias = function hasValidAlias() {
-      const alias = _.get(self, 'details.alias', 'noAlias');
+      const alias = get(self, 'details.alias', 'noAlias');
       return alias && alias !== 'noAlias';
     };
 
@@ -582,7 +589,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       })
         .then((newDisplayName) => {
           changeAlias(newDisplayName).catch((err) => {
-            const msg = _.get(err, 'data.message', '');
+            const msg = get(err, 'data.message', '');
             CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
           });
         });
@@ -633,7 +640,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
 
       modal.result.then((modalData) => {
         changeUsername(modalData).catch((err) => {
-          const msg = _.get(err, 'data.message', '');
+          const msg = get(err, 'data.message', '');
           CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
         });
       });
@@ -681,7 +688,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       })
         .then((modalData) => {
           confirmTerminate(modalData).catch((err) => {
-            const msg = _.get(err, 'data.message', '');
+            const msg = get(err, 'data.message', '');
             CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
           });
         });
@@ -696,7 +703,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         promise,
         (response) => {
           response.displayName = response.alias === 'noAlias' ? response.serviceName : response.alias;
-          self.services.offer = _.get(self.references[response.planCode], 'name');
+          self.services.offer = get(self.references[response.planCode], 'name');
           self.details = response;
         },
       )
@@ -780,8 +787,8 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       ]).then((elements) => {
         let tasks = elements[0];
 
-        tasks = _.difference(tasks, elements[1]);
-        tasks = _.difference(tasks, elements[2]);
+        tasks = difference(tasks, elements[1]);
+        tasks = difference(tasks, elements[2]);
 
         return tasks;
       }).then((runningTasks) => {

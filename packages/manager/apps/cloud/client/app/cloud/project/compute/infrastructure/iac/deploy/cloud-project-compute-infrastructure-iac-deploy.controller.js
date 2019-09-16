@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 class CloudProjectComputeInfrastructureIacDeployCtrl {
   constructor($q, $state, $stateParams, CloudProjectComputeInfrastructureOpenstackClientService,
     OvhApiCloudProjectStack, OvhApiMe, CucServiceHelper) {
@@ -26,11 +28,11 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
       .then((results) => {
         this.stack = results.stack;
         this.guides = results.stack.instructions;
-        this.guide = _.find(this.guides, guide => guide.language === this.user.language);
+        this.guide = find(this.guides, guide => guide.language === this.user.language);
 
         // Default is en_US
         if (!this.guide) {
-          this.guide = _.find(this.guides, guide => guide.language === 'en_US');
+          this.guide = find(this.guides, guide => guide.language === 'en_US');
         }
 
         if (!this.guide) {

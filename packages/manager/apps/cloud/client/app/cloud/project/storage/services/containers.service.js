@@ -1,3 +1,5 @@
+import pick from 'lodash/pick';
+
 angular.module('managerApp').service('CloudStorageContainers', [
   '$q',
   'OvhApiCloudProjectStorage',
@@ -16,7 +18,7 @@ angular.module('managerApp').service('CloudStorageContainers', [
       function saveNameAndRegion(container) {
         const data = storageContainerConfig.containerMetaCache.get(projectId, container.id);
         if (!data) {
-          storageContainerConfig.containerMetaCache.set(projectId, container.id, _.pick(container, ['name', 'region']));
+          storageContainerConfig.containerMetaCache.set(projectId, container.id, pick(container, ['name', 'region']));
         }
       }
 

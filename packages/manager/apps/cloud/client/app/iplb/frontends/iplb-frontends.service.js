@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import set from 'lodash/set';
+
 class IpLoadBalancerFrontendsService {
   constructor($q, $translate, IpLoadBalancerConfigurationService, IpLoadBalancerZoneService,
     OvhApiIpLoadBalancing,
@@ -46,7 +49,7 @@ class IpLoadBalancerFrontendsService {
     })
       .$promise
       .then((frontend) => {
-        _.set(frontend, 'protocol', type);
+        set(frontend, 'protocol', type);
         return frontend;
       });
   }
@@ -58,14 +61,14 @@ class IpLoadBalancerFrontendsService {
 
   transformFrontend(frontend) {
     if (frontend.zone === 'all') {
-      _.set(frontend, 'region', {
+      set(frontend, 'region', {
         macroRegion: {
           code: null,
           text: this.$translate.instant('iplb_zone_all'),
         },
       });
     } else {
-      _.set(frontend, 'region', this.CucRegionService.getRegion(frontend.zone));
+      set(frontend, 'region', this.CucRegionService.getRegion(frontend.zone));
     }
 
     // Needed to trigger row loading with datagrid.
@@ -89,7 +92,7 @@ class IpLoadBalancerFrontendsService {
   }
 
   static transformFarm(farm, type) {
-    _.set(farm, 'type', type);
+    set(farm, 'type', type);
     return farm;
   }
 
@@ -98,7 +101,7 @@ class IpLoadBalancerFrontendsService {
       .then((farmsParam) => {
         let farms = farmsParam;
         if (zone) {
-          farms = _.filter(farms, { zone });
+          farms = filter(farms, { zone });
         }
         farms.unshift({
           displayName: this.$translate.instant('iplb_frontend_add_farm_no_farm'),
@@ -120,7 +123,7 @@ class IpLoadBalancerFrontendsService {
         return zonesMap;
       }, {}))
       .then((zones) => {
-        _.set(zones, 'all', this.$translate.instant('iplb_frontend_add_datacenter_all'));
+        set(zones, 'all', this.$translate.instant('iplb_frontend_add_datacenter_all'));
         return Object.keys(zones).map(zoneKey => ({
           id: zoneKey,
           name: zones[zoneKey],

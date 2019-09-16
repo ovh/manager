@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('RA.storage.deleteObject',
   ($scope, params, $uibModalInstance) => {
     $scope.elem = params;
@@ -10,7 +12,7 @@ angular.module('managerApp').controller('RA.storage.deleteObject',
     };
 
     $scope.names = function names() {
-      return _.map($scope.elem, 'name').join('<br />');
+      return map($scope.elem, 'name').join('<br />');
     };
 
     $scope.confirm = function confirm() {

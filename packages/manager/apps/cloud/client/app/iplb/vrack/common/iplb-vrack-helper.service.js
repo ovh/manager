@@ -1,3 +1,6 @@
+import assignIn from 'lodash/assignIn';
+import set from 'lodash/set';
+
 class IpLoadBalancerVrackHelper {
   constructor(CucCloudPoll, IpLoadBalancerVrackService, OvhApiVrack) {
     this.CucCloudPoll = CucCloudPoll;
@@ -8,26 +11,26 @@ class IpLoadBalancerVrackHelper {
   associateVrack(serviceName, networkId, vrackCreationRules) {
     this.IpLoadBalancerVrackService.associateVrack(serviceName, networkId)
       .then((task) => {
-        _.set(vrackCreationRules, 'status', 'activating');
+        set(vrackCreationRules, 'status', 'activating');
         return this.pollCreationRules(task);
       })
       .then(() => this.IpLoadBalancerVrackService
         .getNetworkCreationRules(serviceName, { resetCache: true }))
       .then((creationRules) => {
-        _.extend(vrackCreationRules, creationRules);
+        assignIn(vrackCreationRules, creationRules);
       });
   }
 
   deAssociateVrack(serviceName, vrackCreationRules) {
     this.IpLoadBalancerVrackService.deAssociateVrack(serviceName)
       .then((task) => {
-        _.set(vrackCreationRules, 'status', 'deactivating');
+        set(vrackCreationRules, 'status', 'deactivating');
         return this.pollCreationRules(task);
       })
       .then(() => this.IpLoadBalancerVrackService
         .getNetworkCreationRules(serviceName, { resetCache: true }))
       .then((creationRules) => {
-        _.extend(vrackCreationRules, creationRules);
+        assignIn(vrackCreationRules, creationRules);
       });
   }
 

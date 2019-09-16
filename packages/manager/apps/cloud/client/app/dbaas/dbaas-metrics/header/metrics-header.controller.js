@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 (() => {
   class MetricsHeaderCtrl {
     constructor($state, $stateParams, $translate, ovhDocUrl, METRICS_ENDPOINTS, URLS) {
@@ -51,11 +53,11 @@
     }
 
     getProtocolDocs() {
-      return _.map(this.METRICS_ENDPOINTS.protos, proto => this.getProtocolDoc(proto));
+      return map(this.METRICS_ENDPOINTS.protos, proto => this.getProtocolDoc(proto));
     }
 
     getPlatformDocs() {
-      return _.map(this.METRICS_ENDPOINTS.graphs, graph => this.getPlatformDoc(graph.name));
+      return map(this.METRICS_ENDPOINTS.graphs, graph => this.getPlatformDoc(graph.name));
     }
 
     getPlatformDoc(graph) {

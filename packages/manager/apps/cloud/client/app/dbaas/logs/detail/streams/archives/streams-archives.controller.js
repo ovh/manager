@@ -1,3 +1,5 @@
+import clone from 'lodash/clone';
+
 class LogsStreamsArchivesCtrl {
   constructor($interval, $state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
     LogsStreamsService, LogsConstants, LogsStreamsArchivesService) {
@@ -142,7 +144,7 @@ class LogsStreamsArchivesCtrl {
    * @memberof LogsStreamsArchivesHomeCtrl
    */
   updateRetrievalDelay() {
-    _.clone(this.notifications).forEach((notification) => {
+    clone(this.notifications).forEach((notification) => {
       const { archive } = notification;
       archive.retrievalDelay = archive.retrievalDelay > 0
         ? archive.retrievalDelay -= 1

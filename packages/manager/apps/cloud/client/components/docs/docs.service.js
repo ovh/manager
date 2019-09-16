@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class DocsService {
   constructor($translate, TranslateService, coreConfig, DOCS_ALL_GUIDES, DOCS_HOMEPAGE_GUIDES) {
     this.$translate = $translate;
@@ -23,10 +27,10 @@ class DocsService {
     const userLocale = this.TranslateService.getUserLocale().toUpperCase();
     const domain = this.getDomainOfGuides();
 
-    return _.get(
+    return get(
       this.DOCS_ALL_GUIDES,
       userLocale,
-      _.get(this.DOCS_ALL_GUIDES, domain, this.DOCS_ALL_GUIDES.EN),
+      get(this.DOCS_ALL_GUIDES, domain, this.DOCS_ALL_GUIDES.EN),
     );
   }
 
@@ -34,10 +38,10 @@ class DocsService {
     const userLocale = this.TranslateService.getUserLocale().toUpperCase();
     const domain = this.getDomainOfGuides();
 
-    const sectionContent = _.get(this.DOCS_HOMEPAGE_GUIDES, `${userLocale}.${section}`, this.DOCS_HOMEPAGE_GUIDES[domain][section]);
+    const sectionContent = get(this.DOCS_HOMEPAGE_GUIDES, `${userLocale}.${section}`, this.DOCS_HOMEPAGE_GUIDES[domain][section]);
 
-    sectionContent.list = _.map(sectionContent.list, (guide) => {
-      _.set(guide, 'text', this.$translate.instant(guide.text));
+    sectionContent.list = map(sectionContent.list, (guide) => {
+      set(guide, 'text', this.$translate.instant(guide.text));
       return guide;
     });
 

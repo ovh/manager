@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+
 class IpLoadBalancerZoneDeleteCtrl {
   constructor($q, $stateParams, CucCloudMessage, CucCloudNavigation, CucControllerHelper,
     IpLoadBalancerZoneDeleteService) {
@@ -36,7 +38,7 @@ class IpLoadBalancerZoneDeleteCtrl {
   }
 
   getDeletableZoneCount() {
-    return _.filter(this.zones.data, zone => zone.selectable.value !== false).length;
+    return filter(this.zones.data, zone => zone.selectable.value !== false).length;
   }
 
   isLoading() {

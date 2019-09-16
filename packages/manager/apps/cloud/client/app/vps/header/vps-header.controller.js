@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -85,7 +87,7 @@ export default class {
   }
 
   showIpV6Banner(version, ipv6) {
-    const oldVersion = _.contains(version, '2014') || _.contains(version, '2013');
+    const oldVersion = includes(version, '2014') || includes(version, '2013');
     const userAcknowledged = this.stopNotification.ipV6;
     if (!userAcknowledged && !oldVersion && ipv6) {
       this.CucCloudMessage.info({

@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 class LogsTokensCtrl {
   constructor($q, $state, $stateParams, $translate, LogsTokensService, CucControllerHelper,
     CucCloudMessage) {
@@ -22,7 +24,7 @@ class LogsTokensCtrl {
     this.tokens = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsTokensService.getTokens(this.serviceName)
         .then(tokens => tokens.map((token) => {
-          _.set(token, 'isLoadingCluster', true);
+          set(token, 'isLoadingCluster', true);
           return token;
         })),
     });
@@ -36,8 +38,8 @@ class LogsTokensCtrl {
         const clusters = result[0];
         const tokens = result[1];
         tokens.map((token) => {
-          _.set(token, 'cluster', clusters.find(cluster => cluster.clusterId === token.clusterId) || {});
-          _.set(token, 'isLoadingCluster', false);
+          set(token, 'cluster', clusters.find(cluster => cluster.clusterId === token.clusterId) || {});
+          set(token, 'isLoadingCluster', false);
           return token;
         });
       });

@@ -1,3 +1,5 @@
+import every from 'lodash/every';
+
 class CloudProjectComputeInfrastructurePrivateNetworkService {
   constructor($q, $timeout, $translate, CucCloudMessage, URLS, OvhApiMe, OvhApiCloudProjectRegion,
     OvhApiCloudProjectNetworkPrivate, OvhApiCloudProjectNetworkPrivateSubnet) {
@@ -215,7 +217,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
   static areAllRegionsActive(network) {
     return (network.status === 'ACTIVE')
       && network.regions
-      && _.every(network.regions, region => region.status === 'ACTIVE');
+      && every(network.regions, region => region.status === 'ACTIVE');
   }
 
   deleteProjectNetworkPrivate(serviceName, networkId) {

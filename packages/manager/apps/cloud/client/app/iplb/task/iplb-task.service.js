@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 class IpLoadBalancerTaskService {
   constructor($q, $translate, OvhApiIpLoadBalancing, CucServiceHelper) {
     this.$q = $q;
@@ -10,7 +12,7 @@ class IpLoadBalancerTaskService {
     return this.IpLoadBalancing.Task().v6().query({ serviceName })
       .$promise
       .then((response) => {
-        const promises = _.map(response, taskId => this.getTask(serviceName, taskId));
+        const promises = map(response, taskId => this.getTask(serviceName, taskId));
         return this.$q.all(promises);
       })
       .catch(this.CucServiceHelper.errorHandler('iplb_task_list_loading_error'));

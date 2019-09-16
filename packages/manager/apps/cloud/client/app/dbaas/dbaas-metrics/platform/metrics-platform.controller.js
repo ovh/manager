@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 (() => {
   class MetricsPlatformCtrl {
     constructor($stateParams, $translate, METRICS_ENDPOINTS, MetricService, ovhDocUrl) {
@@ -23,7 +25,7 @@
       this.MetricService.getService(this.serviceName)
         .then((service) => {
           this.regionName = service.data.region.name;
-          this.platforms = _.map(this.METRICS_ENDPOINTS.protos, proto => (
+          this.platforms = map(this.METRICS_ENDPOINTS.protos, proto => (
             {
               proto,
               address: `https://${proto}.${this.regionName}.${this.METRICS_ENDPOINTS.suffix}`,

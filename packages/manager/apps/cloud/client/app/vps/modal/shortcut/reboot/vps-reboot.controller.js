@@ -1,3 +1,6 @@
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 class VpsRebootCtrl {
   constructor($translate, $uibModalInstance, CucControllerHelper, CucCloudMessage, serviceName,
     VpsService) {
@@ -24,7 +27,7 @@ class VpsRebootCtrl {
   }
 
   loadVpsRescueMode(tasks) {
-    if (!_(tasks).isArray() || (_(tasks).isArray() && _(tasks).isEmpty())) {
+    if (!isArray(tasks) || (isArray(tasks) && isEmpty(tasks))) {
       this.VpsService.getSelectedVps(this.serviceName)
         .then((data) => { this.model = data; })
         .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reboot_fail')))

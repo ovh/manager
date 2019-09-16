@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
 (() => {
   class VeeamUpdateOfferCtrl {
     constructor($uibModalInstance, serviceName, CucControllerHelper, VeeamService) {
@@ -17,7 +20,7 @@
       this.orderInfo.load()
         .then(() => {
           // Order will always return one element at the moment.  Therefore we take a shortcut.
-          this.orderInfo.data = _.first(this.orderInfo.data);
+          this.orderInfo.data = head(this.orderInfo.data);
         }).catch((response) => {
           this.orderInfo.data = {};
           this.$uibModalInstance.dismiss(response);
@@ -44,7 +47,7 @@
     }
 
     isModalLoading() {
-      return _.get(this.orderInfo, 'loading', false) || _.get(this.orderPost, 'loading', false);
+      return get(this.orderInfo, 'loading', false) || get(this.orderPost, 'loading', false);
     }
   }
 

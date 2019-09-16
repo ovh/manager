@@ -1,3 +1,7 @@
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
+
 angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateCtrl',
   function CloudProjectBillingConsumptionEstimateCtrl($q, $uibModal, $stateParams, $translate,
     OvhApiCloudProjectAlerting, CucCloudMessage, OvhApiCloudProjectUsageForecast,
@@ -118,14 +122,14 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
       // list alerts ids
       return getAlertIds()
         .then((alertIds) => {
-          if (_.isEmpty(alertIds)) {
+          if (isEmpty(alertIds)) {
             return null;
           }
-          return getAlert(_.first(alertIds));
+          return getAlert(head(alertIds));
         })
         .then((alertObject) => {
           self.data.alert = alertObject;
-          if (!_.isNull(alertObject)) {
+          if (!isNull(alertObject)) {
             initConsumptionChart();
           }
         }).finally(() => {
@@ -163,10 +167,10 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
       OvhApiCloudProjectAlerting.v6().getIds({
         serviceName: $stateParams.projectId,
       }).$promise.then((alertIds) => {
-        if (!_.isEmpty(alertIds)) {
+        if (!isEmpty(alertIds)) {
           return OvhApiCloudProjectAlerting.v6().delete({
             serviceName: $stateParams.projectId,
-            alertId: _.first(alertIds),
+            alertId: head(alertIds),
           }).$promise.then(() => {
             CucCloudMessage.success($translate.instant('cpbe_estimate_alert_delete_success'));
           });

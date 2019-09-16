@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
   function CloudProjectBillingHistoryDetailsCtrl($state, $q, $translate, $stateParams, validParams,
     CucCloudMessage, CloudProjectBillingService, OvhApiCloudProjectUsageHistory,
@@ -25,7 +28,7 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
     };
 
     function getConsumptionDetails(periods) {
-      const detailPromises = _.map(periods, period => OvhApiCloudProjectUsageHistory.v6().get({
+      const detailPromises = map(periods, period => OvhApiCloudProjectUsageHistory.v6().get({
         serviceName: $stateParams.projectId,
         usageId: period.id,
       }).$promise);
@@ -38,10 +41,10 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
             monthlyDetails = OvhApiCloudProjectUsageCurrent.v6()
               .get({ serviceName: $stateParams.projectId }).$promise;
           } else {
-            monthlyDetails = _.find(periodDetails, detail => moment.utc(detail.period.from).isSame(self.monthBilling, 'month'));
+            monthlyDetails = find(periodDetails, detail => moment.utc(detail.period.from).isSame(self.monthBilling, 'month'));
           }
 
-          const hourlyDetails = _.find(
+          const hourlyDetails = find(
             periodDetails,
             detail => moment.utc(detail.period.from).isSame(self.previousMonth, 'month'),
           );

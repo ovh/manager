@@ -1,3 +1,6 @@
+import assignIn from 'lodash/assignIn';
+import set from 'lodash/set';
+
 class IpLoadBalancerHomeService {
   constructor($q, SidebarMenu, IpLoadBalancerCipherService, OvhApiIpLoadBalancing, CucRegionService,
     CucServiceHelper) {
@@ -41,7 +44,7 @@ class IpLoadBalancerHomeService {
       .$promise
       .then(zones => this.$q.all(zones.map(zone => this.getUsageForZone(serviceName, zone))))
       .then(quotas => quotas.map((quota) => {
-        _.set(quota, 'region', this.CucRegionService.getRegion(quota.zone));
+        set(quota, 'region', this.CucRegionService.getRegion(quota.zone));
         return quota;
       }))
       .catch(this.CucServiceHelper.errorHandler('iplb_usage_loading_error'));
@@ -90,7 +93,7 @@ class IpLoadBalancerHomeService {
       configuration: this.OvhApiIpLoadBalancing.v6().get({ serviceName }).$promise,
       serviceInfos: this.OvhApiIpLoadBalancing.v6().serviceInfos({ serviceName }).$promise,
     })
-      .then(response => _.extend(response.serviceInfos, { offer: response.configuration.offer }))
+      .then(response => assignIn(response.serviceInfos, { offer: response.configuration.offer }))
       .catch(this.CucServiceHelper.errorHandler('iplb_subscription_loading_error'));
   }
 }

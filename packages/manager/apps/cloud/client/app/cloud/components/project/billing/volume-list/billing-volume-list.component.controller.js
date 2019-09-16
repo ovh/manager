@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+
 angular.module('managerApp')
   .controller('BillingVolumeListComponentCtrl', function BillingVolumeListComponentCtrl($filter, $q, $stateParams, $translate,
     CucRegionService, OvhApiCloudProjectVolume, OvhApiMe, Toast) {
@@ -15,7 +18,7 @@ angular.module('managerApp')
     }
 
     function updateVolumeConsumptionDetails(allProjectVolumes, volumeConsumptions) {
-      _.forEach(volumeConsumptions, (volumeConsumption) => {
+      forEach(volumeConsumptions, (volumeConsumption) => {
         const volumeConsumptionDetail = {};
         volumeConsumptionDetail.totalPrice = `${volumeConsumption.totalPrice.toFixed(2)} ${self.currencySymbol}`;
         volumeConsumptionDetail.volumeId = volumeConsumption.volumeId;
@@ -25,7 +28,7 @@ angular.module('managerApp')
 
         volumeConsumptionDetail.amount = volumeConsumption.quantity.value;
 
-        const volumeDetail = _.find(allProjectVolumes, x => x.id === volumeConsumption.volumeId);
+        const volumeDetail = find(allProjectVolumes, x => x.id === volumeConsumption.volumeId);
         if (volumeDetail) {
           volumeConsumptionDetail.name = volumeDetail.name;
           volumeConsumptionDetail.size = volumeDetail.size;

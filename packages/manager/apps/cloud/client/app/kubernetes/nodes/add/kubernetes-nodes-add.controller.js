@@ -1,3 +1,8 @@
+import clone from 'lodash/clone';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+
 angular.module('managerApp').controller('KubernetesNodesAddCtrl', class KubernetesNodesAddCtrl {
   constructor(
     $q, $state, $stateParams, $translate, $uibModalInstance,
@@ -28,7 +33,7 @@ angular.module('managerApp').controller('KubernetesNodesAddCtrl', class Kubernet
         prices: this.getPrices(),
       }))
       .then(({ quotas, prices }) => this.getFlavors(quotas, prices))
-      .catch(error => this.$uibModalInstance.dismiss(this.$translate.instant('kube_nodes_add_flavor_error', { message: _.get(error, 'data.message', '') })))
+      .catch(error => this.$uibModalInstance.dismiss(this.$translate.instant('kube_nodes_add_flavor_error', { message: get(error, 'data.message', '') })))
       .finally(() => { this.loading = false; });
   }
 
@@ -48,18 +53,18 @@ angular.module('managerApp').controller('KubernetesNodesAddCtrl', class Kubernet
         * @type {{id: string, familyName: string, flavors: Object[]}}
         */
         this.flavorFamilies = this.CLOUD_FLAVORTYPE_CATEGORY
-          .filter(type => _.includes(this.KUBERNETES.flavorTypes, type.id))
+          .filter(type => includes(this.KUBERNETES.flavorTypes, type.id))
           .map(category => (
             {
               id: category.id,
               familyName: this.$translate.instant(`kube_nodes_add_flavor_family_${category.id}`),
               flavors: flavors
-                .filter(flavor => _.includes(category.types, flavor.type) && flavor.osType !== 'windows')
+                .filter(flavor => includes(category.types, flavor.type) && flavor.osType !== 'windows')
                 .map(flavor => ({
                   name: flavor.name,
                   displayedName: this.Kubernetes.formatFlavor(flavor),
                   quotaOverflow: this.getQuotaOverflow(flavor, quotas),
-                  price: _.get(_.get(prices, flavor.planCodes.hourly), 'price.text'),
+                  price: get(get(prices, flavor.planCodes.hourly), 'price.text'),
                 })),
             }));
         return flavors;
@@ -76,21 +81,21 @@ angular.module('managerApp').controller('KubernetesNodesAddCtrl', class Kubernet
 
   getQuotaOverflow(flavor, quotas) {
     // addOverQuotaInfos adds 'disabled' key to flavor parameter
-    const testedFlavor = _.clone(flavor);
+    const testedFlavor = clone(flavor);
     this.CloudFlavorService.constructor.addOverQuotaInfos(testedFlavor, quotas);
-    return _.get(testedFlavor, 'disabled');
+    return get(testedFlavor, 'disabled');
   }
 
   onFlavorFamilyChange(selectedFamily) {
     this.selectedFlavor = null;
-    this.flavors = _.find(this.flavorFamilies, family => family.id === selectedFamily.id).flavors;
+    this.flavors = find(this.flavorFamilies, family => family.id === selectedFamily.id).flavors;
   }
 
   addNode() {
     this.loading = true;
     return this.Kubernetes.addNode(this.serviceName, this.nodeName, this.selectedFlavor.name)
       .then(() => this.$uibModalInstance.close())
-      .catch(error => this.$uibModalInstance.dismiss(this.$translate.instant('kube_nodes_add_error', { message: _.get(error, 'data.message', '') })))
+      .catch(error => this.$uibModalInstance.dismiss(this.$translate.instant('kube_nodes_add_error', { message: get(error, 'data.message', '') })))
       .finally(() => { this.loading = false; });
   }
 

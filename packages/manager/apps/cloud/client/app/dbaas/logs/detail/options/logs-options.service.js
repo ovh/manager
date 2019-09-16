@@ -1,3 +1,10 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+
 class LogsOptionsService {
   constructor($translate, $window, CucControllerHelper, LogsHelperService,
     OvhApiOrderCartServiceOption, CucServiceHelper, OvhApiDbaas, LogsOfferService, LogsConstants) {
@@ -39,7 +46,7 @@ class LogsOptionsService {
       serviceName,
     }).$promise
       .then((response) => {
-        _.each(response, option => this.transformOption(option));
+        forEach(response, option => this.transformOption(option));
         return response.sort((optionA, optionB) => (optionA.type === optionB.type
           ? this.CucControllerHelper.constructor.naturalCompare(optionA.detail, optionB.detail)
           : this.CucControllerHelper.constructor.naturalCompare(optionA.type, optionB.type)));
@@ -55,7 +62,7 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   static getOptionsToOrder(options) {
-    return _.filter(options, option => option.quantity > 0);
+    return filter(options, option => option.quantity > 0);
   }
 
   /**
@@ -68,19 +75,19 @@ class LogsOptionsService {
    */
   getOrderConfiguration(options, serviceName) {
     const optionsToOrder = LogsOptionsService.getOptionsToOrder(options);
-    return _.map(optionsToOrder, option => this.transformOptionForOrder(option, serviceName));
+    return map(optionsToOrder, option => this.transformOptionForOrder(option, serviceName));
   }
 
   transformManagedOptions(option) {
-    _.set(option, 'type', this.$translate.instant(`${option.reference}-type`));
-    _.set(option, 'detail', this.$translate.instant(`${option.reference}-detail`));
-    _.set(option, 'linked_items', option.curNbAlias + option.curNbDashboard + option.curNbIndex + option.curNbRole + option.curNbInput + option.curNbStream);
+    set(option, 'type', this.$translate.instant(`${option.reference}-type`));
+    set(option, 'detail', this.$translate.instant(`${option.reference}-detail`));
+    set(option, 'linked_items', option.curNbAlias + option.curNbDashboard + option.curNbIndex + option.curNbRole + option.curNbInput + option.curNbStream);
     return option;
   }
 
   getManagedOptions(serviceName) {
     return this.getSubscribedOptions(serviceName)
-      .then(response => _.map(response.options, option => this.transformManagedOptions(option)))
+      .then(response => map(response.options, option => this.transformManagedOptions(option)))
       .catch(this.CucServiceHelper.errorHandler('logs_options_manage_get_error'));
   }
 
@@ -140,15 +147,15 @@ class LogsOptionsService {
     return this.getSubscribedOptions(serviceName)
       .then((response) => {
         // Build a map of option vs no. of subscribed instances
-        const optionsCountMap = _.reduce(response.options, (optionsMap, option) => {
+        const optionsCountMap = reduce(response.options, (optionsMap, option) => {
           optionsMap[option.reference] = optionsMap[option.reference]
             ? optionsMap[option.reference] += 1
             : 1;
           return optionsMap;
         }, {});
         // Build a new data structure with the option information and the no.of instances subscribed
-        return _.map(
-          _.keys(optionsCountMap),
+        return map(
+          keys(optionsCountMap),
           option => this.transformSubscribedOption(option, optionsCountMap),
         )
           .sort((optionA, optionB) => (optionA.type === optionB.type
@@ -208,8 +215,8 @@ class LogsOptionsService {
     return options
       .filter(option => option[max] > 0)
       .map((option) => {
-        _.set(option, 'type', this.$translate.instant(`${option.reference}-type`));
-        _.set(option, 'detail', this.$translate.instant(`${option.reference}-detail`));
+        set(option, 'type', this.$translate.instant(`${option.reference}-type`));
+        set(option, 'detail', this.$translate.instant(`${option.reference}-detail`));
         return option;
       });
   }
@@ -227,10 +234,10 @@ class LogsOptionsService {
     const streams = this.$translate.instant('logs_offer_streams');
     const dashboards = this.$translate.instant('logs_offer_tables');
     const inputs = this.$translate.instant('logs_offer_collection_tools');
-    _.set(offer, 'name', `${offerPrefix} ${offerName}`);
-    _.set(offer, 'streams', `${offer.maxNbStream} ${streams}`);
-    _.set(offer, 'dashboards', `${offer.maxNbDashboard} ${dashboards}`);
-    _.set(offer, 'inputs', `${offer.maxNbInput} ${inputs}`);
+    set(offer, 'name', `${offerPrefix} ${offerName}`);
+    set(offer, 'streams', `${offer.maxNbStream} ${streams}`);
+    set(offer, 'dashboards', `${offer.maxNbDashboard} ${dashboards}`);
+    set(offer, 'inputs', `${offer.maxNbInput} ${inputs}`);
     return offer;
   }
 
@@ -242,11 +249,11 @@ class LogsOptionsService {
    * @memberof LogsOptionsService
    */
   transformOption(option) {
-    _.set(option, 'quantity', 0);
-    _.set(option, 'price', option.prices[0].price.value);
-    _.set(option, 'priceText', option.prices[0].price.text);
-    _.set(option, 'type', this.$translate.instant(`${option.planCode}-type`));
-    _.set(option, 'detail', this.$translate.instant(`${option.planCode}-detail`));
+    set(option, 'quantity', 0);
+    set(option, 'price', option.prices[0].price.value);
+    set(option, 'priceText', option.prices[0].price.text);
+    set(option, 'type', this.$translate.instant(`${option.planCode}-type`));
+    set(option, 'detail', this.$translate.instant(`${option.planCode}-detail`));
   }
 
   /**

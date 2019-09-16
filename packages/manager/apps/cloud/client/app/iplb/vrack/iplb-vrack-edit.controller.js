@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import includes from 'lodash/includes';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class IpLoadBalancerVrackEditCtrl {
   constructor($q, $stateParams, $translate, CucCloudMessage, CucCloudNavigation,
     CucControllerHelper, IpLoadBalancerServerFarmService, IpLoadBalancerVrackService) {
@@ -22,8 +30,8 @@ class IpLoadBalancerVrackEditCtrl {
     this.creationRules.load();
     this.privateNetwork.load()
       .then(() => {
-        if (_.keys(this.privateNetwork.data).length) {
-          _.forEach(_.keys(this.model), (key) => {
+        if (keys(this.privateNetwork.data).length) {
+          forEach(keys(this.model), (key) => {
             this.model[key].value = this.privateNetwork.data[key];
           });
         }
@@ -36,16 +44,16 @@ class IpLoadBalancerVrackEditCtrl {
           return;
         }
 
-        _.forEach(this.privateNetworkFarms.data, (farm) => {
-          _.set(farm, 'displayName', farm.displayName || farm.farmId);
+        forEach(this.privateNetworkFarms.data, (farm) => {
+          set(farm, 'displayName', farm.displayName || farm.farmId);
         });
         this.model.farmId.value = this.privateNetworkFarms.data;
       });
 
     this.farms.load()
       .then(() => {
-        _.forEach(this.farms.data, (farm) => {
-          _.set(farm, 'displayName', farm.displayName || farm.farmId);
+        forEach(this.farms.data, (farm) => {
+          set(farm, 'displayName', farm.displayName || farm.farmId);
         });
       });
   }
@@ -71,12 +79,12 @@ class IpLoadBalancerVrackEditCtrl {
   }
 
   getAvailableFarm(forceValue) {
-    const filteredValue = _.filter(
+    const filteredValue = filter(
       this.farms.data,
-      farm => !_.includes(_.map(this.model.farmId.value, value => value.farmId), farm.farmId),
+      farm => !includes(map(this.model.farmId.value, value => value.farmId), farm.farmId),
     );
     if (forceValue) {
-      filteredValue.push(_.find(this.farms.data, farm => farm.farmId === forceValue));
+      filteredValue.push(find(this.farms.data, farm => farm.farmId === forceValue));
     }
     return filteredValue;
   }
@@ -109,12 +117,12 @@ class IpLoadBalancerVrackEditCtrl {
 
   getCleanModel() {
     const cleanModel = {};
-    _.forEach(_.keys(this.model), (key) => {
+    forEach(keys(this.model), (key) => {
       if (!this.model[key].disabled()) {
         switch (key) {
           case 'farmId':
-            cleanModel[key] = _.map(
-              _.filter(this.model[key].value, farm => farm.farmId),
+            cleanModel[key] = map(
+              filter(this.model[key].value, farm => farm.farmId),
               farm => farm.farmId,
             );
             break;

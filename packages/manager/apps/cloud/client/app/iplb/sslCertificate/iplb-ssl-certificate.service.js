@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 class IpLoadBalancerSslCertificateService {
   constructor($q, OvhApiIpLoadBalancing, OvhApiMe, OvhApiOrder, CucServiceHelper) {
     this.$q = $q;
@@ -56,7 +59,7 @@ class IpLoadBalancerSslCertificateService {
       .then(options => options.filter(option => option.family === 'ssl'))
       .then(options => options.map((option) => {
         // Keep only 1 year prices
-        _.set(option, 'prices', option.prices.filter(price => price.interval === 12));
+        set(option, 'prices', option.prices.filter(price => price.interval === 12));
         return option;
       }))
       .catch(this.CucServiceHelper.errorHandler('iplb_ssl_order_loading_error'));
@@ -82,7 +85,7 @@ class IpLoadBalancerSslCertificateService {
       .then(me => this.OvhApiOrder.Cart().v6()
         .post({}, { ovhSubsidiary: me.ovhSubsidiary }).$promise)
       .then((cart) => {
-        cartId = _.get(cart, 'cartId');
+        cartId = get(cart, 'cartId');
         return this.OvhApiOrder.Cart().v6().assign({ cartId }).$promise;
       })
       .then(() => this.OvhApiOrder.Cart().ServiceOption().v6().post({

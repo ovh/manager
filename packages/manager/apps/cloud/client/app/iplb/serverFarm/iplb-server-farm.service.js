@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class IpLoadBalancerServerFarmService {
   constructor($q, $translate, IpLoadBalancerConfigurationService, OvhApiIpLoadBalancing,
     CucServiceHelper, CucRegionService) {
@@ -32,7 +35,7 @@ class IpLoadBalancerServerFarmService {
     return this.Farm.all.query({ serviceName, vrackNetworkId: networkId })
       .$promise
       .then((farms) => {
-        const promises = _.map(farms, farm => this.getServerFarm(serviceName, farm.id, farm.type));
+        const promises = map(farms, farm => this.getServerFarm(serviceName, farm.id, farm.type));
         return this.$q.all(promises);
       })
       .catch(this.CucServiceHelper.errorHandler('iplb_farm_list_loading_error'));
@@ -42,8 +45,8 @@ class IpLoadBalancerServerFarmService {
     return this.Farm[type].get({ serviceName }, { farmId })
       .$promise
       .then((farm) => {
-        _.set(farm, 'type', type);
-        _.set(farm, 'zoneText', this.CucRegionService.getRegion(farm.zone));
+        set(farm, 'type', type);
+        set(farm, 'zoneText', this.CucRegionService.getRegion(farm.zone));
         return farm;
       });
   }
@@ -57,12 +60,12 @@ class IpLoadBalancerServerFarmService {
     return this.Server[type].query({ serviceName, farmId })
       .$promise
       .then((serverIds) => {
-        const promises = _.map(serverIds, serverId => this.Server[type]
+        const promises = map(serverIds, serverId => this.Server[type]
           .get({ serviceName, farmId, serverId })
           .$promise
           .then((server) => {
             if (!server.serverState) {
-              _.set(server, 'serverState', []);
+              set(server, 'serverState', []);
             }
             return server;
           }));

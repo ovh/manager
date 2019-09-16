@@ -1,3 +1,8 @@
+import head from 'lodash/head';
+import keys from 'lodash/keys';
+import reduce from 'lodash/reduce';
+import values from 'lodash/values';
+
 class IpLoadBalancerGraphCtrl {
   constructor($stateParams, CucControllerHelper, IpLoadBalancerConstant,
     IpLoadBalancerMetricsService, moment) {
@@ -63,12 +68,12 @@ class IpLoadBalancerGraphCtrl {
       if (!scales) {
         scales = this.IpLoadBalancerConstant.graphScales.lb1;
       }
-      this.scales = _.reduce(scales, (scalesParam, scale) => {
+      this.scales = reduce(scales, (scalesParam, scale) => {
         const scales = scalesParam; // eslint-disable-line
         scales[scale] = this.IpLoadBalancerConstant.graphParams[scale];
         return scales;
       }, {});
-      this.scale = _.first(_.keys(this.scales));
+      this.scale = head(keys(this.scales));
       this.connLoader.load();
       this.reqmLoader.load();
     });
@@ -90,8 +95,8 @@ class IpLoadBalancerGraphCtrl {
         if (data.length && data[0].dps) {
           return {
             data: {
-              data: _.values(data[0].dps),
-              labels: this.humanizeLabels(_.keys(data[0].dps)),
+              data: values(data[0].dps),
+              labels: this.humanizeLabels(keys(data[0].dps)),
             },
           };
         }

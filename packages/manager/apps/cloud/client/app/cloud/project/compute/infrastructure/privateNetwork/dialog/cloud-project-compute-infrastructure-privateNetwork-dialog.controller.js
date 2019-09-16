@@ -1,3 +1,13 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import indexOf from 'lodash/indexOf';
+import isString from 'lodash/isString';
+import pull from 'lodash/pull';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import zipObject from 'lodash/zipObject';
+import zipWith from 'lodash/zipWith';
+
 angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivateNetworkDialogCtrl',
   function CloudProjectComputeInfrastructurePrivateNetworkDialogCtrl(
     $rootScope,
@@ -116,7 +126,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
 
       return self.service.fetchRegions(self.projectId).then((regions) => {
         self.collections.regions = regions;
-        self.models.privateNetwork.regions = _.filter(regions, _.isString);
+        self.models.privateNetwork.regions = filter(regions, isString);
       }).catch(() => {
         self.collections.regions = [];
       });
@@ -127,7 +137,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     };
 
     self.hasRegion = function hasRegion(region) {
-      return _.indexOf(self.collections.regions, region) !== -1;
+      return indexOf(self.collections.regions, region) !== -1;
     };
 
     self.toggleActiveRegion = function toggleActiveRegion(region) {
@@ -136,7 +146,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
       }
 
       if (self.hasActiveRegion(region)) {
-        _.pull(self.models.privateNetwork.regions, region);
+        pull(self.models.privateNetwork.regions, region);
       } else {
         self.models.privateNetwork.regions.push(region);
       }
@@ -145,7 +155,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     };
 
     self.hasActiveRegion = function hasActiveRegion(region) {
-      return _.indexOf(self.models.privateNetwork.regions, region) !== -1;
+      return indexOf(self.models.privateNetwork.regions, region) !== -1;
     };
 
     self.getActiveRegions = function getActiveRegions() {
@@ -157,7 +167,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     };
 
     self.getSubnetsDescription = function getSubnetsDescription() {
-      return _.filter(this.models.privateNetwork.regions, _.isString).join(', ');
+      return filter(this.models.privateNetwork.regions, isString).join(', ');
     };
 
     self.toggleEditDescription = function toggleEditDescription() {
@@ -240,18 +250,18 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     }
 
     function resetIpRanges() {
-      const regions = _.sortBy(self.getActiveRegions(), region => region);
+      const regions = sortBy(self.getActiveRegions(), region => region);
       const split = CloudProjectComputeInfrastructurePrivateNetworkDialogService.splitSubnetIpAddresses('255.255.255.0', self.models.subnet.address, regions.length);
 
       if (split.isValid) {
-        const subnets = _.zipWith(regions, split.ipBlocks, (region, ipBlock) => {
-          _.set(ipBlock, 'region', region);
+        const subnets = zipWith(regions, split.ipBlocks, (region, ipBlock) => {
+          set(ipBlock, 'region', region);
           // API needs noGateway but it is more logical to match with checkbox value first
-          _.set(ipBlock, 'gateway', false);
-          _.set(ipBlock, 'noGateway', !ipBlock.gateway);
+          set(ipBlock, 'gateway', false);
+          set(ipBlock, 'noGateway', !ipBlock.gateway);
           return ipBlock;
         });
-        self.models.subnets = _.zipObject(regions, subnets);
+        self.models.subnets = zipObject(regions, subnets);
       } else {
         self.models.subnets = [];
       }
@@ -286,7 +296,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     };
 
     self.findVlanWithID = function findVlanWithID(networks, id) {
-      return _.findWhere(networks, { vlanId: id });
+      return find(networks, { vlanId: id });
     };
 
     self.close = function close() {

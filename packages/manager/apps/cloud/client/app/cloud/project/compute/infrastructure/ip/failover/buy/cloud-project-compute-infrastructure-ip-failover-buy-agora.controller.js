@@ -1,4 +1,8 @@
-
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import minBy from 'lodash/minBy';
 
 angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFailoverBuyAgoraCtrl', function CloudProjectComputeInfrastructureIpFailoverBuyAgoraCtrl($http, $q, $stateParams, $translate, $uibModalInstance, $window, CucCloudMessage, OvhApiCloudProjectInstance) {
   const self = this;
@@ -13,7 +17,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFail
       if (result.status !== 200) {
         return $q.reject(result);
       }
-      return _.filter(_.get(result, 'data.plans'), offer => /failover/.test(offer.planCode));
+      return filter(get(result, 'data.plans'), offer => /failover/.test(offer.planCode));
     });
   }
 
@@ -32,9 +36,9 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFail
       self.instances = instances;
 
       self.catalog = catalog;
-      self.product = _.first(catalog);
-      self.country = _.first(self.getCountries(self.product));
-      self.instance = _.first(self.instances);
+      self.product = head(catalog);
+      self.country = head(self.getCountries(self.product));
+      self.instance = head(self.instances);
     }).catch((err) => {
       CucCloudMessage.error([$translate.instant('cpciif_buy_init_error'), (err.data && err.data.message) || ''].join(' '));
       $uibModalInstance.dismiss();
@@ -44,25 +48,43 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFail
     });
   }
 
-  self.getPrice = product => _.chain(product)
-    .get('details.pricings.default')
-    .filter(p => p.capacities.indexOf('installation') >= 0)
-    .first()
-    .get('price')
-    .value();
+  self.getPrice = product => get(
+    head(
+      filter(
+        get(
+          product,
+          'details.pricings.default',
+        ),
+        p => p.capacities.indexOf('installation') >= 0,
+      ),
+    ),
+    'price',
+  );
 
-  self.getCountries = product => _.chain(product)
-    .get('details.product.configurations')
-    .find({ name: 'country' })
-    .get('values')
-    .value();
+  self.getCountries = product => get(
+    find(
+      get(
+        product,
+        'details.product.configurations',
+      ),
+      { name: 'country' },
+    ),
+    'values',
+  );
 
-  self.getMaximumQuantity = product => _.chain(product)
-    .get('details.pricings.default')
-    .filter(p => angular.isNumber(p.maximumQuantity), 'maximumQuantity')
-    .min('maximumQuantity')
-    .get('maximumQuantity')
-    .value();
+  self.getMaximumQuantity = product => get(
+    minBy(
+      filter(
+        get(
+          product,
+          'details.pricings.default',
+        ),
+        p => angular.isNumber(p.maximumQuantity), 'maximumQuantity',
+      ),
+      'maximumQuantity',
+    ),
+    'maximumQuantity',
+  );
 
   self.order = () => {
     const order = {

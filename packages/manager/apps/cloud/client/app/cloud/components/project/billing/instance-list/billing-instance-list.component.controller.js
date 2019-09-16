@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+
 angular.module('managerApp')
   .controller('BillingInstanceListComponentCtrl', function BillingInstanceListComponentCtrl($q,
     $stateParams, $translate, CucRegionService, OvhCloudPriceHelper, OvhApiCloudProjectImage,
@@ -61,13 +64,13 @@ angular.module('managerApp')
       instanceConsumptionDetail.imageType = getImageTypeFromReference(billingDetail.reference);
       instanceConsumptionDetail.vmType = billingDetail.reference ? billingDetail.reference.replace(self.windowsStringPattern, '').toUpperCase() : '';
 
-      const instance = _.find(self.data.instances, { id: billingDetail.instanceId });
+      const instance = find(self.data.instances, { id: billingDetail.instanceId });
       if (instance) {
         instanceConsumptionDetail.isDeleted = false;
         instanceConsumptionDetail.instanceName = instance.name;
         instanceConsumptionDetail.monthlyBilling = instance.monthlyBilling;
         instanceConsumptionDetail.planCode = instance.planCode;
-        const imageData = _.find(self.data.images, { id: instance.imageId });
+        const imageData = find(self.data.images, { id: instance.imageId });
         if (imageData) {
           instanceConsumptionDetail.imageType = imageData.type;
         }
@@ -79,7 +82,7 @@ angular.module('managerApp')
     }
 
     function loadConsumptionDetails() {
-      self.instanceConsumptionDetailsInit = _.map(
+      self.instanceConsumptionDetailsInit = map(
         self.instances,
         billingDetail => getInstanceConsumptionDetails(billingDetail),
       );

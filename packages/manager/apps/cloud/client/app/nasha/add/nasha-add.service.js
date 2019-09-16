@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 class NashaAddService {
   constructor($q, $translate, CucOrderHelperService, OvhApiMe, OvhApiOrder, CucServiceHelper) {
     this.$q = $q;
@@ -11,7 +15,7 @@ class NashaAddService {
   getAvailableRegions() {
     return this.OvhApiOrder.v6().schema()
       .$promise
-      .then(response => _.filter(response.models['dedicated.NasHAZoneEnum'].enum, datacenter => datacenter !== 'gra'))
+      .then(response => filter(response.models['dedicated.NasHAZoneEnum'].enum, datacenter => datacenter !== 'gra'))
       .catch(this.CucServiceHelper.errorHandler('nasha_order_loading_error'));
   }
 
@@ -22,8 +26,8 @@ class NashaAddService {
         .post({}, { ovhSubsidiary: user.ovhSubsidiary }).$promise)
       .then(cart => this.OvhApiOrder.Cart().Product().v6().get({ cartId: cart.cartId, productName: 'nasha' }).$promise.then(offers => ({ cart, offers })))
       .then((response) => {
-        _.forEach(response.offers, (offer) => {
-          _.set(offer, 'productName', this.$translate.instant(`nasha_order_nasha_${offer.planCode}`));
+        forEach(response.offers, (offer) => {
+          set(offer, 'productName', this.$translate.instant(`nasha_order_nasha_${offer.planCode}`));
         });
 
         this.OvhApiOrder.Cart().v6().assign({ cartId: response.cart.cartId })

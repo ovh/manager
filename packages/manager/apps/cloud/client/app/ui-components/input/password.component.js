@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 angular.module('managerApp')
   .directive('cuiPassword', $compile => ({
     restrict: 'A',
@@ -22,9 +24,9 @@ angular.module('managerApp')
       $compile(buttons)($scope);
 
       const parent = $element[0].parentElement;
-      if (_.includes(parent.classList, 'oui-input-group')) {
+      if (includes(parent.classList, 'oui-input-group')) {
         buttons.appendTo(parent);
-      } else if (_.includes(parent.classList, 'oui-field-control')) {
+      } else if (includes(parent.classList, 'oui-field-control')) {
         const container = angular.element('<div class="oui-input-group oui-input-group_button"></div>');
         container.appendTo(parent);
         $element.appendTo(container);

@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 class IpLoadBalancerServerFarmCtrl {
   constructor($filter, $state, $stateParams, $translate, CucControllerHelper,
     IpLoadBalancerActionService, IpLoadBalancerServerService,
@@ -48,8 +52,8 @@ class IpLoadBalancerServerFarmCtrl {
   }
 
   loadServers() {
-    _.forEach(this.farms.data, (farm) => {
-      _.set(farm, 'servers', this.CucControllerHelper.request.getArrayLoader({
+    forEach(this.farms.data, (farm) => {
+      set(farm, 'servers', this.CucControllerHelper.request.getArrayLoader({
         loaderFunction: () => this.IpLoadBalancerServerFarmService
           .getServerFarmServers(this.serviceName, farm.farmId, farm.type),
       }));
@@ -136,7 +140,7 @@ class IpLoadBalancerServerFarmCtrl {
       },
     ).then(() => {
       // Apply value on model
-      _.set(server, 'status', newStatus);
+      set(server, 'status', newStatus);
     });
   }
 
@@ -161,7 +165,7 @@ class IpLoadBalancerServerFarmCtrl {
 
   getFarmText(farm) {
     let serverText = '';
-    if (!_.get(farm.servers, 'loading', false)) {
+    if (!get(farm.servers, 'loading', false)) {
       const serverNumber = farm.servers.data.length;
       const serverLabel = serverNumber > 1
         ? this.$translate.instant('iplb_farm_list_accordion_aside_server_many', { serverNumber })

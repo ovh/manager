@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 class NashaCtrl {
   constructor($q, $state, $stateParams, $translate, CucCloudMessage, OvhApiDedicatedNasha,
     ovhDocUrl, REDIRECT_URLS) {
@@ -47,8 +50,8 @@ class NashaCtrl {
       .then((data) => {
         this.data.nasha = data.nasha;
 
-        _.forEach(this.data.nasha.use, (part, key) => {
-          _.set(part, 'name', this.$translate.instant(`nasha_storage_usage_type_${key}`));
+        forEach(this.data.nasha.use, (part, key) => {
+          set(part, 'name', this.$translate.instant(`nasha_storage_usage_type_${key}`));
           return part;
         });
 

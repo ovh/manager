@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 class LogsListService {
   constructor($q, OvhApiDbaas, LogsHelperService, LogsTokensService) {
     this.$q = $q;
@@ -75,48 +78,48 @@ class LogsListService {
   }
 
   transformService(service) {
-    _.set(service, 'name', service.displayName || service.serviceName);
+    set(service, 'name', service.displayName || service.serviceName);
     if (this.LogsHelperService.isAccountDisabled(service)) {
-      _.set(service, 'isDisabled', true);
+      set(service, 'isDisabled', true);
     } else {
-      _.set(service, 'isDisabled', false);
+      set(service, 'isDisabled', false);
     }
-    _.set(service, 'quota', {
+    set(service, 'quota', {
       isLoadingQuota: true,
       offerType: '-',
     });
-    _.set(service, 'cluster', {
+    set(service, 'cluster', {
       isLoadingCluster: true,
       hostname: '-',
     });
     this.getQuota(service)
       .then((me) => {
-        if (!_.isEmpty(me.total)) {
-          _.set(service, 'quota.streams', {
+        if (!isEmpty(me.total)) {
+          set(service, 'quota.streams', {
             current: me.total.curNbStream,
             max: me.total.maxNbStream,
           });
-          _.set(service, 'quota.indices', {
+          set(service, 'quota.indices', {
             current: me.total.curNbIndex,
             max: me.total.maxNbIndex,
           });
-          _.set(service, 'quota.dashboards', {
+          set(service, 'quota.dashboards', {
             current: me.total.curNbDashboard,
             max: me.total.maxNbDashboard,
           });
-          _.set(service, 'isBasicOffer', this.LogsHelperService.isBasicOffer(me));
-          _.set(service, 'quota.offerType', service.isBasicOffer ? 'Basic' : 'Pro');
+          set(service, 'isBasicOffer', this.LogsHelperService.isBasicOffer(me));
+          set(service, 'quota.offerType', service.isBasicOffer ? 'Basic' : 'Pro');
         }
       })
       .finally(() => {
-        _.set(service, 'quota.isLoadingQuota', false);
+        set(service, 'quota.isLoadingQuota', false);
       });
     this.getDefaultCluster(service.serviceName)
       .then((cluster) => {
-        _.set(service, 'cluster.hostname', cluster.hostname);
+        set(service, 'cluster.hostname', cluster.hostname);
       })
       .finally(() => {
-        _.set(service, 'cluster.isLoadingCluster', false);
+        set(service, 'cluster.isLoadingCluster', false);
       });
     return service;
   }

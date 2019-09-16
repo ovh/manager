@@ -1,3 +1,5 @@
+import indexOf from 'lodash/indexOf';
+
 angular.module('managerApp')
   .controller('CloudProjectBillingRightsCtrl',
     function CloudProjectBillingRightsCtrl(
@@ -72,7 +74,7 @@ angular.module('managerApp')
             if (me.country) {
               // check if the user country is USA or Canada, in this case we display
               // email instead of NIC handle
-              self.model.isUSorCA = _.indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
+              self.model.isUSorCA = indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
             }
           });
         });

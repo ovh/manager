@@ -1,3 +1,8 @@
+import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+
 angular.module('managerApp')
   .service('CdaUserPermissionService', function CdaUserPermissionService($q) {
     const self = this;
@@ -12,15 +17,15 @@ angular.module('managerApp')
 
     self.computePoolsDisplay = function computePoolsDisplay(userPermissions, pools) {
       const permissionsObject = {};
-      _.forEach(userPermissions, (userPermission) => {
+      forEach(userPermissions, (userPermission) => {
         permissionsObject[userPermission.poolName] = userPermission;
       });
 
-      return $q.when(_.map(pools, (pool) => {
+      return $q.when(map(pools, (pool) => {
         if (permissionsObject[pool.name]) {
-          return _.cloneDeep(permissionsObject[pool.name]);
+          return cloneDeep(permissionsObject[pool.name]);
         }
-        const defaultPermission = _.clone(self.accessTypes);
+        const defaultPermission = clone(self.accessTypes);
         defaultPermission.poolName = pool.name;
         return defaultPermission;
       }));

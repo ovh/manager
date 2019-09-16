@@ -1,3 +1,10 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import keys from 'lodash/keys';
+import pick from 'lodash/pick';
+import values from 'lodash/values';
+
 angular.module('managerApp')
   .controller('CdaUserDetailsPermissionListEditCtrl', function CdaUserDetailsPermissionListEditCtrl($q, $stateParams, $translate, $state, CucCloudMessage, OvhApiDedicatedCeph, CdaUserPermissionService) {
     const self = this;
@@ -62,7 +69,7 @@ angular.module('managerApp')
           self.datas.poolsDisplay = poolsDisplay;
         })
         .catch((errors) => {
-          displayError(_.find(errors, error => error));
+          displayError(find(errors, error => error));
         })
         .finally(() => {
           self.loading = false;
@@ -70,14 +77,14 @@ angular.module('managerApp')
     }
 
     function hasActivePermissionForPool(permissions) {
-      return _.findIndex(permissions, value => value === true) !== -1;
+      return findIndex(permissions, value => value === true) !== -1;
     }
 
     self.saveUserPermissions = function saveUserPermissions() {
       self.saving = true;
-      const typeKeys = _.keys(self.accessTypes);
-      const permissionsToSave = _.filter(self.datas.poolsDisplay, (pool) => {
-        const permissions = _.values(_.pick(pool, typeKeys));
+      const typeKeys = keys(self.accessTypes);
+      const permissionsToSave = filter(self.datas.poolsDisplay, (pool) => {
+        const permissions = values(pick(pool, typeKeys));
         return hasActivePermissionForPool(permissions);
       });
 

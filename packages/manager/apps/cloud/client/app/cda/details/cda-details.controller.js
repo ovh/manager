@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp')
   .controller('CdaDetailsCtrl', function CdaDetailsCtrl($stateParams, $translate, CdaService, CucCloudMessage, URLS, OvhApiMe) {
     const self = this;
@@ -32,7 +34,7 @@ angular.module('managerApp')
           self.guides.list[0].url = `${URLS.guides.home[me.ovhSubsidiary]}${URLS.guides.cda}`;
         })
         .catch((error) => {
-          CucCloudMessage.error(`${$translate.instant('cda_guide_retrieval_error')} ${_(error).get('data.message', '')}`);
+          CucCloudMessage.error(`${$translate.instant('cda_guide_retrieval_error')} ${get(error, 'data.message', '')}`);
         });
     };
 

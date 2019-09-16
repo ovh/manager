@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('managerApp')
   .controller('CdaDetailsHomeCtrl', function CdaDetailsHomeCtrl($q, $state, $stateParams, $scope, $interval, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage, CdaService) {
     const self = this;
@@ -98,7 +100,7 @@ angular.module('managerApp')
       self.loading = true;
 
       $q.allSettled([initHealth(), initCrushTunablesOptions()]).catch((errors) => {
-        displayError(_.find(errors, error => error));
+        displayError(find(errors, error => error));
       }).finally(() => {
         self.loading = false;
       });

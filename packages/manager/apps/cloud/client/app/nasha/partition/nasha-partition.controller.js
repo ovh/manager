@@ -1,3 +1,13 @@
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import includes from 'lodash/includes';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl($state, $rootScope,
   $scope, $uibModal, $q, $translate, $stateParams, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
   const self = this;
@@ -44,7 +54,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
 
   function buildPartitionsInCreation(task, accumulator) {
     if (task.operation === 'clusterLeclercPartitionAdd') {
-      const partition = _.find(
+      const partition = find(
         self.data.table.partitionIds,
         partitionId => task.partitionName === partitionId,
       );
@@ -59,7 +69,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
   }
 
   function buildPartitionsTasks(task, accumulator) {
-    if (_.includes(self.trackedTaskOperations, task.operation)) {
+    if (includes(self.trackedTaskOperations, task.operation)) {
       if (accumulator[task.partitionName] === undefined) {
         accumulator[task.partitionName] = [task];
       }
@@ -90,12 +100,12 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
     return OvhApiDedicatedNasha.Aapi()
       .partitions({ serviceName: $stateParams.nashaId }).$promise
       .then((partitions) => {
-        self.data.table.partitions = _.map(partitions, partition => partition.partitionName);
+        self.data.table.partitions = map(partitions, partition => partition.partitionName);
         self.data.table.partitionIds = self.data.table.partitions;
 
-        self.data.table.partitions = _.map(partitions, (partition) => {
-          _.forEach(partition.use, (part, key) => {
-            _.set(part, 'name', $translate.instant(`nasha_storage_usage_type_${key}`));
+        self.data.table.partitions = map(partitions, (partition) => {
+          forEach(partition.use, (part, key) => {
+            set(part, 'name', $translate.instant(`nasha_storage_usage_type_${key}`));
           });
           return partition;
         });
@@ -106,7 +116,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
     launchPolling(task.taskId)
       .finally(() => {
         initPartitions(true).then(() => {
-          const taskIndex = _.findIndex(
+          const taskIndex = findIndex(
             self.data.partitionsTasks[task.partitionName],
             partitionTask => task.taskId === partitionTask.taskId,
           );
@@ -124,10 +134,10 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
   function initTasks() {
     OvhApiDedicatedNasha.Task().v6().resetCache();
 
-    const tasksPromises = _.map(self.trackedTaskStatus, status => getTasksPromise(status));
+    const tasksPromises = map(self.trackedTaskStatus, status => getTasksPromise(status));
 
-    return $q.allSettled(tasksPromises).then(data => _.flatten(data)).then((taskIds) => {
-      const taskPromises = _.map(taskIds, taskId => OvhApiDedicatedNasha.Task().v6()
+    return $q.allSettled(tasksPromises).then(data => flatten(data)).then((taskIds) => {
+      const taskPromises = map(taskIds, taskId => OvhApiDedicatedNasha.Task().v6()
         .get({ serviceName: $stateParams.nashaId, taskId }).$promise);
 
       return $q.allSettled(taskPromises);
@@ -137,7 +147,7 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
       const partitionsTasksAccumulator = {};
       self.data.table.partitionsInCreation = [];
 
-      _.forEach(taskObjects, (taskObject) => {
+      forEach(taskObjects, (taskObject) => {
         buildPartitionsInCreation(taskObject, self.data.table.partitionsInCreation);
         buildPartitionsTasks(taskObject, partitionsTasksAccumulator);
         pollPartitionTask(taskObject);
@@ -193,17 +203,17 @@ angular.module('managerApp').controller('PartitionCtrl', function PartitionCtrl(
   };
 
   self.hasTaskInProgress = function hasTaskInProgress(partition) {
-    return _.any(self.data.partitionsTasks[partition.partitionName]);
+    return some(self.data.partitionsTasks[partition.partitionName]);
   };
 
   self.updatePartition = function updatePartition(partition) {
     return self.getPartition(partition.partitionName)
       .then((updatedPartition) => {
-        _.set(partition, 'size', updatedPartition.size);
+        set(partition, 'size', updatedPartition.size);
       }).catch((data) => {
         // partition is not found, probably deleted
         if (data.status === 404) {
-          _.remove(self.data.table.partitionIds, item => item === partition.partitionName);
+          remove(self.data.table.partitionIds, item => item === partition.partitionName);
         } else {
           return $q.reject(data);
         }

@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
 
 
 angular.module('managerApp').controller('CloudProjectComputeQuotaCtrl',
@@ -63,14 +65,14 @@ angular.module('managerApp').controller('CloudProjectComputeQuotaCtrl',
 
       return OvhApiMe.PaymentMethod().v6().query({
         status: 'VALID',
-      }).$promise.then(paymentMethodIds => _.map(
+      }).$promise.then(paymentMethodIds => map(
         paymentMethodIds,
         paymentMethodId => $q.all(
           OvhApiMe.PaymentMethod().v6().get({
             id: paymentMethodId,
           }).$promise,
         ),
-      )).then(paymentMethods => _.find(paymentMethods, {
+      )).then(paymentMethods => find(paymentMethods, {
         default: true,
       }));
     }

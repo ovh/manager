@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class CloudVouchersService {
   constructor($q, $translate, OvhApiMeBill, OvhApiCloudProjectCredit) {
     this.$q = $q;
@@ -9,7 +12,7 @@ class CloudVouchersService {
   futureVoucherWithPdfUrl(voucher) {
     return this.OvhApiMeBill.v6().get({ billId: voucher.bill }).$promise
       .then((bill) => {
-        _.set(voucher, 'pdfUrl', bill.pdfUrl);
+        set(voucher, 'pdfUrl', bill.pdfUrl);
         return voucher;
       })
       .catch(() => voucher);
@@ -27,7 +30,7 @@ class CloudVouchersService {
       serviceName: projectId,
     }).$promise
       .then((voucherIds) => {
-        const promises = _.map(voucherIds, id => this.transformItem(projectId, id));
+        const promises = map(voucherIds, id => this.transformItem(projectId, id));
         return this.$q.all(promises);
       });
   }

@@ -1,3 +1,5 @@
+import indexOf from 'lodash/indexOf';
+
 angular.module('managerApp').service('VpsNotificationIpv6', ['$q', 'ovhUserPref', function VpsNotificationIpv6($q, ovhUserPref) {
   const self = this;
 
@@ -21,7 +23,7 @@ angular.module('managerApp').service('VpsNotificationIpv6', ['$q', 'ovhUserPref'
     return ovhUserPref
       .getValue(userPrefName)
       .then(notification => (isArray
-        ? _.indexOf(notification, subject) !== -1
+        ? indexOf(notification, subject) !== -1
         : notification))
       .catch(() => false);
   };

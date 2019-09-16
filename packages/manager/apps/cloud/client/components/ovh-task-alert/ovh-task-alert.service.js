@@ -1,3 +1,8 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class OvhTaskAlertsService {
   constructor($translate, CucControllerHelper, CucCloudMessage, OvhApiMeAlertsAapi, $http,
     TranslateService) {
@@ -14,13 +19,13 @@ class OvhTaskAlertsService {
       serviceType: 'aapi',
     }).then((response) => {
       if (response.data.alerts.length) {
-        _.forEach(response.data.alerts, (alert) => {
-          const tasks = _.map(_.get(response, 'data.tasks', []), (task) => {
-            _.set(task, 'comments', _.map(task.comments, (comment) => {
-              _.set(comment, 'comment_text', _.get(comment, 'comment_text', '').replace(/\\'/g, "'").replace(/\\"/g, '"'));
+        forEach(response.data.alerts, (alert) => {
+          const tasks = map(get(response, 'data.tasks', []), (task) => {
+            set(task, 'comments', map(task.comments, (comment) => {
+              set(comment, 'comment_text', get(comment, 'comment_text', '').replace(/\\'/g, "'").replace(/\\"/g, '"'));
               return comment;
             }).reverse());
-            _.set(task, 'detailed_desc', _.get(task, 'detailed_desc', '').replace(/\\'/g, "'").replace(/\\"/g, '"'));
+            set(task, 'detailed_desc', get(task, 'detailed_desc', '').replace(/\\'/g, "'").replace(/\\"/g, '"'));
             return task;
           });
           this.sendAlert(alert, tasks);

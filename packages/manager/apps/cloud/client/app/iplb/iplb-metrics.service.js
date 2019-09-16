@@ -1,3 +1,5 @@
+import assign from 'lodash/assign';
+
 class IpLoadBalancerMetricsService {
   constructor($http, $stateParams, $translate, OvhApiIpLoadBalancing, IpLoadBalancerConstant) {
     this.$http = $http;
@@ -44,7 +46,7 @@ class IpLoadBalancerMetricsService {
     };
 
     queries.forEach((query) => {
-      _.assign(query, options);
+      assign(query, options);
     });
 
     return this.getToken().then(token => this.$http({

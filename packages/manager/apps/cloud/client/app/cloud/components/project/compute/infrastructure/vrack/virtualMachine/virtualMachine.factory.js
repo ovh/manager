@@ -1,3 +1,12 @@
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import last from 'lodash/last';
+import maxBy from 'lodash/maxBy';
+import set from 'lodash/set';
+
 angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   $rootScope, $q, OvhApiCloudProjectInstance, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
   OvhCloudPriceHelper, OvhApiCloudProjectSnapshot, OvhApiCloudProjectSshKey,
@@ -42,7 +51,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   VirtualMachineFactory.prototype.getCustomOptions = function getCustomOptions(options) {
     return angular.extend(options, {
       routedTo: options.routedTo
-        ? _.flatten([options.routedTo])
+        ? flatten([options.routedTo])
         : [], // Ensure routedTo is always an array
       monthlyBillingBoolean: !!options.monthlyBilling, // Set monthlyBillingBoolean
     });
@@ -67,7 +76,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
   /**
      *  [API] Get the virtual machine from API using its id
      */
-  VirtualMachineFactory.prototype.get = function get() {
+  VirtualMachineFactory.prototype.get = function getFn() {
     const self = this;
 
     return OvhApiCloudProjectInstance.v6().get({
@@ -101,14 +110,14 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
         OvhApiCloudProjectImage.v6().query({
           serviceName: this.serviceName,
         }).$promise.then((images) => {
-          self.image = _.find(images, { id: image });
+          self.image = find(images, { id: image });
 
           // so it's a snapshot
           if (!self.image) {
             return OvhApiCloudProjectSnapshot.v6().query({
               serviceName: self.serviceName,
             }).$promise.then((snapshots) => {
-              self.image = _.find(snapshots, { id: image });
+              self.image = find(snapshots, { id: image });
 
               // so maybe image is not in list
               if (!self.image) {
@@ -134,7 +143,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
         OvhApiCloudProjectFlavor.v6().query({
           serviceName: this.serviceName,
         }).$promise.then((flavorsList) => {
-          self.flavor = _.find(flavorsList, { id: flavorId });
+          self.flavor = find(flavorsList, { id: flavorId });
           self.planCode = self.flavor.planCodes[self.monthlyBillingBoolean ? 'monthly' : 'hourly'];
 
           // if not in the list: it's a deprecated flavor: directly get it!
@@ -143,7 +152,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
               serviceName: self.serviceName,
               flavorId,
             }).$promise.then((flavorDeprecated) => {
-              _.set(flavorDeprecated, 'deprecated', true);
+              set(flavorDeprecated, 'deprecated', true);
               self.flavor = flavorDeprecated;
             });
           }
@@ -157,7 +166,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
       queue.push(OvhApiCloudProjectSshKey.v6().query({
         serviceName: this.serviceName,
       }).$promise.then((sshKeys) => {
-        self.sshKey = _.find(sshKeys, { id: self.sshKeyId });
+        self.sshKey = find(sshKeys, { id: self.sshKeyId });
       }));
     }
 
@@ -185,15 +194,15 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
      *  Get ip flagged with private type
      */
   VirtualMachineFactory.prototype.getPrivateIp = function getPrivateIp() {
-    return _.find(this.ipAddresses, ip => ip.type === 'private');
+    return find(this.ipAddresses, ip => ip.type === 'private');
   };
 
   VirtualMachineFactory.prototype.getPublicIpv4 = function getPublicIpv4() {
-    return _.get(_.find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 4), 'ip', '');
+    return get(find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 4), 'ip', '');
   };
 
   VirtualMachineFactory.prototype.getPublicIpv6 = function getPublicIpv6() {
-    return _.get(_.find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 6), 'ip', _.get(this.ipAddresses[0], 'ipV6.ip', ''));
+    return get(find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 6), 'ip', get(this.ipAddresses[0], 'ipV6.ip', ''));
   };
 
   /**
@@ -518,10 +527,10 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
         let maxPeriod;
 
         // ----- CPU -----
-        if (rawData['cpu:used'] && !_.isEmpty(rawData['cpu:used'].values)) {
-          maxPeriod = _.max(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+        if (rawData['cpu:used'] && !isEmpty(rawData['cpu:used'].values)) {
+          maxPeriod = maxBy(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
           this.monitoringData.cpu = {
-            now: _.last(rawData['cpu:used'].values), // current CPU usage
+            now: last(rawData['cpu:used'].values), // current CPU usage
             // does CPU reach alerting threshold over period?
             needUpgrade: maxPeriod.value >= CLOUD_MONITORING.vm.upgradeAlertThreshold,
             maxPeriod, // max CPU usage over given period
@@ -529,14 +538,14 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
         }
 
         // ----- RAM -----
-        if (rawData['mem:used'] && rawData['mem:max'] && !_.isEmpty(rawData['mem:used'].values) && !_.isEmpty(rawData['mem:max'].values)) {
-          const memTotal = _.first(rawData['mem:max'].values);
+        if (rawData['mem:used'] && rawData['mem:max'] && !isEmpty(rawData['mem:used'].values) && !isEmpty(rawData['mem:max'].values)) {
+          const memTotal = head(rawData['mem:max'].values);
           maxPeriod = null;
           if (memTotal && memTotal.value > 0) {
-            maxPeriod = _.max(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+            maxPeriod = maxBy(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
           }
           this.monitoringData.mem = {
-            now: _.last(rawData['mem:used'].values), // current RAM usage
+            now: last(rawData['mem:used'].values), // current RAM usage
             total: memTotal, // total RAM available
             // does RAM reach alerting threshold over period ?
             needUpgrade: maxPeriod.value / memTotal.value * 100.0 >= CLOUD_MONITORING.vm

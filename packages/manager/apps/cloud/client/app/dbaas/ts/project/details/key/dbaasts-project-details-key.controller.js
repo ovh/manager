@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import reject from 'lodash/reject';
+
 angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
   function DBaasTsProjectDetailsKeyCtrl($q, $state, $stateParams, $translate, $uibModal, $scope,
     Toast, OvhApiMe, OvhApiDBaasTsProject, DBaasTsProjectKey, OvhApiDBaasTsRegion,
@@ -36,7 +39,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
               keyId: key.id,
             }).$promise.then(() => {
               // Remove deleted key
-              self.data.keys = _.reject(self.data.keys, { id: key.id });
+              self.data.keys = reject(self.data.keys, { id: key.id });
 
               // and clode modal
               $uibModalInstance.close();
@@ -112,7 +115,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyCtrl',
 
         futureRegions.then((regions) => {
           // Find the region for the project
-          self.region = _.find(regions, { id: project.regionId });
+          self.region = find(regions, { id: project.regionId });
         });
 
         return $q.all(futureRegions, futureKeys);

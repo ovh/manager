@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class CloudProjectOpenstackUsersRcloneModalCtrl {
   constructor($stateParams, $uibModalInstance, CloudProjectOpenstackUsersRcloneService,
     CucControllerHelper, openstackUser, URLS) {
@@ -58,7 +60,7 @@ class CloudProjectOpenstackUsersRcloneModalCtrl {
     });
 
     this.rCloneFileGuide = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.CucControllerHelper.navigation.getConstant(_.get(this.URLS, 'guides.rCloneFile', ''))
+      loaderFunction: () => this.CucControllerHelper.navigation.getConstant(get(this.URLS, 'guides.rCloneFile', ''))
         .catch(error => this.cancel(error)),
     });
   }

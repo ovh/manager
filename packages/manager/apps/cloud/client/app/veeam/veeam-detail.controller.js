@@ -1,3 +1,5 @@
+import keys from 'lodash/keys';
+
 (() => {
   class VeeamDetailCtrl {
     constructor($filter, $q, $scope, $stateParams, VeeamService) {
@@ -18,7 +20,7 @@
     }
 
     hasTaskMessages() {
-      return _.keys(this.pendingTasksMessages).length > 0;
+      return keys(this.pendingTasksMessages).length > 0;
     }
 
     loadData() {

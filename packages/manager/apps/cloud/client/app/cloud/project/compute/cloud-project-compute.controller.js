@@ -1,3 +1,9 @@
+import cloneDeep from 'lodash/cloneDeep';
+import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 class CloudProjectComputeCtrl {
   constructor(
     $q, $scope, $state, $stateParams, $translate, $window, OvhApiCloudProject, CucCloudMessage,
@@ -84,7 +90,7 @@ class CloudProjectComputeCtrl {
 
   loadAnnouncements(ovhSubsidiary) {
     const areDismissed = [];
-    _.forEach(this.PCI_ANNOUNCEMENTS, (announcement) => {
+    forEach(this.PCI_ANNOUNCEMENTS, (announcement) => {
       const now = moment();
       const afterTheStart = now.isAfter(announcement.messageStart);
       const beforeTheEnd = now.isBefore(announcement.messageEnd);
@@ -93,24 +99,24 @@ class CloudProjectComputeCtrl {
       }
     });
     this.$q.all(areDismissed).then((areDismissedMessages) => {
-      const messages = _.map(
+      const messages = map(
         areDismissedMessages,
         announcement => this.augmentMessage(
           announcement,
           ovhSubsidiary,
         ),
       );
-      _.forEach(messages, message => this.CucCloudMessage.info(message));
+      forEach(messages, message => this.CucCloudMessage.info(message));
     });
   }
 
   augmentMessage(message, ovhSubsidiary) {
-    const augmentedMessage = _.cloneDeep(message);
+    const augmentedMessage = cloneDeep(message);
     augmentedMessage.dismiss = () => {
       this.dismissInfoMessage(message.messageId);
     };
     augmentedMessage.text = this.$translate.instant(message.messageId);
-    if (!message.linkURL || _.isEmpty(message.linkURL)) {
+    if (!message.linkURL || isEmpty(message.linkURL)) {
       return augmentedMessage;
     }
     augmentedMessage.link = {};
@@ -129,7 +135,7 @@ class CloudProjectComputeCtrl {
 
   isInfoMessageDismissed(message) {
     return this.CucUserPref.get(message.messageId).then((value) => {
-      _.set(message, 'dismissed', !!(!_.isEmpty(value) && value.markedAsRead));
+      set(message, 'dismissed', !!(!isEmpty(value) && value.markedAsRead));
       return message;
     });
   }

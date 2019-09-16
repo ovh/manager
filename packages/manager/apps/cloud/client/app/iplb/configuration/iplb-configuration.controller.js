@@ -1,3 +1,11 @@
+import get from 'lodash/get';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import sum from 'lodash/sum';
+
 class IpLoadBalancerConfigurationCtrl {
   constructor(
     $q,
@@ -45,15 +53,15 @@ class IpLoadBalancerConfigurationCtrl {
     this.zones.loading = true;
     let promise = this.$q.resolve([]);
 
-    const zoneData = _.has(this.zones, 'data') ? this.zones.data : this.zones;
+    const zoneData = has(this.zones, 'data') ? this.zones.data : this.zones;
 
-    const targets = _.isArray(zone)
+    const targets = isArray(zone)
       ? zone
       : [this.zones.data.find(({ id }) => id === zone)];
 
-    const targetsThatCantBeChanged = targets.filter(target => _.has(target, 'task.status') && _.get(target, 'task.status') !== 'done');
+    const targetsThatCantBeChanged = targets.filter(target => has(target, 'task.status') && get(target, 'task.status') !== 'done');
 
-    if (!_.isEmpty(targetsThatCantBeChanged)) {
+    if (!isEmpty(targetsThatCantBeChanged)) {
       const messageToDisplay = targetsThatCantBeChanged.length !== targets.length
         ? `${this.$translate.instant(
           'iplb_configuration_excludedZones_some',
@@ -66,7 +74,7 @@ class IpLoadBalancerConfigurationCtrl {
       this.CucCloudMessage.success(messageToDisplay);
     }
 
-    const targetsToApplyChangesTo = targets.filter(target => !_.has(target, 'task.status') || target.task.status === 'done');
+    const targetsToApplyChangesTo = targets.filter(target => !has(target, 'task.status') || target.task.status === 'done');
 
     if (targetsToApplyChangesTo.length === zoneData.length) {
       // All selected, just call the API with no zone.
@@ -74,7 +82,7 @@ class IpLoadBalancerConfigurationCtrl {
         .refresh(this.$stateParams.serviceName, null);
     } else if (targetsToApplyChangesTo.length) {
       promise = this.IpLoadBalancerConfigurationService
-        .batchRefresh(this.$stateParams.serviceName, _.map(targetsToApplyChangesTo, 'id'));
+        .batchRefresh(this.$stateParams.serviceName, map(targetsToApplyChangesTo, 'id'));
     }
 
     promise
@@ -85,7 +93,7 @@ class IpLoadBalancerConfigurationCtrl {
           .forEach((target) => {
             this.applications[target.id] = true;
 
-            if (!_.has(target, 'task')) {
+            if (!has(target, 'task')) {
               Object.assign(target, { task: {} });
             }
 
@@ -102,7 +110,7 @@ class IpLoadBalancerConfigurationCtrl {
         if (this.poller) {
           this.poller.$promise.then(() => {
           // check if at least one change remains
-            if (_.chain(this.zones.data).map('changes').sum().value() > 0) {
+            if (sum(map(this.zones.data, 'changes')) > 0) {
               this.CucCloudMessage.flushChildMessage();
             } else {
               this.CucCloudMessage.flushMessages();
@@ -124,7 +132,7 @@ class IpLoadBalancerConfigurationCtrl {
       items: this.zones.data,
       pollFunction: zone => this.IpLoadBalancerConfigurationService
         .getZoneChanges(this.$stateParams.serviceName, zone.id),
-      stopCondition: zone => !zone.task || (zone.task && _.includes(['done', 'error'], zone.task.status) && (zone.changes === 0 || zone.task.progress === 100)),
+      stopCondition: zone => !zone.task || (zone.task && includes(['done', 'error'], zone.task.status) && (zone.changes === 0 || zone.task.progress === 100)),
     });
   }
 

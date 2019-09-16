@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import set from 'lodash/set';
+
 class IpLoadBalancerFrontendsCtrl {
   constructor($state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
     IpLoadBalancerActionService, IpLoadBalancerFrontendsService) {
@@ -25,7 +28,7 @@ class IpLoadBalancerFrontendsCtrl {
 
   loadFarm(frontend) {
     if (!frontend.defaultFarmId) {
-      _.set(frontend, 'defaultFarm', null);
+      set(frontend, 'defaultFarm', null);
     }
     return this.IpLoadBalancerFrontendService
       .getFarm(frontend.protocol, this.$stateParams.serviceName, frontend.defaultFarmId)
@@ -64,12 +67,12 @@ class IpLoadBalancerFrontendsCtrl {
     this.IpLoadBalancerFrontendService.toggleFrontend(
       frontend.protocol,
       this.$stateParams.serviceName,
-      _.assign({}, frontend, {
+      assign({}, frontend, {
         disabled: !frontend.disabled,
       }),
     ).then(() => {
       // Apply value on model
-      _.set(frontend, 'disabled', !frontend.disabled);
+      set(frontend, 'disabled', !frontend.disabled);
     });
   }
 }

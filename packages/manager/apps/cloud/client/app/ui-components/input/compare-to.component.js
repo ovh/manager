@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('managerApp')
   .directive('cuiCompareTo', () => ({
     restrict: 'A',
@@ -6,7 +8,7 @@ angular.module('managerApp')
       otherModelValue: '=cuiCompareTo',
     },
     link: (scope, element, attributes, ngModel) => {
-      _.set(ngModel, '$validators.compareTo', modelValue => modelValue === scope.otherModelValue);
+      set(ngModel, '$validators.compareTo', modelValue => modelValue === scope.otherModelValue);
       scope.$watch('otherModelValue', () => {
         ngModel.$validate();
       });

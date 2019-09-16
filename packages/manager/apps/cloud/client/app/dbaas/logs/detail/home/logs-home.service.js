@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 class LogsHomeService {
   constructor($http, $q, $translate, LogsHelperService, LogsConstants, LogsOptionsService,
     OvhApiDbaas, CucServiceHelper, SidebarMenu) {
@@ -253,7 +256,7 @@ class LogsHomeService {
       object.urls,
       this.LogsConstants.URLS.ELASTICSEARCH_API,
     );
-    _.set(object, 'elasticSearchApiUrl', `${elasticSearchApiUrl}/_cluster/health?pretty=true`);
+    set(object, 'elasticSearchApiUrl', `${elasticSearchApiUrl}/_cluster/health?pretty=true`);
     return object;
   }
 
@@ -265,7 +268,7 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getGrayLogApiUrl(object) {
-    _.set(object, 'graylogApiUrl', this.constructor.findUrl(object.urls, this.LogsConstants.URLS.GRAYLOG_API));
+    set(object, 'graylogApiUrl', this.constructor.findUrl(object.urls, this.LogsConstants.URLS.GRAYLOG_API));
     return object;
   }
 
@@ -277,7 +280,7 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getGrayLogUrl(object) {
-    _.set(object, 'graylogWebuiUrl', this.constructor.findUrl(
+    set(object, 'graylogWebuiUrl', this.constructor.findUrl(
       object.urls,
       this.LogsConstants.URLS.GRAYLOG_WEBUI,
     ));
@@ -322,14 +325,14 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   transformAccount(account) {
-    if (_.isEmpty(account.offer)) {
-      _.set(account, 'offer.description', '');
+    if (isEmpty(account.offer)) {
+      set(account, 'offer.description', '');
     } else if (account.offer.reference === this.LogsConstants.basicOffer) {
-      _.set(account, 'offer.description', this.LogsConstants.offertypes.BASIC);
+      set(account, 'offer.description', this.LogsConstants.offertypes.BASIC);
     } else {
       const dataVolume = this.$translate.instant('logs_home_data_volume');
       const dataVolumeValue = this.$translate.instant(account.offer.reference);
-      _.set(account, 'offer.description', `${this.LogsConstants.offertypes.PRO} - ${dataVolume}: ${dataVolumeValue}`);
+      set(account, 'offer.description', `${this.LogsConstants.offertypes.PRO} - ${dataVolume}: ${dataVolumeValue}`);
     }
     return account;
   }
@@ -342,19 +345,19 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   transformAccountDetails(accountDetails) {
-    _.set(accountDetails, 'email', accountDetails.service.contact
+    set(accountDetails, 'email', accountDetails.service.contact
       ? accountDetails.service.contact.email
       : accountDetails.me.email);
     this.getGrayLogUrl(accountDetails);
     this.getGrayLogApiUrl(accountDetails);
-    _.set(accountDetails, 'graylogApiUrl', `${accountDetails.graylogApiUrl}/api-browser`);
-    _.set(accountDetails, 'graylogEntryPoint', accountDetails.graylogWebuiUrl
+    set(accountDetails, 'graylogApiUrl', `${accountDetails.graylogApiUrl}/api-browser`);
+    set(accountDetails, 'graylogEntryPoint', accountDetails.graylogWebuiUrl
       .replace('https://', '')
       .replace('/api', ''));
     this.getElasticSearchApiUrl(accountDetails);
     if (accountDetails.last_stream) { this.getGrayLogUrl(accountDetails.last_stream); }
     if (accountDetails.last_dashboard) { this.getGrayLogUrl(accountDetails.last_dashboard); }
-    _.set(accountDetails, 'portsAndMessages', this.getPortsAndMessages(accountDetails));
+    set(accountDetails, 'portsAndMessages', this.getPortsAndMessages(accountDetails));
     return accountDetails;
   }
 
@@ -366,7 +369,7 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   static transformOption(option) {
-    _.set(option, 'description', `${option.quantity} ${option.type}: ${option.detail}`);
+    set(option, 'description', `${option.quantity} ${option.type}: ${option.detail}`);
     return option;
   }
 

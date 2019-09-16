@@ -1,3 +1,18 @@
+import assign from 'lodash/assign';
+import compact from 'lodash/compact';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import padStart from 'lodash/padStart';
+import set from 'lodash/set';
+import size from 'lodash/size';
+import sum from 'lodash/sum';
+import times from 'lodash/times';
+
 angular.module('managerApp').controller('RA.storageDetailsCtrl', [
   '$interval',
   '$rootScope',
@@ -112,18 +127,18 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       const hours = Math.floor(delay / 3600);
       const minutes = Math.floor((delay - hours * 3600) / 60);
       const seconds = delay - hours * 3600 - minutes * 60;
-      const delayText = _.map([hours, minutes, seconds], time => _.padLeft(time, 2, '0')).join(':');
+      const delayText = map([hours, minutes, seconds], time => padStart(time, 2, '0')).join(':');
       return $translate.instant('storage_availability_unsealing', { delay: delayText });
     }
 
     function startUnsealingCountdown(file) {
-      _.set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
-      _.set(file, 'interval', $interval(() => {
-        _.set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
-        _.set(file, 'retrievalDelay', file.retrievalDelay - 1);
+      set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
+      set(file, 'interval', $interval(() => {
+        set(file, 'stateText', retrivalCountdownText(file.retrievalDelay));
+        set(file, 'retrievalDelay', file.retrievalDelay - 1);
         if (file.retrievalDelay === 0) {
-          _.set(file, 'retrievalState', CLOUD_PCA_FILE_STATE.UNSEALED);
-          _.set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
+          set(file, 'retrievalState', CLOUD_PCA_FILE_STATE.UNSEALED);
+          set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
         }
       }, 1000, file.retrievalDelay));
     }
@@ -131,23 +146,23 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     function setFileStateText(file) {
       switch (file.retrievalState) {
         case CLOUD_PCA_FILE_STATE.SEALED:
-          _.set(file, 'stateText', $translate.instant('storage_availability_sealed'));
+          set(file, 'stateText', $translate.instant('storage_availability_sealed'));
           break;
         case CLOUD_PCA_FILE_STATE.UNSEALED:
-          _.set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
+          set(file, 'stateText', $translate.instant('storage_availability_unsealed'));
           break;
         case CLOUD_PCA_FILE_STATE.UNSEALING:
           startUnsealingCountdown(file);
           break;
         default:
-          _.set(file, 'stateText', '');
+          set(file, 'stateText', '');
       }
     }
 
     function deleteObject(elem) {
       function createDeleteTask(element) {
         return function createDeleteTaskFn() {
-          const index = _.findIndex(
+          const index = findIndex(
             $scope.objects,
             {
               name: element.name,
@@ -250,14 +265,14 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     function getObject(name) {
       return CloudStorageContainer.list($scope.projectId, $stateParams.storageId)
         .then((details) => {
-          const file = _.find(details.objects, { name });
+          const file = find(details.objects, { name });
           file.region = details.region;
           return file;
         });
     }
 
     $scope.computeStorageSize = function computeStorageSize() {
-      return _.sum(_.map($scope.objects, 'size'));
+      return sum(map($scope.objects, 'size'));
     };
 
     $scope.openDNSHelp = function openDNSHelp() {
@@ -295,7 +310,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       if (file.retrievalState === CLOUD_PCA_FILE_STATE.SEALED) {
         index = locationOf(file.name, $scope.objects);
         if (index > -1) {
-          $scope.objects[index] = _.assign(file, { sealingStateLoading: true });
+          $scope.objects[index] = assign(file, { sealingStateLoading: true });
         }
       }
       CloudStorageContainer.download($scope.projectId, $stateParams.storageId, file)
@@ -311,13 +326,13 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
 
           return getObject(file.name)
             .then((data) => {
-              $scope.objects[index] = _.assign(file, data);
+              $scope.objects[index] = assign(file, data);
               return $scope.objects[index];
             })
             .then(setFileStateText);
         })
         .finally(() => {
-          _.set(file, 'sealingStateLoading', false);
+          set(file, 'sealingStateLoading', false);
         });
     };
 
@@ -338,8 +353,8 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.deleteAll = function deleteAll() {
-      const toDelete = _.compact(
-        _.map(
+      const toDelete = compact(
+        map(
           $scope.model.selected,
           (selected, index) => (selected ? $scope.files[index] : null),
         ),
@@ -354,7 +369,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
           },
         },
       }).result.then(() => {
-        _.forEach(toDelete, (object) => {
+        forEach(toDelete, (object) => {
           deleteObject(object);
         });
         resetSelectionModel();
@@ -362,12 +377,12 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.selectAll = function selectAll() {
-      $scope.model.selected = _.times($scope.files.length, () => $scope.model.allSelected);
+      $scope.model.selected = times($scope.files.length, () => $scope.model.allSelected);
     };
 
     $scope.select = function selectFn() {
       $scope.model.allSelected = $scope.model.selected.length === $scope.files.length
-        && _.all($scope.model.selected, select => select);
+        && every($scope.model.selected, select => select);
     };
 
     $scope.manySelected = function manySelected() {
@@ -375,7 +390,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.selectionCount = function selectionCount() {
-      return _.size(_.filter($scope.model.selected, value => value));
+      return size(filter($scope.model.selected, value => value));
     };
 
     $scope.$on('delete_object', (event, data) => {
@@ -441,7 +456,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
         .then((metaData) => {
           storageDetails.shortcut = metaData.shortcut;
 
-          _.each(storageDetails.objects, (file) => {
+          forEach(storageDetails.objects, (file) => {
             setFileStateText(file);
           });
 
@@ -449,10 +464,10 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
           $scope.storage = storageDetails;
 
           if (storageDetails.objects.length === options.limit) {
-            $scope.getObjectList(encodeURIComponent(_.last($scope.objects).name));
+            $scope.getObjectList(encodeURIComponent(last($scope.objects).name));
           } else {
             const { accessCache } = CloudStorageContainersConfiguration;
-            const endpoint = _.find(
+            const endpoint = find(
               accessCache.get($scope.projectId).endpoints,
               {
                 region: $scope.storage.region,

@@ -1,3 +1,6 @@
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
+
 class RegionsCtrl {
   constructor(
     $stateParams,
@@ -38,7 +41,7 @@ class RegionsCtrl {
       loaderFunction: () => this.OvhApiCloudProjectRegion.v6()
         .query({ serviceName: this.serviceName })
         .$promise
-        .then(regionIds => _.map(regionIds, region => this.CucRegionService.getRegion(region)))
+        .then(regionIds => map(regionIds, region => this.CucRegionService.getRegion(region)))
         .catch(error => this.CucServiceHelper.errorHandler('cpci_add_regions_get_regions_error')(error)),
     });
     return this.regions.load();
@@ -59,7 +62,7 @@ class RegionsCtrl {
     this.regionsByContinent = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.regionsByDatacenter
         .promise
-        .then(regions => _.groupBy(regions, 'continent')),
+        .then(regions => groupBy(regions, 'continent')),
     });
     return this.regionsByContinent.load();
   }
@@ -69,7 +72,7 @@ class RegionsCtrl {
       loaderFunction: () => this.OvhApiCloudProjectRegion.AvailableRegions().v6()
         .query({ serviceName: this.serviceName })
         .$promise
-        .then(regionIds => _.map(regionIds, region => this.CucRegionService.getRegion(region.name)))
+        .then(regionIds => map(regionIds, region => this.CucRegionService.getRegion(region.name)))
         .catch(error => this.CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
     });
     return this.availableRegions.load();
@@ -90,7 +93,7 @@ class RegionsCtrl {
     this.availableRegionsByContinent = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.availableRegionsByDatacenter
         .promise
-        .then(regions => _.groupBy(regions, 'continent')),
+        .then(regions => groupBy(regions, 'continent')),
     });
     return this.availableRegionsByContinent.load();
   }

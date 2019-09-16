@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+
 class OvhCloudPriceHelper {
   constructor($q, OvhApiOrderCatalogFormatted, OvhApiCloudProject, OvhApiMe) {
     this.$q = $q;
@@ -13,14 +16,14 @@ class OvhCloudPriceHelper {
       project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
     })
       .then(({ catalog, project }) => {
-        const projectPlan = _.find(catalog.plans, { planCode: project.planCode });
+        const projectPlan = find(catalog.plans, { planCode: project.planCode });
         if (!projectPlan) {
           throw new Error({ message: 'Fail to get project plan' });
         }
 
         const pricesMap = {};
-        _.forEach(projectPlan.addonsFamily, (family) => {
-          _.forEach(family.addons, (price) => {
+        forEach(projectPlan.addonsFamily, (family) => {
+          forEach(family.addons, (price) => {
             pricesMap[price.plan.planCode] = price.plan.details.pricings.default.length
               ? price.plan.details.pricings.default[0]
               : undefined;

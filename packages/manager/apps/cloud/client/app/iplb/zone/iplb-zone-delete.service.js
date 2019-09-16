@@ -1,3 +1,8 @@
+import assignIn from 'lodash/assignIn';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
+
 class IpLoadBalancerZoneDeleteService {
   constructor(
     $q,
@@ -19,11 +24,11 @@ class IpLoadBalancerZoneDeleteService {
     return this.OvhApiIpLoadBalancing.v6().get({ serviceName })
       .$promise
       .then((response) => {
-        const promises = _.map(response.zone, zone => this.OvhApiIpLoadBalancing.Zone().v6()
+        const promises = map(response.zone, zone => this.OvhApiIpLoadBalancing.Zone().v6()
           .get({ serviceName, name: zone }).$promise);
         return this.$q.all(promises);
       })
-      .then(zones => _.map(zones, zone => _.extend({
+      .then(zones => map(zones, zone => assignIn({
         name: zone.name,
         selectable: {
           value: zone.state !== 'released',
@@ -40,7 +45,7 @@ class IpLoadBalancerZoneDeleteService {
           return this.CucServiceHelper.errorHandler('iplb_zone_delete_selection_error')({});
         }
 
-        const deletableZoneCount = _.filter(
+        const deletableZoneCount = filter(
           deletableZones,
           item => item.selectable.value !== false,
         ).length - 1;
@@ -58,8 +63,8 @@ class IpLoadBalancerZoneDeleteService {
           });
         }
 
-        const deletedZones = _.sortBy(_.map(zones, zone => zone.microRegion.text), zone => zone).join(', ');
-        const promises = _.map(
+        const deletedZones = sortBy(map(zones, zone => zone.microRegion.text), zone => zone).join(', ');
+        const promises = map(
           zones,
           zone => this.OvhApiIpLoadBalancing.Zone().v6()
             .delete({ serviceName, name: zone.name }, {}).$promise,

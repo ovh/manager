@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+
 class IpLoadBalancerConfigurationService {
   constructor($q, $state, $translate, CucCloudMessage, OvhApiIpLoadBalancing, CucRegionService,
     CucServiceHelper) {
@@ -22,7 +25,7 @@ class IpLoadBalancerConfigurationService {
       tasks: this.getRefreshTasks(serviceName),
     })
       .then(({ description, pendingChanges, tasks }) => description.zone.map((zone) => {
-        const pending = _.find(pendingChanges, { zone });
+        const pending = find(pendingChanges, { zone });
         return {
           id: zone,
           name: this.CucRegionService.getRegion(zone).microRegion.text,
@@ -39,7 +42,7 @@ class IpLoadBalancerConfigurationService {
       tasks: this.getRefreshTasks(serviceName, ['todo', 'doing', 'done']),
     })
       .then(({ pendingChanges, tasks }) => {
-        const pending = _.find(pendingChanges, { zone });
+        const pending = find(pendingChanges, { zone });
         return {
           id: zone,
           name: this.CucRegionService.getRegion(zone).microRegion.text,
@@ -60,7 +63,7 @@ class IpLoadBalancerConfigurationService {
 
       return 1;
     });
-    return _.find(result, task => task.zones && task.zones.indexOf(zone) > -1);
+    return find(result, task => task.zones && task.zones.indexOf(zone) > -1);
   }
 
   refresh(serviceName, zone) {
@@ -99,7 +102,7 @@ class IpLoadBalancerConfigurationService {
         action: 'refreshIplb',
         status,
       }).$promise))
-        .then(tasksResults => _.flatten(tasksResults));
+        .then(tasksResults => flatten(tasksResults));
     } else {
       tasksPromise = this.IpLoadBalancing.Task().v6().query({
         serviceName,

@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
   (CloudProjectComputeVolumesVolumeFactory) => {
     /**
@@ -49,7 +54,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
       let vol;
       angular.forEach(this.volumes, (volume) => {
         if (!vol) {
-          vol = _.find(volume, { id: volumeId });
+          vol = find(volume, { id: volumeId });
         }
       });
       return vol;
@@ -63,7 +68,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
 
       targetId = targetId || 'unlinked';
 
-      _.set(volume, 'serviceName', this.serviceName); // Add projectId to item
+      set(volume, 'serviceName', this.serviceName); // Add projectId to item
 
       volume = checkVolume(volume); // eslint-disable-line
       volume.setInfos({
@@ -87,7 +92,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     ) {
       let targetId = targetIdParam;
       targetId = targetId || 'unlinked';
-      _.remove(this.volumes[targetId], { id: volume.id });
+      remove(this.volumes[targetId], { id: volume.id });
       return volume;
     };
 
@@ -99,7 +104,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     VolumesFactory.prototype.prepareToJson = function prepareToJson() {
       const preparedToJson = {};
       angular.forEach(this.volumes, (volumes, targetId) => {
-        preparedToJson[targetId] = _.map(volumes, volume => volume.prepareToJson());
+        preparedToJson[targetId] = map(volumes, volume => volume.prepareToJson());
       });
       return {
         volumes: preparedToJson,

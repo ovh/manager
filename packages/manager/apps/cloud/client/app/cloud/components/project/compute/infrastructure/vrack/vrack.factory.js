@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
   (CloudProjectComputeInfraVrackVmFactory, CucOrderedHashFactory) => {
     /**
@@ -53,7 +56,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
      *  Add a public vm into Vrack list
      */
     VrackFactory.prototype.addVmToPublicCloudList = function addVmToPublicCloudList(vm) {
-      _.set(vm, 'serviceName', this.serviceName); // Add projectId to VM
+      set(vm, 'serviceName', this.serviceName); // Add projectId to VM
       vm = checkVm(vm); // eslint-disable-line
       // Avoid conflict of adding an existing vm
       if (!this.publicCloud.get(vm)) {
@@ -78,7 +81,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     VrackFactory.prototype.collapseAll = function collapseAll() {
       const items = this.publicCloud.getItems();
       angular.forEach(items, (vm) => {
-        _.set(vm, 'collapsed', true);
+        set(vm, 'collapsed', true);
       });
     };
 
@@ -88,7 +91,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     VrackFactory.prototype.uncollapseAll = function uncollapseAll() {
       const items = this.publicCloud.getItems();
       angular.forEach(items, (vm) => {
-        _.set(vm, 'collapsed', false);
+        set(vm, 'collapsed', false);
       });
     };
 
@@ -98,7 +101,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
     VrackFactory.prototype.prepareToJson = function prepareToJson() {
       const self = this;
       return {
-        publicCloud: _.map(
+        publicCloud: map(
           this.publicCloud.sortedKeys,
           vmId => self.publicCloud.get(vmId).prepareToJson(),
         ),

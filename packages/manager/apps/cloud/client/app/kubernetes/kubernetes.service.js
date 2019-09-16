@@ -1,3 +1,5 @@
+import keyBy from 'lodash/keyBy';
+
 angular.module('managerApp').service('Kubernetes', class Kubernetes {
   constructor(
     $q, $translate,
@@ -127,7 +129,7 @@ angular.module('managerApp').service('Kubernetes', class Kubernetes {
   }
 
   initializeUpgradePolicies() {
-    const upgradePolicyEnum = _.indexBy(this.KUBERNETES.upgradePolicies);
+    const upgradePolicyEnum = keyBy(this.KUBERNETES.upgradePolicies);
     this.upgradePolicies = [
       {
         value: upgradePolicyEnum.ALWAYS_UPDATE,

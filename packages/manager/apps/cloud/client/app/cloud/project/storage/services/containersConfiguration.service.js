@@ -1,3 +1,5 @@
+import assignIn from 'lodash/assignIn';
+
 angular.module('managerApp')
   .service('CloudStorageContainersConfiguration', [
     '$cacheFactory', '$parse', function CloudStorageContainersConfigurationService(
@@ -17,7 +19,7 @@ angular.module('managerApp')
         return `${projectId}_${containerId}`;
       }
 
-      _.extend(Cache.prototype, {
+      assignIn(Cache.prototype, {
         /**
          * Set container meta data cache value.
          * @param {string} projectId   project id

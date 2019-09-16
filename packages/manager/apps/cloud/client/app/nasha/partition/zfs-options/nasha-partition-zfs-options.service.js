@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').service('NashaPartitionZFSOptionsService',
   function NashaPartitionZFSOptionsService(
     $q,
@@ -10,19 +13,22 @@ angular.module('managerApp').service('NashaPartitionZFSOptionsService',
       return OvhApiDedicatedNasha.v6().schema().$promise
         .then((schema) => {
           const enums = {};
-          enums.recordsize = _.chain(schema.models['dedicated.storage.RecordSizeEnum'].enum)
-            .map((size) => {
-              const int = parseInt(size, 10);
-              return {
-                size: int,
-                label: $filter('bytes')(int, true),
-                isDefault: int === NASHA_ZFS_OPTIONS_DEFAULT.recordsize,
-              };
-            })
-            .sortBy('size')
-            .value();
+          enums.recordsize = sortBy(
+            map(
+              schema.models['dedicated.storage.RecordSizeEnum'].enum,
+              (size) => {
+                const int = parseInt(size, 10);
+                return {
+                  size: int,
+                  label: $filter('bytes')(int, true),
+                  isDefault: int === NASHA_ZFS_OPTIONS_DEFAULT.recordsize,
+                };
+              },
+            ),
+            'size',
+          );
 
-          enums.sync = _.map(schema.models['dedicated.storage.SyncEnum'].enum, option => ({
+          enums.sync = map(schema.models['dedicated.storage.SyncEnum'].enum, option => ({
             label: option,
             warning: option === 'disabled',
             isDefault: option === 'standard',

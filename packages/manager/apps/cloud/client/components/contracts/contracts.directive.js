@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import set from 'lodash/set';
+
 angular.module('managerApp').directive('contracts', () => ({
   restrict: 'EA',
   templateUrl: 'components/contracts/contracts.html',
@@ -11,7 +14,7 @@ angular.module('managerApp').directive('contracts', () => ({
   controllerAs: 'ContractsCtrl',
   bindToController: true,
   link($scope, $elm, $attr, ContractsCtrl) {
-    _.set(ContractsCtrl, 'fullText', $attr.fullText === 'true' || $attr.fullText === undefined);
+    set(ContractsCtrl, 'fullText', $attr.fullText === 'true' || $attr.fullText === undefined);
 
     const scrollToOptions = {
       easing: 'swing',
@@ -32,8 +35,8 @@ angular.module('managerApp').directive('contracts', () => ({
       let scrollItems;
       let initialOffSet;
 
-      _.set(ContractsCtrl, 'currentContract', _.first(ContractsCtrl.contracts));
-      _.set(ContractsCtrl, 'disabled', true);
+      set(ContractsCtrl, 'currentContract', head(ContractsCtrl.contracts));
+      set(ContractsCtrl, 'disabled', true);
 
       // Fake Anchor
       topMenu.delegate('a', 'click', function click(e) {
@@ -56,7 +59,7 @@ angular.module('managerApp').directive('contracts', () => ({
 
         if ((elemDiff === elemHeight) || (elemDiff - elemHeight < 5)) {
           $scope.$apply(() => {
-            _.set(ContractsCtrl, 'disabled', false);
+            set(ContractsCtrl, 'disabled', false);
           });
         }
 
@@ -90,7 +93,7 @@ angular.module('managerApp').directive('contracts', () => ({
         if (lastId !== id) {
           lastId = id;
           $scope.$apply(() => {
-            _.set(ContractsCtrl, 'currentContract', ContractsCtrl.contracts[id.split('-')[1]]);
+            set(ContractsCtrl, 'currentContract', ContractsCtrl.contracts[id.split('-')[1]]);
           });
           menuItems.removeClass('active').parent().end().filter(`[data-fake-href=#${id}]`)
             .addClass('active');

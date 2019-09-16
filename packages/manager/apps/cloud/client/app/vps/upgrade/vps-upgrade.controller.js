@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 import {
   OFFER_AGORA_MAPPING,
   VERSION_AGORA_MAPPING,
@@ -59,15 +65,15 @@ export default class VpsUpgradeCtrl {
     // - if version year is less than 2018, agora version will be 2018v3
     // - otherwise agora version will be 2018v4
     const versionInfos = VpsUpgradeCtrl.parseModelVersion(modelVersion);
-    const destVersion = _.get(
+    const destVersion = get(
       VERSION_AGORA_MAPPING,
       modelVersion,
       versionInfos.year < 2018 ? '2018v3' : '2018v4',
     );
-    const mappedType = _.get(OFFER_AGORA_MAPPING, modelType, modelType);
+    const mappedType = get(OFFER_AGORA_MAPPING, modelType, modelType);
     const offerPlanCode = `vps_${mappedType}_${modelName}_${destVersion}`;
 
-    return _.find(availableOffers, {
+    return find(availableOffers, {
       planCode: offerPlanCode,
     });
   }
@@ -76,7 +82,7 @@ export default class VpsUpgradeCtrl {
    *  Find the monthly price object of given offer
    */
   static getMonthlyPrice(offer) {
-    return _.find(offer.offer.details.prices, {
+    return find(offer.offer.details.prices, {
       duration: 'P1M',
     });
   }
@@ -95,7 +101,7 @@ export default class VpsUpgradeCtrl {
     }).$promise
       .then((order) => {
         this.order = order.order;
-        this.order.contracts = _.map(this.order.contracts, (contractParam) => {
+        this.order.contracts = map(this.order.contracts, (contractParam) => {
           const contract = contractParam;
           contract.expanded = false;
           return contract;
@@ -104,7 +110,7 @@ export default class VpsUpgradeCtrl {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_configuration_upgradevps_fail'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {
@@ -117,11 +123,11 @@ export default class VpsUpgradeCtrl {
     // hide all contracts
     if (!toggledContract.expanded) {
       this.order.contracts.forEach((contract) => {
-        _.set(contract, 'expanded', false);
+        set(contract, 'expanded', false);
       });
     }
     // toggle expand state of contract
-    _.set(toggledContract, 'expanded', !toggledContract.expanded);
+    set(toggledContract, 'expanded', !toggledContract.expanded);
   }
 
   onStepperFinish() {
@@ -151,7 +157,7 @@ export default class VpsUpgradeCtrl {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_configuration_upgradevps_fail'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {
@@ -181,7 +187,7 @@ export default class VpsUpgradeCtrl {
       .then(({ availableUpgrades, availableOffers }) => {
         // map available upgrades by adding details with the informations
         // provided by /order/upgrade/vps API response
-        const availableUpgrade = _.map(availableUpgrades, (upgradeParam) => {
+        const availableUpgrade = map(availableUpgrades, (upgradeParam) => {
           const upgrade = upgradeParam;
           upgrade.isCurrentOffer = false;
           upgrade.offer = {
@@ -198,7 +204,7 @@ export default class VpsUpgradeCtrl {
 
         // set current offer in available upgrade and concat with availabe ones
         // then chunk the list for responsive display
-        this.chunkedAvailableUpgrade = _.chunk([{
+        this.chunkedAvailableUpgrade = chunk([{
           isCurrentOffer: true,
           disk: this.stateVps.model.disk,
           memory: this.stateVps.model.memory,
@@ -219,7 +225,7 @@ export default class VpsUpgradeCtrl {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_configuration_upgradevps_fail'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {

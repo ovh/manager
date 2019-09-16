@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import sum from 'lodash/sum';
+
 class IpLoadBalancerDetailCtrl {
   constructor(
     $stateParams,
@@ -35,7 +38,7 @@ class IpLoadBalancerDetailCtrl {
     this.IpLoadBalancerConfigurationService.getPendingChanges(
       this.serviceName,
     )
-      .then(changes => _.chain(changes).map('number').sum().value() > 0)
+      .then(changes => sum(map(changes, 'number')) > 0)
       .then((hasChanges) => {
         if (hasChanges) {
           this.IpLoadBalancerConfigurationService.showRefreshWarning();

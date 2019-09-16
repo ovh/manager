@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('KubernetesServiceCtrl', class KubernetesServiceCtrl {
   constructor($scope, $state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
     Kubernetes, KUBERNETES) {
@@ -56,7 +59,7 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
     return this.Kubernetes.getKubernetesCluster(this.serviceName)
       .then((cluster) => {
         this.cluster = cluster;
-        _.set(this.cluster, 'region', this.KUBERNETES.region);
+        set(this.cluster, 'region', this.KUBERNETES.region);
         this.setUpgradePolicy();
       })
       .catch(() => { this.displayError = true; })
@@ -68,7 +71,7 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
       .then((serviceInfos) => {
         this.serviceInfos = serviceInfos;
         // Static for now
-        _.set(this.serviceInfos, 'offer', this.$translate.instant('kube_service_offer_beta'));
+        set(this.serviceInfos, 'offer', this.$translate.instant('kube_service_offer_beta'));
       })
       .catch(() => { this.displayError = true; })
       .finally(() => { this.loaders.billing = false; });
@@ -102,7 +105,7 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
   }
 
   setUpgradePolicy() {
-    this.upgradePolicy = _.find(this.Kubernetes.getUpgradePolicies(),
+    this.upgradePolicy = find(this.Kubernetes.getUpgradePolicies(),
       policy => policy.value === this.cluster.updatePolicy);
   }
 

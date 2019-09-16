@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 /* eslint-disable consistent-return */
 (() => {
   class CloudProjectAdd {
@@ -117,7 +120,7 @@
     getAllAgreementsInfo(agreementsIds) {
       const agreements = [];
       if (agreementsIds && agreementsIds.length) {
-        _.forEach(agreementsIds, (contractId) => {
+        forEach(agreementsIds, (contractId) => {
           agreements.push(this.getContractInfo(contractId));
         });
       }
@@ -130,7 +133,7 @@
       })
         .$promise
         .then((contract) => {
-          _.set(contract, 'id', contractId);
+          set(contract, 'id', contractId);
           return contract;
         });
     }

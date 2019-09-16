@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import includes from 'lodash/includes';
+
 class VpsReinstallService {
   constructor($http, $q, $translate, CucCloudMessage, OvhApiMe) {
     this.$http = $http;
@@ -18,15 +21,15 @@ class VpsReinstallService {
   }
 
   static filterKernel(packages) {
-    return _.filter(packages, pkg => !_.includes((pkg.name + pkg.alias).toLowerCase(), 'kernel'));
+    return filter(packages, pkg => !includes((pkg.name + pkg.alias).toLowerCase(), 'kernel'));
   }
 
   getPackagesFiltered(image) {
     this.$http.get(`/distribution/image/vps/${image}`)
       .then((response) => {
         const { packages } = response.data;
-        _.filter(packages, (pkg) => {
-          if (!_.includes((pkg.name + pkg.alias).toLowerCase(), 'kernel')) {
+        filter(packages, (pkg) => {
+          if (!includes((pkg.name + pkg.alias).toLowerCase(), 'kernel')) {
             packages.push(pkg);
           }
         });

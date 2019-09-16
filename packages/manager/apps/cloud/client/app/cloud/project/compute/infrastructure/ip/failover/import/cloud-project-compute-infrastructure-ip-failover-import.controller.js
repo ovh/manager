@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
 
 
 angular.module('managerApp')
@@ -41,7 +44,7 @@ angular.module('managerApp')
         return OvhApiIp.v6().query({
           type: 'failover',
         }).$promise.then((ipsParams) => {
-          const ips = _.filter(ipsParams, ip => _.indexOf(pendingImportIps, ip) < 0);
+          const ips = filter(ipsParams, ip => indexOf(pendingImportIps, ip) < 0);
           return self.initIps(ips);
         }, (err) => {
           CucCloudMessage.error([$translate.instant('cpciif_import_ips_error'), (err.data && err.data.message) || ''].join(' '));
@@ -157,7 +160,7 @@ angular.module('managerApp')
         }, (error) => {
           const tabError = error.filter(val => !!val.error);
 
-          const ipError = _.pluck(tabError, 'ip');
+          const ipError = map(tabError, 'ip');
 
           self.datas.autoSelected = angular.copy(ipError);
 

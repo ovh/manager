@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 class DeskaasCtrl {
   constructor($q, $translate, OvhApiDeskaasService) {
     this.$q = $q;
@@ -33,16 +35,16 @@ class DeskaasCtrl {
         .getDetails({ serviceName: serviceId }).$promise;
       detailsPromise.then((details) => {
         if (details.alias !== 'noAlias') {
-          _.set(details, 'displayName', `${details.alias} (${details.serviceName})`);
+          set(details, 'displayName', `${details.alias} (${details.serviceName})`);
         } else {
-          _.set(details, 'displayName', details.serviceName);
+          set(details, 'displayName', details.serviceName);
         }
 
         if (serviceInfo.status === 'ok') {
           const userPromise = this.OvhApiDeskaasService.v6()
             .getUser({ serviceName: serviceId }).$promise;
           userPromise.then((user) => {
-            _.set(user, 'displayName', `${user.name} (${user.email})`);
+            set(user, 'displayName', `${user.name} (${user.email})`);
             this.registerService(details, serviceInfo, user);
           });
         } else {

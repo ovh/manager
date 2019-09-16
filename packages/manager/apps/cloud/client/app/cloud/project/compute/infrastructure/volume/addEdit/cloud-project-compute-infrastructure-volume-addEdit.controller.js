@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('managerApp')
   .controller('CloudProjectComputeInfrastructureVolumeAddEditCtrl',
     function CloudProjectComputeInfrastructureVolumeAddEditCtrl(
@@ -243,7 +245,7 @@ angular.module('managerApp')
       // --------- QUOTAS ---------
       self.computeQuotas = function computeQuotas(region) {
         if (self.panelsData.quotas) {
-          const quota = _.find(self.panelsData.quotas, { region });
+          const quota = find(self.panelsData.quotas, { region });
           if (quota && quota.volume) {
             self.states.hasEnoughQuota = true;
             let availableGigabytes = CLOUD_VOLUME_MAX_SIZE;

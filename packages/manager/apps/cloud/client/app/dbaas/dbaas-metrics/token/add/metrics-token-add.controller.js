@@ -1,3 +1,5 @@
+import indexOf from 'lodash/indexOf';
+
 (() => {
   class MetricsTokenAddCtrl {
     constructor($state, $stateParams, $translate, MetricService) {
@@ -38,7 +40,7 @@
     }
 
     removeLabel(label) {
-      const index = _.indexOf(this.token.labels, label);
+      const index = indexOf(this.token.labels, label);
       if (index !== -1) {
         this.token.labels.splice(index, 1);
       }

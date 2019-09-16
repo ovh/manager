@@ -1,3 +1,5 @@
+import flatten from 'lodash/flatten';
+
 angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory',
   (OvhApiIpReverse, OvhApiCloudProjectIpFailover) => {
     /**
@@ -35,7 +37,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpFailoverFactory'
       return angular.extend(options, {
         type: 'failover',
         routedTo: options.routedTo
-          ? _.flatten([options.routedTo])
+          ? flatten([options.routedTo])
           : [], // Ensure routedTo is always an array
       });
     };

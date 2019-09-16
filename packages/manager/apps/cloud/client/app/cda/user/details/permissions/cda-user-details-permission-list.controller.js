@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('managerApp')
   .controller('CdaUserDetailsPermissionListCtrl', function CdaUserDetailsPermissionListCtrl($q, $stateParams, $translate, CucCloudMessage, OvhApiDedicatedCeph, CdaUserPermissionService) {
     const self = this;
@@ -50,7 +52,7 @@ angular.module('managerApp')
           self.datas.poolsDisplay = poolsDisplay;
         })
         .catch((errors) => {
-          displayError(_.find(errors, error => error));
+          displayError(find(errors, error => error));
         })
         .finally(() => {
           self.loading = false;

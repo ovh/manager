@@ -1,8 +1,12 @@
+import forEach from 'lodash/forEach';
+import keys from 'lodash/keys';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').filter('orderHashByKey', () => (items) => {
-  const sortedKeys = _.sortBy(_.keys(items), key => key);
+  const sortedKeys = sortBy(keys(items), key => key);
 
   const newHash = {};
-  _.forEach(sortedKeys, (key) => {
+  forEach(sortedKeys, (key) => {
     newHash[key] = items[key];
   });
   return newHash;

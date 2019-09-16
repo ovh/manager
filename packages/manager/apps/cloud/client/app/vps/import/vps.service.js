@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 import { IP_PRIMARY_TYPE } from './constants';
 
 angular.module('managerApp').service('VpsService', [
@@ -127,7 +133,7 @@ angular.module('managerApp').service('VpsService', [
         cache: vpsInfoCache,
       })
         .then((result) => {
-          _.set(result, 'data.secondaryDns', (result.data.secondaryDns === 0)
+          set(result, 'data.secondaryDns', (result.data.secondaryDns === 0)
             ? $translate.instant('vps_dashboard_secondary_dns_count_0')
             : $translate.instant('vps_dashboard_secondary_dns_count_x', {
               count: result.data.secondaryDns,
@@ -293,8 +299,8 @@ angular.module('managerApp').service('VpsService', [
         }
 
         if (vps && vps.name) {
-          const ip = _.head(ips.results);
-          const ipType = _.get(ip, 'type');
+          const ip = head(ips.results);
+          const ipType = get(ip, 'type');
 
           if (ipType === IP_PRIMARY_TYPE) {
             return $http.post([aapiRootPath, vps.name, 'ips', 'reverse'].join('/'), ips, { serviceType: 'aapi' })
@@ -672,7 +678,7 @@ angular.module('managerApp').service('VpsService', [
     };
 
     this.getOptionSnapshotFormated = function getOptionSnapshotFormated(serviceName) {
-      return this.getOptionDetails(serviceName, 'snapshot').then(optionDetails => _.first(optionDetails.results));
+      return this.getOptionDetails(serviceName, 'snapshot').then(optionDetails => head(optionDetails.results));
     };
 
     this.getPriceOptions = function getPriceOptions(vps) {
@@ -752,8 +758,8 @@ angular.module('managerApp').service('VpsService', [
       return $q.all([self.getVeeamInfo(serviceName), self.getVeeamAttachedBackup(serviceName)])
         .then((response) => {
           if (response.length > 1) {
-            info = _.first(response);
-            info.accessInfos = _.first(response[1]);
+            info = head(response);
+            info.accessInfos = head(response[1]);
           }
           return info;
         })
@@ -951,14 +957,14 @@ angular.module('managerApp').service('VpsService', [
 
     // Additional disks
     this.hasAdditionalDiskOption = serviceName => this.getSelectedVps(serviceName).then((vps) => {
-      if (!_.include(vps.availableOptions, 'ADDITIONAL_DISK')) {
+      if (!includes(vps.availableOptions, 'ADDITIONAL_DISK')) {
         return $q.reject(additionalDiskHasNoOption);
       }
       return this.canOrderOption(serviceName, 'additionalDisk');
     });
 
     this.canOrderOption = (serviceName, optionName) => $http.get([swsOrderProxypass, serviceName].join('/')).then((response) => {
-      if (_.include(response.data, optionName)) {
+      if (includes(response.data, optionName)) {
         return response.data;
       }
       return $q.reject(additionalDiskHasNoOption);
@@ -974,8 +980,8 @@ angular.module('managerApp').service('VpsService', [
         const prices = [];
         let i = 0;
         angular.forEach(responses, (capacity) => {
-          _.set(capacity, 'data.type', additionalDiskCapacities[i].option);
-          _.set(capacity, 'data.size', additionalDiskCapacities[i].size);
+          set(capacity, 'data.type', additionalDiskCapacities[i].option);
+          set(capacity, 'data.size', additionalDiskCapacities[i].size);
           i += 1;
           prices.push(capacity.data);
         });
@@ -1029,7 +1035,7 @@ angular.module('managerApp').service('VpsService', [
     };
 
     this.showOnlyAdditionalDisk = function showOnlyAdditionalDisk(disks) {
-      _.remove(disks, currentObject => currentObject.type === 'primary');
+      remove(disks, currentObject => currentObject.type === 'primary');
       return disks;
     };
 

@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('managerApp').controller('DBaasTsProjectDetailsSettingsCtrl',
   function DBaasTsProjectDetailsSettingsCtrl($q, $scope, $state, $stateParams, $rootScope,
     $translate, $uibModal, Toast, OvhApiDBaasTsProject, OvhApiDBaasTsRegion, Poller, SidebarMenu) {
@@ -123,7 +125,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsSettingsCtrl',
       const futureProject = loadProject();
 
       return $q.all([futureRegions, futureProject]).then((values) => {
-        self.regions = _.first(values);
+        self.regions = head(values);
 
         self.loaders.init = false;
 

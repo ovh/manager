@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import values from 'lodash/values';
+
 class IpLoadBalancerHomeCtrl {
   constructor($state, $stateParams, $translate, CucControllerHelper, CucCloudMessage,
     CucFeatureAvailabilityService, IpLoadBalancerActionService, IpLoadBalancerConstant,
@@ -156,12 +164,12 @@ class IpLoadBalancerHomeCtrl {
       },
       manageAutorenew: {
         text: this.$translate.instant('common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'IP_LOADBALANCER' }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'renew'), { serviceName: this.serviceName, serviceType: 'IP_LOADBALANCER' }),
         isAvailable: () => !this.subscription.loading && !this.subscription.hasErrors,
       },
       manageContact: {
         text: this.$translate.instant('common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(_.get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(get(this.REDIRECT_URLS, 'contacts'), { serviceName: this.serviceName }),
         isAvailable: () => this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage') && !this.subscription.loading && !this.subscription.hasErrors,
       },
       addZone: {
@@ -173,7 +181,7 @@ class IpLoadBalancerHomeCtrl {
         text: this.$translate.instant('common_delete'),
         callback: () => this.$state.go('network.iplb.detail.zone.delete', { serviceName: this.serviceName }),
         isAvailable: () => !this.deletableZones.loading
-          && _.filter(
+          && filter(
             this.deletableZones.data,
             zone => zone.selectable.value !== false,
           ).length - 1 >= 1,
@@ -198,7 +206,7 @@ class IpLoadBalancerHomeCtrl {
 
   initGraph() {
     this.metricsList = this.IpLoadBalancerConstant.graphs;
-    this.metric = _.first(this.metricsList);
+    this.metric = head(this.metricsList);
     this.options = {
       scales: {
         xAxes: [{
@@ -239,7 +247,7 @@ class IpLoadBalancerHomeCtrl {
     })
       .then((data) => {
         if (data.length && data[0].dps) {
-          this.data = _.values(data[0].dps);
+          this.data = values(data[0].dps);
           this.labels = [];
           this.data.forEach((value, index) => {
             this.labels.unshift(`${index * 5}m`);
@@ -258,16 +266,16 @@ class IpLoadBalancerHomeCtrl {
   getRegionsGroup(regions) {
     this.regionsGroup = [];
     if (regions) {
-      this.detailedRegions = !_.isArray(regions)
+      this.detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
-        : _.map(regions, region => this.CucRegionService.getRegion(region));
+        : map(regions, region => this.CucRegionService.getRegion(region));
     }
 
-    this.regionsGroup = _.groupBy(this.detailedRegions, 'country');
+    this.regionsGroup = groupBy(this.detailedRegions, 'country');
   }
 
   hasMultipleRegions() {
-    return _(this.detailedRegions).isArray() && this.detailedRegions.length > 1;
+    return isArray(this.detailedRegions) && this.detailedRegions.length > 1;
   }
 }
 

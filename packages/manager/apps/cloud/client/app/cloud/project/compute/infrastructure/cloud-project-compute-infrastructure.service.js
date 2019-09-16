@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import set from 'lodash/set';
+
 class CloudProjectComputeInfrastructureService {
   constructor(
     $rootScope,
@@ -174,23 +178,23 @@ class CloudProjectComputeInfrastructureService {
 
   resumeVirtualMachine(vm) {
     const oldStatus = vm.status;
-    _.set(vm, 'status', 'RESUMING');
+    set(vm, 'status', 'RESUMING');
     return this.CloudProjectComputeInfrastructureOrchestrator.resumeVm(vm)
       .catch((err) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('cpci_vm_resume_submit_error')} ${_.get(err, 'data.message', '')}`);
-        _.set(vm, 'status', oldStatus);
+        this.CucCloudMessage.error(`${this.$translate.instant('cpci_vm_resume_submit_error')} ${get(err, 'data.message', '')}`);
+        set(vm, 'status', oldStatus);
       });
   }
 
   stopRescueMode(vm, enable) {
-    _.set(vm, 'confirmLoading', true);
+    set(vm, 'confirmLoading', true);
     return this.CloudProjectComputeInfrastructureOrchestrator.rescueVm(vm, enable)
       .then(() => {
-        _.set(vm, 'confirm', null);
+        set(vm, 'confirm', null);
       })
       .catch(this.CucServiceHelper.errorHandler('cpci_vm_rescue_end_error'))
       .finally(() => {
-        _.set(vm, 'confirmLoading', false);
+        set(vm, 'confirmLoading', false);
       });
   }
 
@@ -231,7 +235,7 @@ class CloudProjectComputeInfrastructureService {
   }
 
   setPreferredView(view) {
-    if (_.includes(['diagram', 'list'], view)) {
+    if (includes(['diagram', 'list'], view)) {
       this.CucUserPref.set('CLOUD_PROJECT_INFRA_PREFERRED_VIEW', {
         view,
       });
@@ -240,7 +244,7 @@ class CloudProjectComputeInfrastructureService {
 
   getPreferredView() {
     return this.CucUserPref.get('CLOUD_PROJECT_INFRA_PREFERRED_VIEW')
-      .then(view => _.get(view, 'view', 'diagram'));
+      .then(view => get(view, 'view', 'diagram'));
   }
 }
 

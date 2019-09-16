@@ -1,3 +1,26 @@
+import cloneDeep from 'lodash/cloneDeep';
+import difference from 'lodash/difference';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import groupBy from 'lodash/groupBy';
+import has from 'lodash/has';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import isObject from 'lodash/isObject';
+import keys from 'lodash/keys';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
+import merge from 'lodash/merge';
+import reject from 'lodash/reject';
+import remove from 'lodash/remove';
+import startsWith from 'lodash/startsWith';
+import uniq from 'lodash/uniq';
+import values from 'lodash/values';
+import without from 'lodash/without';
+
 angular.module('managerApp').controller('VrackCtrl',
   function VrackCtrl($scope, $q, $stateParams, $state, $timeout, $translate, $uibModal,
     CucCloudMessage, SidebarMenu, OvhApiVrack, OvhApiCloudProject,
@@ -151,10 +174,10 @@ angular.module('managerApp').controller('VrackCtrl',
           formattedService = getDedicatedCloudNiceName(service);
           break;
         case 'dedicatedCloudDatacenter':
-          formattedService = _.cloneDeep(service);
+          formattedService = cloneDeep(service);
           formattedService.id = service.datacenter;
-          formattedService.niceName = _.last(service.datacenter.split('_'));
-          if (_.isObject(service.dedicatedCloud)) {
+          formattedService.niceName = last(service.datacenter.split('_'));
+          if (isObject(service.dedicatedCloud)) {
             formattedService.dedicatedCloud.niceName = `${service.dedicatedCloud.serviceName} (${service.dedicatedCloud.description})`;
           } else {
             formattedService.dedicatedCloud = {
@@ -184,7 +207,7 @@ angular.module('managerApp').controller('VrackCtrl',
           formattedService = getIpLoadbalancingNiceName(service);
           break;
         default:
-          formattedService = _.cloneDeep(service);
+          formattedService = cloneDeep(service);
           break;
       }
       return formattedService;
@@ -194,17 +217,17 @@ angular.module('managerApp').controller('VrackCtrl',
       return OvhApiVrack.Aapi().allowedServices({ serviceName: self.serviceName }).$promise
         .then((allServicesParam) => {
           let allServices = allServicesParam;
-          allServices = _.mapValues(allServices, (services, serviceType) => {
-            if (_.isArray(services)) {
-              return _.map(services, service => fillServiceData(serviceType, service));
+          allServices = mapValues(allServices, (services, serviceType) => {
+            if (isArray(services)) {
+              return map(services, service => fillServiceData(serviceType, service));
             }
             return services;
           });
 
           // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-          if (_.has(allServices, 'dedicatedServerInterface') && allServices.dedicatedServerInterface.length > 0) {
+          if (has(allServices, 'dedicatedServerInterface') && allServices.dedicatedServerInterface.length > 0) {
             // If dedicatedServers list doesn't exist, we create it first.
-            if (!_.has(allServices, 'dedicatedServer')) {
+            if (!has(allServices, 'dedicatedServer')) {
               allServices.dedicatedServer = [];
             }
 
@@ -223,25 +246,25 @@ angular.module('managerApp').controller('VrackCtrl',
       return OvhApiVrack.Aapi().services({ serviceName: self.serviceName }).$promise
         .then((allServicesParam) => {
           let allServices = allServicesParam;
-          allServices = _.mapValues(allServices, (servicesParams, serviceType) => {
+          allServices = mapValues(allServices, (servicesParams, serviceType) => {
             let services = servicesParams;
-            if (_.isArray(services)) {
-              services = _.map(services, service => fillServiceData(serviceType, service));
+            if (isArray(services)) {
+              services = map(services, service => fillServiceData(serviceType, service));
             }
             return services;
           });
 
-          if (_.has(allServices, 'dedicatedCloudDatacenter')) {
-            allServices.dedicatedCloudDatacenter = _.groupBy(
+          if (has(allServices, 'dedicatedCloudDatacenter')) {
+            allServices.dedicatedCloudDatacenter = groupBy(
               allServices.dedicatedCloudDatacenter,
               self.groupedServiceKeys.dedicatedCloudDatacenter,
             );
           }
 
           // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-          if (_.has(allServices, 'dedicatedServerInterface') && allServices.dedicatedServerInterface.length > 0) {
+          if (has(allServices, 'dedicatedServerInterface') && allServices.dedicatedServerInterface.length > 0) {
             // If dedicatedServers list doesn't exist, we create it first.
-            if (!_.has(allServices, 'dedicatedServer')) {
+            if (!has(allServices, 'dedicatedServer')) {
               allServices.dedicatedServer = [];
             }
 
@@ -261,14 +284,14 @@ angular.module('managerApp').controller('VrackCtrl',
         .tasks({
           serviceName: self.serviceName,
         }).$promise
-        .then(taskIds => $q.all(_.map(taskIds, id => OvhApiVrack.v6()
+        .then(taskIds => $q.all(map(taskIds, id => OvhApiVrack.v6()
           .task({
             serviceName: self.serviceName,
             taskId: id,
           }).$promise
           .then(task => task)
           .catch(err => (err.status === 404 ? $q.when(null) : $q.reject(err)))))
-          .then(tasks => _.without(tasks, null)));
+          .then(tasks => without(tasks, null)));
     };
 
     self.resetCache = function resetCache() {
@@ -291,23 +314,23 @@ angular.module('managerApp').controller('VrackCtrl',
       let serviceToMove = null;
       let typeToMove = null;
       let isGroupedServicesType = false;
-      _.forEach(allServicesSource, (services, type) => {
-        const servicesToSearch = !_.isArray(allServicesSource[type])
-          ? _.flatten(_.values(allServicesSource[type]))
+      forEach(allServicesSource, (services, type) => {
+        const servicesToSearch = !isArray(allServicesSource[type])
+          ? flatten(values(allServicesSource[type]))
           : allServicesSource[type];
 
-        serviceToMove = _.remove(servicesToSearch, (service) => {
+        serviceToMove = remove(servicesToSearch, (service) => {
           if (service.id === serviceId) {
             typeToMove = type;
-            isGroupedServicesType = !_.isArray(allServicesSource[type]);
+            isGroupedServicesType = !isArray(allServicesSource[type]);
             return true;
           }
           return null;
         });
 
-        if (!_.isEmpty(serviceToMove)) {
+        if (!isEmpty(serviceToMove)) {
           if (isGroupedServicesType) {
-            allServicesSource[typeToMove] = _.groupBy(servicesToSearch, self.groupedServiceKeys[typeToMove]); // eslint-disable-line
+            allServicesSource[typeToMove] = groupBy(servicesToSearch, self.groupedServiceKeys[typeToMove]); // eslint-disable-line
           } else {
             allServicesSource[typeToMove] = servicesToSearch; // eslint-disable-line
           }
@@ -319,9 +342,9 @@ angular.module('managerApp').controller('VrackCtrl',
 
       if (serviceToMove && typeToMove) {
         if (isGroupedServicesType) {
-          const services = _.flatten(_.values(allServicesDestination[typeToMove]));
+          const services = flatten(values(allServicesDestination[typeToMove]));
           services.push(serviceToMove[0]);
-          allServicesDestination[typeToMove] = _.groupBy(services, self.groupedServiceKeys[typeToMove]); // eslint-disable-line
+          allServicesDestination[typeToMove] = groupBy(services, self.groupedServiceKeys[typeToMove]); // eslint-disable-line
         } else {
           allServicesDestination[typeToMove].push(serviceToMove[0]);
         }
@@ -334,10 +357,10 @@ angular.module('managerApp').controller('VrackCtrl',
         /**
              * First, we check if there is any new pending tasks ...
              */
-        const currentTasks = _.pluck(tasks, 'id');
-        const previousTasks = _.pluck(self.data.pendingTasks, 'id');
-        if (_.difference(currentTasks, previousTasks).length
-          || _.difference(previousTasks, currentTasks).length) {
+        const currentTasks = map(tasks, 'id');
+        const previousTasks = map(self.data.pendingTasks, 'id');
+        if (difference(currentTasks, previousTasks).length
+          || difference(previousTasks, currentTasks).length) {
           self.resetCache(); // a task changed, vrack state might have changed too
         } else if (tasks.length === 0) {
           poll = false; // no new tasks & no tasks, no need to poll
@@ -361,13 +384,13 @@ angular.module('managerApp').controller('VrackCtrl',
             if (task && task.targetDomain) {
               const id = task.targetDomain;
               const fn = task.function;
-              if (_.startsWith(fn, 'add')) {
+              if (startsWith(fn, 'add')) {
                 self.moveDisplayedService(id, self.data.allowedServices, self.data.vrackServices);
-              } else if (_.startsWith(fn, 'remove')) {
+              } else if (startsWith(fn, 'remove')) {
                 self.moveDisplayedService(id, self.data.vrackServices, self.data.allowedServices);
               }
-              self.form.servicesToAdd = _.reject(self.form.servicesToAdd, { id });
-              self.form.servicesToDelete = _.reject(self.form.servicesToDelete, { id });
+              self.form.servicesToAdd = reject(self.form.servicesToAdd, { id });
+              self.form.servicesToDelete = reject(self.form.servicesToDelete, { id });
             }
           });
         });
@@ -384,27 +407,27 @@ angular.module('managerApp').controller('VrackCtrl',
     };
 
     self.isSelected = function isSelected(serviceType, serviceId) {
-      return angular.isDefined(_.find(self.form.servicesToAdd, {
+      return angular.isDefined(find(self.form.servicesToAdd, {
         type: serviceType,
         id: serviceId,
       }))
-       || angular.isDefined(_.find(self.form.servicesToDelete, {
+       || angular.isDefined(find(self.form.servicesToDelete, {
          type: serviceType,
          id: serviceId,
        }))
-       || _.isEqual(self.form.serviceToMove, { type: serviceType, id: serviceId });
+       || isEqual(self.form.serviceToMove, { type: serviceType, id: serviceId });
     };
 
     self.isPending = function isPending(serviceId) {
-      const ids = _.uniq(_.pluck(self.data.pendingTasks, 'targetDomain'));
+      const ids = uniq(map(self.data.pendingTasks, 'targetDomain'));
       return ids.indexOf(serviceId) >= 0;
     };
 
     self.toggleAddService = function toggleAddService(serviceType, serviceId) {
       if (!self.isPending(serviceId) && !self.loaders.adding && !self.loaders.deleting) {
         const toAdd = { type: serviceType, id: serviceId };
-        if (_.find(self.form.servicesToAdd, toAdd)) {
-          self.form.servicesToAdd = _.reject(self.form.servicesToAdd, toAdd);
+        if (find(self.form.servicesToAdd, toAdd)) {
+          self.form.servicesToAdd = reject(self.form.servicesToAdd, toAdd);
         } else {
           self.form.servicesToAdd.push(toAdd);
         }
@@ -416,8 +439,8 @@ angular.module('managerApp').controller('VrackCtrl',
     self.toggleDeleteService = function toggleDeleteService(serviceType, serviceId) {
       if (!self.isPending(serviceId) && !self.loaders.adding && !self.loaders.deleting) {
         const toDelete = { type: serviceType, id: serviceId };
-        if (_.find(self.form.servicesToDelete, toDelete)) {
-          self.form.servicesToDelete = _.reject(self.form.servicesToDelete, toDelete);
+        if (find(self.form.servicesToDelete, toDelete)) {
+          self.form.servicesToDelete = reject(self.form.servicesToDelete, toDelete);
         } else {
           self.form.servicesToDelete.push(toDelete);
         }
@@ -492,7 +515,7 @@ angular.module('managerApp').controller('VrackCtrl',
 
     self.addSelectedServices = function addSelectedServices() {
       self.loaders.adding = true;
-      return $q.all(_.map(self.form.servicesToAdd, (service) => {
+      return $q.all(map(self.form.servicesToAdd, (service) => {
         let task = $q.reject('Unknown service type');
         switch (service.type) {
           case 'dedicatedServer':
@@ -559,7 +582,7 @@ angular.module('managerApp').controller('VrackCtrl',
 
     self.deleteSelectedServices = function deleteSelectedServices() {
       self.loaders.deleting = true;
-      return $q.all(_.map(self.form.servicesToDelete, (service) => {
+      return $q.all(map(self.form.servicesToDelete, (service) => {
         let task = $q.reject('Unknown service type');
         switch (service.type) {
           case 'dedicatedServer':
@@ -624,7 +647,7 @@ angular.module('managerApp').controller('VrackCtrl',
         controller: 'VrackMoveDialogCtrl as ctrl',
         resolve: {
           service() {
-            return _.merge(self.form.serviceToMove, {
+            return merge(self.form.serviceToMove, {
               vrack: self.serviceName,
             });
           },
@@ -643,7 +666,7 @@ angular.module('managerApp').controller('VrackCtrl',
     };
 
     self.getAccordionState = function getAccordionState(side, kind, offset) {
-      if (!_.has(self.states.accordions, [side, kind, offset])) {
+      if (!has(self.states.accordions, [side, kind, offset])) {
         return true;
       }
 
@@ -671,7 +694,7 @@ angular.module('managerApp').controller('VrackCtrl',
     };
 
     self.hasServices = function hasServices(services) {
-      return _.keys(services).length > 0;
+      return keys(services).length > 0;
     };
 
     function setUserRelatedContent() {
@@ -688,10 +711,10 @@ angular.module('managerApp').controller('VrackCtrl',
     function init() {
       self.loaders.init = true;
       self.loadMessage();
-      if (_.isEmpty($stateParams.vrackId)) {
+      if (isEmpty($stateParams.vrackId)) {
         OvhApiVrack.v6().query().$promise
           .then((vracks) => {
-            if (_.isEmpty(vracks)) {
+            if (isEmpty(vracks)) {
               $state.go('vrack-add');
             } else {
               $state.go('vrack', { vrackId: vracks[0] });

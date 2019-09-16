@@ -1,3 +1,13 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+import size from 'lodash/size';
+
 export default class AdditionalServicesComponentCtrl {
   /* @ngInject */
   constructor($stateParams, $translate, CucControllerHelper,
@@ -21,7 +31,7 @@ export default class AdditionalServicesComponentCtrl {
    * initiate UI accordion state, one accordian per platform
    */
   initAccordions() {
-    const accordions = _.mapValues(this.services, () => false);
+    const accordions = mapValues(this.services, () => false);
     this.toggle = {
       accordions,
     };
@@ -38,14 +48,14 @@ export default class AdditionalServicesComponentCtrl {
           serviceName: this.$stateParams.projectId,
         })
         .$promise.then((instances) => {
-          _.forEach(_.keys(this.services), (key) => {
-            _.map(this.services[key], (service) => {
-              const instance = _.find(instances, { id: service.instanceId });
+          forEach(keys(this.services), (key) => {
+            map(this.services[key], (service) => {
+              const instance = find(instances, { id: service.instanceId });
               if (instance) {
-                _.set(service, 'name', instance.name || service.instanceId);
+                set(service, 'name', instance.name || service.instanceId);
               } else {
                 // instance deleted, name not available, show the id
-                _.set(service, 'name', service.instanceId);
+                set(service, 'name', service.instanceId);
               }
             });
           });
@@ -58,7 +68,7 @@ export default class AdditionalServicesComponentCtrl {
    * returns number of platforms (like bigdat platform) deployed on this PCI
    */
   getPlatformCount() {
-    return _.size(this.services);
+    return size(this.services);
   }
 
   /**
@@ -66,8 +76,8 @@ export default class AdditionalServicesComponentCtrl {
    * @param {string} platform name
    */
   getTotalPriceByPlatform(platform) {
-    const instances = _.get(this.services, platform);
-    const totalPriceByPlatform = _.reduce(
+    const instances = get(this.services, platform);
+    const totalPriceByPlatform = reduce(
       instances,
       (sum, instance) => (sum + instance.totalPrice),
       0,
@@ -80,7 +90,7 @@ export default class AdditionalServicesComponentCtrl {
    * @param {object} service
    */
   getAditionalServicePrice(service) {
-    const totalPrice = _.get(service, 'totalPrice', 0);
+    const totalPrice = get(service, 'totalPrice', 0);
     return `${totalPrice} ${this.currencySymbol}`;
   }
 }

@@ -1,3 +1,5 @@
+import flatten from 'lodash/flatten';
+
 angular.module('managerApp').factory('CloudProjectComputeInfraIpPublicFactory', () => {
   /**
    *  Defines a cloud project compute infrastructure Public IP
@@ -34,7 +36,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraIpPublicFactory', 
     return angular.extend(options, {
       type: 'public',
       routedTo: options.routedTo
-        ? _.flatten([options.routedTo])
+        ? flatten([options.routedTo])
         : [], // Ensure routedTo is always an array
     });
   };

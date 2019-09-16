@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('KubernetesCtrl', class KubernetesCtrl {
   constructor($scope, $stateParams, Kubernetes, KUBERNETES) {
     this.$scope = $scope;
@@ -21,7 +23,7 @@ angular.module('managerApp').controller('KubernetesCtrl', class KubernetesCtrl {
       .then((cluster) => { this.cluster = cluster; })
       .catch((error) => {
         this.cluster = { id: this.serviceName, name: this.serviceName };
-        this.errorMessage = _.get(error, 'data.message');
+        this.errorMessage = get(error, 'data.message');
       })
       .finally(() => { this.loading = false; });
   }

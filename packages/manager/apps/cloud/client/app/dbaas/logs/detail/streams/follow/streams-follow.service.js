@@ -1,3 +1,5 @@
+import keyBy from 'lodash/keyBy';
+
 class LogsStreamsFollowService {
   constructor($websocket, $translate, OvhApiDbaas, LogsStreamsService,
     CucControllerHelper, CucCloudMessage, CucServiceHelper, CucUrlHelper, LogsConstants) {
@@ -11,7 +13,7 @@ class LogsStreamsFollowService {
     this.LogsAapiService = OvhApiDbaas.Logs().Aapi();
     this.LogsConstants = LogsConstants;
 
-    this.testTypeEnum = _.indexBy([
+    this.testTypeEnum = keyBy([
       this.LogsConstants.GELF,
       this.LogsConstants.LTSV,
       this.LogsConstants.RFC5424,

@@ -1,3 +1,6 @@
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+
 angular.module('managerApp').filter('bytes', ($translate) => {
   // TODO: Add this filter in UX components
   const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
@@ -10,16 +13,16 @@ angular.module('managerApp').filter('bytes', ($translate) => {
     return key === translatedUnit ? unit : translatedUnit;
   }
 
-  const translatedUnits = _.map(units, translateUnit);
-  const translatedUnitsKibi = _.map(unitsKibi, translateUnit);
+  const translatedUnits = map(units, translateUnit);
+  const translatedUnitsKibi = map(unitsKibi, translateUnit);
 
   return function bytesFilter(bytesParams, precisionParam, toKibi, fromUnit, toRawBytes) {
     let bytes = bytesParams;
     let precision = precisionParam;
 
     if (fromUnit) {
-      const fromKibiUnitIndex = _.indexOf(unitsKibi, fromUnit);
-      const fromUnitIndex = _.indexOf(units, fromUnit);
+      const fromKibiUnitIndex = indexOf(unitsKibi, fromUnit);
+      const fromUnitIndex = indexOf(units, fromUnit);
 
       if (fromKibiUnitIndex !== -1) {
         if (fromKibiUnitIndex > 0) {

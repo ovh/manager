@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 export default class VpsWindowsOrderCtrl {
   /* @ngInject */
   constructor($q, $translate, $window, CucCloudMessage,
@@ -23,10 +26,10 @@ export default class VpsWindowsOrderCtrl {
   }
 
   static getWindowsMonthlyPrice(option) {
-    const price = _.find(option.prices, {
+    const price = find(option.prices, {
       duration: 'P1M',
     });
-    return _.get(price, 'price');
+    return get(price, 'price');
   }
 
   /* =============================
@@ -34,7 +37,7 @@ export default class VpsWindowsOrderCtrl {
   ============================== */
 
   onWindowsOrderStepperFinish() {
-    let expressOrderUrl = _.get(
+    let expressOrderUrl = get(
       this.URLS,
       `website_order.express_base.${this.connectedUser.ovhSubsidiary}`,
     );
@@ -74,7 +77,7 @@ export default class VpsWindowsOrderCtrl {
     }).$promise
       .then((response) => {
         // take the windows option from the list
-        this.windowsOption = _.find(response, {
+        this.windowsOption = find(response, {
           family: 'windows',
         });
 
@@ -92,7 +95,7 @@ export default class VpsWindowsOrderCtrl {
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_order_windows_order_load_error'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {

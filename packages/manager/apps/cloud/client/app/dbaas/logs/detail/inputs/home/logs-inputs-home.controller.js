@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 class LogsInputsHomeCtrl {
   constructor($state, $stateParams, $translate, CucCloudMessage, CucControllerHelper, LogsConstants,
     LogsInputsService) {
@@ -100,7 +102,7 @@ class LogsInputsHomeCtrl {
    * @memberof LogsInputsCtrl
    */
   setInputToProcessing(input) {
-    _.set(input, 'info.status', this.LogsConstants.inputStatus.PROCESSING);
+    set(input, 'info.status', this.LogsConstants.inputStatus.PROCESSING);
     this.LogsInputsService.transformInput(input);
   }
 

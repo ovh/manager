@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class VeeamEnterpriseDashboardCtrl {
   constructor($stateParams, $translate, CucControllerHelper, CucFeatureAvailabilityService,
     VeeamEnterpriseService, REDIRECT_URLS) {
@@ -36,7 +38,7 @@ class VeeamEnterpriseDashboardCtrl {
       manageAutorenew: {
         text: this.$translate.instant('common_manage'),
         href: this.CucControllerHelper.navigation.constructor.getUrl(
-          _.get(this.REDIRECT_URLS, 'renew'), {
+          get(this.REDIRECT_URLS, 'renew'), {
             serviceName: this.serviceName,
             serviceType: 'VEEAM_ENTERPRISE',
           },

@@ -1,3 +1,8 @@
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import set from 'lodash/set';
+
 class IpLoadBalancerVrackService {
   constructor($q, IpLoadBalancerServerFarmService, OvhApiIpLoadBalancing,
     IpLoadBalancerTaskService, OvhApiVrack,
@@ -62,7 +67,7 @@ class IpLoadBalancerVrackService {
   }
 
   pollNetworkTask(serviceName, tasks) {
-    const tasksObject = _.map(tasks, task => ({ id: task }));
+    const tasksObject = map(tasks, task => ({ id: task }));
     return this.CucCloudPoll.pollArray({
       items: tasksObject,
       pollFunction: task => this.IpLoadBalancerTaskService.getTask(serviceName, task.id)
@@ -75,21 +80,21 @@ class IpLoadBalancerVrackService {
     return this.OvhApiIpLoadBalancing.Vrack().v6().query({ serviceName })
       .$promise
       .then((response) => {
-        const promises = _.map(
+        const promises = map(
           response,
           networkId => this.getPrivateNetwork(serviceName, networkId),
         );
         return this.$q.all(promises);
       })
       .then((response) => {
-        _.forEach(response, (privateNetwork) => {
+        forEach(response, (privateNetwork) => {
           this.IpLoadBalancerServerFarmService
             .getServerFarms(serviceName, privateNetwork.vrackNetworkId)
             .then((farms) => {
-              _.set(privateNetwork, 'farmId', farms);
+              set(privateNetwork, 'farmId', farms);
             });
 
-          _.set(privateNetwork, 'farmId', []);
+          set(privateNetwork, 'farmId', []);
         });
 
         return response;
@@ -104,7 +109,7 @@ class IpLoadBalancerVrackService {
   }
 
   addPrivateNetwork(serviceName, network) {
-    return this.OvhApiIpLoadBalancing.Vrack().v6().post({ serviceName }, _.omit(network, ['vrackNetworkId', 'farmId']))
+    return this.OvhApiIpLoadBalancing.Vrack().v6().post({ serviceName }, omit(network, ['vrackNetworkId', 'farmId']))
       .$promise
       .then(response => this.OvhApiIpLoadBalancing.Vrack().v6()
         .updateFarmId({
@@ -124,7 +129,7 @@ class IpLoadBalancerVrackService {
 
   editPrivateNetwork(serviceName, network) {
     return this.$q.all([
-      this.OvhApiIpLoadBalancing.Vrack().v6().put({ serviceName, vrackNetworkId: network.vrackNetworkId }, _.omit(network, ['vrackNetworkId', 'farmId'])).$promise,
+      this.OvhApiIpLoadBalancing.Vrack().v6().put({ serviceName, vrackNetworkId: network.vrackNetworkId }, omit(network, ['vrackNetworkId', 'farmId'])).$promise,
       this.OvhApiIpLoadBalancing.Vrack().v6()
         .updateFarmId({
           serviceName,

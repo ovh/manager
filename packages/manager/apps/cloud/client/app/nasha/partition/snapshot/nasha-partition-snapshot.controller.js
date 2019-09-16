@@ -1,3 +1,9 @@
+import difference from 'lodash/difference';
+import forEach from 'lodash/forEach';
+import indexOf from 'lodash/indexOf';
+import isEqual from 'lodash/isEqual';
+import remove from 'lodash/remove';
+
 angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function NashaPartitionSnapshotCtrl($stateParams, $scope, $uibModalInstance, $q, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
   const self = this;
 
@@ -14,18 +20,18 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function N
   };
 
   self.isSelectionChanged = function isSelectionChanged() {
-    return !_.isEqual(self.snapshots.before, self.snapshots.after);
+    return !isEqual(self.snapshots.before, self.snapshots.after);
   };
 
   self.isScheduled = function isScheduled(snapshot) {
-    return _.indexOf(self.snapshots.after, snapshot) > -1;
+    return indexOf(self.snapshots.after, snapshot) > -1;
   };
 
   self.changeSchedule = function changeSchedule(snapshot, checked) {
     if (checked) {
       self.snapshots.after.push(snapshot);
     } else {
-      _.remove(self.snapshots.after, item => item === snapshot);
+      remove(self.snapshots.after, item => item === snapshot);
     }
   };
 
@@ -47,8 +53,8 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function N
   };
 
   self.getAddSchedulesPromises = function getAddSchedulesPromises(promises) {
-    const addToSchedule = _.difference(self.snapshots.after, self.snapshots.before);
-    _.forEach(addToSchedule, (schedule) => {
+    const addToSchedule = difference(self.snapshots.after, self.snapshots.before);
+    forEach(addToSchedule, (schedule) => {
       promises.push(OvhApiDedicatedNasha.Partition().Snapshot().v6().add({
         serviceName: self.data.nashaId,
         partitionName: self.data.partition.partitionName,
@@ -59,8 +65,8 @@ angular.module('managerApp').controller('NashaPartitionSnapshotCtrl', function N
   };
 
   self.getDeleteSchedulesPromises = function getDeleteSchedulesPromises(promises) {
-    const deleteFromSchedule = _.difference(self.snapshots.before, self.snapshots.after);
-    _.forEach(deleteFromSchedule, (schedule) => {
+    const deleteFromSchedule = difference(self.snapshots.before, self.snapshots.after);
+    forEach(deleteFromSchedule, (schedule) => {
       promises.push(OvhApiDedicatedNasha.Partition().Snapshot().v6().remove({
         serviceName: self.data.nashaId,
         partitionName: self.data.partition.partitionName,

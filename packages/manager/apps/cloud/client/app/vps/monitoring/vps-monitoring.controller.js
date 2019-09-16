@@ -1,3 +1,7 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+
 import {
   VPS_MONITORING_BPS_OPTIONS,
   VPS_MONITORING_COLORS,
@@ -39,19 +43,19 @@ export default class {
     this.VpsService.getMonitoring(this.serviceName, this.period)
       .then((data) => {
         this.data = data;
-        this.constructor.humanizeData(_.get(data, 'cpu.values[0].points'), this.monitoring.cpu);
-        this.constructor.humanizeData(_.get(data, 'ram.values[0].points'), this.monitoring.ram);
-        this.constructor.humanizeData(_.get(data, 'netRx.values[0].points'), this.monitoring.net[0]);
-        this.constructor.humanizeData(_.get(data, 'netTx.values[0].points'), this.monitoring.net[1]);
+        this.constructor.humanizeData(get(data, 'cpu.values[0].points'), this.monitoring.cpu);
+        this.constructor.humanizeData(get(data, 'ram.values[0].points'), this.monitoring.ram);
+        this.constructor.humanizeData(get(data, 'netRx.values[0].points'), this.monitoring.net[0]);
+        this.constructor.humanizeData(get(data, 'netTx.values[0].points'), this.monitoring.net[1]);
         this.constructor.generateLabels(
           data.cpu.values[0].points,
           data.cpu.pointInterval,
           data.cpu.pointStart,
           this.monitoring.labels,
         );
-        this.noCpuData = _.find(_.get(this.data, 'messages'), type => _.get(type, 'params.type').indexOf('cpu') !== -1);
-        this.noRamData = _.find(_.get(this.data, 'messages'), type => _.get(type, 'params.type').indexOf('mem') !== -1);
-        this.noNetData = _.find(_.get(this.data, 'messages'), type => _.get(type, 'params.type').indexOf('net') !== -1);
+        this.noCpuData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('cpu') !== -1);
+        this.noRamData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('mem') !== -1);
+        this.noNetData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('net') !== -1);
       })
       .catch(() => { this.error = true; })
       .finally(() => { this.loaders.init = false; });
@@ -67,7 +71,7 @@ export default class {
   }
 
   static humanizeData(data, tab) {
-    _.forEach(data, (element) => {
+    forEach(data, (element) => {
       if (element && element.y) {
         tab.push(element.y);
       } else {
@@ -80,7 +84,7 @@ export default class {
     const unitInterval = 'minutes';
     const pointInterval = interval.standardMinutes;
     let date = moment(start);
-    _.forEach(data, () => {
+    forEach(data, () => {
       tab.push(date.format('MM/DD/YY - HH:mm:ss'));
       date = moment(date).add(unitInterval, pointInterval);
     });

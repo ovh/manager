@@ -1,3 +1,11 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 export default class VpsOrderDiskCtrl {
   /* @ngInject */
   constructor($translate, $window, CucCloudMessage, connectedUser, OvhApiOrder, stateVps, URLS) {
@@ -24,10 +32,10 @@ export default class VpsOrderDiskCtrl {
   }
 
   static getDiskMonthlyPrice(disk) {
-    const price = _.find(disk.prices, {
+    const price = find(disk.prices, {
       duration: 'P1M',
     });
-    return _.get(price, 'price');
+    return get(price, 'price');
   }
 
   /* =============================
@@ -35,7 +43,7 @@ export default class VpsOrderDiskCtrl {
   ============================== */
 
   onAdditionalDiskOrderStepperFinish() {
-    let expressOrderUrl = _.get(
+    let expressOrderUrl = get(
       this.URLS,
       `website_order.express_base.${this.connectedUser.ovhSubsidiary}`,
     );
@@ -75,14 +83,14 @@ export default class VpsOrderDiskCtrl {
     }).$promise
       .then((response) => {
         // first take the options from additionalDisk family
-        let diskOptions = _.filter(response, {
+        let diskOptions = filter(response, {
           family: 'additionalDisk',
         });
 
         // then map the filtered options by adding a capacity attribute
         // this attribute is calculated from the planCode of the options
-        diskOptions = _.map(diskOptions, (diskOption) => {
-          _.set(diskOption, 'capacity', {
+        diskOptions = map(diskOptions, (diskOption) => {
+          set(diskOption, 'capacity', {
             value: parseInt(diskOption.planCode.replace(/[a-zA-Z-]*/g, ''), 10),
             unit: 'Go',
           });
@@ -90,15 +98,15 @@ export default class VpsOrderDiskCtrl {
         });
 
         // order disk by their size
-        diskOptions = _.sortBy(diskOptions, 'capacity.value');
+        diskOptions = sortBy(diskOptions, 'capacity.value');
 
         // set chunked disk options to use in view
-        this.chunkedDiskOptions = _.chunk(diskOptions, 3);
+        this.chunkedDiskOptions = chunk(diskOptions, 3);
       })
       .catch((error) => {
         this.CucCloudMessage.error([
           this.$translate.instant('vps_order_additional_disk_load_error'),
-          _.get(error, 'data.message'),
+          get(error, 'data.message'),
         ].join(' '));
       })
       .finally(() => {

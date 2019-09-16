@@ -104,7 +104,7 @@
     "json3": "bestiejs/json3#~3.3.1",
     "jsplumb": "sporritt/jsPlumb#1.7.4",
     "jsurl": "0.1.5",
-    "lodash": "~3.10.1",
+    "lodash": "^4.17.15",
     "matchmedia": "paulirish/matchMedia.js#~0.2.0",
     "matchmedia-ng": "~1.0",
     "messenger": "HubSpot/messenger#~1.4.1",

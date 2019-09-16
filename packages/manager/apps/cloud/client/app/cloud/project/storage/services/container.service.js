@@ -1,3 +1,7 @@
+import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
+import set from 'lodash/set';
+
 angular.module('managerApp').service('CloudStorageContainer', [
   '$cacheFactory',
   '$http',
@@ -107,19 +111,19 @@ angular.module('managerApp').service('CloudStorageContainer', [
           containerMeta.name,
           { method: 'HEAD' },
         ))
-        .then(data => _.pick(data.headers(), (value, key) => /^(X-Container|X-Storage)/i.test(key)))
+        .then(data => pickBy(data.headers(), (value, key) => /^(X-Container|X-Storage)/i.test(key)))
         .then((data) => {
           // Guess storage type
           if (data[xStoragePolicy] === 'PCS') {
             if (data[xContainerMetaWebListings]) {
-              _.set(data, 'shortcut', 'swift_cname');
+              set(data, 'shortcut', 'swift_cname');
             } else if (data[xContainerRead] === xContainerReadPublicValue) {
-              _.set(data, 'shortcut', 'swift_public');
+              set(data, 'shortcut', 'swift_public');
             } else {
-              _.set(data, 'shortcut', 'swift_private');
+              set(data, 'shortcut', 'swift_private');
             }
           } else {
-            _.set(data, 'shortcut', 'pca');
+            set(data, 'shortcut', 'pca');
           }
           return data;
         });
@@ -137,7 +141,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
         containerId,
       }).$promise
         .then((containerData) => {
-          storageContainerConfig.containerMetaCache.set(projectId, containerId, _.pick(containerData, ['name', 'region']));
+          storageContainerConfig.containerMetaCache.set(projectId, containerId, pick(containerData, ['name', 'region']));
           return containerData;
         });
     };

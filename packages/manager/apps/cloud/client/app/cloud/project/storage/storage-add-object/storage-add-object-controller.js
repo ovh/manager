@@ -1,3 +1,5 @@
+import endsWith from 'lodash/endsWith';
+
 angular.module('managerApp').controller('RA.storage.addObject',
   ($scope, $uibModalInstance) => {
     $scope.form = {
@@ -16,7 +18,7 @@ angular.module('managerApp').controller('RA.storage.addObject',
     $scope.$watch('uploadForm.files', (nv, old) => {
       if (old === null && nv !== null) {
         // when the prefix does not with a / it simply append the prefix to the file name.
-        if (!_.endsWith($scope.form.prefix, '/')) {
+        if (!endsWith($scope.form.prefix, '/')) {
           $scope.form.prefix += '/';
         }
 

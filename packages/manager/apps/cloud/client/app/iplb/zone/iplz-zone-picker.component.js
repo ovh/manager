@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
+
 angular.module('managerApp')
   .component('iplbZonePicker', {
     template: `
@@ -22,7 +27,7 @@ angular.module('managerApp')
         }
 
         onSelectionChanged(selectedZone, value) {
-          let selection = _.find(this.selections, item => item.zone === selectedZone);
+          let selection = find(this.selections, item => item.zone === selectedZone);
           if (!selection) {
             selection = {
               zone: selectedZone,
@@ -33,12 +38,12 @@ angular.module('managerApp')
           selection.selected = value;
 
           this.onSelectionChange({
-            value: _.map(_.filter(this.selections, item => item.selected), item => item.zone),
+            value: map(filter(this.selections, item => item.selected), item => item.zone),
           });
         }
 
         groupZones() {
-          this.groupedZones = _.groupBy(this.zones, zone => zone.country);
+          this.groupedZones = groupBy(this.zones, zone => zone.country);
         }
       },
     bindings: {

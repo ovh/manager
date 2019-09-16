@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import includes from 'lodash/includes';
+import some from 'lodash/some';
 
 
 /**
@@ -9,10 +12,10 @@ angular.module('managerApp')
     atInternetControllerDecoratorsProvider.decorate({
       CloudProjectComputeInfrastructureVirtualMachineAddEditCtrl: {
         viewFlavorsList(atInternet, controller, parameters) {
-          const category = _.find(controller.displayData.categories, { category: parameters[1] });
-          const isSomeFlavorsDisabled = _.some(
+          const category = find(controller.displayData.categories, { category: parameters[1] });
+          const isSomeFlavorsDisabled = some(
             category.flavors,
-            flavor => _.includes(quotaReasons, flavor.disabled),
+            flavor => includes(quotaReasons, flavor.disabled),
           );
 
           if (isSomeFlavorsDisabled) {
@@ -23,7 +26,7 @@ angular.module('managerApp')
           }
         },
         onMouseEnterFlavor(atInternet, controller, parameters) {
-          if (_.includes(quotaReasons, parameters[1].disabled)) {
+          if (includes(quotaReasons, parameters[1].disabled)) {
             atInternet.trackEvent({
               event: 'over-quota-high',
               page: 'cloud::iaas::pci-project::compute::infrastructure::order',

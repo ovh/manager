@@ -1,3 +1,14 @@
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import last from 'lodash/last';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 /**
  *  Cloud Infrastructure Orchestrator. Beyond it's the sun!
  *  =======================================================
@@ -62,7 +73,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         OvhApiCloudProjectFlavor.v6().query({
           serviceName: self.infra.serviceName,
         }).$promise.then((flavors) => {
-          _.set(options, 'flavorId', (_.find(flavors, { region: options.region, name: CLOUD_INSTANCE_DEFAULTS.flavor }) || {}).id);
+          set(options, 'flavorId', (find(flavors, { region: options.region, name: CLOUD_INSTANCE_DEFAULTS.flavor }) || {}).id);
         }),
       );
 
@@ -71,7 +82,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         OvhApiCloudProjectImage.v6().query({
           serviceName: self.infra.serviceName,
         }).$promise.then((images) => {
-          _.set(options, 'imageId', (_.find(images, { region: options.region, name: CLOUD_INSTANCE_DEFAULTS.image }) || {}).id);
+          set(options, 'imageId', (find(images, { region: options.region, name: CLOUD_INSTANCE_DEFAULTS.image }) || {}).id);
         }),
       );
 
@@ -81,14 +92,14 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         OvhApiCloudProjectSshKey.v6().query({
           serviceName: self.infra.serviceName,
         }).$promise.then((sshKeys) => {
-          _.set(options, 'sshKeyId', (_.find(sshKeys, sshKey => sshKey.regions.indexOf(options.region) > -1) || {}).id);
+          set(options, 'sshKeyId', (find(sshKeys, sshKey => sshKey.regions.indexOf(options.region) > -1) || {}).id);
         }),
       );
 
       return $q.allSettled(optionsQueue).then(() => {
         if (self.infra.vrack.publicCloud && self.infra.vrack.publicCloud.length() > 0) {
           // use the most recent virtual machine parameters
-          const mostRecentVm = _.last(_.sortBy(self.infra.vrack.publicCloud.items, 'created'));
+          const mostRecentVm = last(sortBy(self.infra.vrack.publicCloud.items, 'created'));
           if (mostRecentVm) {
             if (mostRecentVm.image) {
               options.imageId = mostRecentVm.image.id;
@@ -119,8 +130,8 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
       }).$promise.then((regionList) => {
         // check if the default region exists
         let { region } = CLOUD_INSTANCE_DEFAULTS;
-        if (_.indexOf(regionList, region) === -1) {
-          region = _.first(regionList);
+        if (indexOf(regionList, region) === -1) {
+          region = head(regionList);
         }
         return getDefaultVmConfigurationForRegion(region);
       });
@@ -324,7 +335,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
      *  Toggle the collapsed state of given vm and save to userPref
      */
     this.toggleVmCollapsedState = function toggleVmCollapsedState(vm) {
-      _.set(vm, 'collapsed', !vm.collapsed);
+      set(vm, 'collapsed', !vm.collapsed);
       this.saveToUserPref(); // ------ TODO: dangerous, this do an ASYNC call
       return $q.when(vm);
     };
@@ -333,13 +344,13 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
      *  Toggle the collapsed state of given vm and save to userPref
      */
     this.toggleCollapsedVolumes = function toggleCollapsedVolumes(vm) {
-      _.set(vm, 'collapsedVolumes', !vm.collapsedVolumes);
+      set(vm, 'collapsedVolumes', !vm.collapsedVolumes);
       this.saveToUserPref(); // ------ TODO: dangerous, this do an ASYNC call
       return $q.when(vm);
     };
 
     this.loadVmMonitoringData = function loadVmMonitoringData() {
-      _.each(this.infra.vrack.publicCloud.items, (instance) => {
+      forEach(this.infra.vrack.publicCloud.items, (instance) => {
         instance.getMonitoringData();
       });
     };
@@ -382,8 +393,8 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
     };
 
     function rearrangeIpv6(instance) {
-      const publicIpV4Index = _.findIndex(instance.ipAddresses, { version: 4, type: 'public' });
-      const publicIpV6Index = _.findIndex(instance.ipAddresses, { version: 6, type: 'public' });
+      const publicIpV4Index = findIndex(instance.ipAddresses, { version: 4, type: 'public' });
+      const publicIpV6Index = findIndex(instance.ipAddresses, { version: 6, type: 'public' });
 
       if (publicIpV4Index !== -1 && publicIpV6Index !== -1) {
         instance.ipAddresses[publicIpV4Index].ipV6 = { ip: instance.ipAddresses[publicIpV6Index].ip, gateway: instance.ipAddresses[publicIpV6Index].gatewayIp }; // eslint-disable-line
@@ -399,9 +410,9 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
       angular.forEach(vms, (vm) => {
         rearrangeIpv6(vm);
 
-        angular.forEach(_.filter(vm.ipAddresses, { type: 'public' }), (publicIpAddress) => {
-          _.set(publicIpAddress, 'id', publicIpAddress.ip);
-          _.set(publicIpAddress, 'routedTo', vm.id);
+        angular.forEach(filter(vm.ipAddresses, { type: 'public' }), (publicIpAddress) => {
+          set(publicIpAddress, 'id', publicIpAddress.ip);
+          set(publicIpAddress, 'routedTo', vm.id);
           publicIpAddresses.push(publicIpAddress);
         });
       });
@@ -450,12 +461,12 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
     function addOrDeleteIpsWithIpsFromApi(ipsFromApi, type, forceRemoveDrafts) {
       /*= =========  Remove deleted IPs  ========== */
 
-      const deletedIps = _.filter(self.infra.internet.ipList.items, (ip) => {
+      const deletedIps = filter(self.infra.internet.ipList.items, (ip) => {
         // don't remove drafts!
         if (ip.type !== type || (!forceRemoveDrafts && ip.status === 'DRAFT')) {
           return false;
         }
-        return !_.find(ipsFromApi, { id: ip.id });
+        return !find(ipsFromApi, { id: ip.id });
       });
 
       angular.forEach(deletedIps, (ip) => {
@@ -464,9 +475,9 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
 
       /*= =========  Add new IPs  ========== */
 
-      const addedIps = _.filter(ipsFromApi, ip => !self.infra.internet.getIpById(ip.id));
+      const addedIps = filter(ipsFromApi, ip => !self.infra.internet.getIpById(ip.id));
       angular.forEach(addedIps, (ip) => {
-        _.set(ip, 'type', type);
+        set(ip, 'type', type);
         ip = self.infra.internet.addIpToList(ip); // eslint-disable-line
       });
 
@@ -605,12 +616,12 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
     function addOrDeleteInstancesWithInstancesFromApi(instancesFromApi, forceRemoveDrafts) {
       /*= =========  Remove deleted instances  ========== */
 
-      const deletedInstances = _.filter(self.infra.vrack.publicCloud.items, (vm) => {
+      const deletedInstances = filter(self.infra.vrack.publicCloud.items, (vm) => {
         // don't remove drafts!
         if (!forceRemoveDrafts && vm.status === 'DRAFT') {
           return false;
         }
-        const instance = _.find(instancesFromApi, { id: vm.id });
+        const instance = find(instancesFromApi, { id: vm.id });
         return !instance || instance.status === 'DELETED';
       });
 
@@ -620,7 +631,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
 
       /*= =========  Add new instances  ========== */
 
-      const addedInstances = _.filter(instancesFromApi, vm => vm.status !== 'DELETED' && !self.infra.vrack.getVmById(vm.id));
+      const addedInstances = filter(instancesFromApi, vm => vm.status !== 'DELETED' && !self.infra.vrack.getVmById(vm.id));
       angular.forEach(addedInstances, (vm) => {
         self.infra.vrack.addVmToPublicCloudList(vm);
       });
@@ -686,7 +697,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         {
           successRule(vm) {
             return (!vm.monthlyBilling || (vm.monthlyBilling && vm.monthlyBilling.status !== 'activationPending'))
-              && (_.every(continueStatus, continueState => vm.status !== continueState));
+              && (every(continueStatus, continueState => vm.status !== continueState));
           },
           namespace: 'cloud.infra.vms',
           notifyOnError: false,
@@ -765,7 +776,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
     this.createFromUserPref = function createFromUserPref(serviceName) {
       const key = `cloud_project_${serviceName}_infra`;
       return CucUserPref.get(key).then((infra) => {
-        _.set(infra, 'serviceName', serviceName);
+        set(infra, 'serviceName', serviceName);
         return new CloudProjectComputeInfrastructureFactory(infra);
       }, () => new CloudProjectComputeInfrastructureFactory({
         serviceName,
@@ -787,7 +798,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
           OvhApiCloudProjectInstance.v6().query({
             serviceName: self.infra.serviceName,
           }).$promise.then((instances) => {
-            _.forEach(instances, (instance) => {
+            forEach(instances, (instance) => {
               rearrangeIpv6(instance);
             });
 
@@ -811,7 +822,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
               serviceName: self.infra.serviceName,
             }).$promise.then((ips) => {
               angular.forEach(ips, (ip) => {
-                _.set(ip, 'type', ipType);
+                set(ip, 'type', ipType);
               });
               return ips;
             }).then((ips) => {

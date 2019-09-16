@@ -1,3 +1,7 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 class LogsStreamsService {
   constructor(
     $q,
@@ -408,8 +412,8 @@ class LogsStreamsService {
    * @return {string} stream token if found, empty string otherwise
    */
   findStreamTokenValue(stream) {
-    const ruleObj = _.find(stream.rules, rule => rule.field === this.LogsConstants.X_OVH_TOKEN);
-    return _.get(ruleObj, 'value');
+    const ruleObj = find(stream.rules, rule => rule.field === this.LogsConstants.X_OVH_TOKEN);
+    return get(ruleObj, 'value');
   }
 
   getOrderCatalog(ovhSubsidiary) {
@@ -432,17 +436,17 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   transformStream(serviceName, stream) {
-    _.set(stream, 'info.notifications', []);
-    _.set(stream, 'info.archives', []);
+    set(stream, 'info.notifications', []);
+    set(stream, 'info.archives', []);
     // asynchronously fetch all notification of a stream
     this.LogsStreamsAlertsService.getAlertIds(serviceName, stream.info.streamId)
       .then((notifications) => {
-        _.set(stream, 'info.notifications', notifications);
+        set(stream, 'info.notifications', notifications);
       });
     // asynchronously fetch all archives of a stream
     this.LogsStreamsArchivesService.getArchiveIds(serviceName, stream.info.streamId)
       .then((archives) => {
-        _.set(stream, 'info.archives', archives);
+        set(stream, 'info.archives', archives);
       });
     return stream;
   }

@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', ['$scope', '$translate', 'URLS', 'TranslateService', 'OvhApiMe',
   function RAAddStorageStepContainerTypeCtrl(
     $scope,
@@ -59,8 +62,8 @@ angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', 
     self.$onInit = function $onInit() {
       OvhApiMe.v6().get().$promise.then((me) => {
         const lang = me.ovhSubsidiary;
-        _.forEach($scope.categories, (category) => {
-          _.set(category, 'moreInfo.url', URLS.website_order[category.code][lang]);
+        forEach($scope.categories, (category) => {
+          set(category, 'moreInfo.url', URLS.website_order[category.code][lang]);
         });
       });
     };
