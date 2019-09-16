@@ -54,6 +54,9 @@ export default class SignUpDetailsCtrl {
         } else if (startsWith(phoneNumberParam, '0')) {
           // or by only a trailing 0
           phoneNumber = `+${phonePrefix}${phoneNumberParam.slice(1)}`;
+        } else if (!startsWith(phoneNumberParam, `+${phonePrefix}`)) {
+          // or not by the phonePrefix
+          phoneNumber = `+${phonePrefix}${phoneNumberParam}`;
         }
       }
     }
