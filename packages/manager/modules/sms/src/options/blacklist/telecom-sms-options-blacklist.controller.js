@@ -2,8 +2,8 @@ import angular from 'angular';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
-import controller from './remove/telecom-sms-senders-blacklisted-remove.controller';
-import template from './remove/telecom-sms-senders-blacklisted-remove.html';
+import controller from './remove/telecom-sms-options-blacklist-remove.controller';
+import template from './remove/telecom-sms-options-blacklist-remove.html';
 
 export default class {
   /* @ngInject */

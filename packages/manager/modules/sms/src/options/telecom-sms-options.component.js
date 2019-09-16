@@ -7,11 +7,13 @@ import template from './telecom-sms-options.html';
 import manage from './manage';
 import recredit from './recredit';
 import response from './response';
+import blacklist from './blacklist';
 
 const moduleName = 'ovhManagerSmsOptionsComponent';
 
 angular.module(moduleName, [
   'ui.router',
+  blacklist,
   manage,
   recredit,
   response,
