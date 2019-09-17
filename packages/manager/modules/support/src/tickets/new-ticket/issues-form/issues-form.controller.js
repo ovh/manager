@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import last from 'lodash/last';
+import orderBy from 'lodash/orderBy';
 
 export default class SupportNewIssuesFormController {
   /* @ngInject */
@@ -38,6 +39,7 @@ export default class SupportNewIssuesFormController {
         route,
         label: this.$translate.instant(`ovhManagerSupport_new_serviceType_${name}`),
       }));
+      this.serviceTypes = orderBy(this.serviceTypes, [type => (type.label || '').toLowerCase()]);
     }).finally(() => {
       this.loading = false;
     });
