@@ -66,19 +66,19 @@
             data-ng-if="$ctrl.guides.length">
         </h2>
         <ul>
-          <li data-ng-repeat="guide in $ctrl.guides">
+          <li data-ng-repeat="guide in $ctrl.guides track by $index">
             <a href="{{ guide.url }}"
                target="_blank"
-               data-ng-bind="guide.label">
+               data-ng-bind-html="guide.label">
             </a>
           </li>
         </ul>
         <h2 data-translate="ovhManagerSupport_new_tips"
             data-ng-if="$ctrl.tips.length">
         </h2>
-        <ul>
-          <li data-ng-repeat="tip in $ctrl.tips"
-              data-ng-bind="tip.label">
+        <ul class="supportTips">
+          <li data-ng-repeat="tip in $ctrl.tips track by $index"
+              data-ng-bind-html="tip.label | linky: '_blank'">
           </li>
         </ul>
       </oui-tile>
