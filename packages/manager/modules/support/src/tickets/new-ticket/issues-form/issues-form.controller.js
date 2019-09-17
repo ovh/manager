@@ -75,6 +75,7 @@ export default class SupportNewIssuesFormController {
     if (checked) {
       this.service = null;
     }
+    this.issues = null;
   }
 
   onIssues(issues) {
@@ -86,14 +87,12 @@ export default class SupportNewIssuesFormController {
     this.service = null;
     this.isUnknownService = false;
     this.services = null;
+    this.issues = null;
     return this.OvhApiService.Aapi().query({
       type: this.serviceType.route,
       external: false,
     }).$promise.then((items) => {
       this.services = items;
-      if (!items.length) {
-        this.isUnknownService = true;
-      }
     });
   }
 

@@ -33,25 +33,23 @@
       </oui-spinner>
     </div>
     <oui-field data-label="{{ 'ovhManagerSupport_new_service' | translate }}"
-               data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'account' && $ctrl.services.length"
+               data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'account' && $ctrl.services !== null"
                data-size="xl">
       <oui-select name="service"
                   data-model="$ctrl.service"
                   data-items="$ctrl.services"
                   data-match="displayName"
-                  data-disabled="!$ctrl.services.length"
                   data-on-change="$ctrl.onServiceChange()"
                   data-ng-show="!$ctrl.isUnknownService"
                   data-searchable>
       </oui-select>
       <oui-checkbox data-model="$ctrl.isUnknownService"
-                    data-disabled="!$ctrl.services.length"
                     data-on-change="$ctrl.onUnknownServiceChange()">
         {{ 'ovhManagerSupport_new_service_unknown' | translate }}
       </oui-checkbox>
     </oui-field>
 
-    <div data-ng-if="$ctrl.services.length || $ctrl.category.id === 'account'">
+    <div data-ng-if="$ctrl.isUnknownService || $ctrl.service || $ctrl.category.id === 'account'">
       <support-issues-selector
         data-root="true"
         data-category="$ctrl.category"
