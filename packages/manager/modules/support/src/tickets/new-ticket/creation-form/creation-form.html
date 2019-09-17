@@ -22,29 +22,27 @@
            class="oui-input" />
   </oui-field>
   
-  <div data-ng-repeat="issue in $ctrl.issues">
-    <oui-field data-ng-repeat="field in issue.fields track by field.id"
-               data-label="{{ field.label }}"
-               data-size="xl">
-      <input type="text"
-             data-ng-if="field.type === 'text'"
-             id="{{ 'field-' + field.id }}"
-             name="{{ 'field-' + field.id }}"
-             placeholder="{{ field.description }}"
-             required="{{ field.mandatory }}"
-             data-ng-model="field.default"
-             class="oui-input" />
-      <oui-textarea
-             data-ng-if="field.type === 'text_multi'"
-             id="{{ 'field-' + field.id }}"
-             name="{{ 'field-' + field.id }}"
-             data-placeholder="{{ field.description }}"
-             data-required="field.mandatory"
-             data-model="field.default"
-             data-rows="5">
-      </oui-textarea>
-    </oui-field>
-  </div>
+  <oui-field data-ng-repeat="field in $ctrl.getLastIssue().fields track by field.id"
+             data-label="{{ field.label }}"
+             data-size="xl">
+    <input type="text"
+           data-ng-if="field.type === 'text'"
+           id="{{ 'field-' + field.id }}"
+           name="{{ 'field-' + field.id }}"
+           placeholder="{{ field.description }}"
+           required="{{ field.mandatory }}"
+           data-ng-model="field.default"
+           class="oui-input" />
+    <oui-textarea
+           data-ng-if="field.type === 'text_multi'"
+           id="{{ 'field-' + field.id }}"
+           name="{{ 'field-' + field.id }}"
+           data-placeholder="{{ field.description }}"
+           data-required="field.mandatory"
+           data-model="field.default"
+           data-rows="5">
+    </oui-textarea>
+  </oui-field>
 
   <oui-button data-variant="secondary"
               data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"

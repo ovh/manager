@@ -34,13 +34,12 @@ export default class SupportNewController {
   static generateBody(issues) {
     // generate ticket body from list of issue's fields
     let body = '';
-    issues.forEach((issue) => {
-      body += `${issue.subject}\n`;
-      issue.fields.forEach((field) => {
-        body += `${field.label}\n${field.default}\n`;
-      });
-      body += '\n';
+    const issue = last(issues);
+    body += `${issue.subject}\n`;
+    issue.fields.forEach((field) => {
+      body += `${field.label}\n${field.default}\n`;
     });
+    body += '\n';
     return body;
   }
 
