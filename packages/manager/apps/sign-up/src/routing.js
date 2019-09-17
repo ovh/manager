@@ -55,6 +55,11 @@ export const state = {
     finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
       .saveNic(me.model)
       .then(() => {
+        // for tracking purposes
+        if ($window.sessionStorage) {
+          $window.sessionStorage.setItem('ovhSessionSuccess', true);
+        }
+        // manage redirection
         const redirectUrl = getRedirectLocation(me.nichandle);
         if (redirectUrl) {
           $window.location.assign(redirectUrl);
