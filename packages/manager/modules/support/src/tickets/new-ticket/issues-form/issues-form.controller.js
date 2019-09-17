@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import last from 'lodash/last';
+
 export default class SupportNewIssuesFormController {
   /* @ngInject */
   constructor(
@@ -40,27 +44,11 @@ export default class SupportNewIssuesFormController {
   }
 
   get guides() {
-    const result = [];
-    (this.issues || []).forEach((issue) => {
-      issue.selfCareResources.forEach((resource) => {
-        if (resource.type === 'guide') {
-          result.push(resource);
-        }
-      });
-    });
-    return result;
+    return filter(get(last(this.issues), 'selfCareResources'), { type: 'guide' });
   }
 
   get tips() {
-    const result = [];
-    (this.issues || []).forEach((issue) => {
-      issue.selfCareResources.forEach((resource) => {
-        if (resource.type === 'tip') {
-          result.push(resource);
-        }
-      });
-    });
-    return result;
+    return filter(get(last(this.issues), 'selfCareResources'), { type: 'tip' });
   }
 
   onCategoryChange() {
