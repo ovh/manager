@@ -29,24 +29,24 @@
             <button
                 type="button"
                 class="btn btn-default"
-                data-ng-disabled="SmsOptionsBlacklistCtrl.getSelection().length === 0 || SmsOptionsBlacklistCtrl.blacklists.isDeleting"
-                data-ng-click="SmsOptionsBlacklistCtrl.deleteSelectedBlacklist()"
+                data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.blacklists.isDeleting"
+                data-ng-click="$ctrl.deleteSelectedBlacklist()"
             >
                 <span
                     class="oui-icon oui-icon-trash_line mr-2"
                     aria-hidden="true"
-                    data-ng-if="!SmsOptionsBlacklistCtrl.blacklists.isDeleting"
+                    data-ng-if="!$ctrl.blacklists.isDeleting"
                 >
                 </span>
                 <oui-spinner
                     class="mr-2"
-                    data-ng-if="SmsOptionsBlacklistCtrl.blacklists.isDeleting"
+                    data-ng-if="$ctrl.blacklists.isDeleting"
                     data-size="s"
                 >
                 </oui-spinner>
                 <span
                     data-ng-pluralize
-                    data-count="SmsOptionsBlacklistCtrl.getSelection().length"
+                    data-count="$ctrl.getSelection().length"
                     data-when="{
                             '0': ('sms_senders_blacklisted_delete_list' | translate),
                             'one': ('sms_senders_blacklisted_delete_list' | translate),
@@ -61,7 +61,7 @@
             <table
                 class="table"
                 data-ng-class="{
-                       'table-hover table-striped': SmsOptionsBlacklistCtrl.blacklists.raw.length > 1
+                       'table-hover table-striped': $ctrl.blacklists.raw.length > 1
                    }"
             >
                 <thead>
@@ -69,12 +69,12 @@
                         <th scope="col" width="40px">
                             <input
                                 type="checkbox"
-                                data-ng-if="SmsOptionsBlacklistCtrl.blacklists.paginated.length"
-                                data-ng-disabled="SmsOptionsBlacklistCtrl.blacklists.isDeleting"
+                                data-ng-if="$ctrl.blacklists.paginated.length"
+                                data-ng-disabled="$ctrl.blacklists.isDeleting"
                                 data-ovh-checkbox-table
-                                data-ovh-checkbox-table-ids-all="SmsOptionsBlacklistCtrl.blacklists.raw"
-                                data-ovh-checkbox-table-ids-page="SmsOptionsBlacklistCtrl.blacklists.paginated"
-                                data-ovh-checkbox-table-ids-selected="SmsOptionsBlacklistCtrl.blacklists.selected"
+                                data-ovh-checkbox-table-ids-all="$ctrl.blacklists.raw"
+                                data-ovh-checkbox-table-ids-page="$ctrl.blacklists.paginated"
+                                data-ovh-checkbox-table-ids-selected="$ctrl.blacklists.selected"
                                 data-ovh-checkbox-table-id="number"
                             />
                         </th>
@@ -82,8 +82,8 @@
                             <button
                                 type="button"
                                 class="btn btn-link p-0"
-                                data-ng-disabled="!SmsOptionsBlacklistCtrl.blacklists.sorted.length"
-                                data-ng-click="SmsOptionsBlacklistCtrl.orderBy('dateCreation')"
+                                data-ng-disabled="!$ctrl.blacklists.sorted.length"
+                                data-ng-click="$ctrl.orderBy('dateCreation')"
                             >
                                 <span
                                     data-translate="sms_senders_blacklisted_label_date"
@@ -92,9 +92,9 @@
                                     class="oui-icon align-baseline"
                                     aria-hidden="true"
                                     data-ng-class="{
-                                          'oui-icon-arrow-down': SmsOptionsBlacklistCtrl.blacklists.orderBy !== 'dateCreation',
-                                          'oui-icon-arrow-down': SmsOptionsBlacklistCtrl.blacklists.orderBy === 'dateCreation' && SmsOptionsBlacklistCtrl.blacklists.orderDesc,
-                                          'oui-icon-arrow-up': SmsOptionsBlacklistCtrl.blacklists.orderBy === 'dateCreation' && !SmsOptionsBlacklistCtrl.blacklists.orderDesc
+                                          'oui-icon-arrow-down': $ctrl.blacklists.orderBy !== 'dateCreation',
+                                          'oui-icon-arrow-down': $ctrl.blacklists.orderBy === 'dateCreation' && $ctrl.blacklists.orderDesc,
+                                          'oui-icon-arrow-up': $ctrl.blacklists.orderBy === 'dateCreation' && !$ctrl.blacklists.orderDesc
                                       }"
                                 >
                                 </span>
@@ -104,8 +104,8 @@
                             <button
                                 type="button"
                                 class="btn btn-link p-0"
-                                data-ng-disabled="!SmsOptionsBlacklistCtrl.blacklists.sorted.length"
-                                data-ng-click="SmsOptionsBlacklistCtrl.orderBy('number')"
+                                data-ng-disabled="!$ctrl.blacklists.sorted.length"
+                                data-ng-click="$ctrl.orderBy('number')"
                             >
                                 <span
                                     data-translate="sms_senders_blacklisted_label_number"
@@ -114,9 +114,9 @@
                                     class="oui-icon align-baseline"
                                     aria-hidden="true"
                                     data-ng-class="{
-                                          'oui-icon-arrow-down': SmsOptionsBlacklistCtrl.blacklists.orderBy !== 'number',
-                                          'oui-icon-arrow-down': SmsOptionsBlacklistCtrl.blacklists.orderBy === 'number' && SmsOptionsBlacklistCtrl.blacklists.orderDesc,
-                                          'oui-icon-arrow-up': SmsOptionsBlacklistCtrl.blacklists.orderBy === 'number' && !SmsOptionsBlacklistCtrl.blacklists.orderDesc
+                                          'oui-icon-arrow-down': $ctrl.blacklists.orderBy !== 'number',
+                                          'oui-icon-arrow-down': $ctrl.blacklists.orderBy === 'number' && $ctrl.blacklists.orderDesc,
+                                          'oui-icon-arrow-up': $ctrl.blacklists.orderBy === 'number' && !$ctrl.blacklists.orderDesc
                                       }"
                                 >
                                 </span>
@@ -130,16 +130,16 @@
                     </tr>
                 </thead>
                 <tbody
-                    data-ng-if="!SmsOptionsBlacklistCtrl.blacklists.isLoading"
+                    data-ng-if="!$ctrl.blacklists.isLoading"
                 >
                     <tr
-                        data-ng-repeat="blacklist in SmsOptionsBlacklistCtrl.blacklists.paginated | orderBy:SmsOptionsBlacklistCtrl.blacklists.orderBy:SmsOptionsBlacklistCtrl.blacklists.orderDesc track by $index"
+                        data-ng-repeat="blacklist in $ctrl.blacklists.paginated | orderBy:$ctrl.blacklists.orderBy:$ctrl.blacklists.orderDesc track by $index"
                     >
                         <td>
                             <input
                                 type="checkbox"
-                                data-ng-disabled="SmsOptionsBlacklistCtrl.blacklists.isDeleting"
-                                data-ng-model="SmsOptionsBlacklistCtrl.blacklists.selected[blacklist.number]"
+                                data-ng-disabled="$ctrl.blacklists.isDeleting"
+                                data-ng-model="$ctrl.blacklists.selected[blacklist.number]"
                             />
                         </td>
                         <td
@@ -152,7 +152,7 @@
                             <button
                                 type="button"
                                 class="btn btn-default"
-                                data-ng-click="SmsOptionsBlacklistCtrl.remove(blacklist);"
+                                data-ng-click="$ctrl.remove(blacklist);"
                                 data-translate-attr="{ 'title': 'sms_delete' }"
                             >
                                 <span
@@ -168,7 +168,7 @@
                     </tr>
                 </tbody>
                 <tbody
-                    data-ng-if="SmsOptionsBlacklistCtrl.blacklists.isLoading"
+                    data-ng-if="$ctrl.blacklists.isLoading"
                 >
                     <tr>
                         <td colspan="4" class="text-center">
@@ -177,7 +177,7 @@
                     </tr>
                 </tbody>
                 <tbody
-                    data-ng-if="!SmsOptionsBlacklistCtrl.blacklists.isLoading && !SmsOptionsBlacklistCtrl.blacklists.paginated.length"
+                    data-ng-if="!$ctrl.blacklists.isLoading && !$ctrl.blacklists.paginated.length"
                 >
                     <tr>
                         <td
@@ -191,10 +191,10 @@
         </div>
         <div
             class="mt-2"
-            data-ng-show="!SmsOptionsBlacklistCtrl.blacklists.isLoading && SmsOptionsBlacklistCtrl.blacklists.raw.length"
+            data-ng-show="!$ctrl.blacklists.isLoading && $ctrl.blacklists.raw.length"
             data-pagination-front
-            data-items="SmsOptionsBlacklistCtrl.blacklists.sorted"
-            data-paginated-items="SmsOptionsBlacklistCtrl.blacklists.paginated"
+            data-items="$ctrl.blacklists.sorted"
+            data-paginated-items="$ctrl.blacklists.paginated"
             data-current-page="currentPage"
             data-nb-pages="nbPages"
             data-items-per-page="itemsPerPage"
