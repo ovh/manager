@@ -51,9 +51,6 @@ export default class SignUpDetailsCtrl {
         if (startsWith(phoneNumber, alternativePhonePrefix)) {
           // check if input value begin with 00${prefix}
           phoneNumber = `+${phonePrefix}${phoneNumber.slice(alternativePhonePrefix.length)}`;
-        } else if (startsWith(phoneNumber, '0')) {
-          // or by only a trailing 0
-          phoneNumber = `+${phonePrefix}${phoneNumber.slice(1)}`;
         } else if (!startsWith(phoneNumber, `+${phonePrefix}`)) {
           // or not by the phonePrefix
           phoneNumber = `+${phonePrefix}${phoneNumber}`;
