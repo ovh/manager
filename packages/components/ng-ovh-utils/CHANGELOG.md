@@ -1,3 +1,12 @@
+## [14.0.5](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.4...v14.0.5) (2019-09-18)
+
+
+### Bug Fixes
+
+* import missing styles ([ca9c3bc](https://github.com/ovh-ux/ng-ovh-utils/commit/ca9c3bc))
+
+
+
 ## [14.0.4](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.3...v14.0.4) (2019-08-30)
 
 
