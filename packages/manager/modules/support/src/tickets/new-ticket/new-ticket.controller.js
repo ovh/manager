@@ -43,16 +43,6 @@ export default class SupportNewController {
     return body;
   }
 
-  getTicketURL(id) {
-    return this.$state.href('support.tickets.ticket', {
-      id,
-    });
-  }
-
-  getTicketsURL() {
-    return this.$state.href('support.tickets');
-  }
-
   onCreationFormSubmit(result) {
     // user validates the form, post the ticket
     if (result.isSuccess) {
