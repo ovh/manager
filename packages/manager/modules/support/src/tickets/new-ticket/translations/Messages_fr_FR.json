@@ -102,6 +102,7 @@
   "ovhManagerSupport_new_helpfull": "Avez-vous trouvé la réponse à votre question ?",
   "ovhManagerSupport_new_helpfull_yes": "Oui",
   "ovhManagerSupport_new_helpfull_no": "Non",
+  "ovhManagerSupport_new_helpfull_create": "Créer une nouvelle demande",
 
   "ovhManagerSupport_new_creation_subject": "Sujet",
   "ovhManagerSupport_new_creation_submit": "Valider",

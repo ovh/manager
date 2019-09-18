@@ -8,7 +8,7 @@
   </div>
 
   <div data-ng-if="!$ctrl.loading">
-    <oui-field data-label="{{ 'ovhManagerSupport_new_category' | translate }}"
+    <oui-field data-label="{{:: 'ovhManagerSupport_new_category' | translate }}"
                data-size="xl">
       <oui-select name="category"
                   data-model="$ctrl.category"
@@ -17,7 +17,7 @@
                   data-on-change="$ctrl.onCategoryChange()">
       </oui-select>
     </oui-field>
-    <oui-field data-label="{{ 'ovhManagerSupport_new_serviceType' | translate }}"
+    <oui-field data-label="{{:: 'ovhManagerSupport_new_serviceType' | translate }}"
                data-ng-if="$ctrl.category && $ctrl.category.id !== 'account'"
                data-size="xl">
       <oui-select name="serviceType"
@@ -32,7 +32,7 @@
       <oui-spinner data-size="m">
       </oui-spinner>
     </div>
-    <oui-field data-label="{{ 'ovhManagerSupport_new_service' | translate }}"
+    <oui-field data-label="{{:: 'ovhManagerSupport_new_service' | translate }}"
                data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'account' && $ctrl.services !== null"
                data-size="xl">
       <oui-select name="service"
@@ -45,7 +45,7 @@
       </oui-select>
       <oui-checkbox data-model="$ctrl.isUnknownService"
                     data-on-change="$ctrl.onUnknownServiceChange()">
-        {{ 'ovhManagerSupport_new_service_unknown' | translate }}
+        <span data-translate="ovhManagerSupport_new_service_unknown"></span>
       </oui-checkbox>
     </oui-field>
 
@@ -58,7 +58,7 @@
       </support-issues-selector>
     </div>
 
-    <div data-ng-if="$ctrl.issues && $ctrl.issues.length > 0">
+    <div data-ng-if="$ctrl.issues && $ctrl.issues.length > 0 && ($ctrl.isUnknownService || $ctrl.service || $ctrl.services.length === 0)">
       <oui-tile data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
         <h2 data-translate="ovhManagerSupport_new_guides"
             data-ng-if="$ctrl.guides.length">
@@ -80,17 +80,27 @@
           </li>
         </ul>
       </oui-tile>
-      <p class="mt-4"
-         data-translate="ovhManagerSupport_new_helpfull">
-      </p>
-      <oui-button data-variant="secondary"
-                  data-text="{{ 'ovhManagerSupport_new_helpfull_no' | translate }}"
-                  data-on-click="$ctrl.submitForm(false)">
-      </oui-button>
-      <oui-button data-variant="primary"
-                  data-text="{{ 'ovhManagerSupport_new_helpfull_yes' | translate }}"
-                  data-on-click="$ctrl.submitForm(true)">
-      </oui-button>
+      <div data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
+        <p class="mt-4"
+           data-translate="ovhManagerSupport_new_helpfull">
+        </p>
+        <oui-button data-variant="secondary"
+                    data-type="submit"
+                    data-on-click="$ctrl.submitForm(false)">
+          <span data-translate="ovhManagerSupport_new_helpfull_no"></span>
+        </oui-button>
+        <oui-button data-variant="primary"
+                    data-on-click="$ctrl.submitForm(true)">
+          <span data-translate="ovhManagerSupport_new_helpfull_yes"></span>
+        </oui-button>
+      </div>
+      <div data-ng-if="!$ctrl.guides.length && !$ctrl.tips.length">
+        <oui-button data-variant="primary"
+                    data-type="submit"
+                    data-on-click="$ctrl.submitForm(false)">
+          <span data-translate="ovhManagerSupport_new_helpfull_create"></span>
+        </oui-button>
+      </div>
     </div>
   </div>
 
