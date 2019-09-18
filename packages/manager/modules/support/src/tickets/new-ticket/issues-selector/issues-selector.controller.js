@@ -68,6 +68,9 @@ export default class SupportIssuesSelectorController {
       this.issueTypes = items;
       if (items.length === 0) {
         this.notifyAllIssuesSelected(this.issuesHierarchy);
+      } else if (items.length === 1) {
+        [this.issueType] = items;
+        this.onIssueTypeChange();
       }
     });
   }
