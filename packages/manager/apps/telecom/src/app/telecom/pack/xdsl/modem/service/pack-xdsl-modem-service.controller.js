@@ -222,7 +222,7 @@ angular.module('managerApp').controller('XdslModemServiceCtrl', class XdslModemS
     }).$promise
       .then(({ xdslTask }) => {
         sipAlg.value = xdslTask === 'enabled';
-        sipAlg.isDefine = true;
+        sipAlg.isDefined = true;
         return xdslTask;
       }).finally(() => {
         this.modemServices.push(sipAlg);
