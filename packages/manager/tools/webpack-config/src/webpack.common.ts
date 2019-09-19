@@ -225,7 +225,7 @@ export = opts => {
     }, // \module
 
     optimization: {
-
+      runtimeChunk: 'single',
       // bundle spliting configuration
       splitChunks: {
 
