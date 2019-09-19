@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "lerna run build --stream",
-    "clean": "lerna clean -y && yarn run clean:dist",
+    "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
     "clean:dist": "npx rimraf packages/**/dist",
     "docs:update-readme": "scripts/update-readme",
     "lint": "run-p lint:css lint:html lint:js lint:md",
