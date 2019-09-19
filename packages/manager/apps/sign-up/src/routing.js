@@ -6,7 +6,7 @@ import signupFormComponent from './form/component';
 
 export const state = {
   name: 'sign-up',
-  url: '/?lang',
+  url: '/?lang&ovhSubsidiary&ovhCompany&callback&onsuccess',
   component: signupFormComponent.name,
   resolve: {
     getRedirectLocation: /* @ngInject */ $location => (nic) => {
