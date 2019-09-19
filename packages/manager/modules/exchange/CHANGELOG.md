@@ -1,3 +1,12 @@
+## [1.1.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.7...@ovh-ux/manager-exchange@1.1.8) (2019-09-19)
+
+
+### Bug Fixes
+
+* **exchange:** always display password field for adding account ([#1301](https://github.com/ovh-ux/manager/issues/1301)) ([1088580](https://github.com/ovh-ux/manager/commit/1088580))
+
+
+
 ## [1.1.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.6...@ovh-ux/manager-exchange@1.1.7) (2019-09-03)
 
 
