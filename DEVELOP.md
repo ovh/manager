@@ -12,12 +12,19 @@ Run `yarn install` to install the npm dependencies.
 
 Our [`package.json`](package.json) houses a collection of [run-scripts](https://docs.npmjs.com/cli/run-script) that we use to maintain, test, build, and publish the OVH Manager, notably:
 
+* `docs:update-readme` runs `scripts/update-readme`, which update the list of all applications, modules and components available into this monorepo.
 * `split` runs `scripts/split.js`, which generate a subtree branch (from the current one) for the specified package.
+
+### Update README.md
+
+```sh
+$ yarn run docs:update-readme
+```
 
 ### Split a module
 
 ```sh
-yarn run split --help
+$ yarn run split --help
 ```
 
 ![](media/split-module-1.png)
