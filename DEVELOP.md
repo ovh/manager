@@ -4,6 +4,8 @@ If you've made it this far, **thank you**! We appreciate your contribution, and 
 
 ## Install
 
+If you have [`nvm`](https://github.com/nvm-sh/nvm) installed you can run `nvm use` at the root of the project to get the Node.js LTS version.
+
 Run `yarn install` to install the npm dependencies.
 
 ## Scripts
