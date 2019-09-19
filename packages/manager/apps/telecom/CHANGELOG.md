@@ -1,3 +1,12 @@
+## [10.35.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.0...@ovh-ux/manager-telecom@10.35.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* **xdsl:** fix enabling of sip alg option ([fb1aafc](https://github.com/ovh-ux/manager/commit/fb1aafc))
+
+
+
 # [10.35.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.34.0...@ovh-ux/manager-telecom@10.35.0) (2019-09-10)
 
 
