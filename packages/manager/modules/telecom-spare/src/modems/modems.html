@@ -1,0 +1,35 @@
+<div class="telecom-modems-section">
+    <h1 data-translate="modems_spare_list_title"></h1>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div class="oui-datagrid-topbar__actions" data-ng-if="!$ctrl.isLoading">
+        <button type="button" class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width" data-ng-click="$ctrl.refresh()"
+            title="{{'spare_refresh' | translate}}">
+            <span class="fa fa-refresh" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <oui-datagrid data-rows="$ctrl.modems" row-loader="$ctrl.loadRow($row)" page-size="10">
+        <oui-column title=" ::'modems_name_col' | translate " property="spare"></oui-column>
+        <oui-column title=" ::'modems_brand_col' | translate " property="brand">
+            <span data-ng-bind="$row.brand | formatModemBrandFilter:$row.brand"></span>
+        </oui-column>
+        <oui-column title=" ::'modems_mac_address_col' | translate " property="macAddress"></oui-column>
+        <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item data-on-click="$ctrl.replace($row)">
+                <span data-translate="modems_replace_action"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.returnMerchandise($row)">
+                <span data-translate="modems_return_action"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.delete($row)">
+                <span data-translate="modems_delete_action"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+
+    <div>
+        <oui-button variant="primary" text="{{ ::'modems_order_button' | translate }}" data-on-click="$ctrl.orderNewModem()"></oui-button>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div data-ui-view="spareView" class="telecom-spare-section">
+    <oui-page-header class="mb-2" data-heading="{{ ::'spare_title' | translate }}">
+        <oui-header-tabs>
+            <oui-header-tabs-item data-text="{{ 'spare_modems_tab_title' | translate }}"
+                data-state="spare.modems">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item data-text="{{ 'spare_phones_tab_title' | translate }}"
+                data-state="spare.phones">
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-page-header>
+
+    <main role="main">
+        <div data-ui-view="spareInnerView"></div>
+    </main>
+</div>

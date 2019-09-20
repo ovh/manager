@@ -1,0 +1,35 @@
+<div class="telecom-phones-section">
+    <h1 data-translate="phones_spare_list_title"></h1>
+
+    <tuc-toast-message></tuc-toast-message>
+
+    <div class="oui-datagrid-topbar__actions" data-ng-if="!$ctrl.isLoading">
+        <button type="button" class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width" data-ng-click="$ctrl.refresh()"
+            title="{{'spare_refresh' | translate}}">
+            <span class="fa fa-refresh" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <oui-datagrid data-rows="$ctrl.phones" row-loader="$ctrl.loadRow($row)" page-size="10">
+        <oui-column title=" ::'phones_name_col' | translate " property="spare"></oui-column>
+        <oui-column title=" ::'phones_brand_col' | translate " property="brand">
+            <span data-ng-bind="$row.brand | formatPhoneBrandFilter:$row.brand"></span>
+        </oui-column>
+        <oui-column title=" ::'phones_mac_address_col' | translate " property="macAddress"></oui-column>
+        <oui-column title=" ::'phones_protocol_col' | translate " property="protocol">
+            <span data-ng-bind="$row.protocol.toUpperCase()"></span>
+        </oui-column>
+        <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item data-on-click="$ctrl.replace($row)">
+                <span data-translate="phones_replace_action"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.delete($row)">
+                <span data-translate="phones_delete_action"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+
+    <div>
+        <oui-button variant="primary" text="{{ ::'phones_order_button' | translate }}" data-on-click="$ctrl.orderNewPhone()"></oui-button>
+    </div>
+</div>

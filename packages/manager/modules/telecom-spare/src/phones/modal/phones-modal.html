@@ -1,0 +1,32 @@
+<oui-modal data-heading="{{ ::$ctrl.title | translate}}"
+           data-type="warning"
+           data-primary-action="$ctrl.apply()"
+           data-primary-label="{{:: 'phone_modal_submit' | translate }}"
+           data-primary-disabled="!$ctrl.isApplyAvailable"
+           data-secondary-action="$ctrl.cancel()"
+           data-secondary-label="{{:: 'phone_modal_cancel' | translate }}"
+           data-on-dismiss="$ctrl.cancel()"
+           data-loading="$ctrl.loading">
+
+    <div data-ng-if="$ctrl.isToDelete" data-translate="phone_modal_delete_description"></div>
+
+    <div data-ng-if="$ctrl.isToReplace">
+        <div data-ng-if="$ctrl.isApplyAvailable">
+            <label for="selectedDomain" class="oui-label" data-translate="phone_modal_replacement_description"></label>
+            <oui-select data-name="selectedDomain"
+                        data-model="$ctrl.selectedDomain"
+                        data-items="$ctrl.compatibleDomains"
+                        data-placeholder="{{ ::'phone_modal_replacement_select' | translate }}"
+                        data-disabled="$ctrl.loading"
+                        data-ng-if="$ctrl.isApplyAvailable">
+            </oui-select>
+
+            <label for="phoneIP" class="oui-label" data-translate="phone_modal_replacement_ip"></label>
+            <input id="phoneIP" name="phoneIP" data-type="text" class="oui-input" data-ng-model="$ctrl.phoneIP" required minlength="3" maxlength="32">
+
+        </div>
+
+        <div data-ng-if="!$ctrl.isApplyAvailable" data-translate="phone_modal_replacement_no_compatible_domains"></div>
+    </div>
+
+</oui-modal>

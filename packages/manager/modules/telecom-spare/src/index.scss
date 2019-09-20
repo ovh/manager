@@ -1,0 +1,22 @@
+.telecom-spare {
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import '~bootstrap4/scss/_mixins';
+  @import '~bootstrap4/scss/_utilities';
+  @import '~bootstrap4/scss/_grid';
+}
+
+.telecom-spare-section {
+
+  .minh-100 {
+    min-height: 100%;
+  }
+
+  .minw-0 {
+    min-width: 0;
+  }
+
+  .overflow-auto {
+    overflow: auto !important;
+  }
+}
