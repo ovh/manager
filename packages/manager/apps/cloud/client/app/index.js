@@ -34,7 +34,7 @@ import 'script-loader!angular-ui-validate/dist/validate.js';
 import 'script-loader!bootstrap/dist/js/bootstrap.js';
 import 'd3';
 import 'jquery.cookie';
-import 'jquery.scrollTo';
+import 'script-loader!jquery.scrollto/jquery.scrollTo.min.js';
 import 'lodash';
 import 'script-loader!matchmedia/matchMedia.js';
 import 'matchmedia-ng';
