@@ -8,7 +8,7 @@ export default class SupportNewCreationFormController {
   }
 
   $onInit() {
-    return this.SupportNewTicketService.getSupportLevel().then((level) => {
+    return this.SupportNewTicketService.getSupportLevel().then(({ level }) => {
       this.supportLevel = level;
       if (this.shouldSelectUrgency()) {
         return this.SupportNewTicketService.getUrgencies().then((urgencies) => {
