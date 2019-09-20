@@ -13,6 +13,8 @@ import ovhManagerVpsUpgrade from './upgrade';
 import ovhManagerVpsVeeam from './veeam';
 import ovhManagerVpsWindows from './windows';
 
+import ovhManagerVpsKvmNovnc from './modal/shortcut/kvm/novnc/novnc.module';
+
 const moduleName = 'ovhManagerVps';
 
 angular
@@ -25,6 +27,7 @@ angular
     ovhManagerVpsSecondaryDns,
     ovhManagerVpsSnapshot,
     ovhManagerVpsUpgrade,
+    ovhManagerVpsKvmNovnc,
     ovhManagerVpsVeeam,
     ovhManagerVpsWindows,
   ])

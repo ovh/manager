@@ -947,6 +947,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.2.tgz#54c5a964462be3d4d78af631363c18d6fa91ac26"
   integrity sha512-yprFYuno9FtNsSHVlSWd+nRlmGoAbqbeCwOryP6sC/zoCjhpArcRMYp19EvpSUSizJAlsXEwJv+wcWS9XaXdMw==
 
+"@novnc/novnc@git+https://github.com/ovh-ux/noVNC.git#build/websock_base64":
+  version "1.1.0"
+  resolved "git+https://github.com/ovh-ux/noVNC.git#3563337b3dfacc7d4d22e299e79464253359b7a8"
+
 "@ovh-ux/component-rollup-config@^5.0.0-beta.8":
   version "5.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.8.tgz#3f610585e412e1fe80ad2f83bc536df2fb7d05ad"

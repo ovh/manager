@@ -1,0 +1,8 @@
+{
+  "vps_terminate_title": "VPS löschen",
+  "vps_terminate_question": "Sind Sie sicher, dass Sie den Dienst {{vps}} löschen möchten?",
+  "vps_terminate_cancel": "Abbrechen",
+  "vps_terminate_confirm": "Bestätigen",
+  "vps_terminate_success": "Die Anfrage zur Löschung wurde registriert. Ihnen wird eine Bestätigungs-E-Mail zugesandt, um den Löschvorgang zu bestätigen.",
+  "vps_terminate_error": "Beim Löschen des Dienstes ist ein Fehler aufgetreten."
+}
