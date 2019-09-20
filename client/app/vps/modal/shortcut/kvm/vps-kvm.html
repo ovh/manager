@@ -3,9 +3,12 @@
     data-on-dismiss="$ctrl.close()"
     data-loading="$ctrl.kvmUrlLoader.loading || $ctrl.kvmLoader.loading">
 
-    <kvm data-ng-if="$ctrl.noVNC"
-        data-kvm-data="$ctrl.kvm">
-    </kvm>
+    <dedicated-vps-kvm-novnc
+        data-ng-if="$ctrl.noVNC && $ctrl.kvm.host && $ctrl.kvm.port && $ctrl.kvm.password"
+        data-host="$ctrl.kvm.host"
+        data-port="$ctrl.kvm.port"
+        data-password="$ctrl.kvm.password"></dedicated-vps-kvm-novnc>
+
     <div class="text-center">
         <iframe id="consoleIframe" width="550" height="440" seamless
             cuc-autofocus="2000"

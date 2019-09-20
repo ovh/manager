@@ -45,6 +45,7 @@ class VpsActionService {
   kvm(serviceName, noVNC) {
     return this.CucControllerHelper.modal.showModal({
       modalConfig: {
+        size: 'lg',
         templateUrl: 'app/vps/modal/shortcut/kvm/vps-kvm.html',
         controller: 'VpsKvmCtrl',
         controllerAs: '$ctrl',

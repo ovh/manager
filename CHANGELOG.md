@@ -1,3 +1,12 @@
+## [7.32.1](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.32.0...v7.32.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* **vnc:** restore vnc client ([#1576](https://github.com/ovh-ux/ovh-manager-cloud/issues/1576)) ([a7f5555](https://github.com/ovh-ux/ovh-manager-cloud/commit/a7f5555))
+
+
+
 # [7.32.0](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.31.0...v7.32.0) (2019-09-11)
 
 

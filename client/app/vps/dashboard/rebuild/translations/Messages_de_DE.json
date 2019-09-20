@@ -1,0 +1,5 @@
+{
+  "vps_configuration_rebuild_cancel": "Abbrechen",
+  "vps_configuration_rebuild_confirm": "Bestätigen",
+  "vps_configuration_rebuild_doNotSendPassword": "Ich möchte die Zugangsdaten zu meinem VPS nicht per E-Mail erhalten."
+}
