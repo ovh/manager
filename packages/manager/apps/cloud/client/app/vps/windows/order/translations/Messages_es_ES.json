@@ -1,0 +1,20 @@
+{
+ "vps_order_windows_title": "Opción Windows",
+ "vps_order_windows_step1_title": "Selección de la duración",
+ "vps_order_windows_step2_title": "Aceptación de las condiciones de uso",
+ "vps_order_windows_step3_title": "Resumen",
+ "vps_order_windows_info": "Esta opción le permitirá instalar en el VPS un sistema operativo Windows.",
+ "vps_order_windows_price_error": "Se ha producido un error al cargar los precios.",
+ "vps_order_windows_order_error": "Se ha producido un error al crear la orden de pedido.",
+ "vps_order_windows_order_select_duration": "Seleccione la duración:",
+ "vps_order_windows_order_resume": "Resumen del pedido",
+ "vps_order_windows_order_price_HT": "Precio total (sin IVA):",
+ "vps_order_windows_order_price_TTC": "Precio total (IVA incl.):",
+ "vps_order_windows_order_final_txt": "Haga clic en «Aceptar» para confirmar el pedido.",
+ "vps_order_windows_order_final_txt2": "Se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago.",
+ "vps_order_windows_order_load_error": "Se ha producido un error al cargar la información del pedido de la opción Windows.",
+ "vps_order_windows_order_load_error_none": "No se ha encontrado ningún pedido de la opción Windows en su VPS.",
+ "vps_order_windows_order_success": "Siga las instrucciones que se indican en la nueva pestaña para finalizar el pedido. Si no aparece ninguna pestaña, haga clic en este <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">enlace</a>.",
+ "vps_order_windows_order_price": "Esta opción tiene un coste mensual de <strong>{{ amount }} + IVA</strong>.",
+ "vps_order_windows_order_explain": "Al hacer clic en «Contratar», se abrirá una nueva pestaña y el sistema le redirigirá automáticamente a la interfaz de pago."
+}
