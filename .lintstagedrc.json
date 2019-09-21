@@ -1,6 +1,7 @@
 {
   "*.html": [
-    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\""
+    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
+    "prettier --write"
   ],
   "*.js": [
     "eslint --fix",
