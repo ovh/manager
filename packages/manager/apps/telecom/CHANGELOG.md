@@ -1,3 +1,12 @@
+## [10.35.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.1...@ovh-ux/manager-telecom@10.35.2) (2019-09-23)
+
+
+### Bug Fixes
+
+* **pack.xdsl.modem.router.dhcp:** avoid error 'isDNSValid' of undefined ([1579ed3](https://github.com/ovh-ux/manager/commit/1579ed3))
+
+
+
 ## [10.35.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.0...@ovh-ux/manager-telecom@10.35.1) (2019-09-19)
 
 
