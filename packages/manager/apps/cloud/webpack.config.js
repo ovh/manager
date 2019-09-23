@@ -24,7 +24,7 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 module.exports = (env = {}) => {
-  const REGION = process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : 'EU';
+  const REGION = process.env.REGION ? process.env.REGION.toUpperCase() : 'EU';
 
   const { config } = webpackConfig({
     template: './client/index.html',
