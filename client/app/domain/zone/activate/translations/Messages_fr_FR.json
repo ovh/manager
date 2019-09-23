@@ -1,0 +1,9 @@
+{
+  "web_domain_zone_activation": "Activer la zone DNS",
+  "web_domain_zone_activation_confirm": "Activer",
+  "web_domain_zone_activation_cancel": "Annuler",
+  "web_domain_zone_activation_question": "Voulez-vous activer les entrées minimales dans votre zone DNS ?",
+  "web_domain_zone_activation_template_minimized": "Oui, je veux activer ma zone DNS avec les entrées minimales.",
+  "web_domain_zone_activation_template_basic": "Non, mais je veux activer ma zone DNS.",
+  "web_domain_zone_activation_success": "Le bon de commande a été généré avec succès."
+}

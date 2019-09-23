@@ -1,5 +1,4 @@
 import generalInformationState from './general-informations/domain-general-informations.state';
-import zoneState from './zone/domain-zone.state';
 import dnsState from './dns/domain-dns.state';
 import redirectionState from './redirection/domain-redirection.state';
 import dynHostState from './dynhost/domain-dynhost.state';
@@ -25,6 +24,7 @@ angular.module('App').config(($stateProvider) => {
     redirectTo: 'app.domain.product.information',
     resolve: {
       currentSection: () => 'domain',
+      domainName: /* @ngInject */ $transition$ => $transition$.params().productId,
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -49,6 +49,7 @@ angular.module('App').config(($stateProvider) => {
     redirectTo: 'app.domain.alldom.information',
     resolve: {
       currentSection: () => 'domain',
+      domainName: /* @ngInject */ $transition$ => $transition$.params().productId,
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -67,7 +68,6 @@ angular.module('App').config(($stateProvider) => {
   ['product', 'alldom'].forEach((stateType) => {
     // Clone state before using it as it will be modified by UI Router
     $stateProvider.state(`app.domain.${stateType}.information`, _.clone(generalInformationState));
-    $stateProvider.state(`app.domain.${stateType}.zone`, _.clone(zoneState));
     $stateProvider.state(`app.domain.${stateType}.dns`, _.clone(dnsState));
     $stateProvider.state(`app.domain.${stateType}.redirection`, _.clone(redirectionState));
     $stateProvider.state(`app.domain.${stateType}.dynhost`, _.clone(dynHostState));

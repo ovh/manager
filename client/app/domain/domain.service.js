@@ -355,21 +355,6 @@ angular.module('services').service(
     // ---------------------Zone DNS -------------------------
 
     /**
-     * Activate DNS zone
-     * @param {string} serviceName
-     * @param {boolean} minimized
-     */
-    activateZone(serviceName, minimized) {
-      return this.OvhHttp.post(`/domain/${serviceName}/activateZone`, {
-        rootPath: 'apiv6',
-        data: {
-          minimized,
-        },
-        broadcast: 'domain.tabs.zonedns.refresh',
-      });
-    }
-
-    /**
      * Reset DNS zone
      * @param {string} serviceName
      * @param {boolean} minimized

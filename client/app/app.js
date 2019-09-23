@@ -19,10 +19,12 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter from '@uirouter/angularjs';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+
+import config from './config/config';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
-import config from './config/config';
 import navbar from './components/navbar';
+import zone from './domain/zone/zone.module';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
@@ -81,6 +83,7 @@ angular
     domainEmailObfuscation,
     domainOptin,
     navbar,
+    zone,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -111,6 +114,7 @@ angular
     WEBSITE_URLS: config.constants.website_url,
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
+    ORDER_URL: config.constants.ORDER_URL,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)

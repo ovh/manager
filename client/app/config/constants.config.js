@@ -901,6 +901,23 @@ module.exports = {
         ],
         REDIRECT_URLS: {
             listTicket: "https://www.ovh.com/manager/dedicated/index.html#/ticket"
+        },
+        ORDER_URL: {
+          CZ: 'https://www.ovh.cz/order/express/#/express/review?products=',
+          DE: 'https://www.ovh.de/order/express/#/express/review?products=',
+          ES: 'https://www.ovh.es/order/express/#/express/review?products=',
+          FI: 'https://www.ovh-hosting.fi/order/express/#/express/review?products=',
+          FR: 'https://www.ovh.com/fr/order/express/#/express/review?products=',
+          GB: 'https://www.ovh.co.uk/order/express/#/express/review?products=',
+          IE: 'https://www.ovh.ie/order/express/#/express/review?products=',
+          IT: 'https://www.ovh.it/order/express/#/express/review?products=',
+          LT: 'https://www.ovh.lt/order/express/#/express/review?products=',
+          MA: 'https://www.ovh.ma/order/express/#/express/review?products=',
+          NL: 'https://www.ovh.nl/order/express/#/express/review?products=',
+          PL: 'https://www.ovh.pl/order/express/#/express/review?products=',
+          PT: 'https://www.ovh.pt/order/express/#/express/review?products=',
+          SN: 'https://www.ovh.sn/order/express/#/express/review?products=',
+          TN: 'https://www.ovh.com/tn/order/express/#/express/review?products=',
         }
     },
     CA: {
@@ -1132,6 +1149,15 @@ module.exports = {
         ],
         REDIRECT_URLS: {
             listTicket: "https://ca.ovh.com/manager/index.html#/ticket"
+        },
+        ORDER_URL: {
+          ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review?products=',
+          AU: 'https://ca.ovh.com/au/order/express/#/express/review?products=',
+          CA: 'https://ca.ovh.com/en/order/express/#/express/review?products=',
+          QC: 'https://ca.ovh.com/fr/order/express/#/express/review?products=',
+          SG: 'https://ca.ovh.com/sg/order/express/#/express/review?products=',
+          WE: 'https://us.ovh.com/us/order/express/#/express/review?products=',
+          WS: 'https://us.ovh.com/es/order/express/#/express/review?products=',
         }
     }
 };

@@ -8233,10 +8233,10 @@ ovh-manager-webfont@ovh-ux/ovh-manager-webfont#^1.0.1:
   version "1.0.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-manager-webfont/tar.gz/1d759c46c8c3ead4bc5e887a2336abd124a17c58"
 
-ovh-module-emailpro@^7.2.11:
-  version "7.2.11"
-  resolved "https://registry.yarnpkg.com/ovh-module-emailpro/-/ovh-module-emailpro-7.2.11.tgz#fc65603b12261a1a633ffe6c3ed56c45d8594ea1"
-  integrity sha512-q+57Wi7G2K/JQYteo5qjwenGERvNiBN8GvgspquCDQ5soVnc2a8An9ZRh1CcadwODEX4+Z7KL/6JCVoQnisdXg==
+ovh-module-emailpro@^7.2.13:
+  version "7.2.13"
+  resolved "https://registry.yarnpkg.com/ovh-module-emailpro/-/ovh-module-emailpro-7.2.13.tgz#eb3248a88ddc9e3cbb7f0dc895faa6bf50dbf085"
+  integrity sha512-PAnCozr8GLQyTHX+vDmEnRn50dVckebCv3t5xk+5XFwrDw+zpWfUj20FEXdqePMjYPfaouHNpFfWm8NiNcE+Fg==
   dependencies:
     angular "~1.6.10"
     lodash "~3.9.3"
@@ -8244,10 +8244,10 @@ ovh-module-emailpro@^7.2.11:
     punycode "^1.2.4"
     validator "^4.0.0"
 
-ovh-module-exchange@^9.4.6:
-  version "9.4.6"
-  resolved "https://registry.yarnpkg.com/ovh-module-exchange/-/ovh-module-exchange-9.4.6.tgz#f2adccb82ee94dbbf769535bee11c81daad2453d"
-  integrity sha512-gIyQj9l/N4rnLXNk227X+89N2F0scaI6sLR4uzJLEyWF7d8OEQG83CJOSJwZHbGHNY3GsB/Y3vgal22nZ61uZA==
+ovh-module-exchange@^9.4.7:
+  version "9.4.7"
+  resolved "https://registry.yarnpkg.com/ovh-module-exchange/-/ovh-module-exchange-9.4.7.tgz#2d60d6bbb164f6a6290a1e0d08585731488dbf95"
+  integrity sha512-B+XKrcF6qVySRJgb2I1mXy38MzoLBZ9rOiYdljFElsOOxD48zIPZXtcergGJ+EnMsDSzC2/7L1g92iM80Rfk6Q==
   dependencies:
     filesize "^3.6.1"
     lodash "~3.9.3"
@@ -8262,10 +8262,10 @@ ovh-module-office@^7.0.9:
     lodash "~3.9.3"
     moment "^2.16.0"
 
-ovh-module-sharepoint@^7.1.9:
-  version "7.1.9"
-  resolved "https://registry.yarnpkg.com/ovh-module-sharepoint/-/ovh-module-sharepoint-7.1.9.tgz#0bac74522e8f8038ba1aba63eb5d2c6580701186"
-  integrity sha512-fkfs9qV9/WeDsqcbWHPlxxyVigSh/L+sjJfnP89ldHQ4vbX8fuN7XXBDpkv91X2gd3sRPPHbWJAxyjHPwu9lzA==
+ovh-module-sharepoint@^7.1.10:
+  version "7.1.10"
+  resolved "https://registry.yarnpkg.com/ovh-module-sharepoint/-/ovh-module-sharepoint-7.1.10.tgz#3bf2c62925aac6519a66f59d83cf820bf9b5f23e"
+  integrity sha512-Z91isnGza5wFk+DD4pafU8fSAFzIrLwOEw4Z765gvFhnFBv9WXpZ0Vs/Nw1Av2xlXE3dQVb811aAGZP+xmMFmw==
   dependencies:
     angular "~1.6.10"
     filesize "^3.5.10"
