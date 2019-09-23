@@ -35,10 +35,12 @@ import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
+
+import config from './config/config';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
-import config from './config/config';
 import navbar from './components/navbar';
+import zone from './domain/zone/zone.module';
 
 import './css/source.less';
 import './css/source.scss';
@@ -98,6 +100,7 @@ angular
     domainEmailObfuscation,
     domainOptin,
     navbar,
+    zone,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -128,6 +131,7 @@ angular
     WEBSITE_URLS: config.constants.website_url,
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
+    ORDER_URL: config.constants.ORDER_URL,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
