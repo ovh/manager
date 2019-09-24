@@ -1840,7 +1840,7 @@
 
 "@ovh-ux/manager-telecom-spare@git+https://github.com/ovh-ux/manager.git#manager-telecom-spare":
   version "0.0.0"
-  resolved "git+https://github.com/ovh-ux/manager.git#35166def10ba2fcf5d186ca50f59a14cb18d417e"
+  resolved "git+https://github.com/ovh-ux/manager.git#97857aff1b809fe37457a4bd929367ea30dd1a84"
   dependencies:
     "@ovh-ux/ng-ovh-telecom-universe-components" "^3.0.9"
     bootstrap4 twbs/bootstrap#v4.0.0

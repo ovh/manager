@@ -29,6 +29,7 @@ import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
+import ovhManagerTelecomSpare from '@ovh-ux/manager-telecom-spare';
 
 import navbar from '../components/navbar';
 
@@ -89,6 +90,7 @@ angular.module('managerApp', [
   ovhManagerNavbar,
   ovhManagerOverTheBox,
   ovhManagerSms,
+  ovhManagerTelecomSpare,
   ovhManagerTelecomTask,
   'oui',
   'pascalprecht.translate',

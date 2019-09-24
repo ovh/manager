@@ -12,7 +12,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
 }).run((
   $sce, $translate,
   atInternet, FaxSidebar, OverTheBoxSidebar, PackSidebar,
-  SidebarMenu, SmsSidebar, TelecomMediator, TelephonySidebar,
+  SidebarMenu, SmsSidebar, SpareSidebar, TelecomMediator, TelephonySidebar,
   ORDER_URLS, REDIRECT_URLS,
 ) => {
   /*= =========================================
@@ -84,10 +84,13 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
       FaxSidebar.init();
     }
 
-    // add sidenar otb item
+    // add sidebar otb item
     if (count.overTheBox > 0) {
       OverTheBoxSidebar.init();
     }
+
+    // add sidebar spare item
+    SpareSidebar.init();
 
     // add sidebar task item
     addTaskSection();

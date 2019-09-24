@@ -43,5 +43,6 @@
   "telecom_sidebar_actions_menu_sms": "SMS",
   "telecom_sidebar_actions_menu_sms_hlr": "HLR",
   "telecom_sidebar_actions_menu_fax": "Fax",
-  "telecom_sidebar_load_error": "Oups, nous n'arrivons pas à charger vos services."
+  "telecom_sidebar_load_error": "Oups, nous n'arrivons pas à charger vos services.",
+  "telecom_sidebar_section_spare": "Spare"
 }
