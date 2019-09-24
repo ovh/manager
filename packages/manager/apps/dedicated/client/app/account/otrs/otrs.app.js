@@ -1,5 +1,13 @@
 angular
-  .module('Module.otrs', ['ovh-utils-angular', 'ngRoute', 'ui.bootstrap', 'Module.otrs.controllers', 'Module.otrs.directives', 'Module.otrs.services', 'Module.otrs.filters'])
+  .module('Module.otrs', [
+    'ngOvhUtils',
+    'ngRoute',
+    'ui.bootstrap',
+    'Module.otrs.controllers',
+    'Module.otrs.directives',
+    'Module.otrs.services',
+    'Module.otrs.filters',
+  ])
   .config(($stateProvider) => {
     $stateProvider.state('app.account.otrs-ticket', {
       url: '/ticket',

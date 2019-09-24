@@ -40,8 +40,6 @@ import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetime
 import 'angularjs-scroll-glue';
 import 'raphael';
 import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
-import 'script-loader!@ovh-ux/ovh-utils-angular/bin/ovh-utils-angular.min.js';
-import 'script-loader!@ovh-ux/ovh-utils-angular/lib/core.js';
 import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!ipaddr.js/ipaddr.min.js';
