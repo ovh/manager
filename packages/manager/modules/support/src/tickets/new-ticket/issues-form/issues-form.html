@@ -58,7 +58,8 @@
             </support-issues-selector>
         </div>
 
-        <div data-ng-if="$ctrl.issues && $ctrl.issues.length > 0 && ($ctrl.isUnknownService || $ctrl.service || $ctrl.services.length === 0)">
+        <div class="w-75"
+             data-ng-if="$ctrl.issues && $ctrl.issues.length > 0 && ($ctrl.isUnknownService || $ctrl.service || $ctrl.services.length === 0)">
             <oui-tile data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
                 <h2 data-translate="ovhManagerSupport_new_guides"
                     data-ng-if="$ctrl.guides.length">
