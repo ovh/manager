@@ -41,7 +41,7 @@ import 'angular-translate-loader-partial';
 import 'angular-translate-loader-pluggable';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
-import 'ovh-angular-simple-country-list';
+import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
 // Import styles
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -49,7 +49,6 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
-import 'ovh-angular-contact/dist/ovh-angular-contact.css';
 import 'leaflet/dist/leaflet.css';
 import 'ui-select/dist/select.css';
 import 'intl-tel-input/build/css/intlTelInput.css';
@@ -76,6 +75,7 @@ angular
     modemOrder,
     phones,
     phoneOrder,
+    ngOvhSimpleCountryList,
     'ngOvhContracts',
     'oui',
     'ngTranslateAsyncLoader',
@@ -86,7 +86,6 @@ angular
     'ui.bootstrap',
     'angular-translate-loader-pluggable',
     'ui.select',
-    'ovh-angular-simple-country-list',
   ])
   .constant('SPARE_BRAND', constant.SPARE_BRAND)
   .config(/* @ngInject */ ($stateProvider) => {

@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import '@uirouter/angularjs';
 import 'oclazyload';
-import 'ovh-angular-contact';
+import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
 import './phones-order.scss';
 
@@ -10,7 +10,7 @@ const moduleName = 'ovhManagerSpareOrderPhoneLazyLoading';
 
 angular
   .module(moduleName, [
-    'ovh-angular-contact',
+    ngOvhContact,
     'ui.router',
     'oc.lazyLoad',
     'ui.select',

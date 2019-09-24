@@ -1838,6 +1838,14 @@
     "@ovh-ux/ng-translate-async-loader" "^2.0.0"
     lodash "^4.17.14"
 
+"@ovh-ux/manager-telecom-spare@git+https://github.com/ovh-ux/manager.git#manager-telecom-spare":
+  version "0.0.0"
+  resolved "git+https://github.com/ovh-ux/manager.git#35166def10ba2fcf5d186ca50f59a14cb18d417e"
+  dependencies:
+    "@ovh-ux/ng-ovh-telecom-universe-components" "^3.0.9"
+    bootstrap4 twbs/bootstrap#v4.0.0
+    lodash "^4.17.15"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
@@ -1887,7 +1895,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-contact@4.0.2":
+"@ovh-ux/ng-ovh-contact@4.0.2", "@ovh-ux/ng-ovh-contact@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.2.tgz#9dace99c7bea1ad24356d0d72466339bdb800805"
   integrity sha512-KOYl8aaTF76v6/r1ulV3OOprxDuvliHNsYbOrzTXHYDFFahBqSiefpaSNCzKjvwQbtSvXBqVsW+6QS/mf8Jl8g==
@@ -11544,11 +11552,6 @@ ovh-angular-chatbot@^1.0.3:
     ovh-angular-user-pref "^0.3.1"
     ovh-ui-kit "git+https://github.com/ovh-ux/ovh-ui-kit.git"
 
-ovh-angular-contact@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ovh-angular-contact/-/ovh-angular-contact-3.0.0.tgz#66ea9cd39a8bb1f194872f7f40ff5303688523f2"
-  integrity sha1-Zuqc05qLsfGUhy9/QP9TA2iFI/I=
-
 ovh-angular-proxy-request@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-proxy-request/-/ovh-angular-proxy-request-0.1.0.tgz#36cc7cd5509fc85769b373e56019124d36bf0599"
@@ -11562,11 +11565,6 @@ ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
-
-ovh-angular-simple-country-list@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/ovh-angular-simple-country-list/-/ovh-angular-simple-country-list-0.0.9.tgz#6517645440a252ec626887141737f6835dbe378b"
-  integrity sha1-ZRdkVECiUuxiaIcUFzf2g12+N4s=
 
 ovh-angular-timeline@^1.5.2:
   version "1.5.2"
