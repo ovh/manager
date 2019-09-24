@@ -1,3 +1,12 @@
+## [10.35.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.2...@ovh-ux/manager-telecom@10.35.3) (2019-09-24)
+
+
+### Bug Fixes
+
+* avoid crash when user has a lot of services ([#1347](https://github.com/ovh-ux/manager/issues/1347)) ([a62f68b](https://github.com/ovh-ux/manager/commit/a62f68b))
+
+
+
 ## [10.35.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.1...@ovh-ux/manager-telecom@10.35.2) (2019-09-23)
 
 
