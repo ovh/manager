@@ -3615,10 +3615,6 @@ bootstrap-additions@~0.3.1:
   resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
   integrity sha1-mrl2wtiLmrdHw3bHV6gAMfLM+D4=
 
-bootstrap-datetimepicker@tarruda/bootstrap-datetimepicker#~0.0.11:
-  version "0.0.10"
-  resolved "https://codeload.github.com/tarruda/bootstrap-datetimepicker/tar.gz/c26217db8840e5aa8f56e343ce307581960543c9"
-
 bootstrap-tour@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/bootstrap-tour/-/bootstrap-tour-0.12.0.tgz#c56eb48debe9cf788378a20184ef5a761b13b650"
