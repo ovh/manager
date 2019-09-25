@@ -1,5 +1,6 @@
 import identity from 'lodash/identity';
 import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 
 angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
   '$scope',
@@ -66,7 +67,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
           $scope.user = pick(response, fieldNames.concat('customerCode'));
 
           // remove empty attributes
-          $scope.user = pick($scope.user, identity);
+          $scope.user = pickBy($scope.user, identity);
 
           // juste in case birthday date is retrieved in legacy format
           // we nullify it so we don't break the first call to /rules

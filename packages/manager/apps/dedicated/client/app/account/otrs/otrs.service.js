@@ -1,5 +1,5 @@
 import identity from 'lodash/identity';
-import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import set from 'lodash/set';
 
 angular
@@ -64,7 +64,7 @@ angular
         }
         return OvhHttp.get('/support/tickets', {
           rootPath: 'apiv6',
-          params: pick(filters, identity),
+          params: pickBy(filters, identity),
         });
       };
 
