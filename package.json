@@ -11,7 +11,7 @@
     "packages/manager/tools/*"
   ],
   "scripts": {
-    "build": "lerna run build --stream",
+    "build": "node --experimental-worker scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
     "clean:dist": "npx rimraf packages/**/dist",
     "docs:update-readme": "scripts/update-readme",
