@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import lowerCase from 'lodash/lowerCase';
 import map from 'lodash/map';
 import omit from 'lodash/omit';
 import pickBy from 'lodash/pickBy';
@@ -119,6 +120,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     }
     const modified = assign(self.directory, self.directoryForm);
     self.isUpdating = true;
+
+    // the "address" field is not allowed for "be" only
+    if (lowerCase(modified.country) === 'be') {
+      delete modified.address;
+    }
+
     return OvhApiTelephony.Service().v6().changeDirectory({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
