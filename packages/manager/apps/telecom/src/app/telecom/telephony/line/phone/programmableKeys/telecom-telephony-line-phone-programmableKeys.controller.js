@@ -1,8 +1,14 @@
+import cloneDeep from 'lodash/cloneDeep';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
+
+import {
+  ALPHA_NUMERIC_REGEXP,
+  COMPLEX_NUMERIC_REGEXP,
+} from './telecom-telephony-line-phone-programmableKeys.constants';
 
 export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   /* @ngInject */
@@ -91,11 +97,29 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
     return this.line.getPhone().then(() => {
       if (this.line.hasPhone) {
         return this.line.phone.initDeffered().then(() => {
-          this.functionKeys.raw = angular.copy(this.line.phone.functionKeys);
+          this.functionKeys.raw = cloneDeep(this.line.phone.functionKeys);
+          this.functionKeys.raw.sort(this.constructor.sortFunctionKeys);
         });
       }
       return null;
     });
+  }
+
+  static sortFunctionKeys(functionKeyA, functionKeyB) {
+    const [alphaA, numericA] = functionKeyA.label.match(ALPHA_NUMERIC_REGEXP);
+    const [alphaB, numericB] = functionKeyB.label.match(ALPHA_NUMERIC_REGEXP);
+    if (alphaA === alphaB) {
+      const [numericA1, numericA2] = numericA.match(COMPLEX_NUMERIC_REGEXP);
+      const [numericB1, numericB2] = numericB.match(COMPLEX_NUMERIC_REGEXP);
+
+      if (numericA1 === numericB1) {
+        return parseInt(numericA2, 10) > parseInt(numericB2, 10) ? 1 : -1;
+      }
+
+      return parseInt(numericA, 10) > parseInt(numericB, 10) ? 1 : -1;
+    }
+
+    return alphaA > alphaB ? 1 : -1;
   }
 
   /* ===========================
