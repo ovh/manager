@@ -7,6 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         xdslId: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        openedRMAs: /* @ngInject */ (
+          XdslAccessComfortExchangeService,
+          xdslId,
+        ) => XdslAccessComfortExchangeService.getOpenedRMAs(xdslId),
       },
       translations: { value: ['..', '.'], format: 'json' },
     });

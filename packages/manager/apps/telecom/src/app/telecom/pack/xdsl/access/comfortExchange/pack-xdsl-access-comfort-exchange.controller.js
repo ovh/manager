@@ -28,40 +28,36 @@ export default class XdslAccessComfortExchangeCtrl {
       isSuccess: false,
     };
     this.isAvailable = false;
-    this.getListOpenedRMA();
+
+    this.isRMAOpened = false;
+    if (this.openedRMAs) {
+      this.getListOpenedRMA();
+      this.isRMAOpened = true;
+    }
   }
 
   getListOpenedRMA() {
-    this.isRMAOpened = false;
-    return this.OvhApiXdsl.RMA()
-      .v6()
-      .query({
-        xdslId: this.xdslId,
-      })
-      .$promise.then((rmas) => {
-        if (rmas.length > 0) {
-          this.rmas = [];
-          this.isRMAOpened = true;
-          rmas.forEach(id => this.OvhApiXdsl.RMA()
-            .v6()
-            .get(
-              {
-                xdslId: this.xdslId,
-              },
-              { id },
-            )
-            .$promise.then((rma) => {
-              const addRma = {
-                creationDateTime: rma.creationDatetime,
-                equipmentReference: rma.equipmentReference,
-                id: rma.id,
-                newMerchandise: rma.newMerchandise,
-                status: rma.status,
-              };
-              this.rmas.push(addRma);
-            }));
-        }
-      });
+    if (this.openedRMAs.length > 0) {
+      this.rmas = [];
+      this.openedRMAs.forEach(id => this.OvhApiXdsl.RMA()
+        .v6()
+        .get(
+          {
+            xdslId: this.xdslId,
+          },
+          { id },
+        )
+        .$promise.then((rma) => {
+          const addRma = {
+            creationDateTime: rma.creationDatetime,
+            equipmentReference: rma.equipmentReference,
+            id: rma.id,
+            newMerchandise: rma.newMerchandise,
+            status: rma.status,
+          };
+          this.rmas.push(addRma);
+        }));
+    }
   }
 
   comfortExchange() {

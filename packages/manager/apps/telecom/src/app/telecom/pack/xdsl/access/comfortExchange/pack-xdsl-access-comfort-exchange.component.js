@@ -4,6 +4,7 @@ import template from './pack-xdsl-access-comfort-exchange.html';
 export default {
   bindings: {
     xdslId: '<',
+    openedRMAs: '<',
   },
   controller,
   template,
