@@ -2082,11 +2082,6 @@
     filesize "^3.6.1"
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-web-universe-components@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-4.0.3.tgz#ec5062cda160524a20d864635c67fceffcc0e770"
-  integrity sha512-1QKe9j283R3kENalTA6hvkkAyVRQJh6FT9wpJjBp4OPF/gTma0EvDBk2hYbXk45AlJUscCjB+8zoBLksO5rgMA==
-
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0-alpha.0.tgz#fd84086d04068734cebb2a3e216a8db9116a0d7b"
@@ -2133,11 +2128,6 @@
   integrity sha512-ynw1xi7AVI/K7Bg6qFO/ApnrSyrr0g4YduWd9fRRZ4H6eUpJUlu3T/SibTzJ/5nyKyg1BnFH/wlB2SEF0Oplpw==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ovh-utils-angular@^13.0.4":
-  version "13.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-13.0.4.tgz#3acf47e4723ab7292f06bc38bf5b4085e66e7916"
-  integrity sha512-om8qsxySKMlYAIMIX/fp665sVxDRLFFTNFtnp5xcuq9sPKYaF6aGFOmxoNd063DUXiWx2fnUGoUiVCRU+b+txw==
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.1":
   version "1.0.1"
@@ -3624,10 +3614,6 @@ bootstrap-additions@~0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
   integrity sha1-mrl2wtiLmrdHw3bHV6gAMfLM+D4=
-
-bootstrap-datetimepicker@tarruda/bootstrap-datetimepicker#~0.0.11:
-  version "0.0.10"
-  resolved "https://codeload.github.com/tarruda/bootstrap-datetimepicker/tar.gz/c26217db8840e5aa8f56e343ce307581960543c9"
 
 bootstrap-tour@^0.12.0:
   version "0.12.0"

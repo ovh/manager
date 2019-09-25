@@ -24,7 +24,7 @@ angular
     'ngSanitize',
     orders,
     ngOvhExportCsv,
-    'ovh-utils-angular',
+    'ngOvhUtils',
     sla,
     termination,
     'ui.bootstrap',
