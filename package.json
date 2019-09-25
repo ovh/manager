@@ -32,7 +32,6 @@
     "@commitlint/config-angular": "^7.6.0",
     "@ovh-ux/codename-generator": "^1.0.0",
     "babel-eslint": "^8.2.6",
-    "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "concat-stream": "^2.0.0",
     "conventional-changelog-cli": "^2.0.23",
