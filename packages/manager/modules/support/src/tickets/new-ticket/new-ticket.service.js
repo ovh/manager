@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export const name = 'SupportNewTicketService';
 
 export const definition = class SupportNewTicketService {
@@ -28,6 +30,22 @@ export const definition = class SupportNewTicketService {
 
   getSupportLevel() {
     return this.OvhApiMe.v6().supportLevel().$promise;
+  }
+
+  createTicket(issue, subject, serviceName, urgency) {
+    let body = '';
+    body += `${issue.subject}\n`;
+    issue.fields.forEach((field) => {
+      body += `${field.label}\n${field.default}\n`;
+    });
+    body += '\n';
+    return this.OvhApiSupport.v6().createTickets({}, {
+      issueTypeId: issue.id,
+      serviceName,
+      subject,
+      body,
+      urgency: get(urgency, 'id'),
+    }).$promise;
   }
 };
 

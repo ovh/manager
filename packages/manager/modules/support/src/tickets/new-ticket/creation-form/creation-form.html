@@ -22,7 +22,7 @@
                class="oui-input" />
     </oui-field>
 
-    <oui-field data-ng-repeat="field in $ctrl.getLastIssue().fields track by field.id"
+    <oui-field data-ng-repeat="field in $ctrl.issue.fields track by field.id"
                data-label="{{ field.label }}"
                data-size="xl">
         <input type="text"

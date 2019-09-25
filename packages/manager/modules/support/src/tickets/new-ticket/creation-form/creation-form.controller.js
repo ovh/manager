@@ -1,5 +1,4 @@
-import findLast from 'lodash/findLast';
-import last from 'lodash/last';
+import get from 'lodash/get';
 
 export default class SupportNewCreationFormController {
   /* @ngInject */
@@ -20,12 +19,7 @@ export default class SupportNewCreationFormController {
   }
 
   get subject() {
-    const issue = findLast(this.issues, 'subject');
-    return issue ? issue.subject : undefined;
-  }
-
-  getLastIssue() {
-    return last(this.issues);
+    return get(this.issue, 'subject');
   }
 
   shouldSelectUrgency() {
@@ -36,7 +30,7 @@ export default class SupportNewCreationFormController {
     this.onSubmit({
       result: {
         isSuccess,
-        issues: this.issues,
+        issue: this.issue,
         subject: this.subject || this.customSubject,
         urgency: this.urgency,
       },

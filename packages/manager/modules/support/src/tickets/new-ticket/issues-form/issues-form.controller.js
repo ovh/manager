@@ -1,6 +1,5 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
-import last from 'lodash/last';
 import orderBy from 'lodash/orderBy';
 
 export default class SupportNewIssuesFormController {
@@ -21,14 +20,17 @@ export default class SupportNewIssuesFormController {
     this.OvhApiSupport = OvhApiSupport;
     this.OvhApiMe = OvhApiMe;
     this.SupportNewTicketService = SupportNewTicketService;
-    this.categories = null;
-    this.serviceTypes = null;
-    this.services = [];
-    this.issues = null;
   }
 
   $onInit() {
-    this.loading = true;
+    this.categories = null;
+    this.serviceTypes = null;
+    this.services = [];
+    this.category = null;
+    this.serviceType = null;
+    this.issue = null;
+    this.issueParams = null;
+    this.isLoading = true;
     return this.$q.all({
       categories: this.SupportNewTicketService.getCategories(),
       serviceTypes: this.OvhApiSupport.v6().getServiceTypes().$promise,
@@ -41,26 +43,41 @@ export default class SupportNewIssuesFormController {
       }));
       this.serviceTypes = orderBy(this.serviceTypes, [type => (type.label || '').toLowerCase()]);
     }).finally(() => {
-      this.loading = false;
+      this.isLoading = false;
     });
   }
 
   get guides() {
-    return filter(get(last(this.issues), 'selfCareResources'), { type: 'guide' });
+    return filter(get(this.issue, 'selfCareResources'), { type: 'guide' });
   }
 
   get tips() {
-    return filter(get(last(this.issues), 'selfCareResources'), { type: 'tip' });
+    return filter(get(this.issue, 'selfCareResources'), { type: 'tip' });
   }
 
   onCategoryChange() {
-    this.issues = null;
     this.serviceType = null;
-    this.fetchServices();
+    this.service = null;
+    this.isUnknownService = false;
+    this.issue = null;
+    if (this.category.id === 'account') {
+      this.issueParams = {
+        category: this.category,
+        serviceType: undefined,
+      };
+    } else {
+      this.issueParams = null;
+    }
   }
 
   onServiceTypeChange() {
-    this.issues = null;
+    this.service = null;
+    this.isUnknownService = false;
+    this.issue = null;
+    this.issueParams = {
+      category: this.category,
+      serviceType: this.serviceType,
+    };
     this.fetchServices();
   }
 
@@ -75,11 +92,7 @@ export default class SupportNewIssuesFormController {
     if (checked) {
       this.service = null;
     }
-    this.issues = null;
-  }
-
-  onIssues(issues) {
-    this.issues = issues;
+    this.issue = null;
   }
 
   fetchServices() {
@@ -87,7 +100,7 @@ export default class SupportNewIssuesFormController {
     this.service = null;
     this.isUnknownService = false;
     this.services = null;
-    this.issues = null;
+    this.issue = null;
     return this.OvhApiService.Aapi().query({
       type: this.serviceType.route,
       external: false,
@@ -100,7 +113,7 @@ export default class SupportNewIssuesFormController {
     this.onSubmit({
       result: {
         isSuccess,
-        issues: this.issues,
+        issue: this.issue,
         category: this.category,
         serviceType: this.serviceType,
         service: this.service,
