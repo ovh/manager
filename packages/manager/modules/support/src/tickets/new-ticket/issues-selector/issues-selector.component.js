@@ -5,10 +5,8 @@ export default {
   bindings: {
     category: '<',
     serviceType: '<',
-    rank: '<',
-    root: '<',
-    parent: '<',
-    onIssues: '&',
+    parentIssue: '<',
+    issue: '=',
   },
   controller,
   name: 'supportIssuesSelector',

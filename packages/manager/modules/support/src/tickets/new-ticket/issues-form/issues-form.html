@@ -2,12 +2,12 @@
       name="supportNewIssuesForm">
 
     <div class="text-center">
-        <oui-spinner data-ng-if="$ctrl.loading"
+        <oui-spinner data-ng-if="$ctrl.isLoading"
                      data-size="l">
         </oui-spinner>
     </div>
 
-    <div data-ng-if="!$ctrl.loading">
+    <div data-ng-if="!$ctrl.isLoading">
         <oui-field data-label="{{:: 'ovhManagerSupport_new_category' | translate }}"
                    data-size="xl">
             <oui-select name="category"
@@ -49,17 +49,16 @@
             </oui-checkbox>
         </oui-field>
 
-        <div data-ng-if="$ctrl.isUnknownService || $ctrl.service || $ctrl.category.id === 'account'">
+        <div data-ng-if="$ctrl.issueParams && ($ctrl.isUnknownService || $ctrl.service || $ctrl.category.id === 'account')">
             <support-issues-selector
-                data-root="true"
-                data-category="$ctrl.category"
-                data-service-type="$ctrl.serviceType"
-                data-on-issues="$ctrl.onIssues(issues)">
+                data-category="$ctrl.issueParams.category"
+                data-service-type="$ctrl.issueParams.serviceType"
+                data-issue="$ctrl.issue">
             </support-issues-selector>
         </div>
 
         <div class="w-75"
-             data-ng-if="$ctrl.issues && $ctrl.issues.length > 0 && ($ctrl.isUnknownService || $ctrl.service || $ctrl.services.length === 0)">
+             data-ng-if="$ctrl.issue">
             <oui-tile data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
                 <h2 data-translate="ovhManagerSupport_new_guides"
                     data-ng-if="$ctrl.guides.length">

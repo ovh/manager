@@ -3,7 +3,7 @@ import template from './creation-form.html';
 
 export default {
   bindings: {
-    issues: '<',
+    issue: '<',
     onSubmit: '&',
   },
   controller,
