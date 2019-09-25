@@ -14,7 +14,7 @@
     "build": "lerna run build --stream",
     "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
     "clean:dist": "npx rimraf packages/**/dist",
-    "docs:update-readme": "scripts/update-readme",
+    "docs:update-readme": "scripts/update-readme.js",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
     "lint:html": "htmlhint 'packages/**/*.html'",
