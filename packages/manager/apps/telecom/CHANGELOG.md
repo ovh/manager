@@ -1,3 +1,12 @@
+## [10.35.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.3...@ovh-ux/manager-telecom@10.35.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **telecom.pack.xdsl.modem.port:** send correct value to API ([#1362](https://github.com/ovh-ux/manager/issues/1362)) ([2b912d4](https://github.com/ovh-ux/manager/commit/2b912d4))
+
+
+
 ## [10.35.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.2...@ovh-ux/manager-telecom@10.35.3) (2019-09-24)
 
 
