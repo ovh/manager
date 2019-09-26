@@ -1,0 +1,18 @@
+{
+  "veeam_tiles_shortcut_title": "Atajos",
+  "veeam_tiles_shortcut_label_add_storage": "Añadir espacio de almacenamiento",
+  "veeam_tiles_shortcut_label_change_offer": "Aumentar el plan",
+  "veeam_tiles_configuration_title": "Configuración",
+  "veeam_tiles_configuration_label_name": "Nombre",
+  "veeam_tiles_configuration_label_offer": "Offre",
+  "veeam_tiles_configuration_label_stockage_number": "No. de espacios de almacenamiento",
+  "veeam_tiles_configuration_label_vm_count": "No. de VM",
+  "veeam_tiles_configuration_label_datacenter": "Centro de datos",
+  "veeam_tiles_subscription_title": "Pago",
+  "veeam_tiles_subscription_label_renewal_date": "Renouvellement automatique",
+  "veeam_tiles_subscription_label_renewal_renew_link": "Gestionar",
+  "veeam_tiles_subscription_label_renewal_warning": "Su servicio se desactivará dentro de {{remainingDays}} días.",
+  "veeam_tiles_subscription_label_renewal_warning_link": "Aumentar el plan",
+  "veeam_tiles_subscription_label_creation_date": "Fecha de creación",
+  "veeam_message_product_disabled": "Su servicio está desactivado porque la demo ha caducado."
+}

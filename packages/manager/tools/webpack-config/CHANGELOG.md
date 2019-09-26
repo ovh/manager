@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.2.0...@ovh-ux/manager-webpack-config@3.2.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* avoid duplicating runtime in each chunk ([f60de5f](https://github.com/ovh-ux/manager/commit/f60de5f))
+
+
+
 # [3.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.3...@ovh-ux/manager-webpack-config@3.2.0) (2019-08-13)
 
 

@@ -1,17 +1,8 @@
 {
-  "extends": "../../../../.eslintrc.js",
-  "plugins": ["angular"],
-  "env": {
-    "browser": true,
-    "jasmine": true,
-    "mocha": true,
-    "jquery": true,
-    "angular/mocks": true
-  },
   "globals": {
+    "__NG_APP_INJECTIONS__": true,
+    "__WEBPACK_REGION__": true,
     "_": true,
-    "angular": true,
-    "Chart": true,
     "EprotectIframeClient": true,
     "ipaddr": true,
     "JSURL": true,
@@ -20,12 +11,7 @@
     "RandExp": true,
     "URI": true,
     "validator": true,
-    "zE": true,
     "WEBPACK_ENV": true,
-    "__WEBPACK_REGION__": true,
-    "__NG_APP_INJECTIONS__": true
-  },
-  "rules": {
-    "no-bitwise": ["error", { "allow": ["~"] }]
+    "zE": true
   }
 }

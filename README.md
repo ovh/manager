@@ -46,6 +46,7 @@ yarn install
 
 | Package | Changelog |
 | ------- | :-------: |
+| [@ovh-ux/manager-cloud](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/cloud) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/cloud/CHANGELOG.md) |
 | [@ovh-ux/manager-dedicated](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/dedicated) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/dedicated/CHANGELOG.md) |
 | [@ovh-ux/manager-freefax-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/freefax) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/freefax/CHANGELOG.md) |
 | [@ovh-ux/manager-overthebox-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/overthebox) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/overthebox/CHANGELOG.md) |

@@ -1,0 +1,21 @@
+{
+  "iplb_home_tile_status": "Estado",
+  "iplb_home_tile_status_frontends": "{{number}} Frontends",
+  "iplb_home_tile_status_farms": "{{number}} Granjas de servidores",
+  "iplb_home_tile_status_servers": "{{number}} Servidores",
+  "iplb_home_tile_usage": "Utilisation",
+  "iplb_home_tile_graph": "Graphiques",
+  "iplb_home_tile_infos": "Información",
+  "iplb_home_tile_infos_ipv4": "IPv4",
+  "iplb_home_tile_infos_ipv6": "IPv6",
+  "iplb_home_tile_infos_ip_failover": "IP Failover",
+  "iplb_home_tile_infos_ip_outbound": "IPv4 de salida",
+  "iplb_home_tile_configuration": "Configuración",
+  "iplb_home_tile_configuration_name": "Nombre",
+  "iplb_home_tile_configuration_quota_max": "Cuota mensual",
+  "iplb_home_tile_configuration_quota_alert": "Umbral de alerta",
+  "iplb_home_tile_configuration_quota_unlimited": "Ilimitado",
+  "iplb_home_tile_configuration_quota_cipher": "Ciphers",
+  "iplb_home_tile_configuration_quota_datacenter": "Zonas de disponibilidad",
+  "iplb_home_tile_configuration_private_network": "Réseaux privés"
+}

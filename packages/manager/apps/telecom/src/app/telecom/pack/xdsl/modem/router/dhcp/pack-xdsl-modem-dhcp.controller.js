@@ -54,7 +54,7 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
 
     function init() {
       self.loader = true;
-      this.isDNSValid = true;
+      self.isDNSValid = true;
       return OvhApiXdsl.Modem().Lan().Dhcp().Aapi()
         .query({
           xdslId: $stateParams.serviceName,

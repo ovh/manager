@@ -31,6 +31,7 @@ import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ovhManagerTelecomSpare from '@ovh-ux/manager-telecom-spare';
 
+import TelecomAppCtrl from './app.controller';
 import navbar from '../components/navbar';
 
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -316,4 +317,5 @@ angular.module('managerApp', [
       removeHook();
     });
   })
-  .run(/* @ngTranslationsInject:json ./common/translations */);
+  .run(/* @ngTranslationsInject:json ./common/translations */)
+  .controller('TelecomAppCtrl', TelecomAppCtrl);

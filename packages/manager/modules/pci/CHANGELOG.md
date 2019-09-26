@@ -1,3 +1,20 @@
+# [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.0.2...@ovh-ux/manager-pci@2.1.0) (2019-09-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 66] ([0293e43](https://github.com/ovh-ux/manager/commit/0293e43))
+* **i18n:** add missing translations [CDS 72] ([b004ad8](https://github.com/ovh-ux/manager/commit/b004ad8))
+* **i18n:** add missing translations [CDS 73] ([4094aa6](https://github.com/ovh-ux/manager/commit/4094aa6))
+* **rclone-modal-text:** change rclone text ([#1128](https://github.com/ovh-ux/manager/issues/1128)) ([af01198](https://github.com/ovh-ux/manager/commit/af01198))
+
+
+### Features
+
+* **pci:** add ipv6 gateway ([#1288](https://github.com/ovh-ux/manager/issues/1288)) ([67f37e2](https://github.com/ovh-ux/manager/commit/67f37e2))
+
+
+
 ## [2.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.0.1...@ovh-ux/manager-pci@2.0.2) (2019-09-10)
 
 

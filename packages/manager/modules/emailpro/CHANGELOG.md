@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.3...@ovh-ux/manager-emailpro@1.1.4) (2019-09-19)
+
+
+### Bug Fixes
+
+* **emailpro:** reinit an account works now correctly ([#1300](https://github.com/ovh-ux/manager/issues/1300)) ([fe1ec32](https://github.com/ovh-ux/manager/commit/fe1ec32))
+
+
+
 ## [1.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.2...@ovh-ux/manager-emailpro@1.1.3) (2019-09-03)
 
 

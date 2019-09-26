@@ -1,0 +1,11 @@
+{
+  "nasha_custom_snapshot_of": "Snapshot de la partición {{partitionName}}",
+  "nasha_custom_snapshot_modal_title": "Snapshot en tiempo real",
+  "nasha_custom_snapshot_modal_success": "El snapshot se creará en unos instantes.",
+  "nasha_custom_snapshot_modal_fail": "Se ha producido un error al modificar las frecuencias de snapshot.",
+  "nasha_custom_snapshot_modal_informations": "Un snapshot es un cliché instantáneo, que registra el estado de su NAS-HA en el momento preciso en que es realizado.",
+  "nasha_custom_snapshot_modal_informations_size": "Los snapshots utilizan espacio de su partición para funcionar correctamente.",
+  "nasha_custom_snapshot_modal_label_snapshot_name": "Etiqueta del snapshot",
+  "nasha_custom_snapshot_modal_fail_snapshot_name_length": "La etiqueta del snapshot no puede contener más de {{ maxlength }} caracteres.",
+  "nasha_custom_snapshot_modal_fail_snapshot_name_required": "La etiqueta del snapshot es obligatoria."
+}

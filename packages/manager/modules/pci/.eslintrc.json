@@ -1,9 +1,7 @@
 {
-  "extends": "../../../../.eslintrc.js",
   "globals": {
     "__FEEDBACK_URL_EN__": true,
     "__FEEDBACK_URL_FR__": true,
-    "JSURL": true,
     "moment": true
   }
 }

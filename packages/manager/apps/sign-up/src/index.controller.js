@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 
-import { HOME_PAGE } from './constants';
+import {
+  HOME_PAGE,
+  OVH_LOGO,
+} from './constants';
 
 export default class SignUpCtrl {
   /* @ngInject */
@@ -10,6 +13,7 @@ export default class SignUpCtrl {
 
     // other attributes used in view
     this.logoUrl = null;
+    this.logoSrc = OVH_LOGO;
   }
 
   /* ============================

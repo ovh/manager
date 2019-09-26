@@ -1,9 +1,10 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
-import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
-import ngOvhMondialRelay from '@ovh-ux/ng-ovh-mondial-relay';
+import '@ovh-ux/ng-ovh-mondial-relay';
 import '@ovh-ux/ng-ovh-contracts';
+import '@ovh-ux/ng-ovh-simple-country-list';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -16,7 +17,6 @@ import 'angular-translate-loader-partial';
 import 'angular-translate-loader-pluggable';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
-import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import 'ovh-ui-kit/dist/oui.css';
@@ -43,12 +43,12 @@ const moduleName = 'ovhManagerTelecomSpare';
 angular
   .module(moduleName, [
     modems,
-    ngOvhMondialRelay,
-    ngOvhTelecomUniverseComponents,
+    'ngOvhMondialRelay',
+    'ngOvhTelecomUniverseComponents',
     modemOrder,
     phones,
     phoneOrder,
-    ngOvhSimpleCountryList,
+    'ngOvhSimpleCountryList',
     'ngOvhContracts',
     'oui',
     'ngTranslateAsyncLoader',
@@ -64,8 +64,10 @@ angular
   .filter('formatModemBrandFilter', formatModemBrandFilter)
   .filter('formatPhoneBrandFilter', formatPhoneBrandFilter)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($transitions, $translate) => {
-    $transitions.onBefore({ to: 'spare.**' }, () => $translate.refresh());
-  });
+  .run(
+    /* @ngInject */ ($transitions, $translate) => {
+      $transitions.onBefore({ to: 'spare.**' }, () => $translate.refresh());
+    },
+  );
 
 export default moduleName;

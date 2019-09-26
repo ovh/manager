@@ -95,7 +95,6 @@ angular
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
     ngTailLogs,
-    'ovh-utils-angular',
     'ovhBrowserAlert',
     ovhContacts,
     ovhManagerBanner,

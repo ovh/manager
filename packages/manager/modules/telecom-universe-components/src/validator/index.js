@@ -3,7 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import reduce from 'lodash/reduce';
 import punycode from 'punycode';
-import validator from 'validator-js';
+import validator from 'validator';
 
 const moduleName = 'tucValidator';
 

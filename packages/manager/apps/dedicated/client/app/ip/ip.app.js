@@ -1,5 +1,13 @@
 angular
-  .module('Module.ip', ['ovh-utils-angular', 'ngRoute', 'ui.bootstrap', 'ngSanitize', 'Module.ip.controllers', 'Module.ip.services', 'Module.ip.filters'])
+  .module('Module.ip', [
+    'Module.ip.controllers',
+    'Module.ip.filters',
+    'Module.ip.services',
+    'ngOvhUtils',
+    'ngRoute',
+    'ngSanitize',
+    'ui.bootstrap',
+  ])
   .config([
     '$stateProvider',
     ($stateProvider) => {

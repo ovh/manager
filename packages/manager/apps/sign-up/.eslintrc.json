@@ -1,5 +1,4 @@
 {
-  "extends": "../../../../.eslintrc.js",
   "globals": {
     "__NG_APP_INJECTIONS__": true,
     "__WEBPACK_REGION__": true
