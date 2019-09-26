@@ -1,3 +1,12 @@
+## [10.35.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.4...@ovh-ux/manager-telecom@10.35.5) (2019-09-26)
+
+
+### Bug Fixes
+
+* **telecom:** avoid products loading in navbar ([#1370](https://github.com/ovh-ux/manager/issues/1370)) ([1dbe436](https://github.com/ovh-ux/manager/commit/1dbe436))
+
+
+
 ## [10.35.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.3...@ovh-ux/manager-telecom@10.35.4) (2019-09-26)
 
 
