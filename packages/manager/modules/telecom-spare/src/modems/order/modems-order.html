@@ -1,7 +1,7 @@
 <div class="telecom-spare-modems-order-section">
     <header>
         <tuc-section-back-link data-tuc-section-back-link-to-state="spare.modems"
-                            data-tuc-section-back-link-title="{{ ::'modems_order_back_link' | translate }}">
+            data-tuc-section-back-link-title="{{ ::'modems_order_back_link' | translate }}">
         </tuc-section-back-link>
         <h1 data-translate="modems_order_new_modem_title"></h1>
     </header>
@@ -13,38 +13,37 @@
         <div class="row">
             <div class="col">
                 <!-- ORDER -->
-                <section class="widget-presentation"
-                         data-ng-if="$ctrl.order.orderURL">
+                <section class="widget-presentation" data-ng-if="$ctrl.order.orderURL">
                     <h2 class="widget-presentation-title" data-translate="modems_order_shipping_title"></h2>
                     <div class="alert alert-success" role="alert" data-translate="modem_order_order_success"></div>
                     <p>
                         <a target="_blank" class="oui-button oui-button_primary" rel="noopener"
                             data-ng-href="{{:: $ctrl.order.orderURL }}">
                             <span data-translate="modem_order_order_url"></span>
-                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
                         </a>
                     </p>
                 </section>
 
                 <!-- SHIPPING CONTACT AND MODEM SELECTION -->
                 <section class="widget-presentation"
-                        data-ng-if="$ctrl.orderStep === 'modem_and_shipping' && !$ctrl.order.success">
+                    data-ng-if="$ctrl.orderStep === 'modem_and_shipping' && !$ctrl.order.success">
                     <div class="row">
                         <div class="col-sm-6">
                             <h2 class="widget-presentation-title" data-translate="modems_order_shipping_title"></h2>
                             <div>
                                 <h3 data-translate="modems_order_contact_shipping_title"></h3>
                                 <ovh-contact data-ng-model="$ctrl.order.contact"
-                                                data-ovh-contact-choice-options="$ctrl.contactChoiceOptions"
-                                                data-ovh-contact-init-deferred="$ctrl.contactDeferred">
+                                    data-ovh-contact-choice-options="$ctrl.contactChoiceOptions"
+                                    data-ovh-contact-init-deferred="$ctrl.contactDeferred">
                                     <oui-spinner></oui-spinner>
                                 </ovh-contact>
                             </div>
                             <div>
                                 <h3 data-translate="modems_order_shipping_mode_title"></h3>
                                 <tuc-shipping-mode-selection data-ng-model="$ctrl.order.shipping.mode"
-                                                            data-tuc-shipping-mode-selection-relay="$ctrl.order.shipping.relay"
-                                                            data-tuc-shipping-mode-selection-options="$ctrl.order.shipping.options">
+                                    data-tuc-shipping-mode-selection-relay="$ctrl.order.shipping.relay"
+                                    data-tuc-shipping-mode-selection-options="$ctrl.order.shipping.options">
                                 </tuc-shipping-mode-selection>
                             </div>
                         </div>
@@ -53,8 +52,11 @@
                             <div>
                                 <h3 data-translate="modems_order_select_title"></h3>
                                 <select class="form-control" data-ng-model="$ctrl.order.brand">
-                                    <option data-ng-repeat="brand in $ctrl.brands" value="{{brand.id}}">{{brand.name}}</option>
+                                    <option data-ng-repeat="brand in $ctrl.brands" value="{{brand.id}}">{{brand.name}}
+                                    </option>
                                 </select>
+                                <oui-select data-name="brand" data-model="$ctrl.order.brand" data-items="$ctrl.brands">
+                                </oui-select>
                                 <div>
                                     <label data-translate="modems_order_select_quantity"></label>
                                     <oui-numeric data-model="$ctrl.quantity" data-max="50"></oui-numeric>
@@ -62,18 +64,16 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button"
-                            class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
-                            data-ng-disabled="($ctrl.quantity === 0) || !$ctrl.order.brand || !$ctrl.order.contact || ($ctrl.order.shipping.mode === 'mondialRelay' && !$ctrl.order.shipping.relay)"
-                            data-ng-click="$ctrl.changeStep('summary')">
+                    <button type="button" class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
+                        data-ng-disabled="($ctrl.quantity === 0) || !$ctrl.order.brand || !$ctrl.order.contact || ($ctrl.order.shipping.mode === 'mondialRelay' && !$ctrl.order.shipping.relay)"
+                        data-ng-click="$ctrl.changeStep('summary')">
                         <span data-translate="modems_order_order_next"></span>
                         <i class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></i>
                     </button>
                 </section>
 
                 <!-- SUMMARY -->
-                <section class="widget-presentation"
-                         data-ng-if="$ctrl.orderStep === 'summary'">
+                <section class="widget-presentation" data-ng-if="$ctrl.orderStep === 'summary'">
                     <h2 class="widget-presentation-title" data-translate="modems_order_summary_title"></h2>
 
                     <div class="text-center" data-ng-if="$ctrl.isStepLoading">
@@ -84,71 +84,58 @@
 
                         <!-- PRICE SUMMARY TABLE -->
                         <h3 data-translate="modems_order_summary"></h3>
-                        <div class="table-responsive">
-                            <table class="table"
-                                    data-ng-class="{
-                                        'table-hover table-striped': $ctrl.order.summary.details.length > 1
-                                    }">
-                                <thead>
+                        <div class="oui-datagrid-responsive-container">
+                            <table class="oui-datagrid">
+                                <thead class="oui-datagrid__headers">
                                     <tr>
-                                        <th scope="col"
-                                            data-translate="modems_order_table_description">
+                                        <th class="oui-datagrid__header"
+                                            data-translate="modems_order_table_description"></th>
+                                        <th class="oui-datagrid__header text-sm-right"
+                                            data-translate="modems_order_table_unit_price">
                                         </th>
-                                        <th scope="col"
-                                            class="text-sm-right"
-                                            data-translate="modems_order_table_unit_price"
-                                            style="width:25%;">
+                                        <th class="oui-datagrid__header text-sm-right"
+                                            data-translate="modems_order_table_quantity">
                                         </th>
-                                        <th scope="col"
-                                            class="text-sm-right"
-                                            data-translate="modems_order_table_quantity"
-                                            style="width:12%;">
-                                        </th>
-                                        <th scope="col"
-                                            class="text-sm-right"
-                                            data-translate="modems_order_table_total"
-                                            style="width:15%;">
-                                        </th>
+                                        <th class="oui-datagrid__header text-sm-right"
+                                            data-translate="modems_order_table_total"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-ng-repeat="detail in $ctrl.order.summary.details track by $index">
-                                        <th scope="row"
-                                            data-ng-bind="detail.description">
-                                        </th>
-                                        <td class="text-sm-right text-price font-weight-bold"
+                                    <tr class="oui-datagrid__row"
+                                        data-ng-repeat="detail in $ctrl.order.summary.details track by $index">
+                                        <td class="oui-datagrid__cell" data-ng-bind="detail.description"></td>
+                                        <td class="oui-datagrid__cell text-sm-right text-price font-weight-bold"
                                             data-ng-bind="detail.unitPrice.text">
                                         </td>
-                                        <td class="text-sm-right"
-                                            data-ng-bind="detail.quantity">
+                                        <td class="oui-datagrid__cell text-sm-right" data-ng-bind="detail.quantity">
                                         </td>
-                                        <td class="text-sm-right text-price font-weight-bold"
+                                        <td class="oui-datagrid__cell text-sm-right text-price font-weight-bold"
                                             data-ng-bind="detail.totalPrice.text">
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot class="text-right">
-                                    <tr>
-                                        <td colspan="3"
+                                    <tr class="oui-datagrid__row">
+                                        <td class="oui-datagrid__cell" colspan="3"
                                             data-translate="modems_order_prices_tax_free_total">
                                         </td>
-                                        <td class="text-price font-weight-bold"
+                                        <td class="oui-datagrid__cell text-price font-weight-bold"
                                             data-ng-bind="$ctrl.order.summary.prices.withoutTax.text">
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="3"
+                                    <tr class="oui-datagrid__row">
+                                        <td class="oui-datagrid__cell" colspan="3"
                                             data-translate="modems_order_prices_tax_total">
                                         </td>
-                                        <td class="text-price font-weight-bold"
+                                        <td class="oui-datagrid__cell text-price font-weight-bold"
                                             data-ng-bind="$ctrl.order.summary.prices.tax.text">
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="3"
+                                    <tr class="oui-datagrid__row">
+                                        <td class="oui-datagrid__cell" colspan="3"
                                             data-translate="modems_order_prices_with_tax_total">
                                         </td>
-                                        <td class="text-price font-weight-bold"
+                                        <td class="oui-datagrid__cell text-price font-weight-bold"
                                             data-ng-bind="$ctrl.order.summary.prices.withTax.text">
                                         </td>
                                     </tr>
@@ -157,27 +144,24 @@
                         </div>
 
                         <!-- SHIPPING CONTACT -->
-                        <h3 class="mt-4"
-                            data-translate="modems_order_contact_shipping_title"></h3>
+                        <h3 class="mt-4" data-translate="modems_order_contact_shipping_title"></h3>
                         <div class="badge d-inline-block align-top mr-3">
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="d-inline-block">
                             <p class="mb-1"
                                 data-ng-bind="$ctrl.order.contact.lastName + ' ' + $ctrl.order.contact.firstName"></p>
+                            <p class="mb-1" data-ng-bind="$ctrl.order.contact.address.line1"></p>
                             <p class="mb-1"
-                                data-ng-bind="$ctrl.order.contact.address.line1"></p>
-                            <p class="mb-1"
-                                data-ng-bind="$ctrl.order.contact.address.zip + ' ' + $ctrl.order.contact.address.city"></p>
+                                data-ng-bind="$ctrl.order.contact.address.zip + ' ' + $ctrl.order.contact.address.city">
+                            </p>
                         </div>
 
                         <!-- SHIPPING MODE -->
-                        <h3 class="mt-4"
-                            data-translate="modems_order_shipping_mode_title">
+                        <h3 class="mt-4" data-translate="modems_order_shipping_mode_title">
                         </h3>
                         <p data-ng-if="$ctrl.order.shipping.mode === 'mondialRelay'"
-                            data-translate="modems_order_shipping_mode_mondial_relay"
-                            data-translate-values="{
+                            data-translate="modems_order_shipping_mode_mondial_relay" data-translate-values="{
                                 name: $ctrl.order.shipping.relay.name,
                                 street: $ctrl.order.shipping.relay.address,
                                 city: $ctrl.order.shipping.relay.city
@@ -187,46 +171,36 @@
                             data-translate="modems_order_shipping_mode_other"></p>
 
                         <!-- CONTRACTS -->
-                        <h3 class="mt-4"
-                            data-translate="modems_order_contracts"></h3>
-                        <div class="mb-4"
-                                data-ovh-contracts="$ctrl.order.summary.contracts"
-                                data-full-text="false"
-                                data-ovh-contracts-validated="$ctrl.order.isContractsAccepted">
+                        <h3 class="mt-4" data-translate="modems_order_contracts"></h3>
+                        <div class="mb-4" data-ovh-contracts="$ctrl.order.summary.contracts" data-full-text="false"
+                            data-ovh-contracts-validated="$ctrl.order.isContractsAccepted">
                         </div>
 
                         <div data-ng-if="!$ctrl.phone">
                             <hr />
                             <label class="d-block mb-2">
-                                <input type="radio"
-                                        data-ng-value="true"
-                                        data-ng-model="$ctrl.order.retract" />
-                                <span class="ml-2"
-                                        data-translate="modems_order_retract">
+                                <input type="radio" data-ng-value="true" data-ng-model="$ctrl.order.retract" />
+                                <span class="ml-2" data-translate="modems_order_retract">
                                 </span>
                             </label>
                             <label class="d-block mb-2">
-                                <input type="radio"
-                                        data-ng-value="false"
-                                        data-ng-model="$ctrl.order.retract" />
-                                <span class="ml-2"
-                                        data-translate="modems_order_noretract">
+                                <input type="radio" data-ng-value="false" data-ng-model="$ctrl.order.retract" />
+                                <span class="ml-2" data-translate="modems_order_noretract">
                                 </span>
                             </label>
                         </div>
 
-                        <button type="button"
-                                class="oui-button oui-button_secondary oui-button_icon-left mt-2"
-                                data-ng-click="$ctrl.changeStep('modem_and_shipping')">
-                            <i class="oui-icon oui-icon_circle oui-icon-chevron-left" aria-hidden="true"></i>
+                        <button type="button" class="oui-button oui-button_secondary oui-button_icon-left mt-2"
+                            data-ng-click="$ctrl.changeStep('modem_and_shipping')">
+                            <span class="oui-icon oui-icon_circle oui-icon-chevron-left" aria-hidden="true"></span>
                             <span data-translate="modems_order_order_prev"></span>
                         </button>
                         <button type="button"
-                                class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
-                                data-ng-disabled="!$ctrl.order.isContractsAccepted || $ctrl.isSubmiting"
-                                data-ng-click="$ctrl.submitOrder()">
+                            class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
+                            data-ng-disabled="!$ctrl.order.isContractsAccepted || $ctrl.isSubmiting"
+                            data-ng-click="$ctrl.submitOrder()">
                             <span data-translate="modems_order_order_confirm"></span>
-                            <i class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></i>
+                            <span class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></span>
                         </button>
                     </div>
                 </section>
