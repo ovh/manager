@@ -2,6 +2,8 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
 
+const CATEGORY_ACCOUNT = 'account';
+
 export default class SupportNewIssuesFormController {
   /* @ngInject */
   constructor(
@@ -20,6 +22,7 @@ export default class SupportNewIssuesFormController {
     this.OvhApiSupport = OvhApiSupport;
     this.OvhApiMe = OvhApiMe;
     this.SupportNewTicketService = SupportNewTicketService;
+    this.CATEGORY_ACCOUNT = CATEGORY_ACCOUNT;
   }
 
   $onInit() {
@@ -60,7 +63,7 @@ export default class SupportNewIssuesFormController {
     this.service = null;
     this.isUnknownService = false;
     this.issue = null;
-    if (this.category.id === 'account') {
+    if (this.category.id === CATEGORY_ACCOUNT) {
       this.issueParams = {
         category: this.category,
         serviceType: undefined,

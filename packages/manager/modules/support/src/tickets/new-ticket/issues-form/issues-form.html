@@ -18,7 +18,7 @@
             </oui-select>
         </oui-field>
         <oui-field data-label="{{:: 'ovhManagerSupport_new_serviceType' | translate }}"
-                   data-ng-if="$ctrl.category && $ctrl.category.id !== 'account'"
+                   data-ng-if="$ctrl.category && $ctrl.category.id !== $ctrl.CATEGORY_ACCOUNT"
                    data-size="xl">
             <oui-select name="serviceType"
                         data-model="$ctrl.serviceType"
@@ -33,7 +33,7 @@
             </oui-spinner>
         </div>
         <oui-field data-label="{{:: 'ovhManagerSupport_new_service' | translate }}"
-                   data-ng-if="$ctrl.serviceType && $ctrl.category.id !== 'account' && $ctrl.services !== null"
+                   data-ng-if="$ctrl.serviceType && $ctrl.category.id !== $ctrl.CATEGORY_ACCOUNT && $ctrl.services !== null"
                    data-size="xl">
             <oui-select name="service"
                         data-model="$ctrl.service"
@@ -49,7 +49,7 @@
             </oui-checkbox>
         </oui-field>
 
-        <div data-ng-if="$ctrl.issueParams && ($ctrl.isUnknownService || $ctrl.service || $ctrl.category.id === 'account')">
+        <div data-ng-if="$ctrl.issueParams && ($ctrl.isUnknownService || $ctrl.service || $ctrl.category.id === $ctrl.CATEGORY_ACCOUNT)">
             <support-issues-selector
                 data-category="$ctrl.issueParams.category"
                 data-service-type="$ctrl.issueParams.serviceType"
