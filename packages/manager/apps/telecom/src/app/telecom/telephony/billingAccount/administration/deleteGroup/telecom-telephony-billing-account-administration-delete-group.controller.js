@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import head from 'lodash/head';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationDeleteGroup', function ($stateParams, $q, $translate, OvhApiTelephony, TucToast, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationDeleteGroup', function TelecomTelephonyBillingAccountAdministrationDeleteGroup($stateParams, $q, $translate, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
   function getOfferTaskList(billingAccount) {
@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     });
   }
 
-  self.cancelTermination = function () {
+  self.cancelTermination = function cancelTermination() {
     self.cancelling = true;
     return OvhApiTelephony.v6().cancelTermination({
       billingAccount: $stateParams.billingAccount,
@@ -43,7 +43,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     });
   };
 
-  self.terminate = function () {
+  self.terminate = function terminate() {
     self.deleting = true;
     return OvhApiTelephony.v6().delete({
       billingAccount: $stateParams.billingAccount,

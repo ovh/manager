@@ -1,10 +1,10 @@
 import isEmpty from 'lodash/isEmpty';
 import last from 'lodash/last';
 
-angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function ($scope, $stateParams, OvhApiXdsl, $q, $translate, TucToast, TucToastError, ORDER_STATUS) {
+angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function XdslOrderFollowUpCtrl($scope, $stateParams, OvhApiXdsl, $q, $translate, TucToast, TucToastError, ORDER_STATUS) {
   const self = this;
 
-  this.loadData = function () {
+  this.loadData = function loadData() {
     $q.all([
       // Get access Details
       OvhApiXdsl.v6().get({
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function ($scop
     }, TucToastError);
   };
 
-  this.init = function () {
+  this.init = function init() {
     self.events = [];
     self.loading = true;
     self.allSuccess = false;

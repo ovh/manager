@@ -55,7 +55,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupNumberOvhPabxTts.prototype.setOptions = function (ttsOptions) {
+  TelephonyGroupNumberOvhPabxTts.prototype.setOptions = function setOptions(ttsOptions) {
     const self = this;
 
     self.voice = get(ttsOptions, 'voice', 'Helene');
@@ -66,7 +66,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupNumberOvhPabxTts.prototype.create = function () {
+  TelephonyGroupNumberOvhPabxTts.prototype.create = function create() {
     const self = this;
 
     self.status = 'CREATING';
@@ -88,7 +88,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
     });
   };
 
-  TelephonyGroupNumberOvhPabxTts.prototype.remove = function () {
+  TelephonyGroupNumberOvhPabxTts.prototype.remove = function remove() {
     const self = this;
 
     self.status = 'DELETING';
@@ -105,7 +105,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberOvhPabxTts.prototype.startEdition = function () {
+  TelephonyGroupNumberOvhPabxTts.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -117,7 +117,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxTts.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberOvhPabxTts.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -131,7 +131,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
     return self;
   };
 
-  TelephonyGroupNumberOvhPabxTts.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberOvhPabxTts.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {

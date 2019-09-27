@@ -1,12 +1,12 @@
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 
-angular.module('managerApp').controller('XdslAccessProfileCtrl', function ($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, TucToastError) {
+angular.module('managerApp').controller('XdslAccessProfileCtrl', function XdslAccessProfileCtrl($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, TucToastError) {
   const self = this;
 
   self.loader = true;
 
-  this.changeProfile = function () {
+  this.changeProfile = function changeProfile() {
     if (isEmpty($stateParams.serviceName) || !self.currentProfileTmp) {
       TucToast.error($translate.instant('xdsl_access_dslam_an_error_ocurred'));
     }

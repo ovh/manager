@@ -1,7 +1,20 @@
 /* global setTimeout */
 angular.module('managerApp').controller('PackXdslCtrl',
-  function ($q, $state, $transitions, $translate, $stateParams, OvhApiPackXdsl, OvhApiXdsl,
-    OvhApiXdslModem, SidebarMenu, smoothScroll, TucToast, TucToastError, PACK_XDSL) {
+  function PackXdslCtrl(
+    $q,
+    $state,
+    $transitions,
+    $translate,
+    $stateParams,
+    OvhApiPackXdsl,
+    OvhApiXdsl,
+    OvhApiXdslModem,
+    SidebarMenu,
+    smoothScroll,
+    TucToast,
+    TucToastError,
+    PACK_XDSL,
+  ) {
     const animTime = 1500;
     const noModemStatus = 404;
     const self = this;
@@ -32,7 +45,7 @@ angular.module('managerApp').controller('PackXdslCtrl',
       }, animTime);
     }
 
-    this.backState = function () {
+    this.backState = function backState() {
       return $state.href(this.content.back.state);
     };
 
@@ -51,7 +64,7 @@ angular.module('managerApp').controller('PackXdslCtrl',
       );
     }
 
-    this.updateUIForState = function (state) {
+    this.updateUIForState = function updateUIForState(state) {
       self.currentState = state.name;
       if ($stateParams.packName === PACK_XDSL.sdsl) {
         if (state.name === 'telecom.pack.xdsl' || state.name === 'telecom.pack.xdsl.modem' || state.name === 'telecom.pack.xdsl.tasks') {
@@ -104,7 +117,7 @@ angular.module('managerApp').controller('PackXdslCtrl',
     });
     self.updateUIForState($state.current);
 
-    self.isModemTabAvailable = function () {
+    self.isModemTabAvailable = function isModemTabAvailable() {
       // Modem tab not available for SDSL access
       if (self.content.accessType !== PACK_XDSL.sdsl) {
         return PACK_XDSL.availableModemTabStatus.includes(self.content.status);
@@ -116,7 +129,7 @@ angular.module('managerApp').controller('PackXdslCtrl',
     =            ACTION            =
     ============================== */
 
-    self.accessDescriptionSave = function (newAccessDescr) {
+    self.accessDescriptionSave = function accessDescriptionSave(newAccessDescr) {
       self.loading.save = true;
 
       return OvhApiXdsl.v6().put({

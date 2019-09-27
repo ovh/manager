@@ -1,16 +1,16 @@
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('XdslModemBridgeModeCtrl', function ($stateParams, $q, $translate, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
+angular.module('managerApp').controller('XdslModemBridgeModeCtrl', function XdslModemBridgeModeCtrl($stateParams, $q, $translate, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
   const self = this;
 
   this.mediator = TucPackXdslModemMediator;
 
-  this.undo = function () {
+  this.undo = function undo() {
     set(TucPackXdslModemMediator, 'info.isBridged', !this.isBridged);
   };
 
-  this.changeBridgeMode = function () {
+  this.changeBridgeMode = function changeBridgeMode() {
     if (isEmpty($stateParams.serviceName)) {
       return TucToast.error($translate.instant('xdsl_modem_bridge_mode_an_error_ocurred'));
     }

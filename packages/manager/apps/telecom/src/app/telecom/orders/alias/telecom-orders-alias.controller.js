@@ -2,14 +2,14 @@ import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomOrdersAliasCtrl', function (OvhApiOrder, TucToast, $q, $translate, $state) {
+angular.module('managerApp').controller('TelecomOrdersAliasCtrl', function TelecomOrdersAliasCtrl(OvhApiOrder, TucToast, $q, $translate, $state) {
   const self = this;
 
   /*= =============================
     =            EVENTS            =
     ============================== */
 
-  this.submit = function () {
+  this.submit = function submit() {
     return $state.go(
       'telecom.telephony.orderAlias',
       {

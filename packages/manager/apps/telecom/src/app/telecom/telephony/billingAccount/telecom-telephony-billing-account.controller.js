@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import head from 'lodash/head';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountCtrl', function ($q, $translate, $stateParams, TelephonyMediator, SidebarMenu, TucToast, OvhApiOrder, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountCtrl', function TelecomTelephonyBillingAccountCtrl($q, $translate, $stateParams, TelephonyMediator, SidebarMenu, TucToast, OvhApiOrder, OvhApiTelephony) {
   const self = this;
 
   self.loading = {
@@ -18,7 +18,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountCtrl', fu
   =            ACTIONS            =
   =============================== */
 
-  self.groupNameSave = function (newServiceName) {
+  self.groupNameSave = function groupNameSave(newServiceName) {
     self.group.startEdition();
     self.group.description = newServiceName;
     return self.group.save().then(() => {

@@ -1,0 +1,7 @@
+{
+  "file_editor_common_add": "Añadir",
+  "file_editor_common_delete_all": "Eliminar todo",
+  "file_editor_common_go_to_next_error": "Ir al siguiente error",
+  "file_editor_mailing_list_common_addr_errors_1": "<strong>1</strong> dirección incorrecta ",
+  "file_editor_mailing_list_common_addr_errors_other": "<strong>{{t0}}</strong> direcciones incorrectas "
+}

@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', function ($stateParams, $state, TelephonyMediator, TucToast, $translate, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', function TelecomTelephonyLineTerminateCtrl($stateParams, $state, TelephonyMediator, TucToast, $translate, tucTelephonyBulk) {
   const self = this;
 
   self.loading = {
@@ -14,7 +14,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', fun
   };
   self.hasPhone = false;
 
-  self.terminate = function () {
+  self.terminate = function terminate() {
     self.loading.terminate = true;
 
     return self.line.terminate(self.reason).then(() => {
@@ -29,14 +29,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', fun
     });
   };
 
-  self.haveToGiveReasonDetail = function () {
+  self.haveToGiveReasonDetail = function haveToGiveReasonDetail() {
     return [
       'missingOptions',
       'other',
     ].indexOf(self.reason.id) !== -1;
   };
 
-  self.cleanReasonDetail = function () {
+  self.cleanReasonDetail = function cleanReasonDetail() {
     if (!self.haveToGiveReasonDetail()) {
       delete self.reason.details;
     }
@@ -82,14 +82,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', fun
     },
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       details: self.reason.details,
       reason: self.reason.id,
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_group_line_terminating_bulk_all_success'),
@@ -108,7 +108,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', fun
     self.init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_group_line_terminating_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

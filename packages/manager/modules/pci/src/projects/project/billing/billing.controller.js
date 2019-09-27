@@ -6,6 +6,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     $state,
     CucCloudMessage,
     CloudProjectBilling,
+    guideUrl,
     OvhApiCloudProjectUsageCurrent,
     projectId,
   ) {
@@ -14,6 +15,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     this.data = {};
 
     this.CucCloudMessage = CucCloudMessage;
+    this.guideUrl = guideUrl;
 
     this.loading = true;
 

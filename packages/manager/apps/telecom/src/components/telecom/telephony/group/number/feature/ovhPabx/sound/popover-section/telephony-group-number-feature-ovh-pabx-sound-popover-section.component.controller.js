@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('telephonyNumberOvhPabxSoundPopoverSectionCtrl', function ($translate, $translatePartialLoader) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxSoundPopoverSectionCtrl', function telephonyNumberOvhPabxSoundPopoverSectionCtrl($translate, $translatePartialLoader) {
   const self = this;
 
   self.loading = {
@@ -16,7 +16,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundPopoverSecti
     =            HELPERS            =
     =============================== */
 
-  self.hasSoundFileError = function () {
+  self.hasSoundFileError = function hasSoundFileError() {
     return self.uploadErrors.extension
       || self.uploadErrors.size
       || self.uploadErrors.exists
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundPopoverSecti
 
   /* ----------  Component initialization  ----------*/
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     if (!self.numberCtrl && !self.ovhPabx) {
       throw new Error('telephonyNumberOvhPabxSoundPopoverSection must have telephonyNumber component as parent or must have ovhPabx attribute specified');
     }

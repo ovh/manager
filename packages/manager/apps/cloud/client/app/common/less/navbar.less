@@ -1,0 +1,62 @@
+.oui-navbar {
+  // Universes
+  &-list_main {
+    .navbar-universe(web, @oui-color-jungle);
+    .navbar-universe(cloud, @oui-color-supernova);
+    .navbar-universe(telecom, @oui-color-dodger);
+    .navbar-universe(sunrise, @oui-color-california);
+    .navbar-universe(gamma, @oui-color-california);
+
+    .navbar-universe(@universe-selector, @universe-color) {
+      .@{universe-selector} > .oui-navbar-link {
+        &:hover,
+        &:focus,
+        &_active { color: @universe-color; }
+      }
+    }
+  }
+
+  // Logout
+  .logout > .oui-navbar-link {
+    &,
+    &:hover,
+    &:focus,
+    &_active {
+      font-weight: 600;
+      color: @oui-color-error-dark;
+    }
+  }
+}
+
+.skipnav a {
+  width: 1px;
+  height: 1px;
+  position: fixed;
+  left: -100%;
+  top: auto;
+  overflow: hidden;
+  z-index: -1;
+
+  &:focus,
+  &:active {
+    width: auto;
+    height: auto;
+    left: 1rem;
+    top: 1rem;
+    overflow: auto;
+    outline-width: 1px !important;
+    outline-style: dotted !important;
+    outline-color: initial !important;
+    outline-offset: -2px !important;
+    background-color: #fff;
+    z-index: 1100;
+  }
+}
+
+.skiptarget {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  float: right;
+  position: absolute;
+}

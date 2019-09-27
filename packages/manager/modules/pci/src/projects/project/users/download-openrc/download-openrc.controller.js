@@ -27,12 +27,13 @@ export default class PciUsersDownloadOpenRcController {
       label: this.CucRegionService.getTranslatedMicroRegion(region),
     }));
     this.region = first(this.regions);
+    this.hasGlobalRegions = this.PciProjectsProjectUsersService.checkGlobalRegion(this.regions);
   }
 
   downloadOpenRc() {
     this.isLoading = true;
     return this.PciProjectsProjectUsersService
-      .downloadOpenRc(this.projectId, this.user, this.region.id, this.useVersion3 ? 3 : 2)
+      .downloadOpenRc(this.projectId, this.user, this.region.id, this.getOpenRcApiVersion())
       .then(({ content }) => {
         const data = new Blob([content], { type: DOWNLOAD_TYPE });
         saveAs(data, DOWNLOAD_FILENAME);
@@ -66,5 +67,10 @@ export default class PciUsersDownloadOpenRcController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  getOpenRcApiVersion() {
+    // Returns v3 if the region list has global regions i.e, GRA, DE, etc
+    return this.hasGlobalRegions || this.currentRegion === 'US' ? 3 : 2;
   }
 }

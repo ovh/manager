@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasPortabilityCtrl', function ($translate) {
+angular.module('managerApp').controller('TelecomTelephonyAliasPortabilityCtrl', function TelecomTelephonyAliasPortabilityCtrl($translate) {
   const self = this;
 
   self.actions = null;

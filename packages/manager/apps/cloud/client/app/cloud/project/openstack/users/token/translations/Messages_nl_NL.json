@@ -1,0 +1,13 @@
+{
+ "cpou_token_title": "Een Openstack token beheren",
+ "cpou_openrc_title": "Download het RC-bestand van OpenStack ",
+ "cpou_token_info": "Om een OpenStack token te genereren voert u het gebruikerswachtwoord in <b>{{ username }}</b>.",
+ "cpou_token_password_label": "Wachtwoord",
+ "cpou_token_error": "We kunnen het Openstack token niet genereren.",
+ "cpou_token_title_information": "Let op deze identificatoren. Ze zullen niet beschikbaar zijn bij de volgende update.",
+ "cpou_token_xauthtoken": "Het Openstack token, waarmee u uw HTTP-verzoeken (X-Auth-Token) kunt identificeren, is:",
+ "cpou_token_xauthtoken_guide": "U kunt een voorbeeld vinden in <a href=\"{{ link }}\" target=\"_blank\">deze handleiding</a>.",
+ "cpou_token_catalog_region": "Regio",
+ "cpou_token_catalog_service": "Dienst",
+ "cpou_token_catalog_endpoint": "Endpoint"
+}

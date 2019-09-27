@@ -1,6 +1,6 @@
 import last from 'lodash/last';
 
-angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingManualConfigCtrl', function (troubleshootingProcess, tucValidator) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingManualConfigCtrl', function TelecomTelephonyLineAssistTroubleshootingManualConfigCtrl(troubleshootingProcess, tucValidator) {
   const self = this;
 
   self.model = {
@@ -16,7 +16,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     =            HELPERS            =
     =============================== */
 
-  self.getWebInterfaceAddress = function () {
+  self.getWebInterfaceAddress = function getWebInterfaceAddress() {
     if (self.process.line.phone.brand === 'phone.cisco.spa112') {
       return `http://${self.model.privateIp}`;
     }
@@ -30,7 +30,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     }
   };
 
-  self.getServerAddress = function () {
+  self.getServerAddress = function getServerAddress() {
     if (self.process.line.phone.brand === 'phone.thomson.st2030') {
       return 'th.prov.voip.ovh.net/st2030';
     }
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     return 'th.prov.voip.ovh.net/tb30';
   };
 
-  self.getWebInterfaceImageName = function () {
+  self.getWebInterfaceImageName = function getWebInterfaceImageName() {
     if (self.process.line.phone.brand === 'phone.cisco.spa112') {
       return 'cisco_spa112_1';
     }
@@ -55,7 +55,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     }
   };
 
-  self.getConfigurationPageImageName = function () {
+  self.getConfigurationPageImageName = function getConfigurationPageImageName() {
     if (self.process.line.phone.brand === 'phone.cisco.spa112') {
       return 'cisco_spa112_2';
     }
@@ -71,7 +71,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     }
   };
 
-  self.getLgModel = function () {
+  self.getLgModel = function getLgModel() {
     return last(self.process.line.phone.brand.split('.'));
   };
 
@@ -81,12 +81,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
     =            ACTIONS            =
     =============================== */
 
-  self.continueManualConfig = function () {
+  self.continueManualConfig = function continueManualConfig() {
     self.status = 'OK';
     self.step.isFinalized = true;
   };
 
-  self.resetIp = function () {
+  self.resetIp = function resetIp() {
     self.status = 'CHECKIP';
     self.step.isFinalized = false;
   };

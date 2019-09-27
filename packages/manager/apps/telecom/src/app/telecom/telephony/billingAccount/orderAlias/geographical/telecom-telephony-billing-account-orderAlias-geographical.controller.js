@@ -5,9 +5,17 @@ import mapKeys from 'lodash/mapKeys';
 import pick from 'lodash/pick';
 
 angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalCtrl',
-  function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiOrder,
-    TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError,
-    TELEPHONY_NUMBER_OFFER) {
+  function TelecomTelephonyAliasOrderGeographicalCtrl(
+    $q,
+    $translate,
+    $stateParams,
+    OvhApiTelephony,
+    OvhApiOrder,
+    TelecomTelephonyBillingAccountOrderAliasService,
+    TucToast,
+    TucToastError,
+    TELEPHONY_NUMBER_OFFER,
+  ) {
     const self = this;
 
     /**
@@ -84,7 +92,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
      * @param {String} country be | ch | de | es | fr | gb
      * @returns {Promise}
      */
-    this.getGeographicalZone = function (axiom) {
+    this.getGeographicalZone = function getGeographicalZone(axiom) {
       return OvhApiTelephony.Number().v6().getDetailedZones(
         {
           country: self.user.country,
@@ -97,7 +105,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
     /**
    * When quantity changes
    */
-    this.changeQty = function () {
+    this.changeQty = function changeQty() {
       this.form.pool = this.form.amount.value;
       this.form.numberType = this.form.amount.value === 1 ? this.form.numberType : 'common';
       if ([50, 100].includes(this.form.amount.value)) {
@@ -111,7 +119,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
     /**
      * When offer selection changes
      */
-    this.changeOffer = function () {
+    this.changeOffer = function changeOffer() {
       if (this.offer === 'didsOnly' && this.form.zone && this.form.zone.city) {
         getRedirectionSDAPrices();
       }
@@ -120,7 +128,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
     /**
      * Invoked when the geographical zone change
      */
-    this.changeZone = function () {
+    this.changeZone = function changeZone() {
       this.loading.numbers = true;
       getSpecificNumbers(self.user.country, self.form.zone.city).finally(() => {
         self.loading.numbers = false;
@@ -134,7 +142,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
      * Get the Total of the order
      * @returns {String}
      */
-    this.getTotal = function () {
+    this.getTotal = function getTotal() {
       const count = this.form.amount.value;
       if (this.offer === 'didsOnly') {
         if (this.redirectionSDA && this.redirectionSDA.prices) {
@@ -153,7 +161,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
      * Get the periodicity of the billing
      * @returns {String}
      */
-    this.getPeriod = function () {
+    this.getPeriod = function getPeriod() {
       if (this.offer === 'didsOnly') {
         return $translate.instant('telephony_order_geographical_order_periodicy_annual');
       }
@@ -164,7 +172,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
      * Launch the order process
      * @returns {Promise}
      */
-    this.order = function () {
+    this.order = function order() {
       this.loading.order = true;
       let filter = [
         'city',

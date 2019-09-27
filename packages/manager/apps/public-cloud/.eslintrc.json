@@ -1,10 +1,8 @@
 {
-  "extends": "../../../../.eslintrc.js",
   "globals": {
     "__NG_APP_INJECTIONS__": true,
     "__NODE_ENV__": true,
     "__WEBPACK_REGION__": true,
-    "moment": true,
-    "Tour": true
+    "moment": true
   }
 }

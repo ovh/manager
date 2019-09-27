@@ -1,7 +1,7 @@
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 
-angular.module('managerApp').controller('XdslModemWifiCtrl', function ($stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
+angular.module('managerApp').controller('XdslModemWifiCtrl', function XdslModemWifiCtrl($stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
   const self = this;
   this.loader = true;
   this.mediator = TucPackXdslModemMediator;
@@ -9,11 +9,11 @@ angular.module('managerApp').controller('XdslModemWifiCtrl', function ($statePar
   self.wifis = null;
   self.defaultWifi = null;
 
-  this.undo = function () {
+  this.undo = function undo() {
     self.defaultWifi.enabled = self.undoData.enabled;
   };
 
-  this.update = function () {
+  this.update = function update() {
     if (isEmpty($stateParams.serviceName)
       || !TucPackXdslModemMediator.capabilities.canChangeWLAN) {
       TucToast.error($translate.instant('xdsl_modem_firewall_an_error_ocurred'));

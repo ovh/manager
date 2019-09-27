@@ -1,6 +1,6 @@
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyLineTerminateCancelCtrl', function ($stateParams, $state, TelephonyMediator, OvhApiTelephony, TucToast, $translate, $filter, $q) {
+angular.module('managerApp').controller('TelecomTelephonyLineTerminateCancelCtrl', function TelecomTelephonyLineTerminateCancelCtrl($stateParams, $state, TelephonyMediator, OvhApiTelephony, TucToast, $translate, $filter, $q) {
   const self = this;
 
   self.loading = {
@@ -10,7 +10,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCancelCtrl
 
   self.taskDetails = {};
 
-  self.cancelTerminate = function () {
+  self.cancelTerminate = function cancelTerminate() {
     self.loading.cancelTerminate = true;
     if (self.taskDetails.executionDate) {
       return OvhApiTelephony.Service().v6().cancelTermination({

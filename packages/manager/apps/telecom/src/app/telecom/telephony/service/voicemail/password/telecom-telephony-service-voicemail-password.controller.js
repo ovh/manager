@@ -1,7 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswordCtrl', function ($state, $stateParams, $translate, $timeout, OvhApiTelephony, TucToastError, tucTelephonyBulk, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswordCtrl', function TelecomTelephonyServiceVoicemailPasswordCtrl($state, $stateParams, $translate, $timeout, OvhApiTelephony, TucToastError, tucTelephonyBulk, TucToast) {
   const self = this;
 
   function init() {
@@ -22,20 +22,20 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
     });
   }
 
-  self.checkPasswordConfirm = function (form) {
+  self.checkPasswordConfirm = function checkPasswordConfirm(form) {
     form.passwordConfirm.$setValidity('matching', true);
     if (self.passwordConfirm && self.passwordConfirm !== self.password) {
       form.passwordConfirm.$setValidity('matching', false);
     }
   };
 
-  self.reset = function () {
+  self.reset = function reset() {
     self.password = '';
     self.passwordConfirm = '';
     self.success = false;
   };
 
-  self.submitPasswordChange = function (form) {
+  self.submitPasswordChange = function submitPasswordChange(form) {
     self.submitting = true;
     self.success = false;
     return OvhApiTelephony.Voicemail().v6().changePassword({
@@ -68,17 +68,17 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['sip', 'mgcp', 'fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       password: self.password,
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_answer_voicemail_password_bulk_all_success'),
@@ -96,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_answer_voicemail_password_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

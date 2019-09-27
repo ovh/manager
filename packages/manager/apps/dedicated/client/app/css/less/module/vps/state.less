@@ -1,0 +1,42 @@
+//
+// STATE BUTTON
+// --------------------------------------------------
+
+// .mainContainer
+#main-container {
+  .state-service .btn {
+    .box-shadow(none);
+    .rounded(@radius_const);
+
+    text-shadow: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 40px;
+    padding: 0;
+    margin: 0 8px 5px 0;
+    cursor: default;
+    font-size: @fontSizeMini;
+    line-height: 25px;
+    height: 25px;
+    text-align: center;
+  }
+}
+
+// .mainContainer
+#main-container .state-service .btn.OK {
+  border: solid 1px #8bb24d;
+  .gradient(#78ae25, #a0c65f, #78ae25);
+}
+
+// .mainContainer
+#main-container .state-service .btn.KO {
+  border: solid 1px #cf3f1d;
+  .gradient(#e95a37, #fb5e3e, #e95a37);
+}
+
+// .mainContainer
+#main-container .state-service .btn.OK a,
+#main-container .state-service .btn.KO a {
+  color: #fff;
+  text-decoration: none;
+}

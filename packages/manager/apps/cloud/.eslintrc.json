@@ -1,0 +1,12 @@
+{
+  "globals": {
+    "_": true,
+    "__WEBPACK_REGION__": true,
+    "fit": true,
+    "JSURL": true,
+    "moment": true,
+    "Terminal": true,
+    "URI": true,
+    "validator": true
+  }
+}

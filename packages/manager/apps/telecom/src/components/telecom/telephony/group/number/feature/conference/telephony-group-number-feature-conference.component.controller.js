@@ -4,7 +4,7 @@ import map from 'lodash/map';
 import pick from 'lodash/pick';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function ($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, TucToast, TucToastError) {
+angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function TelephonyNumberConferenceCtrl($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, TucToast, TucToastError) {
   const self = this;
 
   const settingsAttributes = ['language', 'pin', 'announceFile',
@@ -71,7 +71,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     });
   }
 
-  self.connectedSince = function (participant) {
+  self.connectedSince = function connectedSince(participant) {
     return moment.duration(moment().diff(moment(participant.arrivalDateTime))).humanize();
   };
 
@@ -81,7 +81,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     =            ACTIONS            =
     ============================== */
 
-  self.generateWebAccess = function () {
+  self.generateWebAccess = function generateWebAccess() {
     self.loading.webAccess = true;
     return self.numberCtrl.number.feature
       .generateWebAccess()
@@ -91,7 +91,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
       });
   };
 
-  self.regenerateWebAccess = function () {
+  self.regenerateWebAccess = function regenerateWebAccess() {
     return self.numberCtrl.number.feature.deleteWebAccess().then(() => self.generateWebAccess());
   };
 
@@ -101,15 +101,15 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     =            PARTICIPANTS ACTIONS            =
     ============================================ */
 
-  self.kickParticipant = function (participant) {
+  self.kickParticipant = function kickParticipant(participant) {
     return participant.kick();
   };
 
-  self.toggleDeafParticipant = function (participant) {
+  self.toggleDeafParticipant = function toggleDeafParticipant(participant) {
     return $q.when(true).then(() => (participant.hear ? participant.deaf() : participant.undeaf()));
   };
 
-  self.manageSoundParticipant = function (participant) {
+  self.manageSoundParticipant = function manageSoundParticipant(participant) {
     const promise = [].concat(participant.energyEquivalence === 0
       ? participant.mute() : participant.unmute());
     let energy = null;
@@ -142,7 +142,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   /**
      *  Called on config button clicked.
      */
-  self.togglePopover = function () {
+  self.togglePopover = function togglePopover() {
     self.popoverOpen = !self.popoverOpen;
     if (self.popoverOpen) {
       self.numberCtrl.number.feature.startEdition();
@@ -157,7 +157,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
    *  Called when submit is clicked. Configuration is OK,
    *  so we start to save the conference feature.
    */
-  self.onPopoverValidate = function () {
+  self.onPopoverValidate = function onPopoverValidate() {
     self.popoverOpen = false;
     return self.numberCtrl.saveNumber();
   };
@@ -166,12 +166,12 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
    *  Called when cancel button is clicked.
    *  We stop feature configuration and rollback to previous configuration.
    */
-  self.onPopoverCancel = function () {
+  self.onPopoverCancel = function onPopoverCancel() {
     self.popoverOpen = false;
     self.numberCtrl.number.feature.stopEdition(true);
   };
 
-  self.onSoundFileChoosed = function (file) {
+  self.onSoundFileChoosed = function onSoundFileChoosed(file) {
     const validExtensions = ['wav', 'mp3', 'ogg'];
     const fileName = file ? file.name : '';
     const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
@@ -188,21 +188,21 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
       });
   };
 
-  self.setLockStatus = function (newValue) {
+  self.setLockStatus = function setLockStatus(newValue) {
     self.model.lockState = newValue;
   };
 
-  self.toggleLockStatus = function () {
+  self.toggleLockStatus = function toggleLockStatus() {
     return $q.when(true)
       .then(() => (self.model.lockState
         ? self.numberCtrl.number.feature.lock() : self.numberCtrl.number.feature.unlock()));
   };
 
-  self.setMuteAll = function (newValue) {
+  self.setMuteAll = function setMuteAll(newValue) {
     self.model.muteAllState = newValue;
   };
 
-  self.toggleMuteAll = function () {
+  self.toggleMuteAll = function toggleMuteAll() {
     return $q.when(true)
       .then(() => (self.model.muteAllState
         ? self.numberCtrl.number.feature.muteAllParticipants()
@@ -218,7 +218,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   /**
    *  Component initialization
    */
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     let participantCount = 0;
 
     // set save feature function
@@ -257,7 +257,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   /**
    *  Stop feature edition and polling when component is destroyed.
    */
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     // stop edition of the feature
     self.numberCtrl.number.feature.stopEdition(true);
 

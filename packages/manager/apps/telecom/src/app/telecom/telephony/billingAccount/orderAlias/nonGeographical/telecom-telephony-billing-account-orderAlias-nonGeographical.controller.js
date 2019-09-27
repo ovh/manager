@@ -4,7 +4,7 @@ import head from 'lodash/head';
 import mapKeys from 'lodash/mapKeys';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographicalCtrl', function (
+angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographicalCtrl', function TelecomTelephonyAliasOrderNonGeographicalCtrl(
   $q, $translate, $stateParams,
   OvhApiTelephony, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService,
   TucToast, TucToastError, TELEPHONY_NUMBER_OFFER,
@@ -83,7 +83,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
    * @param {String} country be | ch | de | es | fr | gb
    * @returns {Promise}
    */
-  this.getGeographicalZone = function (axiom) {
+  this.getGeographicalZone = function getGeographicalZone(axiom) {
     return OvhApiTelephony.Number().v6().getZones(
       {
         country: self.user.country,
@@ -96,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
   /**
      * When offer selection changes
      */
-  this.changeOffer = function () {
+  this.changeOffer = function changeOffer() {
     if (this.offer === 'didsOnly') {
       getRedirectionSDAPrices();
     }
@@ -106,7 +106,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
    * Get the Total of the order
    * @returns {String}
    */
-  this.getTotal = function () {
+  this.getTotal = function getTotal() {
     const count = this.form.amount.value;
     if (this.offer === 'didsOnly') {
       if (this.redirectionSDA && this.redirectionSDA.prices) {
@@ -124,7 +124,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
   /**
    * When quantity changes
    */
-  this.changeQty = function () {
+  this.changeQty = function changeQty() {
     this.form.pool = this.form.amount.value;
     this.form.numberType = this.form.amount.value === 1 ? this.form.numberType : 'common';
     if ([50, 100].includes(this.form.amount.value)) {
@@ -139,7 +139,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
    * Get the periodicity of the billing
    * @returns {String}
    */
-  this.getPeriod = function () {
+  this.getPeriod = function getPeriod() {
     if (this.offer === 'didsOnly') {
       return $translate.instant('telephony_order_nongeographical_order_periodicy_annual');
     }
@@ -150,7 +150,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
    * Launch the order process
    * @returns {Promise}
    */
-  this.order = function () {
+  this.order = function order() {
     this.loading.order = true;
     let filter = [
       'city',

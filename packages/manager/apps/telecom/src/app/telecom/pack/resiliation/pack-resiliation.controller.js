@@ -4,7 +4,22 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('PackResiliationCtrl', function ($stateParams, $state, $templateCache, $translate, TucToastError, OvhApiPackXdslResiliation, TucToast, $uibModal, $timeout, $q, OvhApiMe, TucPackMediator, resiliationNotification, tucValidator) {
+angular.module('managerApp').controller('PackResiliationCtrl', function PackResiliationCtrl(
+  $stateParams,
+  $state,
+  $templateCache,
+  $translate,
+  TucToastError,
+  OvhApiPackXdslResiliation,
+  TucToast,
+  $uibModal,
+  $timeout,
+  $q,
+  OvhApiMe,
+  TucPackMediator,
+  resiliationNotification,
+  tucValidator,
+) {
   const self = this;
   self.model = {
     subServicesToKeep: {},
@@ -24,7 +39,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
   };
   self.resiliationTerms = null;
 
-  this.init = function () {
+  this.init = function init() {
     self.subServicesTerms = null;
     self.subServicesTermsLoading = false;
     self.loading = true;
@@ -86,7 +101,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    *
    * @return promise with the symbol of the current currency
    */
-  this.getCurrentCurrencySymbol = function () {
+  this.getCurrentCurrencySymbol = function getCurrentCurrencySymbol() {
     return OvhApiMe.v6().get().$promise.then(me => (me && me.currency ? me.currency.symbol : ''));
   };
 
@@ -94,7 +109,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Validator for the resiliationDate
    * @param {Date} specifiedDate Date to validate
    */
-  this.checkDate = function () {
+  this.checkDate = function checkDate() {
     return !self.model.when || (tucValidator.isDate(self.model.when)
       && (self.model.when >= self.minResiliationDate));
   };
@@ -103,7 +118,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Apply the state of the global checkbox to all the sub checkbox if needed
    * @param {String} the type of the service
    */
-  this.switchApply = function (serviceType) {
+  this.switchApply = function switchApply(serviceType) {
     let isUpdated = false;
     angular.forEach(self.subServicesTerms[serviceType], (service) => {
       if (service.keepServiceTerms.isAllowed) {
@@ -124,7 +139,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
   /**
    * Update the fee summary
    */
-  this.updateFeeSummary = function () {
+  this.updateFeeSummary = function updateFeeSummary() {
     self.feeSummary = {
       duePrice: get(self, 'resiliationTerms.data.due'),
       keepingPrice: 0.0,
@@ -170,7 +185,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Check the state of the global checkbox
    * @param {String} the type of the service
    */
-  this.checkSwitchState = function (serviceType) {
+  this.checkSwitchState = function checkSwitchState(serviceType) {
     for (let i = 0, imax = self.subServicesTerms[serviceType].length;
       i < imax && self.switch[serviceType];
       i += 1) {
@@ -185,7 +200,9 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Check/update all things depending of the checked sub services
    * @param {String} the type of the service
    */
-  this.updateAllInfluencedByCheckedSubServices = function (serviceType) {
+  this.updateAllInfluencedByCheckedSubServices = function updateAllInfluencedByCheckedSubServices(
+    serviceType,
+  ) {
     self.checkSwitchState(serviceType);
     self.updateFeeSummary();
   };
@@ -194,7 +211,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * True if serviceType has at least one sub service allowed to be kept,
    * false otherwise.
    */
-  this.hasKeepableSubServices = function (serviceType) {
+  this.hasKeepableSubServices = function hasKeepableSubServices(serviceType) {
     return some(self.subServicesTerms[serviceType], service => get(service, 'keepServiceTerms.isAllowed'));
   };
 
@@ -202,7 +219,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Compute the new price according to the new date
    * @returns {*}
    */
-  this.computePrice = function () {
+  this.computePrice = function computePrice() {
     self.computingPrice = true;
     return OvhApiPackXdslResiliation.v6().resiliationTerms({
       packName: $stateParams.packName,
@@ -219,7 +236,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Open the date picker
    * @param event
    */
-  this.openDatePicker = function (event) {
+  this.openDatePicker = function openDatePicker(event) {
     self.pickerOpened = true;
     self.pickerOpenedPreventConflict = true;
     event.stopPropagation();
@@ -235,7 +252,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    *
    * @param event
    */
-  this.switchDatePickerState = function (event) {
+  this.switchDatePickerState = function switchDatePickerState(event) {
     if (!self.pickerOpenedPreventConflict) {
       self.pickerOpened = !self.pickerOpened;
     }
@@ -249,7 +266,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * @param  {Object} survey Reason to resiliate
    * @param {Boolean} accept If true the resiliation must be done
    */
-  this.resiliatePack = function () {
+  this.resiliatePack = function resiliatePack() {
     self.loading = true;
     return OvhApiPackXdslResiliation.v6().resiliate({
       packName: $stateParams.packName,
@@ -273,7 +290,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * Cancel an on-going resiliation
    * @param  {Object} pack Pack to cancel resiliation
    */
-  this.cancelPackResiliation = function (pack) {
+  this.cancelPackResiliation = function cancelPackResiliation(pack) {
     self.loading = true;
     return OvhApiPackXdslResiliation.v6().cancelResiliation({
       packName: pack.packName,
@@ -285,7 +302,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
     });
   };
 
-  this.openConfirmation = function () {
+  this.openConfirmation = function openConfirmation() {
     $uibModal.open({
       template: $templateCache.get('resiliation.modal.html'),
       controllerAs: 'ResiliationModelCtrl',

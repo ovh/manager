@@ -1,0 +1,69 @@
+<div class="dedicated-servers">
+    <oui-page-header data-heading="{{ :: 'dedicated_servers_title' | translate }}"></oui-page-header>
+    <div class="container-fluid my-5">
+        <oui-datagrid id="dg-servers"
+            page-size="{{ $ctrl.paginationSize }}"
+            rows-loader="$ctrl.loadServers()"
+            criteria="$ctrl.criteria"
+            on-page-change="$ctrl.onPageChange($pagination)"
+            on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            on-sort-change="$ctrl.onSortChange($sort)">
+            <oui-column title=":: 'dedicated_servers_name' | translate"
+                property="name"
+                searchable
+                filterable
+                sortable="$ctrl.getSorting('name')"
+                type="string">
+                <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}">{{$value}}</a>
+            </oui-column>
+            <oui-column title=":: 'dedicated_servers_reverse' | translate"
+                property="reverse"
+                searchable
+                filterable
+                sortable="$ctrl.getSorting('reverse')"
+                type="string">
+            </oui-column>
+            <oui-column title=":: 'dedicated_servers_model' | translate"
+                property="commercialRange"
+                searchable
+                filterable
+                sortable="$ctrl.getSorting('commercialRange')"
+                type="string">
+            </oui-column>
+            <oui-column title=":: 'dedicated_servers_localization' | translate"
+                property="datacenter"
+                searchable
+                filterable
+                sortable="$ctrl.getSorting('datacenter')"
+                type="options"
+                type-options="$ctrl.datacenterEnumFilter">
+                <span data-translate="{{:: 'server_datacenter_' + $ctrl.constructor.toUpperSnakeCase($value) }}"></span>
+            </oui-column>
+            <oui-column title=":: 'dedicated_servers_status' | translate"
+                property="state"
+                filterable
+                sortable="$ctrl.getSorting('state')"
+                type="options"
+                type-options="$ctrl.stateEnumFilter">
+                <span class="oui-status"
+                    data-ng-class="{
+                    'oui-status_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
+                    'oui-status_warning': $ctrl.constructor.toUpperSnakeCase($value) === 'ERROR',
+                    'oui-status_error': $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED' || $ctrl.constructor.toUpperSnakeCase($value) === 'HACKED_BLOCKED'
+                    }"
+                    data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"></span>
+            </oui-column>
+            <extra-top>
+                <a class="oui-button oui-button_primary oui-button_secondary oui-button_icon-right"
+                    data-track-on="click"
+                    data-track-type="action"
+                    data-track-name="dedicated::dedicated::servers::order"
+                    target="_blank" rel="noopener"
+                    data-ng-href="{{:: $ctrl.orderUrl }}">
+                    <span data-translate="dedicated_servers_order"></span>
+                    <span class="oui-icon  oui-icon-external_link" aria-hidden="true"></span>
+                </a>
+            </extra-top>
+        </oui-datagrid>
+    </div>
+</div>

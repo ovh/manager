@@ -48,7 +48,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.setOptions = function () {
+  TelephonyGroupNumberEasyHunting.prototype.setOptions = function setOptions() {
     const self = this;
 
     return self;
@@ -56,7 +56,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.isCcs = function () {
+  TelephonyGroupNumberEasyHunting.prototype.isCcs = function isCcs() {
     const self = this;
 
     return self.featureType === 'contactCenterSolution';
@@ -64,7 +64,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.startEdition = function () {
+  TelephonyGroupNumberEasyHunting.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -75,7 +75,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
     return self;
   };
 
-  TelephonyGroupNumberEasyHunting.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberEasyHunting.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -88,7 +88,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
     return self;
   };
 
-  TelephonyGroupNumberEasyHunting.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberEasyHunting.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -103,7 +103,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
 
   /* ----------  SCHEDULER  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.getScheduler = function () {
+  TelephonyGroupNumberEasyHunting.prototype.getScheduler = function getScheduler() {
     const self = this;
 
     if (!self.scheduler) {
@@ -118,7 +118,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
 
   /* ----------  TIMECONDITION  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.getTimeCondition = function () {
+  TelephonyGroupNumberEasyHunting.prototype.getTimeCondition = function getTimeCondition() {
     const self = this;
 
     if (!self.timeCondition) {
@@ -134,13 +134,13 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.inPendingState = function () {
+  TelephonyGroupNumberEasyHunting.prototype.inPendingState = function inPendingState() {
     return false;
   };
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupNumberEasyHunting.prototype.init = function (resetCache) {
+  TelephonyGroupNumberEasyHunting.prototype.init = function init(resetCache) {
     const self = this;
 
     if (resetCache) {

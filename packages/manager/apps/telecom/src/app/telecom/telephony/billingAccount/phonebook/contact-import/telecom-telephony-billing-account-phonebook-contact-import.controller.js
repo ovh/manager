@@ -2,14 +2,14 @@ import endsWith from 'lodash/endsWith';
 import get from 'lodash/get';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebookContactImportCtrl', function ($q, $stateParams, $timeout, $translate, $uibModalInstance, bookKey, OvhApiTelephony, OvhApiMe, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebookContactImportCtrl', function TelecomTelephonyBillingAccountPhonebookContactImportCtrl($q, $stateParams, $timeout, $translate, $uibModalInstance, bookKey, OvhApiTelephony, OvhApiMe, TucToastError) {
   const self = this;
 
   /*= ==============================
     =            HELPERS            =
     =============================== */
 
-  self.checkValidTextExtention = function (file) {
+  self.checkValidTextExtention = function checkValidTextExtention(file) {
     const validExtensions = ['csv', 'xls', 'xlsx'];
     const fileName = file ? file.name : '';
     const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
@@ -25,7 +25,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
     =            ACTIONS            =
     =============================== */
 
-  self.importContact = function () {
+  self.importContact = function importContact() {
     self.phonecontactForm.isImporting = true;
     return $q.all({
       noop: $timeout(angular.noop, 1000),
@@ -50,11 +50,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
     }));
   };
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function (task) {
+  self.close = function close(task) {
     return $uibModalInstance.close(task || true);
   };
 

@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomOrdersAccessoriesCtrl', function ($q, $state, $translate, OvhApiOrder, OvhApiTelephony, TucToast) {
+angular.module('managerApp').controller('TelecomOrdersAccessoriesCtrl', function TelecomOrdersAccessoriesCtrl($q, $state, $translate, OvhApiOrder, OvhApiTelephony, TucToast) {
   const self = this;
 
   self.billingAccounts = null;
@@ -20,7 +20,7 @@ angular.module('managerApp').controller('TelecomOrdersAccessoriesCtrl', function
   =            EVENTS            =
   ============================== */
 
-  self.orderAccessories = function () {
+  self.orderAccessories = function orderAccessories() {
     self.loading.submit = true;
     self.orderError = null;
 

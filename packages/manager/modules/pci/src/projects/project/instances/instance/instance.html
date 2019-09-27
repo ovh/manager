@@ -11,6 +11,13 @@
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink">
         </oui-header-tabs-item>
     </oui-header-tabs>
+    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+        <oui-guide-menu-item
+            href="{{ $ctrl.guideUrl }}"
+            data-external>
+            <span data-translate="pci_project_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
 </oui-page-header>
 
 <div class="mt-4">
@@ -216,6 +223,12 @@
                         <dd class="oui-tile__description">
                             <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV6()" data-model="$ctrl.instance.publicIpV6[0].ip|| ''"></oui-clipboard>
                             <span data-ng-if="!$ctrl.instance.hasPublicIpV6()">-</span>
+                        </dd>
+                        <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_gateway"></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard data-ng-if="$ctrl.instance.hasPublicIpV6()"
+                                           data-model="$ctrl.instance.publicIpV6[0].gatewayIp"></oui-clipboard>
+                            <span data-ng-if="!$ctrl.instance.publicIpV6[0].gatewayIp">-</span>
                         </dd>
                         <dt class="oui-tile__term" data-translate="pci_projects_project_instances_instance_reverse_ip_label"></dt>
                         <dd class="oui-tile__description">

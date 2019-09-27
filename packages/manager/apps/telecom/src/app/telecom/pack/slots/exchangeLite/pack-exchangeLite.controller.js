@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackExchangeLiteCtrl', function ($scope, OvhApiPackXdslExchangeLite, $stateParams) {
+angular.module('managerApp').controller('PackExchangeLiteCtrl', function PackExchangeLiteCtrl($scope, OvhApiPackXdslExchangeLite, $stateParams) {
   const self = this;
   self.exchangeMail = {};
 

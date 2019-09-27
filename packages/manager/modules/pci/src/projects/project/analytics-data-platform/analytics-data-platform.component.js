@@ -5,9 +5,10 @@ export default {
   template,
   controller,
   bindings: {
-    projectId: '<',
-    manageCluster: '<',
-    deployCluster: '<',
     clusters: '<',
+    deployCluster: '<',
+    guideUrl: '<',
+    manageCluster: '<',
+    projectId: '<',
   },
 };

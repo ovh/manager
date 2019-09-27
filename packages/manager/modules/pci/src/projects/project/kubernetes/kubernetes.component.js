@@ -4,6 +4,7 @@ import template from './kubernetes.html';
 export default {
   bindings: {
     addCluster: '<',
+    guideUrl: '<',
     kubernetes: '<',
     projectId: '<',
   },

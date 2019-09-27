@@ -24,7 +24,7 @@
         </p>
 
         <oui-field
-            data-label="{{:: 'pci_projects_project_users_download-rclone_region_label' | translate }}"
+            data-label="{{:: (!$ctrl.hasGlobalRegions ? 'pci_projects_project_users_download-rclone_region_label' : 'pci_projects_project_users_download-rclone_region_label_global') | translate }}"
             data-help-text="{{ :: 'pci_projects_project_users_download-rclone_region_help' | translate }}"
             data-size="xl">
             <oui-select

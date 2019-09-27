@@ -1,0 +1,14 @@
+{
+ "login_information_error": "Informatie over de verbindingen kon niet worden geopend. ",
+ "cpcivm_login_information_title": "Inloggegevens",
+ "cpcivm_login_information_instance_title": "Inloggen op de instance",
+ "cpcivm_login_information_instance_info_linux": "Voer in een terminal het volgende commando in:<br/><code>ssh {{user}}@{{ip}}</code>",
+ "cpcivm_login_information_instance_info_windows": "Wanneer u voor het eerst inlogt, moet u de VNC-console gebruiken om de Windows-configuratie te voltooien. Gebruik dan uw favoriete RDP-client, bijvoorbeeld via een Linux-post:",
+ "cpcivm_login_information_application_title": "Inloggen op applicaties",
+ "cpcivm_login_information_application_label_type": "Type",
+ "cpcivm_login_information_application_label_url": "URL",
+ "cpcivm_login_information_application_label_login": "Login",
+ "cpcivm_login_information_application_label_password": "Wachtwoord",
+ "cpcivm_login_information_go_to_console": "Toegang tot de VNC console",
+ "cpcivm_login_information_application_readonly": "Uw account heeft niet de vereiste machtigingen om in te loggen op de applicatie gegevenspagina. Neem hiervoor aub contact op met uw administrator. "
+}

@@ -12,8 +12,19 @@ import uniq from 'lodash/uniq';
 
 angular.module('managerApp')
   .controller('TelecomTelephonyAliasPortabilityOrderCtrl',
-    function ($q, $scope, $stateParams, $translate, moment, TelephonyMediator,
-      OvhApiMe, OvhApiOrder, TucBankHolidays, TucToast, TELEPHONY_REPAYMENT_CONSUMPTION) {
+    function TelecomTelephonyAliasPortabilityOrderCtrl(
+      $q,
+      $scope,
+      $stateParams,
+      $translate,
+      moment,
+      TelephonyMediator,
+      OvhApiMe,
+      OvhApiOrder,
+      TucBankHolidays,
+      TucToast,
+      TELEPHONY_REPAYMENT_CONSUMPTION,
+    ) {
       const self = this;
 
       // attributes shared by 'individual' and 'company' social reason
@@ -102,18 +113,18 @@ angular.module('managerApp')
         }));
       }
 
-      self.onSDATypeChange = function () {
+      self.onSDATypeChange = function onSDATypeChange() {
         self.order.socialReason = self.isSDA ? 'corporation' : 'individual';
       };
 
-      self.openDesireDatePicker = function (evt) {
+      self.openDesireDatePicker = function openDesireDatePicker(evt) {
         evt.preventDefault();
         evt.stopPropagation();
         self.desireDatePickerOpened = true;
       };
 
       // select number corresponding country automatically
-      self.onNumberChange = function () {
+      self.onNumberChange = function onNumberChange() {
         const number = self.normalizeNumber(self.order.callNumber);
         if (startsWith(number, '0033')) {
           self.order.country = 'france';
@@ -137,25 +148,25 @@ angular.module('managerApp')
         self.order.translatedCountry = $translate.instant(`telephony_alias_portability_order_contact_country_${self.order.country}`);
       };
 
-      self.onChooseRedirectToLine = function (result) {
+      self.onChooseRedirectToLine = function onChooseRedirectToLine(result) {
         self.order.lineToRedirectAliasTo = result.serviceName;
         self.order.lineToRedirectAliasToDescription = result.description;
       };
 
       // add sdaNumberToAdd number to numbersList
-      self.addSdaNumber = function () {
+      self.addSdaNumber = function addSdaNumber() {
         self.order.numbersList.push(self.order.sdaNumberToAdd);
         self.order.numbersList = uniq(self.order.numbersList);
         self.order.sdaNumberToAdd = null;
       };
 
       // remove given number from numbersList
-      self.removeSdaNumber = function (number) {
+      self.removeSdaNumber = function removeSdaNumber(number) {
         self.order.numbersList = pull(self.order.numbersList, number);
       };
 
       // normalize number : replace +33 by 0033
-      self.normalizeNumber = function (numberParam) {
+      self.normalizeNumber = function normalizeNumber(numberParam) {
         let number = numberParam;
         if (number) {
           number = number.replace(/^\+/, '00');
@@ -163,7 +174,7 @@ angular.module('managerApp')
         return number;
       };
 
-      self.goToConfigStep = function () {
+      self.goToConfigStep = function goToConfigStep() {
         self.order.addressTooLong = false;
 
         if (`${get(self.order, 'streetName', '')}${get(self.order, 'streetNumber', '')}${get(self.order, 'streetNumberExtra', '')}${get(self.order, 'streetType', '')}`.length >= 35) {
@@ -175,7 +186,7 @@ angular.module('managerApp')
         return true;
       };
 
-      self.getOrderParams = function () {
+      self.getOrderParams = function getOrderParams() {
         let params = pick(self.order, sharedAttributes);
 
         if (params.offer === 'individual') {
@@ -204,7 +215,7 @@ angular.module('managerApp')
         return params;
       };
 
-      self.fetchPriceAndContracts = function () {
+      self.fetchPriceAndContracts = function fetchPriceAndContracts() {
         self.step = 'summary';
         return OvhApiOrder.Telephony().v6()
           .getPortability(self.getOrderParams()).$promise
@@ -220,7 +231,7 @@ angular.module('managerApp')
           });
       };
 
-      self.submitOrder = function () {
+      self.submitOrder = function submitOrder() {
         self.order.isOrdering = true;
         return OvhApiOrder.Telephony().v6().orderPortability({
           billingAccount: self.order.billingAccount,

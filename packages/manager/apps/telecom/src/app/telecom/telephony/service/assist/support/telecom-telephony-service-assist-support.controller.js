@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtrl', function ($stateParams, TelephonyMediator, REDIRECT_URLS, URLS) {
+angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtrl', function TelecomTelephonyServiceAssistSupportCtrl($stateParams, TelephonyMediator, REDIRECT_URLS, URLS) {
   const self = this;
 
   self.loading = {

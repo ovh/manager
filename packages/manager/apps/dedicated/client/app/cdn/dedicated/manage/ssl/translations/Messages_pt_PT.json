@@ -1,0 +1,5 @@
+{
+  "cdn_dedicated_ssl_certificate": "Certificado",
+  "cdn_dedicated_ssl_key": "Chave",
+  "cdn_dedicated_ssl_chain": "Cadeia"
+}

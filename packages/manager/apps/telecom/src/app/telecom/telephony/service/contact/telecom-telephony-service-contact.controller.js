@@ -9,7 +9,7 @@ import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
 import words from 'lodash/words';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', function ($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToast, TucToastError, OvhApiXdsl, tucTelephonyBulk, TELEPHONY_SERVICE_CONTACT_DIRECTORY_INFO) {
+angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', function TelecomTelephonyServiceContactCtrl($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToast, TucToastError, OvhApiXdsl, tucTelephonyBulk, TELEPHONY_SERVICE_CONTACT_DIRECTORY_INFO) {
   const self = this;
 
   function buildWayInfo(directory) {
@@ -87,7 +87,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
    * Some attributes are not shared between different legal form so we have to reset
    * them when user choose another legal form.
    */
-  self.onChangeLegalForm = function () {
+  self.onChangeLegalForm = function onChangeLegalForm() {
     self.directoryForm = assign(self.directoryForm, omit(self.directory, 'legalForm'));
     switch (self.directoryForm.legalForm) {
       case 'individual':
@@ -113,7 +113,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     }
   };
 
-  self.applyChanges = function () {
+  self.applyChanges = function applyChanges() {
     if (self.directoryForm.legalForm !== 'individual') {
       self.directoryForm.PJSocialNomination = self.directoryForm.socialNomination;
     }
@@ -145,11 +145,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     },
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return pickBy(self.directoryForm, (value, key) => get(self.directoryProperties, [key, 'readOnly']) === 0);
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_service_contact_bulk_all_success'),
@@ -166,13 +166,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_service_contact_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
-  self.onPostCodeChange = (function () {
+  self.onPostCodeChange = (function onPostCodeChange() {
     // var pendingRequest = null;
-    return function () {
+    return function onPostCodeChangeFunction() {
       // self.directoryForm.postCode =
       //   (self.directoryForm.postCode || "").replace(/[^\d]/g, "").substring(0, 5);
 
@@ -216,16 +216,16 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     };
   }());
 
-  self.onSiretChange = (function () {
+  self.onSiretChange = (function onSiretChange() {
     const pendingRequest = null;
-    return function (model) {
+    return function onSiretChangeFunction(model) {
       if (self.directoryForm.siret && self.directoryForm.siret.length >= 9) {
         if (pendingRequest) {
           pendingRequest.$cancelRequest();
         }
 
         // we have to poll because api call is not synchronous :(
-        const fetchInfos = function (siret) {
+        const fetchInfos = function fetchInfos(siret) {
           return OvhApiTelephony.Service().v6().fetchDirectoryEntrepriseInformations({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
@@ -265,19 +265,19 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   }());
 
   // arrondissements pour paris 75xxx, marseille 13xxx et lyon 69xxx (92 izi?)
-  self.isUrbanDistrictRequired = function () {
+  self.isUrbanDistrictRequired = function isUrbanDistrictRequired() {
     const p = self.directoryForm.postCode;
     return startsWith(p, '75') || startsWith(p, '13') || startsWith(p, '69');
   };
 
-  self.onCityChange = function () {
+  self.onCityChange = function onCityChange() {
     self.wayList = [];
     self.directoryForm.wayName = '';
   };
 
-  self.getWayNameList = (function () {
+  self.getWayNameList = (function getWayNameList() {
     let pendingRequest = null;
-    return function (partialName) {
+    return function getWayNameListFunction(partialName) {
       let result = $q.when([]);
       if (partialName.length >= 3) {
         if (pendingRequest) {
@@ -300,27 +300,27 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     };
   }());
 
-  self.getDisplayFirstNameOptions = function (displayFirstName) {
+  self.getDisplayFirstNameOptions = function getDisplayFirstNameOptions(displayFirstName) {
     if (displayFirstName) {
       return `${self.directoryForm.firstName} ${self.directoryForm.name}`;
     }
     return `${self.directoryForm.firstName.substring(0, 1)}. ${self.directoryForm.name}`;
   };
 
-  self.findDirectoryService = function () {
+  self.findDirectoryService = function findDirectoryService() {
     return find(self.directoryCodes, info => `${info.directoryServiceCode}` === `${self.directory.directoryServiceCode}`);
   };
 
-  self.cancelEdition = function () {
+  self.cancelEdition = function cancelEdition() {
     self.isEditing = false;
     self.directoryForm = angular.copy(self.directory);
   };
 
-  self.isShortForm = function () {
+  self.isShortForm = function isShortForm() {
     return ['fr', 'be'].indexOf(self.directory.country) < 0;
   };
 
-  self.getStatusLabel = function () {
+  self.getStatusLabel = function getStatusLabel() {
     if (self.directoryForm.status.includes(TELEPHONY_SERVICE_CONTACT_DIRECTORY_INFO.status.error)) {
       return $translate.instant('telephony_service_contact_sync_error');
     }

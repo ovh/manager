@@ -15,7 +15,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
      * Object constructor
      * @param {Object} data Data from APIv6
      */
-  const PackXdslModemLanObject = function (data) {
+  const PackXdslModemLanObject = function PackXdslModemLanObject(data) {
     assignIn(
       this,
       template,
@@ -31,7 +31,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
      * @param {String} serviceName Name of the pack xdslId
      * @return {Promise}
      */
-  PackXdslModemLanObject.prototype.save = function (serviceName) {
+  PackXdslModemLanObject.prototype.save = function save(serviceName) {
     const self = this;
     this.busy = true;
     return OvhApiXdsl.Modem().Lan().v6().update(
@@ -56,7 +56,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
   /**
      * Cancel edit mode
      */
-  PackXdslModemLanObject.prototype.cancel = function () {
+  PackXdslModemLanObject.prototype.cancel = function cancel() {
     this.toggleEdit(false);
     return this.id;
   };
@@ -64,7 +64,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
   /**
      * Enter Edit Mode
      */
-  PackXdslModemLanObject.prototype.edit = function () {
+  PackXdslModemLanObject.prototype.edit = function edit() {
     this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
@@ -74,7 +74,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
      * @param {Boolean} state [Optional] if set, for the edit mode state
      * @return {Boolean} new edit mode state
      */
-  PackXdslModemLanObject.prototype.toggleEdit = function (state) {
+  PackXdslModemLanObject.prototype.toggleEdit = function toggleEdit(state) {
     if (isBoolean(state)) {
       this.editMode = state;
     } else {

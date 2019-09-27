@@ -5,7 +5,7 @@ import pick from 'lodash/pick';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTonesOldPabxCtrl', function (
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTonesOldPabxCtrl', function TelecomTelephonyAliasConfigurationTonesOldPabxCtrl(
   $q, $stateParams, $translate, $timeout,
   TelephonyMediator, TucToast, tucVoipServiceTask,
   OvhApiMe, OvhApiTelephony, OvhApiTelephonyEasyPabx, OvhApiTelephonyMiniPabx,
@@ -53,7 +53,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     return !angular.equals(get(self.tones, attr), get(self.formOptions, attr));
   }
 
-  self.checkValidSound = function (file, toneType) {
+  self.checkValidSound = function checkValidSound(file, toneType) {
     // reset errors for tone type
     set(self.formErrors, toneType, {});
 
@@ -70,7 +70,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     return !self.formErrors[toneType].format && !self.formErrors[toneType].size;
   };
 
-  self.isFormValid = function () {
+  self.isFormValid = function isFormValid() {
     return some(attrs, tone => (hasAttrChange(tone) && self.formOptions[tone] !== 'Custom sound') || (self.formOptions[tone] === 'Custom sound' && hasAttrChange(tone) && self.formOptions[`${tone}Custom`]));
   };
 
@@ -112,7 +112,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
   =            EVENTS            =
   ============================== */
 
-  self.onTonesFormSubmit = function () {
+  self.onTonesFormSubmit = function onTonesFormSubmit() {
     const savePromises = [];
     const otherTypes = {};
 
@@ -146,7 +146,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     });
   };
 
-  self.onCancelBtnClick = function () {
+  self.onCancelBtnClick = function onCancelBtnClick() {
     self.formOptions = angular.copy(self.tones);
   };
 
@@ -156,7 +156,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
   =            INITIALIZATION            =
   ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loaders.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

@@ -1,0 +1,11 @@
+{
+  "duration_day_1": "1 dzień",
+  "duration_day_other": "{{t0}} dni",
+  "duration_month_1": "1 m-c",
+  "duration_month_other": "{{t0}} m-c",
+  "duration_year_1": "1 rok",
+  "duration_year_other": "{{t0}} lat(a)",
+  "duration_upto": "Do {{t0}}",
+  "duration_uptofirstdaynextmonth": "Do pierwszego dnia kolejnego miesiąca",
+  "duration_engage": "Zamów {{t0}}"
+}

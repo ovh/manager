@@ -8,10 +8,10 @@ import set from 'lodash/set';
 import values from 'lodash/values';
 import size from 'lodash/size';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationLinesGroup', function ($scope, $stateParams, $q, $translate, TelephonyMediator, TelephonySidebar, OvhApiTelephony, TucToast, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationLinesGroup', function TelecomTelephonyBillingAccountAdministrationLinesGroup($scope, $stateParams, $q, $translate, TelephonyMediator, TelephonySidebar, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
-  this.$onInit = function () {
+  this.$onInit = function $onInit() {
     self.billingAccounts = {
       ids: [],
       paginated: null,
@@ -44,25 +44,25 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     }, err => new TucToastError(err));
   };
 
-  self.fetchBillingAccountDetails = function (billingAccount) {
+  self.fetchBillingAccountDetails = function fetchBillingAccountDetails(billingAccount) {
     return OvhApiTelephony.v6().get({
       billingAccount: billingAccount.id,
     }).$promise;
   };
 
-  self.selectBillingAccount = function (ba) {
+  self.selectBillingAccount = function selectBillingAccount(ba) {
     if (ba && ba.billingAccount !== self.billingAccounts.current && ba.status === 'enabled') {
       self.billingAccounts.selected = ba;
       self.fetchBillingAccountServices(ba);
     }
   };
 
-  self.cancelBillingAccountSelection = function () {
+  self.cancelBillingAccountSelection = function cancelBillingAccountSelection() {
     self.billingAccounts.selected = null;
     self.servicesToAttach = {};
   };
 
-  self.fetchBillingAccountServices = function (ba) {
+  self.fetchBillingAccountServices = function fetchBillingAccountServices(ba) {
     self.services = null;
 
     // get batch line details
@@ -137,11 +137,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     });
   };
 
-  self.getServicesToAttachList = function () {
+  self.getServicesToAttachList = function getServicesToAttachList() {
     return values(filter(self.servicesToAttach, val => !!val));
   };
 
-  self.attachSelectedServices = function () {
+  self.attachSelectedServices = function attachSelectedServices() {
     const errorList = [];
     self.isAttaching = true;
 

@@ -1,0 +1,6 @@
+{
+  "veeam_storage_add_title": "Añadir espacio de almacenamiento",
+  "veeam_storage_add_confirmation": "¿Está seguro(a) de que desea añadir espacio de almacenamiento?",
+  "veeam_storage_add_confirm": "Añadir",
+  "veeam_storage_add_cancel": "Cancelar"
+}

@@ -1,6 +1,6 @@
 import forEach from 'lodash/forEach';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingSummaryCtrl', function ($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingSummaryCtrl', function TelecomTelephonyBillingAccountBillingSummaryCtrl($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
   const self = this;
 
   self.group = null;
@@ -37,7 +37,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingSu
   =            INITIALIZATION            =
   ====================================== */
 
-  this.$onInit = function () {
+  this.$onInit = function $onInit() {
     return TelephonyMediator.getGroup($stateParams.billingAccount)
       .then((group) => {
         self.group = group;

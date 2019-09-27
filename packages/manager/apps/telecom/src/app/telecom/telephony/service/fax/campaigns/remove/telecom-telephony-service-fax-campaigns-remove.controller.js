@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemoveCtrl', function ($q, $stateParams, $timeout, $uibModalInstance, OvhApiTelephony, campaign) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemoveCtrl', function TelecomTelephonyServiceFaxCampaignsRemoveCtrl($q, $stateParams, $timeout, $uibModalInstance, OvhApiTelephony, campaign) {
   const self = this;
 
   self.loading = {
@@ -15,7 +15,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemo
     =            ACTIONS            =
     =============================== */
 
-  self.remove = function () {
+  self.remove = function remove() {
     self.loading.removeCampaign = true;
 
     return $q.all([
@@ -36,11 +36,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemo
     }));
   };
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 

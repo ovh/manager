@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslAccessLnsRateLimitCtrl', function ($stateParams, $scope, $translate, OvhApiXdsl, TucToastError) {
+angular.module('managerApp').controller('XdslAccessLnsRateLimitCtrl', function XdslAccessLnsRateLimitCtrl($stateParams, $scope, $translate, OvhApiXdsl, TucToastError) {
   const self = this;
 
   function init() {
@@ -25,7 +25,7 @@ angular.module('managerApp').controller('XdslAccessLnsRateLimitCtrl', function (
     });
   }
 
-  self.reformatValue = function (value) {
+  self.reformatValue = function reformatValue(value) {
     const matcher = (`${value / 1024}.00`).match(/^(\d*)\.(\d{2})/);
     if (matcher) {
       return `${matcher[1]}.${matcher[2]} Mbps`;
@@ -33,12 +33,12 @@ angular.module('managerApp').controller('XdslAccessLnsRateLimitCtrl', function (
     return '';
   };
 
-  self.valueChanged = function () {
+  self.valueChanged = function valueChanged() {
     return (self.rate.disabled !== self.undoRate.disabled)
       || (self.rate.value !== self.undoRate.value);
   };
 
-  self.changeRate = function () {
+  self.changeRate = function changeRate() {
     if (self.rate.canApplyLnsRateLimit) {
       self.doing = true;
       OvhApiXdsl.v6().put(

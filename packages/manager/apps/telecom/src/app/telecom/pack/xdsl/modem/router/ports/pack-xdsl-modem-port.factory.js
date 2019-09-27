@@ -2,6 +2,7 @@ import assignIn from 'lodash/assignIn';
 import identity from 'lodash/identity';
 import isBoolean from 'lodash/isBoolean';
 import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 import without from 'lodash/without';
 
 angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $translate, TucToast) => {
@@ -22,7 +23,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * Object constructor
      * @param {Object} data Data from APIv6
      */
-  const PackXdslModemPortObject = function (data) {
+  const PackXdslModemPortObject = function PackXdslModemPortObject(data) {
     assignIn(
       this,
       template,
@@ -38,7 +39,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * @param {String} serviceName Name of the Xdsl service
      * @return {Promise}
      */
-  PackXdslModemPortObject.prototype.save = function (serviceName) {
+  PackXdslModemPortObject.prototype.save = function save(serviceName) {
     const self = this;
     this.busy = true;
     if (this.id) {
@@ -47,7 +48,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
           xdslId: serviceName,
           name: this.name,
         },
-        pick(pick(this.tempValue, Object.keys(template)), identity),
+        pickBy(pick(this.tempValue, Object.keys(template)), identity),
       ).$promise.then(() => {
         assignIn(self, self.tempValue);
         self.toggleEdit(false);
@@ -63,7 +64,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
       {
         xdslId: serviceName,
       },
-      pick(pick(this.tempValue, Object.keys(template)), identity),
+      pickBy(pick(this.tempValue, Object.keys(template)), identity),
     ).$promise.then((data) => {
       assignIn(self, pick(data, Object.keys(template)));
       self.toggleEdit(false);
@@ -81,7 +82,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * @param {String} serviceName Name of the Xdsl service
      * @return {Promise}
      */
-  PackXdslModemPortObject.prototype.remove = function (serviceName) {
+  PackXdslModemPortObject.prototype.remove = function remove(serviceName) {
     const self = this;
     this.busy = true;
     return OvhApiXdsl.Modem().Port().v6().delete({
@@ -100,7 +101,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
   /**
      * Cancel edit mode
      */
-  PackXdslModemPortObject.prototype.cancel = function () {
+  PackXdslModemPortObject.prototype.cancel = function cancel() {
     this.toggleEdit(false);
     return this.id;
   };
@@ -108,7 +109,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
   /**
      * Enter Edit Mode
      */
-  PackXdslModemPortObject.prototype.edit = function () {
+  PackXdslModemPortObject.prototype.edit = function edit() {
     const fields = without(Object.keys(template), 'taskId', 'id');
     this.tempValue = pick(this, fields);
     this.toggleEdit(true);
@@ -119,7 +120,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * @param {Boolean} state [Optional] if set, for the edit mode state
      * @return {Boolean} new edit mode state
      */
-  PackXdslModemPortObject.prototype.toggleEdit = function (state) {
+  PackXdslModemPortObject.prototype.toggleEdit = function toggleEdit(state) {
     if (isBoolean(state)) {
       this.editMode = state;
     } else {

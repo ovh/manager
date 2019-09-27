@@ -31,7 +31,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * Get the current user country
    * @returns {Promise}
    */
-  this.getUser = function () {
+  this.getUser = function getUser() {
     return OvhApiMe.v6()
       .get().$promise
       .then((user) => {
@@ -101,7 +101,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param {String} range   Beginning of the number
    * @returns {*}
    */
-  this.getPredefinedNumbers = function (country, type, zone, range) {
+  this.getPredefinedNumbers = function getPredefinedNumbers(country, type, zone, range) {
     return OvhApiTelephony.Number().v6().getSpecificNumbers({
       country,
       type,
@@ -124,7 +124,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param {String} country        be | ch | de | es | fr | gb
    * @param {string} type           geographic | nogeographic | special
    */
-  this.getPrice = function (billingAccount, country, type) {
+  this.getPrice = function getPrice(billingAccount, country, type) {
     return this.getOfferDetails(
       billingAccount,
       country,
@@ -150,7 +150,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * Get all foreign countries
    * @return {Promise}
    */
-  this.getForeignCountries = function () {
+  this.getForeignCountries = function getForeignCountries() {
     return this.getUser()
       .then(() => OvhApiTelephony.v6().schema().$promise.then(schema => schema.models['telephony.NumberCountryEnum'].enum));
   };

@@ -1,11 +1,11 @@
 {
   "name": "@ovh-ux/manager-error-page",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "bootstrap": "^4.3.1",
     "lodash": "^4.17.15"
   },
@@ -16,6 +16,6 @@
     "angular-i18n": "~1.5.x",
     "angular-sanitize": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.5.1"
+    "ovh-ui-angular": "^3.8.0"
   }
 }

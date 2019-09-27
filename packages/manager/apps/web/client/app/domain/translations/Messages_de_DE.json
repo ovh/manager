@@ -817,5 +817,19 @@
   "domain_dashboard_dns_activate_zone": "Die DNS Zone aktivieren",
   "domain_tab_dns_management_step1_updating": "DNS Zone wird aktualisiert ...",
   "domain_dashboard_general_informations": "Allgemeine Informationen",
-  "domain_dashboard_general_security": "Sicherheit"
+  "domain_dashboard_general_security": "Sicherheit",
+  "domain_dashboard_options": "Zusammenfassung der Optionen",
+  "domain_dashboard_options_dns_anycast": "DNS Anycast",
+  "domain_dashboard_options_status_enabled": "Aktiviert",
+  "domain_dashboard_options_status_disabled": "Gekündigt",
+  "domain_dashboard_options_unavailable": "Option nicht verfügbar",
+  "domain_dashboard_options_desactivate_option": "Kündigen",
+  "domain_dashboard_options_fail": "Beim Abruf der Domain-Optionen ist ein Fehler aufgetreten",
+  "domain_tab_options_delete_confirm": "Sind Sie sicher, dass Sie die Option löschen möchten?",
+  "domain_tab_options_delete_confirm_warning": "Diese Aktion ist endgültig und kann nicht rückgängig gemacht werden.",
+  "domain_tab_options_delete_confirm_button": "Bestätigen",
+  "domain_tab_options_delete_dnsAnycast_title": "DNS Anycast Option kündigen",
+  "domain_tab_options_delete_success": "Die Option wurde gekündigt.",
+  "domain_tab_options_delete_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
+  "domain_tab_options_delete_cancel": "Abbrechen"
 }

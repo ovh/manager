@@ -3,10 +3,11 @@ import template from './private-networks.html';
 
 export default {
   bindings: {
-    projectId: '<',
     createNetwork: '<',
     deleteNetwork: '<',
+    guideUrl: '<',
     privateNetworks: '<',
+    projectId: '<',
   },
   controller,
   template,

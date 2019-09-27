@@ -26,7 +26,7 @@ angular.module('managerApp').factory('TelecomTelephonyLineCallsForward', ($trans
     this.master = key === 'Unconditional';
   };
 
-  TelecomTelephonyLineCallsForward.prototype.getCurrentNumber = function () {
+  TelecomTelephonyLineCallsForward.prototype.getCurrentNumber = function getCurrentNumber() {
     return this.nature.value === 'external' ? this.externalNumber : this.number;
   };
 

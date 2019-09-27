@@ -5,7 +5,7 @@ import isArray from 'lodash/isArray';
 import pick from 'lodash/pick';
 import pull from 'lodash/pull';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl', function ($q, $stateParams, $translate, $timeout, OvhApiTelephony, TucToast, TucToastError, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl', function TelecomTelephonyServiceFaxSettingsCtrl($q, $stateParams, $translate, $timeout, OvhApiTelephony, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
   /* ===============================
@@ -42,22 +42,22 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
     =            ACTIONS            =
     =============================== */
 
-  self.cancelAddAddressesToNotifyForm = function () {
+  self.cancelAddAddressesToNotifyForm = function cancelAddAddressesToNotifyForm() {
     self.addressesToNotifyForm.email = null;
     self.addressesToNotifyForm.isShown = false;
   };
 
-  self.addRedirectionEmail = function (email) {
+  self.addRedirectionEmail = function addRedirectionEmail(email) {
     self.settings.redirectionEmail.push(email);
     self.addressesToNotifyForm.redirectionEmail = null;
     self.addressesToNotifyForm.isShown = false;
   };
 
-  self.removeRedirectionEmail = function (email) {
+  self.removeRedirectionEmail = function removeRedirectionEmail(email) {
     pull(self.settings.redirectionEmail, email);
   };
 
-  self.updateAllSettings = function () {
+  self.updateAllSettings = function updateAllSettings() {
     self.updatingSettings = true;
 
     return OvhApiTelephony.Fax().v6().setSettings({
@@ -129,15 +129,15 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return self.settings;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_service_fax_settings_update_bulk_all_success'),
@@ -155,7 +155,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_service_fax_settings_update_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

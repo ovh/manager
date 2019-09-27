@@ -21,7 +21,7 @@ import remove from 'lodash/remove';
  *  ```javascript
  *  // inject CucOrderedHashFactory as a dependency of your controller/factory/service/...
  *  .module('myApp')
- *    .controller('myController', function (CucOrderedHashFactory) {
+ *    .controller('myController', function myController(CucOrderedHashFactory) {
  *      // init CucOrderedHashFactory object
  *      this.myHash = new CucOrderedHashFactory();
  *      // push an object

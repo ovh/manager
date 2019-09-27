@@ -27,7 +27,7 @@ angular.module('managerApp')
       /**
        * Add a new element in Edit mode
        */
-      this.addElement = function () {
+      this.addElement = function addElement() {
         const notif = new NotificationElement(
           {
             frequency: self.frequencies[0].name,
@@ -47,7 +47,7 @@ angular.module('managerApp')
        * @param {String}  fieldName  Name of the sorting field
        * @param {boolean} descending If true, descending
        */
-      this.sortElements = function (sort/* fieldName, descending */) {
+      this.sortElements = function sortElements(sort/* fieldName, descending */) {
         self.ngModel.sort((a, b) => {
           let comp1;
           let comp2;
@@ -86,7 +86,7 @@ angular.module('managerApp')
        * Process error from API
        * @param err
        */
-      this.processError = function (err) {
+      this.processError = function processError(err) {
         self.errorHandler({ ERR: err });
       };
 
@@ -94,7 +94,7 @@ angular.module('managerApp')
        * Remove an element from the list (not removed in the API)
        * @param {Object} element Notification element
        */
-      this.removeElement = function (element) {
+      this.removeElement = function removeElement(element) {
         const eltIndex = self.ngModel.indexOf(element);
         if (eltIndex >= 0) {
           self.ngModel.splice(eltIndex, 1);
@@ -105,7 +105,7 @@ angular.module('managerApp')
        * Remove an Element in the API
        * @param {Object} element Notification element
        */
-      this.destroyElement = function (element) {
+      this.destroyElement = function destroyElement(element) {
         set(element, 'frozen', true);
         OvhApiXdslNotifications.v6().remove({
           xdslId: element.xdslService,
@@ -124,7 +124,7 @@ angular.module('managerApp')
        * Add an element in the API
        * @param {Object} element Notification element
        */
-      this.submitElement = function (element) {
+      this.submitElement = function submitElement(element) {
         set(element, 'frozen', true);
         set(element, 'editMode', false);
         OvhApiXdslNotifications.v6().add({
@@ -146,7 +146,7 @@ angular.module('managerApp')
       /**
        * Read the notifications from the API
        */
-      this.getNotifications = function () {
+      this.getNotifications = function getNotifications() {
         self.loading = true;
         OvhApiXdslNotifications.Aapi().list({
           xdslId: self.xdslService,
@@ -164,11 +164,11 @@ angular.module('managerApp')
         });
       };
 
-      this.isTypeValid = function (value) {
+      this.isTypeValid = function isTypeValid(value) {
         return value !== 'sms' || self.accounts.length !== 0;
       };
 
-      const init = function () {
+      const init = function init() {
         if (typeof self.ngModel === 'undefined') {
           self.ngModel = [];
         }

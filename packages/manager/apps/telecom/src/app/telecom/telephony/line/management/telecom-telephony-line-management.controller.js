@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyLineManagementCtrl', function ($q, $translate, $stateParams, TelecomMediator, TelephonyMediator, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyLineManagementCtrl', function TelecomTelephonyLineManagementCtrl($q, $translate, $stateParams, TelecomMediator, TelephonyMediator, OvhApiTelephony) {
   const self = this;
 
   this.loading = {

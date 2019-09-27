@@ -1,0 +1,11 @@
+{
+  "duration_day_1": "1 giorno",
+  "duration_day_other": "{{t0}} giorni",
+  "duration_month_1": "1 mese",
+  "duration_month_other": "{{t0}} mese",
+  "duration_year_1": "1 anno",
+  "duration_year_other": "{{t0}} anni",
+  "duration_upto": "Fino al {{t0}}",
+  "duration_uptofirstdaynextmonth": "Fino al primo giorno del prossimo mese",
+  "duration_engage": "Sottoscrivi {{t0}}"
+}

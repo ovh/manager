@@ -1,0 +1,9 @@
+{
+  "cdn_dedicated_ssl_delete_title": "Eliminare il certificato",
+  "cdn_dedicated_ssl_delete_confirm": "Vuoi davvero eliminare il certificato <b>{{t0}}</b>?",
+  "cdn_dedicated_ssl_delete_no_ssl_warning": "Non è possibile eliminare certificati SSL dalla tua CDN perché non ne hai ancora aggiunto uno.",
+  "cdn_dedicated_ssl_delete_operation_warning": "Non è possibile eliminare il certificato SSL dalla tua CDN perché è già in corso un'operazione SSL.",
+  "cdn_dedicated_ssl_delete_success": "E' stata creata un'operazione. Questa sarà effettiva entro un periodo di 15 minuti.",
+  "cdn_dedicated_ssl_delete_error": "Si è verificato un errore durante la cancellazione del certificato {{t0}}.",
+  "cdn_dedicated_ssl_delete_load_error": "Si è verificato un errore durante il caricamento delle informazioni relative al certificato SSL."
+}

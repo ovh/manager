@@ -61,7 +61,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
      *
      *  @return {VoipScheduler} The current scheduler instance.
      */
-  VoipScheduler.prototype.setOptions = function (options) {
+  VoipScheduler.prototype.setOptions = function setOptions(options) {
     const self = this;
 
     if (!options) {
@@ -81,7 +81,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *
    *  @return {Promise} That returns the current scheduler instance when resolved.
    */
-  VoipScheduler.prototype.get = function () {
+  VoipScheduler.prototype.get = function get() {
     const self = this;
 
     return OvhApiTelephony.Scheduler().v6().get({
@@ -139,7 +139,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     return $q.allSettled(deletePromises).then(() => $q.allSettled(promises).then(() => self));
   };
 
-  VoipScheduler.prototype.importIcsCalendar = function (calendarUrl) {
+  VoipScheduler.prototype.importIcsCalendar = function importIcsCalendar(calendarUrl) {
     const self = this;
 
     return OvhApiTelephony.Scheduler().v6().importIcsCalendar({
@@ -210,7 +210,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *
    *  @return {VoipSchedulerEvent} The added scheduler event.
    */
-  VoipScheduler.prototype.addEvent = function (eventOptions) {
+  VoipScheduler.prototype.addEvent = function addEvent(eventOptions) {
     const self = this;
     let event;
 
@@ -235,7 +235,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
      *
      *  @return {VoipScheduler} Current instance of the scheduler.
      */
-  VoipScheduler.prototype.removeEvent = function (event) {
+  VoipScheduler.prototype.removeEvent = function removeEvent(event) {
     const self = this;
 
     remove(self.events, {
@@ -253,7 +253,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *  @return {VoipSchedulerEvent} The founded scheduler event in scheduler events list.
    *                               Undefined if not found.
    */
-  VoipScheduler.prototype.getEventByUid = function (eventUid) {
+  VoipScheduler.prototype.getEventByUid = function getEventByUid(eventUid) {
     const self = this;
 
     return find(self.events, {
@@ -271,7 +271,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *  @return {Boolean} true if an event of the same category is found in the event range,
    *                    false otherwise.
    */
-  VoipScheduler.prototype.isEventInExistingRange = function (event) {
+  VoipScheduler.prototype.isEventInExistingRange = function isEventInExistingRange(event) {
     const self = this;
 
     return some(
@@ -284,10 +284,10 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
 
   /* ----------  TASK  ----------*/
 
-  VoipScheduler.prototype.getPendingImportTasks = function () {
+  VoipScheduler.prototype.getPendingImportTasks = function getPendingImportTasks() {
     const self = this;
 
-    const getImportTask = function (status) {
+    const getImportTask = function getImportTask(status) {
       return OvhApiTelephony.Service().Task().v6().query({
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
@@ -305,14 +305,14 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
 
   /* ----------  ICS EXPORT  ----------*/
 
-  VoipScheduler.prototype.exportToIcs = function (categoryFilter) {
+  VoipScheduler.prototype.exportToIcs = function exportToIcs(categoryFilter) {
     const self = this;
 
-    const makeIcsHeader = function () {
+    const makeIcsHeader = function makeIcsHeader() {
       return `${['BEGIN:VCALENDAR', 'PRODID:OVH Calendar', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'].join('\n')}\n`;
     };
 
-    const makeIcsContent = function () {
+    const makeIcsContent = function makeIcsContent() {
       const icsEvents = [];
       const filteredEvents = filter(
         self.events,
@@ -326,7 +326,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
       return `${icsEvents.join('\n')}\n`;
     };
 
-    const makeIcsFooter = function () {
+    const makeIcsFooter = function makeIcsFooter() {
       return 'END:VCALENDAR';
     };
 
@@ -340,7 +340,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
      *
      *  @return {VoipScheduler} The current scheduler instance.
      */
-  VoipScheduler.prototype.startEdition = function () {
+  VoipScheduler.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -359,7 +359,11 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
      *
      *  @return {VoipScheduler} The current scheduler instance.
      */
-  VoipScheduler.prototype.stopEdition = function (cancel, resetEvents, rollBackToOriginalEvents) {
+  VoipScheduler.prototype.stopEdition = function stopEdition(
+    cancel,
+    resetEvents,
+    rollBackToOriginalEvents,
+  ) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -396,7 +400,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *
    *  @return {Boolean}   true if at least one change has been found, false if no changes.
    */
-  VoipScheduler.prototype.hasChange = function (property) {
+  VoipScheduler.prototype.hasChange = function hasChange(property) {
     const self = this;
 
     if (!self.saveForEdition) {

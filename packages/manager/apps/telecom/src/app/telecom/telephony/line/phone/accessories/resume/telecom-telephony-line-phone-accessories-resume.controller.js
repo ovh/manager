@@ -1,7 +1,7 @@
 import isEqual from 'lodash/isEqual';
 import remove from 'lodash/remove';
 
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesResumeCtrl', function ($q, TucTelephonyAccessoriesOrderProcess) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesResumeCtrl', function TelecomTelephonyLinePhoneAccessoriesResumeCtrl($q, TucTelephonyAccessoriesOrderProcess) {
   const self = this;
 
   self.process = null;

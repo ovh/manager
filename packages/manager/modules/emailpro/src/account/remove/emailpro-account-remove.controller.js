@@ -1,4 +1,6 @@
-export default /* @ngInject */ class ExchangeAddAccountCtrl {
+export default class ExchangeRemoveAccountCtrl {
+  /* @ngInject */
+
   constructor($scope, $stateParams, $translate, EmailPro) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;

@@ -32,7 +32,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
     self.menuEntryCtrl.menuCtrl.menu.removeEntry(self.menuEntryCtrl.menuEntry);
   }
 
-  self.isMenuEntryValid = function () {
+  self.isMenuEntryValid = function isMenuEntryValid() {
     if (self.menuEntryCtrl.menuEntry.action === 'playback') {
       return !!self.menuEntryCtrl.menuCtrl.ovhPabx
         .getSound(self.menuEntryCtrl.menuEntry.actionParam);
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
     =            EVENTS            =
     ============================== */
 
-  self.onLeftPageButtonClick = function (rightPage) {
+  self.onLeftPageButtonClick = function onLeftPageButtonClick(rightPage) {
     self.menuEntryCtrl.popoverStatus.move = true;
     self.menuEntryCtrl.popoverStatus.rightPage = rightPage;
     if (rightPage === 'dtmf') {
@@ -60,7 +60,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
 
   /* ----------  DTMF EVENTS  ----------*/
 
-  self.onDtmfKeyButtonClick = function (key) {
+  self.onDtmfKeyButtonClick = function onDtmfKeyButtonClick(key) {
     if (self.model.singleDigitKey) {
       self.menuEntryCtrl.menuEntry.dtmf = key;
       self.menuEntryCtrl.popoverStatus.move = false;
@@ -71,21 +71,21 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
 
   /* ----------  ACTION EVENTS  ----------*/
 
-  self.onMenuEntryActionChange = function () {
+  self.onMenuEntryActionChange = function onMenuEntryActionChange() {
     self.menuEntryCtrl.popoverStatus.move = false;
     self.menuEntryCtrl.menuEntry.actionParam = '';
   };
 
   /* ----------  PLAYBACK ACTIONS  ----------*/
 
-  self.onPlaybackSoundChange = function (sound) {
+  self.onPlaybackSoundChange = function onPlaybackSoundChange(sound) {
     self.menuEntryCtrl.popoverStatus.move = false;
     self.menuEntryCtrl.menuEntry.actionParam = sound.soundId;
   };
 
   /* ----------  MENU SUB ACTIONS  ----------*/
 
-  self.onAddSubMenuButtonClick = function () {
+  self.onAddSubMenuButtonClick = function onAddSubMenuButtonClick() {
     // close popover
     self.menuEntryCtrl.popoverStatus.isOpen = false;
 
@@ -102,14 +102,14 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
     self.menuEntryCtrl.menuEntry.stopEdition();
   };
 
-  self.onSubMenuSelectedChange = function (menu) {
+  self.onSubMenuSelectedChange = function onSubMenuSelectedChange(menu) {
     self.menuEntryCtrl.popoverStatus.move = false;
     self.menuEntryCtrl.menuEntry.menuSub = menu;
   };
 
   /* ----------  FOOTER BUTTONS EVENTS  ----------*/
 
-  self.onValidateBtnClick = function () {
+  self.onValidateBtnClick = function onValidateBtnClick() {
     // define api call
     const actionPromise = self.menuEntryCtrl.menuEntry.status === 'DRAFT' ? self.menuEntryCtrl.menuEntry.create() : self.menuEntryCtrl.menuEntry.save();
 
@@ -134,7 +134,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
     });
   };
 
-  self.onCancelBtnClick = function () {
+  self.onCancelBtnClick = function onCancelBtnClick() {
     // close popover
     self.menuEntryCtrl.popoverStatus.isOpen = false;
     self.menuEntryCtrl.popoverStatus.move = false;
@@ -175,7 +175,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
     });
   }
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     // set parent controller
@@ -195,7 +195,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
     });
   };
 
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     if (self.menuEntryCtrl.menuEntry.inEdition.status === 'DRAFT') {
       self.menuEntryCtrl.menuCtrl.menu.removeEntry(self.menuEntryCtrl.menuEntry);
     }

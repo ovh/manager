@@ -46,6 +46,8 @@ angular.module('App').controller(
         details: true,
       };
 
+      this.newDisplayName = {};
+
       this.$scope.taskState = {
         lockAction: false,
         changeRootPassword: false,

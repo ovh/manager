@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationCtrl', function ($translate) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationCtrl', function TelecomTelephonyBillingAccountAdministrationCtrl($translate) {
   const self = this;
 
   self.actions = null;

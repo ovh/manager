@@ -1,0 +1,11 @@
+{
+  "duration_day_1": "1 dia",
+  "duration_day_other": "{{t0}} dias",
+  "duration_month_1": "1 mês",
+  "duration_month_other": "{{t0}} mês(es)",
+  "duration_year_1": "1 ano",
+  "duration_year_other": "{{t0}} anos",
+  "duration_upto": "Até {{t0}}",
+  "duration_uptofirstdaynextmonth": "Até ao primeiro dia do próximo mês",
+  "duration_engage": "Contratar {{t0}}"
+}

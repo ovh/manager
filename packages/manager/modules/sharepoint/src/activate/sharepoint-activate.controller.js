@@ -1,7 +1,13 @@
 export default class SharepointActivateOfficeCtrl {
   /* @ngInject */
-  constructor(Alerter, MicrosoftSharepointLicenseService,
-    $stateParams, $scope, $translate, User) {
+  constructor(
+    Alerter,
+    MicrosoftSharepointLicenseService,
+    $stateParams,
+    $scope,
+    $translate,
+    User,
+  ) {
     this.alerter = Alerter;
     this.sharepointService = MicrosoftSharepointLicenseService;
     this.$stateParams = $stateParams;

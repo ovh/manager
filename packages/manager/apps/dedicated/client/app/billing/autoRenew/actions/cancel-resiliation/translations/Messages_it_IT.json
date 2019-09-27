@@ -1,0 +1,8 @@
+{
+  "autorenew_service_cancel_resiliation_title": "Annulla la disattivazione di un servizio",
+  "autorenew_service_cancel_resiliation_success": "La disattivazione del servizio {{ service }} è stata annullata.",
+  "autorenew_service_cancel_resiliation_error": "Si è verificato un errore durante l'annullamento della disattivazione del servizio {{ message }}",
+  "autorenew_service_cancel_resiliation_confirm": "Vuoi annullare la disattivazione del servizio {{ service }}?",
+  "autorenew_service_cancel_resiliation_validate": "Conferma l’annullamento",
+  "autorenew_service_cancel_resiliation_cancel": "Annulla"
+}

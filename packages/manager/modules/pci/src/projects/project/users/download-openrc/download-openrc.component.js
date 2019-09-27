@@ -9,6 +9,7 @@ export default {
     userId: '<',
     user: '<',
     regions: '<',
+    currentRegion: '<',
     openstackGuide: '<',
     goBack: '<',
   },

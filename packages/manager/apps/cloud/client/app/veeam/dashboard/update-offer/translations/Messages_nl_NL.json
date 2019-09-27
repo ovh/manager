@@ -1,0 +1,8 @@
+{
+ "veeam_update_offer_title": "Veeam Cloud Connect upgraden",
+ "veeam_update_offer_information": "Het abonnement kost <strong>{{ price }} excl. btw/maand</strong>",
+ "veeam_update_offer_cancel": "Annuleren",
+ "veeam_update_offer_continue": "Doorgaan",
+ "veeam_update_offer_change": "Wijzigen",
+ "veeam_update_storage_add": "Toevoegen"
+}

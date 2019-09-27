@@ -56,7 +56,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberSvi.prototype.setInfos = function (featureOptionsParam) {
+  TelephonyGroupNumberSvi.prototype.setInfos = function setInfos(featureOptionsParam) {
     const self = this;
     let featureOptions = featureOptionsParam;
 
@@ -72,7 +72,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberSvi.prototype.startEdition = function () {
+  TelephonyGroupNumberSvi.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -86,7 +86,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
     return self;
   };
 
-  TelephonyGroupNumberSvi.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberSvi.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -101,7 +101,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
     return self;
   };
 
-  TelephonyGroupNumberSvi.prototype.hasChange = function (attr) {
+  TelephonyGroupNumberSvi.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -116,7 +116,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupNumberSvi.prototype.save = function () {
+  TelephonyGroupNumberSvi.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.Vxml().v6().save({
@@ -128,7 +128,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
     }).$promise.then(() => self);
   };
 
-  TelephonyGroupNumberSvi.prototype.getSettings = function () {
+  TelephonyGroupNumberSvi.prototype.getSettings = function getSettings() {
     const self = this;
 
     return OvhApiTelephony.Vxml().v6().settings({
@@ -144,13 +144,13 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberSvi.prototype.inPendingState = function () {
+  TelephonyGroupNumberSvi.prototype.inPendingState = function inPendingState() {
     return true;
   };
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupNumberSvi.prototype.init = function () {
+  TelephonyGroupNumberSvi.prototype.init = function init() {
     const self = this;
 
     return OvhApiTelephony.Vxml().v6().get({

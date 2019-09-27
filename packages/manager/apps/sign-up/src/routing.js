@@ -6,11 +6,12 @@ import signupFormComponent from './form/component';
 
 export const state = {
   name: 'sign-up',
-  url: '/?lang',
+  url: '/?lang&ovhSubsidiary&ovhCompany&callback&onsuccess',
   component: signupFormComponent.name,
   resolve: {
     getRedirectLocation: /* @ngInject */ $location => (nic) => {
-      const { callback } = $location.search();
+      const { callback, onsuccess } = $location.search();
+
       if (callback && !SANITIZATION.regex.test(callback)) {
         return null;
       }
@@ -22,10 +23,10 @@ export const state = {
         return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}`;
       }
 
+
       // redirect to login page on success
-      if ($location.search().onsuccess) {
-        const onsuccess = encodeURIComponent($location.search().onsuccess);
-        return `/auth/?account=${accountParam}&onsuccess=${onsuccess}`;
+      if (onsuccess && SANITIZATION.regex.test(onsuccess)) {
+        return onsuccess;
       }
 
       return '/auth/?action=gotomanager';
@@ -40,6 +41,9 @@ export const state = {
     me: /* @ngInject */ ssoAuthentication => ssoAuthentication
       .getSsoAuthPendingPromise()
       .then(() => ssoAuthentication.user),
+    onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {
+      ssoAuthentication.logout($location.search().onsuccess);
+    },
     onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
@@ -51,6 +55,11 @@ export const state = {
     finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
       .saveNic(me.model)
       .then(() => {
+        // for tracking purposes
+        if ($window.sessionStorage) {
+          $window.sessionStorage.setItem('ovhSessionSuccess', true);
+        }
+        // manage redirection
         const redirectUrl = getRedirectLocation(me.nichandle);
         if (redirectUrl) {
           $window.location.assign(redirectUrl);

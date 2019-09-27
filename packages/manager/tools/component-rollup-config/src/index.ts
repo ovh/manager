@@ -75,6 +75,7 @@ const generateConfig = (opts, pluginsOpts) => mergeConfig({
       presets: [
         ['@babel/preset-env'],
       ],
+      shouldPrintComment: (val) => !/@ngInject/.test(val),
     }),
   ],
 }, opts);

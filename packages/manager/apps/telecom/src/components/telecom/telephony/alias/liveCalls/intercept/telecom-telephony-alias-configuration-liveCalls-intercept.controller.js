@@ -1,19 +1,19 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveCallsInterceptCtrl', function ($uibModalInstance, $translate, TucToast, params) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveCallsInterceptCtrl', function TelecomTelephonyAliasConfigurationLiveCallsInterceptCtrl($uibModalInstance, $translate, TucToast, params) {
   const self = this;
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.number = null;
     self.error = null;
     self.isSubmitting = false;
   };
 
-  self.cancel = function () {
+  self.cancel = function cancel() {
     $uibModalInstance.dismiss();
   };
 
-  self.submit = function () {
+  self.submit = function submit() {
     self.isSubmitting = true;
     self.error = null;
     return params.apiEndpoint.Hunting().Queue().LiveCalls().v6()

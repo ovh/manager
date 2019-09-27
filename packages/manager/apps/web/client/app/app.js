@@ -1,6 +1,5 @@
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
-import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
@@ -23,7 +22,9 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
+import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter from '@uirouter/angularjs';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
@@ -34,10 +35,15 @@ import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
+
+import config from './config/config';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
-import config from './config/config';
 import navbar from './components/navbar';
+import zone from './domain/zone/zone.module';
+
+import './css/source.less';
+import './css/source.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
@@ -64,6 +70,7 @@ angular
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
     // ngOvhChatbot,
+    ngOvhOtrs,
     ngOvhExportCsv,
     ngOvhHttp,
     ngOvhSsoAuth,
@@ -73,13 +80,14 @@ angular
     ngOvhUserPref,
     ngOvhWebUniverseComponents,
     ngTranslateAsyncLoader,
-    ngOvhUiRouterLineProgress,
+    ngUiRouterLayout,
+    ngUiRouterLineProgress,
     ovhManagerServerSidebar,
     uiRouter,
     'pascalprecht.translate',
     ngTailLogs,
-    ngOvhOtrs,
     'ovh-api-services',
+    ovhManagerBanner,
     ovhManagerNavbar,
     'moment-picker',
     'oui',
@@ -92,6 +100,7 @@ angular
     domainEmailObfuscation,
     domainOptin,
     navbar,
+    zone,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -122,6 +131,7 @@ angular
     WEBSITE_URLS: config.constants.website_url,
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
+    ORDER_URL: config.constants.ORDER_URL,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
@@ -450,7 +460,7 @@ angular
     set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
   })
   .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
+    OtrsPopupProvider.setBaseUrlTickets(_.get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .constant('UNIVERSE', 'WEB')
   .constant('MANAGER_URLS', {

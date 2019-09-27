@@ -1,0 +1,7 @@
+{
+  "autorenew_service_debt_before_paying_title": "Informazione importante",
+  "autorenew_service_debt_before_paying_1": "Prima di sottoscrivere un nuovo impegno contrattuale, è necessario saldare l'importo in sospeso.",
+  "autorenew_service_debt_before_paying_2": "Accedi alla sezione “Fatturazione” per effettuare il pagamento del servizio <strong>{{service}}</strong>.",
+  "autorenew_service_debt_before_paying_settle": "Salda",
+  "autorenew_service_debt_before_paying_cancel": "Annulla"
+}

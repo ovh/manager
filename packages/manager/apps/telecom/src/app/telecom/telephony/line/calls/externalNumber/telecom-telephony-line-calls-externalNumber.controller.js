@@ -6,7 +6,7 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import startsWith from 'lodash/startsWith';
 
-angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumberCtrl', function ($scope, $q, $stateParams, $translate, $timeout, TelecomMediator, TelephonyMediator, OvhApiTelephony, TucToast, TucNumberPlans) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumberCtrl', function TelecomTelephonyLineCallsExternalNumberCtrl($scope, $q, $stateParams, $translate, $timeout, TelecomMediator, TelephonyMediator, OvhApiTelephony, TucToast, TucNumberPlans) {
   const self = this;
   let pollTimeout = null;
 
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
     }
   }
 
-  self.checkSamePrefix = function (value) {
+  self.checkSamePrefix = function checkSamePrefix(value) {
     if (!value) {
       return true;
     }
@@ -79,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
     =            EVENTS            =
     ============================== */
 
-  self.onExternalNumberAddFormSubmit = function () {
+  self.onExternalNumberAddFormSubmit = function onExternalNumberAddFormSubmit() {
     let validationPromise = $q.when(true);
     self.validationCode = null;
 
@@ -120,11 +120,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
     });
   };
 
-  self.onCancelBtnClick = function () {
+  self.onCancelBtnClick = function onCancelBtnClick() {
     resetModel();
   };
 
-  self.onConfirmDeleteNumberBtnClick = function () {
+  self.onConfirmDeleteNumberBtnClick = function onConfirmDeleteNumberBtnClick() {
     self.loading.remove = true;
 
     return OvhApiTelephony.Trunk().ExternalDisplayedNumber().v6().remove({
@@ -150,7 +150,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

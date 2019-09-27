@@ -14,7 +14,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * Object constructor
      * @param {Object} data Data from APIv6
      */
-  const PackXdslModemDhcpBdhcpObject = function (data) {
+  const PackXdslModemDhcpBdhcpObject = function PackXdslModemDhcpBdhcpObject(data) {
     assignIn(
       this,
       template,
@@ -28,7 +28,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
   /**
      * Specify that the object has been read from the API
      */
-  PackXdslModemDhcpBdhcpObject.prototype.inApi = function () {
+  PackXdslModemDhcpBdhcpObject.prototype.inApi = function inApi() {
     this.created = true;
   };
 
@@ -39,7 +39,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * @param {String} dhcpName    Name of the DHCP
      * @return {Promise}
      */
-  PackXdslModemDhcpBdhcpObject.prototype.save = function (serviceName, lanName, dhcpName) {
+  PackXdslModemDhcpBdhcpObject.prototype.save = function save(serviceName, lanName, dhcpName) {
     const self = this;
     this.busy = true;
     if (this.created) {
@@ -95,7 +95,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * @param {String} dhcpName    Name of the DHCP
      * @return {Promise}
      */
-  PackXdslModemDhcpBdhcpObject.prototype.remove = function (serviceName, lanName, dhcpName) {
+  PackXdslModemDhcpBdhcpObject.prototype.remove = function remove(serviceName, lanName, dhcpName) {
     const self = this;
     this.busy = true;
     return OvhApiXdsl.Modem().Lan().Dhcp().DHCPStaticAddress()
@@ -116,7 +116,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
   /**
      * Cancel edit mode
      */
-  PackXdslModemDhcpBdhcpObject.prototype.cancel = function () {
+  PackXdslModemDhcpBdhcpObject.prototype.cancel = function cancel() {
     this.toggleEdit(false);
     return this.MACAddress;
   };
@@ -124,7 +124,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
   /**
      * Enter Edit Mode
      */
-  PackXdslModemDhcpBdhcpObject.prototype.edit = function () {
+  PackXdslModemDhcpBdhcpObject.prototype.edit = function edit() {
     this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
@@ -134,7 +134,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * @param {Boolean} state [Optional] if set, for the edit mode state
      * @return {Boolean} new edit mode state
      */
-  PackXdslModemDhcpBdhcpObject.prototype.toggleEdit = function (state) {
+  PackXdslModemDhcpBdhcpObject.prototype.toggleEdit = function toggleEdit(state) {
     if (isBoolean(state)) {
       this.editMode = state;
     } else {

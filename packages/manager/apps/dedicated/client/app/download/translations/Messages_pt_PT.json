@@ -1,0 +1,6 @@
+{
+  "download_bill_error": "Erro ao aceder à fatura. As nossas desculpas pelo incómodo.",
+  "download_bill_title": "Transferência iniciada",
+  "download_bill_retry_label": "Se a transferência não iniciar automaticamente,",
+  "download_bill_retry_link": "reinicie a transferência"
+}

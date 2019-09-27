@@ -1,0 +1,6 @@
+{
+  "download_bill_error": "Wystąpił błąd podczas pobierania faktury. Przepraszamy za wszelkie niedogodności.",
+  "download_bill_title": "Pobieranie się rozpoczęło.",
+  "download_bill_retry_label": "Jeśli pobieranie nie rozpoczyna się automatycznie, ",
+  "download_bill_retry_link": "wznów pobieranie"
+}

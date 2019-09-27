@@ -21,7 +21,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
    * Object constructor
    * @param {Object} data Data from APIv6
    */
-  const PackXdslModemDhcpObject = function (data) {
+  const PackXdslModemDhcpObject = function PackXdslModemDhcpObject(data) {
     assignIn(
       this,
       template,
@@ -32,7 +32,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
     );
   };
 
-  PackXdslModemDhcpObject.prototype.save = function (serviceName) {
+  PackXdslModemDhcpObject.prototype.save = function save(serviceName) {
     const self = this;
     this.busy = true;
     const params = pick(this.tempValue, without(Object.keys(template), 'lanName', 'dhcpName'));
@@ -79,7 +79,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
   /**
    * Cancel edit mode
    */
-  PackXdslModemDhcpObject.prototype.cancel = function () {
+  PackXdslModemDhcpObject.prototype.cancel = function cancel() {
     this.toggleEdit(false);
     return this.id;
   };
@@ -87,7 +87,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
   /**
    * Enter Edit Mode
    */
-  PackXdslModemDhcpObject.prototype.edit = function () {
+  PackXdslModemDhcpObject.prototype.edit = function edit() {
     this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
@@ -97,7 +97,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
    * @param {Boolean} state [Optional] if set, for the edit mode state
    * @return {Boolean} new edit mode state
    */
-  PackXdslModemDhcpObject.prototype.toggleEdit = function (state) {
+  PackXdslModemDhcpObject.prototype.toggleEdit = function toggleEdit(state) {
     if (isBoolean(state)) {
       this.editMode = state;
     } else {

@@ -105,7 +105,7 @@ export const MENU = [
       },
     ],
     regions: ['CA', 'EU'],
-    title: 'Orchestration / Industrialization',
+    title: 'Containers & Orchestration',
   },
   {
     subitems: [

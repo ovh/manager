@@ -1,3 +1,21 @@
+# [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.4...@ovh-ux/manager-sms@7.1.0) (2019-09-19)
+
+
+### Features
+
+* **telecom.sms.sender:** update alert message for sms sender ([3b87b96](https://github.com/ovh-ux/manager/commit/3b87b96))
+
+
+
+## [7.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.3...@ovh-ux/manager-sms@7.0.4) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+
+
+
 ## [7.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.2...@ovh-ux/manager-sms@7.0.3) (2019-08-12)
 
 

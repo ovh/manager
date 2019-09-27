@@ -6,7 +6,7 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptionsCtrl', function ($scope, $stateParams, $q, $translate, $timeout, TucToastError, OvhApiTelephony, OvhApiMe) {
+angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptionsCtrl', function TelecomTelephonyServiceVoicemailOptionsCtrl($scope, $stateParams, $q, $translate, $timeout, TucToastError, OvhApiTelephony, OvhApiMe) {
   const self = this;
   let removeRecord = null;
 
@@ -138,19 +138,19 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   }
 
   // true if user made some changes in notification options, false otherwise
-  self.notificationChanged = function () {
+  self.notificationChanged = function notificationChanged() {
     return self.notificationForm.audioFormat !== self.settings.audioFormat
       || self.notificationForm.keepMessage !== self.settings.keepMessage
       || self.notificationForm.fromName !== self.settings.fromName
       || self.notificationForm.fromEmail !== self.settings.fromEmail;
   };
 
-  self.recordingChanged = function () {
+  self.recordingChanged = function recordingChanged() {
     return (self.recordingForm.doNotRecord !== self.settings.doNotRecord)
       || self.recordingForm.uploadedFile || removeRecord;
   };
 
-  self.checkValidAudioExtention = function (file) {
+  self.checkValidAudioExtention = function checkValidAudioExtention(file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
     const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
@@ -160,12 +160,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
     return found;
   };
 
-  self.updateRecording = function () {
+  self.updateRecording = function updateRecording() {
     // update changes
     const settings = pickEditableSettings(self.settings);
     assign(settings, pick(self.recordingForm, ['doNotRecord']));
 
-    const update = function () {
+    const update = function update() {
       const promises = {
         settings: OvhApiTelephony.Voicemail().v6().setSettings({
           billingAccount: $stateParams.billingAccount,
@@ -188,7 +188,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
 
     let uploadFile = $timeout(angular.noop, 1000);
     if (self.recordingForm.uploadedFile) {
-      uploadFile = function () {
+      uploadFile = function uploadFileFunction() {
         return OvhApiMe.Document().v6().upload(
           self.recordingForm.uploadedFile.name,
           self.recordingForm.uploadedFile,
@@ -206,7 +206,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
              */
             const oldGreetings = angular.copy(self.greetings);
             let maxRetries = 10; // avoid deadly infinite loop
-            const refresh = function () {
+            const refresh = function refresh() {
               return refreshAll().then(() => {
                 if (--maxRetries < 0) { // eslint-disable-line
                   return $q.reject('Unable to retrieve uploaded file');
@@ -239,7 +239,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   };
 
   // update notification options
-  self.updateSettings = function () {
+  self.updateSettings = function updateSettings() {
     // update changes
     const settings = pickEditableSettings(self.settings);
     assign(settings, pick(self.notificationForm, ['audioFormat', 'keepMessage', 'fromName', 'fromEmail']));
@@ -267,7 +267,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   };
 
   // delete a notification email
-  self.removeEmail = function (redirection) {
+  self.removeEmail = function removeEmail(redirection) {
     // update changes
     const settings = pickEditableSettings(self.settings);
     remove(settings.redirectionEmails, {
@@ -292,7 +292,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   };
 
   // add a new notification email
-  self.addEmail = function () {
+  self.addEmail = function addEmail() {
     // update changes
     const settings = pickEditableSettings(self.settings);
     settings.redirectionEmails.push({
@@ -321,13 +321,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   };
 
   // cancel creation of new notification email
-  self.cancelAddEmail = function () {
+  self.cancelAddEmail = function cancelAddEmail() {
     self.emailForm.email = null;
     self.emailForm.type = null;
     self.emailForm.isShown = false;
   };
 
-  self.removeRecordSound = function () {
+  self.removeRecordSound = function removeRecordSound() {
     self.settings.annouceMessage = null;
     removeRecord = self.greetings.id;
     self.greetings = null;

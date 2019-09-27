@@ -3,7 +3,7 @@ import pick from 'lodash/pick';
 
 angular.module('managerApp').controller(
   'TelecomTelephonyLineCallsLockOutCallCtrl',
-  function (
+  function TelecomTelephonyLineCallsLockOutCallCtrl(
     $stateParams,
     $translate,
     TucToast,
@@ -13,20 +13,20 @@ angular.module('managerApp').controller(
   ) {
     const self = this;
 
-    self.isPin = function (val) {
+    self.isPin = function isPin(val) {
       return /^\d{4}$/.test(val) || !self.options.lockOutCall;
     };
 
-    self.needSave = function () {
+    self.needSave = function needSave() {
       return (self.options.lockOutCallPassword + self.options.lockOutCall)
         !== (self.saved.lockOutCallPassword + self.saved.lockOutCall);
     };
 
-    self.cancel = function () {
+    self.cancel = function cancel() {
       self.options = angular.copy(self.saved);
     };
 
-    self.save = function () {
+    self.save = function save() {
       self.loading.save = true;
       OvhApiTelephony.Line().Options().v6().update(
         {
@@ -84,14 +84,14 @@ angular.module('managerApp').controller(
       },
     };
 
-    self.getBulkParams = function () {
+    self.getBulkParams = function getBulkParams() {
       return {
         lockOutCall: self.options.lockOutCall,
         lockOutCallPassword: self.options.lockOutCallPassword,
       };
     };
 
-    self.onBulkSuccess = function (bulkResult) {
+    self.onBulkSuccess = function onBulkSuccess(bulkResult) {
       // display message of success or error
       tucTelephonyBulk.getTucToastInfos(bulkResult, {
         fullSuccess: $translate.instant('telephony_line_actions_line_calls_out_lock_call_bulk_all_success'),
@@ -109,7 +109,7 @@ angular.module('managerApp').controller(
       self.save();
     };
 
-    self.onBulkError = function (error) {
+    self.onBulkError = function onBulkError(error) {
       TucToast.error([$translate.instant('telephony_line_actions_line_calls_out_lock_call_bulk_on_error'), get(error, 'msg.data')].join(' '));
     };
   },

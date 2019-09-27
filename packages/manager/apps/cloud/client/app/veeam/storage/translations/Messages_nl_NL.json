@@ -1,0 +1,11 @@
+{
+ "veeam_storage_title": "Storage",
+ "veeam_storage_back": "Terug naar de home page",
+ "veeam_storage_add_storage": "Storage toevoegen",
+ "veeam_storage_search": "Zoeken...",
+ "veeam_storage_update_title": "Wijzigen",
+ "veeam_storage_update_quota_title": "Storage aanpassen",
+ "veeam_storage_update_quota_information": "Bepaal de maximale quota van uw storage. De waarde moet tussen 1000 GB en {{maxquota}} GB zijn.",
+ "veeam_storage_update_quota_cancel": "Annuleren",
+ "veeam_storage_update_quota_confirm": "Wijzigen"
+}

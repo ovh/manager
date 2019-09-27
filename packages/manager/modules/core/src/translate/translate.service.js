@@ -104,6 +104,12 @@ export default class TranslateServiceProvider {
     if (similarLanguage) {
       return similarLanguage;
     }
+
+    if (language === 'nl') {
+      this.setUserLocale('en_GB');
+      return 'en_GB';
+    }
+
     // Not found
     return this.LANGUAGES.defaultLoc;
   }

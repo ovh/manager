@@ -6,6 +6,8 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import guidesHeader from '../components/project/guides-header';
+
 import newProject from './new';
 import onboarding from './onboarding';
 import project from './project';
@@ -23,6 +25,7 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
+    guidesHeader,
     newProject,
     onboarding,
     project,

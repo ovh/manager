@@ -206,7 +206,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
       this.ipsV6 = this.$filter('filter')(ips, { version: 'v6' });
       this.ipsV4 = this.$filter('filter')(ips, { version: 'v4' });
       ips.forEach((ip) => {
-        ip.getBlock = function () { // eslint-disable-line
+        ip.getBlock = function getBlock() { // eslint-disable-line
           return `${this.ip}/${this.range}`;
         };
       });

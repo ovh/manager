@@ -1,3 +1,74 @@
+## [10.35.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.4...@ovh-ux/manager-telecom@10.35.5) (2019-09-26)
+
+
+### Bug Fixes
+
+* **telecom:** avoid products loading in navbar ([#1370](https://github.com/ovh-ux/manager/issues/1370)) ([1dbe436](https://github.com/ovh-ux/manager/commit/1dbe436))
+
+
+
+## [10.35.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.3...@ovh-ux/manager-telecom@10.35.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **telecom.pack.xdsl.modem.port:** send correct value to API ([#1362](https://github.com/ovh-ux/manager/issues/1362)) ([2b912d4](https://github.com/ovh-ux/manager/commit/2b912d4))
+
+
+
+## [10.35.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.2...@ovh-ux/manager-telecom@10.35.3) (2019-09-24)
+
+
+### Bug Fixes
+
+* avoid crash when user has a lot of services ([#1347](https://github.com/ovh-ux/manager/issues/1347)) ([a62f68b](https://github.com/ovh-ux/manager/commit/a62f68b))
+
+
+
+## [10.35.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.1...@ovh-ux/manager-telecom@10.35.2) (2019-09-23)
+
+
+### Bug Fixes
+
+* **pack.xdsl.modem.router.dhcp:** avoid error 'isDNSValid' of undefined ([1579ed3](https://github.com/ovh-ux/manager/commit/1579ed3))
+
+
+
+## [10.35.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.0...@ovh-ux/manager-telecom@10.35.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* **xdsl:** fix enabling of sip alg option ([fb1aafc](https://github.com/ovh-ux/manager/commit/fb1aafc))
+
+
+
+# [10.35.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.34.0...@ovh-ux/manager-telecom@10.35.0) (2019-09-10)
+
+
+### Features
+
+* **telecom-dashboard:** add manager banner ([2ffa978](https://github.com/ovh-ux/manager/commit/2ffa978))
+
+
+
+# [10.34.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.33.1...@ovh-ux/manager-telecom@10.34.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* **telecom:** add missing lodash imports ([3d5a735](https://github.com/ovh-ux/manager/commit/3d5a735))
+* **telecom:** fix line diagnostics ([#1254](https://github.com/ovh-ux/manager/issues/1254)) ([5c4a9ab](https://github.com/ovh-ux/manager/commit/5c4a9ab))
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+* remove use of lodash bind ([#1255](https://github.com/ovh-ux/manager/issues/1255)) ([d33d704](https://github.com/ovh-ux/manager/commit/d33d704))
+
+
+### Features
+
+* import tuc ([47de237](https://github.com/ovh-ux/manager/commit/47de237))
+
+
+
 ## [10.33.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.33.0...@ovh-ux/manager-telecom@10.33.1) (2019-08-29)
 
 

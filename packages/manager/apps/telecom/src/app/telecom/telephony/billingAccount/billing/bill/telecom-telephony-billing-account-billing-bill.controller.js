@@ -4,7 +4,7 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBillCtrl', function ($stateParams, $filter, $q, $timeout, $window, OvhApiTelephony, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBillCtrl', function TelecomTelephonyBillingAccountBillingBillCtrl($stateParams, $filter, $q, $timeout, $window, OvhApiTelephony, TucToastError) {
   const self = this;
 
   function fetchConsumption() {
@@ -28,21 +28,21 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
         }));
   }
 
-  this.$onInit = function () {
+  this.$onInit = function $onInit() {
     self.consumption = {
       raw: null,
     };
     self.refresh();
   };
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     fetchConsumption().then((result) => {
       self.consumption.raw = result;
     }, err => new TucToastError(err));
   };
 
-  self.fetchFile = function (consumption, type) {
-    const tryDownload = function () {
+  self.fetchFile = function fetchFile(consumption, type) {
+    const tryDownload = function tryDownload() {
       return OvhApiTelephony.HistoryConsumption().v6().getFile({
         billingAccount: $stateParams.billingAccount,
         date: consumption.date,
@@ -63,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
     return tryDownload();
   };
 
-  self.download = function (consumption, type) {
+  self.download = function download(consumption, type) {
     set(consumption, 'downloading', true);
     self.fetchFile(consumption, type).then((info) => {
       $window.location.href = info.url; // eslint-disable-line

@@ -1,6 +1,6 @@
 import head from 'lodash/head';
 
-angular.module('managerApp').controller('PackInformationCtrl', function ($scope, $translate, $q, $stateParams, TucToast, OvhApiPackXdsl, OvhApiXdsl, moment) {
+angular.module('managerApp').controller('PackInformationCtrl', function PackInformationCtrl($scope, $translate, $q, $stateParams, TucToast, OvhApiPackXdsl, OvhApiXdsl, moment) {
   const self = this;
 
   function getResiliationFollowUp() {

@@ -1,9 +1,9 @@
 import isArray from 'lodash/isArray';
 
-angular.module('managerApp').service('voipServiceOfferTask', function ($q, OvhApiTelephony, Poller) {
+angular.module('managerApp').service('voipServiceOfferTask', function voipServiceOfferTask($q, OvhApiTelephony, Poller) {
   const self = this;
 
-  self.getTaskInStatus = function (billingAccount, serviceName, statusParam,
+  self.getTaskInStatus = function getTaskInStatus(billingAccount, serviceName, statusParam,
     actionParam, serviceTypeParam) {
     const status = isArray(statusParam) ? statusParam : [statusParam];
     const promises = [];
@@ -30,7 +30,7 @@ angular.module('managerApp').service('voipServiceOfferTask', function ($q, OvhAp
     });
   };
 
-  self.getTaskDetails = function (billingAccount, serviceName, taskId) {
+  self.getTaskDetails = function getTaskDetails(billingAccount, serviceName, taskId) {
     return OvhApiTelephony.Service().OfferTask().v6().get({
       billingAccount,
       serviceName,
@@ -38,13 +38,13 @@ angular.module('managerApp').service('voipServiceOfferTask', function ($q, OvhAp
     }).$promise;
   };
 
-  self.startPolling = function (billingAccount, serviceName, taskId, pollOptions) {
+  self.startPolling = function startPolling(billingAccount, serviceName, taskId, pollOptions) {
     return Poller.poll(['/telephony', billingAccount, 'service', serviceName, 'offerTask', taskId].join('/'), {
       cache: false,
     }, pollOptions);
   };
 
-  self.stopPolling = function (pollingNamespage) {
+  self.stopPolling = function stopPolling(pollingNamespage) {
     return Poller.kill({
       namespace: pollingNamespage,
     });

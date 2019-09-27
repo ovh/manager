@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountOrderAliasCtrl', function ($q, $state, $stateParams, atInternet, TelephonyMediator, TelecomTelephonyBillingAccountOrderAliasService) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountOrderAliasCtrl', function TelecomTelephonyBillingAccountOrderAliasCtrl($q, $state, $stateParams, atInternet, TelephonyMediator, TelecomTelephonyBillingAccountOrderAliasService) {
   this.state = $state.parent;
 
   const self = this;

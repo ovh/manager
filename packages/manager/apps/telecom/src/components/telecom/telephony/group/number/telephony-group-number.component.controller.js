@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelephonyNumberCtrl', function (
+angular.module('managerApp').controller('TelephonyNumberCtrl', function TelephonyNumberCtrl(
   $q, $translate, $translatePartialLoader, tucJsPlumbService, TucToast,
   TELPHONY_NUMBER_JSPLUMB_INSTANCE_OPTIONS, TELEPHONY_NUMBER_JSPLUMB_ENDPOINTS_OPTIONS,
   TELEPHONY_NUMBER_JSPLUMB_CONNECTIONS_OPTIONS,
@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelephonyNumberCtrl', function (
     =            ACTIONS            =
     =============================== */
 
-  self.saveNumber = function () {
+  self.saveNumber = function saveNumber() {
     self.loading.save = true;
 
     if (self.number.getFeatureFamily() === 'ovhPabx') {
@@ -64,7 +64,7 @@ angular.module('managerApp').controller('TelephonyNumberCtrl', function (
 
   /* ----------  Component initialization  ----------*/
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return $q.all([
@@ -75,7 +75,7 @@ angular.module('managerApp').controller('TelephonyNumberCtrl', function (
     });
   };
 
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     self.number.stopEdition(true, true);
   };
 

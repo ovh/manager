@@ -4,7 +4,7 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('PackDomainActivationController', function ($scope, $stateParams, $translate, $q, $state, $timeout, OvhApiPackXdslDomainActivation, TucToast, OvhApiMe, OvhSimpleCountryList) {
+angular.module('managerApp').controller('PackDomainActivationController', function PackDomainActivationController($scope, $stateParams, $translate, $q, $state, $timeout, OvhApiPackXdslDomainActivation, TucToast, OvhApiMe, OvhSimpleCountryList) {
   const self = this;
 
   function getUser() {
@@ -83,19 +83,19 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
     });
   }
 
-  const setDomainIsAvailable = function () {
+  const setDomainIsAvailable = function setDomainIsAvailable() {
     $scope.toggles.domainStatus = 'available';
     $scope.model.action = 'create';
   };
 
-  const setDomainIsNotAvailable = function () {
+  const setDomainIsNotAvailable = function setDomainIsNotAvailable() {
     $scope.toggles.domainStatus = 'unavailable';
     $scope.model.action = 'transfer';
   };
 
-  (function () {
+  (function scheduleCheckDomainDisponibilityFunction() {
     let to = null;
-    $scope.scheduleCheckDomainDisponibility = function () {
+    $scope.scheduleCheckDomainDisponibility = function scheduleCheckDomainDisponibility() {
       if (to) {
         $timeout.cancel(to);
       }
@@ -103,7 +103,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
     };
   }());
 
-  $scope.checkDomainDisponibility = function () {
+  $scope.checkDomainDisponibility = function checkDomainDisponibility() {
     /* we have to reset some previous setting to avoid some strange… things */
     $scope.toggles.transfertWanted = false;
     $scope.toggles.domainStatus = null;
@@ -152,11 +152,11 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
     }
   };
 
-  $scope.toggleTransfertWanted = function () {
+  $scope.toggleTransfertWanted = function toggleTransfertWanted() {
     $scope.toggles.transfertWanted = !$scope.toggles.transfertWanted;
   };
 
-  $scope.submit = function () {
+  $scope.submit = function submit() {
     const data = pick($scope.model, ['packName', 'action', 'authInfo', 'domain', 'tld']);
 
     self.isActivating = true;

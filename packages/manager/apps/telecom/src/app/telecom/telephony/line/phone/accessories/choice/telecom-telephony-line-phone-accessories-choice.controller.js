@@ -1,7 +1,7 @@
 import chunk from 'lodash/chunk';
 import find from 'lodash/find';
 
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesChoiceCtrl', function ($q, $translate, TucTelephonyAccessoriesOrderProcess) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesChoiceCtrl', function TelecomTelephonyLinePhoneAccessoriesChoiceCtrl($q, $translate, TucTelephonyAccessoriesOrderProcess) {
   const self = this;
 
   self.process = null;
@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesCho
     =            HELPERS            =
     =============================== */
 
-  self.hasAtLeastOneAccessory = function () {
+  self.hasAtLeastOneAccessory = function hasAtLeastOneAccessory() {
     return !!find(self.process.accessoriesList, accessory => accessory.quantity > 0);
   };
 
@@ -32,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesCho
     =            ACTIONS            =
     =============================== */
 
-  self.updateOrderTotal = function () {
+  self.updateOrderTotal = function updateOrderTotal() {
     let total = 0;
     angular.forEach(self.process.accessoriesList, (accessory) => {
       total += accessory.price.value * accessory.quantity;
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesCho
     return self.orderTotal;
   };
 
-  self.validateStep = function () {
+  self.validateStep = function validateStep() {
     self.process.currentView = 'shipping';
   };
 

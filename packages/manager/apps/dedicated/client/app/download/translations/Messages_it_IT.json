@@ -1,0 +1,6 @@
+{
+  "download_bill_error": "Si è verificato un errore durante l'emissione della fattura, ci scusiamo per il disagio.",
+  "download_bill_title": "Il download è iniziato.",
+  "download_bill_retry_label": "Se il download non si avvia automaticamente,",
+  "download_bill_retry_link": "ripeti l'operazione"
+}
