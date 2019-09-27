@@ -9,6 +9,7 @@ import '@ovh-ux/ng-ovh-payment-method';
 import newProjectDescription from './description';
 import newProjectPayment from './payment';
 
+import error from './error';
 import routing from './new.routing';
 import service from './new.service';
 import component from './new.component';
@@ -17,6 +18,7 @@ const moduleName = 'ovhManagerPciProjectsNew';
 
 angular
   .module(moduleName, [
+    error,
     newProjectDescription,
     newProjectPayment,
     'ui.router',
