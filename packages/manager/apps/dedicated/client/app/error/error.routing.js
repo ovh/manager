@@ -2,16 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('error', {
     url: '/error',
     params: {
-      code: {
-        type: 'any',
-      },
-      context: {
-        type: 'any',
-      },
       detail: null,
-      message: {
-        type: 'any',
-      },
     },
     views: {
       'app@': {
@@ -20,16 +11,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       cancelLink: /* @ngInject */ $state => $state.href('app.configuration', { reload: true }),
-      error: /* @ngInject */ ($transition$) => {
-        const stateParams = $transition$.params();
-        const error = {
-          ...stateParams,
-          code: stateParams.code,
-        };
-
-        return error;
-      },
+      error: /* @ngInject */ $transition$ => $transition$.params(),
       submitAction: /* @ngInject */ $window => () => $window.location.reload(),
+      translationsRefresh: /* @ngInject */ $translate => $translate.refresh(),
     },
   });
 };
