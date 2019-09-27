@@ -144,7 +144,7 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
   *
   *  @returns {OvhContact} The current instance of OvhContact.
   */
-  OvhContact.prototype.stopEdition = (cancel) => {
+  OvhContact.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     self.inEdition = false;
