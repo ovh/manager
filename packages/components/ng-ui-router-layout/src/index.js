@@ -20,12 +20,16 @@ import size from 'lodash/size';
 import startsWith from 'lodash/startsWith';
 import xor from 'lodash/xor';
 
+import modalResolveModule from './modal-resolve';
+import ModalResolveLayout from './modal-resolve/layout.class';
+
 const moduleName = 'ngUiRouterLayout';
 
 angular
   .module(moduleName, [
     'ui.bootstrap',
     'ui.router',
+    modalResolveModule,
   ])
   .config(/* @ngInject */($stateProvider, $transitionsProvider, $injector) => {
     let modalInstance = null;
@@ -56,20 +60,8 @@ angular
         };
       }
 
-      if ((isString(layout) && layout === 'modalTest')
-        || (isObject(layout) && get(layout, 'name') === 'modalTest')) {
-        // set modal options
-        modalLayout = {
-          name: 'modalTest',
-          modalOptions: {
-            template: get(state, 'template'),
-            templateUrl: get(state, 'templateUrl'),
-            controller: get(state, 'controller'),
-            controllerAs: get(state, 'controllerAs'),
-            component: get(state, 'component'),
-            componentProvider: get(state, 'componentProvider'),
-          },
-        };
+      if (ModalResolveLayout.isLayoutAppliedToState(state)) {
+        modalLayout = ModalResolveLayout.getLayoutOptions(state);
 
         // reset state views to avoid state default view to display its content
         set(state, 'views', {});
@@ -169,130 +161,6 @@ angular
           modalInstance.result.catch(() => $state.go(get(state, 'layout.redirectTo')));
         }
       });
-    });
-  })
-  .run(/* @ngInject */($injector, $state, $stateRegistry, $uibModal) => {
-    filter(
-      $stateRegistry.states,
-      ({ layout }) => get(layout, 'name') === 'modalTest',
-    ).forEach((layoutState) => {
-      const state = layoutState;
-
-      state.onEnter = (transition) => {
-        let { modalOptions } = state.layout;
-        // define modalInstance that will be a reference of the opnened $uibModal
-        let modalInstance;
-
-        if (state.layout.modalOptions.component || state.layout.modalOptions.componentProvider) {
-          // if there is a component or componentProvider in modal options
-          // define the modal options with controller and template instanciated.
-          // Let's also make bindings and resolve compatible with
-          // version >= 2.1.0 of angular-ui-bootstrap
-          // see https://angular-ui.github.io/bootstrap/versioned-docs/2.1.0/#/modal
-
-          let componentName = state.layout.modalOptions.component;
-          const { componentProvider } = state.layout.modalOptions;
-
-          // if no injection needed returns directly a function
-          if (isFunction(componentProvider)) {
-            componentName = componentProvider();
-          } else if (isArray(componentProvider)) {
-            const resolves = initial(componentProvider);
-            const componentGetter = last(componentProvider);
-            componentName = componentGetter(
-              ...map(resolves, resolve => transition.injector().get(resolve)),
-            );
-          }
-
-          if (componentName && isString(componentName)) {
-            const directives = $injector.get(`${componentName}Directive`);
-            // look for those directives that are components
-            const candidateDirectives = directives.filter(
-              directiveInfo => directiveInfo.controller
-                && directiveInfo.controllerAs
-                && directiveInfo.restrict === 'E',
-            );
-
-            if (candidateDirectives.length === 0) {
-              throw new Error('No component found');
-            }
-            if (candidateDirectives.length > 1) {
-              throw new Error('Too many components found');
-            }
-            // get the info of the component
-            const [directiveInfo] = candidateDirectives;
-
-            // create controller
-            const controller = () => ({
-              resolve: reduce(
-                transition.getResolveTokens(),
-                (acc, resolveKey) => ({
-                  ...acc,
-                  [resolveKey]: transition.injector().get(resolveKey),
-                }),
-                {},
-              ),
-              modalInstance,
-            });
-
-            // create template
-            const div = document.createElement('div');
-            const elmt = document.createElement(kebabCase(directiveInfo.name));
-            elmt.setAttribute('data-resolve', '$ctrl.resolve');
-            elmt.setAttribute('data-modal-instance', '$ctrl.modalInstance');
-            div.appendChild(elmt);
-            const template = div.innerHTML;
-
-            modalOptions = {
-              template,
-              controller,
-              controllerAs: '$ctrl',
-            };
-          }
-        } else {
-          // set resolve to modal
-          const resolves = {};
-          transition.getResolveTokens().forEach((token) => {
-            set(resolves, token, () => transition.injector().get(token));
-          });
-          set(modalOptions, 'resolve', resolves);
-        }
-
-        // open the modal
-        modalInstance = $uibModal.open(modalOptions);
-        // get the redirectTo when modal is closed
-        let redirectTo = '^';
-        if (transition.getResolveTokens().includes('redirectTo')) {
-          redirectTo = transition.injector().get('redirectTo');
-        }
-
-        // define some params that will be send with redirectTo
-        let redirectToParams = null;
-
-        // manage redirection when modal is closed
-        modalInstance.result
-          .then((data) => {
-            redirectToParams = {
-              status: 'success',
-              data,
-            };
-          })
-          .catch((reason) => {
-            if (isObject(reason)) {
-              redirectToParams = {
-                status: 'error',
-                data: reason,
-              };
-            }
-          })
-          .finally(() => {
-            if (redirectToParams) {
-              $state.go(redirectTo, { redirectToParams });
-            } else {
-              $state.go(redirectTo);
-            }
-          });
-      };
     });
   })
   .run(/* @ngInject */($stateRegistry) => {
