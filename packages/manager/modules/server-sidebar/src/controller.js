@@ -237,7 +237,9 @@ export default class OvhManagerServerSidebarController {
                   state = typeServices.type.getState(service.extraParams);
                 }
               }
+
               const menuItem = this.SidebarMenu.addMenuItem({
+                id: service.serviceName,
                 title: service.displayName,
                 allowSubItems: hasSubItems && !isExternal,
                 infiniteScroll: hasSubItems && !isExternal,
