@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.2...v4.0.3) (2019-09-27)
+
+
+### Bug Fixes
+
+* **edition:** stopping edition now works ([ab1114d](https://github.com/ovh-ux/ng-ovh-contact/commit/ab1114d))
+
+
+
 ## [4.0.2](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.1...v4.0.2) (2019-08-30)
 
 
