@@ -1,6 +1,7 @@
 import get from 'lodash/get';
+import has from 'lodash/has';
 
-import '@uirouter/angularjs';
+import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -37,6 +38,7 @@ import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
+import errorPage from './error/error.module';
 import ovhManagerVps from './vps/vps.module';
 
 Environment.setRegion(__WEBPACK_REGION__);
@@ -49,7 +51,7 @@ angular.module('managerApp', [
   'ngMessages',
   'pascalprecht.translate',
   'ui.bootstrap',
-  'ui.router',
+  uiRouter,
   'ui.validate',
   'ui.sortable',
   ovhManagerCore,
@@ -106,6 +108,7 @@ angular.module('managerApp', [
   ovhManagerNavbar,
   ovhManagerServerSidebar,
   ovhManagerVps,
+  errorPage,
 ])
   .config(($urlRouterProvider, $locationProvider) => {
     $urlRouterProvider.otherwise('/');
@@ -159,5 +162,17 @@ angular.module('managerApp', [
   })
   .config(/* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
     CucConfigProvider.setRegion(coreConfigProvider.getRegion());
+  })
+  .run(/* @ngInject */ ($state) => {
+    $state.defaultErrorHandler((error) => {
+      if (error.type === RejectType.ERROR) {
+        $state.go('error', {
+          detail: {
+            message: get(error.detail, 'data.message'),
+            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
+          },
+        }, { location: false });
+      }
+    });
   })
   .run(/* @ngTranslationsInject:json ./common/translations */);

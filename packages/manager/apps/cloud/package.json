@@ -32,6 +32,7 @@
     "@ovh-ux/manager-banner": "^1.1.1",
     "@ovh-ux/manager-config": "^0.3.1",
     "@ovh-ux/manager-core": "^7.3.0",
+    "@ovh-ux/manager-error-page": "^1.0.0",
     "@ovh-ux/manager-navbar": "^2.0.5",
     "@ovh-ux/manager-server-sidebar": "^0.6.7",
     "@ovh-ux/ng-at-internet": "^4.0.0",
