@@ -2,18 +2,34 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('error', {
     url: '/error',
     params: {
+      code: {
+        type: 'any',
+      },
+      context: {
+        type: 'any',
+      },
       detail: null,
+      message: {
+        type: 'any',
+      },
     },
     views: {
       'app@': {
-        component: 'managerDedicatedError',
+        component: 'managerErrorPage',
       },
     },
     resolve: {
-      error: /* @ngInject */ $transition$ => $transition$.params().detail,
-      homeLink: /* @ngInject */ $state => $state.href('app.configuration', {}, { reload: true }),
-      reload: /* @ngInject */ $window => () => $window.location.reload(),
+      cancelLink: /* @ngInject */ $state => $state.href('app.configuration', { reload: true }),
+      error: /* @ngInject */ ($transition$) => {
+        const stateParams = $transition$.params();
+        const error = {
+          ...stateParams,
+          code: stateParams.code,
+        };
+
+        return error;
+      },
+      submitAction: /* @ngInject */ $window => () => $window.location.reload(),
     },
-    translations: { value: ['.'], format: 'json' },
   });
 };
