@@ -1,0 +1,12 @@
+{
+ "cda_user_details_permission_title": "Pool rechten",
+ "cda_user_details_permission_description": "De rechten zijn vastgesteld voor Cloud Disk Array OSD. Een gebruiker heeft standaard 'allow r' rechten voor MON's. MDS rechten worden momenteel niet gebruikt. ",
+ "cda_user_details_permissions_edit_button_text": "Rechten wijzigen",
+ "cda_user_details_permissions_table_col_poolname": "Pool",
+ "cda_user_details_permissions_table_col_read": "Lezen",
+ "cda_user_details_permissions_table_col_write": "Schrijven",
+ "cda_user_details_permissions_table_col_execute": "Uitvoering",
+ "cda_user_details_permissions_table_col_classread": "Classread",
+ "cda_user_details_permissions_table_col_classwrite": "Classwrite",
+ "cda_user_details_permissions_table_empty": "Geen gebruikersrechten. "
+}

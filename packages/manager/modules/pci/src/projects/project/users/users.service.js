@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
+import some from 'lodash/some';
 import { OPENRC_VERSION } from './download-openrc/download-openrc.constants';
+import { ALPHA_CHARACTERS_REGEX } from './users.constants';
 
 export default class PciProjectsProjectUsersService {
   /* @ngInject */
@@ -14,6 +16,11 @@ export default class PciProjectsProjectUsersService {
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
+    this.ALPHA_CHARACTERS_REGEX = ALPHA_CHARACTERS_REGEX;
+  }
+
+  checkGlobalRegion(regions) {
+    return some(regions, region => this.ALPHA_CHARACTERS_REGEX.test(region.id));
   }
 
   getAll(projectId) {

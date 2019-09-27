@@ -1,0 +1,7 @@
+{
+  "autorenew_service_debt_before_paying_title": "Wichtige Information",
+  "autorenew_service_debt_before_paying_1": "Bevor Sie den Dienst für einen neuen Zeitraum abonnieren, begleichen Sie bitte den ausstehenden Betrag in Ihrem Kundencenter.",
+  "autorenew_service_debt_before_paying_2": "Gehen Sie in den Bereich „Abrechnung\", um die Rechnung für den Dienst <strong>{{service}}</strong> zu begleichen.",
+  "autorenew_service_debt_before_paying_settle": "Begleichen",
+  "autorenew_service_debt_before_paying_cancel": "Abbrechen"
+}

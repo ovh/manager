@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-server-sidebar",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "OVH control panel sidebar",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/server-sidebar#readme",
   "bugs": {
@@ -43,6 +43,6 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.7.0"
+    "ovh-api-services": "^9.12.0"
   }
 }

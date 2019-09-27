@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.2...@ovh-ux/manager-server-sidebar@0.6.0) (2019-09-19)
+
+
+### Features
+
+* **server-sidebar:** enable vps section for US accounts ([2d97e7c](https://github.com/ovh-ux/manager/commit/2d97e7c))
+
+
+
 ## [0.5.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.1...@ovh-ux/manager-server-sidebar@0.5.2) (2019-09-03)
 
 

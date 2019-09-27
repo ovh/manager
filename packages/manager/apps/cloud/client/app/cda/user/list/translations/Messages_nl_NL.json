@@ -1,0 +1,21 @@
+{
+ "cda_user_permission_definition": "Uw gebruikers kunnen de cluster gebruiken met pool-specifieke rechten. ",
+ "cda_user_add_button_text": "Een gebruiker toevoegen",
+ "cda_user_delete_button_text": "Verwijderen",
+ "cda_user_edit_button_text": "Bekijk rechten",
+ "cda_user_table_col_username": "Naam",
+ "cda_user_table_col_key": "Key",
+ "cda_user_table_col_pool": "Pools",
+ "cda_user_table_col_actions": "Handelingen",
+ "cda_user_add_title": "Een gebruiker toevoegen",
+ "cda_user_add_username_label": "Naam",
+ "cda_user_add_username_required": "U dient uw cluster te benoemen.",
+ "cda_user_add_username_pattern": "De naam kan geen spaties bevatten. ",
+ "cda_user_add_username_maxlength": "De naam van uw cluster kan niet langer zijn dan {{ maxlength }} tekens.",
+ "cda_user_add_success": "De gebruiker is toegevoegd. ",
+ "cda_user_delete_title": "Een gebruiker verwijderen",
+ "cda_user_delete_username_label": "Achternaam",
+ "cda_user_delete_confirm": "Weet u zeker dat u deze gebruiker wilt verwijderen? ",
+ "cda_user_delete_success": "De gebruiker is verwijderd. ",
+ "cda_user_table_empty": "Geen gebruiker"
+}

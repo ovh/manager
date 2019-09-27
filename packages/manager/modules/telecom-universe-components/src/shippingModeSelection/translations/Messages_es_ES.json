@@ -1,1 +1,6 @@
-{"shipping_mode_selection_mode_mondial_relay":"Entrega gratuita en punto Mondial Relay en 48 horas (desde el envío)","shipping_mode_selection_mode_mondial_relay_not_free":"Entrega en punto Mondial Relay (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">HT</span>) en 48 horas (desde el envío)","shipping_mode_selection_mode_transporter":"Entrega por transportista (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">HT</span>) en 24 horas (desde el envío)","shipping_mode_selection_mode_transporter_free":"Livraison gratuite par transporteur sous 24h (après envoi)"}
+{
+  "shipping_mode_selection_mode_mondial_relay": "Entrega gratuita en punto Mondial Relay en 48 horas (desde el envío)",
+  "shipping_mode_selection_mode_mondial_relay_not_free": "Entrega en punto Mondial Relay (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">HT</span>) en 48 horas (desde el envío)",
+  "shipping_mode_selection_mode_transporter": "Entrega por transportista (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">HT</span>) en 24 horas (desde el envío)",
+  "shipping_mode_selection_mode_transporter_free": "Entrega gratuita por transportista en 24 horas (desde el envío)"
+}

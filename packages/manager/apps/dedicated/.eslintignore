@@ -1,6 +1,0 @@
-src/app/account/otrs/filter/html-string-linky.filter.js
-src/app/components/polling/polling.service.js
-src/app/dedicated/server/ipmi/dedicated-server-ipmi.controller.js
-src/app/dedicated/server/installation/ovh/dedicated-server-installation-ovh.controller.js
-src/app/ip/ip-range.service.js
-src/app/ip/ip/ip-ip.controller.js

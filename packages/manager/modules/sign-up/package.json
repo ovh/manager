@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "license": "BSD-3-Clause",
   "files": [
@@ -27,12 +27,12 @@
     "@ovh-ux/component-rollup-config": "^6.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^6.1.1",
+    "@ovh-ux/manager-core": "^7.1.2",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.7.2",
+    "ovh-ui-angular": "^3.8.0",
     "ovh-ui-kit": "^2.33.1"
   }
 }

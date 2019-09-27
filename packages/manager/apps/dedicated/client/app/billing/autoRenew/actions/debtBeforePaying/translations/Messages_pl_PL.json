@@ -1,0 +1,7 @@
+{
+  "autorenew_service_debt_before_paying_title": "Ważna informacja",
+  "autorenew_service_debt_before_paying_1": "Przedłużenie usługi będzie możliwe po uregulowaniu zaległej kwoty na Twoim koncie.",
+  "autorenew_service_debt_before_paying_2": "Aby opłacić fakturę za usługę <strong>{{service}}</strong>, przejdź do sekcji \"Płatności\".",
+  "autorenew_service_debt_before_paying_settle": "Zapłać",
+  "autorenew_service_debt_before_paying_cancel": "Anuluj"
+}

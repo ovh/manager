@@ -1,3 +1,12 @@
+## [1.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.4.1...@ovh-ux/sign-up-app@1.4.2) (2019-09-19)
+
+
+### Bug Fixes
+
+* **sign-up:** change ovh logo ([#1298](https://github.com/ovh-ux/manager/issues/1298)) ([52894a2](https://github.com/ovh-ux/manager/commit/52894a2))
+
+
+
 ## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.4.0...@ovh-ux/sign-up-app@1.4.1) (2019-08-29)
 
 

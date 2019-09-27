@@ -1,0 +1,8 @@
+{
+ "cpciiac_deploy_title": "Implementeer infrastructure-as-code via Terraform",
+ "cpciiac_deploy_intro": "Met slechts een paar klikken kunt u onbeheerde infrastructure-as-code in uw cloudproject implementeren met onze infrastructuurimplementatiescripts.",
+ "cpciiac_deploy_guide": "Quickstart",
+ "cpciiac_deploy_configure": "Configureren",
+ "cpciiac_deploy_copy_paste": "Kopiëren/plakken",
+ "cpciiac_view_deployment_ERROR": "Er is een fout opgetreden bij het aanvragen van de implementatie: {{message}}"
+}

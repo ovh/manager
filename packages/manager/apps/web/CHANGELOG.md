@@ -1,3 +1,15 @@
+## [13.30.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.0...@ovh-ux/manager-web@13.30.1) (2019-09-19)
+
+
+### Bug Fixes
+
+* **bdd:** extensions can now be enabled or disabled correctly ([#1299](https://github.com/ovh-ux/manager/issues/1299)) ([4ae683f](https://github.com/ovh-ux/manager/commit/4ae683f))
+* **sql-order:** remove extra space ([66f4d3b](https://github.com/ovh-ux/manager/commit/66f4d3b))
+* **styles:** sort imports of css styles ([e5aff64](https://github.com/ovh-ux/manager/commit/e5aff64))
+* avoid displaying loader and data at the same time ([#1327](https://github.com/ovh-ux/manager/issues/1327)) ([05e7867](https://github.com/ovh-ux/manager/commit/05e7867))
+
+
+
 # [13.30.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.29.0...@ovh-ux/manager-web@13.30.0) (2019-09-03)
 
 

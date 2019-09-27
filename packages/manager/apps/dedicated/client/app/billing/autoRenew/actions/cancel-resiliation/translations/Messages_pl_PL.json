@@ -1,0 +1,8 @@
+{
+  "autorenew_service_cancel_resiliation_title": "Anuluj rezygnację z usługi",
+  "autorenew_service_cancel_resiliation_success": "Rezygnacja z usługi {{service}} została anulowana.",
+  "autorenew_service_cancel_resiliation_error": "Wystąpił błąd podczas anulowania rezygnacji z usługi {{message}}.",
+  "autorenew_service_cancel_resiliation_confirm": "Czy chcesz anulować rezygnację z usługi {{service}}?",
+  "autorenew_service_cancel_resiliation_validate": "Potwierdź anulowanie",
+  "autorenew_service_cancel_resiliation_cancel": "Anuluj"
+}

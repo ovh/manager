@@ -1,0 +1,5 @@
+{
+  "vps_configuration_rebuild_cancel": "Annuler",
+  "vps_configuration_rebuild_confirm": "Confirmer",
+  "vps_configuration_rebuild_doNotSendPassword": "Je ne souhaite pas recevoir par e-mail les codes d’authentification de mon VPS."
+}

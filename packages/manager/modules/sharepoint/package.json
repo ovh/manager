@@ -11,6 +11,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "angular": "^1.7.5",
     "filesize": "^3.5.11",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15"
@@ -19,8 +20,8 @@
     "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "@ovh-ux/web-universe-components": "^7.0.0",
     "angular": "^1.7.5",
-    "ovh-api-services": "^9.7.0",
-    "ovh-ui-angular": "^3.7.2",
+    "ovh-api-services": "^9.12.0",
+    "ovh-ui-angular": "^3.8.0",
     "ovh-ui-kit": "^2.33.3"
   }
 }

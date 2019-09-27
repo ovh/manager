@@ -1,0 +1,8 @@
+{
+  "autorenew_service_cancel_resiliation_title": "Annuler la résiliation d’un service",
+  "autorenew_service_cancel_resiliation_success": "La résiliation du service {{ service }} a bien été annulée.",
+  "autorenew_service_cancel_resiliation_error": "Une erreur est survenue lors de l'annulation de la résiliation {{ message }}",
+  "autorenew_service_cancel_resiliation_confirm": "Souhaitez-vous annuler la résiliation du service {{ service }} ?",
+  "autorenew_service_cancel_resiliation_validate": "Confirmer l'annulation",
+  "autorenew_service_cancel_resiliation_cancel": "Annuler"
+}
