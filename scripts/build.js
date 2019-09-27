@@ -89,7 +89,8 @@ program
   .option('--dry-run', 'Launch the build script without creating dist')
   .option('-p, --package [package]', 'Scope build to a specific package and its dependencies')
   .action(() => {
-    execa(`lerna list -alp --json ${program.package ? `--scope=${program.package} --include-filtered-dependencies` : ''}`)
+    execa
+      .shell(`lerna list -alp --json ${program.package ? `--scope=${program.package} --include-filtered-dependencies` : ''}`)
       .then(({ stdout }) => retrieveDependencies(JSON.parse(stdout)))
       .then((todo) => {
         modules = {
