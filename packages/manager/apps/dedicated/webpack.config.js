@@ -52,6 +52,8 @@ module.exports = (env = {}) => {
     },
   }, env);
 
+  const WEBPACK_REGION = `'${_.upperCase(env.region || process.env.REGION || 'EU')}'`;
+
   config.plugins.push(new webpack.DefinePlugin({
     WEBPACK_ENV: {
       region: JSON.stringify(env.region),
@@ -60,6 +62,7 @@ module.exports = (env = {}) => {
   }));
 
   // Extra config files
+  const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
@@ -71,7 +74,10 @@ module.exports = (env = {}) => {
       ]
         .concat(glob.sync('./client/app/**/*.module.js'))
         .concat(glob.sync('./client/app/components/**/!(*.module).js')),
-    }, bundles, extras.length > 0 ? { extras } : {}),
+    },
+    bundles,
+    extras.length > 0 ? { extras } : {},
+    extrasRegion.length > 0 ? { extrasRegion } : {}),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -82,7 +88,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
-        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
+        __WEBPACK_REGION__: WEBPACK_REGION,
       }),
     ],
   });
