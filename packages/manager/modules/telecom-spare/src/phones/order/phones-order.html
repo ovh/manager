@@ -51,10 +51,12 @@
                             <h2 class="widget-presentation-title" data-translate="phones_order_phone_title"></h2>
                             <div>
                                 <h3 data-translate="phones_order_select_title"></h3>
-                                <select class="form-control" data-ng-model="$ctrl.order.brand">
-                                    <option data-ng-repeat="brand in $ctrl.brands" value="{{brand.id}}">{{brand.name}}
-                                    </option>
-                                </select>
+                                <oui-select name="brand"
+                                            data-model="$ctrl.order.brand"
+                                            data-items="$ctrl.brands"
+                                            placeholder="{{ ::'phones_order_place_holder' | translate}}"
+                                            data-match="name">
+                                </oui-select>
                                 <div>
                                     <label data-translate="phones_order_select_quantity"></label>
                                     <oui-numeric data-model="$ctrl.quantity" data-max="50"></oui-numeric>
@@ -146,7 +148,7 @@
                         <!-- SHIPPING CONTACT -->
                         <h3 class="mt-4" data-translate="phones_order_contact_shipping_title"></h3>
                         <div class="badge d-inline-block align-top mr-3">
-                            <i class="fa fa-user fa-5x"></i>
+                            <span class="oui-icon oui-icon-user oui-icon_bicolor fa-5x"></span>
                         </div>
                         <div class="d-inline-block">
                             <p class="mb-1"

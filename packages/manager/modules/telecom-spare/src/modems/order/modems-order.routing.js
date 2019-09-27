@@ -7,13 +7,18 @@ export default /* @ngInject */ ($stateProvider) => {
       'spareView@spare': 'modemOrderComponent',
     },
     resolve: {
-      brands: /* @ngInject */ OvhApiXdsl => OvhApiXdsl
-        .Spare().v6().getBrands().$promise.then((brands) => {
+      brands: /* @ngInject */ OvhApiXdsl => OvhApiXdsl.Spare()
+        .v6()
+        .getBrands()
+        .$promise.then((brands) => {
           const spareBrands = [];
           brands.sort().forEach((element) => {
             spareBrands.push({
               id: element,
-              name: element.replace('xdsl.', '').replace(/\./g, ' ').toUpperCase(),
+              name: element
+                .replace('xdsl.', '')
+                .replace(/\./g, ' ')
+                .toUpperCase(),
             });
           });
           return spareBrands;

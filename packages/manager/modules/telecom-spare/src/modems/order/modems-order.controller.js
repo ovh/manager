@@ -78,7 +78,7 @@ export default class {
 
   fetchOrder() {
     const params = {
-      brand: this.order.brand,
+      brand: this.order.brand.id,
       quantity: this.quantity,
       shippingContactId: this.order.contact.id,
     };
@@ -120,7 +120,7 @@ export default class {
 
   submitOrder() {
     const params = {
-      brand: this.order.brand,
+      brand: this.order.brand.id,
       quantity: this.quantity,
       shippingContactId: this.order.contact.id,
     };

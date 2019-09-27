@@ -5,7 +5,7 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
-import ngOvhContact from '@ovh-ux/ng-ovh-contact';
+import '@ovh-ux/ng-ovh-contact';
 
 import component from './modems-order.component';
 import routing from './modems-order.routing';
@@ -14,7 +14,7 @@ const moduleName = 'ovhManagerTelecomSpareOrderModem';
 
 angular
   .module(moduleName, [
-    ngOvhContact,
+    'ngOvhContact',
     'oui',
     'ovhManagerCore',
     'ovh-api-services',

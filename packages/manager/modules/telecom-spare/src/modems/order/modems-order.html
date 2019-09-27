@@ -51,11 +51,11 @@
                             <h2 class="widget-presentation-title" data-translate="modems_order_modem_title"></h2>
                             <div>
                                 <h3 data-translate="modems_order_select_title"></h3>
-                                <select class="form-control" data-ng-model="$ctrl.order.brand">
-                                    <option data-ng-repeat="brand in $ctrl.brands" value="{{brand.id}}">{{brand.name}}
-                                    </option>
-                                </select>
-                                <oui-select data-name="brand" data-model="$ctrl.order.brand" data-items="$ctrl.brands">
+                                <oui-select name="brand"
+                                            data-model="$ctrl.order.brand"
+                                            data-items="$ctrl.brands"
+                                            placeholder="{{ ::'modems_order_place_holder' | translate}}"
+                                            data-match="name">
                                 </oui-select>
                                 <div>
                                     <label data-translate="modems_order_select_quantity"></label>
@@ -68,7 +68,7 @@
                         data-ng-disabled="($ctrl.quantity === 0) || !$ctrl.order.brand || !$ctrl.order.contact || ($ctrl.order.shipping.mode === 'mondialRelay' && !$ctrl.order.shipping.relay)"
                         data-ng-click="$ctrl.changeStep('summary')">
                         <span data-translate="modems_order_order_next"></span>
-                        <i class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></i>
+                        <span class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></span>
                     </button>
                 </section>
 
@@ -146,7 +146,7 @@
                         <!-- SHIPPING CONTACT -->
                         <h3 class="mt-4" data-translate="modems_order_contact_shipping_title"></h3>
                         <div class="badge d-inline-block align-top mr-3">
-                            <i class="fa fa-user fa-5x"></i>
+                            <span class="oui-icon oui-icon-user oui-icon_bicolor fa-5x"></span>
                         </div>
                         <div class="d-inline-block">
                             <p class="mb-1"
