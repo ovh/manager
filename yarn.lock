@@ -3600,6 +3600,7 @@ bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3:
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
 bootstrap@^4.3.1:
+  name bootstrap4
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
   integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
@@ -9326,7 +9327,7 @@ jquery.scrollto@^1.4.13:
   dependencies:
     jquery ">=1.4"
 
-"jquery@>= 1.9.1", jquery@>=1.4, jquery@>=1.7.1, jquery@>=1.8:
+"jquery@>= 1.9.1", jquery@>=1.4, jquery@>=1.7.1, jquery@>=1.8, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -9475,7 +9476,7 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
 
-jsplumb@2.12.0, jsplumb@^2.12.0:
+jsplumb@2.12.0, jsplumb@^2.11.2, jsplumb@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.12.0.tgz#ae4d5a6a7135be29477d2c9bdfe46bebe368335d"
   integrity sha512-1nPDjYafbBS8Mm3GLKgbhXyHCQFq1MXLfxbVfCwEZv9NmMiSuJ1taAzDh0e/o4v09Te1sPYU2E/2Bg5rBJ3iGg==
@@ -11806,7 +11807,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.8.2:
+ovh-ui-angular@^3.8.1, ovh-ui-angular@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.8.2.tgz#6effa6f861148fa5a984a9d3248beb8b8b34ab29"
   integrity sha512-wqQNldfYITxbMHHP6Wy3gdBLMl8PrPMe2YbnAq9jcOc684gBv/53/eS//UrlRSsEfMdrKo8GeAG2Rx+6uFLCkw==
