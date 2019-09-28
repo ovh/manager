@@ -1,0 +1,43 @@
+<section>
+    <tuc-toast-message></tuc-toast-message>
+    <h3 data-translate="carrier_sip_cdr_title"></h3>
+    <p data-translate="carrier_sip_cdr_information"></p>
+    <form
+        novalidate
+        data-ng-submit="$ctrl.getCallDetailRecords()">
+        <oui-spinner data-ng-if="$ctrl.isExporting"></oui-spinner>
+        <div class="row"
+            data-ng-if="!$ctrl.isExporting">
+            <div class="col">
+                <oui-field
+                    data-label="{{:: 'carrier_sip_cdr_field_month' | translate }}"
+                    data-size="m">
+                    <oui-select
+                        data-name="month"
+                        data-model="$ctrl.month"
+                        data-placeholder="{{:: 'carrier_sip_cdr_field_month_placeholder' | translate }}"
+                        data-items="$ctrl.months"
+                        data-required>
+                    </oui-select>
+                </oui-field>
+            </div>
+            <div class="col">
+                <oui-field
+                    data-label="{{:: 'carrier_sip_cdr_field_year' | translate }}"
+                    data-size="m">
+                    <oui-select
+                        data-name="year"
+                        data-model="$ctrl.year"
+                        data-placeholder="{{:: 'carrier_sip_cdr_field_year_placeholder' | translate }}"
+                        data-items="$ctrl.years"
+                        data-required>
+                    </oui-select>
+                </oui-field>
+            </div>
+        </div>
+        <oui-form-actions
+            data-disabled="!$ctrl.isValid()"
+            data-submit-text="{{:: 'carrier_sip_cdr_action_download' | translate }}">
+        </oui-form-actions>
+    </form>
+</section>
