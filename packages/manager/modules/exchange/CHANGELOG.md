@@ -1,3 +1,12 @@
+## [1.1.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.8...@ovh-ux/manager-exchange@1.1.9) (2019-09-30)
+
+
+### Bug Fixes
+
+* **group:** remove debounce ([60080d9](https://github.com/ovh-ux/manager/commit/60080d9)), closes [ovh-ux/ovh-module-exchange#330](https://github.com/ovh-ux/ovh-module-exchange/issues/330)
+
+
+
 ## [1.1.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.7...@ovh-ux/manager-exchange@1.1.8) (2019-09-19)
 
 
