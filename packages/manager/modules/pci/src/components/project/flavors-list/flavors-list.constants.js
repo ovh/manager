@@ -26,6 +26,11 @@ export const CATEGORIES = [
     title: 'Sandbox',
     pattern: /vps/,
   },
+  {
+    category: 'iops',
+    title: 'IOPS',
+    pattern: /ovh\.iops/,
+  },
 ];
 
 export const FLEX_TYPE = /flex$/;
