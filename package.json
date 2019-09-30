@@ -13,7 +13,7 @@
   "scripts": {
     "build": "node --experimental-worker scripts/build.js",
     "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
-    "clean:dist": "npx rimraf packages/**/dist",
+    "clean:dist": "npx rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
     "docs:update-readme": "scripts/update-readme.js",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
