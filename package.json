@@ -17,7 +17,7 @@
     "docs:update-readme": "scripts/update-readme.js",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
-    "lint:html": "htmlhint 'packages/**/*.html'",
+    "lint:html": "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
     "lint:js": "eslint --fix --quiet --format=pretty packages scripts",
     "lint:md": "remark -qf .",
     "packages:publish": "scripts/publish.js",
