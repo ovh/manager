@@ -17,21 +17,9 @@ angular.module('controllers').controller(
     }
 
     getTasks() {
-      if (/^\/configuration\/zone.+/.test(this.$state.current.url)) {
-        return this.Domain.getZoneDnsTasks(this.$stateParams.productId).then((tasks) => {
-          this.tasks = this.constructor.getTaskStruct(tasks, true);
-        });
-      }
-      return this.$q
-        .all({
-          zoneDnsTasks: this.Domain.getZoneDnsTasks(this.$stateParams.productId),
-          tasks: this.Domain.getTasks(this.$stateParams.productId),
-        })
-        .then(({ zoneDnsTasks, tasks }) => {
-          this.tasks = this.constructor
-            .getTaskStruct(zoneDnsTasks, true)
-            .concat(this.constructor.getTaskStruct(tasks, false));
-        });
+      return this.Domain.getZoneDnsTasks(this.$stateParams.productId).then((tasks) => {
+        this.tasks = this.constructor.getTaskStruct(tasks, true);
+      });
     }
 
     static getTaskStruct(tasks, isZone) {

@@ -1,11 +1,11 @@
-angular.module('services').service(
-  'newDnsZone',
+export default
   class newDnsZone {
     /**
      * Constructor
      * @param $http
      * @param $q
      */
+    /* @ngInject */
     constructor(
       $http,
       $q,
@@ -45,5 +45,4 @@ angular.module('services').service(
         .then(response => response.data)
         .catch(err => this.$q.reject(err.data));
     }
-  },
-);
+  };
