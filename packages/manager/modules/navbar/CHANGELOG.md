@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@2.0.0...@ovh-ux/manager-navbar@2.0.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **navbar:** extract translations ([#1355](https://github.com/ovh-ux/manager/issues/1355)) ([681eeea](https://github.com/ovh-ux/manager/commit/681eeea))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.3.1...@ovh-ux/manager-navbar@2.0.0) (2019-09-19)
 
 

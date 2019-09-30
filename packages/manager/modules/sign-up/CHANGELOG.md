@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.2...@ovh-ux/sign-up@1.0.3) (2019-09-30)
+
+
+### Bug Fixes
+
+* **sign-up:** clean phone by adding prefix if not present ([#1317](https://github.com/ovh-ux/manager/issues/1317)) ([acca3a9](https://github.com/ovh-ux/manager/commit/acca3a9))
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.1...@ovh-ux/sign-up@1.0.2) (2019-09-19)
 
 

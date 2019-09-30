@@ -1,3 +1,13 @@
+## [10.25.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-dedicated@10.25.0...@ovh-ux/manager-dedicated@10.25.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **dedicated:** fix use of lodash identity pick ([#1363](https://github.com/ovh-ux/manager/issues/1363)) ([e38878a](https://github.com/ovh-ux/manager/commit/e38878a))
+* **dedicated:** update less rem ([0c22a13](https://github.com/ovh-ux/manager/commit/0c22a13))
+
+
+
 # [10.25.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-dedicated@10.24.1...@ovh-ux/manager-dedicated@10.25.0) (2019-09-03)
 
 
