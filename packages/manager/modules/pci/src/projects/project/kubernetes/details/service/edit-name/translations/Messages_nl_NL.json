@@ -1,9 +1,0 @@
-{
- "pci_projects_project_kubernetes_details_service_name": "Naam wijzigen",
- "pci_projects_project_kubernetes_details_service_name_edit": "Wijzigen",
- "pci_projects_project_kubernetes_details_service_name_cancel": "Annuleren",
- "pci_projects_project_kubernetes_details_service_name_default": "Standaard naam {{ name }}",
- "pci_projects_project_kubernetes_details_service_name_custom": "Gepersonaliseerde naam",
- "pci_projects_project_kubernetes_details_service_name_success": "Cluster naam update",
- "pci_projects_project_kubernetes_details_service_name_error": "Er is een fout opgetreden tijdens het verwijderen van het cluster: {{message}}"
-}

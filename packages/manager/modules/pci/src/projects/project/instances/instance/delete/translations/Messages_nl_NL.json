@@ -1,9 +1,0 @@
-{
- "pci_projects_project_instances_instance_delete_title": "Een instance verwijderen",
- "pci_projects_project_instances_instance_delete_submit_label": "Bevestigen",
- "pci_projects_project_instances_instance_delete_cancel_label": "Annuleren",
- "pci_projects_project_instances_instance_delete_content": "Weet u zeker dat u de {{insance}} wilt verwijderen?",
- "pci_projects_project_instances_instance_delete_monthlyBilling_alert": "Het tarief voor de lopende maand voor deze server is al gefactureerd, als het niet wordt gebruikt, zal het verloren gaan.",
- "pci_projects_project_instances_instance_delete_success_message": "De {{ instance }} instance is verwijdeerd.",
- "pci_projects_project_instances_instance_delete_error_delete": "Een fout is opgetreden bij het verwijderen van de instance {{ instance }} : {{ message }}."
-}
