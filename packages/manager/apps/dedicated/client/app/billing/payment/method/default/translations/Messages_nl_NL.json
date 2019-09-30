@@ -1,5 +1,0 @@
-{
-  "billing_payment_method_default_title": "Definieer een standaard betaalmethode",
-  "billing_payment_method_default_explain": "U staat op het punt om de betalingsmethode <strong>{{{{label }}}</strong> te definiëren als de standaard betalingsmethode.",
-  "billing_payment_method_default_question": "Weet u zeker dat u wilt doorgaan?"
-}

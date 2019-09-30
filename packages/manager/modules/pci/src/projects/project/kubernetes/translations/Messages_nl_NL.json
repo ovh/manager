@@ -1,9 +1,0 @@
-{
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Cluster naam",
- "kube_list_region": "Regio",
- "kube_list_version": "Versie",
- "kube_list_cluster_manage": "Uw cluster beheren",
- "kube_list_cluster_create": "Een kubernetes Cluster aanmaken",
- "kube_list_error": "Er is een fout opgetreden tijdens het laden van uw clusters."
-}

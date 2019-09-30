@@ -1,7 +1,0 @@
-{
-  "doubleauth_modal_alert_title": "Aanvullende code",
-  "doubleauth_modal_alert_message": "Let op: u heeft geen aanvullende code voor eenmalig gebruik.",
-  "doubleauth_modal_alert_message_1": "U beschikt niet meer over een aanvullende code voor eenmalig gebruik.",
-  "doubleauth_modal_alert_message_other": "Let op: u heeft slechts <strong>{{t0}}</strong> aanvullende codes voor eenmalig gebruik.",
-  "doubleauth_modal_alert_message_regenerate": "Wilt u een nieuwe set aanvullende codes regenereren?"
-}

@@ -1,7 +1,0 @@
-{
-  "xdsl_modem_reboot": "Redémarrer le modem",
-  "xdsl_modem_reboot_an_error_ocurred": "[Redémarrage Modem] Une erreur est survenue !",
-  "xdsl_modem_reboot_success": "Redémarrage du modem en cours.",
-  "xdsl_modem_reboot_success_end": "Redémarrage du modem complété.",
-  "xdsl_modem_reboot_really": "Êtes-vous sûr(e) de vouloir redémarrer votre modem ?"
-}

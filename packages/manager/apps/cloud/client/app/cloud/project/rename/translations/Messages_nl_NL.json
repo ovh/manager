@@ -1,9 +1,0 @@
-{
- "cloud_project_rename_loading_error": "Er is een fout opgetreden tijdens het laden van de beschrijving. ",
- "cloud_project_rename_error": "Error. Niet mogelijk om de beschrijving te wijzigen.",
- "cpb_details_project_delete": "Verwijder dit project",
- "cpb_details_project_rename_reset": "Annuleren",
- "cpb_details_project_rename_ok": "Opslaan",
- "cpb_details_project_rename": "Wijzigen",
- "cpb_details_project_description": "Projectbeschrijving"
-}

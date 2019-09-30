@@ -1,3 +1,13 @@
+## [10.35.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.5...@ovh-ux/manager-telecom@10.35.6) (2019-09-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** fix order of function keys ([#1350](https://github.com/ovh-ux/manager/issues/1350)) ([7fbb747](https://github.com/ovh-ux/manager/commit/7fbb747))
+* edit a contact works now correctly ([ca327b4](https://github.com/ovh-ux/manager/commit/ca327b4))
+
+
+
 ## [10.35.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.4...@ovh-ux/manager-telecom@10.35.5) (2019-09-26)
 
 

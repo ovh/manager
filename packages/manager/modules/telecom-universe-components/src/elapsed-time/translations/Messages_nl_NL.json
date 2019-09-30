@@ -1,1 +1,0 @@
-{"elapsed_time_days":"{{ days }} jours et {{ hours }} heures","elapsed_time_hours":"{{ hours }} h {{ minutes }} min {{ seconds }} s","elapsed_time_minutes":"{{ minutes }} min {{ seconds }} s","elapsed_time_seconds":"{{ seconds }} sec."}
