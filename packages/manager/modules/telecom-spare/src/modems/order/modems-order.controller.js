@@ -1,8 +1,3 @@
-import filter from 'lodash/filter';
-import get from 'lodash/get';
-import groupBy from 'lodash/groupBy';
-import map from 'lodash/map';
-
 export default class {
   /* @ngInject */
   constructor(
@@ -44,7 +39,7 @@ export default class {
     };
 
     this.contactChoiceOptions = {
-      filter: this.filterContact,
+      filter: this.filterContacts,
     };
 
     this.orderStep = 'modem_and_shipping';
@@ -56,7 +51,7 @@ export default class {
       case 'modem_and_shipping':
         this.quantity = 0;
         this.contactChoiceOptions = {
-          filter: this.filterContact,
+          filter: this.filterContacts,
         };
         break;
       case 'summary':
@@ -89,34 +84,6 @@ export default class {
       .v6()
       .getNewSpare(params).$promise;
   }
-
-  /* eslint-disable class-methods-use-this */
-  filterContact(contacts) {
-    return filter(
-      map(
-        groupBy(contacts, (contact) => {
-          // group contact to detect contact that are the same
-          const contactCopy = {
-            lastName: contact.lastName,
-            firstName: contact.firstName,
-          };
-          if (contact.address) {
-            contactCopy.address = {
-              country: contact.address.country,
-              line1: contact.address.line1,
-              zip: contact.address.zip,
-              city: contact.address.city,
-            };
-          }
-          return JSON.stringify(contactCopy);
-        }),
-        groups => groups[0],
-      ),
-      contact => get(contact, 'address')
-        && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
-    );
-  }
-  /* eslint-enable class-methods-use-this */
 
   submitOrder() {
     const params = {

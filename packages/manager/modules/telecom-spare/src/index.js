@@ -35,6 +35,7 @@ import routing from './routing';
 
 import formatModemBrandFilter from './filters/formatModemBrand/format-modem-brand.filter';
 import formatPhoneBrandFilter from './filters/formatPhoneBrand/format-phone-brand.filter';
+import filterContacts from './filters/contact/filter-contacts.filter';
 
 import './index.scss';
 
@@ -63,6 +64,7 @@ angular
   .config(routing)
   .filter('formatModemBrandFilter', formatModemBrandFilter)
   .filter('formatPhoneBrandFilter', formatPhoneBrandFilter)
+  .filter('filterContacts', filterContacts)
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($transitions, $translate) => {
