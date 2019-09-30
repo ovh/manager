@@ -1,6 +1,6 @@
 {
   "*.html": [
-    "htmlhint 'packages/**/*.html'"
+    "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\""
   ],
   "*.js": [
     "eslint --fix",
