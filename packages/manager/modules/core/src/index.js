@@ -106,9 +106,6 @@ angular
       case 'lt-lt':
         angularLocalePromise = import('angular-i18n/angular-locale_lt-lt.js');
         break;
-      case 'nl-nl':
-        angularLocalePromise = import('angular-i18n/angular-locale_nl-nl.js');
-        break;
       case 'pl-pl':
         angularLocalePromise = import('angular-i18n/angular-locale_pl-pl.js');
         break;
