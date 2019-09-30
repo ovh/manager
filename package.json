@@ -42,7 +42,7 @@
     "eslint-import-resolver-lerna": "^1.1.0",
     "eslint-plugin-angular": "^4.0.1",
     "eslint-plugin-markdown": "^1.0.0",
-    "execa": "^1.0.0",
+    "execa": "^2.0.4",
     "find-free-port": "^2.0.0",
     "git-raw-commits": "^2.0.0",
     "git-url-parse": "^11.1.2",
