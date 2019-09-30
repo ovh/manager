@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.1.0...@ovh-ux/manager-pci@2.1.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+
+
+
 # [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.0.2...@ovh-ux/manager-pci@2.1.0) (2019-09-19)
 
 

@@ -1,3 +1,12 @@
+## [10.35.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.6...@ovh-ux/manager-telecom@10.35.7) (2019-09-30)
+
+
+### Bug Fixes
+
+* **sidebar:** translations are now always displayed ([31fa3a9](https://github.com/ovh-ux/manager/commit/31fa3a9))
+
+
+
 ## [10.35.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.5...@ovh-ux/manager-telecom@10.35.6) (2019-09-30)
 
 
