@@ -1,8 +1,0 @@
-{
-  "billing_main_history_postal_mail_options_title": "Wijzig de opties voor het verzenden van facturen",
-  "billing_main_history_postal_mail_options_activation": "Wilt u bevestigen dat u facturen op papier wilt ontvangen?",
-  "billing_main_history_postal_mail_options_desactivation": "Wilt u bevestigen dat u facturen niet meer op papier wilt ontvangen?",
-  "billing_main_history_postal_mail_options_activate_success": "Uw instellingen zijn bijgewerkt. Vanaf nu ontvangt u uw facturen op papier.",
-  "billing_main_history_postal_mail_options_desactivate_success": "Uw instellingen zijn bijgewerkt. Vanaf nu ontvangt u uw facturen niet meer op papier.",
-  "billing_main_history_postal_mail_options_update_error": "Er is een fout opgetreden bij het bijwerken van de instelling"
-}

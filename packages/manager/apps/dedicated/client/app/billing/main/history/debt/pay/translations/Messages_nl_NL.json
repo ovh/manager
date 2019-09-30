@@ -1,8 +1,0 @@
-{
-  "billing_main_history_debt_pay_title": "Betaling ",
-  "billing_main_history_debt_pay_confirm": "Betaal mijn factuur",
-  "billing_main_history_debt_pay_explanation": "Deze actie zal een bestelbon aanmaken zodat u direct een bedrag kunt betalen. Deze bestelbon zal één uur geldig zijn. ",
-  "billing_main_history_debt_pay_success": "De <a href=\"{{t1}}\" target=\"_blank\" rel=\"noopener\">bestelbon {{t0}}</a> is aangemaakt zodat u uw saldo kunt betalen.",
-  "billing_main_history_debt_pay_error": "Er is een fout opgetreden bij de betaling van uw saldo.",
-  "billing_main_history_debt_pay_error_nothing_to_pay": "U heeft momenteel geen betalingen in behandeling."
-}

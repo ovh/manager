@@ -1,8 +1,0 @@
-{
- "pci_projects_project_users_delete_title": "Een gebruiker verwijderen",
- "pci_projects_project_users_delete_submit_label": "Bevestigen",
- "pci_projects_project_users_delete_cancel_label": "Annuleren",
- "pci_projects_project_users_delete_content": "Verwijder de gebruiker permanent {{ user }}",
- "pci_projects_project_users_delete_success_message": "De gebruiker  {{ user }}  is verwijderd.",
- "pci_projects_project_users_delete_error_delete": "Er is een fout opgetreden bij het verwijderen van de user {{ user }} : {{ message }}."
-}

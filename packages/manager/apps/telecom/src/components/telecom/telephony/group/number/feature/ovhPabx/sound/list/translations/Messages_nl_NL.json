@@ -1,5 +1,0 @@
-{
-  "telephony_number_feature_ovh_pabx_sound_no_file": "Aucun son ajouté",
-  "telephony_number_feature_ovh_pabx_sound_delete_title": "Supprimer ce son",
-  "telephony_number_feature_ovh_pabx_sound_upload_error": "Oups ! Une erreur est survenue lors de l'ajout du fichier {{ file }}."
-}

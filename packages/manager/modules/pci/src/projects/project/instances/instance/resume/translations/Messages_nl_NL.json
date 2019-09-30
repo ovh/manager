@@ -1,8 +1,0 @@
-{
- "pci_projects_project_instances_instance_resume_title": "Een instance reactiveren",
- "pci_projects_project_instances_instance_resume_submit_label": "Bevestigen",
- "pci_projects_project_instances_instance_resume_cancel_label": "Annuleren",
- "pci_projects_project_instances_instance_resume_content": "Weet u zeker dat u de {{ instance }}  instance wilt reactiveren?",
- "pci_projects_project_instances_instance_resume_success_message": "De {{ instance }} instance is gereactiveerd.",
- "pci_projects_project_instances_instance_resume_error_resume": "Er is een fout opgetreden tijdens het reactiveren van de instance: {{message}}"
-}

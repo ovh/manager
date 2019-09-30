@@ -1,4 +1,0 @@
-{
- "nasha_partitions_action_update_success": "De {{partitionName}} partitiegrootte is binnen enkele minuten geüpdatet. ",
- "nasha_partitions_action_update_failure": "Er is een fout opgetreden tijdens het updaten van de {{partitionName}} partitiegrootte."
-}
