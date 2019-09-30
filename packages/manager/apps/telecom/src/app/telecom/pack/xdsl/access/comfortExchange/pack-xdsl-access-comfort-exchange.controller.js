@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import { COMFORT_EXCHANGE_TYPE_ERROR } from './pack-xdsl-access-comfort-exchange.constant';
 
 export default class XdslAccessComfortExchangeCtrl {
@@ -29,10 +30,8 @@ export default class XdslAccessComfortExchangeCtrl {
     };
     this.isAvailable = false;
 
-    this.isRMAOpened = false;
     if (this.openedRMAs) {
       this.getListOpenedRMA();
-      this.isRMAOpened = true;
     }
   }
 
@@ -48,14 +47,13 @@ export default class XdslAccessComfortExchangeCtrl {
           { id },
         )
         .$promise.then((rma) => {
-          const addRma = {
+          this.rmas.push({
             creationDateTime: rma.creationDatetime,
             equipmentReference: rma.equipmentReference,
             id: rma.id,
             newMerchandise: rma.newMerchandise,
             status: rma.status,
-          };
-          this.rmas.push(addRma);
+          });
         }));
     }
   }
@@ -65,7 +63,7 @@ export default class XdslAccessComfortExchangeCtrl {
       xdslId: this.xdslId,
     }, {}).$promise.then((result) => {
       this.exchange.isSuccess = true;
-      _.assign(this.exchange.order, result);
+      assign(this.exchange.order, result);
       this.TucToast.success(this.$translate.instant('xdsl_access_comfort_exchange_success_message'));
     }).catch((error) => {
       if (error.data.message.includes(COMFORT_EXCHANGE_TYPE_ERROR.errBase)) {
