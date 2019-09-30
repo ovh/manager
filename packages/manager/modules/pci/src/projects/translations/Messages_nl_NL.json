@@ -1,8 +1,0 @@
-{
- "pci_projects": "Projects",
- "pci_projects_description": "Beschrijving",
- "pci_projects_status": "Status",
- "pci_projects_status_ok": "Actief",
- "pci_projects_status_deleting": "Verwijdering wordt uitgevoerd",
- "pci_projects_project_show": "Visualiseren"
-}

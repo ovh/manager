@@ -50,6 +50,17 @@ class MonoRepository {
       .then(v => execa.shell('git push origin master --tags').then(() => v));
   }
 
+  static writeChangelog(file, repos) {
+    return new Promise((resolve, reject) => {
+      fs.writeFileSync(file, repos.map(r => r.changelog).join(''), (err) => {
+        if (err) {
+          return reject(new Error(`update package.json of ${this.repository.name}: ${err}`));
+        }
+        return resolve(this);
+      });
+    });
+  }
+
   static releaseGithub(accessToken, organization, version, repos, options = {}) {
     const client = github.client(accessToken);
     const reposChangelog = repos.map(r => r.changelog).join('');

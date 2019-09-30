@@ -1,3 +1,12 @@
+## [4.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.1...@ovh-ux/ng-ovh-telecom-universe-components@4.1.2) (2019-09-25)
+
+
+### Bug Fixes
+
+* **tuc:** use proper validator ([afad4b1](https://github.com/ovh-ux/manager/commit/afad4b1))
+
+
+
 ## [4.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.0...@ovh-ux/ng-ovh-telecom-universe-components@4.1.1) (2019-09-09)
 
 

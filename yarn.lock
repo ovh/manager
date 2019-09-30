@@ -1883,21 +1883,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-cloud-universe-components@^0.3.1":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.3.2.tgz#8498515ee95231f0dc5e19c40daad30c65dc14c0"
-  integrity sha512-KiEVb5aVMYC1vB6+totbpbXJDUE1EWc8Ag8BZasyIkEFeRZZ/4FTbLHPe8DahW4c4AmQKtTZsauww5ONiG1f0w==
-  dependencies:
-    bootstrap "~3.3.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.24.0"
-    ovh-ui-kit "^2.24.2"
-
-"@ovh-ux/ng-ovh-contact@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.2.tgz#9dace99c7bea1ad24356d0d72466339bdb800805"
-  integrity sha512-KOYl8aaTF76v6/r1ulV3OOprxDuvliHNsYbOrzTXHYDFFahBqSiefpaSNCzKjvwQbtSvXBqVsW+6QS/mf8Jl8g==
+"@ovh-ux/ng-ovh-contact@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.3.tgz#5290dd1257611e5022224120a37461992c4ceec8"
+  integrity sha512-B9CeWwhurW25eZ3m3XdqwVwZpR7z83CGG8/Idf9dvwGL0iwPD0F58+/EKMOZYCqfRjctQ+nsha1KNcy0SwXWFA==
   dependencies:
     lodash "^4.17.15"
 
@@ -1993,13 +1982,6 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.2.0.tgz#a36b20c0c12e5d87cde1ff095a598b3f7b7e4514"
-  integrity sha512-0L7amT/zQ8yUCPUC5qV0dKlgdyyEpKL5ioPmHTbj8nxmqNJKmTFTXRDGqyTJZvLLL+DyTVrC+51DQSRwLQ7Ttg==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-payment-method@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-4.1.0.tgz#b51d844293c26d7de3ad8e33f59399d2f5554c1f"
@@ -2082,11 +2064,6 @@
     filesize "^3.6.1"
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-web-universe-components@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-4.0.3.tgz#ec5062cda160524a20d864635c67fceffcc0e770"
-  integrity sha512-1QKe9j283R3kENalTA6hvkkAyVRQJh6FT9wpJjBp4OPF/gTma0EvDBk2hYbXk45AlJUscCjB+8zoBLksO5rgMA==
-
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0-alpha.0.tgz#fd84086d04068734cebb2a3e216a8db9116a0d7b"
@@ -2133,11 +2110,6 @@
   integrity sha512-ynw1xi7AVI/K7Bg6qFO/ApnrSyrr0g4YduWd9fRRZ4H6eUpJUlu3T/SibTzJ/5nyKyg1BnFH/wlB2SEF0Oplpw==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ovh-utils-angular@^13.0.4":
-  version "13.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-13.0.4.tgz#3acf47e4723ab7292f06bc38bf5b4085e66e7916"
-  integrity sha512-om8qsxySKMlYAIMIX/fp665sVxDRLFFTNFtnp5xcuq9sPKYaF6aGFOmxoNd063DUXiWx2fnUGoUiVCRU+b+txw==
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.1":
   version "1.0.1"
@@ -2893,16 +2865,6 @@ angular-websocket@^2.0.0:
     angular "*"
     ws "^1.0.0"
 
-angular-xeditable@^0.1.10:
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/angular-xeditable/-/angular-xeditable-0.1.12.tgz#482c377cce1db49876f8ae220cce4db8d79e63c5"
-  integrity sha1-SCw3fM4dtJh2+K4iDM5NuNeeY8U=
-  dependencies:
-    angular "~1.x"
-    bootstrap "^3.1.1"
-    jquery "^1.11.1"
-    moment "^2.5.0"
-
 angular-xeditable@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/angular-xeditable/-/angular-xeditable-0.9.0.tgz#5eaa143058959a985de4475ce1d7c7539b60ee8a"
@@ -3625,10 +3587,6 @@ bootstrap-additions@~0.3.1:
   resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
   integrity sha1-mrl2wtiLmrdHw3bHV6gAMfLM+D4=
 
-bootstrap-datetimepicker@tarruda/bootstrap-datetimepicker#~0.0.11:
-  version "0.0.10"
-  resolved "https://codeload.github.com/tarruda/bootstrap-datetimepicker/tar.gz/c26217db8840e5aa8f56e343ce307581960543c9"
-
 bootstrap-tour@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/bootstrap-tour/-/bootstrap-tour-0.12.0.tgz#c56eb48debe9cf788378a20184ef5a761b13b650"
@@ -3641,7 +3599,7 @@ bootstrap4@twbs/bootstrap#v4.0.0:
   version "4.0.0"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
 
-bootstrap@^3.1.1, bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3:
+bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
@@ -9344,20 +9302,10 @@ jquery.scrollto@^1.4.13:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
-jquery@^1.11.1:
-  version "1.12.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.4.tgz#01e1dfba290fe73deba77ceeacb0f9ba2fec9e0c"
-  integrity sha1-AeHfuikP5z3rp3zurLD5ui/sngw=
-
 jquery@^2.1.3:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
   integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
-
-jquery@~2.1, jquery@~2.1.3:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
-  integrity sha1-IoveaYoMYUMdwmMKahVPFYkNIxc=
 
 js-base64@^2.1.8:
   version "2.5.1"
@@ -10870,7 +10818,7 @@ moment-duration-format@^1.3:
   resolved "https://registry.yarnpkg.com/moment-duration-format/-/moment-duration-format-1.3.0.tgz#541771b5f87a049cc65540475d3ad966737d6908"
   integrity sha1-VBdxtfh6BJzGVUBHXTrZZnN9aQg=
 
-moment@2.24.0, moment@>=2.5.0, "moment@>=2.8.0 <3.0.0", moment@^2.10.2, moment@^2.10.6, moment@^2.15.2, moment@^2.16.0, moment@^2.19, moment@^2.20.1, moment@^2.22.2, moment@^2.24.0, moment@^2.5.0:
+moment@2.24.0, moment@>=2.5.0, "moment@>=2.8.0 <3.0.0", moment@^2.10.2, moment@^2.10.6, moment@^2.15.2, moment@^2.16.0, moment@^2.19, moment@^2.20.1, moment@^2.22.2, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -11794,10 +11742,10 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.10.1:
-  version "9.10.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.10.1.tgz#1c825eebfdd83f1e8354b3b8d253f6cb2ce1cfff"
-  integrity sha512-BLNh0jXHMKs/uZZvB6XsFbK9A96V2kMIg2cF6PeHik1xygzeVQjS8V7CECnv26nVzSIr0CNqGDEphBpFBgLmDQ==
+ovh-api-services@^9.12.0:
+  version "9.12.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.12.0.tgz#c75a8344f89670948657719b170b7a92a9aac810"
+  integrity sha512-Epo0eSsSNXT4CvafeP/SJfXwAkk0DeaNDIpmvYjy6krOiQ5TwbcyozRZfQIzKN7iQRY+/4Y47ZS3dhhdLOF4Pg==
   dependencies:
     lodash "^4.17.15"
 
@@ -11845,7 +11793,7 @@ ovh-ui-kit-bs@^2.1.1, ovh-ui-kit-bs@^2.1.2:
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.2.tgz#db57d085858228175fe3bf2a67154f371d2722e7"
   integrity sha512-E3N+2XWY/ywCBp1Eg+rDOts3D1Poi5fm/yhfKYaE3ylEp0zJMsEVb3DEQ7eZTUQ7e3yk1tCh48bDrel/XpkJdA==
 
-ovh-ui-kit@^2.23.1, ovh-ui-kit@^2.24.2, ovh-ui-kit@^2.33.4, ovh-ui-kit@~2.33.4:
+ovh-ui-kit@^2.23.1, ovh-ui-kit@^2.33.4, ovh-ui-kit@~2.33.4:
   version "2.33.4"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.33.4.tgz#8b620ed078c1fb9231bafc89e5575895d7b38fbd"
   integrity sha512-eMQlEoWF3Aopp4IEQOJBKzTHvTd4t0I5BZBrtWGoJpfURQf8EI/FR4B/jry5PJf8KcAuw8EX6ICZKZsZvlQAYw==

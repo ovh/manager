@@ -6,7 +6,7 @@ import config from '../../config/config';
 angular
   .module('UserAccount', [
     'ja.qr',
-    'ovh-utils-angular',
+    'ngOvhUtils',
     'ovhSignupApp',
   ])
   .constant('UserAccount.constants', {

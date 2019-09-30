@@ -33,8 +33,6 @@ fs.readdirSync(folder).forEach((file) => {
   }
 });
 
-const ovhUtilsAngularDir = foundNodeModulesFolder('@ovh-ux/ovh-utils-angular');
-
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
     template: './client/app/index.html',
@@ -50,10 +48,11 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './client/app/images/**/*.*'), context: 'client/app' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
-        { from: `${ovhUtilsAngularDir}/src/**/*.html`, context: `${ovhUtilsAngularDir}/src`, to: 'components/ovh-utils-angular' },
       ],
     },
   }, env);
+
+  const WEBPACK_REGION = `'${_.upperCase(env.region || process.env.REGION || 'EU')}'`;
 
   config.plugins.push(new webpack.DefinePlugin({
     WEBPACK_ENV: {
@@ -63,6 +62,7 @@ module.exports = (env = {}) => {
   }));
 
   // Extra config files
+  const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
@@ -74,7 +74,10 @@ module.exports = (env = {}) => {
       ]
         .concat(glob.sync('./client/app/**/*.module.js'))
         .concat(glob.sync('./client/app/components/**/!(*.module).js')),
-    }, bundles, extras.length > 0 ? { extras } : {}),
+    },
+    bundles,
+    extras.length > 0 ? { extras } : {},
+    extrasRegion.length > 0 ? { extrasRegion } : {}),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -85,7 +88,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
-        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
+        __WEBPACK_REGION__: WEBPACK_REGION,
       }),
     ],
   });

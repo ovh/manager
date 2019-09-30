@@ -40,7 +40,7 @@ export default class SignUpDetailsCtrl {
 
   static cleanPhoneNumber(phoneNumberParam, phonePrefix) {
     let phoneNumber = phoneNumberParam;
-    if (phoneNumberParam) {
+    if (phoneNumber) {
       phoneNumber = phoneNumber.replace(/\s/g, '');
       phoneNumber = phoneNumber.replace(/(?:-)(\d)/g, '$1'); // remove "-" char preceding a digit
       phoneNumber = phoneNumber.replace(/(?:\.)(\d)/g, '$1'); // remove "." char preceding a digit
@@ -48,12 +48,12 @@ export default class SignUpDetailsCtrl {
 
       if (phonePrefix) {
         const alternativePhonePrefix = `00${phonePrefix.replace('+', '')}`;
-        if (startsWith(phoneNumberParam, alternativePhonePrefix)) {
+        if (startsWith(phoneNumber, alternativePhonePrefix)) {
           // check if input value begin with 00${prefix}
-          phoneNumber = `+${phonePrefix}${phoneNumberParam.slice(alternativePhonePrefix.length)}`;
-        } else if (startsWith(phoneNumberParam, '0')) {
-          // or by only a trailing 0
-          phoneNumber = `+${phonePrefix}${phoneNumberParam.slice(1)}`;
+          phoneNumber = `+${phonePrefix}${phoneNumber.slice(alternativePhonePrefix.length)}`;
+        } else if (!startsWith(phoneNumber, `+${phonePrefix}`)) {
+          // or not by the phonePrefix
+          phoneNumber = `+${phonePrefix}${phoneNumber}`;
         }
       }
     }

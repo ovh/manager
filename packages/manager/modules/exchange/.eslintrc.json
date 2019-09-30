@@ -1,5 +1,4 @@
 {
-  "extends": "../../../../.eslintrc.js",
   "globals": {
     "Clipboard": true,
     "filesize": true,

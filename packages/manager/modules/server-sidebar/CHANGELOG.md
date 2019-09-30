@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.0...@ovh-ux/manager-server-sidebar@0.6.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add serviceName as item id ([#1373](https://github.com/ovh-ux/manager/issues/1373)) ([e8a47c5](https://github.com/ovh-ux/manager/commit/e8a47c5))
+
+
+
 # [0.6.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.2...@ovh-ux/manager-server-sidebar@0.6.0) (2019-09-19)
 
 

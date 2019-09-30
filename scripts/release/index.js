@@ -101,6 +101,9 @@ const release = (version, repos) => MonoRepository.release(version, repos)
   .then(() => console.log(`    released ${version}`))
   .then(() => version);
 
+const writeChangelog = (file, repos) => MonoRepository
+  .writeChangelog(file, repos);
+
 const releaseGithub = (accessToken, organization, version, repos, options = {}) => MonoRepository
   .releaseGithub(accessToken, organization, version, repos, options)
   .logging(`releasing on github ${version}`)
@@ -118,4 +121,5 @@ module.exports = {
   getReleaseVersion,
   release,
   releaseGithub,
+  writeChangelog,
 };

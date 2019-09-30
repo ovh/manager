@@ -1,3 +1,49 @@
+## [10.35.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.6...@ovh-ux/manager-telecom@10.35.7) (2019-09-30)
+
+
+### Bug Fixes
+
+* **sidebar:** translations are now always displayed ([31fa3a9](https://github.com/ovh-ux/manager/commit/31fa3a9))
+
+
+
+## [10.35.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.5...@ovh-ux/manager-telecom@10.35.6) (2019-09-30)
+
+
+### Bug Fixes
+
+* **telephony.phone:** fix order of function keys ([#1350](https://github.com/ovh-ux/manager/issues/1350)) ([7fbb747](https://github.com/ovh-ux/manager/commit/7fbb747))
+* edit a contact works now correctly ([ca327b4](https://github.com/ovh-ux/manager/commit/ca327b4))
+
+
+
+## [10.35.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.4...@ovh-ux/manager-telecom@10.35.5) (2019-09-26)
+
+
+### Bug Fixes
+
+* **telecom:** avoid products loading in navbar ([#1370](https://github.com/ovh-ux/manager/issues/1370)) ([1dbe436](https://github.com/ovh-ux/manager/commit/1dbe436))
+
+
+
+## [10.35.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.3...@ovh-ux/manager-telecom@10.35.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **telecom.pack.xdsl.modem.port:** send correct value to API ([#1362](https://github.com/ovh-ux/manager/issues/1362)) ([2b912d4](https://github.com/ovh-ux/manager/commit/2b912d4))
+
+
+
+## [10.35.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.2...@ovh-ux/manager-telecom@10.35.3) (2019-09-24)
+
+
+### Bug Fixes
+
+* avoid crash when user has a lot of services ([#1347](https://github.com/ovh-ux/manager/issues/1347)) ([a62f68b](https://github.com/ovh-ux/manager/commit/a62f68b))
+
+
+
 ## [10.35.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.1...@ovh-ux/manager-telecom@10.35.2) (2019-09-23)
 
 

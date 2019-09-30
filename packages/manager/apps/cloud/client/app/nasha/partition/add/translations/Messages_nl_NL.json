@@ -1,9 +1,0 @@
-{
- "nasha_partitions_action_add_partition_title": "Selecteer een protocol",
- "nasha_partitions_action_add_success": "De {{partitionName}} partitie wordt spoedig toegevoegd. ",
- "nasha_partitions_action_add_failure": "Er is een fout opgetreden tijdens het aanmaken van de {{partitionName}} partitie.",
- "nasha_partitions_action_add_desc_CIFS": "CIFS: aanbevolen exchange protocol voor Windows servers. ",
- "nasha_partitions_action_add_desc_NFS": "NFS: aanbevolen exchange protocol voor Linux/Unix servers. ",
- "nasha_partitions_action_add_desc_NFS_CIFS": "NFS CIFS: zorgt voor gedeelde exchange met Windows en Linus/Unix servers. ",
- "nasha_partitions_name_fail": "Ongeldige naam. "
-}

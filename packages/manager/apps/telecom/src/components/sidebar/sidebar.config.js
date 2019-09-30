@@ -246,10 +246,12 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     SidebarMenu.setInitializationPromise(TelecomMediator.initServiceCount());
 
     // wait that sidebar is loaded (wait that translations are loaded and init promise is resolved)
-    SidebarMenu.loadDeferred.promise.then((count) => {
-      initSidebarMenuItems(count);
-      initSidebarMenuActionsOptions();
-    });
+    SidebarMenu.loadDeferred.promise
+      .then(count => $translate.refresh().then(() => count))
+      .then((count) => {
+        initSidebarMenuItems(count);
+        initSidebarMenuActionsOptions();
+      });
   }
 
   /* -----  End of INITIALIZATION  ------*/
