@@ -45,6 +45,7 @@ program
           writeChangelog(program.changelog, repos)
             .then(() => repos);
         }
+        return repos;
       })
       .then((repos) => {
         if (program.release && repos.length) {
