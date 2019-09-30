@@ -1,4 +1,0 @@
-{
- "pci_projects_new_payment_credit_info_message": "Een bedrag van {{amount}} is vereist om de invoer en geldigheid van uw betaalmethode te bevestigen. Dit bedrag wordt omgezet in credits* die gebruikt kunnen worden voor uw project.",
- "pci_projects_new_payment_credit_info_explain": "Door te klikken op \"Krediet en mijn project aanmaken\", wordt u doorgestuurd naar de beveiligde interface van onze serviceprovider. U kunt uw factuur vinden door te klikken op \"Mijn account\", dan <a href=\"{{href }}\">\" Mijn bestellingen \"</a>\"."
-}

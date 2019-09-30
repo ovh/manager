@@ -1,5 +1,0 @@
-{
-  "billing_payment_method_delete_title": "Een betalingsmethode verwijderen",
-  "billing_payment_method_delete_explain": "U staat op het punt om de betalingsmethode <strong>{{{{label }}}</strong> te verwijderen.",
-  "billing_payment_method_delete_question": "Weet u zeker dat u wilt doorgaan?"
-}

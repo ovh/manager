@@ -1,8 +1,0 @@
-{
- "pci_projects_project_users_add_title": "Een gebruiker toevoegen",
- "pci_projects_project_users_add_submit_label": "Toevoegen",
- "pci_projects_project_users_add_cancel_label": "Annuleren",
- "pci_projects_project_users_add_description_label": "Beschrijving van de gebruiker",
- "pci_projects_project_users_add_success_message": "De gebruiker {{username }} is toegevoegd met het wachtwoord <code>{{password }}</code>.",
- "pci_projects_project_users_add_error_save": "Er is een fout opgetreden bij het aanmaken van de '{{user}}' user: {{message}}"
-}

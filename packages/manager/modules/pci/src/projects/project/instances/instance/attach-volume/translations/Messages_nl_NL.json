@@ -1,9 +1,0 @@
-{
- "pci_projects_project_instances_instance_attach-volume_title": "Verbindt een volume aan uw instance",
- "pci_projects_project_instances_instance_attach-volume_submit_label": "Verbinden",
- "pci_projects_project_instances_instance_attach-volume_cancel_label": "Annuleren",
- "pci_projects_project_instances_instance_attach-volume_volume_placeholder": "Zoeken",
- "pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume": "U hebt momenteel geen compatibel volume om deze instantie aan te sluiten.",
- "pci_projects_project_instances_instance_attach-volume_success_message": "Het volume {{volume}} is aangesloten op de instantie {{instance}}.",
- "pci_projects_project_instances_instance_attach-volume_error_attach": "Er is een fout opgetreden tijdens het updaten van de volume {{ volume }} : {{ message }}"
-}
