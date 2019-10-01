@@ -22,21 +22,20 @@
 
             <!-- One domain name -->
             <div data-ng-if="::!$ctrl.hasMultipleAttachedDomain">
-                <p>
-                    <span data-translate="hosting_website_coach_1dn_text1"></span>
-                    <strong data-ng-bind="$ctrl.attachedDomain"></strong>
-                    <span data-translate="hosting_website_coach_1dn_text2"></span>
-                    <strong data-ng-bind="::$ctrl.user.email"></strong><sup aria-describedby="helpTest">*</sup>
-                    <span data-translate="hosting_website_coach_1dn_text3"></span>
+                <p
+                    data-translate="hosting_website_coach_1dn_text"
+                    data-translate-values="{
+                        domain: $ctrl.attachedDomain,
+                        email: $ctrl.user.email
+                    }">
                 </p>
             </div>
 
             <!-- Multiple domain name -->
             <div data-ng-if="::$ctrl.hasMultipleAttachedDomain">
-                <p>
-                    <span data-translate="hosting_website_coach_mdn_text1"></span>
-                    <strong data-ng-bind="::$ctrl.user.email"></strong><sup aria-describedby="helpTest">*</sup>
-                    <span data-translate="hosting_website_coach_mdn_text2"></span>
+                <p
+                    data-translate="hosting_website_coach_1dn_text"
+                    data-translate-values="{ email: $ctrl.user.email }">
                 </p>
 
                 <oui-field label="{{:: 'hosting_website_coach_mdn_label_domain_name' | translate }}" size="l">
