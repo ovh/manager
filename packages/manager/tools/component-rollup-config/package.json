@@ -28,9 +28,7 @@
     "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
     "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",
     "prepare": "yarn run build",
-    "test": "yarn run build && yarn run lint && mocha",
-    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags"
+    "test": "yarn run build && yarn run lint && mocha"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
