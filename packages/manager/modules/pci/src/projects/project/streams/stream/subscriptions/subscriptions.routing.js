@@ -8,8 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
         subscriptions: /* @ngInject */ (
           projectId,
           streamId,
-          PciProjectStreamService,
-        ) => PciProjectStreamService.getSubscriptions(projectId, streamId),
+          PciProjectStreamsStreamSubscriptionsService,
+        ) => PciProjectStreamsStreamSubscriptionsService.getAll(projectId, streamId),
 
         addSubscribtionLink: /* @ngInject */($state, projectId, streamId) => $state.href('pci.projects.project.streams.stream.subscriptions.add', {
           projectId,
@@ -25,6 +25,25 @@ export default /* @ngInject */ ($stateProvider) => {
           streamId,
           subscriptionId: subscription.id,
         }),
+
+        goToSubscriptions: /* @ngInject */ (CucCloudMessage, $state, projectId, streamId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.streams.stream.subscriptions', {
+            projectId,
+            streamId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.streams.stream'));
+          }
+
+          return promise;
+        },
+
       },
     });
 };

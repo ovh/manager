@@ -7,8 +7,11 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
+import add from './add';
+
 import component from './subscriptions.component';
 import routing from './subscriptions.routing';
+import service from './subscriptions.service';
 
 const moduleName = 'ovhManagerPciStreamsStreamSubscriptions';
 
@@ -21,9 +24,11 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    add,
   ])
   .config(routing)
   .component('pciProjectStreamsStreamSubscriptions', component)
+  .service('PciProjectStreamsStreamSubscriptionsService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -50,6 +50,24 @@ export default /* @ngInject */ ($stateProvider) => {
         currentActiveLink: /* @ngInject */ ($transition$, $state) => () => $state
           .href($state.current.name, $transition$.params()),
 
+        goToStream: /* @ngInject */ (CucCloudMessage, $state, projectId, streamId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.streams.stream', {
+            projectId,
+            streamId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.streams.stream'));
+          }
+
+          return promise;
+        },
+
       },
     });
 };
