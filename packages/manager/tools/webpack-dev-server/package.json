@@ -23,9 +23,7 @@
     "dev:watch": "tsc -w",
     "lint": "eslint --quiet --fix src",
     "prepare": "yarn run build",
-    "test": "eslint --quiet src",
-    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags"
+    "test": "eslint --quiet src"
   },
   "dependencies": {
     "base64url": "^3.0.0",
