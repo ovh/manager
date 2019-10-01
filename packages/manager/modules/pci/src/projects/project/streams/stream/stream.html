@@ -51,8 +51,8 @@
                     <oui-tile-description>
                         <span class="oui-status"
                             data-ng-class="{
-                                'oui-status_success': $ctrl.stream.isInstalling(),
-                                'oui-status_warning': $ctrl.stream.isRunning(),
+                                'oui-status_success': $ctrl.stream.isRunning(),
+                                'oui-status_warning': $ctrl.stream.isInstalling(),
                                 'oui-status_error': $ctrl.stream.isError(),
                             }">
                             <span data-ng-bind="'pci_projects_project_instances_status_' + $ctrl.stream.status | translate"></span>
@@ -61,7 +61,7 @@
                 </oui-tile-definition>
                 <oui-tile-definition data-term="{{:: 'pci_projects_project_streams_stream_localisation_label' | translate }}">
                     <oui-tile-description>
-                        <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.stream.region)"></span>
+                        <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.stream.region.region)"></span>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
@@ -73,7 +73,7 @@
                     <dl class="oui-tile__definition">
                         <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_endpoint_label"></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-model="$ctrl.stream.id"></oui-clipboard>
+                            <oui-clipboard data-model="$ctrl.stream.region.endpoint.pulsar"></oui-clipboard>
                         </dd>
                         <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_stream_label"></dt>
                         <dd class="oui-tile__description">

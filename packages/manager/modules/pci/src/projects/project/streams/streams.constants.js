@@ -1,7 +1,7 @@
 export const STATUS = {
-  INSTALLING: ['INSTALLING'],
-  RUNNING: ['RUNNING'],
-  ERROR: ['ERROR'],
+  INSTALLING: 'INSTALLING',
+  RUNNING: 'RUNNING',
+  ERROR: 'ERROR',
 };
 
 export const KIND = {

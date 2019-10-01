@@ -1,6 +1,3 @@
-import first from 'lodash/first';
-import includes from 'lodash/includes';
-
 import { KIND, STATUS } from './streams.constants';
 
 export default class Stream {
@@ -9,15 +6,15 @@ export default class Stream {
   }
 
   isInstalling() {
-    return includes(STATUS.INSTALLING, this.status);
+    return this.status === STATUS.INSTALLING;
   }
 
-  isRuning() {
-    return includes(STATUS.RUNNING, this.status);
+  isRunning() {
+    return this.status === STATUS.RUNNING;
   }
 
   isError() {
-    return includes(STATUS.ERROR, this.status);
+    return this.status === STATUS.ERROR;
   }
 
   isPersistent() {
@@ -26,10 +23,6 @@ export default class Stream {
 
   isNonPersistent() {
     return this.kind === KIND.NON_PERSISTENT;
-  }
-
-  get region() {
-    return first(this.regions);
   }
 
   get streamUrl() {

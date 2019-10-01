@@ -1,3 +1,4 @@
+import first from 'lodash/first';
 import Stream from './stream.class';
 
 export default class PciProjectStreamService {
@@ -31,15 +32,17 @@ export default class PciProjectStreamService {
       .$promise
       .then(stream => this.$q.all({
         stream,
-        stats: this.getStreamStats(projectId, stream.id),
+        stats: this.getStats(projectId, stream.id),
+        region: this.getRegion(projectId, first(stream.regions)),
       }))
-      .then(({ stream, stats }) => new Stream({
+      .then(({ stream, stats, region }) => new Stream({
         ...stream,
         stats,
+        region,
       }));
   }
 
-  getStreamStats(projectId, streamId) {
+  getStats(projectId, streamId) {
     return this.OvhApiCloudProjectIo
       .Stream()
       .v6()
@@ -50,32 +53,15 @@ export default class PciProjectStreamService {
       .$promise;
   }
 
-  getSubscriptions(projectId, streamId) {
+  getRegion(projectId, regionName) {
     return this.OvhApiCloudProjectIo
+      .Capabilities()
       .Stream()
-      .Subscription()
-      .v6()
-      .query({
-        serviceName: projectId,
-        streamId,
-      })
-      .$promise
-      .then(subscriptions => this.$q.all(
-        subscriptions.map(
-          subscriptionId => this.getSubscription(projectId, streamId, subscriptionId),
-        ),
-      ));
-  }
-
-  getSubscription(projectId, streamId, subscriptionId) {
-    return this.OvhApiCloudProjectIo
-      .Stream()
-      .Subscription()
+      .Region()
       .v6()
       .get({
         serviceName: projectId,
-        streamId,
-        subscriptionId,
+        regionName,
       })
       .$promise;
   }

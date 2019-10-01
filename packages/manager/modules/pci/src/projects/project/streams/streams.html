@@ -19,6 +19,7 @@
             data-title=":: 'pci_projects_project_streams_kind_label' | translate"
             data-property="kind"
             data-type="options"
+            data-type-options="$ctrl.kindOptions"
             data-sortable
             data-filterable>
             <span data-ng-bind=":: 'pci_projects_project_streams_kind_' + $row.kind | translate"></span>
@@ -34,7 +35,10 @@
 
         <oui-column
             data-title=":: 'pci_projects_project_streams_status_label' | translate"
-            data-property="status">
+            data-property="status"
+            data-type="options"
+            data-type-options="$ctrl.statusOptions"
+            data-filterable>
             <span class="oui-status"
                 data-ng-class="{
                     'oui-status_success': $row.isRunning(),
