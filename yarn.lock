@@ -825,7 +825,7 @@
   version "3.46.1"
   resolved "https://codeload.github.com/anodynos/node2web_crypto/tar.gz/f64a3ccf174c068fee471d57cfc2dc3470785c57"
 
-"@commitlint/cli@^7.5.2", "@commitlint/cli@^7.6.0":
+"@commitlint/cli@^7.6.0":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.6.1.tgz#a93cf995082831999937f6d5ec1a582c8fc0393a"
   integrity sha512-HEJwQ/aK0AOcAwn77ZKbb/GZhlGxBSPhtVp07uoJFVqM12l2Ia2JHA+MTpfHCFdVahKyYGREZgxde6LyKyG8aQ==
@@ -847,7 +847,7 @@
   resolved "https://registry.yarnpkg.com/@commitlint/config-angular-type-enum/-/config-angular-type-enum-7.6.0.tgz#9c3ffff18037b375a078eb704d118c7929968a49"
   integrity sha512-oWGBo6P7gN07qNczMeviq2dxenq1LOnJcXlF4EFj3ifje3EoQMvZicM2gJaqBAZ3K7ZMHrG5l/njL61wKyyikg==
 
-"@commitlint/config-angular@^7.5.0", "@commitlint/config-angular@^7.6.0":
+"@commitlint/config-angular@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@commitlint/config-angular/-/config-angular-7.6.0.tgz#41d4ce9698d9ae5eb858a8a8e90bc64e1507f3a3"
   integrity sha512-Rt0LxOTMxR0a6CWF3U5Y8zCMXz7vJqGrR0fBxjRw6fjndKehED78gbphiqKxjDaTJ4NDs259urR/BPhHCkYuAg==
