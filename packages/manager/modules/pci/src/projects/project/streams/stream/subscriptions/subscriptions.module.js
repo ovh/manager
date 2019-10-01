@@ -8,6 +8,7 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 
 import add from './add';
+import deleteSubscription from './delete';
 
 import component from './subscriptions.component';
 import routing from './subscriptions.routing';
@@ -25,6 +26,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
+    deleteSubscription,
   ])
   .config(routing)
   .component('pciProjectStreamsStreamSubscriptions', component)

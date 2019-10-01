@@ -71,4 +71,17 @@ export default class PciProjectStreamStreamSubscriptionsService {
       })
       .$promise;
   }
+
+  delete(projectId, streamId, subscriptionId) {
+    return this.OvhApiCloudProjectIo
+      .Stream()
+      .Subscription()
+      .v6()
+      .delete({
+        serviceName: projectId,
+        streamId,
+        subscriptionId,
+      })
+      .$promise;
+  }
 }
