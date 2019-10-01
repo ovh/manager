@@ -116,6 +116,13 @@ export const MENU = [
         },
         title: 'Analytics Data Platform',
       },
+      {
+        id: 'io-stream',
+        options: {
+          state: 'pci.projects.project.streams',
+        },
+        title: 'IOStream',
+      },
     ],
     regions: ['EU'],
     title: 'Data & Analytics',

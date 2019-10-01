@@ -1,0 +1,107 @@
+<oui-page-header data-heading="{{ $ctrl.stream.name }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-text="{{ 'pci_projects_project_streams_stream_dashboard_title' | translate }}"
+            data-href="{{ $ctrl.streamLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.streamLink">
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-text="{{ 'pci_projects_project_streams_stream_subscriptions_title' | translate }}"
+            data-href="{{ $ctrl.subscriptionsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.subscriptionsLink">
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+    <!-- <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+        <oui-guide-menu-item
+            href="{{ $ctrl.guideUrl }}"
+            data-external>
+            <span data-translate="pci_project_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu> -->
+</oui-page-header>
+
+<div class="mt-4">
+    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+</div>
+
+<!-- <pre>
+    {{$ctrl.stream | json}}
+    {{$ctrl.stream.isInstalling() | json}}
+    {{$ctrl.stream.isRunning() | json}}
+    {{$ctrl.stream.isError() | json}}
+</pre> -->
+<div class="py-4" data-ui-view>
+    <div class="row">
+        <div class="col-md-4">
+            <oui-tile data-heading="{{ 'pci_projects_project_streams_stream_manage_title' | translate }}">
+                <oui-tile-button data-on-click="$ctrl.editBacklogRetention()"
+                    data-ng-if="$ctrl.stream.isPersistent()">
+                    <span data-translate="pci_projects_project_streams_stream_action_editBacklogRetention_label"></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.editReplayRetention()"
+                    data-ng-if="$ctrl.stream.isPersistent()">
+                    <span data-translate="pci_projects_project_streams_stream_action_editReplayRetention_label"></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.editThrottling()">
+                    <span data-translate="pci_projects_project_streams_stream_action_editThrottling_label"></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.viewSubscriptions()">
+                    <span data-translate="pci_projects_project_streams_stream_action_viewSubscriptions_label"></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.regenerateToken()">
+                    <span data-translate="pci_projects_project_streams_stream_action_regenerateToken_label"></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.deleteStream()">
+                    <span data-translate="pci_projects_project_streams_stream_action_delete_label"></span>
+                </oui-tile-button>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile data-heading="{{:: 'pci_projects_project_streams_stream_info_title' | translate }}">
+                <oui-tile-definition data-term="{{:: 'pci_projects_project_streams_stream_status_label' | translate }}">
+                    <oui-tile-description>
+                        <span class="oui-status"
+                            data-ng-class="{
+                                'oui-status_success': $ctrl.stream.isInstalling(),
+                                'oui-status_warning': $ctrl.stream.isRunning(),
+                                'oui-status_error': $ctrl.stream.isError(),
+                            }">
+                            <span data-ng-bind="'pci_projects_project_instances_status_' + $ctrl.stream.status | translate"></span>
+                        </span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition data-term="{{:: 'pci_projects_project_streams_stream_localisation_label' | translate }}">
+                    <oui-tile-description>
+                        <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.stream.region)"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile data-heading="{{:: 'pci_projects_project_streams_stream_service_title' | translate }}">
+                <div class="oui-tile__item">
+                    <dl class="oui-tile__definition">
+                        <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_endpoint_label"></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard data-model="$ctrl.stream.id"></oui-clipboard>
+                        </dd>
+                        <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_stream_label"></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard data-model="$ctrl.stream.streamUrl"></oui-clipboard>
+                        </dd>
+                        <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_read_write_token_label"></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard data-model="$ctrl.stream.id"></oui-clipboard>
+                        </dd>
+                        <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_read_only_token_label"></dt>
+                        <dd class="oui-tile__description">
+                            <oui-clipboard data-model="$ctrl.stream.id"></oui-clipboard>
+                        </dd>
+                    </dl>
+                </div>
+            </oui-tile>
+        </div>
+    </div>
+</div>

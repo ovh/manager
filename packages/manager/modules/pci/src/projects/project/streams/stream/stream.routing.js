@@ -1,0 +1,55 @@
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider
+    .state('pci.projects.project.streams.stream', {
+      url: '/:streamId',
+      component: 'pciProjectStreamsStream',
+
+      resolve: {
+        breadcrumb: /* @ngInject */ stream => stream.name,
+
+        streamId: /* @ngInject */ $transition$ => $transition$.params().streamId,
+        stream: /* @ngInject */ (
+          PciProjectStreamService,
+          projectId,
+          streamId,
+        ) => PciProjectStreamService.get(projectId, streamId),
+
+        editBacklogRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+          projectId,
+          streamId,
+        }),
+        editReplayRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+          projectId,
+          streamId,
+        }),
+        editThrottling: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+          projectId,
+          streamId,
+        }),
+        viewSubscriptions: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.subscriptions', {
+          projectId,
+          streamId,
+        }),
+        regenerateToken: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+          projectId,
+          streamId,
+        }),
+        deleteStream: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+          projectId,
+          streamId,
+        }),
+
+        streamLink: /* @ngInject */ ($state, projectId, stream) => $state.href('pci.projects.project.streams.stream', {
+          projectId,
+          streamId: stream.id,
+        }),
+        subscriptionsLink: /* @ngInject */ ($state, projectId, stream) => $state.href('pci.projects.project.streams.stream.subscriptions', {
+          projectId,
+          streamId: stream.id,
+        }),
+        currentActiveLink: /* @ngInject */ ($transition$, $state) => () => $state
+          .href($state.current.name, $transition$.params()),
+
+      },
+    });
+};
