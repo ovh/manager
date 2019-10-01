@@ -1,11 +1,11 @@
 <div class="container-fluid px-5 mt-5">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-5">
 
             <!-- Screenshot visualizer -->
             <div class="website-coach-visualizer">
                 <img class="website-coach-visualizer__computer"
-                    src="/assets/images/website-coach-computer.png"
+                    data-ng-src="{{:: $ctrl.VISUALIZER_IMG_SRC }}"
                     alt="{{$ctrl.attachedDomain}}">
                 <div class="website-coach-visualizer__screenshot"
                     data-ng-style="::{
@@ -14,49 +14,49 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 mb-5">
             <oui-back-button
-                data-on-click="$ctrl.goBack()"
-                data-heading="{{:: 'hosting_website_coach_title' | translate }}">
+                data-on-click="::$ctrl.goBack()">
+                <span data-translate="hosting_website_coach_title"></span>
             </oui-back-button>
 
             <!-- One domain name -->
-            <div data-ng-if="!$ctrl.hasMultipleAttachedDomain">
+            <div data-ng-if="::!$ctrl.hasMultipleAttachedDomain">
                 <p>
                     <span data-translate="hosting_website_coach_1dn_text1"></span>
                     <strong data-ng-bind="$ctrl.attachedDomain"></strong>
                     <span data-translate="hosting_website_coach_1dn_text2"></span>
-                    <strong data-ng-bind="$ctrl.user.email"></strong><sup>*</sup>
+                    <strong data-ng-bind="::$ctrl.user.email"></strong><sup aria-describedby="helpTest">*</sup>
                     <span data-translate="hosting_website_coach_1dn_text3"></span>
                 </p>
             </div>
 
             <!-- Multiple domain name -->
-            <div data-ng-if="$ctrl.hasMultipleAttachedDomain">
+            <div data-ng-if="::$ctrl.hasMultipleAttachedDomain">
                 <p>
                     <span data-translate="hosting_website_coach_mdn_text1"></span>
-                    <strong data-ng-bind="$ctrl.user.email"></strong><sup>*</sup>
+                    <strong data-ng-bind="::$ctrl.user.email"></strong><sup aria-describedby="helpTest">*</sup>
                     <span data-translate="hosting_website_coach_mdn_text2"></span>
                 </p>
 
                 <oui-field label="{{:: 'hosting_website_coach_mdn_label_domain_name' | translate }}" size="l">
                     <oui-select name="attachedDomain"
                         data-model="$ctrl.attachedDomain"
-                        data-items="$ctrl.attachedDomains">
+                        data-items="::$ctrl.attachedDomains">
                     </oui-select>
                 </oui-field>
             </div>
 
             <oui-button class="mb-3"
                 data-variant="primary"
-                data-on-click="$ctrl.activateWebsiteCoach($ctrl.attachedDomain)">
+                data-on-click="::$ctrl.activateWebsiteCoach($ctrl.attachedDomain)">
                 <span data-translate="hosting_website_coach_button"></span>
             </oui-button>
 
-            <p>
-                <sup>*</sup>
-                <small data-translate="hosting_website_coach_help_wrong_email"></small>
-                <small data-translate="hosting_website_coach_help_unusable_email"></small>
+            <p id="helpTest">
+                <sup aria-hidden="true">*</sup>
+                <span class="small" data-translate="hosting_website_coach_help_wrong_email"></span>
+                <span class="small" data-translate="hosting_website_coach_help_unusable_email"></span>
             </p>
         </div>
     </div>

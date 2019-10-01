@@ -1,6 +1,8 @@
 import component from './website-coach.component';
 import routing from './website-coach.routing';
 
+import './website-coach.less';
+
 const moduleName = 'ovhManagerHostingWebsiteCoach';
 
 angular
