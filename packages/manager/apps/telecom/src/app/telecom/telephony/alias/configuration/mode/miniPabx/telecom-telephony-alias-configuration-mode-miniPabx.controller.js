@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeMiniPabxCtrl', function ($q, $translate, $stateParams, TelephonyMediator, OvhApiTelephony, OvhApiTelephonyMiniPabx, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeMiniPabxCtrl', function TelecomTelephonyAliasConfigurationModeMiniPabxCtrl($q, $translate, $stateParams, TelephonyMediator, OvhApiTelephony, OvhApiTelephonyMiniPabx, TucToast) {
   const self = this;
 
   self.loading = {
@@ -36,7 +36,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeM
     }).$promise;
   }
 
-  self.hasChanges = function () {
+  self.hasChanges = function hasChanges() {
     return !angular.equals(self.options, self.formOptions);
   };
 
@@ -46,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeM
     =            EVENTS            =
     ============================== */
 
-  self.onOptionsFormSubmit = function () {
+  self.onOptionsFormSubmit = function onOptionsFormSubmit() {
     const attrs = ['anonymousCallRejection', 'numberOfCalls', 'pattern', 'strategy', 'onHoldTimer'];
 
     self.loading.save = true;
@@ -65,7 +65,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeM
     });
   };
 
-  self.onCancelBtnClick = function () {
+  self.onCancelBtnClick = function onCancelBtnClick() {
     self.formOptions = angular.copy(self.options);
   };
 
@@ -75,7 +75,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeM
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

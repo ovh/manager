@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import uniqueId from 'lodash/uniqueId';
 
-angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', function ($q) {
+angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', function telephonyNumberOvhPabxMenuEntryCtrl($q) {
   const self = this;
 
   self.loading = {
@@ -23,22 +23,22 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', f
     =            HELPERS            =
     =============================== */
 
-  self.isLoading = function () {
+  self.isLoading = function isLoading() {
     return self.loading.init || (self.menuEntry && ['OK', 'DRAFT', 'DELETE_PENDING', 'MENUSUB_PENDING'].indexOf(self.menuEntry.status) === -1);
   };
 
-  self.isDisabled = function () {
+  self.isDisabled = function isDisabled() {
     return self.extensionCtrl && !self.extensionCtrl.extension.enabled;
   };
 
-  self.getEntryAttribute = function (attr) {
+  self.getEntryAttribute = function getEntryAttribute(attr) {
     if (self.menuEntry.status === 'MENUSUB_PENDING') {
       return get(self.menuEntry, attr);
     }
     return get(self.menuEntry.inEdition ? self.menuEntry.saveForEdition : self.menuEntry, attr);
   };
 
-  self.getConnectionEndpointUuid = function () {
+  self.getConnectionEndpointUuid = function getConnectionEndpointUuid() {
     let connectionEndpointUuid = `menu-endpoint-${self.menuEntry.menuId}`;
 
     if (self.menuCtrl.menuEntry) {
@@ -50,7 +50,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', f
     return connectionEndpointUuid;
   };
 
-  self.getParentEndpointUuid = function () {
+  self.getParentEndpointUuid = function getParentEndpointUuid() {
     return self.parentCtrl.uuid;
   };
 
@@ -60,13 +60,13 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', f
     =            EVENTS            =
     ============================== */
 
-  self.onEditButtonClick = function () {
+  self.onEditButtonClick = function onEditButtonClick() {
     self.parentCtrl.popoverStatus.isParentClicked = false;
     self.popoverTemplateUrl = 'components/telecom/telephony/group/number/feature/ovhPabx/menu/entry/edit/telephony-group-number-feature-ovh-pabx-menu-entry-edit.html';
     self.popoverStatus.isOpen = true;
   };
 
-  self.onConfirmDeleteButtonClick = function () {
+  self.onConfirmDeleteButtonClick = function onConfirmDeleteButtonClick() {
     return self.menuEntry.remove().then(() => {
       self.menuCtrl.menu.removeEntry(self.menuEntry);
       self.menuEntry = null;
@@ -74,7 +74,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', f
     });
   };
 
-  self.onEntryOutsideClick = function () {
+  self.onEntryOutsideClick = function onEntryOutsideClick() {
     if (self.menuEntry.status !== 'DELETE_PENDING') {
       return;
     }
@@ -89,7 +89,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', f
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     const initPromise = [];
 
     // set component to init status
@@ -118,7 +118,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryCtrl', f
     });
   };
 
-  self.$onDestroy = function () {
+  self.$onDestroy = function $onDestroy() {
     if (self.menuEntry) {
       self.menuEntry.stopEdition(true);
     }

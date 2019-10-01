@@ -4,7 +4,7 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagementCtrl', function ($scope, $stateParams, $q, $translate, $timeout, $filter, $document, $window, TucToastError, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagementCtrl', function TelecomTelephonyServiceVoicemailManagementCtrl($scope, $stateParams, $q, $translate, $timeout, $filter, $document, $window, TucToastError, OvhApiTelephony) {
   const self = this;
 
   function fetchMessageList() {
@@ -61,14 +61,14 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     });
   }
 
-  this.getSelection = function () {
+  this.getSelection = function getSelection() {
     return filter(
       self.messages.raw,
       message => message && self.messages.selected && self.messages.selected[message.id],
     );
   };
 
-  this.sortMessages = function () {
+  this.sortMessages = function sortMessages() {
     self.messages.sorted = $filter('orderBy')(
       self.messages.raw,
       self.messages.orderBy,
@@ -76,14 +76,14 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     );
   };
 
-  this.fetchMessageFile = function (message) {
+  this.fetchMessageFile = function fetchMessageFile(message) {
     /**
      * Fetching a file is a little bit tricky because if file state
      * is not "done" the url will redirect to a 404...
      * So we have to poll the query until the file state is "done"
      * or until the call fails.
      */
-    const tryDownload = function () {
+    const tryDownload = function tryDownload() {
       return OvhApiTelephony.Voicemail().Directories().v6().download({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
@@ -108,7 +108,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     return tryDownload();
   };
 
-  this.listenMessage = function (message) {
+  this.listenMessage = function listenMessage(message) {
     if (self.messages.playing === message) {
       self.messages.playing = null;
       const audioElement = $document.find('#voicemailAudio')[0];
@@ -131,7 +131,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     return $q.when(null);
   };
 
-  this.downloadMessage = function (message) {
+  this.downloadMessage = function downloadMessage(message) {
     set(message, 'pendingDownload', true);
     return self.fetchMessageFile(message).then((info) => {
       $window.location.href = info.url; // eslint-disable-line
@@ -140,7 +140,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     });
   };
 
-  this.deleteMessages = function (messageList) {
+  this.deleteMessages = function deleteMessages(messageList) {
     const queries = messageList.map(message => OvhApiTelephony.Voicemail().Directories().v6()
       .delete({
         billingAccount: $stateParams.billingAccount,
@@ -157,18 +157,18 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     });
   };
 
-  this.deleteMessage = function (message) {
+  this.deleteMessage = function deleteMessage(message) {
     set(message, 'isDeleting', true);
     return self.deleteMessages([message]).then(() => {
       set(message, 'isDeleting', false);
     });
   };
 
-  this.deleteSelectedMessages = function () {
+  this.deleteSelectedMessages = function deleteSelectedMessages() {
     return self.deleteMessages(self.getSelection());
   };
 
-  this.refresh = function () {
+  this.refresh = function refresh() {
     self.messages.isLoading = true;
     OvhApiTelephony.Voicemail().Directories().v6().resetCache();
     OvhApiTelephony.Voicemail().Directories().v6().resetQueryCache();
@@ -183,7 +183,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
     });
   };
 
-  this.orderBy = function (by) {
+  this.orderBy = function orderBy(by) {
     if (self.messages.orderBy === by) {
       self.messages.orderDesc = !self.messages.orderDesc;
     } else {

@@ -11,7 +11,6 @@ import remove from './remove';
 
 import component from './edit.component';
 import routing from './edit.routing';
-import service from './edit.service';
 
 const moduleName = 'ovhManagerPciProjectEdit';
 
@@ -26,7 +25,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectEdit', component)
-  .service('pciProjectEditService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

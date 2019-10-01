@@ -5,9 +5,14 @@ module.exports = {
   parser: 'babel-eslint',
   extends: 'airbnb-base',
   env: {
+    'angular/mocks': true,
     browser: true,
     jquery: true,
   },
+  plugins: [
+    'angular',
+    'markdown',
+  ],
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],

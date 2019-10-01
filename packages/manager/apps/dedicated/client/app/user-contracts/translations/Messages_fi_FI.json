@@ -1,0 +1,12 @@
+{
+  "user_contracts_modal_title": "Sopimusehdot",
+  "user_contracts_modal_term_of_service_updated_text": "Sopimusehtomme ovat muuttuneet",
+  "user_contracts_modal_term_of_service_updated_explanation": "OVH:n palveluiden käyttö mukaanlukien pääsy hallintapaneeliin edellyttää näiden päivitettyjen käyttöehtojen hyväksyntää:",
+  "user_contracts_modal_checkbox_label_both": "Hyväksyn sopimusehtojen sekä tietoturvakäytäntöjen päivitykset",
+  "user_contracts_modal_checkbox_label_tos": "Hyväksyn sopimusehtojen päivitykset",
+  "user_contracts_modal_checkbox_label_pp": "Hyväksyn salassapitokäytäntöjen päivityksen",
+  "user_contracts_modal_submit_button": "Jatka",
+  "user_contracts_modal_submit_error": "Tapahtui virhe. Ole hyvä ja yritä uudelleen.",
+  "user_contracts_modal_display_text_tos": "Palvelun sopimusehdot",
+  "user_contracts_modal_display_text_pp": "Salassapitokäytännöt"
+}

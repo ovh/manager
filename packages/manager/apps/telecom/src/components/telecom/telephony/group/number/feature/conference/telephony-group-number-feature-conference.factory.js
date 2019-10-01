@@ -92,7 +92,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberConference.prototype.setInfos = function (featureOptionsParam) {
+  TelephonyGroupNumberConference.prototype.setInfos = function setInfos(featureOptionsParam) {
     const self = this;
     let featureOptions = featureOptionsParam;
 
@@ -107,7 +107,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return self;
   };
 
-  TelephonyGroupNumberConference.prototype.setSettings = function (featureSettingsParam) {
+  TelephonyGroupNumberConference.prototype.setSettings = function setSettings(
+    featureSettingsParam,
+  ) {
     const self = this;
     let featureSettings = featureSettingsParam;
 
@@ -119,7 +121,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return self;
   };
 
-  TelephonyGroupNumberConference.prototype.setWebAccess = function (featureWebAccessParam) {
+  TelephonyGroupNumberConference.prototype.setWebAccess = function setWebAccess(
+    featureWebAccessParam,
+  ) {
     const self = this;
     let featureWebAccess = featureWebAccessParam;
 
@@ -135,7 +139,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupNumberConference.prototype.getInfos = function () {
+  TelephonyGroupNumberConference.prototype.getInfos = function getInfos() {
     const self = this;
 
     return OvhApiTelephony.Conference().v6().informations({
@@ -166,7 +170,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     }).$promise.then(participants => self.updateParticipantList(filter(map(participants, 'value'), null)));
   };
 
-  TelephonyGroupNumberConference.prototype.save = function () {
+  TelephonyGroupNumberConference.prototype.save = function save() {
     const self = this;
     const settings = pick(self, settingsAttributes);
 
@@ -180,7 +184,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     }, omit(settings, ['featureType', 'eventsChannel', 'announceFilename'])).$promise.then(() => self);
   };
 
-  TelephonyGroupNumberConference.prototype.lock = function () {
+  TelephonyGroupNumberConference.prototype.lock = function lock() {
     const self = this;
 
     return OvhApiTelephony.Conference().v6().lock({
@@ -189,7 +193,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     }, {}).$promise;
   };
 
-  TelephonyGroupNumberConference.prototype.unlock = function () {
+  TelephonyGroupNumberConference.prototype.unlock = function unlock() {
     const self = this;
 
     return OvhApiTelephony.Conference().v6().unlock({
@@ -198,7 +202,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     }, {}).$promise;
   };
 
-  TelephonyGroupNumberConference.prototype.getSettings = function () {
+  TelephonyGroupNumberConference.prototype.getSettings = function getSettings() {
     const self = this;
 
     return OvhApiTelephony.Conference().v6().settings({
@@ -207,7 +211,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     }).$promise.then(settings => self.setSettings(settings));
   };
 
-  TelephonyGroupNumberConference.prototype.getWebAccess = function () {
+  TelephonyGroupNumberConference.prototype.getWebAccess = function getWebAccess() {
     const self = this;
 
     return OvhApiTelephony.Conference().WebAccess().v6()
@@ -224,7 +228,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
       }));
   };
 
-  TelephonyGroupNumberConference.prototype.generateWebAccess = function () {
+  TelephonyGroupNumberConference.prototype.generateWebAccess = function generateWebAccess() {
     const self = this;
 
     return TelephonyMediator.getApiModelEnum('telephony.ConferenceWebAccessTypeEnum').then(accessType => $q.all(map(accessType, type => OvhApiTelephony.Conference().WebAccess().v6().create({
@@ -257,7 +261,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
       });
   };
 
-  TelephonyGroupNumberConference.prototype.announceUpload = function (file) {
+  TelephonyGroupNumberConference.prototype.announceUpload = function announceUpload(file) {
     const self = this;
 
     return OvhApiMe.Document().v6()
@@ -291,7 +295,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
 
   /* ----------  PARTICIPATNS  ----------*/
 
-  TelephonyGroupNumberConference.prototype.updateParticipantList = function (participantsList) {
+  TelephonyGroupNumberConference.prototype.updateParticipantList = function updateParticipantList(
+    participantsList,
+  ) {
     const self = this;
     const curParticipantIds = map(self.participants, 'id');
     const participantsListIds = map(participantsList, 'id');
@@ -315,7 +321,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return self;
   };
 
-  TelephonyGroupNumberConference.prototype.addParticipant = function (participantOptions) {
+  TelephonyGroupNumberConference.prototype.addParticipant = function addParticipant(
+    participantOptions,
+  ) {
     const self = this;
     let connectedParticipant = find(self.participants, {
       id: participantOptions.id,
@@ -337,21 +345,23 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return connectedParticipant;
   };
 
-  TelephonyGroupNumberConference.prototype.muteAllParticipants = function () {
+  TelephonyGroupNumberConference.prototype.muteAllParticipants = function muteAllParticipants() {
     const self = this;
 
     return $q.allSettled(map(self.participants, participant => participant.mute()));
   };
 
-  TelephonyGroupNumberConference.prototype.unmuteAllParticipants = function () {
-    const self = this;
+  TelephonyGroupNumberConference
+    .prototype
+    .unmuteAllParticipants = function unmuteAllParticipants() {
+      const self = this;
 
-    return $q.allSettled(map(self.participants, participant => participant.unmute()));
-  };
+      return $q.allSettled(map(self.participants, participant => participant.unmute()));
+    };
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumberConference.prototype.startEdition = function () {
+  TelephonyGroupNumberConference.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -360,7 +370,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return self;
   };
 
-  TelephonyGroupNumberConference.prototype.stopEdition = function (cancel) {
+  TelephonyGroupNumberConference.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -373,7 +383,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return self;
   };
 
-  TelephonyGroupNumberConference.prototype.hasChange = function () {
+  TelephonyGroupNumberConference.prototype.hasChange = function hasChange() {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -388,11 +398,11 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
 
   /* ----------  HELPERS  ----------*/
 
-  TelephonyGroupNumberConference.prototype.inPendingState = function () {
+  TelephonyGroupNumberConference.prototype.inPendingState = function inPendingState() {
     return true;
   };
 
-  TelephonyGroupNumberConference.prototype.hasParticipants = function () {
+  TelephonyGroupNumberConference.prototype.hasParticipants = function hasParticipants() {
     const self = this;
 
     return self.participants.length > 0;
@@ -400,7 +410,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupNumberConference.prototype.init = function () {
+  TelephonyGroupNumberConference.prototype.init = function init() {
     const self = this;
 
     return OvhApiTelephony.Conference().v6().get({

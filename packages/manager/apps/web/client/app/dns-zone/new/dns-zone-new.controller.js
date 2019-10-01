@@ -1,5 +1,7 @@
-angular.module('App').controller(
-  'newDnsZoneCtrl',
+import get from 'lodash/get';
+import set from 'lodash/set';
+
+export default
   class newDnsZoneCtrl {
     /**
      * Constructor
@@ -8,6 +10,7 @@ angular.module('App').controller(
      * @param newDnsZone
      * @param User
      */
+    /* @ngInject */
     constructor($scope, $translate, Alerter, newDnsZone, User) {
       this.$scope = $scope;
       this.$translate = $translate;
@@ -48,7 +51,7 @@ angular.module('App').controller(
           this.order = details;
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('domains_newdnszone_order_step3_fail'),
             err,
@@ -63,8 +66,7 @@ angular.module('App').controller(
     clean() {
       this.zoneNameOrder.contractsValidated = false;
       this.zoneNameOrder.minimized = false;
-      this.zoneName = _.get(this.zoneNameOrder, 'zoneName', '').toLowerCase();
+      this.zoneName = get(this.zoneNameOrder, 'zoneName', '').toLowerCase();
       this.order = null;
     }
-  },
-);
+  };

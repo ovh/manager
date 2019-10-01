@@ -1,3 +1,30 @@
+## [1.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.4.2...@ovh-ux/sign-up-app@1.4.3) (2019-09-30)
+
+
+### Bug Fixes
+
+* **sign-up:** clean phone by adding prefix if not present ([#1317](https://github.com/ovh-ux/manager/issues/1317)) ([acca3a9](https://github.com/ovh-ux/manager/commit/acca3a9))
+
+
+
+## [1.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.4.1...@ovh-ux/sign-up-app@1.4.2) (2019-09-19)
+
+
+### Bug Fixes
+
+* **sign-up:** change ovh logo ([#1298](https://github.com/ovh-ux/manager/issues/1298)) ([52894a2](https://github.com/ovh-ux/manager/commit/52894a2))
+
+
+
+## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.4.0...@ovh-ux/sign-up-app@1.4.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
 # [1.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.3.0...@ovh-ux/sign-up-app@1.4.0) (2019-08-26)
 
 

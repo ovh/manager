@@ -1,3 +1,10 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import last from 'lodash/last';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'PrivateDatabaseImportCtrl',
   class PrivateDatabaseImportCtrl {
@@ -56,14 +63,14 @@ angular.module('App').controller(
     }
 
     submit() {
-      const file = _.head(this.file);
+      const file = head(this.file);
       const filename = this.model.uploadFileName;
       this.isSendingFile = true;
 
       this.userService
         .uploadFile(filename, file, [this.importScriptTag])
         .then((id) => {
-          _.set(this.model, 'document.id', id);
+          set(this.model, 'document.id', id);
           this.atLeastOneFileHasBeenSend = true;
         })
         .finally(() => {
@@ -79,9 +86,9 @@ angular.module('App').controller(
           .then((data) => {
             const onlyImportScripts = [];
 
-            _.forEach(data, (document) => {
+            forEach(data, (document) => {
               if (
-                _.find(document.tags, {
+                find(document.tags, {
                   key: this.importScriptTag.key,
                   value: this.importScriptTag.value,
                 })
@@ -94,7 +101,7 @@ angular.module('App').controller(
           .catch((err) => {
             this.alerter.alertFromSWS(
               this.$translate.instant('hosting_tab_DATABASES_table_popover_import_step1_load_documents_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               this.$scope.alerts.main,
             );
           })
@@ -124,18 +131,18 @@ angular.module('App').controller(
         .catch((err) => {
           this.alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_DATABASES_table_popover_import_step3_fail'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });
     }
 
     isActionSelected() {
-      return _.get(this.selected, 'action', false);
+      return get(this.selected, 'action', false);
     }
 
     isDocumentsValid() {
-      return _.get(this.model, 'document.id') != null;
+      return get(this.model, 'document.id') != null;
     }
 
     resetDocumentSelection() {
@@ -143,15 +150,15 @@ angular.module('App').controller(
       angular.element(elt).val(null);
       this.formFileUpload.$setPristine();
 
-      _.set(this.model, 'document', null);
-      _.set(this.model, 'uploadFileName', null);
+      set(this.model, 'document', null);
+      set(this.model, 'uploadFileName', null);
       this.file = null;
       this.atLeastOneFileHasBeenSend = false;
     }
 
     onFileChange(input) {
-      const filename = _.get(_.head(this.file), 'name', '');
-      const ext = _.last(filename.split('.'));
+      const filename = get(head(this.file), 'name', '');
+      const ext = last(filename.split('.'));
       const validFormat = filename === ext || /gz|sql|txt/i.test(ext);
 
       this.model.uploadFileName = filename;

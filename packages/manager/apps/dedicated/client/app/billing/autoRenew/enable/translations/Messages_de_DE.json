@@ -1,0 +1,9 @@
+{
+  "billing_autorenew_enable_title": "Automatische Verlängerung für die ausgewählten Dienste aktivieren",
+  "billing_autorenew_enable_payment_mean": "Sobald die automatische Verlängerung für die ausgewählten Dienste aktiviert ist, wird für die Zahlung dieser Funktion Ihr Standardzahlungsmittel verwendet: {{ type }} {{ label }}",
+  "billing_autorenew_enable_payment_mean_default": "Um Ihr Standardzahlungsmittel zu ändern, gehen Sie in den Bereich „Meine Zahlungsarten“",
+  "billing_autorenew_enable_payment_mean_frequency": "Das Zahlungsintervall wird für jeden Dienst auf den Mindestwert eingestellt.",
+  "billing_autorenew_enable_bulk_unvailable": "Die automatische Verlängerung wird für alle ausgewählten Dienste aktiviert, mit Ausnahme von {{ count }} Diensten:",
+  "billing_autorenew_enable_success": "Die Verlängerung der Dienste wurde erfolgreich aktualisiert",
+  "billing_autorenew_enable_error": "Beim Aktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}"
+}

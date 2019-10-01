@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').service('TelecomMediator', function ($q, $translate, OvhApiMeVipStatus, TucPackMediator, TelephonyMediator, TucSmsMediator, TucFaxMediator, TucOverTheBoxMediator, TucToast) {
+angular.module('managerApp').service('TelecomMediator', function TelecomMediator($q, $translate, OvhApiMeVipStatus, TucPackMediator, TelephonyMediator, TucSmsMediator, TucFaxMediator, TucOverTheBoxMediator, TucToast) {
   const self = this;
 
   self.isVip = false;
@@ -17,7 +17,7 @@ angular.module('managerApp').service('TelecomMediator', function ($q, $translate
 
   /* ----------  VIP STATUS  ----------*/
 
-  self.initVipStatus = function (force) {
+  self.initVipStatus = function initVipStatus(force) {
     if (self.deferred.vip && !force) {
       return self.deferred.vip.promise;
     }
@@ -35,7 +35,7 @@ angular.module('managerApp').service('TelecomMediator', function ($q, $translate
 
   /* ----------  SERVICE COUNT  ----------*/
 
-  self.initServiceCount = function (force) {
+  self.initServiceCount = function initServiceCount(force) {
     if (self.deferred.count && !force) {
       return self.deferred.count.promise;
     }
@@ -43,7 +43,7 @@ angular.module('managerApp').service('TelecomMediator', function ($q, $translate
     self.deferred.count = $q.defer();
 
     const countErrors = [];
-    const handleCountError = function (err) {
+    const handleCountError = function handleCountError(err) {
       countErrors.push(get(err, 'data.message') || err.statusText);
       return $q.when(0);
     };

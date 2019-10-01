@@ -1,7 +1,0 @@
-{
- "pci_projects_project_network_private": "Privénetwerken",
- "pci_projects_project_network_private_vrack_empty": "U heeft nog geen privénetwerk aangemaakt.",
- "pci_projects_project_network_private_vrack_deploy": "Implementeer privénetwerken gebaseerd op OVH vRack om uw instances ongeacht hun locatie met elkaar te verbinden.",
- "pci_projects_project_network_private_vrack_explanation_1": "Privénetwerken worden op aanvraag onmiddellijk aangemaakt. Ze garanderen een level 2 isolatie en kunnen een DHCP-service bevatten om automatische IP-adressering voor uw instances te leveren. Elk van deze netwerken kan tot een plek beperkt worden of zich uitstrekken over alle localisaties van uw project.",
- "pci_projects_project_network_private_vrack_explanation_2": "Uw privénetwerken zijn ingekapseld in uw vRack. Ze kunnen daardoor verbonden worden aan andere OVH-oplossingen die aan hetzelfde vRack gekoppeld zijn door een gemeenschappelijk VLAN ID te gebruiken."
-}

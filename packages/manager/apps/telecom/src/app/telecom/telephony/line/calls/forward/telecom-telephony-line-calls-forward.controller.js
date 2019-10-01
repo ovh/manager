@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
@@ -21,7 +20,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * Save the current forwards
    * @return {Promise}
    */
-  self.save = function () {
+  self.save = function save() {
     self.loading.save = true;
     return TelecomTelephonyLineCallsForwardService
       .saveForwards($stateParams.billingAccount, $stateParams.serviceName, self.forwards)
@@ -47,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * @param  {[type]} num [description]
    * @return {[type]}     [description]
    */
-  self.seemsPhoneNumber = function (num, forward) {
+  self.seemsPhoneNumber = function seemsPhoneNumber(num, forward) {
     if (forward.enable) {
       return /^00[\d\s]*$|^\+\d[\d\s]*$/.test(num);
     }
@@ -57,11 +56,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   /**
    * Cancel modifications
    */
-  self.cancel = function () {
+  self.cancel = function cancel() {
     self.setCancelBuffer(true);
   };
 
-  self.toggleChecked = function (forward) {
+  self.toggleChecked = function toggleChecked(forward) {
     forEach(self.forwards, (fwd) => {
       if (forward.type === 'Unconditional') {
         if (fwd.type !== forward.type) {
@@ -78,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * Do we need to save ?
    * @return {Bool}
    */
-  self.needSave = function () {
+  self.needSave = function needSave() {
     let toSave = false;
     forEach(self.forwards, (forward) => {
       const saved = find(self.saved, { type: forward.type });
@@ -93,7 +92,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * Reset the number on nature change (fax -> voicemail, for instance)
    * @param {Object} forward Forward description
    */
-  self.resetNumber = function (forward) {
+  self.resetNumber = function resetNumber(forward) {
     set(forward, 'number', head(self.getFilteredNumbers('', forward.nature.types)));
   };
 
@@ -133,7 +132,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
     );
   };
 
-  self.filterTypes = function () {
+  self.filterTypes = function filterTypes() {
     self.filter.types = getEnabledTypes(self.types);
     self.resetNumbers();
   };
@@ -143,7 +142,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   /**
    * Make a save of the current data
    */
-  self.setCancelBuffer = function (restore) {
+  self.setCancelBuffer = function setCancelBuffer(restore) {
     if (restore) {
       self.forwards = angular.copy(self.saved);
       forEach(self.forwards, (forward) => {
@@ -160,11 +159,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * get the cancellation of the data
    * @return {Object} saved data
    */
-  self.getCancelBuffer = function () {
+  self.getCancelBuffer = function getCancelBuffer() {
     return self.saved;
   };
 
-  self.resetNumbers = function () {
+  self.resetNumbers = function resetNumbers() {
     return map(self.forwards, forward => self.resetNumber(forward));
   };
 
@@ -300,16 +299,16 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {};
-    const forwardBackup = find(self.forwards, bind('type', 'Backup'));
-    const forwardBusy = find(self.forwards, bind('type', 'Busy'));
-    const forwardNoReply = find(self.forwards, bind('type', 'NoReply'));
-    const forwardUnconditional = find(self.forwards, bind('type', 'Unconditional'));
+    const forwardBackup = find(self.forwards, { type: 'Backup' });
+    const forwardBusy = find(self.forwards, { type: 'Busy' });
+    const forwardNoReply = find(self.forwards, { type: 'NoReply' });
+    const forwardUnconditional = find(self.forwards, { type: 'Unconditional' });
 
     if (forwardBackup) {
       data.forwardBackup = forwardBackup.enable;
@@ -339,7 +338,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_actions_line_calls_forward_bulk_all_success'),
@@ -359,7 +358,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_actions_line_calls_forward_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

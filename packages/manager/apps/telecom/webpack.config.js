@@ -35,23 +35,19 @@ module.exports = (env = {}) => {
   const { config } = webpackConfig({
     template: './src/index.html',
     basePath: './src',
-    lessPath: [
-      './src/app',
-      './src/components',
-      './node_modules',
-    ],
     root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
         { from: path.resolve(__dirname, './src/app/common/assets'), to: 'assets' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
         { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },
+        { from: path.resolve(__dirname, '../../../../node_modules/@ovh-ux/ng-ovh-line-diagnostics/dist/assets'), to: 'assets' },
       ],
     },
   }, env);
 
   // Extra config files
-  const extras = glob.sync('./.extras/**/*.js');
+  const extras = glob.sync('./.extras-EU/**/*.js');
 
   return merge(config, {
     entry: _.assign({
@@ -65,9 +61,6 @@ module.exports = (env = {}) => {
       filename: '[name].[chunkhash].bundle.js',
     },
     resolve: {
-      alias: {
-        jquery: path.resolve(__dirname, 'node_modules/jquery'),
-      },
       mainFields: ['module', 'browser', 'main'],
     },
   });

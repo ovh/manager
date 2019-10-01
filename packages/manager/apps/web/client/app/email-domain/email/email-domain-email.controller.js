@@ -1,3 +1,10 @@
+import cloneDeep from 'lodash/cloneDeep';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import round from 'lodash/round';
+
 angular
   .module('App')
   .controller('EmailDomainEmailCtrl', class EmailDomainEmailCtrl {
@@ -73,7 +80,7 @@ angular
         }) => {
           this.webMailUrl = webMailUrl;
           this.webOMMUrl = webOMMUrl;
-          this.delegationsIsAvailable = _.includes(
+          this.delegationsIsAvailable = includes(
             [serviceInfos.contactTech, serviceInfos.contactAdmin],
             user.nichandle,
           );
@@ -86,7 +93,7 @@ angular
           this.userPreferences = userPreferences;
         })
         .finally(() => {
-          if (_(this.domains).includes(this.$stateParams.productId)) {
+          if (includes(this.domains, this.$stateParams.productId)) {
             this.refreshTableAccounts();
             this.emailIsUnavailable = false;
           } else {
@@ -166,7 +173,7 @@ angular
     //---------------------------------------------
 
     canAddAccount() {
-      return this.emails != null && (!_.includes(this.emails, 'postmaster') || this.emails.length < this.quotas.account + 1);
+      return this.emails != null && (!includes(this.emails, 'postmaster') || this.emails.length < this.quotas.account + 1);
     }
 
     refreshTableAccounts(forceRefresh) {
@@ -181,13 +188,13 @@ angular
         .then((data) => {
           this.emails = data.sort();
 
-          const userWantsHelpHidden = _(this.userPreferences).get('hideEmailsHelp', false);
-          const userWantsHelpHiddenForCurrentProduct = _(this.userPreferences).get(`${this.$stateParams.productId}.hideEmailsHelp`, false);
+          const userWantsHelpHidden = get(this.userPreferences, 'hideEmailsHelp', false);
+          const userWantsHelpHiddenForCurrentProduct = get(this.userPreferences, `${this.$stateParams.productId}.hideEmailsHelp`, false);
 
           const shouldShowHelp = !userWantsHelpHidden && !userWantsHelpHiddenForCurrentProduct;
-          const guidesAlreadyRetrieved = _(this.$scope).has('guides.emailsConfiguration') || _(this.$scope).has('guides.emailsCreation');
-          const canCreateAccounts = _(this.quotas).get('account', 0) > 0;
-          const userMustCreateAccount = (this.emails.length === 1 && this.emails[0] === 'postmaster') || _.isEmpty(this.emails);
+          const guidesAlreadyRetrieved = has(this.$scope, 'guides.emailsConfiguration') || has(this.$scope, 'guides.emailsCreation');
+          const canCreateAccounts = get(this.quotas, 'account', 0) > 0;
+          const userMustCreateAccount = (this.emails.length === 1 && this.emails[0] === 'postmaster') || isEmpty(this.emails);
 
           if (shouldShowHelp
               && !guidesAlreadyRetrieved
@@ -210,7 +217,7 @@ angular
           this.Alerter.alertFromSWS(this.$translate.instant('email_tab_table_accounts_error'), err, this.$scope.alerts.main);
         })
         .finally(() => {
-          if (_.isEmpty(this.emails)) {
+          if (isEmpty(this.emails)) {
             this.loading.accounts = false;
           }
         });
@@ -224,14 +231,14 @@ angular
           usage: this.WucEmails.getEmailUsage(this.$stateParams.productId, item),
         })
         .then(({ account, tasks, usage }) => {
-          const clonedAccount = _(account).clone(true);
-          clonedAccount.taskDoing = !_.isEmpty(tasks.data);
+          const clonedAccount = cloneDeep(account);
+          clonedAccount.taskDoing = !isEmpty(tasks.data);
           clonedAccount.description = punycode.toUnicode(clonedAccount.description);
           clonedAccount.quota = usage.quota;
           clonedAccount.date = usage.date;
 
           if (clonedAccount.size > 0) {
-            clonedAccount.percentUse = _.round((clonedAccount.quota * 100) / clonedAccount.size);
+            clonedAccount.percentUse = round((clonedAccount.quota * 100) / clonedAccount.size);
           } else {
             clonedAccount.percentUse = 0;
           }

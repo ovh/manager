@@ -1,3 +1,21 @@
+## [4.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.2.1...@ovh-ux/manager-freefax-app@4.2.2) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+
+
+
+## [4.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.2.0...@ovh-ux/manager-freefax-app@4.2.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
 # [4.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.1.0...@ovh-ux/manager-freefax-app@4.2.0) (2019-08-26)
 
 

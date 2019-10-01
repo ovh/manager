@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.delete',
   class DomainRedirectionDeleteCtrl {
@@ -33,8 +36,8 @@ angular.module('controllers').controller(
         },
         true,
       ).then((results) => {
-        this.wwwDomainToDelete.data = _.find(
-          _.get(results, 'list.results'),
+        this.wwwDomainToDelete.data = find(
+          get(results, 'list.results'),
           redirection => redirection.subDomain === `www.${this.entryToDelete.subDomain}`
             || (redirection.subDomain === 'www'
               && this.entryToDelete.subDomain !== 'www'),

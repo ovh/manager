@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDepositCtrl', function ($filter, $q, $stateParams, $translate, OvhApiOrder, OvhApiTelephony, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDepositCtrl', function TelecomTelephonyBillingAccountBillingDepositCtrl($filter, $q, $stateParams, $translate, OvhApiOrder, OvhApiTelephony, TucToastError) {
   const self = this;
 
   self.loading = {
@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       });
   }
 
-  self.orderSecurityDeposit = function () {
+  self.orderSecurityDeposit = function orderSecurityDeposit() {
     self.loading.submit = true;
 
     return OvhApiOrder.Telephony().v6().orderSecurityDeposit({
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       });
   };
 
-  self.onChangeAmount = function () {
+  self.onChangeAmount = function onChangeAmount() {
     self.futureDeposit = null;
     self.contracts = null;
 
@@ -67,13 +67,13 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       .catch(err => new TucToastError(err));
   };
 
-  self.getSecurityDepositAmounts = function () {
+  self.getSecurityDepositAmounts = function getSecurityDepositAmounts() {
     return OvhApiTelephony.v6().getAmountSecurityDeposit({
       billingAccount: $stateParams.billingAccount,
     }).$promise;
   };
 
-  self.getBillingAccount = function () {
+  self.getBillingAccount = function getBillingAccount() {
     return OvhApiTelephony.v6().get({
       billingAccount: $stateParams.billingAccount,
     }).$promise;

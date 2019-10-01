@@ -1,0 +1,20 @@
+{
+ "vps_order_windows_title": "Windows-Option",
+ "vps_order_windows_step1_title": "Festlegen der Dauer",
+ "vps_order_windows_step2_title": "Nutzungsbedingungen akzeptieren",
+ "vps_order_windows_step3_title": "Zusammenfassung",
+ "vps_order_windows_info": "Mit dieser Option können Sie ein Windows-Betriebssystem auf Ihrem VPS installieren.",
+ "vps_order_windows_price_error": "Beim Abrufen der Preise ist ein Fehler aufgetreten.",
+ "vps_order_windows_order_error": "Bei der Erstellung des Bestellscheins ist ein Fehler aufgetreten.",
+ "vps_order_windows_order_select_duration": "Wählen Sie die Laufzeit aus:",
+ "vps_order_windows_order_resume": "Zusammenfassung Ihrer Bestellung",
+ "vps_order_windows_order_price_HT": "Gesamtpreis zzgl. MwSt:",
+ "vps_order_windows_order_price_TTC": "Gesamtpreis inkl. MwSt:",
+ "vps_order_windows_order_final_txt": "Klicken Sie auf „Bestätigen\", um Ihre Bestellung abzuschließen.",
+ "vps_order_windows_order_final_txt2": "Es öffnet sich dann ein neuer Browser-Tab und Sie werden auf das Zahlungsinterface weitergeleitet.",
+ "vps_order_windows_order_load_error": "Beim Laden der Informationen zur Bestellung der Windows-Option ist ein Fehler aufgetreten.",
+ "vps_order_windows_order_load_error_none": "Es konnte keine Windows-Bestellung für Ihren VPS gefunden werden.",
+ "vps_order_windows_order_success": "Um Ihre Bestellung abzuschließen, folgen Sie bitte den Anweisungen im neu geöffneten Tab. Wenn sich kein neuer Tab geöffnet hat, klicken Sie bitte auf <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">diesen Link</a>.",
+ "vps_order_windows_order_price": "Diese Option kostet monatlich <strong>{{ amount }} zzgl. MwSt.</strong>.",
+ "vps_order_windows_order_explain": "Wenn Sie auf den Button „Bestellen“ klicken, öffnet sich ein neuer Browser-Tab und Sie werden automatisch auf das Zahlungsinterface weitergeleitet."
+}

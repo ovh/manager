@@ -1,10 +1,11 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
 
 export default class {
   constructor(exchange) {
     Object.assign(this, exchange);
 
-    this.version = _.get(this.serverDiagnostic, 'commercialVersion');
+    this.version = get(this.serverDiagnostic, 'commercialVersion');
   }
 
   isProvider() {
@@ -24,7 +25,7 @@ export default class {
   }
 
   hasVersion(version) {
-    return _.includes(this.version, version);
+    return includes(this.version, version);
   }
 
   canBeRenewedMonthly() {

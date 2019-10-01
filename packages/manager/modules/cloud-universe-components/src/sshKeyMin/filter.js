@@ -1,6 +1,6 @@
 import { SSHKEY_REGEX } from './constants';
 
-export default function () {
+export default function sshKeyMinFilter() {
   let splitted;
   let minLength;
   let innerkeyLength;
@@ -10,7 +10,7 @@ export default function () {
   let type = false;
   let i;
 
-  return function sshKeyMinFilter(keyParam) {
+  return function sshKeyMin(keyParam) {
     let key = keyParam;
     key = key.trim().replace(/\n/, '');
     type = false;

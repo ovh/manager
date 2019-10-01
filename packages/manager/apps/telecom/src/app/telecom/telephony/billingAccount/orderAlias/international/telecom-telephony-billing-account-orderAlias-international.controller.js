@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import pick from 'lodash/pick';
 
 angular.module('managerApp')
-  .controller('TelecomTelephonyAliasOrderInternationalCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiTelephonyNumber, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError, TELEPHONY_NUMBER_OFFER) {
+  .controller('TelecomTelephonyAliasOrderInternationalCtrl', function TelecomTelephonyAliasOrderInternationalCtrl($q, $translate, $stateParams, OvhApiTelephony, OvhApiTelephonyNumber, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError, TELEPHONY_NUMBER_OFFER) {
     const self = this;
 
     /**
@@ -47,7 +47,7 @@ angular.module('managerApp')
     =            EVENTS            =
     ============================== */
 
-    this.resetZone = function (country) {
+    this.resetZone = function resetZone(country) {
       this.form.country = country.code;
       delete this.form.zone;
     };
@@ -56,7 +56,7 @@ angular.module('managerApp')
      * Get the Total of the order
      * @returns {String}
      */
-    this.getTotal = function () {
+    this.getTotal = function getTotal() {
       const count = this.form.amount.value;
       if (this.prices) {
         const price = this.prices[this.form.numberType].withTax.text;
@@ -68,12 +68,12 @@ angular.module('managerApp')
     /**
      * When quantity changes
      */
-    this.changeQty = function () {
+    this.changeQty = function changeQty() {
       this.form.pool = this.form.amount.value;
       this.form.numberType = this.form.amount.value === 1 ? this.form.numberType : 'common';
     };
 
-    this.changeZone = function () {
+    this.changeZone = function changeZone() {
       this.loading.init = true;
       getSpecificNumbers(self.form.country, self.form.zone).finally(() => {
         self.loading.init = false;
@@ -85,7 +85,7 @@ angular.module('managerApp')
      * @param {String} country be | ch | de | es | fr | gb
      * @returns {Promise}
      */
-    this.getGeographicalZone = function (axiom) {
+    this.getGeographicalZone = function getGeographicalZone(axiom) {
       return OvhApiTelephonyNumber.v6().getZones(
         {
           country: self.form.country,
@@ -99,7 +99,7 @@ angular.module('managerApp')
      * Launch the order process
      * @returns {Promise}
      */
-    this.order = function () {
+    this.order = function order() {
       this.loading.order = true;
       let filter = [
         'city',

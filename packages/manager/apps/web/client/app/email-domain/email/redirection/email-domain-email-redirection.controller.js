@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'EmailDomainEmailRedirectionCtrl',
   class EmailDomainEmailRedirectionCtrl {
@@ -42,11 +44,11 @@ angular.module('App').controller(
       ];
 
       return this.$q
-        .all(_.map(
+        .all(map(
           this.redirections,
           ({ id }) => this.WucEmails.getRedirection(this.$stateParams.productId, id),
         ))
-        .then(data => dataToExport.concat(_.map(data, d => [d.from, d.to])))
+        .then(data => dataToExport.concat(map(data, d => [d.from, d.to])))
         .finally(() => {
           this.loading.exportCSV = false;
         });

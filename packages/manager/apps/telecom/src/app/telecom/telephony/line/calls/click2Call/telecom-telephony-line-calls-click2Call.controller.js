@@ -1,6 +1,6 @@
 import orderBy from 'lodash/orderBy';
 
-angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', function ($stateParams, $state, TelephonyMediator, TucToast, $translate, $timeout, $q, $uibModal) {
+angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', function TelecomTelephonyLineClick2CallCtrl($stateParams, $state, TelephonyMediator, TucToast, $translate, $timeout, $q, $uibModal) {
   const self = this;
 
   self.loading = {
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', fu
     perPage: 5,
   };
 
-  self.call = function () {
+  self.call = function call() {
     self.loading.call = true;
 
     return $q.all([
@@ -29,14 +29,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', fu
     });
   };
 
-  self.add = function () {
+  self.add = function add() {
     $state.go('telecom.telephony.line.click2call.addUser', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     });
   };
 
-  self.edit = function (user) {
+  self.edit = function edit(user) {
     $state.go('telecom.telephony.line.click2call.changePassword', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -44,7 +44,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', fu
     });
   };
 
-  self.remove = function (user) {
+  self.remove = function remove(user) {
     const modal = $uibModal.open({
       animation: true,
       templateUrl: 'app/telecom/telephony/line/calls/click2Call/remove-user/telecom-telephony-line-calls-click2Call-remove-user.html',

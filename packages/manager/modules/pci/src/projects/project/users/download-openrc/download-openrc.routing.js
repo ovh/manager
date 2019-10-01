@@ -13,6 +13,7 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
+        currentRegion: /* @ngInject */ coreConfig => coreConfig.getRegion(),
         userId: /* @ngInject */$transition$ => $transition$.params().userId,
         user: /* @ngInject */ (
           PciProjectsProjectUsersService,

@@ -1,3 +1,31 @@
+## [0.6.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.0...@ovh-ux/manager-server-sidebar@0.6.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add serviceName as item id ([#1373](https://github.com/ovh-ux/manager/issues/1373)) ([e8a47c5](https://github.com/ovh-ux/manager/commit/e8a47c5))
+
+
+
+# [0.6.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.2...@ovh-ux/manager-server-sidebar@0.6.0) (2019-09-19)
+
+
+### Features
+
+* **server-sidebar:** enable vps section for US accounts ([2d97e7c](https://github.com/ovh-ux/manager/commit/2d97e7c))
+
+
+
+## [0.5.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.1...@ovh-ux/manager-server-sidebar@0.5.2) (2019-09-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+
+
+
 ## [0.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.0...@ovh-ux/manager-server-sidebar@0.5.1) (2019-08-26)
 
 

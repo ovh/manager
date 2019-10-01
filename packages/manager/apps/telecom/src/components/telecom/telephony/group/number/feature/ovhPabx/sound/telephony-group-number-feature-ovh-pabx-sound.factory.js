@@ -33,7 +33,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxSound', ($q, $t
 
   /* -----  End of CONSTRUCTOR  ------*/
 
-  TelephonyGroupNumberOvhPabxSound.prototype.setInfos = function (soundOptions) {
+  TelephonyGroupNumberOvhPabxSound.prototype.setInfos = function setInfos(soundOptions) {
     const self = this;
 
     self.name = soundOptions.name || null;
@@ -46,7 +46,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxSound', ($q, $t
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupNumberOvhPabxSound.prototype.remove = function () {
+  TelephonyGroupNumberOvhPabxSound.prototype.remove = function remove() {
     const self = this;
 
     self.status = 'DELETING';
@@ -61,7 +61,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxSound', ($q, $t
     });
   };
 
-  TelephonyGroupNumberOvhPabxSound.prototype.upload = function (file) {
+  TelephonyGroupNumberOvhPabxSound.prototype.upload = function upload(file) {
     const self = this;
 
     // first upload file to user document

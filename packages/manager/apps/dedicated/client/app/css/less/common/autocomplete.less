@@ -1,0 +1,33 @@
+.type-off form {
+  margin: 0;
+}
+
+.type-off-suggestions {
+  .background-color-fn(@defaultbackground);
+
+  padding: 0;
+  box-shadow: 0 5px 10px @defaultbuttonshadow;
+  max-height: 300px;
+  min-width: 135px;
+  overflow: auto;
+
+  > ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.type-off-item {
+  list-style: none;
+
+  p {
+    padding: 0 15px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  &.active {
+    .background-color-fn(@defaultlineselectedbackground);
+    .color-fn(@defaultlineselectedfont);
+  }
+}

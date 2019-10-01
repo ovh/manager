@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'AppCtrl',
   class AppCtrl {
@@ -29,7 +31,7 @@ angular.module('App').controller(
       };
 
       this.incident.getOvhTasks().then((informations) => {
-        if (!_.isEmpty(informations)) {
+        if (!isEmpty(informations)) {
           this.incidentMessage = informations.alert[this.$translate.use()]
             || informations.alert.en_GB;
         }

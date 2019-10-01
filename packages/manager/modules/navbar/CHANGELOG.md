@@ -1,3 +1,47 @@
+## [2.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@2.0.1...@ovh-ux/manager-navbar@2.0.2) (2019-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
+
+
+
+## [2.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@2.0.0...@ovh-ux/manager-navbar@2.0.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **navbar:** extract translations ([#1355](https://github.com/ovh-ux/manager/issues/1355)) ([681eeea](https://github.com/ovh-ux/manager/commit/681eeea))
+
+
+
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.3.1...@ovh-ux/manager-navbar@2.0.0) (2019-09-19)
+
+
+### Bug Fixes
+
+* remove import of ovh-ui-kit ([bd69087](https://github.com/ovh-ux/manager/commit/bd69087))
+
+
+### BREAKING CHANGES
+
+* remove import of ovh-ui-kit
+
+Due to the fact that ovh-ui-kit imports a reset stylesheet, if this component imports ovh-ui-kit, it can break the host styles :(
+
+
+
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.3.0...@ovh-ux/manager-navbar@1.3.1) (2019-09-05)
+
+
+### Bug Fixes
+
+* set right link for autorenew page ([be56c78](https://github.com/ovh-ux/manager/commit/be56c78))
+
+
+
 # [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.2.3...@ovh-ux/manager-navbar@1.3.0) (2019-08-26)
 
 

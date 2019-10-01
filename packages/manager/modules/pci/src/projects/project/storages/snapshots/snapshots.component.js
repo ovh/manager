@@ -5,10 +5,11 @@ export default {
   controller,
   template,
   bindings: {
+    createSnapshot: '<',
+    createVolume: '<',
+    deleteSnapshot: '<',
+    guideUrl: '<',
     projectId: '<',
     snapshots: '<',
-    createVolume: '<',
-    createSnapshot: '<',
-    deleteSnapshot: '<',
   },
 };

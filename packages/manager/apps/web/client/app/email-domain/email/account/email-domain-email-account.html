@@ -65,7 +65,7 @@
                         </tbody>
 
                         <!-- no accounts -->
-                        <tbody data-ng-if="!ctrlEmailDomainEmail.loading.accounts && ctrlEmailDomainEmail.quotas.account > 0 && ctrlEmailDomainEmail.emails.length === 0">
+                        <tbody data-ng-if="!ctrlEmailDomainEmail.loading.accounts && !ctrlEmailDomainEmail.loading.pager && ctrlEmailDomainEmail.quotas.account > 0 && ctrlEmailDomainEmail.emails.length === 0">
                             <tr>
                                 <td class="text-center" colspan="7"
                                     data-translate="email_tab_table_emails_empty"></td>
@@ -73,7 +73,7 @@
                         </tbody>
 
                         <!-- accounts -->
-                        <tbody data-ng-if="!ctrlEmailDomainEmail.loading.accounts && ctrlEmailDomainEmail.emails.length > 0">
+                        <tbody data-ng-if="!ctrlEmailDomainEmail.loading.accounts && !ctrlEmailDomainEmail.loading.pager && ctrlEmailDomainEmail.emails.length > 0">
                             <tr data-ng-repeat="email in ctrlEmailDomainEmail.emailsDetails track by $index">
                                 <td class="word-break"
                                     data-ng-bind="email.accountName"></td>

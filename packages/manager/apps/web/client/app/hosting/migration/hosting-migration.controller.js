@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+
 angular.module('App').controller(
   'HostingMigrateMyOvhOrgCtrl',
   class HostingMigrateMyOvhOrgCtrl {
@@ -19,12 +22,12 @@ angular.module('App').controller(
 
       this.$scope.migrateMyOvhOrg = () => this.migrateMyOvhOrg();
 
-      this.Hosting.getHostings(_.get(this.hosting, 'serviceName'))
+      this.Hosting.getHostings(get(this.hosting, 'serviceName'))
         .then((hostings) => {
           this.hostings = hostings;
 
           // We delete the current product
-          const index = _.indexOf(this.hostings, this.$stateParams.productId);
+          const index = indexOf(this.hostings, this.$stateParams.productId);
           this.hostings.splice(index, 1);
         })
         .catch(() => {

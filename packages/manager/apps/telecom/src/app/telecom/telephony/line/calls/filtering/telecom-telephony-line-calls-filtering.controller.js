@@ -8,10 +8,10 @@ import pick from 'lodash/pick';
 import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 
-angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl', function ($stateParams, $q, $timeout, $translate, TucToast, TucToastError, OvhApiTelephony, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl', function TelecomTelephonyLineCallsFilteringCtrl($stateParams, $q, $timeout, $translate, TucToast, TucToastError, OvhApiTelephony, tucTelephonyBulk) {
   const self = this;
 
-  self.fetchScreenLists = function () {
+  self.fetchScreenLists = function fetchScreenLists() {
     OvhApiTelephony.Screen().ScreenLists().v6().resetAllCache();
     return OvhApiTelephony.Screen().ScreenLists().v6()
       .query({
@@ -36,18 +36,18 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
         }));
   };
 
-  self.addScreenList = function (screen) {
+  self.addScreenList = function addScreenList(screen) {
     return OvhApiTelephony.Screen().ScreenLists().v6().create({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }, screen).$promise;
   };
 
-  self.onScreenListAdded = function () {
+  self.onScreenListAdded = function onScreenListAdded() {
     self.screenLists.update();
   };
 
-  self.removeScreenList = function (screen) {
+  self.removeScreenList = function removeScreenList(screen) {
     return OvhApiTelephony.Screen().ScreenLists().v6().remove({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -55,14 +55,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     }).$promise;
   };
 
-  self.fetchScreen = function () {
+  self.fetchScreen = function fetchScreen() {
     return OvhApiTelephony.Screen().v6().get({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }).$promise;
   };
 
-  self.fetchOptions = function () {
+  self.fetchOptions = function fetchOptions() {
     return OvhApiTelephony.Line().v6().getOptions({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
@@ -116,7 +116,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     },
   };
 
-  self.getBulkParams = function (action) {
+  self.getBulkParams = function getBulkParams(action) {
     switch (action) {
       case 'screen':
         return {
@@ -130,7 +130,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     }
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_calls_filtering_bulk_all_success'),
@@ -150,11 +150,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_calls_filtering_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
-  self.updateScreen = function (type) {
+  self.updateScreen = function updateScreen(type) {
     self.screen.isLoading = true;
     if (type === 'incoming') {
       self.screen.isIncomingLoading = true;
@@ -179,7 +179,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     });
   };
 
-  self.changeOption = function (opt) {
+  self.changeOption = function changeOption(opt) {
     self.options.isUpdating = {};
     self.options.isUpdating[opt] = true;
     return OvhApiTelephony.Line().v6()
@@ -198,7 +198,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
       });
   };
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     self.isLoading = true;
     return $q.all({
       screen: self.fetchScreen(),

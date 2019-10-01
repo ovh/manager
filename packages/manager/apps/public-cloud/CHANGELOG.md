@@ -1,3 +1,33 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.3.1...@ovh-ux/manager-public-cloud@2.0.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* avoid duplicate jQuery and bump to 1.12.1 ([#1239](https://github.com/ovh-ux/manager/issues/1239)) ([f867e07](https://github.com/ovh-ux/manager/commit/f867e07))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+
+
+### Features
+
+* add and use error-page component ([#1209](https://github.com/ovh-ux/manager/issues/1209)) ([664fae0](https://github.com/ovh-ux/manager/commit/664fae0))
+
+
+### BREAKING CHANGES
+
+* @ovh-ux/manager-error-page is a peer dependency of @ovh-ux/manager-pci
+
+
+
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.3.0...@ovh-ux/manager-public-cloud@1.3.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
 # [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.2.1...@ovh-ux/manager-public-cloud@1.3.0) (2019-08-26)
 
 

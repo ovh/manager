@@ -8,7 +8,7 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 
 angular.module('managerApp')
-  .controller('XdslModemWifiConfigCtrl', function ($state, $q, $timeout, $stateParams, $translate, TucToast, OvhApiXdsl, TucPackXdslModemMediator, OvhApiXdslModemAvailableWLANChannel) {
+  .controller('XdslModemWifiConfigCtrl', function XdslModemWifiConfigCtrl($state, $q, $timeout, $stateParams, $translate, TucToast, OvhApiXdsl, TucPackXdslModemMediator, OvhApiXdslModemAvailableWLANChannel) {
     const self = this;
     self.mediator = TucPackXdslModemMediator;
     self.wifi = null;
@@ -32,12 +32,12 @@ angular.module('managerApp')
       'securityType',
     ];
 
-    self.resetKey = function () {
+    self.resetKey = function resetKey() {
       this.wifi.key = '';
       this.wifi.key2 = '';
     };
 
-    self.update = function () {
+    self.update = function update() {
       if (!this.wifi) {
         return;
       }
@@ -82,7 +82,7 @@ angular.module('managerApp')
       });
     };
 
-    self.cancelConfig = function () {
+    self.cancelConfig = function cancelConfig() {
       if (self.wifis.length === 1) {
         $state.go('telecom.pack.xdsl.modem');
       } else {
@@ -90,7 +90,7 @@ angular.module('managerApp')
       }
     };
 
-    self.onChannelChange = function () {
+    self.onChannelChange = function onChannelChange() {
       if (this.wifi.channelCustom !== 'Auto') {
         this.wifi.channelMode = 'Manual';
         this.wifi.channel = this.wifi.channelCustom;
@@ -99,7 +99,7 @@ angular.module('managerApp')
       }
     };
 
-    self.hasConfigFieldChanged = function (field, originalWifi) {
+    self.hasConfigFieldChanged = function hasConfigFieldChanged(field, originalWifi) {
       let original = originalWifi;
       if (!original) {
         original = find(self.wifis, {
@@ -110,7 +110,7 @@ angular.module('managerApp')
       return !isEqual(get(original, field), get(self.wifi, field));
     };
 
-    self.hasConfigChange = function () {
+    self.hasConfigChange = function hasConfigChange() {
       const original = find(self.wifis, {
         wifiName: self.wifi.wifiName,
       });
@@ -121,13 +121,13 @@ angular.module('managerApp')
     /**
      *  Used to avoid refresh of name in section header title when editing
      */
-    self.getWifiSsid = function () {
+    self.getWifiSsid = function getWifiSsid() {
       return find(self.wifis, {
         wifiName: self.wifi.wifiName,
       }).SSID;
     };
 
-    self.setSelectedWifi = function (wifi) {
+    self.setSelectedWifi = function setSelectedWifi(wifi) {
       // Call API to load available channel for selected wifi
       if (!wifi.guest) {
         OvhApiXdslModemAvailableWLANChannel.v6().get({
@@ -152,7 +152,7 @@ angular.module('managerApp')
       }).$promise;
     }
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       return $q.all({
         modem: getModem(),
         wifi: getWifi(),

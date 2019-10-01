@@ -39,6 +39,7 @@ module.exports = (env = {}) => {
     basePath: './client/app',
     lessPath: [
       './node_modules',
+      '../../../node_modules',
     ],
     root: path.resolve(__dirname, './client/app'),
     assets: {
@@ -59,7 +60,7 @@ module.exports = (env = {}) => {
   }));
 
   // Extra config files
-  const extras = glob.sync('./.extras/**/*.js');
+  const extras = glob.sync('./.extras-EU/**/*.js');
 
   return merge(config, {
     entry: _.assign({

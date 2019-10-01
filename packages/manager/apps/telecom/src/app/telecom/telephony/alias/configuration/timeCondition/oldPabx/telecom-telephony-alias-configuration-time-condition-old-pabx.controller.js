@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   =            HELPERS            =
   =============================== */
 
-  self.hasChange = function () {
+  self.hasChange = function hasChange() {
     const isConditionsInEdition = some(self.number.feature.timeCondition.conditions, {
       inEdition: true,
     });
@@ -45,7 +45,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   =            EVENTS            =
   ============================== */
 
-  self.onTimeConditionFormSubmit = function () {
+  self.onTimeConditionFormSubmit = function onTimeConditionFormSubmit() {
     self.number.feature.timeCondition.status = 'SAVING';
 
     // first save options
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
     });
   };
 
-  self.onTimeConditionFormReset = function () {
+  self.onTimeConditionFormReset = function onTimeConditionFormReset() {
     // stop and restart the edition of time condition (stop also slots edition)
     self.number.feature.timeCondition
       .stopEdition(true)
@@ -106,7 +106,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
 
   /* ----------  Controller initialization  ----------*/
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
@@ -133,14 +133,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   =      EXPORT/IMPORT CONFIGURATION      =
   ======================================= */
 
-  self.exportConfiguration = function () {
+  self.exportConfiguration = function exportConfiguration() {
     if (self.number.feature.timeCondition.conditions) {
       voipTimeConditionConfiguration
         .exportConfiguration(self.number.feature.timeCondition.conditions);
     }
   };
 
-  self.importConfiguration = function () {
+  self.importConfiguration = function importConfiguration() {
     const modal = $uibModal.open({
       animation: true,
       templateUrl: 'app/telecom/telephony/service/time-condition/import/telecom-telephony-service-time-condition-import.html',
@@ -193,7 +193,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   =            BULK            =
   ============================ */
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
   };
 
@@ -230,7 +230,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
     },
   };
 
-  self.getBulkParams = function (action) {
+  self.getBulkParams = function getBulkParams(action) {
     switch (action) {
       case bulkActionNames.createCondition:
       case bulkActionNames.deleteCondition:
@@ -254,7 +254,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
     }
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_calls_time_condition_bulk_all_success'),
@@ -277,11 +277,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
     TelephonyMediator.resetAllCache();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_calls_time_condition_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
-  self.getTimeConditions = function (action) {
+  self.getTimeConditions = function getTimeConditions(action) {
     const conditions = filter(self.number.feature.timeCondition.conditions, (condition) => {
       switch (action) {
         case bulkActionNames.createCondition:

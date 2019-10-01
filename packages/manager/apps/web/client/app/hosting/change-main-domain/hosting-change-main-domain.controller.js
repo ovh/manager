@@ -1,3 +1,10 @@
+import assign from 'lodash/assign';
+import difference from 'lodash/difference';
+import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('App')
   .controller('HostingChangeMainDomainCtrl', (
     $scope, $rootScope, $q, $stateParams, $translate,
@@ -46,7 +53,7 @@ angular.module('App')
         .then((data) => {
           $scope.emails.data = data;
 
-          if (!_.isEmpty(data)) {
+          if (!isEmpty(data)) {
             $scope.emails.hasSome = true;
             $scope.model.mxplan = null;
           }
@@ -61,8 +68,8 @@ angular.module('App')
           const domains = data[0];
           const hostings = data[1];
           const models = data[2];
-          $scope.availableOffers = _.difference(domains, hostings);
-          $scope.mxplanEnum = _.filter(models['hosting.web.order.MxPlanEnum'].enum, mxEnum => mxEnum !== 'delete');
+          $scope.availableOffers = difference(domains, hostings);
+          $scope.mxplanEnum = filter(models['hosting.web.order.MxPlanEnum'].enum, mxEnum => mxEnum !== 'delete');
         })
         .catch(() => {
           $scope.availableOffers = [];
@@ -73,7 +80,7 @@ angular.module('App')
     };
 
     $scope.checkEmails = function checkEmails() {
-      if (_.isEmpty($scope.emails.data)) {
+      if (isEmpty($scope.emails.data)) {
         $rootScope.$broadcast('wizard-goToStep', 3);
       }
     };
@@ -83,7 +90,7 @@ angular.module('App')
     ============================== */
     $scope.validateEmailDecision = function validateEmailDecision() {
       const mustDeleteEmails = !$scope.emails.keep;
-      const keepsEmailsWithNewPlan = $scope.emails.keep && !_.isEmpty($scope.model.mxplan);
+      const keepsEmailsWithNewPlan = $scope.emails.keep && !isEmpty($scope.model.mxplan);
       if (mustDeleteEmails || keepsEmailsWithNewPlan) {
         return true;
       }
@@ -95,7 +102,7 @@ angular.module('App')
     =            STEP 3          =
     ============================== */
     $scope.billingOnPrevious = function billingOnPrevious() {
-      if (_.isEmpty($scope.emails.data)) {
+      if (isEmpty($scope.emails.data)) {
         $rootScope.$broadcast('wizard-goToStep', 1);
       }
     };
@@ -107,7 +114,7 @@ angular.module('App')
 
       let { mxplan } = $scope.model;
 
-      const mustDeleteEmails = !$scope.emails.keep || _.isEmpty($scope.emails.data);
+      const mustDeleteEmails = !$scope.emails.keep || isEmpty($scope.emails.data);
       if (mustDeleteEmails) {
         mxplan = 'delete';
       }
@@ -118,14 +125,14 @@ angular.module('App')
           mxplan,
         })
         .then((durations) => {
-          const priceAndContractPromises = _.map(
+          const priceAndContractPromises = map(
             durations,
             duration => hostingChangeDomain.get($stateParams.productId, {
               duration,
               domain: $scope.model.domain,
               mxplan,
             })
-              .then(data => _.assign({ duration }, data))
+              .then(data => assign({ duration }, data))
               .catch(err => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
               .finally(() => {
                 $scope.loading.validation = false;
@@ -141,7 +148,7 @@ angular.module('App')
             .finally(() => { $scope.loading.durations = false; });
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main);
           $scope.resetAction();
         });

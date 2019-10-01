@@ -4,7 +4,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 
-angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', function ($stateParams, $timeout, $q, $document, $translate, OvhApiTelephony, TucToastError, TucIpAddress, OvhApiMe, TucToast, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', function TelecomTelephonyLineRestrictionsCtrl($stateParams, $timeout, $q, $document, $translate, OvhApiTelephony, TucToastError, TucIpAddress, OvhApiMe, TucToast, tucTelephonyBulk) {
   const self = this;
 
   function fetchLineOptions() {
@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
     });
   }
 
-  self.addLineRestriction = function () {
+  self.addLineRestriction = function addLineRestriction() {
     if (self.lineOptionsForm.ipRestrictions.length < 6) {
       self.lineOptionsForm.ipRestrictions.push('');
       $timeout(() => {
@@ -50,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
     }
   };
 
-  self.addAccountRestriction = function () {
+  self.addAccountRestriction = function addAccountRestriction() {
     if (self.accountRestrictionsForm.length < 6) {
       self.accountRestrictionsForm.push({
         subnet: '',
@@ -64,23 +64,23 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
     }
   };
 
-  self.hasLineRestrictionChanged = function () {
+  self.hasLineRestrictionChanged = function hasLineRestrictionChanged() {
     return !angular.equals(self.lineOptionsForm.ipRestrictions, self.lineOptions.ipRestrictions);
   };
 
-  self.hasAccountRestrictionChanged = function () {
+  self.hasAccountRestrictionChanged = function hasAccountRestrictionChanged() {
     return !angular.equals(self.accountRestrictions, self.accountRestrictionsForm);
   };
 
-  self.cancelLineChanges = function () {
+  self.cancelLineChanges = function cancelLineChanges() {
     self.lineOptionsForm.ipRestrictions = angular.copy(self.lineOptions.ipRestrictions);
   };
 
-  self.cancelAccountChanges = function () {
+  self.cancelAccountChanges = function cancelAccountChanges() {
     self.accountRestrictionsForm = angular.copy(self.accountRestrictions);
   };
 
-  self.applyLineChanges = function () {
+  self.applyLineChanges = function applyLineChanges() {
     const options = angular.copy(self.lineOptions);
     options.ipRestrictions = self.lineOptionsForm.ipRestrictions;
     self.isChangingLineOptions = true;
@@ -100,7 +100,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
     });
   };
 
-  self.applyAccountChanges = function () {
+  self.applyAccountChanges = function applyAccountChanges() {
     const changes = filter(self.accountRestrictionsForm, (ip) => {
       let changed = false;
       if (ip.id) {
@@ -144,7 +144,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
       });
   };
 
-  self.ipValidator = (function () {
+  self.ipValidator = (function ipValidator() {
     return {
       test(value) {
         return TucIpAddress.isValidPublicIp4(value);
@@ -170,17 +170,17 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return filter(services, service => ['sip'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       ipRestrictions: self.lineOptionsForm.ipRestrictions,
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_restrictions_ip_bulk_all_success'),
@@ -200,7 +200,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_restrictions_ip_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

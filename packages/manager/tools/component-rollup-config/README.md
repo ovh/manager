@@ -156,13 +156,13 @@ export default [
 ```
 
 ```less
-// try importing bootstrap from '/foo/bar/boostrap' then from '/hello/world/bootstrap'
-@import '~boostrap';
+// try importing bootstrap from '/foo/bar/bootstrap' then from '/hello/world/bootstrap'
+@import '~bootstrap';
 ```
 
 ### Performance
 
-Regarding the translations related plugins, it's possible to only process translations files for a single language. Please refer to the example below. This can be useful if you want faster builds in your developement environment for example.
+Regarding the translations related plugins, it's possible to only process translations files for a single language. Please refer to the example below. This can be useful if you want faster builds in your development environment for example.
 
 ```js
 import configGenerator from '@ovh-ux/component-rollup-config';

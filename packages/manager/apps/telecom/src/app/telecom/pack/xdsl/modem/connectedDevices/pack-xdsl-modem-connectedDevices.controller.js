@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', function ($q, $scope,
+angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', function XdslModemConnectedDevicesCtrl($q, $scope,
   $stateParams, $translate, OvhApiXdsl, TucToast) {
   const self = this;
   self.devices = [];
@@ -8,7 +8,7 @@ angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', functio
      * @param {object} device Device description
      * @returns {string|null}
      */
-  self.getDeviceInfo = function (device) {
+  self.getDeviceInfo = function getDeviceInfo(device) {
     switch (true) {
       case (/android/i).test(device.hostName):
         return {
@@ -44,7 +44,7 @@ angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', functio
      * @param {object} device Device description
      * @returns {string}
      */
-  self.getConnectionIcon = function (device) {
+  self.getConnectionIcon = function getConnectionIcon(device) {
     if (device.interfaceType.match(/ethernet/i)) {
       return 'ovh-font-telecom-ethernet';
     }
@@ -54,7 +54,7 @@ angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', functio
   /**
      * Get All connected devices
      */
-  self.getConnectedDevices = function () {
+  self.getConnectedDevices = function getConnectedDevices() {
     return OvhApiXdsl.Modem().ConnectedDevices().Aapi().query({
       xdslId: $stateParams.serviceName,
     }).$promise.then((data) => {
@@ -69,7 +69,7 @@ angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', functio
   /**
      * Launch the refresh of the connected devices
      */
-  self.refresh = function () {
+  self.refresh = function refresh() {
     this.loading = true;
     return OvhApiXdsl.Modem().ConnectedDevices().Aapi().refresh({
       xdslId: $stateParams.serviceName,
@@ -86,7 +86,7 @@ angular.module('managerApp').controller('XdslModemConnectedDevicesCtrl', functio
   /**
      * Controller initialization
      */
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.devices = null;
     self.refreshWatcher = angular.noop;
     self.getConnectedDevices();

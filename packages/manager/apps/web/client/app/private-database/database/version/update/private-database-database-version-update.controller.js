@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import remove from 'lodash/remove';
+
 angular.module('App').controller(
   'PrivateDatabaseChangeVersionCtrl',
   class PrivateDatabaseChangeVersionCtrl {
@@ -35,7 +38,7 @@ angular.module('App').controller(
         .then((versions) => {
           this.model.versions = versions;
 
-          _.remove(
+          remove(
             this.model.versions,
             version => version.replace(/\./g, '')
               === this.$scope.currentActionData.version,
@@ -49,7 +52,7 @@ angular.module('App').controller(
             this.$translate.instant('privateDatabase_change_version_step1_fail', {
               t0: this.$scope.entryToDelete,
             }),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });
@@ -70,7 +73,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.alerter.alertFromSWS(
             this.$translate.instant('privateDatabase_change_version_fail'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

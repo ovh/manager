@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingDatabaseCheckQuotaCtrl',
   class HostingDatabaseCheckQuotaCtrl {
@@ -31,10 +34,10 @@ angular.module('App').controller(
           completionDeferred.resolve(data);
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_DATABASES_configuration_check_quota_fail'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
           completionDeferred.reject(err);

@@ -36,7 +36,7 @@ angular.module('managerApp').factory('VoipTimeConditionSlot', () => {
     =            PROTOTYPES METHODS            =
     ========================================== */
 
-  VoipTimeConditionSlot.prototype.setOptions = function (slotOptions) {
+  VoipTimeConditionSlot.prototype.setOptions = function setOptions(slotOptions) {
     const self = this;
 
     self.type = slotOptions.type || '';
@@ -47,7 +47,7 @@ angular.module('managerApp').factory('VoipTimeConditionSlot', () => {
 
   /* ----------  Edition  ----------*/
 
-  VoipTimeConditionSlot.prototype.startEdition = function () {
+  VoipTimeConditionSlot.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -64,7 +64,7 @@ angular.module('managerApp').factory('VoipTimeConditionSlot', () => {
     return self;
   };
 
-  VoipTimeConditionSlot.prototype.stopEdition = function (cancel, cancelToOriginalSave,
+  VoipTimeConditionSlot.prototype.stopEdition = function stopEdition(cancel, cancelToOriginalSave,
     resetOriginalSave) {
     const self = this;
 
@@ -87,7 +87,7 @@ angular.module('managerApp').factory('VoipTimeConditionSlot', () => {
     return self;
   };
 
-  VoipTimeConditionSlot.prototype.hasChange = function (property, fromOriginal) {
+  VoipTimeConditionSlot.prototype.hasChange = function hasChange(property, fromOriginal) {
     const self = this;
     let compareToObject = null;
 

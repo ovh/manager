@@ -1,13 +1,13 @@
 import isEmpty from 'lodash/isEmpty';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebookContactAddCtrl', function ($q, $stateParams, $timeout, $uibModalInstance, TelephonyMediator, OvhApiTelephony, TucPhonebookcontact, data) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebookContactAddCtrl', function TelecomTelephonyBillingAccountPhonebookContactAddCtrl($q, $stateParams, $timeout, $uibModalInstance, TelephonyMediator, OvhApiTelephony, TucPhonebookcontact, data) {
   const self = this;
 
   /*= ==============================
     =            HELPERS            =
     =============================== */
 
-  self.isValidNumber = function (value) {
+  self.isValidNumber = function isValidNumber(value) {
     return !isEmpty(value) ? TelephonyMediator.IsValidNumber(value) : true;
   };
 
@@ -17,7 +17,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
     =            EVENTS            =
     =============================== */
 
-  self.handleContactPhoneNumber = function () {
+  self.handleContactPhoneNumber = function handleContactPhoneNumber() {
     return TucPhonebookcontact.hasAtLeastOnePhoneNumber(self.phonecontactForm);
   };
 
@@ -27,12 +27,12 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
     =            ACTIONS            =
     =============================== */
 
-  self.setGroup = function ($event, group) {
+  self.setGroup = function setGroup($event, group) {
     $event.preventDefault();
     self.phonecontactForm.group = group;
   };
 
-  self.add = function () {
+  self.add = function add() {
     self.phonecontactForm.isAdding = true;
     return $q.all([
       OvhApiTelephony.Phonebook().PhonebookContact().v6().create({
@@ -50,11 +50,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
     }));
   };
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 

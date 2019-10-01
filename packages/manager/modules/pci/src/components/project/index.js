@@ -6,6 +6,7 @@ import billing from './billing';
 import empty from './empty';
 import flavorBilling from './flavor-billing';
 import flavorsList from './flavors-list';
+import guidesHeader from './guides-header';
 import imagesList from './images-list';
 import quotaRegionHeader from './quota-region-header';
 import regionsList from './regions-list';
@@ -20,6 +21,7 @@ angular
     empty,
     flavorBilling,
     flavorsList,
+    guidesHeader,
     imagesList,
     quotaRegionHeader,
     'ovh-api-services',

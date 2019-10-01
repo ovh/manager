@@ -2,18 +2,18 @@ import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('XdslModemDmzCtrl', function ($stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator, tucValidator) {
+angular.module('managerApp').controller('XdslModemDmzCtrl', function XdslModemDmzCtrl($stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator, tucValidator) {
   const self = this;
 
   this.editing = false;
   this.validator = tucValidator;
   this.mediator = TucPackXdslModemMediator;
 
-  this.cancel = function () {
+  this.cancel = function cancel() {
     this.editing = false;
   };
 
-  this.changeDmz = function () {
+  this.changeDmz = function changeDmz() {
     this.editing = false;
     const validIp = this.validator.isIP(self.dmz) || self.dmz === null;
     if (isEmpty($stateParams.serviceName)
@@ -41,17 +41,17 @@ angular.module('managerApp').controller('XdslModemDmzCtrl', function ($statePara
     });
   };
 
-  this.setEditMode = function () {
+  this.setEditMode = function setEditMode() {
     this.editing = true;
     this.dmz = TucPackXdslModemMediator.info.dmzIP;
   };
 
-  this.delete = function () {
+  this.delete = function deleteFunction() {
     this.dmz = null;
     this.changeDmz();
   };
 
-  const init = function () {
+  const init = function init() {
     return OvhApiXdsl.Modem().Lan().Aapi().getLanDetails({
       xdslId: $stateParams.serviceName,
     }).$promise.then((data) => {

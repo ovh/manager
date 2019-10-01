@@ -7,7 +7,7 @@ import set from 'lodash/set';
 import startsWith from 'lodash/startsWith';
 import values from 'lodash/values';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageContactsCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, OvhApiMe, TelephonyMediator, OvhApiPackXdslVoipLine, TucToast, TucToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageContactsCtrl', function TelecomTelephonyBillingAccountManageContactsCtrl($stateParams, $q, $translate, OvhApiTelephony, OvhApiMe, TelephonyMediator, OvhApiPackXdslVoipLine, TucToast, TucToastError) {
   const self = this;
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
@@ -139,22 +139,22 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
     });
   }
 
-  self.editContact = function (contact) {
+  self.editContact = function editContact(contact) {
     set(contact, 'editing', true);
     self.isEditing = true;
   };
 
-  self.cancelEdition = function (contact) {
+  self.cancelEdition = function cancelEdition(contact) {
     set(contact, 'editing', false);
     self.isEditing = false;
     set(contact, 'modified', angular.copy(contact.value));
   };
 
-  self.hasChanges = function (contact) {
+  self.hasChanges = function hasChanges(contact) {
     return !angular.equals(contact.value, contact.modified);
   };
 
-  self.isContactValid = function (contact) {
+  self.isContactValid = function isContactValid(contact) {
     let isValid = true;
     const pattern = /^[^\s]+$/;
     forEach(values(contact.modified), (value) => {
@@ -163,7 +163,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
     return isValid;
   };
 
-  self.submitChanges = function (contact) {
+  self.submitChanges = function submitChanges(contact) {
     let promise = $q.reject('Unknown service type');
     set(contact, 'submiting', true);
     switch (contact.serviceType) {

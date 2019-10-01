@@ -5,8 +5,9 @@ export default {
   template,
   controller,
   bindings: {
-    projectId: '<',
+    guideUrl: '<',
     platformDetails: '<',
+    projectId: '<',
     serviceName: '<',
   },
 };

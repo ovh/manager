@@ -1,13 +1,13 @@
 import forEach from 'lodash/forEach';
 import has from 'lodash/has';
 
-angular.module('managerApp').service('TelephonyVoipService', function ($q, OvhApiTelephony, TelephonyGroup, TelephonyGroupLine, TelephonyGroupNumber, TelephonyGroupFax) {
+angular.module('managerApp').service('TelephonyVoipService', function TelephonyVoipService($q, OvhApiTelephony, TelephonyGroup, TelephonyGroupLine, TelephonyGroupNumber, TelephonyGroupFax) {
   const self = this;
 
   /*
      * Fetch all telephony services and billing account using API V7
      */
-  self.fetchAll = function () {
+  self.fetchAll = function fetchAll() {
     const groups = {}; // indexed by billing accounts
 
     // fetch all billing accounts

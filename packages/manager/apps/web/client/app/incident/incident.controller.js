@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'IncidentCtrl',
   class AppCtrl {
@@ -25,14 +28,14 @@ angular.module('App').controller(
       return this.incident.getOvhTasks().then((informations) => {
         this.informations = informations;
 
-        this.informations.tasks = _.map(this.informations.tasks, (originalTask) => {
-          const task = _(originalTask).clone();
+        this.informations.tasks = map(this.informations.tasks, (originalTask) => {
+          const task = clone(originalTask);
 
           task.detailed_desc = task.detailed_desc.replace(/\\'/g, "'");
           task.detailed_desc = task.detailed_desc.replace(/\\"/g, '"');
 
-          task.comments = _.map(task.comments, (originalComment) => {
-            const comment = _(originalComment).clone();
+          task.comments = map(task.comments, (originalComment) => {
+            const comment = clone(originalComment);
             comment.comment_text = comment.comment_text.replace(/\\'/g, "'");
             comment.comment_text = comment.comment_text.replace(/\\"/g, '"');
 

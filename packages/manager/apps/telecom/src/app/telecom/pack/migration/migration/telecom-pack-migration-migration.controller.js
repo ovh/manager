@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomPackMigrationMigrationCtrl', function ($scope, TucPackMigrationProcess) {
+angular.module('managerApp').controller('TelecomPackMigrationMigrationCtrl', function TelecomPackMigrationMigrationCtrl($scope, TucPackMigrationProcess) {
   const self = this;
 
   self.loading = {

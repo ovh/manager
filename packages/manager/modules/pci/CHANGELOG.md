@@ -1,3 +1,74 @@
+## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.1.0...@ovh-ux/manager-pci@2.1.1) (2019-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+
+
+
+# [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.0.2...@ovh-ux/manager-pci@2.1.0) (2019-09-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 66] ([0293e43](https://github.com/ovh-ux/manager/commit/0293e43))
+* **i18n:** add missing translations [CDS 72] ([b004ad8](https://github.com/ovh-ux/manager/commit/b004ad8))
+* **i18n:** add missing translations [CDS 73] ([4094aa6](https://github.com/ovh-ux/manager/commit/4094aa6))
+* **rclone-modal-text:** change rclone text ([#1128](https://github.com/ovh-ux/manager/issues/1128)) ([af01198](https://github.com/ovh-ux/manager/commit/af01198))
+
+
+### Features
+
+* **pci:** add ipv6 gateway ([#1288](https://github.com/ovh-ux/manager/issues/1288)) ([67f37e2](https://github.com/ovh-ux/manager/commit/67f37e2))
+
+
+
+## [2.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.0.1...@ovh-ux/manager-pci@2.0.2) (2019-09-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 65] ([eafe0bc](https://github.com/ovh-ux/manager/commit/eafe0bc))
+
+
+
+## [2.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.0.0...@ovh-ux/manager-pci@2.0.1) (2019-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 59] ([8f1d800](https://github.com/ovh-ux/manager/commit/8f1d800))
+* **i18n:** add missing translations [CDS 60] ([d24bce3](https://github.com/ovh-ux/manager/commit/d24bce3))
+* **i18n:** add missing translations [CDS 61] ([68a518e](https://github.com/ovh-ux/manager/commit/68a518e))
+
+
+
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.2...@ovh-ux/manager-pci@2.0.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 53] ([28d27cf](https://github.com/ovh-ux/manager/commit/28d27cf))
+* **i18n:** add missing translations [CDS 54] ([f13a145](https://github.com/ovh-ux/manager/commit/f13a145))
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* **i18n:** add missing translations [CDS 58] ([754846a](https://github.com/ovh-ux/manager/commit/754846a))
+
+
+### Features
+
+* add and use error-page component ([#1209](https://github.com/ovh-ux/manager/issues/1209)) ([664fae0](https://github.com/ovh-ux/manager/commit/664fae0))
+* **pci:** add guides ([a1fd32c](https://github.com/ovh-ux/manager/commit/a1fd32c))
+* **pci.projects:** allow to delete currently creating project ([2180f08](https://github.com/ovh-ux/manager/commit/2180f08))
+* **pci.projects.kube:** prevent banner display on version update ([#1213](https://github.com/ovh-ux/manager/issues/1213)) ([ff993e4](https://github.com/ovh-ux/manager/commit/ff993e4))
+
+
+### BREAKING CHANGES
+
+* @ovh-ux/manager-error-page is a peer dependency of @ovh-ux/manager-pci
+
+
+
 ## [1.5.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.1...@ovh-ux/manager-pci@1.5.2) (2019-08-26)
 
 

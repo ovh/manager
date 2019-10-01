@@ -1,3 +1,17 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import maxBy from 'lodash/maxBy';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 export default class DomainTabGeneralInformationsCtrl {
   constructor(
     $q,
@@ -42,12 +56,13 @@ export default class DomainTabGeneralInformationsCtrl {
     this.allDomInfos = this.$scope.ctrlDomain.allDomInfos;
     this.displayFreeHosting = false;
     this.domainUnlockRegistry = this.constants.DOMAIN.domainUnlockRegistry[
-      _.last(this.domain.displayName.split('.')).toUpperCase()
+      last(this.domain.displayName.split('.')).toUpperCase()
     ];
     this.hasHostingAssociate = false;
     this.hasStart10mOffer = false;
     this.isAllDom = this.$rootScope.currentSectionInformation === 'all_dom';
-    this.isUK = _.last(this.domain.name.split('.')).toUpperCase() === 'UK';
+    this.isUK = last(this.domain.name.split('.')).toUpperCase() === 'UK';
+    this.options = {};
     this.loading = {
       allDom: false,
       associatedHosting: false,
@@ -57,6 +72,7 @@ export default class DomainTabGeneralInformationsCtrl {
       domainInfos: this.$scope.ctrlDomain.loading.domainInfos,
       changeOwner: false,
       whoIs: false,
+      options: false,
     };
     this.initActions();
     this.dnsStatus = {
@@ -77,7 +93,7 @@ export default class DomainTabGeneralInformationsCtrl {
       },
     };
 
-    _.forEach(
+    forEach(
       [
         'transfertLock.get.done',
         'dnssec.get.done',
@@ -102,6 +118,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.$scope.$on('domain.dnssec.lock.unlock.cancel', () => {
       this.vm.dnssec.uiSwitch.checked = !this.vm.dnssec.uiSwitch.checked;
     });
+    this.$scope.$on('Domain.Options.Delete', () => this.getAllOptionDetails(this.domain.name));
 
     if (!this.domain.isExpired) {
       this.getScreenshoot(this.domain.name);
@@ -114,6 +131,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.getAllNameServer(this.domain.name);
     this.getHostingInfos(this.domain.name);
     this.getAssociatedHosting(this.domain.name);
+    this.getAllOptionDetails(this.domain.name);
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
@@ -151,14 +169,14 @@ export default class DomainTabGeneralInformationsCtrl {
       },
     };
     this.loading.changeOwner = true;
-    if (_.isObject(this.domain.whoisOwner)) {
+    if (isObject(this.domain.whoisOwner)) {
       return this.$q
         .all({
           domainOrderTradeUrl: this.User.getUrlOf('domainOrderTrade'),
           orderServiceOption: this.Domain.getOrderServiceOption(this.domain.name),
         })
         .then(({ domainOrderTradeUrl, orderServiceOption }) => {
-          if (_.find(orderServiceOption, opt => opt.family === 'trade')) {
+          if (find(orderServiceOption, opt => opt.family === 'trade')) {
             this.actions.changeOwner.href = domainOrderTradeUrl.replace(
               '{domain}',
               this.domain.name,
@@ -173,9 +191,9 @@ export default class DomainTabGeneralInformationsCtrl {
         .finally(() => { this.loading.changeOwner = false; });
     }
 
-    const changeOwnerClassic = !_.includes(
+    const changeOwnerClassic = !includes(
       this.Domain.extensionsChangeOwnerByOrder,
-      _.last(this.domain.name.split('.')),
+      last(this.domain.name.split('.')),
     );
 
     return this.User.getUrlOf(changeOwnerClassic ? 'changeOwner' : 'domainOrderChange')
@@ -206,7 +224,7 @@ export default class DomainTabGeneralInformationsCtrl {
             domains: this.Domain.getDomains(),
           })
           .then(({ allDomDomains, domains }) => {
-            this.allDomDomains = _.map(allDomDomains, domain => ({
+            this.allDomDomains = map(allDomDomains, domain => ({
               name: domain,
               isIncluded: domains.indexOf(domain) !== -1,
             }));
@@ -242,7 +260,7 @@ export default class DomainTabGeneralInformationsCtrl {
         this.vm.hosting.web.selected.info = hostingInfo;
         this.hasStart10mOffer = hostingInfo.offer
             === this.constants.HOSTING.OFFERS.START_10_M.TYPE_VALUE;
-        this.displayFreeHosting = _.isEmpty(sites) || this.hasStart10mOffer;
+        this.displayFreeHosting = isEmpty(sites) || this.hasStart10mOffer;
       })
       .finally(() => {
         this.loading.hosting = false;
@@ -254,19 +272,19 @@ export default class DomainTabGeneralInformationsCtrl {
     return this.Domain.getAllNameServer(serviceName)
       .then((nameServers) => {
         this.nameServers = nameServers;
-        return this.$q.all(_.map(
+        return this.$q.all(map(
           nameServers,
           nameServer => this.Domain.getNameServerStatus(serviceName, nameServer.id),
         ));
       })
       .then((nameServersStatus) => {
-        if (!_.isEmpty(nameServersStatus)) {
-          this.dnsStatus.isOk = !_.some(nameServersStatus, { state: 'ko' });
-          this.dnsStatus.isHosted = !_.some(nameServersStatus, {
+        if (!isEmpty(nameServersStatus)) {
+          this.dnsStatus.isOk = !some(nameServersStatus, { state: 'ko' });
+          this.dnsStatus.isHosted = !some(nameServersStatus, {
             type: 'external',
           });
 
-          const lastUpdated = _.max(
+          const lastUpdated = maxBy(
             nameServersStatus,
             nameServer => new Date(nameServer.usedSince).getTime(),
           );
@@ -285,12 +303,12 @@ export default class DomainTabGeneralInformationsCtrl {
       returnErrorKey: '',
     })
       .then((response) => {
-        if (_.isArray(response) && !_.isEmpty(response)) {
+        if (isArray(response) && !isEmpty(response)) {
           this.hasHostingAssociate = true;
 
           // I would say I should get the first item only,
           // but the api returns an array, so I assume there can be multiple attached domains.
-          this.hostingAssociated = _.map(response, item => ({
+          this.hostingAssociated = map(response, item => ({
             name: item,
             url: `#/configuration/hosting/${item}`,
           }));
@@ -300,13 +318,37 @@ export default class DomainTabGeneralInformationsCtrl {
         if (err.status !== 404) {
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_configuration_web_hosting_fail'),
-            _.get(err, 'data'),
+            get(err, 'data'),
             this.$scope.alerts.page,
           );
         }
       })
       .finally(() => {
         this.loading.associatedHosting = false;
+      });
+  }
+
+  getAllOptionDetails(serviceName) {
+    this.loading.options = true;
+    return this.Domain.getOptions(serviceName)
+      .then(options => this.$q.all(
+        _.map(options, option => this.Domain.getOption(serviceName, option)
+          .then(optionDetail => Object.assign({}, optionDetail,
+            { optionActivated: optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE }))),
+      ))
+      .then((options) => {
+        this.options = _.reduce(options, (transformedOptions, option) => ({
+          ...transformedOptions,
+          [option.option]: option,
+        }), {});
+      })
+      .catch(err => this.Alerter.alertFromSWS(
+        this.$translate.instant('domain_configuration_web_hosting_fail'),
+        _.get(err, 'data'),
+        this.$scope.alerts.page,
+      ))
+      .finally(() => {
+        this.loading.options = false;
       });
   }
 
@@ -336,9 +378,9 @@ export default class DomainTabGeneralInformationsCtrl {
 
   getUpdateOwnerUrl(domain) {
     const ownerUrlInfo = { target: '', error: '' };
-    if (_.has(domain, 'name') && _.has(domain, 'whoisOwner.id')) {
+    if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
       ownerUrlInfo.target = `#/useraccount/contact/${domain.name}/${domain.whoisOwner.id}`;
-    } else if (!_.has(domain, 'name')) {
+    } else if (!has(domain, 'name')) {
       ownerUrlInfo.error = this.$translate.instant('domain_tab_REDIRECTION_add_step4_server_cname_error');
     } else {
       switch (domain.whoisOwner) {
@@ -371,8 +413,8 @@ export default class DomainTabGeneralInformationsCtrl {
       }).$promise,
     })
       .then(({ obfuscationRules, optinRules }) => {
-        this.isWhoisOptinAllowed = !_.isEmpty(optinRules);
-        this.canObfuscateEmails = !_.isEmpty(obfuscationRules);
+        this.isWhoisOptinAllowed = !isEmpty(optinRules);
+        this.canObfuscateEmails = !isEmpty(obfuscationRules);
       })
       .catch(() => this.Alerter.error(this.$translate.instant('domain_dashboard_whois_error')))
       .finally(() => {
@@ -391,7 +433,7 @@ export default class DomainTabGeneralInformationsCtrl {
 
   showWebHostingOrderWithStartOffer() {
     const domain = angular.copy(this.domain);
-    _.set(
+    set(
       domain,
       'selected.offer',
       this.constants.HOSTING.OFFERS.START_10_M.LIST_VALUE,

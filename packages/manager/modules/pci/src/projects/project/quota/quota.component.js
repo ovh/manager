@@ -4,6 +4,7 @@ import template from './quota.html';
 export default {
   bindings: {
     defaultPaymentMean: '<',
+    guideUrl: '<',
     projectId: '<',
     quotas: '<',
     region: '<',

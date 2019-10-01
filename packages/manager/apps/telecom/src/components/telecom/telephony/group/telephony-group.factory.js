@@ -64,19 +64,19 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroup.prototype.getDisplayedName = function () {
+  TelephonyGroup.prototype.getDisplayedName = function getDisplayedName() {
     const self = this;
 
     return self.description || self.billingAccount;
   };
 
-  TelephonyGroup.prototype.getService = function (serviceName) {
+  TelephonyGroup.prototype.getService = function getService(serviceName) {
     const self = this;
 
     return self.getLine(serviceName) || self.getNumber(serviceName) || self.getFax(serviceName);
   };
 
-  TelephonyGroup.prototype.getAllServices = function () {
+  TelephonyGroup.prototype.getAllServices = function getAllServices() {
     const self = this;
     const allServices = self.lines.concat(self.numbers, self.fax);
 
@@ -85,7 +85,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroup.prototype.save = function () {
+  TelephonyGroup.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.v6().edit({
@@ -97,7 +97,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  LINES  ----------*/
 
-  TelephonyGroup.prototype.initLines = function (lineOptions) {
+  TelephonyGroup.prototype.initLines = function initLines(lineOptions) {
     const self = this;
 
     if (isArray(lineOptions)) {
@@ -109,7 +109,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return self.lines;
   };
 
-  TelephonyGroup.prototype.addLine = function (lineOptions) {
+  TelephonyGroup.prototype.addLine = function addLine(lineOptions) {
     const self = this;
 
     const line = new TelephonyGroupLine(angular.extend(lineOptions || {}, {
@@ -121,7 +121,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return line;
   };
 
-  TelephonyGroup.prototype.getLine = function (lineServiceName) {
+  TelephonyGroup.prototype.getLine = function getLine(lineServiceName) {
     const self = this;
 
     return find(self.lines, {
@@ -131,7 +131,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  NUMBERS  ----------*/
 
-  TelephonyGroup.prototype.initNumbers = function (numberOptions) {
+  TelephonyGroup.prototype.initNumbers = function initNumbers(numberOptions) {
     const self = this;
 
     if (isArray(numberOptions)) {
@@ -143,7 +143,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return self.numbers;
   };
 
-  TelephonyGroup.prototype.addNumber = function (numberOptions) {
+  TelephonyGroup.prototype.addNumber = function addNumber(numberOptions) {
     const self = this;
 
     const number = new TelephonyGroupNumber(angular.extend(numberOptions, {
@@ -155,7 +155,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return number;
   };
 
-  TelephonyGroup.prototype.getNumber = function (numberServiceName) {
+  TelephonyGroup.prototype.getNumber = function getNumber(numberServiceName) {
     const self = this;
 
     return find(self.numbers, {
@@ -164,7 +164,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   };
 
 
-  TelephonyGroup.prototype.fetchService = function (serviceName) {
+  TelephonyGroup.prototype.fetchService = function fetchService(serviceName) {
     const self = this;
     let number;
 
@@ -244,7 +244,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  FAX  ----------*/
 
-  TelephonyGroup.prototype.initFax = function (faxOptionsList) {
+  TelephonyGroup.prototype.initFax = function initFax(faxOptionsList) {
     const self = this;
 
     if (isArray(faxOptionsList)) {
@@ -256,7 +256,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return self.fax;
   };
 
-  TelephonyGroup.prototype.addFax = function (faxOptions) {
+  TelephonyGroup.prototype.addFax = function addFax(faxOptions) {
     const self = this;
 
     const fax = new TelephonyGroupFax(angular.extend(faxOptions, {
@@ -268,7 +268,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return fax;
   };
 
-  TelephonyGroup.prototype.getFax = function (faxServiceName) {
+  TelephonyGroup.prototype.getFax = function getFax(faxServiceName) {
     const self = this;
 
     return find(self.fax, {
@@ -278,7 +278,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroup.prototype.startEdition = function () {
+  TelephonyGroup.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -290,7 +290,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
     return self;
   };
 
-  TelephonyGroup.prototype.stopEdition = function (cancel) {
+  TelephonyGroup.prototype.stopEdition = function stopEdition(cancel) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -305,7 +305,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  ORDERS  ----------*/
 
-  TelephonyGroup.prototype.getAvailableOrderNames = function () {
+  TelephonyGroup.prototype.getAvailableOrderNames = function getAvailableOrderNames() {
     const self = this;
 
     if (self.availableOrders) {

@@ -1,3 +1,12 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+import merge from 'lodash/merge';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import union from 'lodash/union';
+
 angular
   .module('App')
   .controller(
@@ -74,12 +83,12 @@ angular
 
       function loadOvhConfig() {
         HostingOvhConfig.getCurrent($stateParams.productId).then((ovhConfig) => {
-          $scope.ovhConfig = _.merge(ovhConfig, {
-            taskPending: _.get($scope.ovhConfig, 'taskPending', false),
-            taskPendingError: _.get($scope.ovhConfig, 'taskPendingError', false),
+          $scope.ovhConfig = merge(ovhConfig, {
+            taskPending: get($scope.ovhConfig, 'taskPending', false),
+            taskPendingError: get($scope.ovhConfig, 'taskPendingError', false),
           });
 
-          $scope.phpVersionSupport = _.find(
+          $scope.phpVersionSupport = find(
             $scope.hosting.phpVersions,
             (version) => {
               if (version.version.indexOf('.') === -1) {
@@ -98,19 +107,19 @@ angular
                   /ovhConfig\//,
                   '',
                 )}`);
-                _.set(
+                set(
                   $scope.ovhConfig,
                   'taskPending',
                   taskPendingMessage
                     || $translate.instant('hosting_global_php_version_pending_task_common'),
                 );
 
-                queue = _.map(
+                queue = map(
                   tasks,
                   task => HostingTask
                     .poll($stateParams.productId, task)
                     .catch(() => {
-                      _.set($scope.ovhConfig, 'taskPendingError', false);
+                      set($scope.ovhConfig, 'taskPendingError', false);
                     }),
                 );
 
@@ -118,11 +127,11 @@ angular
                   loadOvhConfig();
                 });
               } else {
-                _.set($scope.ovhConfig, 'taskPending', false);
+                set($scope.ovhConfig, 'taskPending', false);
               }
             })
             .catch(() => {
-              _.set($scope.ovhConfig, 'taskPending', false);
+              set($scope.ovhConfig, 'taskPending', false);
             });
 
           HostingTask.getError($stateParams.productId)
@@ -133,19 +142,19 @@ angular
                     /ovhConfig\//,
                     '',
                   )}`);
-                  _.set(
+                  set(
                     $scope.ovhConfig,
                     'taskPendingError',
                     taskErrorMessage
                       || $translate.instant('hosting_global_php_version_pending_task_error_common'),
                   );
                 } else {
-                  _.set($scope.ovhConfig, 'taskPendingError', false);
+                  set($scope.ovhConfig, 'taskPendingError', false);
                 }
               }
             })
             .catch(() => {
-              _.set($scope.ovhConfig, 'taskPendingError', false);
+              set($scope.ovhConfig, 'taskPendingError', false);
             });
         });
       }
@@ -173,7 +182,7 @@ angular
       $scope.isAdminPrivateDb = privateDb => $scope
         .getUserInfos()
         .then(() => PrivateDatabase.getServiceInfos(privateDb))
-        .then(privateDbInfo => _.some(
+        .then(privateDbInfo => some(
           [
             privateDbInfo.contactBilling,
             privateDbInfo.contactTech,
@@ -279,7 +288,7 @@ angular
             }, 0);
           })
           .catch((err) => {
-            _.set(err, 'type', err.type || 'ERROR');
+            set(err, 'type', err.type || 'ERROR');
             Alerter.alertFromSWS(
               $translate.instant('hosting_dashboard_loading_error'),
               err,
@@ -296,7 +305,7 @@ angular
       };
 
       $scope.getStateBadgeClass = () => {
-        switch (_.get($scope.hosting, 'serviceState')) {
+        switch (get($scope.hosting, 'serviceState')) {
           case 'ACTIVE':
             return 'oui-status_success';
           case 'MAINTENANCE':
@@ -387,7 +396,7 @@ angular
       $scope.$on('hostingDomain.attachDomain.error', (event, err) => {
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -412,7 +421,7 @@ angular
         $scope.$broadcast('paginationServerSide.reload');
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -428,7 +437,7 @@ angular
             $stateParams.productId,
           ),
         ]).then((tasks) => {
-          const taskIds = _.union(tasks[0], tasks[1]);
+          const taskIds = union(tasks[0], tasks[1]);
           ['attachedDomain/create', 'attachedDomain/update'].forEach((name, key) => {
             if (tasks[key].length > 0) {
               HostingDomain.pollRequest({
@@ -506,7 +515,7 @@ angular
           .then((guides) => {
             if (guides) {
             // GLOBAL ALERT TO UPGRADE APACHE
-              if (_.indexOf($scope.hosting.updates, 'APACHE24') >= 0) {
+              if (indexOf($scope.hosting.updates, 'APACHE24') >= 0) {
                 $timeout(() => {
                   Alerter.alertFromSWS(
                     $translate.instant('hosting_global_php_version_pending_update_apache', {
@@ -538,11 +547,11 @@ angular
           .then(() => {
             if (moment().isAfter(moment($scope.hostingProxy.lastOvhConfigScan).add(12, 'hours'))) {
               return HostingOvhConfig.ovhConfigRefresh($stateParams.productId, { returnErrorKey: '' }).then(data => data).catch((err) => {
-                if (_.get(err, 'status') === 403) {
+                if (get(err, 'status') === 403) {
                   return null;
                 }
 
-                return _.get(err, 'data');
+                return get(err, 'data');
               });
             }
             return null;

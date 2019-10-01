@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyFaxCtrl', function ($q, $stateParams, $translate, atInternet, TelecomMediator, TelephonyMediator, SidebarMenu, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyFaxCtrl', function TelecomTelephonyFaxCtrl($q, $stateParams, $translate, atInternet, TelecomMediator, TelephonyMediator, SidebarMenu, TucToast) {
   const self = this;
 
   self.loading = {
@@ -13,7 +13,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxCtrl', function ($q,
     =            ACTIONS            =
     =============================== */
 
-  self.faxNameSave = function (newServiceDescription) {
+  self.faxNameSave = function faxNameSave(newServiceDescription) {
     self.fax.startEdition();
     self.fax.description = newServiceDescription;
     return self.fax.save().then(() => {
@@ -34,7 +34,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxCtrl', function ($q,
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {

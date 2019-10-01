@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciProjectsNewErrorLazyLoading';
+const moduleName = 'ovhManagerPciErrorLazyLoading';
 
 angular
   .module(moduleName, [

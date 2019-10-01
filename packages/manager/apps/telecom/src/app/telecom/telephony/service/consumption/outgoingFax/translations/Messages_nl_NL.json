@@ -1,8 +1,0 @@
-{
-  "telephony_service_consumption_outgoing_fax_all": "Tous les fax émis",
-  "telephony_service_consumption_outgoing_fax_empty": "Aucun fax émis.",
-  "telephony_service_consumption_outgoing_fax_period": "Période du <strong>{{ start }}</strong> au <strong>{{ end }}</strong>",
-  "telephony_service_consumption_outgoing_fax_not_found": "Aucun fax ne correspond à cette recherche.",
-  "telephony_service_consumption_outgoing_fax_summary": "Fax émis : <strong>{{ fax }}</strong>, nombre de page(s) : <strong>{{ pages }}</strong>, prix : {{ price }} HT",
-  "telephony_service_consumption_outgoing_fax_pages": "Pages"
-}

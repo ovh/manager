@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', function ($q, $stateParams, $translate, $timeout, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', function TelecomTelephonyLinePhoneRebootCtrl($q, $stateParams, $translate, $timeout, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator) {
   const self = this;
 
   function init() {
@@ -17,7 +17,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', f
       });
   }
 
-  self.reboot = function () {
+  self.reboot = function reboot() {
     self.isRebooting = true;
     OvhApiTelephony.Line().Phone().v6().reboot({
       billingAccount: $stateParams.billingAccount,

@@ -1,3 +1,23 @@
+## [1.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.3...@ovh-ux/manager-emailpro@1.1.4) (2019-09-19)
+
+
+### Bug Fixes
+
+* **emailpro:** reinit an account works now correctly ([#1300](https://github.com/ovh-ux/manager/issues/1300)) ([fe1ec32](https://github.com/ovh-ux/manager/commit/fe1ec32))
+
+
+
+## [1.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.2...@ovh-ux/manager-emailpro@1.1.3) (2019-09-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 55] ([e088a40](https://github.com/ovh-ux/manager/commit/e088a40))
+* fix version for wuc ([6eb2e21](https://github.com/ovh-ux/manager/commit/6eb2e21))
+* remove use of lodash bind ([#1255](https://github.com/ovh-ux/manager/issues/1255)) ([d33d704](https://github.com/ovh-ux/manager/commit/d33d704))
+
+
+
 ## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.1...@ovh-ux/manager-emailpro@1.1.2) (2019-08-01)
 
 

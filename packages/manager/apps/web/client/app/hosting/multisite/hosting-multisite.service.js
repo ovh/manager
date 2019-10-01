@@ -1,3 +1,10 @@
+import assign from 'lodash/assign';
+import camelCase from 'lodash/camelCase';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+
 angular.module('services').service(
   'HostingDomain',
   class HostingDomain {
@@ -236,7 +243,7 @@ angular.module('services').service(
       return this.OvhHttp.get('/hosting/web/offerCapabilities', {
         rootPath: 'apiv6',
         params: {
-          offer: _.camelCase(offer).toLowerCase(),
+          offer: camelCase(offer).toLowerCase(),
         },
         cache: 'hosting.web.capabilities',
       });
@@ -249,7 +256,7 @@ angular.module('services').service(
       return this.OvhHttp.get('/domain/zone', {
         rootPath: 'apiv6',
       }).then((zones) => {
-        const zonesJava = _.map(zones, zone => ({
+        const zonesJava = map(zones, zone => ({
           displayName: zone,
           formattedName: zone,
           name: zone,
@@ -282,10 +289,10 @@ angular.module('services').service(
      * @param {object} opts
      */
     pollRequest(opts) {
-      if (!_.isArray(opts.taskIds) || opts.taskIds.length <= 0) {
+      if (!isArray(opts.taskIds) || opts.taskIds.length <= 0) {
         this.$rootScope.$broadcast(`hostingDomain.${opts.namespace}.done`);
       } else {
-        _.forEach(opts.taskIds, (taskId) => {
+        forEach(opts.taskIds, (taskId) => {
           this.$rootScope.$broadcast(
             `hostingDomain.${opts.namespace}.start`,
             opts,
@@ -319,7 +326,7 @@ angular.module('services').service(
      * Kill all polling
      */
     killAllPolling() {
-      _.forEach(['detachDomain', 'attachDomain', 'modifyDomain'], (action) => {
+      forEach(['detachDomain', 'attachDomain', 'modifyDomain'], (action) => {
         this.Poll.kill({ namespace: `hostingDomain.${action}` });
       });
     }
@@ -387,7 +394,7 @@ angular.module('services').service(
           search,
           searchedType: 'AAAA',
         },
-      }).then(data => _.get(data, 'paginatedZone.records.results'));
+      }).then(data => get(data, 'paginatedZone.records.results'));
     }
 
     /**
@@ -395,7 +402,7 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getAttachedDomains(serviceName, options) {
-      return this.OvhHttp.get(`/hosting/web/${serviceName}/attachedDomain`, _.assign({
+      return this.OvhHttp.get(`/hosting/web/${serviceName}/attachedDomain`, assign({
         rootPath: 'apiv6',
       }, options));
     }

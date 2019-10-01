@@ -1,3 +1,8 @@
+import flatten from 'lodash/flatten';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
+
 angular.module('services').service(
   'HostingEnvvars',
   class HostingEnvvars {
@@ -16,7 +21,7 @@ angular.module('services').service(
     list(serviceName, filters) {
       let filtersAsArray = filters;
 
-      if (!_(filters).isArray()) {
+      if (!isArray(filters)) {
         filtersAsArray = [filters];
       }
 
@@ -28,20 +33,18 @@ angular.module('services').service(
       return this.$q.allSettled(promises).then((data) => {
         let dataAsArray = data;
 
-        if (!_(data).isArray()) {
+        if (!isArray(data)) {
           dataAsArray = [data];
         }
 
-        return _(dataAsArray)
-          .chain()
-          .map(datum => (_(datum).isArray
-            ? _(datum)
-              .flatten()
-              .value()
-            : datum)) // The API returns an array of array sometimes
-          .flatten()
-          .uniq()
-          .value();
+        return uniq(
+          flatten(
+            map(
+              dataAsArray,
+              datum => (isArray(datum) ? flatten(datum) : datum),
+            ),
+          ),
+        );
       });
     }
 

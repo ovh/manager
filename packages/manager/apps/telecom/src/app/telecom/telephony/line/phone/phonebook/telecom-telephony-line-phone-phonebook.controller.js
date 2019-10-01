@@ -77,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         }));
   }
 
-  self.getSelection = function () {
+  self.getSelection = function getSelection() {
     return filter(
       self.phonebookContact.raw,
       contact => contact
@@ -94,7 +94,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
 
   /* ----------  PHONEBOOK  ----------*/
 
-  self.createPhonebook = function (form) {
+  self.createPhonebook = function createPhonebook(form) {
     self.phonebookToAdd.isAdding = true;
     const name = pick(self.phonebookToAdd, 'name');
     return OvhApiTelephony.Line().Phone().Phonebook().v6()
@@ -115,7 +115,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       });
   };
 
-  self.startEdition = function () {
+  self.startEdition = function startEdition() {
     self.phonebook.inEdition = true;
     self.phonebook.newName = angular.copy(self.phonebook.name);
     $timeout(() => {
@@ -123,11 +123,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
   };
 
-  self.cancelEdition = function () {
+  self.cancelEdition = function cancelEdition() {
     self.phonebook.inEdition = false;
   };
 
-  self.savePhonebook = function () {
+  self.savePhonebook = function savePhonebook() {
     return OvhApiTelephony.Line().Phone().Phonebook().v6()
       .update({
         billingAccount: $stateParams.billingAccount,
@@ -144,7 +144,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       });
   };
 
-  self.deletePhonebook = function () {
+  self.deletePhonebook = function deletePhonebook() {
     self.phonebook.hasModalOpened = true;
     const modal = $uibModal.open({
       animation: true,
@@ -172,7 +172,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
 
   /* ----------  PHONEBOOK CONTACT  ----------*/
 
-  self.addPhonebookContact = function () {
+  self.addPhonebookContact = function addPhonebookContact() {
     self.phonebookContact.hasModalOpened = true;
     const modal = $uibModal.open({
       animation: true,
@@ -197,7 +197,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
   };
 
-  self.importPhonebookContact = function () {
+  self.importPhonebookContact = function importPhonebookContact() {
     self.phonebookContact.hasModalOpened = true;
     const modal = $uibModal.open({
       animation: true,
@@ -236,9 +236,9 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     return modal;
   };
 
-  self.exportPhonebookContact = function () {
+  self.exportPhonebookContact = function exportPhonebookContact() {
     self.phonebookContact.isExporting = true;
-    const tryGetCsvExport = function () {
+    const tryGetCsvExport = function tryGetCsvExport() {
       return OvhApiTelephony.Line().Phone().Phonebook().v6()
         .getExport({
           billingAccount: $stateParams.billingAccount,
@@ -267,7 +267,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
   };
 
-  self.updatePhonebookContact = function (contact) {
+  self.updatePhonebookContact = function updatePhonebookContact(contact) {
     self.phonebookContact.hasModalOpened = true;
     const modal = $uibModal.open({
       animation: true,
@@ -293,7 +293,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
   };
 
-  self.removePhonebookContact = function (contact) {
+  self.removePhonebookContact = function removePhonebookContact(contact) {
     self.phonebookContact.isDeleting = true;
     return OvhApiTelephony.Line().Phone().Phonebook().PhonebookContact()
       .v6()
@@ -310,7 +310,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       });
   };
 
-  self.deleteSelectedContacts = function () {
+  self.deleteSelectedContacts = function deleteSelectedContacts() {
     const contacts = self.getSelection();
     const queries = contacts
       .map(contact => OvhApiTelephony.Line().Phone().Phonebook().PhonebookContact()
@@ -332,7 +332,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
   };
 
-  self.sortPhonebookContact = function () {
+  self.sortPhonebookContact = function sortPhonebookContact() {
     let data = angular.copy(self.phonebookContact.raw);
     data = $filter('orderBy')(
       data,
@@ -347,7 +347,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     }
   };
 
-  self.orderPhonebookContactBy = function (by) {
+  self.orderPhonebookContactBy = function orderPhonebookContactBy(by) {
     if (self.phonebookContact.orderBy === by) {
       self.phonebookContact.orderDesc = !self.phonebookContact.orderDesc;
     } else {
@@ -370,7 +370,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     );
   };
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     self.phonebookContact.isLoading = true;
     OvhApiTelephony.Line().Phone().Phonebook().PhonebookContact()
       .v6()

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller(
@@ -106,7 +108,7 @@ angular
                 $translate.instant('hosting_tab_CRON_edit_error', [
                   actionData.cron.id,
                 ]),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             })
@@ -125,7 +127,7 @@ angular
             .catch((err) => {
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_CRON_save_error'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             })
@@ -175,7 +177,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_CRON_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
             $scope.resetAction();

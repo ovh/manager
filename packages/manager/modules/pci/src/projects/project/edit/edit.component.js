@@ -6,6 +6,8 @@ export default {
     defaultProject: '<',
     onUpdate: '<',
     project: '<',
+    setDefault: '<',
+    unFavProject: '<',
   },
   controller,
   template,

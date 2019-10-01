@@ -1,4 +1,4 @@
-angular.module('managerApp').service('telephonyGroupNumberConferencePolling', function ($q, $timeout) {
+angular.module('managerApp').service('telephonyGroupNumberConferencePolling', function telephonyGroupNumberConferencePolling($q, $timeout) {
   const self = this;
   let pollingDeferred = null;
   let pollingPromise = null;
@@ -21,12 +21,12 @@ angular.module('managerApp').service('telephonyGroupNumberConferencePolling', fu
     }, error => pollingDeferred.reject(error));
   }
 
-  self.startPolling = function () {
+  self.startPolling = function startPolling() {
     pollingStarted = true;
     return poll();
   };
 
-  self.stopPolling = function () {
+  self.stopPolling = function stopPolling() {
     pollingStarted = false;
     if (pollingPromise) {
       $timeout.cancel(pollingPromise);
@@ -34,7 +34,7 @@ angular.module('managerApp').service('telephonyGroupNumberConferencePolling', fu
     pollingDeferred.reject();
   };
 
-  self.pausePolling = function () {
+  self.pausePolling = function pausePolling() {
     pollingStarted = false;
     if (pollingPromise) {
       $timeout.cancel(pollingPromise);
@@ -50,7 +50,7 @@ angular.module('managerApp').service('telephonyGroupNumberConferencePolling', fu
   /**
      *  Init and start conference polling
      */
-  self.initPolling = function (conferenceObj) {
+  self.initPolling = function initPolling(conferenceObj) {
     // set conference instance to poll
     self.conference = conferenceObj;
 

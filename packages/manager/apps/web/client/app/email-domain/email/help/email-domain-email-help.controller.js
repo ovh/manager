@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'EmailsHelpCtrl',
   class EmailsHelpCtrl {
@@ -12,18 +14,18 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.emails = _.get(this.$scope.currentActionData, 'emails', []);
+      this.emails = get(this.$scope.currentActionData, 'emails', []);
       this.hideEmailsHelp = {};
       this.loading = false;
-      this.productId = _.get(this.$scope.currentActionData, 'productId');
-      this.quotas = _.get(this.$scope.currentActionData, 'quotas', {
+      this.productId = get(this.$scope.currentActionData, 'productId');
+      this.quotas = get(this.$scope.currentActionData, 'quotas', {
         account: 0,
         mailingList: 0,
         redirection: 0,
         responder: 0,
       });
       this.responders = [];
-      this.summary = _.get(this.$scope.currentActionData, 'summary', {
+      this.summary = get(this.$scope.currentActionData, 'summary', {
         account: 0,
         redirection: 0,
         responder: 0,

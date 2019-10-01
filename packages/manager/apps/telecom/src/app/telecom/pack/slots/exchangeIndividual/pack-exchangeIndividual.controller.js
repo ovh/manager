@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackExchangeIndividualCtrl', function ($scope, OvhApiPackXdslExchangeIndividual, $stateParams) {
+angular.module('managerApp').controller('PackExchangeIndividualCtrl', function PackExchangeIndividualCtrl($scope, OvhApiPackXdslExchangeIndividual, $stateParams) {
   const self = this;
   self.exchangeMail = {};
 

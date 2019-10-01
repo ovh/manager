@@ -1,5 +1,4 @@
 import angular from 'angular';
-import debounce from 'lodash/debounce';
 
 export default class ExchangeTabGroupsCtrl {
   /* @ngInject */
@@ -27,7 +26,6 @@ export default class ExchangeTabGroupsCtrl {
     $scope.$on('showGroups', () => this.displayGroups());
     $scope.$on('showManagers', () => this.displayManagersByGroup());
     $scope.$on('showMembers', () => this.displayMembersByGroup());
-    this.debouncedGetMailingLists = debounce(this.getMailingLists, 300);
 
     $scope.getLoading = () => this.getLoading();
     $scope.getMailingListObjects = () => this.getMailingListObjects();
@@ -35,7 +33,7 @@ export default class ExchangeTabGroupsCtrl {
   }
 
   onSearchValueChange() {
-    this.debouncedGetMailingLists();
+    this.getMailingLists();
   }
 
   displayGroups() {

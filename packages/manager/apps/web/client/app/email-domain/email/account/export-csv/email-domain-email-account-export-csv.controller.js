@@ -1,3 +1,8 @@
+import at from 'lodash/at';
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'EmailsAccountsToCsvCtrl',
   class EmailsAccountsToCsvCtrl {
@@ -44,7 +49,7 @@ angular.module('App').controller(
 
     exportAccounts() {
       this.loading.exportCsv = true;
-      const delegated = _.get(this.$scope.currentActionData, 'delegate', false);
+      const delegated = get(this.$scope.currentActionData, 'delegate', false);
 
       let emailsPromise;
       if (delegated) {
@@ -57,7 +62,7 @@ angular.module('App').controller(
         let currentPull = 0;
         const requestsCount = 200;
         let quit = false;
-        const requests = _.map(
+        const requests = map(
           emails,
           id => (delegated
             ? this.WucEmails.getDelegatedEmail(id)
@@ -80,11 +85,11 @@ angular.module('App').controller(
           return this.$q
             .all(pull)
             .then((accounts) => {
-              const headerArray = _.keys(accounts[0]);
-              const header = `${_.keys(accounts[0]).join(';')};`;
-              const content = _.map(
+              const headerArray = keys(accounts[0]);
+              const header = `${keys(accounts[0]).join(';')};`;
+              const content = map(
                 accounts,
-                account => `${_.at(account, headerArray).join(';')};`,
+                account => `${at(account, headerArray).join(';')};`,
               ).join('\n');
 
               if (content && (emails.length < requestsCount || quit)) {

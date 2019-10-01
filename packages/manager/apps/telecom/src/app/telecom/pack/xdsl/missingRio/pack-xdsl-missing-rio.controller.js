@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 
-angular.module('managerApp').controller('PackXdslMissingRioCtrl', function ($q, $stateParams, $translate, OvhApiXdsl, TucToast) {
+angular.module('managerApp').controller('PackXdslMissingRioCtrl', function PackXdslMissingRioCtrl($q, $stateParams, $translate, OvhApiXdsl, TucToast) {
   const self = this;
 
   this.loading = true;
 
-  this.init = function () {
+  this.init = function init() {
     self.loading = true;
 
     self.missingRioForm = {};
@@ -26,7 +26,7 @@ angular.module('managerApp').controller('PackXdslMissingRioCtrl', function ($q, 
   /**
      * Send Rio number
      */
-  this.sendRio = function () {
+  this.sendRio = function sendRio() {
     self.loading = true;
 
     const params = { relaunchWithoutPortability: self.missingRioForm.portNumber };

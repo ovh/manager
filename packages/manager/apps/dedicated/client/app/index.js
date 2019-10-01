@@ -1,0 +1,71 @@
+/* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
+import 'babel-polyfill';
+import 'script-loader!moment/min/moment-with-locales.min.js';
+import 'script-loader!jquery/dist/jquery.min.js';
+import 'script-loader!es6-shim/es6-shim.min.js';
+import 'script-loader!components-jqueryui/ui/minified/version.js';
+import 'script-loader!components-jqueryui/ui/minified/plugin.js';
+import 'script-loader!components-jqueryui/ui/minified/widget.js';
+import 'script-loader!components-jqueryui/ui/minified/data.js';
+import 'script-loader!components-jqueryui/ui/minified/scroll-parent.js';
+import 'script-loader!components-jqueryui/ui/minified/safe-active-element.js';
+import 'script-loader!components-jqueryui/ui/minified/safe-blur.js';
+import 'script-loader!components-jqueryui/ui/widgets/mouse.js';
+import 'script-loader!components-jqueryui/ui/widgets/sortable.js';
+import 'script-loader!components-jqueryui/ui/widgets/draggable.js';
+import 'angular';
+import 'angular-xeditable';
+import 'script-loader!ovh-ui-angular/dist/oui-angular.min.js';
+import 'angular-route';
+import 'angular-sanitize';
+import 'angular-cookies';
+import 'angular-messages';
+import 'script-loader!lodash/lodash.min.js';
+import 'script-loader!jquery.scrollto/jquery.scrollTo.min.js';
+import 'script-loader!jquery.cookie/jquery.cookie.js';
+import 'bootstrap';
+import 'angular-ui-bootstrap';
+import 'angularjs-scroll-glue';
+import 'raphael';
+import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
+import 'punycode';
+import 'script-loader!urijs/src/URI.min.js';
+import 'script-loader!ipaddr.js/ipaddr.min.js';
+import 'script-loader!validator/validator.min.js';
+import 'script-loader!@bower_components/angular-ui-utils/ui-utils.min.js';
+import 'script-loader!df-tab-menu/build/df-tab-menu.min.js';
+import 'script-loader!angular-ui-validate/dist/validate.min.js';
+import 'script-loader!ovh-angular-browser-alert/dist/ovh-angular-browser-alert.js';
+import 'script-loader!randexp/build/randexp.min';
+import 'script-loader!ui-select/dist/select.min.js';
+import 'angular-resource';
+import 'script-loader!jsurl/lib/jsurl.js';
+import 'script-loader!intl-tel-input/build/js/intlTelInput.min.js';
+import 'script-loader!intl-tel-input/lib/libphonenumber/build/utils.js';
+import 'script-loader!international-phone-number/releases/international-phone-number.min.js';
+import 'script-loader!qrcode.js/lib/qrcode.js';
+import 'angular-qr';
+import 'script-loader!u2f-api-polyfill/u2f-api-polyfill.js';
+import 'ovh-api-services';
+import 'angular-translate';
+import 'script-loader!angular-translate/dist/angular-translate-loader-partial/angular-translate-loader-partial.min.js';
+import 'ng-slide-down';
+import '@ovh-ux/ng-ovh-actions-menu';
+import 'script-loader!matchmedia-ng/matchmedia-ng.js';
+import 'angular-aria';
+import 'script-loader!chart.js/dist/Chart.min.js';
+import 'script-loader!angular-chart.js/dist/angular-chart.min.js';
+import 'ovh-angular-responsive-tabs';
+import 'ckeditor';
+import 'script-loader!messenger/build/js/messenger.min.js';
+import 'script-loader!flatpickr/dist/flatpickr.min.js';
+import 'script-loader!filesize/lib/filesize.js';
+
+// Ckeditor 4.x
+import 'ng-ckeditor';
+
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+
+import './app.less';
+import './css/source.scss';
+/* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */

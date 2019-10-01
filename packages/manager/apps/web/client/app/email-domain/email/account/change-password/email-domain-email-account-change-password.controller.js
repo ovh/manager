@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'EmailsChangePasswordAccountCtrl',
   class EmailsChangePasswordAccountCtrl {
@@ -26,7 +28,7 @@ angular.module('App').controller(
       this.model = { password: '' };
       this.validation = { password: '' };
 
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         this.currentAccount = this.$scope.currentActionData.account;
       } else {
         this.currentAccount = this.$scope.currentActionData;
@@ -55,7 +57,7 @@ angular.module('App').controller(
 
     changePasswordAccount() {
       let passwordPromise = null;
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         passwordPromise = this.WucEmails.changePasswordDelegatedAccount(
           this.currentAccount.email,
           this.model,

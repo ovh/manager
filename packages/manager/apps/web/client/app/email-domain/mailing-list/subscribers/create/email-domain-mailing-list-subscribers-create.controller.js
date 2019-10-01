@@ -1,3 +1,5 @@
+import uniq from 'lodash/uniq';
+
 angular.module('App').controller(
   'MailingListsCreateSubscriberCtrl',
   class MailingListsCreateSubscriberCtrl {
@@ -33,7 +35,7 @@ angular.module('App').controller(
 
     createSubscriber() {
       this.loading = true;
-      const subscribersToAdd = _.uniq(this.selection);
+      const subscribersToAdd = uniq(this.selection);
 
       return this.MailingLists.addSubscribers(this.$stateParams.productId, {
         mailingList: this.mailingList.name,

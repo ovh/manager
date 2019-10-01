@@ -1,3 +1,7 @@
+import endsWith from 'lodash/endsWith';
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'EmailDomainEmailAclCtrl',
   class EmailDomainEmailAclCtrl {
@@ -43,9 +47,9 @@ angular.module('App').controller(
 
       this.User.getUser()
         .then((user) => {
-          const nicLanguage = _.find(
+          const nicLanguage = find(
             this.LANGUAGES,
-            language => _(language.value).endsWith(user.ovhSubsidiary),
+            language => endsWith(language.value, user.ovhSubsidiary),
           );
           if (nicLanguage) {
             this.createNicUrl.value = this.constants.WEBSITE_URLS.new_nic[
@@ -100,7 +104,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          if (_.isEmpty(this.acls)) {
+          if (isEmpty(this.acls)) {
             this.loading.acls = false;
           }
         });

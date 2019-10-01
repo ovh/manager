@@ -87,7 +87,7 @@ import take from 'lodash/take';
         return dynamicConfigs;
       }
 
-      self.getKeyIndex = function (index) {
+      self.getKeyIndex = function getKeyIndex(index) {
         return {
           number: (index + (self.model.moduleIndex * self.configGroup.keysPerPage)
             + ((self.model.moduleIndex * self.configGroup.keysPerPage)
@@ -101,7 +101,7 @@ import take from 'lodash/take';
       =            EVENTS            =
       ============================== */
 
-      self.onModuleNumberChange = function () {
+      self.onModuleNumberChange = function onModuleNumberChange() {
         const existingModules = groupConfigs(self.configGroup.configs);
 
         if (self.extensionKeyModuleConfig.value > existingModules.length) {
@@ -136,7 +136,7 @@ import take from 'lodash/take';
         }
       });
 
-      self.$onInit = function () {
+      self.$onInit = function $onInit() {
         self.extensionKeyModuleConfig = find(self.configGroup.configs, {
           name: 'ExtensionKeyModule',
         });

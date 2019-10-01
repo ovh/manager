@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'EmailDelegateResponderCtrl',
   class EmailDelegateResponderCtrl {
@@ -41,7 +44,7 @@ angular.module('App').controller(
 
       return this.WucEmails.getDelegatedEmails(this.$stateParams.productId)
         .then((data) => {
-          this.accounts = _.map(data, email => email.split('@')[0]);
+          this.accounts = map(data, email => email.split('@')[0]);
           this.emailsList = data.sort();
         })
         .catch(err => this.Alerter.alertFromSWS(
@@ -50,7 +53,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          if (_.isEmpty(this.emailsList)) {
+          if (isEmpty(this.emailsList)) {
             this.loading.responders = false;
           }
         });

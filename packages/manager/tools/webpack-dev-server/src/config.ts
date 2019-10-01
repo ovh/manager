@@ -30,10 +30,10 @@ export = (env) => {
       },
       clientLogLevel: 'none',
       logLevel: 'silent',
+      host: env.host || 'localhost',
       https: env.https || false,
       overlay: true,
-      host: env.host || 'localhost',
-      port: 9000,
+      port: env.port || 9000,
       proxy,
     },
   };

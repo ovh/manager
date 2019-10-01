@@ -198,7 +198,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
     });
   }
 
-  self.submitPhoneReturn = function () {
+  self.submitPhoneReturn = function submitPhoneReturn() {
     self.isSubmiting = true;
     return OvhApiTelephony.Line().Phone().RMA().v6()
       .post({
@@ -215,7 +215,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       });
   };
 
-  self.submitOrder = function () {
+  self.submitOrder = function submitOrder() {
     if (self.phone) {
       return self.submitRma();
     }
@@ -240,7 +240,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
     });
   };
 
-  self.submitRma = function () {
+  self.submitRma = function submitRma() {
     const params = {
       newMerchandise: self.order.phone,
       type: 'change to another phone/equipment (restitution first and shipping then)', // nice enum ...
@@ -266,23 +266,23 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       });
   };
 
-  self.getPhoneLabel = function (phone) {
+  self.getPhoneLabel = function getPhoneLabel(phone) {
     const name = $translate.instant('telephony_line_phone_order_order_change_for', { phone: phone.displayName });
     const price = $translate.instant('telephony_line_phone_order_order_price_tax_free', { price: phone.price.text });
     return [name, price].join(' ');
   };
 
-  self.getOfferLabel = function (offer) {
+  self.getOfferLabel = function getOfferLabel(offer) {
     const name = $translate.instant('telephony_line_phone_order_order_a', { brand: offer.description });
     const price = $translate.instant('telephony_line_phone_order_order_price2_tax_free', { price: offer.price.text });
     return [name, price].join(' ');
   };
 
-  self.isSamePhone = function () {
+  self.isSamePhone = function isSamePhone() {
     return self.phone && self.order.phone && (`phone.${self.order.phone}`) === self.phone.brand;
   };
 
-  self.ipValidator = (function () {
+  self.ipValidator = (function ipValidator() {
     return {
       test(value) {
         return TucIpAddress.isValidPublicIp4(value);
@@ -290,7 +290,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
     };
   }());
 
-  self.detachPhone = function () {
+  self.detachPhone = function detachPhone() {
     self.isDetaching = true;
     OvhApiTelephony.Line().v6().dissociateDevice({
       billingAccount: $stateParams.billingAccount,

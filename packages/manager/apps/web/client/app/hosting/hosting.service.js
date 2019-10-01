@@ -1,3 +1,14 @@
+import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import union from 'lodash/union';
+
+
 {
   const hostingCache = 'UNIVERS_WEB_HOSTING';
   const passwordConditions = {
@@ -107,8 +118,8 @@
              * @returns {{min: *, max: *}}
              */
       static getPasswordConditions(customConditions = undefined) {
-        const min = _.get(customConditions, 'min', passwordConditions.min);
-        const max = _.get(customConditions, 'max', passwordConditions.max);
+        const min = get(customConditions, 'min', passwordConditions.min);
+        const max = get(customConditions, 'max', passwordConditions.max);
         return { min, max };
       }
 
@@ -128,8 +139,8 @@
              * @returns {boolean}
              */
       static isPasswordValid(password, customConditions = undefined) {
-        const min = _.get(customConditions, 'min', passwordConditions.min);
-        const max = _.get(customConditions, 'max', passwordConditions.max);
+        const min = get(customConditions, 'min', passwordConditions.min);
+        const max = get(customConditions, 'max', passwordConditions.max);
         return !!(password && password.length >= min && password.length <= max && password.match(/.*[0-9].*/) && password.match(/.*[a-z].*/) && password.match(/.*[A-Z].*/) && password.match(/^[a-zA-Z0-9]+$/));
       }
 
@@ -178,12 +189,12 @@
           cache: hostingCache,
           clearCache: forceRefresh,
         }).then((originalHosting) => {
-          const hosting = _(originalHosting).clone(true);
-          hosting.isCloudWeb = _(hosting.offer).includes('CLOUD');
+          const hosting = cloneDeep(originalHosting);
+          hosting.isCloudWeb = includes(hosting.offer, 'CLOUD');
 
           if (hosting.isCloudWeb) {
             hosting.configurationQuota = this.HOSTING.cloudWeb.configurationQuota;
-            hosting.totalQuota = _.clone(this.HOSTING.cloudWeb.configurationQuota);
+            hosting.totalQuota = clone(this.HOSTING.cloudWeb.configurationQuota);
 
             const configurationOctet = this.WucConverterService.convertToOctet(
               hosting.configurationQuota.value,
@@ -231,7 +242,7 @@
         return this.$http.get(`/hosting/web/${serviceName}`)
           .then(response => response.data)
           .catch((http) => {
-            if (_.isArray(catchOpt) && _.indexOf(catchOpt, http.status) !== -1) {
+            if (isArray(catchOpt) && indexOf(catchOpt, http.status) !== -1) {
               return null;
             }
             return this.$q.reject(http);
@@ -495,14 +506,14 @@
       /* -------------------------POLLING-------------------------*/
 
       pollFlushCdn(serviceName, taskIds) {
-        return this.$q.all(_.map(taskIds, taskId => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
+        return this.$q.all(map(taskIds, taskId => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
           namespace: 'hosting.cdn.flush.refresh',
           interval: 30000,
         }).then(resp => resp, err => err)));
       }
 
       pollSqlPrive(serviceName, taskIds) {
-        return this.$q.all(_.map(taskIds, taskId => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
+        return this.$q.all(map(taskIds, taskId => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
           namespace: 'hosting.database.sqlPrive',
           interval: 30000,
         })
@@ -529,15 +540,15 @@
              */
       checkTaskUnique(serviceName, fct) {
         let tasks = [];
-        const r = _.map(['init', 'doing', 'todo'], status => this.OvhHttp.get(`/hosting/web/${serviceName}/tasks`, {
+        const r = map(['init', 'doing', 'todo'], status => this.OvhHttp.get(`/hosting/web/${serviceName}/tasks`, {
           rootPath: 'apiv6',
           params: {
             function: fct,
             status,
           },
         }).then((response) => {
-          if (_.isArray(response.data) && !_.isEmpty(response.data)) {
-            tasks = _.union(tasks, response.data);
+          if (isArray(response.data) && !isEmpty(response.data)) {
+            tasks = union(tasks, response.data);
           }
         }));
 
@@ -562,7 +573,7 @@
           const defer = this.$q.defer();
           defer.notify(durations);
 
-          const requests = _.map(durations, duration => this.OvhHttp.get(`/order/hosting/web/${serviceName}/upgrade/${duration}`, {
+          const requests = map(durations, duration => this.OvhHttp.get(`/order/hosting/web/${serviceName}/upgrade/${duration}`, {
             rootPath: 'apiv6',
             params: {
               offer,

@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 angular.module('App').controller(
   'PrivateDatabaseRestoreArchiveBDDCtrl',
   class PrivateDatabaseRestoreArchiveBDDCtrl {
@@ -20,7 +22,7 @@ angular.module('App').controller(
       return this.privateDatabase
         .getBDDSId(this.productId)
         .then((bddsId) => {
-          if (_.includes(bddsId, this.$scope.bddName)) {
+          if (includes(bddsId, this.$scope.bddName)) {
             this.$scope.step = 2;
           } else {
             this.$scope.step = 1;

@@ -1,0 +1,4 @@
+{
+  "billing_autorenew_service_update_no_payment_mean_description": "Vous avez sélectionné le paiement automatique pour votre service {{ service }}",
+  "billing_autorenew_service_update_no_payment_mean_add": "Afin de pouvoir utiliser ce mode de renouvellement, merci d'enregistrer au préalable un moyen de paiement dans la section moyens de paiement"
+}

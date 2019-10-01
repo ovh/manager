@@ -1,3 +1,5 @@
+import isObject from 'lodash/isObject';
+
 angular.module('App').controller(
   'hostingOrderSslCtrl',
   class HostingOrderSslCtrl {
@@ -128,7 +130,7 @@ angular.module('App').controller(
           && !this.step2.loading.isGeneratingOrderForm;
       const isImportCertificateValid = this.hostingSSLCertificateType
         .constructor.isImported(this.selectedCertificateType)
-          && _(this.importCertificateForm).isObject()
+          && isObject(this.importCertificateForm)
           && this.importCertificateForm.$valid;
 
       return isPaidCertificateValid || isImportCertificateValid;

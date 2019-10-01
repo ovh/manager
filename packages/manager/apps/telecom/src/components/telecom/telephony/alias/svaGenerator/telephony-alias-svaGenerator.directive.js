@@ -57,10 +57,10 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
   function loadImage(src) {
     return $q((resolve, reject) => {
       const result = new Image();
-      result.onload = function () {
+      result.onload = function onload() {
         resolve(result);
       };
-      result.error = function (err) {
+      result.error = function error(err) {
         reject(err);
       };
       result.src = src;

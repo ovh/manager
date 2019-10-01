@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sharepoint@1.0.2...@ovh-ux/manager-sharepoint@1.0.3) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for wuc ([6eb2e21](https://github.com/ovh-ux/manager/commit/6eb2e21))
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sharepoint@1.0.1...@ovh-ux/manager-sharepoint@1.0.2) (2019-07-31)
 
 

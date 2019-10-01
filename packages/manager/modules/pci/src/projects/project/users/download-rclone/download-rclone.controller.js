@@ -28,6 +28,7 @@ export default class PciUsersDownloadRcloneController {
       label: this.CucRegionService.getTranslatedMicroRegion(region),
     }));
     this.region = first(this.regions);
+    this.hasGlobalRegions = this.PciProjectsProjectUsersService.checkGlobalRegion(this.regions);
   }
 
   downloadRclone() {

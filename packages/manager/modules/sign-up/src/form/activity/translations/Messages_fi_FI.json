@@ -1,8 +1,8 @@
 {
- "sign_up_activity_field_vat": "VAT number ",
- "sign_up_activity_field_organisation": "Organisation",
- "sign_up_activity_field_corporationType": "Type of company ",
- "sign_up_activity_field_nationalIdentificationNumber": "National identification number",
- "sign_up_activity_field_companyNationalIdentificationNumber": "National identification number",
- "sign_up_activity_field_italian_sdi": "Tax number"
+  "sign_up_activity_field_vat": "VAT number ",
+  "sign_up_activity_field_organisation": "Organisation",
+  "sign_up_activity_field_corporationType": "Type of company ",
+  "sign_up_activity_field_nationalIdentificationNumber": "National identification number",
+  "sign_up_activity_field_companyNationalIdentificationNumber": "National identification number",
+  "sign_up_activity_field_italian_sdi": "Tax number"
 }

@@ -1,3 +1,12 @@
+## [6.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@6.0.1...@ovh-ux/component-rollup-config@6.0.2) (2019-08-29)
+
+
+### Bug Fixes
+
+* translations are now correctly imported ([#1248](https://github.com/ovh-ux/manager/issues/1248)) ([5be4005](https://github.com/ovh-ux/manager/commit/5be4005))
+
+
+
 ## [6.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@6.0.0...@ovh-ux/component-rollup-config@6.0.1) (2019-07-31)
 
 

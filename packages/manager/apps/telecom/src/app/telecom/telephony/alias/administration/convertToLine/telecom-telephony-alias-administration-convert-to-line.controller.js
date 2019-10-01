@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
@@ -7,7 +6,7 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import times from 'lodash/times';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConvertToLineCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, TucToastError, TucToast, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConvertToLineCtrl', function TelecomTelephonyAliasAdministrationConvertToLineCtrl($stateParams, $q, $translate, OvhApiTelephony, TucToastError, TucToast, tucTelephonyBulk) {
   const self = this;
 
   function init() {
@@ -26,7 +25,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     });
   }
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     self.isLoading = true;
     self.contractsAccepted = false;
     return self.fetchConvertToLineTask().then((task) => {
@@ -44,14 +43,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     });
   };
 
-  self.getAvailableOffers = function (service) {
+  self.getAvailableOffers = function getAvailableOffers(service) {
     return OvhApiTelephony.Number().v6().convertToLineAvailableOffers({
       billingAccount: service.billingAccount,
       serviceName: service.serviceName,
     }).$promise;
   };
 
-  self.fetchConvertToLineTask = function () {
+  self.fetchConvertToLineTask = function fetchConvertToLineTask() {
     return OvhApiTelephony.Service().OfferTask().v6()
       .query({
         billingAccount: $stateParams.billingAccount,
@@ -66,7 +65,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       }).$promise)).then(tasks => head(filter(tasks, { status: 'todo' }))));
   };
 
-  self.convertToLine = function () {
+  self.convertToLine = function convertToLine() {
     self.isConverting = true;
     return OvhApiTelephony.Number().v6().convertToLine({
       billingAccount: $stateParams.billingAccount,
@@ -80,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     });
   };
 
-  self.cancelConvertion = function () {
+  self.cancelConvertion = function cancelConvertion() {
     self.isCancelling = true;
     return OvhApiTelephony.Number().v6().cancelConvertToLine({
       billingAccount: $stateParams.billingAccount,
@@ -106,13 +105,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     function setServicesWithOffer(paramServices, listOffers) {
       const servicesFiltered = [];
 
       times(listOffers.length, (index) => {
         if (listOffers[index].status !== 404 || listOffers[index].status !== 400) {
-          if (some(listOffers[index].offers, bind('name', self.offer.name))) {
+          if (some(listOffers[index].offers, { name: self.offer.name })) {
             servicesFiltered.push(paramServices[index]);
           }
         }
@@ -132,13 +131,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       .catch(listOffers => setServicesWithOffer(services, listOffers));
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       offer: self.offer.name,
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_alias_administration_convert_bulk_all_success'),
@@ -156,7 +155,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_alias_administration_convert_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 

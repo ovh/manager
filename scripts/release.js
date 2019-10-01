@@ -1,8 +1,9 @@
+#!/usr/bin/env node
 const program = require('commander');
 const {
   checkChanges, getChangedRepositories, bumpRepositories,
   updateChangelogs, getDependenciesToUpdate, checkDependencies,
-  updateDependencies, getReleaseVersion, release, releaseGithub,
+  updateDependencies, getReleaseVersion, release, releaseGithub, writeChangelog,
 } = require('./release/index');
 
 program
@@ -11,6 +12,7 @@ program
   .option('-t, --token <token>', 'github access token', '')
   .option('-o, --organization <organization>', 'github organization', '')
   .option('-f, --force', 'Release all packages even if they have no change')
+  .option('-c, --changelog <changelog>', 'Output changelog in file <changelog>')
   .option('--no-dependency-check', 'do not check range when update dependencies')
   .option('--no-check', 'do not check if mono-repository has uncommited changes')
   .option('--draft-release', 'identify the github release as unpublished')
@@ -38,6 +40,13 @@ program
         .then(deps => (program.dependencyCheck ? checkDependencies(deps) : deps))
         .then(updateDependencies)
         .then(() => repos))
+      .then((repos) => {
+        if (program.changelog) {
+          writeChangelog(program.changelog, repos)
+            .then(() => repos);
+        }
+        return repos;
+      })
       .then((repos) => {
         if (program.release && repos.length) {
           return getReleaseVersion(program.version, program.seed)

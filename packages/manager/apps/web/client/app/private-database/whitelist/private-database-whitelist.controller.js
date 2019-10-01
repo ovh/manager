@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+
 angular.module('App').controller(
   'PrivateDatabaseWhitelistCtrl',
   class PrivateDatabaseWhitelistListCtrl {
@@ -28,7 +31,7 @@ angular.module('App').controller(
         'whitelist/create',
       ]);
 
-      _.forEach(statusToWatch, (state) => {
+      forEach(statusToWatch, (state) => {
         this.$scope.$on(
           `privateDatabase.whitelist.create.${state}`,
           this[`onWhitelistCreate${state}`].bind(this),
@@ -43,7 +46,7 @@ angular.module('App').controller(
         opts => (opts.serviceName === this.serviceName ? this.getList() : undefined),
       );
 
-      _.forEach(['done', 'error'], (state) => {
+      forEach(['done', 'error'], (state) => {
         this.$scope.$on(
           `privateDatabase.global.actions.${state}`,
           (e, taskOpt) => {
@@ -122,7 +125,7 @@ angular.module('App').controller(
       let unregister = null;
 
       const todo = () => {
-        const el = _.find(
+        const el = find(
           this.whitelistIps,
           whitelist => whitelist.ip === opts.whitelistIp,
         );
@@ -157,7 +160,7 @@ angular.module('App').controller(
       let unregister = null;
 
       const todo = () => {
-        const el = _.find(
+        const el = find(
           this.whitelistIps,
           whitelist => whitelist.ip === opts.whitelistIp,
         );

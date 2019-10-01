@@ -1,8 +1,8 @@
 angular.module('managerApp')
-  .controller('XdslModemCtrl', function ($scope, $stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
+  .controller('XdslModemCtrl', function XdslModemCtrl($scope, $stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
     const self = this;
 
-    this.getAccessName = function () {
+    this.getAccessName = function getAccessName() {
       return OvhApiXdsl.Modem().v6().get({
         xdslId: $stateParams.serviceName,
       }).$promise.then((access) => {

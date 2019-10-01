@@ -1,6 +1,6 @@
 angular.module('managerApp')
   .service('NotificationElement', () => {
-    const NotificationElement = function (element, editMode) {
+    const NotificationElement = function NotificationElement(element, editMode) {
       this.type = element.type;
       this.frequency = element.frequency;
       this.email = this.type === 'mail' ? element.email : null;

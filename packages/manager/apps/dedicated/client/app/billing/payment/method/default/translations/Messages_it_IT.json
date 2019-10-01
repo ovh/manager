@@ -1,0 +1,5 @@
+{
+  "billing_payment_method_default_title": "Imposta un metodo di pagamento predefinito",
+  "billing_payment_method_default_explain": "Stai per impostare <strong>{{ label }}</strong> come metodo di pagamento predefinito.",
+  "billing_payment_method_default_question": "Vuoi continuare?"
+}

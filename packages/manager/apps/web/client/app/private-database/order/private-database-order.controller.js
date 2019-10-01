@@ -1,3 +1,6 @@
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'PrivateDatabaseOrderCtrl',
   class PrivateDatabaseOrderCtrl {
@@ -74,7 +77,7 @@ angular.module('App').controller(
       });
 
       this.$scope.sortRam = (ram) => {
-        if (_.isString(ram)) {
+        if (isString(ram)) {
           return +ram;
         }
         return '';
@@ -91,7 +94,7 @@ angular.module('App').controller(
       this.loading.prices = true;
 
       this.$q
-        .all(_.map(durations, duration => this.privateDatabaseService
+        .all(map(durations, duration => this.privateDatabaseService
           .orderPrice(
             this.selectedOrder.config.version,
             this.selectedOrder.config.ramSize,

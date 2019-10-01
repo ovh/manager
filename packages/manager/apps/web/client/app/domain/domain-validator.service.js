@@ -1,3 +1,12 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+import isFinite from 'lodash/isFinite';
+import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
+import split from 'lodash/split';
+
 angular.module('services').service(
   'DomainValidator',
   class DomainValidator {
@@ -81,7 +90,7 @@ angular.module('services').service(
               // Format: "a:domain/cidr"
               field = field.split('/');
               if (
-                !_.isFinite(field[1])
+                !isFinite(field[1])
                 || field[1] < 1
                 || field[1] > 32
                 || !this.WucValidator.isValidDomain(field[0], {
@@ -122,7 +131,7 @@ angular.module('services').service(
               // Format: "mx:domain/cidr"
               field = field.split('/');
               if (
-                !_.isFinite(field[1])
+                !isFinite(field[1])
                 || field[1] < 1
                 || field[1] > 32
                 || !this.WucValidator.isValidDomain(field[0], {
@@ -187,7 +196,7 @@ angular.module('services').service(
               const cidr = parseInt(cidrAsString.match(/^\d+$/)[0], 10);
 
               if (
-                !_.isFinite(cidr)
+                !isFinite(cidr)
                 || cidr < 1
                 || cidr > 32
                 || !this.WucValidator.isValidIpv4(ip)
@@ -223,7 +232,7 @@ angular.module('services').service(
               const cidr = parseInt(cidrAsString.match(/^\d+$/)[0], 10);
 
               if (
-                !_.isFinite(cidr)
+                !isFinite(cidr)
                 || cidr < 1
                 || cidr > 128
                 || !this.WucValidator.isValidIpv6(ip)
@@ -282,7 +291,7 @@ angular.module('services').service(
       }
 
       ttl = parseInt(ttl, 10);
-      return _.isFinite(ttl) && (ttl === 0 || (ttl >= 60 && ttl <= 2147483647));
+      return isFinite(ttl) && (ttl === 0 || (ttl >= 60 && ttl <= 2147483647));
     }
 
     /**
@@ -387,8 +396,8 @@ angular.module('services').service(
             isValid = false;
             break;
           }
-          splitted = _.split(target.replace(/(;)$/, ''), ';');
-          if (!_.isEmpty(splitted)) {
+          splitted = split(target.replace(/(;)$/, ''), ';');
+          if (!isEmpty(splitted)) {
             for (let i = 0; i < splitted.length; i += 1) {
               const splittedVal = splitted[i].trim().split('=');
 
@@ -405,10 +414,10 @@ angular.module('services').service(
         case 'LOC':
           splitted = target.match(this.regex.LOC);
           if (splitted && splitted.length > 1) {
-            _.forEach([1, 2, 5, 6], (k) => {
+            forEach([1, 2, 5, 6], (k) => {
               splitted[k] = parseInt(splitted[k], 10);
             });
-            _.forEach([3, 7, 9, 10, 11, 12], (k) => {
+            forEach([3, 7, 9, 10, 11, 12], (k) => {
               splitted[k] = parseFloat(splitted[k]);
             });
 
@@ -674,20 +683,20 @@ angular.module('services').service(
      * @returns {string}
      */
     static transformDKIMTarget(target) {
-      const hash = _.keys(_.pick(_.get(target, 'h'), val => !!val));
-      const flags = _.keys(_.pick(_.get(target, 't'), val => !!val));
-      const pRevoke = _.get(target, 'pRevoke', false);
+      const hash = keys(pickBy(get(target, 'h'), val => !!val));
+      const flags = keys(pickBy(get(target, 't'), val => !!val));
+      const pRevoke = get(target, 'pRevoke', false);
       let value = '';
 
-      value += _.get(target, 'v.DKIM1', false) ? 'v=DKIM1;' : ''; // Version
-      value += _.get(target, 'g', false) ? `g=${target.g};` : ''; // Granularity
-      value += !_.isEmpty(hash) ? `h=${hash.join(':')};` : ''; // Hash algorithm
-      value += _.get(target, 'k.rsa', false) ? 'k=rsa;' : ''; // Keytype
-      value += _.get(target, 'n', false) ? `n=${target.n};` : ''; // Notes
-      value += _.get(target, 's', false) ? `s=${target.s};` : ''; // Service type
-      value += _.get(target, 'publicKey', false) && !pRevoke ? `p=${target.publicKey};` : '';
+      value += get(target, 'v.DKIM1', false) ? 'v=DKIM1;' : ''; // Version
+      value += get(target, 'g', false) ? `g=${target.g};` : ''; // Granularity
+      value += !isEmpty(hash) ? `h=${hash.join(':')};` : ''; // Hash algorithm
+      value += get(target, 'k.rsa', false) ? 'k=rsa;' : ''; // Keytype
+      value += get(target, 'n', false) ? `n=${target.n};` : ''; // Notes
+      value += get(target, 's', false) ? `s=${target.s};` : ''; // Service type
+      value += get(target, 'publicKey', false) && !pRevoke ? `p=${target.publicKey};` : '';
       value += pRevoke ? 'p=;' : '';
-      value += !_.isEmpty(flags) ? `t=${flags.join(':')};` : ''; // Flags
+      value += !isEmpty(flags) ? `t=${flags.join(':')};` : ''; // Flags
 
       return value;
     }
@@ -699,11 +708,11 @@ angular.module('services').service(
      */
     static transformDMARCTarget(target) {
       let value = 'v=DMARC1;'; // Version
-      value += _.get(target, 'p', false) ? `p=${target.p};` : ''; // Domain Policy
-      value += _.get(target, 'pct', false) ? `pct=${target.pct};` : ''; // Percent
-      value += _.get(target, 'rua', false) ? `rua=${target.rua};` : ''; // Addresses to send feedback
-      value += _.get(target, 'sp', false) ? `sp=${target.sp};` : ''; // SubDomain Policy
-      value += _.get(target, 'aspf', false) ? `aspf=${target.aspf};` : ''; // SPF Alignment Mode
+      value += get(target, 'p', false) ? `p=${target.p};` : ''; // Domain Policy
+      value += get(target, 'pct', false) ? `pct=${target.pct};` : ''; // Percent
+      value += get(target, 'rua', false) ? `rua=${target.rua};` : ''; // Addresses to send feedback
+      value += get(target, 'sp', false) ? `sp=${target.sp};` : ''; // SubDomain Policy
+      value += get(target, 'aspf', false) ? `aspf=${target.aspf};` : ''; // SPF Alignment Mode
 
       return value;
     }
@@ -715,20 +724,20 @@ angular.module('services').service(
      */
     static transformLOCTarget(target) {
       return [
-        _.get(target, 'lat_deg', false) ? target.lat_deg.toString() : '',
-        _.get(target, 'lat_min', false) ? target.lat_min.toString() : '',
-        _.get(target, 'lat_sec', false) ? target.lat_sec.toString() : '',
-        _.get(target, 'latitude', false) ? target.latitude.toString() : '',
-        _.get(target, 'long_deg', false) ? target.long_deg.toString() : '',
-        _.get(target, 'long_min', false) ? target.long_min.toString() : '',
-        _.get(target, 'long_sec', false) ? target.long_sec.toString() : '',
-        _.get(target, 'longitude', false) ? target.longitude.toString() : '',
-        _.get(target, 'altitude', false)
+        get(target, 'lat_deg', false) ? target.lat_deg.toString() : '',
+        get(target, 'lat_min', false) ? target.lat_min.toString() : '',
+        get(target, 'lat_sec', false) ? target.lat_sec.toString() : '',
+        get(target, 'latitude', false) ? target.latitude.toString() : '',
+        get(target, 'long_deg', false) ? target.long_deg.toString() : '',
+        get(target, 'long_min', false) ? target.long_min.toString() : '',
+        get(target, 'long_sec', false) ? target.long_sec.toString() : '',
+        get(target, 'longitude', false) ? target.longitude.toString() : '',
+        get(target, 'altitude', false)
           ? `${target.altitude.toString()}m`
           : '',
-        _.get(target, 'size', false) ? `${target.size.toString()}m` : '',
-        _.get(target, 'hp', false) ? `${target.hp.toString()}m` : '',
-        _.get(target, 'vp', false) ? `${target.vp.toString()}m` : '',
+        get(target, 'size', false) ? `${target.size.toString()}m` : '',
+        get(target, 'hp', false) ? `${target.hp.toString()}m` : '',
+        get(target, 'vp', false) ? `${target.vp.toString()}m` : '',
       ]
         .join(' ')
         .replace(/\s{2,}/g, ' ')
@@ -743,7 +752,7 @@ angular.module('services').service(
     static transformMXTarget(target) {
       return [
         target.priority != null ? target.priority.toString() : '',
-        _.get(target, 'target', false) ? punycode.toASCII(target.target) : '',
+        get(target, 'target', false) ? punycode.toASCII(target.target) : '',
       ]
         .join(' ')
         .replace(/\s{2,}/g, ' ')
@@ -765,9 +774,9 @@ angular.module('services').service(
       }
 
       return [
-        _.get(target, 'order', false) ? target.order.toString() : '',
-        _.get(target, 'pref', false) ? target.pref.toString() : '',
-        `"${_.get(target, 'flag', false) ? target.flag.toUpperCase() : ''}"`,
+        get(target, 'order', false) ? target.order.toString() : '',
+        get(target, 'pref', false) ? target.pref.toString() : '',
+        `"${get(target, 'flag', false) ? target.flag.toUpperCase() : ''}"`,
         `"${target.service || ''}"`,
         `"${target.regex || ''}"`,
         lastItem,
@@ -807,12 +816,12 @@ angular.module('services').service(
      */
     static transformSPFTarget(target) {
       let value = 'v=spf1';
-      value += _.get(target, 'aSender', false) ? ' a' : '';
-      value += _.get(target, 'mxSender', false) ? ' mx' : '';
-      value += _.get(target, 'ptrSender', false) ? ' ptr' : '';
+      value += get(target, 'aSender', false) ? ' a' : '';
+      value += get(target, 'mxSender', false) ? ' mx' : '';
+      value += get(target, 'ptrSender', false) ? ' ptr' : '';
 
-      _.forEach(['a', 'mx', 'ptr', 'ip4', 'ip6', 'include'], (fieldType) => {
-        if (_.get(target, fieldType, false)) {
+      forEach(['a', 'mx', 'ptr', 'ip4', 'ip6', 'include'], (fieldType) => {
+        if (get(target, fieldType, false)) {
           const splitted = target[fieldType]
             .replace(/\s{2,}/g, ' ')
             .split(/\s/);
@@ -826,7 +835,7 @@ angular.module('services').service(
         }
       });
 
-      value += _.get(target, 'all', false) ? ` ${target.all}` : '';
+      value += get(target, 'all', false) ? ` ${target.all}` : '';
 
       return value;
     }
@@ -875,13 +884,13 @@ angular.module('services').service(
      */
     static transformTLSATarget(target) {
       if (
-        _.has(target, 'usage')
+        has(target, 'usage')
         && parseInt(target.usage, 10) >= 0
-        && _.has(target, 'selector')
+        && has(target, 'selector')
         && parseInt(target.selector, 10) >= 0
-        && _.has(target, 'matchingType')
+        && has(target, 'matchingType')
         && parseInt(target.matchingType, 10) > 0
-        && _.has(target, 'certificateData')
+        && has(target, 'certificateData')
         && target.certificateData !== ''
       ) {
         return [
@@ -902,15 +911,15 @@ angular.module('services').service(
      * @returns {string}
      */
     static transformCAATarget(target) {
-      const isValidFlags = _.has(target, 'flags')
-        && _.isFinite(target.flags)
+      const isValidFlags = has(target, 'flags')
+        && isFinite(target.flags)
         && target.flags >= 0
         && target.flags < 256;
 
       if (isValidFlags) {
         const { flags } = target;
-        const tag = _.get(target, 'tag', false) ? target.tag.toString() : '';
-        const caaTarget = _.get(target, 'target', false)
+        const tag = get(target, 'tag', false) ? target.tag.toString() : '';
+        const caaTarget = get(target, 'target', false)
           ? target.target.toString()
           : '';
         return `${flags} ${tag} "${caaTarget}"`;

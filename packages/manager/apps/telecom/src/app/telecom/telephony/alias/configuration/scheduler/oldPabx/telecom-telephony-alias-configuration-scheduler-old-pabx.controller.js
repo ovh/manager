@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSchedulerOldPabxCtrl', function ($q, $translate, $stateParams, TelephonyMediator, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSchedulerOldPabxCtrl', function TelecomTelephonyAliasConfigurationSchedulerOldPabxCtrl($q, $translate, $stateParams, TelephonyMediator, TucToast) {
   const self = this;
 
   self.loading = {

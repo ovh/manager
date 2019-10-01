@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('services').service(
   'hostingSSLCertificateType',
   class HostingSSLCertificateType {
@@ -9,7 +15,7 @@ angular.module('services').service(
      * @throws  {TypeError} Only if the parameter is not a string or is empty
      */
     static testIsValidStringParameter(parameter) {
-      if (!_(parameter).isString() || _(parameter).isEmpty()) {
+      if (!isString(parameter) || isEmpty(parameter)) {
         throw new TypeError('parameter should be a non-empty String');
       }
     }
@@ -60,12 +66,8 @@ angular.module('services').service(
       HostingSSLCertificateType.testIsValidStringParameter(knownCertificateType);
 
       return (
-        _(mysteryCertificateType)
-          .snakeCase()
-          .toUpperCase()
-        === _(knownCertificateType)
-          .snakeCase()
-          .toUpperCase()
+        snakeCase(mysteryCertificateType).toUpperCase()
+        === snakeCase(knownCertificateType).toUpperCase()
       );
     }
 
@@ -118,13 +120,13 @@ angular.module('services').service(
     static getCertificateTypeByProvider(providerName) {
       HostingSSLCertificateType.testIsValidStringParameter(providerName);
 
-      const formattedProviderName = _(providerName)
-        .snakeCase()
-        .toUpperCase();
-      const matchingCertificate = _(HostingSSLCertificateType.getCertificateTypes())
-        .find(certificateType => certificateType.providerName === formattedProviderName);
+      const formattedProviderName = snakeCase(providerName).toUpperCase();
+      const matchingCertificate = find(
+        HostingSSLCertificateType.getCertificateTypes(),
+        certificateType => certificateType.providerName === formattedProviderName,
+      );
 
-      const certificateIsFound = _(matchingCertificate).isObject();
+      const certificateIsFound = isObject(matchingCertificate);
       if (!certificateIsFound) {
         throw new Error(`${providerName} is not a valid provider name`);
       }

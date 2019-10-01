@@ -2,7 +2,7 @@ import endsWith from 'lodash/endsWith';
 import isNull from 'lodash/isNull';
 import some from 'lodash/some';
 
-angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function ($timeout, $uibModalInstance, modalData, OvhApiMe) {
+angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function TelephonySchedulerImportCtrl($timeout, $uibModalInstance, modalData, OvhApiMe) {
   const self = this;
 
   self.model = {
@@ -28,7 +28,7 @@ angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function
     return OvhApiMe.Document().v6().upload(self.model.icsFile.name, self.model.icsFile);
   }
 
-  self.checkIcsFileType = function (file) {
+  self.checkIcsFileType = function checkIcsFileType(file) {
     if (isNull(file)) {
       self.isFileExtentionInvalid = false;
     } else {
@@ -48,15 +48,15 @@ angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function
     =            ACTIONS            =
     =============================== */
 
-  self.cancel = function (message) {
+  self.cancel = function cancel(message) {
     return $uibModalInstance.dismiss(message);
   };
 
-  self.close = function (datas) {
+  self.close = function close(datas) {
     return $uibModalInstance.close(datas);
   };
 
-  self.startImport = function () {
+  self.startImport = function startImport() {
     self.loading.import = true;
 
     // upload file to /me/document

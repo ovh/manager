@@ -1,3 +1,12 @@
+import assign from 'lodash/assign';
+import chunk from 'lodash/chunk';
+import drop from 'lodash/drop';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isBoolean from 'lodash/isBoolean';
+import size from 'lodash/size';
+import take from 'lodash/take';
+
 angular.module('services').service(
   'MailingLists',
   class MailingLists {
@@ -59,7 +68,7 @@ angular.module('services').service(
       return this.OvhHttp.get('/email/domain/mailingListLimits', {
         rootPath: 'apiv6',
         params: {
-          moderatorMessage: _.isBoolean(moderatorMessage) ? moderatorMessage : false,
+          moderatorMessage: isBoolean(moderatorMessage) ? moderatorMessage : false,
         },
         cache: this.cache.mailingListLimits,
         clearAllCache: forceRefresh,
@@ -85,7 +94,7 @@ angular.module('services').service(
           options: this.changeOptions(serviceName, name, { options: data.options }),
         })
         .then(({ options }) => {
-          if (_.get(options, 'id', false)) {
+          if (get(options, 'id', false)) {
             this.pollState(serviceName, {
               id: options.id,
               mailingList: name,
@@ -145,15 +154,15 @@ angular.module('services').service(
       return this.OvhHttp.post(`/email/domain/${serviceName}/mailinglist/${opts.mailingList}/users/add`, {
         rootPath: '2api',
         data: {
-          users: _.take(opts.users, limit),
+          users: take(opts.users, limit),
           type: opts.type,
         },
       })
         .then((data) => {
-          const users = _.drop(opts.users, limit);
+          const users = drop(opts.users, limit);
 
-          if (_.size(users) > 0) {
-            return this.addSubscribers(serviceName, _.assign(opts, { users }))
+          if (size(users) > 0) {
+            return this.addSubscribers(serviceName, assign(opts, { users }))
               .then(d => [data].concat(d));
           }
 
@@ -166,15 +175,15 @@ angular.module('services').service(
         rootPath: '2api',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         data: {
-          users: _.take(opts.users, limit),
+          users: take(opts.users, limit),
           type: opts.type,
         },
       })
         .then((data) => {
-          const users = _.drop(opts.users, limit);
+          const users = drop(opts.users, limit);
 
-          if (_.size(users) > 0) {
-            return this.deleteSubscribers(serviceName, _.assign(opts, { users }))
+          if (size(users) > 0) {
+            return this.deleteSubscribers(serviceName, assign(opts, { users }))
               .then(d => [data].concat(d));
           }
 
@@ -206,7 +215,7 @@ angular.module('services').service(
 
     addModerators(serviceName, opts) {
       return this.$q
-        .all(_.chunk(opts.users, 500).map(moderators => this.OvhHttp.post(`/email/domain/${serviceName}/mailinglist/${opts.mailingList}/users/add`, {
+        .all(chunk(opts.users, 500).map(moderators => this.OvhHttp.post(`/email/domain/${serviceName}/mailinglist/${opts.mailingList}/users/add`, {
           rootPath: '2api',
           data: {
             users: moderators,
@@ -218,7 +227,7 @@ angular.module('services').service(
 
     deleteModerators(serviceName, opts) {
       return this.$q
-        .all(_.chunk(opts.users, 500).map(moderators => this.OvhHttp
+        .all(chunk(opts.users, 500).map(moderators => this.OvhHttp
           .delete(`/email/domain/${serviceName}/mailinglist/${opts.mailingList}/users/delete`, {
             rootPath: '2api',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -251,7 +260,7 @@ angular.module('services').service(
         return this.$rootScope.$broadcast(`${opts.namespace}.error`, '');
       }
 
-      if (!_.isArray(opts.successSates)) {
+      if (!isArray(opts.successSates)) {
         opts.successSates = [opts.successSates]; // eslint-disable-line no-param-reassign
       }
 

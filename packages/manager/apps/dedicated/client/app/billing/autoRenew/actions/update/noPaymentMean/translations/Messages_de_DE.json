@@ -1,0 +1,4 @@
+{
+  "billing_autorenew_service_update_no_payment_mean_description": "Sie haben für Ihren Dienst {{ service }} die automatische Verlängerung ausgewählt",
+  "billing_autorenew_service_update_no_payment_mean_add": "Um diesen Verlängerungsmodus zu verwenden, hinterlegen Sie bitte zunächst ein Zahlungsmittel im Bereich „Meine Zahlungsarten“"
+}

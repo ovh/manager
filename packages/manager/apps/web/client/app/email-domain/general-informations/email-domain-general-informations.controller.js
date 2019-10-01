@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'EmailTabGeneralInformationsCtrl',
   class EmailTabGeneralInformationsCtrl {
@@ -101,7 +103,7 @@ angular.module('App').controller(
           this.summary = summary;
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('email_tab_table_accounts_error'),
             err,

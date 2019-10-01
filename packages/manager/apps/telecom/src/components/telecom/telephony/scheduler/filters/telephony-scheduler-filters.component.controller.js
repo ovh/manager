@@ -18,7 +18,7 @@ angular.module('managerApp').controller('TelephonySchedulerFiltersCtrl', functio
     =            HELPERS            =
     =============================== */
 
-  self.convertCategoryToSlot = function (category) {
+  self.convertCategoryToSlot = function convertCategoryToSlot(category) {
     return telephonyScheduler
       .convertCategoryToSlot(self.telephonySchedulerCtrl.timeCondition, category);
   };
