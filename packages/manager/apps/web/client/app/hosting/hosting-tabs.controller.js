@@ -125,6 +125,7 @@ angular.module('App').controller(
 
           this.tabMenu.items.push({
             label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
+            styles: 'status-beta',
             fn: () => this.$state.go('app.hosting.website-coach'),
             type: 'ACTION',
           });
