@@ -9,6 +9,7 @@ import 'ovh-api-services';
 
 import add from './add';
 import deleteSubscription from './delete';
+import resetCursor from './resetCursor';
 
 import component from './subscriptions.component';
 import routing from './subscriptions.routing';
@@ -27,6 +28,7 @@ angular
     'ui.router',
     add,
     deleteSubscription,
+    resetCursor,
   ])
   .config(routing)
   .component('pciProjectStreamsStreamSubscriptions', component)

@@ -84,4 +84,17 @@ export default class PciProjectStreamStreamSubscriptionsService {
       })
       .$promise;
   }
+
+  resetCursor(projectId, streamId, subscriptionId) {
+    return this.OvhApiCloudProjectIo
+      .Stream()
+      .Subscription()
+      .v6()
+      .resetCursor({
+        serviceName: projectId,
+        streamId,
+        subscriptionId,
+      }, null)
+      .$promise;
+  }
 }

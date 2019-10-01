@@ -1,5 +1,5 @@
-import controller from './delete.controller';
-import template from './delete.html';
+import controller from './reset-cursor.controller';
+import template from './reset-cursor.html';
 
 export default {
   controller,

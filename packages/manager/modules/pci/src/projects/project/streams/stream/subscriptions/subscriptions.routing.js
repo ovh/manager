@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId,
         }),
-        resetSubscription: /* @ngInject */ ($state, projectId, streamId) => subscription => $state.go('pci.projects.project.streams.stream.subscriptions.reset', {
+        resetSubscription: /* @ngInject */ ($state, projectId, streamId) => subscription => $state.go('pci.projects.project.streams.stream.subscriptions.resetCursor', {
           projectId,
           streamId,
           subscriptionId: subscription.id,
