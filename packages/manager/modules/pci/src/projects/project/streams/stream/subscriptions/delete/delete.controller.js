@@ -12,7 +12,6 @@ export default class PciStreamsStreamSubscriptionsDeleteController {
 
   $onInit() {
     this.isLoading = false;
-    this.name = '';
   }
 
   deleteSubscription() {

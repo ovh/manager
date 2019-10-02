@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId,
         }),
-        deleteStream: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+        deleteStream: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.delete', {
           projectId,
           streamId,
         }),

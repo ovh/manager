@@ -8,6 +8,7 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 
 import add from './add';
+import deleteStream from './delete';
 import onboarding from './onboarding';
 import stream from './stream';
 
@@ -27,6 +28,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     add,
+    deleteStream,
     onboarding,
     stream,
   ])

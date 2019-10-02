@@ -7,6 +7,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
+import deleteStream from './delete';
 import subscriptions from './subscriptions';
 
 import component from './stream.component';
@@ -23,6 +24,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    deleteStream,
     subscriptions,
   ])
   .config(routing)

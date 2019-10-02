@@ -12,7 +12,6 @@ export default class PciStreamsStreamSubscriptionsResetCursorController {
 
   $onInit() {
     this.isLoading = false;
-    this.name = '';
   }
 
   resetCursor() {

@@ -66,4 +66,15 @@ export default class PciProjectStreamService {
         region,
       }));
   }
+
+  delete(projectId, { id: streamId }) {
+    return this.OvhApiCloudProjectIo
+      .Stream()
+      .v6()
+      .delete({
+        serviceName: projectId,
+        streamId,
+      })
+      .$promise;
+  }
 }
