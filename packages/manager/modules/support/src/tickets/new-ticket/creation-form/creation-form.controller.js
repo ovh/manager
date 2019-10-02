@@ -9,7 +9,7 @@ export default class SupportNewCreationFormController {
   $onInit() {
     return this.SupportNewTicketService.getSupportLevel().then(({ level }) => {
       this.supportLevel = level;
-      if (this.shouldSelectUrgency()) {
+      if (this.isBusinessSupportLevel()) {
         return this.SupportNewTicketService.getUrgencies().then((urgencies) => {
           this.urgencies = urgencies;
         });
@@ -22,7 +22,7 @@ export default class SupportNewCreationFormController {
     return get(this.issue, 'subject');
   }
 
-  shouldSelectUrgency() {
+  isBusinessSupportLevel() {
     return ['business', 'enterprise'].indexOf(this.supportLevel) >= 0;
   }
 
