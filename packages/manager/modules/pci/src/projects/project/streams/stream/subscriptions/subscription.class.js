@@ -1,5 +1,15 @@
 export default class Subscription {
-  constructor(resource) {
-    Object.assign(this, resource);
+  constructor({
+    id,
+    kind,
+    name,
+    stats,
+  }) {
+    Object.assign(this, {
+      id,
+      kind,
+      name,
+      stats,
+    });
   }
 }

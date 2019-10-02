@@ -12,7 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
           PciProjectStreamService,
           projectId,
           streamId,
-        ) => PciProjectStreamService.get(projectId, streamId),
+        ) => PciProjectStreamService.get(projectId, streamId)
+          .then(stream => PciProjectStreamService.getRegion(projectId, stream)),
 
         editBacklogRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
           projectId,

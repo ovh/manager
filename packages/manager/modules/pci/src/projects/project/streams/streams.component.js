@@ -7,6 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     streams: '<',
+    getStreamDetails: '<',
     addStreamLink: '<',
     streamLink: '<',
     viewStream: '<',

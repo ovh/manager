@@ -30,30 +30,27 @@ export default class PciProjectStreamService {
         streamId,
       })
       .$promise
-      .then(stream => this.$q.all({
-        stream,
-        stats: this.getStats(projectId, stream.id),
-        region: this.getRegion(projectId, first(stream.regions)),
-      }))
-      .then(({ stream, stats, region }) => new Stream({
+      .then(stream => new Stream({
         ...stream,
-        stats,
-        region,
       }));
   }
 
-  getStats(projectId, streamId) {
+  getStats(projectId, stream) {
     return this.OvhApiCloudProjectIo
       .Stream()
       .v6()
       .getStats({
         serviceName: projectId,
-        streamId,
+        streamId: stream.id,
       })
-      .$promise;
+      .$promise
+      .then(stats => new Stream({
+        ...stream,
+        stats,
+      }));
   }
 
-  getRegion(projectId, regionName) {
+  getRegion(projectId, stream) {
     return this.OvhApiCloudProjectIo
       .Capabilities()
       .Stream()
@@ -61,8 +58,12 @@ export default class PciProjectStreamService {
       .v6()
       .get({
         serviceName: projectId,
-        regionName,
+        regionName: first(stream.regions),
       })
-      .$promise;
+      .$promise
+      .then(region => new Stream({
+        ...stream,
+        region,
+      }));
   }
 }

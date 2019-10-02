@@ -1,8 +1,32 @@
 import { KIND, STATUS } from './streams.constants';
 
 export default class Stream {
-  constructor(resource) {
-    Object.assign(this, resource);
+  constructor({
+    backlog,
+    description,
+    id,
+    kind,
+    name,
+    regions,
+    retention,
+    status,
+    throttling,
+    stats,
+    region,
+  }) {
+    Object.assign(this, {
+      backlog,
+      description,
+      id,
+      kind,
+      name,
+      regions,
+      retention,
+      status,
+      throttling,
+      stats,
+      region,
+    });
   }
 
   isInstalling() {

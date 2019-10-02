@@ -4,7 +4,8 @@
 
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-    <oui-datagrid data-rows="$ctrl.streams">
+    <oui-datagrid data-rows="$ctrl.streams"
+        data-row-loader="$ctrl.getStreamDetails($row)">
         <oui-column
             title=":: 'pci_projects_project_streams_name_label' | translate"
             data-property="name"

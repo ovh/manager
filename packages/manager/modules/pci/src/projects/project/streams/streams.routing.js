@@ -17,6 +17,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         ) => PciProjectStreamService.getAll(projectId),
 
+        getStreamDetails: /* @ngInject */ (
+          PciProjectStreamService,
+          projectId,
+        ) => stream => PciProjectStreamService.getStats(projectId, stream),
+
         viewStream: /* @ngInject */ ($state, projectId) => stream => $state.go('pci.projects.project.streams.stream', {
           projectId,
           streamId: stream.id,

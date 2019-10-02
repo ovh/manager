@@ -11,6 +11,13 @@ export default /* @ngInject */ ($stateProvider) => {
           PciProjectStreamsStreamSubscriptionsService,
         ) => PciProjectStreamsStreamSubscriptionsService.getAll(projectId, streamId),
 
+        getSubscriptionDetails: /* @ngInject */ (
+          projectId,
+          streamId,
+          PciProjectStreamsStreamSubscriptionsService,
+        ) => subscription => PciProjectStreamsStreamSubscriptionsService
+          .getStats(projectId, streamId, subscription),
+
         addSubscribtionLink: /* @ngInject */($state, projectId, streamId) => $state.href('pci.projects.project.streams.stream.subscriptions.add', {
           projectId,
           streamId,

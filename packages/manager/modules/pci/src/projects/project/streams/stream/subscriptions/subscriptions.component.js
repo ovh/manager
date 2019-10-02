@@ -7,6 +7,7 @@ export default {
   bindings: {
     stream: '<',
     subscriptions: '<',
+    getSubscriptionDetails: '<',
     addSubscribtionLink: '<',
     resetSubscription: '<',
     deleteSubscription: '<',

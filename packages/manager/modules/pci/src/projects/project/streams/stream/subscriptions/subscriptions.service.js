@@ -35,17 +35,12 @@ export default class PciProjectStreamStreamSubscriptionsService {
         subscriptionId,
       })
       .$promise
-      .then(subscription => this.$q.all({
-        subscription,
-        stats: this.getStats(projectId, streamId, subscription.id),
-      }))
-      .then(({ subscription, stats }) => new Subscription({
+      .then(subscription => new Subscription({
         ...subscription,
-        stats,
       }));
   }
 
-  getStats(projectId, streamId, subscriptionId) {
+  getStats(projectId, streamId, subscription) {
     return this.OvhApiCloudProjectIo
       .Stream()
       .Subscription()
@@ -53,9 +48,13 @@ export default class PciProjectStreamStreamSubscriptionsService {
       .getStats({
         serviceName: projectId,
         streamId,
-        subscriptionId,
+        subscriptionId: subscription.id,
       })
-      .$promise;
+      .$promise
+      .then(stats => new Subscription({
+        ...subscription,
+        stats,
+      }));
   }
 
   add(projectId, streamId, name) {
