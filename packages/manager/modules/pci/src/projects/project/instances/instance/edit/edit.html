@@ -69,6 +69,7 @@
 
                     <pci-project-images-list
                         data-flavor-type="$ctrl.instance.flavor.type"
+                        data-os-types="[$ctrl.instance.flavor.osType]"
                         data-region="$ctrl.instance.region"
                         data-service-name="{{:: $ctrl.projectId }}"
                         data-default-image-id="$ctrl.instance.image.id"
