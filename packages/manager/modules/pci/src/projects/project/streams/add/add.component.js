@@ -8,5 +8,8 @@ export default {
     projectId: '<',
     goBack: '<',
     cancelLink: '<',
+    regions: '<',
+    types: '<',
+    addStream: '<',
   },
 };

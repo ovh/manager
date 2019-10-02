@@ -7,6 +7,7 @@ import 'ovh-api-services';
 
 import component from './add.component';
 import routing from './add.routing';
+import service from './add.service';
 
 const moduleName = 'ovhManagerPciStreamsAdd';
 
@@ -20,6 +21,7 @@ angular
   ])
   .config(routing)
   .component('ovhManagerPciStreamsAdd', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .service('ovhManagerPciStreamsAdd', service);
 
 export default moduleName;

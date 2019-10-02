@@ -1,7 +1,11 @@
+import values from 'lodash/values';
+
+import { KIND } from '../streams.constants';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.streams.add', {
     url: '/new',
-    component: 'ovhManagerPciInstancesAdd',
+    component: 'ovhManagerPciStreamsAdd',
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_streams_add_title'),
 
@@ -9,7 +13,23 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       }),
 
-      goBack: /* @ngInject */ goToStreams => goToStreams,
+      regions: /* @ngInject */ (
+        ovhManagerPciStreamsAdd,
+        projectId,
+      ) => ovhManagerPciStreamsAdd.getAvailableRegions(projectId),
+
+      types: () => values(KIND),
+
+      addStream: /* @ngInject */ (
+        $translate,
+        goToStreams,
+        ovhManagerPciStreamsAdd,
+        projectId,
+      ) => streamCreation => ovhManagerPciStreamsAdd
+        .addStream(projectId, streamCreation)
+        .then(({ name }) => goToStreams(
+          $translate.instant('pci_projects_project_streams_add_success', { name }),
+        )),
 
     },
   });
