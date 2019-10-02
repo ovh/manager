@@ -104,6 +104,7 @@
   "ovhManagerSupport_new_helpfull_no": "Non",
   "ovhManagerSupport_new_helpfull_create": "Créer une nouvelle demande",
 
+  "ovhManagerSupport_new_creation_tip": "Pour un traitement plus rapide de votre ticket, merci de vous assurer d’avoir choisi la bonne typologie de question, et de décrire votre demande le plus précisément possible.",
   "ovhManagerSupport_new_creation_subject": "Sujet",
   "ovhManagerSupport_new_creation_submit": "Valider",
   "ovhManagerSupport_new_creation_cancel": "Retour",

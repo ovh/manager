@@ -1,8 +1,14 @@
 <form novalidate
       name="supportNewCreationForm">
 
+    <oui-message data-type="info"
+                 data-ng-if="$ctrl.isBusinessSupportLevel()"
+                 data-dismissable>
+        <span data-translate="ovhManagerSupport_new_creation_tip"></span>
+    </oui-message>
+
     <oui-field data-label="{{:: 'ovhManagerSupport_new_urgency' | translate }}"
-               data-ng-if="$ctrl.shouldSelectUrgency()"
+               data-ng-if="$ctrl.isBusinessSupportLevel()"
                data-size="xl">
         <oui-select name="urgency"
                     data-model="$ctrl.urgency"
