@@ -22,15 +22,13 @@
             </oui-back-button>
 
             <!-- One domain name -->
-            <div data-ng-if="::!$ctrl.hasMultipleAttachedDomain">
-                <p
-                    data-translate="hosting_website_coach_1dn_text"
-                    data-translate-values="{
-                        domain: $ctrl.attachedDomain,
-                        email: $ctrl.user.email
-                    }">
-                </p>
-            </div>
+            <p
+                data-translate="hosting_website_coach_1dn_text"
+                data-translate-values="{
+                    domain: $ctrl.attachedDomain,
+                    email: $ctrl.user.email
+                }">
+            </p>
 
             <!-- Multiple domain name -->
             <div data-ng-if="::$ctrl.hasMultipleAttachedDomain">
@@ -55,7 +53,12 @@
 
             <p id="helpTest">
                 <sup aria-hidden="true">*</sup>
-                <span class="small" data-translate="hosting_website_coach_help_wrong_email"></span>
+                <span class="small"
+                    data-translate="hosting_website_coach_help_wrong_email"
+                    data-translate-values="{
+                        url: $ctrl.USER_INFOS_URL,
+                    }">
+                </span>
                 <span class="small" data-translate="hosting_website_coach_help_unusable_email"></span>
             </p>
         </div>
