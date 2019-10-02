@@ -2,7 +2,7 @@
   "pci_projects_project_streams_stream_backlog_retention_title" : "Modifier le backlog retention",
   "pci_projects_project_streams_stream_backlog_retention_submit_label" : "Confirmer",
   "pci_projects_project_streams_stream_backlog_retention_cancel_label" : "Annuler",
-  "pci_projects_project_streams_stream_backlog_retention_content" : "",
+  "pci_projects_project_streams_stream_backlog_retention_content" : "Augmentez ou réduisez la durée de la rétention des messages en attente d'être lus par l'abonnement.",
   "pci_projects_project_streams_stream_backlog_retention_unit" : "Heures",
 
   "pci_projects_project_streams_stream_backlog_retention_success_message": "Le backlog retention a été modifié.",

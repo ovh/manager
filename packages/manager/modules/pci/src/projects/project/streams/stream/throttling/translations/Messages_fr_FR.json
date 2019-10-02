@@ -2,7 +2,7 @@
   "pci_projects_project_streams_stream_throttling_title" : "Modifier le throttling",
   "pci_projects_project_streams_stream_throttling_submit_label" : "Confirmer",
   "pci_projects_project_streams_stream_throttling_cancel_label" : "Annuler",
-  "pci_projects_project_streams_stream_throttling_content" : "",
+  "pci_projects_project_streams_stream_throttling_content" : "Augmentez ou réduisez le nombre maximum de messages produit par seconde.",
   "pci_projects_project_streams_stream_throttling_thottling_unit": "Msg/sec",
 
   "pci_projects_project_streams_stream_throttling_success_message": "Le throttling a été modifié.",
