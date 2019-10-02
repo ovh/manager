@@ -7,8 +7,10 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
+import backlogRetention from './backlogRetention';
 import deleteStream from './delete';
 import regenerateTokens from './regenerateTokens';
+import replayRetention from './replayRetention';
 import subscriptions from './subscriptions';
 import throttling from './throttling';
 
@@ -26,8 +28,10 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    backlogRetention,
     deleteStream,
     regenerateTokens,
+    replayRetention,
     subscriptions,
     throttling,
   ])

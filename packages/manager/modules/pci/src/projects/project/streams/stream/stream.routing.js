@@ -14,11 +14,11 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => PciProjectStreamService.get(projectId, streamId)
           .then(stream => PciProjectStreamService.getRegion(projectId, stream))
           .then(stream => PciProjectStreamService.getTokens(projectId, stream)),
-        editBacklogRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+        editBacklogRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.backlogRetention', {
           projectId,
           streamId,
         }),
-        editReplayRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+        editReplayRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.replayRetention', {
           projectId,
           streamId,
         }),
