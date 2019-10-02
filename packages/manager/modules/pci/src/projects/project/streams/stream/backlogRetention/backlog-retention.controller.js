@@ -15,9 +15,7 @@ export default class PciStreamsStreamBacklogRetentionController {
     this.isLoading = false;
     this.minRetention = 1;
 
-    this.editStream = new Stream({
-      ...this.stream,
-    });
+    this.editStream = new Stream(this.stream);
 
     this.backlogValue = moment.duration(this.stream.backlog).asHours();
   }

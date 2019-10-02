@@ -14,9 +14,7 @@ export default class PciStreamsStreamThrottlingController {
   $onInit() {
     this.isLoading = false;
     this.unlimitedThrottlingValue = -1;
-    this.editStream = new Stream({
-      ...this.stream,
-    });
+    this.editStream = new Stream(this.stream);
 
     this.unlimitedThrottling = this.stream.throttling === this.unlimitedThrottlingValue;
   }

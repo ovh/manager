@@ -15,9 +15,7 @@ export default class PciStreamsStreamReplayRetentionController {
     this.isLoading = false;
     this.minRetention = 1;
 
-    this.editStream = new Stream({
-      ...this.stream,
-    });
+    this.editStream = new Stream(this.stream);
 
     this.replayValue = moment.duration(this.stream.retention).asHours();
   }
