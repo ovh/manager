@@ -81,11 +81,17 @@
                         </dd>
                         <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_read_write_token_label"></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-model="$ctrl.stream.id"></oui-clipboard>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.stream.consumerAndPublisherToken"
+                                data-model="$ctrl.stream.consumerAndPublisherToken.token"></oui-clipboard>
+                            <span data-ng-if="!$ctrl.stream.consumerAndPublisherToken">-</span>
                         </dd>
                         <dt class="oui-tile__term" data-translate="pci_projects_project_streams_stream_service_read_only_token_label"></dt>
                         <dd class="oui-tile__description">
-                            <oui-clipboard data-model="$ctrl.stream.id"></oui-clipboard>
+                            <oui-clipboard
+                                data-ng-if="$ctrl.stream.consumerOnlyToken"
+                                data-model="$ctrl.stream.consumerOnlyToken.token"></oui-clipboard>
+                            <span data-ng-if="!$ctrl.stream.consumerOnlyToken">-</span>
                         </dd>
                     </dl>
                 </div>

@@ -1,9 +1,9 @@
 export default /* @ngInject */($stateProvider) => {
-  $stateProvider.state('pci.projects.project.streams.stream.throttling', {
-    url: '/throttling',
+  $stateProvider.state('pci.projects.project.streams.stream.regenerateTokens', {
+    url: '/tokens/regenerate',
     views: {
       modal: {
-        component: 'ovhManagerPciStreamsStreamThrottling',
+        component: 'ovhManagerPciStreamsStreamRegenerateTokens',
       },
     },
     layout: 'modal',

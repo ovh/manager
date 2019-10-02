@@ -8,8 +8,9 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 
 import deleteStream from './delete';
-import throttling from './throttling';
+import regenerateTokens from './regenerateTokens';
 import subscriptions from './subscriptions';
+import throttling from './throttling';
 
 import component from './stream.component';
 import routing from './stream.routing';
@@ -26,8 +27,9 @@ angular
     'pascalprecht.translate',
     'ui.router',
     deleteStream,
-    throttling,
+    regenerateTokens,
     subscriptions,
+    throttling,
   ])
   .config(routing)
   .component('pciProjectStreamsStream', component)

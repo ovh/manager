@@ -15,6 +15,7 @@ import stream from './stream';
 import component from './streams.component';
 import routing from './streams.routing';
 import service from './streams.service';
+import tokenService from './tokens.service';
 
 const moduleName = 'ovhManagerPciStreams';
 
@@ -35,6 +36,7 @@ angular
   .config(routing)
   .component('pciProjectStreams', component)
   .service('PciProjectStreamService', service)
+  .service('PciProjectStreamsTokensService', tokenService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

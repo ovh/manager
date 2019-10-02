@@ -1,11 +1,17 @@
 import first from 'lodash/first';
+
 import Stream from './stream.class';
 
 export default class PciProjectStreamService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectIo) {
+  constructor(
+    $q,
+    OvhApiCloudProjectIo,
+    PciProjectStreamsTokensService,
+  ) {
     this.$q = $q;
     this.OvhApiCloudProjectIo = OvhApiCloudProjectIo;
+    this.PciProjectStreamsTokensService = PciProjectStreamsTokensService;
   }
 
   getAll(projectId) {
@@ -101,5 +107,14 @@ export default class PciProjectStreamService {
         },
       )
       .$promise;
+  }
+
+  getTokens(projectId, stream) {
+    return this.PciProjectStreamsTokensService
+      .getAll(projectId, stream)
+      .then(tokens => new Stream({
+        ...stream,
+        tokens,
+      }));
   }
 }

@@ -10,11 +10,6 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ goToStreams => goToStreams,
       breadcrumb: () => null,
-      stream: /* @ngInject */ (
-        PciProjectStreamService,
-        projectId,
-        streamId,
-      ) => PciProjectStreamService.get(projectId, streamId),
     },
   });
 };

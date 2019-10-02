@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 import { KIND, STATUS } from './streams.constants';
 
 export default class Stream {
@@ -13,6 +15,7 @@ export default class Stream {
     throttling,
     stats,
     region,
+    tokens,
   }) {
     Object.assign(this, {
       backlog,
@@ -26,6 +29,7 @@ export default class Stream {
       throttling,
       stats,
       region,
+      tokens,
     });
   }
 
@@ -51,5 +55,13 @@ export default class Stream {
 
   get streamUrl() {
     return `${this.isPersistent() ? 'persistent' : 'non-persistent'}://${this.id}/${this.name}/${this.name}`;
+  }
+
+  get consumerAndPublisherToken() {
+    return find(this.tokens, token => token.isProducerAndConsumer());
+  }
+
+  get consumerOnlyToken() {
+    return find(this.tokens, token => token.isConsumerOnly());
   }
 }

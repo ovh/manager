@@ -6,15 +6,14 @@ export default /* @ngInject */ ($stateProvider) => {
 
       resolve: {
         breadcrumb: /* @ngInject */ stream => stream.name,
-
         streamId: /* @ngInject */ $transition$ => $transition$.params().streamId,
         stream: /* @ngInject */ (
           PciProjectStreamService,
           projectId,
           streamId,
         ) => PciProjectStreamService.get(projectId, streamId)
-          .then(stream => PciProjectStreamService.getRegion(projectId, stream)),
-
+          .then(stream => PciProjectStreamService.getRegion(projectId, stream))
+          .then(stream => PciProjectStreamService.getTokens(projectId, stream)),
         editBacklogRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
           projectId,
           streamId,
@@ -31,7 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId,
         }),
-        regenerateToken: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+        regenerateToken: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.regenerateTokens', {
           projectId,
           streamId,
         }),
@@ -39,7 +38,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId,
         }),
-
         streamLink: /* @ngInject */ ($state, projectId, stream) => $state.href('pci.projects.project.streams.stream', {
           projectId,
           streamId: stream.id,
@@ -50,7 +48,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
         currentActiveLink: /* @ngInject */ ($transition$, $state) => () => $state
           .href($state.current.name, $transition$.params()),
-
         goToStream: /* @ngInject */ (CucCloudMessage, $state, projectId, streamId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
