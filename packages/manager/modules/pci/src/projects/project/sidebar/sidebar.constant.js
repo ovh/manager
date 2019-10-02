@@ -118,10 +118,11 @@ export const MENU = [
       },
       {
         id: 'io-stream',
+        beta: true,
         options: {
           state: 'pci.projects.project.streams',
         },
-        title: 'IOStream',
+        title: 'ioStream',
       },
     ],
     regions: ['EU'],
