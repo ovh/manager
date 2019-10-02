@@ -77,4 +77,29 @@ export default class PciProjectStreamService {
       })
       .$promise;
   }
+
+  update(projectId, {
+    id: streamId,
+    backlog,
+    description,
+    retention,
+    throttling,
+  }) {
+    return this.OvhApiCloudProjectIo
+      .Stream()
+      .v6()
+      .edit(
+        {
+          serviceName: projectId,
+          streamId,
+        },
+        {
+          backlog,
+          description,
+          retention,
+          throttling,
+        },
+      )
+      .$promise;
+  }
 }

@@ -8,6 +8,7 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 
 import deleteStream from './delete';
+import throttling from './throttling';
 import subscriptions from './subscriptions';
 
 import component from './stream.component';
@@ -25,6 +26,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     deleteStream,
+    throttling,
     subscriptions,
   ])
   .config(routing)

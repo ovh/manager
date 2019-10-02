@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId,
         }),
-        editThrottling: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('', {
+        editThrottling: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.throttling', {
           projectId,
           streamId,
         }),
