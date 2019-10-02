@@ -38,13 +38,14 @@
 
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_streams_add_stream_name_title' | translate }}"
-            data-description="{{ :: 'pci_projects_project_streams_add_stream_name_description' | translate }}"
             data-editable="!$ctrl.loading.add">
-            <oui-field data-size="xl">
+            <oui-field data-size="xl"
+                       data-help-text="{{ :: 'pci_projects_project_streams_add_stream_name_help' | translate }}">
                 <input class="oui-input" type="text"
                        id="lastname" name="lastname"
                        data-ng-model="$ctrl.model.name"
-                       data-required />
+                       data-required
+                       data-ng-pattern="/^[\w-:]+$/" />
             </oui-field>
         </oui-step-form>
     </oui-stepper>
