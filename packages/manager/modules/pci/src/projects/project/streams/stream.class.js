@@ -41,7 +41,7 @@ export default class Stream {
     return this.status === STATUS.RUNNING;
   }
 
-  isError() {
+  isInError() {
     return this.status === STATUS.ERROR;
   }
 

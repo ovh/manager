@@ -1,13 +1,13 @@
-<oui-page-header data-heading="{{ $ctrl.stream.name }}">
+<oui-page-header data-heading="{{:: $ctrl.stream.name }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ 'pci_projects_project_streams_stream_dashboard_title' | translate }}"
-            data-href="{{ $ctrl.streamLink }}"
+            data-text="{{:: 'pci_projects_project_streams_stream_dashboard_title' | translate }}"
+            data-href="{{:: $ctrl.streamLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.streamLink">
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ 'pci_projects_project_streams_stream_subscriptions_title' | translate }}"
-            data-href="{{ $ctrl.subscriptionsLink }}"
+            data-text="{{:: 'pci_projects_project_streams_stream_subscriptions_title' | translate }}"
+            data-href="{{:: $ctrl.subscriptionsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.subscriptionsLink">
         </oui-header-tabs-item>
     </oui-header-tabs>
@@ -21,7 +21,7 @@
 <div class="py-4" data-ui-view>
     <div class="row">
         <div class="col-md-4">
-            <oui-tile data-heading="{{ 'pci_projects_project_streams_stream_manage_title' | translate }}">
+            <oui-tile data-heading="{{:: 'pci_projects_project_streams_stream_manage_title' | translate }}">
                 <oui-tile-button data-on-click="$ctrl.editBacklogRetention()"
                     data-ng-if="$ctrl.stream.isPersistent()">
                     <span data-translate="pci_projects_project_streams_stream_action_editBacklogRetention_label"></span>
@@ -53,7 +53,7 @@
                             data-ng-class="{
                                 'oui-status_success': $ctrl.stream.isRunning(),
                                 'oui-status_warning': $ctrl.stream.isInstalling(),
-                                'oui-status_error': $ctrl.stream.isError(),
+                                'oui-status_error': $ctrl.stream.isInError(),
                             }">
                             <span data-ng-bind="'pci_projects_project_instances_status_' + $ctrl.stream.status | translate"></span>
                         </span>

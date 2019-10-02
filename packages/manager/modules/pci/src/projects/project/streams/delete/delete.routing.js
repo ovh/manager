@@ -10,7 +10,6 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ goToStreams => goToStreams,
       breadcrumb: () => null,
-
       streamId: /* @ngInject */$transition$ => $transition$.params().streamId,
       stream: /* @ngInject */ (
         PciProjectStreamService,

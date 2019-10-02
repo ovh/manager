@@ -11,17 +11,14 @@ export default /* @ngInject */ ($stateProvider) => {
 
       resolve: {
         breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_streams_title'),
-
         streams: /* @ngInject */ (
           PciProjectStreamService,
           projectId,
         ) => PciProjectStreamService.getAll(projectId),
-
         getStreamDetails: /* @ngInject */ (
           PciProjectStreamService,
           projectId,
         ) => stream => PciProjectStreamService.getStats(projectId, stream),
-
         viewStream: /* @ngInject */ ($state, projectId) => stream => $state.go('pci.projects.project.streams.stream', {
           projectId,
           streamId: stream.id,
@@ -30,16 +27,13 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId: stream.id,
         }),
-
         addStreamLink: /* @ngInject */($state, projectId) => $state.href('pci.projects.project.streams.add', {
           projectId,
         }),
-
         streamLink: /* @ngInject */ ($state, projectId) => stream => $state.href('pci.projects.project.streams.stream', {
           projectId,
           streamId: stream.id,
         }),
-
         goToStreams: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
