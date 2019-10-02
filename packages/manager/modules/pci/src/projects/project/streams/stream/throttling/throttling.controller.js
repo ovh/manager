@@ -13,6 +13,7 @@ export default class PciStreamsStreamThrottlingController {
 
   $onInit() {
     this.isLoading = false;
+    this.minThrottling = -1;
 
     this.editStream = new Stream({
       ...this.stream,
