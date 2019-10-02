@@ -123,6 +123,7 @@ export const MENU = [
           state: 'pci.projects.project.streams',
         },
         title: 'ioStream',
+        regions: ['EU'],
       },
     ],
     regions: ['EU'],
