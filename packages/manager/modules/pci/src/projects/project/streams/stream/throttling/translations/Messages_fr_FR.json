@@ -7,5 +7,5 @@
   "pci_projects_project_streams_stream_throttling_thottling_unlimited": "Nombre illimité",
 
   "pci_projects_project_streams_stream_throttling_success_message": "Le throttling a été modifié.",
-  "pci_projects_project_streams_stream_throttling_error_throttling": "Une erreur est survenue lors de la modification du throttling : {{ message }}."
+  "pci_projects_project_streams_stream_throttling_error_throttling": "Une erreur est survenue lors de la modification du throttling : {{ message }}."
 }
