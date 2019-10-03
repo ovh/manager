@@ -13,6 +13,7 @@ export default class PciStreamsAddController {
       region: null,
       kind: null,
       name: null,
+      description: '',
     };
 
     this.loading = {
@@ -33,6 +34,7 @@ export default class PciStreamsAddController {
       region: this.model.region.region,
       kind: this.model.kind,
       name: this.model.name,
+      description: this.model.description,
     }).catch((error) => {
       this.loading.add = false;
 
