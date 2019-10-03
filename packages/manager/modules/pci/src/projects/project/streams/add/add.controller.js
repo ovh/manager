@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 
-
 import { MESSAGE_CONTAINER_NAME } from './add.constants';
 
 export default class PciStreamsAddController {

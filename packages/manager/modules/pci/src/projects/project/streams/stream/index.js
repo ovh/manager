@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-
 const moduleName = 'ovhManagerPciStreamsStreamLazyLoading';
 
 angular
