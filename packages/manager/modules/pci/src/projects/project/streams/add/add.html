@@ -24,15 +24,10 @@
                 data-value="kind"
                 data-required>
                 <span data-translate="{{:: 'pci_projects_project_streams_add_stream_type_' + kind.toLowerCase() }}"></span>
-                <oui-popover>
-                    <button type="button" class="oui-popover-button"
-                            data-oui-popover-trigger>
-                    </button>
-                    <oui-popover-content>
-                        <span data-translate="{{:: 'pci_projects_project_streams_add_stream_type_' + kind.toLowerCase() + '_popover' }}"></span>
-                    </oui-popover-content>
-                </oui-popover>
-
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover="{{:: 'pci_projects_project_streams_add_stream_type_' + kind.toLowerCase() + '_popover' | translate }}"></button>
             </oui-radio>
         </oui-step-form>
 
