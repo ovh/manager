@@ -12,10 +12,11 @@ module.exports = (env = {}) => {
   }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   let WEBPACK_REGION;
+
   if (env.region) {
-    WEBPACK_REGION = `'${env.region}'`;
+    WEBPACK_REGION = `${env.region}`;
   } else {
-    WEBPACK_REGION = process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"';
+    WEBPACK_REGION = process.env.REGION ? `${process.env.REGION.toUpperCase()}` : 'EU';
   }
 
   // Extra config files
@@ -38,7 +39,7 @@ module.exports = (env = {}) => {
         __FEEDBACK_URL_FR__: process.env.FEEDBACK_URL_FR ? `'${process.env.FEEDBACK_URL_FR}'` : 'null',
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
         __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
-        __WEBPACK_REGION__: WEBPACK_REGION,
+        __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
       new webpack.ProvidePlugin({
         $: 'jquery',
