@@ -39,6 +39,7 @@ import moment from 'moment';
 import config from './config/config';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
+import domainDnsZone from './dns-zone';
 import navbar from './components/navbar';
 import zone from './domain/zone/zone.module';
 
@@ -97,6 +98,7 @@ angular
     office,
     sharepoint,
     'Module.emailpro',
+    domainDnsZone,
     domainEmailObfuscation,
     domainOptin,
     navbar,

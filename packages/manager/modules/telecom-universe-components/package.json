@@ -9,7 +9,7 @@
   "dependencies": {
     "bootstrap": "^3.4.1",
     "lodash": "^4.17.15",
-    "ovh-ui-kit": "^2.34.1"
+    "ovh-ui-kit": "^2.34.3"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.1",
@@ -28,7 +28,7 @@
     "jsplumb": "^2.11.2",
     "moment": "^2.15.2",
     "ng-csv": "^0.3.6",
-    "ovh-api-services": "^9.12.0",
+    "ovh-api-services": "^9.17.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.8.0",
     "punycode": "^2.1.1",

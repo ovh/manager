@@ -1,3 +1,21 @@
+## [13.30.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.2...@ovh-ux/manager-web@13.30.3) (2019-10-02)
+
+
+### Bug Fixes
+
+* **domain.zone:** restore deleted method ([#1398](https://github.com/ovh-ux/manager/issues/1398)) ([06a932e](https://github.com/ovh-ux/manager/commit/06a932e))
+
+
+
+## [13.30.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.1...@ovh-ux/manager-web@13.30.2) (2019-09-30)
+
+
+### Bug Fixes
+
+* **web.domain:** fix dns zone part ([#1380](https://github.com/ovh-ux/manager/issues/1380)) ([7a57edd](https://github.com/ovh-ux/manager/commit/7a57edd))
+
+
+
 ## [13.30.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.0...@ovh-ux/manager-web@13.30.1) (2019-09-19)
 
 
