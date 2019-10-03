@@ -34,6 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId: stream.id,
         }),
+
         goToStreams: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
