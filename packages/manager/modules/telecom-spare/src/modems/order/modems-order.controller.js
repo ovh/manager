@@ -1,15 +1,13 @@
+import { ORDER } from '../../constant';
+
 export default class {
   /* @ngInject */
   constructor(
-    $scope,
-    $translate,
     OvhApiXdsl,
     OvhContact,
     TucToast,
     TucToastError,
   ) {
-    this.$scope = $scope;
-    this.$translate = $translate;
     this.OvhApiXdsl = OvhApiXdsl;
     this.OvhContact = OvhContact;
     this.orderStep = null;
@@ -42,19 +40,19 @@ export default class {
       filter: this.filterContacts,
     };
 
-    this.orderStep = 'modem_and_shipping';
+    this.orderStep = ORDER.step.modemShipping;
   }
 
   changeStep(step) {
     this.orderStep = step;
     switch (this.orderStep) {
-      case 'modem_and_shipping':
+      case ORDER.step.modemShipping:
         this.quantity = 0;
         this.contactChoiceOptions = {
           filter: this.filterContacts,
         };
         break;
-      case 'summary':
+      case ORDER.step.summary:
         this.isStepLoading = true;
         this.order.isContractAccepted = false;
         this.fetchOrder()
@@ -77,7 +75,7 @@ export default class {
       quantity: this.quantity,
       shippingContactId: this.order.contact.id,
     };
-    if (this.order.shipping.mode !== 'transporter') {
+    if (this.order.shipping.mode === ORDER.shipping_mode.md) {
       params.mondialRelayId = this.order.shipping.relay.id;
     }
     return this.OvhApiXdsl.Spare()
@@ -91,7 +89,7 @@ export default class {
       quantity: this.quantity,
       shippingContactId: this.order.contact.id,
     };
-    if (this.order.shipping.mode !== 'transporter') {
+    if (this.order.shipping.mode === ORDER.shipping_mode.md) {
       params.mondialRelayId = this.order.shipping.relay.id;
     }
     this.isSubmiting = true;
@@ -101,11 +99,19 @@ export default class {
       .$promise.then((order) => {
         this.order.success = true;
         this.order.orderURL = order.url;
-        this.orderStep = 'modem_and_shipping';
+        this.orderStep = ORDER.step.modemShipping;
       })
       .catch(err => this.TucToastError(err))
       .finally(() => {
         this.isSubmiting = false;
       });
+  }
+
+  isDisabled() {
+    return (this.quantity === 0)
+        || !this.order.brand
+        || !this.order.contact
+        || (this.order.shipping.mode === ORDER.shipping_mode.md
+        && !this.order.shipping.relay);
   }
 }

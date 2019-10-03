@@ -1891,7 +1891,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-contact@4.0.3":
+"@ovh-ux/ng-ovh-contact@4.0.3", "@ovh-ux/ng-ovh-contact@^4.0.2":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.3.tgz#5290dd1257611e5022224120a37461992c4ceec8"
   integrity sha512-B9CeWwhurW25eZ3m3XdqwVwZpR7z83CGG8/Idf9dvwGL0iwPD0F58+/EKMOZYCqfRjctQ+nsha1KNcy0SwXWFA==

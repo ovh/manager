@@ -1,7 +1,9 @@
 import map from 'lodash/map';
 
-import modalController from './modal/phones-modal.controller';
-import modalTemplate from './modal/phones-modal.html';
+import modalDeleteController from './modal/delete/phones-modal-delete.controller';
+import modalDeleteTemplate from './modal/delete/phones-modal-delete.html';
+import modalReplaceController from './modal/replace/phones-modal-replace.controller';
+import modalReplaceTemplate from './modal/replace/phones-modal-replace.html';
 
 export default class PhonesController {
   /* @ngInject */
@@ -54,8 +56,8 @@ export default class PhonesController {
   replace({ spare }) {
     const modal = this.$uibModal.open({
       animation: true,
-      template: modalTemplate,
-      controller: modalController,
+      template: modalReplaceTemplate,
+      controller: modalReplaceController,
       controllerAs: '$ctrl',
       resolve: {
         params: () => {
@@ -96,8 +98,8 @@ export default class PhonesController {
   delete({ spare }) {
     const modal = this.$uibModal.open({
       animation: true,
-      template: modalTemplate,
-      controller: modalController,
+      template: modalDeleteTemplate,
+      controller: modalDeleteController,
       controllerAs: '$ctrl',
       resolve: {
         params: () => {

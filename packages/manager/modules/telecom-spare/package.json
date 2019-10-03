@@ -4,21 +4,9 @@
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
-  "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-spare' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-spare' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-spare' --include-filtered-dependencies -- yarn run dev:watch"
-  },
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
-  },
-  "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^6.1.1",

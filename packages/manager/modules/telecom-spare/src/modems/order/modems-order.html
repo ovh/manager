@@ -1,8 +1,8 @@
 <div class="telecom-spare-modems-order-section">
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="spare.modems"
-            data-tuc-section-back-link-title="{{ ::'modems_order_back_link' | translate }}">
-        </tuc-section-back-link>
+        <oui-back-button data-state="spare.modems">
+            <span data-translate="modems_order_back_link"></span>
+        </oui-back-button>
         <h1 data-translate="modems_order_new_modem_title"></h1>
     </header>
 
@@ -15,14 +15,14 @@
                 <!-- ORDER -->
                 <section class="widget-presentation" data-ng-if="$ctrl.order.orderURL">
                     <h2 class="widget-presentation-title" data-translate="modems_order_shipping_title"></h2>
-                    <div class="alert alert-success" role="alert" data-translate="modem_order_order_success"></div>
-                    <p>
-                        <a target="_blank" class="oui-button oui-button_primary" rel="noopener"
-                            data-ng-href="{{:: $ctrl.order.orderURL }}">
-                            <span data-translate="modem_order_order_url"></span>
-                            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                        </a>
-                    </p>
+                    <oui-message  data-type="success">
+                        <span data-translate="modem_order_order_success"></span>
+                    </oui-message>
+                    <a target="_blank" class="oui-button oui-button_primary" rel="noopener"
+                        data-ng-href="{{:: $ctrl.order.orderURL }}">
+                        <span data-translate="modem_order_order_url"></span>
+                        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    </a>
                 </section>
 
                 <!-- SHIPPING CONTACT AND MODEM SELECTION -->
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <button type="button" class="oui-button oui-button_primary oui-button_icon-right float-right mt-2"
-                        data-ng-disabled="($ctrl.quantity === 0) || !$ctrl.order.brand || !$ctrl.order.contact || ($ctrl.order.shipping.mode === 'mondialRelay' && !$ctrl.order.shipping.relay)"
+                        data-ng-disabled="$ctrl.isDisabled()"
                         data-ng-click="$ctrl.changeStep('summary')">
                         <span data-translate="modems_order_order_next"></span>
                         <span class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></span>

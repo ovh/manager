@@ -1,5 +1,7 @@
 # manager-telecom-spare
 
+Application to test standalone telecom-spare component which allows authorized users to manage the spare of modems and phones.
+
 ## Installation
 
 Foremost, you should launch a global installation at the root folder of this repository:

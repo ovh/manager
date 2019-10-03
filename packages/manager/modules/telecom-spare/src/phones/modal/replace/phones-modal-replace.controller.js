@@ -12,26 +12,11 @@ export default class {
   }
 
   $onInit() {
-    this.isToReplace = false;
-    this.isToDelete = false;
     this.isApplyAvailable = false;
 
-    this.loading = false;
-    switch (this.action) {
-      case 'replacement':
-        this.isToReplace = true;
-        this.title = 'phone_modal_replacement_title';
-        this.loading = true;
-        this.retrieveCompatibleReplacement();
-        break;
-      case 'delete':
-        this.isToDelete = true;
-        this.title = 'phone_modal_delete_title';
-        this.isApplyAvailable = true;
-        break;
-      default:
-        break;
-    }
+    this.title = 'phone_modal_replacement_title';
+    this.loading = true;
+    this.retrieveCompatibleReplacement();
   }
 
   retrieveCompatibleReplacement() {
@@ -50,47 +35,13 @@ export default class {
       });
   }
 
-  apply() {
-    switch (this.action) {
-      case 'replacement':
-        this.replaceSpare(this.spare, this.selectedDomain, this.phoneIP);
-        break;
-      case 'delete':
-        this.deleteSpare(this.spare);
-        break;
-      default:
-        break;
-    }
-  }
-
-  deleteSpare(spare) {
-    let actionResult = null;
-    return this.OvhApiTelephony.Spare().v6().deleteSpare({
-      spare,
-    }).$promise
-      .then(() => {
-        actionResult = {
-          isSucceed: true,
-          messageToDisplay: 'phones_modal_delete_succeed',
-        };
-      })
-      .catch((err) => {
-        actionResult = {
-          isSucceed: false,
-          messageToDisplay: 'phones_modal_delete_failed',
-          errorMessage: err.data.message,
-        };
-      })
-      .finally(() => this.close(actionResult));
-  }
-
-  replaceSpare(spare, domain, ip) {
+  replaceSpare() {
     let actionResult = null;
     return this.OvhApiTelephony.Spare().v6().replaceSpare({
-      spare,
+      spare: this.spare,
     }, {
-      domain,
-      ip,
+      domain: this.domain,
+      ip: this.ip,
     }).$promise.then(() => {
       actionResult = {
         isSucceed: true,
@@ -102,7 +53,7 @@ export default class {
           isSucceed: false,
           messageToDisplay: 'phones_modal_replacement_failed',
           errorMessage: err.data.message,
-          spare,
+          spare: this.spare,
         };
       }).finally(() => this.close(actionResult));
   }

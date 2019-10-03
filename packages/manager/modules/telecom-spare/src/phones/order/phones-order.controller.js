@@ -1,15 +1,13 @@
+import { ORDER } from '../../constant';
+
 export default class {
   /* @ngInject */
   constructor(
-    $scope,
-    $translate,
     OvhApiTelephony,
     OvhContact,
     TucToast,
     TucToastError,
   ) {
-    this.$scope = $scope;
-    this.$translate = $translate;
     this.OvhApiTelephony = OvhApiTelephony;
     this.OvhContact = OvhContact;
     this.orderStep = null;
@@ -42,19 +40,19 @@ export default class {
       filter: this.filterContacts,
     };
 
-    this.orderStep = 'phone_and_shipping';
+    this.orderStep = ORDER.step.phoneShipping;
   }
 
   changeStep(step) {
     this.orderStep = step;
     switch (this.orderStep) {
-      case 'phone_and_shipping':
+      case ORDER.step.phoneShipping:
         this.quantity = 0;
         this.contactChoiceOptions = {
           filter: this.filterContacts,
         };
         break;
-      case 'summary':
+      case ORDER.step.summary:
         this.isStepLoading = true;
         this.order.isContractAccepted = false;
         this.fetchOrder()
@@ -73,11 +71,11 @@ export default class {
 
   fetchOrder() {
     const params = {
-      brand: this.order.brand,
+      brand: this.order.brand.id,
       quantity: this.quantity,
       shippingContactId: this.order.contact.id,
     };
-    if (this.order.shipping.mode !== 'transporter') {
+    if (this.order.shipping.mode === ORDER.shipping_mode.md) {
       params.mondialRelayId = this.order.shipping.relay.id;
     }
     return this.OvhApiTelephony.Spare()
@@ -87,11 +85,11 @@ export default class {
 
   submitOrder() {
     const params = {
-      brand: this.order.brand,
+      brand: this.order.brand.id,
       quantity: this.quantity,
       shippingContactId: this.order.contact.id,
     };
-    if (this.order.shipping.mode !== 'transporter') {
+    if (this.order.shipping.mode === ORDER.shipping_mode.md) {
       params.mondialRelayId = this.order.shipping.relay.id;
     }
     this.isSubmiting = true;
@@ -101,11 +99,19 @@ export default class {
       .$promise.then((order) => {
         this.order.success = true;
         this.order.orderURL = order.url;
-        this.orderStep = 'phone_and_shipping';
+        this.orderStep = ORDER.step.phoneShipping;
       })
       .catch(err => this.TucToastError(err))
       .finally(() => {
         this.isSubmiting = false;
       });
+  }
+
+  isDisabled() {
+    return (this.quantity === 0)
+        || !this.order.brand
+        || !this.order.contact
+        || (this.order.shipping.mode === ORDER.shipping_mode.md
+        && !this.order.shipping.relay);
   }
 }

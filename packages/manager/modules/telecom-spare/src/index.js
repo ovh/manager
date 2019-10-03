@@ -18,15 +18,6 @@ import 'angular-translate-loader-pluggable';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
 
-import 'ovh-manager-webfont/dist/css/ovh-font.css';
-import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
-import 'font-awesome/css/font-awesome.css';
-import 'ovh-common-style/dist/ovh-common-style.css';
-import 'leaflet/dist/leaflet.css';
-import 'ui-select/dist/select.css';
-import 'intl-tel-input/build/css/intlTelInput.css';
-
 import modems from './modems';
 import phones from './phones';
 import modemOrder from './modems/order';

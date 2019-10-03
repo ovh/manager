@@ -1,7 +1,11 @@
 import map from 'lodash/map';
 
-import modalController from './modal/modems-modal.controller';
-import modalTemplate from './modal/modems-modal.html';
+import modalDeleteController from './modal/delete/modems-modal-delete.controller';
+import modalDeleteTemplate from './modal/delete/modems-modal-delete.html';
+import modalReplaceController from './modal/replace/modems-modal-replace.controller';
+import modalReplaceTemplate from './modal/replace/modems-modal-replace.html';
+import modalReturnController from './modal/return/modems-modal-return.controller';
+import modalReturnTemplate from './modal/return/modems-modal-return.html';
 
 export default class ModemsController {
   /* @ngInject */
@@ -53,13 +57,12 @@ export default class ModemsController {
   replace({ spare }) {
     const modal = this.$uibModal.open({
       animation: true,
-      template: modalTemplate,
-      controller: modalController,
+      template: modalReplaceTemplate,
+      controller: modalReplaceController,
       controllerAs: '$ctrl',
       resolve: {
         params: () => {
           const params = {
-            action: 'replacement',
             spare,
           };
           return params;
@@ -87,18 +90,17 @@ export default class ModemsController {
   }
 
   /**
-   * Delete the spare as if it was not belonging to OVH anymore
+   * Return the broken equipment in instantRefund
    */
-  delete({ spare }) {
+  returnMerchandise({ spare }) {
     const modal = this.$uibModal.open({
       animation: true,
-      template: modalTemplate,
-      controller: modalController,
+      template: modalReturnTemplate,
+      controller: modalReturnController,
       controllerAs: '$ctrl',
       resolve: {
         params: () => {
           const params = {
-            action: 'delete',
             spare,
           };
           return params;
@@ -111,18 +113,17 @@ export default class ModemsController {
   }
 
   /**
-   * Return the broken equipment in instantRefund
+   * Delete modem spare
    */
-  returnMerchandise({ spare }) {
+  delete({ spare }) {
     const modal = this.$uibModal.open({
       animation: true,
-      template: modalTemplate,
-      controller: modalController,
+      template: modalDeleteTemplate,
+      controller: modalDeleteController,
       controllerAs: '$ctrl',
       resolve: {
         params: () => {
           const params = {
-            action: 'return',
             spare,
           };
           return params;

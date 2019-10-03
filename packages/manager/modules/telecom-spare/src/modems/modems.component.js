@@ -4,6 +4,8 @@ import template from './modems.html';
 export default {
   bindings: {
     modems: '<',
+    deleteSpare: '<',
+    goToModems: '<',
   },
   controller,
   template,

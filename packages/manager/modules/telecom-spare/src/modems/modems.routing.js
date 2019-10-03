@@ -1,7 +1,5 @@
 import map from 'lodash/map';
 
-import '@ovh-ux/manager-telecom-styles';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('spare.modems', {
     url: '/modems',
@@ -13,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .v6()
         .query()
         .$promise.then(modems => map(modems, spare => ({ spare }))),
+
     },
   });
 };

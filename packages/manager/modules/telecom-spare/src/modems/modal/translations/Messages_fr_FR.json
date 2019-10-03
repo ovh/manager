@@ -9,5 +9,5 @@
   "xdsl_modem_modal_delete_description": "Êtes-vous sûr(e) de vouloir supprimer ce matériel de la liste de vos matériels ?",
   "xdsl_modem_modal_replacement_no_compatible_domains": "Il n'y a pas de matériel compatible à remplacer.",
   "xdsl_modem_modal_replacement_description": "Liste des matériels compatibles à remplacer",
-  "xdsl_modem_modal_replacement_select": "Sélectionner le matériel..."
+  "xdsl_modem_modal_replacement_select": "Sélectionner le matériel…"
 }

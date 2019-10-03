@@ -3,7 +3,7 @@
   "phones_order_back_link": "Retour à la liste des téléphones",
   "phones_order_phone_title": "Choix du téléphone",
   "phones_order_select_title": "Sélectionnez un modèle",
-  "phones_order_place_holder": "Modèle de téléphone...",
+  "phones_order_place_holder": "Modèle de téléphone…",
   "phones_order_select_quantity": "Quantité",
   "phones_order_shipping_title": "Livraison",
   "phones_order_contact_shipping_title": "Contact de livraison",
@@ -25,6 +25,6 @@
   "phones_order_retract": "Vous souhaitez disposer de la possibilité d'exercer votre droit de rétractation et acceptez qu'à ce titre le début de la prestation n'intervienne qu'à expiration de ce delai. Mise à disposition du service sous 14 jours.",
   "phones_order_noretract": "Vous sollicitez l'exécution immédiate de la prestation et reconnaissez qu'à ce titre, vous ne pourrez exercer votre droit de rétractation conformément aux dispositions de l'article 121-20-2 du code de la consommation.",
   "phones_order_order_confirm": "Confirmer la commande",
-  "phone_order_order_success": "Votre commande a bien été prise en compte. Merci de régler le bon de commande ci dessous afin de recevoir votre équipement.",
+  "phone_order_order_success": "Votre commande a bien été prise en compte. Merci de régler le bon de commande ci-dessous afin de recevoir votre équipement.",
   "phone_order_order_url": "Bon de commande"
 }

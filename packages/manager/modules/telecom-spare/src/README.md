@@ -2,6 +2,8 @@
 
 [![npm version](https://badgen.net/npm/v/@ovh-ux/manager-telecom-spare)](https://www.npmjs.com/package/@ovh-ux/manager-telecom-spare) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-telecom-spare)](https://npmjs.com/package/@ovh-ux/manager-telecom-spare) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/telecom-spare)](https://npmjs.com/package/@ovh-ux/manager-telecom-spare?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/telecom-spare)](https://npmjs.com/package/@ovh-ux/manager-telecom-spare?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
+Allow authorized users to manage their spare of modems and phones, and to order new ones.
+
 ## Install
 
 ```sh

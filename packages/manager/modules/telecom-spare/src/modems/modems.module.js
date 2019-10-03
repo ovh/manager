@@ -7,6 +7,8 @@ import 'ovh-ui-angular';
 import component from './modems.component';
 import routing from './modems.routing';
 
+import '@ovh-ux/manager-telecom-styles';
+
 const moduleName = 'ovhManagerTelecomSpareModems';
 
 angular

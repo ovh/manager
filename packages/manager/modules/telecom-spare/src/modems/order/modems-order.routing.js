@@ -10,19 +10,13 @@ export default /* @ngInject */ ($stateProvider) => {
       brands: /* @ngInject */ OvhApiXdsl => OvhApiXdsl.Spare()
         .v6()
         .getBrands()
-        .$promise.then((brands) => {
-          const spareBrands = [];
-          brands.sort().forEach((element) => {
-            spareBrands.push({
-              id: element,
-              name: element
-                .replace('xdsl.', '')
-                .replace(/\./g, ' ')
-                .toUpperCase(),
-            });
-          });
-          return spareBrands;
-        }),
+        .$promise.then(brands => brands.sort().map(element => ({
+          id: element,
+          name: element
+            .replace('xdsl.', '')
+            .replace(/\./g, ' ')
+            .toUpperCase(),
+        }))),
     },
     translations: { value: ['.'], format: 'json' },
   });
