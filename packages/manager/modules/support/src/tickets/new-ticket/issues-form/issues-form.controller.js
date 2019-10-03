@@ -10,6 +10,7 @@ export default class SupportNewIssuesFormController {
     $q,
     $state,
     $translate,
+    atInternet,
     OvhApiService,
     OvhApiSupport,
     OvhApiMe,
@@ -18,6 +19,7 @@ export default class SupportNewIssuesFormController {
     this.$q = $q;
     this.$state = $state;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.OvhApiService = OvhApiService;
     this.OvhApiSupport = OvhApiSupport;
     this.OvhApiMe = OvhApiMe;
@@ -113,6 +115,10 @@ export default class SupportNewIssuesFormController {
   }
 
   submitForm(isSuccess) {
+    this.atInternet.trackClick({
+      name: `answer-finding-${isSuccess ? 'yes' : 'no'}`,
+      type: 'action',
+    });
     this.onSubmit({
       result: {
         isSuccess,
