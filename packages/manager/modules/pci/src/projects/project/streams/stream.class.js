@@ -53,8 +53,8 @@ export default class Stream {
     return this.kind === KIND.NON_PERSISTENT;
   }
 
-  get streamUrl() {
-    return `${this.isPersistent() ? 'persistent' : 'non-persistent'}://${this.id}/${this.name}/${this.name}`;
+  getSreamUrl({ project_id: projectId }) {
+    return `${this.isPersistent() ? 'persistent' : 'non-persistent'}://${projectId}/${this.name}/${this.name}`;
   }
 
   get consumerAndPublisherToken() {

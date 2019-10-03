@@ -6,6 +6,7 @@ export default {
   template,
   bindings: {
     stream: '<',
+    project: '<',
     gotToStreams: '<',
     streamLink: '<',
     subscriptionsLink: '<',
