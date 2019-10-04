@@ -42,7 +42,7 @@
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.5",
     "babel-plugin-angularjs-annotate": "^0.10.0",
-    "cache-loader": "^1.2.2",
+    "cache-loader": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
