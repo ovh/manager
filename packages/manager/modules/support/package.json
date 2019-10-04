@@ -1,29 +1,16 @@
 {
   "name": "@ovh-ux/manager-support",
   "version": "0.0.0",
+  "private": true,
   "license": "BSD-3-Clause",
   "files": [
     "dist"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/support.js",
-  "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-support' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-support' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support' --include-filtered-dependencies -- yarn run dev:watch"
-  },
+  "main": "./src/index.js",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.1.2",
