@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
           streamId: stream.id,
         }),
 
-        goToStreams: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+        goToStreams: /* @ngInject */ ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
           const promise = $state.go('pci.projects.project.streams', {

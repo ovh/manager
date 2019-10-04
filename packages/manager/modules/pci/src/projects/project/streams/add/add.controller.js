@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { MESSAGE_CONTAINER_NAME } from './add.constants';
+import { MESSAGE_CONTAINER_NAME, NAME_PATTERN } from './add.constants';
 
 export default class PciStreamsAddController {
   /* @ngInject */
@@ -68,6 +68,7 @@ export default class PciStreamsAddController {
 
   $onInit() {
     this.loadMessages();
+    this.NAME_PATTERN = NAME_PATTERN;
   }
 
   /* -----  End of Hooks  ------ */

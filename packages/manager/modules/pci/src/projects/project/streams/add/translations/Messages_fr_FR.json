@@ -3,7 +3,7 @@
   "pci_projects_project_streams_add_region_title": "Sélectionnez une localisation",
   "pci_projects_project_streams_add_stream_type_title": "Sélectionnez un type de stream",
   "pci_projects_project_streams_add_stream_type_non_persistent_popover": "Les messages sont stockés en mémoire, tous les messages non lus sont supprimés.",
-  "pci_projects_project_streams_add_stream_type_non_persistent": "Non-persistant",
+  "pci_projects_project_streams_add_stream_type_non_persistent": "Non-Persistant",
   "pci_projects_project_streams_add_stream_type_persistent": "Persistant",
   "pci_projects_project_streams_add_stream_type_persistent_popover": "Les messages sont stockés et répliqués, tous les messages non lus sont mis en attente dans le backlog de l'abonnement.",
   "pci_projects_project_streams_add_stream_name_title": "Nom du stream",
