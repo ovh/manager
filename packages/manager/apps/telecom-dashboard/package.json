@@ -3,7 +3,7 @@
   "version": "4.3.0",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-dashboard-app' --include-filtered-dependencies -- npm run build --if-present",
