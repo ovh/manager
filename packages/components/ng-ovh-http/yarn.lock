@@ -805,7 +805,7 @@
     "@nodelib/fs.scandir" "2.1.1"
     fastq "^1.6.0"
 
-"@ovh-ux/component-rollup-config@^6.0.1":
+"@ovh-ux/component-rollup-config@^6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-6.0.2.tgz#a53158600ebd3e6b9b9d8f63c0815b031c13cf08"
   integrity sha512-4egMCgTCgo+EYuk04DQ+RXFxOCdJVSVngQZDpBJGiOtc3iBDWQ7galZFpJIv+20Lsp20u6/QGzb7QlLk2pV6ow==
