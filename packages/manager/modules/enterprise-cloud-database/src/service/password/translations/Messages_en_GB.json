@@ -1,0 +1,11 @@
+{
+  "enterprise_cloud_database_service_cluster_password": "Choose an admin password to secure your cluster",
+  "enterprise_cloud_database_service_cluster_password_description": "A password is required in order to be able to connect to your cluster",
+  "enterprise_cloud_database_service_cluster_password_help": "Your password must contain at least 2 numbers and must be alphanumeric with a minimum length of 12 and maximum of 32 characters.",
+  "enterprise_cloud_database_service_cluster_password_help_strength": "Your password is not strong enough",
+  "enterprise_cloud_database_service_cluster_password_help_alphanumeric": "Must be alphanumeric [A-Za-z0-9]",
+  "enterprise_cloud_database_service_cluster_password_help_upper_case": "Must contain atleast 1 upper case character",
+  "enterprise_cloud_database_service_cluster_password_help_number": "Must contain at least two numbers",
+  "enterprise_cloud_database_service_cluster_password_help_length": "Must contain 12 to 32 characters",
+  "enterprise_cloud_database_service_cluster_password_placeholder": "Enter a password"
+}
