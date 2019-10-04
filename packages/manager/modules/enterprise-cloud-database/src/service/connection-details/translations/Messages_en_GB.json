@@ -1,0 +1,14 @@
+{
+  "enterprise_cloud_database_service_connection_details_parameters_title": "Parameters",
+  "enterprise_cloud_database_service_connection_details_strings_title": "Strings",
+  "enterprise_cloud_database_service_connection_details_flags_title": "Flags",
+  "enterprise_cloud_database_service_connection_details_parameters_description_postgresql": "Get the individual parameters to configure a PostgreSQL client or web application to connect to your database cluster.",
+  "enterprise_cloud_database_service_connection_details_parameters_username": "username",
+  "enterprise_cloud_database_service_connection_details_parameters_password": "password",
+  "enterprise_cloud_database_service_connection_details_parameters_host": "host",
+  "enterprise_cloud_database_service_connection_details_parameters_port": "port",
+  "enterprise_cloud_database_service_connection_details_parameters_database": "database",
+  "enterprise_cloud_database_service_connection_details_parameters_sslmode": "sslmode",
+  "enterprise_cloud_database_service_connection_details_string_description_postgresql": "Copy the connection string to paste directly into an interactive psql session or any compliant application.",
+  "enterprise_cloud_database_service_connection_details_flags_description_postgresql": "Use to connect to this database cluster in conjuction with PostgreSQL tools like pg_restore or from within the psql monitor."
+}

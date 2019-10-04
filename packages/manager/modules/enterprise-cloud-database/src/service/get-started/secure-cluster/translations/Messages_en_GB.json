@@ -1,0 +1,8 @@
+{
+  "enterprise_cloud_database_service_get_started_secure_cluster_name": "Rename your cluster",
+  "enterprise_cloud_database_service_get_started_secure_cluster_name_help": "The cluster name must contain between 1 and 255 characters. Only lowercase letters, uppercase letters, '-', '_', and numbers are allowed.",
+  "enterprise_cloud_database_service_get_started_secure_cluster_name_placeholder": "Enter a cluster name",
+  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_title": "Trusted sources",
+  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description1": "Your cluster currently accepts any incoming connection over the public network before authentication.",
+  "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2": "To restrict connections to trusted sources, add at least one inbound source below. You can add other sources later. When you do, all other public and private connections will be denied."
+}
