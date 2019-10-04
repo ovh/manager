@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-import { KIND, STATUS } from './streams.constants';
+import { KIND, STATUS, THROTTLING } from './streams.constants';
 
 export default class Stream {
   constructor({
@@ -63,5 +63,25 @@ export default class Stream {
 
   get consumerOnlyToken() {
     return find(this.tokens, token => token.isConsumerOnly());
+  }
+
+  isUnlimitedThrottling() {
+    return this.throttling === THROTTLING.UNLIMITED;
+  }
+
+  getBacklogAsHours() {
+    return moment.duration(this.backlog).asHours();
+  }
+
+  getRetentionAsHours() {
+    return moment.duration(this.retention).asHours();
+  }
+
+  setBacklogFromHours(hours) {
+    this.backlog = moment.duration(hours, 'hours').toISOString();
+  }
+
+  setRetentionFromHours(hours) {
+    this.retention = moment.duration(hours, 'hours').toISOString();
   }
 }

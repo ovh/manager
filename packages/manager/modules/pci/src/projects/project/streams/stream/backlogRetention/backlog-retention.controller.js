@@ -17,11 +17,11 @@ export default class PciStreamsStreamBacklogRetentionController {
 
     this.editStream = new Stream(this.stream);
 
-    this.backlogValue = moment.duration(this.stream.backlog).asHours();
+    this.backlogValue = this.editStream.getBacklogAsHours();
   }
 
   updateStream() {
-    this.editStream.backlog = moment.duration(this.backlogValue, 'hours').toISOString();
+    this.editStream.setBacklogFromHours(this.backlogValue);
     this.isLoading = true;
     return this.PciProjectStreamService
       .update(this.projectId, this.editStream)

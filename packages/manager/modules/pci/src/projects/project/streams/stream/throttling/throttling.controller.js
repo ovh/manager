@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import Stream from '../../stream.class';
+import { THROTTLING } from '../../streams.constants';
 
 export default class PciStreamsStreamThrottlingController {
   /* @ngInject */
@@ -13,10 +14,10 @@ export default class PciStreamsStreamThrottlingController {
 
   $onInit() {
     this.isLoading = false;
-    this.unlimitedThrottlingValue = -1;
+    this.unlimitedThrottlingValue = THROTTLING.UNLIMITED;
     this.editStream = new Stream(this.stream);
 
-    this.unlimitedThrottling = this.stream.throttling === this.unlimitedThrottlingValue;
+    this.unlimitedThrottling = this.stream.isUnlimitedThrottling();
   }
 
   changeThrottling(value) {

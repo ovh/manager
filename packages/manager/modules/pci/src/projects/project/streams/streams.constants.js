@@ -9,7 +9,12 @@ export const KIND = {
   PERSISTENT: 'PERSISTENT',
 };
 
+export const THROTTLING = {
+  UNLIMITED: -1,
+};
+
 export default {
   STATUS,
   KIND,
+  THROTTLING,
 };

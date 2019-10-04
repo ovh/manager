@@ -16,12 +16,11 @@ export default class PciStreamsStreamReplayRetentionController {
     this.minRetention = 1;
 
     this.editStream = new Stream(this.stream);
-
-    this.replayValue = moment.duration(this.stream.retention).asHours();
+    this.replayValue = this.editStream.getRetentionAsHours();
   }
 
   updateStream() {
-    this.editStream.retention = moment.duration(this.replayValue, 'hours').toISOString();
+    this.editStream.setRetentionFromHours(this.replayValue);
     this.isLoading = true;
     return this.PciProjectStreamService
       .update(this.projectId, this.editStream)
