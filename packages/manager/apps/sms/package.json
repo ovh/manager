@@ -3,7 +3,7 @@
   "version": "7.1.1",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies -- npm run build --if-present",
