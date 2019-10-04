@@ -53,7 +53,7 @@ export default class Stream {
     return this.kind === KIND.NON_PERSISTENT;
   }
 
-  getSreamUrl({ project_id: projectId }) {
+  getStreamUrl({ project_id: projectId }) {
     return `${this.isPersistent() ? 'persistent' : 'non-persistent'}://${projectId}/${this.name}/${this.name}`;
   }
 
