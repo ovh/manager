@@ -3,7 +3,7 @@
   "version": "4.1.2",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "cypress:open": "cypress open",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
