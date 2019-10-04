@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-freefax-app' --include-filtered-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-freefax-app' --include-filtered-dependencies -- npm run dev",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-freefax-app' --include-filtered-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax-app' --include-filtered-dependencies -- npm run dev:watch --if-present",
     "test:e2e": "lerna exec --scope @ovh-ux/manager-freefax-app -- node \\$LERNA_ROOT_PATH/scripts/webpack-cypress"
   },
