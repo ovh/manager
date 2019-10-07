@@ -53,6 +53,18 @@
                                 </div>
                             </uib-accordion-heading>
 
+                            <!-- PORTABILITY ATTACH CUSTOMER FORM -->
+                            <button class="oui-button oui-button_primary oui-button_full-width"
+                                    data-translate="telephony_alias_portabilities_attach_form"
+                                    data-ng-click="PortabilitiesCtrl.attachMandate(number)"
+                                    data-ng-if="porta.documentAttached.length === 0">
+                            </button>
+                            <button class="oui-button oui-button_primary oui-button_full-width"
+                                    data-translate="telephony_alias_portabilities_attach_document_form"
+                                    data-ng-click="PortabilitiesCtrl.attachMandate(number)"
+                                    data-ng-if="porta.documentAttached.length > 0">
+                            </button>
+
                             <!-- PORTABILITY DETAILS -->
                             <dl data-ng-init="porta = number.portability">
                                 <dt data-translate="telephony_alias_portabilities_operator"></dt>

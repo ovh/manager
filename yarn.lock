@@ -11718,6 +11718,12 @@ ovh-api-services@^9.18.0:
   dependencies:
     lodash "^4.17.15"
 
+"ovh-api-services@git+https://github.com/ovh-ux/ovh-api-services.git#feat/telephony-portability-document":
+  version "9.18.2"
+  resolved "git+https://github.com/ovh-ux/ovh-api-services.git#e6f9fb0e588c537e4d5d5dd25964b2c253984bb6"
+  dependencies:
+    lodash "^4.17.15"
+
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"
