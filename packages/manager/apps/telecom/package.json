@@ -31,7 +31,6 @@
   "dependencies": {
     "@bower_components/angular-ellipses": "genu/angular-ellipses#0.1.3",
     "@bower_components/angular-ui-utils": "angular-ui/ui-utils#0.2.3",
-    "@bower_components/crypto": "anodynos/node2web_crypto#3.46.1",
     "@ovh-ux/manager-banner": "^1.1.0",
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^7.1.3",
