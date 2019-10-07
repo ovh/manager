@@ -9,7 +9,6 @@ import 'angular-ui-bootstrap';
 import 'angular-ui-validate';
 import 'angular-cookies';
 import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.min.js';
-import 'script-loader!@bower_components/angular-ellipses/src/truncate.js';
 import 'angular-flash-alert';
 import 'angular-inview';
 import 'angular-messages';

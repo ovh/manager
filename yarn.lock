@@ -854,10 +854,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@bower_components/angular-ellipses@genu/angular-ellipses#0.1.3":
-  version "0.1.2"
-  resolved "https://codeload.github.com/genu/angular-ellipses/tar.gz/a2c1f2a4b1af381c83ca80e03058e156e3ef288a"
-
 "@bower_components/angular-ui-utils@angular-ui/ui-utils#0.2.3", "@bower_components/angular-ui-utils@angular-ui/ui-utils#~0.2.3", ui-utils@angular-ui/ui-utils#~0.2.3:
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
