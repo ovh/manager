@@ -1,6 +1,6 @@
 # `ouiModal` layout
 
-> Allow to open a ui-route directly in a `oui-modal`.
+> Allow to open a Ui-Router route directly in a `oui-modal`.
 
 ## Usage
 
@@ -94,7 +94,7 @@ $stateProvider
   });
 ```
 
-**`Note` for component and componentProvider**: `ouiModal` layout make bindings and resolve compatible with version >= 2.1.0 of angular-ui-bootstrap (see [angular-ui-bootstrap documentation](https://angular-ui.github.io/bootstrap/versioned-docs/2.1.0/#/modal)). So if you want to use any resolve defined in your state declaration, you will be abble to access them through `resolve` object of your controller. This will be accessible from `$onInit` hook (not in controller constructor).
+**`Note` for component and componentProvider**: `ouiModal` layout make bindings and resolve compatible with version >= 2.1.0 of angular-ui-bootstrap (see [angular-ui-bootstrap documentation](https://angular-ui.github.io/bootstrap/versioned-docs/2.1.0/#/modal)). So if you want to use any resolve defined in your state declaration, you will be able to access them through `resolve` object of your controller. This will be accessible from `$onInit` hook (not in controller constructor).
 
 ```js
 // component.js
@@ -116,6 +116,9 @@ export default {
 export default class MyAwesomeComponentCtrl {
   $onInit() {
     console.log(this.resolve.resolveData);
+    /**
+     *  will output: I can be used in controller too!
+     */
   }
 };
 ```
@@ -134,7 +137,7 @@ This will display `I can be used in controller too!` in the console and set `A b
 
 ## Available options
 
-*For modal options (all options exept `redirectTo`), see the [oui-modal documentation](https://ovh-ux.github.io/ovh-ui-kit/?path=/story/components-modal--simple) for more informations.*
+*For modal options (all options except `redirectTo`), see the [oui-modal documentation](https://ovh-ux.github.io/ovh-ui-kit/?path=/story/components-modal--simple) for more informations.*
 
 All options can be provided through ui-state resolves.
 

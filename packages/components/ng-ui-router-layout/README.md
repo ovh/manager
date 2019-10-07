@@ -1,6 +1,6 @@
 # ng-ui-router-layout
 
-> Support different layouts when using ui-router
+> Support multiple layouts when using Ui-Router
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-ui-router-layout)](https://npmjs.com/package/@ovh-ux/ng-ui-router-layout?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
@@ -11,7 +11,9 @@ yarn add @ovh-ux/ng-ui-router-layout
 ```
 ## Usage
 
-### `modal` layout (prefere using [`ouiModal` layout](ovh-ux/manager/tree/master/packages/components/ng-ui-router-layout/src/oui-modal/README.md))
+### `modal` layout
+
+This layout is now deprecated. Prefer using [`ouiModal` layout](ovh-ux/manager/tree/master/packages/components/ng-ui-router-layout/src/oui-modal/README.md).
 
 ```js
 // index.js
@@ -82,7 +84,7 @@ import template from './template.html';
 
 ### `ouiModal` layout
 
-See [ouiModal layout](ovh-ux/manager/tree/master/packages/components/ng-ui-router-layout/src/oui-modal/README.md).
+See [ouiModal layout](src/oui-modal/README.md).
 
 
 ## Contributing

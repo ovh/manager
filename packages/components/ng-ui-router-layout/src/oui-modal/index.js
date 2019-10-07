@@ -110,9 +110,6 @@ angular
             const div = document.createElement('div');
             const elmt = document.createElement(kebabCase(directiveInfo.name));
 
-            // let pre = document.createElement('pre');
-            // pre.innerHTML = '{{ $parent.$ctrl | json }}';
-            // div.appendChild(pre);
             elmt.setAttribute('data-resolve', '$ctrl.resolve');
             elmt.setAttribute('data-modal-instance', '$ctrl.modalInstance');
             div.appendChild(elmt);
