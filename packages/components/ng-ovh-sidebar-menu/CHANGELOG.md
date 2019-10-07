@@ -1,3 +1,12 @@
+## [8.4.2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.1...v8.4.2) (2019-10-07)
+
+
+### Bug Fixes
+
+* remove empty item (no link) ([63bee49](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/63bee49))
+
+
+
 ## [8.4.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.0...v8.4.1) (2019-08-19)
 
 
