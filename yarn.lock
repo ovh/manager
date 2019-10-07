@@ -2333,7 +2333,7 @@
     prop-types "^15.5.10"
     tslib "^1.7.1"
 
-"@uirouter/angularjs@^1.0.23":
+"@uirouter/angularjs@^1.0.20", "@uirouter/angularjs@^1.0.23":
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.23.tgz#aeec0f96b0c42187c5044ef244ba6ccb75a5d835"
   integrity sha512-r4hLSw7R3mwXGC5Sq7yxNlBK1sSzQUm/1MzigwwYRHoMO5uKcBPUhxFYx5U7kufP2Xl1165KeZvRsLCh0/Z1ng==
@@ -2663,11 +2663,7 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-<<<<<<< HEAD
-angular-animate@^1.4.0, angular-animate@^1.7.5, angular-animate@^1.7.8:
-=======
-angular-animate@^1.4.0, angular-animate@^1.7.5, angular-animate@~1.7.8:
->>>>>>> develop
+angular-animate@^1.4.0, angular-animate@^1.7.5, angular-animate@^1.7.8, angular-animate@~1.7.8:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.7.8.tgz#c95f237efe7ecfe0e6003adb5e2c7ef0e5a2b9d4"
   integrity sha512-bINtzizq7TbJzfVrDpwLfTxVl0Qd7fRNWFb5jKYI1vaFZobQNX/QONXlLow6ySsDbZ6eLECycB7mvWtfh1YYaw==
@@ -11819,24 +11815,10 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-<<<<<<< HEAD
-ovh-api-services@^9.10.1:
+ovh-api-services@^9.10.1, ovh-api-services@^9.18.2:
   version "9.18.2"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.18.2.tgz#174c5e831c1fe0515190b1570afb87aa1e996359"
   integrity sha512-3vWgQ1Jve9nHzfFuEjGaXroexpqw8fN9SH30JI5sAwAGYFt9DDNcaUpDJrqGvhCrUSzUBj7ttKAc88IqKQfvKQ==
-  dependencies:
-    lodash "^4.17.15"
-
-ovh-api-services@^9.18.0:
-  version "9.18.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.18.0.tgz#fbe36215ba974951576b99f845c59ecd1a8c58b0"
-  integrity sha512-qFE/YOoox1iN5T/lxUvi1rwRS0RGPEgvo65eHmQKUo673wYtfl3/C7vxcVJ5FYTa9EkWQpQPwtUaIubyMWPl4w==
-=======
-ovh-api-services@^9.18.2:
-  version "9.18.2"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.18.2.tgz#174c5e831c1fe0515190b1570afb87aa1e996359"
-  integrity sha512-3vWgQ1Jve9nHzfFuEjGaXroexpqw8fN9SH30JI5sAwAGYFt9DDNcaUpDJrqGvhCrUSzUBj7ttKAc88IqKQfvKQ==
->>>>>>> develop
   dependencies:
     lodash "^4.17.15"
 
@@ -11910,7 +11892,7 @@ ovh-ui-kit@^2.33.3:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.34.3, ovh-ui-kit@~2.34.3:
+ovh-ui-kit@^2.33.4, ovh-ui-kit@^2.34.3, ovh-ui-kit@~2.34.3:
   version "2.34.3"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.34.3.tgz#882832cc2f561a16da14cebfe8d940977c2ac2db"
   integrity sha512-vcDbFf4fa6MkJF6wdpzBl757FqV9QAXxQ0hAJvosLQ3jHI1WmyRmes5izwLCrxv+yOmZmoQAUODqgz+8ZZXUuQ==
