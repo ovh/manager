@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.2.0...@ovh-ux/manager-pci@2.3.0) (2019-10-07)
+
+
+### Features
+
+* **instances.iops:** add new iops flavor type ([#1389](https://github.com/ovh-ux/manager/issues/1389)) ([875d40f](https://github.com/ovh-ux/manager/commit/875d40f))
+
+
+
 # [2.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.1.1...@ovh-ux/manager-pci@2.2.0) (2019-10-07)
 
 

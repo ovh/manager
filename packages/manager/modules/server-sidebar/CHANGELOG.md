@@ -1,3 +1,12 @@
+## [0.6.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.2...@ovh-ux/manager-server-sidebar@0.6.3) (2019-10-07)
+
+
+### Bug Fixes
+
+* **server-sidebar:** enterprise cloud database translation ([#1417](https://github.com/ovh-ux/manager/issues/1417)) ([c00b219](https://github.com/ovh-ux/manager/commit/c00b219))
+
+
+
 ## [0.6.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.1...@ovh-ux/manager-server-sidebar@0.6.2) (2019-10-07)
 
 
