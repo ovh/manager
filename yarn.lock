@@ -2308,7 +2308,7 @@
     prop-types "^15.5.10"
     tslib "^1.7.1"
 
-"@uirouter/angularjs@^1.0.23":
+"@uirouter/angularjs@^1.0.22", "@uirouter/angularjs@^1.0.23":
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.23.tgz#aeec0f96b0c42187c5044ef244ba6ccb75a5d835"
   integrity sha512-r4hLSw7R3mwXGC5Sq7yxNlBK1sSzQUm/1MzigwwYRHoMO5uKcBPUhxFYx5U7kufP2Xl1165KeZvRsLCh0/Z1ng==
@@ -7274,7 +7274,7 @@ flag-icon-css@^2.3.1:
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-2.9.0.tgz#5793c15244e3c63ae36631478a758a3fc29c86be"
   integrity sha512-SeHvGEB43XFPZiJz6lFFRGHfp+Db+s1qGiClW70cZauQVbPM42wImlNUEuXSXs94kPchz7xvoxP0QK1y6FxLfg==
 
-flag-icon-css@^3.4.2:
+flag-icon-css@^3.2.0, flag-icon-css@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.4.2.tgz#9d76e2ce96bee87bd65ef241c238fff5ab7dac93"
   integrity sha512-x/Tw0qx7V2zut50GTeeJbvo9EiWtv+TPxI3fi1OiicbI8esZ1s4G2LnR1EJ96pDQlWqEVuD17sDPf/ZLifZeIg==
@@ -11780,10 +11780,10 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.18.2:
-  version "9.18.2"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.18.2.tgz#174c5e831c1fe0515190b1570afb87aa1e996359"
-  integrity sha512-3vWgQ1Jve9nHzfFuEjGaXroexpqw8fN9SH30JI5sAwAGYFt9DDNcaUpDJrqGvhCrUSzUBj7ttKAc88IqKQfvKQ==
+ovh-api-services@^9.19.0:
+  version "9.19.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.19.0.tgz#9bbb2ea687c1e3ee37fc724a3f2302d2a101c621"
+  integrity sha512-7GOx/T6LNWa9Rbxkyz1w+hk27WY0FMRLYezV51e0l5UTQ0F0qcVZWuNmnqF4MG8Xd3XANvw6ShrtCO51JPHQWw==
   dependencies:
     lodash "^4.17.15"
 
@@ -11838,7 +11838,7 @@ ovh-ui-kit@^2.23.1:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.34.3, ovh-ui-kit@~2.34.3:
+ovh-ui-kit@^2.33.4, ovh-ui-kit@^2.34.3, ovh-ui-kit@~2.34.3:
   version "2.34.3"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.34.3.tgz#882832cc2f561a16da14cebfe8d940977c2ac2db"
   integrity sha512-vcDbFf4fa6MkJF6wdpzBl757FqV9QAXxQ0hAJvosLQ3jHI1WmyRmes5izwLCrxv+yOmZmoQAUODqgz+8ZZXUuQ==
