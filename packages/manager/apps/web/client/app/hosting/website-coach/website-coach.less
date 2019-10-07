@@ -1,34 +1,28 @@
-.website-coach-visualizer {
-  position: relative;
-  z-index: 0;
-
-  &__computer {
-    width: 100%;
-    height: auto;
-    display: block;
+/* stylelint-disable-next-line selector-type-no-unknown */
+hosting-website-coach {
+  .website-coach-visualizer {
     position: relative;
-    z-index: 1;
-  }
-
-  &__screenshot {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 11%; // Responsive spacing
-    bottom: 0;
-    background-color: #fff;
-    background-repeat: no-repeat;
-    background-size: cover;
     z-index: 0;
-  }
-}
 
-// Add a beta status behind a label
-.status-beta::after {
-  content: 'Beta';
-  line-height: 1;
-  margin-left: rem-calc(5);
-  font-size: 75%;
-  vertical-align: super;
+    &__computer {
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    &__screenshot {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 11%; // Responsive spacing
+      bottom: 0;
+      background-color: #fff;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 0;
+    }
+  }
 }
