@@ -3,7 +3,7 @@
   "version": "4.1.2",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "cypress:open": "cypress open",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
@@ -21,7 +21,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.2",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
-    "@uirouter/angularjs": "^1.0.15",
+    "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
     "angular-cookies": "^1.7.8",
@@ -30,10 +30,10 @@
     "angular-validation-match": "^1.9.0",
     "chart.js": "^2.8.0",
     "ip-address": "^5.9.2",
-    "jsplumb": "^2.11.2",
+    "jsplumb": "^2.12.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.18.0",
+    "ovh-api-services": "^9.19.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.8.2",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",
     "cypress": "^3.4.1",
-    "eslint-plugin-cypress": "^2.6.1",
+    "eslint-plugin-cypress": "^2.7.0",
     "webpack-merge": "^4.2.2"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "enterprise_cloud_database_service_add_replicas_title": "Add replica",
+  "enterprise_cloud_database_service_add_replicas_description": "Select the desired number of replica(s)",
+  "enterprise_cloud_database_service_add_replicas_add": "Add",
+  "enterprise_cloud_database_service_add_replicas_no_stock_heading": "Replicas out of stock",
+  "enterprise_cloud_database_service_add_replicas_no_stock_description": "We currently do not have stock of additional replicas. Please check back later",
+  "enterprise_cloud_database_service_add_replicas_success": "Request to add {{replicaCount}} replica(s) created successfully and is under process. Please allow around 30 minutes for the process to complete. Once delivered, your replica(s) will appear in this page. You can track your order delivery in the Control Panel, <a href='{{orderURL}}'>My Orders</a> section.",
+  "enterprise_cloud_database_service_add_replicas_error": "An error occurred while trying to add replica(s): {{message}}",
+  "enterprise_cloud_database_service_add_replicas_get_availability_error": "An error occurred while trying to retrieve the availability of replicas : {{message}}"
+}
