@@ -4,13 +4,23 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/streams',
       component: 'pciProjectStreams',
 
-      redirectTo: transition => transition
-        .injector()
-        .getAsync('streams')
-        .then(streams => (streams.length === 0 ? { state: 'pci.projects.project.streams.onboarding' } : false)),
+      redirectTo: transition => Promise.all([
+        transition.injector().getAsync('lab'),
+        transition.injector().getAsync('streams'),
+      ]).then(([lab, streams]) => {
+        if (streams.length === 0 || lab.isOpen()) {
+          return { state: 'pci.projects.project.streams.onboarding' };
+        }
+        return false;
+      }),
 
       resolve: {
         breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_streams_title'),
+        lab: /* @ngInject */ (
+          PciProjectLabsService,
+          projectId,
+        ) => PciProjectLabsService.getLabByName(projectId, 'ioStream'),
+
         streams: /* @ngInject */ (
           PciProjectStreamService,
           projectId,

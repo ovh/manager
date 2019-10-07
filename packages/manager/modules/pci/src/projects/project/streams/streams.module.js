@@ -7,6 +7,8 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
+import labs from '../../../components/project/labs';
+
 import add from './add';
 import deleteStream from './delete';
 import onboarding from './onboarding';
@@ -30,6 +32,7 @@ angular
     'ui.router',
     add,
     deleteStream,
+    labs,
     onboarding,
     stream,
   ])

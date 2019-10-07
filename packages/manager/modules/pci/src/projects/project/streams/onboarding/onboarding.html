@@ -4,8 +4,14 @@
     <p data-translate="pci_projects_project_streams_onboarding_content2"></p>
     <p data-translate="pci_projects_project_streams_onboarding_content3"></p>
 
+    <pci-project-lab-agreements
+        data-lab="$ctrl.lab"
+        data-ng-if="!$ctrl.lab.isActivated()"
+        data-on-accept="$ctrl.acceptLab(accepted)"></pci-project-lab-agreements>
+
     <oui-button
         data-variant="primary"
+        data-disabled="!$ctrl.labAccepted"
         data-on-click="$ctrl.addStream()">
         <span data-translate="pci_projects_project_streams_onboarding_action_label"></span>
     </oui-button>

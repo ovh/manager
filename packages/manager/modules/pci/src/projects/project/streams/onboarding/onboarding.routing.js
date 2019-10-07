@@ -9,9 +9,25 @@ export default /* @ngInject */ ($stateProvider) => {
         .then(streams => (streams.length > 0 ? { state: 'pci.projects.project.streams' } : false)),
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        addStream: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.streams.add', {
+        addStream: /* @ngInject */ (
+          $q,
+          $state,
+          lab,
+          PciProjectLabsService,
           projectId,
-        }),
+        ) => () => {
+          let labPromise;
+          if (lab.isOpen()) {
+            labPromise = PciProjectLabsService.activateLab(projectId, lab);
+          } else {
+            labPromise = $q.resolve();
+          }
+
+          labPromise
+            .then(() => $state.go('pci.projects.project.streams.add', {
+              projectId,
+            }));
+        },
       },
     });
 };
