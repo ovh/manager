@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.1.1...@ovh-ux/manager-pci@2.2.0) (2019-10-07)
+
+
+### Features
+
+* **stream:** add translations ([037fbfb](https://github.com/ovh-ux/manager/commit/037fbfb))
+
+
+
 ## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.1.0...@ovh-ux/manager-pci@2.1.1) (2019-09-30)
 
 
