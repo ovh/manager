@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@2.0.0...@ovh-ux/ng-ui-router-layout@2.1.0) (2019-10-07)
+
+
+### Features
+
+* **ng-ui-router-layout:** use onEnter for modal display ([aee6f9f](https://github.com/ovh-ux/manager/commit/aee6f9f))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@1.2.1...@ovh-ux/ng-ui-router-layout@2.0.0) (2019-07-22)
 
 
