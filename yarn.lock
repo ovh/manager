@@ -862,10 +862,6 @@
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
 
-"@bower_components/crypto@anodynos/node2web_crypto#3.46.1":
-  version "3.46.1"
-  resolved "https://codeload.github.com/anodynos/node2web_crypto/tar.gz/f64a3ccf174c068fee471d57cfc2dc3470785c57"
-
 "@commitlint/cli@^7.6.0":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.6.1.tgz#a93cf995082831999937f6d5ec1a582c8fc0393a"
