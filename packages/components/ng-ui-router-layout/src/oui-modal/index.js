@@ -2,39 +2,57 @@ import angular from 'angular';
 
 import '@uirouter/angularjs';
 import 'angular-ui-bootstrap';
+import 'ovh-ui-angular';
 
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import initial from 'lodash/initial';
 import isArray from 'lodash/isArray';
 import isFunction from 'lodash/isFunction';
-import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import kebabCase from 'lodash/kebabCase';
 import last from 'lodash/last';
 import map from 'lodash/map';
+import merge from 'lodash/merge';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 
-const moduleName = 'ngUiRouterLayoutModalResolve';
+import {
+  LAYOUT_NAME,
+  WINDOW_TEMPLATE_URL,
+} from './constants';
+
+import ouiModalWindowTemplate from './template.html';
+
+const moduleName = 'ngUiRouterLayoutOuiModal';
 
 angular
   .module(moduleName, [
     'ui.bootstrap',
     'ui.router',
+    'oui',
   ])
-  .run(/* @ngInject */($injector, $state, $stateRegistry, $uibModal) => {
-    filter(
+  .run(/* @ngInject */ ($templateCache) => {
+    // add the oui-modal template in template cache
+    $templateCache.put(WINDOW_TEMPLATE_URL, ouiModalWindowTemplate);
+  })
+  .run(/* @ngInject */ ($injector, $state, $stateRegistry, $uibModal) => {
+    // filter declared states to detect which are ouiModal layout states
+    const ouiModalStates = filter(
       $stateRegistry.states,
-      ({ layout }) => get(layout, 'name') === 'modalResolve',
-    ).forEach((layoutState) => {
-      const state = layoutState;
+      ({ layout }) => get(layout, 'name') === LAYOUT_NAME,
+    );
 
+    // for each ouiModal layout states declare how they open
+    ouiModalStates.forEach((ouiModalState) => {
+      const state = ouiModalState;
+
+      // define modalInstance that will be a reference of the opened $uibModal
+      let modalInstance;
+
+      // open the modal instance at state onEnter
       state.onEnter = (transition) => {
         let { modalOptions } = state.layout;
-
-        // define modalInstance that will be a reference of the opened $uibModal
-        let modalInstance;
 
         if (state.layout.modalOptions.component || state.layout.modalOptions.componentProvider) {
           // if there is a component or componentProvider in modal options
@@ -91,6 +109,10 @@ angular
             // create template
             const div = document.createElement('div');
             const elmt = document.createElement(kebabCase(directiveInfo.name));
+
+            // let pre = document.createElement('pre');
+            // pre.innerHTML = '{{ $parent.$ctrl | json }}';
+            // div.appendChild(pre);
             elmt.setAttribute('data-resolve', '$ctrl.resolve');
             elmt.setAttribute('data-modal-instance', '$ctrl.modalInstance');
             div.appendChild(elmt);
@@ -111,42 +133,28 @@ angular
           set(modalOptions, 'resolve', resolves);
         }
 
-        // open the modal
-        modalInstance = $uibModal.open(modalOptions);
+        modalInstance = $uibModal.open(merge(modalOptions, {
+          windowTemplateUrl: WINDOW_TEMPLATE_URL,
+        }));
+
         // get the redirectTo when modal is closed
         let redirectTo = '^';
         if (transition.getResolveTokens().includes('redirectTo')) {
           redirectTo = transition.injector().get('redirectTo');
         }
 
-        // define some params that will be send with redirectTo
-        let redirectToParams = null;
-
         // manage redirection when modal is closed
-        modalInstance.result
-          .then((data) => {
-            redirectToParams = {
-              status: 'success',
-              data,
-            };
-          })
-          .catch((reason) => {
-            if (isObject(reason)) {
-              redirectToParams = {
-                status: 'error',
-                data: reason,
-              };
-            }
-          })
-          .finally(() => {
-            if (redirectToParams) {
-              $state.go(redirectTo, { redirectToParams });
-            } else {
-              $state.go(redirectTo);
-            }
-          });
+        modalInstance.result.catch(() => {
+          $state.go(redirectTo);
+        });
+      };
+
+      // close state modal when exiting the state
+      state.onExit = () => {
+        modalInstance.close();
       };
     });
   });
+
 
 export default moduleName;
