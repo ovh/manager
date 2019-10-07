@@ -25,6 +25,13 @@ export default class FlavorGroup {
       ),
     );
     this.flavors = flavors;
+
+    this.osTypes = uniq(
+      map(
+        this.flavors,
+        flavor => flavor.osType,
+      ),
+    );
   }
 
   isAvailableInRegion(region) {
