@@ -26,6 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
           labPromise
             .then(() => $state.go('pci.projects.project.streams.add', {
               projectId,
+            }, {
+              reload: true,
             }));
         },
       },
