@@ -35,7 +35,7 @@ $stateProvider
 ```js
 // controller.js
 export default class Ctrl {
-  /** @ngInject **/
+  /* @ngInject */
   constructor(heading, primaryLabel, secondaryLabel) {
       this.primaryLabel = primaryLabel;
       this.secondaryLabel = secondaryLabel;
