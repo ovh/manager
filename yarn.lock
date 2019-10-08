@@ -1896,13 +1896,6 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-api-wrappers@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-3.0.0.tgz#25e09c019a7f9d4704d59ccb55732379fa50b4e1"
-  integrity sha512-0iqzJxOh53DKPYmEcdLRTJl3+L5jC6x1TbdVvBYDT5sn8OE4lQP7r74G8sxxlx7bXGMQL9EzCcJD0xof/SZ3sQ==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.4.tgz#0fd5f6b7b428bb08e7c37d6bc98f43dfbda50ef9"
@@ -11795,17 +11788,17 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^8.0.1:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-8.3.0.tgz#d3a5634e8a5d3a6ed769b593599ef76d92b06745"
-  integrity sha512-2bsHNlx9Y6d2HdaUpQ5SzlOUYpfkKPWmFsxxNct5eKvNPavQDc1xfI2OTBsb1FkKiY52UtYEYM/rSrsDwFPLGA==
-  dependencies:
-    lodash "^4.17.15"
-
 ovh-api-services@^9.19.0:
   version "9.19.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.19.0.tgz#9bbb2ea687c1e3ee37fc724a3f2302d2a101c621"
   integrity sha512-7GOx/T6LNWa9Rbxkyz1w+hk27WY0FMRLYezV51e0l5UTQ0F0qcVZWuNmnqF4MG8Xd3XANvw6ShrtCO51JPHQWw==
+  dependencies:
+    lodash "^4.17.15"
+
+ovh-api-services@^9.20.0:
+  version "9.20.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.20.0.tgz#f89a5d3f25d521071c624152eee6c280fe224dec"
+  integrity sha512-DK8C+88LjkKiTtpDEaPBnyhtyD8rIbfvJaLm6mAH6zywPkgNt8HpQUOA+1bF60LjN2u3LqFGzW5smDuQcozlDQ==
   dependencies:
     lodash "^4.17.15"
 

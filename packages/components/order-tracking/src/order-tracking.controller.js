@@ -1,6 +1,8 @@
 import angular from 'angular';
-import find from 'lodash/find';
-import get from 'lodash/get';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import reverse from 'lodash/reverse';
+import sortBy from 'lodash/sortBy';
 
 const ORDER_DEFAULT_HISTORY_LENGTH = 3;
 const SECONDS = 1000;
@@ -80,8 +82,16 @@ export default class OrderTrackingController {
       this.OvhApiMeOrder.v6().resetAllCache();
       this.getOrderFollowUp().then((followUp) => {
         this.orderFollowUp = followUp;
-        this.orderHistory = get(find(followUp, { status: 'DOING' }), 'history');
-      }).catch(this.$log).finally(() => {
+        this.orderHistory = reverse(sortBy(flatten(map(followUp, follow => follow.history)), 'date'));
+      }).catch((err) => {
+        // 404 is returned for older orders that does not contains followUp and history
+        if (err.status === 404) {
+          this.orderFollowUp = {};
+          this.orderHistory = [];
+        } else {
+          this.$log.error(err);
+        }
+      }).finally(() => {
         if (this.polling.orderFollowUp) {
           this.pollOrderFollowUp();
         }
@@ -94,7 +104,7 @@ export default class OrderTrackingController {
       this.OvhApiMeOrder.v6().resetAllCache();
       this.getOrderDetails().then((details) => {
         this.orderDetails = details;
-      }).catch(this.$log).finally(() => {
+      }).catch(err => this.$log.error(err)).finally(() => {
         if (this.polling.orderDetails) {
           this.pollOrderDetails();
         }

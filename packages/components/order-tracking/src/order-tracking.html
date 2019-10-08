@@ -57,6 +57,9 @@
                         data-description="{{ 'order_tracking_history_' + event.label | translate }}"
                         data-ng-repeat="event in $ctrl.orderHistory.slice(0, $ctrl.maxHistoryLength)">
                     </oui-tile-definition>
+                    <oui-tile-definition data-ng-if="$ctrl.orderHistory.length === 0"
+                                         data-description="Non disponible">
+                    </oui-tile-definition>
                     <div data-ng-if="$ctrl.orderHistory.length > $ctrl.maxHistoryLength">
                         <oui-tile-definition></oui-tile-definition>
                         <div class="text-center">
