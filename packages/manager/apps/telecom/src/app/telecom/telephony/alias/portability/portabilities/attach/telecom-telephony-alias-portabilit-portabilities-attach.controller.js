@@ -21,7 +21,6 @@ angular.module('managerApp').controller('TelecomTelephonyServicePortabilityManda
 
     attachMandate() {
       this.isLoading = true;
-      // console.log(this.data);
       return this.$q.all({
         noop: this.$timeout(angular.noop, 1000),
         upload: this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
@@ -31,8 +30,7 @@ angular.module('managerApp').controller('TelecomTelephonyServicePortabilityManda
           name: this.uploadedFile.name,
         }),
       }).then((response) => {
-        console.log(response);
-        this.$uibModalInstance.close(response.data);
+        this.$uibModalInstance.close(response);
       }).catch((error) => {
         this.$uibModalInstance.dismiss(error);
       }).finally(() => { this.isLoading = false; });
