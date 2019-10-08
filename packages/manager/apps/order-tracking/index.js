@@ -5,9 +5,6 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ssoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import { module as orderTracking } from '@ovh-ux/order-tracking';
 
-import 'angular-ui-bootstrap';
-
-import './index.scss';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
@@ -16,7 +13,6 @@ angular.module('orderTrackingApp', [
   ovhManagerCore,
   'oui',
   ssoAuth,
-  'ui.bootstrap',
 ]).config(/* @ngInject */($stateProvider) => {
   $stateProvider
     .state('home', {
