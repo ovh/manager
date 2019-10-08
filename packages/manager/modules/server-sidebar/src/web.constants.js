@@ -1,6 +1,8 @@
-import isEmpty from 'lodash/isEmpty';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import { WEB } from './constants';
 
 export const DOMAIN_CONFIG = {
@@ -49,7 +51,13 @@ export const DOMAIN_CONFIG = {
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-domain',
       app: [WEB],
-      exclude: 'parentService.type:eq=/allDom',
+      filter: {
+        category: 'ALLDOM',
+        fn: (items, compareTo) => {
+          const allDoms = map(get(compareTo, 'items', []), 'serviceName');
+          return items.filter(item => !item.parentName || !includes(allDoms, item.parentName));
+        },
+      },
     },
     {
       path: '/domain/zone',
