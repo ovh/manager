@@ -2,6 +2,7 @@ import angular from 'angular';
 import find from 'lodash/find';
 import get from 'lodash/get';
 
+const ORDER_DEFAULT_HISTORY_LENGTH = 3;
 const SECONDS = 1000;
 const ORDER_DETAILS_POLLING_INTERVAL = 60 * SECONDS;
 const ORDER_FOLLOW_UP_POLLING_INTERVAL = 60 * SECONDS;
@@ -13,6 +14,7 @@ export default class OrderTrackingController {
     this.$q = $q;
     this.$timeout = $timeout;
     this.OvhApiMeOrder = OvhApiMeOrder;
+    this.maxHistoryLength = ORDER_DEFAULT_HISTORY_LENGTH;
   }
 
   $onInit() {
