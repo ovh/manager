@@ -1,3 +1,21 @@
+## [13.30.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.3...@ovh-ux/manager-web@13.30.4) (2019-10-07)
+
+
+### Bug Fixes
+
+* **hosting:** add decimal for quota size calculation ([#1368](https://github.com/ovh-ux/manager/issues/1368)) ([3c8b18f](https://github.com/ovh-ux/manager/commit/3c8b18f))
+
+
+
+## [13.30.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.2...@ovh-ux/manager-web@13.30.3) (2019-10-02)
+
+
+### Bug Fixes
+
+* **domain.zone:** restore deleted method ([#1398](https://github.com/ovh-ux/manager/issues/1398)) ([06a932e](https://github.com/ovh-ux/manager/commit/06a932e))
+
+
+
 ## [13.30.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.1...@ovh-ux/manager-web@13.30.2) (2019-09-30)
 
 

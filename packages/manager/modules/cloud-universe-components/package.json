@@ -39,7 +39,7 @@
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "ovh-ui-kit": "^2.34.1"
+    "ovh-ui-kit": "^2.34.3"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0"
@@ -52,7 +52,7 @@
     "angular-translate": "^2.11.0",
     "angular-ui-bootstrap": "~1.3.3",
     "d3": "~3.5.13",
-    "ovh-api-services": "^9.12.0",
+    "ovh-api-services": "^9.17.0",
     "ovh-ui-angular": "^3.8.0"
   }
 }

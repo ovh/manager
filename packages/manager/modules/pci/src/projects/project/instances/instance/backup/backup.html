@@ -35,5 +35,9 @@
             <span data-translate="pci_projects_project_instances_instance_backup_warning_message"></span>
         </oui-message>
 
+        <oui-message type="warning" data-ng-if="$ctrl.instance.flavor.type === 'ovh.iops'">
+            <span data-translate="pci_projects_project_instances_instance_backup_warning_iops_message"></span>
+        </oui-message>
+
     </oui-modal>
 </form>

@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.4...@ovh-ux/manager-emailpro@1.1.5) (2019-10-02)
+
+
+### Bug Fixes
+
+* **emailpro:** add missing ngInject ([#1391](https://github.com/ovh-ux/manager/issues/1391)) ([0fe6712](https://github.com/ovh-ux/manager/commit/0fe6712))
+
+
+
 ## [1.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.3...@ovh-ux/manager-emailpro@1.1.4) (2019-09-19)
 
 

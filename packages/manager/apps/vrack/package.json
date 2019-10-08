@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-vrack-app' --include-filtered-dependencies -- npm run build --if-present",
@@ -24,7 +24,7 @@
     "@ovh-ux/ng-ovh-toaster": "^1.0.2",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
-    "@uirouter/angularjs": "^1.0.22",
+    "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-cookies": "^1.7.8",
     "angular-translate": "^2.11.0",
@@ -34,10 +34,10 @@
     "lodash": "^4.17.15",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.12.0",
+    "ovh-api-services": "^9.19.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.8.1",
-    "ovh-ui-kit": "^2.34.1"
+    "ovh-ui-angular": "^3.8.2",
+    "ovh-ui-kit": "^2.34.3"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",

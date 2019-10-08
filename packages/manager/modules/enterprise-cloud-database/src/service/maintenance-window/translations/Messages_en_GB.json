@@ -1,0 +1,19 @@
+{
+  "enterprise_cloud_database_service_maintenance_window_title": "Maintenance window",
+  "enterprise_cloud_database_service_maintenance_window_default_description": "The planned maintenance operations will be carried out at the default maintenance window, which is on {{ dayOfWeek }} at {{ time }} (UTC Time) for {{ duration }}. You may adjust the window, if you would like the maintenance to be carried out at a time of your choice. Please note that some maintenance operation can take longer than desired maintenance window.",
+  "enterprise_cloud_database_service_maintenance_window_description": "The routine maintenance would be carried out on {{ dayOfWeek }} at {{ time }} (UTC Time) for {{ duration }}.",
+  "enterprise_cloud_database_service_maintenance_window_recommendation": "The longer the maintenance duration, the higher is the maintenance jobs performed. The recommended duration is 2 hours.",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window": "Adjust window",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window_day": "Day",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window_hour": "Hour",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window_hours": "Hours",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window_duration": "Duration",
+  "enterprise_cloud_database_service_maintenance_window_reset": "Reset",
+  "enterprise_cloud_database_service_maintenance_window_day1": "Monday",
+  "enterprise_cloud_database_service_maintenance_window_day2": "Tuesday",
+  "enterprise_cloud_database_service_maintenance_window_day3": "Wednesday",
+  "enterprise_cloud_database_service_maintenance_window_day4": "Thursday",
+  "enterprise_cloud_database_service_maintenance_window_day5": "Friday",
+  "enterprise_cloud_database_service_maintenance_window_day6": "Saturday",
+  "enterprise_cloud_database_service_maintenance_window_day7": "Sunday"
+}
