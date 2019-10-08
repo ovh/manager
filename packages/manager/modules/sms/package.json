@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "7.2.3",
+  "version": "7.2.4",
   "private": true,
   "description": "OVH SMS product control panel",
   "license": "BSD-3-Clause",
