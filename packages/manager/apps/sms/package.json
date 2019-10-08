@@ -3,7 +3,7 @@
   "version": "7.1.1",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies -- npm run build --if-present",
@@ -40,7 +40,7 @@
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^9.18.2",
+    "ovh-api-services": "^9.19.0",
     "ovh-ngstrap": "^4.0.2",
     "validator-js": "^0.2.1"
   },

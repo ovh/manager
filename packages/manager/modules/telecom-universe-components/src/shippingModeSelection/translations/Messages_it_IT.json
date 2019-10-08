@@ -1,1 +1,6 @@
-{"shipping_mode_selection_mode_mondial_relay":"Consegna gratuita in un punto di ritiro Mondial Relay entro 48 ore (a partire dall'invio)","shipping_mode_selection_mode_mondial_relay_not_free":"Consegna in un punto di ritiro Mondial Relay (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">HT</span>) entro 48 ore (a partire dall'invio)","shipping_mode_selection_mode_transporter":"Consegna tramite corriere (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">+IVA</span>) entro 24 ore (a partire dall'invio)","shipping_mode_selection_mode_transporter_free":"Livraison gratuite par transporteur sous 24h (après envoi)"}
+{
+  "shipping_mode_selection_mode_mondial_relay": "Consegna gratuita in un punto di ritiro Mondial Relay entro 48 ore (a partire dall'invio)",
+  "shipping_mode_selection_mode_mondial_relay_not_free": "Consegna in un punto di ritiro Mondial Relay (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">+IVA</span>) entro 48 ore (a partire dall'invio)",
+  "shipping_mode_selection_mode_transporter": "Consegna tramite corriere (+ <span class=\"text-price\">{{ price }} €</span> <span class=\"text-infos\">+IVA</span>) entro 24 ore (a partire dall'invio)",
+  "shipping_mode_selection_mode_transporter_free": "Consegna gratuita tramite corriere entro 24h (a partire dall'invio)"
+}

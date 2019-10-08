@@ -3,7 +3,7 @@
   "version": "4.1.2",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "cypress:open": "cypress open",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
@@ -33,7 +33,7 @@
     "jsplumb": "^2.12.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.18.2",
+    "ovh-api-services": "^9.19.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.8.2",
