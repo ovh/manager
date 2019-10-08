@@ -1,5 +1,3 @@
-import debounce from 'lodash/debounce';
-
 export default class ExchangeTabPublicFolderCtrl {
   /* @ngInject */
   constructor(
@@ -35,8 +33,6 @@ export default class ExchangeTabPublicFolderCtrl {
 
     $scope.$on(Exchange.events.publicFoldersChanged, () => $scope.$broadcast('paginationServerSide.reload', 'publicFoldersTable'));
 
-    this.debouncedRetrievingMailingLists = debounce(this.retrievingMailingLists, 300);
-
     $scope.retrievingMailingLists = (count, offset) => this.retrievingMailingLists(count, offset);
     $scope.getPublicFoldersList = () => this.publicFoldersList;
     $scope.getLoading = () => this.loading;
@@ -44,7 +40,7 @@ export default class ExchangeTabPublicFolderCtrl {
   }
 
   onSearch() {
-    this.debouncedRetrievingMailingLists();
+    this.retrievingMailingLists();
   }
 
   retrievingMailingLists(count, offset) {
