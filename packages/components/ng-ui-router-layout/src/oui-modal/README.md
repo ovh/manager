@@ -4,7 +4,7 @@
 
 ## Usage
 
-After having installed the package and having injected the dependency in your AngularJS app (described in the main [README.md](ovh-ux/manager/tree/master/packages/components/ng-ui-router-layout/README.md) file of the repo), you can use the `ouiModal` layout in 3 different ways:
+After having installed the package and having injected the dependency in your AngularJS application (described in the main [README.md](../../README.md) file of the repository), you can use the `ouiModal` layout in 3 different ways:
 
 ### With controller and template
 
