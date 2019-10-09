@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.0...@ovh-ux/manager-pci@2.4.1) (2019-10-09)
+
+
+### Bug Fixes
+
+* **pci:** edit instance backups ([#1361](https://github.com/ovh-ux/manager/issues/1361)) ([673ab3f](https://github.com/ovh-ux/manager/commit/673ab3f))
+
+
+
 # [2.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.3.0...@ovh-ux/manager-pci@2.4.0) (2019-10-08)
 
 

@@ -1,3 +1,12 @@
+# [13.31.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.4...@ovh-ux/manager-web@13.31.0) (2019-10-09)
+
+
+### Features
+
+* **hosting.website-coach:** add website coach page ([#1390](https://github.com/ovh-ux/manager/issues/1390)) ([86316aa](https://github.com/ovh-ux/manager/commit/86316aa))
+
+
+
 ## [13.30.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.3...@ovh-ux/manager-web@13.30.4) (2019-10-07)
 
 
