@@ -1,4 +1,4 @@
-<div>
+<div class="order-tracking">
 
     <oui-back-button data-on-click="$ctrl.onBackButtonClick()">
         <span data-translate="order_tracking_title"
@@ -53,9 +53,16 @@
                 <oui-tile data-heading="{{:: 'order_tracking_status' | translate }}">
                     <oui-spinner data-ng-if="!$ctrl.orderHistory" size="m">
                     </oui-spinner>
-                    <oui-tile-definition data-term="{{ event.date | date:'medium' }}"
-                        data-description="{{ 'order_tracking_history_' + event.label | translate }}"
-                        data-ng-repeat="event in $ctrl.orderHistory.slice(0, $ctrl.maxHistoryLength)">
+                    <oui-tile-definition data-ng-repeat="event in $ctrl.orderHistory.slice(0, $ctrl.maxHistoryLength)">
+                        <oui-tile-description>
+                            <div class="row">
+                                <strong class="text-nowrap col-lg-4 col-xs-12">{{ event.date | date:'medium' }}</strong>
+                                <strong class="text-nowrap col-lg-8 col-xs-12" data-translate="{{ 'order_tracking_history_' + event.label }}"></strong>
+                            </div>
+                            <div class="row">
+                                <span class="text-break col-lg-8 offset-lg-4" data-translate="{{ 'order_tracking_history_details_' + event.label }}"></span>
+                            </div>
+                        </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-definition data-ng-if="$ctrl.orderHistory.length === 0"
                                          data-description="Non disponible">

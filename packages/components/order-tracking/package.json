@@ -24,6 +24,7 @@
   ],
   "main": "./src/index.js",
   "dependencies": {
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {
