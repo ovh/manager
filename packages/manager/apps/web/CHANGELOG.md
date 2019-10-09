@@ -1,3 +1,12 @@
+## [13.31.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.0...@ovh-ux/manager-web@13.31.1) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
 # [13.31.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.4...@ovh-ux/manager-web@13.31.0) (2019-10-09)
 
 
