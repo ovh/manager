@@ -1,3 +1,12 @@
+## [10.35.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.8...@ovh-ux/manager-telecom@10.35.9) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
 ## [10.35.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.7...@ovh-ux/manager-telecom@10.35.8) (2019-10-07)
 
 
