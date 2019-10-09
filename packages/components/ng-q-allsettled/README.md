@@ -1,6 +1,6 @@
 # ng-q-allsettled
 
-> AngularJS module for updating browser title based on the current ui-router state.
+> Copy of kriskowal/q for OVH control panels.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-q-allsettled)](https://npmjs.com/package/@ovh-ux/ng-q-allsettled) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-q-allsettled)](https://npmjs.com/package/@ovh-ux/ng-q-allsettled?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-q-allsettled)](https://npmjs.com/package/@ovh-ux/ng-q-allsettled?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
