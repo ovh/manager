@@ -1,9 +1,8 @@
 import get from 'lodash/get';
 
 export default class {
+  /* @ngInject */
   constructor($timeout) {
-    'ngInject';
-
     this.$timeout = $timeout;
   }
 

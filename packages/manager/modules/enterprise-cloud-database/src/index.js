@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import '@ovh-ux/manager-cloud-styles';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ng-ovh-payment-method';
 

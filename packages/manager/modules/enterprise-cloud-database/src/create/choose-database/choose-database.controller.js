@@ -1,7 +1,6 @@
 export default class {
+  /* @ngInject */
   constructor($timeout) {
-    'ngInject';
-
     this.$timeout = $timeout;
   }
 
