@@ -40,18 +40,21 @@ export default class SupportNewController {
         result.subject,
         get(this.service, 'serviceName'),
         get(result, 'urgency'),
-      ).then(({ ticketId }) => {
-        this.step = 'created';
-        this.ticketId = ticketId;
-      }).catch((error) => {
-        this.error = {
-          message: (error.data || { message: error.statusText }).message,
-        };
-        if (angular.isFunction(error.headers)) {
-          this.error.queryId = error.headers('x-ovh-queryid');
-        }
-        this.step = 'error';
-      });
+      )
+        .then(({ ticketId }) => this.SupportNewTicketService.getTicket(ticketId))
+        .then((ticket) => {
+          this.step = 'created';
+          this.ticketId = ticket.ticketId;
+          this.ticketNumber = ticket.ticketNumber;
+        }).catch((error) => {
+          this.error = {
+            message: (error.data || { message: error.statusText }).message,
+          };
+          if (angular.isFunction(error.headers)) {
+            this.error.queryId = error.headers('x-ovh-queryid');
+          }
+          this.step = 'error';
+        });
     // user cancelled the form, go back to tickets list
     } else {
       this.step = 'issues';

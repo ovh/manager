@@ -32,6 +32,12 @@ export const definition = class SupportNewTicketService {
     return this.OvhApiMe.v6().supportLevel().$promise;
   }
 
+  getTicket(ticketId) {
+    return this.OvhApiSupport.v6().get({
+      id: ticketId,
+    }).$promise;
+  }
+
   createTicket(issue, subject, serviceName, urgency) {
     let body = '';
     body += `${issue.subject}\n`;
