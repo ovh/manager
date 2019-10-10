@@ -666,7 +666,7 @@
   "emailpro_tab_domain_validation_doing": "Validando dominio...",
   "emailpro_tab_domain_validation_cname": "Por favor, cree un registro CNAME.",
   "emailpro_tab_domain_validation_cname_title": "Verificación del propietario",
-  "emailpro_tab_domain_validation_cname_details": "Para confirmar que usted es el titular del dominio, debe crear un registro CNAME: <br /><br /><span class=\\\"bold\\\">{0}.</span> hacia <span class=\\\"bold\\\"></span>.<br /><br /> Dispone de un plazo de 48 horas para realizar esta operación.",
+  "emailpro_tab_domain_validation_cname_details": "Para confirmar que usted es el titular del dominio, debe crear un registro CNAME: <br /><br /><span class=\"bold\">{0}.{1}</span> hacia <span class=\"bold\">{2}</span>.<br /><br /> Dispone de un plazo de 48 horas para realizar esta operación.",
   "emailpro_tab_domain_add_domain": "Añadir un dominio",
   "emailpro_tab_domain_creating": "Creando...",
   "emailpro_tab_domain_NON_AUTHORITATIVE": "No autoritario",
