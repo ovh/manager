@@ -1,5 +1,8 @@
 {
   "price_free": "Inclus",
   "price_tax_excl_label": "{{ price }} HT",
-  "price_tax_incl_label": "{{ price }} TTC"
+  "price_tax_incl_label": "{{ price }} TTC",
+  "price_interval_day": "jour",
+  "price_interval_month": "mois",
+  "price_interval_year": "an"
 }
