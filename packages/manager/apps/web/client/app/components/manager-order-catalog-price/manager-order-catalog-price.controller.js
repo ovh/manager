@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 
 import {
@@ -20,7 +21,7 @@ export default class {
       this.block = true;
     }
 
-    this.ovhSubsidiary = this.user.ovhSubsidiary;
+    this.ovhSubsidiary = get(this.user, 'ovhSubsidiary', '');
   }
 
   getPriceText(priceInCents) {
