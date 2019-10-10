@@ -22,7 +22,7 @@ export default /* @ngInject */($stateProvider) => {
             }];
 
             $window.open(
-              `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(orderParams)}`,
+              `${expressOrderUrl}#/express/review?products=${JSURL.stringify(orderParams)}`,
               '_blank',
             );
           });
