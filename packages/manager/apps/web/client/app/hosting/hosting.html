@@ -4,100 +4,138 @@
     <oui-spinner data-size="l"></oui-spinner>
 </div>
 
-<div class="page-header" data-ng-if="!loadingHostingInformations && !loadingHostingError">
-    <div class="row">
-        <div class="col-sm-9">
-            <form name="formEditDisplayName" novalidate>
-                <div class="mb-3" data-ng-show="!edit.active">
-                    <div class="d-flex">
-                        <h1 class="d-inline-block mb-0 word-break">
-                            <span data-ng-bind="hosting.displayName"
-                                  data-ng-if="hosting.displayName"></span>
-                            <span data-ng-bind="::hosting.serviceDisplayName"
-                                  data-ng-if="!hosting.displayName"></span>
+<div data-ng-controller="HostingTabsCtrl as ctrlHostingTabs">
+    <div class="oui-page-header" data-ng-if="!loadingHostingInformations && !loadingHostingError">
+        <div class="oui-page-header__container">
+            <div class="oui-page-header__content">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <form name="formEditDisplayName" novalidate>
+                            <div class="mb-3" data-ng-show="!edit.active">
+                                <div class="d-flex">
+                                    <h1 class="d-inline-block mb-0 word-break">
+                                        <span data-ng-bind="hosting.displayName"
+                                            data-ng-if="hosting.displayName"></span>
+                                        <span data-ng-bind="::hosting.serviceDisplayName"
+                                            data-ng-if="!hosting.displayName"></span>
 
-                        </h1>
-                        <button class="btn btn-icon my-auto ml-2" type="button" title="{{ 'wizard_modify' | translate }}"
-                                data-ng-click="editDisplayName()">
-                            <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
-                        </button>
+                                    </h1>
+                                    <button class="btn btn-icon my-auto ml-2" type="button" title="{{ 'wizard_modify' | translate }}"
+                                            data-ng-click="editDisplayName()">
+                                        <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <span class="font-italic" data-ng-bind="::hosting.serviceName"
+                                    data-ng-if="hosting.serviceName !== hosting.displayName"></span>
+                            </div>
+                            <div class="form-group my-4"
+                                data-ng-class="{'has-error': formEditDisplayName.txtDisplayName.$dirty && formEditDisplayName.$invalid}"
+                                data-ng-show="edit.active">
+                                <div class="oui-input-group">
+                                    <input type="text" class="oui-input" name="txtDisplayName"
+                                        data-event-blur="newDisplayName.value = ''"
+                                        data-ng-maxlength="250"
+                                        data-ng-model="newDisplayName.value">
+                                    <button class="oui-button oui-button_small-width" type="button" aria-label="{{ 'common_confirm' | translate }}"
+                                            data-ng-click="saveDisplayName()"
+                                            data-ng-disabled="!formEditDisplayName.txtDisplayName.$dirty || formEditDisplayName.$invalid">
+                                        <span class="oui-icon oui-icon-success oui-icon_small" aria-hidden="true"></span>
+                                    </button>
+                                    <button class="oui-button oui-button_small-width" type="button" aria-label="{{ 'common_cancel' | translate }}"
+                                            data-ng-click="resetDisplayName()">
+                                        <span class="oui-icon oui-icon-error oui-icon_small" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="help-block"
+                                    data-ng-if="formEditDisplayName.txtDisplayName.$dirty"
+                                    data-ng-messages="formEditDisplayName.txtDisplayName.$error">
+                                    <span data-translate="hosting_displayName_length"
+                                        data-ng-message="maxlength"></span>
+                                </div>
+                            </div>
+                            <wuc-service-expiration-date
+                                    data-ng-if="hosting.serviceName && hosting.serviceInfos"
+                                    service-name="hosting.serviceName"
+                                    service-type="HOSTING_WEB"
+                                    service-infos="hosting.serviceInfos">
+                            </wuc-service-expiration-date>
+                        </form>
                     </div>
-                    <span class="font-italic" data-ng-bind="::hosting.serviceName"
-                           data-ng-if="hosting.serviceName !== hosting.displayName"></span>
+                    <div class="col-sm-3 d-flex">
+                        <div class="btn-group ml-auto mt-4">
+                            <button type="button" class="oui-button oui-button_dropdown mb-0" aria-haspopup="true" aria-expanded="false"
+                                data-toggle="dropdown">
+                                <span data-translate="common_actions"></span>
+                                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
+                                <li data-ng-if="urlDomainOrder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <button class="btn btn-link" type="button"
+                                            data-ng-click="setAction('multisite/order/hosting-multisite-order', {domains: domains})"
+                                            data-track-on="click"
+                                            data-track-name="web::hosting::add-domain"
+                                            data-track-click="action">
+                                            {{ 'hosting_dashboard_add_domain' | translate }}
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group my-4"
-                     data-ng-class="{'has-error': formEditDisplayName.txtDisplayName.$dirty && formEditDisplayName.$invalid}"
-                     data-ng-show="edit.active">
-                    <div class="oui-input-group">
-                        <input type="text" class="oui-input" name="txtDisplayName"
-                               data-event-blur="newDisplayName.value = ''"
-                               data-ng-maxlength="250"
-                               data-ng-model="newDisplayName.value">
-                        <button class="oui-button oui-button_small-width" type="button" aria-label="{{ 'common_confirm' | translate }}"
-                                data-ng-click="saveDisplayName()"
-                                data-ng-disabled="!formEditDisplayName.txtDisplayName.$dirty || formEditDisplayName.$invalid">
-                            <span class="oui-icon oui-icon-success oui-icon_small" aria-hidden="true"></span>
-                        </button>
-                        <button class="oui-button oui-button_small-width" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                data-ng-click="resetDisplayName()">
-                            <span class="oui-icon oui-icon-error oui-icon_small" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="help-block"
-                         data-ng-if="formEditDisplayName.txtDisplayName.$dirty"
-                         data-ng-messages="formEditDisplayName.txtDisplayName.$error">
-                        <span data-translate="hosting_displayName_length"
-                              data-ng-message="maxlength"></span>
-                    </div>
-                </div>
-                <wuc-service-expiration-date
-                        data-ng-if="hosting.serviceName && hosting.serviceInfos"
-                        service-name="hosting.serviceName"
-                        service-type="HOSTING_WEB"
-                        service-infos="hosting.serviceInfos">
-                </wuc-service-expiration-date>
-            </form>
-        </div>
-        <div class="col-sm-3 d-flex">
-            <div class="btn-group ml-auto mt-4">
-                <button type="button" class="oui-button oui-button_dropdown mb-0" aria-haspopup="true" aria-expanded="false"
-                    data-toggle="dropdown">
-                    <span data-translate="common_actions"></span>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
-                    <li data-ng-if="urlDomainOrder">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <button class="btn btn-link" type="button"
-                                data-ng-click="setAction('multisite/order/hosting-multisite-order', {domains: domains})"
-                                data-track-on="click"
-                                data-track-name="web::hosting::add-domain"
-                                data-track-click="action">
-                                {{ 'hosting_dashboard_add_domain' | translate }}
-                        </button>
-                    </li>
-                </ul>
             </div>
         </div>
+        <div class="oui-page-header__tabs">
+            <!-- Used header-tabs to prepare for refactoring hosting routing -->
+            <oui-header-tabs>
+                <oui-header-tabs-item
+                    data-ng-if="ctrlHostingTabs.tabs"
+                    data-ng-repeat="tab in ctrlHostingTabs.tabs track by $index"
+                    data-text="{{:: 'hosting_tab_' + tab | translate }}"
+                    data-href="{{:: ctrlHostingTabs.$state.href('app.hosting', { 'tab': tab }) }}"
+                    data-active="ctrlHostingTabs.selectedTab === tab"
+                    data-on-click="ctrlHostingTabs.setSelectedTab(tab)">
+                </oui-header-tabs-item>
+                <oui-header-tabs-dropdown
+                    data-ng-if="ctrlHostingTabs.tabMenu"
+                    data-text="{{:: ctrlHostingTabs.tabMenu.title }}">
+                    <oui-header-tabs-item
+                        data-ng-repeat-start="item in ctrlHostingTabs.tabMenu.items track by $index"
+                        data-ng-if="item.type === 'SWITCH_TABS'"
+                        data-text="{{:: item.label }}"
+                        data-href="{{:: ctrlHostingTabs.$state.href('app.hosting', { 'tab': item.target }) }}"
+                        data-active="ctrlHostingTabs.selectedTab === item.target"
+                        data-on-click="ctrlHostingTabs.setSelectedTab(item.target)">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-ng-if="item.type === 'STATE'"
+                        data-text="{{:: item.label }}"
+                        data-state="{{:: item.state }}"
+                        data-on-click="ctrlHostingTabs.selectedTab = item.target">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-ng-if="item.type === 'LINK'"
+                        data-text="{{:: item.label }}"
+                        data-href="{{:: item.target }}">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-divider
+                        data-ng-if="item.type === 'SEPARATOR'"
+                        data-ng-repeat-end>
+                    </oui-header-tabs-divider>
+                </oui-header-tabs-dropdown>
+            </oui-header-tabs>
+        </div>
     </div>
-</div>
 
-<div class="p-5" data-ng-if="!loadingHostingInformations && hosting.isExpired">
-    <div class="alert alert-warning" role="alert"
-         data-translate="common_service_expired"
-         data-translate-values="{ t0: hosting.serviceDisplayName }">
+    <div class="p-5" data-ng-if="!loadingHostingInformations && hosting.isExpired">
+        <div class="alert alert-warning" role="alert"
+            data-translate="common_service_expired"
+            data-translate-values="{ t0: hosting.serviceDisplayName }">
+        </div>
     </div>
-</div>
 
-<div data-ui-view
-    data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired">
-    <div data-ng-controller="HostingTabsCtrl as ctrlHostingTabs">
-        <wuc-ovh-tabs tabs="ctrlHostingTabs.tabs"
-                selected-tab="ctrlHostingTabs.selectedTab"
-                change-tab="ctrlHostingTabs.setSelectedTab"
-                product="hosting"
-                menu="ctrlHostingTabs.tabMenu"
-                tr="tr"></wuc-ovh-tabs>
+    <div data-ui-view
+        data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired">
         <div class="tab-content">
             <wuc-autorenew-invite data-product-type="hosting"
                                 data-service-infos="hosting.serviceInfos"
