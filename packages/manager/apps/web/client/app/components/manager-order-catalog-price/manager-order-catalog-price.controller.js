@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 
 import {
@@ -25,14 +26,33 @@ export default class {
       this.block = true;
     }
 
-    this.ovhSubsidiary = this.user.ovhSubsidiary;
+    this.ovhSubsidiary = get(this.user, 'ovhSubsidiary', '');
   }
 
   getPriceText(priceInCents) {
+    const price = this.getIntervalPrice(priceInCents / 100000000);
+
     if (this.FRENCH_FORMAT.includes(this.ovhSubsidiary)
       || this.GERMAN_FORMAT.includes(this.ovhSubsidiary)) {
-      return `${priceInCents / 100000000}${this.user.currency.symbol}`;
+      return `${price}${this.user.currency.symbol}`;
     }
-    return `${this.user.currency.symbol}${priceInCents / 100000000}`;
+    return `${this.user.currency.symbol}${price}`;
+  }
+
+  getIntervalPrice(price) {
+    if (isUndefined(this.interval)) {
+      return price;
+    }
+
+    switch (this.interval) {
+      case INTERVAL_UNIT.DAY:
+        return Math.round((price / 365) * 100) / 100;
+      case INTERVAL_UNIT.MONTH:
+        return Math.round((price / 12) * 100) / 100;
+      case INTERVAL_UNIT.YEAR:
+        return price;
+      default:
+        return price;
+    }
   }
 }
