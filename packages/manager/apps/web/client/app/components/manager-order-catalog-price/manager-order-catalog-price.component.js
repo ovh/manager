@@ -4,6 +4,7 @@ import template from './manager-order-catalog-price.html';
 const component = {
   bindings: {
     block: '<',
+    interval: '<?',
     price: '<',
     tax: '<',
     user: '<',
