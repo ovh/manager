@@ -1999,7 +1999,7 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@7.1.11", "@ovh-ux/ng-ovh-otrs@^7.1.11", "@ovh-ux/ng-ovh-otrs@^7.1.6":
+"@ovh-ux/ng-ovh-otrs@^7.1.11":
   version "7.1.11"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.11.tgz#39fec6c9f6cdf8cb4c292e8ed4dca759c4cd1acf"
   integrity sha512-vZzTWZZkVfEuNrAuBNRjZB+4MCdTDaB4qMpLuQy6l5TrflJLrx4H9qzt5DcpEvNWwTzXVMfuOwq+qHrkJQKfwg==
