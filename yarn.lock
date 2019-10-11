@@ -1000,19 +1000,20 @@
     "@ovh-ux/ng-translate-async-loader" "^2.0.0"
     lodash "^4.17.15"
 
-"@ovh-ux/manager-navbar@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-1.2.2.tgz#2878964dedd1e0a434354c7dda6d0c54606f8b85"
-  integrity sha512-7U54kz5Rm/jNdVYwGC/p3OBZMP+MiCq3+Cl2QHni5QPKOmRngk6LUsH0YzKjMvJMgcaMBF/BX7Jwz4NP0Lb53w==
+"@ovh-ux/manager-navbar@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-2.0.3.tgz#75ca0096b3f044097ad0a7b2c408a5dfa39e56e9"
+  integrity sha512-15TrMZ3af59Urh/cewSjZvAZqD0aArzeEg7BwtpWiM8USHtqCKtuTXTsUTD5EHufFkenyfv/x+oFq4lqJd/IbQ==
   dependencies:
-    lodash "^4.17.14"
+    lodash "^4.17.15"
     moment "^2.24.0"
 
-"@ovh-ux/manager-server-sidebar@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.5.2.tgz#6e2b7e135ccaf17a39daade7b88d388936d3361f"
-  integrity sha512-fR+Be8VgvgMMXMEciVpnRzNTnZKgjZeU6vbb8kvJWIQiE8xWd17dplc6CkpneljCec/zoINm6NaaeGnb7Q9rXw==
+"@ovh-ux/manager-server-sidebar@^0.6.3":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.6.3.tgz#3ccbea8a9e41b24be978311bdd20030fb591119a"
+  integrity sha512-wiExLchTd2TrHNUw1FMvOemxy7lUtj1H+AZ51by3DlmqSCi3/5P7TrGfcxWhSk+Cpu4dFq0+S+NoO8ZdE6GQ1g==
   dependencies:
+    font-awesome "~4.7.0"
     jsurl "^0.1.5"
     lodash "^4.17.15"
 
@@ -4648,7 +4649,7 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "=3.1.0"
 
-font-awesome@^4.0.0:
+font-awesome@^4.0.0, font-awesome@~4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=

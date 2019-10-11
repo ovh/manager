@@ -1,3 +1,30 @@
+## [7.33.2](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.33.1...v7.33.2) (2019-10-08)
+
+
+### Bug Fixes
+
+* server sidebar version update ([#1583](https://github.com/ovh-ux/ovh-manager-cloud/issues/1583)) ([641a104](https://github.com/ovh-ux/ovh-manager-cloud/commit/641a104))
+
+
+
+## [7.33.1](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.33.0...v7.33.1) (2019-10-07)
+
+
+### Features
+
+* bump @ovh-ux/manager-navbar ([#1584](https://github.com/ovh-ux/ovh-manager-cloud/issues/1584)) ([5239f20](https://github.com/ovh-ux/ovh-manager-cloud/commit/5239f20))
+
+
+
+# [7.33.0](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.32.1...v7.33.0) (2019-10-07)
+
+
+### Features
+
+* enterprise cloud database ([#1580](https://github.com/ovh-ux/ovh-manager-cloud/issues/1580)) ([19e7445](https://github.com/ovh-ux/ovh-manager-cloud/commit/19e7445))
+
+
+
 ## [7.32.1](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.32.0...v7.32.1) (2019-09-19)
 
 

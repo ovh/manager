@@ -1,6 +1,6 @@
 {
   "name": "ovh-manager-cloud",
-  "version": "7.32.1",
+  "version": "7.33.2",
   "private": true,
   "description": "OVH Cloud control panel",
   "keywords": [
@@ -42,8 +42,8 @@
     "@ovh-ux/manager-banner": "^1.1.0",
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^7.1.2",
-    "@ovh-ux/manager-navbar": "^1.2.2",
-    "@ovh-ux/manager-server-sidebar": "^0.5.2",
+    "@ovh-ux/manager-navbar": "^2.0.3",
+    "@ovh-ux/manager-server-sidebar": "^0.6.3",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.0",
