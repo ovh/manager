@@ -17,7 +17,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
   ])
-  .run(/* @ngTranslationsInject ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .provider('ovhPaymentMethod', paymentMethodProvider)
   .service('ovhPaymentMethodHelper', paymentMethodHelperService);
 
