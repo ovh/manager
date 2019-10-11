@@ -7,7 +7,6 @@ export default {
   bindings: {
     activateWebsiteCoach: '<',
     attachedDomains: '<',
-    goBack: '<',
     productId: '<',
     screenshot: '<',
     user: '<',
