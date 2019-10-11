@@ -38,7 +38,7 @@
   "signup_field_ovhSubsidiary": "Filiale OVH",
   "signup_field_timezone": "Fuseau horaire",
   "signup_field_customerCode": "Code client",
-  "signup_field_signup_field_italianSdi": "Numéro SDI",
+  "signup_field_italianSDI": "Numéro SDI",
   "signup_enum_legalform_association": "Association",
   "signup_enum_legalform_corporation": "Entreprise",
   "signup_enum_legalform_personalcorporation": "Ditta individuale",
