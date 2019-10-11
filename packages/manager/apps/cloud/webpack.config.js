@@ -55,7 +55,7 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './client/**/*.html'), context: 'client' },
       ],
     },
-  }, env);
+  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');
