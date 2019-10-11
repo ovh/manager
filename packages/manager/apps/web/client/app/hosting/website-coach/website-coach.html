@@ -23,6 +23,7 @@
 
             <!-- One domain name -->
             <p
+                data-ng-if="::!$ctrl.hasMultipleAttachedDomain"
                 data-translate="hosting_website_coach_1dn_text"
                 data-translate-values="{
                     domain: $ctrl.attachedDomain,
