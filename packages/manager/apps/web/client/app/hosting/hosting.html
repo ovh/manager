@@ -86,7 +86,7 @@
             </div>
         </div>
         <div class="oui-page-header__tabs">
-            <!-- Used header-tabs to prepare for refactoring hosting routing -->
+            <!-- Adapted header-tabs for the old use. Need to refactor hosting routing afterwards -->
             <oui-header-tabs>
                 <oui-header-tabs-item
                     data-ng-if="ctrlHostingTabs.tabs"
@@ -134,8 +134,7 @@
         </div>
     </div>
 
-    <div data-ui-view
-        data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired">
+    <div data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired">
         <div class="tab-content">
             <wuc-autorenew-invite data-product-type="hosting"
                                 data-service-infos="hosting.serviceInfos"
@@ -154,7 +153,10 @@
             </div>
 
             <div class="tab-pane active hosting"
-                data-ng-include="ctrlHostingTabs.selectedTab && 'hosting/' + ctrlHostingTabs.constructor.toKebabCase(ctrlHostingTabs.selectedTab) + '/' + ctrlHostingTabs.selectedTab + '.html'"></div>
+                data-ui-view>
+                <div data-ng-include="ctrlHostingTabs.selectedTab && 'hosting/' + ctrlHostingTabs.constructor.toKebabCase(ctrlHostingTabs.selectedTab) + '/' + ctrlHostingTabs.selectedTab + '.html'"></div>
+            </div>
+
         </div>
     </div>
 </div>
