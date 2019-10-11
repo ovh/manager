@@ -35,7 +35,7 @@ angular
         this.user = user;
         this.user.tokenValidator = user.isTokenValidator;
       }).catch((err) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_load_error')} ${_.get(err, 'message', err)}`, 'dedicatedCloud.user.edit');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_load_error')} ${_.get(err, 'message', err)}`);
       }).finally(() => {
         this.loading = false;
       });
@@ -57,11 +57,11 @@ angular
           'nsxRight',
         ]),
       ).then(() => {
-        this.Alerter.success(this.$translate.instant('dedicatedCloud_USER_edit_success'), 'dedicatedCloud.user.edit');
+        this.Alerter.success(this.$translate.instant('dedicatedCloud_USER_edit_success'));
         this.$state.go('^').then(() => this.$state.reload());
       }).catch((err) => {
         this.$state.go('^');
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_error')} ${_.get(err, 'message') || err}`, 'dedicatedCloud.user.edit');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_error')} ${_.get(err, 'message') || err}`);
       });
     }
   });

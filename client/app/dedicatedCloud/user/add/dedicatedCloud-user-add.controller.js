@@ -18,10 +18,6 @@ angular.module('App').controller('DedicatedCloudUserAddCtrl', ($scope, $statePar
     formValid: false,
   };
 
-  $scope.alerts = {
-    users: 'dedicatedCloud.alerts.dashboardUsers',
-  };
-
   $scope.showError = {
     checkPassword: false,
   };
@@ -33,10 +29,10 @@ angular.module('App').controller('DedicatedCloudUserAddCtrl', ($scope, $statePar
     DedicatedCloud.addUser($stateParams.productId, $scope.newUser)
       .then(
         () => {
-          Alerter.success($translate.instant('dedicatedCloud_users_add_start'), $scope.alerts.users);
+          Alerter.success($translate.instant('dedicatedCloud_users_add_start'));
         },
         (err) => {
-          Alerter.alertFromSWS($translate.instant('dedicatedCloud_users_add_error'), err, $scope.alerts.users);
+          Alerter.alertFromSWS($translate.instant('dedicatedCloud_users_add_error'), err);
         },
       )
       .finally(() => {
@@ -61,7 +57,7 @@ angular.module('App').controller('DedicatedCloudUserAddCtrl', ($scope, $statePar
         $scope.canSetPassword = !hasSecurityOption;
       })
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_users_password_reset_check_error'), err, $scope.alerts.users);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_users_password_reset_check_error'), err);
       })
       .finally(() => {
         $scope.loaders.init = false;

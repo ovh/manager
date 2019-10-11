@@ -12,7 +12,7 @@ export default class {
 
   onError(error) {
     this.goBack(
-      this.$translate.instant('autorenew_hosting_dashboard_close_service_error', _.get(error, 'data.message')),
+      `${this.$translate.instant('autorenew_hosting_dashboard_close_service_error')} ${_.get(error, 'data.message')}`,
       'danger',
     );
   }

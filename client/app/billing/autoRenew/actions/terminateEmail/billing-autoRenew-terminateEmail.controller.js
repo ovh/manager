@@ -12,7 +12,7 @@ export default class {
 
   onError(error) {
     this.goBack(
-      this.$translate.instant('autorenew_service_EMAIL_DOMAIN_terminate_error', _.get(error, 'data.message')),
+      this.$translate.instant('autorenew_service_EMAIL_DOMAIN_terminate_error', { message: _.get(error, 'message') }),
       'danger',
     );
   }

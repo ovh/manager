@@ -37,6 +37,7 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './node_modules/ckeditor'), to: 'ckeditor' },
         { from: path.resolve(__dirname, './node_modules/@ovh-ux/ovh-utils-angular/src/**/*.html'), context: 'node_modules/@ovh-ux/ovh-utils-angular/src', to: 'components/ovh-utils-angular' },
         { from: path.resolve(__dirname, './node_modules/ovh-module-exchange/src/exchange/**/*.html'), context: 'node_modules/ovh-module-exchange/src' },
+        { from: path.resolve(__dirname, './node_modules/flag-icon-css/flags/4x3'), to: 'flag-icon-css/flags/4x3' },
       ],
     },
   }, env);

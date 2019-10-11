@@ -1,8 +1,8 @@
 import {
-  AUTORENEW_EVENT, CONTRACTS_IDS, NIC_URL, RENEW_URL, SERVICE_EXPIRATION, SERVICE_STATUS,
+  AUTORENEW_EVENT, CONTRACTS_IDS, RENEW_URL, SERVICE_EXPIRATION, SERVICE_STATUS,
 } from './autorenew.constants';
 
-import BillingService from './BillingService.class';
+import BillingService from '../../models/BillingService.class';
 
 export default class {
   /* @ngInject */
@@ -115,27 +115,23 @@ export default class {
       .$promise
       .catch((err) => {
         if (err.status === 404) {
-          return null;
+          return {
+            active: false,
+          };
         }
         throw err;
       });
   }
 
   putAutorenew(renewParam) {
-    return this.OvhHttp.put(NIC_URL, {
-      rootPath: 'apiv6',
-      data: renewParam,
-      broadcast: AUTORENEW_EVENT,
-    });
+    return this.OvhApiMeAutorenew.v6().update(renewParam).$promise;
   }
 
   enableAutorenew(renewDay) {
-    return this.OvhHttp.post(NIC_URL, {
-      rootPath: 'apiv6',
-      data: {
+    return this.OvhApiMeAutorenew.v6()
+      .create({
         renewDay,
-      },
-    });
+      }).$promise;
   }
 
   disableAutoRenewForDomains() {

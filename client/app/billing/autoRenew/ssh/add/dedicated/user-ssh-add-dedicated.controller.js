@@ -4,7 +4,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.dedicated.
   '$translate',
   'Alerter',
   'atInternet',
-  'UserAccount.services.ssh',
+  'UseraccountSshService',
   function ($scope, $timeout, $translate, Alerter, atInternet, UseraccountSsh) {
     const fullSshList = $scope.currentActionData || [];
 

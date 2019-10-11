@@ -11,9 +11,6 @@ angular.module('App').controller('DedicatedCloudUserResetPasswordCtrl', ($stateP
     checkPassword: false,
   };
   $scope.loading = false;
-  $scope.alerts = {
-    users: 'dedicatedCloud.alerts.dashboardUsers',
-  };
 
   $scope.resetPassword = function () {
     $scope.isReseting = true;
@@ -55,7 +52,7 @@ angular.module('App').controller('DedicatedCloudUserResetPasswordCtrl', ($stateP
         return null;
       })
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_users_password_reset_check_error'), err, $scope.alerts.users);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_users_password_reset_check_error'), err);
       })
       .finally(() => {
         $scope.loading = false;

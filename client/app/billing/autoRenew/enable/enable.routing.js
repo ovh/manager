@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
       updateRenew: /* @ngInject */
           BillingAutoRenew => services => BillingAutoRenew.updateServices(
             _.map(services, (service) => {
-              service.setAutoRenew();
+              service.setAutomaticRenew();
               return service;
             }),
           ),

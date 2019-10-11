@@ -45,12 +45,12 @@ angular.module('App').controller('DedicatedCloudConfirmTerminateCtrl', class Ded
       reason: this.model.reason,
       token: this.$stateParams.token,
     }).$promise.then(() => {
-      this.Alerter.success(this.$translate.instant('dedicatedCloud_confirm_close_success'), 'dedicatedCloud_alert');
+      this.Alerter.success(this.$translate.instant('dedicatedCloud_confirm_close_success'));
     }).catch((error) => {
       this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_confirm_close_error'), {
         message: _.get(error, 'message'),
         type: 'ERROR',
-      }, 'dedicatedCloud_alert');
+      });
     }).finally(() => {
       this.loading.confirm = false;
       this.$state.go('^');

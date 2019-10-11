@@ -31,7 +31,7 @@ angular
     }
 
     $onInit() {
-      this.$scope.alerts = { dashboard: 'dedicatedCloud_alert' };
+      this.$scope.alerts = { dashboard: 'dedicatedCloud' };
       this.$scope.loadingInformations = true;
       this.$scope.loadingError = false;
       this.$scope.dedicatedCloud = null;
@@ -49,6 +49,10 @@ angular
       this.$scope.$on('dedicatedcloud.informations.reload', () => {
         this.$scope.loadingInformations = true;
         this.$scope.loadDedicatedCloud();
+      });
+
+      this.$scope.$on('ovhAlert.show', (event, type, message) => {
+        this.setMessage(message, { alertType: type });
       });
 
       this.$scope.$on('$locationChangeStart', () => {
@@ -91,10 +95,11 @@ angular
         this.DedicatedCloud.getSelected(this.$stateParams.productId, true)
           .then((dedicatedCloud) => {
             Object.assign(this.$scope.dedicatedCloud, dedicatedCloud);
-            this.$scope.dedicatedCloud.isExpired = dedicatedCloud.status === 'expired';
+            this.$scope.dedicatedCloud.isExpired = dedicatedCloud.isExpired;
 
             if (this.$scope.dedicatedCloud.isExpired) {
               this.$scope.setMessage(this.$translate.instant('common_expired'), { type: 'cancelled' });
+              return;
             }
 
             this.$scope.dedicatedCloudDescription.model = angular
@@ -169,29 +174,33 @@ angular
         errorType = data.state;
       }
 
-      switch (errorType.toLowerCase()) {
-        case 'blocked':
-        case 'cancelled':
-        case 'paused':
-        case 'error':
-          this.$scope.alertType = 'alert-danger';
-          break;
-        case 'waiting_ack':
-        case 'waitingack':
-        case 'doing':
-        case 'warning':
-        case 'partial':
-          this.$scope.alertType = 'alert-warning';
-          break;
-        case 'todo':
-        case 'done':
-        case 'info':
-        case 'ok':
-          this.$scope.alertType = 'alert-success';
-          break;
-        default:
-          this.$scope.alertType = 'alert-success';
-          break;
+      if (data.alertType) {
+        this.$scope.alertType = data.alertType;
+      } else {
+        switch (errorType.toLowerCase()) {
+          case 'blocked':
+          case 'cancelled':
+          case 'paused':
+          case 'error':
+            this.$scope.alertType = 'alert-danger';
+            break;
+          case 'waiting_ack':
+          case 'waitingack':
+          case 'doing':
+          case 'warning':
+          case 'partial':
+            this.$scope.alertType = 'alert-warning';
+            break;
+          case 'todo':
+          case 'done':
+          case 'info':
+          case 'ok':
+            this.$scope.alertType = 'alert-success';
+            break;
+          default:
+            this.$scope.alertType = 'alert-success';
+            break;
+        }
       }
 
       if (data.message) {

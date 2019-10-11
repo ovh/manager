@@ -6,13 +6,13 @@ export default class {
 
   onSuccess() {
     this.goBack(
-      this.$translate.instant('privateDatabase_dashboard_close_service_success'),
+      this.$translate.instant('autorenew_privateDatabase_dashboard_close_service_success'),
     );
   }
 
   onError(error) {
     this.goBack(
-      this.$translate.instant('privateDatabase_dashboard_close_service_error', _.get(error, 'data.message')),
+      this.$translate.instant('autorenew_privateDatabase_dashboard_close_service_error', _.get(error, 'data.message')),
       'danger',
     );
   }

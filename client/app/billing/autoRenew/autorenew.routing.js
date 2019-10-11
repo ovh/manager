@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import BillingService from './BillingService.class';
+import BillingService from '../../models/BillingService.class';
 import { NIC_ALL } from './autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
@@ -114,12 +114,17 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         services,
       ) => [$translate.instant(NIC_ALL), ..._.get(services, 'nicBilling', [])],
 
+      offset: /* @ngInject */ (
+        pageNumber,
+        pageSize,
+      ) => pageSize * (pageNumber - 1),
+
       onListParamChanges: /* @ngInject */ $state => params => $state.go('.', params,
         { notify: false }),
 
       pageNumber: /* @ngInject */ $transition$ => parseInt($transition$.params().pageNumber, 10),
       pageSize: /* @ngInject */ $transition$ => parseInt($transition$.params().pageSize, 10),
-
+      payDebtLink: /* @ngInject */ $state => $state.href('app.account.billing.main.history'),
       resiliateService: /* @ngInject */ $state => ({
         id,
       }) => $state.go('app.account.billing.autorenew.delete', { serviceId: id }),
@@ -132,14 +137,14 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         BillingAutoRenew,
         filters,
         nicBilling,
-        pageNumber,
         pageSize,
+        offset,
         searchText,
         selectedType,
         sort,
       ) => BillingAutoRenew.getServices(
         pageSize,
-        pageSize * (pageNumber - 1),
+        offset,
         searchText,
         selectedType,
         filters.expiration,
@@ -155,10 +160,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
       sort: /* @ngInject */ $transition$ => JSON.parse($transition$.params().sort),
 
-      terminateEmail: /* @ngInject */ $state => service => $state.go('app.account.billing.autorenew.terminateEmail', { serviceId: service.id, name: service.domain }),
+      terminateEmail: /* @ngInject */ $state => service => $state.go('app.account.billing.autorenew.terminateEmail', { serviceId: service.serviceId, name: service.domain }),
+      terminateEnterpriseCloudDatabase: /* @ngInject */ $state => serviceId => $state.go('app.account.billing.autorenew.terminateEnterpriseCloudDatabase', { serviceId }),
       terminateHostingWeb: /* @ngInject */ $state => serviceId => $state.go('app.account.billing.autorenew.terminateHostingWeb', { serviceId }),
       terminatePrivateDatabase: /* @ngInject */ $state => serviceId => $state.go('app.account.billing.autorenew.terminatePrivateDatabase', { serviceId }),
-
+      terminateWebCoach: /* @ngInject */ $state => serviceId => $state.go('app.account.billing.autorenew.terminateWebCoach', { serviceId }),
       updateServices: /* @ngInject */ $state => ({ id }) => $state.go('app.account.billing.autorenew.update', { serviceId: id }),
       updateExchangeBilling: /* @ngInject */ $state => ({ serviceId }) => {
         const [organization, exchangeName] = serviceId.split('/service/');
@@ -166,7 +172,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       },
 
       warnNicBilling: /* @ngInject */ $state => nic => $state.go('app.account.billing.autorenew.warnNic', { nic }),
-      warnNicPendingDebt: /* @ngInject */ $state => serviceName => $state.go('app.account.billing.autorenew.warnPendingDebt', { serviceName }),
     } : {})),
     redirectTo: /* @ngInject */ () => (coreConfigProvider.region === 'US' ? 'app.account.billing.autorenew.ssh' : false),
   });

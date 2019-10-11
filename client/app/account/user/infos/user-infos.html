@@ -1,15 +1,9 @@
 <div class="ovh-signup">
 
-    <div class="page-header">
-        <!-- ACCOUNT MODIFICATIONS -->
-        <h1 data-translate="user_account_title_infos"
-            data-ng-if="!controls.validateEmailChange">
-        </h1>
-        <!-- EMAIL VALIDATION FORM -->
-        <h1 data-translate="user_account_task_change_email_validation_title"
-            data-ng-if="controls.validateEmailChange">
-        </h1>
-    </div>
+    <!-- EMAIL VALIDATION FORM -->
+    <h1 data-translate="user_account_task_change_email_validation_title"
+        data-ng-if="controls.validateEmailChange">
+    </h1>
 
     <div class="tab-content text-center"
          data-ng-if="loading">
@@ -24,7 +18,7 @@
         <!-- ACCOUNT VALIDATION -->
         <div class="row d-md-flex"
              data-ng-if="!controls.validateEmailChange && controls.taskEmailChangeTodo && user">
-            <div class="col-md-10 col-lg-8 mx-md-auto">
+            <div class="col-md-10 col-lg-8">
                 <div class="alert alert-info"
                      role="alert">
                     <p data-ng-bind="user.email || '/'"
@@ -113,7 +107,7 @@
         <!-- ACCOUNT MODIFICATIONS -->
         <div class="row d-md-flex"
              data-ng-if="!controls.validateEmailChange">
-            <div class="col-md-10 col-lg-6 mx-md-auto">
+            <div class="col-md-10 col-lg-6">
                 <new-account-form data-ng-if="user"
                                   data-model="user"
                                   data-readonly="readOnlyProperties"

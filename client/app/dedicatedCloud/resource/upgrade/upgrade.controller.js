@@ -80,7 +80,7 @@ export const controller = class {
     return this.fetchOVHSubsidiary()
       .then(() => this.fetchCatalog())
       .catch(({ data }) => {
-        this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_order_loading_error'), data, 'dedicatedCloud_alert');
+        this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_order_loading_error'), data);
         this.$scope.$dismiss();
       })
       .finally(() => {

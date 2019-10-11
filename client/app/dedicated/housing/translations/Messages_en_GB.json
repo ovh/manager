@@ -128,6 +128,7 @@
   "housing_configuration_task_ADD_VIRTUAL_MAC": "Add virtual MAC",
   "housing_configuration_task_VIRTUAL_MAC_DELETE": "Delete virtual MAC",
   "housing_configuration_task_REMOVE_VIRTUAL_MAC": "Delete virtual MAC",
+  "housing_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Network interfaces modification",
   "housing_configuration_task_empty": "No task",
   "housing_configuration_task_status_cancelled": "Cancelled",
   "housing_configuration_task_status_customer_error": "Customer error",
@@ -156,5 +157,6 @@
   "housing_configuration_reboot_price": "Price",
   "housing_configuration_reboot_price_ht": "Ex. taxes",
   "housing_configuration_reboot_price_tax": "Taxes",
-  "housing_configuration_reboot_price_total": "Total"
+  "housing_configuration_reboot_price_total": "Total",
+  "housing_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modifying network interfaces"
 }

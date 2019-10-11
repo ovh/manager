@@ -1,3 +1,255 @@
+<a name="10.32.10"></a>
+## [10.32.10](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.9...v10.32.10) (2019-10-10)
+
+
+### Bug Fixes
+
+* **account.contact:** display feedback message ([#1475](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1475)) ([ba32856](https://github.com/ovh-ux/ovh-manager-dedicated/commit/ba32856))
+* **account.contact:** fix email redirection ([#1479](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1479)) ([2bf2967](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2bf2967))
+
+
+
+<a name="10.32.9"></a>
+## [10.32.9](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.8...v10.32.9) (2019-10-09)
+
+
+### Bug Fixes
+
+* **dedicated.server:** catch 404 on vrack ([e10b764](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e10b764))
+
+
+
+<a name="10.32.8"></a>
+## [10.32.8](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.7...v10.32.8) (2019-10-09)
+
+
+### Bug Fixes
+
+* **account.contacts:** filter service on category ([#1467](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1467)) ([bc321ed](https://github.com/ovh-ux/ovh-manager-dedicated/commit/bc321ed))
+* **account.user.advanced:** restore the activation button ([54f477c](https://github.com/ovh-ux/ovh-manager-dedicated/commit/54f477c))
+* **billing.autorenew.ssh:** scope function binding ([#1472](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1472)) ([25ee239](https://github.com/ovh-ux/ovh-manager-dedicated/commit/25ee239))
+* **i18n:** add missing translations [CDS 75] ([aa019c5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/aa019c5))
+* **i18n:** add missing translations [CDS 76] ([ff4b4df](https://github.com/ovh-ux/ovh-manager-dedicated/commit/ff4b4df))
+* **i18n:** add missing translations [CDS 78] ([cd5602c](https://github.com/ovh-ux/ovh-manager-dedicated/commit/cd5602c))
+* **ola:** add translations ([#1428](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1428)) ([0bceb2a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0bceb2a))
+
+
+### Features
+
+* **autorenew:** add webcoach ([#1464](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1464)) ([b7413cb](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b7413cb))
+* **dedicated.server:** extract translations ([#1430](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1430)) ([543e2f0](https://github.com/ovh-ux/ovh-manager-dedicated/commit/543e2f0))
+* **dedicated.server.interfaces:** add ona lag capacity ([#1397](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1397)) ([80aa12f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/80aa12f))
+
+
+
+<a name="10.32.7"></a>
+## [10.32.7](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.6...v10.32.7) (2019-10-08)
+
+
+### Bug Fixes
+
+* **account.user.support.level:** use right URLs in constant file ([eee247c](https://github.com/ovh-ux/ovh-manager-dedicated/commit/eee247c))
+
+
+
+<a name="10.32.6"></a>
+## [10.32.6](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.5...v10.32.6) (2019-10-08)
+
+
+### Bug Fixes
+
+* **account.contacts:** restrict redirection for contact change ([44bf17e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/44bf17e))
+
+
+
+<a name="10.32.5"></a>
+## [10.32.5](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.4...v10.32.5) (2019-10-08)
+
+
+### Bug Fixes
+
+* **billing.autorenew.ssh:** rename broken service name ([#1454](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1454)) ([f4cbd9f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f4cbd9f))
+
+
+
+<a name="10.32.4"></a>
+## [10.32.4](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.3...v10.32.4) (2019-10-08)
+
+
+### Bug Fixes
+
+* **account.contacts:** add setAction for contacts change ([00cc55b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/00cc55b))
+* **account.contacts:** handle contact update ([adcf272](https://github.com/ovh-ux/ovh-manager-dedicated/commit/adcf272))
+
+
+
+<a name="10.32.3"></a>
+## [10.32.3](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.2...v10.32.3) (2019-10-08)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-module-exchange to v9.4.9 ([2f959bb](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2f959bb))
+
+
+
+<a name="10.32.2"></a>
+## [10.32.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.1...v10.32.2) (2019-10-08)
+
+
+### Bug Fixes
+
+* **account.contacts.service:** post to the right URL ([#1445](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1445)) ([1241ca4](https://github.com/ovh-ux/ovh-manager-dedicated/commit/1241ca4))
+* **account.user:** set the right base url for setAction ([#1446](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1446)) ([047f571](https://github.com/ovh-ux/ovh-manager-dedicated/commit/047f571))
+* **autorenew:** handle 404 errors for /me/autorenew ([0d29cac](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0d29cac))
+* **billing.autorenew:** set default renew day for activation ([5277173](https://github.com/ovh-ux/ovh-manager-dedicated/commit/5277173))
+* **billing.autorenew:** update server sidebar to v0.6.3 ([#1442](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1442)) ([3b61b64](https://github.com/ovh-ux/ovh-manager-dedicated/commit/3b61b64))
+
+
+
+<a name="10.32.1"></a>
+## [10.32.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.0...v10.32.1) (2019-10-07)
+
+
+### Features
+
+* **account.suppport-level:** extract translations ([#1414](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1414)) ([dfe47f5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/dfe47f5))
+
+
+
+<a name="10.32.0"></a>
+# [10.32.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.31.0...v10.32.0) (2019-10-07)
+
+
+### Bug Fixes
+
+* **account.contacts:** load translations ([b2886b5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b2886b5))
+* **i18n:** add missing translations [CDS 67] ([946e920](https://github.com/ovh-ux/ovh-manager-dedicated/commit/946e920))
+* **i18n:** add missing translations [CDS 68] ([4d0076f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4d0076f))
+
+
+
+<a name="10.31.0"></a>
+# [10.31.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.30.1...v10.31.0) (2019-10-07)
+
+
+### Bug Fixes
+
+* use latest ng-ui-router-layout ([#1440](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1440)) ([724c272](https://github.com/ovh-ux/ovh-manager-dedicated/commit/724c272))
+
+
+### Features
+
+* enterprise cloud database ([#1431](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1431)) ([bd40c18](https://github.com/ovh-ux/ovh-manager-dedicated/commit/bd40c18))
+
+
+
+<a name="10.30.1"></a>
+## [10.30.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.30.0...v10.30.1) (2019-10-01)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** allow immediate service termination ([7046276](https://github.com/ovh-ux/ovh-manager-dedicated/commit/7046276))
+
+
+
+<a name="10.30.0"></a>
+# [10.30.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.29.0...v10.30.0) (2019-09-26)
+
+
+### Bug Fixes
+
+* **billing:** set only needed services to manual for resiliation ([15c9e12](https://github.com/ovh-ux/ovh-manager-dedicated/commit/15c9e12))
+
+
+
+<a name="10.29.0"></a>
+# [10.29.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.9...v10.29.0) (2019-09-25)
+
+
+### Bug Fixes
+
+* **billing:** add comments title to confirm terminate page ([#1376](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1376)) ([cd8a018](https://github.com/ovh-ux/ovh-manager-dedicated/commit/cd8a018))
+* **billing:** return according capability for resiliated services ([e7ac877](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e7ac877))
+* **i18n:** add missing translations [CDS 48] ([fbc7a3e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/fbc7a3e))
+* **i18n:** add missing translations [CDS 50] ([0035fcf](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0035fcf))
+* **i18n:** add missing translations [CDS 54] ([b364c6d](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b364c6d))
+* **i18n:** add missing translations [CDS 56] ([ded1cfb](https://github.com/ovh-ux/ovh-manager-dedicated/commit/ded1cfb))
+* **i18n:** add missing translations [CDS 59] ([151e2a5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/151e2a5))
+* **i18n:** add missing translations [CDS 62] ([57ef12c](https://github.com/ovh-ux/ovh-manager-dedicated/commit/57ef12c))
+
+
+### Features
+
+* **account.contacts:**  prevent contact change for in debt services ([e9babbf](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e9babbf))
+* **account.suppport-level:** extract translations ([#1414](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1414)) ([427d676](https://github.com/ovh-ux/ovh-manager-dedicated/commit/427d676))
+* **dedicated.cloud:** enable service pack migration ([#1378](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1378)) ([1d11965](https://github.com/ovh-ux/ovh-manager-dedicated/commit/1d11965))
+
+
+
+<a name="10.28.9"></a>
+## [10.28.9](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.8...v10.28.9) (2019-09-23)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-module-exchange to v9.4.8 ([44a6ba6](https://github.com/ovh-ux/ovh-manager-dedicated/commit/44a6ba6))
+
+
+
+<a name="10.28.8"></a>
+## [10.28.8](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.7...v10.28.8) (2019-09-23)
+
+
+### Bug Fixes
+
+* **account:** set right label for italianSDI field ([#1406](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1406)) ([3694c1f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/3694c1f))
+
+
+
+<a name="10.28.7"></a>
+## [10.28.7](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.6...v10.28.7) (2019-09-20)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** update autorenew activation condition ([#1403](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1403)) ([65d58da](https://github.com/ovh-ux/ovh-manager-dedicated/commit/65d58da))
+
+
+
+<a name="10.28.6"></a>
+## [10.28.6](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.5...v10.28.6) (2019-09-19)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** fix bulk enable/disable ([#1400](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1400)) ([6c40e7f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/6c40e7f))
+
+
+
+<a name="10.28.5"></a>
+## [10.28.5](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.4...v10.28.5) (2019-09-18)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** display pop up to pay bill ([#1396](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1396)) ([b816b66](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b816b66))
+
+
+
+<a name="10.28.4"></a>
+## [10.28.4](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.3...v10.28.4) (2019-09-16)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** allow to terminate non-engaged service ([#1389](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1389)) ([c977489](https://github.com/ovh-ux/ovh-manager-dedicated/commit/c977489))
+* **billing.autorenew:** fix capability check ([#1390](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1390)) ([5bdda6f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/5bdda6f))
+* **billing.autorenew:** fix link to billing section ([#1392](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1392)) ([a5e726a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/a5e726a))
+
+
+
 <a name="10.28.3"></a>
 ## [10.28.3](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.28.2...v10.28.3) (2019-09-11)
 

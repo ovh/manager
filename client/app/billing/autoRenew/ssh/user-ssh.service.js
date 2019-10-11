@@ -1,4 +1,4 @@
-angular.module('UserAccount').service('UserAccount.services.ssh', [
+angular.module('UserAccount').service('UseraccountSshService', [
   'OvhHttp',
   '$q',
   'constants',

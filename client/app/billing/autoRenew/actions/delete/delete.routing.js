@@ -17,7 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
         Server,
         service,
       ) => (service.canHaveEngagement()
-        ? Server.getSelected(service.serviceId) : Promise.resolve()),
+        ? Server.getSelected(service.serviceId) : Promise.resolve({ engagement: null }))
+        .then(({ engagement }) => engagement),
       goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
       serviceId: /* @ngInject */ $transition$ => $transition$.params().serviceId,
       service: /* @ngInject */ (
