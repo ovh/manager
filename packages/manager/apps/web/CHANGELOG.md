@@ -1,3 +1,12 @@
+## [13.31.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.1...@ovh-ux/manager-web@13.31.2) (2019-10-11)
+
+
+### Bug Fixes
+
+* **web.hosting.webcoach:** scope to FR sub only ([#1445](https://github.com/ovh-ux/manager/issues/1445)) ([187f3e3](https://github.com/ovh-ux/manager/commit/187f3e3))
+
+
+
 ## [13.31.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.0...@ovh-ux/manager-web@13.31.1) (2019-10-09)
 
 
