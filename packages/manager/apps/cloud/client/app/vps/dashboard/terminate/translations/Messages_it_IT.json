@@ -1,0 +1,8 @@
+{
+  "vps_terminate_title": "Elimina il tuo VPS",
+  "vps_terminate_question": "vuoi davvero eliminare il servizio {{vps}}?",
+  "vps_terminate_cancel": "Annulla",
+  "vps_terminate_confirm": "Conferma",
+  "vps_terminate_success": "La richiesta di eliminazione del servizio è stata presa in carico. Riceverai un’email di conferma per convalidare l’operazione.",
+  "vps_terminate_error": "Si è verificato un errore durante l'eliminazione del servizio."
+}
