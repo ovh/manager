@@ -1,4 +1,4 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting', {
     url: '/configuration/hosting/:productId?tab',
     templateUrl: 'hosting/hosting.html',
@@ -8,17 +8,13 @@ angular.module('App').config(($stateProvider) => {
       tab: null,
     },
     resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'hosting'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
+      navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
+        $rootScope.currentSectionInformation = 'hosting'; // eslint-disable-line no-param-reassign
+        return Navigator.setNavigationInformation({
+          leftMenuVisible: true,
+          configurationSelected: true,
+        });
+      },
     },
     translations: { value: ['.'], format: 'json' },
   });
@@ -30,4 +26,4 @@ angular.module('App').config(($stateProvider) => {
     reloadOnSearch: false,
     translations: ['.'],
   });
-});
+};
