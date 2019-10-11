@@ -29,7 +29,6 @@ export default /* @ngInject */($stateProvider) => {
       },
       attachedDomains: /* @ngInject */ (productId, HostingModule) => HostingModule
         .getAttachedDomains(productId),
-      goBack: /* @ngInject */ $state => () => $state.go('app.hosting'),
       productId: /* @ngInject */ $transition$ => $transition$.params().productId,
       screenshot: /* @ngInject */ (productId, OvhApiScreenshot) => OvhApiScreenshot
         .Aapi()

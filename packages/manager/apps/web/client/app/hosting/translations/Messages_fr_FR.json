@@ -147,7 +147,7 @@
   "hosting_dashboard_add_or_order_step1_order": "Commander un nouveau domaine",
   "hosting_dashboard_add_or_order_step1_attach": "Associer un domaine existant",
   "hosting_dashboard_service_ssl": "Certificat SSL",
-  "hosting_dashboard_service_cdn": "Option CDN + HTTP/2",
+  "hosting_dashboard_service_cdn": "Option CDN",
   "hosting_dashboard_service_web": "Sites web",
   "hosting_dashboard_service_privatesql": "Base de données privée",
   "hosting_dashboard_service_privatesql_more": "Voir la liste",
