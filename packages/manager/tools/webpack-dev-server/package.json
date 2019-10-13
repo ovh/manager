@@ -32,7 +32,8 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "lodash": "^4.17.15",
     "request": "^2.88.0",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.8.2",
+    "yn": "^3.1.1"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
