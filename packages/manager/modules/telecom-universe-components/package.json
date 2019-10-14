@@ -30,7 +30,7 @@
     "ng-csv": "^0.3.6",
     "ovh-api-services": "^9.17.0",
     "ovh-ngstrap": "^4.0.2",
-    "ovh-ui-angular": "^3.8.0",
+    "ovh-ui-angular": "^3.9.3",
     "punycode": "^2.1.1",
     "validator": "^11.1.0",
     "validator-js": "^0.2.1"

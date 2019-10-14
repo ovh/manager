@@ -27,7 +27,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "ovh-api-services": "^9.7.0",
-    "ovh-ui-angular": "^3.7.4",
+    "ovh-ui-angular": "^3.9.3",
     "ovh-ui-kit": "^2.33.4",
     "ovh-ui-kit-bs": "^2.1.2"
   },
