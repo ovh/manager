@@ -52,7 +52,7 @@
     "angular-translate": "^2.11.0",
     "angular-ui-bootstrap": "~1.3.3",
     "d3": "~3.5.13",
-    "ovh-api-services": "^9.17.0",
+    "ovh-api-services": "^9.20.0",
     "ovh-ui-angular": "^3.8.0"
   }
 }
