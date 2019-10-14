@@ -51,7 +51,7 @@ yarn test
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ovh-manager-cloud/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ovh-manager-cloud/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ovh-manager-cloud/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ovh-manager-cloud/issues), our [contributing guide](https://github.com/ovh-ux/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 

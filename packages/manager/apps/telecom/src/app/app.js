@@ -32,6 +32,7 @@ import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ovhManagerTelecomSpare from '@ovh-ux/manager-telecom-spare';
 
 import TelecomAppCtrl from './app.controller';
+import carrierSip from './telecom/telephony/carrierSip';
 import navbar from '../components/navbar';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -112,6 +113,7 @@ angular.module('managerApp', [
   'ui.sortable',
   'ui.validate',
   'validation.match',
+  carrierSip,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */
@@ -219,7 +221,7 @@ angular.module('managerApp', [
     $logProvider.debugEnabled(false);
   })
 
-  .run((
+  .run(/* @ngInject */ (
     $transitions,
     $translate,
     $translatePartialLoader,

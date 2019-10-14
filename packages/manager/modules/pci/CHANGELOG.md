@@ -1,3 +1,28 @@
+## [2.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.0...@ovh-ux/manager-pci@2.4.1) (2019-10-09)
+
+
+### Bug Fixes
+
+* **pci:** edit instance backups ([#1361](https://github.com/ovh-ux/manager/issues/1361)) ([673ab3f](https://github.com/ovh-ux/manager/commit/673ab3f))
+
+
+
+# [2.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.3.0...@ovh-ux/manager-pci@2.4.0) (2019-10-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+* **pci:** update horizon url ([67fae7c](https://github.com/ovh-ux/manager/commit/67fae7c))
+* **pci:** update object storage type description ([c403f88](https://github.com/ovh-ux/manager/commit/c403f88))
+
+
+### Features
+
+* **pci:** add stream product ([#1395](https://github.com/ovh-ux/manager/issues/1395)) ([2fe52c7](https://github.com/ovh-ux/manager/commit/2fe52c7))
+
+
+
 # [2.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.2.0...@ovh-ux/manager-pci@2.3.0) (2019-10-07)
 
 

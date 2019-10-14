@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-server-sidebar",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "OVH control panel sidebar",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/server-sidebar#readme",
   "bugs": {

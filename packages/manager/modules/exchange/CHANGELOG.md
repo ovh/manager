@@ -1,3 +1,12 @@
+## [1.1.10](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.9...@ovh-ux/manager-exchange@1.1.10) (2019-10-08)
+
+
+### Bug Fixes
+
+* **exchange:** prevent infinite api calls on search ([#1421](https://github.com/ovh-ux/manager/issues/1421)) ([4f3edfb](https://github.com/ovh-ux/manager/commit/4f3edfb))
+
+
+
 ## [1.1.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.8...@ovh-ux/manager-exchange@1.1.9) (2019-09-30)
 
 

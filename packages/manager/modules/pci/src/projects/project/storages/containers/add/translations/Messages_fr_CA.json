@@ -1,0 +1,19 @@
+{
+  "pci_projects_project_storages_containers_add_title": "Créer un conteneur d'objets",
+  "pci_projects_project_storages_containers_add_region_title": "Sélectionnez une localisation",
+  "pci_projects_project_storages_containers_add_type_title": "Sélectionnez un type de conteneur",
+  "pci_projects_project_storages_containers_add_type_static_label": "Hébergement statique",
+  "pci_projects_project_storages_containers_add_type_static_description": "Accès rapide et performant pour vos sites. Liez vos domaines et déposez vos fichiers.",
+  "pci_projects_project_storages_containers_add_type_public_label": "Public",
+  "pci_projects_project_storages_containers_add_type_public_description": "Multimédia, binaires, e-commerce. Stockez une infinité de données.",
+  "pci_projects_project_storages_containers_add_type_private_label": "Privé",
+  "pci_projects_project_storages_containers_add_type_private_description": "Facturation, informations légales, logs. Archivez simplement et selon vos usages.",
+  "pci_projects_project_storages_containers_add_name_title": "Nom du conteneur",
+  "pci_projects_project_storages_containers_add_submit_title": "Validation",
+  "pci_projects_project_storages_containers_add_submit_label": "Ajouter le conteneur",
+  "pci_projects_project_storages_containers_add_cancel_label": "Annuler",
+  "pci_projects_project_storages_containers_add_save_form": "Création du conteneur en cours",
+
+  "pci_projects_project_storages_containers_add_success_message": "Le conteneur {{container}} a été ajouté.",
+  "pci_projects_project_storages_containers_add_error_post": "Une erreur est survenue lors de l'ajout du conteneur {{ container }} : {{ message }}."
+}

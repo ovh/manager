@@ -166,3 +166,12 @@ code {
     white-space: normal;
   }
 }
+
+// Add a beta status behind a label
+.status-beta::after {
+  content: 'Beta';
+  line-height: 1;
+  margin-left: rem-calc(5);
+  font-size: 75%;
+  vertical-align: super;
+}

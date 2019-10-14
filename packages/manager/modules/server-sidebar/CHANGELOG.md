@@ -1,3 +1,12 @@
+## [0.6.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.3...@ovh-ux/manager-server-sidebar@0.6.4) (2019-10-08)
+
+
+### Bug Fixes
+
+* **server-sidebar:** display domain not belonging to user's alldom ([#1424](https://github.com/ovh-ux/manager/issues/1424)) ([b831a0f](https://github.com/ovh-ux/manager/commit/b831a0f))
+
+
+
 ## [0.6.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.2...@ovh-ux/manager-server-sidebar@0.6.3) (2019-10-07)
 
 

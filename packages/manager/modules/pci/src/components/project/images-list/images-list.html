@@ -95,6 +95,7 @@
                             class="d-inline-block col-md-6 col-xl-4 my-3"
                             data-name="{{:: snapshot.id }}"
                             data-label="{{:: snapshot.name }}"
+                            data-description="{{:: snapshot.creationDate | date: 'medium' }}"
                             data-model="$ctrl.image"
                             data-values="[snapshot]"
                             data-variant="light"

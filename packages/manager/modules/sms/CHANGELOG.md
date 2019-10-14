@@ -1,3 +1,12 @@
+## [7.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.2.3...@ovh-ux/manager-sms@7.2.4) (2019-10-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+
+
+
 ## [7.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.2.2...@ovh-ux/manager-sms@7.2.3) (2019-10-07)
 
 

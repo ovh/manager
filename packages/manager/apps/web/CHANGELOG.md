@@ -1,3 +1,30 @@
+## [13.31.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.1...@ovh-ux/manager-web@13.31.2) (2019-10-11)
+
+
+### Bug Fixes
+
+* **web.hosting.webcoach:** scope to FR sub only ([#1445](https://github.com/ovh-ux/manager/issues/1445)) ([187f3e3](https://github.com/ovh-ux/manager/commit/187f3e3))
+
+
+
+## [13.31.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.0...@ovh-ux/manager-web@13.31.1) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
+# [13.31.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.4...@ovh-ux/manager-web@13.31.0) (2019-10-09)
+
+
+### Features
+
+* **hosting.website-coach:** add website coach page ([#1390](https://github.com/ovh-ux/manager/issues/1390)) ([86316aa](https://github.com/ovh-ux/manager/commit/86316aa))
+
+
+
 ## [13.30.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.30.3...@ovh-ux/manager-web@13.30.4) (2019-10-07)
 
 

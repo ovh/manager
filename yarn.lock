@@ -2007,18 +2007,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@7.1.11", "@ovh-ux/ng-ovh-otrs@^7.1.6":
+"@ovh-ux/ng-ovh-otrs@^7.1.11":
   version "7.1.11"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.11.tgz#39fec6c9f6cdf8cb4c292e8ed4dca759c4cd1acf"
   integrity sha512-vZzTWZZkVfEuNrAuBNRjZB+4MCdTDaB4qMpLuQy6l5TrflJLrx4H9qzt5DcpEvNWwTzXVMfuOwq+qHrkJQKfwg==
-  dependencies:
-    draggable "^4.2.0"
-    lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-otrs@^7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.4.tgz#e49c9696dc9a86281ae4bd3f71c43c1fc4a7a36c"
-  integrity sha512-z+h5clMBoB/9Mxd+k15PLkeZMKQbDKpoPfztaPhcHJBsaK9aJWUZPN2YdxOc1Im4dWkWI4soPF+zI1wFdQGBhA==
   dependencies:
     draggable "^4.2.0"
     lodash "^4.17.11"
@@ -2054,10 +2046,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-sidebar-menu@^8.4.0", "@ovh-ux/ng-ovh-sidebar-menu@^8.4.1":
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.1.tgz#0f64c66b0fde7e20404596cc6eb87a31c78f6291"
-  integrity sha512-ZzQ2sOo7hDYRILBQkxQM93p4r4CLAX4C2o+fej4CZKV496CcdKnbIJkIDz8+UWoB/75Mw0zPsOi+0cyUyeRNww==
+"@ovh-ux/ng-ovh-sidebar-menu@^8.4.2":
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.2.tgz#5792e286c2c30c3b0c3f00b4c2de21c1d518cdea"
+  integrity sha512-NeFCIfwCPW2lnJmbBeY08f/vAQVJkHtWF93We2cGlLId3wZnNh0tdlhJc/MgiutPZDc0quJ5etLONSEK0keu5g==
   dependencies:
     lodash "^4.17.15"
 
@@ -3630,6 +3622,7 @@ bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3:
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
 bootstrap@^4.3.1:
+  name bootstrap4
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
   integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
@@ -9356,7 +9349,7 @@ jquery.scrollto@^1.4.13:
   dependencies:
     jquery ">=1.4"
 
-"jquery@>= 1.9.1", jquery@>=1.4, jquery@>=1.7.1, jquery@>=1.8:
+"jquery@>= 1.9.1", jquery@>=1.4, jquery@>=1.7.1, jquery@>=1.8, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -9510,7 +9503,7 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
 
-jsplumb@2.12.0, jsplumb@^2.12.0:
+jsplumb@2.12.0, jsplumb@^2.11.2, jsplumb@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.12.0.tgz#ae4d5a6a7135be29477d2c9bdfe46bebe368335d"
   integrity sha512-1nPDjYafbBS8Mm3GLKgbhXyHCQFq1MXLfxbVfCwEZv9NmMiSuJ1taAzDh0e/o4v09Te1sPYU2E/2Bg5rBJ3iGg==
@@ -11841,19 +11834,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.6.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.8.1.tgz#6db53fb7a131909cf1c5f8dcfad58c0b7b13e4e2"
-  integrity sha512-M7/eHYGLKB6XenmDHzYEOXH2TbC6N69SIH5kf5zlFi6V2cpOvV4Ltb+If8ozU7t7zF2QW/CTb8td1aBTkB+E1g==
-  dependencies:
-    bloodhound-js "^1.2.3"
-    clipboard "^2.0.1"
-    escape-string-regexp "^1.0.5"
-    flatpickr "^4.5.2"
-    popper.js "^1.14.4"
-    ui-select "^0.19.8"
-
-ovh-ui-angular@^3.8.2:
+ovh-ui-angular@^3.8.1, ovh-ui-angular@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.8.2.tgz#6effa6f861148fa5a984a9d3248beb8b8b34ab29"
   integrity sha512-wqQNldfYITxbMHHP6Wy3gdBLMl8PrPMe2YbnAq9jcOc684gBv/53/eS//UrlRSsEfMdrKo8GeAG2Rx+6uFLCkw==
