@@ -6,7 +6,7 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-filtered-dependencies -- yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-filtered-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/order-tracking-app' --include-filtered-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
