@@ -7,7 +7,7 @@ import set from 'lodash/set';
 import { ELIGIBLE_FOR_UPGRADE, URLS } from './dedicated-server.contants';
 
 /* eslint-disable no-use-before-define */
-angular.module('App').controller('ServerCtrl', (
+angular.module('App').controller('ServerCtrl', /* @ngInject */ (
   $q,
   $scope,
   $state,
@@ -17,21 +17,34 @@ angular.module('App').controller('ServerCtrl', (
   constants,
   coreConfig,
   dedicatedServerFeatureAvailability,
+  ola,
+  orderPrivateBandwidthLink,
+  orderPublicBandwidthLink,
   ovhUserPref,
   Polling,
+  resiliatePublicBandwidthLink,
+  resiliatePrivateBandwidthLink,
   Server,
+  server,
+  specifications,
   User,
   NO_AUTORENEW_COUNTRIES,
   WEATHERMAP_URL,
 ) => {
   const errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
 
+  $scope.$state = $state;
+  $scope.server = server;
+  $scope.specifications = specifications;
+  $scope.ola = ola;
+  $scope.orderPrivateBandwidthLink = orderPrivateBandwidthLink;
+  $scope.orderPublicBandwidthLink = orderPublicBandwidthLink;
+  $scope.resiliatePublicBandwidthLink = resiliatePublicBandwidthLink;
+  $scope.resiliatePrivateBandwidthLink = resiliatePrivateBandwidthLink;
+
   $scope.loadingServerInformations = true;
   $scope.loadingServerError = false;
   $scope.dedicatedServerFeatureAvailability = dedicatedServerFeatureAvailability;
-  $scope.server = {
-    isExpired: true,
-  };
 
   $scope.loaders = {
     autoRenew: true,
@@ -246,31 +259,30 @@ angular.module('App').controller('ServerCtrl', (
 
     return $q
       .allSettled([
-        Server.getSelected($stateParams.productId),
         Server.getServiceInfos($stateParams.productId),
+        Server.getVrackInfos($stateParams.productId),
       ])
       .then((data) => {
-        const server = data[0];
-        const serviceInfos = data[1];
+        const [serviceInfos, vrackInfos] = data;
 
-        const expiration = moment.utc(server.expiration);
-        set(server, 'expiration', moment([expiration.year(), expiration.month(), expiration.date()]).toDate());
+        const expiration = moment.utc($scope.server.expiration);
+        set($scope.server, 'expiration', moment([expiration.year(), expiration.month(), expiration.date()]).toDate());
 
         const creation = moment.utc(serviceInfos.creation);
-        server.creation = moment([creation.year(), creation.month(), creation.date()]).toDate();
+        set($scope.server, 'creation', moment([creation.year(), creation.month(), creation.date()]).toDate());
 
         /* if there is no os installed, the api return "none_64" */
         if (/^none_\d{2}?$/.test(server.os)) {
-          server.os = null;
+          $scope.server.os = null;
         }
 
-        $scope.server = server;
         $scope.infoServer = {
           dc: $scope.server.datacenter.replace('_', ' '),
           dcImage: $scope.server.datacenter.replace(/_.*/g, ''),
           rack: $scope.server.rack,
           serverId: $scope.server.serverId,
         };
+        $scope.vrackInfos = vrackInfos;
 
         $scope.loadingServerInformations = false;
         $scope.isHousing = isHousing(server);
@@ -482,8 +494,8 @@ angular.module('App').controller('ServerCtrl', (
         serverArrayToStopBother = data;
         return Server.getSelected($stateParams.productId);
       })
-      .then((server) => {
-        serverArrayToStopBother.push(server.name);
+      .then((dedicatedServer) => {
+        serverArrayToStopBother.push(dedicatedServer.name);
         return ovhUserPref.assign('SERVER_AUTORENEW_STOP_BOTHER', serverArrayToStopBother);
       })
       .catch(error => (error.status === 404 ? $scope.createStopBotherAutoRenewUserPref() : $scope.setMessage($translate.instant('server_autorenew_stop_bother_error'), error.data)));
@@ -540,8 +552,8 @@ angular.module('App').controller('ServerCtrl', (
       });
   }
 
-  function isHousing(server) {
-    return server.commercialRange === 'housing';
+  function isHousing(dedicatedServer) {
+    return dedicatedServer.commercialRange === 'housing';
   }
 
   load();

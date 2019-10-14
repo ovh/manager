@@ -1,0 +1,18 @@
+.module-useraccount-sections-support-level {
+  $support-level-selected: #e6f9fd;
+  $support-level-current: #e0eac2;
+
+  .support-level-selected {
+    background-color: $support-level-selected;
+  }
+
+  .oui-chip {
+    &.support-level-current {
+      background-color: $support-level-current;
+    }
+  }
+
+  .oui-tile__body {
+    height: 100%;
+  }
+}

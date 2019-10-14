@@ -4,7 +4,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.dedicated.
   '$translate',
   'Alerter',
   'atInternet',
-  'UserAccount.services.ssh',
+  'UseraccountSshService',
   function UserAccountSshDedicatedAddController(
     $scope,
     $timeout,

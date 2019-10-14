@@ -708,5 +708,6 @@
   "signup_enum_IT_area_VT": "Viterbo (Latium)",
   "signup_enum_IT_area_BT": "Barletta-Andria-Trani (Apulien)",
   "signup_enum_IT_area_FM": "Fermo (Marken)",
-  "signup_enum_IT_area_MB": "Monza E Brianza (Lombardei)"
+  "signup_enum_IT_area_MB": "Monza E Brianza (Lombardei)",
+  "signup_field_italianSDI": "SDI-Nummer"
 }

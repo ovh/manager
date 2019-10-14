@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       error: /* @ngInject */ $transition$ => $transition$.params().detail,
-      homeLink: /* @ngInject */ $state => $state.href('app.configuration'),
+      homeLink: /* @ngInject */ $state => $state.href('app.configuration', {}, { reload: true }),
       reload: /* @ngInject */ $window => () => $window.location.reload(),
     },
     translations: { value: ['.'], format: 'json' },

@@ -1,3 +1,26 @@
+export const ALIGNMENT_URLS = {
+  ASIA: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  AU: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  CA: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  CZ: 'https://www.ovh.cz/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  DE: 'https://www.ovh.de/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  ES: 'https://www.ovh.es/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  FI: 'https://www.ovh-hosting.fi/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  FR: 'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?alignDate=1',
+  GB: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  IE: 'https://www.ovh.ie/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  IT: 'https://www.ovh.it/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  LT: 'https://www.ovh.lt/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  NL: 'https://www.ovh.nl/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  PL: 'https://www.ovh.pl/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  PT: 'https://www.ovh.pt/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  QC: 'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?alignDate=1',
+  SG: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  US: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  WE: 'https://www.ovh.co.uk/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+  WS: 'https://www.ovh.es/cgi-bin/order/renew.cgi?alignDate=1&csid=0',
+};
+
 export const AUTORENEW_EVENT = 'billing.autorenew.changed';
 
 export const CONTRACTS_IDS = {
@@ -10,8 +33,6 @@ export const CONTRACTS_IDS = {
 export const MIN_DOMAIN_LENGTH = 50;
 
 export const NIC_ALL = 'billing_autorenew_nic_all';
-
-export const NIC_URL = '/me/autorenew';
 
 export const RENEW_URL = {
   default: '/cgi-bin/order/renew.cgi?domainChooser=',
@@ -58,7 +79,6 @@ export default {
   CONTRACTS_IDS,
   MIN_DOMAIN_LENGTH,
   NIC_ALL,
-  NIC_URL,
   RENEW_URL,
   SERVICE_EXPIRATION,
   SERVICE_STATUS,
