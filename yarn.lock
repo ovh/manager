@@ -1867,14 +1867,6 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
-"@ovh-ux/manager-core@^6.1.1":
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-6.1.5.tgz#b921a66510ffd514f1d99350ac1731a1c1781262"
-  integrity sha512-xbhmr3o7HGlINSYhwpzV8RF0bD5W89b1DVoxPNgqwbvjpdIFwT9ygL6CPTPCbnmWMfYj/4Uw7/O1zdmMV77QKA==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
-    lodash "^4.17.14"
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0", "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
