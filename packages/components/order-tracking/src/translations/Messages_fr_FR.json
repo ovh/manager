@@ -36,7 +36,7 @@
   "order_tracking_history_details_REGISTERED_PAYMENT_INITIATED": "",
 
   "order_tracking_estimated_delivery_time": "Délai de livraison estimé",
-  "order_tracking_estimated_delivery_time_info": "Ce délai est fourni à titre indicatif. Certains facteurs peuvent parfois ralentir l'exécution de la commande",
+  "order_tracking_estimated_delivery_time_info": "Ce délai est fourni à titre indicatif. Certains facteurs peuvent parfois ralentir l'exécution de la commande.",
   "order_tracking_details": "Résumé de la commande",
   "order_tracking_status": "Historique de votre commande",
   "order_tracking_status_more": "Afficher plus d'historique",
