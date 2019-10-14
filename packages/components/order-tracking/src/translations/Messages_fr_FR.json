@@ -1,5 +1,5 @@
 {
-  "order_tracking_title": "Suivi de la commande N° {{ orderId }}",
+  "order_tracking_title": "Suivi de la commande N° {{ orderId }}",
   "order_tracking_retract": "Annuler la commande",
 
   "order_tracking_step_AVAILABLE": "Votre produit a été attribué",
