@@ -1,8 +1,7 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-angular.module('App').controller(
-  'newDnsZoneCtrl',
+export default
   class newDnsZoneCtrl {
     /**
      * Constructor
@@ -11,6 +10,7 @@ angular.module('App').controller(
      * @param newDnsZone
      * @param User
      */
+    /* @ngInject */
     constructor($scope, $translate, Alerter, newDnsZone, User) {
       this.$scope = $scope;
       this.$translate = $translate;
@@ -69,5 +69,4 @@ angular.module('App').controller(
       this.zoneName = get(this.zoneNameOrder, 'zoneName', '').toLowerCase();
       this.order = null;
     }
-  },
-);
+  };

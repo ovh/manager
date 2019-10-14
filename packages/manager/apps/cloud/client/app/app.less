@@ -1,6 +1,5 @@
-@import 'bootstrap/less/bootstrap.less';
-@rem-base: rem-base(10px);
-
+@import (less) 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+@import 'bootstrap/less/mixins.less';
 @import "ovh-ui-kit/packages/oui/stylekit";
 
 //@oui-icon-dist-folder: "../assets/ovh-ui-kit/dist/icons";
@@ -86,7 +85,7 @@
       background-color: white;
 
       .oui-list__header {
-        font-size: 1.6rem;
+        font-size: 1rem;
         font-weight: bold;
       }
 
@@ -98,7 +97,7 @@
       }
 
       .oui-list__items {
-        font-size: 1.5rem;
+        font-size: 0.9375rem;
         padding-left: 15px;
         margin-bottom: 8.5px;
         list-style-type: disc;
@@ -106,7 +105,7 @@
     }
 
     .oui-checkbox__label {
-      font-size: 1.6rem;
+      font-size: 1rem;
     }
   }
 }
@@ -402,9 +401,9 @@ html {
 // endinject
 // endinject
 
-@import (less) "../../node_modules/animate.css/animate.css";
+@import (less) "animate.css/animate.css";
 @import (less) "bootstrap-additions/dist/modules/popover.min.css";
-@import (less) "../../node_modules/flag-icon-css/css/flag-icon.min.css";
+@import (less) "flag-icon-css/css/flag-icon.min.css";
 @import (less) "messenger/build/css/messenger.css";
 @import (less) "messenger/build/css/messenger-theme-future.css";
 @import (less) "messenger/build/css/messenger-theme-flat.css";

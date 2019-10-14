@@ -4,17 +4,18 @@ const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
-    template: './index.html',
-    basePath: '.',
-    root: path.resolve(process.cwd()),
+    template: './src/index.html',
+    basePath: './src',
+    root: path.resolve(__dirname, './src'),
   }, env);
 
   return merge(config, {
-    entry: path.resolve('./index.js'),
+    entry: path.resolve('./src/index.js'),
     resolve: {
       modules: [
-        path.resolve(process.cwd(), './node_modules'),
-        path.resolve(process.cwd(), '../../../../node_modules'),
+        './node_modules',
+        path.resolve(__dirname, 'node_modules'),
+        path.resolve(__dirname, '../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
     },

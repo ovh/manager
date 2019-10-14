@@ -1,1 +1,20 @@
-{"resiliation_message1":"Sono consapevole che la disattivazione dell'offerta comporta l'interruzione della mia connessione Internet e di tutti i prodotti e servizi per cui non ho esplicitamente richiesto la conservazione.","resiliation_message2":"Sono consapevole che, se necessario, dovrò corrispondere l'importo relativo al prorata delle mensilità dovute fino alla fine del mio periodo di impegno. I consumi non inclusi nel forfait del mese in corso o del mese scelto verranno aggiunti alla mia fattura.","resiliation_resiliate":"Disattiva {{typeName}} {{name}}","resiliation_button":"Disattiva","resiliation_confirm":"Disattivo il servizio","resiliation_confirm_title":"Disattiva il tuo abbonamento","resiliation_reason":"Per quale motivo vuoi disattivare il servizio?","resiliation_choice_addressMove":"Trasferimento","resiliation_choice_billingProblems":"Sistema di fatturazione non adatto","resiliation_choice_cessationOfActivity":"Cessata attività","resiliation_choice_changeOfTerms":"Modifica delle Condizioni Generali di utilizzo","resiliation_choice_ftth":"Passaggio alla fibra (FTTH)","resiliation_choice_goToCompetitor":"Passaggio all'offerta di un altro operatore","resiliation_choice_other":"Altro","resiliation_choice_technicalProblems":"Problemi tecnici","resiliation_cancel":"Annulla la richiesta di disattivazione in corso","resiliation_common_cancel":"Annulla","resiliation_resiliation":"Disattiva"}
+{
+  "resiliation_message1": "Sono consapevole che la disattivazione dell'offerta comporta l'interruzione della mia connessione Internet e di tutti i prodotti e servizi per cui non ho esplicitamente richiesto la conservazione.",
+  "resiliation_message2": "Sono consapevole che, eventualmente, dovrò pagare l'importo corrispondente alla differenza delle rate mensili dovute fino alla fine del periodo di impegno contrattuale. Il costo delle comunicazioni del mese in corso o del mese scelto non incluse nel forfait verranno integrate alla mia fattura.",
+  "resiliation_resiliate": "Disattiva {{typeName}} {{name}}",
+  "resiliation_button": "Disattiva",
+  "resiliation_confirm": "Voglio disattivare il servizio",
+  "resiliation_confirm_title": "Disattiva il tuo abbonamento",
+  "resiliation_reason": "Per quale motivo vuoi disattivare il servizio?",
+  "resiliation_choice_addressMove": "Trasferimento",
+  "resiliation_choice_billingProblems": "Sistema di fatturazione non adatto",
+  "resiliation_choice_cessationOfActivity": "Cessata attività",
+  "resiliation_choice_changeOfTerms": "Modifica delle Condizioni Generali di utilizzo",
+  "resiliation_choice_ftth": "Passaggio alla fibra (FTTH)",
+  "resiliation_choice_goToCompetitor": "Passaggio all'offerta di un altro operatore",
+  "resiliation_choice_other": "Altro",
+  "resiliation_choice_technicalProblems": "Problemi tecnici",
+  "resiliation_cancel": "Annulla la richiesta di disattivazione in corso",
+  "resiliation_common_cancel": "Annulla",
+  "resiliation_resiliation": "Disattiva"
+}

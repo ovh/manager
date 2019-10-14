@@ -2,24 +2,24 @@
 @vrack-header-background-color: #edefec;
 
 /* vRack - Spinner */
-@vrack-spinner-size: 1.6rem;
-@vrack-spinner-size_mapper: 2.2rem;
+@vrack-spinner-size: 1rem;
+@vrack-spinner-size_mapper: 1.375rem;
 
 /* vRack - Section - Title */
-@vrack-section-title-font-size: 2.6rem;
+@vrack-section-title-font-size: 1.625rem;
 @vrack-section-title-font-weight: 300;
 @vrack-section-title-font-color: #4d5e73;
 
 /* vRack - Text */
-@vrack-text-font-size: 1.5rem;
+@vrack-text-font-size: 0.9375rem;
 @vrack-text-font-color: #959eab;
 
 .vrack {
-  min-width: 32rem;
+  min-width: 20rem;
   overflow-x: hidden;
 
   > * {
-    padding: 0 5.2rem;
+    padding: 0 3.25rem;
   }
 
   &__spinner  {
@@ -30,17 +30,17 @@
       display: block;
       text-align: center;
       font-size: @vrack-spinner-size_mapper;
-      margin-top: 3rem;
-      margin-bottom: 3rem;
+      margin-top: 1.875rem;
+      margin-bottom: 1.875rem;
     }
   }
 
   &__header {
     display: flex;
     align-items: flex-end;
-    min-height: 11rem;
+    min-height: 6.875rem;
     background-color: @vrack-header-background-color;
-    padding-bottom: 2rem;
+    padding-bottom: 1.25rem;
     margin: 0 0 20px 0;
   }
 
@@ -57,22 +57,22 @@
     justify-content: center;
 
     &_in-header {
-      margin-left: 1rem;
+      margin-left: 0.625rem;
     }
   }
 
   &__edit-button {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    flex: 0 0 5rem;
+    font-size: 1rem;
+    margin-bottom: 0.625rem;
+    flex: 0 0 3.125rem;
   }
 
   &__edit-input {
-    flex: 0 0 30rem;
-    height: 3.6rem;
+    flex: 0 0 18.75rem;
+    height: 2.25rem;
 
     @media (max-width: @screen-xs) {
-      flex: 0 0 22rem;
+      flex: 0 0 13.75rem;
     }
   }
 
@@ -85,7 +85,7 @@
     font-size: @vrack-section-title-font-size;
     color: @vrack-section-title-font-color;
     font-weight: @vrack-section-title-font-weight;
-    margin: 3.5rem 0 1.5rem 0;
+    margin: 2.1875rem 0 0.9375rem 0;
   }
 
   &__text {
@@ -100,6 +100,6 @@
   }
 
   &__empty-description-text {
-    margin: 3.5rem 0 1.5rem 0;
+    margin: 2.1875rem 0 0.9375rem 0;
   }
 }

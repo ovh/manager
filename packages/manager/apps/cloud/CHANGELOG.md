@@ -1,3 +1,21 @@
+## [7.32.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud@7.32.2...@ovh-ux/manager-cloud@7.32.3) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
+## [7.32.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud@7.32.1...@ovh-ux/manager-cloud@7.32.2) (2019-10-07)
+
+
+### Bug Fixes
+
+* **cloud:** add ovh-ui-kit-bs ([#1381](https://github.com/ovh-ux/manager/issues/1381)) ([13ea71c](https://github.com/ovh-ux/manager/commit/13ea71c))
+
+
+
 ## [7.32.1](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.32.0...v7.32.1) (2019-09-19)
 
 

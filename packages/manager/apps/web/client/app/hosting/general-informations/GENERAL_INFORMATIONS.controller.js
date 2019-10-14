@@ -2,6 +2,8 @@ import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isObject from 'lodash/isObject';
 
+import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
+
 angular.module('App').controller(
   'hostingGeneralInformationsCtrl',
   class HostingGeneralInformationsCtrl {
@@ -49,6 +51,19 @@ angular.module('App').controller(
         isActive: false,
         quantity: 0,
       };
+
+      const quotaUsed = this.$scope.convertBytesSize(
+        this.$scope.hosting.quotaUsed.value,
+        this.$scope.hosting.quotaUsed.unit,
+        QUOTA_DECIMAL_PRECISION,
+      );
+      const quotaSize = this.$scope.convertBytesSize(
+        this.$scope.hosting.quotaSize.value,
+        this.$scope.hosting.quotaSize.unit,
+        QUOTA_DECIMAL_PRECISION,
+      );
+
+      this.quotaInformations = `${quotaUsed} / ${quotaSize}`;
 
       this.$scope.$on('hosting.ssl.reload', () => this.retrievingSSLCertificate());
       return this.$q.all([

@@ -20,12 +20,16 @@ import size from 'lodash/size';
 import startsWith from 'lodash/startsWith';
 import xor from 'lodash/xor';
 
+import modalResolveModule from './modal-resolve';
+import ModalResolveLayout from './modal-resolve/layout.class';
+
 const moduleName = 'ngUiRouterLayout';
 
 angular
   .module(moduleName, [
     'ui.bootstrap',
     'ui.router',
+    modalResolveModule,
   ])
   .config(/* @ngInject */($stateProvider, $transitionsProvider, $injector) => {
     let modalInstance = null;
@@ -54,6 +58,13 @@ angular
           ignoreChilds: state.self.layout.ignoreChilds || [],
           redirectTo: state.self.layout.redirectTo || '^',
         };
+      }
+
+      if (ModalResolveLayout.isLayoutAppliedToState(state)) {
+        modalLayout = ModalResolveLayout.getLayoutOptions(state);
+
+        // reset state views to avoid state default view to display its content
+        set(state, 'views', {});
       }
 
       return modalLayout;

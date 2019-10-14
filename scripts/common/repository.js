@@ -11,24 +11,24 @@ const semver = require('semver');
 
 class MonoRepository {
   static getName() {
-    return execa.shell('git rev-parse --show-toplevel')
+    return execa.command('git rev-parse --show-toplevel', { shell: true })
       .then(({ stdout }) => path.basename(stdout));
   }
 
   static hasUntrackedChanges() {
-    return execa.shell('git status -s')
+    return execa.command('git status -s', { shell: true })
       .then(({ stdout }) => stdout.length > 0);
   }
 
   static getRepositories(includePrivate = false) {
-    return execa.shell(`npx lerna ls ${includePrivate ? '-a' : ''}  --json`)
+    return execa.command(`npx lerna ls ${includePrivate ? '-a' : ''}  --json`, { shell: true })
       .then(({ stdout }) => JSON.parse(stdout))
       .then(repos => repos.map(repo => new Repository(repo)));
   }
 
   static getReleaseVersion(version) {
     const result = version.toLowerCase().trim().replace(' ', '-');
-    return execa.shell(`git tag -l '${version}*' --sort=taggerdate | tail -1`)
+    return execa.command(`git tag -l '${version}*' --sort=taggerdate | tail -1`, { shell: true })
       .then(({ stdout }) => stdout)
       .then((v) => {
         if (v) {
@@ -45,9 +45,9 @@ class MonoRepository {
 
   static release(version, repos) {
     const commitMsg = repos.map(r => `* Package ${r.name} ${r.getPackageJson().version}`).join('\n');
-    return execa.shell(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`)
-      .then(() => execa.shell(`git tag -a -m 'release: ${version}' '${version}'`))
-      .then(v => execa.shell('git push origin master --tags').then(() => v));
+    return execa.command(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`, { shell: true })
+      .then(() => execa.command(`git tag -a -m 'release: ${version}' '${version}'`, { shell: true }))
+      .then(v => execa.command('git push origin master --tags', { shell: true }).then(() => v));
   }
 
   static writeChangelog(file, repos) {
@@ -125,22 +125,22 @@ class Repository {
   }
 
   static fetchTags() {
-    return execa.shell('git describe --abbrev=0').then(({ stdout }) => stdout).catch(() => '');
+    return execa.command('git describe --abbrev=0', { shell: true }).then(({ stdout }) => stdout).catch(() => '');
   }
 
   createSmokeTag(tag) {
-    return execa.shell(`git tag ${this.name}@${this.version} ${tag}`);
+    return execa.command(`git tag ${this.name}@${this.version} ${tag}`, { shell: true });
   }
 
   deleteSmokeTag() {
-    return execa.shell(`git tag -d ${this.name}@${this.version}`);
+    return execa.command(`git tag -d ${this.name}@${this.version}`, { shell: true });
   }
 
   updateChangelog() {
-    const getChangelog = () => execa.shell(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
-      --preset angular --lerna-package ${this.name} --commit-path ${this.location}`);
-    const updateChangelog = () => execa.shell(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
-      --preset angular --infile CHANGELOG.md --same-file --lerna-package ${this.name} --commit-path ${this.location}`);
+    const getChangelog = () => execa.command(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
+      --preset angular --lerna-package ${this.name} --commit-path ${this.location}`, { shell: true });
+    const updateChangelog = () => execa.command(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
+      --preset angular --infile CHANGELOG.md --same-file --lerna-package ${this.name} --commit-path ${this.location}`, { shell: true });
     return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
       .then(() => getChangelog()

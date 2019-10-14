@@ -19,20 +19,20 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.2",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@ovh-ux/sign-up": "^1.0.0",
-    "@uirouter/angularjs": "^1.0.20",
+    "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",
     "angular-cookies": "^1.7.8",
     "angular-sanitize": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
-    "ovh-ui-angular": "^3.8.1",
-    "ovh-ui-kit": "^2.34.1"
+    "ovh-ui-angular": "^3.8.2",
+    "ovh-ui-kit": "^2.34.3"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",
     "glob": "^7.1.4",
-    "webpack": "^4.39.3",
+    "webpack": "^4.41.0",
     "webpack-merge": "^4.2.2"
   }
 }

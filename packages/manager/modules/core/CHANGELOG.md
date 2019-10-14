@@ -1,3 +1,12 @@
+## [7.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.2...@ovh-ux/manager-core@7.1.3) (2019-09-30)
+
+
+### Bug Fixes
+
+* **core:** remove extra angular-i18n imports ([a2cb9b7](https://github.com/ovh-ux/manager/commit/a2cb9b7))
+
+
+
 ## [7.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.1...@ovh-ux/manager-core@7.1.2) (2019-09-02)
 
 

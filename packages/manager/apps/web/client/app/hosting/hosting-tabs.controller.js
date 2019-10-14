@@ -9,11 +9,12 @@ import remove from 'lodash/remove';
 angular.module('App').controller(
   'HostingTabsCtrl',
   class HostingTabsCtrl {
-    constructor($scope, $q, $location, $stateParams, $translate,
+    constructor($scope, $q, $location, $state, $stateParams, $translate,
       Hosting, HostingFreedom, HostingIndy, User) {
       this.$scope = $scope;
       this.$q = $q;
       this.$location = $location;
+      this.$state = $state;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
 
@@ -119,6 +120,15 @@ angular.module('App').controller(
               label: this.$translate.instant('hosting_tab_FREEDOM'),
               target: 'FREEDOM',
               type: 'SWITCH_TABS',
+            });
+          }
+
+          if (user.ovhSubsidiary === 'FR') {
+            this.tabMenu.items.push({
+              label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
+              styles: 'status-beta',
+              fn: () => this.$state.go('app.hosting.website-coach'),
+              type: 'ACTION',
             });
           }
 

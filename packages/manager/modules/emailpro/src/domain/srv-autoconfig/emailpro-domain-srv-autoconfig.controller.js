@@ -1,4 +1,5 @@
-export default /* @ngInject */ class EmailProDomainSrvAutoconfigCtrl {
+export default class EmailProDomainSrvAutoconfigCtrl {
+  /* @ngInject */
   constructor($scope, $stateParams, $translate, EmailPro, EmailProDomains) {
     this.services = {
       $scope, $stateParams, $translate, EmailPro, EmailProDomains,

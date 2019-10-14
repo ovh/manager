@@ -41,7 +41,6 @@ import './app.less';
 Environment.setRegion('EU');
 
 angular.module('managerApp', [
-  'angular-ellipses',
   'angular-inview',
   'angular-translate-loader-pluggable',
   'matchmedia-ng',

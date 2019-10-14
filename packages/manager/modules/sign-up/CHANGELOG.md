@@ -1,3 +1,32 @@
+## [1.0.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.5...@ovh-ux/sign-up@1.0.6) (2019-10-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+
+
+
+## [1.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.4...@ovh-ux/sign-up@1.0.5) (2019-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 86] ([643b2ae](https://github.com/ovh-ux/manager/commit/643b2ae))
+* **i18n:** add missing translations [CDS 92] ([e83031b](https://github.com/ovh-ux/manager/commit/e83031b))
+
+
+
+## [1.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.3...@ovh-ux/sign-up@1.0.4) (2019-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 83] ([5f2edb4](https://github.com/ovh-ux/manager/commit/5f2edb4))
+* **i18n:** add missing translations [CDS 85] ([6062b1f](https://github.com/ovh-ux/manager/commit/6062b1f))
+
+
+
 ## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.2...@ovh-ux/sign-up@1.0.3) (2019-09-30)
 
 

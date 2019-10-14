@@ -1,5 +1,5 @@
 import controller from './domain-zone-dns.controller';
-import template from './ZONE.html';
+import template from './domain-zone-dns.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.product.zone', {
@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go('app.domain.product.zone',
+          null,
           {
             reload,
           });

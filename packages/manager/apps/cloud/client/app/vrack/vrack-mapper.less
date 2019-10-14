@@ -1,19 +1,19 @@
 /* vRack - Service Type List */
 @vrack-service-type-list-border-color: #c7ccd2;
 @vrack-service-type-list-background-color: #edefec;
-@vrack-service-type-list-min-height: 38rem;
+@vrack-service-type-list-min-height: 23.75rem;
 
 /* vRack - Service Type */
 @vrack-service-type-font-color: #122844;
-@vrack-service-type-chevron-size: 0.8rem;
-@vrack-service-type-icon-size: 1.8rem;
-@vrack-service-type-name-font-size: 1.4rem;
+@vrack-service-type-chevron-size: 0.5rem;
+@vrack-service-type-icon-size: 1.125rem;
+@vrack-service-type-name-font-size: 0.875rem;
 @vrack-service-type-name-font-weight: 700;
 
 /* vRack - Service Group */
 @vrack-service-group-color: #687689;
 @vrack-service-group-chevron-size: @vrack-service-type-chevron-size;
-@vrack-service-group-name-font-size: 1.4rem;
+@vrack-service-group-name-font-size: 0.875rem;
 
 /* vRack - Service */
 @vrack-service-background-color: #f4f5f3;
@@ -22,16 +22,16 @@
 @vrack-service-border-color_selected: #aaadaf;
 @vrack-service-font-color: #687689;
 @vrack-service-font-color_selected: #112745;
-@vrack-service-font-size: 1.5rem;
+@vrack-service-font-size: 0.9375rem;
 @vrack-service-box-shadow_selected: 0 0 6px 0 rgba(0, 0, 0, 0.5);
 
 .vrack {
   &__mapper {
     &-icon {
-      margin-top: 8rem;
-      width: 6rem;
-      height: 4.5rem;
-      margin-bottom: 3rem;
+      margin-top: 5rem;
+      width: 3.75rem;
+      height: 2.8125rem;
+      margin-bottom: 1.875rem;
     }
   }
 
@@ -58,14 +58,14 @@
     border-width: 3px 0 0 0;
     border-style: solid;
     background-color: @vrack-service-type-list-background-color;
-    min-height: 38rem;
-    padding: 2.4rem;
-    padding-right: 2.4rem;
+    min-height: 23.75rem;
+    padding: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   &__service-type {
     position: relative;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.9375rem;
     color: @vrack-service-type-font-color;
 
     &::before {
@@ -78,7 +78,7 @@
       display: inline-block;
       font-size: @vrack-service-type-name-font-size;
       font-weight: @vrack-service-type-name-font-weight;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1rem;
       user-select: none;
     }
 
@@ -88,8 +88,8 @@
 
     &-icon {
       font-size: @vrack-service-type-icon-size;
-      padding: 0 0.5rem;
-      margin-bottom: 0.2rem;
+      padding: 0 0.3125rem;
+      margin-bottom: 0.125rem;
     }
   }
 
@@ -105,14 +105,14 @@
   }
 
   &__service-group-list {
-    padding-left: 2.2rem;
+    padding-left: 1.375rem;
   }
 
   &__service-list {
-    padding-left: 1.8rem;
+    padding-left: 1.125rem;
 
     &_group {
-      padding-left: 2.1rem;
+      padding-left: 1.3125rem;
     }
   }
 
@@ -122,7 +122,7 @@
   }
 
   &__service-group {
-    padding-bottom: 2.4rem;
+    padding-bottom: 1.5rem;
     color: @vrack-service-group-color;
 
     &:last-child {
@@ -137,7 +137,7 @@
 
     &-name {
       display: inline-block;
-      padding: 0 0 1.6rem 1rem;
+      padding: 0 0 1rem 0.625rem;
       font-size: @vrack-service-group-name-font-size;
       user-select: none;
     }
@@ -162,12 +162,12 @@
   }
 
   &__service {
-    padding: 1rem 1.5rem;
+    padding: 0.625rem 0.9375rem;
     border-width: 1px;
     border-style: solid;
     border-color: @vrack-service-border-color;
     background-color: @vrack-service-background-color;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3125rem;
     font-size: @vrack-service-font-size;
     color: @vrack-service-font-color;
     overflow: hidden;

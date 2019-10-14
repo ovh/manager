@@ -53,6 +53,10 @@ export default class Image {
     || some(this.getFlavorTypes(), type => includes(flavorType, type));
   }
 
+  isCompatibleWithOsTypes(osTypes) {
+    return includes(osTypes, this.type);
+  }
+
   getIdByRegion(region) {
     return get(find(this.regions, { region }), 'id');
   }

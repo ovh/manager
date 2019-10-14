@@ -2,13 +2,13 @@
 const execa = require('execa');
 const pSeries = require('p-series');
 
-execa.shell('lerna ls -pl --json --toposort')
+execa('lerna', ['ls', '-pl', '--json', '--toposort'])
   .then(({ stdout }) => {
     const packages = JSON.parse(stdout);
 
     return Promise.all(
       packages.map(
-        pkg => execa.shell(`npm info ${pkg.name}@${pkg.version}`)
+        pkg => execa('npm', ['info', `${pkg.name}@${pkg.version}`])
           .then(output => Object.assign(pkg, { publish: output.stdout.length > 0 }))
           .catch((err) => {
             if (!err.stderr.includes('404')) {
@@ -25,11 +25,9 @@ execa.shell('lerna ls -pl --json --toposort')
       if (!pkg.publish) {
         return () => {
           console.log(`Publishing package ${pkg.name}`);
-          const cmdPrepare = `npx lerna exec --scope ${pkg.name} --include-filtered-dependencies -- yarn prepare`;
-          const cmdPublish = `npx lerna exec --scope ${pkg.name} -- yarn publish --access=public --non-interactive`;
           return pSeries([
-            () => execa.shell(cmdPrepare),
-            () => execa.shell(cmdPublish),
+            () => execa('lerna', ['exec', '--scope', pkg.name, '--include-filtered-dependencies', '--', 'yarn', 'prepare']),
+            () => execa('lerna', ['exec', '--scope', pkg.name, '--', 'yarn', 'publish', '--access=public', '--non-interactive']),
           ]);
         };
       }

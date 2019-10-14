@@ -1,3 +1,31 @@
+## [10.35.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.8...@ovh-ux/manager-telecom@10.35.9) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
+## [10.35.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.7...@ovh-ux/manager-telecom@10.35.8) (2019-10-07)
+
+
+### Performance Improvements
+
+* remove useless dependency (angular-ellipses) ([#1409](https://github.com/ovh-ux/manager/issues/1409)) ([9fe3777](https://github.com/ovh-ux/manager/commit/9fe3777))
+* remove useless dependency (crypto) ([#1410](https://github.com/ovh-ux/manager/issues/1410)) ([de816f1](https://github.com/ovh-ux/manager/commit/de816f1))
+
+
+
+## [10.35.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.6...@ovh-ux/manager-telecom@10.35.7) (2019-09-30)
+
+
+### Bug Fixes
+
+* **sidebar:** translations are now always displayed ([31fa3a9](https://github.com/ovh-ux/manager/commit/31fa3a9))
+
+
+
 ## [10.35.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.5...@ovh-ux/manager-telecom@10.35.6) (2019-09-30)
 
 

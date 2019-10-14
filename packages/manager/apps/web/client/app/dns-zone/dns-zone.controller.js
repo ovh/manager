@@ -1,16 +1,16 @@
-angular.module('App').controller(
-  'DnsZoneCtrl',
+export default
   class DnsZoneCtrl {
     /**
-     * Constructor
-     * @param $scope
-     * @param $stateParams
-     * @param $timeout
-     * @param Alerter
-     * @param Domain
-     * @param WucProducts
-     * @param currentSection
-     */
+       * Constructor
+       * @param $scope
+       * @param $stateParams
+       * @param $timeout
+       * @param Alerter
+       * @param Domain
+       * @param WucProducts
+       * @param currentSection
+       */
+    /* @ngInject */
     constructor(
       $scope,
       $stateParams,
@@ -93,5 +93,4 @@ angular.module('App').controller(
           this.loading.domainsInfos = false;
         });
     }
-  },
-);
+  }

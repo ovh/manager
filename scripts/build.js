@@ -14,8 +14,9 @@ let i = 0;
 async function retrieveDependencies(_modules) {
   const packages = await Promise.all(
     _modules.map(pck => execa
-      .shell(
+      .command(
         `lerna list -alp --include-filtered-dependencies --json --scope="${pck.name}"`,
+        { shell: true },
       )
       .then(({ stdout }) => {
         const dependents = JSON.parse(stdout).filter(
@@ -90,7 +91,7 @@ program
   .option('-p, --package [package]', 'Scope build to a specific package and its dependencies')
   .action(() => {
     execa
-      .shell(`lerna list -alp --json ${program.package ? `--scope=${program.package} --include-filtered-dependencies` : ''}`)
+      .command(`lerna list -alp --json ${program.package ? `--scope=${program.package} --include-filtered-dependencies` : ''}`, { shell: true })
       .then(({ stdout }) => retrieveDependencies(JSON.parse(stdout)))
       .then((todo) => {
         modules = {

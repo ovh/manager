@@ -11,6 +11,8 @@ yarn add @ovh-ux/ng-ui-router-layout
 ```
 ## Usage
 
+### `modal` layout
+
 ```js
 // index.js
 import angular from 'angular';
@@ -22,7 +24,7 @@ angular
   ]);
 ```
 
-### With controller and template
+#### With controller and template
 
 ```js
 // routing.js
@@ -43,7 +45,7 @@ import template from './template.html';
     });
 ```
 
-### With component
+#### With component
 
 ```js
 // routing.js
@@ -59,7 +61,7 @@ import template from './template.html';
     });
 ```
 
-### With a component provider
+#### With a component provider
 
 ```js
 // routing.js
@@ -75,6 +77,62 @@ import template from './template.html';
         },
       },
       layout: 'modal',
+    });
+```
+
+### `modalResolve` layout
+
+```js
+// index.js
+import angular from 'angular';
+import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
+
+angular
+  .module('myApp', [
+    ngUiRouterLayout,
+  ]);
+```
+
+#### With controller and template
+
+```js
+// routing.js
+import controller from './controller';
+import template from './template.html';
+...
+
+  $stateProvider
+    .state('state.name', {
+      url,
+      controller,
+      template,
+      layout: 'modalResolve',
+    });
+```
+
+#### With component
+
+```js
+// routing.js
+  $stateProvider
+    .state('state.name', {
+      url,
+      component: 'awesomeModal',
+      layout: 'modalResolve',
+    });
+```
+
+#### With a component provider
+
+```js
+// routing.js
+  $stateProvider
+    .state('state.name', {
+      url,
+      componentProvider: predicate => predicate
+          ? 'awesomeModalForTruePredicate'
+          : 'awesomeModalForFalsePredicate',
+      layout: 'modalResolve',
     });
 ```
 
