@@ -6,7 +6,17 @@ export default {
   controller,
   template,
   bindings: {
-    paymentMethodType: '<',
-    onInit: '&?',
+    defaultPaymentMethodType: '@?',
+    model: '<',
+    paymentMethodTypesOrder: '<?',
+    paymentMethodTypesPerLine: '<?',
+    registeredPaymentMethods: '<?',
+    showSetAsDefaultChoice: '<?',
+    onInitializationError: '&?',
+    onInitialized: '&?',
+  },
+  transclude: {
+    introductionText: '?ovhPaymentMethodRegisterIntroductionText',
+    explanationText: '?ovhPaymentMethodRegisterExplanationText',
   },
 };

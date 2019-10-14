@@ -1,8 +1,47 @@
-<div class="ovh-payment-method-register"
-     data-ng-switch="$ctrl.paymentMethodType.integration">
+<div>
+    <!-- Introduction Text -->
+    <div data-ng-transclude="introductionText"></div>
 
-    <ovh-payment-method-register-iframe-vantiv
-        data-ng-switch-when="IFRAME_VANTIV">
-    </ovh-payment-method-register-iframe-vantiv>
+    <!-- Payment method type choice -->
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
 
+    <div class="row"
+         data-ng-if="!$ctrl.loading.init"
+         data-ng-repeat="paymentTypeChunk in $ctrl.availablePaymentMethodTypes.chunks track by $index">
+        <div class="mb-3"
+             data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentMethodTypesPerLine)"
+             data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index">
+            <oui-radio
+                class="h-100"
+                data-thumbnail
+                data-value="paymentMethodType"
+                data-model="$ctrl.model.selectedPaymentMethodType"
+                data-variant="light">
+                <div data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"></div>
+                <img class="payment-method-type-icon"
+                     data-ng-if="paymentMethodType.icon.data"
+                     data-ng-src="{{ paymentMethodType.icon.data }}"
+                     data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
+                     alt="" />
+            </oui-radio>
+        </div>
+    </div>
+
+    <!-- Payment method type choice explanation -->
+    <div data-ng-transclude="explanationText"></div>
+
+    <!-- set as default -->
+    <div data-ng-if="$ctrl.showSetAsDefaultChoice">
+        <p data-ng-if="$ctrl.registeredPaymentMethods.length === 0"
+           data-translate="ovh_payment_method_register_force_as_default">
+        </p>
+
+        <oui-checkbox data-model="$ctrl.model.setAsDefault"
+                      data-ng-if="$ctrl.registeredPaymentMethods.length > 0">
+            <span data-translate="ovh_payment_method_register_set_as_default_choice"></span>
+        </oui-checkbox>
+    </div>
 </div>

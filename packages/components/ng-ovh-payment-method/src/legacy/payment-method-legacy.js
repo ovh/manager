@@ -3,19 +3,29 @@ import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
-import snakeCase from 'lodash/snakeCase';
 import startCase from 'lodash/startCase';
 
 import {
-  AVAILABLE_PAYMENT_MEANS,
   DEFAULT_OPTIONS,
-} from './payment-method.constant';
+  DEFAULT_TYPE_OPTIONS,
+} from '../payment-method.constants';
+
+import {
+  AVAILABLE_PAYMENT_MEANS,
+  PAYMENT_MEAN_TYPE_ENUM,
+} from './mean/payment-mean.constants';
+
+// legacies payment means classes
+import OvhPaymentMeanBankAccount from './mean/payment-mean-bank-account.class';
+import OvhPaymentMeanCreditCard from './mean/payment-mean-credit-card.class';
+import OvhPaymentMeanDeferredPaymentAccount from './mean/payment-mean-deferred-payment-account.class';
+import OvhPaymentMeanPaypal from './mean/payment-mean-paypal.class';
+import OvhPaymentMeanType from './mean/payment-mean-type.class';
 
 export default class OvhPaymentMethodLegacy {
   /* @ngInject */
-
-  constructor($q, $translate, $window, OvhApiMe, target) {
+  constructor($log, $q, $translate, $window, OvhApiMe, target) {
+    this.$log = $log;
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
@@ -24,61 +34,37 @@ export default class OvhPaymentMethodLegacy {
   }
 
   /**
-   *  Use the legacy APIs to get payment methods:
-   *  - /me/paymentMean/* routes for EU and CA
-   *  - /me/paymentMethod route for US
-   *
-   *  @param  {Object} options Options for fetching payment methods
-   *  @return {Promise}        That returns an array of payment means (EU/CA) or methods (US)
-   */
-  getPaymentMethods(options = DEFAULT_OPTIONS) {
-    if (this.target !== 'US') {
-      return this.getPaymentMeans(options);
-    }
-    return this.$q.when([]);
-  }
-
-  /**
-   *  [addPaymentMethod description]
-   *  @param {[type]} paymentMethodType   [description]
-   *  @param {[type]} paymentMethodParams [description]
+   *  @deprecated - use addPaymentMean method instead
+   *  Add a legacy payment method
+   *  @param  {Object} paymentMethodType The legacy payment mean to add.
+   *  @param  {Object} paymentMethodParams Add params passed to the POST request.
+   *  @return {Promise}
    */
   addPaymentMethod(paymentMethodType, paymentMethodParams = {}) {
-    if (this.target !== 'US') {
-      return this.addPaymentMean(paymentMethodType, paymentMethodParams);
-    }
-
-    return this.addUSPaymentMethod(merge({
-      paymentType: paymentMethodType,
-    }, paymentMethodParams));
+    this.$log.warn('[Deprecation warning]: use addPaymentMean method instead of addPaymentMethod');
+    return this.addPaymentMean(paymentMethodType, paymentMethodParams);
   }
 
   /**
+   *  @deprecated - use editPaymentMean method instead
    *  Edit a legacy payment method
    *  @param  {Object} legacyPaymentMethod The legacy payment mean or US payment method to edit
    *  @return {Promise}
    */
   editPaymentMethod(legacyPaymentMethod, params) {
-    if (this.target !== 'US') {
-      return this.editPaymentMean(legacyPaymentMethod, params);
-    }
-
-    return this.editUSPaymentMethod(legacyPaymentMethod, params);
+    this.$log.warn('[Deprecation warning]: use editPaymentMean method instead of editPaymentMethod');
+    return this.editPaymentMean(legacyPaymentMethod, params);
   }
 
   /**
+   *  @deprecated - use setPaymentMeanAsDefault method instead
    *  Set a legacy payment method as default. Check the target to call the right API.
    *  @param  {Object} legacyPaymentMethod The legacy payment method to set as default
    *  @return {Promise}
    */
   setPaymentMethodAsDefault(legacyPaymentMethod) {
-    if (this.target !== 'US') {
-      return this.setPaymentMeanAsDefault(legacyPaymentMethod);
-    }
-
-    return this.editUSPaymentMethod(legacyPaymentMethod, {
-      default: true,
-    });
+    this.$log.warn('[Deprecation warning]: use setPaymentMeanAsDefault method instead of setPaymentMethodAsDefault');
+    return this.setPaymentMeanAsDefault(legacyPaymentMethod);
   }
 
   /**
@@ -98,16 +84,14 @@ export default class OvhPaymentMethodLegacy {
   }
 
   /**
+   *  @deprecated - use deletePaymentMean method instead
    *  Delete a legacy payment method. Check the target to call the right API.
    *  @param  {Object} legacyPaymentMethod The legacy payment method to delete
    *  @return {Promise}
    */
   deletePaymentMethod(legacyPaymentMethod) {
-    if (this.target !== 'US') {
-      return this.deletePaymentMean(legacyPaymentMethod);
-    }
-
-    return this.deleteUSPaymentMethod(legacyPaymentMethod);
+    this.$log.warn('[Deprecation warning]: use deletePaymentMean method instead of deletePaymentMethod');
+    return this.deletePaymentMean(legacyPaymentMethod);
   }
 
   /**
@@ -116,7 +100,7 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise} That returns an array of available payment means
    *                    transformed to payment method types.
    */
-  getAvailablePaymentMethodTypes() {
+  getAvailablePaymentMethodTypes(options = DEFAULT_TYPE_OPTIONS) {
     const availablePromise = this.$q.when(get(AVAILABLE_PAYMENT_MEANS, this.target));
 
     return this.$q.all({
@@ -128,7 +112,7 @@ export default class OvhPaymentMethodLegacy {
           return false;
         }
 
-        if (!paymentMeanInfos.registerable) {
+        if (options.onlyRegisterable && !paymentMeanInfos.registerable) {
           return false;
         }
 
@@ -137,7 +121,11 @@ export default class OvhPaymentMethodLegacy {
 
       return map(
         registerablePaymentMeans,
-        this.transformLegacyPaymentMethodTypeToPaymentMethodType.bind(this),
+        (meanTypeOptions) => {
+          const meanType = new OvhPaymentMeanType(meanTypeOptions);
+
+          return options.transform ? meanType.toPaymentMethodType() : meanType;
+        },
       );
     });
   }
@@ -168,7 +156,9 @@ export default class OvhPaymentMethodLegacy {
     if (this.target === 'US') {
       return this.$q.reject({
         status: 403,
-        message: 'getPaymentMeans is not available for US world part',
+        data: {
+          message: 'getPaymentMeans is not available for US world part',
+        },
       });
     }
 
@@ -194,7 +184,9 @@ export default class OvhPaymentMethodLegacy {
     if (this.target === 'US') {
       return this.$q.reject({
         status: 403,
-        message: 'getPaymentMethodOfType is not available for US world part',
+        data: {
+          message: 'getPaymentMethodOfType is not available for US world part',
+        },
       });
     }
 
@@ -208,17 +200,31 @@ export default class OvhPaymentMethodLegacy {
         paymentMeanIds,
         paymentMeanId => resource.get({
           id: paymentMeanId,
-        }).$promise.then((meanParam) => {
-          const mean = meanParam;
-          mean.paymentType = paymentMeanType;
-          return options.transform
-            ? this.transformPaymentMeanToPaymentMethod(mean)
-            : mean;
+        }).$promise.then((mean) => {
+          let paymentMean;
+          switch (paymentMeanType) {
+            case PAYMENT_MEAN_TYPE_ENUM.BANK_ACCOUNT:
+              paymentMean = new OvhPaymentMeanBankAccount(mean);
+              break;
+            case PAYMENT_MEAN_TYPE_ENUM.CREDIT_CARD:
+              paymentMean = new OvhPaymentMeanCreditCard(mean);
+              break;
+            case PAYMENT_MEAN_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT:
+              paymentMean = new OvhPaymentMeanDeferredPaymentAccount(mean);
+              break;
+            case PAYMENT_MEAN_TYPE_ENUM.PAYPAL:
+              paymentMean = new OvhPaymentMeanPaypal(mean);
+              break;
+            default:
+              break;
+          }
+
+          return options.transform ? paymentMean.toPaymentMethod() : paymentMean;
         }),
       )));
   }
 
-  addPaymentMean(paymentMeanType, params = {}) {
+  addPaymentMean(paymentMean, params = {}) {
     const addParams = params;
 
     if (has(addParams, 'default')) {
@@ -226,10 +232,10 @@ export default class OvhPaymentMethodLegacy {
       delete addParams.default;
     }
 
-    return this.getPaymentMeanResource(paymentMeanType)
+    return this.getPaymentMeanResource(paymentMean.meanType)
       .save({}, addParams)
       .$promise.then((result) => {
-        if (result.url && paymentMeanType !== 'bankAccount') {
+        if (result.url && paymentMean.meanType !== 'bankAccount') {
           if (!params.returnUrl) {
             this.$window.open(result.url, '_blank');
           } else {
@@ -247,7 +253,7 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   editPaymentMean(paymentMean, params) {
-    return this.getPaymentMeanResource(paymentMean.paymentType)
+    return this.getPaymentMeanResource(paymentMean.meanType)
       .edit({
         id: paymentMean.id,
       }, params).$promise;
@@ -259,7 +265,7 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   setPaymentMeanAsDefault(paymentMean) {
-    return this.getPaymentMeanResource(paymentMean.paymentType)
+    return this.getPaymentMeanResource(paymentMean.meanType)
       .chooseAsDefaultPaymentMean({
         id: paymentMean.id,
       }, null).$promise;
@@ -271,7 +277,7 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   deletePaymentMean(paymentMean) {
-    return this.getPaymentMeanResource(paymentMean.paymentType)
+    return this.getPaymentMeanResource(paymentMean.meanType)
       .delete({
         id: paymentMean.id,
       }).$promise;
@@ -303,6 +309,7 @@ export default class OvhPaymentMethodLegacy {
    *  Reject if method is still called before deleting it.
    */
   addUSPaymentMethod() {
+    this.$log.warn('[Deprecation warning]: addUSPaymentMethod method is no longer available');
     return this.$q.reject({
       status: 404,
       data: {
@@ -318,6 +325,7 @@ export default class OvhPaymentMethodLegacy {
    *  Reject if method is still called before deleting it.
    */
   editUSPaymentMethod() {
+    this.$log.warn('[Deprecation warning]: editUSPaymentMethod method is no longer available');
     return this.$q.reject({
       status: 404,
       data: {
@@ -333,6 +341,7 @@ export default class OvhPaymentMethodLegacy {
    *  Reject if method is still called before deleting it.
    */
   deleteUSPaymentMethod() {
+    this.$log.warn('[Deprecation warning]: deleteUSPaymentMethod method is no longer available');
     return this.$q.reject({
       status: 404,
       data: {
@@ -342,108 +351,4 @@ export default class OvhPaymentMethodLegacy {
   }
 
   /*= ====  End of US Payment Methods  ====== */
-
-
-  /* =========================================
-   =            Transform Methods            =
-   ========================================= */
-
-  getFullPaymentType(paymentType) {
-    return {
-      value: snakeCase(paymentType).toUpperCase(),
-      text: this.$translate.instant(`ovh_payment_type_${snakeCase(paymentType)}`),
-    };
-  }
-
-  getFullPaymentStatus(paymentStatus, paymentType) {
-    return {
-      value: snakeCase(paymentStatus).toUpperCase(),
-      text: paymentType === 'bankAccount' && paymentStatus === 'pendingValidation'
-        ? this.$translate.instant('ovh_payment_status_waiting_for_documents')
-        : this.$translate.instant(`ovh_payment_status_${snakeCase(paymentStatus)}`),
-    };
-  }
-
-  /**
-   *  Transform payment mean to payment method.
-   *  The goal is to have a coherent object structure between api calls
-   *  (/me/payment/method and /me/paymentMean/*)
-   */
-  transformUSPaymentMethodToPaymentMethod(usPaymentMethod) {
-    const paymentType = get(usPaymentMethod, 'paymentType', null);
-    const paymentStatus = get(usPaymentMethod, 'status', null);
-
-    return {
-      paymentSubType: get(usPaymentMethod, 'paymentSubType', null),
-      icon: {
-        name: null,
-        data: null,
-      },
-      status: this.getFullPaymentStatus(paymentStatus, paymentType),
-      paymentMethodId: usPaymentMethod.id,
-      default: get(usPaymentMethod, 'default', false),
-      description: get(usPaymentMethod, 'description', null),
-      paymentType: this.getFullPaymentType(paymentType),
-      billingContactId: get(usPaymentMethod, 'billingContactId', null),
-      creationDate: get(usPaymentMethod, 'creationDate', null),
-      lastUpdate: null,
-      label: get(usPaymentMethod, 'publicLabel', null),
-      original: usPaymentMethod,
-    };
-  }
-
-  transformPaymentMeanToPaymentMethod(paymentMean) {
-    const paymentType = get(paymentMean, 'paymentType', null);
-    const paymentStatus = get(paymentMean, 'state', null);
-    let paymentLabel;
-
-    switch (paymentType) {
-      case 'paypal':
-        paymentLabel = paymentMean.email;
-        break;
-      case 'creditCard':
-        paymentLabel = paymentMean.number;
-        break;
-      case 'bankAccount':
-        paymentLabel = paymentMean.iban;
-        break;
-      default:
-        paymentLabel = paymentMean.label || null;
-        break;
-    }
-
-    return {
-      paymentSubType: get(paymentMean, 'type', null),
-      icon: {
-        name: null,
-        data: null,
-      },
-      status: this.getFullPaymentStatus(paymentStatus, paymentType),
-      paymentMethodId: paymentMean.id,
-      default: get(paymentMean, 'defaultPaymentMean', false),
-      description: get(paymentMean, 'description', null),
-      paymentType: this.getFullPaymentType(paymentType),
-      billingContactId: null,
-      creationDate: get(paymentMean, 'creationDate', null),
-      lastUpdate: null,
-      label: paymentLabel,
-      expirationDate: get(paymentMean, 'expirationDate', null),
-      original: paymentMean,
-    };
-  }
-
-  transformLegacyPaymentMethodTypeToPaymentMethodType(legacyPaymentMethod) {
-    return {
-      oneshot: true,
-      icon: {
-        name: null,
-        data: null,
-      },
-      registerable: legacyPaymentMethod.registerable,
-      paymentType: this.getFullPaymentType(legacyPaymentMethod.value),
-      original: legacyPaymentMethod,
-    };
-  }
-
-  /* =====  End of Transform Methods  ====== */
 }
