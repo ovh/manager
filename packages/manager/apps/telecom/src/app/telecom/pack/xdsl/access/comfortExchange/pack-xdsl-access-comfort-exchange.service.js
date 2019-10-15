@@ -10,6 +10,6 @@ export default class XdslAccessComfortExchangeService {
       .query({
         xdslId,
       })
-      .$promise.then(rmas => rmas);
+      .$promise;
   }
 }
