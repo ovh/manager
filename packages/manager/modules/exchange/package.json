@@ -18,7 +18,7 @@
   "peerDependencies": {
     "@ovh-ux/ng-ovh-export-csv": "^1.0.0",
     "@ovh-ux/ng-ovh-http": "^4.0.1-beta.0",
-    "@ovh-ux/ng-ovh-otrs": "^7.1.7",
+    "@ovh-ux/ng-ovh-otrs": "^7.1.11",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.3",

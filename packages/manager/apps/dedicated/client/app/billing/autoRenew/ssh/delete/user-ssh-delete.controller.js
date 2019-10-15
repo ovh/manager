@@ -3,7 +3,7 @@ import get from 'lodash/get';
 angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
   '$scope',
   '$translate',
-  'UserAccount.services.ssh',
+  'UseraccountSshService',
   'Alerter',
   function UserAccountSshDeleteController(
     $scope,

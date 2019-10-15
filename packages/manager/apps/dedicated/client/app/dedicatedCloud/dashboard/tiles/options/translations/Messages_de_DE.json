@@ -1,0 +1,15 @@
+{
+  "ovhManagerPccDashboardOptions_openNewTab": "Öffnet einen neuen Tab",
+  "ovhManagerPccDashboardOptions_handleInitialData_error": "Beim Abruf der für die Anzeige der Optionen notwendigen Daten ist ein Fehler aufgetreten.",
+  "ovhManagerPccDashboardOptions_heading": "Optionen und Zertifizierungen",
+  "ovhManagerPccDashboardOptions_basicOptions_term": "Optionen",
+  "ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate": "Optionen hinzufügen",
+  "ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout": "Aktivierung bestätigen",
+  "ovhManagerPccDashboardOptions_basicOptions_actionMenu_switch": "Optionen bearbeiten",
+  "ovhManagerPccDashboardOptions_certification_term": "Zertifizierung",
+  "ovhManagerPccDashboardOptions_certification_description_name_none": "Keine",
+  "ovhManagerPccDashboardOptions_certification_description_presentation": "Zu den Zertifizierungen",
+  "ovhManagerPccDashboardOptions_certification_actionMenu_activate": "Zertifizierung aktivieren",
+  "ovhManagerPccDashboardOptions_certification_actionMenu_configure": "Konfigurieren",
+  "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Aktivierung bestätigen"
+}

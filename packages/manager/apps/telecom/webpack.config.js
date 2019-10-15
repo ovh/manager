@@ -24,7 +24,9 @@ function foundNodeModulesFolder(checkedDir, cwd = '.') {
 fs.readdirSync(folder).forEach((file) => {
   const stats = fs.lstatSync(`${folder}/${file}`);
   if (stats.isDirectory()) {
-    const jsFiles = glob.sync(`${folder}/${file}/**/*.js`);
+    const jsFiles = glob.sync(`${folder}/${file}/**/*.js`, {
+      ignore: `${folder}/${file}/carrierSip/*.js`,
+    });
     if (jsFiles.length > 0) {
       bundles[file] = jsFiles;
     }

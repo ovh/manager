@@ -156,5 +156,6 @@
   "housing_configuration_reboot_price": "Cena",
   "housing_configuration_reboot_price_ht": "Netto",
   "housing_configuration_reboot_price_tax": "Podatki",
-  "housing_configuration_reboot_price_total": "Razem"
+  "housing_configuration_reboot_price_total": "Razem",
+  "housing_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modyfikacja interfejsów sieciowych"
 }

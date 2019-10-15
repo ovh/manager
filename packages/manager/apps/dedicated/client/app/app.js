@@ -15,7 +15,7 @@ import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
-import ngOvhUiRouterLayout from '@ovh-ux/ng-uirouter-layout';
+import ngOvhUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
@@ -27,6 +27,7 @@ import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
@@ -34,6 +35,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import config from './config/config';
+import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
 import errorPage from './error/error.module';
@@ -41,6 +43,8 @@ import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 import preload from './components/manager-preload/manager-preload.module';
 
+import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
+import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
 Environment.setRegion(__WEBPACK_REGION__);
@@ -52,7 +56,10 @@ angular
     'Billing',
     'chart.js',
     'controllers',
+    contactsService,
     dedicatedCloudDatacenterDrp,
+    dedicatedServerBandwidth,
+    dedicatedServerInterfaces,
     dedicatedServerServers,
     dedicatedUniverseComponents,
     'directives',
@@ -98,6 +105,7 @@ angular
     'ovhBrowserAlert',
     ovhContacts,
     ovhManagerBanner,
+    ovhManagerEnterpriseCloudDatabase,
     ovhManagerNavbar,
     ovhPaymentMethod,
     'pascalprecht.translate',
