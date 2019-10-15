@@ -5,14 +5,16 @@ import { PCI_URLS } from '../../constants';
 
 export default class PciProjectNewCtrl {
   /* @ngInject */
-  constructor($q, $translate, $window, atInternet, coreConfig, CucCloudMessage,
-    ovhPaymentMethod, PciProjectNewService) {
+  constructor($q, $state, $translate, $window, atInternet, coreConfig, CucCloudMessage,
+    OVH_PAYMENT_METHOD_TYPE, ovhPaymentMethod, PciProjectNewService) {
     // dependencies injections
     this.$q = $q;
+    this.$state = $state;
     this.$translate = $translate;
     this.$window = $window;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
+    this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.PciProjectNewService = PciProjectNewService;
 
@@ -31,6 +33,7 @@ export default class PciProjectNewCtrl {
     this.descriptionModel = null;
     this.paymentModel = null;
     this.region = coreConfig.getRegion();
+    this.paymentMethodSubmitFn = null;
   }
 
   /* ==============================
@@ -46,10 +49,10 @@ export default class PciProjectNewCtrl {
     } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()
       || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)) {
       translationKey = 'pci_projects_new_credit_and_create';
-    } else if (get(currentStep.model.paymentType, 'paymentType.value') === 'BANK_ACCOUNT') {
-      translationKey = 'pci_projects_new_add';
     } else {
-      translationKey = 'pci_projects_new_create';
+      const isBankAccount = get(currentStep.model.selectedPaymentMethodType, 'paymentType')
+        === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT;
+      translationKey = isBankAccount ? 'pci_projects_new_add' : 'pci_projects_new_create';
     }
 
     return this.$translate.instant(translationKey);
@@ -94,7 +97,16 @@ export default class PciProjectNewCtrl {
       return this.region !== 'US';
     }
 
-    return get(currentStep.model.paymentType, 'paymentType.value') !== 'BANK_ACCOUNT' && !this.shouldProcessChallenge();
+    const isBankAccount = get(currentStep.model.selectedPaymentMethodType, 'paymentType')
+      === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT;
+
+    return !isBankAccount && !this.shouldProcessChallenge();
+  }
+
+  isPaymentMethodIntegrationVisible() {
+    const currentStep = this.getCurrentStep();
+
+    return currentStep.name !== 'description';
   }
 
   isStepComplete(step) {
@@ -149,6 +161,78 @@ export default class PciProjectNewCtrl {
 
   /* -----  End of Helpers  ------ */
 
+  /* ================================
+  =            Callbacks            =
+  ================================= */
+
+  onIntegrationInitialized(paymentMethodSubmitFn) {
+    this.paymentMethodSubmitFn = paymentMethodSubmitFn;
+  }
+
+  onIntegrationSubmit() {
+    if (this.paymentModel.selectedPaymentMethodType.paymentType !== 'PAYPAL') {
+      this.loading.addPayment = true;
+    }
+
+    const callbackUrlBase = this.buildPaymentCallbackUrlBase();
+
+    return {
+      default: this.paymentModel.setAsDefault,
+      register: true,
+      callbackUrl: {
+        cancel: [callbackUrlBase, 'paymentStatus=cancel'].join('&'),
+        error: [callbackUrlBase, 'paymentStatus=error'].join('&'),
+        failure: [callbackUrlBase, 'paymentStatus=failure'].join('&'),
+        pending: [callbackUrlBase, 'paymentStatus=pending'].join('&'),
+        success: [callbackUrlBase, 'paymentStatus=success'].join('&'),
+      },
+    };
+  }
+
+  onIntegrationSubmitError() {
+    this.loading.addPayment = false;
+
+    if (!this.paymentModel.projectId) {
+      // just explain that payment has failed
+      this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_add_payment_error_message'));
+    } else {
+      // explain that project has been created
+      // but that credit needs to be paid before using it
+      this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_add_credit_payment_error_message'));
+    }
+  }
+
+  onIntegrationSubmitSuccess(paymentMethod) {
+    this.loading.addPayment = false;
+
+    if (this.paymentModel.selectedPaymentMethodType.paymentType === 'PAYPAL') {
+      this.paymentModel.defaultPaymentMethod = paymentMethod;
+    }
+
+    // success => HiPay
+    // accepted => PayPal
+    if (!this.paymentModel.projectId && !this.newProjectInfo.order) {
+      // if no projectId and no credit order from newProjectInfo API call
+      // this mean that project is not yet created
+      // and that a new payment method has been added
+      return this.createProject();
+    }
+
+    if (!this.paymentModel.projectId && this.newProjectInfo.order) {
+      // if no projectId and credit order from newProjectInfo API call
+      // we need to pay credit first before creating project
+      // so return true and let display payment step with informations about credit
+      return true;
+    }
+
+    // if projectId - this mean that project has been created with credit
+    // and payment of this credit is OK
+    return this.onProjectCreated(this.paymentModel.projectId);
+  }
+
+  /* -----  End of Callbacks  ------ */
+
+
   /* ==============================
   =            Actions            =
   =============================== */
@@ -197,11 +281,11 @@ export default class PciProjectNewCtrl {
       default: false,
       register: false,
       callbackUrl: {
-        cancel: [callbackUrlBase, 'hiPayStatus=cancel'].join('&'),
-        error: [callbackUrlBase, 'hiPayStatus=error'].join('&'),
-        failure: [callbackUrlBase, 'hiPayStatus=failure'].join('&'),
-        pending: [callbackUrlBase, 'hiPayStatus=pending'].join('&'),
-        success: [callbackUrlBase, 'hiPayStatus=success'].join('&'),
+        cancel: [callbackUrlBase, 'paymentStatus=cancel'].join('&'),
+        error: [callbackUrlBase, 'paymentStatus=error'].join('&'),
+        failure: [callbackUrlBase, 'paymentStatus=failure'].join('&'),
+        pending: [callbackUrlBase, 'paymentStatus=pending'].join('&'),
+        success: [callbackUrlBase, 'paymentStatus=success'].join('&'),
       },
     };
 
@@ -213,40 +297,6 @@ export default class PciProjectNewCtrl {
 
     return this.ovhPaymentMethod
       .addPaymentMethod(paymentType, paymentParams);
-  }
-
-  addPaymentMethod() {
-    this.loading.addPayment = true;
-
-    const callbackUrlBase = this.buildPaymentCallbackUrlBase();
-
-    // set the right params depending if it is an original payment method
-    // or a new one (with /me/payment/method)
-    let addPaymentParams = {
-      default: true,
-    };
-
-    if (!this.paymentModel.paymentType.original) {
-      addPaymentParams = merge(addPaymentParams, {
-        register: true,
-        callbackUrl: {
-          cancel: [callbackUrlBase, 'hiPayStatus=cancel'].join('&'),
-          error: [callbackUrlBase, 'hiPayStatus=error'].join('&'),
-          failure: [callbackUrlBase, 'hiPayStatus=failure'].join('&'),
-          pending: [callbackUrlBase, 'hiPayStatus=pending'].join('&'),
-          success: [callbackUrlBase, 'hiPayStatus=success'].join('&'),
-        },
-      });
-    } else {
-      // if it's an "original", it is paypal
-      addPaymentParams.returnUrl = callbackUrlBase;
-    }
-
-    return this.ovhPaymentMethod
-      .addPaymentMethod(this.paymentModel.paymentType, addPaymentParams)
-      .catch(() => {
-        this.loading.addPayment = false;
-      });
   }
 
   /* -----  End of Actions  ------ */
@@ -281,7 +331,9 @@ export default class PciProjectNewCtrl {
     }
 
     // if no default payment method - add new one before creating project
-    return this.addPaymentMethod();
+    if (this.paymentMethodSubmitFn) {
+      this.paymentMethodSubmitFn();
+    }
   }
 
   /* -----  End of Events  ------ */
@@ -302,45 +354,6 @@ export default class PciProjectNewCtrl {
         this.messages.list = this.messages.handler.getMessages();
       },
     });
-
-    if (this.shouldProcessChallenge()) {
-      return true;
-    }
-
-    if (['success', 'accepted'].includes(this.paymentStatus)) {
-      // success => HiPay
-      // accepted => PayPal
-      if (!this.paymentModel.projectId && !this.newProjectInfo.order) {
-        // if no projectId and no credit order from newProjectInfo API call
-        // this mean that project is not yet created
-        // and that a new payment method has been added
-        return this.createProject();
-      }
-
-      if (!this.paymentModel.projectId && this.newProjectInfo.order) {
-        // if no projectId and credit order from newProjectInfo API call
-        // we need to pay credit first before creating project
-        // so return true and let display payment step with informations about credit
-        return true;
-      }
-
-      // if projectId - this mean that project has been created with credit
-      // and payment of this credit is OK
-      return this.onProjectCreated(this.paymentModel.projectId);
-    }
-
-    if (this.paymentStatus) {
-      if (!this.paymentModel.projectId) {
-        // just explain that payment has failed
-        this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_add_payment_error_message'));
-      } else {
-        // explain that project has been created
-        // but that credit needs to be paid before using it
-        this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_add_credit_payment_error_message'));
-      }
-    }
-
-    return true;
   }
 
   /* -----  End of Initialization  ------ */

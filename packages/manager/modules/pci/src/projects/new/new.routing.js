@@ -37,6 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
+
         contracts: /* @ngInject */ ($q, newProjectInfo, PciProjectNewService) => {
           const agreementPromises = map(
             newProjectInfo.agreements || [],
@@ -48,8 +49,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return $q.all(agreementPromises);
         },
-        paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
-          || get($transition$.params(), 'paypalAgreementStatus'),
+
+        paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'paymentStatus'),
+
         getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {
           if ($state.current.name === 'pci.projects.new') {
             return getStepByName('description');
@@ -57,9 +59,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return getStepByName('payment');
         },
+
         getStepByName: /* @ngInject */ steps => stepName => find(steps, {
           name: stepName,
         }),
+
         getStateLink: /* @ngInject */ (
           $state,
           getCurrentStep,
@@ -85,6 +89,7 @@ export default /* @ngInject */ ($stateProvider) => {
               return $state.href('pci.projects');
           }
         },
+
         shouldProcessChallenge: /* @ngInject */ (
           $state,
           atInternet,
@@ -109,6 +114,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return shouldProcessChallenge;
         },
+
         hasCreditToOrder: /* @ngInject */ (
           $state,
           atInternet,
@@ -133,6 +139,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return hasCreditToOrder;
         },
+
         dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
           .getDlpStatus()
           .catch((error) => {
@@ -141,10 +148,12 @@ export default /* @ngInject */ ($stateProvider) => {
             }
             return $q.reject(error);
           }),
+
         paymentMethodUrl: /* @ngInject */ coreConfig => get(
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
+
         project: /* @ngInject */ ($q, $transition$, PciProjectNewService) => {
           if ($transition$.params().projectId) {
             return PciProjectNewService
@@ -158,6 +167,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return null;
         },
+
         newProjectInfo: /* @ngInject */ ($timeout, $transition$, coreConfig, ovhPaymentMethod,
           paymentStatus, PciProjectNewService) => {
           const newProjectInfoThen = (response) => {
@@ -196,17 +206,20 @@ export default /* @ngInject */ ($stateProvider) => {
           return PciProjectNewService.getNewProjectInfo()
             .then(newProjectInfoThen);
         },
+
         onDescriptionStepFormSubmit: /* @ngInject */ ($state, $window) => (navigateToUrl, url) => {
           if (navigateToUrl) {
             return $window.open(url);
           }
           return $state.go('pci.projects.new.payment');
         },
+
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
           'pci.projects.project', {
             projectId,
           },
         ),
+
         steps: () => [{
           name: 'description',
           loading: {},
@@ -224,8 +237,7 @@ export default /* @ngInject */ ($stateProvider) => {
               paymentMethodRequired: null,
               submitted: false,
             },
-            defaultPaymentMethod: null,
-            paymentType: null,
+            selectedPaymentMethodType: null,
             mode: null,
             credit: {
               value: null,
@@ -233,6 +245,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId: null,
           },
         }],
+
         trackingPage: /* @ngInject */ $transition$ => `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`,
       },
     });

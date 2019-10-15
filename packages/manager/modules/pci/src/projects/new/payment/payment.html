@@ -30,9 +30,10 @@
                 <pci-project-new-payment-add
                     data-ng-if="!$ctrl.step.model.defaultPaymentMethod"
                     data-on-loaded="$ctrl.step.loading.paymentTypes = false"
-                    data-selected-payment-type="$ctrl.step.model.paymentType"
+                    data-payment-model="$ctrl.step.model"
                     data-payment-method-url="$ctrl.paymentMethodUrl"
-                    data-has-payment-methods="$ctrl.hasPaymentMethods">
+                    data-has-payment-methods="$ctrl.hasPaymentMethods"
+                    data-registered-payment-methods="$ctrl.registeredPaymentMethods">
                 </pci-project-new-payment-add>
             </div>
 

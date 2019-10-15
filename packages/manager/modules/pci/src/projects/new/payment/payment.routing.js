@@ -4,7 +4,7 @@ import get from 'lodash/get';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new.payment', {
-      url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus&challengeStatus',
+      url: '/payment?mode&credit&voucher&paymentStatus&challengeStatus',
       redirectTo: (transition) => {
         const { hiPayStatus, mode, projectId } = transition.params();
 
@@ -28,20 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
         project,
         trackingPage,
       ) => {
-        // check for paypal response in query string
-        if ($window.location.search.indexOf('paypalAgreementStatus') > -1) {
-          // in that case we will redirect to pci.projects.new.payment
-          // with query string as query params...
-          // first abort transition
-          $transition$.abort();
-
-          // then redirect
-          const hashContainsQuery = $window.location.hash.indexOf('?') > -1;
-          let targetUrl = $window.location.href.replace($window.location.search, '');
-          targetUrl = `${targetUrl}${hashContainsQuery ? $window.location.search.replace('?', '&') : $window.location.search}`;
-          return $window.location.replace(targetUrl);
-        }
-
         // check for payment response in state params
         const stateParams = $transition$.params();
         const descriptionModel = getStepByName('description').model;
