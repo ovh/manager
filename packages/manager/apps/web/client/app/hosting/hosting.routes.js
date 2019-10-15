@@ -8,6 +8,18 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
+        const promise = $state.go('app.hosting', {}, {
+          reload,
+        });
+
+        if (message) {
+          promise.then(() => $timeout(() => Alerter.set(`alert-${type}`, message, null, 'app.alerts.page')));
+        }
+
+        return promise;
+      },
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
         $rootScope.currentSectionInformation = 'hosting'; // eslint-disable-line no-param-reassign
         return Navigator.setNavigationInformation({
