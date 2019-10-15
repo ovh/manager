@@ -8,17 +8,19 @@ import 'ovh-ui-angular';
 
 import component from './new-ticket.component';
 import creationFormComponent from './creation-form/creation-form.component';
+import feedback from './feedback';
 import issuesSelectorComponent from './issues-selector/issues-selector.component';
 import issuesFormComponent from './issues-form/issues-form.component';
 import { name as serviceName, definition as serviceDefinition } from './new-ticket.service';
 
 import 'ovh-ui-kit/dist/oui.css';
 
-const moduleName = 'ovhManagerSupportTickets';
+const moduleName = 'ovhManagerSupportTicketsNew';
 
 angular
   .module(moduleName, [
     angularTranslate,
+    feedback,
     ngTranslateAsyncLoader,
     'oui',
     uiRouter,
@@ -27,6 +29,7 @@ angular
   .component(creationFormComponent.name, creationFormComponent)
   .component(issuesSelectorComponent.name, issuesSelectorComponent)
   .component(issuesFormComponent.name, issuesFormComponent)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .service(serviceName, serviceDefinition)
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state({
@@ -43,7 +46,6 @@ angular
       views: {
         'support@support': component.name,
       },
-      translations: { value: ['.'], format: 'json' },
     });
   });
 

@@ -3,7 +3,7 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import oclazyload from 'oclazyload';
 
-const moduleName = 'ovhManagerSupportNewLazyLoading';
+const moduleName = 'ovhManagerSupportTicketsNewLazyLoading';
 
 angular
   .module(moduleName, [
