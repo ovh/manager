@@ -1,7 +1,12 @@
-import FeedbackService from './feedback.service';
-
 export default class {
+  /* @ngInject */
+  constructor(
+    FeedbackService,
+  ) {
+    this.FeedbackService = FeedbackService;
+  }
+
   $onInit() {
-    this.url = FeedbackService.getUrl(this.language);
+    this.url = this.FeedbackService.getUrl();
   }
 }
