@@ -69,7 +69,6 @@ angular.module('App').config(($stateProvider) => {
 
   ['product', 'alldom'].forEach((stateType) => {
     // Clone state before using it as it will be modified by UI Router
-    $stateProvider.state(`app.domain.${stateType}.information`, clone(generalInformationState));
     $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
     $stateProvider.state(`app.domain.${stateType}.redirection`, clone(redirectionState));
     $stateProvider.state(`app.domain.${stateType}.dynhost`, clone(dynHostState));
@@ -77,4 +76,5 @@ angular.module('App').config(($stateProvider) => {
     $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
     $stateProvider.state(`app.domain.${stateType}.tasks`, clone(tasksState));
   });
-});
+})
+  .config(generalInformationState);

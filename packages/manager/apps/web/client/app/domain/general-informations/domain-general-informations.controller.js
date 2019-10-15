@@ -13,6 +13,7 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 
 export default class DomainTabGeneralInformationsCtrl {
+  /* @ngInject */
   constructor(
     $q,
     $rootScope,
@@ -63,6 +64,8 @@ export default class DomainTabGeneralInformationsCtrl {
     this.isAllDom = this.$rootScope.currentSectionInformation === 'all_dom';
     this.isUK = last(this.domain.name.split('.')).toUpperCase() === 'UK';
     this.options = {};
+    this.zoneActivationLink = this.$state.href('.zoneActivate');
+
     this.loading = {
       allDom: false,
       associatedHosting: false,
