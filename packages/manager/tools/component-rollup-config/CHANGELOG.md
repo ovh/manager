@@ -1,3 +1,17 @@
+# [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@6.0.2...@ovh-ux/component-rollup-config@7.0.0) (2019-10-15)
+
+
+### Code Refactoring
+
+* **plugins.translations.utils:** remove deprecated languages ([#1452](https://github.com/ovh-ux/manager/issues/1452)) ([3297580](https://github.com/ovh-ux/manager/commit/3297580))
+
+
+### BREAKING CHANGES
+
+* **plugins.translations.utils:** remove deprecated nl_NL language
+
+
+
 ## [6.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@6.0.1...@ovh-ux/component-rollup-config@6.0.2) (2019-08-29)
 
 

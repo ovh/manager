@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "13.31.2",
+  "version": "13.31.3",
   "private": true,
   "description": "OVH Control Panel Web UI",
   "keywords": [
@@ -34,7 +34,7 @@
     "@ovh-ux/manager-exchange": "^1.0.0",
     "@ovh-ux/manager-navbar": "^2.0.3",
     "@ovh-ux/manager-office": "^1.0.0",
-    "@ovh-ux/manager-server-sidebar": "^0.6.4",
+    "@ovh-ux/manager-server-sidebar": "^0.6.5",
     "@ovh-ux/manager-sharepoint": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.2",

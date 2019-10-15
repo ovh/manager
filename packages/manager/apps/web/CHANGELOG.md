@@ -1,3 +1,13 @@
+## [13.31.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.2...@ovh-ux/manager-web@13.31.3) (2019-10-15)
+
+
+### Bug Fixes
+
+* **hosting.website-coach:** update order funnel redirection ([#1440](https://github.com/ovh-ux/manager/issues/1440)) ([f6b67b8](https://github.com/ovh-ux/manager/commit/f6b67b8))
+* **web.hosting/webcoach:** avoid displaying description twice ([#1444](https://github.com/ovh-ux/manager/issues/1444)) ([92144f9](https://github.com/ovh-ux/manager/commit/92144f9))
+
+
+
 ## [13.31.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.1...@ovh-ux/manager-web@13.31.2) (2019-10-11)
 
 

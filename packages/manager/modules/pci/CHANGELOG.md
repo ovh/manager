@@ -1,3 +1,15 @@
+## [2.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.1...@ovh-ux/manager-pci@2.4.2) (2019-10-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 100] ([d5738e3](https://github.com/ovh-ux/manager/commit/d5738e3))
+* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+* **pci.stream:** add name attribute on checkbox ([#1441](https://github.com/ovh-ux/manager/issues/1441)) ([403fbf6](https://github.com/ovh-ux/manager/commit/403fbf6))
+
+
+
 ## [2.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.0...@ovh-ux/manager-pci@2.4.1) (2019-10-09)
 
 
