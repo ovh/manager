@@ -36,7 +36,7 @@
                id="{{ 'field-' + field.id }}"
                name="{{ 'field-' + field.id }}"
                placeholder="{{ field.description }}"
-               required="{{ field.mandatory }}"
+               data-ng-required="{{ field.mandatory }}"
                data-ng-model="field.default"
                class="oui-input" />
         <oui-textarea
