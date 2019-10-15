@@ -6,7 +6,12 @@ export default {
   template,
   bindings: {
     goBack: '<',
+
+    availableOffers: '<',
     hosting: '<',
+
+    isOptionFree: '<',
+    isOrderable: '<',
     isPerfOffer: '<',
   },
 };
