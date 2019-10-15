@@ -1432,12 +1432,8 @@ angular
 
 
     // Display size with unit (recursive)
-    $scope.getDisplaySize = function getDisplaySize(octetsSize, _unitIndex) {
-      let unitIndex = _unitIndex;
+    $scope.getDisplaySize = function getDisplaySize(octetsSize, unitIndex = 0) {
       if (!Number.isNaN(octetsSize)) {
-        if (Number.isNaN(unitIndex)) {
-          unitIndex = 0;
-        }
         if (octetsSize >= 1000 && unitIndex < $scope.units.model.length - 1) {
           return $scope.getDisplaySize(octetsSize / 1000, unitIndex + 1);
         }
