@@ -26,8 +26,8 @@ angular.module('services').service(
      * Check if sql perso can be ordered
      * @param option
      */
-    isOptionOrderable(option) {
-      return this.Hosting.getSelected(this.$stateParams.productId).then(hosting => this.$http
+    isOptionOrderable(option, productId = this.$stateParams.productId) {
+      return this.Hosting.getSelected(productId).then(hosting => this.$http
         .get(`${this.swsHostingOrderProxyPath}/${hosting.serviceName}`)
         .then(response => !!(
           response
