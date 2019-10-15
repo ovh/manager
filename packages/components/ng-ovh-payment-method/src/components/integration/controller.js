@@ -110,7 +110,6 @@ export default class OvhPaymentMethodIntegrationCtrl {
       return resolve(onSubmitReturn);
     }).then((postParams = {}) => {
       // merge postParams with default values if not provided
-
       const postData = merge({
         default: false,
         register: true,

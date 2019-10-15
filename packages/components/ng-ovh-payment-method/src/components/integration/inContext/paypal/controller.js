@@ -3,7 +3,8 @@ import merge from 'lodash/merge';
 
 export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
   /* @ngInject */
-  constructor(TranslateService) {
+  constructor($timeout, TranslateService) {
+    this.$timeout = $timeout;
     this.TranslateService = TranslateService;
   }
 
@@ -31,9 +32,9 @@ export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
       formSessionId: get(this, 'inContextCtrl.integrationCtrl.paymentValidation.formSessionId'),
     };
 
-    return this.inContextCtrl
+    return this.$timeout(() => this.inContextCtrl
       .integrationCtrl
-      .onIntegrationFinalize(finalizeData);
+      .onIntegrationFinalize(finalizeData));
   }
 
   submit() {

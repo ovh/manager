@@ -8,4 +8,5 @@ export default {
   require: {
     integrationCtrl: '^ovhPaymentMethodIntegration',
   },
+  transclude: true,
 };

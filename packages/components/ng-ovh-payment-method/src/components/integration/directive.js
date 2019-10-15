@@ -19,6 +19,7 @@ export default {
     onSubmitSuccess: '&?',
     paymentMethodType: '<',
   },
+  transclude: true,
   link: (tScope, tElement, tAttributes, integrationCtrl) => {
     const ctrl = integrationCtrl;
 

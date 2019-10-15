@@ -26,7 +26,7 @@ angular
     'pascalprecht.translate',
     'ovhManagerCore',
   ])
-  .run(/* @ngTranslationsInject ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .constant('OVH_PAYMENT_MEAN_STATUS', PAYMENT_MEAN_STATUS_ENUM)
   .constant('OVH_PAYMENT_METHOD_STATUS', PAYMENT_METHOD_STATUS_ENUM)
   .constant('OVH_PAYMENT_METHOD_TYPE', PAYMENT_METHOD_TYPE_ENUM)
