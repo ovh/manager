@@ -29,7 +29,7 @@
     </oui-field>
 
     <oui-field data-ng-repeat="field in $ctrl.issue.fields track by field.id"
-               data-label="{{ field.label }}"
+               data-label="{{:: $ctrl.computeFieldLabel(field) }}"
                data-size="xl">
         <input type="text"
                data-ng-if="field.type === 'text'"
