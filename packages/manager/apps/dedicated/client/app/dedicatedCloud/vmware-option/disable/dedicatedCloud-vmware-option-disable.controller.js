@@ -28,7 +28,7 @@ angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scop
         }));
       })
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_vmware_orderopt_load_prices_error'), err, $scope.alerts.dashboard);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_vmware_orderopt_load_prices_error'), err);
         $scope.resetAction();
       })
       .finally(() => {
@@ -40,11 +40,11 @@ angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scop
     $scope.loaders.loading = true;
     DedicatedCloud.disableOption($stateParams.productId, $scope.option)
       .then(() => {
-        Alerter.success($translate.instant('dedicatedCloud_vmware_cancelopt_unactivate_succes'), $scope.alerts.dashboard);
+        Alerter.success($translate.instant('dedicatedCloud_vmware_cancelopt_unactivate_succes'));
         $rootScope.$broadcast('vmware-option-disable', $scope.option);
       })
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_vmware_cancelopt_unactivate_error'), err, $scope.alerts.dashboard);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_vmware_cancelopt_unactivate_error'), err);
       })
       .finally(() => {
         $scope.loaders.loading = false;

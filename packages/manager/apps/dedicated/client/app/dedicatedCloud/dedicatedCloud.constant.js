@@ -3,6 +3,7 @@ angular.module('App')
     securityOptions: ['pcidss', 'hds', 'hipaa'],
     pccNewGeneration: '2.0',
   })
+  .constant('UNAVAILABLE_PCC_CODE', 400)
   .constant('VM_ENCRYPTION_KMS', {
     regex: {
       ip: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,

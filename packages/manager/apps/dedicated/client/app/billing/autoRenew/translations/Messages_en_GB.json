@@ -30,6 +30,7 @@
   "billing_autorenew_service_update_exchange_button_caption": "Modify billing",
   "billing_autorenew_service_EMAIL_DOMAIN_terminate": "Delete MX Plan immediately",
   "billing_autorenew_service_terminate_hosting_web": "Delete web hosting plan immediately",
+  "billing_autorenew_service_terminate_enterprise_cloud_database": "Delete Enterprise Cloud Database immediately",
   "billing_autorenew_service_terminate_hosting_private_database": "Delete my Private SQL hosting service",
   "billing_autorenew_service_action_menu_smsPack_credit": "Add credits",
   "billing_autorenew_service_action_menu_smsPack_automaticRenew": "Configure automatic reloading",
@@ -82,6 +83,7 @@
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Housing server ",
   "billing_autorenew_service_type_DEDICATED_CLOUD": "Private Cloud",
   "billing_autorenew_service_type_DOMAIN": "Domain",
+  "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Database",
   "billing_autorenew_service_type_HOSTING_PRIVATE_DATABASE": "Private SQL hosting",
   "billing_autorenew_service_type_HOSTING_WEB": "Web hosting",
   "billing_autorenew_service_type_IP_LOADBALANCING": "Load balancing IP",
@@ -129,5 +131,6 @@
   "billing_export_csv": "Export in CSV format",
   "billing_common_link_new_window": "(New window)",
   "billing_autorenew_service_renew_requires_mean_and_date": "In order to finish enabling automatic renewal, please add a new payment method. You will then be able to select a payment date.",
-  "billing_autorenew_service_activate_alert": "You have at least one service with automatic renewal, but you have not yet authorised this option."
+  "billing_autorenew_service_activate_alert": "You have at least one service with automatic renewal, but you have not yet authorised this option.",
+  "billing_autorenew_service_align_renew": "Align renewal dates."
 }

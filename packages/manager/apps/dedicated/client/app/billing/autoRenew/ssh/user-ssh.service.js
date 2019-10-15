@@ -6,7 +6,7 @@ import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import values from 'lodash/values';
 
-angular.module('UserAccount').service('UserAccount.services.ssh', [
+angular.module('UserAccount').service('UseraccountSshService', [
   'OvhHttp',
   '$q',
   'constants',

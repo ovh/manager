@@ -1,0 +1,15 @@
+{
+  "ovhManagerPccDashboardOptions_openNewTab": "Otwórz nową zakładkę",
+  "ovhManagerPccDashboardOptions_handleInitialData_error": "Wystąpił błąd podczas pobierania informacji niezbędnych do wyświetlenia opcji.",
+  "ovhManagerPccDashboardOptions_heading": "Opcje i certyfikaty",
+  "ovhManagerPccDashboardOptions_basicOptions_term": "Opcje",
+  "ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate": "Aktywuj opcje",
+  "ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout": "Zatwierdź aktywację",
+  "ovhManagerPccDashboardOptions_basicOptions_actionMenu_switch": "Zmień opcje",
+  "ovhManagerPccDashboardOptions_certification_term": "Certyfikaty",
+  "ovhManagerPccDashboardOptions_certification_description_name_none": "Brak",
+  "ovhManagerPccDashboardOptions_certification_description_presentation": "Poznaj nasze certyfikaty",
+  "ovhManagerPccDashboardOptions_certification_actionMenu_activate": "Aktywuj certyfikat",
+  "ovhManagerPccDashboardOptions_certification_actionMenu_configure": "Konfiguruj",
+  "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Zatwierdź aktywację"
+}

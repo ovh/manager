@@ -93,7 +93,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stat
     return $q
       .all([loadOptionsStates(), loadVropsAndNsxCompatibility()])
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_dashboard_loading_error'), err, $scope.alerts.dashboard);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_dashboard_loading_error'), err);
       })
       .finally(() => {
         $scope.loading = false;

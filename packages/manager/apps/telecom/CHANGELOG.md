@@ -1,3 +1,12 @@
+# [10.36.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.9...@ovh-ux/manager-telecom@10.36.0) (2019-10-15)
+
+
+### Features
+
+* **telephony.carrier.sip:** add new module ([66bcfad](https://github.com/ovh-ux/manager/commit/66bcfad))
+
+
+
 ## [10.35.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.8...@ovh-ux/manager-telecom@10.35.9) (2019-10-09)
 
 
