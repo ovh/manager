@@ -16,4 +16,8 @@ export default class {
       hideOperators: true,
     };
   }
+
+  onCriteriaChange(criteria) {
+    this.updateCriteria(criteria);
+  }
 }

@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     template,
     controller: 'Billing.controllers.OrderRetractionCtrl',
     controllerAs: 'ctrl',
-    translations: { value: ['..'], format: 'json' },
+    translations: { value: ['../../..'], format: 'json' },
   });
 
   $urlServiceProvider.rules.when('/billing/orders/:id/retract', '/billing/orders/retract/:id');
