@@ -2,7 +2,7 @@
   "dedicated_server_interfaces_ola_title": "Configuración de OLA",
   "dedicated_server_interfaces_ola_description": "OLA permite configurar una interfaz de red para modificar su funcionamiento. Por ejemplo, es posible utilizar la interfaz destinada a la red pública para disponer de una doble conectividad a la red privada de OVH (el vRack).",
   "dedicated_server_interfaces_ola_alert_configuration_reset": "Las interfaces se desconfigurarán. La conectividad al servidor se perderá durante la configuración.",
-  "dedicated_server_interfaces_ola_alert_obsolete_option": "Con una configuración de agregación privada, la opción de ancho de banda saliente público queda obsoleta. Recuerde dar de baja esta opción.",
+  "dedicated_server_interfaces_ola_alert_obsolete_option": "Con una configuración de agregación privada, no se utilizará la opción de ancho de banda saliente público.",
   "dedicated_server_interfaces_ola_alert_not_allowed": "No es posible seleccionar las siguientes interfaces para la configuración. Para poder configurarlas, es necesario quitar primero los vRacks y las IP Failover.",
   "dedicated_server_interfaces_ola_column_mode": "Modo",
   "dedicated_server_interfaces_ola_column_name": "Interfaz",
@@ -23,5 +23,6 @@
   "dedicated_server_interfaces_ola_step2_description_group": "Seleccione las interfaces que quiera agrupar.",
   "dedicated_server_interfaces_ola_step2_description_ungroup": "Seleccione la interfaz agrupada que quiera desagrupar. ",
   "dedicated_server_interfaces_ola_step3_title": "Vista previa de la configuración",
-  "dedicated_server_interfaces_ola_step3_submit": "Crear"
+  "dedicated_server_interfaces_ola_step3_submit": "Crear",
+  "dedicated_server_interfaces_ola_error": "Se ha producido un error durante la configuración: {{ errorMessage }}."
 }

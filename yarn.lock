@@ -8198,10 +8198,10 @@ ovh-module-exchange@^9.4.9:
     filesize "^3.6.1"
     lodash "~3.9.3"
 
-ovh-ui-angular@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.8.0.tgz#90e73fdec25bea2a740c4291b87d7404560f7317"
-  integrity sha512-3TtJh7gTPKwQOCY1uGe11OrhXJsaiFHF25dwlMQ9cCQ7Yw+syYlIrrqmxjFCtClUXDMowzCZtIniD032SUjJGA==
+ovh-ui-angular@^3.9.2:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.2.tgz#ec5b2901cbb6bc3d326d6383cc031aee971035e3"
+  integrity sha512-t+tweIfpSAShn0GDxbOyu8+lp1WrK7Oo+1xJNj4LHv4DTMM56eVQwFZ8c8u4OI0pTplXuN6CF2xFaihFS1eKEg==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"

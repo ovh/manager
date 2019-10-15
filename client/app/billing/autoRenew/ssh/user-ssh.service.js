@@ -22,10 +22,18 @@ angular.module('UserAccount').service('UseraccountSshService', [
           promises.push(this.getCloudSshList());
       }
 
-      return $q.all(promises).then((data) => {
-        const keys = _.flatten(_.values(data));
-        return _.sortBy(keys, key => key.keyName.toLowerCase());
-      });
+      return $q.allSettled(promises)
+        .then(sshKeys => [sshKeys])
+        .catch(sshKeys => _.partition(_.flatten(sshKeys), ({ message }) => !message))
+        .then(([sshKeys, error]) => {
+          const keys = _.sortBy(_.flatten(_.values(sshKeys)), key => key.keyName.toLowerCase());
+
+          if (error) {
+            return $q.reject([keys, error]);
+          }
+
+          return keys;
+        });
     };
 
     self.getDedicatedSshList = function () {
@@ -33,7 +41,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
         rootPath: 'apiv6',
       }).then((keyNames) => {
         const promises = _.map(keyNames, keyName => self.getDedicatedSshKey(keyName));
-        return $q.all(promises);
+        return $q.allSettled(promises);
       });
     };
 
@@ -89,7 +97,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
             id: key.id,
             url: self.getSshCloudUrl(project.id),
           }))));
-          return $q.all(promises);
+          return $q.allSettled(promises);
         })
         .then(keysByProjet => _.flatten(keysByProjet));
     };

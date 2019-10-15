@@ -63,9 +63,10 @@ export default class UserAccountSshCtrl {
       .then((sshKeys) => {
         this.sshKeyList = sshKeys;
       })
-      .catch((err) => {
+      .catch(([sshKeys]) => {
+        this.sshKeyList = sshKeys;
         this.Alerter.error(
-          `${this.$translate.instant('user_ssh_error')} ${_.get(err, 'message') || err}`,
+          `${this.$translate.instant('user_ssh_error')}`,
           'userSsh',
         );
       })

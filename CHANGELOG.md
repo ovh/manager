@@ -1,3 +1,34 @@
+<a name="10.32.13"></a>
+## [10.32.13](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.12...v10.32.13) (2019-10-15)
+
+
+### Bug Fixes
+
+* **sidebar.menu:** uses ngTranslationsInject to load translatio… ([#1491](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1491)) ([d96907a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/d96907a))
+
+
+
+<a name="10.32.12"></a>
+## [10.32.12](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.11...v10.32.12) (2019-10-14)
+
+
+### Bug Fixes
+
+* **dedicated.server:** prevent dashboard error when option expired ([133be9f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/133be9f))
+
+
+
+<a name="10.32.11"></a>
+## [10.32.11](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.10...v10.32.11) (2019-10-14)
+
+
+### Bug Fixes
+
+* **account.contacts.service:** fix redirection of contact ([#1483](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1483)) ([7bd2997](https://github.com/ovh-ux/ovh-manager-dedicated/commit/7bd2997))
+* **billing.autorenew.ssh:** still display keys if one is in error ([#1473](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1473)) ([f5abe60](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f5abe60))
+
+
+
 <a name="10.32.10"></a>
 ## [10.32.10](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.9...v10.32.10) (2019-10-10)
 

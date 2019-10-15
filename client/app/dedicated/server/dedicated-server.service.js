@@ -568,6 +568,13 @@ angular
         .then((networkInterfaceIds) => {
           const promises = _.map(networkInterfaceIds.data, networkInterfaceId => $http.get([path.dedicatedServer, serverName, 'networkInterfaceController', networkInterfaceId].join('/')).then(response => response.data));
           return $q.all(promises);
+        })
+        .catch((err) => {
+          if (err.status === 460) {
+            return [];
+          }
+
+          return $q.reject(err);
         });
     };
 
@@ -1182,7 +1189,14 @@ angular
     this.getBandwidth = function getBandwidth(productId) {
       return this.get(productId, 'specifications/network', {
         proxypass: true,
-      });
+      })
+        .then(data => data)
+        .catch((err) => {
+          if (err.status === 404 || err.status === 460) {
+            return {};
+          }
+          return $q.reject(err);
+        });
     };
 
     this.getBandwidthOption = function getBandwidthOption(productId) {
@@ -1193,7 +1207,7 @@ angular
         .then(
           data => data.state,
           (response) => {
-            if (response.status === 404) {
+            if (response.status === 404 || response.status === 460) {
               return 'notSubscribed';
             }
             return $q.reject(response);
@@ -1208,7 +1222,7 @@ angular
         })
         .then(data => data.state)
         .catch((response) => {
-          if (response.status === 404) {
+          if (response.status === 404 || response.status === 460) {
             return 'notSubscribed';
           }
           return $q.reject(response);
@@ -1261,7 +1275,14 @@ angular
     };
 
     this.getOrderables = function getOrderables(productId, optionName) {
-      return this.get(productId, `orderable/${optionName}`);
+      return this.get(productId, `orderable/${optionName}`)
+        .catch((err) => {
+          if (err.status === 460) {
+            return {};
+          }
+
+          return $q.reject(err);
+        });
     };
 
     this.getOrderableDurations = function getOrderableDurations(productId, data) {
@@ -2035,8 +2056,8 @@ angular
           return $q.all(promises);
         })
         .catch((error) => {
-          if (error.status === 404) {
-            return null;
+          if (error.status === 404 || error.status === 460) {
+            return $q.resolve(null);
           }
 
           return $q.reject(error);

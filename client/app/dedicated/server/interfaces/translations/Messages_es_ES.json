@@ -67,5 +67,7 @@
   "dedicated_server_interfaces_bandwith_title": "Ancho de banda",
   "dedicated_server_interfaces_bandwith_description": "El tráfico entrante (desde y hacia internet) no tiene limitación. Puede aumentar el ancho de banda público y privado contratando la opción correspondiente.",
   "dedicated_server_interfaces_bandwith_public": "Ancho de banda público",
-  "dedicated_server_interfaces_bandwith_private": "Ancho de banda privado"
+  "dedicated_server_interfaces_bandwith_private": "Ancho de banda privado",
+  "dedicated_server_interfaces_current_operation": "Se está realizando una operación en este servidor. ",
+  "dedicated_server_interfaces_task_error": "Se ha producido un error durante la configuración: {{ errorMessage }}."
 }
