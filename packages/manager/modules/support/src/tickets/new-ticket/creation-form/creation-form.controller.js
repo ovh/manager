@@ -2,7 +2,9 @@ import get from 'lodash/get';
 
 export default class SupportNewCreationFormController {
   /* @ngInject */
-  constructor(SupportNewTicketService) {
+  constructor(
+    SupportNewTicketService,
+  ) {
     this.SupportNewTicketService = SupportNewTicketService;
   }
 

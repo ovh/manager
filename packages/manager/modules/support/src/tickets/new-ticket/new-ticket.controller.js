@@ -3,7 +3,14 @@ import get from 'lodash/get';
 
 export default class SupportNewController {
   /* @ngInject */
-  constructor($state, $window, CORE_URLS, OvhApiMe, OvhApiSupport, SupportNewTicketService) {
+  constructor(
+    $state,
+    $window,
+    CORE_URLS,
+    OvhApiMe,
+    OvhApiSupport,
+    SupportNewTicketService,
+  ) {
     this.step = 'issues';
     this.$state = $state;
     this.$window = $window;
