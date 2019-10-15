@@ -1,0 +1,12 @@
+{
+  "hosting_cdn_order_title": "Commander un CDN",
+  "hosting_cdn_order_text": "L'option CDN active un réseau de serveurs de cache pour vos fichiers statiques (HTML, CSS, JavaScript). Il vous permet d'accélérer le chargement de vos pages web et d'utiliser les ressources de votre hébergement uniquement pour vos pages dynamiques.",
+  "hosting_cdn_order_duration": "Votre durée",
+  "hosting_cdn_order_duration_tooltip": "Regardless of where your new hosting package is set up, your domain name will continue to point to the current records. You will need to make the changes in your DNS zone when your new website is ready. This is an ideal choice if you do not want your current website to go down.",
+  "hosting_cdn_order_contracts": "Je reconnais avoir bien pris connaissance",
+  "hosting_cdn_order_contracts_of": "des",
+  "hosting_cdn_order_contracts_and": "et",
+  "hosting_cdn_order_submit_activate": "Activer",
+  "hosting_cdn_order_submit_pay": "Payer",
+  "hosting_cdn_order_cancel": "Annuler"
+}
