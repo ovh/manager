@@ -89,10 +89,9 @@
     </div>
 </div>
 
-
-<div data-ui-view>
-    <div data-ng-controller="HostingTabsCtrl as ctrlHostingTabs"
-        data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired">
+<div data-ui-view
+    data-ng-if="!loadingHostingInformations && !loadingHostingError && !hosting.isExpired">
+    <div data-ng-controller="HostingTabsCtrl as ctrlHostingTabs">
         <wuc-ovh-tabs tabs="ctrlHostingTabs.tabs"
                 selected-tab="ctrlHostingTabs.selectedTab"
                 change-tab="ctrlHostingTabs.setSelectedTab"

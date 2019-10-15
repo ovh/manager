@@ -1,0 +1,12 @@
+{
+  "carrier_sip_endpoints": "SIP Endpoints",
+  "carrier_sip_endpoints_id": "Id",
+  "carrier_sip_endpoints_protocol": "Protocole",
+  "carrier_sip_endpoints_protocol_tcp": "TCP",
+  "carrier_sip_endpoints_protocol_tis": "TIS",
+  "carrier_sip_endpoints_protocol_udp": "UDP",
+  "carrier_sip_endpoints_ip_sip": "IP SIP",
+  "carrier_sip_endpoints_port": "Port",
+  "carrier_sip_endpoints_priority": "Priorité",
+  "carrier_sip_endpoints_weight": "Poids"
+}

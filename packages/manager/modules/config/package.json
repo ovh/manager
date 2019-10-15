@@ -27,6 +27,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-config' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   }
 }

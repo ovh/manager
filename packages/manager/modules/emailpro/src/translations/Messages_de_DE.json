@@ -666,7 +666,7 @@
   "emailpro_tab_domain_validation_doing": "Validierung der Domain wird ausgeführt",
   "emailpro_tab_domain_validation_cname": "Bitte erstellen Sie einen CNAME-Eintrag.",
   "emailpro_tab_domain_validation_cname_title": "Prüfung des Eigentümers",
-  "emailpro_tab_domain_validation_cname_details": "Um Ihre Inhaberrechte an dieser Domain zu bestätigen, erstellen Sie bitte einen CNAME-Eintrag: <br /><br /><span class=\"bold\">{0}.{1}</span> auf <span class=\"bold\">{2}</span>.<br /><br /> Diese Operation muss innerhalb von 48 Stunden vorgenommen werden. ",
+  "emailpro_tab_domain_validation_cname_details": "Um Ihre Inhaberrechte an dieser Domain zu bestätigen, erstellen Sie bitte einen CNAME-Eintrag: <br /><br /><span class=\"bold\">{0}.{1}</span> auf <span class=\"bold\">{2}</span>.<br /><br /> Diese Operation muss innerhalb von 48 Stunden vorgenommen werden.",
   "emailpro_tab_domain_add_domain": "Eine Domain hinzufügen",
   "emailpro_tab_domain_creating": "Erstellung",
   "emailpro_tab_domain_NON_AUTHORITATIVE": "Nicht-autoritativ",

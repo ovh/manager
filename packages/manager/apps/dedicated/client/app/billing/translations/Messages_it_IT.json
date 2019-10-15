@@ -154,7 +154,7 @@
   "autorenew_service_update_step2_with_async_action_success": "L'operazione è andata a buon fine e sarà attiva tra pochi istanti.",
   "billing_export_csv": "Esporta in CSV",
   "billing_common_link_new_window": "(nuova finestra)",
-  "billing_date_range_choose_custom_date": "Définisci un periodo",
+  "billing_date_range_choose_custom_date": "Definisci un periodo",
   "billing_date_range_text": "Dal {{t0}} al {{t1}}",
   "autorenew_service_confirm": "Conferma",
   "autorenew_service_disable_autorenew_title": "Disattiva il pagamento automatico",
@@ -1212,5 +1212,6 @@
   "billing_credit_balance_movements_operation_credit": "Credito",
   "billing_credit_balance_movements_operation_debit": "Flusso",
   "billing_credit_balance_movements_load_error": "Si è verificato un errore durante il caricamento dei movimenti del tuo account di credito.",
-  "billing_credit_back": "Ritorna ai tuoi account di credito"
+  "billing_credit_back": "Ritorna ai tuoi account di credito",
+  "terminate_service_comments": "Commenti"
 }

@@ -1,0 +1,7 @@
+export const GET_RECORD_NUMBER_OF_YEARS = 20;
+export const POLLER_TIMEOUT = 1000;
+
+export default {
+  GET_RECORD_NUMBER_OF_YEARS,
+  POLLER_TIMEOUT,
+};

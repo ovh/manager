@@ -1,5 +1,3 @@
-import debounce from 'lodash/debounce';
-
 export default class ExchangeTabExternalContactsCtrl {
   /* @ngInject */
   constructor(
@@ -26,8 +24,6 @@ export default class ExchangeTabExternalContactsCtrl {
     this.contacts = null;
     this.filter = null;
 
-    this.debouncedRetrieveAccounts = debounce(this.loadContacts, 300);
-
     $scope.$on(Exchange.events.externalcontactsChanged, () => $scope.$broadcast('paginationServerSide.reload', 'externalContactsTable'));
 
     $scope.getContacts = () => this.contacts;
@@ -36,7 +32,7 @@ export default class ExchangeTabExternalContactsCtrl {
   }
 
   onSearchValueChange() {
-    this.debouncedRetrieveAccounts();
+    this.loadContacts();
   }
 
   loadContacts(count, offset) {

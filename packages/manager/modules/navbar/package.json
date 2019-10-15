@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "OVH control panel navbar",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/navbar#readme",
   "bugs": {
@@ -32,8 +32,8 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0",
-    "ovh-ui-kit": "^2.33.4"
+    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "ovh-ui-kit": "^2.34.3"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.3.0",

@@ -154,8 +154,8 @@
   "autorenew_service_update_step2_with_async_action_success": "Der Vorgang wurde erfolgreich durchgeführt und ist in wenigen Minuten aktiv.",
   "billing_export_csv": "Export als CSV Datei",
   "billing_common_link_new_window": "(neues Fenster)",
-  "billing_date_range_choose_custom_date": "Zeitraum festlegen ",
-  "billing_date_range_text": "Von {{t0}} bis {{t1}} ",
+  "billing_date_range_choose_custom_date": "Zeitraum festlegen",
+  "billing_date_range_text": "Vom {{t0}} bis zum {{t1}}",
   "autorenew_service_confirm": "Bestätigen",
   "autorenew_service_disable_autorenew_title": "Automatische Zahlung deaktivieren",
   "autorenew_service_disable_autorenew_desc1": "Die automatische Zahlung Ihrer Dienstleistung <strong>{{t0}}</strong> wird deaktiviert.",
@@ -1212,5 +1212,6 @@
   "billing_credit_balance_movements_operation_credit": "Aufladung",
   "billing_credit_balance_movements_operation_debit": "Soll",
   "billing_credit_balance_movements_load_error": "Beim Laden der Vorgänge Ihres Guthabenkontos ist ein Fehler aufgetreten.",
-  "billing_credit_back": "Zurück zu meinen Guthabenkonten"
+  "billing_credit_back": "Zurück zu meinen Guthabenkonten",
+  "terminate_service_comments": "Kommentare"
 }

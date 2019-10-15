@@ -24,6 +24,7 @@ import users from './users';
 import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
+import streams from './streams';
 import workflow from './workflow';
 
 import './project.less';
@@ -53,6 +54,7 @@ angular
     storages,
     users,
     vouchers,
+    streams,
     workflow,
   ])
   .config(routing)

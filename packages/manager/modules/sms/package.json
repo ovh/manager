@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "7.2.1",
+  "version": "7.2.4",
   "private": true,
   "description": "OVH SMS product control panel",
   "license": "BSD-3-Clause",
@@ -11,9 +11,9 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0",
     "bootstrap": "~3.3.7",
-    "ovh-ui-kit": "^2.33.4"
+    "ovh-ui-kit": "^2.34.3"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.1.3",

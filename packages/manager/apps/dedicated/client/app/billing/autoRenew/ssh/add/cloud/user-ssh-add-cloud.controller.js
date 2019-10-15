@@ -5,7 +5,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add'
   '$scope',
   '$window',
   'atInternet',
-  'UserAccount.services.ssh',
+  'UseraccountSshService',
   function UserAccountSshCloudAddController($scope, $window, atInternet, UseraccountSshService) {
     $scope.model = {};
     $scope.data = {
