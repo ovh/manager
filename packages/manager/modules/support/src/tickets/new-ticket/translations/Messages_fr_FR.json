@@ -117,6 +117,7 @@
   "ovhManagerSupport_new_creation_tip_forum": "Notre forum :",
   "ovhManagerSupport_new_creation_tip_2": "Vous avez trouvé la réponse à votre demande entre temps ?",
   "ovhManagerSupport_new_creation_tip_3": "Dans ce cas, nous vous invitons à <a ui-sref=\"{{ state }}\">clôturer votre ticket</a> directement depuis votre espace client.",
+  "ovhManagerSupport_new_creation_optional": "{{label}} (facultatif)",
 
   "ovhManagerSupport_new_business_web": "Web",
   "ovhManagerSupport_new_business_telecom": "Telecom",
@@ -124,4 +125,5 @@
   "ovhManagerSupport_new_business_1": "Un projet à étudier?",
   "ovhManagerSupport_new_business_2": "Merci de nous détailler vos besoins en nous envoyant un email à l'adresse :",
   "ovhManagerSupport_new_business_3": "Les demandes d'assistances reçues à cette adresse ne seront pas traitées."
+
 }
