@@ -29,6 +29,7 @@
   "ovhManagerSupport_new_serviceType_xdsl": "xDSL",
   "ovhManagerSupport_new_serviceType_vrack": "vRack",
   "ovhManagerSupport_new_serviceType_domain": "Domaine",
+  "ovhManagerSupport_new_serviceType_carrier_sip": "Carrier SIP",
   "ovhManagerSupport_new_serviceType_cdn_webstorage": "Cdn WebStorage",
   "ovhManagerSupport_new_serviceType_cdn_website": "Cdn WebSite",
   "ovhManagerSupport_new_serviceType_cdn_dedicated": "Cdn dédié",
