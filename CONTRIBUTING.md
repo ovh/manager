@@ -14,6 +14,12 @@ pay attention to a few things:
 - Code must be formated with `yarn run lint`
 - Code must pass `yarn run test`
 
+# Translations
+
+Due to an internal process, only French sentences can be updated or added.
+If you want to make changes in translations from another language, please open
+an issue.
+
 # Submitting Modifications
 
 The contributions should be submitted through GitHub Pull Requests
