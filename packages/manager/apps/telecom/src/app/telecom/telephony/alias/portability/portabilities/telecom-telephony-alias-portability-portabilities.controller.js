@@ -4,13 +4,16 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
+import template from './attach/portabilities-attach.html';
+import controller from './attach/portabilities-attach.controller';
+
 function groupPortaByNumbers(portabilities) {
   let numbers = [];
-  forEach(portabilities, (porta) => {
-    numbers = porta.numbersList.map(number => ({
+  forEach(portabilities, (portability) => {
+    numbers = portability.numbersList.map(number => ({
       number,
-      portability: porta,
-      lastStepDone: find(porta.steps.slice().reverse(), { status: 'done' }),
+      portability,
+      lastStepDone: find(portability.steps.slice().reverse(), { status: 'done' }),
     }));
   });
   return numbers;
@@ -94,8 +97,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl'
   attachMandate(number) {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/telephony/alias/portability/portabilities/attach/telecom-telephony-alias-portability-portabilities-attach.html',
-      controller: 'TelecomTelephonyServicePortabilityMandateAttachCtrl',
+      template,
+      controller,
       controllerAs: '$ctrl',
       resolve: {
         data: () => ({
@@ -105,7 +108,6 @@ angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl'
     });
 
     modal.result.then((mandate) => {
-      console.log(mandate, mandate.upload, mandate.upload.name);
       if (mandate && mandate.upload && mandate.upload.name) {
         // refresh portabilities
         this.init();

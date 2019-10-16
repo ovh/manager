@@ -1,0 +1,43 @@
+<oui-modal data-heading="{{:: 'telephony_alias_portabilities_attach_title' | translate }}"
+    data-primary-action="$ctrl.attachMandate()"
+    data-primary-label= "{{:: 'submit' | translate }}"
+    data-primary-disabled="!$ctrl.validFormatFile || !$ctrl.uploadedFile || $ctrl.isLoading"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'cancel' | translate }}"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.isLoading">
+
+    <div class="modal-body" data-ng-if="!$ctrl.isLoading">
+        <h3 class="modal-title"
+            data-translate="telephony_alias_portabilities_attach_title">
+        </h3>
+        <!-- FILE -->
+        <div class="form-group clearfix"
+            data-ng-class="{ 'has-error': !$ctrl.validFormatFile }">
+            <tuc-input-file data-ng-model="$ctrl.uploadedFile"
+                        data-ng-accept="accept/pdf"
+                        data-ng-accept-filter="$ctrl.checkValidFileExtention(file)">
+                <i class="fa fa-upload mr-2" aria-hidden="true"></i>
+                <span data-translate="telephony_alias_portabilities_attach_action"></span>
+            </tuc-input-file>
+            <span class="help-block"
+                role="alert"
+                data-ng-if="!$ctrl.validFormatFile && $ctrl.hasChecked"
+                data-translate="telephony_alias_portabilities_attach_invalid_format">
+            </span>
+        </div>
+        <div class="form-group clearfix">
+            <label class="service-title"
+                    data-translate="telephony_alias_portabilities_attach_file_format">
+            </label>
+        </div>
+    </div>
+    <!-- /.modal-body -->
+
+    <div class="modal-body text-center"
+        data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+        <h4 data-translate="telephony_alias_portabilities_attach_processing"></h4>
+    </div>
+
+</oui-modal>
