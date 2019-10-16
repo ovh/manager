@@ -83,6 +83,7 @@
   "domain_configuration_web_hosting_fail": "Une erreur est survenue lors de la récupération des hébergements associés",
   "domain_dashboard_web_hosting_associated_upsell": "Aucun hébergement associé",
   "domain_dashboard_web_hosting_more_infos": "Plus d'infos",
+  "domain_hosting_price_ht_label": "{{price}} HT",
   "domain_configuration_action_disable": "Désactiver",
   "domain_configuration_action_enable": "Activer",
   "domain_tab_GENERAL_INFORMATIONS": "Informations générales",
