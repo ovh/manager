@@ -23,7 +23,7 @@
     "packages:publish": "scripts/publish.js",
     "release": "scripts/release.js",
     "split": "scripts/split.js",
-    "test": "yarn lint && yarn run test:e2e",
+    "test": "yarn lint",
     "test:e2e": "lerna run test:e2e --stream --concurrency=1",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
