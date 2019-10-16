@@ -50,7 +50,10 @@ export default /* @ngInject */ ($stateProvider) => {
           return $q.all(agreementPromises);
         },
 
-        paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'paymentStatus'),
+        paymentStatus: /* @ngInject */ ($transition$, getStepByName) => () => get(
+          $transition$.params(),
+          'paymentStatus',
+        ) || getStepByName('payment').model.paymentStatus,
 
         getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {
           if ($state.current.name === 'pci.projects.new') {
@@ -126,8 +129,8 @@ export default /* @ngInject */ ($stateProvider) => {
           const currentStep = getCurrentStep();
 
           const hasCreditToOrder = newProjectInfo.order
-            && ((!paymentStatus && currentStep.model.defaultPaymentMethod)
-            || ['success', 'accepted'].includes(paymentStatus)
+            && ((!paymentStatus() && currentStep.model.defaultPaymentMethod)
+            || ['success', 'accepted'].includes(paymentStatus())
             );
 
           if (hasCreditToOrder) {
@@ -176,7 +179,7 @@ export default /* @ngInject */ ($stateProvider) => {
             // and that a projectId is present in the URL (meaning that a credit has been paid)
             // force error to null to avoid too many project error display
             if (transformedResponse.error
-              && paymentStatus
+              && paymentStatus()
               && get($transition$.params(), 'projectId')) {
               transformedResponse.error = null;
             }
@@ -188,7 +191,7 @@ export default /* @ngInject */ ($stateProvider) => {
           if (coreConfig.isRegion('US')) {
             return {};
           }
-          if (['success', 'accepted'].includes(paymentStatus)) {
+          if (['success', 'accepted'].includes(paymentStatus())) {
             // wait for new payment method validation
             const checkValidPaymentMethod = (iteration = 0) => $timeout(
               () => ovhPaymentMethod.hasDefaultPaymentMethod(),

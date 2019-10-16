@@ -7,7 +7,7 @@
 
     <div data-ng-if="!$ctrl.step.loading.init">
 
-        <div data-ng-if="!['success', 'accepted'].includes($ctrl.paymentStatus) && (!$ctrl.step.model.projectId || $ctrl.step.model.mode === 'credits')"
+        <div data-ng-if="!['success', 'accepted'].includes($ctrl.paymentStatus()) && (!$ctrl.step.model.projectId || $ctrl.step.model.mode === 'credits')"
              data-ng-switch="$ctrl.step.model.mode">
             <div data-ng-switch-when="paymentMethod">
                 <pci-project-new-payment-default
@@ -159,7 +159,7 @@
 
         </div>
 
-        <div data-ng-if="(['success', 'accepted'].includes($ctrl.paymentStatus) || ($ctrl.paymentStatus && $ctrl.step.model.projectId && $ctrl.step.model.mode !== 'credits')) && $ctrl.newProjectInfo.order">
+        <div data-ng-if="(['success', 'accepted'].includes($ctrl.paymentStatus()) || ($ctrl.paymentStatus() && $ctrl.step.model.projectId && $ctrl.step.model.mode !== 'credits')) && $ctrl.newProjectInfo.order">
             <h2 class="oui-heading_underline"
                 data-translate="pci_project_new_payment_welcome">
             </h2>

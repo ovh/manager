@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import merge from 'lodash/merge';
 
 import { PCI_URLS } from '../../constants';
 
@@ -47,7 +46,7 @@ export default class PciProjectNewCtrl {
     if (currentStep.name === 'description' && this.region !== 'US') {
       translationKey = 'pci_projects_new_continue';
     } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()
-      || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)) {
+      || (this.paymentStatus() && currentStep.model.projectId && this.newProjectInfo.order)) {
       translationKey = 'pci_projects_new_credit_and_create';
     } else {
       const isBankAccount = get(currentStep.model.selectedPaymentMethodType, 'paymentType')
@@ -106,7 +105,7 @@ export default class PciProjectNewCtrl {
   isPaymentMethodIntegrationVisible() {
     const currentStep = this.getCurrentStep();
 
-    return currentStep.name !== 'description';
+    return currentStep.name !== 'description' && !this.paymentStatus();
   }
 
   isStepComplete(step) {
@@ -207,6 +206,7 @@ export default class PciProjectNewCtrl {
 
     if (this.paymentModel.selectedPaymentMethodType.paymentType === 'PAYPAL') {
       this.paymentModel.defaultPaymentMethod = paymentMethod;
+      this.paymentModel.paymentStatus = 'success';
     }
 
     // success => HiPay
@@ -242,9 +242,9 @@ export default class PciProjectNewCtrl {
 
     const hasCredit = this.paymentModel.mode === 'credits' && this.paymentModel.credit.value;
     const hasOrderCredit = this.newProjectInfo.order
-        && (!this.paymentStatus
-          || ['success', 'accepted'].includes(this.paymentStatus)
-          || (this.paymentStatus && this.paymentModel.projectId && this.newProjectInfo.order));
+        && (!this.paymentStatus()
+          || ['success', 'accepted'].includes(this.paymentStatus())
+          || (this.paymentStatus() && this.paymentModel.projectId && this.newProjectInfo.order));
     const hasVoucher = this.paymentModel.voucher.valid && this.paymentModel.voucher.value;
     const createParams = {
       description: this.descriptionModel.name,
@@ -290,13 +290,15 @@ export default class PciProjectNewCtrl {
     };
 
     const paymentType = {
-      paymentType: {
-        value: 'CREDIT_CARD',
-      },
+      paymentType: 'CREDIT_CARD',
+      isLegacy: () => false,
     };
 
     return this.ovhPaymentMethod
-      .addPaymentMethod(paymentType, paymentParams);
+      .addPaymentMethod(paymentType, paymentParams)
+      .then(({ url }) => {
+        this.$window.location.href = url;
+      });
   }
 
   /* -----  End of Actions  ------ */
@@ -322,8 +324,8 @@ export default class PciProjectNewCtrl {
     // if default payment or credit amount - create project
     if (this.paymentModel.defaultPaymentMethod
       || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)
-      || (this.newProjectInfo.order && ['success', 'accepted'].includes(this.paymentStatus))
-      || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)
+      || (this.newProjectInfo.order && ['success', 'accepted'].includes(this.paymentStatus()))
+      || (this.paymentStatus() && currentStep.model.projectId && this.newProjectInfo.order)
       || (this.paymentModel.voucher.valid
         && this.paymentModel.voucher.paymentMethodRequired === false)
     ) {
@@ -332,8 +334,10 @@ export default class PciProjectNewCtrl {
 
     // if no default payment method - add new one before creating project
     if (this.paymentMethodSubmitFn) {
-      this.paymentMethodSubmitFn();
+      return this.paymentMethodSubmitFn();
     }
+
+    return true;
   }
 
   /* -----  End of Events  ------ */
