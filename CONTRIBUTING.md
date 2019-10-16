@@ -9,6 +9,11 @@ pay attention to a few things:
 4. your work must be signed (see below)
 5. you may contribute through GitHub Pull Requests
 
+# Coding and documentation Style
+
+- Code must be formated with `yarn run lint`
+- Code must pass `yarn run test`
+
 # Submitting Modifications
 
 The contributions should be submitted through GitHub Pull Requests
