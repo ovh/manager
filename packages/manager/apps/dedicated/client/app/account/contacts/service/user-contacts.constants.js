@@ -1,0 +1,25 @@
+export const AVAILABLE_SERVICES = [
+  'CLOUD',
+  'DOMAIN',
+  'HOSTING',
+  'HOSTING_RESELLER',
+  'PRIVATE_DATABASE',
+  'EMAIL_DOMAIN',
+  'DEDICATED',
+  'KUBE',
+  'NAS',
+  'NASHA',
+  'OVER_THE_BOX',
+  'PRIVATE_CLOUD',
+  'VPS',
+  'PACK_XDSL',
+  'XDSL',
+  'ZONE',
+  'FAILOVER',
+  'PACK_SIP_TRUNK',
+  'LOAD_BALANCER',
+];
+
+export default {
+  AVAILABLE_SERVICES,
+};

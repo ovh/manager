@@ -7,6 +7,7 @@ export default {
   bindings: {
     displaySelectedImage: '<',
     flavorType: '<?',
+    osTypes: '<?',
     selectedImage: '=?',
     defaultImageId: '<?',
     onChange: '&?',

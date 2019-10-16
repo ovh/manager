@@ -46,8 +46,8 @@ class MonoRepository {
   static release(version, repos) {
     const commitMsg = repos.map(r => `* Package ${r.name} ${r.getPackageJson().version}`).join('\n');
     return execa.command(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`, { shell: true })
-      .then(() => execa.command(`git tag -a -m 'release: ${version}' '${version}'`))
-      .then(v => execa.command('git push origin master --tags').then(() => v));
+      .then(() => execa.command(`git tag -a -m 'release: ${version}' '${version}'`, { shell: true }))
+      .then(v => execa.command('git push origin master --tags', { shell: true }).then(() => v));
   }
 
   static writeChangelog(file, repos) {

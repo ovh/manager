@@ -28,8 +28,8 @@
             class="mb-4"
             data-ng-if="$ctrl.BillingAutoRenew.isAutomaticRenewV2Available() && (
                 !$ctrl.defaultPaymentMean
-                || ($ctrl.defaultPaymentMean && $ctrl.currentUser.hasAutorenew2016() && !$ctrl.nicRenew.active)
-            )"
+                || ($ctrl.defaultPaymentMean && !$ctrl.nicRenew.active))
+                && !$ctrl.currentUser.hasAutorenew2016()"
             data-type="error"
             data-dismissable>
             <p data-ng-if="!$ctrl.defaultPaymentMean" data-translate="billing_autorenew_service_renew_requires_mean_and_date"></p>
@@ -119,13 +119,18 @@
                         data-ng-click="$ctrl.trackCSVExport()">
                         <span data-translate="billing_export_csv"></span>
                     </button>
-                    <div data-ng-if="$ctrl.canDisableAllDomains">
-                        <oui-action-menu-divider></oui-action-menu-divider>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.disableAutorenewForDomains()">
-                            <span data-translate="billing_autorenew_service_disable_all_dom"></span>
-                        </oui-action-menu-item>
-                    </div>
+                    <oui-action-menu-divider data-ng-if="$ctrl.ALIGNMENT_URL || $ctrl.canDisableAllDomains"></oui-action-menu-divider>
+                    <oui-action-menu-item
+                        data-ng-if="$ctrl.ALIGNMENT_URL"
+                        data-href="{{ $ctrl.ALIGNMENT_URL }}"
+                        data-external>
+                        <span data-translate="billing_autorenew_service_align_renew"></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-ng-if="$ctrl.canDisableAllDomains"
+                        data-on-click="$ctrl.disableAutorenewForDomains()">
+                        <span data-translate="billing_autorenew_service_disable_all_dom"></span>
+                    </oui-action-menu-item>
                 </oui-action-menu>
             </extra-top>
 
@@ -169,8 +174,7 @@
                 data-property="status"
                 data-type="options"
                 data-type-options="$ctrl.filtersOptions.status"
-                data-filterable
->
+                data-filterable>
                 <span class="oui-status oui-status_error"
                     data-ng-if="$row.hasDebt()"
                     data-translate="billing_autorenew_service_status_pending_debt">
@@ -187,20 +191,25 @@
                 data-type-options="$ctrl.filtersOptions.expiration"
                 data-filterable
                 data-sortable>
+                <span data-ng-if="$row.hasDebt()" data-translate="billing_autorenew_service_date_now"></span>
                 <span data-ng-if="$row.isOneShot()">-</span>
                 <span
-                    data-ng-if="$row.hasManualRenew() && !$row.isResiliated() || $row.hasDebt()"
+                    data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt()"
                     data-translate="billing_autorenew_service_date_before"
                     data-translate-values="{
                         date: $row.formattedExpiration
                     }">
                 </span>
                 <span
-                    data-ng-if="($row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt()) || $row.isResiliated()"
+                    data-ng-if="$row.isResiliated() || $row.hasPendingResiliation()"
                     data-translate="billing_autorenew_service_date_renew"
                     data-translate-values="{
                         date: $row.formattedExpiration
                     }">
+                </span>
+                <span
+                    data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation()"
+                    data-ng-bind="$ctrl.getAutomaticExpirationDate($row)">
                 </span>
             </oui-column>
             <!-- /Columns -->
@@ -219,7 +228,7 @@
 
                 <oui-action-menu-item
                     data-ng-if="$row.hasDebt() && $row.hasBillingRights($ctrl.currentUser.nichandle)"
-                    data-on-click="$ctrl.warnPendingDebt($row.domain)">
+                    data-href="{{:: $ctrl.payDebtLink }}">
                     <span data-translate="billing_autorenew_service_pay_debt"></span>
                 </oui-action-menu-item>
 
@@ -282,6 +291,14 @@
                 </oui-action-menu-item>
                 <!-- /MX Plan -->
 
+                <!-- ENTERPRISE_CLOUD_DATABASE -->
+                <oui-action-menu-item
+                    data-ng-if="$row.serviceType === 'ENTERPRISE_CLOUD_DATABASE' && !$row.isResiliated()"
+                    data-on-click="$ctrl.terminateEnterpriseCloudDatabase($row.serviceId)">
+                    <span data-translate="billing_autorenew_service_terminate_enterprise_cloud_database"></span>
+                </oui-action-menu-item>
+                <!-- /ENTERPRISE_CLOUD_DATABASE -->
+
                 <!-- HOSTING_WEB -->
                 <oui-action-menu-item
                     data-ng-if="$row.serviceType === 'HOSTING_WEB' && !$row.isResiliated()"
@@ -293,10 +310,18 @@
                 <!-- HOSTING_PRIVATE_DATABASE -->
                 <oui-action-menu-item
                     data-ng-if="$row.serviceType === 'HOSTING_PRIVATE_DATABASE' && !$row.isResiliated()"
-                    data-on-click="$ctrl.terminatePrivateDatabase($row.id)">
+                    data-on-click="$ctrl.terminatePrivateDatabase($row.serviceId)">
                     <span data-translate="billing_autorenew_service_terminate_hosting_private_database"></span>
                 </oui-action-menu-item>
                 <!-- /HOSTING_PRIVATE_DATABASE -->
+
+                <!-- WEBCOACH -->
+                <oui-action-menu-item
+                    data-ng-if="$row.serviceType === 'WEBCOACH' && !$row.isResiliated()"
+                    data-on-click="$ctrl.terminateWebCoach($row.serviceId)">
+                    <span data-translate="billing_autorenew_service_terminate_webcoach"></span>
+                </oui-action-menu-item>
+                <!-- /WEBCOACH -->
 
                 <!-- SMS -->
                 <div data-ng-if="$row.serviceType === 'SMS'">

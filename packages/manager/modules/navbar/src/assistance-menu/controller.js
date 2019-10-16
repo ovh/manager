@@ -1,6 +1,9 @@
+import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 
-import { CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS } from './constants';
+import {
+  AVAILABLE_SUPPORT_LEVEL, CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS,
+} from './constants';
 
 export default class {
   /* @ngInject */
@@ -11,6 +14,7 @@ export default class {
     $translate,
     atInternet,
     coreConfig,
+    Navbar,
     ovhManagerNavbarMenuHeaderBuilder,
   ) {
     this.$q = $q;
@@ -19,6 +23,7 @@ export default class {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
+    this.Navbar = Navbar;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
 
     this.REGION = this.coreConfig.getRegion();
@@ -28,7 +33,19 @@ export default class {
   $onInit() {
     this.isLoading = true;
 
-    return this.$translate.refresh()
+    return this.$q.all({
+      translate: this.$translate.refresh(),
+      supportLevel: this.Navbar.getSupportLevel(),
+    })
+      .then(({ supportLevel }) => {
+        if (supportLevel) {
+          this.supportLevel = {
+            ...supportLevel,
+            displayedLevel: capitalize(supportLevel.level),
+          };
+          this.isSupportLevelAvailable = AVAILABLE_SUPPORT_LEVEL.includes(supportLevel.level);
+        }
+      })
       .then(() => this.getMenuTitle())
       .then((menuTitle) => {
         this.menuTitle = menuTitle;

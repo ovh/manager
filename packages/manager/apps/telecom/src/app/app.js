@@ -31,6 +31,7 @@ import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
 import TelecomAppCtrl from './app.controller';
+import carrierSip from './telecom/telephony/carrierSip';
 import navbar from '../components/navbar';
 
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -41,7 +42,6 @@ import './app.less';
 Environment.setRegion('EU');
 
 angular.module('managerApp', [
-  'angular-ellipses',
   'angular-inview',
   'angular-translate-loader-pluggable',
   'matchmedia-ng',
@@ -104,6 +104,7 @@ angular.module('managerApp', [
   'ui.sortable',
   'ui.validate',
   'validation.match',
+  carrierSip,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */
@@ -211,7 +212,7 @@ angular.module('managerApp', [
     $logProvider.debugEnabled(false);
   })
 
-  .run((
+  .run(/* @ngInject */ (
     $transitions,
     $translate,
     $translatePartialLoader,

@@ -712,5 +712,11 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Wystąpił błąd podczas usuwania kodów zapasowych:",
   "user_account_security_ip_restrictions_alt": "Ograniczenie dostępu przez adres IP",
   "user_account_title_infos": "Mój profil",
-  "user_account_title_subscriptions": "Moje abonamenty"
+  "user_account_title_subscriptions": "Moje abonamenty",
+  "user_account_emails_title": "Otrzymane e-maile",
+  "user_account_title_dashboard": "Informacje ogólne",
+  "user_account_support_level_title": "Mój poziom wsparcia",
+  "user_account_ssh_keys_title": "Moje klucze SSH",
+  "user_account_users_management_title": "Zarządzanie użytkownikami",
+  "user_account_advanced_title": "Zaawansowane parametry"
 }

@@ -71,7 +71,11 @@ export default class PciInstanceEditController {
       if (!this.defaultImage) {
         this.defaultImage = image;
       }
-      this.editInstance.imageId = image.getIdByRegion(this.instance.region);
+      if (image.isBackup()) {
+        this.editInstance.imageId = image.id;
+      } else {
+        this.editInstance.imageId = image.getIdByRegion(this.instance.region);
+      }
     } else {
       this.editInstance.imageId = null;
     }

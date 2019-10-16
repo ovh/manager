@@ -76,7 +76,7 @@
                                     aria-valuemax="100">
                                     <span
                                         class="oui-progress__label float-left"
-                                        data-ng-bind="::convertBytesSize(hosting.quotaUsed.value, hosting.quotaUsed.unit, 2) + ' / ' + convertBytesSize(hosting.quotaSize.value, hosting.quotaSize.unit)"
+                                        data-ng-bind="::$ctrl.quotaInformations"
                                         data-ng-if="!hosting.isCloudWeb"></span>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                 data-ng-if="hosting.isCloudWeb">
                                 <li>
                                     <span data-translate="hosting_dashboard_disk_usage_total"></span>
-                                    <span data-ng-bind="::convertBytesSize(hosting.quotaUsed.value, hosting.quotaUsed.unit, 2) + ' / ' + convertBytesSize(hosting.quotaSize.value, hosting.quotaSize.unit)"></span>
+                                    <span data-ng-bind="::$ctrl.quotaInformations"></span>
                                 </li>
                             </ul>
                         </oui-tile-description>

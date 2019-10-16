@@ -11,43 +11,15 @@ angular
       User,
     ) => {
       function buildMyAccountMenu() {
-        const myAccountMenu = SidebarMenu.addMenuItem({
+        SidebarMenu.addMenuItem({
           name: 'userAccountMenu',
           title: $translate.instant('menu_account_title'),
-          allowSubItems: true,
-          allowSearch: true,
-          loadOnState: 'app.account.useraccount',
+          allowSubItems: false,
+          allowSearch: false,
+          loadOnState: 'app.account.user',
+          state: 'app.account.user.dashboard',
           namespace: 'account',
         });
-
-        SidebarMenu.addMenuItem({
-          title: $translate.instant('menu_infos'),
-          state: 'app.account.useraccount.infos',
-        }, myAccountMenu);
-
-        SidebarMenu.addMenuItem({
-          title: $translate.instant('menu_security'),
-          state: 'app.account.useraccount.security',
-        }, myAccountMenu);
-
-        if (coreConfig.getRegion() === 'EU' || coreConfig.getRegion() === 'CA') {
-          SidebarMenu.addMenuItem({
-            title: $translate.instant('menu_emails'),
-            state: 'app.account.useraccount.emails',
-          }, myAccountMenu);
-        }
-
-        if (coreConfig.getRegion() === 'EU' || coreConfig.getRegion() === 'CA') {
-          SidebarMenu.addMenuItem({
-            title: $translate.instant('menu_advanced'),
-            state: 'app.account.useraccount.advanced',
-          }, myAccountMenu);
-        }
-
-        SidebarMenu.addMenuItem({
-          title: $translate.instant('menu_users_management'),
-          state: 'app.account.useraccount.users',
-        }, myAccountMenu);
       }
 
       function buildBillingMenu() {
@@ -136,7 +108,7 @@ angular
             SidebarMenu.addMenuItem({
               name: 'billingContacts',
               title: $translate.instant('menu_contacts'),
-              state: 'app.account.useraccount.contacts.services',
+              state: 'app.account.contacts.services',
               namespace: 'account',
             });
           }

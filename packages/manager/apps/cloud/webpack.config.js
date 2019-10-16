@@ -9,6 +9,18 @@ const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const folder = './client/app';
 const bundles = {};
 
+function foundNodeModulesFolder(checkedDir, cwd = '.') {
+  if (fs.existsSync(`${cwd}/node_modules/${checkedDir}`)) {
+    return path.relative(process.cwd(), `${cwd}/node_modules/${checkedDir}`);
+  }
+
+  if (path.resolve(cwd) !== '/') {
+    return foundNodeModulesFolder(checkedDir, `${cwd}/..`);
+  }
+
+  return null;
+}
+
 fs.readdirSync(folder).forEach((file) => {
   // skip config folder, it'll be added later depending on current environment
   if (file === 'config') {
@@ -39,11 +51,11 @@ module.exports = (env = {}) => {
     assets: {
       files: [
         { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
-        { from: path.resolve(__dirname, './node_modules/angular-i18n'), to: 'angular-i18n' },
+        { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
         { from: path.resolve(__dirname, './client/**/*.html'), context: 'client' },
       ],
     },
-  }, env);
+  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');

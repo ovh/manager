@@ -1,3 +1,42 @@
+## [0.6.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.4...@ovh-ux/manager-server-sidebar@0.6.5) (2019-10-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+* **i18n:** add missing translations [CDS 98] ([e180e8a](https://github.com/ovh-ux/manager/commit/e180e8a))
+* **i18n:** add missing translations [CDS 99] ([fe69b1c](https://github.com/ovh-ux/manager/commit/fe69b1c))
+
+
+
+## [0.6.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.3...@ovh-ux/manager-server-sidebar@0.6.4) (2019-10-08)
+
+
+### Bug Fixes
+
+* **server-sidebar:** display domain not belonging to user's alldom ([#1424](https://github.com/ovh-ux/manager/issues/1424)) ([b831a0f](https://github.com/ovh-ux/manager/commit/b831a0f))
+
+
+
+## [0.6.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.2...@ovh-ux/manager-server-sidebar@0.6.3) (2019-10-07)
+
+
+### Bug Fixes
+
+* **server-sidebar:** enterprise cloud database translation ([#1417](https://github.com/ovh-ux/manager/issues/1417)) ([c00b219](https://github.com/ovh-ux/manager/commit/c00b219))
+
+
+
+## [0.6.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.1...@ovh-ux/manager-server-sidebar@0.6.2) (2019-10-07)
+
+
+### Bug Fixes
+
+* **server-sidebar:** enterprise cloud database addition ([311c7f0](https://github.com/ovh-ux/manager/commit/311c7f0))
+
+
+
 ## [0.6.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.0...@ovh-ux/manager-server-sidebar@0.6.1) (2019-09-30)
 
 

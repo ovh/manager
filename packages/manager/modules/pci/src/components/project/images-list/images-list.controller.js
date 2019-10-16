@@ -140,7 +140,9 @@ export default class ImagesListController {
   }
 
   isCompatible(image) {
-    return image.isAvailableInRegion(this.region) && image.isCompatibleWithFlavor(this.flavorType);
+    return image.isAvailableInRegion(this.region)
+      && image.isCompatibleWithFlavor(this.flavorType)
+      && image.isCompatibleWithOsTypes(this.osTypes);
   }
 
   isDistributionCompatible(images) {

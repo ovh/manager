@@ -116,7 +116,7 @@
   "user_agreements_agreed": "I have read and accept \"{{t0}}\"",
   "user_agreements_accept": "Accept",
   "user_agreements_accept_title": "{{t0}}: accept contract",
-  "user_agreements_accepting": "Loading...",
+  "user_agreements_accepting": "In progress",
   "user_agreements_download_pdf": "Download",
   "user_agreements_download_pdf_title": "{{t0}}: download in PDF format",
   "user_agreements_alert_close": "Close alert",
@@ -712,5 +712,11 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Oops! An error has occurred deleting backup codes:",
   "user_account_security_ip_restrictions_alt": "IP access restriction",
   "user_account_title_infos": "My profile ",
-  "user_account_title_subscriptions": "My subscriptions"
+  "user_account_title_subscriptions": "My subscriptions",
+  "user_account_emails_title": "Emails received",
+  "user_account_title_dashboard": "General information",
+  "user_account_support_level_title": "Level of Support",
+  "user_account_ssh_keys_title": "My SSH keys",
+  "user_account_users_management_title": "User management",
+  "user_account_advanced_title": "Advanced settings"
 }
