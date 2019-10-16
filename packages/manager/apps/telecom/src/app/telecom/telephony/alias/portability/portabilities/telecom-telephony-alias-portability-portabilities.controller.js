@@ -19,7 +19,7 @@ function groupPortaByNumbers(portabilities) {
   return numbers;
 }
 
-angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl', class TelecomTelephonyAliasPortabilitiesCtrl {
+export default class TelecomTelephonyAliasPortabilitiesCtrl {
   constructor($q, $stateParams, $translate, $uibModal, OvhApiTelephony, TucToast) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
@@ -114,4 +114,4 @@ angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl'
       }
     });
   }
-});
+}

@@ -29,16 +29,12 @@ export default class {
         name: this.uploadedFile.name,
       }),
     }).then((response) => {
-      this.$uibModalInstance.close(response);
+      this.goBack(response);
     }).catch((error) => {
-      this.$uibModalInstance.dismiss(error);
+      this.goBack(error);
     }).finally(() => {
       this.isLoading = false;
     });
-  }
-
-  cancel() {
-    this.$uibModalInstance.dismiss();
   }
 
   checkValidFileExtention(file) {

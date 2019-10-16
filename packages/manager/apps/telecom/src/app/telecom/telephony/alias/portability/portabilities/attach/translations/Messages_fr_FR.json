@@ -1,0 +1,8 @@
+{
+  "portabilities_attach_title": "Attacher mon mandat de portabilité",
+  "portabilities_attach_action": "Fichier mandat de portabilité",
+  "portabilities_attach_invalid_format": "Format de fichier invalide",
+  "portabilities_attach_file_format": "Taille max: 10Mo, format autorisé : PDF",
+  "portabilities_attach_processing": "Attachement du mandat de portabilité en cours",
+  "portabilities_attach_document_processing": "Attachement du document en cours"
+}

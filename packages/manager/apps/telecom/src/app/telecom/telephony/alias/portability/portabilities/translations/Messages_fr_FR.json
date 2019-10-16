@@ -45,11 +45,5 @@
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
   "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités.",
   "telephony_alias_portabilities_attach_form": "Attacher mon mandat de portabilité signé",
-  "telephony_alias_portabilities_attach_title": "Attacher mon mandat de portabilité",
-  "telephony_alias_portabilities_attach_action": "Fichier mandat de portabilité",
-  "telephony_alias_portabilities_attach_invalid_format": "Format de fichier invalide",
-  "telephony_alias_portabilities_attach_file_format": "Taille max: 10Mo, format autorisé : PDF",
-  "telephony_alias_portabilities_attach_processing": "Attachement du mandat de portabilité en cours",
-  "telephony_alias_portabilities_attach_document_processing": "Attachement du document en cours",
   "telephony_alias_portabilities_attach_info": "Uniquement pour les demandes de portabilité sans RIO."
 }
