@@ -54,7 +54,7 @@
     "@ovh-ux/ng-ovh-mondial-relay": "^6.0.1",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.2",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.3",
     "@ovh-ux/ng-ovh-simple-country-list": "^1.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.2",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^3.0.3",
