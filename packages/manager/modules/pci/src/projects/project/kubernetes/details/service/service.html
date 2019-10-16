@@ -2,6 +2,7 @@
 <oui-message data-type="info" data-dismissable="false" data-ng-if="!$ctrl.cluster.hasLatestPatchVersion() && !$ctrl.cluster.isUpdating()">
     <p data-ng-bind-html="::'kube_service_cluster_update_available' | translate"></p>
     <oui-button data-variant="primary"
+                class="d-block"
                 data-disabled="!$ctrl.cluster.isReady()"
                 data-on-click="$ctrl.updateCluster()">
         <span data-translate="kube_service_common_update"></span>
