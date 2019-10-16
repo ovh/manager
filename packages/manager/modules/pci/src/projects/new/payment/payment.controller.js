@@ -119,8 +119,6 @@ export default class PciProjectNewPaymentCtrl {
         transform: true,
       })
       .then((paymentMethods) => {
-        paymentMethods = [];
-
         const defaultPaymentMethod = find(paymentMethods, { default: true }) || null;
 
         this.step.model.defaultPaymentMethod = defaultPaymentMethod;
