@@ -1,3 +1,12 @@
+## [8.4.3](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.2...v8.4.3) (2019-10-16)
+
+
+### Bug Fixes
+
+* turn label visible when displaying the error retry button ([#90](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/90)) ([e6b69ca](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/e6b69ca7f0431f2826ecad5a1e435516e2661c73)), closes [#89](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/89)
+
+
+
 ## [8.4.2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.1...v8.4.2) (2019-10-07)
 
 
