@@ -1,7 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.cdn.order', {
     url: '/order',
-    translations: { value: ['.'], format: 'json' },
     component: 'hostingCdnOrder',
     resolve: {
       goBack: /* @ngInject */ goToHosting => goToHosting,

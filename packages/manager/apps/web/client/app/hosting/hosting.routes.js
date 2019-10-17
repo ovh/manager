@@ -1,8 +1,12 @@
+import controller from './hosting.controller';
+import template from './hosting.html';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting', {
     url: '/configuration/hosting/:productId?tab',
-    templateUrl: 'hosting/hosting.html',
-    controller: 'HostingCtrl',
+    template,
+    controller,
+    controllerAs: '$ctrl',
     reloadOnSearch: false,
     params: {
       tab: null,
@@ -15,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
 
         if (message) {
-          promise.then(() => $timeout(() => Alerter.set(`alert-${type}`, message, null, 'app.alerts.page')));
+          promise.then(() => $timeout(() => Alerter.set(`alert-${type}`, message, null, 'app.alerts.tabs')));
         }
 
         return promise;
