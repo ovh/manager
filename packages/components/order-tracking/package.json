@@ -22,10 +22,24 @@
   "files": [
     "dist"
   ],
-  "main": "./src/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/order-tracking.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/order-tracking' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/order-tracking' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking' --include-filtered-dependencies -- yarn run dev:watch"
+  },
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^6.0.0"
   },
   "peerDependencies": {
     "angular": "^1.7.5",
