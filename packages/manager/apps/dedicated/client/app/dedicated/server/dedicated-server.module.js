@@ -1,3 +1,5 @@
+import './dedicated-server.less';
+
 angular
   .module('App')
   .constant('WEATHERMAP_URL', 'http://weathermap.ovh.net/')
