@@ -62,11 +62,10 @@
                         <span data-ng-if="$ctrl.domain.hasDnsAnycast == null">
                             <span data-translate="domain_dashboard_dns_management_anycast_null"></span>
                             (<span data-translate="domain_configuration_dnsanycast_how_to_activate_1"></span>
-                            <button
-                                class="btn btn-link p-0" type="button"
-                                data-translate="domain_configuration_dnsanycast_how_to_activate_2"
-                                data-ng-click="setAction('zone/activate/domain-zone-activate', $ctrl.domain)">
-                            </button>)
+                            <a
+                                data-ng-href="{{:: $ctrl.zoneActivationLink }}"
+                                data-translate="domain_configuration_dnsanycast_how_to_activate_2">
+                            </a>)
                         </span>
                     </oui-tile-description>
                     <oui-action-menu

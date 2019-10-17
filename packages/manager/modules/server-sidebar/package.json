@@ -33,7 +33,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0",
     "ovh-ui-kit": "^2.34.3"
   },
   "peerDependencies": {

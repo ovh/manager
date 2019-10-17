@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-banner": "^1.1.0",

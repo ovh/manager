@@ -67,5 +67,7 @@
   "dedicated_server_interfaces_bandwith_title": "Bandwidth",
   "dedicated_server_interfaces_bandwith_description": "Incoming public bandwidth (to and from the internet) is not limited. You can increase your public and private bandwidth by signing up to the following options:",
   "dedicated_server_interfaces_bandwith_public": "Public bandwidth",
-  "dedicated_server_interfaces_bandwith_private": "Private bandwidth"
+  "dedicated_server_interfaces_bandwith_private": "Private bandwidth",
+  "dedicated_server_interfaces_current_operation": "An operation is in progress on this server ",
+  "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}"
 }

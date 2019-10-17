@@ -1,10 +1,11 @@
 {
- "pci_projects_project_instances_instance_backup_title": "Crea un backup",
- "pci_projects_project_instances_instance_backup_name_label": "Inserisci il nome del tuo backup:",
- "pci_projects_project_instances_instance_backup_warning_message": "La tua istanza sarà sospesa per qualche secondo. Le operazioni di lettura/scrittura del disco potrebbero essere rallentate fino al completamento del backup.",
- "pci_projects_project_instances_instance_backup_price": "({{ size }}, cioè circa {{price}} + IVA/mese)",
- "pci_projects_project_instances_instance_backup_submit_label": "Conferma",
- "pci_projects_project_instances_instance_backup_cancel_label": "Annulla",
- "pci_projects_project_instances_instance_backup_success_message": "Creazione del backup {{ backup }} in corso...",
- "pci_projects_project_instances_instance_backup_error_backup": "Si è verificato un errore durante la creazione del backup {{ backup }}: {{ message }}"
+  "pci_projects_project_instances_instance_backup_title": "Crea un backup",
+  "pci_projects_project_instances_instance_backup_name_label": "Inserisci il nome del tuo backup:",
+  "pci_projects_project_instances_instance_backup_warning_message": "La tua istanza sarà sospesa per qualche secondo. Le operazioni di lettura/scrittura del disco potrebbero essere rallentate fino al completamento del backup.",
+  "pci_projects_project_instances_instance_backup_price": "({{ size }}, cioè circa {{price}} + IVA/mese)",
+  "pci_projects_project_instances_instance_backup_submit_label": "Conferma",
+  "pci_projects_project_instances_instance_backup_cancel_label": "Annulla",
+  "pci_projects_project_instances_instance_backup_success_message": "Creazione del backup {{ backup }} in corso...",
+  "pci_projects_project_instances_instance_backup_error_backup": "Si è verificato un errore durante la creazione del backup {{ backup }}: {{ message }}",
+  "pci_projects_project_instances_instance_backup_warning_iops_message": "Il backup sarà relativo esclusivamente al disco di root (sistema operativo). Non verrà salvato nessun dato dalle periferiche NVMe. Per eseguire questa operazione, utilizza i tool a tua disposizione."
 }
