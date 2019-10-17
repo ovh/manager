@@ -23,7 +23,7 @@
   "dedicated_server_interfaces_bandwidth_incoming_label": "Ancho de banda entrante",
   "dedicated_server_interfaces_bandwidth_outgoing_label": "Ancho de banda saliente",
   "dedicated_server_interfaces_ip_label": "IP",
-  "dedicated_server_interfaces_failover_ip_label": "IP failover",
+  "dedicated_server_interfaces_failover_ip_label": "IP Failover",
   "dedicated_server_interfaces_vrack_label": "Red privada",
   "dedicated_server_interfaces_vrack_select_label": "Seleccione una red privada",
   "server_consumption_throttled": "Servicio ralentizado",

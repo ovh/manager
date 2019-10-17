@@ -41,6 +41,7 @@
   "dedicated_server_interfaces_list_title": "Interfaces réseau",
   "dedicated_server_interfaces_loading_message": "Vos interfaces sont en cours de modification. Merci de patienter quelques minutes.",
   "dedicated_server_interfaces_do_not_close_message": "L'opération peut prendre quelques minutes. Merci de ne pas fermer cette page.",
+  "dedicated_server_interfaces_current_operation": "Une opération est en cours sur le serveur ",
   "dedicated_server_interfaces_name_label": "Nom",
   "dedicated_server_interfaces_type_label": "Type",
   "dedicated_server_interfaces_type_public_label": "Publique",
@@ -73,5 +74,6 @@
   "dedicated_server_interfaces_bandwith_title" : "Bande passante",
   "dedicated_server_interfaces_bandwith_description" : "La bande passante publique (depuis et vers internet) n’est pas limitée en entrée. Vous pouvez augmenter la bande passante publique et privée en souscrivant à une option",
   "dedicated_server_interfaces_bandwith_public" : "Bande passante publique",
-  "dedicated_server_interfaces_bandwith_private" : "Bande passante privée"
+  "dedicated_server_interfaces_bandwith_private" : "Bande passante privée",
+  "dedicated_server_interfaces_task_error": "Une erreur est survenue lors de la configuration : {{ errorMessage }}"
 }

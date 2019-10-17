@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ error }) => {
             if (error && error.code !== 'challengePaymentMethodRequested') {
               return transition.router.stateService.target(
-                'pci.error',
+                'pci.projects.new.error',
                 merge({
                   context: 'projectCreation',
                 }, error), {

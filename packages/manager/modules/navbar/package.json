@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "OVH control panel navbar",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/navbar#readme",
   "bugs": {
@@ -33,14 +33,14 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "ovh-ui-kit": "^2.34.3"
+    "ovh-ui-kit": "^2.35.2"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.1.3",
+    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-core": "^7.1.4",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-chatbot": "^2.0.1",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.2.2",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",

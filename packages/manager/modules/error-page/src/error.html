@@ -16,7 +16,7 @@
                 <oui-message
                     class="mb-3"
                     data-type="error">
-                    <span data-ng-bind=":: $ctrl.message || ( 'manager_error_page_default' | translate)"></span>
+                    <span data-ng-bind-html=":: $ctrl.message || ( 'manager_error_page_default' | translate)"></span>
                     <strong
                         class="d-block"
                         data-ng-if="$ctrl.error.detail.message"

@@ -34,7 +34,7 @@
   "nas_order_bc_contracts": "I have read and understood the following conditions:",
   "nas_order_bc_price_HT": "Total price ex. VAT:",
   "nas_order_bc_price_TTC": "Total price incl. VAT:",
-  "nas_order_bc_finish_success": "The order number <a href='{{t0}}' target='_blank'>{{t1}}</a> of your NAS has been registered.",
+  "nas_order_bc_finish_success": "The NAS order number <a href='{{t0}}' target='_blank'>{{t1}}</a> has been processed.",
   "nas_order_bc_finish_fail": "An error has occurred ordering your NAS",
   "nas_snapshot_informations_valid": "Confirm modifications",
   "nas_snapshot_informations_cancel": "Cancel modifications",
