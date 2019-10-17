@@ -1,260 +1,584 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
 import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
+import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
 
-export default /* @ngInject */ (
-  $scope,
-  $rootScope,
-  $q,
-  $timeout,
-  $translate,
-  WucConverterService,
-  Hosting,
-  Alerter,
-  Navigator,
-  constants,
-  User,
-  HostingOvhConfig,
-  HostingTask,
-  HostingDatabase,
-  HostingDomain,
-  PrivateDatabase,
-  $stateParams,
-  HOSTING_STATUS,
-) => {
-  $scope.loadingHostingInformations = true;
-  $scope.loadingHostingError = false;
-  $scope.urls = {
-    hosting: '',
-  };
-  $scope.edit = {
-    active: false,
-  };
+export default class {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $rootScope,
+    $location,
+    $q,
+    $state,
+    $stateParams,
+    $timeout,
+    $translate,
+    WucConverterService,
+    Hosting,
+    Alerter,
+    Navigator,
+    constants,
+    User,
+    HostingDatabase,
+    HostingDomain,
+    HostingFreedom,
+    HostingIndy,
+    HostingOvhConfig,
+    HostingTask,
+    PrivateDatabase,
+    HOSTING_STATUS,
+  ) {
+    this.$scope = $scope;
+    this.$scope.HOSTING_STATUS = HOSTING_STATUS;
+    this.$rootScope = $rootScope;
+    this.$location = $location;
+    this.$q = $q;
+    this.$state = $state;
+    this.$stateParams = $stateParams;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.WucConverterService = WucConverterService;
+    this.Hosting = Hosting;
+    this.Alerter = Alerter;
+    this.Navigator = Navigator;
+    this.constants = constants;
+    this.User = User;
+    this.HostingDatabase = HostingDatabase;
+    this.HostingDomain = HostingDomain;
+    this.HostingFreedom = HostingFreedom;
+    this.HostingIndy = HostingIndy;
+    this.HostingOvhConfig = HostingOvhConfig;
+    this.HostingTask = HostingTask;
+    this.PrivateDatabase = PrivateDatabase;
+  }
 
-  $scope.HOSTING_STATUS = HOSTING_STATUS;
+  $onInit() {
+    this.$scope.loadingHostingInformations = true;
+    this.$scope.loadingHostingError = false;
+    this.$scope.urls = {
+      hosting: '',
+    };
+    this.$scope.edit = {
+      active: false,
+    };
 
-  $scope.stepPath = '';
-  $scope.currentAction = null;
-  $scope.currentActionData = null;
-  $scope.newDisplayName = {
-    value: '',
-  };
-  $scope.displayMore = {
-    value: false,
-  };
+    this.$scope.stepPath = '';
+    this.$scope.currentAction = null;
+    this.$scope.currentActionData = null;
+    this.$scope.newDisplayName = {
+      value: '',
+    };
+    this.$scope.displayMore = {
+      value: false,
+    };
 
-  $scope.alerts = {
-    page: 'app.alerts.page',
-    tabs: 'app.alerts.tabs',
-    main: 'app.alerts.main',
-  };
+    this.$scope.alerts = {
+      page: 'app.alerts.page',
+      tabs: 'app.alerts.tabs',
+      main: 'app.alerts.main',
+    };
 
-  $scope.urlDomainOrder = null;
+    this.$scope.urlDomainOrder = null;
 
-  $scope.ovhConfig = null;
+    this.$scope.ovhConfig = null;
 
-  $scope.convertBytesSize = (nb, unit, decimalWanted = 0) => {
-    if (nb == null || unit == null) {
-      return '';
-    }
+    this.$scope.convertBytesSize = (nb, unit, decimalWanted = 0) => {
+      if (nb == null || unit == null) {
+        return '';
+      }
 
-    const res = filesize(WucConverterService.convertToOctet(nb, unit), {
-      output: 'object',
-      round: decimalWanted,
-      base: -1,
+      const res = filesize(this.WucConverterService.convertToOctet(nb, unit), {
+        output: 'object',
+        round: decimalWanted,
+        base: -1,
+      });
+      const resUnit = this.$translate.instant(`unit_size_${res.symbol}`);
+
+      return `${res.value} ${resUnit}`;
+    };
+
+    this.User.getUrlOf('changeOwner').then((link) => {
+      this.$scope.changeOwnerUrl = link;
     });
-    const resUnit = $translate.instant(`unit_size_${res.symbol}`);
 
-    return `${res.value} ${resUnit}`;
-  };
+    this.$scope.$on(this.HostingOvhConfig.events.ovhConfigNeedRefresh, () => {
+      this.loadOvhConfig();
+    });
 
-  User.getUrlOf('changeOwner').then((link) => {
-    $scope.changeOwnerUrl = link;
-  });
+    this.$scope.goToPrivateDb = (privateDb) => {
+      this.$rootScope.$broadcast('leftNavigation.selectProduct.fromName', {
+        name: privateDb,
+        type: 'PRIVATE_DATABASE',
+      });
+      this.Navigator.navigate(`configuration/private_database/${privateDb}`);
+    };
 
-  function loadOvhConfig() {
-    HostingOvhConfig.getCurrent($stateParams.productId).then((ovhConfig) => {
-      $scope.ovhConfig = merge(ovhConfig, {
-        taskPending: get($scope.ovhConfig, 'taskPending', false),
-        taskPendingError: get($scope.ovhConfig, 'taskPendingError', false),
+    this.$scope.userInfos = {};
+
+    this.$scope.getUserInfos = () => this.User.getUser()
+      .then((user) => {
+        this.$scope.userInfos = user;
+      })
+      .catch(err => this.$q.reject(err));
+
+    this.$scope.isAdminPrivateDb = privateDb => this.$scope
+      .getUserInfos()
+      .then(() => this.PrivateDatabase.getServiceInfos(privateDb))
+      .then(privateDbInfo => some(
+        [
+          privateDbInfo.contactBilling,
+          privateDbInfo.contactTech,
+          privateDbInfo.contactAdmin,
+        ],
+        contactName => this.$scope.userInfos.nichandle === contactName,
+      ))
+      .catch((err) => {
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('common_serviceinfos_error', { t0: privateDb }),
+          err,
+          this.$scope.alerts.main,
+        );
+        return false;
       });
 
-      $scope.phpVersionSupport = find(
-        $scope.hosting.phpVersions,
+    this.$scope.editDisplayName = () => {
+      this.$scope.newDisplayName.value = this.$scope.hosting.displayName
+        || this.$scope.hosting.serviceName;
+      this.$scope.edit.active = true;
+    };
+
+    this.$scope.saveDisplayName = () => {
+      const displayName = this.$scope.newDisplayName.value || this.$scope.hosting.serviceName;
+      this.Hosting.updateHosting(this.$stateParams.productId, {
+        body: {
+          displayName,
+        },
+      })
+        .then(() => {
+          this.$rootScope.$broadcast('change.displayName', [
+            this.$scope.hosting.serviceName,
+            displayName,
+          ]);
+          this.$timeout(() => {
+            this.$scope.hosting.displayName = displayName;
+          }, 0);
+        })
+        .catch((err) => {
+          set(err, 'type', err.type || 'ERROR');
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('hosting_dashboard_loading_error'),
+            err,
+            this.$scope.alerts.main,
+          );
+        })
+        .finally(() => {
+          this.$scope.edit.active = false;
+        });
+    };
+
+    this.$scope.resetDisplayName = () => {
+      this.$scope.edit.active = false;
+    };
+
+    this.$scope.getStateBadgeClass = () => {
+      switch (get(this.$scope.hosting, 'serviceState')) {
+        case 'ACTIVE':
+          return 'oui-status_success';
+        case 'MAINTENANCE':
+          return 'oui-status_warning';
+        case 'BLOQUED':
+          return 'oui-status_error';
+        default:
+          return null;
+      }
+    };
+
+    this.$scope.$on('hosting.cdn.flush.refresh', () => {
+      this.checkFlushCdnState();
+    });
+
+    this.$scope.$on('$destroy', () => {
+      this.Hosting.killPollFlushCdn();
+      this.Hosting.killPollSqlPrive();
+    });
+
+    this.$scope.$on('hosting.database.sqlPrive', () => {
+      this.checkSqlPriveState();
+    });
+
+    // FLUSH CDN
+    this.$scope.resetAction = () => {
+      this.$scope.setAction(false);
+    };
+
+    this.$scope.$on('$locationChangeStart', () => {
+      this.$scope.resetAction();
+    });
+
+    this.$scope.setAction = (action, data) => {
+      this.$scope.currentAction = action;
+      this.$scope.currentActionData = data;
+
+      if (action) {
+        this.$scope.stepPath = `hosting/${this.$scope.currentAction}.html`;
+        $('#currentAction').modal({
+          keyboard: true,
+          backdrop: 'static',
+        });
+      } else {
+        $('#currentAction').modal('hide');
+        this.$scope.currentActionData = null;
+        this.$timeout(() => {
+          this.$scope.stepPath = '';
+        }, 300);
+      }
+    };
+
+    this.$scope.getOfferPrivateSQLInfo = () => {
+      this.$scope.hosting.sqlPriveInfo = {
+        nbDataBaseActive: 0,
+        nbDataBaseInclude: 0,
+        offerCapabilitiesPDB: null,
+        databaseCreationCapabilitiesPDB: null,
+      };
+
+      this.HostingDatabase.getPrivateDatabaseCapabilities(this.$stateParams.productId)
+        .then((privateDbCapabilities) => {
+          this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude = this.$scope.hosting
+            .offerCapabilities.privateDatabases.length;
+          this.$scope.hosting.sqlPriveInfo.nbDataBaseActive = this.$scope.hosting
+            .sqlPriveInfo.nbDataBaseInclude - privateDbCapabilities.length;
+        });
+    };
+
+    //---------------------------------------------
+    // POLLING
+    //---------------------------------------------
+    // Add domain
+    this.$scope.$on('hostingDomain.attachDomain.start', () => {
+      this.Alerter.success(
+        this.$translate.instant('hosting_tab_DOMAINS_configuration_add_success_progress'),
+        this.$scope.alerts.main,
+      );
+    });
+
+    this.$scope.$on('hostingDomain.attachDomain.done', () => {
+      this.Alerter.success(
+        this.$translate.instant('hosting_tab_DOMAINS_configuration_add_success_finish'),
+        this.$scope.alerts.main,
+      );
+    });
+
+    this.$scope.$on('hostingDomain.attachDomain.error', (event, err) => {
+      this.Alerter.alertFromSWS(
+        this.$translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
+        get(err, 'data', err),
+        this.$scope.alerts.main,
+      );
+    });
+
+    // Modify domain
+    this.$scope.$on('hostingDomain.modifyDomain.start', () => {
+      this.Alerter.success(
+        this.$translate.instant('hosting_tab_DOMAINS_configuration_modify_success_progress'),
+        this.$scope.alerts.main,
+      );
+    });
+
+    this.$scope.$on('hostingDomain.modifyDomain.done', () => {
+      this.$scope.$broadcast('paginationServerSide.reload');
+      this.Alerter.success(
+        this.$translate.instant('hosting_tab_DOMAINS_configuration_modify_success_finish'),
+        this.$scope.alerts.main,
+      );
+    });
+
+    this.$scope.$on('hostingDomain.modifyDomain.error', (err) => {
+      this.$scope.$broadcast('paginationServerSide.reload');
+      this.Alerter.alertFromSWS(
+        this.$translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
+        get(err, 'data', err),
+        this.$scope.alerts.main,
+      );
+    });
+
+    this.$scope.$on('$destroy', () => {
+      this.HostingDomain.killAllPolling();
+    });
+
+    this.$scope.$on(this.Hosting.events.dashboardRefresh, () => this.loadHosting());
+
+    this.loadHosting();
+
+    // Tabs
+    this.defaultTab = 'GENERAL_INFORMATIONS';
+    this.tabs = ['GENERAL_INFORMATIONS', 'MULTISITE', 'MODULE', 'FTP', 'DATABASE', 'TASK'];
+    this.$scope.displayTabs = { cron: true, databases: true, modules: true };
+
+    this.setSelectedTab = this.setSelectedTab.bind(this);
+
+    if (this.$stateParams.tab
+      && this.tabs.indexOf(
+        isString(this.$stateParams.tab)
+        && this.$stateParams.tab.toUpperCase(),
+      ) !== -1) {
+      this.setSelectedTab(isString(this.$stateParams.tab)
+        && this.$stateParams.tab.toUpperCase());
+    } else {
+      this.setSelectedTab(this.defaultTab);
+    }
+
+    return this.$q.all({
+      hosting: this.Hosting.getSelected(this.$stateParams.productId),
+      user: this.User.getUser(),
+    })
+      .then(({ hosting, user }) => (isEmpty(hosting.offer)
+        ? this.$q.when({ hosting, user })
+        : this.$q.all({
+          indys: this.HostingIndy.getIndys(this.$stateParams.productId),
+          freedoms: this.HostingFreedom.getFreedoms(
+            this.$stateParams.productId,
+            { forceRefresh: false },
+          ),
+          hosting,
+          user,
+        })))
+      .then(({
+        indys, freedoms, hosting, user,
+      }) => {
+        this.tabMenu = {
+          title: this.$translate.instant('navigation_more'),
+          items: [
+            {
+              label: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS'),
+              text: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_desc'),
+              target: 'AUTOMATED_EMAILS',
+              type: 'SWITCH_TABS',
+            },
+          ],
+        };
+
+        if (user.ovhSubsidiary === 'FR') {
+          this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
+          this.$scope.localSeoAvailable = true;
+        }
+
+        if (hosting.isCloudWeb) {
+          remove(this.tabs, t => t === 'TASK');
+          this.tabs.splice(1, 0, 'RUNTIMES', 'ENVVARS');
+          this.tabMenu.items.splice(0, 0, {
+            label: this.$translate.instant('hosting_tab_TASK'),
+            target: 'TASK',
+            type: 'SWITCH_TABS',
+          });
+        }
+
+        this.tabMenu.items = this.tabMenu.items.concat([
+          {
+            label: this.$translate.instant('hosting_tab_menu_crons'),
+            target: 'CRON',
+            type: 'SWITCH_TABS',
+          },
+          {
+            label: this.$translate.instant('hosting_tab_USER_LOGS'),
+            target: 'USER_LOGS',
+            type: 'SWITCH_TABS',
+          }]);
+
+        if (!hosting.isCloudWeb) {
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_BOOST'),
+            target: 'BOOST',
+            type: 'SWITCH_TABS',
+          });
+        }
+
+        if (!isEmpty(indys)) {
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_INDY'),
+            target: 'INDY',
+            type: 'SWITCH_TABS',
+          });
+        }
+
+        if (!isEmpty(freedoms)) {
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_FREEDOM'),
+            target: 'FREEDOM',
+            type: 'SWITCH_TABS',
+          });
+        }
+
+        this.tabMenu.items.push({
+          label: this.$translate.instant('hosting_tab_WEBSITE_COACH'),
+          styles: 'status-beta',
+          state: 'app.hosting.website-coach',
+          target: 'WEBSITE_COACH',
+          type: 'STATE',
+        });
+
+        this.tabMenu.items.push({
+          type: 'SEPARATOR',
+        });
+
+        if (!hosting.isCloudWeb) {
+          this.tabMenu.items.push({
+            label: this.$translate.instant('hosting_tab_menu_emails'),
+            target: `#/configuration/email-domain/${this.$stateParams.productId}?tab=MAILING_LIST`,
+            type: 'LINK',
+          });
+        }
+      });
+  }
+
+  loadOvhConfig() {
+    this.HostingOvhConfig.getCurrent(this.$stateParams.productId).then((ovhConfig) => {
+      this.$scope.ovhConfig = merge(ovhConfig, {
+        taskPending: get(this.$scope.ovhConfig, 'taskPending', false),
+        taskPendingError: get(this.$scope.ovhConfig, 'taskPendingError', false),
+      });
+
+      this.$scope.phpVersionSupport = find(
+        this.$scope.hosting.phpVersions,
         (version) => {
           if (version.version.indexOf('.') === -1) {
             version.version = `${version.version}.0`; // eslint-disable-line no-param-reassign
           }
 
-          return version.version === $scope.ovhConfig.engineVersion;
+          return version.version === this.$scope.ovhConfig.engineVersion;
         },
       );
 
-      HostingTask.getPending($stateParams.productId)
+      this.HostingTask.getPending(this.$stateParams.productId)
         .then((tasks) => {
           let queue;
           if (tasks && tasks.length > 0) {
-            const taskPendingMessage = $translate.instant(`hosting_global_php_version_pending_task_${tasks[0].function.replace(
+            const taskPendingMessage = this.$translate.instant(`hosting_global_php_version_pending_task_${tasks[0].function.replace(
               /ovhConfig\//,
               '',
             )}`);
             set(
-              $scope.ovhConfig,
+              this.$scope.ovhConfig,
               'taskPending',
               taskPendingMessage
-                || $translate.instant('hosting_global_php_version_pending_task_common'),
+                || this.$translate.instant('hosting_global_php_version_pending_task_common'),
             );
 
             queue = map(
               tasks,
-              task => HostingTask
-                .poll($stateParams.productId, task)
+              task => this.HostingTask
+                .poll(this.$stateParams.productId, task)
                 .catch(() => {
-                  set($scope.ovhConfig, 'taskPendingError', false);
+                  set(this.$scope.ovhConfig, 'taskPendingError', false);
                 }),
             );
 
-            $q.all(queue).then(() => {
-              loadOvhConfig();
+            this.$q.all(queue).then(() => {
+              this.loadOvhConfig();
             });
           } else {
-            set($scope.ovhConfig, 'taskPending', false);
+            set(this.$scope.ovhConfig, 'taskPending', false);
           }
         })
         .catch(() => {
-          set($scope.ovhConfig, 'taskPending', false);
+          set(this.$scope.ovhConfig, 'taskPending', false);
         });
 
-      HostingTask.getError($stateParams.productId)
+      this.HostingTask.getError(this.$stateParams.productId)
         .then((tasks) => {
-          if ($scope.ovhConfig) {
+          if (this.$scope.ovhConfig) {
             if (tasks && tasks.length > 0) {
-              const taskErrorMessage = $translate.instant(`hosting_global_php_version_pending_task_error_${tasks[0].function.replace(
+              const taskErrorMessage = this.$translate.instant(`hosting_global_php_version_pending_task_error_${tasks[0].function.replace(
                 /ovhConfig\//,
                 '',
               )}`);
               set(
-                $scope.ovhConfig,
+                this.$scope.ovhConfig,
                 'taskPendingError',
                 taskErrorMessage
-                  || $translate.instant('hosting_global_php_version_pending_task_error_common'),
+                  || this.$translate.instant('hosting_global_php_version_pending_task_error_common'),
               );
             } else {
-              set($scope.ovhConfig, 'taskPendingError', false);
+              set(this.$scope.ovhConfig, 'taskPendingError', false);
             }
           }
         })
         .catch(() => {
-          set($scope.ovhConfig, 'taskPendingError', false);
+          set(this.$scope.ovhConfig, 'taskPendingError', false);
         });
     });
   }
 
-  $scope.$on(HostingOvhConfig.events.ovhConfigNeedRefresh, () => {
-    loadOvhConfig();
-  });
-
-  $scope.goToPrivateDb = (privateDb) => {
-    $rootScope.$broadcast('leftNavigation.selectProduct.fromName', {
-      name: privateDb,
-      type: 'PRIVATE_DATABASE',
-    });
-    Navigator.navigate(`configuration/private_database/${privateDb}`);
-  };
-
-  $scope.userInfos = {};
-
-  $scope.getUserInfos = () => User.getUser()
-    .then((user) => {
-      $scope.userInfos = user;
-    })
-    .catch(err => $q.reject(err));
-
-  $scope.isAdminPrivateDb = privateDb => $scope
-    .getUserInfos()
-    .then(() => PrivateDatabase.getServiceInfos(privateDb))
-    .then(privateDbInfo => some(
-      [
-        privateDbInfo.contactBilling,
-        privateDbInfo.contactTech,
-        privateDbInfo.contactAdmin,
-      ],
-      contactName => $scope.userInfos.nichandle === contactName,
-    ))
-    .catch((err) => {
-      Alerter.alertFromSWS(
-        $translate.instant('common_serviceinfos_error', { t0: privateDb }),
-        err,
-        $scope.alerts.main,
-      );
-      return false;
-    });
-
   // FLUSH CDN
-  function checkFlushCdnState() {
-    $scope.flushCdnState = 'check';
-    Hosting.checkTaskUnique($stateParams.productId, 'web/flushCache').then((taskIds) => {
+  checkFlushCdnState() {
+    this.$scope.flushCdnState = 'check';
+    this.Hosting.checkTaskUnique(this.$stateParams.productId, 'web/flushCache').then((taskIds) => {
       if (taskIds && taskIds.length) {
-        $scope.flushCdnState = 'doing';
-        $rootScope.$broadcast(Hosting.events.tasksChanged);
-        Hosting.pollFlushCdn($stateParams.productId, taskIds).then(() => {
-          $rootScope.$broadcast(Hosting.events.tasksChanged);
-          $scope.flushCdnState = 'ok';
-          Alerter.success(
-            $translate.instant('hosting_dashboard_cdn_flush_done_success'),
-            $scope.alerts.main,
+        this.$scope.flushCdnState = 'doing';
+        this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+        this.Hosting.pollFlushCdn(this.$stateParams.productId, taskIds).then(() => {
+          this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+          this.$scope.flushCdnState = 'ok';
+          this.Alerter.success(
+            this.$translate.instant('hosting_dashboard_cdn_flush_done_success'),
+            this.$scope.alerts.main,
           );
         });
       } else {
-        $scope.flushCdnState = 'ok';
+        this.$scope.flushCdnState = 'ok';
       }
     });
   }
 
-  function checkSqlPriveState() {
-    $scope.sqlPriveState = 'check';
-    Hosting.checkTaskUnique(
-      $stateParams.productId,
+  checkSqlPriveState() {
+    this.$scope.sqlPriveState = 'check';
+    this.Hosting.checkTaskUnique(
+      this.$stateParams.productId,
       'hosting/activate/privateDatabase',
     ).then((taskIds) => {
       if (taskIds && taskIds.length) {
-        $scope.sqlPriveState = 'doing';
-        Hosting.pollSqlPrive($stateParams.productId, taskIds).then(() => {
-          $scope.sqlPriveState = 'ok';
-          Alerter.success($translate.instant('hosting_dashboard_database_active_success_done'));
+        this.$scope.sqlPriveState = 'doing';
+        this.Hosting.pollSqlPrive(this.$stateParams.productId, taskIds).then(() => {
+          this.$scope.sqlPriveState = 'ok';
+          this.Alerter.success(this.$translate.instant('hosting_dashboard_database_active_success_done'));
         });
       } else {
-        $scope.sqlPriveState = 'ok';
+        this.$scope.sqlPriveState = 'ok';
       }
     });
   }
 
-  function setUrchin() {
+  setUrchin() {
     if (
-      ['gra1', 'gra2'].includes($scope.hostingProxy.datacenter)
+      ['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)
     ) {
       // FOR GRAVELINE
-      $scope.urchin = URI.expand(constants.urchin_gra, {
-        serviceName: $scope.hosting.serviceName,
-        cluster: $scope.hostingProxy.cluster,
+      this.$scope.urchin = URI.expand(this.constants.urchin_gra, {
+        serviceName: this.$scope.hosting.serviceName,
+        cluster: this.$scope.hostingProxy.cluster,
       }).toString();
     } else {
-      $scope.urchin = URI.expand(constants.urchin, {
-        serviceName: $scope.hosting.serviceName,
-        cluster: $scope.hostingProxy.cluster,
+      this.$scope.urchin = URI.expand(this.constants.urchin, {
+        serviceName: this.$scope.hosting.serviceName,
+        cluster: this.$scope.hostingProxy.cluster,
       }).toString();
     }
   }
 
-  function getLinkedPrivateDatabases() {
-    return Hosting.getPrivateDatabasesLinked($stateParams.productId)
-      .then(databases => $q.all(
-        databases.map(databaseName => $scope.isAdminPrivateDb(databaseName)
+  getLinkedPrivateDatabases() {
+    return this.Hosting.getPrivateDatabasesLinked(this.$stateParams.productId)
+      .then(databases => this.$q.all(
+        databases.map(databaseName => this.$scope.isAdminPrivateDb(databaseName)
           .then(isAdmin => ({
             name: databaseName,
             isAdmin,
@@ -262,287 +586,123 @@ export default /* @ngInject */ (
       ));
   }
 
-  $scope.editDisplayName = () => {
-    $scope.newDisplayName.value = $scope.hosting.displayName || $scope.hosting.serviceName;
-    $scope.edit.active = true;
-  };
-
-  $scope.saveDisplayName = () => {
-    const displayName = $scope.newDisplayName.value || $scope.hosting.serviceName;
-    Hosting.updateHosting($stateParams.productId, {
-      body: {
-        displayName,
-      },
-    })
-      .then(() => {
-        $rootScope.$broadcast('change.displayName', [
-          $scope.hosting.serviceName,
-          displayName,
-        ]);
-        $timeout(() => {
-          $scope.hosting.displayName = displayName;
-        }, 0);
-      })
-      .catch((err) => {
-        set(err, 'type', err.type || 'ERROR');
-        Alerter.alertFromSWS(
-          $translate.instant('hosting_dashboard_loading_error'),
-          err,
-          $scope.alerts.main,
-        );
-      })
-      .finally(() => {
-        $scope.edit.active = false;
-      });
-  };
-
-  $scope.resetDisplayName = () => {
-    $scope.edit.active = false;
-  };
-
-  $scope.getStateBadgeClass = () => {
-    switch (get($scope.hosting, 'serviceState')) {
-      case 'ACTIVE':
-        return 'oui-status_success';
-      case 'MAINTENANCE':
-        return 'oui-status_warning';
-      case 'BLOQUED':
-        return 'oui-status_error';
-      default:
-        return null;
-    }
-  };
-
-  $scope.$on('hosting.cdn.flush.refresh', () => {
-    checkFlushCdnState();
-  });
-
-  $scope.$on('$destroy', () => {
-    Hosting.killPollFlushCdn();
-    Hosting.killPollSqlPrive();
-  });
-
-  $scope.$on('hosting.database.sqlPrive', () => {
-    checkSqlPriveState();
-  });
-
-  // FLUSH CDN
-  $scope.resetAction = () => {
-    $scope.setAction(false);
-  };
-
-  $scope.$on('$locationChangeStart', () => {
-    $scope.resetAction();
-  });
-
-  $scope.setAction = (action, data) => {
-    $scope.currentAction = action;
-    $scope.currentActionData = data;
-
-    if (action) {
-      $scope.stepPath = `hosting/${$scope.currentAction}.html`;
-      $('#currentAction').modal({
-        keyboard: true,
-        backdrop: 'static',
-      });
-    } else {
-      $('#currentAction').modal('hide');
-      $scope.currentActionData = null;
-      $timeout(() => {
-        $scope.stepPath = '';
-      }, 300);
-    }
-  };
-
-  $scope.getOfferPrivateSQLInfo = () => {
-    $scope.hosting.sqlPriveInfo = {
-      nbDataBaseActive: 0,
-      nbDataBaseInclude: 0,
-      offerCapabilitiesPDB: null,
-      databaseCreationCapabilitiesPDB: null,
-    };
-
-    HostingDatabase.getPrivateDatabaseCapabilities($stateParams.productId)
-      .then((privateDbCapabilities) => {
-        $scope.hosting.sqlPriveInfo.nbDataBaseInclude = $scope.hosting
-          .offerCapabilities.privateDatabases.length;
-        $scope.hosting.sqlPriveInfo.nbDataBaseActive = $scope.hosting
-          .sqlPriveInfo.nbDataBaseInclude - privateDbCapabilities.length;
-      });
-  };
-
-  //---------------------------------------------
-  // POLLING
-  //---------------------------------------------
-  // Add domain
-  $scope.$on('hostingDomain.attachDomain.start', () => {
-    Alerter.success(
-      $translate.instant('hosting_tab_DOMAINS_configuration_add_success_progress'),
-      $scope.alerts.main,
-    );
-  });
-
-  $scope.$on('hostingDomain.attachDomain.done', () => {
-    Alerter.success(
-      $translate.instant('hosting_tab_DOMAINS_configuration_add_success_finish'),
-      $scope.alerts.main,
-    );
-  });
-
-  $scope.$on('hostingDomain.attachDomain.error', (event, err) => {
-    Alerter.alertFromSWS(
-      $translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
-      get(err, 'data', err),
-      $scope.alerts.main,
-    );
-  });
-
-  // Modify domain
-  $scope.$on('hostingDomain.modifyDomain.start', () => {
-    Alerter.success(
-      $translate.instant('hosting_tab_DOMAINS_configuration_modify_success_progress'),
-      $scope.alerts.main,
-    );
-  });
-
-  $scope.$on('hostingDomain.modifyDomain.done', () => {
-    $scope.$broadcast('paginationServerSide.reload');
-    Alerter.success(
-      $translate.instant('hosting_tab_DOMAINS_configuration_modify_success_finish'),
-      $scope.alerts.main,
-    );
-  });
-
-  $scope.$on('hostingDomain.modifyDomain.error', (err) => {
-    $scope.$broadcast('paginationServerSide.reload');
-    Alerter.alertFromSWS(
-      $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
-      get(err, 'data', err),
-      $scope.alerts.main,
-    );
-  });
-
-  function startPolling() {
-    $q.all([
-      HostingDomain.getTaskIds(
+  startPolling() {
+    this.$q.all([
+      this.HostingDomain.getTaskIds(
         { fn: 'attachedDomain/create' },
-        $stateParams.productId,
+        this.$stateParams.productId,
       ),
-      HostingDomain.getTaskIds(
+      this.HostingDomain.getTaskIds(
         { fn: 'attachedDomain/update' },
-        $stateParams.productId,
+        this.$stateParams.productId,
       ),
     ]).then((tasks) => {
       const taskIds = union(tasks[0], tasks[1]);
       ['attachedDomain/create', 'attachedDomain/update'].forEach((name, key) => {
         if (tasks[key].length > 0) {
-          HostingDomain.pollRequest({
+          this.HostingDomain.pollRequest({
             taskIds,
             namespace: name,
-            serviceName: $scope.hosting.serviceName,
+            serviceName: this.$scope.hosting.serviceName,
           });
         }
       });
     });
   }
 
-  $scope.$on('$destroy', () => {
-    HostingDomain.killAllPolling();
-  });
-
-  function getAutorenewUrl(guides) {
-    $scope.autorenew = {
+  getAutorenewUrl(guides) {
+    this.$scope.autorenew = {
       guide: guides.autorenew,
-      url: `${constants.AUTORENEW_URL}?selectedType=HOSTING_WEB&searchText=${$scope.hosting.serviceInfos.domain}`,
+      url: `${this.constants.AUTORENEW_URL}?selectedType=HOSTING_WEB&searchText=${this.$scope.hosting.serviceInfos.domain}`,
     };
   }
 
-  function loadHosting() {
-    return Hosting.getSelected($stateParams.productId, true)
+  loadHosting() {
+    return this.Hosting.getSelected(this.$stateParams.productId, true)
       .then(
         (hosting) => {
-          $scope.hosting = hosting;
-          $scope.hosting.displayName = hosting.displayName || hosting.serviceDisplayName;
-          $scope.isAdminPvtDb = false;
+          this.$scope.hosting = hosting;
+          this.$scope.hosting.displayName = hosting.displayName || hosting.serviceDisplayName;
+          this.$scope.isAdminPvtDb = false;
 
           if (!hosting.isExpired && hosting.messages.length > 0) {
-            Alerter.error(
-              $translate.instant('hosting_dashboard_loading_error'),
-              $scope.alerts.page,
+            this.Alerter.error(
+              this.$translate.instant('hosting_dashboard_loading_error'),
+              this.$scope.alerts.page,
             );
             if (!hosting.name) {
-              return $q.reject();
+              return this.$q.reject();
             }
           }
 
           if (!hosting.isExpired) {
-            checkFlushCdnState();
-            checkSqlPriveState();
-            $scope.getOfferPrivateSQLInfo();
+            this.checkFlushCdnState();
+            this.checkSqlPriveState();
+            this.$scope.getOfferPrivateSQLInfo();
           }
 
-          return $q.all({
-            serviceInfos: Hosting.getServiceInfos($stateParams.productId),
-            hostingProxy: Hosting.getHosting($stateParams.productId),
-            hostingUrl: User.getUrlOfEndsWithSubsidiary('hosting'),
-            linkedDatabases: getLinkedPrivateDatabases,
-            domainOrderUrl: User.getUrlOf('domainOrder'),
+          return this.$q.all({
+            serviceInfos: this.Hosting.getServiceInfos(this.$stateParams.productId),
+            hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
+            hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
+            linkedDatabases: this.getLinkedPrivateDatabases,
+            domainOrderUrl: this.User.getUrlOf('domainOrder'),
           });
         },
       )
       .then(({
         serviceInfos, hostingProxy, hostingUrl, databases, domainOrderUrl,
       }) => {
-        $scope.hosting.serviceInfos = serviceInfos;
-        $scope.hostingProxy = hostingProxy;
-        $scope.ftp = hostingProxy.serviceManagementAccess.ftp;
-        $scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
-        $scope.http = hostingProxy.serviceManagementAccess.http;
-        $scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
-        $scope.ssh = hostingProxy.serviceManagementAccess.ssh;
-        $scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
-        $scope.urls.hosting = hostingUrl;
-        $scope.privateDatabasesLinked = databases;
-        $scope.urlDomainOrder = domainOrderUrl;
-        setUrchin();
+        this.$scope.hosting.serviceInfos = serviceInfos;
+        this.$scope.hostingProxy = hostingProxy;
+        this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
+        this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
+        this.$scope.http = hostingProxy.serviceManagementAccess.http;
+        this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
+        this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
+        this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
+        this.$scope.urls.hosting = hostingUrl;
+        this.$scope.privateDatabasesLinked = databases;
+        this.$scope.urlDomainOrder = domainOrderUrl;
+        this.setUrchin();
 
-        return User.getUrlOf('guides');
+        return this.User.getUrlOf('guides');
       })
       .then((guides) => {
         if (guides) {
         // GLOBAL ALERT TO UPGRADE APACHE
-          if (indexOf($scope.hosting.updates, 'APACHE24') >= 0) {
-            $timeout(() => {
-              Alerter.alertFromSWS(
-                $translate.instant('hosting_global_php_version_pending_update_apache', {
+          if (indexOf(this.$scope.hosting.updates, 'APACHE24') >= 0) {
+            this.$timeout(() => {
+              this.Alerter.alertFromSWS(
+                this.$translate.instant('hosting_global_php_version_pending_update_apache', {
                   t0: guides.works.apache,
                   t1: 'http://travaux.ovh.net/?do=details&id=25601',
-                }), null, $scope.alerts.tabs,
+                }), null, this.$scope.alerts.tabs,
               );
             }, 100);
           }
 
-          switch ($scope.hosting.serviceState) {
+          switch (this.$scope.hosting.serviceState) {
             case 'BLOQUED':
               if (guides.hostingHackState) {
-                $scope.guideHostingState = guides.hostingHackState;
+                this.$scope.guideHostingState = guides.hostingHackState;
               }
               break;
             case 'MAINTENANCE':
               if (guides.hostingDisabledState) {
-                $scope.guideHostingState = guides.hostingDisabledState;
+                this.$scope.guideHostingState = guides.hostingDisabledState;
               }
               break;
             default:
               break;
           }
 
-          getAutorenewUrl(guides);
+          this.getAutorenewUrl(guides);
         }
       })
       .then(() => {
-        if (moment().isAfter(moment($scope.hostingProxy.lastOvhConfigScan).add(12, 'hours'))) {
-          return HostingOvhConfig.ovhConfigRefresh($stateParams.productId, { returnErrorKey: '' }).then(data => data).catch((err) => {
+        if (moment().isAfter(moment(this.$scope.hostingProxy.lastOvhConfigScan).add(12, 'hours'))) {
+          return this.HostingOvhConfig.ovhConfigRefresh(this.$stateParams.productId, { returnErrorKey: '' }).then(data => data).catch((err) => {
             if (get(err, 'status') === 403) {
               return null;
             }
@@ -552,21 +712,30 @@ export default /* @ngInject */ (
         }
         return null;
       })
-      .then(() => loadOvhConfig())
-      .then(() => startPolling())
+      .then(() => this.loadOvhConfig())
+      .then(() => this.startPolling())
       .catch((err) => {
-        $scope.hosting.serviceInfos = {};
-        $scope.loadingHostingError = true;
-        Alerter.error(err);
+        this.$scope.hosting.serviceInfos = {};
+        this.$scope.loadingHostingError = true;
+        this.Alerter.error(err);
       })
       .finally(() => {
-        $scope.loadingHostingInformations = false;
+        this.$scope.loadingHostingInformations = false;
       });
   }
 
-  $scope.$on(Hosting.events.dashboardRefresh, () => {
-    loadHosting();
-  });
+  setSelectedTab(tab) {
+    if (includes(this.tabs, tab)) {
+      this.selectedTab = tab;
+    } else if (includes(map(this.tabMenu.items, item => item.type === 'SWITCH_TABS' && item.target), tab)) {
+      this.selectedTab = tab;
+    } else {
+      this.selectedTab = this.defaultTab;
+    }
+    this.$location.search('tab', this.selectedTab);
+  }
 
-  loadHosting();
-};
+  static toKebabCase(str) {
+    return kebabCase(str);
+  }
+}
