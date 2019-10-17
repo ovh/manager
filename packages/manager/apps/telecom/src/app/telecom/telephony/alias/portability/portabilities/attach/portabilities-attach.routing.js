@@ -2,7 +2,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('telecom.telephony.alias.portabilities.attach', {
-      url: '/portabilities/attach?portabilityId',
+      url: '/attach?portabilityId',
       views: {
         modal: {
           component: 'portabilitiesAttach',
@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
       },
       resolve: {
+        billingAccount: /* @ngInject */ $transition$ => $transition$.params().billingAccount,
         portabilityId: /* @ngInject */ $transition$ => $transition$.params().portabilityId,
         goBack: /* @ngInject */ goToPortabilities => goToPortabilities,
       },

@@ -3,6 +3,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
+import attach from './attach/portabilities-attach.module';
 
 import component from './telecom-telephony-alias-portability-portabilities.component';
 import routing from './telecom-telephony-alias-portability-portabilities.routing';
@@ -14,6 +15,7 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    attach,
   ])
   .config(routing)
   .component('portabilities', component)

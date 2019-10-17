@@ -1,15 +1,10 @@
 import endsWith from 'lodash/endsWith';
 
-export default class {
+export default class PortabilitiesAttachCtrl {
   /* @ngInject */
-  constructor($stateParams, $timeout, $translate, $uibModalInstance, OvhApiTelephony,
-    TucToast, data) {
+  constructor($timeout, $translate, OvhApiTelephony) {
     this.$translate = $translate;
-    this.$uibModalInstance = $uibModalInstance;
-    this.TucToast = TucToast;
     this.OvhApiTelephony = OvhApiTelephony;
-    this.$stateParams = $stateParams;
-    this.data = data;
     this.$timeout = $timeout;
   }
 
@@ -18,23 +13,26 @@ export default class {
     this.hasChecked = false;
   }
 
-  attachMandate() {
+  uploadFile() {
     this.isLoading = true;
     return this.$q.all({
       noop: this.$timeout(angular.noop, 5000),
       upload: this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
-        billingAccount: this.$stateParams.billingAccount,
+        billingAccount: this.billingAccount,
         id: this.data.id,
       }, {
         name: this.uploadedFile.name,
       }),
-    }).then((response) => {
-      this.goBack(response);
-    }).catch((error) => {
-      this.goBack(error);
-    }).finally(() => {
-      this.isLoading = false;
-    });
+    }).then(() => this.goBack(
+      this.$translate.instant('portabilities_attach_document_succeed'),
+    ))
+      .catch(() => this.goBack(
+        this.$translate.instant('portabilities_attach_document_failed'),
+        'error',
+      ))
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   checkValidFileExtention(file) {

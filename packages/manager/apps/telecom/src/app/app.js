@@ -34,6 +34,8 @@ import TelecomAppCtrl from './app.controller';
 import carrierSip from './telecom/telephony/carrierSip';
 import navbar from '../components/navbar';
 
+import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
+
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import './app-scss.scss';
@@ -105,6 +107,7 @@ angular.module('managerApp', [
   'ui.validate',
   'validation.match',
   carrierSip,
+  portabilities,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */

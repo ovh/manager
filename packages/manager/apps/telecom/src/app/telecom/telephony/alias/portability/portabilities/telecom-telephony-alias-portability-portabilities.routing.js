@@ -3,17 +3,28 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/portabilities',
     views: {
       'aliasView@telecom.telephony.alias': {
-        templateUrl: 'app/telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.html',
-        controller: 'TelecomTelephonyAliasPortabilitiesCtrl',
-        controllerAs: 'PortabilitiesCtrl',
+        component: 'portabilities',
       },
     },
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      attachMandate: /* @ngInject */ ($state, billingAccount, portabilityId) => () => $state.go('telecom.telephony.alias.portabilities.attach', {
+      billingAccount: /* @ngInject */ $transition$ => $transition$.params().billingAccount,
+      attachMandate: /* @ngInject */ ($state, billingAccount) => portability => $state.go('telecom.telephony.alias.portabilities.attach', {
         billingAccount,
-        portabilityId,
+        portabilityId: portability.id,
       }),
+      goToPortabilities: /* @ngInject */ ($state, billingAccount) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go('telecom.telephony.alias.portabilities', {
+          billingAccount,
+        },
+        {
+          reload,
+        });
+
+        return promise;
+      },
     },
   });
 };

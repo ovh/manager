@@ -4,9 +4,6 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-import template from './attach/portabilities-attach.html';
-import controller from './attach/portabilities-attach.controller';
-
 function groupPortaByNumbers(portabilities) {
   let numbers = [];
   forEach(portabilities, (portability) => {
@@ -20,13 +17,12 @@ function groupPortaByNumbers(portabilities) {
 }
 
 export default class TelecomTelephonyAliasPortabilitiesCtrl {
-  constructor($q, $stateParams, $translate, $uibModal, OvhApiTelephony, TucToast) {
+  constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
-    this.$uibModal = $uibModal;
   }
 
   $onInit() {
@@ -91,27 +87,6 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
       return this.$q.reject(error);
     }).finally(() => {
       this.loading.cancel = false;
-    });
-  }
-
-  attachMandate(number) {
-    const modal = this.$uibModal.open({
-      animation: true,
-      template,
-      controller,
-      controllerAs: '$ctrl',
-      resolve: {
-        data: () => ({
-          id: number.portability.id,
-        }),
-      },
-    });
-
-    modal.result.then((mandate) => {
-      if (mandate && mandate.upload && mandate.upload.name) {
-        // refresh portabilities
-        this.init();
-      }
     });
   }
 }
