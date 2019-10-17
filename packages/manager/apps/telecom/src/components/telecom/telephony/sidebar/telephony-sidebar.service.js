@@ -1,7 +1,6 @@
 import filter from 'lodash/filter';
-import flatten from 'lodash/flatten';
 
-angular.module('managerApp').service('TelephonySidebar', function TelephonySidebar($q, $translate, CarrierSipService, SidebarMenu, tucTelecomVoip, tucVoipService) {
+angular.module('managerApp').service('TelephonySidebar', function TelephonySidebar($q, $translate, SidebarMenu, tucTelecomVoip, tucVoipService) {
   const self = this;
   self.mainSectionItem = null;
 
@@ -24,92 +23,78 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
   /*
      * Telephony sidebar initilization
      */
-  self.initTelephonySubsection = function () {
+  self.initTelephonySubsection = function initTelephonySubsection() {
     return tucTelecomVoip.fetchAll()
-      .then(billingAccounts => $q
-        .all(billingAccounts.map(({ billingAccount }) => CarrierSipService
-          .fetchAll(billingAccount)))
-        .then((allCarrierSipLines) => {
-          // first sort by getDisplayedName
-          const sortedBillingAccounts = billingAccounts
-            .sort((first, second) => first.getDisplayedName()
-              .localeCompare(second.getDisplayedName()));
+      .then((billingAccounts) => {
+        // first sort by getDisplayedName
+        const sortedBillingAccounts = billingAccounts
+          .sort((first, second) => first.getDisplayedName()
+            .localeCompare(second.getDisplayedName()));
 
-          sortedBillingAccounts.forEach((billingAccount) => {
-            // create subsection object
-            const billingAccountSubSection = SidebarMenu.addMenuItem({
-              id: billingAccount.billingAccount,
-              title: billingAccount.getDisplayedName(),
-              state: 'telecom.telephony',
-              stateParams: {
-                billingAccount: billingAccount.billingAccount,
-              },
-              allowSubItems: billingAccount.services.length > 0,
-            }, self.mainSectionItem);
+        sortedBillingAccounts.forEach((billingAccount) => {
+          // create subsection object
+          const billingAccountSubSection = SidebarMenu.addMenuItem({
+            id: billingAccount.billingAccount,
+            title: billingAccount.getDisplayedName(),
+            state: 'telecom.telephony',
+            stateParams: {
+              billingAccount: billingAccount.billingAccount,
+            },
+            allowSubItems: billingAccount.services.length > 0,
+          }, self.mainSectionItem);
 
-            /* ----------  Numbers (alias) display  ---------- */
+          /* ----------  Numbers (alias) display  ---------- */
 
-            // first sort numbers of the billingAccount
-            const sortedAlias = tucVoipService
-              .constructor.sortServicesByDisplayedName(billingAccount.getAlias());
+          // first sort numbers of the billingAccount
+          const sortedAlias = tucVoipService
+            .constructor.sortServicesByDisplayedName(billingAccount.getAlias());
 
-            // add number subsections to billingAccount subsection
-            addServiceMenuItems(sortedAlias, {
-              state: 'telecom.telephony.alias',
-              prefix: $translate.instant('telecom_sidebar_section_telephony_number'),
-            }, billingAccountSubSection);
+          // add number subsections to billingAccount subsection
+          addServiceMenuItems(sortedAlias, {
+            state: 'telecom.telephony.alias',
+            prefix: $translate.instant('telecom_sidebar_section_telephony_number'),
+          }, billingAccountSubSection);
 
-            /* ----------  Lines display  ---------- */
+          /* ----------  Lines display  ---------- */
 
-            // first sort lines of the billingAccount
-            const sortedLines = tucVoipService
-              .constructor.sortServicesByDisplayedName(billingAccount.getLines());
+          // first sort lines of the billingAccount
+          const sortedLines = tucVoipService
+            .constructor.sortServicesByDisplayedName(billingAccount.getLines());
 
-            // display lines except plugAndFax and fax
-            const sortedSipLines = filter(sortedLines, line => ['plugAndFax', 'fax', 'voicefax'].indexOf(line.featureType) === -1);
+          // display lines except plugAndFax and fax
+          const sortedSipLines = filter(sortedLines, line => ['plugAndFax', 'fax', 'voicefax'].indexOf(line.featureType) === -1);
 
-            // add line subsections to billingAccount subsection
-            const sipTrunkPrefix = $translate.instant('telecom_sidebar_section_telephony_trunk');
-            const sipPrefix = $translate.instant('telecom_sidebar_section_telephony_line');
+          // add line subsections to billingAccount subsection
+          const sipTrunkPrefix = $translate.instant('telecom_sidebar_section_telephony_trunk');
+          const sipPrefix = $translate.instant('telecom_sidebar_section_telephony_line');
 
-            addServiceMenuItems(sortedSipLines, {
-              state: 'telecom.telephony.line',
-              prefix(lineService) {
-                return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
-              },
-            }, billingAccountSubSection);
+          addServiceMenuItems(sortedSipLines, {
+            state: 'telecom.telephony.line',
+            prefix(lineService) {
+              return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
+            },
+          }, billingAccountSubSection);
 
-            // second get plugAndFax
-            const sortedPlugAndFaxLines = tucVoipService.constructor
-              .filterPlugAndFaxServices(sortedLines);
+          // second get plugAndFax
+          const sortedPlugAndFaxLines = tucVoipService.constructor
+            .filterPlugAndFaxServices(sortedLines);
 
-            // add plugAndFax subsections to billingAccount subsection
-            addServiceMenuItems(sortedPlugAndFaxLines, {
-              state: 'telecom.telephony.line',
-              prefix: $translate.instant('telecom_sidebar_section_telephony_plug_fax'),
-            }, billingAccountSubSection);
+          // add plugAndFax subsections to billingAccount subsection
+          addServiceMenuItems(sortedPlugAndFaxLines, {
+            state: 'telecom.telephony.line',
+            prefix: $translate.instant('telecom_sidebar_section_telephony_plug_fax'),
+          }, billingAccountSubSection);
 
-            // then get fax
-            const sortedFaxLines = tucVoipService.constructor.filterFaxServices(sortedLines);
+          // then get fax
+          const sortedFaxLines = tucVoipService.constructor.filterFaxServices(sortedLines);
 
-            // add fax subsections to billingAccount subsection
-            addServiceMenuItems(sortedFaxLines, {
-              state: 'telecom.telephony.fax',
-              prefix: $translate.instant('telecom_sidebar_section_telephony_fax'),
-            }, billingAccountSubSection);
-
-            /* ---------- CarrierSip Lines display ----------- */
-
-            const filteredCaerierSipLines = flatten(allCarrierSipLines)
-              .filter(carrierSipLine => carrierSipLine
-                .billingAccount === billingAccount.billingAccount);
-
-            addServiceMenuItems(filteredCaerierSipLines, {
-              state: 'telecom.telephony.carrierSip',
-              prefix: $translate.instant('telecom_sidebar_section_telephony_carrier_sip'),
-            }, billingAccountSubSection);
-          });
-        }));
+          // add fax subsections to billingAccount subsection
+          addServiceMenuItems(sortedFaxLines, {
+            state: 'telecom.telephony.fax',
+            prefix: $translate.instant('telecom_sidebar_section_telephony_fax'),
+          }, billingAccountSubSection);
+        });
+      });
   };
 
   self.init = function init() {
