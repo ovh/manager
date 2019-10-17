@@ -1,3 +1,13 @@
+## [3.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.3...@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.4) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+
+
+
 ## [3.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.2...@ovh-ux/ng-ovh-sso-auth-modal-plugin@3.0.3) (2019-09-10)
 
 

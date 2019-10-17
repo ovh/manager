@@ -1,3 +1,12 @@
+## [1.1.3](http://@ovh-ux/manager-office/compare/@ovh-ux/manager-office@1.1.2...@ovh-ux/manager-office@1.1.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](http://@ovh-ux/manager-office/issues/1469)) ([bbc8794](http://@ovh-ux/manager-office/commits/bbc8794))
+
+
+
 ## [1.1.2](http://@ovh-ux/manager-office/compare/@ovh-ux/manager-office@1.1.1...@ovh-ux/manager-office@1.1.2) (2019-09-03)
 
 

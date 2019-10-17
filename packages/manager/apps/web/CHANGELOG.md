@@ -1,3 +1,14 @@
+## [13.31.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.3...@ovh-ux/manager-web@13.31.4) (2019-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **web.domain:** add redirection to zone activation ([#1473](https://github.com/ovh-ux/manager/issues/1473)) ([6563bbc](https://github.com/ovh-ux/manager/commit/6563bbc))
+
+
+
 ## [13.31.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.2...@ovh-ux/manager-web@13.31.3) (2019-10-15)
 
 

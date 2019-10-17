@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Request tagger",
   "keywords": [
     "angular",
