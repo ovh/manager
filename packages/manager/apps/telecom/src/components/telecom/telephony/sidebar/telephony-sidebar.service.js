@@ -1,5 +1,7 @@
 import filter from 'lodash/filter';
 
+import { LINE_TYPES } from './telephony-sidebar.constants';
+
 angular.module('managerApp').service('TelephonySidebar', function TelephonySidebar($q, $translate, SidebarMenu, tucTelecomVoip, tucVoipService) {
   const self = this;
   self.mainSectionItem = null;
@@ -62,7 +64,12 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
             .constructor.sortServicesByDisplayedName(billingAccount.getLines());
 
           // display lines except plugAndFax and fax
-          const sortedSipLines = filter(sortedLines, line => ['plugAndFax', 'fax', 'voicefax'].indexOf(line.featureType) === -1);
+          const sortedSipLines = filter(
+            sortedLines,
+            line => !LINE_TYPES.ALL_FAX
+              .concat(LINE_TYPES.CARRIER_SIP)
+              .includes(line.featureType),
+          );
 
           // add line subsections to billingAccount subsection
           const sipTrunkPrefix = $translate.instant('telecom_sidebar_section_telephony_trunk');
@@ -95,7 +102,10 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
           }, billingAccountSubSection);
 
           /* ---------- CarrierSip Lines display ----------- */
-          const sortedCarrierSipLines = filter(sortedLines, line => line === 'carrierSip');
+          const sortedCarrierSipLines = filter(
+            sortedLines,
+            ({ featureType }) => featureType === LINE_TYPES.CARRIER_SIP,
+          );
 
           addServiceMenuItems(sortedCarrierSipLines, {
             state: 'telecom.telephony.carrierSip',
