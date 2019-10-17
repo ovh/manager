@@ -1,6 +1,6 @@
 import endsWith from 'lodash/endsWith';
 
-export default class PortabilitiesAttachCtrl {
+export default class {
   /* @ngInject */
   constructor($timeout, $translate, OvhApiTelephony) {
     this.$translate = $translate;

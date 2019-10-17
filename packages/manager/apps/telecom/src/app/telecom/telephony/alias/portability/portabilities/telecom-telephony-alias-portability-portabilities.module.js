@@ -7,6 +7,7 @@ import attach from './attach/portabilities-attach.module';
 
 import component from './telecom-telephony-alias-portability-portabilities.component';
 import routing from './telecom-telephony-alias-portability-portabilities.routing';
+import service from './telecom-telephony-alias-portability-portabilities.service';
 
 const moduleName = 'ovhManagerTelecomPortabilities';
 
@@ -19,6 +20,7 @@ angular
   ])
   .config(routing)
   .component('portabilities', component)
+  .service('TelephonyPortabilitiesService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

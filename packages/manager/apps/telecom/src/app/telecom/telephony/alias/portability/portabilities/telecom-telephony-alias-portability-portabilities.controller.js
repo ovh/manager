@@ -1,28 +1,16 @@
-import find from 'lodash/find';
-import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-function groupPortaByNumbers(portabilities) {
-  let numbers = [];
-  forEach(portabilities, (portability) => {
-    numbers = portability.numbersList.map(number => ({
-      number,
-      portability,
-      lastStepDone: find(portability.steps.slice().reverse(), { status: 'done' }),
-    }));
-  });
-  return numbers;
-}
-
 export default class TelecomTelephonyAliasPortabilitiesCtrl {
-  constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast) {
+  constructor($q, $stateParams, $translate, OvhApiTelephony, TelephonyPortabilitiesService,
+    TucToast) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
+    this.service = TelephonyPortabilitiesService;
   }
 
   $onInit() {
@@ -37,7 +25,7 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
   init() {
     this.isLoading = true;
     this.fetchPortability().then((result) => {
-      this.numbers = groupPortaByNumbers(result);
+      this.numbers = this.service.groupPortaByNumbers(result);
     }).catch((error) => {
       this.TucToast.error([this.$translate.instant('telephony_alias_portabilities_load_error'), get(error, 'data.message')].join(' '));
       return this.$q.reject(error);
