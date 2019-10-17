@@ -188,6 +188,7 @@ export const IAAS_CONFIG = {
       loadOnState: 'iaas.vps.detail',
       icon: 'ovh-font ovh-font-vps',
       app: [CLOUD],
+      regions: ['EU', 'CA'],
       searchKeys: ['VPS'],
     },
   ],
