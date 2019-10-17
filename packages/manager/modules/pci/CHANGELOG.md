@@ -1,3 +1,16 @@
+## [2.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.2...@ovh-ux/manager-pci@2.4.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **pci.new:** redirect to custom error page ([d7976da](https://github.com/ovh-ux/manager/commit/d7976da))
+* **pci.project.kubernetes.details.service:** fix button display ([#1476](https://github.com/ovh-ux/manager/issues/1476)) ([6747643](https://github.com/ovh-ux/manager/commit/6747643))
+* **pci.project.users.add:** wrap oui-modal into a form element ([#1464](https://github.com/ovh-ux/manager/issues/1464)) ([7f07533](https://github.com/ovh-ux/manager/commit/7f07533))
+
+
+
 ## [2.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.1...@ovh-ux/manager-pci@2.4.2) (2019-10-15)
 
 

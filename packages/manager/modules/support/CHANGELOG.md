@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-support@0.1.0...@ovh-ux/manager-support@0.2.0) (2019-10-17)
+
+
+### Features
+
+* **support:** add translation for Carrier SIP ([0c6aac5](https://github.com/ovh-ux/manager/commit/0c6aac5))
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-support@0.0.0...@ovh-ux/manager-support@0.1.0) (2019-10-15)
 
 
