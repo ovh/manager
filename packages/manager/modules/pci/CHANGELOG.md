@@ -1,3 +1,12 @@
+## [2.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.3...@ovh-ux/manager-pci@2.4.4) (2019-10-18)
+
+
+### Bug Fixes
+
+* **pci.projects.workflow:** add missing ngInject ([#1500](https://github.com/ovh-ux/manager/issues/1500)) ([fb9922d](https://github.com/ovh-ux/manager/commit/fb9922d))
+
+
+
 ## [2.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.2...@ovh-ux/manager-pci@2.4.3) (2019-10-17)
 
 

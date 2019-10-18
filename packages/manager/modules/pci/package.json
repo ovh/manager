@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "private": true,
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/pci#readme",
   "bugs": {
