@@ -1,3 +1,13 @@
+# [10.37.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.36.1...@ovh-ux/manager-telecom@10.37.0) (2019-10-18)
+
+
+### Features
+
+* **telephony:** enable carrier sip lines through feature type ([80137f1](https://github.com/ovh-ux/manager/commit/80137f1))
+* **telephony:** use of constants for feature types ([42972ce](https://github.com/ovh-ux/manager/commit/42972ce))
+
+
+
 ## [10.36.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.36.0...@ovh-ux/manager-telecom@10.36.1) (2019-10-17)
 
 
