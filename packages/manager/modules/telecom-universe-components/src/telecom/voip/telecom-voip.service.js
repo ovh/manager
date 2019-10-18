@@ -1,4 +1,5 @@
-import filter from 'lodash/filter';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
 
 /**
  *  @ngdoc overview
@@ -52,12 +53,16 @@ export default class {
   fetchAll(withError = true) {
     return this.tucVoipBillingAccount
       .fetchAll(withError)
-      .then(billingAccounts => this.tucVoipService.fetchAll(withError).then((services) => {
-        billingAccounts.forEach(billingAccount => billingAccount.addServices(filter(services, {
-          billingAccount: billingAccount.billingAccount,
-        })));
+      .then(billingAccounts => this.tucVoipService.fetchAll(withError)
+        .then((services) => {
+          const groupedServices = groupBy(services, service => get(service, 'billingAccount'));
 
-        return billingAccounts;
-      }));
+          billingAccounts.forEach(
+            billingAccount => billingAccount.addServices(
+              get(groupedServices, billingAccount.billingAccount, []),
+            ),
+          );
+          return billingAccounts;
+        }));
   }
 }
