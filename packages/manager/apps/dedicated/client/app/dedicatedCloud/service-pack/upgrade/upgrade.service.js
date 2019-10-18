@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import map from 'lodash/map';
 
 export const name = 'pccServicePackUpgradeService';
 
@@ -13,7 +13,7 @@ export const UpgradeService = class {
   }
 
   buildSteps(stepModuleNames) {
-    return _.map(
+    return map(
       stepModuleNames,
       moduleName => this.$injector.get(`${moduleName}Factory`),
     );

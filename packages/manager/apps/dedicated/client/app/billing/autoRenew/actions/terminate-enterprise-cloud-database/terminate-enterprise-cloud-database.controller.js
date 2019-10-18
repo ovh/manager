@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
   constructor($translate) {
@@ -12,7 +14,7 @@ export default class {
 
   onError(error) {
     this.goBack(
-      this.$translate.instant('autorenew_enterprise_cloud_database_close_service_error', _.get(error, 'data.message')),
+      this.$translate.instant('autorenew_enterprise_cloud_database_close_service_error', get(error, 'data.message')),
       'danger',
     );
   }

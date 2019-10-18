@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+
 import { DEBT_ALL } from './edit.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -20,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getServiceInfos,
         serviceName,
         services,
-      ) => getServiceInfos(_.find(services, { serviceName, category: categoryType })),
+      ) => getServiceInfos(find(services, { serviceName, category: categoryType })),
       serviceName: /* @ngInject */ $transition$ => $transition$.params().service,
       categoryType: /* @ngInject */ $transition$ => $transition$.params().categoryType,
     },

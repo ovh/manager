@@ -1,4 +1,12 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import some from 'lodash/some';
+import uniq from 'lodash/uniq';
+
 import Interface from './interface.class';
 import { INTERFACE_TASK, OLA_PLAN_CODE } from './interfaces.constants';
 
@@ -43,17 +51,17 @@ export default class DedicatedServerInterfacesService {
     nics,
     serverName,
   ) {
-    const vniUUids = _.uniq(
-      _.map(
+    const vniUUids = uniq(
+      map(
         nics.filter(
-          ({ virtualNetworkInterface }) => _.isString(virtualNetworkInterface),
+          ({ virtualNetworkInterface }) => isString(virtualNetworkInterface),
         ),
         'virtualNetworkInterface',
       ),
     );
 
     return this.$q.all(
-      _.map(
+      map(
         vniUUids,
         uuid => this.VirtualInterface
           .v6()
@@ -76,12 +84,12 @@ export default class DedicatedServerInterfacesService {
         return this.getVirtualNetworkInterfaces(nics, serverName);
       })
       .then(vnis => [
-        ..._.map(
-          _.filter(
+        ...map(
+          filter(
             nics,
-            ({ mac }) => !_.some(
+            ({ mac }) => !some(
               vnis,
-              ({ networkInterfaceController }) => _.includes(networkInterfaceController, mac),
+              ({ networkInterfaceController }) => includes(networkInterfaceController, mac),
             ),
           ),
           ({ mac, linkType: type }) => new Interface({
@@ -93,7 +101,7 @@ export default class DedicatedServerInterfacesService {
             enabled: true, // physical interface is always enabled
           }),
         ),
-        ..._.map(
+        ...map(
           vnis,
           ({
             uuid, name, networkInterfaceController, mode: type, vrack, enabled,
@@ -131,7 +139,7 @@ export default class DedicatedServerInterfacesService {
   setPrivateAggregation(serverName, name, interfacesToGroup) {
     return this.Ola.v6().group({ serverName }, {
       name,
-      virtualNetworkInterfaces: _.map(interfacesToGroup, 'id'),
+      virtualNetworkInterfaces: map(interfacesToGroup, 'id'),
     }).$promise;
   }
 
@@ -163,12 +171,12 @@ export default class DedicatedServerInterfacesService {
       serviceName,
     }).$promise
       .then((options) => {
-        const prices = _.get(
-          _.find(options, {
+        const prices = get(
+          find(options, {
             planCode: OLA_PLAN_CODE,
           }), 'prices',
         );
-        return _.get(_.find(prices, { pricingMode: 'default' }), 'price');
+        return get(find(prices, { pricingMode: 'default' }), 'price');
       });
   }
 }

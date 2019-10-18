@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import head from 'lodash/head';
 
 import {
   USER_DASHBOARD_SHORTCUTS,
@@ -28,7 +28,7 @@ angular
           .limit(1)
           .execute(null, true)
           .$promise
-          .then(lastBill => _.head(lastBill.data)),
+          .then(lastBill => head(lastBill.data)),
         shortcuts: /* @ngInject */ $state => USER_DASHBOARD_SHORTCUTS
           .map(shortcut => ({ ...shortcut, href: $state.href(shortcut.state) })),
       },

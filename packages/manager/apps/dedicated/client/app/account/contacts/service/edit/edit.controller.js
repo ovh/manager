@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+
 import BillingService from '../../../../models/BillingService.class';
 
 export default class {
@@ -19,7 +20,7 @@ export default class {
         this.$translate.instant('account_contacts_service_edit_success'),
       ))
       .catch(error => this.goBack(
-        this.$translate.instant('account_contacts_service_edit_error', _.get(error, 'data.message')),
+        this.$translate.instant('account_contacts_service_edit_error', get(error, 'data.message')),
         'danger',
       ));
   }

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import head from 'lodash/head';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.activation', {
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       activateAutorenew: /* @ngInject */ (
         BillingAutoRenew,
         nicRenew,
-      ) => () => BillingAutoRenew.enableAutorenew(_.head(nicRenew.renewDays)),
+      ) => () => BillingAutoRenew.enableAutorenew(head(nicRenew.renewDays)),
       goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
     },
   });

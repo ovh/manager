@@ -20,4 +20,4 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     translations: { value: ['.', '../../domains'], format: 'json' },
   });
-}
+};

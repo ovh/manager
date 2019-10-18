@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import OptionsBindings from './models/bindings/bindings';
 
 export default class Options {
@@ -65,7 +67,7 @@ export default class Options {
         this.bindings.update(model);
       })
       .catch((error) => {
-        const errorMessage = _.get(error.data, 'message', error.data);
+        const errorMessage = get(error.data, 'message', error.data);
 
         this.Alerter.error(
           `${this.$translate.instant('ovhManagerPccDashboardOptions_handleInitialData_error')}${errorMessage ? ` (${errorMessage})` : ''}`,

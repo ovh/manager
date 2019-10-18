@@ -2,6 +2,8 @@ import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
 import includes from 'lodash/includes';
+import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
 import isUndefined from 'lodash/isUndefined';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
@@ -55,9 +57,9 @@ angular
         cache: dedicatedCloudCache.all,
         clearAllCache: forceRefresh,
       })
-      .then(service => (_.isString(service) || service.status === 'expired'
+      .then(service => (isString(service) || service.status === 'expired'
         ? {
-          ...(_.isObject(service) ? service : undefined),
+          ...(isObject(service) ? service : undefined),
           isExpired: true,
         }
         : {

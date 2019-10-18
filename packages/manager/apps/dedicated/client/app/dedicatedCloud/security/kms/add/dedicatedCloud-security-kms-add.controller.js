@@ -113,7 +113,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSAddCtrl', class Dedic
   finishCreation() {
     this.stopCreationPoller();
 
-    if (_(this.kmsCreationTask.state).isEqual('done')) {
+    if (isEqual(this.kmsCreationTask.state, 'done')) {
       this.$uibModalInstance.close();
     } else {
       this.$uibModalInstance.dismiss();
