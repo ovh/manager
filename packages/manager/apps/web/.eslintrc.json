@@ -1,7 +1,6 @@
 {
   "globals": {
     "__WEBPACK_REGION__": true,
-    "_": true,
     "filesize": true,
     "moment": true,
     "punycode": true,
