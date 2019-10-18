@@ -21,25 +21,10 @@
                 <form name="addForm">
                     <div class="form-group">
                         <label class="control-label"
-                               data-translate="server_configuration_secondarydns_ip">
+                            for="ip"
+                            data-translate="server_configuration_secondarydns_ip">
                         </label>
-                        <div class="type-off input-block-level"
-                             data-type-off
-                             data-type-off-items="ipdata.t"
-                             data-type-off-term="entry.ip"
-                             data-type-off-term-path="'name'"
-                             data-type-off-show-when-empty="false"
-                             data-type-off-input-class="'form-control'">
-                            <div class="type-off-suggestions" style="overflow-y: scroll; height: 80px;">
-                                <ul>
-                                    <li class="type-off-item"
-                                        data-type-off-item="ip"
-                                        data-ng-repeat="ip in ipdata.t"
-                                        data-ng-bind="ip.name">
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <input id="ip" type="text" class="oui-input" ng-model="entry.ip" oui-autocomplete="ipdata.t" oui-autocomplete-property="name">
                     </div>
                     <div class="form-group">
                         <label for="domain"
