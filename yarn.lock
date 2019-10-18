@@ -11849,10 +11849,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.9.4:
-  version "3.9.4"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.4.tgz#81712f80e0ffbbe4e0a293cd61f5382d7f72f983"
-  integrity sha512-pSQv3fRXXH10vajRILqssuSjCVrPBNTYy7zMuim4dwy/Ca+mXFUowQFIN9f5qI2IUExGLFsTKMw70AROaGDqPQ==
+ovh-ui-angular@^3.9.5:
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.5.tgz#0e70ca612951c57b4102628c69e7206ccd39902f"
+  integrity sha512-X//tOvSkSv6DVxe3MKEm3hjOP8i1eKFPIkqBRj654pkUZAEGzJMrj8zC3mxdpUlVklIdXumYy/TwFs2OnHTSjw==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
