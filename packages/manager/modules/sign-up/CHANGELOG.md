@@ -1,3 +1,22 @@
+## [1.0.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.7...@ovh-ux/sign-up@1.0.8) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+
+
+
+## [1.0.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.6...@ovh-ux/sign-up@1.0.7) (2019-10-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+
+
+
 ## [1.0.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.5...@ovh-ux/sign-up@1.0.6) (2019-10-08)
 
 

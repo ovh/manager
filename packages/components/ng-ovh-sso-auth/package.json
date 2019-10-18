@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-sso-auth",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "description": "OVH Single Sign On module",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/components/#readme",
   "bugs": {
@@ -29,7 +29,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-sso-auth' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.2"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
     "angular": "^1.5.0",

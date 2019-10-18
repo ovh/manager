@@ -991,6 +991,8 @@
   "terminate_service_type_vps": "VPS",
   "terminate_service_type_xdsl": "Ligne xDSL",
   "terminate_service_type_kube": "Kubernetes",
+  "terminate_service_type_webcoach": "WebCoach",
+  "terminate_service_comments": "Commentaires",
   "billing_credits_title": "Mes comptes de crédits",
   "billing_credits_none": "Vous n'avez pas de compte de crédits",
   "billing_credit_balance_load_error": "Une erreur est survenue lors du chargement de vos comptes de crédits.",

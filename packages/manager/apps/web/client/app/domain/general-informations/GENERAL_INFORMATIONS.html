@@ -62,11 +62,10 @@
                         <span data-ng-if="$ctrl.domain.hasDnsAnycast == null">
                             <span data-translate="domain_dashboard_dns_management_anycast_null"></span>
                             (<span data-translate="domain_configuration_dnsanycast_how_to_activate_1"></span>
-                            <button
-                                class="btn btn-link p-0" type="button"
-                                data-translate="domain_configuration_dnsanycast_how_to_activate_2"
-                                data-ng-click="setAction('zone/activate/domain-zone-activate', $ctrl.domain)">
-                            </button>)
+                            <a
+                                data-ng-href="{{:: $ctrl.zoneActivationLink }}"
+                                data-translate="domain_configuration_dnsanycast_how_to_activate_2">
+                            </a>)
                         </span>
                     </oui-tile-description>
                     <oui-action-menu
@@ -299,9 +298,14 @@
                 data-loading="$ctrl.loading.options">
                 <oui-tile-definition data-term="{{ ::'domain_dashboard_options_dns_anycast' | translate }}">
                     <oui-tile-description>
-                        <span data-ng-if="$ctrl.options.dnsAnycast"
-                              data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.optionActivated ? 'enabled' : 'disabled') }}">
-                        </span>
+                        <p data-ng-if="$ctrl.options.dnsAnycast">
+                            <span data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.optionActivated ? 'enabled' : 'disabled') }}">
+                            </span>
+                            <span data-ng-if="!$ctrl.options.dnsAnycast.optionActivated">
+                                (<span data-translate="domain_dashboard_options_dns_anycast_expiry"
+                                       data-translate-values="{ date: ($ctrl.options.dnsAnycast.expirationDate | date:'mediumDate') }"></span>)
+                            </span>
+                        </p>
                         <span data-ng-if="!$ctrl.options.dnsAnycast"
                               data-translate="domain_dashboard_options_unavailable">
                         </span>

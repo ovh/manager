@@ -1,0 +1,14 @@
+{
+  "account_contacts_service_edit": "Zmień kontakty",
+  "account_contacts_service_edit_description": "",
+  "account_contacts_service_edit_contact_admin": "Kontakt administracyjny",
+  "account_contacts_service_edit_contact_tech": "Kontakt techniczny",
+  "account_contacts_service_edit_contact_billing": "Kontakt księgowy:",
+  "account_contacts_service_edit_cancel": "Anuluj",
+  "account_contacts_service_edit_confirm": "Zatwierdź",
+  "account_contacts_service_edit_error": "Wystąpił błąd podczas zlecania zmiany kontaktu:",
+  "account_contacts_service_edit_success": "",
+  "account_contacts_service_edit_warn_debt": "",
+  "account_contacts_service_edit_pay": "",
+  "account_contacts_service_edit_warn_contact_billing": ""
+}

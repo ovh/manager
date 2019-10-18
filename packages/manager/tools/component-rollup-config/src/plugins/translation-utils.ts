@@ -15,7 +15,6 @@ const ALL_LANGUAGES = [
   'fr_FR',
   'it_IT',
   'lt_LT',
-  'nl_NL',
   'pl_PL',
   'pt_PT',
 ];

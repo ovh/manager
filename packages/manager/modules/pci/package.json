@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "2.4.1",
+  "version": "2.4.3",
   "private": true,
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/pci#readme",
   "bugs": {
@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
-    "@ovh-ux/manager-config": "^0.3.0",
+    "@ovh-ux/manager-config": "^0.3.1",
     "d3": "~3.5.13",
     "fast-sha256": "^1.1.0",
     "file-saver": "^2.0.1",
@@ -28,14 +28,14 @@
     "xterm": "^3.14.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.1.3",
+    "@ovh-ux/manager-cloud-styles": "^0.3.1",
+    "@ovh-ux/manager-core": "^7.1.4",
     "@ovh-ux/manager-error-page": "^0.0.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.2",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.1",
-    "@ovh-ux/ng-ovh-otrs": "^9.0.1",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.2",
+    "@ovh-ux/ng-ovh-otrs": "^7.1.11",
     "@ovh-ux/ng-ovh-payment-method": "^4.1.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
@@ -44,8 +44,8 @@
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
     "@ovh-ux/ng-q-allsettled": "^1.0.0-alpha.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
-    "@ovh-ux/ng-ui-router-layout": "^2.1.0",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.1",
+    "@ovh-ux/ng-ui-router-layout": "^2.1.1",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",

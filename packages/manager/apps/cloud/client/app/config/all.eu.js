@@ -44,7 +44,7 @@ angular.module('managerApp')
     vRack: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
     nas: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas?landingTo=networks',
     nasPage: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/nas/nas/nas_{nas}?landingTo=networks',
-    ip: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?landingTo=ip',
+    ip: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?landingTo=ip&serviceName={serviceName}',
     license: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/license?landingTo=licences',
     housing: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/housing/{housing}?landingTo=dedicatedServers',
     dedicatedServers: 'https://www.ovh.com/manager/dedicated/index.html#/configuration?landingTo=dedicatedServers',

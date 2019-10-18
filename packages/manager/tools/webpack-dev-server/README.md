@@ -46,11 +46,11 @@ const env = {
 
 ## Related
 
-* [manager-webpack-config](https://github.com/ovh-ux/manager-webpack-config) - OVH manager shared webpack configuration
+* [manager-webpack-config](https://github.com/ovh-ux/manager/tree/master/packages/manager/tools/webpack-config) - OVH manager shared webpack configuration
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](https://github.com/ovh-ux/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 

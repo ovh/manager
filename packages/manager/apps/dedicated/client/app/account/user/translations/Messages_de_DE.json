@@ -712,5 +712,11 @@
   "user_account_security_double_auth_type_backup_code_delete_error": "Beim Löschen der Notfall-Codes ist ein Fehler aufgetreten:",
   "user_account_security_ip_restrictions_alt": "Einschränkung des Zugangs nach IP",
   "user_account_title_infos": "Mein Profil",
-  "user_account_title_subscriptions": "Meine Abos"
+  "user_account_title_subscriptions": "Meine Abos",
+  "user_account_emails_title": "Empfangene E-Mails",
+  "user_account_title_dashboard": "Allgemeine Informationen",
+  "user_account_support_level_title": "Mein Support-Level",
+  "user_account_ssh_keys_title": "Meine SSH-Schlüssel",
+  "user_account_users_management_title": "Benutzerverwaltung",
+  "user_account_advanced_title": "Erweiterte Einstellungen"
 }

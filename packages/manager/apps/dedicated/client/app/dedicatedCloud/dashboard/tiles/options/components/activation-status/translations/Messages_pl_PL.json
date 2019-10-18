@@ -1,0 +1,11 @@
+{
+  "ovhManagerPccDashboardComponentActivationStatus_beingActivated": "W trakcie aktywacji",
+  "ovhManagerPccDashboardComponentActivationStatus_beingDeactivated": "W trakcie wyłączania",
+  "ovhManagerPccDashboardComponentActivationStatus_cancelling": "Anulowanie w trakcie",
+  "ovhManagerPccDashboardComponentActivationStatus_disabled": "Wyłączony",
+  "ovhManagerPccDashboardComponentActivationStatus_enabled": "Aktywny",
+  "ovhManagerPccDashboardComponentActivationStatus_inError": "Błąd",
+  "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Trwa konfiguracja",
+  "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "W oczekiwaniu na zatwierdzenie",
+  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Nieznany status"
+}

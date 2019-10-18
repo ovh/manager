@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "private": true,
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/overthebox#readme",
   "license": "BSD-3-Clause",
@@ -10,10 +10,10 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.1.2",
+    "@ovh-ux/manager-core": "^7.1.4",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",

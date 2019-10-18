@@ -156,5 +156,6 @@
   "housing_configuration_reboot_price": "Prezzo",
   "housing_configuration_reboot_price_ht": "IVA esclusa",
   "housing_configuration_reboot_price_tax": "Tasse",
-  "housing_configuration_reboot_price_total": "Totale"
+  "housing_configuration_reboot_price_total": "Totale",
+  "housing_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modifica delle interfacce di rete"
 }

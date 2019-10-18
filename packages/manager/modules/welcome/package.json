@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-welcome",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/welcome#readme",
   "bugs": {
     "url": "https://github.com/ovh-ux/manager/issues"
@@ -24,7 +24,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-welcome' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.15",

@@ -1,3 +1,5 @@
+import './dedicated-server.less';
+
 angular
   .module('App')
   .constant('WEATHERMAP_URL', 'http://weathermap.ovh.net/')
@@ -42,5 +44,5 @@ angular
     FIVEMINS: '_5_M',
   })
   .constant('NEW_RANGE', {
-    PATTERN: /^(ADV|STOR|ADVANCE|RISE)-[1-9]$/,
+    PATTERN: /^(ADV|STOR|ADVANCE|RISE|INFRA)-[1-9]$/,
   });
