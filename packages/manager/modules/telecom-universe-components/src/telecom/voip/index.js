@@ -24,6 +24,8 @@ import tucVoipServiceAlias from './service/alias/voip-service-alias.service';
 import tucVoipServiceLine from './service/line/voip-service-line.service';
 import tucTelecomVoip from './telecom-voip.service';
 
+import { FEATURE_TYPES } from './service/voip-service.constants';
+
 const moduleName = 'tucTelecomVoip';
 
 angular
@@ -32,6 +34,7 @@ angular
   ])
   .constant('TUC_TELEPHONY_ALIAS_FEATURE_TYPES', TELEPHONY_ALIAS_FEATURE_TYPES)
   .constant('TUC_TELEPHONY_ALIAS_SPECIAL_NUMBER', TELEPHONY_ALIAS_SPECIAL_NUMBER)
+  .constant('TUC_TELEPHONY_VOIP_SERVICE_FEATURE_TYPES', FEATURE_TYPES)
   .factory('TucVoipBillingAccount', TucVoipBillingAccount)
   .factory('TucVoipLinePhoneFunction', TucVoipLinePhoneFunction)
   .factory('TucVoipLinePhone', TucVoipLinePhone)
