@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-banner",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "OVH control panel banner",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/banner#readme",
   "bugs": {
@@ -31,11 +31,11 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0"
+    "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.1.2",
+    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-core": "^7.1.4",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",

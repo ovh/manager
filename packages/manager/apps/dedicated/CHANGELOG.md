@@ -1,3 +1,14 @@
+## [10.25.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-dedicated@10.25.2...@ovh-ux/manager-dedicated@10.25.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **dedicated:** restore display size ([#1472](https://github.com/ovh-ux/manager/issues/1472)) ([e2e8c20](https://github.com/ovh-ux/manager/commit/e2e8c20))
+* **dedicated:** update ip range ([#1474](https://github.com/ovh-ux/manager/issues/1474)) ([aef93fb](https://github.com/ovh-ux/manager/commit/aef93fb))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+
+
+
 ## [10.25.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-dedicated@10.25.1...@ovh-ux/manager-dedicated@10.25.2) (2019-10-09)
 
 

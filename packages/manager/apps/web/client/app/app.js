@@ -39,6 +39,7 @@ import moment from 'moment';
 import config from './config/config';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
+import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
 import domainDnsZone from './dns-zone';
 import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
 import navbar from './components/navbar';
@@ -101,6 +102,7 @@ angular
     'Module.emailpro',
     domainDnsZone,
     domainEmailObfuscation,
+    domainZoneActivation,
     domainOptin,
     hostingWebsiteCoach,
     navbar,

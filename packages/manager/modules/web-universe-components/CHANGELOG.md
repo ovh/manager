@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.0...@ovh-ux/ng-ovh-web-universe-components@7.1.1) (2019-10-17)
+
+
+### Bug Fixes
+
+* remove useless rem-base ([f0de268](https://github.com/ovh-ux/manager/commit/f0de268))
+
+
+
 # [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.0.0...@ovh-ux/ng-ovh-web-universe-components@7.1.0) (2019-09-03)
 
 

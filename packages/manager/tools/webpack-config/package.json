@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-webpack-config",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "OVH manager shared webpack configuration",
   "keywords": [
     "configuration",
@@ -30,12 +30,12 @@
     "test": "eslint --quiet src"
   },
   "dependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/generator": "^7.6.2",
-    "@babel/parser": "^7.6.2",
+    "@babel/core": "^7.6.4",
+    "@babel/generator": "^7.6.4",
+    "@babel/parser": "^7.6.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.6.2",
-    "@ovh-ux/component-rollup-config": "^6.0.2",
+    "@babel/preset-env": "^7.6.3",
+    "@ovh-ux/component-rollup-config": "^7.0.0",
     "@ovh-ux/manager-webpack-dev-server": "^2.4.0",
     "acorn": "^6.0.5",
     "acorn-dynamic-import": "^4.0.0",
@@ -49,7 +49,7 @@
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.19.1",
     "less": "~3.9.0",
-    "less-loader": "^4.1.0",
+    "less-loader": "^5.0.0",
     "less-plugin-remcalc": "^0.1.0",
     "loader-utils": "^1.2.3",
     "lodash": "^4.17.15",
@@ -61,7 +61,7 @@
     "script-loader": "^0.7.2",
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
-    "webpack": "^4.41.0",
+    "webpack": "^4.41.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.3.9",
     "webpack-merge": "^4.2.2",
@@ -71,6 +71,6 @@
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.18.2",
-    "typescript": "~3.6.3"
+    "typescript": "~3.6.4"
   }
 }

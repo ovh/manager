@@ -1,3 +1,15 @@
+## [0.6.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.5...@ovh-ux/manager-server-sidebar@0.6.6) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **server.sidebar:** hide VPS section for US customer ([#1481](https://github.com/ovh-ux/manager/issues/1481)) ([a278003](https://github.com/ovh-ux/manager/commit/a278003))
+
+
+
 ## [0.6.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.4...@ovh-ux/manager-server-sidebar@0.6.5) (2019-10-15)
 
 
