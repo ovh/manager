@@ -1375,9 +1375,8 @@ angular
           // Extract bandwidth value from product name
           const bandwidth = _.parseInt(_.first(_.filter(plan.productName.split('-'), ele => /^\d+$/.test(ele))));
           _.assign(plan, { bandwidth });
-          // check if existing bandwidth is not max bandwidth available
-          // Reject plans which are default plans i.e., 0 as price
-          if (bandwidth > existingBandwidth && plan.prices[2].price.value !== 0) {
+
+          if (bandwidth !== existingBandwidth) {
             return plan;
           }
         }

@@ -1,6 +1,6 @@
 {
   "name": "ovh-manager-dedicated",
-  "version": "10.32.13",
+  "version": "10.33.0",
   "private": true,
   "description": "OVH Control Panel Dedicated UI",
   "keywords": [

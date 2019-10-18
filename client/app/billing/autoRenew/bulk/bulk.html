@@ -11,17 +11,25 @@
 
     <div>
         <strong
-            data-translate="billing_autorenew_bulk"
-            data-translate-values="{
-                count: $ctrl.servicesCount
+            data-ng-pluralize
+            data-count="$ctrl.servicesCount"
+            data-when="{
+                'one': ('billing_autorenew_bulk_one' | translate),
+                'other': ('billing_autorenew_bulk' | translate:{ count: $ctrl.servicesCount })
             }">
         </strong>
         <p
-            data-translate="{{:: $ctrl.description }}"
-            data-translate-values="{
-                count: $ctrl.unavailableServicesCount
+            data-ng-if="$ctrl.unavailableServicesCount === 0"
+            data-ng-pluralize
+            data-count="$ctrl.availableServices.length"
+            data-when="{
+                'one': $ctrl.descriptions.getSingleUpdate($ctrl.availableServices[0]),
+                'other': $ctrl.descriptions.getCompleteUpdate()
             }">
-
+        </p>
+        <p
+            data-ng-if="$ctrl.unavailableServicesCount > 0"
+            data-ng-bind="$ctrl.descriptions.getUncompleteUpdate($ctrl.unavailableServicesCount)">
         </p>
         <ul class="mb-4">
             <li data-ng-repeat="(reason, services) in ::$ctrl.unavailableServices track by reason">
@@ -50,6 +58,20 @@
                 </ul>
             </li>
         </ul>
+        <div class="mb-4">
+            <button
+                type="button"
+                class="oui-link"
+                data-ng-click="$ctrl.expand.available = !$ctrl.expand.available"
+                data-ng-bind="($ctrl.expand.available ? 'billing_autorenew_bulk_available_less' : 'billing_autorenew_bulk_available_more') | translate">
+            </button>
+            <ul data-ng-if="$ctrl.expand.available" class="mb-3">
+                <li
+                    data-ng-repeat="service in ::$ctrl.availableServices track by service.id"
+                    data-ng-bind="service.domain">
+                </li>
+            </ul>
+        </div>
         <div>
             <oui-button
                 data-variant="secondary"

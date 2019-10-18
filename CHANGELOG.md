@@ -1,3 +1,43 @@
+<a name="10.33.0"></a>
+# [10.33.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.14...v10.33.0) (2019-10-17)
+
+
+### Bug Fixes
+
+* **billing.autorenew:** set page offset for current page ([#1415](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1415)) ([305a33b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/305a33b))
+* **dedicated:** fix spelling mistakes ([#1460](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1460)) ([0b4bd26](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0b4bd26))
+* **dedicated.cloud:** handle unavailable pccs ([#1478](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1478)) ([88ed065](https://github.com/ovh-ux/ovh-manager-dedicated/commit/88ed065))
+* **i18n:** add missing translations [CDS 75] ([7804068](https://github.com/ovh-ux/ovh-manager-dedicated/commit/7804068))
+* **i18n:** add missing translations [CDS 76] ([9bee97d](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9bee97d))
+* **i18n:** add missing translations [CDS 78] ([b07362b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b07362b))
+* **i18n:** add missing translations [CDS 79] ([6720527](https://github.com/ovh-ux/ovh-manager-dedicated/commit/6720527))
+* **i18n:** add missing translations [CDS 80] ([3ade666](https://github.com/ovh-ux/ovh-manager-dedicated/commit/3ade666))
+* **i18n:** add missing translations [CDS 81] ([d8d9f16](https://github.com/ovh-ux/ovh-manager-dedicated/commit/d8d9f16))
+* **i18n:** add missing translations [CDS 83] ([1aa365e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/1aa365e))
+* **i18n:** add missing translations [CDS 84] ([76738e5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/76738e5))
+* **i18n:** add missing translations [CDS 85] ([0627a7e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0627a7e))
+* **license:** fix translation issue with plesk licence ([#1485](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1485)) ([3f80101](https://github.com/ovh-ux/ovh-manager-dedicated/commit/3f80101))
+
+
+### Features
+
+* **autorenew:** add webcoach ([#1464](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1464)) ([c71114b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/c71114b))
+* **billing.autorenew:** update wording for expiration date ([#1416](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1416)) ([a5b9213](https://github.com/ovh-ux/ovh-manager-dedicated/commit/a5b9213))
+* **dedicated.server.interfaces:** add ona lag capacity ([#1397](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1397)) ([4ed707c](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4ed707c))
+
+
+
+<a name="10.32.14"></a>
+## [10.32.14](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.13...v10.32.14) (2019-10-17)
+
+
+### Bug Fixes
+
+* **billing.orders.retraction:** add missing translations path ([#1495](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1495)) ([9ec1f24](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9ec1f24))
+* **dedicated.server:** activate public bandwidth order ([#1494](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1494)) ([4281404](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4281404))
+
+
+
 <a name="10.32.13"></a>
 ## [10.32.13](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.12...v10.32.13) (2019-10-15)
 
