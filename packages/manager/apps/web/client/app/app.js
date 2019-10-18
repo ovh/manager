@@ -37,8 +37,11 @@ import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
-
 import config from './config/config';
+import orderCatalogPrice from './components/manager-order-catalog-price';
+import orderContracts from './components/manager-order-contracts';
+import orderService from './components/manager-order-service/manager-order-service.service';
+
 import domainAnycast from './domain/anycast';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
@@ -111,6 +114,8 @@ angular
     domainOptin,
     hostingWebsiteCoach,
     errorPage,
+    orderCatalogPrice,
+    orderContracts,
     zone,
   ])
   .constant('constants', {
@@ -144,6 +149,7 @@ angular
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     ORDER_URL: config.constants.ORDER_URL,
   })
+  .service('OrderService', orderService)
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({
