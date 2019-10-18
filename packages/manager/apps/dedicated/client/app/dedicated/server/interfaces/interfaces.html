@@ -78,15 +78,16 @@
 
 <h2 data-translate="dedicated_server_interfaces_list_title"></h2>
 
-<div class="text-center" data-ng-if="$ctrl.loading">
+<div data-ng-if="$ctrl.loading">
     <oui-message
-        class="mx-auto mb-3"
         data-type="info"
         data-dismissable="false">
         <span data-translate="dedicated_server_interfaces_loading_message"></span>
     </oui-message>
 
-    <oui-spinner data-size="l"></oui-spinner>
+    <div class="text-center">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
 </div>
 
 <oui-datagrid data-rows="$ctrl.interfaces" data-ng-if="!$ctrl.loading">
