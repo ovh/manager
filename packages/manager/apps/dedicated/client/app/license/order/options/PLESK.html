@@ -26,7 +26,7 @@
     <select class="form-control"
             id="languagePackNumber"
             name="languagePackNumber"
-            data-ng-options="((('license_order_step2_option_PLESK_language_pack_' + languagePack) | translate) || languagePack) for languagePack in selected.version.more.compliantLanguagePack | orderBy:'toString()'"
+            data-ng-options="(languagePack === 'unlimited' ? ('license_order_step2_option_PLESK_language_pack_unlimited' | translate) : languagePack) for languagePack in selected.version.more.compliantLanguagePack | orderBy:'toString()'"
             data-ng-model="selected.options['PLESK'].languagePackNumber.value">
         <option value=""
                 data-translate="license_order_common_none">

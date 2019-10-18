@@ -29,7 +29,14 @@ export default class DedicatedServerInterfacesService {
       .$promise
       .then(macs => this.$q.all(
         macs.map(mac => this.PhysicalInterface.v6().get({ serverName, mac }).$promise),
-      ));
+      ))
+      .catch((err) => {
+        if (err.status === 460) {
+          return [];
+        }
+
+        return this.$q.reject(err);
+      });
   }
 
   getVirtualNetworkInterfaces(
