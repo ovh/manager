@@ -37,8 +37,9 @@ import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
-
 import config from './config/config';
+import orderService from './components/order-service/order-service.service';
+
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
 import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
@@ -142,6 +143,7 @@ angular
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     ORDER_URL: config.constants.ORDER_URL,
   })
+  .service('OrderService', orderService)
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({
