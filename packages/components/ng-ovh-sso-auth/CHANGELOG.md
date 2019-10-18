@@ -1,3 +1,12 @@
+## [4.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.2.2...@ovh-ux/ng-ovh-sso-auth@4.2.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
+
+
+
 ## [4.2.2](https://github.com/ovh-ux/ng-ovh-sso-auth/compare/v4.2.1...v4.2.2) (2019-08-29)
 
 

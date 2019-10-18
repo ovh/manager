@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "private": true,
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/telecom-task#readme",
   "license": "BSD-3-Clause",
@@ -12,7 +12,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^6.1.2",
+    "@ovh-ux/manager-core": "^7.1.4",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",

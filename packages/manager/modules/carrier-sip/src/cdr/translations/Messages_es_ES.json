@@ -1,0 +1,11 @@
+{
+  "carrier_sip_cdr_title": "CDR",
+  "carrier_sip_cdr_information": "Los CDR (o registros de llamadas) contienen toda la información relativa a una llamada telefónica: número de teléfono, duración de la llamada, fecha y hora, etc. Para consultar todos los detalles de las llamadas registradas, seleccione a continuación el período deseado (mes y año) y descargue el archivo .CSV correspondiente.",
+  "carrier_sip_cdr_field_month": "Mes",
+  "carrier_sip_cdr_field_month_placeholder": "Seleccione un mes.",
+  "carrier_sip_cdr_field_year": "Año",
+  "carrier_sip_cdr_field_year_placeholder": "Seleccione un año.",
+  "carrier_sip_cdr_action_download": "Descargar",
+  "carrier_sip_cdr_action_succeed": "Descarga realizada.",
+  "carrier_sip_cdr_action_failed": "Se ha producido al descargar el archivo."
+}

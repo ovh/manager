@@ -1,3 +1,12 @@
+## [4.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.2.2...@ovh-ux/manager-telecom-task@4.2.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
+
+
+
 ## [4.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.2.1...@ovh-ux/manager-telecom-task@4.2.2) (2019-07-22)
 
 

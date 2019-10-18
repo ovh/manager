@@ -4,7 +4,7 @@ import snakeCase from 'lodash/snakeCase';
 
 import EnvironmentService from '@ovh-ux/manager-config';
 
-import { PCI_REDIRECT_URLS } from '../constants';
+import { PCI_REDIRECT_URLS } from '../../../constants';
 import {
   IMAGE_ASSETS,
   PAY_DEBT_URL,
@@ -14,7 +14,11 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new.error', {
       url: '/error',
-      component: 'managerErrorPage',
+      views: {
+        '@pci': {
+          component: 'managerErrorPage',
+        },
+      },
       params: {
         code: {
           type: 'any',
