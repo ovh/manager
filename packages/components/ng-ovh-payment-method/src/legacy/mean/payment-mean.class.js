@@ -7,6 +7,7 @@ export default class OvhPaymentMean {
     this.meanType = options.meanType;
     this.registrable = options.registrable;
     this.description = options.description;
+    this.defaultPaymentMean = options.defaultPaymentMean;
   }
 
   toPaymentMethod() {
