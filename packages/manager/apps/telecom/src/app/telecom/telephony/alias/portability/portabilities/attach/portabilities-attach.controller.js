@@ -2,10 +2,11 @@ import endsWith from 'lodash/endsWith';
 
 export default class {
   /* @ngInject */
-  constructor($timeout, $translate, OvhApiTelephony) {
+  constructor($q, $timeout, $translate, OvhApiTelephony) {
     this.$translate = $translate;
     this.OvhApiTelephony = OvhApiTelephony;
     this.$timeout = $timeout;
+    this.$q = $q;
   }
 
   $onInit() {
@@ -19,7 +20,7 @@ export default class {
       noop: this.$timeout(angular.noop, 5000),
       upload: this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
         billingAccount: this.billingAccount,
-        id: this.data.id,
+        id: this.portabilityId,
       }, {
         name: this.uploadedFile.name,
       }),
