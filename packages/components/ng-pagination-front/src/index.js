@@ -3,8 +3,6 @@ import 'angular-ui-bootstrap';
 
 import directive from './directive';
 
-import './index.less';
-
 const moduleName = 'ngPaginationFront';
 
 angular
