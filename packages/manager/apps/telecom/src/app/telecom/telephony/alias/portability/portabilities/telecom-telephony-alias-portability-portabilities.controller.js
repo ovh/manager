@@ -2,15 +2,15 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
+import groupPortaByNumbers from './telecom-telephony-alias-portability-portabilities.service';
+
 export default class TelecomTelephonyAliasPortabilitiesCtrl {
-  constructor($q, $stateParams, $translate, OvhApiTelephony, TelephonyPortabilitiesService,
-    TucToast) {
+  constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucToast = TucToast;
-    this.service = TelephonyPortabilitiesService;
   }
 
   $onInit() {
@@ -25,9 +25,11 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
   init() {
     this.isLoading = true;
     this.fetchPortability().then((result) => {
-      this.numbers = this.service.groupPortaByNumbers(result);
+      this.numbers = groupPortaByNumbers(result);
     }).catch((error) => {
-      this.TucToast.error([this.$translate.instant('telephony_alias_portabilities_load_error'), get(error, 'data.message')].join(' '));
+      this.TucToast.error(this.$translate.instant('telephony_alias_portabilities_load_error', {
+        error: get(error, 'data.message'),
+      }));
       return this.$q.reject(error);
     }).finally(() => {
       this.isLoading = false;
