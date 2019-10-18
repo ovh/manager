@@ -42,7 +42,7 @@
 </oui-tile-definition>
 
 <oui-tile-button
-    data-ng-if="($ctrl.bandwidthOption === 'notSubscribed' || $ctrl.specifications.bandwidth.type === 'included') && $ctrl.server.canOrderBandwith && $ctrl.hasBandwidthOption()"
+    data-ng-if="$ctrl.server.canOrderBandwith && $ctrl.hasBandwidthOption()"
     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
     data-href="{{ $ctrl.orderPublicLink }}">
      <span data-translate="dedicated_server_bandwidth_order_button"></span>
@@ -92,4 +92,3 @@
     data-href="{{ $ctrl.orderPrivateLink }}">
     <span data-translate="{{ ($ctrl.bandwidthVrackOption !== 'subscribed' ? 'dedicated_server_bandwidth_vrack_order_button' : 'dedicated_server_bandwidth_vrack_change_button') | translate }}"></span>
 </oui-tile-button>
-
