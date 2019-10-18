@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
 
 export default class {
   constructor(
@@ -44,7 +44,7 @@ export default class {
         closeTransitionCriteria,
         () => {
           // ... unregister all the transitions
-          _.forEach(
+          forEach(
             this.transitionUnregistrationHooks,
             hook => hook(),
           );

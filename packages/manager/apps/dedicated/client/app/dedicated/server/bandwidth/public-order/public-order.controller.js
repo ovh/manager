@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
@@ -11,7 +12,7 @@ export default class {
     this.model = {};
     this.plans = null;
     this.isLoading = false;
-    this.existingBandwidth = _.get(this, 'specifications.bandwidth.OvhToInternet.value');
+    this.existingBandwidth = get(this, 'specifications.bandwidth.OvhToInternet.value');
 
     this.steps = [
       {
@@ -40,7 +41,7 @@ export default class {
           return this.Server
             .getBareMetalPublicBandwidthOrder(this.serverName, this.model.plan)
             .then((res) => {
-              res.bandwidth = _.find(this.plans, 'planCode', this.model.plan).bandwidth;
+              res.bandwidth = find(this.plans, 'planCode', this.model.plan).bandwidth;
               res.planCode = this.model.plan;
               this.provisionalPlan = res;
             })

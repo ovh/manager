@@ -1,14 +1,18 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import slice from 'lodash/slice';
 
 export default class {
   constructor(
     steps,
     indexOfCurrentStep = 0,
   ) {
-    this.steps = _.map(
+    this.steps = map(
       steps,
       (step, index) => {
-        _.set(step, 'index', index);
+        set(step, 'index', index);
         return step;
       },
     );
@@ -47,7 +51,7 @@ export default class {
   }
 
   getStepByName(name) {
-    return _.find(
+    return find(
       this.steps,
       { name },
     );
@@ -71,15 +75,15 @@ export default class {
   }
 
   setStepsBeforeCurrentStepAsCompleted() {
-    _.forEach(
-      _.slice(this.steps, 0, this.indexOfCurrentStep),
+    forEach(
+      slice(this.steps, 0, this.indexOfCurrentStep),
       step => step.setAsCompleted(),
     );
   }
 
   setStepsAfterCurrentStepAsToBeDone() {
-    _.forEach(
-      _.slice(this.steps, this.indexOfCurrentStep + 1, this.steps.length),
+    forEach(
+      slice(this.steps, this.indexOfCurrentStep + 1, this.steps.length),
       step => step.setAsToBeDone(),
     );
   }

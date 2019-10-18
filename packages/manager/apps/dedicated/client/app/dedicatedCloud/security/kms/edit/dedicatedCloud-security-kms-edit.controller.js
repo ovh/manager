@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isEqual from 'lodash/isEqual';
+
 angular.module('App').controller('DedicatedCloudSecurityKMSEditCtrl', class DedicatedCloudSecurityKMSEditCtrl {
   constructor(
     $stateParams, $timeout, $translate, $uibModalInstance,
@@ -59,7 +63,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSEditCtrl', class Dedi
   }
 
   isFormValid() {
-    return _(this.kmsEditForm).get('$valid');
+    return get(this.kmsEditForm, '$valid');
   }
 
   getTaskDetails() {
@@ -75,7 +79,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSEditCtrl', class Dedi
   finishEdition() {
     this.stopEditionPoller();
 
-    if (_(this.kmsEditionTask.state).isEqual('done')) {
+    if (isEqual(this.kmsEditionTask.state, 'done')) {
       this.$uibModalInstance.close();
     } else {
       this.$uibModalInstance.dismiss();
@@ -83,7 +87,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSEditCtrl', class Dedi
   }
 
   isTaskFinishedOrCanceled() {
-    return _(this.VM_ENCRYPTION_KMS.endStatus).includes(this.kmsEditionTask.state);
+    return includes(this.VM_ENCRYPTION_KMS.endStatus, this.kmsEditionTask.state);
   }
 
   stopEditionPoller() {

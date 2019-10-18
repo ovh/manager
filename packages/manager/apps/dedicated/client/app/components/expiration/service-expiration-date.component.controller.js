@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isString from 'lodash/isString';
 
 (() => {
@@ -44,7 +45,7 @@ import isString from 'lodash/isString';
     }
 
     isAutoRenew() {
-      return _(this.serviceInfos).get('renew.automatic') || _(this.serviceInfos).get('renew.forced');
+      return get(this.serviceInfos, 'renew.automatic') || get(this.serviceInfos, 'renew.forced');
     }
   }
   angular.module('directives').controller('ServiceExpirationDateComponentCtrl', ServiceExpirationDateComponentCtrl);

@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
@@ -466,7 +467,7 @@ angular
     set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
   })
   .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(_.get(constants, 'REDIRECT_URLS.listTicket', null));
+    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .constant('UNIVERSE', 'WEB')
   .constant('MANAGER_URLS', {

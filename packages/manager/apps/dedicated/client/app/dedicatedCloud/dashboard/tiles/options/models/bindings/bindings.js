@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import some from 'lodash/some';
+import values from 'lodash/values';
 
 import OptionsDescriptionsService from '../../descriptions/options-description.service';
 import { ServicePackOptionService } from '../../../../../service-pack/option/option.service';
@@ -140,7 +144,7 @@ export default class {
   }
 
   computeOptionsBasicDescriptionItems() {
-    return _.map(
+    return map(
       this.model.options.basic,
       (option) => {
         const status = OptionsDescriptionsService
@@ -166,7 +170,7 @@ export default class {
       exists: this.computeOptionsBasicActionMenuItemsPayCheckout().exists
         || (
           !this.model.pendingOrder.exists
-          && !_.isEmpty(this.model.servicePacks.orderable.withOnlyBasicOptions)
+          && !isEmpty(this.model.servicePacks.orderable.withOnlyBasicOptions)
         ),
       stateParams: {
         activationType: OPTION_TYPES.basic,
@@ -182,8 +186,8 @@ export default class {
     return {
       ...base,
       exists: base.exists
-        && _.isEmpty(
-          _.keys(this.model.servicePacks.current.basicOptions),
+        && isEmpty(
+          keys(this.model.servicePacks.current.basicOptions),
         ),
     };
   }
@@ -203,23 +207,23 @@ export default class {
     return {
       ...base,
       exists: base.exists
-        && !_.isEmpty(
-          _.keys(this.model.servicePacks.current.basicOptions),
+        && !isEmpty(
+          keys(this.model.servicePacks.current.basicOptions),
         ),
     };
   }
 
   computeOptionsBasicActionMenuExists() {
-    return _.some(
-      _.map(
-        _.values(this.options.basic.actionMenu.items),
+    return some(
+      map(
+        values(this.options.basic.actionMenu.items),
         'exists',
       ),
     );
   }
 
   computeOptionsCertificationExists() {
-    return !_.isEmpty(this.model.servicePacks.orderable.withACertification)
+    return !isEmpty(this.model.servicePacks.orderable.withACertification)
     || this.model.servicePacks.current.certification.exists
     || (
       this.model.servicePacks.ordered.exists && this.model.servicePacks.ordered.certification.exists
@@ -255,9 +259,9 @@ export default class {
   }
 
   computeOptionsCertificationActionMenuExists() {
-    return _.some(
-      _.map(
-        _.values(this.options.certification.actionMenu.items),
+    return some(
+      map(
+        values(this.options.certification.actionMenu.items),
         'exists',
       ),
     );
@@ -265,7 +269,7 @@ export default class {
 
   computeOptionsCertificationActionMenuItemsActivate() {
     const everytime = !this.model.servicePacks.current.certification.exists
-      && !_.isEmpty(this.model.servicePacks.orderable.withACertification);
+      && !isEmpty(this.model.servicePacks.orderable.withACertification);
     const whenThereIsNoPendingOrder = everytime
       && !this.model.pendingOrder.exists;
     const whenThereIsAPendingOrder = everytime

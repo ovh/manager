@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
+
 import BillingService from '../../../models/BillingService.class';
 
 import { AVAILABLE_SERVICES } from './user-contacts.constants';
@@ -35,7 +38,7 @@ export default class {
   getServices() {
     return this.OvhApiOvhProduct.Aapi().query().$promise
       .then((services) => {
-        const availableServices = _.filter(
+        const availableServices = filter(
           services,
           service => AVAILABLE_SERVICES.includes(service.category),
         );
@@ -44,6 +47,6 @@ export default class {
   }
 
   static getAvailableCategories(services) {
-    return _.uniq(_.map(services, 'category'));
+    return uniq(map(services, 'category'));
   }
 }

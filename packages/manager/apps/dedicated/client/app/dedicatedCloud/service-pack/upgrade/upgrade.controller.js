@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import isString from 'lodash/isString';
 
 import { RejectType } from '@uirouter/angularjs';
 
@@ -29,9 +30,9 @@ export default class {
 
   displayErrorMessage(error) {
     const message = this.$translate.instant('dedicatedCloud_servicePack_confirmation_order_failure');
-    let errorMessage = _.get(error.detail, 'data', error.detail);
+    let errorMessage = get(error.detail, 'data', error.detail);
 
-    if (!_.isString(errorMessage)) {
+    if (!isString(errorMessage)) {
       errorMessage = error.message;
     }
 
