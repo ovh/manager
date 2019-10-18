@@ -105,7 +105,10 @@ export default class PciProjectNewCtrl {
   isPaymentMethodIntegrationVisible() {
     const currentStep = this.getCurrentStep();
 
-    return currentStep.name !== 'description' && !this.paymentStatus();
+
+    return currentStep.name !== 'description'
+      && !this.paymentStatus()
+      && !get(currentStep, 'model.defaultPaymentMethod');
   }
 
   isStepComplete(step) {
