@@ -1,21 +1,27 @@
-# OVH Manager
+# Manager
 
-# Introduction
+> The official [OVHcloud](https://ovhcloud.com) control panel also known as the **[Manager](https://ovh.com/manager)**.
+
+![Contributors](https://badgen.net/github/contributors/ovh/manager) ![Last commit](https://badgen.net/github/last-commit/ovh/manager) [![License](https://badgen.net/github/license/ovh/manager)](https://github.com/ovh/manager/blob/master/LICENSE) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+
+[![Public Cloud control panel UI](media/public-cloud.jpg)](https://ovh.com/manager)
+
+## Introduction
 
 This repository is a monorepo containing all the source code of our customer areas, as well as their components.
 
-# Installation
+## Installation
 
-Clone this repository and let's go at the root of the folder :)
+### Prerequisites
 
-```bash
-cd manager
-```
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/lang/en/)
 
-Install it by using yarn >= 1.12.3 (we are using workspace feature: <https://yarnpkg.com/lang/en/docs/cli/workspace/>)
+Simply run:
 
-```bash
-yarn install
+```sh
+$ yarn install
 ```
 
 <!-- AUTO-GENERATED-CONTENT:START (PACKAGES:packagePath=packages/manager/modules&name=modules&level=2) -->
