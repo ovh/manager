@@ -1,3 +1,12 @@
+## [2.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@2.0.4...@ovh-ux/manager-navbar@2.0.5) (2019-10-21)
+
+
+### Bug Fixes
+
+* **navbar:** update contacts url ([ebc1fdc](https://github.com/ovh-ux/manager/commit/ebc1fdc))
+
+
+
 ## [2.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@2.0.3...@ovh-ux/manager-navbar@2.0.4) (2019-10-17)
 
 

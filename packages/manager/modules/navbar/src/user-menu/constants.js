@@ -26,7 +26,7 @@ const EU = {
   billingPayments: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
   billingRefunds: 'https://www.ovh.com/manager/dedicated/index.html#/billing/refunds',
   billingVouchers: 'https://www.ovh.com/manager/dedicated/index.html#/billing/vouchers',
-  contacts: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
+  contacts: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES',
   orders: 'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
   ovhAccount: 'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
   paymentMeans: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
