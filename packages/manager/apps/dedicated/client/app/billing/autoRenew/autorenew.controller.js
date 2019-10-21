@@ -3,8 +3,11 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
+import upperFirst from 'lodash/upperFirst';
 
-import { NIC_ALL, RENEW_URL, URL_PARAMETER_SEPARATOR } from './autorenew.constants';
+import {
+  ALIGNMENT_URLS, NIC_ALL, RENEW_URL, URL_PARAMETER_SEPARATOR,
+} from './autorenew.constants';
 
 export default class AutorenewCtrl {
   /* @ngInject */
@@ -15,6 +18,7 @@ export default class AutorenewCtrl {
     atInternet,
     BillingAutoRenew,
     billingRenewHelper,
+    coreConfig,
     ouiDatagridService,
   ) {
     this.$filter = $filter;
@@ -23,10 +27,13 @@ export default class AutorenewCtrl {
     this.atInternet = atInternet;
     this.BillingAutoRenew = BillingAutoRenew;
     this.renewHelper = billingRenewHelper;
+    this.coreConfig = coreConfig;
     this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {
+    this.ALIGNMENT_URL = this.coreConfig.isRegion('EU') ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR : null;
+
     this.selectedServices = [];
 
     this.nicBillingFilter = this.nicBilling || this.$translate.instant(NIC_ALL);
@@ -130,8 +137,7 @@ export default class AutorenewCtrl {
 
   loadServices() {
     if (get(this.ouiDatagridService, 'datagrids.services')) {
-      const currentOffset = this.pageNumber * this.pageSize;
-      set(this.ouiDatagridService, 'datagrids.services.paging.offset', currentOffset < this.services.count ? currentOffset : this.services.count);
+      set(this.ouiDatagridService, 'datagrids.services.paging.offset', this.offset + 1);
     }
 
     return this.$q.resolve({
@@ -202,5 +208,13 @@ export default class AutorenewCtrl {
       .join(URL_PARAMETER_SEPARATOR);
 
     return `${RENEW_URL[this.currentUser.ovhSubsidiary]}${urlParameterDomains}`;
+  }
+
+  getAutomaticExpirationDate(service) {
+    return upperFirst(
+      new Intl.DateTimeFormat(
+        this.$translate.use().replace('_', '-'), { year: 'numeric', month: 'long' },
+      ).format(new Date(service.expiration)),
+    );
   }
 }

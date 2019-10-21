@@ -1,20 +1,20 @@
-import component from './dashboard.component';
+import generalInformation from './tiles/general-information';
+import legacy from './legacy';
+import options from './tiles/options';
+import serviceManagement from './tiles/service-management';
 
-import ovhManagerPccDashboardGeneralInformation from './generalInformation';
-import ovhManagerPccDashboardLegacy from './legacy';
-import ovhManagerPccDashboardOptions from './options';
-import ovhManagerPccDashboardServiceManagement from './serviceManagement';
+import component from './dashboard.component';
 
 const moduleName = 'ovhManagerPccDashboard';
 
 angular
   .module(moduleName, [
     'oui',
-    ovhManagerPccDashboardGeneralInformation,
-    ovhManagerPccDashboardLegacy,
-    ovhManagerPccDashboardOptions,
-    ovhManagerPccDashboardServiceManagement,
+    generalInformation,
+    legacy,
+    options,
     'pascalprecht.translate',
+    serviceManagement,
     'ui.router',
   ])
   .component(component.name, component)

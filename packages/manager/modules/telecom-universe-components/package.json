@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "4.1.2",
+  "version": "4.1.4",
   "private": true,
   "description": "Telecom Universe Components",
   "license": "BSD-3-Clause",
@@ -9,7 +9,7 @@
   "dependencies": {
     "bootstrap": "^3.4.1",
     "lodash": "^4.17.15",
-    "ovh-ui-kit": "^2.34.3"
+    "ovh-ui-kit": "^2.35.2"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.1",

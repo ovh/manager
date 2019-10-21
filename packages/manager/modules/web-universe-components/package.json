@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "private": true,
   "description": "Web Universe Components",
   "keywords": [
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
-    "ovh-ui-kit": "^2.34.3"
+    "ovh-ui-kit": "^2.35.2"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-http": "^4.0.2",

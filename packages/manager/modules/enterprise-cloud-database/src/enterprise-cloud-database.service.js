@@ -131,8 +131,7 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getHostDetails(clusterId, hostId) {
-    return this.OvhApiCloudDBEnterpriseHost.get({ clusterId, hostId }).$promise
-      .catch(error => ((error.status === 400) ? null : this.$q.reject(error)));
+    return this.OvhApiCloudDBEnterpriseHost.get({ clusterId, hostId }).$promise;
   }
 
   getHosts(clusterId) {

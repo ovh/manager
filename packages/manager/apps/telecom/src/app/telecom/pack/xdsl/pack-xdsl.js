@@ -48,6 +48,7 @@ angular.module('managerApp').config(($stateProvider) => {
         '../common',
         '.',
         './access',
+        './access/comfortExchange',
         './access/deconsolidation',
         './access/statistics',
         './access/ipv6',

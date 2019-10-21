@@ -854,5 +854,7 @@
   "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "a sua infraestrutura remota foi instalado com êxito!",
   "dedicatedCloud_options_zerto_delivered_message_part_three": "Recebeu a sua palavra-passe ZSSP no endereço de e-mail {{email}}.",
   "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Para finalizar a ativação do DRP Zerto",
-  "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "recomendamos que adicione os IP da VPN nos parâmetros do DRP"
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "recomendamos que adicione os IP da VPN nos parâmetros do DRP",
+  "dedicatedCloud_tab_host_id": "ID",
+  "dedicatedCloud_tab_datastores_id": "ID"
 }

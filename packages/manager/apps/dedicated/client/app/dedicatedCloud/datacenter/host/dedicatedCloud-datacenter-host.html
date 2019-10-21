@@ -16,6 +16,10 @@
             </button>
         </div>
         <oui-datagrid data-rows-loader="$ctrl.loadHosts($config)">
+            <oui-column
+                data-title=":: 'dedicatedCloud_tab_host_id' | translate"
+                data-property="hostId">
+            </oui-column>
             <oui-column data-title=":: 'dedicatedCloud_tab_host_name' | translate"
                         data-property="name">
             </oui-column>

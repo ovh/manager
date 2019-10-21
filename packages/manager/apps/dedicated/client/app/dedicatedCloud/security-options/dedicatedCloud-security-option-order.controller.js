@@ -41,7 +41,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
   function checkOption(optionName) {
     return DedicatedCloud.getOptionState(optionName, $stateParams.productId).then((result) => {
       if (result.error) {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_options_check_error'), result.error, $scope.alerts.dashboard);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_options_check_error'), result.error);
       }
 
       return result === 'enabled';
@@ -161,7 +161,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
         }));
       })
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_options_load_prices_error'), err, $scope.alerts.dashboard);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_options_load_prices_error'), err);
         $scope.resetAction();
       })
       .finally(() => {
@@ -174,14 +174,14 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
 
     DedicatedCloud.enableOption($stateParams.productId, $scope.optionName)
       .then((result) => {
-        Alerter.success($translate.instant('dedicatedCloud_options_order_activate_success'), $scope.alerts.dashboard);
+        Alerter.success($translate.instant('dedicatedCloud_options_order_activate_success'));
         $rootScope.$broadcast('option-enable', {
           optionName: $scope.optionName,
           taskId: result.taskId,
         });
       })
       .catch((err) => {
-        Alerter.alertFromSWS($translate.instant('dedicatedCloud_options_order_activate_error'), err, $scope.alerts.dashboard);
+        Alerter.alertFromSWS($translate.instant('dedicatedCloud_options_order_activate_error'), err);
       })
       .finally(() => {
         $scope.loaders.loading = false;

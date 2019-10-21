@@ -1,9 +1,0 @@
-{
- "ovhManagerComponentActivationStatus_beingActivated": "W trakcie aktywacji",
- "ovhManagerComponentActivationStatus_beingDeactivated": "W trakcie wyłączania",
- "ovhManagerComponentActivationStatus_cancelling": "W trakcie anulowania",
- "ovhManagerComponentActivationStatus_disabled": "Wyłączony",
- "ovhManagerComponentActivationStatus_enabled": "Aktywny",
- "ovhManagerComponentActivationStatus_pendingActivation": "W trakcie aktywacji",
- "ovhManagerComponentActivationStatus_unknown": "Nieznany status"
-}

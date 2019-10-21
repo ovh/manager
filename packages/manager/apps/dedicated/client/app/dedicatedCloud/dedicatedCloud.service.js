@@ -2,6 +2,8 @@ import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
 import includes from 'lodash/includes';
+import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
 import isUndefined from 'lodash/isUndefined';
 import pick from 'lodash/pick';
 import set from 'lodash/set';
@@ -23,7 +25,8 @@ angular
     '2013v1': '2013',
   })
   .service('DedicatedCloud', function DedicatedCloudService($q, $cacheFactory, $rootScope,
-    OvhApiDedicatedCloud, OvhHttp, Poll, Poller, DEDICATED_CLOUD_CONSTANTS, VM_ENCRYPTION_KMS) {
+    OvhApiDedicatedCloud, OvhHttp, Poll, Poller,
+    DEDICATED_CLOUD_CONSTANTS, UNAVAILABLE_PCC_CODE, VM_ENCRYPTION_KMS) {
     const self = this;
     const dedicatedCloudCache = {
       all: 'UNIVERS_DEDICATED_CLOUD',
@@ -41,16 +44,28 @@ angular
     this.getAllPccs = () => OvhApiDedicatedCloud.v6().query().$promise
       .then(pccIds => $q.all(pccIds.map(pccId => OvhApiDedicatedCloud.v6().get({
         serviceName: pccId,
-      }).$promise)));
+      }).$promise
+        .catch(error => (error.status === UNAVAILABLE_PCC_CODE
+          ? undefined : $q.reject(error))))));
 
-    this.getSelected = (serviceName, forceRefresh) => OvhHttp.get('/sws/dedicatedCloud/{serviceName}', {
-      rootPath: '2api',
-      urlParams: {
-        serviceName,
-      },
-      cache: dedicatedCloudCache.all,
-      clearAllCache: forceRefresh,
-    });
+    this.getSelected = (serviceName, forceRefresh) => OvhHttp
+      .get('/sws/dedicatedCloud/{serviceName}', {
+        rootPath: '2api',
+        urlParams: {
+          serviceName,
+        },
+        cache: dedicatedCloudCache.all,
+        clearAllCache: forceRefresh,
+      })
+      .then(service => (isString(service) || service.status === 'expired'
+        ? {
+          ...(isObject(service) ? service : undefined),
+          isExpired: true,
+        }
+        : {
+          ...service,
+          isExpired: false,
+        }));
 
     this.getDescription = serviceName => OvhHttp.get('/dedicatedCloud/{serviceName}', {
       rootPath: 'apiv6',

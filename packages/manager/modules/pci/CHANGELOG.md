@@ -1,3 +1,62 @@
+## [2.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.3...@ovh-ux/manager-pci@2.4.4) (2019-10-18)
+
+
+### Bug Fixes
+
+* **pci.projects.workflow:** add missing ngInject ([#1500](https://github.com/ovh-ux/manager/issues/1500)) ([fb9922d](https://github.com/ovh-ux/manager/commit/fb9922d))
+
+
+
+## [2.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.2...@ovh-ux/manager-pci@2.4.3) (2019-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+* **pci.new:** redirect to custom error page ([d7976da](https://github.com/ovh-ux/manager/commit/d7976da))
+* **pci.project.kubernetes.details.service:** fix button display ([#1476](https://github.com/ovh-ux/manager/issues/1476)) ([6747643](https://github.com/ovh-ux/manager/commit/6747643))
+* **pci.project.users.add:** wrap oui-modal into a form element ([#1464](https://github.com/ovh-ux/manager/issues/1464)) ([7f07533](https://github.com/ovh-ux/manager/commit/7f07533))
+
+
+
+## [2.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.1...@ovh-ux/manager-pci@2.4.2) (2019-10-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 100] ([d5738e3](https://github.com/ovh-ux/manager/commit/d5738e3))
+* **i18n:** add missing translations [CDS 101] ([38dfed5](https://github.com/ovh-ux/manager/commit/38dfed5))
+* **i18n:** add missing translations [CDS 96] ([3d1a584](https://github.com/ovh-ux/manager/commit/3d1a584))
+* **pci.stream:** add name attribute on checkbox ([#1441](https://github.com/ovh-ux/manager/issues/1441)) ([403fbf6](https://github.com/ovh-ux/manager/commit/403fbf6))
+
+
+
+## [2.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.0...@ovh-ux/manager-pci@2.4.1) (2019-10-09)
+
+
+### Bug Fixes
+
+* **pci:** edit instance backups ([#1361](https://github.com/ovh-ux/manager/issues/1361)) ([673ab3f](https://github.com/ovh-ux/manager/commit/673ab3f))
+
+
+
+# [2.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.3.0...@ovh-ux/manager-pci@2.4.0) (2019-10-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+* **pci:** update horizon url ([67fae7c](https://github.com/ovh-ux/manager/commit/67fae7c))
+* **pci:** update object storage type description ([c403f88](https://github.com/ovh-ux/manager/commit/c403f88))
+
+
+### Features
+
+* **pci:** add stream product ([#1395](https://github.com/ovh-ux/manager/issues/1395)) ([2fe52c7](https://github.com/ovh-ux/manager/commit/2fe52c7))
+
+
+
 # [2.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.2.0...@ovh-ux/manager-pci@2.3.0) (2019-10-07)
 
 

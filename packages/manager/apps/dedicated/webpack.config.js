@@ -48,11 +48,12 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './client/app/images/**/*.*'), context: 'client/app' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
+        { from: `${foundNodeModulesFolder('flag-icon-css')}/flags`, to: 'flag-icon-css/flags' },
       ],
     },
   }, env);
 
-  const WEBPACK_REGION = `'${_.upperCase(env.region || process.env.REGION || 'EU')}'`;
+  const WEBPACK_REGION = `${_.upperCase(env.region || process.env.REGION || 'EU')}`;
 
   config.plugins.push(new webpack.DefinePlugin({
     WEBPACK_ENV: {
@@ -88,7 +89,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
-        __WEBPACK_REGION__: WEBPACK_REGION,
+        __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
     ],
   });

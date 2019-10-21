@@ -1,3 +1,21 @@
+## [7.32.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud@7.32.3...@ovh-ux/manager-cloud@7.32.4) (2019-10-15)
+
+
+### Bug Fixes
+
+* **cloud:** fix edit icon size ([#1449](https://github.com/ovh-ux/manager/issues/1449)) ([e2973f6](https://github.com/ovh-ux/manager/commit/e2973f6))
+
+
+
+## [7.32.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud@7.32.2...@ovh-ux/manager-cloud@7.32.3) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
 ## [7.32.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud@7.32.1...@ovh-ux/manager-cloud@7.32.2) (2019-10-07)
 
 

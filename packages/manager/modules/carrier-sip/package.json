@@ -1,0 +1,24 @@
+{
+  "name": "@ovh-ux/manager-carrier-sip",
+  "version": "1.0.1",
+  "private": true,
+  "description": "OVH Carrier SIP module",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "./src/index.js",
+  "dependencies": {
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-core": "^7.1.4",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
+    "angular": "^1.7.8",
+    "angular-translate": "^2.18.1",
+    "ovh-api-services": "^9.18.0",
+    "ovh-ui-angular": "^3.8.2",
+    "ovh-ui-kit": "^2.34.3",
+    "ovh-ui-kit-bs": "^2.1.2"
+  }
+}

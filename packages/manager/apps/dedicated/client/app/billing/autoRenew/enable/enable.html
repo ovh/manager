@@ -1,6 +1,6 @@
 <div data-ui-view class="container-fluid">
     <billing-autorenew-bulk
-        data-description="billing_autorenew_enable_bulk_unvailable"
+        data-descriptions=":: $ctrl.descriptions"
         data-go-back="$ctrl.goBack()"
         data-services="$ctrl.servicesList"
         data-update-renew="$ctrl.update(services)">
@@ -18,13 +18,5 @@
             <span class="d-block" data-translate="billing_autorenew_enable_payment_mean_default"></span>
             <span class="d-block" data-translate="billing_autorenew_enable_payment_mean_frequency"></span>
         </bulk-info-message>
-        <bulk-description>
-            <p
-                data-translate="billing_autorenew_enable_exclude"
-                data-translate-values="{
-                    count: 0
-                }">
-            </p>
-        </bulk-description>
     </billing-autorenew-bulk>
 </div>

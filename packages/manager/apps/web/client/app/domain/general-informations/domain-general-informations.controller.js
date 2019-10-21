@@ -9,10 +9,12 @@ import isObject from 'lodash/isObject';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import maxBy from 'lodash/maxBy';
+import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
 export default class DomainTabGeneralInformationsCtrl {
+  /* @ngInject */
   constructor(
     $q,
     $rootScope,
@@ -63,6 +65,8 @@ export default class DomainTabGeneralInformationsCtrl {
     this.isAllDom = this.$rootScope.currentSectionInformation === 'all_dom';
     this.isUK = last(this.domain.name.split('.')).toUpperCase() === 'UK';
     this.options = {};
+    this.zoneActivationLink = this.$state.href('.zoneActivate');
+
     this.loading = {
       allDom: false,
       associatedHosting: false,
@@ -332,19 +336,19 @@ export default class DomainTabGeneralInformationsCtrl {
     this.loading.options = true;
     return this.Domain.getOptions(serviceName)
       .then(options => this.$q.all(
-        _.map(options, option => this.Domain.getOption(serviceName, option)
+        map(options, option => this.Domain.getOption(serviceName, option)
           .then(optionDetail => Object.assign({}, optionDetail,
             { optionActivated: optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE }))),
       ))
       .then((options) => {
-        this.options = _.reduce(options, (transformedOptions, option) => ({
+        this.options = reduce(options, (transformedOptions, option) => ({
           ...transformedOptions,
           [option.option]: option,
         }), {});
       })
       .catch(err => this.Alerter.alertFromSWS(
         this.$translate.instant('domain_configuration_web_hosting_fail'),
-        _.get(err, 'data'),
+        get(err, 'data'),
         this.$scope.alerts.page,
       ))
       .finally(() => {

@@ -29,16 +29,11 @@ angular
 
             if (result) {
               user = {
-                nichandle: result.me.nichandle,
-                email: result.me.email,
+                ...result.me,
                 firstName: result.me.firstname,
                 lastName: result.me.name,
                 billingCountry: result.me.country,
-                ovhSubsidiary: result.me.ovhSubsidiary,
-                spareEmail: result.me.spareEmail,
-                legalform: result.me.legalform,
                 customerCode: result.me.customerCode,
-                language: result.me.language,
                 isEnterprise: indexOf(result.certificates, 'enterprise') > -1,
                 isVATNeeded: ['CA', 'QC', 'WE', 'WS'].indexOf(result.me.ovhSubsidiary) === -1,
               };

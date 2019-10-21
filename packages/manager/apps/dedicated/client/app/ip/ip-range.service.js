@@ -35,11 +35,10 @@ angular.module('Module.ip.services').service('IpRange', function IpRange() {
   function getStrCopy(str, _copies) {
     const copies = _copies > 0 ? _copies : 1;
 
-    return times(copies + 1, str).join('');
+    return times(copies, () => str).join('');
   }
 
-  function convertDecToBase(dec, base, _length, _padding) {
-    const padding = _padding || '0';
+  function convertDecToBase(dec, base, _length, padding = '0') {
     let num = dec.toString(base);
     const length = _length || num.length;
     if (num.length !== length) {

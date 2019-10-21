@@ -1,3 +1,21 @@
+# [7.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.4...@ovh-ux/manager-core@7.2.0) (2019-10-18)
+
+
+### Features
+
+* **core:** add manager urls ([#1505](https://github.com/ovh-ux/manager/issues/1505)) ([45c5a62](https://github.com/ovh-ux/manager/commit/45c5a62))
+
+
+
+## [7.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.3...@ovh-ux/manager-core@7.1.4) (2019-10-17)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/component-rollup-config to v7.0.0 ([#1469](https://github.com/ovh-ux/manager/issues/1469)) ([bbc8794](https://github.com/ovh-ux/manager/commit/bbc8794))
+
+
+
 ## [7.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.2...@ovh-ux/manager-core@7.1.3) (2019-09-30)
 
 

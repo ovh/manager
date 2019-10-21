@@ -128,6 +128,7 @@
   "housing_configuration_task_ADD_VIRTUAL_MAC": "Ajout de Mac virtuelle",
   "housing_configuration_task_VIRTUAL_MAC_DELETE": "Suppression de Mac virtuelle",
   "housing_configuration_task_REMOVE_VIRTUAL_MAC": "Suppression de Mac virtuelle",
+  "housing_configuration_task_INFRA_002_VIRTUAL_NETWORK_INTERFACE": "Modification des interfaces réseau",
   "housing_configuration_task_empty": "Aucune tâche",
   "housing_configuration_task_status_cancelled": "Annulée",
   "housing_configuration_task_status_customer_error": "Erreur client",

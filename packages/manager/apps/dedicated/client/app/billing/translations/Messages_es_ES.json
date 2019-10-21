@@ -1212,5 +1212,7 @@
   "billing_credit_balance_movements_operation_credit": "Crédito",
   "billing_credit_balance_movements_operation_debit": "Débito",
   "billing_credit_balance_movements_load_error": "Se ha producido un error al cargar los movimientos de su cuenta de crédito.",
-  "billing_credit_back": "Volver a mis cuentas de crédito"
+  "billing_credit_back": "Volver a mis cuentas de crédito",
+  "terminate_service_comments": "Comentarios",
+  "terminate_service_type_webcoach": "WebCoach"
 }

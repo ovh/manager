@@ -1,5 +1,6 @@
 import upperFirst from 'lodash/upperFirst';
 import has from 'lodash/has';
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 
 angular
@@ -37,7 +38,7 @@ angular
       }
 
       if (angular.isObject(service)) {
-        if (_(['EMAIL_DOMAIN', 'SMS']).includes(service.serviceType)) {
+        if (includes(['EMAIL_DOMAIN', 'SMS'], service.serviceType)) {
           return this.$translate.instant('autorenew_service_renew_paid');
         }
 

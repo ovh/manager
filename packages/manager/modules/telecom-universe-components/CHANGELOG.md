@@ -1,3 +1,21 @@
+## [4.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.3...@ovh-ux/ng-ovh-telecom-universe-components@4.1.4) (2019-10-18)
+
+
+### Performance Improvements
+
+* **tuc:** optimize voip service loading ([#1491](https://github.com/ovh-ux/manager/issues/1491)) ([15e44c4](https://github.com/ovh-ux/manager/commit/15e44c4))
+
+
+
+## [4.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.2...@ovh-ux/ng-ovh-telecom-universe-components@4.1.3) (2019-10-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 94] ([6e85f3f](https://github.com/ovh-ux/manager/commit/6e85f3f))
+
+
+
 ## [4.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.1...@ovh-ux/ng-ovh-telecom-universe-components@4.1.2) (2019-09-25)
 
 

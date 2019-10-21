@@ -1,0 +1,22 @@
+{
+  "carrier_sip_dashboard_header_dashboard": "Tableau de bord",
+  "carrier_sip_dashboard_header_endpoints": "SIP Endpoints",
+  "carrier_sip_dashboard_header_cdr": "CDR",
+  "carrier_sip_dashboard_general_information": "Informations générales",
+  "carrier_sip_dashboard_general_information_name": "Nom du service",
+  "carrier_sip_dashboard_general_information_description": "Description",
+  "carrier_sip_dashboard_general_information_max_calls_second": "Nombre de call/sec max",
+  "carrier_sip_dashboard_general_information_max_concurrent_calls": "Nombre d'appels simultanés",
+  "carrier_sip_dashboard_renewal": "Abonnement",
+  "carrier_sip_dashboard_renewal_date": "Date de renouvellement",
+  "carrier_sip_dashboard_renewal_renew": "Gérer mes services",
+  "carrier_sip_dashboard_renewal_creation_date": "Date de création",
+  "carrier_sip_dashboard_renewal_contacts": "Contacts",
+  "carrier_sip_dashboard_renewal_contacts_admin": "Administrateur",
+  "carrier_sip_dashboard_renewal_contacts_tech": "Technique",
+  "carrier_sip_dashboard_renewal_contacts_billing": "Facturation",
+  "carrier_sip_dashboard_renewal_contacts_manage": "Gérer les contacts",
+  "carrier_sip_dashboard_shortcuts": "Raccourcis",
+  "carrier_sip_dashboard_shortcuts_bills": "Relevé de consommation",
+  "carrier_sip_dashboard_shortcuts_cdrs": "Mise à disposition des CDR"
+}

@@ -1,5 +1,6 @@
 import get from 'lodash/get';
-import BillingService from '../../BillingService.class';
+
+import BillingService from '../../../../models/BillingService.class';
 
 export default class {
   /* @ngInject */

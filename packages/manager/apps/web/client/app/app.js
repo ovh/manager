@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
@@ -39,7 +40,9 @@ import moment from 'moment';
 import config from './config/config';
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
+import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
 import domainDnsZone from './dns-zone';
+import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
 import navbar from './components/navbar';
 import zone from './domain/zone/zone.module';
 
@@ -100,7 +103,9 @@ angular
     'Module.emailpro',
     domainDnsZone,
     domainEmailObfuscation,
+    domainZoneActivation,
     domainOptin,
+    hostingWebsiteCoach,
     navbar,
     zone,
   ])
@@ -462,7 +467,7 @@ angular
     set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
   })
   .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(_.get(constants, 'REDIRECT_URLS.listTicket', null));
+    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .constant('UNIVERSE', 'WEB')
   .constant('MANAGER_URLS', {

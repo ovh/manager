@@ -1,48 +1,46 @@
-import set from 'lodash/set';
+export default class UserAccountCtrl {
+  /* @ngInject */
+  constructor($location, $scope, $state, $timeout, constants, supportLevel) {
+    // dependencies injections
+    this.$location = $location;
+    this.$scope = $scope;
+    this.$state = $state;
+    this.$timeout = $timeout;
+    this.constants = constants;
+    this.supportLevel = supportLevel;
+    this.USERACCOUNT_BASE_URL = 'account/user/';
+    this.originUrl = this.$location.search().redirectTo || this.$location.search().redirectto;
+  }
 
-angular.module('UserAccount').controller('UserAccount.controllers.main', [
-  '$scope',
-  '$window',
-  '$location',
-  '$timeout',
-  '$state',
-  function UserAccountMainController($scope, $window, $location, $timeout, $state) {
-    $scope.USERACCOUNT_BASE_URL = 'account/user/';
+  $onInit() {
+    this.$scope.stepPath = '';
+    this.$scope.currentAction = null;
+    this.$scope.currentActionData = null;
 
-    $scope.originUrl = $location.search().redirectTo || $location.search().redirectto;
+    this.$scope.resetAction = function resetAction() {
+      this.$scope.setAction(false);
+    }.bind(this);
 
-    $scope.redirectToOrigin = function redirectToOrigin() {
-      if ($scope.originUrl) {
-        set($window, 'location.href', $scope.originUrl);
-      } else {
-        $state.go('app.configuration');
-      }
-    };
-
-    $scope.stepPath = '';
-    $scope.currentAction = null;
-    $scope.currentActionData = null;
-
-    $scope.resetAction = function resetAction() {
-      $scope.setAction(false);
-    };
-
-    $scope.setAction = function setAction(action, data) {
-      $scope.currentAction = action;
-      $scope.currentActionData = data;
+    this.$scope.setAction = function setAction(action, data, basePath) {
+      this.$scope.currentAction = action;
+      this.$scope.currentActionData = data;
       if (action) {
-        $scope.stepPath = `${$scope.USERACCOUNT_BASE_URL}${$scope.currentAction}.html`;
+        if (basePath) {
+          this.$scope.stepPath = `${basePath}${this.$scope.currentAction}.html`;
+        } else {
+          this.$scope.stepPath = `${this.USERACCOUNT_BASE_URL}${this.$scope.currentAction}.html`;
+        }
         $('#currentAction').modal({
           keyboard: true,
           backdrop: 'static',
         });
       } else {
         $('#currentAction').modal('hide');
-        $scope.currentActionData = null;
-        $timeout(() => {
-          $scope.stepPath = '';
+        this.$scope.currentActionData = null;
+        this.$timeout(() => {
+          this.$scope.stepPath = '';
         }, 300);
       }
-    };
-  },
-]);
+    }.bind(this);
+  }
+}

@@ -18,6 +18,7 @@ import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
+import ngOvhUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
@@ -31,6 +32,7 @@ import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
 import TelecomAppCtrl from './app.controller';
+import carrierSip from './telecom/telephony/carrierSip';
 import navbar from '../components/navbar';
 
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -69,6 +71,7 @@ angular.module('managerApp', [
   ngPaginationFront,
   ngTailLogs,
   ngTranslateAsyncLoader,
+  ngOvhUiRouterLayout,
   ngOvhUiRouterLineProgress,
   ngUirouterTitle,
   ngOvhActionsMenu,
@@ -103,6 +106,7 @@ angular.module('managerApp', [
   'ui.sortable',
   'ui.validate',
   'validation.match',
+  carrierSip,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */
@@ -210,7 +214,7 @@ angular.module('managerApp', [
     $logProvider.debugEnabled(false);
   })
 
-  .run((
+  .run(/* @ngInject */ (
     $transitions,
     $translate,
     $translatePartialLoader,

@@ -1,3 +1,41 @@
+# [10.37.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.36.1...@ovh-ux/manager-telecom@10.37.0) (2019-10-18)
+
+
+### Features
+
+* **telephony:** enable carrier sip lines through feature type ([80137f1](https://github.com/ovh-ux/manager/commit/80137f1))
+* **telephony:** use of constants for feature types ([42972ce](https://github.com/ovh-ux/manager/commit/42972ce))
+
+
+
+## [10.36.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.36.0...@ovh-ux/manager-telecom@10.36.1) (2019-10-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 104] ([da22965](https://github.com/ovh-ux/manager/commit/da22965))
+* **i18n:** add missing translations [CDS 105] ([c74a659](https://github.com/ovh-ux/manager/commit/c74a659))
+
+
+
+# [10.36.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.9...@ovh-ux/manager-telecom@10.36.0) (2019-10-15)
+
+
+### Features
+
+* **telephony.carrier.sip:** add new module ([66bcfad](https://github.com/ovh-ux/manager/commit/66bcfad))
+
+
+
+## [10.35.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.8...@ovh-ux/manager-telecom@10.35.9) (2019-10-09)
+
+
+### Bug Fixes
+
+* **sidebar:** remove useless element ([57cf1f0](https://github.com/ovh-ux/manager/commit/57cf1f0))
+
+
+
 ## [10.35.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.35.7...@ovh-ux/manager-telecom@10.35.8) (2019-10-07)
 
 
