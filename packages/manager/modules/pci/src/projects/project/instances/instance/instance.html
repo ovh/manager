@@ -34,11 +34,13 @@
                     <span data-translate="pci_projects_project_instances_instance_action_edit_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.createBackupInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-disabled="!$ctrl.instance.canAddSnapshot()">
                     <span data-translate="pci_projects_project_instances_instance_action_createBackup_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')">
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')"
+                    data-disabled="!$ctrl.instance.canAddSnapshot()">
                     <span data-translate="pci_projects_project_instances_autobackup_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.startRescueInstance()"
@@ -163,6 +165,7 @@
                             data-on-click="$ctrl.goToBlockStorages()">
                         </oui-action-menu-item>
                         <oui-action-menu-item data-text="{{:: 'pci_projects_project_instances_instance_volumes_action_attach_label' | translate }}"
+                            data-disabled="!$ctrl.instance.canAttachVolume()"
                             data-on-click="$ctrl.attachVolume()">
                         </oui-action-menu-item>
                     </oui-action-menu>

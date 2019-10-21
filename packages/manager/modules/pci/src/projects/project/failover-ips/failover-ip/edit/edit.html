@@ -13,6 +13,7 @@
             data-model="$ctrl.instance"
             data-placeholder="{{ ::'pci_projects_project_failoverips_failoverip_edit_select_instance' | translate }}"
             data-items="$ctrl.instances"
+            data-disable-items="!$item.canAttachIPFO()"
             data-match="name"
             data-required>
         </oui-select>

@@ -61,6 +61,13 @@ export default class PciProjectInstanceService {
       .then(instances => map(instances, instance => new Instance(instance)));
   }
 
+  getAllInstanceDetails(projectId) {
+    return this.getAll(projectId)
+      .then(instances => this.$q.all(
+        map(instances, instance => this.getInstanceDetails(projectId, instance)),
+      ));
+  }
+
   getInstanceDetails(projectId, instance) {
     return this.$q
       .all({
@@ -79,6 +86,10 @@ export default class PciProjectInstanceService {
             flavorId: instance.flavorId,
           })
           .$promise
+          .then(flavor => ({
+            ...flavor,
+            capabilities: this.constructor.transformCapabilities(get(flavor, 'capabilities', [])),
+          }))
           .catch(() => null),
         volumes: this.OvhApiCloudProjectVolume
           .v6()
@@ -120,6 +131,10 @@ export default class PciProjectInstanceService {
         instance, ipReverse, volumes, privateNetworks,
       }) => new Instance({
         ...instance,
+        flavor: {
+          ...instance.flavor,
+          capabilities: this.constructor.transformCapabilities(get(instance.flavor, 'capabilities', [])),
+        },
         volumes: filter(volumes, volume => includes(volume.attachedTo, instance.id)),
         privateNetworks: filter(privateNetworks, privateNetwork => includes(
           map(filter(instance.ipAddresses, { type: 'private' }), 'networkId'),
@@ -127,6 +142,13 @@ export default class PciProjectInstanceService {
         )),
         ipReverse,
       }));
+  }
+
+  static transformCapabilities(capabilities) {
+    return reduce(capabilities, (flavorCapabilities, currentCapability) => ({
+      ...flavorCapabilities,
+      [currentCapability.name]: currentCapability.enabled,
+    }), {});
   }
 
   delete(projectId, { id: instanceId }) {
