@@ -6,9 +6,9 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.1",
