@@ -3,9 +3,6 @@
   "version": "0.2.0",
   "private": true,
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
   "main": "./src/index.js",
   "dependencies": {
     "bootstrap": "^4.3.1",
