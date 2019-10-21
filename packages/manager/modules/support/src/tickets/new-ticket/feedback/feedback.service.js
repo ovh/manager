@@ -1,9 +1,8 @@
-import includes from 'lodash/includes';
+import isObject from 'lodash/isObject';
 
 import {
   ALLOWED_LANGUAGES,
   BASE_URL,
-  DEFAULT_LANGUAGE,
 } from './feedback.constants';
 
 export default class {
@@ -15,11 +14,13 @@ export default class {
   }
 
   getUrl() {
+    const defaultLanguage = Object.keys(ALLOWED_LANGUAGES)
+      .find(key => ALLOWED_LANGUAGES[key].isDefault);
     const userLanguage = this.TranslateService.getUserLocale(true);
 
-    const languageToUse = includes(ALLOWED_LANGUAGES, userLanguage)
+    const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
       ? userLanguage
-      : DEFAULT_LANGUAGE;
+      : defaultLanguage;
 
     return `${BASE_URL}${languageToUse}`;
   }
