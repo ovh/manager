@@ -38,18 +38,31 @@ export const definition = class SupportNewTicketService {
     }).$promise;
   }
 
+  static createLine(text = '') {
+    return `${text}\n`;
+  }
+
+  static buildFieldText() {
+    return field => SupportNewTicketService.createLine(field.label)
+      + SupportNewTicketService.createLine(field.default);
+  }
+
+  static createTicketBody({ subject, fields }) {
+    const head = SupportNewTicketService.createLine(subject)
+     + SupportNewTicketService.createLine();
+    const body = fields
+      .map(SupportNewTicketService.buildFieldText())
+      .join(SupportNewTicketService.createLine());
+
+    return head + body;
+  }
+
   createTicket(issue, subject, serviceName, urgency) {
-    let body = '';
-    body += `${issue.subject}\n`;
-    issue.fields.forEach((field) => {
-      body += `${field.label}\n${field.default}\n`;
-    });
-    body += '\n';
     return this.OvhApiSupport.v6().createTickets({}, {
       issueTypeId: issue.id,
       serviceName,
       subject,
-      body,
+      body: SupportNewTicketService.createTicketBody(issue),
       urgency: get(urgency, 'id'),
     }).$promise;
   }
