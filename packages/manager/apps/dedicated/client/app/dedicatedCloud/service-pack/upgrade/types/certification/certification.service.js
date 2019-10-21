@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import isEqual from 'lodash/isEqual';
+import reject from 'lodash/reject';
+import some from 'lodash/some';
 
 import { OPTION_TYPES } from '../../../option/option.constants';
 
@@ -19,16 +22,16 @@ export const UpgradeCertificationService = class {
       .ovhManagerPccServicePackService
       .getServicePacks(serviceName, subsidiary);
 
-    const allServicePacksExceptCurrent = _.reject(
+    const allServicePacksExceptCurrent = reject(
       allServicePacks,
       { name: currentServicePackName },
     );
 
-    return _.filter(
+    return filter(
       allServicePacksExceptCurrent,
-      servicePack => _.some(
+      servicePack => some(
         servicePack.options,
-        option => _.isEqual(option.type, OPTION_TYPES.certification),
+        option => isEqual(option.type, OPTION_TYPES.certification),
       ),
     );
   }

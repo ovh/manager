@@ -60,11 +60,6 @@ angular.module('App').controller('ImpiCtrl', (
     localTask: false,
   };
 
-  $scope.header = {
-    XSRFTOKEN: $.cookie('XSRF-TOKEN'),
-    XCsid: $.getUrlParam('csid'),
-  };
-
   $scope.ssh = {
     list: [],
     error: false,

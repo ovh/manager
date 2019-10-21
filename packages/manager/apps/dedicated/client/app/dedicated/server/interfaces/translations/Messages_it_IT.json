@@ -67,5 +67,7 @@
   "dedicated_server_interfaces_bandwith_title": "Banda passante",
   "dedicated_server_interfaces_bandwith_description": "La banda passante pubblica in entrata (da e verso Internet) non presenta limitazioni. È possibile aumentare la banda passante pubblica e privata attivando l’opzione corrispondente.",
   "dedicated_server_interfaces_bandwith_public": "Banda passante pubblica",
-  "dedicated_server_interfaces_bandwith_private": "Banda passante privata"
+  "dedicated_server_interfaces_bandwith_private": "Banda passante privata",
+  "dedicated_server_interfaces_current_operation": "Sul server è in corso un'operazione ",
+  "dedicated_server_interfaces_task_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}"
 }

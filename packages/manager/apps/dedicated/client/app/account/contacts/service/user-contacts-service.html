@@ -4,7 +4,9 @@
 
 <oui-datagrid
     data-rows="$ctrl.services"
-    data-row-loader="$ctrl.getServiceInfos($row)">
+    data-row-loader="$ctrl.getServiceInfos($row)"
+    data-criteria="$ctrl.criteria"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)">
     <oui-column
         data-title=":: 'account_contacts_service_name' | translate"
         data-property="serviceName"

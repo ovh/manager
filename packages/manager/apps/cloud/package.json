@@ -119,7 +119,7 @@
     "ovh-common-style": "ovh-ux/ovh-common-style#^3.2.2",
     "ovh-jquery-ui-draggable-ng": "ovh-ux/ovh-jquery-ui-draggable-ng#^0.0.5",
     "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.1.0",
-    "ovh-ui-angular": "^3.9.4",
+    "ovh-ui-angular": "^3.9.5",
     "ovh-ui-kit": "~2.35.2",
     "ovh-ui-kit-bs": "^2.2.0",
     "popper.js": "^1.16.0",

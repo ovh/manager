@@ -1,6 +1,5 @@
 {
   "globals": {
-    "_": true,
     "__WEBPACK_REGION__": true,
     "fit": true,
     "JSURL": true,

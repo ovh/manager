@@ -7,9 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain.dns-zone.dashboard', {
     views: {
       'dnsZoneView@app.domain.dns-zone': {
-          controller,
-          controllerAs: 'ctrlDomainTabZoneDns',
-          template,
+        controller,
+        controllerAs: 'ctrlDomainTabZoneDns',
+        template,
       },
     },
     resolve: {
@@ -33,5 +33,5 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
     },
-  })
-}
+  });
+};

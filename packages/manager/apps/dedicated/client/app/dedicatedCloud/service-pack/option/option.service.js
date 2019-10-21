@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import get from 'lodash/get';
 
 import config from '../../../config/config';
 import { OPTIONS } from './option.constants';
@@ -35,14 +36,14 @@ export const ServicePackOptionService = class ServicePackOptionService {
   }
 
   static getType(optionName) {
-    return _.find(
+    return find(
       OPTIONS, { name: optionName },
     ).type;
   }
 
   static getPresentationUrl(optionName, subsidiary) {
     const urls = config.constants.URLS;
-    return _.get(urls, subsidiary, urls.FR).presentations[optionName];
+    return get(urls, subsidiary, urls.FR).presentations[optionName];
   }
 
   getRawOptions({ serviceName, servicePackName, subsidiary }) {

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import config from '../../../../../config/config';
 
 import { ACTIVATION_STATUS } from '../components/activation-status/activation-status.constants';
@@ -6,7 +8,7 @@ import { ORDER_STATUS } from '../options.constants';
 export default class OptionsDescriptionsService {
   static computePresentationUrl(ovhSubsidiary, optionName) {
     const urls = config.constants.URLS;
-    return _.get(urls, ovhSubsidiary, urls.FR).presentations[optionName];
+    return get(urls, ovhSubsidiary, urls.FR).presentations[optionName];
   }
 
   static computeStatus(

@@ -1,6 +1,7 @@
 import Instance from '../../../../../components/project/instance/instance.class';
 
 export default class {
+  /* @ngInject */
   constructor(
     CucRegionService,
     OvhApiCloudProjectFlavor,

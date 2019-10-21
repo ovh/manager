@@ -480,6 +480,28 @@ export const URLS = {
   keyGenHelp: 'https://www.ovh.com/fr/g1769.creation_des_cles_ssh',
 };
 
+export const MANAGER_URLS = {
+  CA: {
+    dedicated: 'https://ca.ovh.com/manager',
+    publicCloud: 'https://ca.ovh.com/manager/public-cloud',
+    repsac: 'https://ca.ovh.com/manager/cloud/repsac',
+    sunrise: 'https://ca.ovh.com/manager/sunrise',
+  },
+  EU: {
+    dedicated: 'https://www.ovh.com/manager/dedicated',
+    publicCloud: 'https://www.ovh.com/manager/public-cloud',
+    repsac: 'https://www.ovh.com/manager/cloud/repsac',
+    sunrise: 'https://www.ovh.com/manager/sunrise',
+    telecom: 'https://www.ovhtelecom.fr/manager',
+    web: 'https://www.ovh.com/manager/web',
+  },
+  US: {
+    dedicated: 'https://us.ovhcloud.com/manager/dedicated',
+    publicCloud: 'https://us.ovhcloud.com/manager/public-cloud',
+    repsac: 'https://us.ovhcloud.com/manager/cloud/repsac',
+  },
+};
+
 export default {
-  LANGUAGES, REDIRECT_URLS, URLS,
+  LANGUAGES, MANAGER_URLS, REDIRECT_URLS, URLS,
 };

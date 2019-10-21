@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 export default class {
   /* @ngInject */
   constructor($rootScope, $scope, $translate) {
@@ -15,7 +17,7 @@ export default class {
         this.$rootScope.$broadcast('dedicated.informations.bandwidth');
       })
       .catch((data) => {
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         this.setMessage(this.$translate.instant('server_cancel_bandwidth_cancel_error'), data);
       })
       .finally(() => {

@@ -1,3 +1,5 @@
+import isEqual from 'lodash/isEqual';
+
 angular.module('App').controller('DedicatedCloudSecurityKMSDeleteCtrl', class DedicatedCloudSecurityKMSDeleteCtrl {
   constructor(
     $stateParams, $timeout, $translate, $uibModalInstance,
@@ -71,7 +73,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSDeleteCtrl', class De
   finishDeletion() {
     this.stopDeletionPoller();
 
-    if (_(this.kmsDeletionTask.state).isEqual('done')) {
+    if (isEqual(this.kmsDeletionTask.state, 'done')) {
       this.$uibModalInstance.close();
     } else {
       this.$uibModalInstance.dismiss();
