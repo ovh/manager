@@ -1,12 +1,12 @@
 import head from 'lodash/head';
 import set from 'lodash/set';
 
-angular.module('Billing.directives').controller('Billing.directives.billingDateRangeCtrl', function BillingDateRangeCOntroller(
+angular.module('Billing.directives').controller('Billing.directives.billingDateRangeCtrl', function BillingDateRangeController(
   $timeout,
   $translate,
   BillingdateRangeSelection,
 ) {
-  this.today = moment();
+  this.today = moment().endOf('day').toISOString();
   this.CUSTOM_RANGE_MODE = 'custom';
   this.model = {};
   this.dateRangeSelection = BillingdateRangeSelection;
@@ -36,20 +36,26 @@ angular.module('Billing.directives').controller('Billing.directives.billingDateR
     },
   ];
 
-  this.dateFromChanged = ({ dateFrom }) => {
+  this.onDateRangeChange = ([dateFrom, dateTo]) => {
     set(BillingdateRangeSelection, 'dateFrom', moment(dateFrom).startOf('day'));
     if (moment(BillingdateRangeSelection.dateFrom).isAfter(BillingdateRangeSelection.dateTo)) {
       set(BillingdateRangeSelection, 'dateTo', BillingdateRangeSelection.dateFrom.endOf('day'));
     }
-    this.triggerChangeHandler();
-  };
 
-  this.dateToChanged = ({ dateTo }) => {
     set(BillingdateRangeSelection, 'dateTo', moment(dateTo).endOf('day'));
     if (moment(BillingdateRangeSelection.dateTo).isBefore(BillingdateRangeSelection.dateFrom)) {
       set(BillingdateRangeSelection, 'dateFrom', BillingdateRangeSelection.dateTo.startOf('day'));
     }
+
     this.triggerChangeHandler();
+    this.updateCustomDateRange();
+  };
+
+  this.updateCustomDateRange = () => {
+    this.customDateRangeModel = [
+      moment(BillingdateRangeSelection.dateFrom).toISOString(),
+      moment(BillingdateRangeSelection.dateTo).toISOString(),
+    ];
   };
 
   this.onPresetBtn = (preset) => {
@@ -64,6 +70,8 @@ angular.module('Billing.directives').controller('Billing.directives.billingDateR
       .startOf(preset.startOf));
 
     set(BillingdateRangeSelection, 'dateTo', moment().endOf('day'));
+
+    this.updateCustomDateRange();
   };
 
   this.onCustomRangeBtn = () => {

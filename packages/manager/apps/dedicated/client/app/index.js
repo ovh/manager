@@ -58,7 +58,6 @@ import 'script-loader!angular-chart.js/dist/angular-chart.min.js';
 import 'ovh-angular-responsive-tabs';
 import 'ckeditor';
 import 'script-loader!messenger/build/js/messenger.min.js';
-import 'script-loader!flatpickr/dist/flatpickr.min.js';
 import 'script-loader!filesize/lib/filesize.js';
 
 // Ckeditor 4.x
