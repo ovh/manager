@@ -60,7 +60,12 @@
                                 <strong class="text-nowrap col-lg-8 col-xs-12" data-translate="{{ 'order_tracking_history_' + event.label }}"></strong>
                             </div>
                             <div class="row">
-                                <span class="text-break col-lg-8 offset-lg-4" data-translate="{{ 'order_tracking_history_details_' + event.label }}"></span>
+                                <span class="text-break col-lg-8 offset-lg-4"
+                                      data-translate="{{ 'order_tracking_history_details_' + event.label }}"
+                                      data-translate-compile
+                                      data-translate-values="{
+                                        billingUrl: $ctrl.billingUrl,
+                                      }"></span>
                             </div>
                         </oui-tile-description>
                     </oui-tile-definition>

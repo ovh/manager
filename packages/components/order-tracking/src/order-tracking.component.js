@@ -6,6 +6,7 @@ export default {
   template,
   bindings: {
     orderId: '<',
+    billingUrl: '<',
     onBackButtonClick: '&',
   },
 };

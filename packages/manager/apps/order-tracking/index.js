@@ -32,7 +32,10 @@ angular.module('orderTrackingApp', [
     })
     .state('app', {
       url: '/:orderId',
-      template: '<order-tracking-component order-id="$ctrl.orderId"></order-tracking-component>',
+      template: `
+        <order-tracking-component order-id="$ctrl.orderId"
+                                  billing-url="'#/billing/history'">
+        </order-tracking-component>`,
       controller: /* @ngInject */ function controller(orderId) {
         this.$onInit = function $onInit() {
           this.orderId = orderId;
