@@ -267,7 +267,7 @@
   "privateDatabase_restore_in_progress": "Restauration en cours...",
   "privateDatabase_dump_bdd_creationDate": "Date de création",
   "privateDatabase_dump_bdd_deletionDate": "Date de suppression",
-  "privateDatabase_dump_bdd_in_progress": "La sauvegarde de la base de données a bien été pris en compte.",
+  "privateDatabase_dump_bdd_in_progress": "La sauvegarde de la base de données a bien été prise en compte.",
   "privateDatabase_dump_bdd_success": "La sauvegarde de la base de données a bien été effectuée.",
   "privateDatabase_dump_bdd_fail": "Une erreur est survenue lors de la sauvegarde de la base de données.",
   "privateDatabase_tabs_bdd_deleting": "Suppression de la base en cours...",
