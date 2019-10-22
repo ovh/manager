@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-stop-event/compare/v1.0.0...v1.0.1) (2019-10-22)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-stop-event/compare/0.1.0...1.0.0) (2019-02-13)
 
 
