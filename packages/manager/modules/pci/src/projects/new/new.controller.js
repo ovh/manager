@@ -361,6 +361,12 @@ export default class PciProjectNewCtrl {
         this.messages.list = this.messages.handler.getMessages();
       },
     });
+
+    if (this.paymentModel.projectId && this.paymentStatus() === 'success') {
+      return this.onProjectCreated(this.paymentModel.projectId);
+    }
+
+    return true;
   }
 
   /* -----  End of Initialization  ------ */
