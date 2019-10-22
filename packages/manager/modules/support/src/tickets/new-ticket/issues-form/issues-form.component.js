@@ -5,6 +5,8 @@ import './issues-form.less';
 export default {
   bindings: {
     onSubmit: '&',
+    serviceName: '<?',
+    serviceTypeName: '<?',
   },
   controller,
   name: 'supportNewIssuesForm',

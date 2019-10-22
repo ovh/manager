@@ -4,6 +4,7 @@ import get from 'lodash/get';
 export default class SupportNewController {
   /* @ngInject */
   constructor(
+    $q,
     $state,
     $window,
     CORE_URLS,
@@ -11,7 +12,7 @@ export default class SupportNewController {
     OvhApiSupport,
     SupportNewTicketService,
   ) {
-    this.step = 'issues';
+    this.$q = $q;
     this.$state = $state;
     this.$window = $window;
     this.CORE_URLS = CORE_URLS;
@@ -21,6 +22,8 @@ export default class SupportNewController {
   }
 
   $onInit() {
+    this.step = 'issues';
+
     this.guideURL = this.urls.guide;
     this.forumURL = this.urls.forum;
   }
@@ -67,5 +70,14 @@ export default class SupportNewController {
       this.step = 'issues';
       this.issue = null;
     }
+  }
+
+  handleBackButton() {
+    if (this.step !== 'creation') {
+      return this.$state.go('support.tickets');
+    }
+
+    this.step = 'issues';
+    return this.$q.when();
   }
 }
