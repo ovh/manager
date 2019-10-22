@@ -49,6 +49,12 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
             suggestedMin: 0,
           },
         }],
+        xAxes: [{
+          ticks: {
+            // This is default value according to doc but needs to dig why it's not applied
+            maxTicksLimit: 11,
+          },
+        }],
       },
     };
   };

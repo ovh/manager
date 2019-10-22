@@ -31,6 +31,14 @@ angular.module('controllers').controller('controllers.Server.Stats.Loadavg', ($s
         display: true,
         position: 'top',
       },
+      scales: {
+        xAxes: [{
+          ticks: {
+            // This is default value according to doc but needs to dig why it's not applied
+            maxTicksLimit: 11,
+          },
+        }],
+      },
     };
   }
 

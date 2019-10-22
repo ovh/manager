@@ -104,6 +104,10 @@ angular.module('controllers').controller('controllers.Server.Stats', (
             display: true,
             labelString: $translate.instant('server_usage_chart_xaxis_label'),
           },
+          ticks: {
+            // This is default value according to doc but needs to dig why it's not applied
+            maxTicksLimit: 11,
+          },
         }],
       },
     };

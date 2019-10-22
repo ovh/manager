@@ -18,6 +18,12 @@ angular.module('App').controller('CdnStatisticsCtrl', ($scope, $stateParams, $tr
           labelString: $translate.instant('unit_size_GB'),
         },
       }],
+      xAxes: [{
+        ticks: {
+          // This is default value according to doc but needs to dig why it's not applied
+          maxTicksLimit: 11,
+        },
+      }],
     },
   };
 
@@ -30,6 +36,12 @@ angular.module('App').controller('CdnStatisticsCtrl', ($scope, $stateParams, $tr
         scaleLabel: {
           display: true,
           labelString: $translate.instant('cdn_statistics_requests_per_second'),
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          // This is default value according to doc but needs to dig why it's not applied
+          maxTicksLimit: 11,
         },
       }],
     },
