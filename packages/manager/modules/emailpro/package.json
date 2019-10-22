@@ -13,7 +13,7 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "moment": "^2.16.0",
-    "punycode": "^2.1.1",
+    "punycode": "^1.4.1",
     "validator": "^11.1.0"
   },
   "peerDependencies": {
