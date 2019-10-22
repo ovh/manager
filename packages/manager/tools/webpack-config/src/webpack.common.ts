@@ -6,6 +6,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import get from 'lodash/get';
 import set from 'lodash/set';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const webpack = require('webpack');
 
 const cacheLoader = {
   loader: 'cache-loader',
@@ -56,6 +57,10 @@ export = opts => {
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
         chunkFilename: '[id].css',
+      }),
+
+      new webpack.DefinePlugin({
+        __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
       }),
     ],
 

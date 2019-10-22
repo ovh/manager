@@ -48,6 +48,7 @@ import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
 
 Environment.setRegion(__WEBPACK_REGION__);
+Environment.setVersion(__VERSION__);
 
 angular
   .module('App', [

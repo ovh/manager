@@ -41,6 +41,7 @@ import './app-scss.scss';
 import './app.less';
 
 Environment.setRegion('EU');
+Environment.setVersion(__VERSION__);
 
 angular.module('managerApp', [
   'angular-inview',
