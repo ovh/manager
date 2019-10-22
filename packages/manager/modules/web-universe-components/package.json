@@ -42,7 +42,7 @@
     "ipaddr.js": "^1.9.1",
     "jquery": "^2.1.3",
     "moment": "^2.16.0",
-    "ovh-api-services": "^9.20.0",
+    "ovh-api-services": "^9.17.0",
     "ovh-ui-angular": "^3.8.0",
     "punycode": "^2.1.1"
   }

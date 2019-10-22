@@ -11856,7 +11856,18 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.5.1, ovh-ui-angular@^3.9.5:
+ovh-ui-angular@^3.9.2:
+  version "3.9.6"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.6.tgz#a4315e8157557f84629d58b5936d760dc97c82e4"
+  integrity sha512-2iupMzq0mkiSYUH0hGXpiz2JBpjN/OU4JrVP7UWrzdqlHAc4ayDeIHEitxcKLMIIWciD6AOTIVJLN7E4nDAwOA==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
+ovh-ui-angular@^3.9.5:
   version "3.9.5"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.5.tgz#0e70ca612951c57b4102628c69e7206ccd39902f"
   integrity sha512-X//tOvSkSv6DVxe3MKEm3hjOP8i1eKFPIkqBRj654pkUZAEGzJMrj8zC3mxdpUlVklIdXumYy/TwFs2OnHTSjw==
@@ -11885,7 +11896,7 @@ ovh-ui-kit@^2.23.1:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.33.3, ovh-ui-kit@^2.35.2, ovh-ui-kit@~2.35.2:
+ovh-ui-kit@^2.35.2, ovh-ui-kit@~2.35.2:
   version "2.35.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.35.2.tgz#a34d4e080a253cb851a0076af460aa80f0650785"
   integrity sha512-GMXKhh3/lsXPD3KRLKs1c5D5iO876KMG8gInnSRZCunqPzjRrLlJSi8P5Z5Qv7WUEaY4yWMg8J1Gsr7NTn0K6A==
