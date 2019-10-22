@@ -1,3 +1,7 @@
+# [2.0.0](https://github.com/ovh-ux/ng-tail-logs/compare/v2.0.0-beta.1...v2.0.0) (2019-10-22)
+
+
+
 # [2.0.0-beta.1](https://github.com/ovh-ux/ng-tail-logs/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2019-01-09)
 
 
