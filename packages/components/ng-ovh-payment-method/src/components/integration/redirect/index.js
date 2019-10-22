@@ -6,7 +6,7 @@ import 'ovh-ui-angular';
 
 import component from './component';
 
-const moduleName = 'ngOvhPaymentMethodRegister';
+const moduleName = 'ngOvhPaymentMethodIntegrationRedirect';
 
 angular
   .module(moduleName, [

@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import directive from './directive';
 
-const moduleName = 'ngOvhPaymentMethodRegisterIframeVantiv';
+const moduleName = 'ngOvhPaymentMethodIntegrationInContextPaypal';
 
 angular
   .module(moduleName, [])

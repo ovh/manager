@@ -1,13 +1,13 @@
 import angular from 'angular';
 
-import availableTypes from './availableTypes';
+import integration from './integration';
 import register from './register';
 
 const moduleName = 'ngOvhPaymentMethodComponents';
 
 angular
   .module(moduleName, [
-    availableTypes,
+    integration,
     register,
   ]);
 

@@ -1,14 +1,37 @@
 import get from 'lodash/get';
 
-import { IBAN_BIC_RULES } from './payment-method.constant';
+import { IBAN_BIC_RULES } from './payment-method.constants';
 
 export default class OvhPaymentMethodHelperService {
   /* @ngInject */
+  constructor($translate) {
+    this.$translate = $translate;
 
-  constructor() {
     this.isValidIban = OvhPaymentMethodHelperService.isValidIban;
     this.isValidBic = OvhPaymentMethodHelperService.isValidBic;
   }
+
+  /* =====================================
+  =            Public methods            =
+  ====================================== */
+
+  getPaymentMethodStatusText(statusParam) {
+    return this.$translate.instant(
+      `ovh_payment_status_${get(statusParam, 'status', statusParam).toLowerCase()}`,
+    );
+  }
+
+  getPaymentMethodTypeText(typeParam) {
+    return this.$translate.instant(
+      `ovh_payment_type_${get(typeParam, 'paymentType', typeParam).toLowerCase()}`,
+    );
+  }
+
+  /* -----  End of Public methods  ------ */
+
+  /* =====================================
+  =            Static methods            =
+  ====================================== */
 
   static isValidIban(ibanParam) {
     let iban = ibanParam;
@@ -97,4 +120,6 @@ export default class OvhPaymentMethodHelperService {
 
     return !!bicHash.bank;
   }
+
+  /* -----  End of Static methods  ------ */
 }

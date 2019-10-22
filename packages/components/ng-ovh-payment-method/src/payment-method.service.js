@@ -3,39 +3,31 @@ import find from 'lodash/find';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
-import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
 
 import {
   DEFAULT_OPTIONS,
-  TYPE_INTEGRATION_ENUM,
-} from './payment-method.constant';
+  DEFAULT_TYPE_OPTIONS,
+} from './payment-method.constants';
 
-import OvhPaymentMethodLegacy from './payment-method-legacy';
+import OvhPaymentMethod from './payment-method.class';
+import OvhPaymentMethodType from './payment-method-type.class';
+
+import OvhPaymentMethodLegacy from './legacy/payment-method-legacy';
 
 export default class OvhPaymentMethodService {
   /* @ngInject */
-
-  constructor($q, $translate, $window, OvhApiMe, target) {
+  constructor($log, $q, $translate, $window, coreConfig, OvhApiMe) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.coreConfig = coreConfig;
     this.OvhApiMe = OvhApiMe;
 
-    this.isPaymentMethodTypeRegisterableInContext = OvhPaymentMethodService
-      .isPaymentMethodTypeRegisterableInContext;
-
-    this.isPaymentMethodTypeRequiringContactId = OvhPaymentMethodService
-      .isPaymentMethodTypeRequiringContactId;
-
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
-      $q, $translate, $window, OvhApiMe, target,
+      $log, $q, $translate, $window, OvhApiMe, coreConfig.getRegion(),
     );
   }
-
-  /* =============================================
-  =            LEGACY PAYMENT METHODS            =
-  ============================================== */
 
   /**
    *  Check if connected user has a default payment method
@@ -68,14 +60,10 @@ export default class OvhPaymentMethodService {
           registerable: true,
         });
 
-        return map(registerablePaymentTypes, (paymentTypeParam) => {
-          const paymentType = paymentTypeParam;
-          paymentType.paymentType = {
-            value: paymentType.paymentType,
-            text: this.$translate.instant(`ovh_payment_type_${snakeCase(paymentType.paymentType)}`),
-          };
-          return paymentType;
-        });
+        return map(
+          registerablePaymentTypes,
+          paymentTypeOptions => new OvhPaymentMethodType(paymentTypeOptions),
+        );
       })
       .catch(error => (error.status === 404 ? [] : this.$q.reject(error)));
   }
@@ -84,14 +72,14 @@ export default class OvhPaymentMethodService {
    *  Get all the available payment method types
    *  @return {Promise} That returns a list of available payment method types
    */
-  getAllAvailablePaymentMethodTypes() {
+  getAllAvailablePaymentMethodTypes(options = DEFAULT_TYPE_OPTIONS) {
     return this.$q.all({
-      legacyTypes: this.ovhPaymentMethodLegacy.getAvailablePaymentMethodTypes(),
+      legacyTypes: this.ovhPaymentMethodLegacy.getAvailablePaymentMethodTypes(options),
       paymentMethodTypes: this.getAvailablePaymentMethodTypes(),
     }).then(({ legacyTypes, paymentMethodTypes }) => {
       remove(legacyTypes, ({ paymentType }) => {
         const hasIdentical = some(paymentMethodTypes, (paymentMethodType) => {
-          const isSameValue = paymentMethodType.paymentType.value === paymentType.value;
+          const isSameValue = paymentMethodType.paymentType === paymentType;
           return isSameValue;
         });
         return hasIdentical;
@@ -101,58 +89,32 @@ export default class OvhPaymentMethodService {
     });
   }
 
-  static isPaymentMethodTypeRegisterableInContext(paymentMethodType) {
-    return paymentMethodType && [
-      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
-    ].includes(paymentMethodType.integration);
-  }
-
-  static isPaymentMethodTypeRequiringContactId(paymentMethodType) {
-    return paymentMethodType && [
-      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
-    ].includes(paymentMethodType.integration);
-  }
-
   /* ----------  Action on paymentMethod  ---------- */
 
   /**
    *  Add an new payment method
    */
   addPaymentMethod(paymentMethodType, params = {}) {
-    if (paymentMethodType.original) {
+    if (paymentMethodType.isLegacy()) {
       return this.ovhPaymentMethodLegacy
-        .addPaymentMethod(paymentMethodType.original.value, params);
+        .addPaymentMean(paymentMethodType.original, params);
     }
 
     const addParams = params;
-    addParams.paymentType = paymentMethodType.paymentType.value;
+    addParams.paymentType = paymentMethodType.paymentType;
     return this.OvhApiMe.Payment().Method().v6().save({}, addParams).$promise
       .then((response) => {
         if (has(params, 'orderId') && has(response, 'paymentMethodId')) {
-          return this.OvhApiMe
-            .Order()
-            .v6()
-            .pay(
-              {
-                orderId: params.orderId,
-              },
-              {
-                paymentMethod: {
-                  id: response.paymentMethodId,
-                },
-              },
-            )
-            .$promise
-            .then(() => response);
+          return this.OvhApiMe.Order().v6().pay({
+            orderId: params.orderId,
+          }, {
+            paymentMethod: {
+              id: response.paymentMethodId,
+            },
+          }).$promise.then(() => response);
         }
 
         return this.$q.when(response);
-      })
-      .then((response) => {
-        if (paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT && response.url) {
-          this.$window.location = response.url;
-        }
-        return response;
       });
   }
 
@@ -164,9 +126,9 @@ export default class OvhPaymentMethodService {
    */
   editPaymentMethod(paymentMethod, params) {
     // if original attribute is present, it means that it's an legacy payment method
-    if (paymentMethod.original) {
+    if (paymentMethod.isLegacy()) {
       return this.ovhPaymentMethodLegacy
-        .editPaymentMethod(paymentMethod.original, params);
+        .editPaymentMean(paymentMethod.original, params);
     }
 
     return this.OvhApiMe.Payment().Method().v6().edit({
@@ -181,9 +143,9 @@ export default class OvhPaymentMethodService {
    */
   setPaymentMethodAsDefault(paymentMethod) {
     // if original attribute is present, it means that it's an legacy payment method
-    if (paymentMethod.original) {
+    if (paymentMethod.isLegacy()) {
       return this.ovhPaymentMethodLegacy
-        .setPaymentMethodAsDefault(paymentMethod.original);
+        .setPaymentMeanAsDefault(paymentMethod.original);
     }
 
     return this.editPaymentMethod(paymentMethod, {
@@ -215,16 +177,10 @@ export default class OvhPaymentMethodService {
    *  @param  {Object} finalizeData  The data needed for finalizing the payment method registration
    *  @return {Promise}
    */
-  finalizePaymentMethod(paymentMethod, finalizeData = {}) {
-    // if original attribute is present, it means that it's an legacy payment method
-    // and finalize is not available for legacies payment methods
-    if (paymentMethod.original) {
-      throw new Error('finalize is not available for legacies payment methods.');
-    }
-
+  finalizePaymentMethod(paymentValidation, finalizeData = {}) {
     return this.OvhApiMe.Payment().Method().v6().finalize({
-      paymentMethodId: paymentMethod.paymentMethodId,
-    }, finalizeData).$promise;
+      paymentMethodId: paymentValidation.paymentMethodId,
+    }, finalizeData).$promise.then(paymentMethod => new OvhPaymentMethod(paymentMethod));
   }
 
   /**
@@ -236,7 +192,7 @@ export default class OvhPaymentMethodService {
     // if original attribute is present, it means that it's an legacy payment method
     if (paymentMethod.original) {
       return this.ovhPaymentMethodLegacy
-        .deletePaymentMethod(paymentMethod.original);
+        .deletePaymentMean(paymentMethod.original);
     }
 
     return this.OvhApiMe.Payment().Method().v6().delete({
@@ -247,37 +203,31 @@ export default class OvhPaymentMethodService {
 
   /* ----------  New payment methods  ---------- */
 
+  getPaymentMethod(paymentMethodId) {
+    return this.OvhApiMe.Payment().Method().v6()
+      .get({
+        paymentMethodId,
+      })
+      .$promise
+      .then(paymentMethodOptions => new OvhPaymentMethod(paymentMethodOptions));
+  }
+
   /**
    *  Get the payment methods returned by /me/payment/method APIs
    *  @param  {Obejct}  options           Options to get the payment methods
-   *  @return {Promise}                   That returns an Array of payment methods
+   *  @return {Promise}                   That returns an Array of OvhPaymentMethod
    */
   getPaymentMethods(options = DEFAULT_OPTIONS) {
     return this.OvhApiMe.Payment().Method().v6()
       .query(options.onlyValid ? {
         status: 'VALID',
       } : {}).$promise
-      .then(paymentMethodIds => this.$q
-        .all(map(paymentMethodIds, paymentMethodId => this.OvhApiMe.Payment().Method().v6()
-          .get({
-            paymentMethodId,
-          }).$promise.then((paymentMethodParam) => {
-            const paymentMethod = paymentMethodParam;
-
-            // set status object
-            paymentMethod.status = {
-              value: paymentMethod.status,
-              text: this.$translate.instant(`ovh_payment_status_${snakeCase(paymentMethod.status)}`),
-            };
-
-            // set paymentType object
-            paymentMethod.paymentType = {
-              value: paymentMethod.paymentType,
-              text: this.$translate.instant(`ovh_payment_type_${snakeCase(paymentMethod.paymentType)}`),
-            };
-
-            return paymentMethod;
-          }))))
+      .then(paymentMethodIds => this.$q.all(
+        map(
+          paymentMethodIds,
+          paymentMethodId => this.getPaymentMethod(paymentMethodId),
+        ),
+      ))
       .catch(error => (error.status === 404 ? [] : this.$q.reject(error)));
   }
 
@@ -293,7 +243,9 @@ export default class OvhPaymentMethodService {
    */
   getAllPaymentMethods(options = DEFAULT_OPTIONS) {
     return this.$q.all({
-      legacies: this.ovhPaymentMethodLegacy.getPaymentMethods(options),
+      legacies: !this.coreConfig.isRegion('US')
+        ? this.ovhPaymentMethodLegacy.getPaymentMeans(options)
+        : this.$q.when([]),
       paymentMethods: this.getPaymentMethods(),
     }).then(({ legacies, paymentMethods }) => {
       remove(legacies, ({ paymentMethodId }) => some(paymentMethods, {

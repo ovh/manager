@@ -1,4 +1,4 @@
-export const THREAT_METRIC = {
+export const THREAT_METRIX = {
   PAGE_ID: 1,
   SCRIPT: {
     id: 'threat_metric_script',
@@ -7,6 +7,13 @@ export const THREAT_METRIC = {
   IFRAME: {
     id: 'threat_metric_iframe',
     src: ' https://us.ovhcloud.com/order/threatmetrix',
+  },
+  CSS: {
+    with: '100px',
+    height: '100px',
+    border: '0',
+    position: 'absolute',
+    top: '-5000px',
   },
 };
 
@@ -45,10 +52,10 @@ export const VANTIV_IFRAME_CONFIGURATION = {
   // Behaviour
   showCvv: true,
   tabIndex: {
-    cvv: 1,
-    accountNumber: 2,
-    expMonth: 3,
-    expYear: 4,
+    accountNumber: 1,
+    expMonth: 2,
+    expYear: 3,
+    cvv: 4,
   },
   enhancedUxFeatures: {
     inlineFieldValidations: true,
@@ -77,7 +84,7 @@ export const VANTIV_SCRIPT = {
 };
 
 export default {
-  THREAT_METRIC,
+  THREAT_METRIX,
   VANTIV_IFRAME_CONFIGURATION,
   VANTIV_RESPONSE_CODE,
   VANTIV_SCRIPT,
