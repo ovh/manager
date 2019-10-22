@@ -1,3 +1,7 @@
+# [2.0.0](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.3...v2.0.0) (2019-10-22)
+
+
+
 # [2.0.0-beta.3](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-01-09)
 
 
