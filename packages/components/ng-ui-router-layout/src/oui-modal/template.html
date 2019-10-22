@@ -3,13 +3,13 @@
      data-modal-in-class="in"
      data-ng-style="{'z-index': 1050 + index*10, display: 'block'}">
     <div class="modal-dialog {{size ? 'modal-' + size : ''}}">
-        <div class="modal-content">
+        <form class="modal-content"
+              novalidate
+              data-ng-submit="($parent.$ctrl.primaryAction && $parent.$ctrl.primaryAction())
+                || ($parent.$ctrl.resolve.primaryAction && $parent.$ctrl.resolve.primaryAction())">
             <oui-modal
                 data-heading="{{ $parent.$ctrl.heading || $parent.$ctrl.resolve.heading }}"
                 data-type="{{ $parent.$ctrl.type || $parent.$ctrl.resolve.type }}"
-                data-primary-action="
-                    ($parent.$ctrl.primaryAction && $parent.$ctrl.primaryAction())
-                    || ($parent.$ctrl.resolve.primaryAction && $parent.$ctrl.resolve.primaryAction())"
                 data-primary-label="{{ $parent.$ctrl.primaryLabel || $parent.$ctrl.resolve.primaryLabel }}"
                 data-primary-disabled="
                     ($parent.$ctrl.primaryDisabled && $parent.$ctrl.primaryDisabled())
@@ -31,6 +31,6 @@
                     || ($parent.$ctrl.resolve.loading && $parent.$ctrl.resolve.loading())">
                 <div data-ng-transclude></div>
             </oui-modal>
-        </div>
+        </form>
     </div>
 </div>
