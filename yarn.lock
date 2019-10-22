@@ -11830,6 +11830,13 @@ ovh-api-services@^9.22.0:
   dependencies:
     lodash "^4.17.15"
 
+ovh-api-services@^9.23.0:
+  version "9.23.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.23.0.tgz#d492f8d721cff4fe0b65f8b9fe266618be888ae6"
+  integrity sha512-pqWsr499vX29ZEnp3dobdKOpEl+CZ5EduPug9lecq28Bw/H8a/aRfFV3CWH+v3fh+opJJD4Mf5z6JaIkORa8BQ==
+  dependencies:
+    lodash "^4.17.15"
+
 ovh-common-style@^3.2.2, ovh-common-style@ovh-ux/ovh-common-style#^3.2.2:
   version "3.2.2"
   resolved "https://codeload.github.com/ovh-ux/ovh-common-style/tar.gz/cd9f7bea9240b7e2334ae5cd7e74529478b271d4"
@@ -11857,7 +11864,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.9.4, ovh-ui-angular@^3.9.5:
+ovh-ui-angular@^3.9.5:
   version "3.9.5"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.5.tgz#0e70ca612951c57b4102628c69e7206ccd39902f"
   integrity sha512-X//tOvSkSv6DVxe3MKEm3hjOP8i1eKFPIkqBRj654pkUZAEGzJMrj8zC3mxdpUlVklIdXumYy/TwFs2OnHTSjw==
