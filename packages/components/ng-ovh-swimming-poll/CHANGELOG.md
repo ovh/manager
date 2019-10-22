@@ -1,3 +1,7 @@
+## [4.0.1](https://github.com/ovh-ux/ng-ovh-swimming-poll/compare/v4.0.0...v4.0.1) (2019-10-22)
+
+
+
 # [4.0.0](https://github.com/ovh-ux/ng-ovh-swimming-poll/compare/v3.0.1...v4.0.0) (2019-02-13)
 
 
