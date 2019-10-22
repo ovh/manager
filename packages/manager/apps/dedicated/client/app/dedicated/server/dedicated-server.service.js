@@ -184,18 +184,18 @@ angular
     this.addTaskFast = function addTaskFast(productId, task, scopeId) {
       set(task, 'id', task.id || task.taskId);
       const pollPromise = $q.defer();
-      Polling.addTaskFast(self.getTaskPath(productId, task.id), task, scopeId).then(
-        (state) => {
+      Polling
+        .addTaskFast(self.getTaskPath(productId, task.id), task, scopeId)
+        .then((state) => {
           pollPromise.resolve(state);
           if (Polling.isDone(state)) {
             $rootScope.$broadcast('tasks.update');
           }
-        },
-        (data) => {
+        })
+        .catch((data) => {
           pollPromise.reject(data);
           $rootScope.$broadcast('tasks.update');
-        },
-      );
+        });
       return pollPromise.promise;
     };
 
