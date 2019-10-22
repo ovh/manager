@@ -19,11 +19,11 @@ export default /* @ngInject */ ($q, $timeout, $http) => class {
 
   log() {
     return this.source
-      .then(source => $http.get(`${source}&sort=asc&limit=500`))
+      .then((source) => $http.get(`${source}&sort=asc&limit=500`))
       .then((response) => {
         this.logs = uniq(
           flatten([...this.logs, get(response, 'data.messages', [])]),
-          log => log.message._id, // eslint-disable-line no-underscore-dangle
+          (log) => log.message._id, // eslint-disable-line no-underscore-dangle
         );
         return this.logs;
       })
