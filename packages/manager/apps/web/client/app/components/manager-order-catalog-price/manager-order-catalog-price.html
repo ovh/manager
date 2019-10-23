@@ -1,0 +1,57 @@
+<span data-ng-if="::$ctrl.price">
+    <span data-ng-if="::$ctrl.ASIA_FORMAT.includes($ctrl.ovhSubsidiary)">
+        <strong data-ng-class="{ 'd-block': $ctrl.block }">
+            <span
+                data-ng-bind="{{'order_catalog_price_gst_excl_label' | translate}}"
+                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"></span>
+            <span data-ng-if="$ctrl.interval">
+                &#47;
+                <span data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"></span>
+            </span>
+        </strong>
+        <small data-ng-class="{ 'd-block': $ctrl.block }">
+            (<span
+                data-translate="order_catalog_price_gst_incl_label"
+                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }">
+            </span>)
+        </small>
+    </span>
+    <span data-ng-if="::$ctrl.FRENCH_FORMAT.includes($ctrl.ovhSubsidiary)">
+        <strong data-ng-class="{ 'd-block': $ctrl.block }">
+            <span
+                data-translate="order_catalog_price_tax_excl_label"
+                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"></span>
+            <span data-ng-if="$ctrl.interval">
+                &#47;
+                <span data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"></span>
+            </span>
+        </strong>
+        <small data-ng-class="{ 'd-block': $ctrl.block }">
+            (<span
+                data-translate="order_catalog_price_tax_incl_label"
+                data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }">
+            </span>)
+        </small>
+    </span>
+    <strong
+        data-ng-if="::$ctrl.GERMAN_FORMAT.includes($ctrl.ovhSubsidiary)"
+        data-ng-class="{ 'd-block': $ctrl.block }">
+        <span data-ng-bind="::$ctrl.getPriceText($ctrl.price + $ctrl.tax)"></span>
+        <span data-ng-if="$ctrl.interval">
+            &#47;
+            <span data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"></span>
+        </span>
+    </strong>
+    <strong
+        data-ng-if="::$ctrl.US_FORMAT.includes($ctrl.ovhSubsidiary)"
+        data-ng-class="{ 'd-block': $ctrl.block }">
+        <span data-ng-bind="::$ctrl.getPriceText($ctrl.price)"></span>
+        <span data-ng-if="$ctrl.interval">
+            &#47;
+            <span data-translate="{{:: 'order_catalog_price_interval_' + $ctrl.interval}}"></span>
+        </span>
+    </strong>
+</span>
+<strong data-ng-if="::!$ctrl.price"
+    data-translate="order_catalog_price_free">
+</strong>

@@ -1,0 +1,42 @@
+<oui-field>
+    <oui-checkbox
+        name="{{:: $ctrl.name }}"
+        data-ng-if="$ctrl.items"
+        data-model="$ctrl.model"
+        data-required>
+        <span data-ng-repeat="contract in $ctrl.items track by $index">
+            <span data-ng-if="::$first && $last"
+                data-translate="order_contracts_label_unique"
+                data-translate-values="{
+                    contractName: contract.name,
+                    contractTitle: contract.name + '(' + ('common_newtab' | translate) + ')',
+                    contractUrl: contract.url,
+                }">
+            </span>
+            <span data-ng-if="::$first && !$last"
+                data-translate="order_contracts_label_first"
+                data-translate-values="{
+                    contractName: contract.name,
+                    contractTitle: contract.name + '(' + ('common_newtab' | translate) + ')',
+                    contractUrl: contract.url,
+                }">
+            </span>
+            <span data-ng-if="::!$first && !$last"
+                data-translate="order_contracts_label_next"
+                data-translate-values="{
+                    contractName: contract.name,
+                    contractTitle: contract.name + '(' + ('common_newtab' | translate) + ')',
+                    contractUrl: contract.url,
+                }">
+            </span>
+            <span data-ng-if="::!$first && $last"
+                data-translate="order_contracts_label_last"
+                data-translate-values="{
+                    contractName: contract.name,
+                    contractTitle: contract.name + '(' + ('common_newtab' | translate) + ')',
+                    contractUrl: contract.url,
+                }">
+            </span>
+        </span>
+    </oui-checkbox>
+</oui-field>

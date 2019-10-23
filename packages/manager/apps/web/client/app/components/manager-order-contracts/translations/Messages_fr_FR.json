@@ -1,0 +1,6 @@
+{
+  "order_contracts_label_unique": "Je reconnais avoir bien pris connaissance des <a href=\"{{ contractUrl }}\" rel=\"noopener\" target=\"_blank\" title=\"{{ contractTitle }}\">{{ contractName }}</a>.",
+  "order_contracts_label_first": "Je reconnais avoir bien pris connaissance des <a href=\"{{ contractUrl }}\" rel=\"noopener\" target=\"_blank\" title=\"{{ contractTitle }}\">{{ contractName }}</a>,",
+  "order_contracts_label_next": "et des <a href=\"{{ contractUrl }}\" rel=\"noopener\" target=\"_blank\" title=\"{{ contractTitle }}\">{{ contractName }}</a>,",
+  "order_contracts_label_last": "et des <a href=\"{{ contractUrl }}\" rel=\"noopener\" target=\"_blank\" title=\"{{ contractTitle }}\">{{ contractName }}</a>."
+}
