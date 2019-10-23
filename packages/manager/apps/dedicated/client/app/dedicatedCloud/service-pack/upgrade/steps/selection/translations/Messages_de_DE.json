@@ -1,0 +1,16 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_stepper_header": "Auswahl des Zertifikatstyps",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnMonthlyBill": "{{ priceDifference }} auf Ihre monatlichen Preise",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_priceDifferenceOnHourlyBill": "{{ priceDifference }} auf Ihren Stundensatz",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_header": "Verarbeiten Sie sensible Daten?",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_subheader": "Bestellen Sie eine Zertifizierung, die den Anforderungen Ihrer Tätigkeit entspricht. Zertifizierungen werden im selben Rechenzentrum wie Ihre Private Cloud verfügbar sein.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_header": "Sie möchten den Service-Level Ihrer Infrastruktur ändern?",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_basic_subheader": "Bestellen Sie Optionen, um zusätzliche Funktionen zu erhalten.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_certification_howToConfigureMeansOfPayment_comeBackHereLater": "Kehren Sie anschließend hierher zurück, um die Aktivierung des Zertifikats abzuschließen.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_cancelButton": "Abbrechen",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutButton": "Bestellung aufgeben",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_nextButton": "Weiter",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutDescription": "Die Bestellung wurde erfolgreich aufgegeben.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_checkoutLink": "Klicken Sie hier, um sie abzuschließen.",
+  "dedicatedCloudDashboardTilesOptionsOrderSelection_order_failure": "Die Bestellung konnte nicht aufgegeben werden"
+}

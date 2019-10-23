@@ -48,7 +48,7 @@
     "moment": "^2.15.2",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.22.0",
+    "ovh-api-services": "^9.23.2",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.9.6",
     "ovh-ui-kit": "^2.35.2",
