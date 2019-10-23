@@ -1,77 +1,49 @@
-import get from 'lodash/get';
-
 export default class {
   /* @ngInject */
-  constructor($q, $translate, $window, HostingOptionOrder, Alerter) {
-    this.$q = $q;
-    this.$translate = $translate;
-    this.$window = $window;
-    this.HostingOptionOrder = HostingOptionOrder;
-    this.Alerter = Alerter;
+  constructor($timeout) {
+    this.$timeout = $timeout;
   }
 
   $onInit() {
-    this.loading = true;
+    // Auto-select duration
+    [this.price] = this.catalogAddon.pricings;
+    this.interval = this.price.interval;
+    this.isEditable = true;
 
-    this.model = {};
-    this.durations = [];
-    this.details = {};
-
-    this.submitText = this.isOptionFree
-      ? this.$translate.instant('hosting_cdn_order_submit_activate')
-      : this.$translate.instant('hosting_cdn_order_submit_pay');
-
-    [this.model.offer] = this.availableOffers;
-    this.getDuration();
+    if (this.catalogAddon.pricings.length === 1) {
+      // Go directly to the next step
+      this.currentIndex = 1;
+      this.isEditable = false;
+    }
   }
 
-  getDuration() {
-    const queue = [];
-    this.loading = true;
+  resetCart() {
+    if (this.cart) {
+      this.cart = undefined;
+      this.cartId = undefined;
+    }
+  }
 
-    this.HostingOptionOrder.getOrderDurations('cdn', {
-      offer: get(this.model, 'offer.value'),
-    })
-      .then((durations) => {
-        this.durations = durations;
+  async prepareCheckout() {
+    if (!this.cart && !this.checkoutLoading) {
+      this.checkoutLoading = true;
+      const { cart, cartId } = await this.prepareOrderCart();
 
-        if (this.durations.length === 1) {
-          [this.model.duration] = this.durations;
-        }
-
-        angular.forEach(this.durations, (duration) => {
-          queue.push(this.HostingOptionOrder.getOrderDetailsForDuration('cdn', duration, {
-            offer: get(this.model, 'offer.value'),
-          }).then((details) => {
-            this.details[duration] = details;
-          }));
-        });
-
-        this.$q.all(queue);
-      })
-      .catch(error => this.goBack(
-        this.$translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message') }),
-        'danger',
-      ))
-      .finally(() => {
-        this.loading = false;
+      this.$timeout(() => {
+        this.cart = cart;
+        this.cartId = cartId;
+        this.checkoutLoading = false;
       });
+    }
   }
 
-  makeOrder() {
-    this.loading = true;
-    this.HostingOptionOrder.makeOrder('cdn', this.model.duration, {
-      offer: get(this.model, 'offer.value'),
-    })
-      .then((order) => {
-        this.$window.open(order.url, '_blank');
-        this.goBack(
-          this.$translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
-        );
-      })
-      .catch(error => this.goBack(
-        this.$translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message') }),
-        'danger',
-      ));
+  checkout() {
+    this.checkoutLoading = true;
+
+    this.checkoutOrderCart(
+      // Autovalidate if the order is free
+      this.isOptionFree ? this.isOptionFree : this.autoPayWithPreferredPaymentMethod,
+      this.cartId,
+    );
   }
 }

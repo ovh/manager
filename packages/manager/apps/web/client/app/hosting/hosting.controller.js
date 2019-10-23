@@ -659,6 +659,8 @@ export default class {
         this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
         this.$scope.http = hostingProxy.serviceManagementAccess.http;
         this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
+        this.$scope.isCdnFree = this.Hosting.constructor.isPerfOffer(hostingProxy.offer)
+          || this.$scope.hosting.isCloudWeb;
         this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
         this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
         this.$scope.urls.hosting = hostingUrl;

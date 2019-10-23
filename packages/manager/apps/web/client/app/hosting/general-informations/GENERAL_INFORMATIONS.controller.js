@@ -5,6 +5,7 @@ import isObject from 'lodash/isObject';
 import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
 
 export default class HostingGeneralInformationsCtrl {
+  /* @ngInject */
   constructor(
     $q,
     $scope,
