@@ -1,17 +1,19 @@
-import angular from 'angular';
 import find from 'lodash/find';
 import forOwn from 'lodash/forOwn';
+import get from 'lodash/get';
 import includes from 'lodash/includes';
 import kebabCase from 'lodash/kebabCase';
 import map from 'lodash/map';
+
+import { NEW_TICKET_URL } from './diagnostic.constants';
 
 export default class ExchangeTabDiagnosticsCtrl {
   /* @ngInject */
   constructor(
     $scope,
     $q,
+    constants,
     diagnostic,
-    OtrsPopupService,
     User,
     EXCHANGE_CONFIG,
     $translate,
@@ -23,8 +25,8 @@ export default class ExchangeTabDiagnosticsCtrl {
     this.services = {
       $scope,
       $q,
+      constants,
       diagnostic,
-      OtrsPopupService,
       User,
       EXCHANGE_CONFIG,
       $translate,
@@ -36,6 +38,7 @@ export default class ExchangeTabDiagnosticsCtrl {
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
     this.exchange = Exchange.value;
+    this.newTicketUrl = get(NEW_TICKET_URL, constants.target, 'EU') + this.exchange.domain;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',
@@ -206,43 +209,6 @@ export default class ExchangeTabDiagnosticsCtrl {
     this.diagnostic = null;
     this.state = this.states.REQUESTING_NEW_DIAGNOSTIC;
     this.services.diagnostic.clearCache();
-  }
-
-  openSupportTicket() {
-    if (!this.services.OtrsPopupService.isLoaded()) {
-      this.services.OtrsPopupService.init();
-    }
-
-    this.services.$timeout(() => {
-      const body = this.makingSupportTicketBody();
-      const subject = this.services.$translate.instant(
-        'exchange_DIAGNOSTICS_status_support_ticket_subject',
-      );
-      this.services.OtrsPopupService.changeTicket({
-        subject,
-        body,
-      });
-      this.services.OtrsPopupService.restore();
-    });
-  }
-
-  makingSupportTicketBody() {
-    const diagnosticUrl = URI.expand(
-      '/email/exchange/{organizationName}/service/{exchangeService}/account/{primaryEmailAddress}/diagnostics',
-      {
-        organizationName: this.exchange.organization,
-        exchangeService: this.exchange.domain,
-        primaryEmailAddress: this.email,
-      },
-    );
-
-    const apiUrl = `GET ${diagnosticUrl}`;
-    const diagnosticJson = angular.toJson(this.diagnostic, true);
-
-    return `${this.services.$translate.instant('exchange_DIAGNOSTICS_status_support_ticket_body')}
-
-${apiUrl}
-${diagnosticJson}`;
   }
 
   isOK(status) {
