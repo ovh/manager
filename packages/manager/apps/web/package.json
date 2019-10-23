@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "13.31.4",
+  "version": "13.31.5",
   "private": true,
   "description": "OVH Control Panel Web UI",
   "keywords": [
@@ -29,12 +29,12 @@
   "dependencies": {
     "@ovh-ux/manager-banner": "^1.1.1",
     "@ovh-ux/manager-config": "^0.3.1",
-    "@ovh-ux/manager-core": "^7.1.4",
+    "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/manager-emailpro": "^1.0.0",
     "@ovh-ux/manager-exchange": "^1.0.0",
-    "@ovh-ux/manager-navbar": "^2.0.4",
+    "@ovh-ux/manager-navbar": "^2.0.5",
     "@ovh-ux/manager-office": "^1.0.0",
-    "@ovh-ux/manager-server-sidebar": "^0.6.6",
+    "@ovh-ux/manager-server-sidebar": "^0.6.7",
     "@ovh-ux/manager-sharepoint": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.2",

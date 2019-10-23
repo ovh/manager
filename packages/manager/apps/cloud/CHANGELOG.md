@@ -1,3 +1,13 @@
+## [7.32.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.32.4...@ovh-ux/manager-cloud@7.32.5) (2019-10-23)
+
+
+### Bug Fixes
+
+* replace lodash imports ([af0b5ce](https://github.com/ovh/manager/commit/af0b5ce021b4cbb799624852c6f8e1d85b5976e4))
+* **dbaas.logs.detail.roles:** add row size and pagination to roles ([#1482](https://github.com/ovh/manager/issues/1482)) ([8b1dc56](https://github.com/ovh/manager/commit/8b1dc56e7306b12f41dae5a74f160eaecb1ba4c7))
+
+
+
 ## [7.32.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud@7.32.3...@ovh-ux/manager-cloud@7.32.4) (2019-10-15)
 
 

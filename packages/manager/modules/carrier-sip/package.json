@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "OVH Carrier SIP module",
   "license": "BSD-3-Clause",
@@ -12,7 +12,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.1.4",
+    "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
