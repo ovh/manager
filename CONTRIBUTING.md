@@ -7,7 +7,7 @@ pay attention to a few things:
 2. your code must be unit-tested
 3. your code must be documented
 4. your work must be signed (see below)
-5. you may contribute through GitHub Pull Requests
+5. you may contribute through GitHub [Pull Requests][pull-request] on `develop` branch
 
 # Coding and documentation Style
 
@@ -18,11 +18,11 @@ pay attention to a few things:
 
 Due to an internal process, only French sentences can be updated or added.
 If you want to make changes in translations from another language, please open
-an issue.
+an [Issue](https://github.com/ovh/manager/issues/new/choose).
 
 # Submitting Modifications
 
-The contributions should be submitted through GitHub Pull Requests
+The contributions should be submitted through GitHub [Pull Requests][pull-request]
 and follow the DCO which is defined below.
 
 # Licensing for new files
@@ -76,3 +76,5 @@ then you just add a line saying
     Signed-off-by: Random J Developer <random@example.org>
 
 using your real name (sorry, no pseudonyms or anonymous contributions.)
+
+[pull-request]: https://github.com/ovh/manager/pulls
