@@ -36,5 +36,6 @@
   "telecom_sidebar_actions_menu_sms": "SMS",
   "telecom_sidebar_actions_menu_sms_hlr": "HLR",
   "telecom_sidebar_actions_menu_fax": "Fax",
-  "telecom_sidebar_pack_load_error": "Ops! Si è verificato un errore durante il caricamento dei tuoi servizi."
+  "telecom_sidebar_pack_load_error": "Ops! Si è verificato un errore durante il caricamento dei tuoi servizi.",
+  "telecom_sidebar_section_telephony_carrier_sip": "Operatore SIP"
 }

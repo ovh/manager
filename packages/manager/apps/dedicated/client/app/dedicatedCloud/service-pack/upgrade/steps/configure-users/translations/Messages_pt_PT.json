@@ -1,7 +1,7 @@
 {
   "dedicatedCloudDashboardTilesOptionsOrderConfigureUsers_stepper_header": "Configurar os utilizadores",
-  "dedicatedCloud_servicePack_configureUsers_noUser": "Pelo menos um dos seus usuários administradores deve ter um número de celular, um endereço de e-mail e estar registrado como um \"validador de token\". Isso permite a autenticação de dois fatores para ações de administração no vCenter. Você pode configurar seus usuários clicando na guia",
-  "dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration": "Utilizadores",
+  "dedicatedCloud_servicePack_configureUsers_noUser": "Pelo menos um dos utilizadores administradores deve ter um número de telemóvel e um endereço de e-mail, e estar registado como “token validator”. Isto permite ativar a autenticação de dois fatores para as ações de administração no vCenter. Pode configurar os seus utilizadores clicando no separador",
+  "dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration": "Utilizadores.",
   "dedicatedCloud_servicePack_configureUsers_hasUser": "Para validar a ativação da autenticação por dois fatores, alguns dos seus utilizadores receberão um token por SMS.",
   "dedicatedCloud_servicePack_configureUsers_hasUser_table_header": "Utilizadores que podem validar tokens por SMS:",
   "dedicatedCloud_servicePack_configureUsers_hasUser_table_column_userName": "ID de utilizador",

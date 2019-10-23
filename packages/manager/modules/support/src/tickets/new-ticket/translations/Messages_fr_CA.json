@@ -63,7 +63,7 @@
   "ovhManagerSupport_new_serviceType_pack_xdsl": "Pack xDSL",
   "ovhManagerSupport_new_serviceType_router": "Router",
   "ovhManagerSupport_new_serviceType_HOSTING_DOMAIN": "Hébergement web + domaine",
-  "ovhManagerSupport_new_serviceType_hosting_reseller": "Hébergement multisite",
+  "ovhManagerSupport_new_serviceType_hosting_reseller": "Hébergement Plesk",
   "ovhManagerSupport_new_serviceType_dedicated_nas": "Dedicated Nas",
   "ovhManagerSupport_new_serviceType_dedicated_nasha": "Dedicated NasHa",
   "ovhManagerSupport_new_serviceType_cloud": "Public Cloud",
@@ -114,6 +114,7 @@
   "ovhManagerSupport_new_creation_tip_forum": "Notre forum :",
   "ovhManagerSupport_new_creation_tip_2": "Vous avez trouvé la réponse à votre demande entre temps ?",
   "ovhManagerSupport_new_creation_tip_3": "Dans ce cas, nous vous invitons à <a ui-sref=\"{{ state }}\">clôturer votre ticket</a> directement depuis votre espace client.",
+  "ovhManagerSupport_new_creation_optional": "{{label}} (facultatif)",
 
   "ovhManagerSupport_new_business_web": "Web",
   "ovhManagerSupport_new_business_telecom": "Telecom",

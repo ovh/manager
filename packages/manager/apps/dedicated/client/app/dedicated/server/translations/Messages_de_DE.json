@@ -1171,5 +1171,6 @@
   "server_usage_chart_xaxis_label": "Zeit",
   "server_duration_upto": "Bis zum {{t0}}",
   "server_configuration_upgrade_title": "Optimieren Sie Ihre Infrastruktur",
-  "server_configuration_upgrade_badge": "Neu"
+  "server_configuration_upgrade_badge": "Neu",
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbit/s öffentliche Bandbreite - unbegrenzter Traffic"
 }

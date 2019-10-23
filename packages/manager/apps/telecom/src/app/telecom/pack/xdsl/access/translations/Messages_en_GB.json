@@ -103,5 +103,8 @@
   "xdsl_access_amount_download": "Volume téléchargé dans le mois",
   "xdsl_access_amount_upload": "Volume émis dans le mois",
   "xdsl_details_action": "Actions",
-  "xdsl_details_transfert": "Modifier mon offre"
+  "xdsl_details_transfert": "Modifier mon offre",
+  "xdsl_modem_comfort_exchange_subtitle": "Modem exchange",
+  "xdsl_modem_exchange": "Exchange my modem",
+  "xdsl_modem_exchange_title": "Exchange"
 }

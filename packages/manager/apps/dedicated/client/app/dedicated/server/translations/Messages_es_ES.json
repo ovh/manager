@@ -1200,5 +1200,6 @@
   "server_error_vrack_attach": "Se ha producido un error al asociar la red privada: {{error}}.",
   "server_error_vrack_detach": "Se ha producido un error al desvincular la red privada: {{error}}.",
   "server_error_ola_activation": "Se ha producido un error al activar el servicio: {{error}}.",
-  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}"
+  "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}",
+  "plan_bandwidth-1000-burst-2gbps-infra": "Ancho de banda público de 2 Gb/s - Tráfico ilimitado"
 }

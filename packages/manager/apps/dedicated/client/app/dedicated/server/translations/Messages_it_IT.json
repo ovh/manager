@@ -1184,7 +1184,7 @@
   "plan_bandwidth-guaranteed-4000-ultimate-2019v1": "4 Gbps di banda passante pubblica garantita - Traffico illimitato - Opzione Ultimate",
   "server_bandwidth_incoming": "In entrata",
   "server_bandwidth_outgoing": "In uscita",
-  "server_bandwidth_type": "Soluzione: ",
+  "server_bandwidth_type": "Servizio: ",
   "server_ola": "OVHcloud Link Aggregation",
   "server_ola_mode": "Modalità",
   "server_ola_active": "Attivo",
@@ -1200,5 +1200,6 @@
   "server_error_vrack_attach": "Si è verificato un errore durante l'associazione della rete privata: {{error}}",
   "server_error_vrack_detach": "Si è verificato un errore durante la separazione della rete privata: {{error}}",
   "server_error_ola_activation": "Si è verificato un errore durante l'attivazione del tuo servizio: {{error}}",
-  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}"
+  "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps di banda passante pubblica - Traffico illimitato"
 }

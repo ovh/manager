@@ -1,6 +1,6 @@
 {
   "confirm_order_confirm": "Confirmar",
-  "confirm_order_cancel": "Anular",
+  "confirm_order_cancel": "Cancelar",
   "confirm_order_basic_title": "Ativação de uma opção",
   "confirm_order_basic_question_1": "Você está prestes a ativar o pacote de opções <strong>{{itemName}}</strong>.",
   "confirm_order_certification_title": "Ativação de uma certificação",
