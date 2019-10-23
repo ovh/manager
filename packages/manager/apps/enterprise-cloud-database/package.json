@@ -19,7 +19,7 @@
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
-    "@ovh-ux/ng-ovh-toaster": "^1.0.2",
+    "@ovh-ux/ng-ovh-toaster": "^1.0.3",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@uirouter/angularjs": "^1.0.22",

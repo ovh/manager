@@ -2100,10 +2100,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-toaster@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.2.tgz#4a2e8115e1d2934b3b07f96612231b79b04ed823"
-  integrity sha512-m6bV/K/oLYvbABq4SbMIh4yTwee1GyJGlQ1fozFsoeLcgGDGnv15fqd1r5f/Gmva+lELmx7OjAsTntg1+8QhMQ==
+"@ovh-ux/ng-ovh-toaster@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.3.tgz#6891c99bf9d1d507c9ae32d64886b3d41a6b1794"
+  integrity sha512-pxC2TIJRJ2p+MkfwxDdP/uPAvYOoFKD9/ncpQM/TiY5PM9pjl5XyqVYsQHbRoM8mDhSCDdawy4eTqPrCT0P6QQ==
 
 "@ovh-ux/ng-ovh-user-pref@^1.0.0":
   version "1.0.0"
