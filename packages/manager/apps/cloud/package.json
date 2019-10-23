@@ -42,7 +42,7 @@
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.2",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
-    "@ovh-ux/ng-ovh-form-flat": "^4.0.0",
+    "@ovh-ux/ng-ovh-form-flat": "^4.0.3",
     "@ovh-ux/ng-ovh-http": "^4.0.2",
     "@ovh-ux/ng-ovh-jquery-ui-droppable": "^1.0.0",
     "@ovh-ux/ng-ovh-jsplumb": "^5.0.0",

@@ -1981,10 +1981,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-1.0.1.tgz#d34d0fb7839d92e8d9ec14f90224e3938b5eb66e"
   integrity sha512-FjJdj87XU4JoAZNNpnnOeS3wNKobUVU7UC4H+OJXFXqxbYhonCCfbjpuSTr3qI53cW88HSDy1Hi5qJC4ackOjg==
 
-"@ovh-ux/ng-ovh-form-flat@^4.0.0":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-form-flat/-/ng-ovh-form-flat-4.0.2.tgz#a14d28042e51ef53de0e62f87519fa747c143d73"
-  integrity sha512-76VVqQLPkf4YaeErbMmwxOjMA1SuOH9Dm1lhmoZUFzT5PHxtn/neYU1My50tQ3DLyLFKBq4XgffZbzAo4vjTQA==
+"@ovh-ux/ng-ovh-form-flat@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-form-flat/-/ng-ovh-form-flat-4.0.3.tgz#bec2c9fda11a7105eb22fa682fd06ebbe93121d2"
+  integrity sha512-EoksIcNePhYn084aObERqqWBenebMTgkK0TV8L13qhgjTDwhJyO0qsCOI0UpChv0kBpEoGi/GDurgZjz6v1TxA==
 
 "@ovh-ux/ng-ovh-http@^4.0.2", "@ovh-ux/ng-ovh-http@^4.0.4":
   version "4.0.4"
