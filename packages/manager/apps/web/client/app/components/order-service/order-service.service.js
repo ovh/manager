@@ -1,7 +1,8 @@
 export default class OrderService {
   /* @ngInject */
-  constructor(OvhApiOrder) {
+  constructor(OvhApiOrder, User) {
     this.OvhApiOrder = OvhApiOrder;
+    this.User = User;
   }
 
   createNewCart(ovhSubsidiary) {
@@ -70,13 +71,22 @@ export default class OrderService {
       .$promise;
   }
 
-  checkoutCart(cartId, checkout) {
-    return this.OvhApiOrder.Cart().v6()
+  async checkoutCart(cartId, checkout) {
+    const order = await this.OvhApiOrder.Cart().v6()
       .checkout({
         cartId,
         ...checkout,
       })
       .$promise;
+
+    if (order.prices.withTax.value === 0) {
+      await this.User.payWithRegisteredPaymentMean({
+        orderId: order.orderId,
+        paymentMean: 'fidelityAccount',
+      });
+    }
+
+    return order;
   }
 
   getProductPublicCatalog(ovhSubsidiary, productName) {
