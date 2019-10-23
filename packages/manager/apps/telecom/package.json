@@ -67,7 +67,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@ovh-ux/ng-ui-router-layout": "^2.1.1",
     "@ovh-ux/ng-ui-router-line-progress": "^1.0.1",
-    "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
+    "@ovh-ux/ng-uirouter-title": "^2.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.0.0",
     "angular": "^1.7.5",

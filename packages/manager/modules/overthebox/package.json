@@ -19,7 +19,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
     "@ovh-ux/ng-tail-logs": "^2.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
+    "@ovh-ux/ng-uirouter-title": "^2.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angularjs-scroll-glue": "^2.2.0",
