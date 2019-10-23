@@ -38,6 +38,7 @@
     "@ovh-ux/manager-exchange": "^1.0.0",
     "@ovh-ux/manager-navbar": "^2.0.5",
     "@ovh-ux/manager-server-sidebar": "^0.6.7",
+    "@ovh-ux/manager-support": "^0.3.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.2",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.2",
@@ -49,7 +50,6 @@
     "@ovh-ux/ng-ovh-export-csv": "^1.0.1",
     "@ovh-ux/ng-ovh-http": "^4.0.2",
     "@ovh-ux/ng-ovh-jquery-ui-draggable": "^1.0.0",
-    "@ovh-ux/ng-ovh-otrs": "^9.0.1",
     "@ovh-ux/ng-ovh-payment-method": "^5.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
@@ -136,7 +136,7 @@
     "validator": "^3.39.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.1.1",
+    "@ovh-ux/manager-webpack-config": "^3.2.2",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
     "webpack": "^4.41.2",

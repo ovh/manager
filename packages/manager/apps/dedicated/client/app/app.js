@@ -10,7 +10,6 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
-import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -30,10 +29,12 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhManagerSupport from '@ovh-ux/manager-support';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
+import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
@@ -55,6 +56,7 @@ Environment.setVersion(__VERSION__);
 angular
   .module('App', [
     __NG_APP_INJECTIONS__,
+    account,
     ovhManagerCore,
     'Billing',
     'chart.js',
@@ -73,7 +75,6 @@ angular
     Environment.getRegion() === 'CA' ? moduleExchange : undefined,
     'Module.ip',
     'Module.license',
-    'Module.otrs',
     mfaEnrollment,
     'ng.ckeditor',
     'ngMessages',
@@ -82,7 +83,6 @@ angular
     ngOvhApiWrappers,
     ngOvhChatbot,
     ngOvhHttp,
-    ngOvhOtrs,
     ngOvhProxyRequest,
     ngOvhSsoAuth,
     ngOvhSsoAuthModalPlugin,
@@ -104,6 +104,7 @@ angular
     ovhManagerPccDashboard,
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
+    ovhManagerSupport,
     ngTailLogs,
     'ovhBrowserAlert',
     ovhContacts,
@@ -137,7 +138,6 @@ angular
     aapiHeaderName: 'X-Ovh-Session',
     vrackUrl: config.constants.vrackUrl,
     MANAGER_URLS: config.constants.MANAGER_URLS,
-    REDIRECT_URLS: config.constants.REDIRECT_URLS,
     DEFAULT_LANGUAGE: config.constants.DEFAULT_LANGUAGE,
     FALLBACK_LANGUAGE: config.constants.FALLBACK_LANGUAGE,
     SUPPORT: config.constants.SUPPORT,
@@ -223,9 +223,6 @@ angular
   })
   .config(($qProvider) => {
     $qProvider.errorOnUnhandledRejections(false);
-  })
-  .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .run(($translate) => {
     moment.locale(head($translate.use().split('_')));

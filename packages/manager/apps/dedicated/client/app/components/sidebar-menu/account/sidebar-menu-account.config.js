@@ -115,9 +115,9 @@ angular
           }
 
           SidebarMenu.addMenuItem({
-            name: 'accountTickets',
-            title: $translate.instant('menu_tickets'),
-            state: 'app.account.otrs-ticket',
+            name: 'support',
+            title: $translate.instant('menu_support'),
+            state: 'support',
             namespace: 'account',
           });
         });
