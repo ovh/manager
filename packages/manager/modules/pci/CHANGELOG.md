@@ -1,3 +1,12 @@
+## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.5...@ovh-ux/manager-pci@2.4.6) (2019-10-23)
+
+
+### Bug Fixes
+
+* **pci.projects.containers:** add delete object binding ([#1546](https://github.com/ovh/manager/issues/1546)) ([f596c58](https://github.com/ovh/manager/commit/f596c588fe988309ffa20fc4b5848663f7d1f600))
+
+
+
 ## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.4...@ovh-ux/manager-pci@2.4.5) (2019-10-23)
 
 
