@@ -2139,13 +2139,6 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
-"@ovh-ux/ng-uirouter-title@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0.tgz#b26eb983e73b1cfeb786e1f94a4ab31c6eda0ea5"
-  integrity sha512-CzP3V1Kh+8aIiIcLmCPyDuT0R9MccUijR10soJndy5yk7QDZAVE5BTaeKOSbup9OVtwndiXAM5VaKKPFKnDM+A==
-  dependencies:
-    lodash "^4.17.15"
-
 "@ovh-ux/rollup-plugin-less-inject@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-inject/-/rollup-plugin-less-inject-1.0.1.tgz#bff1ff128b8c19ee2fd332c868780e1dfde5a21c"
@@ -12132,7 +12125,7 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.24.1:
+ovh-api-services@^9.23.3, ovh-api-services@^9.24.1:
   version "9.24.1"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.24.1.tgz#f6912a13c0df42d45074b7fedde06838a09bfb2c"
   integrity sha512-u+xB469JGt/VhUuBnscM1VWlrddyAQzKeUe7pPnQoOqAgD2UO5gAkpIAz5M30zN1qnXHeF8SrJ6QGCxE6b1reQ==
