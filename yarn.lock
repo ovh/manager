@@ -2134,12 +2134,12 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-tail-logs@^2.0.0-beta.1":
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.1.tgz#823fc41c98770e428d93882e7cdf47f1a7e1711b"
-  integrity sha512-tcyEnkqb71p+ImlsRalsqdZ/RcN1lixjUVItsR1oLooliiXumdPgmAjlGm6elBs3Gb+vzDq0+uouFwLxfeYVKg==
+"@ovh-ux/ng-tail-logs@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0.tgz#03033414d0db979c57addd8004139cb40257e3fd"
+  integrity sha512-kK05vPsfW/dLOF8RUc9DUCFr+wBV+R+NzeMUg75JHs2C4RxHUsL83jawdAMUOtRCVCDOTSny7fGYfOTFNF1VaQ==
   dependencies:
-    lodash "^4.17.11"
+    lodash "^4.17.15"
 
 "@ovh-ux/ng-translate-async-loader@^2.0.0", "@ovh-ux/ng-translate-async-loader@^2.0.2":
   version "2.0.2"
