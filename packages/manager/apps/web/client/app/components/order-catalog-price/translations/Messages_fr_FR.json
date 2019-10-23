@@ -1,0 +1,5 @@
+{
+  "price_free": "Inclus",
+  "price_tax_excl_label": "{{ price }} HT",
+  "price_tax_incl_label": "{{ price }} TTC"
+}

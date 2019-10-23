@@ -1,0 +1,7 @@
+{
+  "order_payment_means": {
+    "tag_recommended": "Conseillé",
+    "payment_method_default": "Utiliser votre moyen de paiement par défaut <span class=\"oui-color-success-dark\">[{{type}} {{name}}]</span>",
+    "payment_method_other": "Autre moyen de paiement (vous serez redirigé vers le bon de commande OVH)"
+  }
+}
