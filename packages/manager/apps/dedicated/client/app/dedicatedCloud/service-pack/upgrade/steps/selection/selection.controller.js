@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import sortBy from 'lodash/sortBy';
 
 export default class Selection {
   /* @ngInject */
@@ -17,15 +18,15 @@ export default class Selection {
   }
 
   $onInit() {
-    const currentServicePack = _.find(
+    const currentServicePack = find(
       this.servicePacksWithPrices,
       { name: this.currentService.servicePackName },
     );
 
-    this.orderableServicePacks = _.sortBy(
+    this.orderableServicePacks = sortBy(
       this.orderableServicePacks
         .map((servicePack) => {
-          const servicePackToDisplay = _.find(
+          const servicePackToDisplay = find(
             this.servicePacksWithPrices,
             {
               name: servicePack.name,

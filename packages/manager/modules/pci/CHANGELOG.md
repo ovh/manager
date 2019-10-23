@@ -1,3 +1,21 @@
+## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.4...@ovh-ux/manager-pci@2.4.5) (2019-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+
+
+
+## [2.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.3...@ovh-ux/manager-pci@2.4.4) (2019-10-18)
+
+
+### Bug Fixes
+
+* **pci.projects.workflow:** add missing ngInject ([#1500](https://github.com/ovh-ux/manager/issues/1500)) ([fb9922d](https://github.com/ovh-ux/manager/commit/fb9922d))
+
+
+
 ## [2.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.2...@ovh-ux/manager-pci@2.4.3) (2019-10-17)
 
 

@@ -1,0 +1,16 @@
+{
+  "ovhManagerSupport_ticket_backButton": "Voltar à lista dos pedidos de assistência",
+  "ovhManagerSupport_ticket_generalInformation_subjet": "Assunto",
+  "ovhManagerSupport_ticket_generalInformation_number": "Número",
+  "ovhManagerSupport_ticket_generalInformation_creationDate": "Data de abertura",
+  "ovhManagerSupport_ticket_generalInformation_state": "Estado",
+  "ovhManagerSupport_ticket_generalInformation_service": "Serviço",
+  "ovhManagerSupport_ticket_generalInformation_type": "Tipo",
+  "ovhManagerSupport_ticket_generalInformation_updateDate": "Data da última alteração",
+  "ovhManagerSupport_ticket_generalInformation_closeTicket": "Encerrar ticket",
+  "ovhManagerSupport_ticket_reply_header": "Enviar uma mensagem",
+  "ovhManagerSupport_ticket_reply_reply": "Enviar",
+  "ovhManagerSupport_ticket_messages_header": "Correspondência",
+  "ovhManagerSupport_ticket_messages_sender": "De",
+  "ovhManagerSupport_ticket_messages_dateOfReceipt": "Data de receção"
+}

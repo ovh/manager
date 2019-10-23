@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import includes from 'lodash/includes';
 
 angular
   .module('UserAccount')
@@ -6,7 +6,7 @@ angular
     const name = 'app.account.user.emails';
     const nameDetails = 'app.account.user.emailsDetails';
 
-    if (_.includes(['EU', 'CA'], coreConfigProvider.getRegion())) {
+    if (includes(['EU', 'CA'], coreConfigProvider.getRegion())) {
       $stateProvider.state(name, {
         url: '/emails',
         templateUrl: 'account/user/emails/user-emails.html',

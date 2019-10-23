@@ -1,3 +1,5 @@
+import reduce from 'lodash/reduce';
+
 export const name = 'ovhManagerPccDashboardOptionsOrderService';
 
 export const OptionsService = class {
@@ -15,7 +17,7 @@ export const OptionsService = class {
   }
 
   getOrderWithStatus(orderId) {
-    const mergeOrderAndItsStatus = array => _.reduce(
+    const mergeOrderAndItsStatus = array => reduce(
       array,
       (accumulator, current) => ({ ...accumulator, ...current }),
       {},

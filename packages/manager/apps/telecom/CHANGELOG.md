@@ -1,3 +1,37 @@
+## [10.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.0...@ovh-ux/manager-telecom@10.38.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
+# [10.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.37.0...@ovh-ux/manager-telecom@10.38.0) (2019-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
+
+
+### Features
+
+* **pack.xdsl:** add access exchange for modem ([#1346](https://github.com/ovh/manager/issues/1346)) ([a54d5c0](https://github.com/ovh/manager/commit/a54d5c03e258ca648f47aad93b71fd3c184920c3))
+* **telecom:** use @ovh-ux/ng-ui-router-layout ([#1490](https://github.com/ovh/manager/issues/1490)) ([ec808d3](https://github.com/ovh/manager/commit/ec808d3300209d3110714ab2ace4dd40f5528ca7))
+
+
+
+# [10.37.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.36.1...@ovh-ux/manager-telecom@10.37.0) (2019-10-18)
+
+
+### Features
+
+* **telephony:** enable carrier sip lines through feature type ([80137f1](https://github.com/ovh-ux/manager/commit/80137f1))
+* **telephony:** use of constants for feature types ([42972ce](https://github.com/ovh-ux/manager/commit/42972ce))
+
+
+
 ## [10.36.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.36.0...@ovh-ux/manager-telecom@10.36.1) (2019-10-17)
 
 

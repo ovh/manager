@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.1.6...@ovh-ux/manager-emailpro@1.1.7) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
 ## [1.1.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.5...@ovh-ux/manager-emailpro@1.1.6) (2019-10-15)
 
 

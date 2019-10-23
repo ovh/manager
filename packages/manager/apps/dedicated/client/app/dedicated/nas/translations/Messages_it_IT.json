@@ -34,7 +34,7 @@
   "nas_order_bc_contracts": "Confermo che sono a conoscenza delle condizioni che seguono:",
   "nas_order_bc_price_HT": "Prezzo totale IVA esclusa:",
   "nas_order_bc_price_TTC": "Prezzo totale IVA inclusa:",
-  "nas_order_bc_finish_success": "L'ordine numero <a href='{{t0}}' target='_blank'>{{t1}}</a> per il tuo NAS è stato preso in carico.",
+  "nas_order_bc_finish_success": "L'ordine numero <a href='{{t0}}' target='_blank'>{{t1}}</a> del NAS è stato preso in carico.",
   "nas_order_bc_finish_fail": "Si è verificato un errore nell'ordine del tuo NAS",
   "nas_snapshot_informations_valid": "Conferma le modifiche",
   "nas_snapshot_informations_cancel": "Annulla le modifiche",

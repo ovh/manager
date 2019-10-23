@@ -10,7 +10,7 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Aggiungi un metodo di pagamento",
   "billing_payment_method_autorenew_guide_help": "Bisogno di aiuto per rinnovare i tuoi servizi?",
-  "billing_payment_method_autorenew_guide_help_link": "Bisogno di aiuto per rinnovare i tuoi servizi?",
+  "billing_payment_method_autorenew_guide_help_link": "Scopri di più",
   "billing_payment_method_bank_account_pending_validation": "Hai aggiunto un conto bancario nel tuo Spazio Cliente OVH, siamo in attesa di ricevere la tua autorizzazione al prelievo.",
   "billing_payment_method_bank_account_processing_delay": "Il tuo conto bancario sarà convalidato entro 24-48 ore a partire dalla ricezione della tua autorizzazione al prelievo.",
   "billing_payment_method_table_action_download_procedure": "Scarica la procedura da compilare e restituire via posta",

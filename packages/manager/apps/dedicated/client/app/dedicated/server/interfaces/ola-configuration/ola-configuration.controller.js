@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 import { OLA_MODES } from './ola-configuration.constants';
 
 export default class {
@@ -34,7 +38,7 @@ export default class {
     };
 
     this.selectedInterfaces = [];
-    this.notAllowedInterfaces = _.filter(
+    this.notAllowedInterfaces = filter(
       this.interfaces,
       item => item.hasFailoverIps() || item.hasVrack(),
     );
@@ -62,7 +66,7 @@ export default class {
     this.selectedInterfaces = selectedRows;
 
     if (this.configuration.mode === OLA_MODES.DEFAULT) {
-      this.networkInterfaces = _.flatten(_.map(
+      this.networkInterfaces = flatten(map(
         this.selectedInterfaces,
         ({ mac }) => mac.split(','),
       ));
@@ -102,6 +106,6 @@ export default class {
 
         return this.goBack();
       })
-      .catch(error => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_ola_error', { errorMessage: _.get(error, 'data.message') })));
+      .catch(error => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_ola_error', { errorMessage: get(error, 'data.message') })));
   }
 }

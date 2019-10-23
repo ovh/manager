@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import get from 'lodash/get';
 
 import { OPTION_TYPES } from '../../option/option.constants';
 
@@ -18,9 +19,9 @@ export default class {
   // Sometimes the digest cycle is done before dom manipulation,
   // So we use $timeout to force the $apply
     this.$timeout(() => {
-      this.selectedItem = _.find(
+      this.selectedItem = find(
         this.servicePacks,
-        { name: _.get(this.defaultValue, 'name') },
+        { name: get(this.defaultValue, 'name') },
       );
 
       if (this.selectedItem) {
