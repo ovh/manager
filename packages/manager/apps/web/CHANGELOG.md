@@ -1,3 +1,16 @@
+## [13.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.4...@ovh-ux/manager-web@13.31.5) (2019-10-23)
+
+
+### Bug Fixes
+
+* **domain:** add expiration date for dns anycast option ([#1458](https://github.com/ovh/manager/issues/1458)) ([6b67460](https://github.com/ovh/manager/commit/6b67460b53d5348559367f9f22a9239900a0ccd4))
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+* replace lodash imports ([af0b5ce](https://github.com/ovh/manager/commit/af0b5ce021b4cbb799624852c6f8e1d85b5976e4))
+* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
+* **private.database:** fix typo ([#1522](https://github.com/ovh/manager/issues/1522)) ([7e23001](https://github.com/ovh/manager/commit/7e23001527f0255f73e8ef26664d820d2d4d2d7f))
+
+
+
 ## [13.31.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.31.3...@ovh-ux/manager-web@13.31.4) (2019-10-17)
 
 

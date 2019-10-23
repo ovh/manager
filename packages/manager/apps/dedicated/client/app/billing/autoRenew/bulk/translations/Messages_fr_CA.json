@@ -1,5 +1,6 @@
 {
   "billing_autorenew_bulk": "Vous avez sélectionné {{ count }} services",
+  "billing_autorenew_bulk_one": "Vous avez sélectionné 1 service",
   "billing_autorenew_bulk_cancel": "Annuler",
   "billing_autorenew_bulk_confirm": "Valider",
   "billing_autorenew_bulk_unavailable_pending_debt": "Les services ayant une facture en attente de réglement",
@@ -13,5 +14,7 @@
   "billing_autorenew_bulk_service": "(1 service)",
   "billing_autorenew_bulk_services": "({{ count }} services)",
   "billing_autorenew_bulk_more": "Voir plus",
-  "billing_autorenew_bulk_less": "Voir moins"
+  "billing_autorenew_bulk_less": "Voir moins",
+  "billing_autorenew_bulk_available_more": "Voir le détail des services compatibles",
+  "billing_autorenew_bulk_available_less": "Masquer le détail des services compatibles"
 }

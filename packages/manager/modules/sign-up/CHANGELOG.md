@@ -1,3 +1,12 @@
+## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.8...@ovh-ux/sign-up@1.0.9) (2019-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+
+
+
 ## [1.0.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up@1.0.7...@ovh-ux/sign-up@1.0.8) (2019-10-17)
 
 

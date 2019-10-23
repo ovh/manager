@@ -63,7 +63,7 @@
   "ovhManagerSupport_new_serviceType_pack_xdsl": "Pack xDSL",
   "ovhManagerSupport_new_serviceType_router": "Router",
   "ovhManagerSupport_new_serviceType_HOSTING_DOMAIN": "Hébergement web + domaine",
-  "ovhManagerSupport_new_serviceType_hosting_reseller": "Hébergement multisite",
+  "ovhManagerSupport_new_serviceType_hosting_reseller": "Hébergement Plesk",
   "ovhManagerSupport_new_serviceType_dedicated_nas": "Dedicated Nas",
   "ovhManagerSupport_new_serviceType_dedicated_nasha": "Dedicated NasHa",
   "ovhManagerSupport_new_serviceType_cloud": "Public Cloud",

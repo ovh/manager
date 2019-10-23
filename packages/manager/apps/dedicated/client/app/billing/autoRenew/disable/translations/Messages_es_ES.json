@@ -6,5 +6,8 @@
   "billing_autorenew_disable_data": "Atención: Una vez que el servicio haya expirado, se suspenderá de forma inmediata y no podrá acceder a él. Si no abona el importe pendiente, los datos asociados al servicio se eliminarán de forma definitiva.",
   "billing_autorenew_disable_bulk_unavailable": "La renovación automática se desactivará en todos los servicios seleccionados, excepto en {{ count }} servicios:",
   "billing_autorenew_disable_success": "La renovación de los servicios se ha actualizado.",
-  "billing_autorenew_disable_error": "Se ha producido un error al desactivar la renovación automática: {{message}}."
+  "billing_autorenew_disable_error": "Se ha producido un error al desactivar la renovación automática: {{message}}.",
+  "billing_autorenew_disable_bulk_unavailable_one": "La renovación automática se desactivará en todos los servicios seleccionados, excepto en 1 servicio:",
+  "billing_autorenew_disable_bulk": "La renovación automática se desactivará en todos los servicios seleccionados.",
+  "billing_autorenew_disable_bulk_single": "La renovación automática se desactivará en el servicio {{ serviceName }}."
 }

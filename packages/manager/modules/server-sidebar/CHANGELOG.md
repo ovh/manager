@@ -1,3 +1,12 @@
+## [0.6.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.6...@ovh-ux/manager-server-sidebar@0.6.7) (2019-10-22)
+
+
+### Bug Fixes
+
+* **server.sidebar:** update order constants ([#1492](https://github.com/ovh-ux/manager/issues/1492)) ([4b63026](https://github.com/ovh-ux/manager/commit/4b63026))
+
+
+
 ## [0.6.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.5...@ovh-ux/manager-server-sidebar@0.6.6) (2019-10-17)
 
 
