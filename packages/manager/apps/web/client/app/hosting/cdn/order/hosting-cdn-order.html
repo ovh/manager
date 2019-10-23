@@ -8,58 +8,61 @@
 </div>
 
 <div data-ng-if="!$ctrl.loading">
-    <oui-message
-        data-ng-if="!$ctrl.isOrderable"
-        data-type="error">
-        <p class="m-0" data-translate="hosting_dashboard_cdn_order_not_available"></p>
-    </oui-message>
+    <p data-translate="hosting_cdn_order_description"></p>
 
-    <form novalidate
-        name="cdnOrder"
-        data-ng-if="$ctrl.isOrderable"
-        data-ng-submit="$ctrl.makeOrder()">
-        <p data-translate="hosting_cdn_order_text"></p>
+    <oui-stepper
+        data-current-index="$ctrl.currentIndex"
+        data-on-finish="$ctrl.checkout()">
+        <oui-step-form
+            data-header="{{:: 'hosting_cdn_order_step_header_duration' | translate }}"
+            data-editable="$ctrl.isEditable && !$ctrl.checkoutLoading"
+            data-on-focus="$ctrl.resetCart()">
 
-        <oui-field
-            data-label="{{:: 'hosting_cdn_order_duration' | translate }}"
-            data-size="xl">
-            <oui-radio
-                name="duration"
-                data-ng-repeat="duration in $ctrl.durations track by $index"
-                data-model="$ctrl.model.duration"
-                data-value="duration"
-                data-required>
-                <span data-ng-bind="duration | wucDuration:'longDate'"></span>&nbsp;:&nbsp;
-                <span data-ng-bind-html="$ctrl.details[duration].prices | price:$ctrl.user.ovhSubsidiary"></span>
-                <oui-spinner data-size="s" data-ng-if="!$ctrl.details[duration]"></oui-spinner>
-            </oui-radio>
-        </oui-field>
-
-        <p>
-            <oui-checkbox
-                name="contracts"
-                data-ng-if="$ctrl.details[$ctrl.model.duration].contracts"
-                data-model="$ctrl.model.contract"
-                data-required>
-                <span data-translate="hosting_cdn_order_contracts"></span>
-                <span data-ng-repeat="contract in $ctrl.details[$ctrl.model.duration].contracts track by $index">
-                    <span data-ng-if="!$first"
-                        data-translate="hosting_cdn_order_contracts_and">
-                    </span>
-                    <span data-translate="hosting_cdn_order_contracts_of"></span>
-                    <a target="_blank"
-                        data-ng-attr-title="{{contract.name}} ({{ 'common_newtab' | translate }})"
-                        data-ng-href="{{contract.url}}"
-                        data-ng-bind="contract.name"></a><span data-ng-if="!$last">, </span><span data-ng-if="$last">.</span>
-                </span>
-            </oui-checkbox>
-        </p>
-
-        <oui-form-actions
-            data-disabled="cdnOrder.$invalid"
-            data-submit-text="{{:: $ctrl.submitText }}"
+            <!-- Durations -->
+            <oui-field>
+                <oui-radio
+                    name="interval"
+                    data-ng-repeat="pricing in ::$ctrl.catalogAddon.pricings track by $index"
+                    data-model="$ctrl.interval"
+                    data-value="pricing.interval"
+                    data-required>
+                    <span data-ng-bind=":: '' + pricing.interval | wucDuration:'longDate'"></span>&nbsp;:&nbsp;
+                    <ovh-manager-order-catalog-price
+                        data-price="pricing.price"
+                        data-tax="pricing.tax"
+                        data-user="$ctrl.user">
+                    </ovh-manager-order-catalog-price>
+                </oui-radio>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form
+            name="checkout"
+            data-header="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_header_activation' : 'hosting_cdn_order_step_header_payment') | translate }}"
+            data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : 'hosting_cdn_order_step_description_payment') | translate }}"
+            data-submit-text="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_submit_activate' : 'hosting_cdn_order_submit_pay') | translate }}"
             data-cancel-text="{{:: 'hosting_cdn_order_cancel' | translate }}"
-            data-on-cancel="$ctrl.goBack()">
-        </oui-form-actions>
-    </form>
+            data-editable="::false"
+            data-loading="$ctrl.checkoutLoading"
+            data-valid="$ctrl.agreeContracts"
+            data-on-focus="$ctrl.prepareCheckout()"
+            data-on-cancel="$ctrl.goBack()"
+            data-prevent-next>
+
+            <!-- Payment Means -->
+            <ovh-manager-order-payment-means
+                name="paymentMean"
+                data-ng-if="::!$ctrl.isOptionFree"
+                data-default-payment-mean="$ctrl.defaultPaymentMean"
+                data-model="$ctrl.autoPayWithPreferredPaymentMethod">
+            </ovh-manager-order-payment-means>
+
+            <!-- Contracts -->
+            <ovh-manager-order-contracts
+                name="agreeContracts"
+                data-ng-if="$ctrl.cart"
+                data-items="$ctrl.cart.contracts"
+                data-model="$ctrl.agreeContracts">
+            </ovh-manager-order-contracts>
+        </oui-step-form>
+    </oui-stepper>
 </div>

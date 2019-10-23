@@ -165,6 +165,7 @@
   "hosting_dashboard_service_change_offer_explanation_db": "Une base de données commençant à 100 Mo",
   "hosting_dashboard_service_change_offer_now": "Changer d'offre maintenant",
   "hosting_dashboard_service_order_ssl": "Commander un certificat SSL",
+  "hosting_dashboard_service_activate_cdn": "Activer un CDN",
   "hosting_dashboard_service_order_cdn": "Commander un CDN",
   "hosting_dashboard_service_flush_cdn": "Vider le cache",
   "hosting_dashboard_service_flush_cdn_basic": "Vider le cache du CDN de base",

@@ -1,43 +1,96 @@
+import get from 'lodash/get';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.cdn.order', {
     url: '/order',
     component: 'hostingCdnOrder',
     resolve: {
+      autoPayWithPreferredPaymentMethod: /* @ngInject */
+        ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+
+      catalogAddon: /* @ngInject */ (
+        goBack,
+        serviceOption,
+        user,
+        $translate,
+        HostingCdnOrderService,
+      ) => HostingCdnOrderService
+        .getCatalogAddon(user.ovhSubsidiary, serviceOption)
+        .catch(error => goBack(
+          $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
+          'danger',
+        )),
+
+      checkoutOrderCart: /* @ngInject */ (
+        goBack,
+        $translate,
+        $window,
+        HostingCdnOrderService,
+      ) => async (
+        autoPayWithPreferredPaymentMethod,
+        cartId,
+      ) => {
+        try {
+          const order = await HostingCdnOrderService
+            .checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId);
+
+          $window.open(order.url, '_blank');
+          goBack(
+            $translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
+          );
+        } catch (error) {
+          goBack(
+            $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
+            'danger',
+          );
+        }
+      },
+
+      defaultPaymentMean: /* @ngInject */
+        ovhPaymentMethod => ovhPaymentMethod.getDefaultPaymentMethod(),
+
       goBack: /* @ngInject */ goToHosting => goToHosting,
 
-      availableOffers: /* @ngInject */ (
-        isOptionFree,
+      isOptionFree: /* @ngInject */ serviceOption => serviceOption.planCode === 'cdn_free_business',
+
+      prepareOrderCart: /* @ngInject */ (
+        goBack,
+        serviceName,
+        serviceOption,
+        user,
         $translate,
-        HostingOptionOrder,
-      ) => HostingOptionOrder
-        .getOrderEnums('hosting.web.CdnOfferEnum')
-        .then((models) => {
-          const getOfferName = (offer) => {
-            const offerKey = `hosting_dashboard_cdn_order_${offer}`;
-            const offerName = $translate.instant(offerKey);
+        HostingCdnOrderService,
+      ) => async () => {
+        try {
+          const cartId = await HostingCdnOrderService
+            .prepareOrderCart(user.ovhSubsidiary);
+          const cart = await HostingCdnOrderService
+            .addItemToCart(cartId, serviceName, serviceOption);
 
-            return (offerName === offerKey) ? offer : offerName;
-          };
+          return { cart, cartId };
+        } catch (error) {
+          goBack(
+            $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
+            'danger',
+          );
 
-          const availableOffers = !isOptionFree
-            ? models.filter(offer => offer !== 'CDN_BUSINESS_FREE')
-            : ['CDN_BUSINESS_FREE'];
+          return {};
+        }
+      },
 
-          return availableOffers.map(offer => ({
-            label: getOfferName(offer),
-            value: offer,
-          }));
-        }),
-      hosting: /* @ngInject */ (productId, Hosting) => Hosting.getSelected(productId),
-      hostingProxy: /* @ngInject */ (productId, Hosting) => Hosting.getHosting(productId),
-      productId: /* @ngInject */ $transition$ => $transition$.params().productId,
+      serviceName: /* @ngInject */ $transition$ => $transition$.params().productId,
 
-      isOptionFree: /* @ngInject */ (hosting, isPerfOffer) => isPerfOffer() || hosting.isCloudWeb,
-      isOrderable: /* @ngInject */ (productId, HostingOptionOrder) => HostingOptionOrder
-        .isOptionOrderable('cdn', productId),
-      isPerfOffer: /* @ngInject */ (hostingProxy, Hosting) => () => Hosting
-        .constructor
-        .isPerfOffer(hostingProxy.offer),
+      serviceOption: /* @ngInject */ (
+        goBack,
+        serviceName,
+        $translate,
+        HostingCdnOrderService,
+      ) => HostingCdnOrderService
+        .getServiceOption(serviceName)
+        .catch(error => goBack(
+          $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
+          'danger',
+        )),
     },
   });
 };
