@@ -1198,5 +1198,8 @@
   "server_vrack_none": "Nenhum vRack associado",
   "server_error_ola_terminate": "Lamentamos, mas ocorreu um erro ao rescindir o seu serviço: {{error}}",
   "server_error_vrack_attach": "Lamentamos, mas ocorreu um erro ao associar a rede privada: {{error}}",
-  "server_error_vrack_detach": "Lamentamos, mas ocorreu um erro ao desassociar a rede privada: {{error}}"
+  "server_error_vrack_detach": "Lamentamos, mas ocorreu um erro ao desassociar a rede privada: {{error}}",
+  "server_error_ola_activation": "Ocorreu um erro ao ativar o seu serviço: {{error}}",
+  "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps de largura de banda pública - Tráfego ilimitado"
 }

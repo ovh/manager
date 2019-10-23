@@ -2,6 +2,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
   '$q',
   '$rootScope',
   '$scope',
+  '$state',
   '$translate',
   'Alerter',
   'atInternet',
@@ -10,9 +11,20 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
   'UserAccount.services.doubleAuth.totp',
   'UserAccount.services.doubleAuth.u2f',
   'UserAccount.services.Infos',
-  function ($q, $rootScope, $scope, $translate,
-    Alerter, atInternet, DoubleAuthBackupCodeService, DoubleAuthSmsService,
-    DoubleAuthTotpService, DoubleAuthU2fService, UserAccountServiceInfos) {
+  function (
+    $q,
+    $rootScope,
+    $scope,
+    $state,
+    $translate,
+    Alerter,
+    atInternet,
+    DoubleAuthBackupCodeService,
+    DoubleAuthSmsService,
+    DoubleAuthTotpService,
+    DoubleAuthU2fService,
+    UserAccountServiceInfos,
+  ) {
     $scope.step1 = {
       doubleAuthType: null,
       isActive: false,
@@ -337,7 +349,6 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
       $rootScope.$broadcast('doubleAuthTOTP.reload');
       $rootScope.$broadcast('doubleAuthU2F.reload');
       $rootScope.$broadcast('doubleAuthBackupCode.reload');
-      $scope.resetAction();
 
       atInternet.trackClick({
         name: 'validation_double_authentication',
@@ -346,6 +357,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
         chapter2: 'security',
         chapter3: 'authentication',
       });
+
+      $state.go('^');
     };
 
     /**
@@ -356,7 +369,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
       $rootScope.$broadcast('doubleAuthTOTP.reload');
       $rootScope.$broadcast('doubleAuthU2F.reload');
       $rootScope.$broadcast('doubleAuthBackupCode.reload');
-      $scope.resetAction();
+      $state.go('^');
     };
 
     /* -----  End of ACTIONS  ------ */

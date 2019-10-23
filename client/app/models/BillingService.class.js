@@ -8,7 +8,7 @@ export default class BillingService {
     this.expirationDate = moment(this.expiration);
   }
 
-  get serviceName() {
+  getServiceName() {
     return this.serviceId;
   }
 

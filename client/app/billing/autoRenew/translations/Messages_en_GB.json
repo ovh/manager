@@ -132,5 +132,6 @@
   "billing_common_link_new_window": "(New window)",
   "billing_autorenew_service_renew_requires_mean_and_date": "In order to finish enabling automatic renewal, please add a new payment method. You will then be able to select a payment date.",
   "billing_autorenew_service_activate_alert": "You have at least one service with automatic renewal, but you have not yet authorised this option.",
-  "billing_autorenew_service_align_renew": "Align renewal dates."
+  "billing_autorenew_service_align_renew": "Align renewal dates.",
+  "billing_autorenew_service_date_now": "Immediately"
 }

@@ -896,10 +896,10 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-banner@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-banner/-/manager-banner-1.1.0.tgz#8b85ce7dee2c73208de045136cd06eb76fb41cf7"
-  integrity sha512-z3HEaoZrr9RnQCpm9hTCca7eiN5ABEqnDhvQXcUoXUf9czXTdD6zwrU1KCqnQ0pRIqpaJnhR5O2cZmdPRRJN9w==
+"@ovh-ux/manager-banner@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-banner/-/manager-banner-1.1.1.tgz#ebabc9006138d43e3044d3008787a89255f4e62a"
+  integrity sha512-fO0iGScj4pXNE6D9e6+zKFI8k+f39R3Co9k8AF0g9jD22AYe20SGMBaJ6Lk5xaQ+4pS41EDYrj4bz5mX/o70Ew==
   dependencies:
     lodash "^4.17.15"
 
@@ -913,12 +913,12 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.3.0.tgz#d3c444090ad42af74029184d0dcf4ca2c99f9f8d"
   integrity sha512-CRI4sgN3iL3E6UJBA/xaYEGUggma7yCz9jZaQsJ5F9e4AncE9zzuJyPfKclHmenWyQbLLrrUkM7IOpxZER8zRQ==
 
-"@ovh-ux/manager-core@^7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.1.2.tgz#6382db042894cad0e267e468c018c123871a8455"
-  integrity sha512-boA/vRgu4e4Dp9Vv95IQABhvCUJAg+OVtASocfGorkrqIW3o6F8kvWLiQ/0kcUz1SxGzYLk6rOpnQ3ZPJFWHAw==
+"@ovh-ux/manager-core@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.2.0.tgz#4af428de3f46e20b997fc3fc10f2fc5daaecf05b"
+  integrity sha512-AiU/+CkhtWyfldpGBgvg7ckvzrzNlDmOCNfro76KKpWMLkzEdc0WtOMLgRHrE09OqQGepFIAefSfBy9KXdPwgw==
   dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    "@ovh-ux/ng-translate-async-loader" "^2.0.2"
     lodash "^4.17.15"
 
 "@ovh-ux/manager-enterprise-cloud-database@^0.1.0":
@@ -931,18 +931,18 @@
     moment "^2.22.2"
     zxcvbn "^4.4.2"
 
-"@ovh-ux/manager-navbar@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-2.0.3.tgz#75ca0096b3f044097ad0a7b2c408a5dfa39e56e9"
-  integrity sha512-15TrMZ3af59Urh/cewSjZvAZqD0aArzeEg7BwtpWiM8USHtqCKtuTXTsUTD5EHufFkenyfv/x+oFq4lqJd/IbQ==
+"@ovh-ux/manager-navbar@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-2.0.5.tgz#4d020615dba82785e4617ceb4b32e8c4d6615e69"
+  integrity sha512-JJnk1F9rWFvUxRURQvJ0xk+id0mKcubLjY35VOH1/6bP1hvRUoDRGGoZYnE9mItauknI/r4fNgfMFeN+92OkaQ==
   dependencies:
     lodash "^4.17.15"
     moment "^2.24.0"
 
-"@ovh-ux/manager-server-sidebar@^0.6.3":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.6.3.tgz#3ccbea8a9e41b24be978311bdd20030fb591119a"
-  integrity sha512-wiExLchTd2TrHNUw1FMvOemxy7lUtj1H+AZ51by3DlmqSCi3/5P7TrGfcxWhSk+Cpu4dFq0+S+NoO8ZdE6GQ1g==
+"@ovh-ux/manager-server-sidebar@^0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.6.7.tgz#0738345b0f482a15d6527a8b68dace2c442151f7"
+  integrity sha512-qmzKVtunf/JuKt50mGzRe3SmOY7Zeg/9S26GuSm3ohj/3LwXgJYPnv/E9mPClfO1E0CACpgE+D7gbXrleMbzgQ==
   dependencies:
     font-awesome "~4.7.0"
     jsurl "^0.1.5"
@@ -1090,12 +1090,12 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0-beta.0.tgz#45e2397515326f6c43f99221f746401509b7db1d"
   integrity sha512-JtCQLoxNfl7T1kz/draSsfH/dGjKQ7cwN2ArMsuYlZ9MVPaPlhf4PQz11WHSAQXxCcvZKsJ/AYmWUCKZlzI94w==
 
-"@ovh-ux/ng-ovh-request-tagger@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-request-tagger/-/ng-ovh-request-tagger-1.0.0.tgz#c10ed4ad3c93247d240dfd0d8594fe4ea7e388ba"
-  integrity sha512-13EUh6BwSwD275viUThcLHfwNHyvwBc3JSeQ7P9dhft2yojCAINAUP7pLkmUrhWKDeKa2/hrHKxx7vBVHey9OQ==
+"@ovh-ux/ng-ovh-request-tagger@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-request-tagger/-/ng-ovh-request-tagger-1.0.1.tgz#9666bc05c7d364c175a8c444ce7d05f2553a0d31"
+  integrity sha512-UBivPHnCAqL5kljE+rvHR6Rwp/wv231GdAU1+aJlk06JnO1G94tQZKxIvo5XyV6VGEyvR2we+NMltDreNLg9QA==
   dependencies:
-    lodash "^4.17.14"
+    lodash "^4.17.15"
 
 "@ovh-ux/ng-ovh-responsive-popover@^5.0.0-beta.0":
   version "5.0.0-beta.0"
@@ -1145,6 +1145,11 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
+
+"@ovh-ux/ng-translate-async-loader@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
+  integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
 "@ovh-ux/ng-ui-router-layout@^2.1.0":
   version "2.1.0"
@@ -8173,10 +8178,10 @@ ovh-angular-toaster@^0.8.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-toaster/-/ovh-angular-toaster-0.8.0.tgz#7073201379ea196c721d583421c0cef1d04bdbdb"
   integrity sha1-cHMgE3nqGWxyHVg0IcDO8dBL29s=
 
-ovh-api-services@^9.21.0:
-  version "9.21.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.21.0.tgz#989032a5809f76a6daaeb98ef268bf5e0e8590e1"
-  integrity sha512-/DYOQHihX+U7eOL/ZXM6CDayUHNM/IPt/5zM4e8XJ16hCGF5oCItGbD7O3+bLlY+q+lRvFcTCNqDfPxo9bN1eg==
+ovh-api-services@^9.23.2:
+  version "9.23.2"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.23.2.tgz#f2f2ce975b1e8193ab8fa7ce1fb96a6312daabea"
+  integrity sha512-giTxcbTEI6hqEZ+xaOnuPNQe9HC3HuZba+6yX5u7VRKoXGobdbwfk5KVWwmQ+rDN7Hw2311R61qZqr73a/PmgA==
   dependencies:
     lodash "^4.17.15"
 

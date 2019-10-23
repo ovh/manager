@@ -3,12 +3,12 @@
 </header>
 
 <div class="text-center"
-     data-ng-show="loaders.ips">
+     data-ng-if="loaders.ips">
     <oui-spinner></oui-spinner>
 </div>
 
 <div class="tab-content"
-     data-ng-show="loaders.ips == false">
+     data-ng-if="!loaders.ips">
 
     <div data-ovh-alert="{{ alerts.order }}"></div>
 
@@ -194,97 +194,89 @@
             <!-- Step 4: Contracts and validation -->
             <div data-ng-show="selected.duration">
                 <h2 data-translate="license_order_step4_title"></h2>
-
-                <div class="row"
-                     data-ng-hide="order.url">
-                    <div class="col-md-9">
-                        <strong class="text-primary"
-                                data-ng-if="!agoraEnabled && durations.details[selected.duration].contracts.length == 0"
-                                data-translate="license_order_step4_question">
-                        </strong>
-                        <strong class="text-primary"
-                                data-ng-if="agoraEnabled && durations.details[selected.duration].contracts.length == 0"
-                                data-translate="license_order_step4_clic_here">
-                        </strong>
-
-                        <div data-ng-if="!agoraEnabled"
-                             data-ng-show="durations.details[selected.duration].contracts.length > 0">
+                <div data-ng-if="!order.url">
+                    <div class="row">
+                        <div class="col-md-9">
                             <strong class="text-primary"
-                                    data-ng-if="!agoraEnabled"
-                                    data-translate="license_order_step4_contracts_ask">
+                                    data-ng-if="!agoraEnabled && durations.details[selected.duration].contracts.length == 0"
+                                    data-translate="license_order_step4_question">
                             </strong>
                             <strong class="text-primary"
-                                    data-ng-if="agoraEnabled"
-                                    data-translate="license_order_step4_contracts_agora_ask">
+                                    data-ng-if="agoraEnabled && durations.details[selected.duration].contracts.length == 0"
+                                    data-translate="license_order_step4_clic_here">
                             </strong>
-                            <span data-ng-repeat="contract in durations.details[selected.duration].contracts track by $id">
-                                <a target="_blank"
-                                   rel="noopener"
-                                   class="d-inline-block oui-link_icon"
-                                   data-ng-href="{{ ::contract.url }}">
-                                   <span data-translate="common_newtab" class="sr-only"></span>
-                                   <span data-ng-bind="contract.url"></span>
-                                   <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                                 </a>
-                            </span>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"
-                                           data-ng-model="contractsValidated.value" />
-                                    <span data-translate="license_order_step4_contracts_check"></span>
-                                </label>
+
+                            <div data-ng-if="!agoraEnabled && durations.details[selected.duration].contracts.length > 0">
+                                <strong class="text-primary"
+                                        data-ng-if="!agoraEnabled"
+                                        data-translate="license_order_step4_contracts_ask">
+                                </strong>
+                                <strong class="text-primary"
+                                        data-ng-if="agoraEnabled"
+                                        data-translate="license_order_step4_contracts_agora_ask">
+                                </strong>
+                                <span data-ng-repeat="contract in durations.details[selected.duration].contracts track by $id">
+                                    <a target="_blank"
+                                       rel="noopener"
+                                       class="d-inline-block oui-link_icon"
+                                       data-ng-href="{{ ::contract.url }}">
+                                       <span data-translate="common_newtab" class="sr-only"></span>
+                                       <span data-ng-bind="contract.url"></span>
+                                       <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                                     </a>
+                                </span>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"
+                                               data-ng-model="contractsValidated.value" />
+                                        <span data-translate="license_order_step4_contracts_check"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-3"
-                         data-ng-if="!agoraEnabled">
-                        <button type="button"
-                                class="btn btn-primary"
-                                data-ng-hide="loaders.bc"
-                                data-ng-click="generateBc()">
-                            <i class="icon-order-licence" aria-hidden="true"></i>
-                            {{ 'license_order_step4_generate' | translate }}
-                        </button>
-                        <span data-ng-show="loaders.bc"
-                              data-translate="license_order_step4_generating">
-                        </span>
-                        <oui-spinner data-ng-show="loaders.bc"
-                                     data-size="s">
-                        </oui-spinner>
-                    </div>
-                    <div class="col-md-3"
-                         data-ng-if="agoraEnabled">
-                        <a href="{{ selected.agoraUrl }}"
-                           class="btn btn-primary"
-                           target="_blank"
-                           data-ng-if="selected.agoraUrl"
-                           data-ng-hide="loaders.bc">
-                            <i class="icon-order-licence" style="margin-top: 5px !important"></i>
-                            {{ 'license_order_step4_pay_button' | translate }}
-                        </a>
+                    <div>
+                        <div data-ng-if="!agoraEnabled">
+                            <oui-button data-ng-if="!loaders.bc"
+                                        data-on-click="generateBc()"
+                                        data-disabled="!contractsValidated.value">
+                                <i class="icon-order-licence" aria-hidden="true"></i>
+                                <span data-translate="license_order_step4_generate"></span>
+                            </oui-button>
+                            <span data-ng-if="loaders.bc"
+                                  data-translate="license_order_step4_generating">
+                            </span>
+                            <oui-spinner data-ng-if="loaders.bc"
+                                         data-size="s">
+                            </oui-spinner>
+                        </div>
+                        <div data-ng-if="agoraEnabled">
+                            <a href="{{ selected.agoraUrl }}"
+                               class="btn btn-primary"
+                               target="_blank"
+                               data-ng-if="selected.agoraUrl"
+                               data-ng-hide="loaders.bc">
+                                <i class="icon-order-licence" style="margin-top: 5px !important"></i>
+                                {{ 'license_order_step4_pay_button' | translate }}
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div data-ng-if="!agoraEnabled"
-                     data-ng-show="order.url">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <p class="text-primary font-weight-bold"
-                               data-translate="license_order_step4_generated">
-                            </p>
-                            <span class="d-block"
-                                  data-translate="license_order_step4_clic_here">
-                            </span>
-                            <span data-translate="license_order_step4_bc_information"></span>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button"
-                                    class="btn btn-default btn-block"
-                                    data-ng-click="openBc()"
-                                    data-translate="license_order_step4_pay_button">
-                            </button>
-                        </div>
+                <div data-ng-if="!agoraEnabled && order.url">
+                    <div>
+                        <p class="text-primary font-weight-bold"
+                           data-translate="license_order_step4_generated">
+                        </p>
+                        <span class="d-block"
+                              data-translate="license_order_step4_clic_here">
+                        </span>
+                        <span data-translate="license_order_step4_bc_information"></span>
+                    </div>
+                    <div class="mt-4">
+                        <oui-button data-on-click="openBc()">
+                            <span data-translate="license_order_step4_pay_button"></span>
+                        </oui-button>
                     </div>
                 </div>
 

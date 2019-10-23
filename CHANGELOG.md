@@ -1,3 +1,69 @@
+<a name="10.33.5"></a>
+## [10.33.5](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.33.4...v10.33.5) (2019-10-23)
+
+
+
+<a name="10.33.4"></a>
+## [10.33.4](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.33.3...v10.33.4) (2019-10-23)
+
+
+### Bug Fixes
+
+* **mfa-enrollment:** manage the forced state & resolve on api error ([bb744ef](https://github.com/ovh-ux/ovh-manager-dedicated/commit/bb744ef))
+* update getter to get function ([#1517](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1517)) ([8c0b0ba](https://github.com/ovh-ux/ovh-manager-dedicated/commit/8c0b0ba))
+
+
+
+<a name="10.33.3"></a>
+## [10.33.3](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.33.2...v10.33.3) (2019-10-23)
+
+
+### Bug Fixes
+
+* **billing.payment.method:** prevent duplicates translations ([#1503](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1503)) ([971f6f8](https://github.com/ovh-ux/ovh-manager-dedicated/commit/971f6f8))
+* **dedicated.server.servers:** add columns configuration ([#1505](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1505)) ([1f68e0e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/1f68e0e))
+* **i18n:** add missing translations [CDS 86] ([c71d2de](https://github.com/ovh-ux/ovh-manager-dedicated/commit/c71d2de))
+* **i18n:** add missing translations [CDS 87] ([5d6d48f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/5d6d48f))
+* **i18n:** add missing translations [CDS 88] ([7a3aa4a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/7a3aa4a))
+* **i18n:** add missing translations [CDS 90] ([2e7b5b8](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2e7b5b8))
+* **i18n:** add missing translations [CDS 91] ([614366e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/614366e))
+* **i18n:** add missing translations [CDS 92] ([1c5c3c7](https://github.com/ovh-ux/ovh-manager-dedicated/commit/1c5c3c7))
+* **i18n:** add missing translations [CDS 94] ([a1e9fad](https://github.com/ovh-ux/ovh-manager-dedicated/commit/a1e9fad))
+* **i18n:** add missing translations [CDS 95] ([226e30a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/226e30a))
+* **i18n:** add missing translations [CDS 96] ([b20ade4](https://github.com/ovh-ux/ovh-manager-dedicated/commit/b20ade4))
+* **license.order:** disable purchase order if checkbox is not selected ([#1484](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1484)) ([2547fc7](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2547fc7))
+
+
+### Features
+
+* **account.security:** create a state for mfa modal ([224435b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/224435b))
+* **billing.autorenew:** improve message when no service is excluded ([#1391](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1391)) ([371d74e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/371d74e))
+* **billing.autorenew.bulk:** display eligible services ([#1410](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1410)) ([0971112](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0971112))
+* **mfa:** add mfa enrollment page ([4d67f96](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4d67f96))
+
+
+
+<a name="10.33.2"></a>
+## [10.33.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.33.1...v10.33.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 92] ([#1514](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1514)) ([70fe1c5](https://github.com/ovh-ux/ovh-manager-dedicated/commit/70fe1c5))
+
+
+
+<a name="10.33.1"></a>
+## [10.33.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.33.0...v10.33.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* **dedicatedcloud:** retrieve missing translations ([#1510](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1510)) ([3ad219e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/3ad219e))
+* **deps:** upgrade manager-server-sidebar to v0.6.7 ([#1507](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1507)) ([3b1c2ec](https://github.com/ovh-ux/ovh-manager-dedicated/commit/3b1c2ec))
+
+
+
 <a name="10.33.0"></a>
 # [10.33.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.32.14...v10.33.0) (2019-10-17)
 

@@ -1,0 +1,15 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderValidation_stepper_header": "Validación de la certificación",
+  "dedicatedCloud_servicePack_summary_stepper_order": "Para abonar el pedido, haga clic en el siguiente enlace ",
+  "dedicatedCloud_servicePack_summary_stepper_order_warning": "El pedido no se tramitará si no hace clic en el siguiente enlace.",
+  "dedicatedCloud_servicePack_summary_stepper_order_resume": "Una vez validado el pedido, podrá acceder al panel de control (accesible únicamente a través de las IP autorizadas a conectarse al vCenter de la infraestructura) para validar su certificación mediante un código por SMS.",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface": "Acceda directamente al panel de control para validar su certificación mediante un código por SMS. Esta interfaz solo es accesible a través de las IP autorizadas a conectarse al vCenter de la infraestructura.",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface_action": "Interfaz de activación del SMS",
+  "dedicatedCloud_servicePack_summary_stepper_validation_header": "La validación puede tardar entre 30 minutos y 4 horas.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_one": "Una vez completada la validación, su infraestructura será conforme a la certificación seleccionada.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_two": "A continuación recibirá los documentos relativos a la activación con los que podrá finalizar la contratación.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_three": "El coste de la certificación se añadirá a la factura del mes siguiente.",
+  "dedicatedCloud_servicePack_summary_stepper_finish": "Finalizar",
+  "dedicatedCloud_servicePack_summary_stepper_order_failed": "No se ha podido realizar el pedido.",
+  "dedicatedCloud_servicePack_summary_stepper_openNewTab": "Abrir una nueva pestaña"
+}
