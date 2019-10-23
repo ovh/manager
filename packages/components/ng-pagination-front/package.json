@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-pagination-front",
-  "version": "8.0.0-alpha.0",
+  "version": "8.0.0",
   "description": "Angular directive to paginate in front end",
   "keywords": [
     "angular",
