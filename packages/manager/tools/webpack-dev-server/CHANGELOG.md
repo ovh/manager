@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.4.0...@ovh-ux/manager-webpack-dev-server@2.5.0) (2019-10-23)
+
+
+### Features
+
+* **config:** use config settings to set some environment variables ([#1457](https://github.com/ovh-ux/manager/issues/1457)) ([6e145fa](https://github.com/ovh-ux/manager/commit/6e145faf17008417369110e4f4610553603c876c))
+
+
+
 # [2.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.3.2...@ovh-ux/manager-webpack-dev-server@2.4.0) (2019-09-03)
 
 

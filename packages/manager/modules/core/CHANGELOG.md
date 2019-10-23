@@ -1,3 +1,12 @@
+# [7.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.2.0...@ovh-ux/manager-core@7.3.0) (2019-10-23)
+
+
+### Features
+
+* **core:** add translations for oui-criteria-adder filter ([ae7ffff](https://github.com/ovh-ux/manager/commit/ae7ffff15db5a4436b88b5ded7241c839183a7a8))
+
+
+
 # [7.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.4...@ovh-ux/manager-core@7.2.0) (2019-10-18)
 
 
