@@ -1,6 +1,6 @@
 {
   "ovh_payment_type_bank_account": "Compte bancaire",
-  "ovh_payment_type_paypal": "PayPal",
+  "ovh_payment_type_paypal": "Paypal",
   "ovh_payment_type_credit_card": "Carte bancaire",
   "ovh_payment_type_deferred_payment_account": "Compte de paiement différé",
   "ovh_payment_type_internal_trusted_account": "Compte de paiement différé",
@@ -8,7 +8,7 @@
   "ovh_payment_status_valid": "Validé",
   "ovh_payment_status_expired": "Expiré",
   "ovh_payment_status_proposed_by_customer": "En attente de validation",
-  "ovh_payment_status_too_many_failures": "Invalide (trop de tentatives de validation en erreur)",
+  "ovh_payment_status_too_many_failures": "Invalide (trop de tentatives de validation en erreur",
   "ovh_payment_status_blocked": "Bloqué",
   "ovh_payment_status_blocked_for_incidents": "Bloqué",
   "ovh_payment_status_broken": "Brisé",
