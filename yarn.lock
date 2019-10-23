@@ -2045,10 +2045,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-proxy-request@^1.0.0-beta.0":
-  version "1.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0-beta.0.tgz#45e2397515326f6c43f99221f746401509b7db1d"
-  integrity sha512-JtCQLoxNfl7T1kz/draSsfH/dGjKQ7cwN2ArMsuYlZ9MVPaPlhf4PQz11WHSAQXxCcvZKsJ/AYmWUCKZlzI94w==
+"@ovh-ux/ng-ovh-proxy-request@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0.tgz#abc4a72275b58d9fb19b45f4ade095ecbf28b7a0"
+  integrity sha512-8V2PMtP2Fet/QDfIOd+Zc28iuJWaC6ZXz+hS+6LiSLls7/VNooaDz7e90XIo0LbqMC9aJQCaETXI9cGzlWViGg==
 
 "@ovh-ux/ng-ovh-responsive-popover@^5.0.0-beta.0":
   version "5.0.0-beta.0"
