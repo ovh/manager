@@ -39,7 +39,7 @@
     "@ovh-ux/ng-ovh-payment-method": "^4.1.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
     "@ovh-ux/ng-q-allsettled": "^1.0.0-alpha.0",
