@@ -1,6 +1,7 @@
 export default class OrderService {
   /* @ngInject */
-  constructor(OvhApiOrder) {
+  constructor($q, OvhApiOrder) {
+    this.$q = $q;
     this.OvhApiOrder = OvhApiOrder;
   }
 
@@ -31,6 +32,15 @@ export default class OrderService {
       .$promise;
   }
 
+  addProductToCart(cartId, productName, product) {
+    return this.OvhApiOrder.Cart().Product().v6()
+      .post({
+        cartId,
+        productName,
+      }, product)
+      .$promise;
+  }
+
   getProductOptions(cartId, productName, productPlanCode) {
     return this.OvhApiOrder.Cart().Product().v6()
       .getOptions({
@@ -47,7 +57,8 @@ export default class OrderService {
         cartId,
         productName,
         ...option,
-      });
+      })
+      .$promise;
   }
 
   addConfigurationItem(cartId, itemId, item) {
@@ -75,5 +86,52 @@ export default class OrderService {
         ...checkout,
       })
       .$promise;
+  }
+
+  getProductPublicCatalog(ovhSubsidiary, productName) {
+    return this.OvhApiOrder.Catalog().Public().v6()
+      .get({
+        ovhSubsidiary,
+        productName,
+      })
+      .$promise;
+  }
+
+  getProductServiceOptions(productName, serviceName) {
+    return this.OvhApiOrder.CartServiceOption().v6()
+      .get({
+        productName,
+        serviceName,
+      })
+      .$promise;
+  }
+
+  addProductServiceOptionToCart(cartId, productName, serviceName, serviceOption) {
+    return this.OvhApiOrder.CartServiceOption().v6()
+      .post({
+        cartId,
+        productName,
+        serviceName,
+        ...serviceOption,
+      })
+      .$promise;
+  }
+
+  getCartItems(cartId) {
+    return this.OvhApiOrder.Cart().Item().v6()
+      .query({ cartId }).$promise;
+  }
+
+  deleteItem(cartId, itemId) {
+    return this.OvhApiOrder.Cart().Item().v6()
+      .delete({ cartId, itemId }).$promise;
+  }
+
+  deleteAllItems(cartId) {
+    this.OvhApiOrder.Cart().Item().v6().resetQueryCache();
+    return this.getCartItems(cartId)
+      .then(itemsId => this.$q.all(
+        itemsId.map(id => this.deleteItem(cartId, id)),
+      ));
   }
 }

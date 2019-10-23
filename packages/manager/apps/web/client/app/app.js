@@ -38,7 +38,10 @@ import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
 import config from './config/config';
-import orderService from './components/order-service/order-service.service';
+import orderCatalogPrice from './components/manager-order-catalog-price';
+import orderContracts from './components/manager-order-contracts';
+import orderPaymentMeans from './components/manager-order-payment-means';
+import orderService from './components/manager-order-service/manager-order-service.service';
 
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
@@ -110,6 +113,9 @@ angular
     domainOptin,
     hostingWebsiteCoach,
     errorPage,
+    orderCatalogPrice,
+    orderContracts,
+    orderPaymentMeans,
     zone,
   ])
   .constant('constants', {

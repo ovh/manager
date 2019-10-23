@@ -1,0 +1,28 @@
+<oui-field data-label="{{:: $ctrl.label }}">
+    <oui-radio
+        name="{{:: $ctrl.name }}"
+        data-model="$ctrl.model"
+        data-value="true"
+        data-disabled="::!$ctrl.defaultPaymentMean"
+        data-required>
+        <span class="mr-2 d-inline oui-status oui-status_success"
+            data-translate="order_payment_means_tag_recommended">
+        </span>
+        <span data-translate="order_payment_means_payment_method_default"></span>
+        <span class="oui-color-success-dark"
+            data-ng-if="::$ctrl.defaultPaymentMean"
+            data-ng-bind="::$ctrl.getPaymentMeanText()">
+        </span>
+        <span class="oui-color-error-dark"
+            data-ng-if="::!$ctrl.defaultPaymentMean"
+            data-translate="order_payment_means_payment_method_add_link">
+        </span>
+    </oui-radio>
+    <oui-radio
+        name="mean"
+        data-model="$ctrl.model"
+        data-value="false"
+        data-required>
+        <span data-translate="order_payment_means_payment_method_other"></span>
+    </oui-radio>
+</oui-field>
