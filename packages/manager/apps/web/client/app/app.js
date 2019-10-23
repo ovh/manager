@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
+import has from 'lodash/has';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import set from 'lodash/set';
@@ -27,7 +28,7 @@ import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
-import uiRouter from '@uirouter/angularjs';
+import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import emailpro from '@ovh-ux/manager-emailpro';
@@ -43,6 +44,7 @@ import domainOptin from './domain/optin/index';
 import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
 import domainDnsZone from './dns-zone';
 import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
+import errorPage from './error-page/error-page.module';
 import navbar from './components/navbar';
 import zone from './domain/zone/zone.module';
 
@@ -106,6 +108,7 @@ angular
     domainZoneActivation,
     domainOptin,
     hostingWebsiteCoach,
+    errorPage,
     navbar,
     zone,
   ])
@@ -479,4 +482,16 @@ angular
     portal: 'https://www.ovh.com/manager/portal/index.html#/',
     partners: 'https://www.ovh.com/manager/partners/',
     labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
+  })
+  .run(/* @ngInject */ ($state) => {
+    $state.defaultErrorHandler((error) => {
+      if (error.type === RejectType.ERROR) {
+        $state.go('app.error', {
+          detail: {
+            message: get(error.detail, 'data.message'),
+            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
+          },
+        }, { location: false });
+      }
+    });
   });

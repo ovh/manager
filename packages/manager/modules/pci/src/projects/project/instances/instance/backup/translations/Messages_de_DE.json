@@ -1,10 +1,11 @@
 {
- "pci_projects_project_instances_instance_backup_title": "Backup-Erstellung",
- "pci_projects_project_instances_instance_backup_name_label": "Geben Sie den Namen Ihres Backups ein:",
- "pci_projects_project_instances_instance_backup_warning_message": "Ihre Instanz wird für einige Sekunden angehalten, danach kann die Lese- und Schreib-Performance der Festplatte bis zur Fertigstellung des Backups verringert sein.",
- "pci_projects_project_instances_instance_backup_price": "({{size | bytes:2}}, also etwa {{price}} zzgl. MwSt. / Monat)",
- "pci_projects_project_instances_instance_backup_submit_label": "Bestätigen",
- "pci_projects_project_instances_instance_backup_cancel_label": "Abbrechen",
- "pci_projects_project_instances_instance_backup_success_message": "Das Backup {{ backup }} wird erstellt",
- "pci_projects_project_instances_instance_backup_error_backup": "Bei der Erstellung des Backups {{ backup }} ist ein Fehler aufgetreten: {{message}}"
+  "pci_projects_project_instances_instance_backup_title": "Backup-Erstellung",
+  "pci_projects_project_instances_instance_backup_name_label": "Geben Sie den Namen Ihres Backups ein:",
+  "pci_projects_project_instances_instance_backup_warning_message": "Ihre Instanz wird für einige Sekunden angehalten, danach kann die Lese- und Schreib-Performance der Festplatte bis zur Fertigstellung des Backups verringert sein.",
+  "pci_projects_project_instances_instance_backup_price": "({{size | bytes:2}}, also etwa {{price}} zzgl. MwSt. / Monat)",
+  "pci_projects_project_instances_instance_backup_submit_label": "Bestätigen",
+  "pci_projects_project_instances_instance_backup_cancel_label": "Abbrechen",
+  "pci_projects_project_instances_instance_backup_success_message": "Das Backup {{ backup }} wird erstellt",
+  "pci_projects_project_instances_instance_backup_error_backup": "Bei der Erstellung des Backups {{ backup }} ist ein Fehler aufgetreten: {{message}}",
+  "pci_projects_project_instances_instance_backup_warning_iops_message": "Das Backup betrifft nur Ihre Root-Festplatte (Betriebssystem). Für Daten auf NVMe-Geräten wird kein Backup erstellt. Bitte verwenden Sie hierfür Ihre eigenen Tools."
 }

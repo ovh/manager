@@ -3,7 +3,7 @@ import 'angular-translate';
 
 import component from './error.component';
 
-import './error.less';
+import './error.scss';
 
 const moduleName = 'ovhManagerErrorPage';
 

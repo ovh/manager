@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'app.account.contacts.services';
 
@@ -46,8 +49,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       updateCriteria: $state => (criteria) => {
         $state.go(stateName, {
-          serviceName: _.get(_.find(criteria, { property: null }), 'value', null),
-          category: _.get(_.find(criteria, { property: 'category' }), 'value', null),
+          serviceName: get(find(criteria, { property: null }), 'value', null),
+          category: get(find(criteria, { property: 'category' }), 'value', null),
         });
       },
       category: /* @ngInject */ $transition$ => $transition$.params().category,

@@ -131,5 +131,11 @@
   "billing_autorenew_service_renew_requires_mean_and_date": "Um die Aktivierung der automatischen Verlängerung abzuschließen, hinterlegen Sie bitte ein Zahlungsmittel Ihrer Wahl. Danach können Sie das Datum der Abbuchung auswählen.",
   "billing_autorenew_service_activate_alert": "Sie haben für mindestens einen Dienst die automatische Verlängerung eingestellt, diese Option aber noch nicht autorisiert.",
   "billing_autorenew_renew_action": "Verlängern",
-  "billing_autorenew_service_align_renew": "Die Ablaufdaten aneinander angleichen."
+  "billing_autorenew_service_align_renew": "Ablaufdaten einander angleichen",
+  "billing_autorenew_service_terminate_enterprise_cloud_database": "Enterprise Cloud Databases sofort löschen",
+  "billing_autorenew_service_terminate_webcoach": "WebCoach löschen",
+  "billing_autorenew_service_date_now": "Sofort",
+  "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases",
+  "billing_autorenew_service_type_WEBCOACH": "WebCoach",
+  "billing_autorenew_service_type_webcoach": "WebCoach"
 }

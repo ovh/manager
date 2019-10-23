@@ -14,7 +14,7 @@
     "@ovh-ux/manager-config": "^0.3.1",
     "@ovh-ux/manager-core": "^7.2.0",
     "@ovh-ux/manager-navbar": "^2.0.5",
-    "@ovh-ux/manager-support": "^0.2.0",
+    "@ovh-ux/manager-support": "^0.3.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",

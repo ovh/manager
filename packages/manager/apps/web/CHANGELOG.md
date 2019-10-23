@@ -1,3 +1,12 @@
+## [13.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.5...@ovh-ux/manager-web@13.31.6) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
 ## [13.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.4...@ovh-ux/manager-web@13.31.5) (2019-10-23)
 
 

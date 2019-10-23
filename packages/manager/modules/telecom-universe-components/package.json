@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "private": true,
   "description": "Telecom Universe Components",
   "license": "BSD-3-Clause",
@@ -14,7 +14,7 @@
   "peerDependencies": {
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.1",
     "@ovh-ux/ng-ovh-mondial-relay": "^6.0.1",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.1",
     "@uirouter/angularjs": "^1.0.20",
     "CSV-JS": "^1.2.0",

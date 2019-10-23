@@ -39,7 +39,7 @@
     "@ovh-ux/manager-config": "^0.3.1",
     "@ovh-ux/manager-core": "^7.2.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
-    "@ovh-ux/ng-ovh-chatbot": "^2.0.1",
+    "@ovh-ux/ng-ovh-chatbot": "^2.0.2",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
