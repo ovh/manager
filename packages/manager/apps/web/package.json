@@ -52,7 +52,7 @@
     "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.3",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^3.0.4",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.5",
     "@ovh-ux/ng-ovh-web-universe-components": "^7.0.0",
