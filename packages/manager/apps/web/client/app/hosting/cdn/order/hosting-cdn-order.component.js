@@ -5,13 +5,15 @@ export default {
   controller,
   template,
   bindings: {
+    autoPayWithPreferredPaymentMethod: '<',
+    catalogAddon: '<',
+    checkoutOrderCart: '<',
     goBack: '<',
-
-    availableOffers: '<',
-    hosting: '<',
-
+    goBackWithError: '<',
     isOptionFree: '<',
-    isOrderable: '<',
-    isPerfOffer: '<',
+    prepareOrderCart: '<',
+    serviceName: '<',
+    serviceOption: '<',
+    user: '<',
   },
 };
