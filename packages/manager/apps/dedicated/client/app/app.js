@@ -75,7 +75,7 @@ angular
     'Module.license',
     'Module.otrs',
     mfaEnrollment,
-    'ngCkeditor',
+    'ng.ckeditor',
     'ngMessages',
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
