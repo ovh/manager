@@ -2088,10 +2088,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-slider/-/ng-ovh-slider-1.0.0.tgz#383bc6f1f66393e8187608d3a37aeb21c128ed53"
   integrity sha512-rgXh+aQD+zCW9oAxleSlWPjmRtGIQuU371jWM75pK3edOkxToTHPGwvtqJr/p3hQwtv68BCQEaehWDxTnZmqxg==
 
-"@ovh-ux/ng-ovh-stop-event@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-stop-event/-/ng-ovh-stop-event-1.0.0.tgz#08e9470ec08b263c7ca7370dab9b23d9b6044aef"
-  integrity sha512-M8vEiHK5WytqeNBPnVY4cDR+RhwISD+wRKPpNRHiXLsewLqwx99ebtSiQWzXYK++poSbBoYwq9xnCVoh1VzjbQ==
+"@ovh-ux/ng-ovh-stop-event@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-stop-event/-/ng-ovh-stop-event-1.0.1.tgz#c58340f983d5ae8cc9547bde936be80a1022687c"
+  integrity sha512-XihDOqyqCwI4CGkQoxBla9xFTpq19LCaZ3A5Jjcr7PGLd0nfV85u2gHLE+2KSziq7SSZYYkyGOIkfVnwpvYEUg==
 
 "@ovh-ux/ng-ovh-swimming-poll@^4.0.1":
   version "4.0.1"
