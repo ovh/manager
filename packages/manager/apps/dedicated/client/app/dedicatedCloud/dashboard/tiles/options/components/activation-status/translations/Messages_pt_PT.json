@@ -6,6 +6,6 @@
   "ovhManagerPccDashboardComponentActivationStatus_enabled": "Ativado",
   "ovhManagerPccDashboardComponentActivationStatus_inError": "Erro",
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Configuração pendente",
-  "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "A aguardar validação",
+  "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Validação pendente",
   "ovhManagerPccDashboardComponentActivationStatus_unknown": "Estado desconhecido"
 }

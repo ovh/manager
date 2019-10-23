@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
 
 export default class {
   constructor(
@@ -16,11 +17,11 @@ export default class {
   registerStatesFromSteps(steps) {
     let currentStateName = this.rootState.name;
 
-    _.forEach(
+    forEach(
       steps,
       (step) => {
         currentStateName = `${currentStateName}.${step.name}`;
-        _.set(step, 'state.name', currentStateName);
+        set(step, 'state.name', currentStateName);
 
         if (!this.$state.href(currentStateName)) {
           this.registerState(step.state);

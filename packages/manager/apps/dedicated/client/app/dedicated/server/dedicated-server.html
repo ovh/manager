@@ -23,7 +23,8 @@
             <oui-header-tabs-item data-text="{{:: 'server_informations_general' | translate }}"
                                   data-state="app.dedicated.server.dashboard"></oui-header-tabs-item>
             <oui-header-tabs-item data-text="{{:: 'server_tab_interfaces' | translate }}"
-                                  data-state="app.dedicated.server.interfaces"></oui-header-tabs-item>
+                                  data-state="app.dedicated.server.interfaces"
+                                  data-disabled="server.isExpired"></oui-header-tabs-item>
             <oui-header-tabs-item data-text="{{:: 'server_tab_dns' | translate }}"
                                   data-state="app.dedicated.server.dns"
                                   data-disabled="server.isExpired"></oui-header-tabs-item>
@@ -121,7 +122,7 @@
      data-backdrop="static">
     <div class="modal-dialog"
          data-ng-class="{
-             'modal-lg': bigModalDialog
+             'dedicated-server-large-modal': bigModalDialog
          }">
         <div id="modal-container"
              class="modal-content"

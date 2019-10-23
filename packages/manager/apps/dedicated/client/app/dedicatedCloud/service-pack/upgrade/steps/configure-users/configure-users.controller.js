@@ -1,4 +1,5 @@
-
+import filter from 'lodash/filter';
+import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
@@ -9,8 +10,8 @@ export default class {
   }
 
   $onInit() {
-    this.usersWhoCanReceiveSMS = _.map(
-      _.filter(
+    this.usersWhoCanReceiveSMS = map(
+      filter(
         this.usersWhoCanReceiveSMS,
         { isTokenValidator: true },
       ),

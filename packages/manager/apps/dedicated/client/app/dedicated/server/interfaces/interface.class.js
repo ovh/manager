@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 import {
   PHYSICAL_TYPE,
   VIRTUAL_TYPE,
@@ -37,7 +39,7 @@ export default class Interface {
   }
 
   hasFailoverIps() {
-    return !_.isEmpty(this.failoverIps);
+    return !isEmpty(this.failoverIps);
   }
 
   hasVrack() {

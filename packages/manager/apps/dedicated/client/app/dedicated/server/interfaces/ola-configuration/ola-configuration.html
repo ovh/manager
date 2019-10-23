@@ -1,12 +1,9 @@
-<div data-ng-if="$ctrl.isPolling"
-     class="text-center">
-    <oui-message
-        class="mx-auto mb-3"
-        data-type="warning">
-        <p class="mb-0" data-translate="dedicated_server_interfaces_current_operation"></p>
-    </oui-message>
-
-</div>
+<oui-message
+    data-ng-if="$ctrl.isPolling"
+    class="mb-3"
+    data-type="warning">
+    <p class="mb-0" data-translate="dedicated_server_interfaces_current_operation"></p>
+</oui-message>
 
 <div data-ng-if="!$ctrl.isPolling">
     <oui-back-button data-on-click="$ctrl.goBack()">

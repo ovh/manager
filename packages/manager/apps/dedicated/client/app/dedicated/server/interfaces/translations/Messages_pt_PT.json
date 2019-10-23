@@ -67,5 +67,7 @@
   "dedicated_server_interfaces_bandwith_title": "Largura de banda",
   "dedicated_server_interfaces_bandwith_description": "A largura de banda pública de entrada (desde e para a Internet) não tem limitações. Pode aumentar a largura de banda pública e privada ativando a opção correspondente.",
   "dedicated_server_interfaces_bandwith_public": "Largura de banda pública",
-  "dedicated_server_interfaces_bandwith_private": "Largura de banda privada"
+  "dedicated_server_interfaces_bandwith_private": "Largura de banda privada",
+  "dedicated_server_interfaces_current_operation": "Está em curso uma operação no servidor ",
+  "dedicated_server_interfaces_task_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}."
 }

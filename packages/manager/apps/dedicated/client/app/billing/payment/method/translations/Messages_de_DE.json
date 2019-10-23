@@ -10,7 +10,7 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Zahlungsart hinzufügen",
   "billing_payment_method_autorenew_guide_help": "Sie benötigen Hilfe bei der Konfiguration Ihrer Verlängerungen?",
-  "billing_payment_method_autorenew_guide_help_link": "Sie benötigen Hilfe bei der Konfiguration Ihrer Verlängerungen?",
+  "billing_payment_method_autorenew_guide_help_link": "Mehr erfahren",
   "billing_payment_method_bank_account_pending_validation": "Sie haben ein Bankkonto in Ihrem Kundencenter hinzugefügt. Wir warten nun auf den Eingang Ihrer Einzugsermächtigung auf dem Postweg.",
   "billing_payment_method_bank_account_processing_delay": "Ihr Bankkonto wird 24 bis 48 Stunden nach Eingang Ihrer Einzugsermächtigung freigeschaltet.",
   "billing_payment_method_table_action_download_procedure": "Dokument herunterladen, das per Post zurückzusenden ist",

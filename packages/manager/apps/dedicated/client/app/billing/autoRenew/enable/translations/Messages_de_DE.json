@@ -5,5 +5,9 @@
   "billing_autorenew_enable_payment_mean_frequency": "Das Zahlungsintervall wird für jeden Dienst auf den Mindestwert eingestellt.",
   "billing_autorenew_enable_bulk_unvailable": "Die automatische Verlängerung wird für alle ausgewählten Dienste aktiviert, mit Ausnahme von {{ count }} Diensten:",
   "billing_autorenew_enable_success": "Die Verlängerung der Dienste wurde erfolgreich aktualisiert",
-  "billing_autorenew_enable_error": "Beim Aktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}"
+  "billing_autorenew_enable_error": "Beim Aktivieren der automatischen Verlängerung ist ein Fehler aufgetreten {{message}}",
+  "billing_autorenew_enable_bulk_unavailable": "Die automatische Verlängerung wird für alle ausgewählten Dienste aktiviert, mit Ausnahme von {{ count }} Diensten:",
+  "billing_autorenew_enable_bulk_unavailable_one": "Die automatische Verlängerung wird für alle ausgewählten Dienste aktiviert, mit Ausnahme von 1 Dienst:",
+  "billing_autorenew_enable_bulk": "Die automatische Verlängerung wird für alle ausgewählten Dienste aktiviert.",
+  "billing_autorenew_enable_bulk_single": "Die automatische Verlängerung für Ihren Dienst {{ serviceName }} wird aktiviert."
 }

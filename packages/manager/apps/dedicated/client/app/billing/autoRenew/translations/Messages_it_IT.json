@@ -133,5 +133,9 @@
   "billing_autorenew_renew_action": "Rinnova",
   "billing_autorenew_service_terminate_enterprise_cloud_database": "Elimina subito Enterprise Cloud Databases",
   "billing_autorenew_service_type_ENTERPRISE_CLOUD_DATABASE": "Enterprise Cloud Databases",
-  "billing_autorenew_service_align_renew": "Allinea le date di rinnovo."
+  "billing_autorenew_service_align_renew": "Allinea le date di rinnovo.",
+  "billing_autorenew_service_date_now": "Immediatamente",
+  "billing_autorenew_service_terminate_webcoach": "Elimina il tuo WebCoach",
+  "billing_autorenew_service_type_WEBCOACH": "WebCoach",
+  "billing_autorenew_service_type_webcoach": "WebCoach"
 }

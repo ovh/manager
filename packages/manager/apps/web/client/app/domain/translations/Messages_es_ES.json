@@ -831,5 +831,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Dar de baja la opción DNS Anycast.",
   "domain_tab_options_delete_success": "Hemos dado de baja esta opción. ",
   "domain_tab_options_delete_error": "Se ha producido un error al dar de baja la opción.",
-  "domain_tab_options_delete_cancel": "Cancelar"
+  "domain_tab_options_delete_cancel": "Cancelar",
+  "domain_dashboard_options_dns_anycast_expiry": "Fecha de aplicación: {{date}}",
+  "domain_tab_options_delete_expiry": "Esta opción se dará de baja en la fecha de renovación, es decir, el {{ date }}."
 }

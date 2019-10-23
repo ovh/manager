@@ -1,3 +1,6 @@
+import isObject from 'lodash/isObject';
+import omit from 'lodash/omit';
+
 import { PREFERENCE_NAME } from '../../../dashboard/tiles/options/models/order/order.constants';
 
 export const name = 'servicePackUpgradePreferenceService';
@@ -38,7 +41,7 @@ export const PreferenceService = class {
     return this
       .ovhUserPref
       .getValue(PREFERENCE_NAME)
-      .then(preference => (_.isObject(preference[serviceName])
+      .then(preference => (isObject(preference[serviceName])
         ? preference[serviceName]
         : this.$q.reject({ status: 404 })));
   }
@@ -46,7 +49,7 @@ export const PreferenceService = class {
   removePreference(serviceName) {
     return this
       .getPreferenceForService(serviceName)
-      .then(preference => this.updatePreference(_.omit(preference, serviceName)));
+      .then(preference => this.updatePreference(omit(preference, serviceName)));
   }
 
   updatePreference(preference) {

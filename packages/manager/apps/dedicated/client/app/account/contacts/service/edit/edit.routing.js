@@ -1,9 +1,10 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+
 import { DEBT_ALL } from './edit.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.contacts.services.edit', {
-    url: '/edit?service',
+    url: '/edit?service&categoryType',
     views: {
       modal: {
         component: 'accountContactsServiceEdit',
@@ -16,12 +17,13 @@ export default /* @ngInject */ ($stateProvider) => {
         AccountContactsService => service => AccountContactsService.changeContact(service),
       goBack: /* @ngInject */ goToContacts => goToContacts,
       service: /* @ngInject */ (
-        category,
+        categoryType,
         getServiceInfos,
         serviceName,
         services,
-      ) => getServiceInfos(_.find(services, { serviceName, category })),
+      ) => getServiceInfos(find(services, { serviceName, category: categoryType })),
       serviceName: /* @ngInject */ $transition$ => $transition$.params().service,
+      categoryType: /* @ngInject */ $transition$ => $transition$.params().categoryType,
     },
   });
 };

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isNumber from 'lodash/isNumber';
 
 export default class {
   /* @ngInject */
@@ -8,7 +8,7 @@ export default class {
   }
 
   $onInit() {
-    if (!_.isNumber(this.ola.configStep)) {
+    if (!isNumber(this.ola.configStep)) {
       this.ola.configStep = 0;
     }
   }

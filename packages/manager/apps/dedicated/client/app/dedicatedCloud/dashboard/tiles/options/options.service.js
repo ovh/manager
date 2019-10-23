@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import reject from 'lodash/reject';
 
 import { DELIVERY_STATUS } from '../../../service-pack/service-pack.constants';
 
@@ -32,7 +34,7 @@ export const OptionsService = class OptionsService {
     computedPendingOrder,
     currentServicePackName,
   ) {
-    const matchingServicePack = _.find(
+    const matchingServicePack = find(
       allServicePacks,
       {
         name: (
@@ -54,18 +56,18 @@ export const OptionsService = class OptionsService {
     orderedServicePackName,
   ) {
     // all service packs are orderable except the current one
-    const orderableServicePacks = _.reject(
+    const orderableServicePacks = reject(
       allServicePacks,
       { name: currentServicePackName },
     );
 
     return {
-      withACertification: _.reject(
-        _.filter(orderableServicePacks, servicePack => servicePack.certification.exists),
+      withACertification: reject(
+        filter(orderableServicePacks, servicePack => servicePack.certification.exists),
         { name: orderedServicePackName },
       ),
-      withOnlyBasicOptions: _.reject(
-        _.filter(orderableServicePacks, servicePack => !servicePack.certification.exists),
+      withOnlyBasicOptions: reject(
+        filter(orderableServicePacks, servicePack => !servicePack.certification.exists),
         { name: orderedServicePackName },
       ),
     };
@@ -82,7 +84,7 @@ export const OptionsService = class OptionsService {
         && currentOrFutureServicePack.name
       );
 
-    const matchingServicePack = _.find(
+    const matchingServicePack = find(
       allServicePacks,
       { name: matchingServicePackName },
     );
@@ -101,7 +103,7 @@ export const OptionsService = class OptionsService {
   }
 
   static computeOptionsBasic() {
-    return _.filter(
+    return filter(
       OPTIONS,
       option => option.type === OPTION_TYPES.basic,
     );

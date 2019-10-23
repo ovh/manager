@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
+import upperFirst from 'lodash/upperFirst';
 
 import {
   ALIGNMENT_URLS, NIC_ALL, RENEW_URL, URL_PARAMETER_SEPARATOR,
@@ -210,7 +211,7 @@ export default class AutorenewCtrl {
   }
 
   getAutomaticExpirationDate(service) {
-    return _.capitalize(
+    return upperFirst(
       new Intl.DateTimeFormat(
         this.$translate.use().replace('_', '-'), { year: 'numeric', month: 'long' },
       ).format(new Date(service.expiration)),
