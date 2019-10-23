@@ -2120,12 +2120,12 @@
     filesize "^3.6.1"
     lodash "^4.17.15"
 
-"@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
-  version "8.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0-alpha.0.tgz#fd84086d04068734cebb2a3e216a8db9116a0d7b"
-  integrity sha512-dQyronfFuCQR/Cb02PGbFWXtTy55eqjMcBY8LlvsB1kmBVy7gmbcf2AgD3Kliuv4sr8T6al1i5e6WPh/xS88Ag==
+"@ovh-ux/ng-pagination-front@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0.tgz#eeacd3264d332ef25cba77d0aee960d99cb5a334"
+  integrity sha512-XEMdWgCSuD+hYmy9lC9jkTtwyDadtf+KnbI021Gn/WdDZcfy0gc1mgQS0zEB21BVxrEgf3R29gdFGRguAi3PIg==
   dependencies:
-    lodash "^4.17.11"
+    lodash "^4.17.15"
 
 "@ovh-ux/ng-q-allsettled@^1.0.0-alpha.0":
   version "1.0.0-alpha.0"
