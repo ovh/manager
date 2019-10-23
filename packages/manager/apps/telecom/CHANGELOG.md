@@ -1,3 +1,12 @@
+## [10.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.0...@ovh-ux/manager-telecom@10.38.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
 # [10.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.37.0...@ovh-ux/manager-telecom@10.38.0) (2019-10-23)
 
 

@@ -1,3 +1,12 @@
+## [4.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.4...@ovh-ux/ng-ovh-telecom-universe-components@4.1.5) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
 ## [4.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.3...@ovh-ux/ng-ovh-telecom-universe-components@4.1.4) (2019-10-18)
 
 
