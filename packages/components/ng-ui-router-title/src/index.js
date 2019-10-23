@@ -4,7 +4,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import has from 'lodash/has';
 
-const moduleName = 'ngUirouterTitle';
+const moduleName = 'ngUiRouterTitle';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
       const getStateTitle = (state) => {
         const stateTitle = find(
           get(state, 'resolvables'),
-          (resolvable) => resolvable.token === '$title',
+          resolvable => resolvable.token === '$title',
         );
         if (!stateTitle && has(state, 'parent')) {
           return getStateTitle(get(state, 'parent'));
