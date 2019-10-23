@@ -13,5 +13,6 @@
   "billing_autorenew_bulk_service": "(1 service)",
   "billing_autorenew_bulk_services": "({{ count }} services)",
   "billing_autorenew_bulk_more": "See more",
-  "billing_autorenew_bulk_less": "See less"
+  "billing_autorenew_bulk_less": "See less",
+  "billing_autorenew_bulk_one": "You have selected 1 service"
 }

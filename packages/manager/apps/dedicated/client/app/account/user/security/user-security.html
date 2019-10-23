@@ -81,14 +81,14 @@
                                 data-ng-if="!has2faEnabled()">
                             <p class="text-warning"
                                 data-translate="user_account_security_double_auth_info"></p>
-                            <button type="button"
-                                    class="oui-button oui-button_primary float-right"
-                                    data-ng-click="setAction('security/2fa/user-security-2fa')"
-                                    data-track-on="click"
-                                    data-track-name="account::security::authentication::double_authentication"
-                                    data-track-type="action">
+
+                            <a data-ui-sref="app.account.user.security.mfa"
+                                class="oui-button oui-button_primary float-right"
+                                data-track-on="click"
+                                data-track-name="account::security::authentication::double_authentication"
+                                data-track-type="action">
                                 <span data-translate="user_account_security_double_auth_action_activate"></span>
-                            </button>
+                            </a>
                         </div>
 
                         <div class="new-security-section__2fa-lists"

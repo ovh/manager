@@ -1,0 +1,18 @@
+{
+  "dedicatedCloudDashboardTilesOptionsOrderValidation_stepper_header": "Validation de la certification",
+
+  "dedicatedCloud_servicePack_summary_stepper_order": "Afin de régler votre commande, merci de cliquer sur le lien suivant ",
+  "dedicatedCloud_servicePack_summary_stepper_order_warning": "La commande ne sera pas passée si vous ne cliquez pas sur le lien ci-dessus",
+  "dedicatedCloud_servicePack_summary_stepper_order_resume": "Une fois la commande validée, vous pourrez vous rendre sur votre interface de gestion (accessible uniquement depuis les IPs autorisées à se connecter au vCenter de l’infrastructure) afin de valider votre certification à l’aide du code reçu par SMS",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface": "Rendez-vous directement sur votre interface de gestion pour valider votre certification à l’aide du code reçu par SMS. Cette interface est accessible uniquement depuis les adresses IP autorisées à se connecter au vCenter de l’infrastructure.",
+  "dedicatedCloud_servicePack_summary_stepper_go_management_interface_action": "Interface d’activation du SMS",
+  "dedicatedCloud_servicePack_summary_stepper_validation_header": "La validation peut prendre entre 30 minutes et 4 heures pour être effective",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_one": "Une fois la validation effectuée, votre infrastructure est conforme à la certification choisie.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_two": "Vous recevrez par la suite des documents relatifs à cette activation et vous permettant de finaliser la partie contractuelle.",
+  "dedicatedCloud_servicePack_summary_stepper_validation_part_three": "Le coût de cette certification sera ajouté à la facturation du mois suivant.",
+  "dedicatedCloud_servicePack_summary_stepper_finish": "Terminer",
+
+  "dedicatedCloud_servicePack_summary_stepper_order_failed": "Le passage de commande a échoué",
+
+  "dedicatedCloud_servicePack_summary_stepper_openNewTab": "Ouvre un nouvel onglet"
+}

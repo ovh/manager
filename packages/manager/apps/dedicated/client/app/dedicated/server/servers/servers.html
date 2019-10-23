@@ -2,49 +2,50 @@
     <oui-page-header data-heading="{{ :: 'dedicated_servers_title' | translate }}"></oui-page-header>
     <div class="container-fluid my-5">
         <oui-datagrid id="dg-servers"
-            page-size="{{ $ctrl.paginationSize }}"
-            rows-loader="$ctrl.loadServers()"
-            criteria="$ctrl.criteria"
-            on-page-change="$ctrl.onPageChange($pagination)"
-            on-criteria-change="$ctrl.onCriteriaChange($criteria)"
-            on-sort-change="$ctrl.onSortChange($sort)">
-            <oui-column title=":: 'dedicated_servers_name' | translate"
-                property="name"
-                searchable
-                filterable
-                sortable="$ctrl.getSorting('name')"
-                type="string">
+            data-page-size="{{ $ctrl.paginationSize }}"
+            data-rows-loader="$ctrl.loadServers()"
+            data-criteria="$ctrl.criteria"
+            data-on-page-change="$ctrl.onPageChange($pagination)"
+            data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+            data-on-sort-change="$ctrl.onSortChange($sort)"
+            data-columns="$ctrl.columnsConfig">
+            <oui-column data-title=":: 'dedicated_servers_name' | translate"
+                data-property="name"
+                data-searchable
+                data-filterable
+                data-sortable
+                data-type="string">
                 <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}">{{$value}}</a>
             </oui-column>
-            <oui-column title=":: 'dedicated_servers_reverse' | translate"
-                property="reverse"
-                searchable
-                filterable
-                sortable="$ctrl.getSorting('reverse')"
-                type="string">
+            <oui-column data-title=":: 'dedicated_servers_reverse' | translate"
+                data-property="reverse"
+                data-searchable
+                data-filterable
+                data-sortable
+                data-type="string">
             </oui-column>
             <oui-column title=":: 'dedicated_servers_model' | translate"
-                property="commercialRange"
-                searchable
-                filterable
-                sortable="$ctrl.getSorting('commercialRange')"
-                type="string">
+                data-property="commercialRange"
+                data-searchable
+                data-filterable
+                data-sortable
+                data-type="string">
             </oui-column>
-            <oui-column title=":: 'dedicated_servers_localization' | translate"
-                property="datacenter"
-                searchable
-                filterable
-                sortable="$ctrl.getSorting('datacenter')"
-                type="options"
-                type-options="$ctrl.datacenterEnumFilter">
+            <oui-column data-title=":: 'dedicated_servers_localization' | translate"
+                data-property="datacenter"
+                data-searchable
+                data-filterable
+                data-sortable
+                data-type="options"
+                data-type-options="$ctrl.datacenterEnumFilter">
                 <span data-translate="{{:: 'server_datacenter_' + $ctrl.constructor.toUpperSnakeCase($value) }}"></span>
             </oui-column>
-            <oui-column title=":: 'dedicated_servers_status' | translate"
-                property="state"
-                filterable
-                sortable="$ctrl.getSorting('state')"
-                type="options"
-                type-options="$ctrl.stateEnumFilter">
+            <oui-column data-title=":: 'dedicated_servers_status' | translate"
+                data-property="state"
+                data-filterable
+                data-sortable
+                data-type="options"
+                data-type-options="$ctrl.stateEnumFilter">
                 <span class="oui-status"
                     data-ng-class="{
                     'oui-status_success': $ctrl.constructor.toUpperSnakeCase($value) === 'OK',
