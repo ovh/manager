@@ -4,7 +4,7 @@ import toArray from 'lodash/toArray';
 
 import template from './template.html';
 
-export default /* @ngInject */ $q => ({
+export default /* @ngInject */ ($q) => ({
   restrict: 'A',
   template,
   replace: false,
@@ -52,7 +52,7 @@ export default /* @ngInject */ $q => ({
       const rejectedItem = {};
       const promise = $q.all(
         items.map(
-          item => $q.when($scope.transformItem({ item }))
+          (item) => $q.when($scope.transformItem({ item }))
             .then((transformed) => {
               $scope.onTransformItemNotify({ item: transformed });
               return transformed;
@@ -61,7 +61,7 @@ export default /* @ngInject */ $q => ({
         ),
       )
         .then((itemList) => {
-          const filtredItems = itemList.filter(item => item !== rejectedItem);
+          const filtredItems = itemList.filter((item) => item !== rejectedItem);
           $scope.onTransformItemDone({ items: filtredItems });
           return filtredItems;
         });
@@ -101,7 +101,7 @@ export default /* @ngInject */ $q => ({
       }
     };
 
-    const isInt = value => !isNaN(value)
+    const isInt = (value) => !isNaN(value)
         && parseInt(Number(value), 10) === value
         && !isNaN(parseInt(value, 10));
 
