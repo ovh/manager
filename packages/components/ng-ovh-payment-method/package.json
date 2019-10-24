@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-payment-method",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "OVH Payment Methods wrapper for AngularJS",
   "keywords": [
     "angularjs",
