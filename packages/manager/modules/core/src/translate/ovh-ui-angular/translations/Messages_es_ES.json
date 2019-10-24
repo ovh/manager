@@ -74,5 +74,6 @@
   "common_password_bad_password": "Contraseña incorrecta.",
   "common_password_weak_password": "Contraseña débil.",
   "common_password_good_password": "Contraseña correcta.",
-  "common_password_strong_password": "Contraseña segura."
+  "common_password_strong_password": "Contraseña segura.",
+  "common_criteria_adder_filter_label": "Filtrar"
 }

@@ -1,3 +1,5 @@
 {
-  "ovhManagerSupport_new_serviceType_carrier_sip": "SIP provider"
+  "ovhManagerSupport_new_serviceType_carrier_sip": "SIP provider",
+  "ovhManagerSupport_new_serviceType_hosting_reseller": "Plesk web hosting",
+  "ovhManagerSupport_new_creation_optional": "{{label}} (optional)"
 }

@@ -74,5 +74,6 @@
   "common_password_bad_password": "Incorrect password.",
   "common_password_weak_password": "Weak password.",
   "common_password_good_password": "Correct password.",
-  "common_password_strong_password": "Strong password."
+  "common_password_strong_password": "Strong password.",
+  "common_criteria_adder_filter_label": "Filter"
 }
