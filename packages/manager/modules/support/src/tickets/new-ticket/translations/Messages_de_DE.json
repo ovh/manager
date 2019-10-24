@@ -64,7 +64,7 @@
   "ovhManagerSupport_new_serviceType_pack_xdsl": "xDSL-Paket",
   "ovhManagerSupport_new_serviceType_router": "Router",
   "ovhManagerSupport_new_serviceType_HOSTING_DOMAIN": "Webhosting + Domain",
-  "ovhManagerSupport_new_serviceType_hosting_reseller": "Multisite Hosting",
+  "ovhManagerSupport_new_serviceType_hosting_reseller": "Webhosting mit Plesk",
   "ovhManagerSupport_new_serviceType_metrics": "Metrics",
   "ovhManagerSupport_new_serviceType_dedicated_ceph": "CDA",
   "ovhManagerSupport_new_serviceType_veeam_veeam_enterprise": "Veeam Enterprise",
@@ -111,5 +111,6 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Sie wünschen Beratung zu einem Projekt?",
   "ovhManagerSupport_new_business_2": "Bitte senden Sie uns eine E-Mail mit ausführlichen Informationen an die Adresse:",
-  "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet."
+  "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet.",
+  "ovhManagerSupport_new_creation_optional": "{{label}} (optional)"
 }

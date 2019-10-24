@@ -15,7 +15,7 @@ angular.module('managerApp').controller('XdslModemDmzCtrl', function XdslModemDm
 
   this.changeDmz = function changeDmz() {
     this.editing = false;
-    const validIp = this.validator.isIP(self.dmz) || self.dmz === null;
+    const validIp = self.dmz === null || this.validator.isIP(self.dmz);
     if (isEmpty($stateParams.serviceName)
       || !TucPackXdslModemMediator.capabilities.canChangeDMZ
       || !validIp) {

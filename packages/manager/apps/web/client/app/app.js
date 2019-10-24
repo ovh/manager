@@ -51,6 +51,7 @@ import './css/source.less';
 import './css/source.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
+Environment.setVersion(__VERSION__);
 
 angular
   .module('App', [

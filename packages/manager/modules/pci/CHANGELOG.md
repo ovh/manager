@@ -1,3 +1,20 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.6...@ovh-ux/manager-pci@3.0.0) (2019-10-24)
+
+
+### Code Refactoring
+
+* **ng-ovh-payment-method:** rework payment method implementation ([#1455](https://github.com/ovh/manager/issues/1455)) ([8bb2249](https://github.com/ovh/manager/commit/8bb224921323dad898cd72665c8a73ea5fcfa331))
+
+
+### BREAKING CHANGES
+
+* **ng-ovh-payment-method:** rework payment method implementation
+  - removal of ovhPaymentMethodProvider. This provider only provided a way to set target. As the module now use @ovh-ux/manager-core
+    dependencies target is now available through @ovh-ux/manager-core region
+  - removal of ovhPaymentMethodAvailableTypes. You can now use ovhPaymentMethodRegister component
+
+
+
 ## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.5...@ovh-ux/manager-pci@2.4.6) (2019-10-23)
 
 

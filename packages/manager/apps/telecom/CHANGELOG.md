@@ -1,3 +1,21 @@
+## [10.38.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.2...@ovh-ux/manager-telecom@10.38.3) (2019-10-24)
+
+
+### Bug Fixes
+
+* allow null for DMZ parameter ([#1567](https://github.com/ovh/manager/issues/1567)) ([dfedcd8](https://github.com/ovh/manager/commit/dfedcd862bb98125b4e59b78b6f6853cd973e6a9))
+
+
+
+## [10.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.1...@ovh-ux/manager-telecom@10.38.2) (2019-10-24)
+
+
+### Bug Fixes
+
+* **telecom.sidebar:** fix order menu loading ([#1561](https://github.com/ovh/manager/issues/1561)) ([e6c209a](https://github.com/ovh/manager/commit/e6c209a4d83e286162a084d9318fadcf01e77f1d))
+
+
+
 ## [10.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.0...@ovh-ux/manager-telecom@10.38.1) (2019-10-23)
 
 

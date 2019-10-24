@@ -11,15 +11,15 @@ angular.module('services').service('Polling', [
 
     let to = true;
     let tofast = true;
-    let watchedTasksPromise = [];
+    let watchedTasksPromise = {};
     const resolveState = 'resolve';
     const notifyState = 'notify';
     const notifyExist = 'alreadyExist';
     const defaultElapse = 15000;
     let elapse = defaultElapse;
     let isRun = false;
-    let watchedTasks = [];
-    let killedScope = [];
+    let watchedTasks = {};
+    let killedScope = {};
     const defaultElapseFast = 5000;
     let elapsefast = defaultElapseFast;
     let isFastRun = false;
@@ -32,13 +32,13 @@ angular.module('services').service('Polling', [
 
     function clean() {
       elapse = defaultElapse;
-      watchedTasks = [];
-      killedScope = [];
+      watchedTasks = {};
+      killedScope = {};
     }
     function cleanFast() {
       elapsefast = defaultElapseFast;
-      watchedTasksFast = [];
-      killedScopeFast = [];
+      watchedTasksFast = {};
+      killedScopeFast = {};
     }
 
     function stop() {
@@ -189,7 +189,7 @@ angular.module('services').service('Polling', [
         }
       });
 
-      killedScopeList = [];
+      killedScopeList = {};
 
       // STOP if no elements
       if (!hasElements) {
@@ -314,7 +314,7 @@ angular.module('services').service('Polling', [
       } else {
         stopfast();
         stop();
-        watchedTasksPromise = [];
+        watchedTasksPromise = {};
       }
     };
 

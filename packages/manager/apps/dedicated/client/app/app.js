@@ -50,6 +50,7 @@ import mfaEnrollment from './mfaEnrollment/mfaEnrollment.module';
 
 
 Environment.setRegion(__WEBPACK_REGION__);
+Environment.setVersion(__VERSION__);
 
 angular
   .module('App', [
