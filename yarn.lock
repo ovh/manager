@@ -1078,10 +1078,10 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-4.2.0.tgz#60a7da852a67f375ba2fe5bb81c53c0f14631432"
-  integrity sha512-p1UTXgW2XrhSHKjcs6GD0uGcYN5iYdNsnnAdAnO6FFM8njxWBNkfMHxOXOlOBtpaYKf6kOqaYJq3DIQb+Fao3A==
+"@ovh-ux/ng-ovh-payment-method@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-5.0.0.tgz#8535e05fc520ff05b6bcffe414674cb565b1f1ec"
+  integrity sha512-VBV/2GrW39zFG1Tr6KCVEO5AZlcFNalSqieZr3AoxjpTwKfgDwp/VHnYoK1Dl5npqkTHbLp9tmVA8xnDcRPbxA==
   dependencies:
     lodash "^4.17.11"
 
@@ -1151,10 +1151,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
-"@ovh-ux/ng-ui-router-layout@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-2.1.0.tgz#f6dcadc7b3ed2a0848b5ff62b8106ba6688e2083"
-  integrity sha512-fGIcPdmq4xy6QEbyyORHdLqwzFgLtnfLZjs+zUDP4EiySMsFRzUi0sDUjvwl0+6GvXFEviG9c4atXjLhxcCWBg==
+"@ovh-ux/ng-ui-router-layout@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-3.0.0.tgz#483cf12c813d2d40fe7db1b205b792c3338a79cb"
+  integrity sha512-B6suruDBXAhZl0FAmwWIelverqL3rDP80kOwjszd74ZFhjoWsY4+lnkw2R6dz/J8iXK/98txeCGe7cJKwZLUFg==
   dependencies:
     lodash "^4.17.15"
 

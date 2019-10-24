@@ -30,15 +30,17 @@ angular.module('App').config(($stateProvider) => {
         serverName,
         DedicatedServerInterfacesService,
       ) => DedicatedServerInterfacesService.getInterfaces(serverName),
+      isOlaAvailable: /* @ngInject */ coreConfig => coreConfig.isRegion(['EU', 'CA']),
       ola: /* @ngInject */ (
         interfaces,
+        isOlaAvailable,
         specifications,
         $stateParams,
-      ) => new Ola({
+      ) => (isOlaAvailable ? new Ola({
         interfaces,
         ...specifications.ola,
         ...$stateParams,
-      }),
+      }) : null),
       orderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,

@@ -26,9 +26,13 @@ export default /* @ngInject */ ($stateProvider) => {
         type: 'failover',
       }).$promise,
       optionPrice: /* @ngInject */ (
+        $q,
+        isOlaAvailable,
         DedicatedServerInterfacesService,
         serverName,
-      ) => DedicatedServerInterfacesService.getOlaPrice(serverName),
+      ) => (isOlaAvailable
+        ? DedicatedServerInterfacesService.getOlaPrice(serverName)
+        : $q.resolve()),
       orderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,

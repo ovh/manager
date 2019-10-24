@@ -1,7 +1,7 @@
 {
   "billing_payment_method_title": "Mis formas de pago",
   "billing_payment_method_load_error": "Se ha producido un error al cargar las formas de pago.",
-  "billing_payment_method_table_type": "Forma de pago",
+  "billing_payment_method_table_type": "Modo de pago",
   "billing_payment_method_table_label": "Cuenta",
   "billing_payment_method_table_expiration_date": "Fecha de expiración",
   "billing_payment_method_table_description": "Descripción",
