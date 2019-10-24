@@ -59,5 +59,6 @@
   "server_sidebar_order_item_csp2_title": "Office revendeur",
   "server_sidebar_order_item_office_title": "O365",
   "server_sidebar_order_item_sharepoint_title": "Sharepoint",
-  "server_sidebar_order_item_zone_title": "Zone DNS"
+  "server_sidebar_order_item_zone_title": "Zone DNS",
+  "server_sidebar_order_item_enterprise_cloud_database_title": "Enterprise cloud Database"
 }
