@@ -106,6 +106,7 @@ export default class PciProjectNewPaymentCtrl {
 
   $onInit() {
     this.hasPaymentMethods = false;
+    this.registeredPaymentMethods = null;
 
     this.step = this.getStepByName('payment');
 
@@ -124,6 +125,7 @@ export default class PciProjectNewPaymentCtrl {
 
         if (!this.step.model.defaultPaymentMethod) {
           this.step.loading.paymentTypes = true;
+          this.registeredPaymentMethods = paymentMethods;
 
           if (paymentMethods.length > 0) {
             this.hasPaymentMethods = true;

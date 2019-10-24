@@ -48,14 +48,34 @@
 
                         <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
                                 type="submit" form="projectDescriptionForm"
+                                data-ng-if="!$ctrl.isPaymentMethodIntegrationVisible()"
                                 data-ng-disabled="$ctrl.isNextButtonDisabled()"
-                                data-ng-click="$ctrl.onNextBtnClick()"
-                                data-ng-if="$ctrl.isNextButtonVisible()">
+                                data-ng-click="$ctrl.onNextBtnClick()">
                             <span data-ng-bind="$ctrl.getNextButtonText()"></span>
                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
                                   aria-hidden="true">
                             </span>
                         </button>
+
+                        <ovh-payment-method-integration
+                            data-ng-if="$ctrl.isPaymentMethodIntegrationVisible()"
+                            data-callback-status-param-url-name="paymentStatus"
+                            data-payment-method-type="$ctrl.getStepByName('payment').model.selectedPaymentMethodType"
+                            data-on-initialized="$ctrl.onIntegrationInitialized.bind($ctrl)"
+                            data-on-cancel="$ctrl.onIntegrationCancel.bind($ctrl)"
+                            data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
+                            data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
+                            data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)">
+                            <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                                    type="submit" form="projectDescriptionForm"
+                                    data-ng-disabled="$ctrl.isNextButtonDisabled()"
+                                    data-ng-click="$ctrl.onNextBtnClick()">
+                                <span data-ng-bind="$ctrl.getNextButtonText()"></span>
+                                <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                      aria-hidden="true">
+                                </span>
+                            </button>
+                        </ovh-payment-method-integration>
 
                         <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
                            data-ng-href="{{ $ctrl.getNextLinkHref() }}"
