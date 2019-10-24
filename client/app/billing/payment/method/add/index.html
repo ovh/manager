@@ -74,6 +74,11 @@
                         data-on-submit-error="$ctrl.onPaymentMethodIntegrationSubmitError.bind($ctrl)"
                         data-on-submit-success="$ctrl.onPaymentMethodIntegrationSuccess.bind($ctrl)"
                         data-payment-method-type="$ctrl.model.selectedPaymentMethodType">
+                        <oui-button data-type="submit"
+                                    data-variant="primary"
+                                    data-aria-label="common_add">
+                            <span data-translate="common_add"></span>
+                        </oui-button>
                     </ovh-payment-method-integration>
 
                 </oui-step-form> <!-- End of Choose payment method type step -->
@@ -129,11 +134,6 @@
                         data-on-submit-error="$ctrl.onPaymentMethodIntegrationSubmitError.bind($ctrl)"
                         data-on-submit-success="$ctrl.onPaymentMethodIntegrationSuccess.bind($ctrl)"
                         data-payment-method-type="$ctrl.model.selectedPaymentMethodType">
-                        <oui-button data-type="submit"
-                                    data-variant="primary"
-                                    data-aria-label="common_add">
-                            <span data-translate="common_add"></span>
-                        </oui-button>
                     </ovh-payment-method-integration>
 
                 </oui-step-form> <!-- End of Payment method -->

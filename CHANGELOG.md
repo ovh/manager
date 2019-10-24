@@ -1,3 +1,13 @@
+<a name="10.34.2"></a>
+## [10.34.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.34.1...v10.34.2) (2019-10-24)
+
+
+### Bug Fixes
+
+* **billing.payment.method:** add CB button ([f0a7829](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f0a7829))
+
+
+
 <a name="10.34.1"></a>
 ## [10.34.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.34.0...v10.34.1) (2019-10-24)
 
