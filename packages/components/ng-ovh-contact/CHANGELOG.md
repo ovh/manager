@@ -1,3 +1,12 @@
+## [4.0.4](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.3...v4.0.4) (2019-10-24)
+
+
+### Bug Fixes
+
+* value is now correctly settled ([98491f9](https://github.com/ovh-ux/ng-ovh-contact/commit/98491f948a3555218d48edd73c9d77d2fdb547fb))
+
+
+
 ## [4.0.3](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.2...v4.0.3) (2019-09-27)
 
 
