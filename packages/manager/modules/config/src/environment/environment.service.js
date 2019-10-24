@@ -1,6 +1,7 @@
 export default class EnvironmentService {
   constructor() {
     this.region = 'EU';
+    this.version = null;
   }
 
   setRegion(region = 'EU') {
@@ -9,5 +10,13 @@ export default class EnvironmentService {
 
   getRegion() {
     return this.region;
+  }
+
+  setVersion(version) {
+    this.version = version;
+  }
+
+  getVersion() {
+    return this.version;
   }
 }

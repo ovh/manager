@@ -43,6 +43,7 @@ import service from './index.service';
 import routing from './index.routes';
 
 Environment.setRegion(__WEBPACK_REGION__);
+Environment.setVersion(__VERSION__);
 
 angular
   .module('ovhPublicCloudApp', [
