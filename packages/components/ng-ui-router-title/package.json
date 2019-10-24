@@ -34,6 +34,6 @@
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.0",
-    "angular": "1.6.10"
+    "angular": "^1.5.0"
   }
 }
