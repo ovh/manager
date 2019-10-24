@@ -2,9 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.alias.portabilities', {
     url: '/portabilities',
     views: {
-      'aliasView@telecom.telephony.alias': {
-        component: 'portabilities',
-      },
+      'aliasView@telecom.telephony.alias': 'portabilities',
     },
     translations: { value: ['.'], format: 'json' },
     resolve: {
