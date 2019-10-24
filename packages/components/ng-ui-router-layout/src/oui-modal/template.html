@@ -1,0 +1,36 @@
+<div data-modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal"
+     data-uib-modal-animation-class="fade"
+     data-modal-in-class="in"
+     data-ng-style="{'z-index': 1050 + index*10, display: 'block'}">
+    <div class="modal-dialog {{size ? 'modal-' + size : ''}}">
+        <form class="modal-content"
+              novalidate
+              data-ng-submit="($parent.$ctrl.primaryAction && $parent.$ctrl.primaryAction())
+                || ($parent.$ctrl.resolve.primaryAction && $parent.$ctrl.resolve.primaryAction())">
+            <oui-modal
+                data-heading="{{ $parent.$ctrl.heading || $parent.$ctrl.resolve.heading }}"
+                data-type="{{ $parent.$ctrl.type || $parent.$ctrl.resolve.type }}"
+                data-primary-label="{{ $parent.$ctrl.primaryLabel || $parent.$ctrl.resolve.primaryLabel }}"
+                data-primary-disabled="
+                    ($parent.$ctrl.primaryDisabled && $parent.$ctrl.primaryDisabled())
+                    || ($parent.$ctrl.resolve.primaryDisabled && $parent.$ctrl.resolve.primaryDisabled())"
+                data-secondary-action="
+                    ($parent.$ctrl.secondaryAction && $parent.$ctrl.secondaryAction())
+                    || ($parent.$ctrl.resolve.secondaryAction && $parent.$ctrl.resolve.secondaryAction())"
+                data-secondary-label="{{ $parent.$ctrl.secondaryLabel || $parent.$ctrl.resolve.secondaryLabel }}"
+                data-secondary-disabled="
+                    ($parent.$ctrl.secondaryDisabled && $parent.$ctrl.secondaryDisabled())
+                    || ($parent.$ctrl.resolve.secondaryDisabled && $parent.$ctrl.resolve.secondaryDisabled())"
+                data-on-dismiss="
+                    ($parent.$ctrl.onDismiss && $parent.$ctrl.onDismiss())
+                    || ($parent.$ctrl.resolve.onDismiss && $parent.$ctrl.resolve.onDismiss())
+                    || ($parent.$ctrl.$uibModalInstance && $parent.$ctrl.$uibModalInstance.dismiss())
+                    || ($parent.$ctrl.modalInstance && $parent.$ctrl.modalInstance.dismiss())"
+                data-loading="
+                    ($parent.$ctrl.loading && $parent.$ctrl.loading())
+                    || ($parent.$ctrl.resolve.loading && $parent.$ctrl.resolve.loading())">
+                <div data-ng-transclude></div>
+            </oui-modal>
+        </form>
+    </div>
+</div>
