@@ -13,6 +13,7 @@ export default class Navigation {
   resetAction() {
     $('#currentAction').modal('hide');
     $('.modal-backdrop').remove();
+    $('.help4wizards').hide();
 
     this.currentActionData = null;
     this.stepPath = '';
