@@ -9,7 +9,7 @@ angular.module('managerApp')
     portal: 'https://www.ovh.com/manager/portal/index.html#/',
   })
   .constant('REDIRECT_URLS', {
-    support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
+    support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
     billing: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history',
     billingPayments: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payments',
     billingMean: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean',
