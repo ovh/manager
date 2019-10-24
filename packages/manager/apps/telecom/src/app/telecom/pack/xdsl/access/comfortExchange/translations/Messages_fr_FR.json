@@ -28,5 +28,6 @@
   "xdsl_access_comfort_exchange_rma_reference": "Référence RMA",
   "xdsl_access_comfort_exchange_rma_equipment_reference": "Référence équipement",
   "xdsl_access_comfort_exchange_rma_status": "État de la demande",
-  "xdsl_access_comfort_exchange_link_in_new_tab": "Ouverture du lien du bon de commande dans un nouvel onglet"
+  "xdsl_access_comfort_exchange_link_in_new_tab": "Ouverture du lien du bon de commande dans un nouvel onglet",
+  "xdsl_access_comfort_exchange_warning": "Cet échange a pour seul but de vous proposer un modem plus récent si les fonctionnalités de votre modem actuel ne conviennent plus à votre besoin.<br> En cas de défaut sur votre modem actuel, merci de ne pas initier d'échange via cet outil et de contacter le support."
 }
