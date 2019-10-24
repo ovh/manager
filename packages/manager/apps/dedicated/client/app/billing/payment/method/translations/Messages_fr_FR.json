@@ -10,17 +10,11 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Ajouter un moyen de paiement",
   "billing_payment_method_autorenew_guide_help": "Besoin d'aide pour vos renouvellements ?",
-  "billing_payment_method_autorenew_guide_help_link": "En savoir plus ?",
+  "billing_payment_method_autorenew_guide_help_link": "En savoir plus",
   "billing_payment_method_bank_account_pending_validation": "Vous avez ajouté un compte bancaire sur votre espace client pour lequel nous sommes dans l'attente de votre autorisation de prélèvement à nous retourner par voie postale.",
   "billing_payment_method_bank_account_processing_delay": "Votre compte bancaire sera validé dans les 24h à 48h à compter de la réception de votre autorisation de prélèvement.",
   "billing_payment_method_table_action_download_procedure": "Télécharger la procédure à retourner par voie postale",
   "billing_payment_method_table_action_description_edit": "Modifier la description",
   "billing_payment_method_table_action_set_default": "Définir ce moyen de paiement par défaut",
-  "billing_payment_method_table_action_delete": "Supprimer ce moyen de paiement",
-  "billing_payment_method_edit_error": "Une erreur est survenue lors de la modification de la description :",
-  "billing_payment_method_edit_success": "La modification de la description de votre moyen de paiement a bien été effectuée.",
-  "billing_payment_method_default_error": "Une erreur est survenue lors de la modification de votre moyen de paiement par défaut.",
-  "billing_payment_method_default_success": "Votre moyen de paiement par défaut a bien été modifié.",
-  "billing_payment_method_delete_error": "Une erreur est survenue lors de la suppression du moyen de paiement.",
-  "billing_payment_method_delete_success": "Votre moyen de paiement a bien été supprimé."
+  "billing_payment_method_table_action_delete": "Supprimer ce moyen de paiement"
 }

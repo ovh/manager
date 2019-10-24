@@ -16,11 +16,5 @@
   "billing_payment_method_table_action_download_procedure": "Dokument herunterladen, das per Post zurückzusenden ist",
   "billing_payment_method_table_action_description_edit": "Beschreibung ändern",
   "billing_payment_method_table_action_set_default": "Dieses Zahlungsmittel als Standardzahlungsmittel festlegen",
-  "billing_payment_method_table_action_delete": "Dieses Zahlungsmittel löschen",
-  "billing_payment_method_edit_error": "Bei der Änderung der Beschreibung ist ein Fehler aufgetreten:",
-  "billing_payment_method_edit_success": "Die Beschreibung Ihres Zahlungsmittels wurde erfolgreich geändert.",
-  "billing_payment_method_default_error": "Bei der Änderung Ihres Standardzahlungsmittels ist ein Fehler aufgetreten.",
-  "billing_payment_method_default_success": "Ihr Standardzahlungsmittel wurde erfolgreich geändert.",
-  "billing_payment_method_delete_error": "Beim Löschen des Zahlungsmittels ist ein Fehler aufgetreten.",
-  "billing_payment_method_delete_success": "Ihr Zahlungsmittel wurde erfolgreich gelöscht."
+  "billing_payment_method_table_action_delete": "Dieses Zahlungsmittel löschen"
 }
