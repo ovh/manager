@@ -34,7 +34,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.22.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.9.5",
+    "ovh-ui-angular": "^3.9.8",
     "ovh-ui-kit": "^2.35.2",
     "zxcvbn": "^4.4.2"
   },

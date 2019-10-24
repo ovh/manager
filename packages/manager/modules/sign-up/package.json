@@ -32,7 +32,7 @@
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.8.0",
+    "ovh-ui-angular": "^3.9.8",
     "ovh-ui-kit": "^2.33.1"
   }
 }

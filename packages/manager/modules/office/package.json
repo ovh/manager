@@ -26,6 +26,6 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "1.3.3",
-    "ovh-ui-angular": "^3.8.0"
+    "ovh-ui-angular": "^3.9.8"
   }
 }

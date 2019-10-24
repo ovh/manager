@@ -16,6 +16,6 @@
     "angular-i18n": "~1.5.x",
     "angular-sanitize": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-ui-angular": "^3.8.0"
+    "ovh-ui-angular": "^3.9.8"
   }
 }

@@ -2169,7 +2169,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
-"@ovh-ux/ng-ui-router-layout@^2.0.0", "@ovh-ux/ng-ui-router-layout@^2.1.1":
+"@ovh-ux/ng-ui-router-layout@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-2.1.1.tgz#cef3eba596735de2434947a7aaaa89c6be90a3f8"
   integrity sha512-2idvmsXwHmxIv0IfDfzJTYhUbYoZjGCo79UuAokbbdfW/4ULQY94md5Xj6x0vmoGnNMSD4CDgfszYtk9AAYHNQ==
@@ -7350,11 +7350,6 @@ flat@^4.1.0:
   dependencies:
     is-buffer "~2.0.3"
 
-flatpickr@^4.5.2:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.2.tgz#50e1b4fc84fbf67c5b0919ba3ddc330221f126da"
-  integrity sha512-bRfBPyxohUQWgCTg6jPALUO1t/x+sRJ/S/RVti/NzYvHqGRpCAesKSWKLzOuLmpu+vGHfXBld4SXvOCLFgYb+g==
-
 flatpickr@^4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
@@ -11879,15 +11874,14 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.9.5:
-  version "3.9.5"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.5.tgz#0e70ca612951c57b4102628c69e7206ccd39902f"
-  integrity sha512-X//tOvSkSv6DVxe3MKEm3hjOP8i1eKFPIkqBRj654pkUZAEGzJMrj8zC3mxdpUlVklIdXumYy/TwFs2OnHTSjw==
+ovh-ui-angular@^3.9.8:
+  version "3.9.8"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.8.tgz#60c9a4440445c9f9f9d01838631239926442fe27"
+  integrity sha512-aCTYEDQdN5BaucJS+a86Lh8QXt8ac0wgIkX7kWJIU49OGYQUY5fPPUk5W20DwAEqXVw6Qz/Q0WVIjymv4kZeXw==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
     escape-string-regexp "^1.0.5"
-    flatpickr "^4.5.2"
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
