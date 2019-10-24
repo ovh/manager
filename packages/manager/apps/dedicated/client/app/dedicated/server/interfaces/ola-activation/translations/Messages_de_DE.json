@@ -1,0 +1,11 @@
+{
+  "dedicated_server_interfaces_ola_activation_title": "Aktivierung von OLA",
+  "dedicated_server_interfaces_ola_activation_confirm": "Aktivieren",
+  "dedicated_server_interfaces_ola_activation_cancel": "Abbrechen",
+  "dedicated_server_interfaces_ola_activation_text": "Sie haben die OLA Option ausgewählt. Die Option wird nach der Aktivierung konfiguriert.",
+  "dedicated_server_interfaces_ola_activation_text_price": "Preis: ",
+  "dedicated_server_interfaces_ola_activation_text_once": "Sonderangebot nur einmal gültig",
+  "dedicated_server_interfaces_ola_order_ready": "Ihre Bestellung ist fertig. Wenn der Zahlungsprozess abgeschlossen ist, sollte der Dienst kurz darauf verfügbar sein.",
+  "dedicated_server_interfaces_ola_see_order_button": "Bestellschein anzeigen",
+  "dedicated_server_interfaces_ola_activation_text_levy": "Der Betrag für diese Option wird über Ihr Standardzahlungsmittel abgebucht. Wenn Sie noch kein Standardzahlungsmittel hinterlegt haben, muss die Option monatlich bezahlt werden, wenn Sie sie weiterhin nutzen möchten."
+}

@@ -13,5 +13,8 @@
   "billing_autorenew_bulk_service": "(1 servizio)",
   "billing_autorenew_bulk_services": "({{ count }} servizi)",
   "billing_autorenew_bulk_more": "Espandi",
-  "billing_autorenew_bulk_less": "Nascondi"
+  "billing_autorenew_bulk_less": "Nascondi",
+  "billing_autorenew_bulk_one": "Hai selezionato 1 servizio",
+  "billing_autorenew_bulk_available_more": "Mostra i dettagli dei servizi compatibili",
+  "billing_autorenew_bulk_available_less": "Nascondi i dettagli dei servizi compatibili"
 }

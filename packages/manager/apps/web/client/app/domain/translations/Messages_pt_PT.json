@@ -831,5 +831,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Rescindir a opção DNS Anycast",
   "domain_tab_options_delete_success": "A opção foi rescindida.",
   "domain_tab_options_delete_error": "Ocorreu um erro durante a rescisão da opção.",
-  "domain_tab_options_delete_cancel": "Anular"
+  "domain_tab_options_delete_cancel": "Anular",
+  "domain_dashboard_options_dns_anycast_expiry": "data de entrada em vigor: {{date}}",
+  "domain_tab_options_delete_expiry": "A rescisão do serviço terá efeito a partir da data de renovação, ou seja, {{date}}"
 }

@@ -9,35 +9,35 @@
         </a>
     </p>
 
-    <oui-datagrid rows="ctrl.roles.data" class="datagrid-without-pagination">
+    <oui-datagrid data-rows="ctrl.roles.data" data-page-size="10">
         <extra-top>
             <logs-add-tool
                 data-ng-if="!ctrl.quota.loading"
-                text="{{ ::'logs_roles_add' | translate }}"
-                tool-type="{{ ::'logs_roles_name' | translate }}"
-                current-usage="ctrl.quota.data.configured"
-                max-usage="ctrl.quota.data.max"
-                callback="ctrl.add()">
+                data-text="{{ ::'logs_roles_add' | translate }}"
+                data-tool-type="{{ ::'logs_roles_name' | translate }}"
+                data-current-usage="ctrl.quota.data.configured"
+                data-max-usage="ctrl.quota.data.max"
+                data-callback="ctrl.add()">
             </logs-add-tool>
             <oui-spinner data-ng-if="ctrl.quota.loading || ctrl.delete.loading"></oui-spinner>
         </extra-top>
-        <oui-column title=":: 'logs_roles_col_name' | translate" property="info.name" sortable="asc" type="string" searchable filterable></oui-column>
-        <oui-column title=":: 'logs_roles_col_description' | translate" property="info.description" sortable type="string" searchable filterable></oui-column>
-        <oui-column title=":: 'logs_roles_col_permissions' | translate" property="permissions.length" sortable="asc" type="number" filterable></oui-column>
-        <oui-column title=":: 'logs_roles_col_members' | translate" property="members.length" sortable="asc" type="number" filterable></oui-column>
-        <oui-column title="::'logs_roles_col_link' | translate" property="info.optionId" sortable type="string">
+        <oui-column data-title=":: 'logs_roles_col_name' | translate" data-property="info.name" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
+        <oui-column data-title=":: 'logs_roles_col_description' | translate" data-property="info.description" data-sortable data-type="string" data-searchable data-filterable></oui-column>
+        <oui-column data-title=":: 'logs_roles_col_permissions' | translate" data-property="permissions.length" data-sortable="asc" data-type="number" data-filterable></oui-column>
+        <oui-column data-title=":: 'logs_roles_col_members' | translate" data-property="members.length" data-sortable="asc" data-type="number" data-filterable></oui-column>
+        <oui-column data-title="::'logs_roles_col_link' | translate" data-property="info.optionId" data-sortable type="string">
             <i data-ng-if="$row.info.optionId" class="oui-icon oui-icon-check_line" aria-hidden="true"></i>
             <span data-ng-if="!$row.info.optionId"> - </span>
         </oui-column>
-        <oui-column title="::'logs_col_last_modified' | translate" property="info.updatedAt" sortable type="date">
+        <oui-column data-title="::'logs_col_last_modified' | translate" data-property="info.updatedAt" data-sortable data-type="date">
             {{ $row.info.updatedAt | momentFormat:'L'}}
         </oui-column>
-        <oui-action-menu data-align="end" compact>
-            <oui-action-menu-item text="{{ ::'logs_show_summary' | translate }}" on-click="ctrl.summary($row)"></oui-action-menu-item>
-            <oui-action-menu-item text="{{ ::'logs_edit_role' | translate }}" on-click="ctrl.add($row.info)"></oui-action-menu-item>
-            <oui-action-menu-item text="{{ ::'logs_edit_permissions' | translate }}" on-click="ctrl.editPermissions($row.info)"></oui-action-menu-item>
-            <oui-action-menu-item text="{{ ::'logs_manage_members' | translate }}" on-click="ctrl.manageMembers($row.info)"></oui-action-menu-item>
-            <oui-action-menu-item text="{{ ::'logs_delete_role' | translate }}" on-click="ctrl.showDeleteConfirm($row.info)"></oui-action-menu-item>
+        <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item data-text="{{ ::'logs_show_summary' | translate }}" data-on-click="ctrl.summary($row)"></oui-action-menu-item>
+            <oui-action-menu-item data-text="{{ ::'logs_edit_role' | translate }}" data-on-click="ctrl.add($row.info)"></oui-action-menu-item>
+            <oui-action-menu-item data-text="{{ ::'logs_edit_permissions' | translate }}" data-on-click="ctrl.editPermissions($row.info)"></oui-action-menu-item>
+            <oui-action-menu-item data-text="{{ ::'logs_manage_members' | translate }}" data-on-click="ctrl.manageMembers($row.info)"></oui-action-menu-item>
+            <oui-action-menu-item data-text="{{ ::'logs_delete_role' | translate }}" data-on-click="ctrl.showDeleteConfirm($row.info)"></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
 </div>

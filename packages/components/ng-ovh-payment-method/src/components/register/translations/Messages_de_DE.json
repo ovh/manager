@@ -1,0 +1,4 @@
+{
+  "ovh_payment_method_register_force_as_default": "Dieses Zahlungsmittel wird für die automatischen Zahlungen Ihres Produkts verwendet. Sie können es jederzeit im Bereich „Zahlungsmittel“ ändern. Vor jeder Verlängerung erhalten Sie eine E-Mail-Benachrichtigung.",
+  "ovh_payment_method_register_set_as_default_choice": "Zahlungsmittel nach Validierung als Standardzahlungsmittel verwenden."
+}

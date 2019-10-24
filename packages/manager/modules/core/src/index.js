@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 import angular from 'angular';
 import set from 'lodash/set';
 
@@ -27,7 +29,7 @@ import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
 
 import {
-  LANGUAGES, REDIRECT_URLS, URLS,
+  LANGUAGES, MANAGER_URLS, REDIRECT_URLS, URLS,
 } from './manager-core.constants';
 
 const moduleName = 'ovhManagerCore';
@@ -50,7 +52,7 @@ angular
   ])
   .constant('constants', {})
   .constant('CORE_LANGUAGES', LANGUAGES)
-
+  .constant('CORE_MANAGER_URLS', MANAGER_URLS)
   .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
@@ -193,6 +195,9 @@ angular
   })
   .config(/* @ngInject */ ($urlServiceProvider) => {
     $urlServiceProvider.config.strictMode(false);
+  })
+  .run(/* @ngInject */ (OvhNgRequestTaggerInterceptor) => {
+    OvhNgRequestTaggerInterceptor.setHeaderVersion(Environment.getVersion());
   });
 
 export default moduleName;

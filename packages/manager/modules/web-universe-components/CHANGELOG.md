@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.1...@ovh-ux/ng-ovh-web-universe-components@7.1.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh-ux/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
 ## [7.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.0...@ovh-ux/ng-ovh-web-universe-components@7.1.1) (2019-10-17)
 
 

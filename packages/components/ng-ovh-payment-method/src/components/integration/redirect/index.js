@@ -1,0 +1,20 @@
+import angular from 'angular';
+import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
+
+import 'ovh-ui-angular';
+
+import component from './component';
+
+const moduleName = 'ngOvhPaymentMethodIntegrationRedirect';
+
+angular
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
+    'oui',
+  ])
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .component(component.name, component);
+
+export default moduleName;

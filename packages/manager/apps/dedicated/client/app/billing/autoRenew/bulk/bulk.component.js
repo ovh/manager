@@ -3,7 +3,7 @@ import template from './bulk.html';
 
 export default {
   bindings: {
-    description: '@',
+    descriptions: '<',
     goBack: '&',
     services: '<',
     updateRenew: '&',

@@ -53,7 +53,7 @@ module.exports = (env = {}) => {
     },
   }, env);
 
-  const WEBPACK_REGION = `'${_.upperCase(env.region || process.env.REGION || 'EU')}'`;
+  const WEBPACK_REGION = `${_.upperCase(env.region || process.env.REGION || 'EU')}`;
 
   config.plugins.push(new webpack.DefinePlugin({
     WEBPACK_ENV: {
@@ -89,8 +89,11 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
-        __WEBPACK_REGION__: WEBPACK_REGION,
+        __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
     ],
+    optimization: {
+      runtimeChunk: 'single',
+    },
   });
 };

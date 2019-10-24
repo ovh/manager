@@ -5,7 +5,7 @@
   "account_contacts_service_category_DEDICATED": "Dedicated Server",
   "account_contacts_service_category_EXCHANGE": "Exchange",
   "account_contacts_service_category_HOSTING": "Shared",
-  "account_contacts_service_category_HOSTING_RESELLER": "Shared (Reseller) ",
+  "account_contacts_service_category_HOSTING_RESELLER": "Shared (Reseller)",
   "account_contacts_service_category_HUBIC": "hubiC",
   "account_contacts_service_category_KUBE": "Kubernetes",
   "account_contacts_service_category_OTHER": "Andere",
@@ -35,5 +35,5 @@
   "account_contacts_service_contact_admin": "Administrator-Kontakt",
   "account_contacts_service_contact_tech": "Technischer Kontakt",
   "account_contacts_service_contact_billing": "Rechnungskontakt",
-  "account_contacts_service_infos": "Sie können die Administator-, technischen und Rechnungs-Accounts Ihrer Dienste ändern. "
+  "account_contacts_service_infos": "Sie können die Administator-, technischen und Rechnungs-Accounts Ihrer Dienste ändern."
 }

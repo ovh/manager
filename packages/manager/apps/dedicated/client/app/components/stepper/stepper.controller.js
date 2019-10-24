@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+
 import Navigation from './stepper.navigation';
 import StepCollection from './stepper.step-collection';
 import TransitionManagement from './stepper.transition-management';
@@ -23,7 +25,7 @@ export default class {
 
     this.bindings = {
       header: {
-        steps: _.filter(
+        steps: filter(
           this.steps,
           step => step.header.isVisible,
         ),

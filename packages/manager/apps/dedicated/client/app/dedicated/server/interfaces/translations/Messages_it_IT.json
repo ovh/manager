@@ -46,8 +46,8 @@
   "dedicated_server_interfaces_type_isolated_label": "Isolata",
   "dedicated_server_interfaces_mac_label": "Indirizzo MAC",
   "dedicated_server_interfaces_bandwidth_label": "Banda passante",
-  "dedicated_server_interfaces_bandwidth_incoming_label": "Banda Passante in entrata",
-  "dedicated_server_interfaces_bandwidth_outgoing_label": "Banda Passante in uscita",
+  "dedicated_server_interfaces_bandwidth_incoming_label": "Banda passante in entrata",
+  "dedicated_server_interfaces_bandwidth_outgoing_label": "Banda passante in uscita",
   "dedicated_server_interfaces_ip_label": "IP",
   "dedicated_server_interfaces_failover_ip_label": "IP Failover",
   "dedicated_server_interfaces_vrack_label": "Rete privata",
@@ -67,5 +67,7 @@
   "dedicated_server_interfaces_bandwith_title": "Banda passante",
   "dedicated_server_interfaces_bandwith_description": "La banda passante pubblica in entrata (da e verso Internet) non presenta limitazioni. È possibile aumentare la banda passante pubblica e privata attivando l’opzione corrispondente.",
   "dedicated_server_interfaces_bandwith_public": "Banda passante pubblica",
-  "dedicated_server_interfaces_bandwith_private": "Banda passante privata"
+  "dedicated_server_interfaces_bandwith_private": "Banda passante privata",
+  "dedicated_server_interfaces_current_operation": "Sul server è in corso un'operazione ",
+  "dedicated_server_interfaces_task_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}"
 }

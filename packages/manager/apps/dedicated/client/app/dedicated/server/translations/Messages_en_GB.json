@@ -868,6 +868,7 @@
   "plan_vrack-bandwidth-4000-option-infra": "4Gbps guaranteed private bandwidth - Unlimited traffic - vRack option",
   "plan_vrack-bandwidth-5000-option-infra": "5Gbps guaranteed private bandwidth - Unlimited traffic - vRack option",
   "plan_bandwidth-1000-adv": "1Gbps public bandwidth - Unlimited traffic",
+  "plan_bandwidth-1000-burst-2gbps-infra": "2Gbps public bandwidth - Unlimited traffic",
   "plan_bandwidth-guaranteed-1000-ultimate-2019v1": "1Gbps guaranteed public bandwidth - Unlimited traffic - Ultimate option",
   "plan_bandwidth-guaranteed-2000-ultimate-2019v1": "2Gbps guaranteed public bandwidth - Unlimited traffic - Ultimate option",
   "plan_bandwidth-guaranteed-3000-ultimate-2019v1": "3Gbps guaranteed public bandwidth - Unlimited traffic - Ultimate option",

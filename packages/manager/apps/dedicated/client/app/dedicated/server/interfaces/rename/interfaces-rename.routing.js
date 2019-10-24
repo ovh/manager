@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated.server.interfaces.rename', {
     url: '/rename',
@@ -13,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     translations: { value: ['.'], format: 'json' },
     resolve: {
       goBack: /* @ngInject */ $state => (params, transitionParams) => $state.go('^', params, transitionParams),
-      interface: /* @ngInject */ $transition$ => _.cloneDeep($transition$.params().interface),
+      interface: /* @ngInject */ $transition$ => cloneDeep($transition$.params().interface),
     },
   });
 };

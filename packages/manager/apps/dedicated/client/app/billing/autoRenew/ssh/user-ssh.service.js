@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import partition from 'lodash/partition';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import values from 'lodash/values';
@@ -30,10 +31,18 @@ angular.module('UserAccount').service('UseraccountSshService', [
           promises.push(this.getCloudSshList());
       }
 
-      return $q.all(promises).then((data) => {
-        const keys = flatten(values(data));
-        return sortBy(keys, key => key.keyName.toLowerCase());
-      });
+      return $q.allSettled(promises)
+        .then(sshKeys => [sshKeys])
+        .catch(sshKeys => partition(flatten(sshKeys), ({ message }) => !message))
+        .then(([sshKeys, error]) => {
+          const keys = sortBy(flatten(values(sshKeys)), key => key.keyName.toLowerCase());
+
+          if (error) {
+            return $q.reject([keys, error]);
+          }
+
+          return keys;
+        });
     };
 
     self.getDedicatedSshList = function getDedicatedSshList() {
@@ -41,7 +50,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
         rootPath: 'apiv6',
       }).then((keyNames) => {
         const promises = map(keyNames, keyName => self.getDedicatedSshKey(keyName));
-        return $q.all(promises);
+        return $q.allSettled(promises);
       });
     };
 
@@ -97,7 +106,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
             id: key.id,
             url: self.getSshCloudUrl(project.id),
           }))));
-          return $q.all(promises);
+          return $q.allSettled(promises);
         })
         .then(keysByProjet => flatten(keysByProjet));
     };

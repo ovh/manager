@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "private": true,
   "description": "Web Universe Components",
   "keywords": [
@@ -26,7 +26,7 @@
   "peerDependencies": {
     "@ovh-ux/ng-ovh-http": "^4.0.2",
     "@ovh-ux/ng-ovh-payment-method": "^4.1.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.0.1",
@@ -44,6 +44,6 @@
     "moment": "^2.16.0",
     "ovh-api-services": "^9.17.0",
     "ovh-ui-angular": "^3.8.0",
-    "punycode": "^2.1.1"
+    "punycode": "^1.4.1"
   }
 }

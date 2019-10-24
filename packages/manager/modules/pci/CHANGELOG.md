@@ -1,3 +1,47 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.6...@ovh-ux/manager-pci@3.0.0) (2019-10-24)
+
+
+### Code Refactoring
+
+* **ng-ovh-payment-method:** rework payment method implementation ([#1455](https://github.com/ovh/manager/issues/1455)) ([8bb2249](https://github.com/ovh/manager/commit/8bb224921323dad898cd72665c8a73ea5fcfa331))
+
+
+### BREAKING CHANGES
+
+* **ng-ovh-payment-method:** rework payment method implementation
+  - removal of ovhPaymentMethodProvider. This provider only provided a way to set target. As the module now use @ovh-ux/manager-core
+    dependencies target is now available through @ovh-ux/manager-core region
+  - removal of ovhPaymentMethodAvailableTypes. You can now use ovhPaymentMethodRegister component
+
+
+
+## [2.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.5...@ovh-ux/manager-pci@2.4.6) (2019-10-23)
+
+
+### Bug Fixes
+
+* **pci.projects.containers:** add delete object binding ([#1546](https://github.com/ovh/manager/issues/1546)) ([f596c58](https://github.com/ovh/manager/commit/f596c588fe988309ffa20fc4b5848663f7d1f600))
+
+
+
+## [2.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.4...@ovh-ux/manager-pci@2.4.5) (2019-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+
+
+
+## [2.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.3...@ovh-ux/manager-pci@2.4.4) (2019-10-18)
+
+
+### Bug Fixes
+
+* **pci.projects.workflow:** add missing ngInject ([#1500](https://github.com/ovh-ux/manager/issues/1500)) ([fb9922d](https://github.com/ovh-ux/manager/commit/fb9922d))
+
+
+
 ## [2.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@2.4.2...@ovh-ux/manager-pci@2.4.3) (2019-10-17)
 
 

@@ -1,4 +1,13 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import head from 'lodash/head';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import reject from 'lodash/reject';
+import some from 'lodash/some';
+import values from 'lodash/values';
 
 import { OPTION_TYPES } from './option/option.constants';
 
@@ -42,7 +51,7 @@ export const ServicePackService = class ServicePack {
   static turnRawServicePackToServicePackForDashboard(servicePack) {
     return {
       ...servicePack,
-      basicOptions: _.reduce(
+      basicOptions: reduce(
         ServicePack.keepOnlyBasicOptions(servicePack.options),
         (prev, curr) => ({
           ...prev,
@@ -55,16 +64,16 @@ export const ServicePackService = class ServicePack {
   }
 
   static keepOnlyBasicOptions(options) {
-    return _.filter(
+    return filter(
       options,
-      option => _.isEqual(option.type, OPTION_TYPES.basic),
+      option => isEqual(option.type, OPTION_TYPES.basic),
     );
   }
 
   static keepOnlyCertification(options) {
-    const matchingCertification = _.find(
+    const matchingCertification = find(
       options,
-      option => _.isEqual(option.type, OPTION_TYPES.certification),
+      option => isEqual(option.type, OPTION_TYPES.certification),
     );
 
     return matchingCertification
@@ -103,7 +112,7 @@ export const ServicePackService = class ServicePack {
   }
 
   static computeType(servicePack) {
-    return _.find(
+    return find(
       servicePack.options,
       option => option.type === OPTION_TYPES.certification,
     )
@@ -112,15 +121,15 @@ export const ServicePackService = class ServicePack {
   }
 
   static removeCurrentServicePack(servicePacks, currentServicePackName) {
-    return _.reject(servicePacks, { name: currentServicePackName });
+    return reject(servicePacks, { name: currentServicePackName });
   }
 
   static keepOnlyCertainOptionType(servicePacks, optionTypeToKeep) {
-    return _.filter(
+    return filter(
       servicePacks,
-      servicePack => _.some(
+      servicePack => some(
         servicePack.options,
-        option => _.isEqual(option.type, optionTypeToKeep),
+        option => isEqual(option.type, optionTypeToKeep),
       ),
     );
   }
@@ -151,16 +160,16 @@ export const ServicePackService = class ServicePack {
   }
 
   static getAddonsFromCatalogForFamilyName(catalog, family) {
-    return _.find(
+    return find(
       catalog.plans[0].addonsFamily,
       { family },
     ).addons;
   }
 
   static getPricingsFromAddonsForPlanCode(addons, planCode) {
-    return _.find(
+    return find(
       addons,
-      addon => _.head(
+      addon => head(
         addon.plan.planCode.split('-consumption'),
       ) === planCode,
     ).plan.details.pricings;
@@ -171,14 +180,14 @@ export const ServicePackService = class ServicePack {
   }
 
   static getHostsOfBillingType(hosts, billingType) {
-    return _.filter(
+    return filter(
       hosts,
       { billingType },
     );
   }
 
   static computeNumberOfHostsPerProfileCode(hosts) {
-    return _.reduce(
+    return reduce(
       hosts,
       (acc, host) => {
         acc[host.profileCode] = acc[host.profileCode]
@@ -200,11 +209,11 @@ export const ServicePackService = class ServicePack {
           monthly: ServicePack.getAddonsFromCatalogForFamilyName(catalog, 'host'),
         };
 
-        return _.map(
+        return map(
           servicePacks,
           (servicePack) => {
-            const price = _.reduce(
-              _.filter(
+            const price = reduce(
+              filter(
                 hosts,
                 host => host.billingType !== 'freeSpare',
               ),
@@ -238,13 +247,13 @@ export const ServicePackService = class ServicePack {
     return this
       .DedicatedCloud
       .getDatacentersInformations(serviceName)
-      .then(datacenters => _.reduce(
-        _.map(
+      .then(datacenters => reduce(
+        map(
           datacenters.list.results,
           'hosts',
         ),
-        (acc, host) => _.flatten(
-          [...acc, _.values(
+        (acc, host) => flatten(
+          [...acc, values(
             host,
           )],
         ),

@@ -10,6 +10,7 @@ export default {
     container: '<',
     containerId: '<',
     defaultPassword: '<?',
+    deleteObject: '<',
     guideUrl: '<',
     projectId: '<',
     refresh: '<',

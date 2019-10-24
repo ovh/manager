@@ -874,6 +874,7 @@
   "plan_vrack-bandwidth-4000-option-infra": "4 Gbps de bande passante privée garantie - Trafic illimité - Option vRack",
   "plan_vrack-bandwidth-5000-option-infra": "5 Gbps de bande passante privée garantie - Trafic illimité - Option vRack",
   "plan_bandwidth-1000-adv": "1 Gbps de bande passante publique - Trafic illimité",
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps de bande passante publique - Trafic illimité",
   "plan_bandwidth-guaranteed-1000-ultimate-2019v1": "1 Gbps de bande passante publique garantie - Trafic illimité - Option Ultimate",
   "plan_bandwidth-guaranteed-2000-ultimate-2019v1": "2 Gbps de bande passante publique garantie - Trafic illimité - Option Ultimate",
   "plan_bandwidth-guaranteed-3000-ultimate-2019v1": "3 Gbps de bande passante publique garantie - Trafic illimité - Option Ultimate",

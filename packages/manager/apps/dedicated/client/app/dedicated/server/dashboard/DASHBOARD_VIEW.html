@@ -452,7 +452,7 @@
         </div>
     </div>
     <div class="row d-md-flex mb-5">
-        <div class="col-md-4">
+        <div class="col-md-4" data-ng-if="!server.isExpired">
             <!-- Network -->
             <oui-tile class="mb-5"
                 data-heading="{{:: 'server_network' | translate }}"
@@ -634,11 +634,12 @@
 
     <!-- RTM -->
     <div class="mb-5"
-         data-ng-include="'dedicated/server/statistics/rtm/dedicated-server-statistics-rtm.html'">
+        data-ng-if="!server.isExpired"
+        data-ng-include="'dedicated/server/statistics/rtm/dedicated-server-statistics-rtm.html'">
     </div>
 
     <!-- MRTG -->
-    <div class="oui-tile mb-5">
+    <div class="oui-tile mb-5" data-ng-if="!server.isExpired">
         <h4 class="oui-header_4 oui-tile__title"
             data-translate="server_tab_stats_legend_mrtg"></h4>
         <p class="oui-tile__legend"

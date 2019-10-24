@@ -10,6 +10,9 @@
       data-secondary-disabled="ctrl.loading"
       data-secondary-label="{{:: 'domain_tab_options_delete_cancel' | translate }}">
         <p data-translate="domain_tab_options_delete_confirm"></p>
+        <p data-ng-if="ctrl.option.expirationDate"
+           data-translate="domain_tab_options_delete_expiry"
+           data-translate-values="{ date: (ctrl.option.expirationDate | date:'mediumDate') }"></p>
         <oui-message type="warning">
             <span data-translate="domain_tab_options_delete_confirm_warning"></span>
         </oui-message>

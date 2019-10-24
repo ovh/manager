@@ -34,6 +34,7 @@ angular.module(moduleName, [
         });
 
         set(ouiCriteriaAdderConfiguration, 'translations', {
+          filter_label: $translate.instant('common_criteria_adder_filter_label'),
           column_label: $translate.instant('common_criteria_adder_column_label'),
           operator_label: $translate.instant('common_criteria_adder_operator_label'),
 

@@ -13,5 +13,8 @@
   "billing_autorenew_bulk_service": "(1 serviço)",
   "billing_autorenew_bulk_services": "({{ count }} serviços)",
   "billing_autorenew_bulk_more": "Mostrar mais",
-  "billing_autorenew_bulk_less": "Mostrar menos"
+  "billing_autorenew_bulk_less": "Mostrar menos",
+  "billing_autorenew_bulk_available_more": "Ver os detalhes dos serviços compatíveis",
+  "billing_autorenew_bulk_available_less": "Ocultar os detalhes dos serviços compatíveis",
+  "billing_autorenew_bulk_one": "Selecionou 1 serviço"
 }

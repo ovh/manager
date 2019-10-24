@@ -1,8 +1,0 @@
-{
-  "page_load_error": "Ocorreu um erro ao carregar a página.",
-  "page_load_error_common": "A página pretendida não foi encontrada.",
-  "page_load_error_forbidden_billing_access": "A secção “Faturação” não pode ser acedida a partir desta conta.",
-  "page_load_error_back_to_home": "Voltar para a página inicial",
-  "page_load_error_code": "Código de erro: {{ code }}",
-  "page_load_error_retry": "Tentar novamente"
-}

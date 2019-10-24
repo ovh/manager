@@ -1,3 +1,30 @@
+## [10.25.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.4...@ovh-ux/manager-dedicated@10.25.5) (2019-10-23)
+
+
+### Bug Fixes
+
+* downgrade punycode (2.x drops browser support) ([5bb334e](https://github.com/ovh/manager/commit/5bb334e798d0538e85fa9539e4f5805cd83118ac))
+
+
+
+## [10.25.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.3...@ovh-ux/manager-dedicated@10.25.4) (2019-10-23)
+
+
+### Bug Fixes
+
+* **dedicated:** add bootstrap4 grid and update rem ([ed29ab7](https://github.com/ovh/manager/commit/ed29ab78db4d8bf8e34d593b89c526b4177126ec))
+* **dedicated:** override width for large modals ([#1494](https://github.com/ovh/manager/issues/1494)) ([b15cb8d](https://github.com/ovh/manager/commit/b15cb8d369ad6963be471121dc5ff4d1b080a2c5))
+* **dedicated:** remove max-width for oui-message ([#1498](https://github.com/ovh/manager/issues/1498)) ([ff34a6a](https://github.com/ovh/manager/commit/ff34a6a58dff0bfb47e22b5c22ecaaa7eddeba4f))
+* **dedicated:** sort styles import ([60372d6](https://github.com/ovh/manager/commit/60372d6902d5a9b7d358a30e84cd2022c6edfd1f))
+* **dedicated:** update spacing ([#1520](https://github.com/ovh/manager/issues/1520)) ([8df5d9b](https://github.com/ovh/manager/commit/8df5d9b71b7491aa9121418ea7d3b2a84d596e22))
+* **i18n:** add missing translations [CDS 106] ([f9d2338](https://github.com/ovh/manager/commit/f9d2338268991329e2816d48e0da6bd293632590))
+* fast polling now works correctly ([#1518](https://github.com/ovh/manager/issues/1518)) ([b209e0c](https://github.com/ovh/manager/commit/b209e0c87a55ad045f4fffbf1cd28e1139239bf5))
+* replace legacy autocomplete by oui-autocomplete ([#1503](https://github.com/ovh/manager/issues/1503)) ([bff4cfc](https://github.com/ovh/manager/commit/bff4cfc818d886c61405a6d16429d129533ba283))
+* replace lodash imports ([af0b5ce](https://github.com/ovh/manager/commit/af0b5ce021b4cbb799624852c6f8e1d85b5976e4))
+* **i18n:** add missing translations [CDS 112] ([7edf8f6](https://github.com/ovh/manager/commit/7edf8f6265aa70fa456d75162bc1f1013455b4b6))
+
+
+
 ## [10.25.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-dedicated@10.25.2...@ovh-ux/manager-dedicated@10.25.3) (2019-10-17)
 
 

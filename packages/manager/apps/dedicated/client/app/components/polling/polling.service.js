@@ -4,28 +4,27 @@ import unset from 'lodash/unset';
 angular.module('services').service('Polling', [
   '$http',
   '$q',
-  '$rootScope',
   '$timeout',
-  function PollingService($http, $q, $rootScope, $timeout) {
+  function PollingService($http, $q, $timeout) {
     // @TODO when angular version will be >=1.2.x use
     // Notify instead state param(resolveState / notifyState)
 
     let to = true;
     let tofast = true;
-    let watchedTasksPromise = [];
+    let watchedTasksPromise = {};
     const resolveState = 'resolve';
     const notifyState = 'notify';
     const notifyExist = 'alreadyExist';
     const defaultElapse = 15000;
     let elapse = defaultElapse;
     let isRun = false;
-    let watchedTasks = [];
-    let killedScope = [];
+    let watchedTasks = {};
+    let killedScope = {};
     const defaultElapseFast = 5000;
     let elapsefast = defaultElapseFast;
     let isFastRun = false;
-    let watchedTasksFast = [];
-    let killedScopeFast = [];
+    let watchedTasksFast = {};
+    let killedScopeFast = {};
 
     function idtask(taskId) {
       return `t${taskId}`;
@@ -33,13 +32,13 @@ angular.module('services').service('Polling', [
 
     function clean() {
       elapse = defaultElapse;
-      watchedTasks = [];
-      killedScope = [];
+      watchedTasks = {};
+      killedScope = {};
     }
     function cleanFast() {
       elapsefast = defaultElapseFast;
-      watchedTasksFast = [];
-      killedScopeFast = [];
+      watchedTasksFast = {};
+      killedScopeFast = {};
     }
 
     function stop() {
@@ -155,8 +154,8 @@ angular.module('services').service('Polling', [
 
     function poll(fast) {
       const resultsTasks = [];
-      let watchedTasksList = [];
-      let killedScopeList = [];
+      let watchedTasksList = {};
+      let killedScopeList = {};
       let hasElements = false;
 
       if (fast) {
@@ -190,7 +189,7 @@ angular.module('services').service('Polling', [
         }
       });
 
-      killedScopeList = [];
+      killedScopeList = {};
 
       // STOP if no elements
       if (!hasElements) {
@@ -251,17 +250,18 @@ angular.module('services').service('Polling', [
     */
     this.addTaskFast = function addTaskFast(taskUrl, task, scopeId, cancelIfExist) {
       const deferPromise = $q.defer();
-      if (cancelIfExist && watchedTasksPromise[idtask(task.id || task.taskId)]) {
+      const idTask = idtask(task.id || task.taskId);
+      if (cancelIfExist && watchedTasksPromise[idTask]) {
         deferPromise.resolve({ state: notifyExist });
       } else {
-        if (!watchedTasksPromise[idtask(task.id || task.taskId)]) {
-          watchedTasksPromise[idtask(task.id || task.taskId)] = [];
+        if (!watchedTasksPromise[idTask]) {
+          watchedTasksPromise[idTask] = [];
         }
-        watchedTasksPromise[idtask(task.id || task.taskId)].push({
+        watchedTasksPromise[idTask].push({
           pollPromise: deferPromise,
           scopeId,
         });
-        watchedTasksFast[idtask(task.id || task.taskId)] = {
+        watchedTasksFast[idTask] = {
           url: taskUrl,
           task,
           scopeId,
@@ -314,7 +314,7 @@ angular.module('services').service('Polling', [
       } else {
         stopfast();
         stop();
-        watchedTasksPromise = [];
+        watchedTasksPromise = {};
       }
     };
 

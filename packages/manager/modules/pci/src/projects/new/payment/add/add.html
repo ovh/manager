@@ -3,35 +3,39 @@
         data-translate="pci_projects_new_payment_default_title">
     </h2>
 
-    <p>
-        <span class="d-block"
-              data-translate="pci_projects_new_payment_add_explain1">
-        </span>
-        <span data-translate="pci_projects_new_payment_add_explain2"></span>
-    </p>
+    <ovh-payment-method-register
+        data-model="$ctrl.paymentModel"
+        data-show-set-as-default-choice="false"
+        data-registered-payment-methods="$ctrl.registeredPaymentMethods"
+        data-on-nitialized="$ctrl.onLoaded()">
 
-    <ovh-payment-method-available-types
-        data-on-loaded="$ctrl.onLoaded()"
-        data-on-load-error="$ctrl.onAvailablePaymentTypesLoadError.bind($ctrl)"
-        data-selected-payment-type="$ctrl.selectedPaymentType">
-    </ovh-payment-method-available-types>
+        <ovh-payment-method-register-introduction-text>
+            <p>
+                <span class="d-block"
+                      data-translate="pci_projects_new_payment_add_explain1">
+                </span>
+                <span data-translate="pci_projects_new_payment_add_explain2"></span>
+            </p>
+        </ovh-payment-method-register-introduction-text>
 
-    <small data-ng-switch="$ctrl.selectedPaymentType.paymentType.value"
-           data-ng-if="$ctrl.selectedPaymentType"
-           data-translate="{{ 'pci_projects_new_payment_add_' + $ctrl.selectedPaymentType.paymentType.value.toLowerCase() + '_selected' }}"
-           class="d-block mb-3">
-    </small>
+        <ovh-payment-method-register-explanation-text>
+            <small data-ng-if="$ctrl.paymentModel.selectedPaymentMethodType"
+                   data-translate="{{ 'pci_projects_new_payment_add_' + $ctrl.paymentModel.selectedPaymentMethodType.paymentType.toLowerCase() + '_selected' }}"
+                   class="d-block mb-3">
+            </small>
 
-    <oui-message
-        data-type="info"
-        data-dismissable="false"
-        data-ng-if="$ctrl.selectedPaymentType.paymentType.value === 'BANK_ACCOUNT'">
-        <span data-translate="pci_projects_new_payment_add_bank_account_info"></span>
-    </oui-message>
+            <oui-message
+                data-type="info"
+                data-dismissable="false"
+                data-ng-if="$ctrl.paymentModel.selectedPaymentMethodType.paymentType === 'BANK_ACCOUNT'">
+                <span data-translate="pci_projects_new_payment_add_bank_account_info"></span>
+            </oui-message>
+        </ovh-payment-method-register-explanation-text>
 
-    <p
-        data-ng-if="$ctrl.hasPaymentMethods"
-        data-translate="pci_projects_new_payment_add_no_default"
-        data-translate-values="{ 'href': $ctrl.paymentMethodUrl }">
+    </ovh-payment-method-register>
+
+    <p data-ng-if="$ctrl.registeredPaymentMethods.length"
+       data-translate="pci_projects_new_payment_add_no_default"
+       data-translate-values="{ 'href': $ctrl.paymentMethodUrl }">
     </p>
 </div>

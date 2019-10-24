@@ -1,5 +1,6 @@
 angular
   .module('App')
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */
     (

@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+
 export const name = 'ovhManagerPccDashboardOptionsUserService';
 
 export const OptionsUserService = class {
@@ -17,8 +20,8 @@ export const OptionsUserService = class {
       .expand('CachedObjectList-Pages')
       .execute({ serviceName }).$promise;
 
-    return !_.isEmpty(
-      _.find(
+    return !isEmpty(
+      find(
         users,
         { isTokenValidator: true },
       ),

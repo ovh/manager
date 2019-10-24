@@ -298,9 +298,14 @@
                 data-loading="$ctrl.loading.options">
                 <oui-tile-definition data-term="{{ ::'domain_dashboard_options_dns_anycast' | translate }}">
                     <oui-tile-description>
-                        <span data-ng-if="$ctrl.options.dnsAnycast"
-                              data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.optionActivated ? 'enabled' : 'disabled') }}">
-                        </span>
+                        <p data-ng-if="$ctrl.options.dnsAnycast">
+                            <span data-translate="{{ 'domain_dashboard_options_status_' + ($ctrl.options.dnsAnycast.optionActivated ? 'enabled' : 'disabled') }}">
+                            </span>
+                            <span data-ng-if="!$ctrl.options.dnsAnycast.optionActivated">
+                                (<span data-translate="domain_dashboard_options_dns_anycast_expiry"
+                                       data-translate-values="{ date: ($ctrl.options.dnsAnycast.expirationDate | date:'mediumDate') }"></span>)
+                            </span>
+                        </p>
                         <span data-ng-if="!$ctrl.options.dnsAnycast"
                               data-translate="domain_dashboard_options_unavailable">
                         </span>

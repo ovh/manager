@@ -13,6 +13,10 @@ export default class BillingService {
     this.expirationDate = moment(this.expiration);
   }
 
+  getServiceName() {
+    return this.serviceId;
+  }
+
   get formattedExpiration() {
     return this.expirationDate.format('LL');
   }
