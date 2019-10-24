@@ -13,7 +13,6 @@ import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 import ngOvhFormFlat from '@ovh-ux/ng-ovh-form-flat';
 import ngOvhJsplumb from '@ovh-ux/ng-ovh-jsplumb';
-import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhResponsiveTabs from '@ovh-ux/ng-ovh-responsive-tabs';
 import ngOvhSlider from '@ovh-ux/ng-ovh-slider';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
@@ -62,7 +61,6 @@ angular.module('managerApp', [
   ngOvhCheckboxTable,
   ngOvhDocUrl,
   ngOvhFormFlat,
-  ngOvhOtrs,
   ngOvhSsoAuth,
   ngOvhSsoAuthModalPlugin,
   ngOvhStopEvent,
@@ -117,9 +115,6 @@ angular.module('managerApp', [
   .config((responsivePopoverProvider) => {
     // tell to the module that we consider a mobile device with at least 800px width
     responsivePopoverProvider.setMobileMediaQuery('(max-width: 800px)');
-  })
-  .config((OtrsPopupProvider, REDIRECT_URLS) => {
-    OtrsPopupProvider.setBaseUrlTickets(get(REDIRECT_URLS, 'support', null));
   })
   .config((ouiTableConfigurationProvider) => {
     ouiTableConfigurationProvider.setCssConfig({
