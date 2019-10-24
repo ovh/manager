@@ -899,7 +899,7 @@ module.exports = {
       'SN',
     ],
     REDIRECT_URLS: {
-      listTicket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
+      support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
     },
     ORDER_URL: {
       CZ: 'https://www.ovh.cz/order/express/#/express/review?products=',
@@ -1147,7 +1147,7 @@ module.exports = {
       'SN',
     ],
     REDIRECT_URLS: {
-      listTicket: 'https://ca.ovh.com/manager/index.html#/ticket',
+      support: 'https://ca.ovh.com/manager/index.html#/support',
     },
     ORDER_URL: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review?products=',
