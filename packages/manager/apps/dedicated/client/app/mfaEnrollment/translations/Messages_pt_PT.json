@@ -1,0 +1,7 @@
+{
+  "mfa_enrollment_title": "Proteja a sua conta graças à dupla autenticação!",
+  "mfa_enrollment_info1": "Uma simples palavra-passe nem sempre é suficiente para proteger a sua conta. Recomendamos que ative o sistema de validação de dois fatores",
+  "mfa_enrollment_info2": "para aumentar o nível de segurança e proteger os seus dados. Para além da palavra-passe da conta, deverá introduzir um código de validação que receberá por SMS ou uma chave de segurança para completar a ligação.",
+  "mfa_enrollment_go": "Vamos começar!",
+  "mfa_enrollment_cancel": "Agora não"
+}
