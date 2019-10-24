@@ -1,0 +1,46 @@
+{
+  "name": "@ovh-ux/ng-ovh-payment-method",
+  "version": "5.0.0",
+  "description": "OVH Payment Methods wrapper for AngularJS",
+  "keywords": [
+    "angularjs",
+    "bank-account",
+    "credit-card",
+    "ovh",
+    "payment-methods",
+    "paypal"
+  ],
+  "repository": "ovh-ux/ng-ovh-payment-method",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ovh-payment-method.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-payment-method' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-payment-method' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-payment-method' --include-filtered-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^6.0.2"
+  },
+  "peerDependencies": {
+    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "angular": "^1.5.0",
+    "angular-translate": "^2.17.0",
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "ovh-api-services": "^9.0.0",
+    "ovh-ui-angular": "^2.23.x",
+    "ovh-ui-kit": "^2.23.x"
+  }
+}

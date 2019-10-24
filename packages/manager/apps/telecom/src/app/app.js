@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+import has from 'lodash/has';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -32,8 +34,11 @@ import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ovhManagerTelecomSpare from '@ovh-ux/manager-telecom-spare';
 
+import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
 import carrierSip from './telecom/telephony/carrierSip';
+
+import errorPage from './error-page/error-page.module';
 import navbar from '../components/navbar';
 
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -49,6 +54,7 @@ import './app-scss.scss';
 import './app.less';
 
 Environment.setRegion('EU');
+Environment.setVersion(__VERSION__);
 
 angular.module('managerApp', [
   'angular-inview',
@@ -105,11 +111,12 @@ angular.module('managerApp', [
   'oui',
   'pascalprecht.translate',
   'smoothScroll',
+  errorPage,
   navbar,
   'tmh.dynamicLocale',
   'ui.bootstrap',
   'ui.select',
-  'ui.router',
+  uiRouter,
   'ui.utils',
   'ui.calendar',
   'ui.sortable',
@@ -229,5 +236,17 @@ angular.module('managerApp', [
     $translatePartialLoader.addPart('common');
     $translatePartialLoader.addPart('components');
   })
-  .run(/* @ngTranslationsInject:json ./common/translations */)
-  .controller('TelecomAppCtrl', TelecomAppCtrl);
+  .controller('TelecomAppCtrl', TelecomAppCtrl)
+  .run(/* @ngInject */ ($state) => {
+    $state.defaultErrorHandler((error) => {
+      if (error.type === RejectType.ERROR) {
+        $state.go('telecomError', {
+          detail: {
+            message: get(error.detail, 'data.message'),
+            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
+          },
+        }, { location: false });
+      }
+    });
+  })
+  .run(/* @ngTranslationsInject:json ./common/translations */);

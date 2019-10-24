@@ -46,8 +46,11 @@ import preload from './components/manager-preload/manager-preload.module';
 import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
+import mfaEnrollment from './mfaEnrollment/mfaEnrollment.module';
+
 
 Environment.setRegion(__WEBPACK_REGION__);
+Environment.setVersion(__VERSION__);
 
 angular
   .module('App', [
@@ -67,11 +70,11 @@ angular
     'filters',
     'internationalPhoneNumber',
     'Module.download',
-    // ['eu', 'ca'].includes(WEBPACK_ENV.region) ? 'Module.exchange' : undefined,
-    ['eu', 'ca'].includes(WEBPACK_ENV.region) ? moduleExchange : undefined,
+    Environment.getRegion() === 'CA' ? moduleExchange : undefined,
     'Module.ip',
     'Module.license',
     'Module.otrs',
+    mfaEnrollment,
     'ng.ckeditor',
     'ngMessages',
     ngAtInternet,

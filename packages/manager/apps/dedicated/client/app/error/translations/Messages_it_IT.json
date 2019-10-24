@@ -1,8 +1,0 @@
-{
-  "page_load_error": "Si è verificato un errore durante il caricamento della pagina.",
-  "page_load_error_common": "Impossibile trovare la pagina richiesta.",
-  "page_load_error_forbidden_billing_access": "Impossibile accedere alla sezione \"Fatturazione\" da questo account.",
-  "page_load_error_back_to_home": "Ritorna alla home page dello Spazio Cliente OVH",
-  "page_load_error_code": "Codice di errore: {{code}}",
-  "page_load_error_retry": "Riprova"
-}

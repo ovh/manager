@@ -2,6 +2,7 @@
   "globals": {
     "__NG_APP_INJECTIONS__": true,
     "__WEBPACK_REGION__": true,
+    "__VERSION__": true,
     "EprotectIframeClient": true,
     "ipaddr": true,
     "JSURL": true,

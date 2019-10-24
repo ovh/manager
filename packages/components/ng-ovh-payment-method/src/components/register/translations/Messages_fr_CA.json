@@ -1,0 +1,4 @@
+{
+  "ovh_payment_method_register_force_as_default": "Ce moyen de paiement sera utilisé pour les paiements automatiques de votre produit. Vous pouvez à tout moment modifier celui-ci dans vos moyens de paiements. Vous serez notifié par e-mail avant chaque nouvelle échéance.",
+  "ovh_payment_method_register_set_as_default_choice": "Je veux sélectionner ce moyen de paiement par défaut dès sa validation."
+}

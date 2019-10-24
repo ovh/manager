@@ -6,14 +6,14 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     views: {
       'app@': {
-        component: 'managerDedicatedError',
+        component: 'managerErrorPage',
       },
     },
     resolve: {
-      error: /* @ngInject */ $transition$ => $transition$.params().detail,
-      homeLink: /* @ngInject */ $state => $state.href('app.configuration', {}, { reload: true }),
-      reload: /* @ngInject */ $window => () => $window.location.reload(),
+      cancelLink: /* @ngInject */ $state => $state.href('app.configuration', { reload: true }),
+      error: /* @ngInject */ $transition$ => $transition$.params(),
+      submitAction: /* @ngInject */ $window => () => $window.location.reload(),
+      translationsRefresh: /* @ngInject */ $translate => $translate.refresh(),
     },
-    translations: { value: ['.'], format: 'json' },
   });
 };

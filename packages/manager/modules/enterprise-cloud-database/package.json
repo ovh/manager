@@ -47,7 +47,7 @@
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^4.2.0",
-    "@ovh-ux/ng-ovh-toaster": "^1.0.2",
+    "@ovh-ux/ng-ovh-toaster": "^1.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@ovh-ux/ng-ui-router-layout": "^2.1.1",
     "@uirouter/angularjs": "^1.0.15",

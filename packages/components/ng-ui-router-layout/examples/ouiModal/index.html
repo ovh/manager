@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>@ovh-ux/ng-ui-router-layout</title>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+    </head>
+    <body ng-app="myApp">
+        <nav>
+            <a ui-sref="component">Foo</a>
+        </nav>
+        <script src="https://unpkg.com/angular@latest/angular.js"></script>
+        <script src="https://unpkg.com/@uirouter/angularjs@latest/release/angular-ui-router.js"></script>
+        <script src="https://unpkg.com/@ovh-ux/ng-ui-router-layout@latest"></script>
+        <script src="https://unpkg.com/jquery@1.12.4/dist/jquery.js"></script>
+        <script src="https://unpkg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/angular-ui-bootstrap@1.3.3/dist/ui-bootstrap-tpls.js"></script>
+        <script>
+            angular
+              .module('myApp', ['ui.router', 'ui.bootstrap', 'ngUiRouterLayout'])
+              .config(($stateProvider) => {
+                $stateProvider.state('component', {
+                  url: '/component',
+                  component: 'component',
+                  layout: 'ouiModal',
+                  resolve: {
+                    redirectTo: () => 'a.state.of.your.choice',
+                    heading: () => 'ouiModal layout used with component',
+                    primaryLabel: () => 'Primary button',
+                    primaryAction: () => () => {
+                      alert('primary button is clicked !');
+                    },
+                    secondaryLabel: () => 'Secondary button',
+                    secondaryAction: () => () => {
+                      alert('secondary button is clicked !');
+                    },
+                    model: () => ({
+                      firstname: 'Sullyvan',
+                    }),
+                  },
+                });
+              })
+              .component('component', {
+                template: '<h2>Hello {{ $ctrl.resolve.model.firstname }}!</h2>',
+              });
+        </script>
+    </body>
+</html>

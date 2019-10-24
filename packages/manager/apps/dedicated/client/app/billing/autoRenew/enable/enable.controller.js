@@ -8,7 +8,7 @@ export default class {
 
   $onInit() {
     this.descriptions = {
-      getSingleUpdate: service => this.$translate.instant('billing_autorenew_enable_bulk_single', { serviceName: service.serviceName }),
+      getSingleUpdate: service => this.$translate.instant('billing_autorenew_enable_bulk_single', { serviceName: service.getServiceName() }),
       getCompleteUpdate: () => this.$translate.instant('billing_autorenew_enable_bulk'),
       getUncompleteUpdate: count => (count === 1 ? this.$translate.instant('billing_autorenew_enable_bulk_unavailable_one') : this.$translate.instant('billing_autorenew_enable_bulk_unavailable', { count })),
     };

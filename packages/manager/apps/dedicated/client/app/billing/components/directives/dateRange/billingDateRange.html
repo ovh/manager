@@ -6,7 +6,7 @@
                 class="btn btn-default"
                 data-ng-repeat="preset in $ctrl.presets track by preset.id"
                 data-ng-class="{ active: $ctrl.dateRangeSelection.mode === preset.id }"
-                data-ng-click="$ctrl.onPresetBtn(preset)"
+                data-ng-click="$ctrl.onPresetBtn(preset);"
                 data-ng-bind=":: preset.label"
                 data-toggle="{{ $ctrl.dateRangeSelection.mode === preset.id }}"
                 aria-pressed="{{ $ctrl.dateRangeSelection.mode === preset.id ? 'true' : 'false' }}">
@@ -33,58 +33,16 @@
     <div class="mt-2"
          data-ng-show="$ctrl.dateRangeSelection.mode === $ctrl.CUSTOM_RANGE_MODE">
         <span data-ng-if="$ctrl.dateRangeSelection.mode === $ctrl.CUSTOM_RANGE_MODE">
-
-            <span>
-                {{ :: 'title_from' | translate }} {{ $ctrl.dateRangeSelection.dateFrom.toDate() | date: 'mediumDate' }}
-            </span>
-
-            <a  role="button"
-                class="mr-2"
-                href="#"
-                data-date-time-picker
-                data-dtp-autoclose="true"
-                data-dtp-placement="bottom"
-                data-dtp-min-view-mode="weeks"
-                data-dtp-end-date="{{ $ctrl.today.toString() }}"
-                data-dtp-model-timezone="local"
-                data-ng-model="$ctrl.model.dateFrom"
-                data-ng-change="$ctrl.dateFromChanged($ctrl.model)"
-                data-dtp-pick-time="false"
-                data-dtp-type="date"
-                data-dtp-format="DD/MM/YYYY">
-                <span class="add-on"
-                      data-tooltip-placement="bottom"
-                      data-uib-tooltip="{{ :: 'period_tooltip_from' | translate }}">
-                    <i class="fa fa-calendar"></i>
-                </span>
-                <input type="hidden"/>
-            </a>
-
-            <span>
-                {{ :: 'title_to' | translate }} {{ $ctrl.dateRangeSelection.dateTo.toDate() | date: 'mediumDate' }}
-            </span>
-
-            <a  role="button"
-                href="#"
-                data-date-time-picker
-                data-dtp-autoclose="true"
-                data-dtp-placement="bottom"
-                data-dtp-min-view-mode="weeks"
-                data-dtp-end-date="{{ $ctrl.today.toString() }}"
-                data-ng-model="$ctrl.model.dateTo"
-                data-dtp-model-timezone="local"
-                data-ng-change="$ctrl.dateToChanged($ctrl.model)"
-                data-dtp-pick-time="false"
-                data-dtp-type="date"
-                data-dtp-format="DD/MM/YYYY">
-                <span class="add-on"
-                      data-tooltip-placement="bottom"
-                      data-tooltip="{{ :: 'period_tooltip_to' | translate }}">
-                    <i class="fa fa-calendar" ></i>
-                </span>
-                <input type="hidden"/>
-            </a>
-
+            <oui-field data-size="m">
+                <oui-calendar
+                    data-mode="range"
+                    data-model="$ctrl.customDateRangeModel"
+                    data-format="Z"
+                    data-alt-format="j M Y"
+                    data-max-date="$ctrl.today"
+                    data-on-close="$ctrl.onDateRangeChange(selectedDates, dateStr)">
+                </oui-calendar>
+            </oui-field>
         </span>
     </div>
 </div>
