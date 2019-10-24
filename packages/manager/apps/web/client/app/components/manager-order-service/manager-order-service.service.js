@@ -61,12 +61,14 @@ export default class OrderService {
       .$promise;
   }
 
-  addConfigurationItem(cartId, itemId, item) {
+  addConfigurationItem(cartId, itemId, label, value) {
     return this.OvhApiOrder.Cart().Item().Configuration().v6()
       .post({
         cartId,
         itemId,
-        item,
+      }, {
+        label,
+        value,
       })
       .$promise;
   }
