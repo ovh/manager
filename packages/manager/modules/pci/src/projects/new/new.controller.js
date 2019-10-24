@@ -209,6 +209,7 @@ export default class PciProjectNewCtrl {
       paymentType: {
         value: 'CREDIT_CARD',
       },
+      integration: 'REDIRECT',
     };
 
     return this.ovhPaymentMethod
