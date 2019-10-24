@@ -212,7 +212,7 @@ export default function () {
                         .indexOf(enumId) > -1
                         ? enumId
                         : snakeCase(`ovh_contact_edit_${enumId}`), enumValue].join('_')),
-                    enumValue,
+                    value: enumValue,
                   });
                 });
               } else if (angular.isObject(models[value.fullType].properties)) {
