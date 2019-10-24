@@ -1,0 +1,8 @@
+{
+  "phones_delete_cancel": "Annuler",
+  "phones_delete_submit": "Valider",
+  "phones_delete_title": "Supprimer un téléphone",
+  "phones_delete_description": "Êtes-vous sûr(e) de vouloir supprimer ce matériel de la liste de vos matériels ?",
+  "phones_delete_succeed": "La demande de suppression du téléphone a été envoyée avec succès.",
+  "phones_delete_failed": "Une erreur s'est produite lors de l'envoi de la demande de suppression du téléphone : {{error}}."
+}

@@ -1,0 +1,12 @@
+<oui-modal data-heading="{{ ::$ctrl.title | translate}}"
+           data-type="warning"
+           data-primary-action="$ctrl.deleteSpare()"
+           data-primary-label="{{:: 'phones_delete_submit' | translate }}"
+           data-secondary-action="$ctrl.goBack()"
+           data-secondary-label="{{:: 'phones_delete_cancel' | translate }}"
+           data-on-dismiss="$ctrl.goBack()"
+           data-loading="$ctrl.loading">
+
+    <div data-translate="phones_delete_description"></div>
+
+</oui-modal>

@@ -1,9 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor($uibModalInstance, OvhApiXdsl, params) {
-    this.$uibModalInstance = $uibModalInstance;
+  constructor($translate, OvhApiXdsl) {
+    this.$translate = $translate;
     this.OvhApiXdsl = OvhApiXdsl;
-    this.spare = params.spare;
   }
 
   $onInit() {
@@ -12,7 +11,7 @@ export default class {
     this.selectedDomain = '';
 
     this.loading = false;
-    this.title = 'xdsl_modem_modal_replacement_title';
+    this.title = 'xdsl_modem_replace_title';
     this.loading = true;
     this.retrieveCompatibleReplacement();
   }
@@ -34,32 +33,21 @@ export default class {
   }
 
   replaceSpare() {
-    let actionResult = null;
+    this.loading = true;
     return this.OvhApiXdsl.Spare().v6().replaceSpare({
       spare: this.spare,
     }, {
       domain: this.domain,
-    }).$promise.then(() => {
-      actionResult = {
-        isSucceed: true,
-        messageToDisplay: 'modems_modal_replacement_succeed',
-      };
-    })
-      .catch((err) => {
-        actionResult = {
-          isSucceed: false,
-          messageToDisplay: 'modems_modal_replacement_failed',
-          errorMessage: err.data.message,
-          spare: this.spare,
-        };
-      }).finally(() => this.close(actionResult));
-  }
-
-  cancel() {
-    return this.$uibModalInstance.dismiss();
-  }
-
-  close(actionResult) {
-    return this.$uibModalInstance.close({ actionResult });
+    }).$promise
+      .then(() => this.goBack(
+        this.$translate.instant('xdsl_modem_replace_succeed'),
+      ))
+      .catch(err => this.goBack(
+        this.$translate.instant('xdsl_modem_replace_failed', { error: err.data.message }),
+        'error',
+      ))
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }

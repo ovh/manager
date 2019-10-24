@@ -1,0 +1,14 @@
+<oui-modal data-heading="{{ ::$ctrl.title | translate}}"
+           data-type="warning"
+           data-primary-action="$ctrl.returnMerchandise()"
+           data-primary-label="{{:: 'xdsl_modem_return_submit' | translate }}"
+           data-secondary-action="$ctrl.goBack()"
+           data-secondary-label="{{:: 'xdsl_modem_return_cancel' | translate }}"
+           data-on-dismiss="$ctrl.goBack()"
+           data-loading="$ctrl.loading">
+
+    <div>
+        <div data-translate="xdsl_modem_return_description"></div>
+        <div data-translate="xdsl_modem_return_description_more" class="oui-tile__term"></div>
+    </div>
+</oui-modal>

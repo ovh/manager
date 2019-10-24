@@ -6,9 +6,5 @@
   "phones_protocol_col": "Protocole",
   "phones_order_button": "Commander",
   "phones_replace_action": "Affecter",
-  "phones_delete_action": "Supprimer",
-  "phones_modal_replacement_succeed": "La demande d'affectation du téléphone a été envoyée avec succès.",
-  "phones_modal_replacement_failed": "Une erreur s'est produite lors de l'envoi de la demande d'affectation du téléphone pour la référence {{spare}}. Veuillez contacter le support.",
-  "phones_modal_delete_succeed": "La demande de suppression du téléphone a été envoyée avec succès.",
-  "phones_modal_delete_failed": "Une erreur s'est produite lors de l'envoi de la demande de suppression du téléphone : {{error}}."
+  "phones_delete_action": "Supprimer"
 }

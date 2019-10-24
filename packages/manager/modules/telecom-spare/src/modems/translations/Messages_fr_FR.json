@@ -6,11 +6,5 @@
   "modems_order_button": "Commander",
   "modems_replace_action": "Affecter",
   "modems_return_action": "Retour",
-  "modems_delete_action": "Supprimer",
-  "modems_modal_replacement_succeed": "La demande d'affectation du modem a été envoyée avec succès.",
-  "modems_modal_replacement_failed": "Une erreur s'est produite lors de l'envoi de la demande d'affectation du modem : {{error}}. Veuillez contacter le support.",
-  "modems_modal_return_succeed": "La demande de retour du modem a été envoyée avec succès. Vous allez recevoir un e-mail vous décrivant la marche à suivre pour nous renvoyer votre ancien modem.",
-  "modems_modal_return_failed": "Une erreur s'est produite lors de l'envoi de la demande de retour du modem : {{error}}.",
-  "modems_modal_delete_succeed": "La demande de suppression du modem a été envoyée avec succès.",
-  "modems_modal_delete_failed": "Une erreur s'est produite lors de l'envoi de la demande de suppression du modem : {{error}}."
+  "modems_delete_action": "Supprimer"
 }

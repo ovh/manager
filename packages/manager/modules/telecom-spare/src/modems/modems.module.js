@@ -4,6 +4,10 @@ import '@ovh-ux/manager-core';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import deleteModem from './delete/modems-delete.module';
+import replaceModem from './replace/modems-replace.module';
+import returnModem from './return/modems-return.module';
+
 import component from './modems.component';
 import routing from './modems.routing';
 
@@ -16,6 +20,9 @@ angular
     'oui',
     'ovhManagerCore',
     'ovh-api-services',
+    deleteModem,
+    replaceModem,
+    returnModem,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

@@ -1,0 +1,8 @@
+{
+  "xdsl_modem_delete_title": "Supprimer un modem",
+  "xdsl_modem_delete_description": "Êtes-vous sûr(e) de vouloir supprimer ce matériel de la liste de vos matériels ?",
+  "xdsl_modem_delete_cancel": "Annuler",
+  "xdsl_modem_delete_submit": "Valider",
+  "xdsl_modem_delete_succeed": "La demande de suppression du modem a été envoyée avec succès.",
+  "xdsl_modem_delete_failed": "Une erreur s'est produite lors de l'envoi de la demande de suppression du modem : {{error}}."
+}

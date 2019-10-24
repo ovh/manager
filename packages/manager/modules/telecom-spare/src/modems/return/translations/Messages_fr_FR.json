@@ -1,0 +1,9 @@
+{
+  "xdsl_modem_return_cancel": "Annuler",
+  "xdsl_modem_return_submit": "Valider",
+  "xdsl_modem_return_title": "Retourner un modem",
+  "xdsl_modem_return_description": "Êtes-vous sûr(e) de vouloir retourner ce matériel ?",
+  "xdsl_modem_return_description_more": "Après validation de votre part, vous recevrez un e-mail avec la description de la marche à suivre pour nous retourner votre matériel.",
+  "xdsl_modem_return_succeed": "La demande de retour du modem a été envoyée avec succès. Vous allez recevoir un e-mail vous décrivant la marche à suivre pour nous renvoyer votre ancien modem.",
+  "xdsl_modem_return_failed": "Une erreur s'est produite lors de l'envoi de la demande de retour du modem : {{error}}."
+}

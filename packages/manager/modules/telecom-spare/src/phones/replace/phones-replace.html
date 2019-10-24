@@ -1,29 +1,29 @@
 <oui-modal data-heading="{{ ::$ctrl.title | translate}}"
            data-type="warning"
            data-primary-action="$ctrl.replaceSpare()"
-           data-primary-label="{{:: 'phone_modal_submit' | translate }}"
+           data-primary-label="{{:: 'phones_replace_submit' | translate }}"
            data-primary-disabled="!$ctrl.isApplyAvailable"
-           data-secondary-action="$ctrl.cancel()"
-           data-secondary-label="{{:: 'phone_modal_cancel' | translate }}"
-           data-on-dismiss="$ctrl.cancel()"
+           data-secondary-action="$ctrl.goBack()"
+           data-secondary-label="{{:: 'phones_replace_cancel' | translate }}"
+           data-on-dismiss="$ctrl.goBack()"
            data-loading="$ctrl.loading">
 
     <div>
         <div data-ng-if="$ctrl.isApplyAvailable">
-            <label for="selectedDomain" class="oui-label" data-translate="phone_modal_replacement_description"></label>
+            <label for="selectedDomain" class="oui-label" data-translate="phones_replace_description"></label>
             <oui-select data-name="selectedDomain"
                         data-model="$ctrl.selectedDomain"
                         data-items="$ctrl.compatibleDomains"
-                        data-placeholder="{{ ::'phone_modal_replacement_select' | translate }}"
+                        data-placeholder="{{ ::'phones_replace_select' | translate }}"
                         data-disabled="$ctrl.loading"
                         data-ng-if="$ctrl.isApplyAvailable">
             </oui-select>
 
-            <label for="phoneIP" class="oui-label" data-translate="phone_modal_replacement_ip"></label>
+            <label for="phoneIP" class="oui-label" data-translate="phones_replace_ip"></label>
             <input id="phoneIP" name="phoneIP" type="text" class="oui-input" data-ng-model="$ctrl.phoneIP" required minlength="3" maxlength="32">
         </div>
 
-        <div data-ng-if="!$ctrl.isApplyAvailable" data-translate="phone_modal_replacement_no_compatible_domains"></div>
+        <div data-ng-if="!$ctrl.isApplyAvailable" data-translate="phones_replace_no_compatible_domains"></div>
     </div>
 
 </oui-modal>

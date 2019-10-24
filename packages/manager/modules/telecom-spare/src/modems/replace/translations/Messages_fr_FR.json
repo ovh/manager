@@ -1,0 +1,10 @@
+{
+  "xdsl_modem_replace_cancel": "Annuler",
+  "xdsl_modem_replace_submit": "Valider",
+  "xdsl_modem_replace_succeed": "La demande d'affectation du modem a été envoyée avec succès.",
+  "xdsl_modem_replace_failed": "Une erreur s'est produite lors de l'envoi de la demande d'affectation du modem : {{error}}. Veuillez contacter le support.",
+  "xdsl_modem_replace_no_compatible_domains": "Il n'y a pas de matériel compatible à remplacer.",
+  "xdsl_modem_replace_title": "Affecter un modem",
+  "xdsl_modem_replace_description": "Liste des matériels compatibles à remplacer",
+  "xdsl_modem_replace_select": "Sélectionner le matériel…"
+}

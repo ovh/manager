@@ -17,13 +17,13 @@
         </oui-column>
         <oui-column data-title=" ::'modems_mac_address_col' | translate " data-property="macAddress"></oui-column>
         <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item data-on-click="$ctrl.replace($row)">
+            <oui-action-menu-item data-on-click="$ctrl.replaceSpare($row)">
                 <span data-translate="modems_replace_action"></span>
             </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.returnMerchandise($row)">
                 <span data-translate="modems_return_action"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.delete($row)">
+            <oui-action-menu-item data-on-click="$ctrl.deleteSpare($row)">
                 <span data-translate="modems_delete_action"></span>
             </oui-action-menu-item>
         </oui-action-menu>

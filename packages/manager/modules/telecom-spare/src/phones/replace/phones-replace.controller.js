@@ -1,20 +1,16 @@
 export default class {
   /* @ngInject */
-  constructor($uibModalInstance, OvhApiTelephony, params) {
-    this.$uibModalInstance = $uibModalInstance;
+  constructor($translate, OvhApiTelephony) {
+    this.$translate = $translate;
     this.OvhApiTelephony = OvhApiTelephony;
-    this.action = params.action;
-    this.spare = params.spare;
-
     this.phoneIP = null;
-
     this.selectedDomain = '';
   }
 
   $onInit() {
     this.isApplyAvailable = false;
 
-    this.title = 'phone_modal_replacement_title';
+    this.title = 'phones_replace_title';
     this.loading = true;
     this.retrieveCompatibleReplacement();
   }
@@ -36,33 +32,22 @@ export default class {
   }
 
   replaceSpare() {
-    let actionResult = null;
+    this.loading = true;
     return this.OvhApiTelephony.Spare().v6().replaceSpare({
       spare: this.spare,
     }, {
       domain: this.domain,
       ip: this.ip,
-    }).$promise.then(() => {
-      actionResult = {
-        isSucceed: true,
-        messageToDisplay: 'phones_modal_replacement_succeed',
-      };
-    })
-      .catch((err) => {
-        actionResult = {
-          isSucceed: false,
-          messageToDisplay: 'phones_modal_replacement_failed',
-          errorMessage: err.data.message,
-          spare: this.spare,
-        };
-      }).finally(() => this.close(actionResult));
-  }
-
-  cancel() {
-    return this.$uibModalInstance.dismiss();
-  }
-
-  close(actionResult) {
-    return this.$uibModalInstance.close({ actionResult });
+    }).$promise
+      .then(() => this.goBack(
+        this.$translate.instant('phones_replace_succeed'),
+      ))
+      .catch(() => this.goBack(
+        this.$translate.instant('phones_replace_failed', { spare: this.spare }),
+        'error',
+      ))
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }

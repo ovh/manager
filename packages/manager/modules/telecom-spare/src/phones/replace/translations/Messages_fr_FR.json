@@ -1,0 +1,11 @@
+{
+  "phones_replace_cancel": "Annuler",
+  "phones_replace_submit": "Valider",
+  "phones_replace_title": "Affecter un téléphone",
+  "phones_replace_no_compatible_domains": "Il n'y a pas de matériel compatible à remplacer.",
+  "phones_replace_description": "Liste des matériels compatibles",
+  "phones_replace_select": "Sélectionner le matériel…",
+  "phones_replace_ip": "IP publique du téléphone à remplacer",
+  "phones_replace_succeed": "La demande d'affectation du téléphone a été envoyée avec succès.",
+  "phones_replace_failed": "Une erreur s'est produite lors de l'envoi de la demande d'affectation du téléphone pour la référence {{spare}}. Veuillez contacter le support."
+}
