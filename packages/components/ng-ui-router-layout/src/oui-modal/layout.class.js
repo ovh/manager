@@ -2,27 +2,29 @@ import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 
-export default class ModalResolveLayout {
+import { LAYOUT_NAME } from './constants';
+
+export default class OuiModalLayout {
   /**
-   *  Check if state applies the modalResolve layout.
+   *  Check if state applies the ouiModal layout.
    *  @param  {Object}  state A ui-router state declaration.
    *  @return {Boolean}
    */
   static isLayoutAppliedToState(state) {
     const layout = get(state, 'self.layout');
 
-    return (isString(layout) && layout === 'modalResolve')
-      || (isObject(layout) && get(layout, 'name') === 'modalResolve');
+    return (isString(layout) && layout === LAYOUT_NAME)
+      || (isObject(layout) && get(layout, 'name') === LAYOUT_NAME);
   }
 
   /**
-   *  Get the layout options for modalResolve type.
+   *  Get the layout options for ouiModal type.
    *  @param  {Object} state A ui-router state declaration.
    *  @return {Object}       An object representing options used for modal opening.
    */
   static getLayoutOptions(state) {
     return {
-      name: 'modalResolve',
+      name: LAYOUT_NAME,
       modalOptions: {
         template: get(state, 'template'),
         templateUrl: get(state, 'templateUrl'),
