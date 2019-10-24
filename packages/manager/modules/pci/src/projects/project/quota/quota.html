@@ -29,17 +29,32 @@
     <div class="oui-box" data-ng-if="!$ctrl.isQuotaRestricted()">
         <p class="font-weight-bold" data-translate="pci_projects_project_quota_protect_explain"></p>
         <p write-right-required>{{ :: 'pci_projects_project_quota_protect_more' | translate }}</p>
-        <button type="button"
-                class="oui-button oui-button_primary"
-                data-ng-if="$ctrl.region !== 'US'"
-                data-ng-disabled="!$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
-                data-ng-click="$ctrl.openSupport()"
-                write-right-required
-                data-translate="pci_projects_project_quota_protect_more_btn">
-        </button>
+        <div
+            data-ng-if="$ctrl.region !== 'US'"
+            data-write-right-required>
+            <a
+                class="oui-button oui-button_primary oui-link_icon"
+                data-ng-if=":: $ctrl.quota.length > 0"
+                data-ng-href="{{:: $ctrl.supportUrl }}">
+                <span data-translate="pci_projects_project_quota_protect_more_btn"></span>
+                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                <span class="sr-only" data-translate="pci_projects_project_quota_open_new_tab"></span>
+            </a>
 
-        <div data-ng-if="$ctrl.region === 'US'"
-                data-write-right-required>
+            <button
+                type="button"
+                class="oui-button oui-button_primary no-transition"
+                data-ng-if=":: !$ctrl.quota || ($ctrl.quota && $ctrl.quota.length === 0)"
+                disabled>
+                <span data-translate="pci_projects_project_quota_protect_more_btn"></span>
+                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                <span class="sr-only" data-translate="pci_projects_project_quota_open_new_tab"></span>
+            </button>
+        </div>
+
+        <div
+            data-ng-if="$ctrl.region === 'US'"
+            data-write-right-required>
             <button type="button"
                     class="oui-button oui-button_primary no-transition"
                     data-ng-if="!$ctrl.quotas || ($ctrl.quotas && $ctrl.quotas.length === 0)"
