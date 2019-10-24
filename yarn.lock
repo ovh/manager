@@ -2154,6 +2154,13 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
+"@ovh-ux/ng-ui-router-layout@^2.0.0", "@ovh-ux/ng-ui-router-layout@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-2.1.1.tgz#cef3eba596735de2434947a7aaaa89c6be90a3f8"
+  integrity sha512-2idvmsXwHmxIv0IfDfzJTYhUbYoZjGCo79UuAokbbdfW/4ULQY94md5Xj6x0vmoGnNMSD4CDgfszYtk9AAYHNQ==
+  dependencies:
+    lodash "^4.17.15"
+
 "@ovh-ux/ng-uirouter-title@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0.tgz#b26eb983e73b1cfeb786e1f94a4ab31c6eda0ea5"
@@ -11822,13 +11829,6 @@ ovh-api-services@^9.23.2:
   version "9.23.2"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.23.2.tgz#f2f2ce975b1e8193ab8fa7ce1fb96a6312daabea"
   integrity sha512-giTxcbTEI6hqEZ+xaOnuPNQe9HC3HuZba+6yX5u7VRKoXGobdbwfk5KVWwmQ+rDN7Hw2311R61qZqr73a/PmgA==
-  dependencies:
-    lodash "^4.17.15"
-
-ovh-api-services@^9.23.0:
-  version "9.23.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.23.0.tgz#d492f8d721cff4fe0b65f8b9fe266618be888ae6"
-  integrity sha512-pqWsr499vX29ZEnp3dobdKOpEl+CZ5EduPug9lecq28Bw/H8a/aRfFV3CWH+v3fh+opJJD4Mf5z6JaIkORa8BQ==
   dependencies:
     lodash "^4.17.15"
 
