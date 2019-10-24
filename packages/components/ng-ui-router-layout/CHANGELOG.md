@@ -1,3 +1,18 @@
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@2.1.1...@ovh-ux/ng-ui-router-layout@3.0.0) (2019-10-24)
+
+
+### Features
+
+* **ng-ui-router-layout:** add ouiModal layout ([#1414](https://github.com/ovh-ux/manager/issues/1414)) ([5acdef2](https://github.com/ovh-ux/manager/commit/5acdef26468137db4d8d51d995cc5935446fbae2))
+
+
+### BREAKING CHANGES
+
+* **ng-ui-router-layout:** replace the modalResolve layout with ouiModal layout.
+Don't use the modalResolve layout anymore.
+
+
+
 ## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@2.1.0...@ovh-ux/ng-ui-router-layout@2.1.1) (2019-10-17)
 
 
