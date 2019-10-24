@@ -6,7 +6,7 @@ export const ALLOWED_LANGUAGES = {
     isDefault: false,
   },
 };
-export const BASE_URL = 'https://survey.ovh.com/index.php/428129?lang=';
+export const BASE_URL = 'https://survey.ovh.com/index.php/135859?lang=';
 
 export default {
   ALLOWED_LANGUAGES,
