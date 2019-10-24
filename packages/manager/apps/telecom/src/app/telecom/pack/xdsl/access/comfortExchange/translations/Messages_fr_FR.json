@@ -1,5 +1,5 @@
 {
-  "xdsl_access_comfort_exchange_title": "Échange de modem",
+  "xdsl_access_comfort_exchange_title": "Échange de modem de confort",
   "xdsl_access_comfort_exchange_confirm_title": "Êtes-vous sûr(e) de vouloir effectuer cet échange ?",
   "xdsl_access_comfort_exchange_confirm_subtitle": "Le modem sera envoyé automatiquement à l'adresse de raccordement.",
   "xdsl_access_comfort_exchange_success_message": "Vous allez recevoir un e-mail vous décrivant la marche à suivre pour nous renvoyer votre ancien modem.",
@@ -13,6 +13,7 @@
   "xdsl_access_comfort_exchange_error_ERR001": "Vous possédez déjà le dernier modèle de modem.",
   "xdsl_access_comfort_exchange_error_ERR002": "Une demande de retour ou d'échange est déjà en cours pour ce modem.",
   "xdsl_access_comfort_exchange_error_ERR003": "L'identifiant client renseigné pour la livraison ne semble pas exister ou ne fait pas partie du compte client.",
+  "xdsl_access_comfort_exchange_error_ERR004": "Le remplacement de modem n'est pas authorisé pour les accès SDSL.",
   "xdsl_access_comfort_exchange_error_contact_shipping": "Le contact de livraison sélectionné n'est pas valide.",
   "xdsl_access_comfort_exchange_bc_title": "Résumé de la commande",
   "xdsl_access_comfort_exchange_bc_number": "Numéro",
