@@ -9,11 +9,17 @@ export default /* @ngInject */($stateProvider) => {
       name: 'app.account.service',
       template: '<ui-view/>',
     },
+    /**
+     * @deprecated starting 2019-11-01
+     */
     {
       name: 'app.account.otrs-ticket',
       redirectTo: 'support',
       url: '/ticket',
     },
+    /**
+     * @deprecated starting 2019-11-01
+     */
     {
       name: 'app.account.otrs-ticket-details',
       redirectTo: 'support.tickets.ticket',
