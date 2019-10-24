@@ -1,7 +1,7 @@
 {
-  "user_contracts_modal_title": "Allgemeine Geschäftsbedingungen",
+  "user_contracts_modal_title": "Bedingungen und Konditionen",
   "user_contracts_modal_term_of_service_updated_text": "Unsere Bedingungen und Konditionen wurden aktualisiert.",
-  "user_contracts_modal_term_of_service_updated_explanation": "Bitte akzeptieren Sie die aktualisierten allgemeinen Geschäftsbedingungen, um Ihre OVH Dienstleistungen, darunter auch das OVH Kundencenter, weiterhin nutzen zu können.",
+  "user_contracts_modal_term_of_service_updated_explanation": "Bitte akzeptieren Sie die aktualisierten Bedingungen und Konditionen, um Ihre OVH Dienste, darunter auch das OVH Kundencenter, weiterhin nutzen zu können.",
   "user_contracts_modal_checkbox_label_both": "Ich akzeptiere die aktualisierten Nutzungsbedingungen und Datenschutzbestimmungen",
   "user_contracts_modal_checkbox_label_tos": "Ich akzeptiere die aktualisierten Nutzungsbedingungen",
   "user_contracts_modal_checkbox_label_pp": "Ich akzeptiere die aktualisierten Datenschutzbestimmungen",

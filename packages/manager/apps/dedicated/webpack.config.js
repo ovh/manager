@@ -92,5 +92,8 @@ module.exports = (env = {}) => {
         __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
     ],
+    optimization: {
+      runtimeChunk: 'single',
+    },
   });
 };
