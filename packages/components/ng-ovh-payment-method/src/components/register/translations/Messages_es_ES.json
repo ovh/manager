@@ -1,0 +1,4 @@
+{
+  "ovh_payment_method_register_force_as_default": "Esta forma de pago se utilizará para el pago automático del servicio. Podrá modificarla en cualquier momento desde la sección «Formas de pago» de su área de cliente. Antes de cada vencimiento recibirá una notificación por correo electrónico.",
+  "ovh_payment_method_register_set_as_default_choice": "Una vez validada, quiero seleccionar esta forma de pago por defecto."
+}

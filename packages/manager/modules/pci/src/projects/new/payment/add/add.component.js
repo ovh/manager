@@ -6,8 +6,9 @@ export default {
   controller,
   bindings: {
     onLoaded: '&',
-    selectedPaymentType: '=',
+    paymentModel: '<',
     paymentMethodUrl: '<',
     hasPaymentMethods: '<',
+    registeredPaymentMethods: '<',
   },
 };

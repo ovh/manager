@@ -1,0 +1,4 @@
+{
+  "ovh_payment_method_register_force_as_default": "Questo metodo sarà utilizzato per il pagamento automatico del tuo servizio. È possibile modificarlo in qualsiasi momento dalla sezione “Metodi di pagamento” dello Spazio Cliente. Riceverai un'email di notifica prima di ogni scadenza.",
+  "ovh_payment_method_register_set_as_default_choice": "Una volta confermata, voglio impostare questa modalità di pagamento come predefinita."
+}

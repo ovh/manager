@@ -4,11 +4,11 @@ import get from 'lodash/get';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new.payment', {
-      url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus&challengeStatus',
+      url: '/payment?mode&credit&voucher&paymentStatus&challengeStatus',
       redirectTo: (transition) => {
-        const { hiPayStatus, mode, projectId } = transition.params();
+        const { paymentStatus, mode, projectId } = transition.params();
 
-        if (hiPayStatus === 'success' && mode === 'credits' && projectId) {
+        if (paymentStatus === 'success' && mode === 'credits' && projectId) {
           return {
             state: 'pci.projects.project',
             params: {
@@ -28,24 +28,10 @@ export default /* @ngInject */ ($stateProvider) => {
         project,
         trackingPage,
       ) => {
-        // check for paypal response in query string
-        if ($window.location.search.indexOf('paypalAgreementStatus') > -1) {
-          // in that case we will redirect to pci.projects.new.payment
-          // with query string as query params...
-          // first abort transition
-          $transition$.abort();
-
-          // then redirect
-          const hashContainsQuery = $window.location.hash.indexOf('?') > -1;
-          let targetUrl = $window.location.href.replace($window.location.search, '');
-          targetUrl = `${targetUrl}${hashContainsQuery ? $window.location.search.replace('?', '&') : $window.location.search}`;
-          return $window.location.replace(targetUrl);
-        }
-
         // check for payment response in state params
         const stateParams = $transition$.params();
         const descriptionModel = getStepByName('description').model;
-        if (stateParams.hiPayStatus || stateParams.paypalAgreementStatus || stateParams.challengeStatus === 'done') {
+        if (stateParams.paymentStatus || stateParams.paypalAgreementStatus || stateParams.challengeStatus === 'done') {
           // set model from state params
           const paymentModel = getStepByName('payment').model;
 
@@ -67,8 +53,8 @@ export default /* @ngInject */ ($stateProvider) => {
           // if there is an error from HiPay and a projectId is setted
           // (in other words: if credit payment in error)
           // cancel project creation and redirect refresh page
-          const { hiPayStatus, projectId } = $transition$.params();
-          if (hiPayStatus !== 'success' && get(project, 'status') === 'creating' && projectId) {
+          const { paymentStatus, projectId } = $transition$.params();
+          if (paymentStatus !== 'success' && get(project, 'status') === 'creating' && projectId) {
             atInternet.trackEvent({
               page: trackingPage,
               event: projectId ? 'PCI_ERROR_REFUSED_PAYMENT_CREDIT' : 'PCI_ERROR_REFUSED_PAYMENT',
