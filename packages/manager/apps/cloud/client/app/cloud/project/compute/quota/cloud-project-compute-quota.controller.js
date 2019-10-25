@@ -5,7 +5,7 @@ import map from 'lodash/map';
 angular.module('managerApp').controller('CloudProjectComputeQuotaCtrl',
   function CloudProjectComputeQuotaCtrl(
     $q, $stateParams, $translate, REDIRECT_URLS,
-    OvhApiCloudProject, OvhApiCloudProjectQuota, OvhApiMe, CucCloudMessage, OtrsPopupService,
+    OvhApiCloudProject, OvhApiCloudProjectQuota, OvhApiMe, CucCloudMessage,
     CucRegionService, CucControllerHelper,
     CucServiceHelper, OvhApiCloudProjectRegion, coreConfig,
   ) {
@@ -30,21 +30,11 @@ angular.module('managerApp').controller('CloudProjectComputeQuotaCtrl',
 
     // PaymentMean URL (v6 dedicated) with sessionv6
     this.paymentmeanUrl = REDIRECT_URLS.paymentMeans;
-    this.supportUrl = REDIRECT_URLS.support;
 
     self.regionService = CucRegionService;
 
     this.region = coreConfig.getRegion();
-
-    // ---------SUPPORT---------
-
-    this.openSupport = function openSupport() {
-      if (!OtrsPopupService.isLoaded()) {
-        OtrsPopupService.init();
-      } else {
-        OtrsPopupService.toggle();
-      }
-    };
+    this.supportUrl = REDIRECT_URLS.support;
 
     function getAvailableRegions() {
       self.availableRegions = CucControllerHelper.request.getHashLoader({
