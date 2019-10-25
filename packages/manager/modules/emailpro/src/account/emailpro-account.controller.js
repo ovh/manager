@@ -72,7 +72,10 @@ export default /* @ngInject */ ($scope, EmailPro, $q,
     });
   };
 
-  $scope.spamTooltipContent = $translate.instant('emailpro_tab_ACCOUNTS_popover_span_text', { t0: `#/ticket?serviceName=${$stateParams.productId}` });
+  $scope.spamTooltipContent = $translate.instant(
+    'emailpro_tab_ACCOUNTS_popover_span_text',
+    { t0: `#/support/tickets?filters={"comparator":"is","field":"serviceName","reference":["${$stateParams.productId}"]}` },
+  );
 
   $scope.$watch('search.value', (search) => {
     if ($scope.search) {
