@@ -1,3 +1,12 @@
+## [13.31.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.7...@ovh-ux/manager-web@13.31.8) (2019-10-25)
+
+
+### Bug Fixes
+
+* bump ovh-ui-angular to v3.9.9 ([#1593](https://github.com/ovh/manager/issues/1593)) ([2ff2f81](https://github.com/ovh/manager/commit/2ff2f813f43453744c5927efc5687a7bb79674e1))
+
+
+
 ## [13.31.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.6...@ovh-ux/manager-web@13.31.7) (2019-10-24)
 
 

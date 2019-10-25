@@ -4,7 +4,7 @@
         <div data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew()">
             <div data-ng-if="$ctrl.shouldDeleteAtExpiration()">
                 <span data-translate="expiration_resiliation_date"
-                      data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'mediumDate')">
+                      data-translate-values="{ t0: ($ctrl.serviceInfos.expiration | date:'mediumDate') }">
                 </span>
                 <a class="oui-link"
                    data-ng-if="::$ctrl.getCancelTerminationUrl()"

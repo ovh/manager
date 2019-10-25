@@ -1,3 +1,12 @@
+## [10.38.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.3...@ovh-ux/manager-telecom@10.38.4) (2019-10-25)
+
+
+### Bug Fixes
+
+* bump ovh-ui-angular to v3.9.9 ([#1593](https://github.com/ovh/manager/issues/1593)) ([2ff2f81](https://github.com/ovh/manager/commit/2ff2f813f43453744c5927efc5687a7bb79674e1))
+
+
+
 ## [10.38.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.2...@ovh-ux/manager-telecom@10.38.3) (2019-10-24)
 
 
