@@ -31,23 +31,23 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-angular": "^8.1.0",
-    "@ovh-ux/component-rollup-config": "^6.0.2",
-    "eslint": "^6.2.2",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-angular": "^8.2.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-formatter-pretty": "^2.1.1",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-markdown": "^1.0.1",
     "htmlhint": "^0.11.0",
-    "husky": "^3.0.4",
-    "lint-staged": "^9.2.3",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "npm-run-all": "^4.1.5",
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0"
+    "stylelint": "^11.1.1",
+    "stylelint-config-standard": "^19.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
+    "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0",
     "angular": "^1.7.0",
     "angular-translate": "^2.17.0",
     "jquery": "^2.1.3"
