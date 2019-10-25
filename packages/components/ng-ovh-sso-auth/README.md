@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-sso-auth
+$ yarn add @ovh-ux/ng-ovh-sso-auth
 ```
 
 # Usage
@@ -61,12 +61,12 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Related
 
-- [ng-ovh-sso-auth-modal-plugin](https://github.com/ovh-ux/ng-ovh-sso-auth-modal-plugin)
+- [@ovh-ux/ng-ovh-sso-auth-modal-plugin](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-sso-auth-modal-plugin) - OVH SSO module - Modal plugin
 
 ## Contributing
 
