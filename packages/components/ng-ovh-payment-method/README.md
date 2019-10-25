@@ -2,7 +2,7 @@
 
 > Help you to get payment methods from different OVH APIs
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-payment-method)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ovh-payment-method)](https://npmjs.com/package/@ovh-ux/ng-ovh-payment-method?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
