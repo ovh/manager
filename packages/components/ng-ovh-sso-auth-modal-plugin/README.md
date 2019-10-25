@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-sso-auth-modal-plugin
+$ yarn add @ovh-ux/ng-ovh-sso-auth-modal-plugin
 ```
 
 ## Usage
@@ -17,7 +17,6 @@ to display a modal when user switch:
 - from connected to disconnected
 - from disconnected to connected
 - from connected to connected with other
-
 
 ```js
 import angular from 'angular';
@@ -32,12 +31,12 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Related
 
-- [ng-ovh-sso-auth](https://github.com/ovh-ux/ng-ovh-sso-auth)
+- [@ovh-ux/ng-ovh-sso-auth](https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-sso-auth) - OVH $http interceptor working with SSO
 
 ## Contributing
 
