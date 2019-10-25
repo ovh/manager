@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-layout",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "UiRouter Layout support",
   "keywords": [
     "angular",
