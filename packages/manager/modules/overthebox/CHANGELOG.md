@@ -1,3 +1,12 @@
+## [4.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@4.3.3...@ovh-ux/manager-overthebox@4.3.4) (2019-10-24)
+
+
+### Bug Fixes
+
+* set a custom port for OTB remote access works now correctly ([ca912c7](https://github.com/ovh/manager/commit/ca912c7a17e6a9863943bbec32dde886d16d84c8))
+
+
+
 ## [4.3.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@4.3.2...@ovh-ux/manager-overthebox@4.3.3) (2019-10-17)
 
 

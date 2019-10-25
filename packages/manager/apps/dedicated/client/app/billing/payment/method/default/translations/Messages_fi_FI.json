@@ -1,5 +1,7 @@
 {
-  "billing_payment_method_default_title": "Définir un moyen de paiement par défaut",
-  "billing_payment_method_default_explain": "Vous êtes sur le point de définir le moyen de paiement <strong>{{ label }}</strong> en tant que moyen de paiement par défaut.",
-  "billing_payment_method_default_question": "Êtes-vous certain de vouloir continuer ?"
+  "billing_payment_method_default_title": "Enter a default payment method",
+  "billing_payment_method_default_explain": "You are about to enter the payment method <strong>{{ label }}</strong> as a default payment method.",
+  "billing_payment_method_default_question": "Are you sure you want to continue?",
+  "billing_payment_method_default_error": "An error has occurred modifying your default payment method: {{ errorMessage }}",
+  "billing_payment_method_default_success": "Your payment method has been modified."
 }

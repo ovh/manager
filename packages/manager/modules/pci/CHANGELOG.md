@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.0...@ovh-ux/manager-pci@3.0.1) (2019-10-24)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** fix project creation ([c885270](https://github.com/ovh/manager/commit/c88527041c8ff4ba4d9cd86172055c0378053047))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.6...@ovh-ux/manager-pci@3.0.0) (2019-10-24)
 
 

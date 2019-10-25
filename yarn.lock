@@ -1970,10 +1970,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-contact@4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.3.tgz#5290dd1257611e5022224120a37461992c4ceec8"
-  integrity sha512-B9CeWwhurW25eZ3m3XdqwVwZpR7z83CGG8/Idf9dvwGL0iwPD0F58+/EKMOZYCqfRjctQ+nsha1KNcy0SwXWFA==
+"@ovh-ux/ng-ovh-contact@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.4.tgz#380a778ec78290a52fceffda1b5ea42e13acd20d"
+  integrity sha512-3NBAVdaPSfG/Ait17YrTsbxrVjNyCk79SR+aveKKuuNNufApRVBguHB11L7Kr3zSJQJL1EGRgGH/G1LpKdT5Uw==
   dependencies:
     lodash "^4.17.15"
 
@@ -2076,13 +2076,6 @@
     bootstrap "^3.3.6"
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-payment-method@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-4.2.0.tgz#60a7da852a67f375ba2fe5bb81c53c0f14631432"
-  integrity sha512-p1UTXgW2XrhSHKjcs6GD0uGcYN5iYdNsnnAdAnO6FFM8njxWBNkfMHxOXOlOBtpaYKf6kOqaYJq3DIQb+Fao3A==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-proxy-request@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0.tgz#abc4a72275b58d9fb19b45f4ade095ecbf28b7a0"
@@ -2184,7 +2177,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
-"@ovh-ux/ng-ui-router-layout@^2.0.0", "@ovh-ux/ng-ui-router-layout@^2.1.1":
+"@ovh-ux/ng-ui-router-layout@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-2.1.1.tgz#cef3eba596735de2434947a7aaaa89c6be90a3f8"
   integrity sha512-2idvmsXwHmxIv0IfDfzJTYhUbYoZjGCo79UuAokbbdfW/4ULQY94md5Xj6x0vmoGnNMSD4CDgfszYtk9AAYHNQ==
