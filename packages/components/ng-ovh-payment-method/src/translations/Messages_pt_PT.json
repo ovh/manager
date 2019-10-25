@@ -6,7 +6,7 @@
   "ovh_payment_type_internal_trusted_account": "Conta de pagamento diferido",
   "ovh_payment_type_enterprise": "Conta da empresa",
   "ovh_payment_status_valid": "Validada",
-  "ovh_payment_status_expired": "Expirada",
+  "ovh_payment_status_expired": "Expirado",
   "ovh_payment_status_proposed_by_customer": "Validação pendente",
   "ovh_payment_status_too_many_failures": "Inválida (demasiadas tentativas de validação em erro)",
   "ovh_payment_status_blocked": "Bloqueada",
