@@ -2,6 +2,8 @@
   "name": "@ovh-ux/manager-freefax-app",
   "version": "4.2.3",
   "private": true,
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env.production",
     "cypress:open": "cypress open",

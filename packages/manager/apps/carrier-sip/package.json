@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "private": true,
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack --env.production",
