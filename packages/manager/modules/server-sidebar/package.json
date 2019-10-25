@@ -2,13 +2,13 @@
   "name": "@ovh-ux/manager-server-sidebar",
   "version": "0.6.7",
   "description": "OVH control panel sidebar",
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/server-sidebar#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/server-sidebar#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/components/server-sidebar"
   },
   "license": "BSD-3-Clause",
