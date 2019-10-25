@@ -7,6 +7,7 @@ import autorenew from './autoRenew/autorenew.module';
 import orders from './orders/orders.module';
 import sla from './sla/sla.module';
 import termination from './confirmTerminate/termination.module';
+import paymentMehtod from './payment/method';
 
 import config from '../config/config';
 import routing from './billing.routing';
@@ -29,6 +30,7 @@ angular
     termination,
     'ui.bootstrap',
     'ui.router',
+    paymentMehtod,
   ])
   .constant('BILLING_BASE_URL', 'billing/')
   .constant('Billing.constants', {

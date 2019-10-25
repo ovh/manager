@@ -125,7 +125,7 @@ export default class PciProjectNewPaymentCtrl {
 
         if (!this.step.model.defaultPaymentMethod) {
           this.step.loading.paymentTypes = true;
-          this.registeredPaymentMethods = paymentMethods;
+          this.registeredPaymentMethods = []; // to force default payment method
 
           if (paymentMethods.length > 0) {
             this.hasPaymentMethods = true;

@@ -1,3 +1,12 @@
+## [10.25.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.5...@ovh-ux/manager-dedicated@10.25.6) (2019-10-24)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** fix project creation ([c885270](https://github.com/ovh/manager/commit/c88527041c8ff4ba4d9cd86172055c0378053047))
+
+
+
 ## [10.25.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.4...@ovh-ux/manager-dedicated@10.25.5) (2019-10-23)
 
 
