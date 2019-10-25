@@ -132,6 +132,7 @@
    <translation id="otrs_service_type_hpcspot" qtlid="524842">HPC Spot</translation>
    <translation id="otrs_service_type_saas_csp_2" qtlid="524855">SAAS CSP2</translation>
    <translation id="otrs_service_type_horizon_view" qtlid="524868">Horizon View</translation>
+   <translation id="otrs_service_type_webcoach">Website Coach</translation>
    <translation id="otrs_service_type_other" qtlid="316047">Autre demande</translation>
 
    <translation id="otrs_service_type_choice" qtlid="524881">Type de service :</translation>
