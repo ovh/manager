@@ -466,16 +466,15 @@ export default function () {
         if (isString(item.loadOnState)) {
           infos.included = $state.includes(item.loadOnState, item.loadOnStateParams);
           infos.current = $state.is(item.loadOnState, item.loadOnStateParams);
-        }
-        else if (isArray(item.loadOnState)) {
+        } else if (isArray(item.loadOnState)) {
           infos.included = some(
             item.loadOnState,
-            loadOnState => $state.includes(loadOnState, item.loadOnStateParams),
+            (loadOnState) => $state.includes(loadOnState, item.loadOnStateParams),
           );
 
           infos.current = some(
             item.loadOnState,
-            loadOnState => $state.is(loadOnState, item.loadOnStateParams),
+            (loadOnState) => $state.is(loadOnState, item.loadOnStateParams),
           );
         }
       } else if (item.state) {
@@ -541,7 +540,7 @@ export default function () {
       function flattenSubItems(itemsParam) {
         let items = itemsParam;
 
-        const mapped = map(items, item => flattenSubItems(item.getSubItems()));
+        const mapped = map(items, (item) => flattenSubItems(item.getSubItems()));
         forEach(mapped, (item) => {
           items = items.concat(item);
         });

@@ -543,9 +543,9 @@ export default /* @ngInject */ function ($q, $timeout) {
         const promises = map(
           filter(
             self.subItemsAdded,
-            item => item.onLoad && !item.isLoaded,
+            (item) => item.onLoad && !item.isLoaded,
           ),
-          item => item.loadSubItems(),
+          (item) => item.loadSubItems(),
         );
 
         $q.all(promises)
@@ -553,7 +553,7 @@ export default /* @ngInject */ function ($q, $timeout) {
             const filteredItems = filter(
               map(
                 self.subItemsAdded,
-                item => getMatchingItem(item, search),
+                (item) => getMatchingItem(item, search),
               ),
             );
 
