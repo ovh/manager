@@ -2,20 +2,6 @@
   "name": "@ovh-ux/manager-web",
   "version": "13.31.8",
   "private": true,
-  "description": "OVH Control Panel Web UI",
-  "keywords": [
-    "control",
-    "dns",
-    "domain",
-    "email",
-    "hosting",
-    "mx-plan",
-    "ovh",
-    "panel",
-    "private-database",
-    "web",
-    "website"
-  ],
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
@@ -129,9 +115,5 @@
     "glob": "^7.1.4",
     "webpack": "^4.41.2",
     "webpack-merge": "^4.2.2"
-  },
-  "engines": {
-    "node": ">=8",
-    "yarn": ">=1.0.0"
   }
 }
