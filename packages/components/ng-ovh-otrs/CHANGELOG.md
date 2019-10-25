@@ -1,3 +1,14 @@
+## [7.1.12](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.11...v7.1.12) (2019-10-25)
+
+
+### Bug Fixes
+
+* **pop-up:** add missing intervention request ([993e175](https://github.com/ovh-ux/ng-ovh-otrs/commit/993e1752c3d1a3a1e0afbf7f0d9011828a34769a))
+* **pop-up.constant:** remove extra api ([bea033a](https://github.com/ovh-ux/ng-ovh-otrs/commit/bea033a1f1a645785cec5aa60c46430821ecd6df))
+* **pop-up.i18n:** add missing webcoach translation ([1b7c79e](https://github.com/ovh-ux/ng-ovh-otrs/commit/1b7c79e36693cb487d6e4cc8c718383643c3e2c7))
+
+
+
 ## [7.1.11](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.10...v7.1.11) (2019-08-27)
 
 
