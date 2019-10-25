@@ -60,6 +60,7 @@ export const API_EXCLUDED = {
     '/coworking',
     '/dedicated/installationTemplate',
     '/distribution/image',
+    '/email/redirection',
     '/freefax',
     '/me',
     '/msServices',
