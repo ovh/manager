@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
