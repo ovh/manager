@@ -114,12 +114,21 @@ angular
             });
           }
 
-          SidebarMenu.addMenuItem({
-            name: 'accountTickets',
-            title: $translate.instant('menu_tickets'),
-            state: 'app.account.otrs-ticket',
-            namespace: 'account',
-          });
+          if (coreConfig.getRegion() === 'US') {
+            SidebarMenu.addMenuItem({
+              name: 'support',
+              title: $translate.instant('menu_support'),
+              state: 'app.account.otrs-ticket',
+              namespace: 'account',
+            });
+          } else {
+            SidebarMenu.addMenuItem({
+              name: 'support',
+              title: $translate.instant('menu_support'),
+              state: 'support',
+              namespace: 'account',
+            });
+          }
         });
       }
 

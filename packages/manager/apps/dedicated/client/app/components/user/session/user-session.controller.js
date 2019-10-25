@@ -3,18 +3,35 @@ import set from 'lodash/set';
 
 angular.module('App')
   .controller('SessionCtrl', class {
-    constructor($scope, $document, $transitions, $translate) {
-      set($document, 'title', $translate.instant('global_app_title'));
+    /* @ngInject */
+    constructor($document, $scope, $state, $transitions, $translate) {
+      this.$document = $document;
+      this.$scope = $scope;
+      this.$state = $state;
+      this.$transitions = $transitions;
+      this.$translate = $translate;
+    }
+
+    $onInit() {
+      set(this.$document, 'title', this.$translate.instant('global_app_title'));
+
+      this.hooksToUnsubscribe = [
+        this.$transitions.onStart({}, () => {
+          this.closeSidebar();
+        }),
+        this.$transitions.onSuccess({}, () => {
+          this.displayAccountSidebar = ['support', 'app.account']
+            .some(name => this.$state.includes(name));
+        }),
+      ];
+
       // Scroll to anchor id
-      $scope.scrollTo = (id) => {
+      this.$scope.scrollTo = (id) => {
         // Set focus to target
         if (isString(id)) {
-          $document.find(`#${id}`)[0].focus();
+          this.$document.find(`#${id}`)[0].focus();
         }
       };
-
-      $transitions.onStart({},
-        () => this.closeSidebar());
     }
 
     openSidebar() {
@@ -23,5 +40,10 @@ angular.module('App')
 
     closeSidebar() {
       this.sidebarIsOpen = false;
+    }
+
+    $onDestroy() {
+      this.hooksToUnsubscribe
+        .forEach(hook => hook());
     }
   });
