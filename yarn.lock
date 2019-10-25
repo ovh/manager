@@ -1891,6 +1891,14 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/manager-core@^6.0.1":
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-6.1.5.tgz#b921a66510ffd514f1d99350ac1731a1c1781262"
+  integrity sha512-xbhmr3o7HGlINSYhwpzV8RF0bD5W89b1DVoxPNgqwbvjpdIFwT9ygL6CPTPCbnmWMfYj/4Uw7/O1zdmMV77QKA==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.14"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0", "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
@@ -1940,7 +1948,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-contact@^4.0.4":
+"@ovh-ux/ng-ovh-contact@^4.0.2", "@ovh-ux/ng-ovh-contact@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.4.tgz#380a778ec78290a52fceffda1b5ea42e13acd20d"
   integrity sha512-3NBAVdaPSfG/Ait17YrTsbxrVjNyCk79SR+aveKKuuNNufApRVBguHB11L7Kr3zSJQJL1EGRgGH/G1LpKdT5Uw==
@@ -2817,11 +2825,6 @@ angular-translate@^2.11.0, angular-translate@^2.17.0, angular-translate@^2.18.1,
   integrity sha512-Mw0kFBqsv5j8ItL9IhRZunIlVmIRW6iFsiTmRs9wGr2QTt8z4rehYlWyHos8qnXc/kyOYJiW50iH50CSNHGB9A==
   dependencies:
     angular ">=1.2.26 <=1.7"
-
-angular-ui-bootstrap@1.3.3, angular-ui-bootstrap@^1.3.3, angular-ui-bootstrap@~1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-1.3.3.tgz#4820f895d433c17abeb4ac7387f2f122cbf8c11c"
-  integrity sha1-SCD4ldQzwXq+tKxzh/LxIsv4wRw=
 
 angular-ui-bootstrap@^2.5.6:
   version "2.5.6"

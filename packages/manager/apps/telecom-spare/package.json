@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-spare-app' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-spare-app' --include-filtered-dependencies -- yarn run dev",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-spare-app' --include-filtered-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-spare-app' --include-filtered-dependencies -- npm run dev --if-present"
   },
   "dependencies": {

@@ -3,17 +3,9 @@ import map from 'lodash/map';
 export default class ModemsController {
   /* @ngInject */
   constructor(
-    $state,
-    $translate,
     OvhApiXdsl,
-    TucToast,
-    TucToastError,
   ) {
-    this.$state = $state;
-    this.$translate = $translate;
     this.OvhApiXdsl = OvhApiXdsl;
-    this.TucToast = TucToast;
-    this.TucToastError = TucToastError;
   }
 
   loadRow({ spare }) {
@@ -22,10 +14,6 @@ export default class ModemsController {
       .v6()
       .getSpare({ spare })
       .$promise;
-  }
-
-  orderNewModem() {
-    return this.$state.go('spare.modems.order');
   }
 
   refresh() {

@@ -41,14 +41,12 @@ import carrierSip from './telecom/telephony/carrierSip';
 import errorPage from './error-page/error-page.module';
 import navbar from '../components/navbar';
 
-import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 import 'leaflet/dist/leaflet.css';
 import 'ui-select/dist/select.css';
 import 'intl-tel-input/build/css/intlTelInput.css';
-
 
 import './app-scss.scss';
 import './app.less';

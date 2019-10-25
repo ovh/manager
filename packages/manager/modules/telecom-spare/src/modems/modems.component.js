@@ -4,10 +4,11 @@ import template from './modems.html';
 export default {
   bindings: {
     deleteSpare: '<',
-    replaceSpare: '<',
-    returnMerchandise: '<',
     goToModems: '<',
     modems: '<',
+    orderNewModem: '<',
+    replaceSpare: '<',
+    returnMerchandise: '<',
     spare: '<',
   },
   controller,

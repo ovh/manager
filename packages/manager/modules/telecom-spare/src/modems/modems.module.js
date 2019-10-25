@@ -7,6 +7,7 @@ import 'ovh-ui-angular';
 import deleteModem from './delete/modems-delete.module';
 import replaceModem from './replace/modems-replace.module';
 import returnModem from './return/modems-return.module';
+import orderModem from './order/modems-order.module';
 
 import component from './modems.component';
 import routing from './modems.routing';
@@ -23,10 +24,10 @@ angular
     deleteModem,
     replaceModem,
     returnModem,
+    orderModem,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ./modal/translations */)
   .component('modemsComponent', component);
 
 export default moduleName;

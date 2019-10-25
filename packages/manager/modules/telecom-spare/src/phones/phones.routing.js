@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       replaceSpare: /* @ngInject */ $state => spare => $state.go('spare.phones.replace', {
         spare: spare.spare,
       }),
+      orderNewPhone: /* @ngInject */ $state => () => $state.go('spare.phones.order'),
       goToPhones: /* @ngInject */ ($state, TucToast) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const promise = $state.go('spare.phones', {}, {
@@ -25,11 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         if (message) {
           promise.then(() => {
-            if (type === 'success') {
-              TucToast.success(message);
-            } else {
-              TucToast.error(message);
-            }
+            TucToast[type](message);
           });
         }
 

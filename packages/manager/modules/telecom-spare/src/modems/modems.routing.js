@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       returnMerchandise: /* @ngInject */ $state => spare => $state.go('spare.modems.return', {
         spare: spare.spare,
       }),
+      orderNewModem: /* @ngInject */ $state => () => $state.go('spare.modems.order'),
       goToModems: /* @ngInject */ ($state, TucToast) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const promise = $state.go('spare.modems', {}, {
@@ -28,11 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         if (message) {
           promise.then(() => {
-            if (type === 'success') {
-              TucToast.success(message);
-            } else {
-              TucToast.error(message);
-            }
+            TucToast[type](message);
           });
         }
 

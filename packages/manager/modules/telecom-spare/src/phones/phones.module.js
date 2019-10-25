@@ -6,6 +6,7 @@ import 'ovh-ui-angular';
 
 import deletePhones from './delete/phones-delete.module';
 import replacePhones from './replace/phones-replace.module';
+import orderPhone from './order/phones-order.module';
 
 import component from './phones.component';
 import routing from './phones.routing';
@@ -19,6 +20,7 @@ angular
     'ovh-api-services',
     deletePhones,
     replacePhones,
+    orderPhone,
   ])
   .component('phonesComponent', component)
   .config(routing)

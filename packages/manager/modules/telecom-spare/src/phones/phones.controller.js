@@ -3,17 +3,9 @@ import map from 'lodash/map';
 export default class PhonesController {
   /* @ngInject */
   constructor(
-    $state,
-    $translate,
     OvhApiTelephony,
-    TucToast,
-    TucToastError,
   ) {
-    this.$state = $state;
-    this.$translate = $translate;
     this.OvhApiTelephony = OvhApiTelephony;
-    this.TucToast = TucToast;
-    this.TucToastError = TucToastError;
   }
 
   loadRow({ spare }) {
@@ -22,11 +14,6 @@ export default class PhonesController {
       .v6()
       .getSpare({ spare })
       .$promise;
-  }
-
-
-  orderNewPhone() {
-    return this.$state.go('spare.phones.order');
   }
 
   refresh() {

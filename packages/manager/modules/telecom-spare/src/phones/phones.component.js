@@ -8,6 +8,7 @@ export default {
     phones: '<',
     goToPhones: '<',
     spare: '<',
+    orderNewPhone: '<',
   },
   controller,
   template,

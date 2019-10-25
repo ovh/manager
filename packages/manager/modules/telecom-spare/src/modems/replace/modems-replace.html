@@ -8,19 +8,17 @@
            data-on-dismiss="$ctrl.goBack()"
            data-loading="$ctrl.loading">
 
-    <div>
-        <div data-ng-if="$ctrl.isApplyAvailable">
-            <label for="selectedDomain" data-translate="xdsl_modem_replace_description"></label>
-            <oui-select data-name="selectedDomain"
-                        data-model="$ctrl.selectedDomain"
-                        data-items="$ctrl.compatibleDomains"
-                        data-placeholder="{{ ::'xdsl_modem_replace_select' | translate }}"
-                        data-disabled="$ctrl.loading"
-                        data-ng-if="$ctrl.isApplyAvailable">
-            </oui-select>
+    <div data-ng-if="$ctrl.isApplyAvailable">
+        <label for="selectedDomain" data-translate="xdsl_modem_replace_description"></label>
+        <oui-select data-name="selectedDomain"
+                    data-model="$ctrl.selectedDomain"
+                    data-items="$ctrl.compatibleDomains"
+                    data-placeholder="{{ ::'xdsl_modem_replace_select' | translate }}"
+                    data-disabled="$ctrl.loading"
+                    data-ng-if="$ctrl.isApplyAvailable">
+        </oui-select>
 
-        </div>
-        <div data-ng-if="!$ctrl.isApplyAvailable" data-translate="xdsl_modem_replace_no_compatible_domains"></div>
     </div>
+    <p data-ng-if="!$ctrl.isApplyAvailable" data-translate="xdsl_modem_replace_no_compatible_domains"></p>
 
 </oui-modal>

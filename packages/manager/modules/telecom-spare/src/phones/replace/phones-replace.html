@@ -8,22 +8,19 @@
            data-on-dismiss="$ctrl.goBack()"
            data-loading="$ctrl.loading">
 
-    <div>
-        <div data-ng-if="$ctrl.isApplyAvailable">
-            <label for="selectedDomain" class="oui-label" data-translate="phones_replace_description"></label>
-            <oui-select data-name="selectedDomain"
-                        data-model="$ctrl.selectedDomain"
-                        data-items="$ctrl.compatibleDomains"
-                        data-placeholder="{{ ::'phones_replace_select' | translate }}"
-                        data-disabled="$ctrl.loading"
-                        data-ng-if="$ctrl.isApplyAvailable">
-            </oui-select>
+    <div data-ng-if="$ctrl.isApplyAvailable">
+        <label for="selectedDomain" class="oui-label" data-translate="phones_replace_description"></label>
+        <oui-select data-name="selectedDomain"
+                    data-model="$ctrl.selectedDomain"
+                    data-items="$ctrl.compatibleDomains"
+                    data-placeholder="{{ ::'phones_replace_select' | translate }}"
+                    data-disabled="$ctrl.loading"
+                    data-ng-if="$ctrl.isApplyAvailable">
+        </oui-select>
 
-            <label for="phoneIP" class="oui-label" data-translate="phones_replace_ip"></label>
-            <input id="phoneIP" name="phoneIP" type="text" class="oui-input" data-ng-model="$ctrl.phoneIP" required minlength="3" maxlength="32">
-        </div>
-
-        <div data-ng-if="!$ctrl.isApplyAvailable" data-translate="phones_replace_no_compatible_domains"></div>
+        <label for="phoneIP" class="oui-label" data-translate="phones_replace_ip"></label>
+        <input id="phoneIP" name="phoneIP" type="text" class="oui-input" data-ng-model="$ctrl.phoneIP" required minlength="3" maxlength="32">
     </div>
 
+    <p data-ng-if="!$ctrl.isApplyAvailable" data-translate="phones_replace_no_compatible_domains"></p>
 </oui-modal>
