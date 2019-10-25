@@ -48,7 +48,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-chatbot": "^2.0.2",
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.2",
-    "@ovh-ux/ng-ovh-contact": "4.0.3",
+    "@ovh-ux/ng-ovh-contact": "^4.0.4",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-http": "^4.0.4",
     "@ovh-ux/ng-ovh-line-diagnostics": "^3.0.1",
