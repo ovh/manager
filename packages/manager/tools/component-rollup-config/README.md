@@ -1,13 +1,13 @@
-# Component rollup config
+# Component Rollup Configuration
 
-> Extensible rollup configuration to build OVH components.
+> Extensible Rollup configuration to build OVHcloud components.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/component-rollup-config)](https://npmjs.com/package/@ovh-ux/component-rollup-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
 ```sh
-yarn add -D @ovh-ux/component-rollup-config
+$ yarn add -D @ovh-ux/component-rollup-config
 ```
 
 ## Usage
@@ -183,19 +183,19 @@ export default [
 You can also specify languages without modifying your rollup config by using the cli and passing the LANGUAGES environment variable. See the example below.
 
 ```sh
-rollup -c --environment LANGUAGES:fr_FR
-rollup -c --environment LANGUAGES:fr_FR-en_GB-en_US
+$ rollup -c --environment LANGUAGES:fr_FR
+$ rollup -c --environment LANGUAGES:fr_FR-en_GB-en_US
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Related
 
-* [rollup-plugin-less-tilde-importer](https://github.com/ovh-ux/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
+- [@ovh-ux/rollup-plugin-less-tilde-importer](https://github.com/ovh-ux/rollup-plugin-less-tilde-importer) - Rollup plugin to facilitate less imports with a ~ (tilde) prefix
 
 ## Contributing
 
