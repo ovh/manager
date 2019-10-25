@@ -1,43 +1,21 @@
-<oui-modal data-heading="{{:: 'portabilities_attach_title' | translate }}"
-    data-primary-action="$ctrl.uploadFile()"
-    data-primary-label= "{{:: 'submit' | translate }}"
-    data-primary-disabled="!$ctrl.validFormatFile || !$ctrl.uploadedFile || $ctrl.isLoading"
-    data-secondary-action="$ctrl.goBack()"
-    data-secondary-label="{{:: 'cancel' | translate }}"
-    data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
+<form name="form" enctype="multipart/form-data" novalidate>
+    <oui-modal data-heading="{{:: 'portabilities_attach_title' | translate }}"
+        data-primary-action="$ctrl.uploadFile()"
+        data-primary-label= "{{:: 'portabilities_attach_submit' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'portabilities_attach_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading">
 
-    <div class="modal-body" data-ng-if="!$ctrl.isLoading">
-        <h3 class="modal-title"
-            data-translate="portabilities_attach_title">
-        </h3>
         <!-- FILE -->
-        <div class="form-group clearfix"
-            data-ng-class="{ 'has-error': !$ctrl.validFormatFile }">
-            <tuc-input-file data-ng-model="$ctrl.uploadedFile"
-                        data-ng-accept="accept/pdf"
-                        data-ng-accept-filter="$ctrl.checkValidFileExtention(file)">
-                <i class="fa fa-upload mr-2" aria-hidden="true"></i>
-                <span data-translate="portabilities_attach_action"></span>
-            </tuc-input-file>
-            <span class="help-block"
-                role="alert"
-                data-ng-if="!$ctrl.validFormatFile && $ctrl.hasChecked"
-                data-translate="portabilities_attach_invalid_format">
-            </span>
-        </div>
-        <div class="form-group clearfix">
-            <label class="service-title"
-                    data-translate="portabilities_attach_file_format">
-            </label>
-        </div>
-    </div>
-    <!-- /.modal-body -->
-
-    <div class="modal-body text-center"
-        data-ng-if="$ctrl.isLoading">
-        <oui-spinner></oui-spinner>
-        <h4 data-translate="portabilities_attach_processing"></h4>
-    </div>
-
-</oui-modal>
+        <oui-field help-text="{{'portabilities_attach_file_format' | translate}}" size="xl">
+            <oui-file data-model="$ctrl.uploadedFile"
+                      data-accept="application/pdf"
+                      data-maxsize="10000000"
+                      data-name="uploadedFile"
+                      required>
+            </oui-file>
+        </oui-field>
+    </oui-modal>
+</form>

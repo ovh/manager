@@ -6,5 +6,7 @@
   "portabilities_attach_processing": "Attachement du mandat de portabilité en cours",
   "portabilities_attach_document_processing": "Attachement du document en cours",
   "portabilities_attach_document_succeed": "L'attachement du document a été effectué avec succès.",
-  "portabilities_attach_document_failed": "L'attachement du document a échoué."
+  "portabilities_attach_document_failed": "L'attachement du document a échoué.",
+  "portabilities_attach_submit": "Valider",
+  "portabilities_attach_cancel": "Annuler"
 }

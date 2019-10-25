@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         billingAccount,
         portabilityId: portability.id,
       }),
-      goToPortabilities: /* @ngInject */ ($state, billingAccount) => (message = false, type = 'success') => {
+      goToPortabilities: /* @ngInject */ ($state, billingAccount, TucToast) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
 
         const promise = $state.go('telecom.telephony.alias.portabilities', {
@@ -20,6 +20,12 @@ export default /* @ngInject */ ($stateProvider) => {
         {
           reload,
         });
+
+        if (message) {
+          promise.then(() => {
+            TucToast[type](message);
+          });
+        }
 
         return promise;
       },

@@ -5,6 +5,7 @@ import set from 'lodash/set';
 import groupPortaByNumbers from './telecom-telephony-alias-portability-portabilities.service';
 
 export default class TelecomTelephonyAliasPortabilitiesCtrl {
+  /* @ngInject */
   constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;

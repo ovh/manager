@@ -1,5 +1,3 @@
-import endsWith from 'lodash/endsWith';
-
 export default class {
   /* @ngInject */
   constructor($q, $timeout, $translate, OvhApiTelephony) {
@@ -12,21 +10,20 @@ export default class {
   $onInit() {
     this.isLoading = false;
     this.hasChecked = false;
+    this.uploadedFile = [];
   }
 
   uploadFile() {
     this.isLoading = true;
-    return this.$q.all({
-      noop: this.$timeout(angular.noop, 5000),
-      upload: this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
-        billingAccount: this.billingAccount,
-        id: this.portabilityId,
-      }, {
-        name: this.uploadedFile.name,
-      }),
-    }).then(() => this.goBack(
-      this.$translate.instant('portabilities_attach_document_succeed'),
-    ))
+    return this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
+      billingAccount: this.billingAccount,
+      id: this.portabilityId,
+    }, {
+      name: this.uploadedFile[0].name,
+    }).$promise
+      .then(() => this.goBack(
+        this.$translate.instant('portabilities_attach_document_succeed'),
+      ))
       .catch(() => this.goBack(
         this.$translate.instant('portabilities_attach_document_failed'),
         'error',
@@ -34,14 +31,20 @@ export default class {
       .finally(() => {
         this.isLoading = false;
       });
-  }
-
-  checkValidFileExtention(file) {
-    const pdfType = '.pdf';
-    const fileName = file ? file.name : '';
-    this.validFormatFile = endsWith(fileName.toLowerCase(), pdfType);
-    this.hasChecked = true;
-
-    return this.validFormatFile;
+    // return this.$q.all({
+    //   upload: this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
+    //     billingAccount: this.billingAccount,
+    //     id: this.portabilityId,
+    //   }, {
+    //     name: this.uploadedFile.name,
+    //   }),
+    // }).then(() => this.goBack(
+    //   this.$translate.instant('portabilities_attach_document_succeed'),
+    // )).catch(() => this.goBack(
+    //   this.$translate.instant('portabilities_attach_document_failed'),
+    //   'error',
+    // )).finally(() => {
+    //   this.isLoading = false;
+    // });
   }
 }
