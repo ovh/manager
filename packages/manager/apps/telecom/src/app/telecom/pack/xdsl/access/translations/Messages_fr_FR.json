@@ -110,5 +110,7 @@
   "xdsl_modem_comfort_exchange_subtitle": "Échange de modem de confort",
   "xdsl_modem_exchange": "Échanger mon modem",
   "xdsl_modem_exchange_title": "Échanger",
-  "xdsl_modem_comfort_exchange_description": "Vous avez la possibilité de changer votre modem existant vers un modem Zyxel VMG8824.<br>Le coût de l'échange est de 70€ HT (soit 84€TTC).<br><br>Le nouveau modem sera envoyé automatiquement à l'adresse de raccordement."
+  "xdsl_modem_comfort_exchange_description_part1": "Vous avez la possibilité de changer votre modem existant vers un modem Zyxel VMG8824.",
+  "xdsl_modem_comfort_exchange_description_part2": "Le coût de l'échange est de 70€ HT (soit 84€TTC).",
+  "xdsl_modem_comfort_exchange_description_part3": "Le nouveau modem sera envoyé automatiquement à l'adresse de raccordement."
 }
