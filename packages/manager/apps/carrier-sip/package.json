@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -50,7 +50,7 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^9.23.2",
     "ovh-ngstrap": "^4.0.2",
-    "ovh-ui-angular": "^3.9.6",
+    "ovh-ui-angular": "^3.9.9",
     "ovh-ui-kit": "^2.35.2",
     "ovh-ui-kit-bs": "^2.2.0",
     "punycode": "^1.4.1",
