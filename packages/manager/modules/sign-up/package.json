@@ -3,9 +3,7 @@
   "version": "1.0.9",
   "private": true,
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
+  "author": "OVH SAS",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/sign-up.js",

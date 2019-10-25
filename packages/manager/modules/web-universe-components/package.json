@@ -2,19 +2,8 @@
   "name": "@ovh-ux/ng-ovh-web-universe-components",
   "version": "7.1.2",
   "private": true,
-  "description": "Web Universe Components",
-  "keywords": [
-    "components",
-    "ovh",
-    "universe",
-    "web"
-  ],
-  "repository": "https://github.com/ovh-ux/manager",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "files": [
-    "dist"
-  ],
   "main": "./src/index.js",
   "dependencies": {
     "lodash": "^4.17.15"
