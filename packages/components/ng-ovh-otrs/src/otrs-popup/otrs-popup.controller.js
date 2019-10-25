@@ -389,6 +389,9 @@ export default /* @ngInject */ function (
             'sales');
         } else {
           self.requests = clone(self.allRequests);
+          if (isSelectedChoiceDedicatedServer()) {
+            self.requests.push('intervention');
+          }
         }
       });
 
