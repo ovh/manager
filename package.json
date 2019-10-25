@@ -1,6 +1,6 @@
 {
   "name": "ovh-manager-dedicated",
-  "version": "10.34.2",
+  "version": "10.36.1",
   "private": true,
   "description": "OVH Control Panel Dedicated UI",
   "keywords": [
@@ -55,7 +55,7 @@
     "@ovh-ux/ng-ovh-contacts": "^1.0.1",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0",
     "@ovh-ux/ng-ovh-http": "^4.0.2",
-    "@ovh-ux/ng-ovh-otrs": "7.1.11",
+    "@ovh-ux/ng-ovh-otrs": "7.1.12",
     "@ovh-ux/ng-ovh-payment-method": "^5.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
@@ -67,7 +67,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-web-universe-components": "^4.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ng-ui-router-layout": "^3.0.0",
+    "@ovh-ux/ng-ui-router-layout": "^3.1.0",
     "@ovh-ux/ng-ui-router-line-progress": "^1.0.0",
     "@ovh-ux/ovh-utils-angular": "^13.0.4",
     "@uirouter/angularjs": "^1.0.22",

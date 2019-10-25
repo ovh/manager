@@ -1,3 +1,33 @@
+<a name="10.36.1"></a>
+## [10.36.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.36.0...v10.36.1) (2019-10-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade [@ovh-ux](https://github.com/ovh-ux)/ng-ovh-otrs to v7.1.12 ([4ed9478](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4ed9478))
+
+
+
+<a name="10.36.0"></a>
+# [10.36.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.35.0...v10.36.0) (2019-10-25)
+
+
+### Features
+
+* **user.security.2fa:** prevent closing modal by escape & backdrop ([2f17ee1](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2f17ee1))
+
+
+
+<a name="10.35.0"></a>
+# [10.35.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.34.2...v10.35.0) (2019-10-25)
+
+
+### Features
+
+* **account.user.security.2fa:** disable cancel action when forced ([#1541](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1541)) ([f12ec1f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/f12ec1f))
+
+
+
 <a name="10.34.2"></a>
 ## [10.34.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.34.1...v10.34.2) (2019-10-24)
 

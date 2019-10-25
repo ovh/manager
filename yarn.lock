@@ -1070,10 +1070,10 @@
     lodash "~4.17.15"
     urijs "^1.19.1"
 
-"@ovh-ux/ng-ovh-otrs@7.1.11":
-  version "7.1.11"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.11.tgz#39fec6c9f6cdf8cb4c292e8ed4dca759c4cd1acf"
-  integrity sha512-vZzTWZZkVfEuNrAuBNRjZB+4MCdTDaB4qMpLuQy6l5TrflJLrx4H9qzt5DcpEvNWwTzXVMfuOwq+qHrkJQKfwg==
+"@ovh-ux/ng-ovh-otrs@7.1.12":
+  version "7.1.12"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.12.tgz#37fc3e1dd1905d6dc6dd035ed118f36267006721"
+  integrity sha512-8EHexcBl8I49yd6Wr7CT1N55Lczuxjbfnp1bVeA7MVoDuhxmlz1+8ieQHjZAeJW/wKmZ3wxS2n5LIoNsgtDdaw==
   dependencies:
     draggable "^4.2.0"
     lodash "^4.17.11"
@@ -1151,10 +1151,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
 
-"@ovh-ux/ng-ui-router-layout@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-3.0.0.tgz#483cf12c813d2d40fe7db1b205b792c3338a79cb"
-  integrity sha512-B6suruDBXAhZl0FAmwWIelverqL3rDP80kOwjszd74ZFhjoWsY4+lnkw2R6dz/J8iXK/98txeCGe7cJKwZLUFg==
+"@ovh-ux/ng-ui-router-layout@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ui-router-layout/-/ng-ui-router-layout-3.1.0.tgz#cfd99a000c25439a55567d3ec012219a90a3f240"
+  integrity sha512-5NaoD1roFwWAudPAWwGxEj/tyzo4qM9hQV0j4KPrWVE8+/UCuoyAIpGlVeJECNitlouCBF0MQ1bgj1Ruh04ZRQ==
   dependencies:
     lodash "^4.17.15"
 
