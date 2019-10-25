@@ -2,8 +2,8 @@
   "name": "@ovh-ux/manager-sms",
   "version": "7.2.5",
   "private": true,
-  "description": "OVH SMS product control panel",
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0",

@@ -2,8 +2,8 @@
   "name": "@ovh-ux/manager-telecom-task",
   "version": "4.2.3",
   "private": true,
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/telecom-task#readme",
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
     "lodash": "^4.17.15"
