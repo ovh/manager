@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
+import merge from 'lodash/merge';
 
 import { LAYOUT_NAME } from './constants';
 
@@ -25,14 +26,14 @@ export default class OuiModalLayout {
   static getLayoutOptions(state) {
     return {
       name: LAYOUT_NAME,
-      modalOptions: {
+      modalOptions: merge(get(state, 'layout.options', {}), {
         template: get(state, 'template'),
         templateUrl: get(state, 'templateUrl'),
         controller: get(state, 'controller'),
         controllerAs: get(state, 'controllerAs'),
         component: get(state, 'component'),
         componentProvider: get(state, 'componentProvider'),
-      },
+      }),
     };
   }
 }
