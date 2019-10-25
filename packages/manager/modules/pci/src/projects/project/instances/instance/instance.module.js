@@ -25,7 +25,6 @@ const moduleName = 'ovhManagerPciInstance';
 
 angular
   .module(moduleName, [
-    'ngOvhOtrs',
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
