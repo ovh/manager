@@ -13,30 +13,26 @@
   left: -100%;
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page.responsive-switch-page-left .responsive-switch-page-wrapper.ng-enter.ng-enter-active {
-  -webkit-transform: translateX(100%);
-      -ms-transform: translateX(100%);
-          transform: translateX(100%);
+  -ms-transform: translateX(100%);
+      transform: translateX(100%);
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page.responsive-switch-page-left .responsive-switch-page-wrapper.ng-leave.ng-leave-active {
-  -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-          transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+      transform: translateX(-100%);
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-enter {
   left: 100%;
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-enter.ng-enter-active {
-  -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-          transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+      transform: translateX(-100%);
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-leave {
   left: 0;
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-leave.ng-leave-active {
-  -webkit-transform: translateX(100%);
-      -ms-transform: translateX(100%);
-          transform: translateX(100%);
+  -ms-transform: translateX(100%);
+      transform: translateX(100%);
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page .responsive-switch-page-wrapper {
   position: relative;
@@ -44,11 +40,9 @@
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page .responsive-switch-page-wrapper.ng-enter,
 .responsive-switch.responsive-switch-switch .responsive-switch-page .responsive-switch-page-wrapper.ng-leave {
-  -webkit-transition: -webkit-transform 150ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
-          transition: transform 150ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  -webkit-transform: translateX(0px);
-      -ms-transform: translateX(0px);
-          transform: translateX(0px);
+  transition: transform 150ms cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  -ms-transform: translateX(0px);
+      transform: translateX(0px);
   top: 0;
 }
 .responsive-switch.responsive-switch-switch .responsive-switch-page .responsive-switch-page-wrapper.ng-enter {
@@ -62,49 +56,37 @@
   position: absolute;
 }
 .responsive-switch.responsive-switch-sidebyside {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 .responsive-switch.responsive-switch-sidebyside .responsive-switch-page {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -ms-flex-align: stretch;
+      align-items: stretch;
 }
 .responsive-switch.responsive-switch-sidebyside .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper {
   overflow-x: hidden;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-timing-function: ease;
-          animation-timing-function: ease;
-  -webkit-animation-fill-mode: backwards;
-          animation-fill-mode: backwards;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;
   display: block;
 }
 .responsive-switch.responsive-switch-sidebyside .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-enter {
-  -webkit-animation-name: horizontalexpand;
-          animation-name: horizontalexpand;
-  -webkit-animation-play-state: paused;
-          animation-play-state: paused;
+  animation-name: horizontalexpand;
+  animation-play-state: paused;
   visibility: hidden;
 }
 .responsive-switch.responsive-switch-sidebyside .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-enter.ng-enter-active {
   visibility: visible;
-  -webkit-animation-play-state: running;
-          animation-play-state: running;
+  animation-play-state: running;
 }
 .responsive-switch.responsive-switch-sidebyside .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-leave {
-  -webkit-animation-name: horizontalcollapse;
-          animation-name: horizontalcollapse;
-  -webkit-animation-play-state: paused;
-          animation-play-state: paused;
+  animation-name: horizontalcollapse;
+  animation-play-state: paused;
 }
 .responsive-switch.responsive-switch-sidebyside .responsive-switch-page.responsive-switch-page-right .responsive-switch-page-wrapper.ng-leave.ng-leave-active {
-  -webkit-animation-play-state: running;
-          animation-play-state: running;
+  animation-play-state: running;
 }
 .responsive-switch .responsive-switch-page {
   float: left;
@@ -123,28 +105,12 @@
   overflow: auto;
   min-height: 100px;
 }
-@-webkit-keyframes horizontalexpand {
-  from {
-    max-width: 0px;
-  }
-  to {
-    max-width: 500px;
-  }
-}
 @keyframes horizontalexpand {
   from {
     max-width: 0px;
   }
   to {
     max-width: 500px;
-  }
-}
-@-webkit-keyframes horizontalcollapse {
-  from {
-    max-width: 500px;
-  }
-  to {
-    max-width: 0px;
   }
 }
 @keyframes horizontalcollapse {

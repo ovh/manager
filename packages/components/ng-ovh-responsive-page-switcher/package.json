@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-responsive-page-switcher",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "It detects available width for displaying page in 2 distinct modes",
   "main": "./dist/ovh-angular-responsive-page-switcher.min.js",
   "repository": "ovh-ux/ovh-angular-responsive-page-switcher",
