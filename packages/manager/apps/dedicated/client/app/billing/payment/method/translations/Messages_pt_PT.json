@@ -10,7 +10,7 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Adicionar um método de pagamento",
   "billing_payment_method_autorenew_guide_help": "Precisa de ajuda para configurar as suas renovações?",
-  "billing_payment_method_autorenew_guide_help_link": "Quer saber mais",
+  "billing_payment_method_autorenew_guide_help_link": "Mais informações",
   "billing_payment_method_bank_account_pending_validation": "Adicionou uma conta bancária na sua Área de Cliente para a qual estamos a aguardar a sua autorização de débito a enviar-nos por correio.",
   "billing_payment_method_bank_account_processing_delay": "A sua conta bancária será válida após 24-48h úteis a contar a partir da receção da sua autorização de débito.",
   "billing_payment_method_table_action_download_procedure": "Descarregar o documento que deverá enviar por correio",

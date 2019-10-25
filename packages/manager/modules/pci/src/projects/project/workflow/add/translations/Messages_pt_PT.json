@@ -6,7 +6,7 @@
   "pci_workflow_create_select_instance": "Selecione uma instância",
   "pci_workflow_create_schedule_title": "Definir o planeamento",
   "pci_workflow_create_schedule_rotate7_title": "Rotação 7",
-  "pci_workflow_create_schedule_rotate_description": "É realizado um backup todos os dias, entre as 22h00 e as 6h00, e a rotação guarda um histórico das {{ numEntries }} entradas. Quando o backup for concluído, o mais antigo é eliminado.",
+  "pci_workflow_create_schedule_rotate_description": "É realizado um backup todos os dias, entre as 22h00 e as 6h00, e a rotação guarda um histórico das últimas {{ numEntries }} entradas. Quando o backup for concluído, o mais antigo é eliminado.",
   "pci_workflow_create_schedule_rotate14_title": "Rotação 14",
   "pci_workflow_create_schedule_custom_title": "Personalizado",
   "pci_workflow_create_schedule_custom_description": "Escolha o planeamento (formato UNIX Cron), o número de rotações e as execuções máximas que deseja.",
