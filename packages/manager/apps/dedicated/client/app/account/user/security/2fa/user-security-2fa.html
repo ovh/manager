@@ -2,12 +2,13 @@
      data-ng-controller="UserAccount.controllers.doubleAuth.2fa.enable as $ctrl">
 
     <div data-wizard
-         data-wizard-on-cancel="cancel"
-         data-wizard-on-finish="enableDoubleAuth"
-         data-wizard-hide-previous-button="!step2.hasError"
-         data-wizard-hide-cancel-button="step4.isActive"
-         data-wizard-bread-crumb
-         data-wizard-title="::'user_account_security_double_auth_action_activate' | translate">
+        data-wizard-on-cancel="cancel"
+        data-wizard-on-finish="enableDoubleAuth"
+        data-wizard-hide-previous-button="!step2.hasError"
+        data-wizard-hide-cancel-button="forced"
+        data-wizard-hide-close-button="forced"
+        data-wizard-bread-crumb
+        data-wizard-title="::'user_account_security_double_auth_action_activate' | translate">
 
         <!-- WELCOME -->
         <div data-wizard-step>

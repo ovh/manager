@@ -10,7 +10,7 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Add a payment method ",
   "billing_payment_method_autorenew_guide_help": "Do you need help renewing your services? ",
-  "billing_payment_method_autorenew_guide_help_link": "Do you need help renewing your services? ",
+  "billing_payment_method_autorenew_guide_help_link": "Find out more",
   "billing_payment_method_bank_account_pending_validation": "You added a bank account through your customer control panel. We are currently waiting for you to send us by mail your direct debit approval on that account.",
   "billing_payment_method_bank_account_processing_delay": "Your bank account will be validated within 24 to 48 hours from the moment we receive your authorisation for direct debit.",
   "billing_payment_method_table_action_download_procedure": "Download the procedure to return by post",
