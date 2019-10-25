@@ -61,7 +61,7 @@ export default class ExchangeAccountHomeController {
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
 
-    this.linkToSpamTicket = `#/ticket?serviceName=${this.$routerParams.productId}`;
+    this.linkToSpamTicket = `#/support/tickets?filters={"comparator":"is","field":"serviceName","reference":["${this.$routerParams.productId}"]}`;
     this.initialAccountRetrieval = true;
     this.atLeastOneDomainIsAssociatedToCurrentExchangeService = true;
     this.availableDomains = [];
