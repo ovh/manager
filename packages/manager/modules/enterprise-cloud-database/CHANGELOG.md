@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@0.1.4...@ovh-ux/manager-enterprise-cloud-database@0.1.5) (2019-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 121] ([73c0866](https://github.com/ovh/manager/commit/73c08668cab11274c1d5d6f19508568849c9c2b9))
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@0.1.3...@ovh-ux/manager-enterprise-cloud-database@0.1.4) (2019-10-28)
 
 
