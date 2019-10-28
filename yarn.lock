@@ -2062,10 +2062,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-sidebar-menu@^8.4.3":
-  version "8.4.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.3.tgz#0857cb33555cbb3a0935e9d8e3ef4af6673b40a4"
-  integrity sha512-q9PZjz/PDEB8TKnYpn5BaEOqm5TxOqtdUQFRzgIw6Szs8klTRmlR5u5LOD4NYwi5vU5y1nKwsa39qzttNTDE1g==
+"@ovh-ux/ng-ovh-sidebar-menu@^8.4.4":
+  version "8.4.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.4.tgz#42fbbf1bfa78802b25f03094d2222ac403967cdd"
+  integrity sha512-zNayrIRPKP1Hwf8yDBZH6zroyzVBo6eKV3ygbKnSbKyi01ordAI4rhKCLQ4ZiiSUB07CxdpckCa/uLdTaCvQPw==
   dependencies:
     lodash "^4.17.15"
 
