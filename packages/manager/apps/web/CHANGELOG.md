@@ -1,3 +1,21 @@
+# [13.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.8...@ovh-ux/manager-web@13.32.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
+* avoid loop between state when user is not connected ([2b51822](https://github.com/ovh/manager/commit/2b518222803dc644ef8332cd06b870a385725dbb))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+
+
+### Features
+
+* add error-page to web manager ([b3a24e8](https://github.com/ovh/manager/commit/b3a24e8e7be584acbf1a5098f8b48fda4a576303))
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
 ## [13.31.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.7...@ovh-ux/manager-web@13.31.8) (2019-10-25)
 
 

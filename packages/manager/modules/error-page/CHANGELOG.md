@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@1.1.0...@ovh-ux/manager-error-page@1.2.0) (2019-10-28)
+
+
+### Features
+
+* add error-page to web manager ([b3a24e8](https://github.com/ovh/manager/commit/b3a24e8e7be584acbf1a5098f8b48fda4a576303))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-error-page@1.0.0...@ovh-ux/manager-error-page@1.1.0) (2019-10-17)
 
 

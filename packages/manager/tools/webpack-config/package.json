@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-webpack-config",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "OVH manager shared webpack configuration",
   "keywords": [
     "configuration",
@@ -36,7 +36,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.6.3",
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "@ovh-ux/manager-webpack-dev-server": "^2.4.0",
+    "@ovh-ux/manager-webpack-dev-server": "^2.5.0",
     "acorn": "^6.0.5",
     "acorn-dynamic-import": "^4.0.0",
     "babel-eslint": "^8.2.6",

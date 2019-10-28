@@ -1,3 +1,13 @@
+# [10.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.4...@ovh-ux/manager-telecom@10.39.0) (2019-10-28)
+
+
+### Features
+
+* add error-page to telecom manager ([5de61ab](https://github.com/ovh/manager/commit/5de61ab37a5d9e36edfc499a4ea28d66f8ae75fd))
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
 ## [10.38.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.3...@ovh-ux/manager-telecom@10.38.4) (2019-10-25)
 
 

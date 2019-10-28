@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.0.2...@ovh-ux/manager-public-cloud@2.1.0) (2019-10-28)
+
+
+### Features
+
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
 ## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.0.1...@ovh-ux/manager-public-cloud@2.0.2) (2019-10-25)
 
 
