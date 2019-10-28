@@ -1,3 +1,12 @@
+## [10.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.26.0...@ovh-ux/manager-dedicated@10.26.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **billing.main.history:** fetch postal mail invoices only in EU build ([#1603](https://github.com/ovh/manager/issues/1603)) ([396b8e5](https://github.com/ovh/manager/commit/396b8e5fa509908348e47ef244e1a0c4588c05fa))
+
+
+
 # [10.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.7...@ovh-ux/manager-dedicated@10.26.0) (2019-10-28)
 
 
