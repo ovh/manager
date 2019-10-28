@@ -36,7 +36,7 @@
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.3",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.4.4",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^3.0.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
