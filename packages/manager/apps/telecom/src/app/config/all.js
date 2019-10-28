@@ -106,7 +106,7 @@ angular.module('managerApp')
     billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
     billingPayments: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payments',
     contacts: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES',
-    listTicket: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
+    support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
     ordersInProgress: 'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=in-progress',
     orders: 'https://www.ovh.com/manager/dedicated/index.html#/billing/orders?status=all',
     services: 'https://www.ovh.com/manager/dedicated/index.html#/billing/autoRenew',
