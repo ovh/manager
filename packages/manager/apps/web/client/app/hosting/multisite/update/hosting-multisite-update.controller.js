@@ -197,7 +197,18 @@ angular
           .then(() => Domain.getRecordsIds($stateParams.productId, {
             fieldType: 'A',
             subDomain: subDomainName,
-          }))
+          })
+            .then(() => {
+              $scope.domainWwwAvailable = true;
+            })
+            .catch((error) => {
+              if (error.status === 404) {
+                $scope.domainWwwAvailable = false;
+                return $q.resolve([]);
+              }
+
+              return $q.reject(error);
+            }))
           .then((recordIds) => {
             const recordsPromises = map(
               recordIds,
