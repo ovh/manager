@@ -76,8 +76,8 @@
             <span data-translate="inputs_logs_configure_logstash_desc_tcp"></span>
         </p>
         <p data-translate="inputs_logs_configure_logstash_desc2"></p>
-
-        <form novalidate name="ctrl.logstashForm">
+        <oui-spinner data-ng-if="ctrl.input.loading || ctrl.loading.engine"></oui-spinner>
+        <form novalidate name="ctrl.logstashForm" data-ng-if="!(ctrl.input.loading || ctrl.loading.engine)">
             <oui-field label="{{ ::'inputs_logs_configure_logstash_wizard' | translate }}" size="xl">
                 <div class="oui-select">
                     <select class="oui-select__input float-left"
@@ -87,8 +87,9 @@
                         data-ng-change="ctrl.applyConfiguration(ctrl.configuration.logstash.logFormat)"
                         data-ng-disabled="ctrl.saving.loading">
                             <option value="" data-translate="inputs_logs_configure_choose_app"></option>
-                            <option data-ng-repeat="logFormat in ctrl.getLogstashLogFormats()" value="{{logFormat.value}}">
-                                {{ logFormat.name | translate }}
+                            <option data-ng-repeat="logFormat in ctrl.engine.helpers track by $index"
+                                    value="{{logFormat.title}}"
+                                    data-ng-bind="::logFormat.title">
                             </option>
                     </select>
                     <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>

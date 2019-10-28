@@ -325,7 +325,7 @@
   "vps_tab_VEEAM_dashboard_table_empty": "Non sono presenti punti di ripristino",
   "vps_tab_VEEAM_dashboard_table_tooltip_mount": "Effettua il mount di questo punto di ripristino",
   "vps_tab_VEEAM_dashboard_table_tooltip_restore": "Ripristina il tuo VPS in questo stato",
-  "vps_tab_backup_storage": "Backup storage",
+  "vps_tab_backup_storage": "Backup Storage",
   "vps_tab_backup_not_activated": "Non hai sottoscritto l'opzione Backup storage.",
   "vps_tab_backup_not_able_to_order": "Non puoi sottoscrivere questa opzione perché il tuo NIC-handle non è autorizzato a effettuare ordini su questo VPS.",
   "vps_backup_storage_access_forgot_password_button": "Hai dimenticato la password?",
