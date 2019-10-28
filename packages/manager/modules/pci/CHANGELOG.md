@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.0...@ovh-ux/manager-pci@3.1.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **pci:** display quota button again ([ccb9d2d](https://github.com/ovh/manager/commit/ccb9d2d3e401c65cae572ec2c6ea4caca2f72a0d))
+
+
+
 # [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.2...@ovh-ux/manager-pci@3.1.0) (2019-10-28)
 
 
