@@ -450,5 +450,6 @@
   "vps_configuration_sla_title_enable": "Activer le monitoring SLA pour ce serveur ?",
   "vps_configuration_sla_title_disable": "Désactiver le monitoring SLA pour ce serveur ?",
   "vps_service_expired": "Le service {{vps}} n'a pas été renouvelé. Cela est peut être dû à une décision de votre part ou un retard de paiement de votre côté.",
-  "vps_back_to_configuration": "Retour à la configuration de mon VPS"
+  "vps_back_to_configuration": "Retour à la configuration de mon VPS",
+  "vps_tab_tasks": "Opérations"
 }

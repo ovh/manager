@@ -7,21 +7,8 @@
         <oui-header-tabs-item data-text="{{:: 'vps_tab_secondary_dns' | translate }}"
                               data-state="iaas.vps.detail.secondary-dns"
                               data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-        <oui-header-tabs-item data-text="{{:: 'vps_tab_backup_storage' | translate }}"
-                              data-state="iaas.vps.detail.backup-storage"
-                              data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-        <oui-header-tabs-item data-text="{{:: 'vps_tab_veeam' | translate }}"
-                              data-state="iaas.vps.detail.veeam"
-                              data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-        <oui-header-tabs-item data-text="{{:: 'vps_tab_additional_disk' | translate }}"
-                              data-state="iaas.vps.detail.additional-disk"
-                              data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-        <oui-header-tabs-item data-ng-if="$ctrl.showDatabaseTab"
-                              data-text="{{:: 'vps_tab_cloud_database' | translate }}"
-                              data-state="iaas.vps.detail.cloud-database"
-                              data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-        <oui-header-tabs-item data-text="{{:: 'vps_configuration_monitoring_title' | translate }}"
-                              data-state="iaas.vps.detail.monitoring"
-                              data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
+        <oui-header-tabs-item data-ng-repeat="feature in ::$ctrl.features track by $index"
+                              data-text="{{:: feature.textId | translate }}"
+                              data-state="{{:: feature.state }}"></oui-header-tabs-item>
     </oui-header-tabs>
 </oui-page-header>

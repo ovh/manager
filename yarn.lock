@@ -1000,18 +1000,18 @@
     "@ovh-ux/ng-translate-async-loader" "^2.0.0"
     lodash "^4.17.15"
 
-"@ovh-ux/manager-navbar@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-2.0.3.tgz#75ca0096b3f044097ad0a7b2c408a5dfa39e56e9"
-  integrity sha512-15TrMZ3af59Urh/cewSjZvAZqD0aArzeEg7BwtpWiM8USHtqCKtuTXTsUTD5EHufFkenyfv/x+oFq4lqJd/IbQ==
+"@ovh-ux/manager-navbar@^ 2.0.3":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-2.0.5.tgz#4d020615dba82785e4617ceb4b32e8c4d6615e69"
+  integrity sha512-JJnk1F9rWFvUxRURQvJ0xk+id0mKcubLjY35VOH1/6bP1hvRUoDRGGoZYnE9mItauknI/r4fNgfMFeN+92OkaQ==
   dependencies:
     lodash "^4.17.15"
     moment "^2.24.0"
 
-"@ovh-ux/manager-server-sidebar@^0.6.6":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.6.6.tgz#eb1a13afea62ab85f20a25138464f894e43a8e70"
-  integrity sha512-q36YNlIacNAHoW7MN/0jCPJ92CqtWXwoE8KmufH0CId1kIENC4GpnHiUl/tPNnSzHeLlFyjjO9280EXN42vwJw==
+"@ovh-ux/manager-server-sidebar@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.7.0.tgz#60d9acdb82c62594b5450a0b00fb4c81abdaebbe"
+  integrity sha512-E5DhxWb7OF0q349Ch82vN6JCAVbXgzm0nd2S5BJhaZSpLldu0A4sVW9ygR1cyqVriIiWrRwMhJk75dQJBvitDg==
   dependencies:
     font-awesome "~4.7.0"
     jsurl "^0.1.5"

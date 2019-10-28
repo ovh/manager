@@ -249,4 +249,14 @@ angular.module('managerApp', [
   .config(/* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
     CucConfigProvider.setRegion(coreConfigProvider.getRegion());
   })
-  .run(/* @ngTranslationsInject:json ./common/translations */);
+  .run(/* @ngTranslationsInject:json ./common/translations */)
+  .run(/* @ngInject */ ($state) => {
+    $state.defaultErrorHandler(({ detail: error }) => $state.go('error', {
+      detail: {
+        message: _.get(error, 'data.message'),
+        code: _.has(error, 'headers') ? error.headers('x-ovh-queryId') : null,
+      },
+    }, {
+      location: false,
+    }));
+  });

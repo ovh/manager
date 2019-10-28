@@ -1,8 +1,11 @@
+import {
+  TAB_FEATURES,
+} from './vps-header.constants';
+
 export default class {
   /* @ngInject */
   constructor(
     $rootScope,
-    $stateParams,
     $translate,
     CucCloudMessage,
     CucFeatureAvailabilityService,
@@ -13,17 +16,16 @@ export default class {
     STOP_NOTIFICATION_USER_PREF,
   ) {
     this.$rootScope = $rootScope;
-    this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
+    this.CucProductsService = CucProductsService;
     this.OvhApiMe = OvhApiMe;
     this.VpsNotificationIpv6 = VpsNotificationIpv6;
-    this.STOP_NOTIFICATION_USER_PREF = STOP_NOTIFICATION_USER_PREF;
-    this.serviceName = $stateParams.serviceName;
-    this.description = $stateParams.serviceName;
     this.VpsService = VpsService;
-    this.CucProductsService = CucProductsService;
+    this.STOP_NOTIFICATION_USER_PREF = STOP_NOTIFICATION_USER_PREF;
+
+    this.description = this.serviceName;
 
     this.loaders = {
       init: false,
@@ -60,6 +62,23 @@ export default class {
       .catch(() => this.CucCloudMessage.error(this.$translate.instant('vps_dashboard_loading_error')))
       .finally(() => { this.loaders.init = false; });
     this.description = this.CucProductsService.getDisplayName('VPS', this.serviceName);
+    this.features = this.getFeatures();
+    [this.feature] = this.features;
+  }
+
+  getFeatures() {
+    return _.map(
+      _.filter(
+        _.map(
+          TAB_FEATURES, 'title',
+        ),
+        feature => this.capabilities.includes(feature),
+      ),
+      feature => ({
+        textId: `vps_tab_${_.snakeCase(feature)}`,
+        state: `iaas.vps.detail.${_.snakeCase(feature)}`,
+      }),
+    );
   }
 
   checkMessages(vps) {
