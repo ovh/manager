@@ -1,3 +1,41 @@
+# [7.34.0](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.33.3...v7.34.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* **dbaas.logs.detail.inputs.add.configure:** fetch helpers from the api ([#1592](https://github.com/ovh-ux/ovh-manager-cloud/issues/1592)) ([577237a](https://github.com/ovh-ux/ovh-manager-cloud/commit/577237a836365ce5c907b9f5880bd1d1d271f535))
+* **dbaas.logs.detail.roles.members:** prevent error when adding adp role ([#1591](https://github.com/ovh-ux/ovh-manager-cloud/issues/1591)) ([ee4b1b1](https://github.com/ovh-ux/ovh-manager-cloud/commit/ee4b1b105f240a2a0b0375b94ee1330f2a50e7a8))
+* **i18n:** add missing translations [CDS 48] ([b3f80ba](https://github.com/ovh-ux/ovh-manager-cloud/commit/b3f80ba2b19dc481b16b7293fea80fd68ab86668))
+* **i18n:** add missing translations [CDS 58] ([49bbfce](https://github.com/ovh-ux/ovh-manager-cloud/commit/49bbfce10a07a6f830eae97221b6cbaf663c98ea))
+* **i18n:** add missing translations [CDS 60] ([c78b364](https://github.com/ovh-ux/ovh-manager-cloud/commit/c78b36448d15aa3ea3067d5f17aae295889c7ea3))
+* **i18n:** add missing translations [CDS 61] ([cfaa49b](https://github.com/ovh-ux/ovh-manager-cloud/commit/cfaa49b96844d7fd0dd2aab156a1bdd6c8f6c0a8))
+* **i18n:** add missing translations [CDS 65] ([7489e21](https://github.com/ovh-ux/ovh-manager-cloud/commit/7489e213e161ba51c7b7d0ad886138097a09973f))
+* **i18n:** add missing translations [CDS 67] ([c0abd58](https://github.com/ovh-ux/ovh-manager-cloud/commit/c0abd58e5d5ad8881b06fad9fff0bbfb972802e3))
+* **i18n:** add missing translations [CDS 68] ([8f7b322](https://github.com/ovh-ux/ovh-manager-cloud/commit/8f7b3229301df64c871ffb6925334d88a966a0dc))
+* **i18n:** add missing translations [CDS 70] ([4e9a16d](https://github.com/ovh-ux/ovh-manager-cloud/commit/4e9a16dc0c6f19f22fa8537fa482d68272d29e6b))
+* **i18n:** add missing translations [CDS 75] ([40c9843](https://github.com/ovh-ux/ovh-manager-cloud/commit/40c9843b7005e35a5c9f30ec4d40e3015c533f36))
+* **i18n:** add missing translations [CDS 80] ([ef1f7d8](https://github.com/ovh-ux/ovh-manager-cloud/commit/ef1f7d870ebae45ca45a4277cc4489fabfb07724))
+* **i18n:** add missing translations [CDS 83] ([e286df0](https://github.com/ovh-ux/ovh-manager-cloud/commit/e286df07ce1c34f4581ca71bc56042348a4b89f9))
+* **i18n:** add missing translations [CDS 84] ([ec6e014](https://github.com/ovh-ux/ovh-manager-cloud/commit/ec6e0144faa434630d7e2d1664a149f2c46ede93))
+
+
+### Features
+
+* **vps:** extract translations ([e8998e7](https://github.com/ovh-ux/ovh-manager-cloud/commit/e8998e72caf9d5519c4e8907700f7d31d1fabb93))
+* **vps:** make user go to IP page and filter with the service name ([#1590](https://github.com/ovh-ux/ovh-manager-cloud/issues/1590)) ([446bb03](https://github.com/ovh-ux/ovh-manager-cloud/commit/446bb03acc2ef5b6d8af3b3a262757af793f8de1))
+* **vps.kvm:** update novnc dependency ([#1579](https://github.com/ovh-ux/ovh-manager-cloud/issues/1579)) ([18d3302](https://github.com/ovh-ux/ovh-manager-cloud/commit/18d3302b569ca4269041d63b8779a0308f518bcd))
+
+
+
+## [7.33.3](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.33.2...v7.33.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* **vps:** disable vps section for US ([#1593](https://github.com/ovh-ux/ovh-manager-cloud/issues/1593)) ([09f38a3](https://github.com/ovh-ux/ovh-manager-cloud/commit/09f38a353c6796f73a55de4d13f32eace592e5b2))
+
+
+
 ## [7.33.2](https://github.com/ovh-ux/ovh-manager-cloud/compare/v7.33.1...v7.33.2) (2019-10-08)
 
 

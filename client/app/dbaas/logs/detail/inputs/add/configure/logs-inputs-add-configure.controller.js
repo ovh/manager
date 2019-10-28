@@ -17,6 +17,9 @@ class LogsInputsAddConfigureCtrl {
       flowgger: {},
       logstash: {},
     };
+    this.loading = {
+      engine: false,
+    };
     this.initLoaders();
   }
 
@@ -46,7 +49,21 @@ class LogsInputsAddConfigureCtrl {
     this.previousTest = this.test;
 
     this.input.load()
-      .then(() => this.previousTest.load());
+      .then(() => {
+        this.previousTest.load();
+        if (this.configuration.engineType === this.LogsConstants.logstash) {
+          this.getEngine();
+        }
+      });
+  }
+
+  getEngine() {
+    this.loading.engine = true;
+    this.LogsInputsService.getDetails(this.serviceName)
+      .then((details) => {
+        this.engine = _.find(details.engines, { engineId: this.input.data.info.engineId });
+        this.loading.engine = false;
+      });
   }
 
   initFlowgger(configuration) {
@@ -69,9 +86,11 @@ class LogsInputsAddConfigureCtrl {
   }
 
   applyConfiguration(name) {
-    this.configuration.logstash.inputSection = this.LogsConstants.logStashWizard[name].input.replace('INPUT_PORT', this.input.data.info.exposedPort);
-    this.configuration.logstash.filterSection = this.LogsConstants.logStashWizard[name].filter;
-    this.configuration.logstash.patternSection = this.LogsConstants.logStashWizard[name].patterns;
+    const helper = _.find(this.engine.helpers, { title: name });
+    this.configuration.logstash.inputSection = _.find(helper.sections, { name: 'LOGSTASH_INPUT' }).content
+      .replace('INPUT_PORT', this.input.data.info.exposedPort);
+    this.configuration.logstash.filterSection = _.find(helper.sections, { name: 'LOGSTASH_FILTER' }).content;
+    this.configuration.logstash.patternSection = _.find(helper.sections, { name: 'LOGSTASH_PATTERN' }).content;
   }
 
   executeTest() {
@@ -138,10 +157,6 @@ class LogsInputsAddConfigureCtrl {
 
   getFlowggerLogFormats() {
     return this.LogsInputsService.getFlowggerLogFormats();
-  }
-
-  getLogstashLogFormats() {
-    return this.LogsInputsService.getLogstashLogFormats();
   }
 
   getDelimiters() {

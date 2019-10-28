@@ -63,33 +63,10 @@ class LogsInputsService {
         name: 'inputs_logs_configure_format_cap_proto',
       },
     ];
-
-    this.logstashLogFormats = [
-      {
-        value: 'Syslog',
-        name: 'inputs_logs_configure_format_syslog',
-      },
-      {
-        value: 'Filebeat',
-        name: 'inputs_logs_configure_format_filebeat',
-      },
-      {
-        value: 'HAProxy',
-        name: 'inputs_logs_configure_format_ha_proxy',
-      },
-      {
-        value: 'Twitter',
-        name: 'inputs_logs_configure_format_twitter',
-      },
-    ];
   }
 
   getFlowggerLogFormats() {
     return this.flowggerLogFormats;
-  }
-
-  getLogstashLogFormats() {
-    return this.logstashLogFormats;
   }
 
   getDelimiters() {
