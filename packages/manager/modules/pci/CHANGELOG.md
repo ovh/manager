@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.2...@ovh-ux/manager-pci@3.1.0) (2019-10-28)
+
+
+### Features
+
+* **pci:** replace OTRS by Support ([174c858](https://github.com/ovh/manager/commit/174c858aded60ecfd872a5c92bee735fafe03cf2))
+
+
+
 ## [3.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.1...@ovh-ux/manager-pci@3.0.2) (2019-10-28)
 
 

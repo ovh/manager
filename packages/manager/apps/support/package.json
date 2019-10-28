@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^7.3.0",
-    "@ovh-ux/manager-navbar": "^2.0.5",
+    "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/manager-navbar": "^2.1.0",
     "@ovh-ux/manager-support": "^0.3.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
-    "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",

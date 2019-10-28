@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.0.5...@ovh-ux/manager-navbar@2.1.0) (2019-10-28)
+
+
+### Features
+
+* **navbar:** replace OTRS by Support ([1109955](https://github.com/ovh/manager/commit/1109955a318fc9e9c4ae9e8e2c8c39eb484202f2))
+
+
+
 ## [2.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@2.0.4...@ovh-ux/manager-navbar@2.0.5) (2019-10-21)
 
 

@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.1.10...@ovh-ux/manager-exchange@1.2.0) (2019-10-28)
+
+
+### Features
+
+* **exchange:** replace OTRS by Support ([20388f0](https://github.com/ovh/manager/commit/20388f0010762b554b5d92724cb7b704492a0937))
+
+
+
 ## [1.1.10](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.9...@ovh-ux/manager-exchange@1.1.10) (2019-10-08)
 
 
