@@ -2035,7 +2035,7 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@7.1.12", "@ovh-ux/ng-ovh-otrs@^7.1.11":
+"@ovh-ux/ng-ovh-otrs@^7.1.12":
   version "7.1.12"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.12.tgz#37fc3e1dd1905d6dc6dd035ed118f36267006721"
   integrity sha512-8EHexcBl8I49yd6Wr7CT1N55Lczuxjbfnp1bVeA7MVoDuhxmlz1+8ieQHjZAeJW/wKmZ3wxS2n5LIoNsgtDdaw==
