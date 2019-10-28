@@ -1,34 +1,8 @@
-.oui-navbar {
-
-  // Universes
-  &-list_main {
-    .navbar-universe(web, @oui-color-jungle);
-    .navbar-universe(cloud, @oui-color-supernova);
-    .navbar-universe(telecom, @oui-color-dodger);
-    .navbar-universe(sunrise, @oui-color-california);
-    .navbar-universe(gamma, @oui-color-california);
-
-    .navbar-universe(@universe-selector, @universe-color) {
-      .@{universe-selector} > .oui-navbar-link {
-        &:hover,
-        &:focus,
-        &_active {
-          color: @universe-color;
-        }
-      }
-    }
-  }
-
-  // Logout
-  .logout > .oui-navbar-link {
-    &,
-    &:hover,
-    &:focus,
-    &_active {
-      font-weight: 600;
-      color: @oui-color-error-dark;
-    }
-  }
+.navbar-toggle {
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 44px;
 }
 
 .left-0 {

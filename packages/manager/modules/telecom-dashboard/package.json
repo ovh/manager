@@ -2,8 +2,8 @@
   "name": "@ovh-ux/manager-telecom-dashboard",
   "version": "4.4.1",
   "private": true,
-  "description": "OVH Telecom dashboard",
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "./src/index.js",
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"

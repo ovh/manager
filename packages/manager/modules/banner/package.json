@@ -2,13 +2,19 @@
   "name": "@ovh-ux/manager-banner",
   "version": "1.1.1",
   "description": "OVH control panel banner",
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/banner#readme",
+  "keywords": [
+    "angularjs",
+    "banner",
+    "control panel",
+    "manager"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/banner#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/modules/banner"
   },
   "license": "BSD-3-Clause",

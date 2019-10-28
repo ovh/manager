@@ -1,3 +1,12 @@
+# [7.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.32.6...@ovh-ux/manager-cloud@7.33.0) (2019-10-28)
+
+
+### Features
+
+* **cloud:** add error page ([84d21e6](https://github.com/ovh/manager/commit/84d21e6512891a163dc07487316ffd26ab00b918))
+
+
+
 ## [7.32.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.32.5...@ovh-ux/manager-cloud@7.32.6) (2019-10-25)
 
 

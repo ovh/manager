@@ -188,7 +188,10 @@ angular.module('App').controller(
     }
 
     getResumePrice(price) {
-      return price.value === 0 ? this.$translate.instant('price_free') : this.$translate.instant('price_ht_label', { price: price.text });
+      // If price value is 0, the price is included, or else we display price
+      // Adding sceParameters will tell translator not to sanitize the value and trust as HTML
+      return price.value === 0 ? this.$translate.instant('price_free')
+        : this.$translate.instant('domain_hosting_price_ht_label', { price: price.text }, undefined, false, 'sceParameters');
     }
 
     getSelectedOfferOrderInfos() {

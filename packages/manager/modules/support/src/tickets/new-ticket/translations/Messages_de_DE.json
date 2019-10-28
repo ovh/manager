@@ -64,7 +64,7 @@
   "ovhManagerSupport_new_serviceType_pack_xdsl": "xDSL-Paket",
   "ovhManagerSupport_new_serviceType_router": "Router",
   "ovhManagerSupport_new_serviceType_HOSTING_DOMAIN": "Webhosting + Domain",
-  "ovhManagerSupport_new_serviceType_hosting_reseller": "Webhosting mit Plesk",
+  "ovhManagerSupport_new_serviceType_hosting_reseller": "Multisite Hosting",
   "ovhManagerSupport_new_serviceType_metrics": "Metrics",
   "ovhManagerSupport_new_serviceType_dedicated_ceph": "CDA",
   "ovhManagerSupport_new_serviceType_veeam_veeam_enterprise": "Veeam Enterprise",

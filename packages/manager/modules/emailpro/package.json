@@ -2,11 +2,6 @@
   "name": "@ovh-ux/manager-emailpro",
   "version": "1.1.7",
   "private": true,
-  "description": "OVH E-mail Pro module",
-  "keywords": [
-    "angular",
-    "e-mail pro"
-  ],
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "src/index.js",
