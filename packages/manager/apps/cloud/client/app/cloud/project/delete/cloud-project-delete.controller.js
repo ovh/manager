@@ -20,6 +20,7 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
     OvhApiCloudProjectCredit,
     CloudProjectBillingService,
     coreConfig,
+    REDIRECT_URLS,
   ) {
     const self = this;
     const { projectId } = $stateParams;
@@ -87,6 +88,8 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
     }
 
     this.init = function init() {
+      this.supportUrl = REDIRECT_URLS.support;
+
       if (coreConfig.getRegion() !== 'US') {
         self.loaders.init = true;
         $q.all([
@@ -129,11 +132,6 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
     };
 
     self.cancel = $uibModalInstance.dismiss;
-
-    self.goToSupport = function goToSupport() {
-      self.cancel();
-      $state.go('otrs-list');
-    };
 
     self.resetCache = function resetCache() {
       OvhApiCloudProjectInstance.v6().resetQueryCache();

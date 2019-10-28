@@ -7,7 +7,6 @@ export default class {
     $translate,
     CucCloudMessage,
     CucRegionService,
-    OtrsPopupService,
     OvhApiCloudProject,
     PCI_REDIRECT_URLS,
   ) {
@@ -15,7 +14,6 @@ export default class {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
-    this.OtrsPopupService = OtrsPopupService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
   }
@@ -48,14 +46,6 @@ export default class {
     return quota.maxInstances === RESTRICTED_INSTANCES
     && quota.maxCores === RESTRICTED_CORES
     && quota.maxRam === RESTRICTED_RAM;
-  }
-
-  openSupport() {
-    if (!this.OtrsPopupService.isLoaded()) {
-      this.OtrsPopupService.init();
-    } else {
-      this.OtrsPopupService.toggle();
-    }
   }
 
   unleashAccount() {

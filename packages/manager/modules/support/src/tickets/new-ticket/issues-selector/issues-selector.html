@@ -1,0 +1,22 @@
+<oui-spinner data-ng-if="$ctrl.isLoading && !$ctrl.issueTypes">
+</oui-spinner>
+
+<oui-field data-label="{{ ('ovhManagerSupport_new_issue' | translate) + ' ' + $ctrl.rank }}"
+           data-ng-if="!$ctrl.isLoading && $ctrl.issueTypes.length"
+           data-size="xl">
+    <oui-select name="issue"
+                data-model="$ctrl.issueType"
+                data-items="$ctrl.issueTypes"
+                data-disabled="!$ctrl.issueTypes.length"
+                data-on-change="$ctrl.onIssueTypeSelected()"
+                data-match="label">
+    </oui-select>
+</oui-field>
+
+<support-issues-selector
+    data-ng-if="$ctrl.issueType.hasChildren"
+    data-category="$ctrl.category"
+    data-service-type="$ctrl.serviceType"
+    data-parent-issue="$ctrl.issueType"
+    data-issue="$ctrl.issue">
+</support-issues-selector>

@@ -98,7 +98,7 @@ export default class {
     sublinks.push(
       {
         title: this.$translate.instant('navbar_assistance_ask_for_assistance'),
-        url: this.URLS.ticket,
+        url: this.URLS.supportTicket,
         click: () => this.atInternet.trackClick({
           name: 'assistance::assistance_requests_created',
           type: 'action',

@@ -30,10 +30,12 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhManagerSupport from '@ovh-ux/manager-support';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
+import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
@@ -55,6 +57,7 @@ Environment.setVersion(__VERSION__);
 angular
   .module('App', [
     __NG_APP_INJECTIONS__,
+    account,
     ovhManagerCore,
     'Billing',
     'chart.js',
@@ -104,6 +107,7 @@ angular
     ovhManagerPccDashboard,
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
+    ovhManagerSupport,
     ngTailLogs,
     'ovhBrowserAlert',
     ovhContacts,
