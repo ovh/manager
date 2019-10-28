@@ -1,0 +1,4 @@
+{
+  "dedicated_server_interfaces_ola_alert_obsolete_option": "Bei einer privaten Aggregationskonfiguration wird Ihre Option für ausgehende öffentliche Bandbreite nicht genutzt.",
+  "dedicated_server_interfaces_ola_error": "Bei der Konfiguration ist ein Fehler aufgetreten: {{ errorMessage }}"
+}

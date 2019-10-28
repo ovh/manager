@@ -1,0 +1,16 @@
+{
+  "ovhManagerSupport_ticket_backButton": "Zurück zur Ticket-Liste",
+  "ovhManagerSupport_ticket_generalInformation_subjet": "Betreff",
+  "ovhManagerSupport_ticket_generalInformation_number": "Nummer",
+  "ovhManagerSupport_ticket_generalInformation_creationDate": "Eröffnungsdatum",
+  "ovhManagerSupport_ticket_generalInformation_state": "Status",
+  "ovhManagerSupport_ticket_generalInformation_service": "Dienst",
+  "ovhManagerSupport_ticket_generalInformation_type": "Typ",
+  "ovhManagerSupport_ticket_generalInformation_updateDate": "Letzte Änderung",
+  "ovhManagerSupport_ticket_generalInformation_closeTicket": "Ticket schließen",
+  "ovhManagerSupport_ticket_reply_header": "Nachricht senden",
+  "ovhManagerSupport_ticket_reply_reply": "Absenden",
+  "ovhManagerSupport_ticket_messages_header": "Korrespondenz",
+  "ovhManagerSupport_ticket_messages_sender": "Von",
+  "ovhManagerSupport_ticket_messages_dateOfReceipt": "Empfangen am"
+}

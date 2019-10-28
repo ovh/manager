@@ -24,6 +24,14 @@ export default class ServersCtrl {
 
     this.stateEnumFilter = this.getEnumFilter(this.serverStateEnum, 'server_configuration_state_');
     this.datacenterEnumFilter = this.getEnumFilter(this.datacenterEnum, 'server_datacenter_');
+
+    this.columnsConfig = [
+      { name: 'name', sortable: this.getSorting('name') },
+      { name: 'reverse', sortable: this.getSorting('reverse') },
+      { name: 'commercialRange', sortable: this.getSorting('commercialRange') },
+      { name: 'datacenter', sortable: this.getSorting('datacenter') },
+      { name: 'state', sortable: this.getSorting('state') },
+    ];
   }
 
   static toUpperSnakeCase(str) {
@@ -44,7 +52,7 @@ export default class ServersCtrl {
   }
 
   getSorting(property) {
-    return this.sort === property ? this.sortOrder : '';
+    return this.sort === property ? this.sortOrder.toLowerCase() : '';
   }
 
   loadServers() {

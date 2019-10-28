@@ -1,8 +1,0 @@
-{
-  "page_load_error": "Wystąpił błąd podczas ładowania strony.",
-  "page_load_error_common": "Strona nie została znaleziona.",
-  "page_load_error_forbidden_billing_access": "Nie możesz uzyskać dostępu do sekcji \"Faktury\" z tego konta.",
-  "page_load_error_back_to_home": "Powrót do strony głównej",
-  "page_load_error_code": "Kod błędu: {{code}}",
-  "page_load_error_retry": "Spróbuj ponownie"
-}

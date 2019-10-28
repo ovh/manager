@@ -8,10 +8,8 @@ $flag-icon-css-path: "~flag-icon-css/flags";
 @import "bootstrap4/scss/_grid.scss";
 
 // Microsoft Icons
-// @import './../../../node_modules/office-ui-fabric-react/dist/sass/variables/_Icon.Variables.scss';
-// @import './../../../node_modules/office-ui-fabric-react/dist/sass/variables/_ZIndex.Variables.scss';
-// @import './../../../node_modules/office-ui-fabric-react/dist/sass/mixins/_Icon.Mixins.scss';
-// @import './../../../node_modules/office-ui-fabric-react/dist/sass/_Icon.Definitions.scss';
-// @import './../../../node_modules/office-ui-fabric-react/dist/sass/_Icon.scss';
-
-@import './../billing/payment/method/add/views/billing-address/add-billing-address.scss';
+@import 'office-ui-fabric-react/dist/sass/variables/_Icon.Variables.scss';
+@import 'office-ui-fabric-react/dist/sass/variables/_ZIndex.Variables.scss';
+@import 'office-ui-fabric-react/dist/sass/mixins/_Icon.Mixins.scss';
+@import 'office-ui-fabric-react/dist/sass/_Icon.Definitions.scss';
+@import 'office-ui-fabric-react/dist/sass/_Icon.scss';

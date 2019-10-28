@@ -10,7 +10,7 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Ajouter un moyen de paiement",
   "billing_payment_method_autorenew_guide_help": "¿Necesita ayuda para renovar sus servicios?",
-  "billing_payment_method_autorenew_guide_help_link": "¿Necesita ayuda para renovar sus servicios?",
+  "billing_payment_method_autorenew_guide_help_link": "Más información",
   "billing_payment_method_bank_account_pending_validation": "Usted ha añadido una cuenta bancaria en el manager. Aún no hemos recibido la autorización de domiciliación a dicha cuenta que debe enviarnos por correo postal.",
   "billing_payment_method_bank_account_processing_delay": "Su cuenta bancaria se validará en las 24 a 48 horas posteriores a la recepción de su autorización de domiciliación.",
   "billing_payment_method_table_action_download_procedure": "Descargar el documento que deberá enviar por correo postal",

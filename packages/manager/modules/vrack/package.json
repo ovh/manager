@@ -8,13 +8,13 @@
     "ovh",
     "vrack"
   ],
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/vrack#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/vrack#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/modules/vrack"
   },
   "license": "BSD-3-Clause",
@@ -47,7 +47,7 @@
     "@ovh-ux/manager-core": "^7.1.4",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
-    "@ovh-ux/ng-ovh-toaster": "^1.0.2",
+    "@ovh-ux/ng-ovh-toaster": "^1.0.3",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-ui-bootstrap": "~1.3.3",

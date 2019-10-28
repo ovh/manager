@@ -1,13 +1,13 @@
 {
   "name": "@ovh-ux/manager-cloud-styles",
   "version": "0.3.1",
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/cloud-styles#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/cloud-styles#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/modules/cloud-styles"
   },
   "license": "BSD-3-Clause",

@@ -1,0 +1,7 @@
+{
+  "mfa_enrollment_title": "Schützen sie Ihren Account mit der Zwei-Faktor-Authentifizierung!",
+  "mfa_enrollment_info1": "Die Sicherheit eines einfachen Passwortschutzes reicht oft nicht aus. Deshalb empfehlen wir Ihnen, die Zwei-Faktor-Authentifizierung für Ihren Account zu aktivieren.",
+  "mfa_enrollment_info2": "So erhöhen Sie das Sicherheitsniveau Ihres Dienstes und sorgen für zusätzlichen Schutz Ihrer Daten. Neben Ihrem Passwort werden Sie beim Login dazu aufgefordert, auch einen per SMS oder Telefon versandten Bestätigungscode oder einen Token einzugeben.",
+  "mfa_enrollment_go": "Los geht‘s!",
+  "mfa_enrollment_cancel": "Nicht jetzt"
+}

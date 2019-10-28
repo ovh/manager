@@ -267,7 +267,7 @@
   "privateDatabase_restore_in_progress": "Restauro em curso...",
   "privateDatabase_dump_bdd_creationDate": "Data de criação",
   "privateDatabase_dump_bdd_deletionDate": "Data de eliminação",
-  "privateDatabase_dump_bdd_in_progress": "O pedido de backup da base de dados foi registado",
+  "privateDatabase_dump_bdd_in_progress": "O pedido de backup da base de dados foi registado.",
   "privateDatabase_dump_bdd_success": "O backup da base de dados foi concretizado.",
   "privateDatabase_dump_bdd_fail": "Erro ao processar backup da base de dados.",
   "privateDatabase_tabs_bdd_deleting": "Eliminação da base da base de dados em curso...",

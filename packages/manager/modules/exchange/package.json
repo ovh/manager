@@ -2,11 +2,6 @@
   "name": "@ovh-ux/manager-exchange",
   "version": "1.1.10",
   "private": true,
-  "description": "Exchange module.",
-  "keywords": [
-    "angular",
-    "exchange"
-  ],
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "src/index.js",
@@ -19,7 +14,7 @@
     "@ovh-ux/ng-ovh-export-csv": "^1.0.0",
     "@ovh-ux/ng-ovh-http": "^4.0.1-beta.0",
     "@ovh-ux/ng-ovh-otrs": "^7.1.11",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "@ovh-ux/ng-ovh-web-universe-components": "^7.0.0",

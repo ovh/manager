@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 import angular from 'angular';
 import set from 'lodash/set';
 
@@ -193,6 +195,9 @@ angular
   })
   .config(/* @ngInject */ ($urlServiceProvider) => {
     $urlServiceProvider.config.strictMode(false);
+  })
+  .run(/* @ngInject */ (OvhNgRequestTaggerInterceptor) => {
+    OvhNgRequestTaggerInterceptor.setHeaderVersion(Environment.getVersion());
   });
 
 export default moduleName;

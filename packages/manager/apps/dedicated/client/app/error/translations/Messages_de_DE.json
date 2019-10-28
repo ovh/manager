@@ -1,8 +1,0 @@
-{
-  "page_load_error": "Beim Laden der Seite ist ein Fehler aufgetreten.",
-  "page_load_error_common": "Die angeforderte Seite konnte nicht gefunden werden.",
-  "page_load_error_forbidden_billing_access": "Der Bereich „Abrechnung\" ist über diesen Account nicht verfügbar.",
-  "page_load_error_back_to_home": "Zurück zur Startseite",
-  "page_load_error_code": "Fehlercode: {{ code }}",
-  "page_load_error_retry": "Erneut versuchen"
-}

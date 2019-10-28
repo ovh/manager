@@ -1,6 +1,0 @@
-{
-  "page_load_error": "Se ha producido un error al cargar la página.",
-  "page_load_error_common": "No se ha enontrado la página solicitada.",
-  "page_load_error_forbidden_billing_access": "No se puede acceder a la sección de facturación desde esa cuenta.",
-  "page_load_error_back_to_home": "Volver a la página de inicio del área del cliente"
-}

@@ -1,13 +1,13 @@
 {
   "name": "@ovh-ux/manager-core",
   "version": "7.3.0",
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/core#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/modules/core"
   },
   "license": "BSD-3-Clause",
@@ -39,7 +39,7 @@
     "@ovh-ux/ng-ovh-http": "^4.0.1-beta.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",

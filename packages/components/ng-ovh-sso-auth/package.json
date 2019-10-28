@@ -2,13 +2,22 @@
   "name": "@ovh-ux/ng-ovh-sso-auth",
   "version": "4.2.3",
   "description": "OVH Single Sign On module",
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/components/#readme",
+  "keywords": [
+    "angularjs",
+    "auth",
+    "authentification",
+    "ovh",
+    "ovhcloud",
+    "sign on",
+    "sso"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-sso-auth#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/components/ng-ovh-sso-auth"
   },
   "license": "BSD-3-Clause",

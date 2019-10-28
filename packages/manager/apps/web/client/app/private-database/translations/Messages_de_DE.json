@@ -267,7 +267,7 @@
   "privateDatabase_restore_in_progress": "Wiederherstellung wird durchgeführt...",
   "privateDatabase_dump_bdd_creationDate": "Erstellungsdatum",
   "privateDatabase_dump_bdd_deletionDate": "Löschungsdatum",
-  "privateDatabase_dump_bdd_in_progress": "Die Sicherung der Datenbank wird durchgeführt.",
+  "privateDatabase_dump_bdd_in_progress": "Backup der Datenbank wird durchgeführt.",
   "privateDatabase_dump_bdd_success": "Die Sicherung der Datenbank wurde erfolgreich durchgeführt.",
   "privateDatabase_dump_bdd_fail": "Bei der Sicherung der Datenbank ist ein Fehler aufgetreten.",
   "privateDatabase_tabs_bdd_deleting": "Datenbank wird gelöscht...",
