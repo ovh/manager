@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "OVH Enterprise Cloud Database product control panel",
   "keywords": [
     "control",
@@ -43,10 +43,10 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.3.0",
+    "@ovh-ux/manager-core": "^7.4.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0",
-    "@ovh-ux/ng-ovh-payment-method": "^5.0.0",
+    "@ovh-ux/ng-ovh-payment-method": "^5.0.1",
     "@ovh-ux/ng-ovh-toaster": "^1.0.3",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",
     "@ovh-ux/ng-ui-router-layout": "^3.1.0",

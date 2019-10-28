@@ -1,3 +1,12 @@
+## [7.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.2...@ovh-ux/ng-ovh-web-universe-components@7.1.3) (2019-10-28)
+
+
+### Bug Fixes
+
+* **wuc.expiration:** fix translate values ([#1592](https://github.com/ovh/manager/issues/1592)) ([aea63a5](https://github.com/ovh/manager/commit/aea63a5088fffa6f7b31a851b70c0938e86dc6a9))
+
+
+
 ## [7.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.1...@ovh-ux/ng-ovh-web-universe-components@7.1.2) (2019-10-23)
 
 

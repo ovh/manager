@@ -1,3 +1,13 @@
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.0...@ovh-ux/ng-ovh-payment-method@5.0.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* add @ovh-ux/manager-core as peer dependency ([84a0c21](https://github.com/ovh/manager/commit/84a0c212bb2280bd81111dcaeee68d044962c285))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+
+
+
 # [5.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/@ovh-ux/ng-ovh-payment-method@4.2.0...@ovh-ux/ng-ovh-payment-method@5.0.0) (2019-10-24)
 
 
