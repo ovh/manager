@@ -45,7 +45,6 @@ import domainZoneActivation from './domain/general-informations/activateZone/act
 import domainDnsZone from './dns-zone';
 import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
 import errorPage from './error-page/error-page.module';
-import navbar from './components/navbar';
 import zone from './domain/zone/zone.module';
 
 import './css/source.less';
@@ -110,7 +109,6 @@ angular
     domainOptin,
     hostingWebsiteCoach,
     errorPage,
-    navbar,
     zone,
   ])
   .constant('constants', {

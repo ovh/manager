@@ -27,6 +27,12 @@
                     }"
                     data-universe-click="$ctrl.openSidebar()">
                 </ovh-manager-navbar>
+                <button
+                    type="button"
+                    class="navbar-toggle position-absolute bg-transparent border-0"
+                    data-ng-if="$ctrl.sidebarIsOpen"
+                    data-ng-click="$ctrl.closeSidebar()">
+                </button>
             </div>
             <div class="container-fluid h-100 w-100" style="overflow: auto" data-ui-view="app">
                 <div class="row">

@@ -7,13 +7,11 @@ export default class WebAppCtrl {
     $scope,
     $timeout,
     $translate,
-    webNavbar,
   ) {
     this.$document = $document;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.webNavbar = webNavbar;
 
     this.$onInit();
   }
