@@ -1,3 +1,12 @@
+## [7.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.33.0...@ovh-ux/manager-cloud@7.33.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* remove navbar custom styles ([a437b91](https://github.com/ovh/manager/commit/a437b91d77e273f7e2ba8d88a46ae224a12e8f2e))
+
+
+
 # [7.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.32.6...@ovh-ux/manager-cloud@7.33.0) (2019-10-28)
 
 
