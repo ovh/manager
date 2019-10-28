@@ -15,6 +15,8 @@
     "clean": "lerna clean -y && yarn run clean:dist && npx rimraf node_modules",
     "clean:dist": "npx rimraf \"packages/**/dist?(-EU|-CA|-US)\"",
     "docs:update-readme": "scripts/update-readme.js",
+    "generate:app": "sao ./packages/manager/tools/sao-ovh-manager-app",
+    "generate:module": "sao ./packages/manager/tools/sao-ovh-manager-module",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
     "lint:html": "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
