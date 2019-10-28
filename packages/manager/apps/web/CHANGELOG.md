@@ -1,3 +1,14 @@
+## [13.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.32.0...@ovh-ux/manager-web@13.32.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **domain.webhosting.enable:** fix hosting price display ([#1477](https://github.com/ovh/manager/issues/1477)) ([e42676c](https://github.com/ovh/manager/commit/e42676cc55b7490dfd6915e48f5fa02dd56c6b1a))
+* remove navbar custom styles ([a437b91](https://github.com/ovh/manager/commit/a437b91d77e273f7e2ba8d88a46ae224a12e8f2e))
+* **web.navbar:** add button to close sidebar on mobile ([d3969b0](https://github.com/ovh/manager/commit/d3969b0b19e91b724a17f7a1d74a9ea3b919e655))
+
+
+
 # [13.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.8...@ovh-ux/manager-web@13.32.0) (2019-10-28)
 
 
