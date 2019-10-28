@@ -1,3 +1,12 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.4.0...@ovh-ux/manager-core@7.5.0) (2019-10-28)
+
+
+### Features
+
+* **support:** create the module ([30bf9f0](https://github.com/ovh/manager/commit/30bf9f083cd6c521c4fa33e0970f72ee7292cedf))
+
+
+
 # [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.3.0...@ovh-ux/manager-core@7.4.0) (2019-10-28)
 
 

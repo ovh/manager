@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.1.0...@ovh-ux/manager-public-cloud@2.2.0) (2019-10-28)
+
+
+### Features
+
+* **public-cloud:** replace OTRS by Support ([bdcb1c7](https://github.com/ovh/manager/commit/bdcb1c721b5aa8eb33b4b2e6bb706ae4abd8efb0))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.0.2...@ovh-ux/manager-public-cloud@2.1.0) (2019-10-28)
 
 

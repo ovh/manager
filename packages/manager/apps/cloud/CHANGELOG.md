@@ -1,3 +1,12 @@
+# [7.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.33.1...@ovh-ux/manager-cloud@7.34.0) (2019-10-28)
+
+
+### Features
+
+* **cloud:** replace OTRS by Support ([9c89c44](https://github.com/ovh/manager/commit/9c89c447144318aa74787a49d1d177d433b0f817))
+
+
+
 ## [7.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.33.0...@ovh-ux/manager-cloud@7.33.1) (2019-10-28)
 
 

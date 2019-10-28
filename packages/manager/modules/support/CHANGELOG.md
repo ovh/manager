@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.3.1...@ovh-ux/manager-support@0.4.0) (2019-10-28)
+
+
+### Features
+
+* **support:** create the module ([30bf9f0](https://github.com/ovh/manager/commit/30bf9f083cd6c521c4fa33e0970f72ee7292cedf))
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.3.0...@ovh-ux/manager-support@0.3.1) (2019-10-28)
 
 

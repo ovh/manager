@@ -1,3 +1,12 @@
+# [13.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.32.1...@ovh-ux/manager-web@13.33.0) (2019-10-28)
+
+
+### Features
+
+* **web:** replace OTRS by Support ([45ddf39](https://github.com/ovh/manager/commit/45ddf39ee49b2e1b609587d12d81661fe4f6d9ed))
+
+
+
 ## [13.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.32.0...@ovh-ux/manager-web@13.32.1) (2019-10-28)
 
 

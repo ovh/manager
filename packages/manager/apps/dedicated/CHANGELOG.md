@@ -1,3 +1,12 @@
+# [10.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.26.1...@ovh-ux/manager-dedicated@10.27.0) (2019-10-28)
+
+
+### Features
+
+* **dedicated:** replace OTRS by Support ([18b4be5](https://github.com/ovh/manager/commit/18b4be5f2041c108da554ad31f5699b486f6ef1a))
+
+
+
 ## [10.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.26.0...@ovh-ux/manager-dedicated@10.26.1) (2019-10-28)
 
 

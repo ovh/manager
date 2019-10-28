@@ -1,3 +1,12 @@
+# [10.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.39.0...@ovh-ux/manager-telecom@10.40.0) (2019-10-28)
+
+
+### Features
+
+* **telecom:** replace OTRS by Support ([1c2f31e](https://github.com/ovh/manager/commit/1c2f31e1c1b160b964aa66d12603146714182b87))
+
+
+
 # [10.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.4...@ovh-ux/manager-telecom@10.39.0) (2019-10-28)
 
 
