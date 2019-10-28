@@ -1,6 +1,6 @@
 angular
   .module('services')
-  .service('HostingBoost', function hostingBoost($q, $rootScope, OvhHttp, Poll) {
+  .service('HostingBoost', function hostingBoost($q, $rootScope, OvhHttp, Poll, OvhApiOrderCatalogPublic) {
     /**
      * Get models
      */
@@ -34,6 +34,14 @@ angular
       ];
       return $q.all(tasks);
     };
+
+    /**
+     * Obtain hosting boost new price
+     */
+    this.getBoostPrice = ovhSubsidiary => OvhApiOrderCatalogPublic.v6().get({
+      ovhSubsidiary,
+      productName: 'webHosting',
+    }).$promise;
 
     /**
      * Obtain hosting boost history
