@@ -7,14 +7,15 @@
                data-on-dismiss="ctrl.cancel()"
                data-loading="ctrl.saving.loading">
         <oui-field data-label="{{::'logs_roles_members_modal_user' | translate}}">
-            <cloud-auto-complete
-                data-id="userName"
-                data-ng-model="ctrl.member.username"
+            <oui-select name="userName"
+                placeholder="logs-XX-XXXXX"
+                data-model="ctrl.member.username"
+                data-items="ctrl.logs.data"
+                data-match="username"
                 data-ng-disabled="ctrl.saving"
-                data-options="ctrl.logs.data"
-                data-display-property="username"
-                data-placeholder="logs-XX-XXXXX"
-                required cuc-autofocus></cloud-auto-complete>
+                data-searchable
+                required>
+            </oui-select>
         </oui-field>
 
         <oui-field data-label="{{::'logs_roles_members_note' | translate}}">

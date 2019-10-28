@@ -325,7 +325,7 @@
   "vps_tab_VEEAM_dashboard_table_empty": "Não possui nenhum ponto de restauro",
   "vps_tab_VEEAM_dashboard_table_tooltip_mount": "Montar este ponto de restauro",
   "vps_tab_VEEAM_dashboard_table_tooltip_restore": "Restaurar o meu VPS para este ponto de restauro",
-  "vps_tab_backup_storage": "Backup storage",
+  "vps_tab_backup_storage": "Backup Storage",
   "vps_tab_backup_not_activated": "Não subscreveu a opção Backup Storage",
   "vps_tab_backup_not_able_to_order": "Não pode efetuar a subscrição uma vez que o seu ID de cliente não está autorizado a efetuar encomendas para este VPS.",
   "vps_backup_storage_access_forgot_password_button": "Perdeu a palavra-passe?",
