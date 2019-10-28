@@ -1,2 +1,3 @@
 dist
 node_modules
+packages/manager/tools/sao-ovh-manager-module/template/src
