@@ -1,3 +1,12 @@
+## [7.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.34.0...@ovh-ux/manager-cloud@7.34.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **cloud:** add exchange icon ([a4a7b11](https://github.com/ovh/manager/commit/a4a7b11e9bf39221fffe7e89b827bb19ce6d8a71))
+
+
+
 # [7.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.33.1...@ovh-ux/manager-cloud@7.34.0) (2019-10-28)
 
 
