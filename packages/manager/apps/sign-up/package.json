@@ -14,7 +14,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up-app' --include-filtered-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",

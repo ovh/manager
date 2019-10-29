@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.1",
-    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/manager-vrack": "^0.3.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
