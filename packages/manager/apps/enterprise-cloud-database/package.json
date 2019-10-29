@@ -34,7 +34,7 @@
     "lodash": "^4.17.14",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.23.2",
+    "ovh-api-services": "^9.23.3",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-angular": "^3.9.9",
     "ovh-ui-kit": "^2.35.2",
