@@ -12,8 +12,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
   '$location',
   '$timeout',
   '$translate',
-  'AVAILABLE_LANGUAGE',
   'Alerter',
+  'CORE_LANGUAGES',
   function UserAccountUpdateController(
     Contacts,
     $scope,
@@ -22,10 +22,10 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     $location,
     $timeout,
     $translate,
-    AVAILABLE_LANGUAGE,
     Alerter,
+    CORE_LANGUAGES,
   ) {
-    $scope.languages = AVAILABLE_LANGUAGE;
+    $scope.languages = CORE_LANGUAGES.available;
     $scope.forms = {};
     $scope.today = new Date();
     $scope.alerts = {
