@@ -1891,11 +1891,6 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
-"@ovh-ux/manager-config@^0.3.0", "@ovh-ux/manager-config@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.3.1.tgz#9428684ad90d0678ef0faaed158622dc57741728"
-  integrity sha512-RW4vlXpfDVIAas2Sc1CqbxNmYM5SsSvpwfDspKHzecmnCvEgJlLQIozKuYLr7wiYZx23YJdaIBOsbC2ZgoONBw==
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0", "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
