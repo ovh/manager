@@ -1380,5 +1380,6 @@
   "hosting_dashboard_configuration": "Konfiguration",
   "hosting_dashboard_access": "Zugriff",
   "common_api_hostingWeb-1": "Sie können nicht auf dieses Angebot migrieren, da Ihr aktuelles Angebot über mehr E-Mail-Adressen verfügt als das gewählte Angebot.",
-  "hosting_tab_WEBSITE_COACH": "Website Coach"
+  "hosting_tab_WEBSITE_COACH": "Website Coach",
+  "hosting_tab_BOOST_request_description_billing_new": "Ab dem 01. November 2019 ändert sich die Abrechnung und die Option wird Ihnen pro Tag der Nutzung berechnet: {{price}} zzgl. MwSt. pro Tag und pro Angebotsstufe."
 }

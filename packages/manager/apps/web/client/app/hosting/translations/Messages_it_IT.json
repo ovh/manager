@@ -1380,5 +1380,6 @@
   "hosting_dashboard_configuration": "Configurazione",
   "hosting_dashboard_access": "Accesso",
   "common_api_hostingWeb-1": "Non è possibile effettuare la migrazione verso questa offerta perché il servizio corrente dispone di un numero maggiore di email rispetto alla nuova soluzione scelta.",
-  "hosting_tab_WEBSITE_COACH": "Website Coach"
+  "hosting_tab_WEBSITE_COACH": "Website Coach",
+  "hosting_tab_BOOST_request_description_billing_new": "A partire dal 1° novembre le nostre tariffe cambiano e la fatturazione avverrà per giorno di utilizzo: {{price}} +IVA per giorno e offerta selezionata."
 }
