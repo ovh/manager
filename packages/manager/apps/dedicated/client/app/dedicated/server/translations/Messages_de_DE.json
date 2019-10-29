@@ -301,7 +301,7 @@
   "server_configuration_netboot_option_network": "Im Netzwerk-Modus booten",
   "server_configuration_netboot_configuration": "Konfiguration:",
   "server_configuration_netboot_rescue_choice": "Verfügbarer Rescue:",
-  "server_configuration_netboot_rescue_mail": "Die Zugangsdaten versenden an:",
+  "server_configuration_netboot_rescue_mail": "Zugangsdaten an folgende E-Mail-Adresse versenden:",
   "server_configuration_netboot_rescue_mail_invalid": "Ungültig",
   "server_configuration_netboot_kernel_choice": "Verfügbarer Kernel:",
   "server_configuration_netboot_kernel_option": "Mit diesem Kernel kompatible Optionen:",
