@@ -6,6 +6,7 @@ export default class BillingService {
     Object.assign(this, service);
 
     this.expirationDate = moment(this.expiration);
+    this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
   }
 
   getServiceName() {

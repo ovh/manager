@@ -149,6 +149,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         selectedType,
         filters.expiration,
         filters.status,
+        filters.state,
         sort,
         nicBilling,
       ),

@@ -1,5 +1,10 @@
 import {
-  AUTORENEW_EVENT, CONTRACTS_IDS, RENEW_URL, SERVICE_EXPIRATION, SERVICE_STATUS,
+  AUTORENEW_EVENT,
+  CONTRACTS_IDS,
+  RENEW_URL,
+  SERVICE_EXPIRATION,
+  SERVICE_STATES,
+  SERVICE_STATUS,
 } from './autorenew.constants';
 
 import BillingService from '../../models/BillingService.class';
@@ -41,7 +46,7 @@ export default class {
       .query().$promise;
   }
 
-  getServices(count, offset, search, type, renewDateType, status, order, nicBilling) {
+  getServices(count, offset, search, type, renewDateType, status, state, order, nicBilling) {
     return this.OvhApiBillingAutorenewServices.Aapi()
       .query({
         count,
@@ -50,6 +55,7 @@ export default class {
         type,
         renewDateType,
         status,
+        state,
         order: JSON.stringify(order),
         nicBilling,
       }).$promise;
@@ -74,6 +80,13 @@ export default class {
     return _.reduce(SERVICE_STATUS, (translatedStatus, status) => ({
       ...translatedStatus,
       [status]: this.$translate.instant(`billing_autorenew_service_status_${status}`),
+    }), {});
+  }
+
+  getStatesTypes() {
+    return _.reduce(SERVICE_STATES, (states, state) => ({
+      ...states,
+      [state]: this.$translate.instant(`billing_autorenew_service_state_${state}`),
     }), {});
   }
 

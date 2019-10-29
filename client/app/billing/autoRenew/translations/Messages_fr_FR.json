@@ -21,6 +21,7 @@
 
   "billing_autorenew_criterion_serviceType": "Service",
   "billing_autorenew_criterion_status": "Statut",
+  "billing_autorenew_criterion_state": "Disponibilité",
   "billing_autorenew_criterion_expiration": "Date d'effet",
   "billing_autorenew_nic_all": "Tous",
 
@@ -47,7 +48,6 @@
 
   "billing_autorenew_service": "Service",
   "billing_autorenew_service_name": "Nom du service",
-  "billing_autorenew_service_state": "Etat",
   "billing_autorenew_service_state_EXPIRED": "Suspendu",
   "billing_autorenew_service_state_UP": "Actif",
 
