@@ -49,7 +49,7 @@
     "font-awesome": "^4.0.0",
     "jquery-ui": "components/jqueryui#~1.11.2",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.19.0",
+    "ovh-api-services": "^9.23.3",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.1.0",
     "ovh-ui-angular": "^3.8.2",
