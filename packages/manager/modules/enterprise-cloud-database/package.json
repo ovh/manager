@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "OVH Enterprise Cloud Database product control panel",
   "keywords": [
     "control",

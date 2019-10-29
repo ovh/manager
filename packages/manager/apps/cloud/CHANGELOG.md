@@ -1,3 +1,12 @@
+# [7.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.34.1...@ovh-ux/manager-cloud@7.35.0) (2019-10-29)
+
+
+### Features
+
+* **cloud:** add vps feature for us ([df43b97](https://github.com/ovh/manager/commit/df43b97152d3683fc03849d9cbf05c92675d2a81))
+
+
+
 ## [7.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.34.0...@ovh-ux/manager-cloud@7.34.1) (2019-10-28)
 
 

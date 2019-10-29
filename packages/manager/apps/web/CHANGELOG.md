@@ -1,3 +1,13 @@
+## [13.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.0...@ovh-ux/manager-web@13.33.1) (2019-10-29)
+
+
+### Bug Fixes
+
+* **hosting:** change boost pricing description ([#1517](https://github.com/ovh/manager/issues/1517)) ([a3b8d50](https://github.com/ovh/manager/commit/a3b8d50262cd282c8a4745066bec02b9a5b4e50a))
+* **i18n:** add missing translations [CDS 122] ([95c8287](https://github.com/ovh/manager/commit/95c82871fd4ba168abe2f7a958eb1fc0e2a4490c))
+
+
+
 # [13.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.32.1...@ovh-ux/manager-web@13.33.0) (2019-10-28)
 
 
