@@ -1,3 +1,12 @@
+## [10.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.0...@ovh-ux/manager-dedicated@10.27.1) (2019-10-29)
+
+
+### Bug Fixes
+
+* **dedicated.account.contact:** inject existing language list ([#1636](https://github.com/ovh/manager/issues/1636)) ([1b193c9](https://github.com/ovh/manager/commit/1b193c9a59ab032083f7722a371325a37ce87bc3))
+
+
+
 # [10.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.26.1...@ovh-ux/manager-dedicated@10.27.0) (2019-10-28)
 
 
