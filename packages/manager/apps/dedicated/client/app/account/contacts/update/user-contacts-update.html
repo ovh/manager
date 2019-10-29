@@ -497,7 +497,7 @@
                                 <select class="form-control"
                                         data-ng-model="ownerModel.language"
                                         data-ng-if="edit.value"
-                                        data-ng-options="language.value as language.name for language in languages"
+                                        data-ng-options="language.key as language.name for language in languages"
                                         name="language"
                                         id="language"
                                         required>
