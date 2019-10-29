@@ -1,0 +1,42 @@
+<oui-modal class="my-0"
+           data-title="{{:: 'vps_configuration_reinstall_title' | translate}}"
+           data-primary-label="{{:: 'vps_configuration_rebuild_confirm' | translate }}"
+           data-primary-action="$ctrl.rebuildVps($ctrl.vpsOptions)"
+           data-primary-disabled="$ctrl.rebuild.$invalid"
+           data-secondary-action="$ctrl.goBackToDashboard()"
+           data-secondary-label="{{:: 'vps_configuration_rebuild_cancel' | translate }}"
+           data-on-dismiss="$ctrl.goBackToDashboard()"
+           data-loading="$ctrl.isLoading">
+
+    <form novalidate name="$ctrl.rebuild">
+        <oui-field data-label="{{:: 'vps_configuration_reinstall_step1_question' | translate }}">
+            <oui-select id="imageId"
+                        name="imageId"
+                        data-items="$ctrl.availableImages"
+                        data-match="name"
+                        data-model="$ctrl.image"
+                        data-on-change="$ctrl.vpsOptions.imageId = modelValue.id"
+                        data-required>
+            </oui-select>
+        </oui-field>
+
+        <oui-field data-label="{{:: 'vps_configuration_reinstall_step1_select_ssh_key' | translate }}"
+                   data-label-popover="{{:: 'vps_configuration_reinstall_step1_select_ssh_key_help' | translate }}">
+            <oui-select id="sshKey"
+                        name="sshKey"
+                        data-items="$ctrl.sshKeys"
+                        data-match="keyName"
+                        data-model="$ctrl.vpsOptions.sshKey"
+                        data-on-change="$ctrl.sshKey = modelValue.key"></oui-select>
+        </oui-field>
+
+        <oui-field data-ng-if="$ctrl.vpsOptions.sshKey">
+            <oui-checkbox id="sendPassword"
+                          name="sendPassword"
+                          data-description="{{:: 'vps_configuration_reinstall_step2_alert2' | translate }}"
+                          data-model="$ctrl.vpsOptions.doNotSendPassword">
+                <span data-translate="vps_configuration_rebuild_doNotSendPassword"></span>
+            </oui-checkbox>
+        </oui-field>
+    </form>
+</oui-modal>
