@@ -67,7 +67,7 @@ export default class AutorenewCtrl {
     this.parseExtraCriteria();
 
     if (this.sort.predicate) {
-      this.columnsConfig = _.map(
+      this.columnsConfig = map(
         COLUMNS_CONFIG,
         column => (column.property === this.sort.predicate ? ({
           ...this.columnsConfig,

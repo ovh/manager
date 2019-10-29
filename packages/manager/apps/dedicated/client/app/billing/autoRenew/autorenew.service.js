@@ -92,7 +92,7 @@ export default class {
   }
 
   getStatesTypes() {
-    return _.reduce(SERVICE_STATES, (states, state) => ({
+    return reduce(SERVICE_STATES, (states, state) => ({
       ...states,
       [state]: this.$translate.instant(`billing_autorenew_service_state_${state}`),
     }), {});
