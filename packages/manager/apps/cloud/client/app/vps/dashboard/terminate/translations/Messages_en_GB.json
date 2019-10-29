@@ -1,0 +1,8 @@
+{
+  "vps_terminate_title": "Delete my VPS",
+  "vps_terminate_question": "Are you sure you want to delete your service {{vps}}?",
+  "vps_terminate_cancel": "Cancel",
+  "vps_terminate_confirm": "Confirm",
+  "vps_terminate_success": "The deletion of the service has been taken into account, you will receive an email to confirm the deletion.",
+  "vps_terminate_error": "An error occurred while deleting your service."
+}

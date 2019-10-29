@@ -1891,11 +1891,6 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
-"@ovh-ux/manager-config@^0.3.0", "@ovh-ux/manager-config@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.3.1.tgz#9428684ad90d0678ef0faaed158622dc57741728"
-  integrity sha512-RW4vlXpfDVIAas2Sc1CqbxNmYM5SsSvpwfDspKHzecmnCvEgJlLQIozKuYLr7wiYZx23YJdaIBOsbC2ZgoONBw==
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0", "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
@@ -2067,10 +2062,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-sidebar-menu@^8.4.3":
-  version "8.4.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.3.tgz#0857cb33555cbb3a0935e9d8e3ef4af6673b40a4"
-  integrity sha512-q9PZjz/PDEB8TKnYpn5BaEOqm5TxOqtdUQFRzgIw6Szs8klTRmlR5u5LOD4NYwi5vU5y1nKwsa39qzttNTDE1g==
+"@ovh-ux/ng-ovh-sidebar-menu@^8.4.4":
+  version "8.4.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.4.tgz#42fbbf1bfa78802b25f03094d2222ac403967cdd"
+  integrity sha512-zNayrIRPKP1Hwf8yDBZH6zroyzVBo6eKV3ygbKnSbKyi01ordAI4rhKCLQ4ZiiSUB07CxdpckCa/uLdTaCvQPw==
   dependencies:
     lodash "^4.17.15"
 
@@ -9311,7 +9306,7 @@ jquery.scrollto@^1.4.13:
   dependencies:
     jquery ">=1.4"
 
-"jquery@>= 1.9.1", jquery@>=1.4, jquery@>=1.7.1, jquery@>=1.8, jquery@^3.4.1:
+"jquery@1.9.1 - 3", "jquery@>= 1.9.1", jquery@>=1.4, jquery@>=1.7.1, jquery@>=1.8, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -11741,10 +11736,10 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.23.2:
-  version "9.23.2"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.23.2.tgz#f2f2ce975b1e8193ab8fa7ce1fb96a6312daabea"
-  integrity sha512-giTxcbTEI6hqEZ+xaOnuPNQe9HC3HuZba+6yX5u7VRKoXGobdbwfk5KVWwmQ+rDN7Hw2311R61qZqr73a/PmgA==
+ovh-api-services@^9.23.3:
+  version "9.23.3"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.23.3.tgz#352445b336bcaaf3a730584e485d71d1e88825bf"
+  integrity sha512-XnMVLmptJZAIQWYBc8byKWUVA1SiEeLfQOh94Js+Oi6gym90UTi9WwtBM9crtGbiCM8ORahlCn4cr2sNVkpM+w==
   dependencies:
     lodash "^4.17.15"
 
@@ -12306,7 +12301,7 @@ popper.js@^1.14.4:
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.15.0.tgz#5560b99bbad7647e9faa475c6b8056621f5a4ff2"
   integrity sha512-w010cY1oCUmI+9KwwlWki+r5jxKfTFDVoadl7MSrIujHU5MJ5OR6HTDj6Xo8aoR/QsA56x8jKjA59qGH4ELtrA==
 
-popper.js@^1.16.0:
+popper.js@^1.14.7, popper.js@^1.16.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
   integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==

@@ -15,7 +15,7 @@
     "test:e2e": "lerna exec --scope @ovh-ux/manager-telecom-task-app -- node \\$LERNA_ROOT_PATH/scripts/webpack-cypress"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/manager-telecom-task": "^4.2.2",
@@ -35,7 +35,7 @@
     "jsplumb": "^2.12.0",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.23.2",
+    "ovh-api-services": "^9.23.3",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.9.9",

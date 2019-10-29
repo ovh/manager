@@ -1,0 +1,5 @@
+{
+  "vps_configuration_rebuild_cancel": "Cancel",
+  "vps_configuration_rebuild_confirm": "Confirm",
+  "vps_configuration_rebuild_doNotSendPassword": "Please do not send my login credentials via email."
+}
