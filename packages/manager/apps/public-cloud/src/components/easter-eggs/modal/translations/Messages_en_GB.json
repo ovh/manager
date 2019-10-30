@@ -1,0 +1,8 @@
+{
+  "public_cloud_components_easter_eggs_modal_title": "Enabling Dark Mode (Alpha version)",
+  "public_cloud_components_easter_eggs_modal_paragraph_1": "Well done! You've discovered the key combination that allows you to enable the Dark Mode on your Public Cloud control panel.",
+  "public_cloud_components_easter_eggs_modal_paragraph_2": "You can return to Light Mode at any time by entering the same key combination.",
+  "public_cloud_components_easter_eggs_modal_question": "Are you sure you want to activate the Dark Mode?",
+  "public_cloud_components_easter_eggs_label_activate": "Activate",
+  "public_cloud_components_easter_eggs_label_cancel": "Cancel"
+}
