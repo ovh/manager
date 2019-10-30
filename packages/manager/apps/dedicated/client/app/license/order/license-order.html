@@ -240,7 +240,7 @@
                         <div data-ng-if="!agoraEnabled">
                             <oui-button data-ng-if="!loaders.bc"
                                         data-on-click="generateBc()"
-                                        data-disabled="!contractsValidated.value">
+                                        data-disabled="!contractsValidated.value && durations.details[selected.duration].contracts.length > 0">
                                 <i class="icon-order-licence" aria-hidden="true"></i>
                                 <span data-translate="license_order_step4_generate"></span>
                             </oui-button>
