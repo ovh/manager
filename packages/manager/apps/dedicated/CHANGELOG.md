@@ -1,3 +1,13 @@
+## [10.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.1...@ovh-ux/manager-dedicated@10.27.2) (2019-10-30)
+
+
+### Bug Fixes
+
+* add wizard-keydown-disabled on installation modal ([73f49c0](https://github.com/ovh/manager/commit/73f49c0c0829bc813769b7a0b03a221bafe883a6))
+* add wizard-keydown-disabled on installation modal ([762debc](https://github.com/ovh/manager/commit/762debc3711b1c15d18490c93b451512224f5d3b))
+
+
+
 ## [10.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.0...@ovh-ux/manager-dedicated@10.27.1) (2019-10-29)
 
 
