@@ -45,10 +45,18 @@ export default class SupportNewController {
     // user validates the form, post the ticket
     if (result.isSuccess) {
       this.step = 'creating';
+      let serviceName;
+      let impactedResource;
+      if (get(this.service, 'stateParams.length') === 2) {
+        [serviceName, impactedResource] = get(this.service, 'stateParams');
+      } else {
+        serviceName = get(this.service, 'serviceName');
+      }
       this.SupportNewTicketService.createTicket(
         result.issue,
         result.subject,
-        get(this.service, 'serviceName'),
+        serviceName,
+        impactedResource,
         get(result, 'urgency'),
       )
         .then(({ ticketId }) => this.SupportNewTicketService.getTicket(ticketId))
