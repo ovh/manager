@@ -450,5 +450,6 @@
   "vps_service_expired": "O serviço {{vps}} não foi renovado. Esta situação pode dever-se a uma decisão sua ou a um pagamento em falta.",
   "vps_back_to_configuration": "Voltar à configuração do meu VPS",
   "vps_tab_monitoring": "Monitorização",
-  "vps_configuration_terminate": "Eliminar o meu VPS"
+  "vps_configuration_terminate": "Eliminar o meu VPS",
+  "vps_tab_tasks": "Operações"
 }

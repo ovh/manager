@@ -450,5 +450,6 @@
   "vps_service_expired": "Usługa {{vps}} nie została odnowiona. Powodem może być Twoja decyzja lub opóźnienie w płatności.",
   "vps_back_to_configuration": "Powrót do konfiguracji serwera VPS",
   "vps_tab_monitoring": "Monitoring",
-  "vps_configuration_terminate": "Usuń serwer VPS"
+  "vps_configuration_terminate": "Usuń serwer VPS",
+  "vps_tab_tasks": "Dział operacyjny"
 }
