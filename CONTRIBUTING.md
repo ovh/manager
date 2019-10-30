@@ -30,9 +30,6 @@ and follow the DCO which is defined below.
 Manager is licensed under a BSD 3-Clause license. Anything
 contributed to Manager must be released under this license.
 
-When introducing a new file into the project, please make sure it has a
-copyright header making clear under which license it's being released.
-
 # Developer Certificate of Origin (DCO)
 
 To improve tracking of contributions to this project we will use a
