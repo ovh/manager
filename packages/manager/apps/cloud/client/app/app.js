@@ -108,8 +108,19 @@ angular.module('managerApp', [
   ovhManagerVps,
   errorPage,
 ])
-  .config(($urlRouterProvider, $locationProvider) => {
-    $urlRouterProvider.otherwise('/');
+  .config(/* @ngInject */($urlServiceProvider, $locationProvider, MANAGER_URLS) => {
+    const dedicatedRedirections = [
+      '/paas/veeam-enterprise',
+    ];
+
+    dedicatedRedirections.forEach((redirectionPrefix) => {
+      $urlServiceProvider.rules.when(new RegExp(`^${redirectionPrefix}`), (match, { path }) => {
+        const { origin, pathname } = new URL(MANAGER_URLS.dedicated);
+        window.location.replace(`${origin}${pathname}#${path}`);
+      });
+    });
+
+    $urlServiceProvider.rules.otherwise('/');
     $locationProvider.html5Mode(false);
   })
   .config((responsivePopoverProvider) => {
