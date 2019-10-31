@@ -1,3 +1,12 @@
+## [10.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.0...@ovh-ux/manager-telecom@10.40.1) (2019-10-31)
+
+
+### Bug Fixes
+
+* **telephony.service.fax.campaigns:** display the list ([#1659](https://github.com/ovh/manager/issues/1659)) ([0b9c79f](https://github.com/ovh/manager/commit/0b9c79ff1cb87249ef7d0fe7cbe37032a531afb1))
+
+
+
 # [10.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.39.0...@ovh-ux/manager-telecom@10.40.0) (2019-10-28)
 
 
