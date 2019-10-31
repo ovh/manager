@@ -104,7 +104,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           const isValidDefaultPaymentMethod = has(currentStep.model, 'defaultPaymentMethod') && includes(
             CHALLENGE_PAYMENT_TYPE_SUPPORTED,
-            get(currentStep.model, 'defaultPaymentMethod.paymentType.value'),
+            get(currentStep.model, 'defaultPaymentMethod.paymentType'),
           );
           const shouldProcessChallenge = get(newProjectInfo, 'error.code') === 'challengePaymentMethodRequested' && isValidDefaultPaymentMethod;
 
