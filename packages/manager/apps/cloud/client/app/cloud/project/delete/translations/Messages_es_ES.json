@@ -24,5 +24,6 @@
   "cloud_project_delete_resource_warning_one_IPFailoverOvh": "La dirección IP Failover OVH se eliminará. ",
   "cloud_project_delete_resource_warning_many_IPFailoverOvh": "Las {{ amountIpFailoverOvh }} IP Failover OVH se eliminarán.",
   "cloud_project_delete_resource_warning_one_IPFailoverCloud": "La IP Failover Cloud se eliminará. ",
-  "cloud_project_delete_resource_warning_many_IPFailoverCloud": "Las {{ amountIpFailoverCloud }} IP Failover Cloud se eliminará."
+  "cloud_project_delete_resource_warning_many_IPFailoverCloud": "Las {{ amountIpFailoverCloud }} IP Failover Cloud se eliminará.",
+  "cloud_project_delete_open_new_tab": "Abrir una nueva pestaña"
 }
