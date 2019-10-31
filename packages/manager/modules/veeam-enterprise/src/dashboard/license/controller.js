@@ -1,4 +1,5 @@
-class VeeamEnterpriseLicenseCtrl {
+export default class VeeamEnterpriseLicenseCtrl {
+  /* @ngInject */
   constructor($uibModalInstance, action, serviceName, VeeamEnterpriseService) {
     this.$uibModalInstance = $uibModalInstance;
     this.action = action;
@@ -40,5 +41,3 @@ class VeeamEnterpriseLicenseCtrl {
     }
   }
 }
-
-angular.module('managerApp').controller('VeeamEnterpriseLicenseCtrl', VeeamEnterpriseLicenseCtrl);

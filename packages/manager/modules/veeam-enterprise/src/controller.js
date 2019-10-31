@@ -1,10 +1,11 @@
 export default class VeeamEnterpriseCtrl {
   /* @ngInject */
-  constructor($translate) {
-    this.$translate = $translate;
+  constructor($stateParams, VeeamEnterpriseService) {
+    this.serviceName = $stateParams.serviceName;
+    this.VeeamEnterpriseService = VeeamEnterpriseService;
   }
 
   $onInit() {
-    console.log('Hello', this.$translate.instant('world'));
+    this.VeeamEnterpriseService.unitOfWork.init();
   }
 }

@@ -6,6 +6,9 @@ module.exports = (env = {}) => {
   const { config } = webpackConfig({
     template: './src/index.html',
     basePath: './src',
+    lessPath: [
+      './node_modules',
+    ],
     root: path.resolve(__dirname, './src'),
   }, env);
 

@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
-class VeeamEnterpriseService {
+export default class VeeamEnterpriseService {
+  /* @ngInject */
   constructor($q, $translate, OvhApiVeeamEnterprise) {
     this.$q = $q;
     this.$translate = $translate;
@@ -110,5 +111,3 @@ class VeeamEnterpriseService {
     });
   }
 }
-
-angular.module('managerApp').service('VeeamEnterpriseService', VeeamEnterpriseService);
