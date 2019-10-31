@@ -2584,7 +2584,7 @@ angular-animate@^1.4.0, angular-animate@^1.7.5, angular-animate@~1.7.8:
   resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.7.8.tgz#c95f237efe7ecfe0e6003adb5e2c7ef0e5a2b9d4"
   integrity sha512-bINtzizq7TbJzfVrDpwLfTxVl0Qd7fRNWFb5jKYI1vaFZobQNX/QONXlLow6ySsDbZ6eLECycB7mvWtfh1YYaw==
 
-angular-aria@1.7.x, angular-aria@^1.6.0, angular-aria@^1.7.5:
+angular-aria@1.7.x, angular-aria@^1.6.0, angular-aria@^1.7.5, angular-aria@^1.7.8:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.7.8.tgz#3954250ef516b57cdd3cdf41ff4ee6fcfdc84ceb"
   integrity sha512-facq/111sZKL2wUUqRA1GnGt+lZ8KAcX9Aw04cNA+OyEkoaoRC77NY4VSOTQxghlSd0OPAdLeFnmETnuiWrpLg==
@@ -2616,7 +2616,7 @@ angular-flash-alert@2.5.0, angular-flash-alert@^2.3.0:
   dependencies:
     angular "^1.4.8"
 
-angular-i18n@1.7.x, angular-i18n@^1.6.0, angular-i18n@^1.7.5, angular-i18n@~1.7.8:
+angular-i18n@1.7.x, angular-i18n@^1.6.0, angular-i18n@^1.7.5, angular-i18n@^1.7.8, angular-i18n@~1.7.8:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-i18n/-/angular-i18n-1.7.8.tgz#b341165dd7027720610fd456ea0d3355616fc0a8"
   integrity sha512-H1fV3/2fL85fEMxbZrpgdqT2N686pt0keXBxNBFfgadnGWvNABzEzJDZnN/tCQKtxL4WIcnRYfVpY+nUf6RoFw==
@@ -2687,7 +2687,7 @@ angular-qr@^0.2.3:
   dependencies:
     qrcode-genetator "^1.0.2"
 
-angular-resource@1.7.x, angular-resource@^1.6.6, angular-resource@^1.7.5:
+angular-resource@1.7.x, angular-resource@^1.6.6, angular-resource@^1.7.5, angular-resource@^1.7.8:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.7.8.tgz#9577dbcc02cdbb76398febc5fc7ee103c86c5c50"
   integrity sha512-zuPQ0ZX9Q8WnZ0KMtJlKYUSIXWRQSbFzMkRV9zG8cYYSsMAZlXar5Hqmd5gzxC3O28AGM7BCEJ+iYs3UNL4qdA==
@@ -11787,7 +11787,7 @@ ovh-angular-user-pref@^0.3.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
-ovh-api-services@^9.23.3, ovh-api-services@^9.24.1:
+ovh-api-services@^9.23.2, ovh-api-services@^9.23.3, ovh-api-services@^9.24.1:
   version "9.24.1"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.24.1.tgz#f6912a13c0df42d45074b7fedde06838a09bfb2c"
   integrity sha512-u+xB469JGt/VhUuBnscM1VWlrddyAQzKeUe7pPnQoOqAgD2UO5gAkpIAz5M30zN1qnXHeF8SrJ6QGCxE6b1reQ==
@@ -11853,6 +11853,13 @@ ovh-ui-kit@^2.35.2, ovh-ui-kit@~2.35.2:
   version "2.35.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.35.2.tgz#a34d4e080a253cb851a0076af460aa80f0650785"
   integrity sha512-GMXKhh3/lsXPD3KRLKs1c5D5iO876KMG8gInnSRZCunqPzjRrLlJSi8P5Z5Qv7WUEaY4yWMg8J1Gsr7NTn0K6A==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@^2.35.3:
+  version "2.35.3"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.35.3.tgz#b43df15f58f97163d688e1d4962c03d612b5ee4b"
+  integrity sha512-A0ikDQj+kDzongHQJ6Q1LWmDBMbGcJwcq0Udw3CgWAL5YwtCnGQHFAejlqUoFdyDId5inbKoSUwFnBks/td/mg==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
