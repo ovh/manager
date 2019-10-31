@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.1...@ovh-ux/manager-pci@3.1.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** challenge display ([#1663](https://github.com/ovh/manager/issues/1663)) ([6461626](https://github.com/ovh/manager/commit/646162671a867cd13b4ec720d6eabeedf2fb45cc))
+
+
+
 ## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.0...@ovh-ux/manager-pci@3.1.1) (2019-10-28)
 
 
