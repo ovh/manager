@@ -1,3 +1,12 @@
+## [13.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.1...@ovh-ux/manager-web@13.33.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* **web.hosting.multisite:** allow domain configuration for all domains ([#1648](https://github.com/ovh/manager/issues/1648)) ([b562dbc](https://github.com/ovh/manager/commit/b562dbc5448aacd712bdf5acd8edc519f22e6812))
+
+
+
 ## [13.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.0...@ovh-ux/manager-web@13.33.1) (2019-10-29)
 
 
