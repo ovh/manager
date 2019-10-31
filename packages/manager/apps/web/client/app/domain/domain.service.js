@@ -451,14 +451,13 @@ angular.module('services').service(
      * @param {string} serviceName
      * @param {object} entry
      */
-    getRecordsIds(serviceName, entry) {
-      return this.OvhHttp.get(`/domain/zone/${serviceName}/record`, {
-        rootPath: 'apiv6',
-        params: {
+    getRecordsIds(zoneName, entry) {
+      return this.OvhApiDomain.Zone().Record().v6()
+        .query({
+          zoneName,
           fieldType: entry ? entry.fieldType : undefined,
           subDomain: entry ? entry.subDomain : undefined,
-        },
-      });
+        }).$promise;
     }
 
     /**

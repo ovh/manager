@@ -394,7 +394,15 @@ angular.module('services').service(
           search,
           searchedType: 'AAAA',
         },
-      }).then(data => get(data, 'paginatedZone.records.results'));
+      })
+        .then(data => get(data, 'paginatedZone.records.results'))
+        .catch((error) => {
+          if (error.code === 404) {
+            return this.$q.resolve([]);
+          }
+
+          return this.$q.reject(error);
+        });
     }
 
     /**
