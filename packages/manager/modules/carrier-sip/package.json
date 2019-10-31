@@ -15,7 +15,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.18.0",
+    "ovh-api-services": "^9.24.1",
     "ovh-ui-angular": "^3.8.2",
     "ovh-ui-kit": "^2.34.3",
     "ovh-ui-kit-bs": "^2.1.2"

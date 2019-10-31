@@ -57,7 +57,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "font-awesome": "4.7.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.18.2",
+    "ovh-api-services": "^9.24.1",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-angular": "^3.8.2",
     "ovh-ui-kit": "^3.6.0",
