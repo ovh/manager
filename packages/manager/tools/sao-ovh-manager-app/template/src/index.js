@@ -4,6 +4,6 @@ import '@ovh-ux/manager-<%= name %>';
 import angular from 'angular';
 
 angular
-  .module('<%= name %>App', [
+  .module('<%= pascalcasedName %>App', [
     'ovhManager<%= pascalcasedName %>',
   ]);
