@@ -1,3 +1,12 @@
+# [13.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.2...@ovh-ux/manager-web@13.34.0) (2019-10-31)
+
+
+### Features
+
+* add @ovh-ux/mfa-enrollment module ([a014cf0](https://github.com/ovh/manager/commit/a014cf02c16a5f46a58627d0011dc9a86c7042b5))
+
+
+
 ## [13.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.1...@ovh-ux/manager-web@13.33.2) (2019-10-31)
 
 

@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.2.0...@ovh-ux/manager-public-cloud@2.3.0) (2019-10-31)
+
+
+### Features
+
+* add @ovh-ux/mfa-enrollment module ([ade2b1a](https://github.com/ovh/manager/commit/ade2b1a70d65a59878b8dcb950101c769b39db22))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.1.0...@ovh-ux/manager-public-cloud@2.2.0) (2019-10-28)
 
 
