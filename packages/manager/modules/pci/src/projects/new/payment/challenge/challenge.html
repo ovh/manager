@@ -12,7 +12,7 @@
         data-ng-if="$ctrl.isChallenging">
     </oui-spinner>
 
-    <div data-ng-switch="$ctrl.defaultPaymentMethod.paymentType.value"
+    <div data-ng-switch="$ctrl.defaultPaymentMethod.paymentType"
         data-ng-if="!$ctrl.isChallenging">
         <div data-ng-switch-when="PAYPAL">
             <div class="oui-field">
