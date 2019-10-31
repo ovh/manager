@@ -45,7 +45,7 @@
             </div>
 
             <div class="row"
-                 data-ng-if="!$ctrl.dlpStatus">
+                 data-ng-if="!$ctrl.dlpStatus && !$ctrl.shouldProcessChallenge()">
                 <div class="alternative-payment-box col-md-6"
                      data-ng-class="{ 'border-right': $ctrl.step.model.paymentType.paymentType !== 'BANK_ACCOUNT' }"
                      data-ng-switch="$ctrl.step.model.mode">
