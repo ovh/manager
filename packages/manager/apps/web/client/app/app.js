@@ -30,6 +30,7 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
@@ -91,6 +92,7 @@ angular
     'pascalprecht.translate',
     ngTailLogs,
     'ovh-api-services',
+    ovhManagerMfaEnrollment,
     ovhManagerBanner,
     ovhManagerNavbar,
     'moment-picker',
