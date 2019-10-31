@@ -48,7 +48,7 @@
 
                         <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
                                 type="submit" form="projectDescriptionForm"
-                                data-ng-if="!$ctrl.isPaymentMethodIntegrationVisible()"
+                                data-ng-if="!$ctrl.shouldProcessChallenge() && !$ctrl.isPaymentMethodIntegrationVisible()"
                                 data-ng-disabled="$ctrl.isNextButtonDisabled()"
                                 data-ng-click="$ctrl.onNextBtnClick()">
                             <span data-ng-bind="$ctrl.getNextButtonText()"></span>
