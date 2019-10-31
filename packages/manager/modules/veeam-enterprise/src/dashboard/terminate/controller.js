@@ -1,4 +1,5 @@
-class VeeamEnterpriseTerminateCtrl {
+export default class VeeamEnterpriseTerminateCtrl {
+  /* @ngInject */
   constructor($uibModalInstance, serviceName, VeeamEnterpriseService) {
     this.$uibModalInstance = $uibModalInstance;
     this.serviceName = serviceName;
@@ -28,5 +29,3 @@ class VeeamEnterpriseTerminateCtrl {
       .finally(() => this.$uibModalInstance.close());
   }
 }
-
-angular.module('managerApp').controller('VeeamEnterpriseTerminateCtrl', VeeamEnterpriseTerminateCtrl);
