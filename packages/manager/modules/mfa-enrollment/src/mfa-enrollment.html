@@ -1,11 +1,11 @@
 <div class="mfa-enrollment-page container-fluid h-100 position-absolute overflow-auto">
-    <div class="row minh-100 justify-content-md-center">
+    <div class="row minh-100 justify-content-md-center d-flex">
         <div class="col-md-7 p-4 p-md-5 bg-white minh-100">
             <div class="p-0 p-md-5">
                 <div class="text-center mb-3">
                     <img
-                        src="images/double-authentication.png"
-                        srcset="images/double-authentication@2x.png x2, images/double-authentication@3x.png x3"
+                        data-ng-src="{{$ctrl.DEFAULT_ASSET}}"
+                        srcset="{{$ctrl.DEFAULT_ASSET2X}} x2, {{$ctrl.DEFAULT_ASSET3X}} x3"
                         class="img-fluid"
                         alt="" />
                 </div>

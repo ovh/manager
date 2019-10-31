@@ -28,6 +28,7 @@ import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
+import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerSupport from '@ovh-ux/manager-support';
@@ -48,7 +49,6 @@ import preload from './components/manager-preload/manager-preload.module';
 import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
-import mfaEnrollment from './mfaEnrollment/mfaEnrollment.module';
 
 
 Environment.setRegion(__WEBPACK_REGION__);
@@ -77,7 +77,7 @@ angular
     'Module.ip',
     'Module.license',
     'Module.otrs',
-    mfaEnrollment,
+    ovhManagerMfaEnrollment,
     'ng.ckeditor',
     'ngMessages',
     ngAtInternet,

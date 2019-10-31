@@ -1,4 +1,9 @@
 import get from 'lodash/get';
+import {
+  DEFAULT_ASSET,
+  DEFAULT_ASSET2X,
+  DEFAULT_ASSET3X,
+} from './mfa-enrollment.constants';
 
 export default class mfaEnrollmentCtrl {
   /* @ngInject */
@@ -9,9 +14,16 @@ export default class mfaEnrollmentCtrl {
   ) {
     this.$state = $state;
     const mfaBaseUrl = get(CORE_MANAGER_URLS, `${coreConfig.getRegion()}.dedicated`);
-    const mfaUrlPath = this.$state.href('app.account.user.security.mfa');
+    const mfaUrlPath = '#/useraccount/security/mfa';
     this.mfaUrl = `${mfaBaseUrl}/${mfaUrlPath}`;
-    this.mfaUrl = mfaUrlPath;
+
+    this.DEFAULT_ASSET = DEFAULT_ASSET;
+    this.DEFAULT_ASSET2X = DEFAULT_ASSET2X;
+    this.DEFAULT_ASSET3X = DEFAULT_ASSET3X;
+  }
+
+  $onInit() {
+    this.forced = this.$state.params.forced;
   }
 
   goBack() {
