@@ -9,6 +9,11 @@ module.exports = (env = {}) => {
     template: './src/index.html',
     basePath: './src',
     root: path.resolve(__dirname, './src'),
+    assets: {
+      files: [
+        { from: path.resolve(__dirname, './src/assets/images'), to: 'assets/images/' },
+      ],
+    },
   }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   let WEBPACK_REGION;
