@@ -1185,5 +1185,6 @@
   "server_vrack_none": "Brak przypisanej sieci vRack",
   "server_error_ola_terminate": "Wystąpił błąd podczas rezygnacji z usługi: {{error}}.",
   "server_error_vrack_attach": "Wystąpił błąd podczas dodawania sieci prywatnej: {{message}}.",
-  "server_error_vrack_detach": "Wystąpił błąd podczas odłączania sieci prywatnej: {{message}}."
+  "server_error_vrack_detach": "Wystąpił błąd podczas odłączania sieci prywatnej: {{message}}.",
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps przepustowości do sieci publicznej - nieograniczony transfer"
 }
