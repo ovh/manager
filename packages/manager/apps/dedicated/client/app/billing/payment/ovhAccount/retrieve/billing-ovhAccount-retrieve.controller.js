@@ -23,9 +23,11 @@ angular
     };
 
     function getBankAccounts() {
-      return ovhPaymentMethod.getAllPaymentMethods({
-        transform: true,
-      }).then(paymentMethods => filter(paymentMethods, paymentMethod => paymentMethod.paymentType.value === 'BANK_ACCOUNT'));
+      return ovhPaymentMethod.getAllPaymentMethods()
+        .then(paymentMethods => filter(
+          paymentMethods,
+          paymentMethod => paymentMethod.paymentType === 'BANK_ACCOUNT',
+        ));
     }
 
     $scope.initStep1 = () => {
