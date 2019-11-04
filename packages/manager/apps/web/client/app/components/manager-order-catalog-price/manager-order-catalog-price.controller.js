@@ -41,7 +41,7 @@ export default class {
 
   getIntervalPrice(price) {
     if (isUndefined(this.interval)) {
-      return price;
+      return Math.round(price * 100) / 100;
     }
 
     switch (this.interval) {

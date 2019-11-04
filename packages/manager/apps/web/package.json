@@ -100,7 +100,7 @@
     "ovh-api-services": "^9.26.0",
     "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.0.1",
     "ovh-ui-angular": "^3.10.0",
-    "ovh-ui-kit": "^2.35.3",
+    "ovh-ui-kit": "^2.36.0",
     "ovh-ui-kit-bs": "^2.2.0",
     "properties": "latest",
     "punycode": "^1.4.1",

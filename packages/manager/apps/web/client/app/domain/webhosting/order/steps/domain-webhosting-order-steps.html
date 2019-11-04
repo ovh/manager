@@ -1,0 +1,39 @@
+<div
+    class="text-center"
+    data-ng-if="$ctrl.validatingCheckout">
+    <oui-spinner></oui-spinner>
+</div>
+
+<oui-stepper
+    data-current-index="$ctrl.currentIndex"
+    data-ng-if="!$ctrl.validatingCheckout"
+    data-on-finish="$ctrl.orderWebhosting()">
+
+    <ovh-manager-web-domain-webhosting-order-steps-hosting
+        data-available-offers="$ctrl.availableOffers"
+        data-user="$ctrl.user">
+    </ovh-manager-web-domain-webhosting-order-steps-hosting>
+
+    <ovh-manager-web-domain-webhosting-order-steps-module
+        data-available-modules="$ctrl.availableModules">
+    </ovh-manager-web-domain-webhosting-order-steps-module>
+
+    <ovh-manager-web-domain-webhosting-order-steps-dns-configuration>
+    </ovh-manager-web-domain-webhosting-order-steps-dns-configuration>
+
+    <ovh-manager-web-domain-webhosting-order-steps-duration
+        data-available-offers="$ctrl.availableOffers"
+        data-user="$ctrl.user">
+    </ovh-manager-web-domain-webhosting-order-steps-duration>
+
+    <ovh-manager-web-domain-webhosting-order-steps-payment
+        data-alert-checkout-error="$ctrl.alertGetCheckoutError"
+        data-cart-id="$ctrl.cartId"
+        data-default-payment-mean="$ctrl.defaultPaymentMean"
+        data-delete-cart-items="$ctrl.deleteCartItems"
+        data-domain-name="$ctrl.domainName"
+        data-go-back-to-dashboard="$ctrl.goBackToDashboard"
+        data-prepare-checkout="$ctrl.prepareCheckout">
+    </ovh-manager-web-domain-webhosting-order-steps-payment>
+
+</oui-stepper>

@@ -85,19 +85,19 @@
                         <a target="_blank"
                            title="{{ 'common_newtab' | translate }}"
                            data-ng-href="{{$ctrl.start10MarketUrl}}"
-                           data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdmin && !$ctrl.hasStart10mOffer">
+                           data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !$ctrl.hasStart10mOffer">
                            <span data-translate="domain_dashboard_web_hosting_more_infos"></span>
                            <i class="fa fa-external-link" aria-hidden="true"></i>
                          </a>
                         <span class="oui-status"
                               data-ng-class="{ 'oui-status_error': !$ctrl.hasStart10mOffer, 'oui-status_success': $ctrl.hasStart10mOffer }"
                               data-ng-bind="::($ctrl.hasStart10mOffer ? 'common_activated' : 'common_desactivated') | translate"
-                              data-ng-if="!(ctrlDomain.canOrderHosting && ctrlDomain.isAdmin && !$ctrl.hasStart10mOffer)">
+                              data-ng-if="!(ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling && !$ctrl.hasStart10mOffer)">
                         </span>
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact data-align="end"
-                        data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdmin && !$ctrl.hasStart10mOffer">
+                        data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling">
                         <oui-action-menu-item
                             data-text="{{ ::'domain_configuration_action_enable' | translate }}"
                             data-on-click="$ctrl.showWebHostingOrderWithStartOffer()">
@@ -121,7 +121,7 @@
                     </oui-tile-description>
                     <oui-action-menu
                         data-compact data-align="end"
-                        data-ng-if="!$ctrl.loading.associatedHosting && !$ctrl.hasHostingAssociate && ctrlDomain.canOrderHosting && ctrlDomain.isAdmin">
+                        data-ng-if="!$ctrl.loading.associatedHosting && !$ctrl.hasHostingAssociate && ctrlDomain.canOrderHosting && ctrlDomain.isAdminOrBilling">
                         <oui-action-menu-item
                             data-text="{{ ::'domain_configuration_enable_web_hosting' | translate }}"
                             data-on-click="$ctrl.goToWebhostingOrder()"></oui-action-menu-item>

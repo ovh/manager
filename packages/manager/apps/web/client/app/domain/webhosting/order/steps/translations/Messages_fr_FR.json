@@ -1,0 +1,112 @@
+{
+  "domain_webhosting_order_hosting_step_title": "Choisissez un hébergement",
+  "domain_webhosting_order_hosting_step_subtitle": "Blog, site professionnel, plateforme e-commerce ou application web : quel que soit votre besoin, les solutions d’hébergement OVHcloud vous proposent simplicité, sécurité et performance.",
+
+  "domain_webhosting_order_module_step_title": "Choisissez votre module de gestion de contenus préinstallé",
+  "domain_webhosting_order_module_step_subtitle": "Comment créer un site sans avoir les compétences techniques ? Découvrez nos modules disponibles avec un hébergement.",
+
+  "domain_webhosting_order_dns_configuration_step_title": "Configuration de vos DNS",
+  "domain_webhosting_order_dns_configuration_step_subtitle": "Si vous ne faîtes aucun choix, malgré la mise en place de votre nouvel hébergement, votre nom de domaine continuera de pointer sur les entrées actuelles. Vous devrez de votre côté effectuer les modifications dans votre zone DNS lorsque votre nouveau site sera prêt. Il s'agit d'un choix idéal si vous ne souhaitez pas couper un site déjà en production",
+
+  "domain_webhosting_order_duration_title": "Choisissez votre durée",
+
+  "domain_webhosting_order_payment_step_title": "Paiement",
+  "domain_webhosting_order_payment_step_subtitle": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
+
+  "domain_webhosting_order_cancel": "Annuler",
+  "domain_webhosting_order_pay": "Payer",
+
+  "domain_webhosting_order_hosting_step_hide_details": "Cacher le détail des produits",
+  "domain_webhosting_order_hosting_step_show_details": "Afficher le détail des produits",
+  "domain_webhosting_order_hosting_step_details": "Détail des produits",
+  "domain_webhosting_order_hosting_step_option_disk_space": "Espace disque",
+  "domain_webhosting_order_hosting_step_option_e-mail_account": "Compte e-mail",
+  "domain_webhosting_order_hosting_step_option_languages": "Langages",
+  "domain_webhosting_order_hosting_step_option_local_database": "BDD Locale",
+  "domain_webhosting_order_hosting_step_option_shared_database": "BDD Mutualisée",
+  "domain_webhosting_order_hosting_step_option_private_database": "SQL Privé",
+  "domain_webhosting_order_hosting_step_option_find_out_more": "En savoir plus",
+  "domain_webhosting_order_hosting_step_option_open_new_tab": "Ouvre un nouvel onglet",
+
+  "domain_webhosting_order_hosting_step_option_languages_nodejs": "Node.js",
+  "domain_webhosting_order_hosting_step_option_languages_php": "PHP",
+  "domain_webhosting_order_hosting_step_option_languages_python": "Python",
+  "domain_webhosting_order_hosting_step_option_languages_ruby": "Ruby",
+
+  "domain_webhosting_order_hosting_step_option_local_database_mongodb": "MongoDB",
+  "domain_webhosting_order_hosting_step_option_local_database_mysql": "MySQL",
+
+  "domain_webhosting_order_hosting_step_option_shared_database_sqlPerso": "MySQL Perso",
+  "domain_webhosting_order_hosting_step_option_shared_database_sqlPro": "MySQL Pro",
+
+  "domain_webhosting_order_hosting_step_option_private_database_empty": "En option",
+  "domain_webhosting_order_hosting_step_option_private_database_existing": "Serveur",
+  "domain_webhosting_order_hosting_step_option_private_database_memory_type": "RAM",
+
+  "domain_webhosting_order_hosting_step_option_size_unit_MB": "Mo",
+  "domain_webhosting_order_hosting_step_option_size_unit_GB": "Go",
+  "domain_webhosting_order_hosting_step_option_size_unit_TB": "To",
+
+  "domain_webhosting_order_hosting_step_cloudweb1_label": "Cloud Web 1",
+  "domain_webhosting_order_hosting_step_cloudweb1_description": "Démarrez votre site avec 1 CPU et 2Go de RAM",
+
+  "domain_webhosting_order_hosting_step_cloudweb2_label": "Cloud Web 2",
+  "domain_webhosting_order_hosting_step_cloudweb2_description": "Augmentez vos caches avec 4Go de RAM",
+
+  "domain_webhosting_order_hosting_step_cloudweb3_label": "Cloud Web 3",
+  "domain_webhosting_order_hosting_step_cloudweb3_description": "Lancez votre activité avec 2 CPU et 8 Go de RAM",
+
+  "domain_webhosting_order_hosting_step_kimsufi2015_label": "Kimsufi Web",
+  "domain_webhosting_order_hosting_step_kimsufi2015_description": "Pour débuter",
+
+  "domain_webhosting_order_hosting_step_perf2014x1_label": "Performance 1",
+  "domain_webhosting_order_hosting_step_perf2014x1_description": "Démarrez votre activité en ligne",
+
+  "domain_webhosting_order_hosting_step_perf2014x2_label": "Performance 2",
+  "domain_webhosting_order_hosting_step_perf2014x2_description": "Développez votre boutique en ligne ou des projets web existants",
+
+  "domain_webhosting_order_hosting_step_perf2014x3_label": "Performance 3",
+  "domain_webhosting_order_hosting_step_perf2014x3_description": "Accélérez votre croissance et développez des projets web multiples",
+
+  "domain_webhosting_order_hosting_step_perf2014x4_label": "Performance 4",
+  "domain_webhosting_order_hosting_step_perf2014x4_description": "Bénéficiez du meilleur des performances pour soutenir vos ventes",
+
+  "domain_webhosting_order_hosting_step_perso2014_label": "Perso",
+  "domain_webhosting_order_hosting_step_perso2014_description": "Pour un site personnel",
+
+  "domain_webhosting_order_hosting_step_pro2014_label": "Pro",
+  "domain_webhosting_order_hosting_step_pro2014_description": "Pour un site vitrine professionnel",
+
+  "domain_webhosting_order_hosting_step_none_label": "Je n‘ai pas besoin d‘hébergement Web avec mon nom de domaine",
+
+  "domain_webhosting_order_module_step_wordpress_label": "WordPress",
+  "domain_webhosting_order_module_step_wordpress_description": "La simplicité du leader des CMS associée à un hébergement optimisé.",
+
+  "domain_webhosting_order_module_step_prestashop_label": "PrestaShop",
+  "domain_webhosting_order_module_step_prestashop_description": "Vous souhaitez démarrer une boutique en ligne, PrestaShop est la solution idéale.",
+
+  "domain_webhosting_order_module_step_joomla_label": "Joomla",
+  "domain_webhosting_order_module_step_joomla_description": "Un CMS permettant de réaliser des sites web plus élaborés.",
+
+  "domain_webhosting_order_module_step_drupal_label": "Drupal",
+  "domain_webhosting_order_module_step_drupal_description": "Allez plus loin dans la personnalisation en adaptant le CMS à vos besoins et non l‘inverse.",
+
+  "domain_webhosting_order_module_step_recommended_offer": "Offre recommandée pour ce module : ",
+
+  "domain_webhosting_order_module_step_none_label": "Je ne souhaite pas de module",
+
+  "domain_webhosting_order_dns_configuration_enable_hosting": "Activer l‘hébergement dans la configuration DNS",
+  "domain_webhosting_order_dns_configuration_enable_hosting_help": "Cette option modifiera la configuration du champ A de votre DNS et supprimera la configuration actuelle.",
+  "domain_webhosting_order_dns_configuration_enable_emails": "Activer les e-mails dans la configuration DNS",
+  "domain_webhosting_order_dns_configuration_enable_emails_help": "Cette option modifiera la configuration du champ MX de votre DNS et supprimera la configuration actuelle.",
+
+  "domain_webhosting_order_payment_total_price_without_tax": "Prix HT : ",
+  "domain_webhosting_order_payment_total_price_with_tax": "Prix TTC : ",
+  "domain_webhosting_order_payment_duration": "Durée :",
+  "domain_webhosting_order_duration_P1Y": "12 mois",
+  "domain_webhosting_order_payment_choice": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
+  "domain_webhosting_order_payment_get_checkout_error": "Une erreur est survenue lors de la récupération des informations de votre panier.",
+  "domain_webhosting_order_payment_checkout_error": "Une erreur est survenue lors du paiement de votre panier.",
+  "domain_webhosting_order_payment_checkout_success": "Votre commande pour votre hébergement mutualisé a bien été prise en compte. Votre compte {{accountId}} a bien été débité de {{price}}. Votre produit sera renouvelé automatiquement le {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Voir ma facture</a>",
+  "domain_webhosting_order_bill_success": "Votre <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">bon de commande</a> a été généré. Votre hébergement sera activé lorsque vous l'aurez validé"
+}

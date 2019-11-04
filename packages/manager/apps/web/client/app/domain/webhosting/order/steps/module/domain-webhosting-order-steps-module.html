@@ -1,0 +1,49 @@
+<oui-step-form
+    data-header="{{:: 'domain_webhosting_order_module_step_title' | translate }}"
+    data-description="{{:: 'domain_webhosting_order_module_step_subtitle' | translate }}"
+    data-editable="!$ctrl.stepper.loadingCheckout"
+    data-navigation="false"
+    data-on-focus="$ctrl.module = undefined">
+    <div
+      class="row d-md-flex mb-3"
+      data-ng-repeat="chunkModules in ::$ctrl.availableModules track by $index">
+         <div
+             class="col-md-4"
+             data-ng-repeat="module in ::chunkModules track by module.id">
+             <oui-select-picker
+                 class="h-100"
+                 data-name="{{:: module.planCode }}"
+                 data-label="{{:: 'domain_webhosting_order_module_step_' + module.planCode + '_label' | translate }}"
+                 data-model="$ctrl.module"
+                 data-values="[module]"
+                 data-variant="light"
+                 data-on-change="$ctrl.updateModule()">
+                 <oui-select-picker-description>
+                     <p data-translate="{{:: 'domain_webhosting_order_module_step_' + module.planCode + '_description' }}"></p>
+                     <span data-translate="domain_webhosting_order_module_step_recommended_offer"></span>
+                     <strong data-translate="{{:: 'domain_webhosting_order_hosting_step_' + module.recommendedOffer + '_label' }}"></strong>
+                 </oui-select-picker-description>
+                 <oui-select-picker-picture>
+                     <img
+                         class="mw-100"
+                         data-ng-src="assets/images/logos/{{:: module.planCode}}.svg"
+                         alt=""/>
+                 </oui-select-picker-picture>
+                 <oui-select-picker-footer>
+                     <ovh-manager-order-catalog-price></ovh-manager-order-catalog-price>
+                 </oui-select-picker-footer>
+             </oui-select-picker>
+         </div>
+         <div
+              class="col-md-4"
+              data-ng-if="$last">
+             <oui-select-picker
+                 data-label="{{ 'domain_webhosting_order_module_step_none_label' | translate }}"
+                 data-model="$ctrl.module"
+                 data-values="[null]"
+                 data-variant="light"
+                 data-on-change="$ctrl.updateModule()">
+             </oui-select-picker>
+         </div>
+    </div>
+</oui-step-form>

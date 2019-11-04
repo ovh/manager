@@ -94,8 +94,8 @@ angular.module('App').controller(
         .then(({
           user, domain, allDom, alldomOrder,
         }) => {
-          this.isAdmin = domain.contactAdmin === user.nichandle
-            || domain.contactTech === user.nichandle;
+          this.isAdminOrBilling = domain.contactAdmin === user.nichandle
+            || domain.contactBilling === user.nichandle;
           this.domainInfos = domain;
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
@@ -106,7 +106,7 @@ angular.module('App').controller(
           this.getGuides(user.ovhSubsidiary);
         })
         .catch(() => {
-          this.isAdmin = false;
+          this.isAdminOrBilling = false;
         })
         .finally(() => this.loadDomain());
     }
