@@ -1,0 +1,41 @@
+<oui-step-form
+    data-header="{{:: 'domain_webhosting_order_payment_step_title' | translate }}"
+    data-on-focus="$ctrl.getCheckout()"
+    data-loading="$ctrl.stepper.loadingCheckout"
+    data-valid="$ctrl.autoPayWithPreferredPaymentMethod != null && $ctrl.agreeContracts"
+    data-prevent-next="true"
+    data-on-cancel="$ctrl.goBackToDashboard()"
+    data-on-submit="$ctrl.preparePayment()">
+
+    <div class="row">
+        <dl class="oui-description oui-description_horizontal oui-heading_underline col-md-2">
+            <dt data-translate="domain_webhosting_order_payment_total_price_without_tax"></dt>
+            <dd data-ng-bind="$ctrl.prices.withoutTax.text"></dd>
+            <dt data-translate="domain_webhosting_order_payment_total_price_with_tax"></dt>
+            <dd data-ng-bind="$ctrl.prices.withTax.text"></dd>
+            <dt data-translate="domain_webhosting_order_payment_duration"></dt>
+            <dd data-translate="{{ 'domain_webhosting_order_duration_' + $ctrl.stepper.cartOption.offer.pricing.duration }}"></dd>
+        </dl>
+    </div>
+
+    <form
+        name="$ctrl.paymentMeans"
+        novalidate>
+        <ovh-manager-order-payment-means
+            name="paymentMeans"
+            data-label="{{:: 'domain_webhosting_order_payment_choice' | translate }}"
+            data-default-payment-mean="$ctrl.defaultPaymentMean"
+            data-model="$ctrl.autoPayWithPreferredPaymentMethod">
+        </ovh-manager-order-payment-means>
+    </form>
+
+    <form
+        name="$ctrl.contracts"
+        novalidate>
+        <ovh-manager-order-contracts
+            name="agreeContracts"
+            data-items="$ctrl.contracts"
+            data-model="$ctrl.agreeContracts">
+        </ovh-manager-order-contracts>
+    </form>
+</oui-step-form>
