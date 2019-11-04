@@ -1,0 +1,108 @@
+<form novalidate
+      name="supportNewIssuesForm">
+
+    <div class="text-center">
+        <oui-spinner data-ng-if="$ctrl.isLoading"
+                     data-size="l">
+        </oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.isLoading">
+        <oui-field data-label="{{:: 'ovhManagerSupport_new_category' | translate }}"
+                   data-size="xl">
+            <oui-select name="category"
+                        data-model="$ctrl.category"
+                        data-items="$ctrl.categories"
+                        data-match="label"
+                        data-on-change="$ctrl.onCategoryChange()">
+            </oui-select>
+        </oui-field>
+        <oui-field data-label="{{:: 'ovhManagerSupport_new_serviceType' | translate }}"
+                   data-ng-if="$ctrl.serviceType || ($ctrl.category && $ctrl.category.id !== $ctrl.CATEGORY_ACCOUNT)"
+                   data-size="xl">
+            <oui-select name="serviceType"
+                        data-model="$ctrl.serviceType"
+                        data-items="$ctrl.serviceTypes"
+                        data-match="label"
+                        data-on-change="$ctrl.onServiceTypeChange()"
+                        data-searchable>
+            </oui-select>
+        </oui-field>
+        <div data-ng-if="$ctrl.services === null">
+            <oui-spinner data-size="m">
+            </oui-spinner>
+        </div>
+        <oui-field data-label="{{:: 'ovhManagerSupport_new_service' | translate }}"
+                   data-ng-if="$ctrl.serviceType && $ctrl.category.id !== $ctrl.CATEGORY_ACCOUNT && $ctrl.services !== null"
+                   data-size="xl">
+            <oui-select name="service"
+                        data-model="$ctrl.currentServiceName"
+                        data-items="$ctrl.services"
+                        data-match="displayName"
+                        data-on-change="$ctrl.onServiceChange()"
+                        data-ng-show="!$ctrl.isUnknownService"
+                        data-searchable>
+            </oui-select>
+            <oui-checkbox data-model="$ctrl.isUnknownService"
+                          data-on-change="$ctrl.onUnknownServiceChange()">
+                <span data-translate="ovhManagerSupport_new_service_unknown"></span>
+            </oui-checkbox>
+        </oui-field>
+        <div data-ng-if="$ctrl.isIssuesSelectorReady()">
+            <support-issues-selector
+                data-category="$ctrl.issueParams.category"
+                data-service-type="$ctrl.issueParams.serviceType"
+                data-issue="$ctrl.issue">
+            </support-issues-selector>
+        </div>
+
+        <div class="w-75"
+             data-ng-if="$ctrl.issue">
+            <oui-tile data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
+                <h2 data-translate="ovhManagerSupport_new_guides"
+                    data-ng-if="$ctrl.guides.length">
+                </h2>
+                <ul>
+                    <li data-ng-repeat="guide in $ctrl.guides track by $index">
+                        <a href="{{ guide.url }}"
+                           target="_blank"
+                           data-ng-bind-html="guide.label">
+                        </a>
+                    </li>
+                </ul>
+                <h2 data-translate="ovhManagerSupport_new_tips"
+                    data-ng-if="$ctrl.tips.length">
+                </h2>
+                <ul class="supportTips">
+                    <li data-ng-repeat="tip in $ctrl.tips track by $index"
+                        data-ng-bind-html="tip.label | linky: '_blank'">
+                    </li>
+                </ul>
+            </oui-tile>
+            <div data-ng-if="$ctrl.guides.length || $ctrl.tips.length">
+                <p class="mt-4"
+                   data-translate="ovhManagerSupport_new_helpfull">
+                </p>
+                <oui-button data-variant="secondary"
+                            data-type="submit"
+                            data-on-click="$ctrl.submitForm(false)">
+                    <span data-translate="ovhManagerSupport_new_helpfull_no"></span>
+                </oui-button>
+                <oui-button data-variant="primary"
+                            data-on-click="$ctrl.submitForm(true)">
+                    <span data-translate="ovhManagerSupport_new_helpfull_yes"></span>
+                </oui-button>
+            </div>
+            <div data-ng-if="!$ctrl.guides.length && !$ctrl.tips.length">
+                <oui-button data-variant="primary"
+                            data-type="submit"
+                            data-on-click="$ctrl.submitForm(false)">
+                    <span data-translate="ovhManagerSupport_new_helpfull_create"></span>
+                </oui-button>
+            </div>
+        </div>
+
+        <support-tickets-new-feedback></support-tickets-new-feedback>
+    </div>
+
+</form>

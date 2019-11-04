@@ -12,6 +12,24 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             projectId,
           },
         }) : ({ state: trans.params().onboarding ? 'pci.projects.onboarding' : 'pci.projects.new' }))),
+      resolve: {
+        rootState: () => 'app',
+      },
+    });
+
+  $stateProvider
+    .state('app.mfaEnrollment', {
+      url: 'mfa-enrollment',
+      component: 'mfaEnrollment',
+      params: {
+        forced: {
+          dynamic: true,
+        },
+      },
+      resolve: {
+        from: /* @ngInject */ $transition$ => $transition$.$from().name,
+      },
+      translations: { value: ['.'], format: 'json' },
     });
 
   $stateProvider

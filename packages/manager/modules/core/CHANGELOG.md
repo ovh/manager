@@ -1,3 +1,26 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.4.0...@ovh-ux/manager-core@7.5.0) (2019-10-28)
+
+
+### Features
+
+* **support:** create the module ([30bf9f0](https://github.com/ovh/manager/commit/30bf9f083cd6c521c4fa33e0970f72ee7292cedf))
+
+
+
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.3.0...@ovh-ux/manager-core@7.4.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
+
+
+### Features
+
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
 # [7.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.2.0...@ovh-ux/manager-core@7.3.0) (2019-10-23)
 
 

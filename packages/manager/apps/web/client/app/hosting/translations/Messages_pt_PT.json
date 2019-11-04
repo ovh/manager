@@ -1380,5 +1380,6 @@
   "hosting_dashboard_configuration": "Configuração",
   "hosting_dashboard_access": "Acesso",
   "common_api_hostingWeb-1": "Não é possível migrar para esta oferta, porque a sua oferta atual dispõe de mais e-mails do que a oferta selecionada.",
-  "hosting_tab_WEBSITE_COACH": "Website Coach"
+  "hosting_tab_WEBSITE_COACH": "Website Coach",
+  "hosting_tab_BOOST_request_description_billing_new": "A partir de 1 de novembro de 2019, o preço irá mudar e será faturado por dia de utilização: {{price}} + IVA por dia e por patamar de oferta."
 }

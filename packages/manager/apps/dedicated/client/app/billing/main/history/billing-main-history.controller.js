@@ -268,7 +268,7 @@ angular
 
       this.loading.init = true;
 
-      if (this.currentUser.billingCountry === 'FR' && this.currentUser.legalform === 'individual') {
+      if (this.coreConfig.isRegion('EU') && this.currentUser.billingCountry === 'FR' && this.currentUser.legalform === 'individual') {
         postalMailOptionPromise = this
           .OvhApiMe
           .Billing()

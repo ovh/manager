@@ -24,19 +24,19 @@ angular
 <ovh-manager-navbar></ovh-manager-navbar>
 ````
 
-## Options 
+## Options
 
 ### Lang
 
-Pass an object as `lang-options` to configure language menu 
+Pass an object as `lang-options` to configure language menu
 
 ```html
-<ovh-manager-navbar 
+<ovh-manager-navbar
     data-lang-options="$ctrl.langOptions">
 </ovh-manager-navbar>
 ```
 
-#### Exclude 
+#### Exclude
 
 Add an `exclude` property which takes an array of langs that should be excluded
 
@@ -48,7 +48,7 @@ Add an `exclude` property which takes an array of langs that should be excluded
 
 Will exclude 'fr_FR' lang
 
-#### Include 
+#### Include
 
 Add an `include` property which takes an array of langs that should be excluded
 
@@ -66,7 +66,7 @@ Will only include 'en_EN' lang
 
 #### Supported langs
 
-The supported langs are 
+The supported langs are
 
 * de_DE
 * en_GB
@@ -86,27 +86,27 @@ The supported langs are
 * fi_FI
 * cs_CZ
 
-If the given options aren't supported, an error will be thrown 
+If the given options aren't supported, an error will be thrown
 
-#### Changing lang 
+#### Changing lang
 
 When the lang is being changed, the event `lang.onChange` is emitted
 
-### Other 
+### Other
 
 Other options will be passed through `navbar-options`
 
 ```html
-<ovh-manager-navbar 
+<ovh-manager-navbar
     data-navbar-options="$ctrl.navbarOptions">
 </ovh-manager-navbar>
 ````
 
-#### Toggle 
+#### Toggle
 
-Allows to configure responsive toggler 
+Allows to configure responsive toggler
 
-##### Event 
+##### Event
 
 Listens to event to stop toggler loading
 
@@ -118,7 +118,7 @@ Listens to event to stop toggler loading
 }
 ```
 
-#### universe 
+#### universe
 
 Indicate current universe
 
@@ -128,7 +128,7 @@ Indicate current universe
 }
 ```
 
-#### fixed position 
+#### fixed position
 
 Indicate if fixed position should be applied to component
 
@@ -167,7 +167,7 @@ yarn start:watch
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](https://github.com/ovh-ux/manager/blob/master/CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh/manager/issues/new) or working on some of the [open issues](https://github.com/ovh/manager/issues), our [contributing guide](https://github.com/ovh/manager/blob/master/CONTRIBUTING.md) will help get you started.
 
 ## License
 

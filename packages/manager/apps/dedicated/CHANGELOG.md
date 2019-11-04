@@ -1,3 +1,65 @@
+## [10.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.1...@ovh-ux/manager-dedicated@10.27.2) (2019-10-30)
+
+
+### Bug Fixes
+
+* add wizard-keydown-disabled on installation modal ([73f49c0](https://github.com/ovh/manager/commit/73f49c0c0829bc813769b7a0b03a221bafe883a6))
+* add wizard-keydown-disabled on installation modal ([762debc](https://github.com/ovh/manager/commit/762debc3711b1c15d18490c93b451512224f5d3b))
+
+
+
+## [10.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.0...@ovh-ux/manager-dedicated@10.27.1) (2019-10-29)
+
+
+### Bug Fixes
+
+* **dedicated.account.contact:** inject existing language list ([#1636](https://github.com/ovh/manager/issues/1636)) ([1b193c9](https://github.com/ovh/manager/commit/1b193c9a59ab032083f7722a371325a37ce87bc3))
+
+
+
+# [10.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.26.1...@ovh-ux/manager-dedicated@10.27.0) (2019-10-28)
+
+
+### Features
+
+* **dedicated:** replace OTRS by Support ([18b4be5](https://github.com/ovh/manager/commit/18b4be5f2041c108da554ad31f5699b486f6ef1a))
+
+
+
+## [10.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.26.0...@ovh-ux/manager-dedicated@10.26.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **billing.main.history:** fetch postal mail invoices only in EU build ([#1603](https://github.com/ovh/manager/issues/1603)) ([396b8e5](https://github.com/ovh/manager/commit/396b8e5fa509908348e47ef244e1a0c4588c05fa))
+
+
+
+# [10.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.7...@ovh-ux/manager-dedicated@10.26.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* **dedicated:** add exchange icons ([#1550](https://github.com/ovh/manager/issues/1550)) ([68e424d](https://github.com/ovh/manager/commit/68e424d8bf1ce256f60cf56bf7dc18d1ea8b502d))
+* **dedicated:** fix ck.editor injection ([487c716](https://github.com/ovh/manager/commit/487c716f49c7a585161d48a6fb933e25defe79a8))
+* **dedicated:** fix dedicated rtm chart display ([#1544](https://github.com/ovh/manager/issues/1544)) ([8526e64](https://github.com/ovh/manager/commit/8526e64179209614ea9486ac48bb213818db6d85))
+* **dedicated:** load exchange module on CA region ([#1554](https://github.com/ovh/manager/issues/1554)) ([3f15faa](https://github.com/ovh/manager/commit/3f15faaea1e5b488e21214bda94b41b4e7a5b3fa))
+* **dedicated:** replace account calendar ([2235173](https://github.com/ovh/manager/commit/223517364feadf224f8b75e02257efe6a75adc4b))
+* **dedicated.account.contacts:** fix lodash imports ([#1541](https://github.com/ovh/manager/issues/1541)) ([9d038e1](https://github.com/ovh/manager/commit/9d038e152af723d1eee17f375add4162fd266956))
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* polling works now correctly ([2923786](https://github.com/ovh/manager/commit/29237862be56b0467fa676bcd22525af1dd87550))
+* popover is now currently displayed ([#1549](https://github.com/ovh/manager/issues/1549)) ([c82634c](https://github.com/ovh/manager/commit/c82634cfa34436df1e1c1a1012bd3cb461400aea))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
+
+
+### Features
+
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+* **dedicated:** add error page ([79c22bc](https://github.com/ovh/manager/commit/79c22bcbb6414bf7f0215c813453b5e748bb17a8))
+
+
+
 ## [10.25.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.25.6...@ovh-ux/manager-dedicated@10.25.7) (2019-10-25)
 
 

@@ -3,19 +3,23 @@
   "version": "3.0.4",
   "description": "OVH SSO module - Modal plugin",
   "keywords": [
-    "angular",
+    "angularjs",
     "auth",
+    "authentification",
     "modal",
     "ovh",
-    "sso"
+    "ovhcloud",
+    "sign on",
+    "sso",
+    "ui bootstrap"
   ],
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/components/ng-ovh-sso-auth-modal-plugin#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ng-ovh-sso-auth-modal-plugin#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/components/ng-ovh-sso-auth-modal-plugin"
   },
   "license": "BSD-3-Clause",

@@ -1,9 +1,10 @@
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
+import isDate from 'lodash/isDate';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function TelecomTelephonyServiceFaxCampaignsCtrl($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, TucToast, TucToastError, tucValidator) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function TelecomTelephonyServiceFaxCampaignsCtrl($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
   /*= ==============================
@@ -27,7 +28,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
         ))
         .then(campaigns => forEach(campaigns, (campaign) => {
           set(campaign, 'reference', campaign.reference.slice(1, -1));
-          if (tucValidator.isDate(campaign.reference) && (campaign.status === 'error' || campaign.status === 'todo')) {
+          if (isDate(campaign.reference) && (campaign.status === 'error' || campaign.status === 'todo')) {
             set(campaign, 'reference', moment(campaign.reference).format());
           }
         })));

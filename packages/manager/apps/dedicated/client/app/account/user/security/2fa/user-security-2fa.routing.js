@@ -6,7 +6,11 @@ angular
       templateUrl: 'account/user/security/2fa/user-security-2fa.html',
       controller: 'UserAccount.controllers.doubleAuth.2fa.enable',
       translations: { value: ['../..'], format: 'json' },
-      layout: 'modal',
+      layout: {
+        name: 'modal',
+        backdrop: 'static',
+        keyboard: false,
+      },
       toChilds: true,
     });
   });

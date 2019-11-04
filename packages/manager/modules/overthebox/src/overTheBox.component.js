@@ -5,7 +5,7 @@ import '@ovh-ux/manager-telecom-styles';
 import 'angularjs-scroll-glue';
 
 import '@ovh-ux/ng-ovh-telecom-universe-components';
-import '@ovh-ux/ng-uirouter-title';
+import '@ovh-ux/ng-ui-router-title';
 import '@ovh-ux/ng-tail-logs';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
@@ -35,7 +35,7 @@ angular
     'ovh-angular-responsive-tabs',
     'ngTailLogs',
     'ngOvhTelecomUniverseComponents',
-    'ngUirouterTitle',
+    'ngUiRouterTitle',
     'ovh-angular-ui-confirm-modal',
     configure,
     details,

@@ -1,0 +1,85 @@
+<oui-back-button data-on-click="$ctrl.handleBackButton()">
+    <span data-translate="ovhManagerSupport_new_back"></span>
+</oui-back-button>
+
+<support-new-issues-form
+    data-ng-show="$ctrl.step === 'issues'"
+    data-on-submit="$ctrl.onIssuesFormSubmit(result)"
+    data-service-name="$ctrl.serviceName"
+    data-service-type-name="$ctrl.serviceTypeName">
+</support-new-issues-form>
+
+<support-new-creation-form
+    id="creationForm"
+    data-issue="$ctrl.issue"
+    data-ng-show="$ctrl.step === 'creation'"
+    data-on-submit="$ctrl.onCreationFormSubmit(result)">
+</support-new-creation-form>
+
+<div class="text-center"
+     data-ng-if="$ctrl.step === 'creating'">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div data-ng-if="$ctrl.step === 'created'">
+    <oui-message data-type="success">
+        <span data-translate="ovhManagerSupport_new_creation_success"
+                data-translate-values="{ state: 'support.tickets.ticket({ id: $ctrl.ticketId })', id: $ctrl.ticketNumber }"
+                data-translate-compile>
+        </span>
+        <span data-translate="ovhManagerSupport_new_creation_success_back"
+                data-translate-values="{ state: 'support.tickets' }"
+                data-translate-compile>
+        </span>
+    </oui-message>
+
+    <p data-translate="ovhManagerSupport_new_creation_tip_1"></p>
+    <p data-ng-if="$ctrl.guideURL">
+        <span data-translate="ovhManagerSupport_new_creation_tip_guides"></span>
+        <a
+            class="oui-link oui-link_icon"
+            data-ng-href="{{ $ctrl.guideURL }}"
+            target="_blank"
+            rel="noopener">
+            <span data-ng-bind="$ctrl.guideURL"></span>
+            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+            <span class="sr-only" data-translate="ovhManagerSupport_new_open_new_tab"></span>
+        </a>
+    </p>
+    <p data-ng-if="$ctrl.forumURL">
+        <span data-translate="ovhManagerSupport_new_creation_tip_forum"></span>
+        <a
+            class="oui-link oui-link_icon"
+            data-ng-href="{{ $ctrl.forumURL }}"
+            target="_blank"
+            rel="noopener">
+            <span data-ng-bind="$ctrl.forumURL"></span>
+            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+            <span class="sr-only" data-translate="ovhManagerSupport_new_open_new_tab"></span>
+        </a>
+    </p>
+    <p data-translate="ovhManagerSupport_new_creation_tip_2"></p>
+    <p data-translate="ovhManagerSupport_new_creation_tip_3"
+        data-translate-values="{ state: 'support.tickets.ticket({ id: $ctrl.ticketId })' }"
+        data-translate-compile>
+    </p>
+
+    <support-tickets-new-feedback></support-tickets-new-feedback>
+</div>
+
+<oui-message data-type="error"
+             data-ng-if="$ctrl.step === 'error'">
+    <p>
+        <strong data-translate="ovhManagerSupport_new_creation_error"></strong>
+    </p>
+    <p>
+        <span data-ng-bind="$ctrl.error.message"></span>
+        <br />
+        <small data-ng-bind="$ctrl.error.queryId"></small>
+    </p>
+    <oui-button data-variant="secondary"
+                data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
+                data-on-click="$ctrl.goToTickets()">
+    </oui-button>
+    <support-tickets-new-feedback></support-tickets-new-feedback>
+</oui-message>

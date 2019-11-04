@@ -36,7 +36,7 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 module.exports = (env = {}) => {
-  const REGION = process.env.REGION ? process.env.REGION.toUpperCase() : 'EU';
+  const REGION = `${_.upperCase(env.region || process.env.REGION || 'EU')}`;
 
   const { config } = webpackConfig({
     template: './client/index.html',
@@ -55,7 +55,7 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './client/**/*.html'), context: 'client' },
       ],
     },
-  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
+  }, REGION ? Object.assign(env, { region: REGION }) : env);
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');

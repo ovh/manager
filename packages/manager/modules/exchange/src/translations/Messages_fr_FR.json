@@ -816,8 +816,6 @@
   "exchange_DIAGNOSTICS_status_canSendEmail_help_li2": "Le mot de passe indiqué n'est pas correct",
   "exchange_DIAGNOSTICS_status_canSendEmail_help_li3": "Votre compte est bloqué pour envoi de spam",
   "exchange_DIAGNOSTICS_status_canSendEmail_help_li4": "Un incident sur l'infrastructure Exchange",
-  "exchange_DIAGNOSTICS_status_support_ticket_subject": "Diagnostic Exchange",
-  "exchange_DIAGNOSTICS_status_support_ticket_body": "Veillez à conserver les informations suivantes, elles seront utiles au diagnostic de votre situation.",
   "exchange_DIAGNOSTICS_create_ticket": "Créer une demande d'assistance",
   "exchange_tab_GROUPS_back_button": "Retour",
   "exchange_tab_GROUPS_header": "Groupes",

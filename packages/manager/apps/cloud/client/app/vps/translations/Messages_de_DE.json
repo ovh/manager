@@ -450,5 +450,6 @@
   "vps_service_expired": "Die Dienstleistung {{vps}} wurde nicht verlängert. Dies kann aufgrund Ihrer Entscheidung oder eines Zahlungsverzugs auf Ihrer Seite erfolgt sein.",
   "vps_back_to_configuration": "Zurück zur Konfiguration meines VPS",
   "vps_tab_monitoring": "Monitoring",
-  "vps_configuration_terminate": "VPS löschen"
+  "vps_configuration_terminate": "VPS löschen",
+  "vps_tab_tasks": "Operationen"
 }

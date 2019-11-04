@@ -1,7 +1,8 @@
 # ng-ui-router-breadcrumb
 
+> Display a breadcrumb based on the [UI-Router](https://ui-router.github.io/ng1/) state declaration.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ui-router-breadcrumb)](https://www.npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-ui-router-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ui-router-breadcrumb?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -13,18 +14,37 @@ yarn add @ovh-ux/ng-ui-router-breadcrumb
 ```js
 import angular from 'angular';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import uiRouter from '@uirouter/angularjs';
 
 angular
   .module('myApp', [
     ngUiRouterBreadcrumb,
-  ]);
+    uiRouter,
+  ])
+  .config(/* @ngInject */ ($stateProvider) => {
+    $stateProvider
+      .state('foo', {
+        url: '/foo',
+        template: '<h2>Foo</h2>',
+        resolve: {
+          breadcrumb: function () {
+            return 'foo';
+          }
+        }
+      });
+  });
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
+
+## Related
+
+- [@ovh-ux/ng-ui-router-layout](https://github.com/ovh/manager/tree/master/packages/components/ng-ui-router-layout) - Enhance UI-Router by adding a layout decorator to deal with an UI Bootstrap modal instance
+- [@ovh-ux/ng-ui-line-progress](https://github.com/ovh/manager/tree/master/packages/components/ng-ui-router-line-progress) - Display a line progress between UI-Router transition hooks
 
 ## Contributing
 

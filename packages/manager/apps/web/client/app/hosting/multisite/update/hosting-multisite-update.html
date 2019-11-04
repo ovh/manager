@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="col-md-8 col-md-offset-4"
-                         data-ng-if="selected.domain.displayName !== selected.domainWww && domainsAlreadyExists()">
+                         data-ng-if="selected.domain.displayName !== selected.domainWww && domainsAlreadyExists() && domainWwwAvailable">
                         <oui-checkbox id="domainWwwNeeded"
                             data-model="selected.domainWwwNeeded"
                             data-text="{{ 'hosting_tab_DOMAINS_configuration_modify_step1_domain_name_www_question' | translate: { t0: getSelectedDomainToDisplay(true) } }}">

@@ -2,6 +2,8 @@
   "name": "@ovh-ux/manager-freefax-app",
   "version": "4.2.3",
   "private": true,
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env.production",
     "cypress:open": "cypress open",
@@ -13,7 +15,7 @@
     "test:e2e": "lerna exec --scope @ovh-ux/manager-freefax-app -- node \\$LERNA_ROOT_PATH/scripts/webpack-cypress"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/manager-freefax": "^5.2.2",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
@@ -24,7 +26,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
     "@ovh-ux/ng-tail-logs": "^2.0.0",
-    "@ovh-ux/ng-uirouter-title": "^2.0.0",
+    "@ovh-ux/ng-ui-router-title": "^2.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
@@ -43,7 +45,7 @@
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^9.23.2",
+    "ovh-api-services": "^9.24.1",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.9.9",
     "ovh-ui-kit": "^2.35.2",

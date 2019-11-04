@@ -9,7 +9,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtr
 
   self.service = null;
   self.guideUrl = URLS.guides.telephony;
-  self.listTicketUrl = get(REDIRECT_URLS, 'listTicket');
+  self.supportUrl = get(REDIRECT_URLS, 'support');
 
   /*= =====================================
     =            INITIALIZATION            =

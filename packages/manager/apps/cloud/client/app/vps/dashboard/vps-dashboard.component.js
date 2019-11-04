@@ -3,6 +3,8 @@ import template from './vps-dashboard.html';
 
 export default {
   bindings: {
+    features: '<',
+    serviceName: '<',
     stateVps: '<',
   },
   controller,

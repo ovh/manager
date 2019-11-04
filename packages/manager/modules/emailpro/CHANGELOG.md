@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.1.7...@ovh-ux/manager-emailpro@1.2.0) (2019-10-28)
+
+
+### Features
+
+* **emailpro:** replace OTRS by Support ([4f5290c](https://github.com/ovh/manager/commit/4f5290c2835c9800331e8198f083dc143479bd31))
+
+
+
 ## [1.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.1.6...@ovh-ux/manager-emailpro@1.1.7) (2019-10-23)
 
 

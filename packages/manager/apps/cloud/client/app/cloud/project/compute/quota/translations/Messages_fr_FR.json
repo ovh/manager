@@ -14,5 +14,6 @@
   "cpb_quota_restricted_unlock_button": "Activer le quota standard",
   "cpb_quota_already_unleashed": "Votre quota semble déjà avoir été activé.",
   "cpb_quota_unleash_error": "Oups, nous n'arrivons pas à activer votre quota.",
-  "cpb_quota_unleash_loading": "Activation du quota en cours..."
+  "cpb_quota_unleash_loading": "Activation du quota en cours...",
+  "cpb_quota_open_new_tab": "Ouvre un nouvel onglet"
 }

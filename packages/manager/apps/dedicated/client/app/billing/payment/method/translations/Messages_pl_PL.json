@@ -10,7 +10,7 @@
   "billing_payment_method_table_3d_secure": "3D Secure",
   "billing_payment_method_table_top_add_method": "Dodaj sposób płatności",
   "billing_payment_method_autorenew_guide_help": "Potrzebujesz pomocy w zakresie odnawiania usług?",
-  "billing_payment_method_autorenew_guide_help_link": "Potrzebujesz pomocy w zakresie odnawiania usług?",
+  "billing_payment_method_autorenew_guide_help_link": "Dowiedz się więcej",
   "billing_payment_method_bank_account_pending_validation": "Dodałeś w panelu klienta konto bankowe. Czekamy na upoważnienie do obciążania rachunku. Należy przesłać je drogą pocztową.",
   "billing_payment_method_bank_account_processing_delay": "Twoje konto bankowe zostanie zatwierdzone w ciągu 24-48 godzin od uzyskania upoważnienia do obciążania rachunku.",
   "billing_payment_method_table_action_download_procedure": "Pobierz dokument i prześlij go do nas pocztą.",

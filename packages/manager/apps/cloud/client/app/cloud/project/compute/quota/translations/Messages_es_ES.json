@@ -14,5 +14,6 @@
   "cpb_quota_restricted_unlock_button": "Activar el límite estándar",
   "cpb_quota_already_unleashed": "Parece que su límite ya ha sido activado.",
   "cpb_quota_unleash_error": "¡Vaya! No hemos podido activar el límite.",
-  "cpb_quota_unleash_loading": "Activando el límite..."
+  "cpb_quota_unleash_loading": "Activando el límite...",
+  "cpb_quota_open_new_tab": "Abrir una nueva pestaña"
 }

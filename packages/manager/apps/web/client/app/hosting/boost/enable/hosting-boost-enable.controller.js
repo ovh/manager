@@ -4,7 +4,7 @@ angular
   .module('App')
   .controller(
     'HostingBoostOfferRequestCtrl',
-    ($scope, $translate, HostingBoost, Alerter) => {
+    ($scope, $translate, HostingBoost, Alerter, User) => {
       $scope.product = $scope.currentActionData.product;
       $scope.models = { boostOffer: null };
       $scope.acceptCGV = { value: false };
@@ -12,6 +12,16 @@ angular
       $scope.loaders = {
         request: false,
       };
+
+      User.getUser()
+        .then((user) => {
+          HostingBoost.getBoostPrice(user.ovhSubsidiary).then((catalog) => {
+            const addon = catalog.addons.find(({ planCode }) => planCode === 'consumption-perf2014');
+
+            $scope.models.boostDailyPrice = addon.pricings[0].price / 100000000;
+            $scope.models.boostDailyPrice += ` ${catalog.locale.currencyCode}`;
+          });
+        });
 
       $scope.isStepValid = () => $scope.acceptCGV.value === true
         && angular.isObject($scope.models.boostOffer);
