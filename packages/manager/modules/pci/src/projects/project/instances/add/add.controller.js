@@ -2,6 +2,7 @@ import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import has from 'lodash/has';
 import some from 'lodash/some';
@@ -144,9 +145,10 @@ export default class PciInstancesAddController {
   }
 
   onInstanceFocus() {
-    this.quota = new Quota(this.model.datacenter.quota.instance);
-
-    this.generateInstanceName();
+    if (!isEmpty(this.model.datacenter)) {
+      this.quota = new Quota(this.model.datacenter.quota.instance);
+      this.generateInstanceName();
+    }
   }
 
   onInstanceChange() {
@@ -194,7 +196,9 @@ export default class PciInstancesAddController {
   }
 
   createQuota() {
-    this.quota = new Quota(this.model.datacenter.quota.instance);
+    if (!isEmpty(this.model.datacenter)) {
+      this.quota = new Quota(this.model.datacenter.quota.instance);
+    }
   }
 
   getUnavailabilityReason(datacenter) {

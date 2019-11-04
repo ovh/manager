@@ -6,6 +6,7 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 import round from 'lodash/round';
 import reduce from 'lodash/reduce';
+import some from 'lodash/some';
 
 import Instance from '../../../components/project/instance/instance.class';
 import InstanceQuota from '../../../components/project/instance/quota/quota.class';
@@ -386,14 +387,18 @@ export default class PciProjectInstanceService {
       regions: this.PciProjectRegions
         .getRegions(projectId),
     })
-      .then(({ availableRegions, regions }) => this.PciProjectRegions
-        .groupByContinentAndDatacenterLocation(
-          map([...regions, ...availableRegions], region => new Datacenter({
-            ...region,
-            ...this.CucRegionService.getRegion(region.name),
-            available: has(region, 'status'),
-          })),
-        ));
+      .then(({ availableRegions, regions }) => {
+        const supportedRegions = filter(regions,
+          region => some(get(region, 'services', []), { name: 'instance', status: 'UP' }));
+        return this.PciProjectRegions
+          .groupByContinentAndDatacenterLocation(
+            map([...supportedRegions, ...availableRegions], region => new Datacenter({
+              ...region,
+              ...this.CucRegionService.getRegion(region.name),
+              available: has(region, 'status'),
+            })),
+          );
+      });
   }
 
   save(
