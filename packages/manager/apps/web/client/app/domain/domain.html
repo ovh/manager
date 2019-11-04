@@ -1,158 +1,156 @@
-<div ui-view>
-    <div data-ovh-alert="{{alerts.page}}"></div>
+<div data-ovh-alert="{{alerts.page}}"></div>
 
-    <div class="text-center" data-ng-if="ctrlDomain.loading.domainInfos">
-        <oui-spinner data-size="l"></oui-spinner>
-    </div>
+<div class="text-center" data-ng-if="ctrlDomain.loading.domainInfos">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
 
-    <div data-ng-if="!ctrlDomain.loading.domainInfos && ctrlDomain.domain">
-        <div class="oui-page-header">
-            <div class="oui-page-header__container">
-                <div class="oui-page-header__content">
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <div class="mb-2">
-                                <span data-ng-if="ctrlDomain.isAllDom">AllDom</span>
-                                <h1 class="oui-page-header__title word-break mb-0"
-                                    data-ng-bind="ctrlDomain.domain.displayName"></h1>
-                            </div>
-                            <wuc-service-expiration-date data-ng-if="!ctrlDomain.isAllDom && ctrlDomain.domain.name && ctrlDomain.domainInfos"
-                                                    service-name="ctrlDomain.domain.name"
-                                                    service-type="DOMAIN"
-                                                    service-infos="ctrlDomain.domainInfos">
-                            </wuc-service-expiration-date>
-                            <wuc-service-expiration-date data-ng-if="ctrlDomain.isAllDom && ctrlDomain.allDom && ctrlDomain.allDomInfos"
-                                                    service-name="ctrlDomain.allDom"
-                                                    service-type="ALL_DOM"
-                                                    service-infos="ctrlDomain.allDomInfos">
-                            </wuc-service-expiration-date>
+<div data-ng-if="!ctrlDomain.loading.domainInfos && ctrlDomain.domain">
+    <div class="oui-page-header">
+        <div class="oui-page-header__container">
+            <div class="oui-page-header__content">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="mb-2">
+                            <span data-ng-if="ctrlDomain.isAllDom">AllDom</span>
+                            <h1 class="oui-page-header__title word-break mb-0"
+                                data-ng-bind="ctrlDomain.domain.displayName"></h1>
                         </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="btn-group ml-auto mt-4">
-                                <button class="oui-button oui-button_dropdown mb-0" type="button" aria-haspopup="true" aria-expanded="false"
-                                        data-toggle="dropdown">
-                                    <span data-translate="common_actions"></span>
-                                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li data-ng-if="ctrlDomain.alldomURL">
-                                        <i class="ovh-font ovh-font-cart" aria-hidden="true"></i>
-                                        <a data-ng-href="{{ctrlDomain.alldomURL}}" target="_blank" title="{{ 'domain_configuration_order_alldom' | translate }} ({{ 'common_newtab' | translate }})"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::order-pack-allDom"
-                                        data-track-click="action">
-                                        {{ 'domain_configuration_order_alldom' | translate }}
-                                        </a>
-                                    </li>
-                                    <li data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdmin">
-                                        <i class="ovh-font ovh-font-cart" aria-hidden="true"></i>
-                                        <button class="btn btn-link" type="button"
-                                                data-ng-click="setAction('webhosting-enable/domain-enable-web-hosting', ctrlDomain.domain)"
-                                                data-track-on="click"
-                                                data-track-name="web::domain::order-pack-hosting"
-                                                data-track-click="action">
-                                                {{ 'domain_configuration_enable_web_hosting' | translate }}
-                                        </button>
-                                    </li>
-                                    <li class="dropdown-divider" data-ng-if="ctrlDomain.hostings.length">
-                                    <i class="oui-icon oui-icon-gear_line" aria-hidden="true"></i>
-                                    <a data-ng-href="{{'#/website/configuration?domain=' + ctrlDomain.domain.name}}"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::website-configuration"
-                                        data-track-click="action">
-                                        {{ 'domain_configuration_create_site' | translate }}
+                        <wuc-service-expiration-date data-ng-if="!ctrlDomain.isAllDom && ctrlDomain.domain.name && ctrlDomain.domainInfos"
+                                                service-name="ctrlDomain.domain.name"
+                                                service-type="DOMAIN"
+                                                service-infos="ctrlDomain.domainInfos">
+                        </wuc-service-expiration-date>
+                        <wuc-service-expiration-date data-ng-if="ctrlDomain.isAllDom && ctrlDomain.allDom && ctrlDomain.allDomInfos"
+                                                service-name="ctrlDomain.allDom"
+                                                service-type="ALL_DOM"
+                                                service-infos="ctrlDomain.allDomInfos">
+                        </wuc-service-expiration-date>
+                    </div>
+                    <div class="col-sm-3 d-flex">
+                        <div class="btn-group ml-auto mt-4">
+                            <button class="oui-button oui-button_dropdown mb-0" type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown">
+                                <span data-translate="common_actions"></span>
+                                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li data-ng-if="ctrlDomain.alldomURL">
+                                    <i class="ovh-font ovh-font-cart" aria-hidden="true"></i>
+                                    <a data-ng-href="{{ctrlDomain.alldomURL}}" target="_blank" title="{{ 'domain_configuration_order_alldom' | translate }} ({{ 'common_newtab' | translate }})"
+                                    data-track-on="click"
+                                    data-track-name="web::domain::order-pack-allDom"
+                                    data-track-click="action">
+                                        <span data-translate="domain_configuration_order_alldom"></span>
                                     </a>
-                                    </li>
-                                    <li>
-                                        <button class="btn btn-link" type="button"
-                                        data-ng-click="setAction('subdomain/add/domain-subdomain-add', { domain: ctrlDomain.domain })"
-                                        data-track-on="click"
-                                        data-track-name="web::domain::add-subdomain"
-                                        data-track-click="action">
-                                        {{ 'domain_configuration_add_subdomain' | translate }}
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
+                                </li>
+                                <li data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdmin">
+                                    <i class="ovh-font ovh-font-cart" aria-hidden="true"></i>
+                                    <button class="btn btn-link" type="button"
+                                            data-ng-click="ctrlDomain.goToWebhostingOrder()"
+                                            data-track-on="click"
+                                            data-track-name="web::domain::order-pack-hosting"
+                                            data-track-click="action">
+                                        <span data-translate="domain_configuration_enable_web_hosting"></span>
+                                    </button>
+                                </li>
+                                <li class="dropdown-divider" data-ng-if="ctrlDomain.hostings.length">
+                                <i class="oui-icon oui-icon-gear_line" aria-hidden="true"></i>
+                                <a data-ng-href="{{'#/website/configuration?domain=' + ctrlDomain.domain.name}}"
+                                    data-track-on="click"
+                                    data-track-name="web::domain::website-configuration"
+                                    data-track-click="action">
+                                    <span data-translate="domain_configuration_create_site"></span>
+                                </a>
+                                </li>
+                                <li>
+                                    <button class="btn btn-link" type="button"
+                                    data-ng-click="setAction('subdomain/add/domain-subdomain-add', { domain: ctrlDomain.domain })"
+                                    data-track-on="click"
+                                    data-track-name="web::domain::add-subdomain"
+                                    data-track-click="action">
+                                        <span data-translate="domain_configuration_add_subdomain"></span>
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <oui-header-tabs data-ng-if="!ctrlDomain.domain.isExpired">
-                    <oui-header-tabs-item
-                        data-text="{{:: 'domain_tab_GENERAL_INFORMATIONS' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.information' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-text="{{:: 'domain_tab_ZONE' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.zone' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-text="{{:: 'domain_tab_DNS' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.dns' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-text="{{:: 'domain_tab_REDIRECTION' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.redirection' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-ng-if="ctrlDomain.hasZoneDns"
-                        data-text="{{:: 'domain_tab_DYNHOST' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.dynhost' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-text="{{:: 'domain_tab_GLUE' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.glue' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-ng-if="!ctrlDomain.domain.managedByOvh"
-                        data-text="{{:: 'domain_tab_DNSSEC' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.dnssec' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-text="{{:: 'domain_tab_TASKS' | translate }}"
-                        data-state="{{:: ctrlDomain.getState() + '.tasks' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-                    <oui-header-tabs-item
-                        data-text="{{:: 'hosting_tab_menu_emails' | translate }}"
-                        data-href="{{ '#/configuration/email-domain/' + ctrlDomain.domain.name + '?tab=MAILING_LIST' }}"
-                        data-state-params="ctrlDomain.$stateParams">
-                    </oui-header-tabs-item>
-            </oui-header-tabs>
         </div>
 
-        <div class="container-fluid px-5 mt-5">
-            <div class="alert alert-warning" role="alert" data-ng-if="ctrlDomain.domain.isExpired">
-                <div data-ng-bind-html="'common_service_expired' | translate: { t0: '<strong>' + ctrlDomain.domain.displayName + '</strong>' }"></div>
-            </div>
+        <oui-header-tabs data-ng-if="!ctrlDomain.domain.isExpired">
+                <oui-header-tabs-item
+                    data-text="{{:: 'domain_tab_GENERAL_INFORMATIONS' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.information' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-text="{{:: 'domain_tab_ZONE' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.zone' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-text="{{:: 'domain_tab_DNS' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.dns' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-text="{{:: 'domain_tab_REDIRECTION' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.redirection' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="ctrlDomain.hasZoneDns"
+                    data-text="{{:: 'domain_tab_DYNHOST' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.dynhost' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-text="{{:: 'domain_tab_GLUE' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.glue' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-ng-if="!ctrlDomain.domain.managedByOvh"
+                    data-text="{{:: 'domain_tab_DNSSEC' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.dnssec' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-text="{{:: 'domain_tab_TASKS' | translate }}"
+                    data-state="{{:: ctrlDomain.getState() + '.tasks' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    data-text="{{:: 'hosting_tab_menu_emails' | translate }}"
+                    data-href="{{ '#/configuration/email-domain/' + ctrlDomain.domain.name + '?tab=MAILING_LIST' }}"
+                    data-state-params="ctrlDomain.$stateParams">
+                </oui-header-tabs-item>
+        </oui-header-tabs>
+    </div>
 
-            <div data-ng-if="!ctrlDomain.domain.isExpired">
-                <wuc-autorenew-invite data-ng-if="!ctrlDomain.isAllDom"
-                                      data-product-type="domain"
-                                      data-service-infos="ctrlDomain.domainInfos"
-                                      data-guide-url="{{:: ctrlDomain.autorenewGuide }}"
-                                      data-autorenew-url="{{:: ctrlDomain.autorenewUrl }}">
-                </wuc-autorenew-invite>
-                <div data-ovh-alert="{{alerts.tabs}}"></div>
-
-                <div data-ui-view="domainView" ></div>
-            </div>
+    <div class="container-fluid px-5 mt-5">
+        <div class="alert alert-warning" role="alert" data-ng-if="ctrlDomain.domain.isExpired">
+            <div data-ng-bind-html="'common_service_expired' | translate: { t0: '<strong>' + ctrlDomain.domain.displayName + '</strong>' }"></div>
         </div>
 
-        <div id="currentAction" class="modal fade currentAction" role="dialog">
-            <div class="modal-dialog">
-                <div id="modal-container" class="modal-content" data-ng-include="ctrlDomain.stepPath"></div>
-                <div id="modal-help" class="help4wizards"></div>
-            </div>
+        <div data-ng-if="!ctrlDomain.domain.isExpired">
+            <wuc-autorenew-invite data-ng-if="!ctrlDomain.isAllDom"
+                                  data-product-type="domain"
+                                  data-service-infos="ctrlDomain.domainInfos"
+                                  data-guide-url="{{:: ctrlDomain.autorenewGuide }}"
+                                  data-autorenew-url="{{:: ctrlDomain.autorenewUrl }}">
+            </wuc-autorenew-invite>
+            <div data-ovh-alert="{{alerts.tabs}}"></div>
+
+            <div data-ui-view="domainView"></div>
+        </div>
+    </div>
+
+    <div id="currentAction" class="modal fade currentAction" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div id="modal-container" class="modal-content" data-ng-include="ctrlDomain.stepPath"></div>
+            <div id="modal-help" class="help4wizards"></div>
         </div>
     </div>
 </div>
