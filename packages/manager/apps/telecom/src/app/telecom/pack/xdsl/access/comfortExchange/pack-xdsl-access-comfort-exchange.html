@@ -37,6 +37,11 @@
 
     <div data-ng-if="!$ctrl.openedRMAs.length > 0" class="mb-3">
         <div data-ng-if="!$ctrl.exchange.isSuccess">
+            <oui-message type="warning" 
+                         dismissable="false">
+                <p data-translate="xdsl_access_comfort_exchange_warning_part1"></p>
+                <p data-translate="xdsl_access_comfort_exchange_warning_part2"></p>
+            </oui-message>
             <div class="mb-2" data-translate="xdsl_access_comfort_exchange_confirm_title"></div>
             <div class="mb-2" data-translate="xdsl_access_comfort_exchange_confirm_subtitle"></div>
 

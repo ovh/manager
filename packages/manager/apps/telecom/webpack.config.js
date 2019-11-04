@@ -40,6 +40,7 @@ module.exports = (env = {}) => {
     root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
+        { from: path.resolve(__dirname, './src/assets'), to: 'assets' },
         { from: path.resolve(__dirname, './src/app/common/assets'), to: 'assets' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
         { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },

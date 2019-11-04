@@ -1,4 +1,4 @@
-import head from 'lodash/head';
+import last from 'lodash/last';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
 import merge from 'lodash/merge';
@@ -35,7 +35,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDetailsCtrl', class
         lastRegistrations: this.line.getLastRegistrations(),
       }).then(() => {
         if (isArray(this.line.lastRegistrations) && this.line.lastRegistrations.length) {
-          this.lastRegistration = head(
+          this.lastRegistration = last(
             sortBy(
               this.line.lastRegistrations,
               reg => new Date(reg.datetime),
