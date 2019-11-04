@@ -15,6 +15,7 @@ angular.module('App').controller(
       Alerter,
       constants,
       Domain,
+      goToWebhostingOrder,
       Hosting,
       User,
       WucAllDom,
@@ -29,6 +30,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.Domain = Domain;
+      this.goToWebhostingOrder = goToWebhostingOrder;
       this.Hosting = Hosting;
       this.User = User;
       this.WucAllDom = WucAllDom;
