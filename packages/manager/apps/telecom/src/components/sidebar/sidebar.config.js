@@ -205,14 +205,8 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
         external: true,
         onClick: setTracker('order-O365_Sharepoint', 'navigation', 'Telecom', 'telecom'),
       }],
-    }, {
-      title: $translate.instant('telecom_sidebar_actions_menu_hubic'),
-      icon: 'ovh-font ovh-font-cloud',
-      href: ORDER_URLS.hubic,
-      target: '_blank',
-      external: true,
-      onClick: setTracker('order-HubiC', 'navigation', 'Telecom', 'telecom'),
-    }, {
+    },
+    {
       title: $translate.instant('telecom_sidebar_actions_menu_sms'),
       icon: 'ovh-font ovh-font-message',
       subActions: [{
