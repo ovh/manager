@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "private": true,
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack --env.production",
@@ -14,7 +15,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^1.0.0",
-    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.3.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
@@ -48,7 +49,7 @@
     "moment": "^2.15.2",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.23.2",
+    "ovh-api-services": "^9.24.1",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.9.9",
     "ovh-ui-kit": "^2.35.2",

@@ -7,7 +7,27 @@ angular.module('App').config(($stateProvider) => {
     templateUrl: 'app.html',
     translations: { value: ['./core', './common'], format: 'json' },
     resolve: {
+      rootState: () => 'app.configuration',
       user: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+    },
+  });
+
+  $stateProvider.state('app.mfaEnrollment', {
+    url: '/mfa-enrollment',
+    views: {
+      'app@': {
+        component: 'mfaEnrollment',
+      },
+    },
+    params: {
+      forced: {
+        dynamic: true,
+      },
+    },
+    translations: { value: ['.'], format: 'json' },
+    resolve: {
+      forced: /* @ngInject */ $transition$ => $transition$.params().forced,
+      from: /* @ngInject */ $transition$ => $transition$.$from().name,
     },
   });
 

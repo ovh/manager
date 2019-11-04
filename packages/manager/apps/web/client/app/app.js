@@ -29,8 +29,8 @@ import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
-import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
@@ -45,7 +45,6 @@ import domainZoneActivation from './domain/general-informations/activateZone/act
 import domainDnsZone from './dns-zone';
 import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
 import errorPage from './error-page/error-page.module';
-import navbar from './components/navbar';
 import zone from './domain/zone/zone.module';
 
 import './css/source.less';
@@ -77,7 +76,6 @@ angular
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
     // ngOvhChatbot,
-    ngOvhOtrs,
     ngOvhExportCsv,
     ngOvhHttp,
     ngOvhSsoAuth,
@@ -94,6 +92,7 @@ angular
     'pascalprecht.translate',
     ngTailLogs,
     'ovh-api-services',
+    ovhManagerMfaEnrollment,
     ovhManagerBanner,
     ovhManagerNavbar,
     'moment-picker',
@@ -110,7 +109,6 @@ angular
     domainOptin,
     hostingWebsiteCoach,
     errorPage,
-    navbar,
     zone,
   ])
   .constant('constants', {
@@ -469,9 +467,6 @@ angular
     // overwrite submit button template
     set(editableThemes, 'default.submitTpl', ['<button style="background:none;border:none" type="submit">', '<i class="fa fa-check green"></i>', '</button>'].join(''));
     set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
-  })
-  .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .constant('UNIVERSE', 'WEB')
   .constant('MANAGER_URLS', {

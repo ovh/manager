@@ -12,14 +12,14 @@
         data-ng-if="$ctrl.isChallenging">
     </oui-spinner>
 
-    <div data-ng-switch="$ctrl.defaultPaymentMethod.paymentType.value"
+    <div data-ng-switch="$ctrl.defaultPaymentMethod.paymentType"
         data-ng-if="!$ctrl.isChallenging">
         <div data-ng-switch-when="PAYPAL">
             <div class="oui-field">
                 <label class="oui-field__label oui-label"
                     data-translate="pci_projects_new_payment_challenge_paypal_label"></label>
                 <div class="oui-field__control">
-                    <a data-ng-href="$ctrl.paypalUrl">Login with Paypal</a>
+                    <a data-ng-href="{{$ctrl.paypalUrl}}">Login with Paypal</a>
                 </div>
             </div>
         </div>

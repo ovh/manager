@@ -553,6 +553,16 @@ export const SIDEBAR_ORDER_CONFIG = [
     app: [CLOUD],
     regions: ['EU', 'CA'],
   },
+  {
+    id: 'order-enterprise-cloud-database',
+    title: 'enterprise_cloud_database',
+    icon: 'ovh-font ovh-font-database',
+    state: 'enterprise-cloud-database.create',
+    linkId: 'enterprise_cloud_database',
+    linkPart: '#/enterprise-cloud-database/create',
+    app: [DEDICATED],
+    regions: ['EU', 'CA'],
+  },
 ];
 
 

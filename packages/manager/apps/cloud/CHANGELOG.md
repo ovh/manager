@@ -1,3 +1,48 @@
+# [7.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.34.1...@ovh-ux/manager-cloud@7.35.0) (2019-10-29)
+
+
+### Features
+
+* **cloud:** add vps feature for us ([df43b97](https://github.com/ovh/manager/commit/df43b97152d3683fc03849d9cbf05c92675d2a81))
+
+
+
+## [7.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.34.0...@ovh-ux/manager-cloud@7.34.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **cloud:** add exchange icon ([a4a7b11](https://github.com/ovh/manager/commit/a4a7b11e9bf39221fffe7e89b827bb19ce6d8a71))
+
+
+
+# [7.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.33.1...@ovh-ux/manager-cloud@7.34.0) (2019-10-28)
+
+
+### Features
+
+* **cloud:** replace OTRS by Support ([9c89c44](https://github.com/ovh/manager/commit/9c89c447144318aa74787a49d1d177d433b0f817))
+
+
+
+## [7.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.33.0...@ovh-ux/manager-cloud@7.33.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* remove navbar custom styles ([a437b91](https://github.com/ovh/manager/commit/a437b91d77e273f7e2ba8d88a46ae224a12e8f2e))
+
+
+
+# [7.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.32.6...@ovh-ux/manager-cloud@7.33.0) (2019-10-28)
+
+
+### Features
+
+* **cloud:** add error page ([84d21e6](https://github.com/ovh/manager/commit/84d21e6512891a163dc07487316ffd26ab00b918))
+
+
+
 ## [7.32.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.32.5...@ovh-ux/manager-cloud@7.32.6) (2019-10-25)
 
 

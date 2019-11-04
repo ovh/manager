@@ -45,9 +45,9 @@
             </div>
 
             <div class="row"
-                 data-ng-if="!$ctrl.dlpStatus">
+                 data-ng-if="!$ctrl.dlpStatus && !$ctrl.shouldProcessChallenge()">
                 <div class="alternative-payment-box col-md-6"
-                     data-ng-class="{ 'border-right': $ctrl.step.model.paymentType.paymentType.value !== 'BANK_ACCOUNT' }"
+                     data-ng-class="{ 'border-right': $ctrl.step.model.paymentType.paymentType !== 'BANK_ACCOUNT' }"
                      data-ng-switch="$ctrl.step.model.mode">
                     <div data-ng-switch-when="credits">
                         <h2 class="oui-heading_underline"
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 add-voucher my-auto"
-                     data-ng-if="$ctrl.step.model.paymentType.paymentType.value !== 'BANK_ACCOUNT'">
+                     data-ng-if="$ctrl.step.model.paymentType.paymentType !== 'BANK_ACCOUNT'">
                     <button type="button" class="btn-voucher oui-button oui-button_secondary oui-button_icon-right w-100 mw-100 d-flex justify-content-between align-items-center no-transition"
                             data-ng-click="$ctrl.onToggleVoucherBtnClick()"
                             data-ng-if="!$ctrl.displayVoucher && !$ctrl.step.model.voucher.valid">

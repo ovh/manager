@@ -3,9 +3,7 @@
   "version": "1.0.9",
   "private": true,
   "license": "BSD-3-Clause",
-  "files": [
-    "dist"
-  ],
+  "author": "OVH SAS",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/sign-up.js",
@@ -19,7 +17,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.3.1",
+    "@ovh-ux/manager-config": "^0.4.0",
     "flag-icon-css": "^3.4.2",
     "lodash": "^4.17.15"
   },

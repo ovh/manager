@@ -1,6 +1,14 @@
 class LogsRolesAddMembersCtrl {
-  constructor($stateParams, $uibModalInstance, CucControllerHelper, logs, LogsRolesService) {
+  constructor(
+    $q,
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    logs,
+    LogsRolesService,
+  ) {
     this.$stateParams = $stateParams;
+    this.$q = $q;
     this.serviceName = this.$stateParams.serviceName;
     this.CucControllerHelper = CucControllerHelper;
     this.roleId = this.$stateParams.roleId;

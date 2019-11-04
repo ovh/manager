@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-at-internet-ui-router-plugin';
-import '@ovh-ux/ng-uirouter-title';
+import '@ovh-ux/ng-ui-router-title';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
@@ -31,7 +31,7 @@ angular
   .module(moduleName, [
     'ngAtInternet',
     'ngAtInternetUiRouterPlugin',
-    'ngUirouterTitle',
+    'ngUiRouterTitle',
     'ovh-api-services',
     'ovhManagerBanner',
     'ovhManagerCore',

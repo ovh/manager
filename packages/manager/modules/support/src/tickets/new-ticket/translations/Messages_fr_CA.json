@@ -1,4 +1,6 @@
 {
+  "ovhManagerSupport_new_open_new_tab": "Ouvre un nouvel onglet",
+
   "ovhManagerSupport_new_category": "Thématique",
   "ovhManagerSupport_new_category_billing": "Facturation et commande",
   "ovhManagerSupport_new_category_assistance": "Conseil technique",
@@ -122,4 +124,5 @@
   "ovhManagerSupport_new_business_1": "Un projet à étudier?",
   "ovhManagerSupport_new_business_2": "Merci de nous détailler vos besoins en nous envoyant un email à l'adresse :",
   "ovhManagerSupport_new_business_3": "Les demandes d'assistances reçues à cette adresse ne seront pas traitées."
+
 }

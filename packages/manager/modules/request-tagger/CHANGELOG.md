@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-request-tagger@1.0.1...@ovh-ux/ng-ovh-request-tagger@1.1.0) (2019-10-28)
+
+
+### Features
+
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-request-tagger@1.0.0...@ovh-ux/ng-ovh-request-tagger@1.0.1) (2019-10-17)
 
 
