@@ -1,3 +1,48 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.2.0...@ovh-ux/manager-public-cloud@2.3.0) (2019-10-31)
+
+
+### Features
+
+* add @ovh-ux/mfa-enrollment module ([ade2b1a](https://github.com/ovh/manager/commit/ade2b1a70d65a59878b8dcb950101c769b39db22))
+
+
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.1.0...@ovh-ux/manager-public-cloud@2.2.0) (2019-10-28)
+
+
+### Features
+
+* **public-cloud:** replace OTRS by Support ([bdcb1c7](https://github.com/ovh/manager/commit/bdcb1c721b5aa8eb33b4b2e6bb706ae4abd8efb0))
+
+
+
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.0.2...@ovh-ux/manager-public-cloud@2.1.0) (2019-10-28)
+
+
+### Features
+
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
+## [2.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.0.1...@ovh-ux/manager-public-cloud@2.0.2) (2019-10-25)
+
+
+### Bug Fixes
+
+* bump ovh-ui-angular to v3.9.9 ([#1593](https://github.com/ovh/manager/issues/1593)) ([2ff2f81](https://github.com/ovh/manager/commit/2ff2f813f43453744c5927efc5687a7bb79674e1))
+
+
+
+## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.0.0...@ovh-ux/manager-public-cloud@2.0.1) (2019-10-24)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** fix project creation ([c885270](https://github.com/ovh/manager/commit/c88527041c8ff4ba4d9cd86172055c0378053047))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.3.1...@ovh-ux/manager-public-cloud@2.0.0) (2019-09-03)
 
 

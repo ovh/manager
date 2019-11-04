@@ -39,8 +39,14 @@
                 </p>
                 <p >
                     <span data-translate="cloud_project_delete_error_contact_support_part1"></span>
-                    <a data-translate="cloud_project_delete_error_contact_support_part2"
-                       data-ng-click="CloudProjectDeleteCtrl.goToSupport()">
+                    <a
+                        class="oui-link_icon"
+                        target="_blank"
+                        data-ng-href="{{:: CloudProjectDeleteCtrl.supportUrl }}"
+                        rel="noopener">
+                        <span data-translate="cloud_project_delete_open_new_tab"></span>
+                        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                        <span class="sr-only" data-translate="cloud_project_delete_open_new_tab"></span>
                     </a>
                     <span>.</span>
                 </p>

@@ -1,3 +1,40 @@
+## [10.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.0...@ovh-ux/manager-telecom@10.40.1) (2019-10-31)
+
+
+### Bug Fixes
+
+* **telephony.service.fax.campaigns:** display the list ([#1659](https://github.com/ovh/manager/issues/1659)) ([0b9c79f](https://github.com/ovh/manager/commit/0b9c79ff1cb87249ef7d0fe7cbe37032a531afb1))
+
+
+
+# [10.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.39.0...@ovh-ux/manager-telecom@10.40.0) (2019-10-28)
+
+
+### Features
+
+* **telecom:** replace OTRS by Support ([1c2f31e](https://github.com/ovh/manager/commit/1c2f31e1c1b160b964aa66d12603146714182b87))
+
+
+
+# [10.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.4...@ovh-ux/manager-telecom@10.39.0) (2019-10-28)
+
+
+### Features
+
+* add error-page to telecom manager ([5de61ab](https://github.com/ovh/manager/commit/5de61ab37a5d9e36edfc499a4ea28d66f8ae75fd))
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
+## [10.38.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.3...@ovh-ux/manager-telecom@10.38.4) (2019-10-25)
+
+
+### Bug Fixes
+
+* bump ovh-ui-angular to v3.9.9 ([#1593](https://github.com/ovh/manager/issues/1593)) ([2ff2f81](https://github.com/ovh/manager/commit/2ff2f813f43453744c5927efc5687a7bb79674e1))
+
+
+
 ## [10.38.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.38.2...@ovh-ux/manager-telecom@10.38.3) (2019-10-24)
 
 

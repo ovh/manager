@@ -71,7 +71,7 @@
   "ovhManagerSupport_new_serviceType_caas_containers": "CaaS Containers",
   "ovhManagerSupport_new_serviceType_caas_registry": "CaaS Registry",
   "ovhManagerSupport_new_serviceType_cloud_db": "Cloud Databases",
-  "ovhManagerSupport_new_serviceType_dbaas_logs": "Logs (registos)",
+  "ovhManagerSupport_new_serviceType_dbaas_logs": "Logs",
   "ovhManagerSupport_new_serviceType_dbaas_queue": "Queues",
   "ovhManagerSupport_new_serviceType_dbaas_timeseries": "Time Series",
   "ovhManagerSupport_new_serviceType_deskaas": "Ambiente de trabalho virtual remoto",
@@ -112,5 +112,6 @@
   "ovhManagerSupport_new_business_2": "Descreva aquilo que precisa enviando-nos um e-mail para:",
   "ovhManagerSupport_new_business_3": "Os pedidos de assistência recebidos neste endereço não serão tratados.",
   "ovhManagerSupport_new_serviceType_carrier_sip": "Fornecedor SIP",
-  "ovhManagerSupport_new_creation_optional": "{{label}} (opcional)"
+  "ovhManagerSupport_new_creation_optional": "{{label}} (opcional)",
+  "ovhManagerSupport_new_open_new_tab": "Abre um novo separador"
 }

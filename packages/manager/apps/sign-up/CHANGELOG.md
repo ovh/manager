@@ -1,3 +1,12 @@
+## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.4.4...@ovh-ux/sign-up-app@1.4.5) (2019-10-25)
+
+
+### Bug Fixes
+
+* bump ovh-ui-angular to v3.9.9 ([#1593](https://github.com/ovh/manager/issues/1593)) ([2ff2f81](https://github.com/ovh/manager/commit/2ff2f813f43453744c5927efc5687a7bb79674e1))
+
+
+
 ## [1.4.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.4.3...@ovh-ux/sign-up-app@1.4.4) (2019-10-23)
 
 

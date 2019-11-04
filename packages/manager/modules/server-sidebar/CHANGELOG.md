@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@0.6.7...@ovh-ux/manager-server-sidebar@0.7.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+
+
+### Features
+
+* **vps:** add vps order link ([a8b6fa7](https://github.com/ovh/manager/commit/a8b6fa7c1482a30824af0a5e247107a88302e2ef))
+
+
+
 ## [0.6.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.6.6...@ovh-ux/manager-server-sidebar@0.6.7) (2019-10-22)
 
 

@@ -1,19 +1,19 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Request tagger",
   "keywords": [
     "angular",
     "ovh",
     "request"
   ],
-  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/ng-ovh-request-tagger#readme",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/ng-ovh-request-tagger#readme",
   "bugs": {
-    "url": "https://github.com/ovh-ux/manager/issues"
+    "url": "https://github.com/ovh/manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ovh-ux/manager.git",
+    "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/manager/modules/ng-ovh-request-tagger"
   },
   "license": "BSD-3-Clause",

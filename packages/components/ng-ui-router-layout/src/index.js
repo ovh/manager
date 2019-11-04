@@ -57,6 +57,8 @@ angular
           toChilds: state.self.layout.toChilds || false,
           ignoreChilds: state.self.layout.ignoreChilds || [],
           redirectTo: state.self.layout.redirectTo || '^',
+          backdrop: state.self.layout.backdrop || true,
+          keyboard: state.self.layout.keyboard || false,
         };
       } else if (OuiModalLayout.isLayoutAppliedToState(state)) {
         modalLayout = OuiModalLayout.getLayoutOptions(state);
@@ -146,6 +148,8 @@ angular
               template,
               controller,
               controllerAs: '$ctrl',
+              backdrop: get(state, 'layout.backdrop'),
+              keyboard: get(state, 'layout.keyboard'),
             });
           } else {
             modalInstance = $uibModal.open({
@@ -153,6 +157,8 @@ angular
               template: get(state, state.views.modal ? 'views.modal.template' : 'template'),
               controller: get(state, state.views.modal ? 'views.modal.controller' : 'controller'),
               controllerAs: get(state, state.views.modal ? 'views.modal.controllerAs' : 'controllerAs', '$ctrl'),
+              backdrop: get(state, 'layout.backdrop'),
+              keyboard: get(state, 'layout.keyboard'),
             });
           }
           // if backdrop is clicked - be sure to close the modal

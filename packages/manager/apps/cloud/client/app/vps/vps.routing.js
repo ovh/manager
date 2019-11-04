@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import kebabCase from 'lodash/kebabCase';
 
 import detailComponent from './detail/vps-detail.component';
 import headerComponent from './header/vps-header.component';
@@ -9,6 +9,9 @@ export default /* @ngInject */($stateProvider) => {
       url: '/vps',
       templateUrl: 'app/vps/vps.html',
       abstract: true,
+      resolve: {
+        currentUser: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+      },
       translations: {
         value: ['../common', '../vps'],
         format: 'json',
@@ -18,11 +21,17 @@ export default /* @ngInject */($stateProvider) => {
       url: '/{serviceName}',
       redirectTo: 'iaas.vps.detail.dashboard',
       resolve: {
-        stateVps: /* @ngInject */ ($transition$, $q, OvhApiVps) => OvhApiVps.v6().get({
-          serviceName: get($transition$.params(), 'serviceName'),
+        capabilities: /* @ngInject */ (
+          serviceName,
+          OvhApiVpsCapabilities,
+        ) => OvhApiVpsCapabilities.Aapi().query({ serviceName }).$promise
+          .then(capabilities => capabilities.map(capability => kebabCase(capability))),
+        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        stateVps: /* @ngInject */ ($q, serviceName, OvhApiVps) => OvhApiVps.v6().get({
+          serviceName,
         }).$promise
           .then(stateVps => OvhApiVps.v6().version({
-            serviceName: get($transition$.params(), 'serviceName'),
+            serviceName,
           }).$promise.then((response) => {
             const vpsState = stateVps;
             vpsState.isLegacy = response.version !== 2;

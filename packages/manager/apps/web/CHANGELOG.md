@@ -1,3 +1,87 @@
+# [13.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.2...@ovh-ux/manager-web@13.34.0) (2019-10-31)
+
+
+### Features
+
+* add @ovh-ux/mfa-enrollment module ([a014cf0](https://github.com/ovh/manager/commit/a014cf02c16a5f46a58627d0011dc9a86c7042b5))
+
+
+
+## [13.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.1...@ovh-ux/manager-web@13.33.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* **web.hosting.multisite:** allow domain configuration for all domains ([#1648](https://github.com/ovh/manager/issues/1648)) ([b562dbc](https://github.com/ovh/manager/commit/b562dbc5448aacd712bdf5acd8edc519f22e6812))
+
+
+
+## [13.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.0...@ovh-ux/manager-web@13.33.1) (2019-10-29)
+
+
+### Bug Fixes
+
+* **hosting:** change boost pricing description ([#1517](https://github.com/ovh/manager/issues/1517)) ([a3b8d50](https://github.com/ovh/manager/commit/a3b8d50262cd282c8a4745066bec02b9a5b4e50a))
+* **i18n:** add missing translations [CDS 122] ([95c8287](https://github.com/ovh/manager/commit/95c82871fd4ba168abe2f7a958eb1fc0e2a4490c))
+
+
+
+# [13.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.32.1...@ovh-ux/manager-web@13.33.0) (2019-10-28)
+
+
+### Features
+
+* **web:** replace OTRS by Support ([45ddf39](https://github.com/ovh/manager/commit/45ddf39ee49b2e1b609587d12d81661fe4f6d9ed))
+
+
+
+## [13.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.32.0...@ovh-ux/manager-web@13.32.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **domain.webhosting.enable:** fix hosting price display ([#1477](https://github.com/ovh/manager/issues/1477)) ([e42676c](https://github.com/ovh/manager/commit/e42676cc55b7490dfd6915e48f5fa02dd56c6b1a))
+* remove navbar custom styles ([a437b91](https://github.com/ovh/manager/commit/a437b91d77e273f7e2ba8d88a46ae224a12e8f2e))
+* **web.navbar:** add button to close sidebar on mobile ([d3969b0](https://github.com/ovh/manager/commit/d3969b0b19e91b724a17f7a1d74a9ea3b919e655))
+
+
+
+# [13.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.8...@ovh-ux/manager-web@13.32.0) (2019-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 115] ([32d7b75](https://github.com/ovh/manager/commit/32d7b7521f9524f0aeba6ec905a3c2c36f0acf8f))
+* avoid loop between state when user is not connected ([2b51822](https://github.com/ovh/manager/commit/2b518222803dc644ef8332cd06b870a385725dbb))
+* **i18n:** add missing translations [CDS 116] ([388486f](https://github.com/ovh/manager/commit/388486fe3c54b991e9f55f46fb2e071a487e7b10))
+
+
+### Features
+
+* add error-page to web manager ([b3a24e8](https://github.com/ovh/manager/commit/b3a24e8e7be584acbf1a5098f8b48fda4a576303))
+* version number ([#1525](https://github.com/ovh/manager/issues/1525)) ([6ba9b98](https://github.com/ovh/manager/commit/6ba9b980f775a9d79027ce8455b907c9e145f3dc))
+
+
+
+## [13.31.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.7...@ovh-ux/manager-web@13.31.8) (2019-10-25)
+
+
+### Bug Fixes
+
+* bump ovh-ui-angular to v3.9.9 ([#1593](https://github.com/ovh/manager/issues/1593)) ([2ff2f81](https://github.com/ovh/manager/commit/2ff2f813f43453744c5927efc5687a7bb79674e1))
+
+
+
+## [13.31.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.6...@ovh-ux/manager-web@13.31.7) (2019-10-24)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** fix project creation ([c885270](https://github.com/ovh/manager/commit/c88527041c8ff4ba4d9cd86172055c0378053047))
+
+
+
 ## [13.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.31.5...@ovh-ux/manager-web@13.31.6) (2019-10-23)
 
 

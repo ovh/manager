@@ -105,10 +105,15 @@
                     </li>
                 </ul>
 
-                <button class="oui-button oui-button_primary oui-button_large-height" type="button"
-                        data-translate="exchange_DIAGNOSTICS_create_ticket"
-                        data-ng-click="ctrl.openSupportTicket()">
-                </button>
+                <a
+                    class="oui-button oui-button_primary oui-link_icon"
+                    target="_blank"
+                    data-ng-href="{{:: ctrl.newTicketUrl }}"
+                    rel="noopener">
+                    <span data-translate="exchange_DIAGNOSTICS_create_ticket"></span>
+                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    <span class="sr-only" data-translate="common_newtab"></span>
+                </a>
             </div>
         </div>
     </div>

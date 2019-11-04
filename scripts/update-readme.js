@@ -85,22 +85,22 @@ const buildTableHeader = (showBadges = []) => {
 
 const buildTableLine = ({ name, location }, showBadges) => {
   const cols = [
-    `[${name}](https://github.com/ovh-ux/manager/tree/master/${location})`,
+    `[${name}](https://github.com/ovh/manager/tree/master/${location})`,
     ...showBadges.map((badge) => {
       switch (badge) {
         case 'version':
           return `[![npm version](https://badgen.net/npm/v/${name})](https://www.npmjs.com/package/${name})`;
         case 'deps':
-          return `[![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/${location})](https://npmjs.com/package/${name}?activeTab=dependencies)`;
+          return `[![Dependencies](https://badgen.net/david/dep/ovh/manager/${location})](https://npmjs.com/package/${name}?activeTab=dependencies)`;
         case 'devDeps':
-          return `[![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/${location})](https://npmjs.com/package/${name}?activeTab=dependencies)`;
+          return `[![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/${location})](https://npmjs.com/package/${name}?activeTab=dependencies)`;
         case 'peerDeps':
-          return `[![Peer Dependencies](https://badgen.net/david/peer/ovh-ux/manager/${location})](https://npmjs.com/package/${name}?activeTab=dependencies)`;
+          return `[![Peer Dependencies](https://badgen.net/david/peer/ovh/manager/${location})](https://npmjs.com/package/${name}?activeTab=dependencies)`;
         default:
           return '';
       }
     }),
-    `[:books:](https://github.com/ovh-ux/manager/blob/master/${location}/CHANGELOG.md)`,
+    `[:books:](https://github.com/ovh/manager/blob/master/${location}/CHANGELOG.md)`,
   ];
 
 

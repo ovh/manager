@@ -1,0 +1,64 @@
+<form novalidate
+      name="supportNewCreationForm">
+
+    <oui-message data-type="info"
+                 data-ng-if="!$ctrl.isBusinessSupportLevel()"
+                 data-dismissable>
+        <span data-translate="ovhManagerSupport_new_creation_tip"></span>
+    </oui-message>
+
+    <oui-field data-label="{{:: 'ovhManagerSupport_new_urgency' | translate }}"
+               data-ng-if="$ctrl.isBusinessSupportLevel()"
+               data-size="xl">
+        <oui-select name="urgency"
+                    data-model="$ctrl.urgency"
+                    data-items="$ctrl.urgencies"
+                    data-match="label">
+        </oui-select>
+    </oui-field>
+
+    <oui-field data-ng-if="!$ctrl.subject"
+               data-label="{{:: 'ovhManagerSupport_new_creation_subject' | translate }}"
+               data-size="xl">
+        <input type="text"
+               id="customSubject"
+               name="customSubject"
+               data-required="true"
+               data-ng-model="$ctrl.customSubject"
+               class="oui-input" />
+    </oui-field>
+
+    <oui-field data-ng-repeat="field in $ctrl.issue.fields track by field.id"
+               data-label="{{:: $ctrl.computeFieldLabel(field) }}"
+               data-size="xl">
+        <input type="text"
+               data-ng-if="field.type === 'text'"
+               id="{{ 'field-' + field.id }}"
+               name="{{ 'field-' + field.id }}"
+               placeholder="{{ field.description }}"
+               data-ng-required="{{ field.mandatory }}"
+               data-ng-model="field.default"
+               class="oui-input" />
+        <oui-textarea
+            data-ng-if="field.type === 'text_multi'"
+            id="{{ 'field-' + field.id }}"
+            name="{{ 'field-' + field.id }}"
+            data-placeholder="{{ field.description }}"
+            data-required="field.mandatory"
+            data-model="field.default"
+            data-rows="5">
+        </oui-textarea>
+    </oui-field>
+
+    <oui-button data-variant="secondary"
+                data-text="{{:: 'ovhManagerSupport_new_creation_cancel' | translate }}"
+                data-on-click="$ctrl.submitForm(false)">
+    </oui-button>
+    <oui-button data-variant="primary"
+                data-text="{{:: 'ovhManagerSupport_new_creation_submit' | translate }}"
+                data-disabled="supportNewCreationForm.$invalid"
+                data-on-click="$ctrl.submitForm(true)">
+    </oui-button>
+</form>
+
+<support-tickets-new-feedback></support-tickets-new-feedback>

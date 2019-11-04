@@ -48,17 +48,32 @@
 
             <p write-right-required>{{ :: 'cpb_quota_protect_more' | translate }}</p>
 
-            <button type="button"
-                    class="oui-button oui-button_primary"
-                    data-ng-if="CloudProjectComputeQuotaCtrl.region !== 'US'"
-                    data-ng-disabled="!CloudProjectComputeQuotaCtrl.datas.quota || (CloudProjectComputeQuotaCtrl.datas.quota && CloudProjectComputeQuotaCtrl.datas.quota.length === 0)"
-                    data-ng-click="CloudProjectComputeQuotaCtrl.openSupport()"
-                    write-right-required
-                    data-translate="cpb_quota_protect_more_btn">
-            </button>
+            <div
+                data-ng-if="CloudProjectComputeQuotaCtrl.region !== 'US'"
+                data-write-right-required>
+                <a
+                    class="oui-button oui-button_primary oui-link_icon"
+                    data-ng-if=":: CloudProjectComputeQuotaCtrl.datas.quota.length > 0"
+                    data-ng-href="{{:: CloudProjectComputeQuotaCtrl.supportUrl }}">
+                    <span data-translate="cpb_quota_protect_more_btn"></span>
+                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    <span class="sr-only" data-translate="cpb_quota_open_new_tab"></span>
+                </a>
 
-            <div data-ng-if="CloudProjectComputeQuotaCtrl.region === 'US'"
-                 data-write-right-required>
+                <button
+                    type="button"
+                    class="oui-button oui-button_primary no-transition"
+                    data-ng-if=":: !CloudProjectComputeQuotaCtrl.datas.quota || (CloudProjectComputeQuotaCtrl.datas.quota && CloudProjectComputeQuotaCtrl.datas.quota.length === 0)"
+                    disabled>
+                    <span data-translate="cpb_quota_protect_more_btn"></span>
+                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    <span class="sr-only" data-translate="cpb_quota_open_new_tab"></span>
+                </button>
+            </div>
+
+            <div
+                data-ng-if="CloudProjectComputeQuotaCtrl.region === 'US'"
+                data-write-right-required>
                 <button type="button"
                         class="oui-button oui-button_primary no-transition"
                         data-ng-if="!CloudProjectComputeQuotaCtrl.datas.quota || (CloudProjectComputeQuotaCtrl.datas.quota && CloudProjectComputeQuotaCtrl.datas.quota.length === 0)"

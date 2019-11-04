@@ -1,3 +1,49 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.1...@ovh-ux/manager-pci@3.1.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** challenge display ([#1663](https://github.com/ovh/manager/issues/1663)) ([6461626](https://github.com/ovh/manager/commit/646162671a867cd13b4ec720d6eabeedf2fb45cc))
+
+
+
+## [3.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.0...@ovh-ux/manager-pci@3.1.1) (2019-10-28)
+
+
+### Bug Fixes
+
+* **pci:** display quota button again ([ccb9d2d](https://github.com/ovh/manager/commit/ccb9d2d3e401c65cae572ec2c6ea4caca2f72a0d))
+
+
+
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.2...@ovh-ux/manager-pci@3.1.0) (2019-10-28)
+
+
+### Features
+
+* **pci:** replace OTRS by Support ([174c858](https://github.com/ovh/manager/commit/174c858aded60ecfd872a5c92bee735fafe03cf2))
+
+
+
+## [3.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.1...@ovh-ux/manager-pci@3.0.2) (2019-10-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 113] ([f6db44f](https://github.com/ovh/manager/commit/f6db44faf967c25ce71d85bed84a7d35b42845fa))
+* **i18n:** add missing translations [CDS 118] ([31c432b](https://github.com/ovh/manager/commit/31c432b5c1d0a12f57b8b52b8c37fb8c32f220e9))
+
+
+
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.0.0...@ovh-ux/manager-pci@3.0.1) (2019-10-24)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** fix project creation ([c885270](https://github.com/ovh/manager/commit/c88527041c8ff4ba4d9cd86172055c0378053047))
+
+
+
 # [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@2.4.6...@ovh-ux/manager-pci@3.0.0) (2019-10-24)
 
 

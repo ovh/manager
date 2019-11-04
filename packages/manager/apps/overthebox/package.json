@@ -2,6 +2,8 @@
   "name": "@ovh-ux/manager-overthebox-app",
   "version": "4.3.1",
   "private": true,
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env.production",
     "cypress:open": "cypress open",
@@ -13,7 +15,7 @@
     "test:e2e": "lerna exec --scope @ovh-ux/manager-overthebox-app -- node \\$LERNA_ROOT_PATH/scripts/webpack-cypress"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.3.0",
+    "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.1.2",
     "@ovh-ux/manager-overthebox": "^4.3.2",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
@@ -21,7 +23,7 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.2",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
-    "@ovh-ux/ng-uirouter-title": "^2.0.0",
+    "@ovh-ux/ng-ui-router-title": "^2.0.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",

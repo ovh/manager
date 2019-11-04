@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import findIndex from 'lodash/findIndex';
+import pick from 'lodash/pick';
+
 import constant from '../telecom-dashboard.constant';
 
 export default class TelecomDashboardGuidesCtrl {
@@ -9,11 +11,11 @@ export default class TelecomDashboardGuidesCtrl {
 
   $onInit() {
     this.guides = ['packActivate', 'modemConfig', 'modemReinit', 'interruptedService'];
-    this.links = _.pick(constant.guides, this.guides);
+    this.links = pick(constant.guides, this.guides);
   }
 
   trackRedirection(link) {
-    const index = _.findIndex(this.guides, guide => constant.guides[guide] === link) + 1;
+    const index = findIndex(this.guides, guide => constant.guides[guide] === link) + 1;
     return this.atInternet.trackClick({
       name: `TopGuide-Telecom-${index}`,
       type: 'navigation',

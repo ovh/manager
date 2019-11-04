@@ -2,8 +2,8 @@
   "name": "@ovh-ux/manager-telecom-dashboard",
   "version": "4.4.1",
   "private": true,
-  "description": "OVH Telecom dashboard",
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "./src/index.js",
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^7.0.0"
@@ -15,13 +15,13 @@
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
-    "@ovh-ux/ng-uirouter-title": "^2.0.0",
+    "@ovh-ux/ng-ui-router-title": "^2.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.14",
-    "ovh-api-services": "^9.17.0",
+    "ovh-api-services": "^9.24.1",
     "ovh-manager-webfont": "^1.0.2",
     "ovh-ui-kit": "^2.33.3",
     "ovh-ui-kit-bs": "^2.1.1"

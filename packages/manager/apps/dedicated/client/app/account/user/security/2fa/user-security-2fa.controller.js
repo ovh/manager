@@ -16,6 +16,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
   'UserAccount.services.doubleAuth.totp',
   'UserAccount.services.doubleAuth.u2f',
   'UserAccount.services.Infos',
+  'OvhApiAuth',
   function (
     $q,
     $rootScope,
@@ -29,6 +30,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
     DoubleAuthTotpService,
     DoubleAuthU2fService,
     UserAccountServiceInfos,
+    OvhApiAuth,
   ) {
     $scope.step1 = {
       doubleAuthType: null,
@@ -75,6 +77,17 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
     $scope.step4 = {
       isActive: false,
     };
+
+    $scope.forced = false;
+
+    OvhApiAuth.v6()
+      .shouldDisplayMFAEnrollment()
+      .$promise
+      .then((shouldDisplayMFA) => {
+        if ((shouldDisplayMFA.value === 'forced')) {
+          $scope.forced = true;
+        }
+      }).catch(() => $q.resolve());
 
     /* ===============================
     =            HELPERS            =
@@ -374,7 +387,9 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
       $rootScope.$broadcast('doubleAuthTOTP.reload');
       $rootScope.$broadcast('doubleAuthU2F.reload');
       $rootScope.$broadcast('doubleAuthBackupCode.reload');
-      $state.go('^');
+      if (!$scope.forced) {
+        $state.go('^');
+      }
     };
 
     /* -----  End of ACTIONS  ------ */

@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@3.0.0...@ovh-ux/ng-ui-router-layout@3.1.0) (2019-10-25)
+
+
+### Features
+
+* add options to the uibModalInstance ([#1586](https://github.com/ovh-ux/manager/issues/1586)) ([17b50a2](https://github.com/ovh-ux/manager/commit/17b50a2af67d8cd5c248503dae60c3642cba4596))
+
+
+
 # [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@2.1.1...@ovh-ux/ng-ui-router-layout@3.0.0) (2019-10-24)
 
 

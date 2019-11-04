@@ -43,6 +43,7 @@ const constants = {
           ipv6Vps: 'https://www.ovh.de/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.de/g1769.creating_ssh_keys',
           sshChange: 'https://www.ovh.de/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/de/billing/',
         },
         presentations: {
           home: 'https://www.ovh.de/private-cloud/',
@@ -73,6 +74,7 @@ const constants = {
           sshCreate: 'https://www.ovh.es/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.es/g1924.configuring_additionnal_ssh_key',
           sshChange: 'https://www.ovh.es/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/es/billing/',
         },
         presentations: {
           home: 'https://www.ovh.es/private-cloud/',
@@ -101,6 +103,7 @@ const constants = {
           autoRenew: 'https://www.ovh-hosting.fi/g1271.automaattinen-uusinta',
           reinitPassword: 'https://www.ovh-hosting.fi/g2366.virtuaalikoneen_root-salasanan_vaihto',
           ipv6Vps: 'https://www.ovh-hosting.fi/g2365.vps-ipv6',
+          billing: 'https://docs.ovh.com/fi/billing/',
         },
         presentations: {
           home: 'https://www.ovh-hosting.fi/private-cloud/',
@@ -138,6 +141,7 @@ const constants = {
           noMegaRaidLED: 'https://docs.ovh.com/fr/fr/cloud/dedicated/hotswap-raid-soft/',
           diskSerial: 'http://docs.ovh.com/fr/fr/cloud/dedicated/find-disk-serial-number/',
           vmEncryption: 'https://docs.ovh.com/fr/private-cloud/vm-encrypt/',
+          billing: 'https://docs.ovh.com/fr/billing/',
         },
         presentations: {
           home: 'https://www.ovh.com/fr/private-cloud/',
@@ -179,6 +183,7 @@ const constants = {
           sshAdd: 'https://docs.ovh.com/gb/en/public-cloud/configuring_additional_ssh_keys/',
           sshChange: 'https://docs.ovh.com/gb/en/public-cloud/replacing_your_lost_ssh_key_pair/',
           vmEncryption: 'https://docs.ovh.com/gb/en/private-cloud/vm-encrypt/',
+          billing: 'https://docs.ovh.com/gb/en/billing/',
         },
         presentations: {
           home: 'https://www.ovh.co.uk/private-cloud/',
@@ -210,6 +215,7 @@ const constants = {
           sshCreate: 'https://www.ovh.it/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.it/g1924.configuring_additionnal_ssh_key',
           sshChange: 'https://www.ovh.it/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/it/billing/',
         },
         presentations: {
           home: 'https://www.ovh.it/private-cloud/',
@@ -241,6 +247,7 @@ const constants = {
           ipv6Vps: 'https://www.ovh.lt/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.lt/g1769.creating_ssh_keys',
           sshChange: 'https://www.ovh.lt/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/lt/billing/',
         },
         presentations: {
           home: 'https://www.ovh.lt/private-cloud/',
@@ -271,6 +278,7 @@ const constants = {
           ipv6Vps: 'https://www.ovh.nl/g2365.vps-ipv6',
           sshCreate: 'https://www.ovh.nl/g1769.creating_ssh_keys',
           sshChange: 'https://www.ovh.nl/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/nl/billing/',
         },
         presentations: {
           home: 'https://www.ovh.nl/private-cloud/',
@@ -302,6 +310,7 @@ const constants = {
           sshCreate: 'https://www.ovh.pl/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.pl/g1924.configuring_additionnal_ssh_key',
           shhChange: 'https://www.ovh.pl/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/pl/billing/',
         },
         presentations: {
           home: 'https://www.ovh.pl/private-cloud/',
@@ -334,6 +343,7 @@ const constants = {
           sshCreate: 'https://www.ovh.pt/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.pt/g1924.configuring_additionnal_ssh_key',
           sshChange: 'https://www.ovh.pt/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/pt/billing/',
         },
         presentations: {
           home: 'https://www.ovh.pt/private-cloud/',
@@ -366,6 +376,7 @@ const constants = {
           vrops: 'https://www.ovh.ie/private-cloud/options/vrops.xml',
           sshAdd: 'https://www.ovh.ie/g1924.configuring_additionnal_ssh_key',
           sshChange: 'https://www.ovh.ie/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/ie/en/billing/',
         },
         presentations: {
           home: 'https://www.ovh.ie/private-cloud/',
@@ -655,6 +666,7 @@ const constants = {
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
           sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/au/en/billing/',
         },
         presentations: {
           home: 'https://www.ovh.com.au/private-cloud/',
@@ -686,6 +698,7 @@ const constants = {
           sshCreate: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
           sshAdd: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
           sshChange: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
+          billing: 'https://docs.ovh.com/ca/en/billing/',
         },
         presentations: {
           home: 'https://www.ovh.com/ca/en/private-cloud/',
@@ -717,6 +730,7 @@ const constants = {
           sshCreate: 'https://www.ovh.com/ca/fr/g1769.creation_des_cles_ssh',
           sshAdd: 'https://www.ovh.com/ca/fr/g1924.configurer_des_cles_ssh_supplementaires',
           sshChange: 'https://www.ovh.com/ca/fr/g2069.changer_sa_cle_ssh_en_cas_de_perte',
+          billing: 'https://docs.ovh.com/ca/fr/billing/',
         },
         presentations: {
           home: 'https://www.ovh.com/ca/fr/private-cloud/',
