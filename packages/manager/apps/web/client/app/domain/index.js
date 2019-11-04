@@ -1,4 +1,5 @@
 import generalInformationsState from './general-informations/domain-general-informations.state';
+
 import anycast from './anycast';
 import emailObfuscation from './email-obfuscation/index';
 import optin from './optin/index';
