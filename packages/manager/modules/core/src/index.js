@@ -25,6 +25,7 @@ import 'ovh-api-services';
 import '@uirouter/angularjs';
 
 import coreConfig from './config';
+import translateFactory from './translate/translate.factory';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
 
@@ -56,6 +57,7 @@ angular
   .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
+  .factory('TranslateInterceptor', translateFactory)
   .config(($translateProvider, translatePluggableLoaderProvider, TranslateServiceProvider) => {
     TranslateServiceProvider.setUserLocale();
 
@@ -191,6 +193,9 @@ angular
     $httpProvider.interceptors.push('serviceTypeInterceptor');
     $httpProvider.interceptors.push('OvhSsoAuthInterceptor');
     $httpProvider.interceptors.push('OvhNgRequestTaggerInterceptor');
+  })
+  .config(/* @ngInject */ ($httpProvider) => {
+    $httpProvider.interceptors.push('TranslateInterceptor');
   })
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
