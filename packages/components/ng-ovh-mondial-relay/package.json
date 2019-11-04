@@ -30,7 +30,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "bootstrap": "~3.3.7",
+    "bootstrap": "~3.4.1",
     "leaflet": "0.7.x",
     "lodash": "^4.17.11",
     "ovh-ui-kit": "^2.23.1",
