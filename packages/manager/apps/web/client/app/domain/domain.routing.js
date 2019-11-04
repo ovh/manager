@@ -1,6 +1,5 @@
 import clone from 'lodash/clone';
 
-import generalInformationState from './general-informations/domain-general-informations.state';
 import anycastState from './anycast/domain-dns-anycast.state';
 import dnsState from './dns/domain-dns.state';
 import redirectionState from './redirection/domain-redirection.state';
@@ -9,7 +8,7 @@ import glueState from './glue/domain-glue.state';
 import dnsSecState from './dnssec/domain-dnssec.state';
 import tasksState from './tasks/domain-tasks.state';
 
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.domain', {
     abstract: true,
     template: '<div ui-view></div>',
@@ -27,7 +26,11 @@ angular.module('App').config(($stateProvider) => {
     redirectTo: 'app.domain.product.information',
     resolve: {
       currentSection: () => 'domain',
-      domainName: /* @ngInject */ $transition$ => $transition$.params().productId,
+      domain: /* @ngInject */ (Domain, domainName) => Domain
+        .getSelected(domainName),
+      domainName: /* @ngInject */ $transition$ => $transition$
+        .params().productId,
+      goToWebhostingOrder: /* @ngInject */ $state => () => $state.go('app.domain.product.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -54,7 +57,10 @@ angular.module('App').config(($stateProvider) => {
     redirectTo: 'app.domain.alldom.information',
     resolve: {
       currentSection: () => 'domain',
+      domain: /* @ngInject */ (Domain, domainName) => Domain
+        .getSelected(domainName),
       domainName: /* @ngInject */ $transition$ => $transition$.params().productId,
+      goToWebhostingOrder: /* @ngInject */ $state => () => $state.go('app.domain.alldom.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -82,5 +88,4 @@ angular.module('App').config(($stateProvider) => {
     $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
     $stateProvider.state(`app.domain.${stateType}.tasks`, clone(tasksState));
   });
-})
-  .config(generalInformationState);
+};

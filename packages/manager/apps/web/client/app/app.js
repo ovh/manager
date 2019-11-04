@@ -42,10 +42,7 @@ import orderCatalogPrice from './components/manager-order-catalog-price';
 import orderContracts from './components/manager-order-contracts';
 import orderService from './components/manager-order-service/manager-order-service.service';
 
-import domainAnycast from './domain/anycast';
-import domainEmailObfuscation from './domain/email-obfuscation/index';
-import domainOptin from './domain/optin/index';
-import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
+import domain from './domain';
 import domainDnsZone from './dns-zone';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
@@ -107,11 +104,8 @@ angular
     office,
     sharepoint,
     'Module.emailpro',
-    domainAnycast,
+    domain,
     domainDnsZone,
-    domainEmailObfuscation,
-    domainZoneActivation,
-    domainOptin,
     errorPage,
     hosting,
     orderCatalogPrice,
