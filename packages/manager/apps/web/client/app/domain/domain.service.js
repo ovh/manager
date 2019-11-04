@@ -32,6 +32,7 @@ angular.module('services').service(
       Domains,
       DomainValidator,
       OvhApiDomain,
+      OvhApiHostingWeb,
       OvhHttp,
       Poll,
       Poller,
@@ -41,6 +42,7 @@ angular.module('services').service(
       this.Domains = Domains;
       this.DomainValidator = DomainValidator;
       this.OvhApiDomain = OvhApiDomain;
+      this.OvhApiHostingWeb = OvhApiHostingWeb;
       this.OvhHttp = OvhHttp;
       this.Poll = Poll;
       this.Poller = Poller;
@@ -1391,6 +1393,16 @@ angular.module('services').service(
     }
 
     //----------------------------------------------------
+
+    /**
+     * Get attached hosting to domain
+     * @param {string} serviceName
+     */
+    getAssociatedHosting(domain) {
+      return this.OvhApiHostingWeb.v6().getAttachedDomain({
+        domain,
+      }).$promise;
+    }
 
     /**
      * Get DNSSec status

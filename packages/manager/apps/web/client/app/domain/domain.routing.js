@@ -1,4 +1,5 @@
 import clone from 'lodash/clone';
+import isEmpty from 'lodash/isEmpty';
 
 import anycastState from './anycast/domain-dns-anycast.state';
 import dnsState from './dns/domain-dns.state';
@@ -25,6 +26,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: 'app.domain.product.information',
     resolve: {
+      associatedHostings: /* @ngInject */ (
+        Domain,
+        domainName,
+      ) => Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
       domain: /* @ngInject */ (Domain, domainName) => Domain
         .getSelected(domainName),
@@ -42,6 +47,14 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
       ],
+      orderedHosting: /* @ngInject */ (
+        $q,
+        domainName,
+        Hosting,
+      ) => Hosting.getSelected(domainName)
+        .then(({ offer, serviceName }) => (isEmpty(offer) ? null : serviceName))
+        .catch(error => (error.code === 404 ? null : $q.reject(error))),
+
       goToDns: /* @ngInject */ $state => () => $state.go('app.domain.product.dns'),
       goToDnsAnycast: /* @ngInject */ $state => () => $state.go('app.domain.product.anycast'),
     },
@@ -56,6 +69,10 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.domain.alldom.information',
     resolve: {
+      associatedHostings: /* @ngInject */ (
+        Domain,
+        domainName,
+      ) => Domain.getAssociatedHosting(domainName),
       currentSection: () => 'domain',
       domain: /* @ngInject */ (Domain, domainName) => Domain
         .getSelected(domainName),
@@ -72,6 +89,14 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
       ],
+      orderedHosting: /* @ngInject */ (
+        $q,
+        domainName,
+        Hosting,
+      ) => Hosting.getSelected(domainName)
+        .then(({ offer, serviceName }) => (isEmpty(offer) ? null : serviceName))
+        .catch(error => (error.code === 404 ? null : $q.reject(error))),
+
       goToDns: /* @ngInject */ $state => () => $state.go('app.domain.alldom.dns'),
       goToDnsAnycast: /* @ngInject */ $state => () => $state.go('app.domain.alldom.anycast'),
     },
