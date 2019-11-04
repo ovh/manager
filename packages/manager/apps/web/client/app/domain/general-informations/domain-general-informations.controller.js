@@ -60,6 +60,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.domainUnlockRegistry = this.constants.DOMAIN.domainUnlockRegistry[
       last(this.domain.displayName.split('.')).toUpperCase()
     ];
+    this.goToWebhostingOrder = this.$scope.ctrlDomain.goToWebhostingOrder;
     this.hasHostingAssociate = false;
     this.hasStart10mOffer = false;
     this.isAllDom = this.$rootScope.currentSectionInformation === 'all_dom';
