@@ -1,3 +1,12 @@
+## [10.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.2...@ovh-ux/manager-dedicated@10.27.3) (2019-11-04)
+
+
+### Bug Fixes
+
+* **billing.payment.retrieve:** bad bank account filter ([eee1b2d](https://github.com/ovh/manager/commit/eee1b2d6b5f7575a52b0dfd6b9bd29042db48369))
+
+
+
 ## [10.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.1...@ovh-ux/manager-dedicated@10.27.2) (2019-10-30)
 
 
