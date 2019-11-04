@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         name: 'description',
-        message: 'How would you descripe the new module',
+        message: 'How would you describe the new module',
         default({ name }) {
           return `OVHcloud ${camelcase(name, { pascalCase: true })} product`;
         },
