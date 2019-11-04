@@ -8,6 +8,6 @@ angular.module(moduleName, [
 ])
   .component('exchangeAccountRenew', component)
   .controller('ExchangeUpdateRenewCtrl', controller)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
