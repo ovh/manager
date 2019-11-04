@@ -1,0 +1,112 @@
+<oui-step-form
+    data-header="{{:: 'domain_webhosting_order_hosting_step_title' | translate }}"
+    data-editable="!$ctrl.stepper.loadingCheckout"
+    data-description="{{:: 'domain_webhosting_order_hosting_step_subtitle' | translate }}"
+    data-valid="$ctrl.offer"
+    data-navigation="false"
+    data-on-focus="$ctrl.offer = undefined">
+    <oui-switch
+        name="switchDetails"
+        data-model="$ctrl.showDetails"
+        data-on-change="$ctrl.showDetails = !$ctrl.showDetails">
+    </oui-switch>
+    <span>&nbsp;</span>
+    <span data-translate="domain_webhosting_order_hosting_step_details"></span>
+    <div class="row d-md-flex my-3"
+         data-ng-repeat="chunkOffers in ::$ctrl.availableOffers track by $index">
+        <div
+            class="col-md-4"
+            data-ng-repeat="offer in ::chunkOffers track by offer.planCode">
+            <oui-select-picker
+                class="h-100"
+                data-name="{{:: offer.planCode }}"
+                data-label="{{:: 'domain_webhosting_order_hosting_step_' + offer.planCode + '_label' | translate }}"
+                data-description="{{:: 'domain_webhosting_order_hosting_step_' + offer.planCode + '_description' | translate }}"
+                data-model="$ctrl.offer"
+                data-values="[offer]"
+                data-variant="light"
+                data-on-change="$ctrl.updateOffer()">
+                <oui-select-picker-picture data-ng-if="offer.highlight">
+                    <span
+                        class="oui-status"
+                        data-ng-class="{ 'oui-status_info' : offer.highlight === 'new', 'oui-status_success' : offer.highlight === 'best-seller' }"
+                        data-ng-bind="offer.formattedHighlight"></span>
+                </oui-select-picker-picture>
+                <oui-select-picker-section
+                    data-ng-if="$ctrl.showDetails">
+                    <dl class="oui-description oui-description_horizontal ml-4">
+                        <dt data-translate="domain_webhosting_order_hosting_step_option_disk_space"></dt>
+                        <dd data-ng-bind=":: offer.formattedDiskSpace.value + ' ' + ('domain_webhosting_order_hosting_step_option_size_unit_' + offer.formattedDiskSpace.unit | translate) + ' (' + offer.formattedDiskSpace.type + ')'"></dd>
+                        <dt data-translate="domain_webhosting_order_hosting_step_option_e-mail_account"></dt>
+                        <dd data-ng-bind=":: offer.formattedEmailAccount.value + ' ' + ('domain_webhosting_order_hosting_step_option_size_unit_' + offer.formattedEmailAccount.unit | translate)"></dd>
+                        <dt data-translate="domain_webhosting_order_hosting_step_option_languages"></dt>
+                        <dd>
+                            <span data-ng-repeat="language in ::offer.formattedLanguages track by $index">
+                                <span data-translate="{{:: 'domain_webhosting_order_hosting_step_option_languages_' + language }}"></span>
+                                <span data-ng-if="!$last">&#44;</span>
+                            </span>
+                        </dd>
+                        <div data-ng-if=":: offer.localDatabases.length > 0">
+                            <dt data-translate="domain_webhosting_order_hosting_step_option_local_database"></dt>
+                            <dd>
+                                <span data-ng-repeat="local in ::offer.localDatabases track by $index">
+                                    <span data-translate="{{:: 'domain_webhosting_order_hosting_step_option_local_database_' + local}}"></span>
+                                    <span data-ng-if="!$last">&#44;</span>
+                                </span>
+                            </dd>
+                        </div>
+                        <div
+                            data-ng-if=":: offer.sharedDatabases.length > 0"
+                            data-ng-repeat="shared in ::offer.sharedDatabases track by $index">
+                            <dt
+                                data-ng-if="$first"
+                                data-translate="domain_webhosting_order_hosting_step_option_shared_database"></dt>
+                            <dd>
+                                <span data-translate="{{:: 'domain_webhosting_order_hosting_step_option_shared_database_' + shared.type }}"></span>
+                                <span data-ng-bind="::shared.available + ' x ' + shared.value"></span>
+                                <span data-translate="{{:: 'domain_webhosting_order_hosting_step_option_size_unit_' + shared.unit | translate }}"></span>
+                            </dd>
+                        </div>
+                        <dt data-translate="domain_webhosting_order_hosting_step_option_private_database"></dt>
+                        <dd>
+                            <span
+                                data-ng-if=":: offer.privateDatabases.length === 0"
+                                data-translate="domain_webhosting_order_hosting_step_option_private_database_empty"></span>
+                            <span
+                                data-ng-repeat="private in ::offer.privateDatabases track by $index"
+                                data-ng-if=":: offer.privateDatabases.length > 0">
+                                <span
+                                    data-ng-if="$first"
+                                    data-translate="domain_webhosting_order_hosting_step_option_private_database_existing"></span>
+                                <span data-ng-bind=":: private.quota.value"></span>
+                                <span data-translate="{{:: 'domain_webhosting_order_hosting_step_option_size_unit_' + private.quota.unit}}"></span>
+                                <span data-translate="domain_webhosting_order_hosting_step_option_private_database_memory_type"></span>
+                            </span>
+                        </dd>
+                    </dl>
+                    <a
+                        class="oui-link_icon ml-4"
+                        target="_blank"
+                        rel="noopener"
+                        href="{{:: offer.guideUrl }}">
+                        <span data-translate="domain_webhosting_order_hosting_step_option_find_out_more"></span>
+                        <span
+                            class="oui-icon oui-icon-external_link"
+                            aria-hidden="true"></span>
+                        <span
+                            class="sr-only"
+                            data-translate="domain_webhosting_order_hosting_step_option_open_new_tab"></span>
+                    </a>
+                </oui-select-picker-section>
+                <oui-select-picker-footer>
+                    <ovh-manager-order-catalog-price
+                        data-price="offer.pricing.price"
+                        data-tax="offer.pricing.tax"
+                        data-user="$ctrl.user"
+                        data-block="true"
+                        data-interval="'month'"></ovh-manager-order-catalog-price>
+                </oui-select-picker-footer>
+            </oui-select-picker>
+        </div>
+    </div>
+</oui-step-form>
