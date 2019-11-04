@@ -16,7 +16,7 @@
   "ovhManagerSupport_new_serviceType": "Produit",
   "ovhManagerSupport_new_serviceType_DEDICATED": "Dédié",
   "ovhManagerSupport_new_serviceType_email_exchange": "Exchange",
-  "ovhManagerSupport_new_serviceType_email_mxplan": "Email MXPlan",
+  "ovhManagerSupport_new_serviceType_email_mxplan": "E-mail MXPlan",
   "ovhManagerSupport_new_serviceType_email_pro": "E-mail Pro",
   "ovhManagerSupport_new_serviceType_hubic": "Hubic",
   "ovhManagerSupport_new_serviceType_OTHER": "Autre",
@@ -42,7 +42,7 @@
   "ovhManagerSupport_new_serviceType_kube": "Kubernetes",
   "ovhManagerSupport_new_serviceType_ip_service": "IP failover",
   "ovhManagerSupport_new_serviceTther_services": "Autre service",
-  "ovhManagerSupport_new_serviceType_email_domain": "Email domaine",
+  "ovhManagerSupport_new_serviceType_email_domain": "E-mail domaine",
   "ovhManagerSupport_new_serviceType_stack_mis": "Infrastructure managée",
   "ovhManagerSupport_new_serviceType_over_the_box": "OverTheBox",
   "ovhManagerSupport_new_serviceType_CSP2": "Revendeur Office",
@@ -93,8 +93,8 @@
 
   "ovhManagerSupport_new_issue": "Question",
 
-  "ovhManagerSupport_new_guides": "Guides",
-  "ovhManagerSupport_new_tips": "Astuces",
+  "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Guides",
+  "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Astuces",
 
   "ovhManagerSupport_new_back": "Retour à la liste des demandes d'assistance",
 
@@ -122,7 +122,7 @@
   "ovhManagerSupport_new_business_telecom": "Telecom",
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Un projet à étudier?",
-  "ovhManagerSupport_new_business_2": "Merci de nous détailler vos besoins en nous envoyant un email à l'adresse :",
+  "ovhManagerSupport_new_business_2": "Merci de nous détailler vos besoins en nous envoyant un e-mail à l'adresse :",
   "ovhManagerSupport_new_business_3": "Les demandes d'assistances reçues à cette adresse ne seront pas traitées."
 
 }
