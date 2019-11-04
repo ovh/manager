@@ -1,3 +1,12 @@
+## [13.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.34.0...@ovh-ux/manager-web@13.34.1) (2019-11-04)
+
+
+### Bug Fixes
+
+* **a11y:** remove bad attributes (aria-hidden / tabindex) on modal ([5cda1fb](https://github.com/ovh/manager/commit/5cda1fbf136fd7a5d52ed20ac6c900edc3c5df47))
+
+
+
 # [13.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.33.2...@ovh-ux/manager-web@13.34.0) (2019-10-31)
 
 
