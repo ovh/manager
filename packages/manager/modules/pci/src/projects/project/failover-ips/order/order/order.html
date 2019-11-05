@@ -22,6 +22,7 @@
             name="instance"
             data-model="$ctrl.ip.instance"
             data-items="$ctrl.instances"
+            data-disable-items="!$item.canAttachIPFO()"
             data-match="name"
             required>
         </oui-select>
