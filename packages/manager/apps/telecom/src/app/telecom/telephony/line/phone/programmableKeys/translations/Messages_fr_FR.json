@@ -3,6 +3,7 @@
   "telephony_line_phone_programmableKeys_keys_add_title": "Ajouter une nouvelle touche de fonction",
   "telephony_line_phone_programmableKeys_function_title": "Fonction",
   "telephony_line_phone_programmableKeys_supp_param_title": "Paramètre supplémentaire",
+  "telephony_line_phone_programmableKeys_customLabel_title": "Libellé",
   "telephony_line_phone_programmableKeys_caption": "Liste des touches programmables",
   "telephony_line_phone_programmableKeys_summary": "Ce tableau liste l'ensemble des touches programmables de votre téléphone.",
   "telephony_line_phone_programmableKeys_title": "Touches programmables de votre {{phone}}",
