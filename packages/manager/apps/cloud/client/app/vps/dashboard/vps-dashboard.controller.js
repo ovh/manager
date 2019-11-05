@@ -229,6 +229,8 @@ export default class {
   }
 
   initActions() {
+    const changeOwnerHref = this.CucControllerHelper.navigation.getConstant(get(this.URLS, 'changeOwner', {}));
+
     this.actions = {
       changeName: {
         text: this.$translate.instant('common_edit'),
@@ -242,7 +244,8 @@ export default class {
       changeOwner: {
         text: this.$translate.instant('vps_change_owner'),
         atInternetClickTag: 'VPS-Actions-ChangeOwner',
-        isAvailable: () => !this.loaders.url && !isEmpty(this.actions.changeOwner.href),
+        isAvailable: () => !isEmpty(changeOwnerHref),
+        href: changeOwnerHref,
         isExternal: true,
       },
       kvm: {
@@ -339,7 +342,6 @@ export default class {
         isAvailable: () => !this.loaders.polling && !this.vps.loading,
       },
     };
-    this.CucControllerHelper.navigation.getConstant(get(this.URLS, 'changeOwner', '')).then((url) => { this.actions.changeOwner.href = url; });
   }
 
   getRegionsGroup(regions) {
