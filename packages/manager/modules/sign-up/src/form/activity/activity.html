@@ -31,7 +31,7 @@
         <div class="col-lg-6"
              data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
             <!-- vat -->
-            <oui-field data-label="{{ 'sign_up_activity_field_vat' | translate}}">
+            <oui-field data-label="{{ 'sign_up_activity_field_vat_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_vat' }}">
                 <input type="text"
                        class="oui-input"
                        name="vat"
@@ -64,7 +64,7 @@
         <div class="col-lg-6"
              data-ng-if="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber">
             <!-- companyNationalIdentificationNumber -->
-            <oui-field data-label="{{ 'sign_up_activity_field_companyNationalIdentificationNumber' | translate}}">
+            <oui-field data-label="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_companyNationalIdentificationNumber'}}">
                 <input type="text"
                        class="oui-input"
                        name="companyNationalIdentificationNumber"

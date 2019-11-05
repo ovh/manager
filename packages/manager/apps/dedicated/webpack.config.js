@@ -46,6 +46,7 @@ module.exports = (env = {}) => {
       files: [
         { from: path.resolve(__dirname, './client/**/*.html'), context: 'client/app' },
         { from: path.resolve(__dirname, './client/app/images/**/*.*'), context: 'client/app' },
+        { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
         { from: `${foundNodeModulesFolder('flag-icon-css')}/flags`, to: 'flag-icon-css/flags' },

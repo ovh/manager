@@ -1,3 +1,12 @@
+## [10.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.1...@ovh-ux/manager-telecom@10.40.2) (2019-11-04)
+
+
+### Bug Fixes
+
+* **sidebar:** remove order hubic ([#1687](https://github.com/ovh/manager/issues/1687)) ([43a1af0](https://github.com/ovh/manager/commit/43a1af0fe5d8faaec47498b782ac7c7ba5074e15))
+
+
+
 ## [10.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.0...@ovh-ux/manager-telecom@10.40.1) (2019-10-31)
 
 
