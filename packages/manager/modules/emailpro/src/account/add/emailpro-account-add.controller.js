@@ -1,5 +1,6 @@
 import angular from 'angular';
 import head from 'lodash/head';
+import includes from 'lodash/includes';
 import set from 'lodash/set';
 
 export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, EmailProPassword) => {
@@ -13,6 +14,7 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
     $scope.simplePasswordFlag = false;
     $scope.containsNameFlag = false;
     $scope.containsSameAccountNameFlag = false;
+    $scope.containsSpace = false;
 
     set(selectedAccount, 'password', selectedAccount.password || '');
     set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
@@ -28,6 +30,8 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
           && selectedAccount.password !== selectedAccount.passwordConfirmation) {
         $scope.differentPasswordFlag = true;
       }
+
+      $scope.containsSpace = includes(selectedAccount.password, ' ');
 
       /*
         see the password complexity requirements of Microsoft Windows Server (like EmailPro)
@@ -125,7 +129,10 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, Emai
     // $scope.setPasswordsFlag($scope.accountToAdd);
     if (!$scope.valid.legalWarning) {
       return false;
-    } if ($scope.simplePasswordFlag || $scope.differentPasswordFlag || $scope.containsNameFlag) {
+    } if ($scope.containsSpace
+       || $scope.simplePasswordFlag
+       || $scope.differentPasswordFlag
+       || $scope.containsNameFlag) {
       return false;
     } if (!$scope.accountToAdd.completeDomain
       || $scope.accountToAdd.completeDomain.name === undefined) {
