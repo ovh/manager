@@ -21,10 +21,10 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "commander": "^2.19.0",
-    "moment": "^2.22.2",
+    "commander": "^4.0.0",
+    "moment": "^2.24.0",
     "shuffle-seed": "^1.1.6",
-    "titleize": "^1.0.1"
+    "titleize": "^2.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
