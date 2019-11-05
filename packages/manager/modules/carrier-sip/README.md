@@ -34,4 +34,4 @@ Always feel free to help out! Whether it's [filing bugs and feature requests](ht
 
 ## License
 
-[BSD-3-Clause](LICENSE) © OVH SAS
+[BSD-3-Clause](https://github.com/ovh/manager/blob/master/LICENSE) © OVH SAS
