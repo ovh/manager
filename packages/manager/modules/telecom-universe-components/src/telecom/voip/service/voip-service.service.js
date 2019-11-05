@@ -3,11 +3,14 @@ import chunk from 'lodash/chunk';
 import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
 import has from 'lodash/has';
 import head from 'lodash/head';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import set from 'lodash/set';
+
+import { FEATURE_TYPES } from './voip-service.constants';
 
 /**
  *  @ngdoc service
@@ -257,6 +260,17 @@ export default class {
   /* ==============================
     =            Filters            =
     =============================== */
+
+  static groupByFeatureType(services) {
+    return groupBy(
+      services,
+      service => get(
+        FEATURE_TYPES.GROUPS,
+        service.featureType,
+        FEATURE_TYPES.DEFAULT_GROUP,
+      ),
+    );
+  }
 
   /* ----------  By service type  ---------- */
 

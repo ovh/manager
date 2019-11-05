@@ -1,8 +1,14 @@
-import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
 
-import { LINE_TYPES } from './telephony-sidebar.constants';
-
-angular.module('managerApp').service('TelephonySidebar', function TelephonySidebar($q, $translate, SidebarMenu, tucTelecomVoip, tucVoipService) {
+angular.module('managerApp').service('TelephonySidebar', function TelephonySidebar(
+  $q,
+  $translate,
+  SidebarMenu,
+  tucTelecomVoip,
+  tucVoipService,
+  TUC_TELEPHONY_VOIP_SERVICE_FEATURE_TYPES,
+) {
   const self = this;
   self.mainSectionItem = null;
 
@@ -63,54 +69,65 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
           const sortedLines = tucVoipService
             .constructor.sortServicesByDisplayedName(billingAccount.getLines());
 
-          // display lines except plugAndFax and fax
-          const sortedSipLines = filter(
-            sortedLines,
-            line => !LINE_TYPES.ALL_FAX
-              .concat(LINE_TYPES.CARRIER_SIP)
-              .includes(line.featureType),
+          const groupedLines = tucVoipService.constructor.groupByFeatureType(sortedLines);
+
+          const sortedSipLines = get(
+            groupedLines,
+            TUC_TELEPHONY_VOIP_SERVICE_FEATURE_TYPES.DEFAULT_GROUP,
           );
 
           // add line subsections to billingAccount subsection
           const sipTrunkPrefix = $translate.instant('telecom_sidebar_section_telephony_trunk');
           const sipPrefix = $translate.instant('telecom_sidebar_section_telephony_line');
 
-          addServiceMenuItems(sortedSipLines, {
-            state: 'telecom.telephony.line',
-            prefix(lineService) {
-              return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
-            },
-          }, billingAccountSubSection);
+          if (!isEmpty(sortedSipLines)) {
+            addServiceMenuItems(sortedSipLines, {
+              state: 'telecom.telephony.line',
+              prefix(lineService) {
+                return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
+              },
+            }, billingAccountSubSection);
+          }
 
           // second get plugAndFax
-          const sortedPlugAndFaxLines = tucVoipService.constructor
-            .filterPlugAndFaxServices(sortedLines);
-
-          // add plugAndFax subsections to billingAccount subsection
-          addServiceMenuItems(sortedPlugAndFaxLines, {
-            state: 'telecom.telephony.line',
-            prefix: $translate.instant('telecom_sidebar_section_telephony_plug_fax'),
-          }, billingAccountSubSection);
-
-          // then get fax
-          const sortedFaxLines = tucVoipService.constructor.filterFaxServices(sortedLines);
-
-          // add fax subsections to billingAccount subsection
-          addServiceMenuItems(sortedFaxLines, {
-            state: 'telecom.telephony.fax',
-            prefix: $translate.instant('telecom_sidebar_section_telephony_fax'),
-          }, billingAccountSubSection);
-
-          /* ---------- CarrierSip Lines display ----------- */
-          const sortedCarrierSipLines = filter(
-            sortedLines,
-            ({ featureType }) => featureType === LINE_TYPES.CARRIER_SIP,
+          const sortedPlugAndFaxLines = get(
+            groupedLines,
+            TUC_TELEPHONY_VOIP_SERVICE_FEATURE_TYPES.GROUPS.plugAndFax,
           );
 
-          addServiceMenuItems(sortedCarrierSipLines, {
-            state: 'telecom.telephony.carrierSip',
-            prefix: $translate.instant('telecom_sidebar_section_telephony_carrier_sip'),
-          }, billingAccountSubSection);
+          // add plugAndFax subsections to billingAccount subsection
+          if (!isEmpty(sortedPlugAndFaxLines)) {
+            addServiceMenuItems(sortedPlugAndFaxLines, {
+              state: 'telecom.telephony.line',
+              prefix: $translate.instant('telecom_sidebar_section_telephony_plug_fax'),
+            }, billingAccountSubSection);
+          }
+
+          // then get fax
+          const sortedFaxLines = get(
+            groupedLines,
+            TUC_TELEPHONY_VOIP_SERVICE_FEATURE_TYPES.GROUPS.fax,
+          );
+
+          // add fax subsections to billingAccount subsection
+          if (!isEmpty(sortedFaxLines)) {
+            addServiceMenuItems(sortedFaxLines, {
+              state: 'telecom.telephony.fax',
+              prefix: $translate.instant('telecom_sidebar_section_telephony_fax'),
+            }, billingAccountSubSection);
+          }
+
+          const sortedCarrierSipLines = get(
+            groupedLines,
+            TUC_TELEPHONY_VOIP_SERVICE_FEATURE_TYPES.GROUPS.carrierSip,
+          );
+
+          if (!isEmpty(sortedCarrierSipLines)) {
+            addServiceMenuItems(sortedCarrierSipLines, {
+              state: 'telecom.telephony.carrierSip',
+              prefix: $translate.instant('telecom_sidebar_section_telephony_carrier_sip'),
+            }, billingAccountSubSection);
+          }
         });
       });
   };
