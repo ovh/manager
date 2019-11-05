@@ -16,7 +16,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud' --include-filtered-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@novnc/novnc": "git+https://github.com/ovh-ux/noVNC.git#build/websock_base64",
     "@ovh-ux/manager-banner": "^1.1.1",
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.5.0",
