@@ -1,0 +1,33 @@
+<section class="vps-snapshot-order">
+
+    <oui-back-button data-state="vps.detail.dashboard"
+                     data-aria-label="{{ :: 'vps_configuration_activate_snapshot_back_btn_title' | translate }}">
+        <span data-translate="vps_configuration_activate_snapshot_title"></span>
+    </oui-back-button>
+
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row"
+         data-ng-if="!$ctrl.loading.init && !$ctrl.hasInitError">
+        <div class="col-lg-8">
+            <oui-stepper data-on-finish="$ctrl.onSnapshotOrderStepperFinish()">
+                <oui-step-form data-header="{{ :: 'vps_common_order' | translate }}"
+                               data-description="{{ :: 'vps_configuration_activate_snapshot_step1_description' | translate }}"
+                               data-submit-text="{{ :: 'vps_common_order' | translate }}">
+
+                    <p data-translate="vps_configuration_activate_snapshot_step1_alert"
+                       data-translate-values="{ amount: $ctrl.getSnapshotMonthlyPrice($ctrl.snapshotOption).text }">
+                    </p>
+
+                    <p data-translate="vps_configuration_activate_snapshot_step1_confirmation"></p>
+                    <p data-translate="vps_configuration_activate_snapshot_order_explain"></p>
+
+                </oui-step-form>
+            </oui-stepper>
+        </div>
+    </div>
+
+</section>

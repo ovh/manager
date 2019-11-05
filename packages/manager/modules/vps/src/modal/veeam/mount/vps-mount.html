@@ -1,0 +1,43 @@
+<oui-modal
+    data-ng-if="$ctrl.mount"
+    data-title="{{:: 'vps_configuration_veeam_mount_title' | translate}}"
+    data-primary-label="{{ ::'vps_common_confirm' | translate }}"
+    data-primary-action="$ctrl.confirm()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.loader.init || $ctrl.loader.save">
+
+    <p class="oui-modal__text"
+        data-translate="vps_configuration_veeam_mount_question"
+        data-translate-values="{ serviceName: $ctrl.serviceName }"></p>
+    <p class="oui-modal__text"
+        data-translate="vps_configuration_veeam_mount_informations"></p>
+
+    <dl class="oui-modal__text">
+        <dt data-translate="vps_configuration_veeam_restore_step1_creation"></dt>
+        <dd data-ng-bind="$ctrl.RestorePointLabel"></dd>
+    </dl>
+    <p class="oui-modal__text" data-ng-if="$ctrl.attachedBackup">
+        <span class="text-danger" data-translate="vps_configuration_veeam_mount_step1_warning_umount"></span>
+    </p>
+</oui-modal>
+
+<oui-modal
+    data-ng-if="!$ctrl.mount"
+    data-title="{{:: 'vps_configuration_veeam_umount_title' | translate}}"
+    data-primary-label="{{ ::'vps_common_confirm' | translate }}"
+    data-primary-action="$ctrl.confirm()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.loader.init || $ctrl.loader.save">
+
+    <p class="oui-modal__text"
+        data-translate="vps_configuration_veeam_umount_step1_question"
+        data-translate-values="{ serviceName: $ctrl.serviceName }"></p>
+    <dl class="oui-modal__text">
+        <dt data-translate="vps_configuration_veeam_restore_step1_creation"></dt>
+        <dd data-ng-bind="$ctrl.RestorePointLabel"></dd>
+    </dl>
+</oui-modal>

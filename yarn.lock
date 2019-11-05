@@ -11848,6 +11848,17 @@ ovh-ui-angular@^3.9.9:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
+ovh-ui-angular@^3.9.9:
+  version "3.9.10"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.9.10.tgz#504edc7f97020b91e3ee657367460794032a51ac"
+  integrity sha512-PpBHs6vQ4PSaKGhAmVGqrMsud0tT0eo9N32wWox1RCue52hHu6M7zvdEf3dJ4UjFrTDdN0UYbusR+mo0iEDFCg==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
 ovh-ui-kit-bs@^2.1.1, ovh-ui-kit-bs@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.2.tgz#db57d085858228175fe3bf2a67154f371d2722e7"
