@@ -1,8 +1,0 @@
-[
-  {
-    "email": "john@doe.com",
-    "type": "simple",
-    "fax": true,
-    "source": "both"
-  }
-]
