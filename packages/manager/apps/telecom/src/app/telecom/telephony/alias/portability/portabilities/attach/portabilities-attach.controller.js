@@ -31,20 +31,5 @@ export default class {
       .finally(() => {
         this.isLoading = false;
       });
-    // return this.$q.all({
-    //   upload: this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
-    //     billingAccount: this.billingAccount,
-    //     id: this.portabilityId,
-    //   }, {
-    //     name: this.uploadedFile.name,
-    //   }),
-    // }).then(() => this.goBack(
-    //   this.$translate.instant('portabilities_attach_document_succeed'),
-    // )).catch(() => this.goBack(
-    //   this.$translate.instant('portabilities_attach_document_failed'),
-    //   'error',
-    // )).finally(() => {
-    //   this.isLoading = false;
-    // });
   }
 }
