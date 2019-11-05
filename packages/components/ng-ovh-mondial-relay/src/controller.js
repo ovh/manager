@@ -107,13 +107,13 @@ export default class {
    * @returns {Array} List of open days [{days: ["monday", "tuesday"], hours: ["08:00-19:00"]}]
    */
   reformatOpening(opening) {
-    const reformatTime = openingTime => `${openingTime.substring(0, 2)}:${openingTime.substring(2, 4)}`;
-    const getAllOpenings = openingTimes => map(openingTimes, openingTime => [
+    const reformatTime = (openingTime) => `${openingTime.substring(0, 2)}:${openingTime.substring(2, 4)}`;
+    const getAllOpenings = (openingTimes) => map(openingTimes, (openingTime) => [
       reformatTime(openingTime.start),
       reformatTime(openingTime.end),
     ].join('—'));
 
-    const result = MONDIAL_RELAY.weekDays.map(weekDay => ({
+    const result = MONDIAL_RELAY.weekDays.map((weekDay) => ({
       days: [weekDay],
       hours: getAllOpenings(opening[weekDay]),
     }));
@@ -192,7 +192,7 @@ export default class {
     // settle the new broacasters
     this.broadcasters = map(
       this.leafletEvents.getAvailableMarkerEvents(),
-      markerEvent => this.$scope.$on(`leafletDirectiveMarker.${markerEvent}`, (event, args) => {
+      (markerEvent) => this.$scope.$on(`leafletDirectiveMarker.${markerEvent}`, (event, args) => {
         switch (event.name) {
           case 'leafletDirectiveMarker.mouseover':
             this.markerHover(args.model.index);
@@ -326,7 +326,7 @@ export default class {
         return this.search(filter);
       }
       return me;
-    }).catch(err => this.$http.get(MONDIAL_RELAY.ipLocUrl).then((geoloc) => {
+    }).catch((err) => this.$http.get(MONDIAL_RELAY.ipLocUrl).then((geoloc) => {
       if (MONDIAL_RELAY.metroFrZipValidator.test(geoloc.data.zip_code)
         && geoloc.data.country_code) {
         return this.search({
