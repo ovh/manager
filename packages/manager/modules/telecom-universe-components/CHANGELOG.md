@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.5...@ovh-ux/ng-ovh-telecom-universe-components@4.2.0) (2019-11-05)
+
+
+### Features
+
+* **tuc:** add telecom voip service grouping ([38a0bab](https://github.com/ovh/manager/commit/38a0bab0f6befaf98edf021c0f1c911c4c13aaf0))
+
+
+
 ## [4.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.4...@ovh-ux/ng-ovh-telecom-universe-components@4.1.5) (2019-10-23)
 
 
