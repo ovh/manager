@@ -1,7 +1,16 @@
 <div data-ovh-alert></div>
 
-<h1 data-translate="dedicated_server_interfaces_title"></h1>
+<div class="row">
+    <h1 data-translate="dedicated_server_interfaces_title" class="col-auto mr-auto"></h1>
+    <oui-guide-menu text="{{::'dedicated_server_interfaces_guides' | translate}}" class="col-auto px-5">
+        <oui-guide-menu-item data-href="https://docs.ovh.com/gb/en/dedicated/ola-manager/" external>
+            <span data-translate="dedicated_server_interfaces_guides_ola"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</div>
+
 <p data-translate="dedicated_server_interfaces_introduction"></p>
+
 <p>
     <span data-translate="dedicated_server_interfaces_vrack_information"></span>
     <a href="{{::$ctrl.urls.guides.home}}" data-translate="dedicated_server_interfaces_vrack_information_link_label"></a>
