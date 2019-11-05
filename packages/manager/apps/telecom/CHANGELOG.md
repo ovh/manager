@@ -1,3 +1,12 @@
+## [10.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.2...@ovh-ux/manager-telecom@10.40.3) (2019-11-05)
+
+
+### Performance Improvements
+
+* **telecom:** replace multiple filter by groupBy ([b39a270](https://github.com/ovh/manager/commit/b39a270212cc8c2120720d0f5d8c689aa0c8fab1))
+
+
+
 ## [10.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.1...@ovh-ux/manager-telecom@10.40.2) (2019-11-04)
 
 
