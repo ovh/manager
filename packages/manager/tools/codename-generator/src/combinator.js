@@ -29,7 +29,7 @@ module.exports = class Combinator {
     combine([], 0);
 
     return shuffleSeed.shuffle(
-      combinations.map(combination => combination.join(' ')),
+      combinations.map((combination) => combination.join(' ')),
       this.seed,
     );
   }
