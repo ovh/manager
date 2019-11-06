@@ -1,3 +1,13 @@
+## [10.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.5...@ovh-ux/manager-dedicated@10.27.6) (2019-11-06)
+
+
+### Bug Fixes
+
+* import exchange module for exchange account renew ([3d387b6](https://github.com/ovh/manager/commit/3d387b6420107a2664d8e009e8fbeea14fec07c1))
+* **autorenew:** use standard renew for Exchange services when required ([b3021a7](https://github.com/ovh/manager/commit/b3021a7fb6e30de8fa82aa905d4e9e5f58b204e9))
+
+
+
 ## [10.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.4...@ovh-ux/manager-dedicated@10.27.5) (2019-11-05)
 
 
