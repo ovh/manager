@@ -1,3 +1,12 @@
+## [10.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.6...@ovh-ux/manager-dedicated@10.27.7) (2019-11-06)
+
+
+### Bug Fixes
+
+* **billing.payment.method:** enable default action ([#1709](https://github.com/ovh/manager/issues/1709)) ([692065c](https://github.com/ovh/manager/commit/692065c8b62626491898bee743dffa344bd945f8))
+
+
+
 ## [10.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.5...@ovh-ux/manager-dedicated@10.27.6) (2019-11-06)
 
 
