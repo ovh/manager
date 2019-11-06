@@ -94,14 +94,13 @@
                                   data-ng-if="$row.paymentType === $ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT && $row.status === $ctrl.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION">
                 <span data-translate="billing_payment_method_table_action_download_procedure"></span>
             </oui-action-menu-item>
-            <oui-action-menu-divider data-ng-if="$row.paymentType === $ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT && $row.status.value === $ctrl.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION"></oui-action-menu-divider>
+            <oui-action-menu-divider data-ng-if="$row.paymentType === $ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT && $row.status === $ctrl.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION"></oui-action-menu-divider>
             <oui-action-menu-item data-aria-label="{{ :: 'billing_payment_method_table_action_description_edit' | translate }}"
                                   data-href="{{ $ctrl.getActionHref('edit', { paymentMethodId: $row.paymentMethodId }) }}">
                 <span data-translate="billing_payment_method_table_action_description_edit"></span>
             </oui-action-menu-item>
             <oui-action-menu-item data-aria-label="{{ :: 'billing_payment_method_table_action_set_default' | translate }}"
-                                  data-disabled="$row.default || ($row.paymentType === $ctrl.OVH_PAYMENT_METHOD_TYPE.CREDIT_CARD && $row.status.value !== $ctrl.OVH_PAYMENT_MEAN_STATUS.VALID)
-                                      || ([$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT, $ctrl.OVH_PAYMENT_METHOD_TYPE.DEFERRED_PAYMENT_ACCOUNT].includes($row.paymentType) && $row.status === $ctrl.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION)"
+                                  data-disabled="$row.default || $row.status !== $ctrl.OVH_PAYMENT_MEAN_STATUS.VALID"
                                   data-href="{{ $ctrl.getActionHref('default', { paymentMethodId: $row.paymentMethodId }) }}">
                 <span data-translate="billing_payment_method_table_action_set_default"></span>
             </oui-action-menu-item>

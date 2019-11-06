@@ -197,8 +197,8 @@ export default class {
     }).$promise;
   }
 
-  static getExchangeUrl(service, action) {
-    return `${service.url}?action=${action}`;
+  static getExchangeUrl(service, action, target = 'action') {
+    return `${service.url}?${target}=${action}`;
   }
 
   getAutorenewAgreements() {

@@ -4,5 +4,7 @@
   "sign_up_activity_field_corporationType": "Tipo de empresa",
   "sign_up_activity_field_nationalIdentificationNumber": "NIF",
   "sign_up_activity_field_companyNationalIdentificationNumber": "NIF",
-  "sign_up_activity_field_italian_sdi": "Número fiscal"
+  "sign_up_activity_field_italian_sdi": "Código del destinatario para la factura electrónica (SDI)",
+  "sign_up_activity_field_vat_it": "Número de IVA",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Número de identificación nacional (SIREN)"
 }

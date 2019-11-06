@@ -1,8 +1,10 @@
 {
   "sign_up_activity_field_vat": "Numéro de TVA",
+  "sign_up_activity_field_vat_it": "Numéro de IVA",
   "sign_up_activity_field_organisation": "Organisation",
   "sign_up_activity_field_corporationType": "Type d'entreprise",
   "sign_up_activity_field_nationalIdentificationNumber": "Numéro d'identification national",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Numéro d'identification national",
-  "sign_up_activity_field_italian_sdi": "Numéro fiscal"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numéro d'identification national (SIREN)",
+  "sign_up_activity_field_italian_sdi": "Code du destinataire pour la facturation électronique (SDI)"
 }
