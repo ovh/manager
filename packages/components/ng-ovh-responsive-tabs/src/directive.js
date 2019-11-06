@@ -42,8 +42,8 @@ export default /* @ngInject */ (
       );
 
       return filter(
-        map(tabsetCtrl.tabs, tab => tab.$tab.width()),
-        size => size > 0,
+        map(tabsetCtrl.tabs, (tab) => tab.$tab.width()),
+        (size) => size > 0,
       );
     };
 

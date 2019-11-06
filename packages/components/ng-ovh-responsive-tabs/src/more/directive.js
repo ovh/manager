@@ -1,6 +1,6 @@
 import template from './template.html';
 
-export default /* @ngInject */ $state => ({
+export default /* @ngInject */ ($state) => ({
   restrict: 'AE',
   require: '^responsiveTabs',
   replace: true,
