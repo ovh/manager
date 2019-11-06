@@ -467,10 +467,10 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-nasha',
     title: 'NASHA',
     icon: 'ovh-font ovh-font-cloudnas',
-    state: 'paas.nasha-add',
+    state: 'nasha-add',
     linkId: 'CLOUD',
-    linkPart: '#/paas/nasha/new',
-    app: [CLOUD],
+    linkPart: '#/nasha/new',
+    app: [DEDICATED],
     regions: ['EU', 'CA'],
   },
   {
