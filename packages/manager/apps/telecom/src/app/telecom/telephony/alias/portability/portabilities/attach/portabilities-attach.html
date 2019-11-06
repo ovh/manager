@@ -1,0 +1,21 @@
+<form name="form" enctype="multipart/form-data" novalidate>
+    <oui-modal data-heading="{{:: 'portabilities_attach_title' | translate }}"
+        data-primary-action="$ctrl.uploadFile()"
+        data-primary-label= "{{:: 'portabilities_attach_submit' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'portabilities_attach_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading">
+
+        <!-- FILE -->
+        <oui-field help-text="{{'portabilities_attach_file_format' | translate}}" size="xl">
+            <oui-file data-model="$ctrl.uploadedFile"
+                      data-accept="application/pdf"
+                      data-maxsize="10000000"
+                      data-name="uploadedFile"
+                      required>
+            </oui-file>
+        </oui-field>
+    </oui-modal>
+</form>
