@@ -62,5 +62,8 @@
     "ovh-ui-angular": "^3.9.10",
     "ovh-ui-kit": "^3.6.0",
     "ovh-ui-kit-bs": "^3.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -52,5 +52,8 @@
     "ovh-api-services": "^9.0.0",
     "ovh-ui-angular": "^2.23.x",
     "ovh-ui-kit": "^2.23.x"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

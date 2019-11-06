@@ -30,5 +30,8 @@
     "ovh-common-style": "^3.2.2",
     "ovh-ui-kit": "^2.35.2",
     "ovh-ui-kit-bs": "^2.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

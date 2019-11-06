@@ -30,5 +30,8 @@
     "@uirouter/angularjs": "^1.0.15",
     "angular": "~1.6.10",
     "oclazyload": "^1.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

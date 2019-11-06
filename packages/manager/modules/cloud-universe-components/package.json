@@ -54,5 +54,8 @@
     "d3": "~3.5.13",
     "ovh-api-services": "^9.24.1",
     "ovh-ui-angular": "^3.9.10"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
