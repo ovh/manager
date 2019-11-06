@@ -9,6 +9,7 @@ import order from './order';
 
 import component from './failover-ips.component';
 import routing from './failover-ips.routing';
+import instancesModule from '../instances/instances.module';
 
 const moduleName = 'ovhManagerPciProjectFailoverIps';
 
@@ -18,6 +19,7 @@ angular
     'pascalprecht.translate',
     failoverIp,
     imports,
+    instancesModule,
     onboarding,
     order,
   ])

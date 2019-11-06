@@ -79,7 +79,12 @@
                     </div>
                 </div>
                 <div class="form-group"
-                     data-ng-class="{ 'has-error': simplePasswordFlag || containsNameFlag || containsSamAccountNameFlag }">
+                     data-ng-class="{
+                       'has-error': simplePasswordFlag
+                                 || containsNameFlag
+                                 || containsSamAccountNameFlag
+                                 || containsSpace
+                    }">
                     <label for="password" class="control-label col-md-3 required"
                            data-translate="emailpro_ACTION_add_account_step1_password_label"></label>
                     <div class="col-md-9">
@@ -93,6 +98,9 @@
                         <span class="help-block"
                               data-ng-if="containsNameFlag"
                               data-translate="emailpro_ACTION_update_account_step1_password_contains_name"></span>
+                        <span class="help-block"
+                              data-ng-if="containsSpace"
+                              data-translate="emailpro_ACTION_update_account_step1_password_contains_space"></span>
                         <span class="help-block"
                               data-ng-if="containsSamAccountNameFlag"
                               data-ng-bind="containsSamAccountNameLabel"></span>

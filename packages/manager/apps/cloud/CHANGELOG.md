@@ -1,3 +1,12 @@
+## [7.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.35.0...@ovh-ux/manager-cloud@7.35.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* remove VPS changeOwner feature for CA (not available in CA) ([#1710](https://github.com/ovh/manager/issues/1710)) ([7bd6f61](https://github.com/ovh/manager/commit/7bd6f6137d075c8f37e6481e10879de364e6b546))
+
+
+
 # [7.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.34.1...@ovh-ux/manager-cloud@7.35.0) (2019-10-29)
 
 

@@ -42,6 +42,8 @@ import errorPage from './error-page/error-page.module';
 import navbar from '../components/navbar';
 
 import 'ovh-ui-kit/dist/oui.css';
+import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
+
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 import 'leaflet/dist/leaflet.css';
@@ -121,6 +123,7 @@ angular.module('managerApp', [
   'ui.validate',
   'validation.match',
   carrierSip,
+  portabilities,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */

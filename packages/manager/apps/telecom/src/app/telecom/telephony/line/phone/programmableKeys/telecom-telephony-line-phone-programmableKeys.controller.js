@@ -1,9 +1,10 @@
-import cloneDeep from 'lodash/cloneDeep';
+import clone from 'lodash/clone';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import isString from 'lodash/isString';
 
 import {
   ALPHA_NUMERIC_REGEXP,
@@ -97,7 +98,17 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
     return this.line.getPhone().then(() => {
       if (this.line.hasPhone) {
         return this.line.phone.initDeffered().then(() => {
-          this.functionKeys.raw = cloneDeep(this.line.phone.functionKeys);
+          const re = /^SUP[0-9]$/;
+          this.functionKeys.raw = this.line.phone.functionKeys.map((functionKey) => {
+            const key = clone(functionKey);
+            if (isString(key.function) && key.function.match(re)) {
+              const line = find(this.group.lines, { serviceName: key.parameter });
+              if (line) {
+                key.parameterLabel = `${line.description} (${key.parameter})`;
+              }
+            }
+            return key;
+          });
           this.functionKeys.raw.sort(this.constructor.sortFunctionKeys);
         });
       }

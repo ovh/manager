@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import round from 'lodash/round';
+import some from 'lodash/some';
 import uniq from 'lodash/uniq';
 
 import BlockStorage from './block.class';
@@ -371,10 +372,14 @@ export default class PciProjectStorageBlockService {
         quotas: this.getProjectQuota(projectId),
         regions,
       }))
-      .then(({ quotas, regions }) => map(regions, region => new Region({
-        ...region,
-        quota: find(quotas, { region: region.name }),
-      })));
+      .then(({ quotas, regions }) => {
+        const supportedRegions = filter(regions,
+          region => some(get(region, 'services', []), { name: 'volume', status: 'UP' }));
+        return map(supportedRegions, region => new Region({
+          ...region,
+          quota: find(quotas, { region: region.name }),
+        }));
+      });
   }
 
   getAvailablesTypes() {

@@ -1,4 +1,7 @@
-<h1 data-translate="pci_projects_project_storages_containers_add_title"></h1>
+<h1 data-translate="pci_projects_project_storages_containers_add_title"
+    data-ng-if="!$ctrl.archive"></h1>
+<h1 data-translate="pci_projects_project_storages_containers_add_archive_title"
+    data-ng-if="$ctrl.archive"></h1>
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 

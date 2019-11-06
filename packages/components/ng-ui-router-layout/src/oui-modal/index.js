@@ -52,7 +52,7 @@ angular
 
       // open the modal instance at state onEnter
       state.onEnter = (transition) => {
-        let { modalOptions } = state.layout;
+        const { modalOptions } = state.layout;
 
         if (state.layout.modalOptions.component || state.layout.modalOptions.componentProvider) {
           // if there is a component or componentProvider in modal options
@@ -115,11 +115,11 @@ angular
             div.appendChild(elmt);
             const template = div.innerHTML;
 
-            modalOptions = {
+            Object.assign(modalOptions, {
               template,
               controller,
               controllerAs: '$ctrl',
-            };
+            });
           }
         } else {
           // set resolve to modal

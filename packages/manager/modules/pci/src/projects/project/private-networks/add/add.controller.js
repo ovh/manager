@@ -1,5 +1,7 @@
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import map from 'lodash/map';
 import partition from 'lodash/partition';
 import set from 'lodash/set';
 import some from 'lodash/some';
@@ -16,17 +18,19 @@ const CONTAINER_NAME = 'pci.projects.project.privateNetwork.add';
 export default class NetworkAddCtrl {
   /* @ngInject */
   constructor(
+    $q,
     $translate,
     CucCloudMessage,
     CucRegionService,
-    OvhApiCloudProjectRegion,
+    OvhApiCloudProject,
     PciPrivateNetworks,
     PciPrivateNetworksAdd,
   ) {
+    this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
-    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+    this.OvhApiCloudProject = OvhApiCloudProject;
     this.PciPrivateNetworks = PciPrivateNetworks;
     this.PciPrivateNetworksAdd = PciPrivateNetworksAdd;
   }
@@ -130,15 +134,32 @@ export default class NetworkAddCtrl {
   }
 
   getSubnets() {
-    return this.OvhApiCloudProjectRegion.v6().query({
+    return this.OvhApiCloudProject.Region().v6().query({
       serviceName: this.projectId,
     }).$promise
-      .then(regions => regions.map(region => ({
-        region,
-        displayedRegion: this.CucRegionService.getTranslatedMicroRegion(region),
-        selected: true,
-        gateway: false,
-      })))
+      .then(regions => this.$q.all(
+        map(
+          regions,
+          region => this.OvhApiCloudProject
+            .Region()
+            .v6()
+            .get({
+              serviceName: this.projectId,
+              id: region,
+            })
+            .$promise,
+        ),
+      ))
+      .then((regions) => {
+        const supportedRegions = filter(regions,
+          region => some(get(region, 'services', []), { name: 'network', status: 'UP' }));
+        return supportedRegions.map(region => ({
+          region: region.name,
+          displayedRegion: this.CucRegionService.getTranslatedMicroRegion(region.name),
+          selected: true,
+          gateway: false,
+        }));
+      })
       .then((subnets) => {
         this.subnets = this.mapSubnetsIpBlocks(subnets);
       });

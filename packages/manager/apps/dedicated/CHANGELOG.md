@@ -1,3 +1,12 @@
+## [10.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.4...@ovh-ux/manager-dedicated@10.27.5) (2019-11-05)
+
+
+### Bug Fixes
+
+* **license.order:** allow to order license if there is no contr… ([#1651](https://github.com/ovh/manager/issues/1651)) ([7f68895](https://github.com/ovh/manager/commit/7f68895995916b757c4c135d3bb387bafbe67fa4))
+
+
+
 ## [10.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.3...@ovh-ux/manager-dedicated@10.27.4) (2019-11-04)
 
 

@@ -6,13 +6,11 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "webpack --env.production",
-    "cypress:open": "cypress open",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-task-app' --include-filtered-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-task-app' --include-filtered-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task-app' --include-filtered-dependencies -- npm run dev:watch --if-present",
-    "test:e2e": "lerna exec --scope @ovh-ux/manager-telecom-task-app -- node \\$LERNA_ROOT_PATH/scripts/webpack-cypress"
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task-app' --include-filtered-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
@@ -38,15 +36,13 @@
     "ovh-api-services": "^9.24.1",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
-    "ovh-ui-angular": "^3.9.9",
+    "ovh-ui-angular": "^3.9.10",
     "ovh-ui-kit": "^2.35.2",
     "ovh-ui-kit-bs": "^2.2.0",
     "validator-js": "^0.2.1"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",
-    "cypress": "^3.4.1",
-    "eslint-plugin-cypress": "^2.7.0",
     "webpack-merge": "^4.2.2"
   }
 }

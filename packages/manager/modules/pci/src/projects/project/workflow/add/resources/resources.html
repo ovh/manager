@@ -8,6 +8,7 @@
                    name="instance-select"
                    data-model="$ctrl.resource"
                    data-value="$row.id"
+                   data-disabled="!$row.canAddSnapshot()"
                    data-on-change="$ctrl.selectResource($row)"></oui-radio>
     </oui-column>
     <oui-column

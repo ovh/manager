@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import Instance from '../../../../../components/project/instance/instance.class';
 
 export default class {
@@ -7,11 +9,13 @@ export default class {
     OvhApiCloudProjectFlavor,
     OvhApiCloudProjectImage,
     OvhApiCloudProjectVolume,
+    PciProjectsProjectInstanceService,
   ) {
     this.CucRegionService = CucRegionService;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
+    this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
 
   $onInit() {
@@ -31,7 +35,10 @@ export default class {
       .$promise
       .then(flavor => new Instance({
         ...instance,
-        flavor,
+        flavor: {
+          ...flavor,
+          capabilities: this.PciProjectsProjectInstanceService.constructor.transformCapabilities(get(flavor, 'capabilities', [])),
+        },
       }))
       .catch(() => null);
   }
