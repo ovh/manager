@@ -110,6 +110,7 @@ angular.module('managerApp', [
     const dedicatedRedirections = [
       '/paas/veeam-enterprise',
       '/iaas/vps',
+      '/paas/nasha',
     ];
 
     dedicatedRedirections.forEach((redirectionPrefix) => {

@@ -2068,7 +2068,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.3.tgz#6891c99bf9d1d507c9ae32d64886b3d41a6b1794"
   integrity sha512-pxC2TIJRJ2p+MkfwxDdP/uPAvYOoFKD9/ncpQM/TiY5PM9pjl5XyqVYsQHbRoM8mDhSCDdawy4eTqPrCT0P6QQ==
 
-"@ovh-ux/ng-ovh-user-pref@^1.0.1":
+"@ovh-ux/ng-ovh-user-pref@^1.0.0", "@ovh-ux/ng-ovh-user-pref@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-1.0.1.tgz#1c7ebfddb7a6c9e3d914b6ab3dfb656fdbb5bb95"
   integrity sha512-DOYgJRWKYBouncLqHdzuu/QYVgSXvW2eZ3ZvE8TIeD1MfgJOJtFdyQBnSBvP/q0rZeRDyPw0zY8GiDpuou33Fg==
