@@ -1,82 +1,83 @@
-import find from 'lodash/find';
-import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomTelephonyAliasPortabilitiesCtrl', function TelecomTelephonyAliasPortabilitiesCtrl($translate, $stateParams, $q, OvhApiTelephony, TucToast) {
-  const self = this;
+import groupPortaByNumbers from './telecom-telephony-alias-portability-portabilities.service';
 
-  self.loading = {
-    cancel: false,
-  };
+export default class TelecomTelephonyAliasPortabilitiesCtrl {
+  /* @ngInject */
+  constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast) {
+    this.$translate = $translate;
+    this.$stateParams = $stateParams;
+    this.$q = $q;
+    this.OvhApiTelephony = OvhApiTelephony;
+    this.TucToast = TucToast;
+  }
 
-  self.serviceName = $stateParams.serviceName;
+  $onInit() {
+    this.loading = {
+      cancel: false,
+    };
 
-  function fetchPortability() {
-    return OvhApiTelephony.Portability().v6().query({
-      billingAccount: $stateParams.billingAccount,
-    }).$promise.then(ids => $q.all(map(ids, id => OvhApiTelephony.Portability().v6().get({
-      billingAccount: $stateParams.billingAccount,
+    this.serviceName = this.$stateParams.serviceName;
+    this.init();
+  }
+
+  init() {
+    this.isLoading = true;
+    this.fetchPortability().then((result) => {
+      this.numbers = groupPortaByNumbers(result);
+    }).catch((error) => {
+      this.TucToast.error(this.$translate.instant('telephony_alias_portabilities_load_error', {
+        error: get(error, 'data.message'),
+      }));
+      return this.$q.reject(error);
+    }).finally(() => {
+      this.isLoading = false;
+    });
+  }
+
+  fetchPortability() {
+    return this.OvhApiTelephony.Portability().v6().query({
+      billingAccount: this.$stateParams.billingAccount,
+    }).$promise.then(ids => this.$q.all(map(ids, id => this.OvhApiTelephony.Portability().v6().get({
+      billingAccount: this.$stateParams.billingAccount,
       id,
-    }).$promise.then(porta => $q.all({
-      steps: OvhApiTelephony.Portability().v6().getStatus({
-        billingAccount: $stateParams.billingAccount,
+    }).$promise.then(porta => this.$q.all({
+      steps: this.OvhApiTelephony.Portability().v6().getStatus({
+        billingAccount: this.$stateParams.billingAccount,
         id,
       }).$promise,
-      canBeCancelled: OvhApiTelephony.Portability().v6().canBeCancelled({
-        billingAccount: $stateParams.billingAccount,
+      canBeCancelled: this.OvhApiTelephony.Portability().v6().canBeCancelled({
+        billingAccount: this.$stateParams.billingAccount,
+        id,
+      }).$promise,
+      documentAttached: this.OvhApiTelephony.Portability().PortabilityDocument().v6().query({
+        billingAccount: this.$stateParams.billingAccount,
         id,
       }).$promise,
     }).then((results) => {
       set(porta, 'steps', results.steps);
       set(porta, 'canBeCancelled', results.canBeCancelled.value);
+      set(porta, 'documentAttached', results.documentAttached);
       return porta;
     })))));
   }
 
-  function groupPortaByNumbers(portabilities) {
-    const numbers = [];
-    forEach(portabilities, (porta) => {
-      forEach(porta.numbersList, (number) => {
-        numbers.push({
-          number,
-          portability: porta,
-          lastStepDone: find(porta.steps.slice().reverse(), { status: 'done' }),
-        });
-      });
-    });
-    return numbers;
-  }
+  confirmCancelPortability(portability) {
+    this.loading.cancel = true;
 
-  function init() {
-    self.isLoading = true;
-    fetchPortability().then((result) => {
-      self.numbers = groupPortaByNumbers(result);
-    }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_portabilities_load_error'), get(error, 'data.message')].join(' '));
-      return $q.reject(error);
-    }).finally(() => {
-      self.isLoading = false;
-    });
-  }
-
-  self.confirmCancelPortability = function confirmCancelPortability(portability) {
-    self.loading.cancel = true;
-
-    return OvhApiTelephony.Portability().v6().cancel({
-      billingAccount: $stateParams.billingAccount,
+    return this.OvhApiTelephony.Portability().v6().cancel({
+      billingAccount: this.$stateParams.billingAccount,
       id: portability.id,
     }, {}).$promise.then(() => {
-      TucToast.success($translate.instant('telephony_alias_portabilities_cancel_success'));
-      return init();
+      this.TucToast.success(this.$translate.instant('telephony_alias_portabilities_cancel_success'));
+      return this.init();
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_portabilities_cancel_error'), get(error, 'data.message')].join(' '));
-      return $q.reject(error);
+      this.TucToast.error([this.$translate.instant('telephony_alias_portabilities_cancel_error'), get(error, 'data.message')].join(' '));
+      return this.$q.reject(error);
     }).finally(() => {
-      self.loading.cancel = false;
+      this.loading.cancel = false;
     });
-  };
-
-  init();
-});
+  }
+}

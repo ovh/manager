@@ -232,7 +232,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
             this.slots,
             slot => slot.condition,
           ),
-          slot => slot.confition.getTimeMoment().toDate(),
+          slot => slot.condition.getTimeMoment().toDate(),
         );
 
         groupText += map(sortedSlots, slot => [
