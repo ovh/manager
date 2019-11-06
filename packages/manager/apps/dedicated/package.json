@@ -108,7 +108,7 @@
     "ng-ckeditor": "^2.0.5",
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
     "oclazyload": "^1.1.0",
-    "office-ui-fabric-react": "^4.35.2",
+    "office-ui-fabric-core": "^11.0.0",
     "ovh-angular-browser-alert": "ovh-ux/ovh-angular-browser-alert#^1.0.0",
     "ovh-angular-responsive-tabs": "^4.0.0",
     "ovh-api-services": "^9.24.1",
