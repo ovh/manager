@@ -4531,15 +4531,15 @@ osenv@0, osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-ovh-ui-kit-bs@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.1.tgz#bf9c5b035041797091b1a4c50f759bef7501dcef"
-  integrity sha512-gjWYjnGmS75nrEpYoYIvJ/wh7K8zzm4k5x2+mICOCmEOKbU7iWy642iXxvDI1TYR+61TDTRjtshnXsGVtUtu7g==
+ovh-ui-kit-bs@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.2.0.tgz#6c64d96326e88194a597ba333de8dc188268ba62"
+  integrity sha512-ggt3UHSvUVmwu6EXrq6WIPQtFZrWan9cz72mp1GmHFOBmSCk0HIsbENoAXzAcNx+wdFFWov2DD8w7MgkmFZj0A==
 
-ovh-ui-kit@^2.23.1:
-  version "2.24.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.1.tgz#d56c8cbc7881655a9124b2300c3e1acea32c93e9"
-  integrity sha512-KlPg4dq1NqEEncAdlE5nGfihD16tfaRlyWiAJNhIpbZD/xfmSQchM5x39Y40kldatUR9t3HXch8D3dQ2e80ioA==
+ovh-ui-kit@^2.35.3:
+  version "2.35.3"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.35.3.tgz#b43df15f58f97163d688e1d4962c03d612b5ee4b"
+  integrity sha512-A0ikDQj+kDzongHQJ6Q1LWmDBMbGcJwcq0Udw3CgWAL5YwtCnGQHFAejlqUoFdyDId5inbKoSUwFnBks/td/mg==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
