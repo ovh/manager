@@ -4,7 +4,6 @@ import exchangeAccountAdd from './account/add/account-add.component';
 import exchangeAccountAlias from './account/alias/account-alias.component';
 import exchangeAccountHome from './account/home/account-home.component';
 import exchangeHeader from './header/header.component';
-import exchangeAccountRenew from './billing/account-renew/renew.component';
 import exchangeWizardHostedCreationDomainConfiguration from './wizard-hosted-creation/first-step/domain-configuration/domain-configuration.component';
 import exchangeWizardHostedCreationEmailCreation from './wizard-hosted-creation/first-step/email-creation/email-creation.component';
 import exchangeWizardHostedCreationFirstStep from './wizard-hosted-creation/first-step/first-step.component';
@@ -20,7 +19,6 @@ angular
   .component('exchangeAccountAlias', exchangeAccountAlias)
   .component('exchangeAccountHome', exchangeAccountHome)
   .component('exchangeHeader', exchangeHeader)
-  .component('exchangeAccountRenew', exchangeAccountRenew)
   .component('exchangeWizardHostedCreationDomainConfiguration', exchangeWizardHostedCreationDomainConfiguration)
   .component('exchangeWizardHostedCreationEmailCreation', exchangeWizardHostedCreationEmailCreation)
   .component('exchangeWizardHostedCreationFirstStep', exchangeWizardHostedCreationFirstStep)

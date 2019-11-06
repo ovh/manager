@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.2.0...@ovh-ux/manager-exchange@1.2.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* import exchange module for exchange account renew ([3d387b6](https://github.com/ovh/manager/commit/3d387b6420107a2664d8e009e8fbeea14fec07c1))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.1.10...@ovh-ux/manager-exchange@1.2.0) (2019-10-28)
 
 
