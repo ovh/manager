@@ -80,7 +80,7 @@ export default function ovhAngularUserPrefProvider() {
         self.paramsInjector(OVH_USER_PREF.path.get, null, config.apiv6Path),
         options,
       )
-        .then(resp => (resp ? resp.data : []));
+        .then((resp) => (resp ? resp.data : []));
     };
 
     /**
@@ -144,7 +144,7 @@ export default function ovhAngularUserPrefProvider() {
           serviceType: 'apiv6',
           timeout: createCanceller.promise,
         },
-      ).then(resp => (resp ? resp.data : resp))
+      ).then((resp) => (resp ? resp.data : resp))
         .finally(() => {
           if (pendingCreationRequests[key] === createCanceller) {
             delete pendingCreationRequests[key]; // create done, remove pending canceller
@@ -168,7 +168,7 @@ export default function ovhAngularUserPrefProvider() {
       }
 
       return ovhUserPrefService.getValue(key)
-        .then(value => ovhProxyRequest.post(
+        .then((value) => ovhProxyRequest.post(
           self.paramsInjector(OVH_USER_PREF.path.assign, null, config.apiv6Path),
           {
             key,
@@ -193,7 +193,7 @@ export default function ovhAngularUserPrefProvider() {
           }
           return $q.reject(err);
         })
-        .then(resp => (resp ? resp.data : resp));
+        .then((resp) => (resp ? resp.data : resp));
     };
 
 
@@ -225,7 +225,7 @@ export default function ovhAngularUserPrefProvider() {
         {
           serviceType: 'apiv6',
         },
-      ).then(resp => (resp ? resp.data : resp));
+      ).then((resp) => (resp ? resp.data : resp));
     };
 
     return ovhUserPrefService;
