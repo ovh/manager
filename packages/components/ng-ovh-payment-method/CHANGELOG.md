@@ -1,3 +1,12 @@
+## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.1...@ovh-ux/ng-ovh-payment-method@5.0.2) (2019-11-07)
+
+
+### Bug Fixes
+
+* **legacy:** fix challenge payment mean method ([#1724](https://github.com/ovh/manager/issues/1724)) ([c4cfdaf](https://github.com/ovh/manager/commit/c4cfdaf4ef824d0cd85a2c197691e6c66d3e9d0b))
+
+
+
 ## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.0...@ovh-ux/ng-ovh-payment-method@5.0.1) (2019-10-28)
 
 
