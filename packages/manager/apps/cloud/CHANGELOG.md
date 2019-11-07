@@ -1,3 +1,12 @@
+# [7.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.35.1...@ovh-ux/manager-cloud@7.36.0) (2019-11-07)
+
+
+### Features
+
+* **cloud.logs:** prepare network bulk management ([#1714](https://github.com/ovh/manager/issues/1714)) ([247b9f2](https://github.com/ovh/manager/commit/247b9f2374eaaf1b60d4ac26cabccbeabbeff789))
+
+
+
 ## [7.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.35.0...@ovh-ux/manager-cloud@7.35.1) (2019-11-05)
 
 
