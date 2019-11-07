@@ -305,11 +305,11 @@ export const VRACK_CONFIG = {
       path: '/vrack',
       state: 'vrack',
       stateParams: ['vrackId'],
-      app: [CLOUD],
+      app: [DEDICATED],
     },
   ],
   icon: 'ovh-font ovh-font-vRack',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
 };
 
