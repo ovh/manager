@@ -8,7 +8,7 @@ const SECONDS = 1000;
 const ORDER_DETAILS_POLLING_INTERVAL = 60 * SECONDS;
 const ORDER_FOLLOW_UP_POLLING_INTERVAL = 60 * SECONDS;
 
-export default class OrderTrackingController {
+export default class OvhOrderTrackingController {
   /* @ngInject */
   constructor($log, $q, $timeout, OvhApiMeOrder) {
     this.$log = $log;

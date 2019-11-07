@@ -7,7 +7,7 @@ import 'ovh-ui-angular';
 import component from './order-tracking.component';
 import './index.scss';
 
-const moduleName = 'orderTracking';
+const moduleName = 'ngOvhOrderTracking';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
   ])
-  .component('orderTrackingComponent', component)
+  .component('ovhOrderTrackingComponent', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

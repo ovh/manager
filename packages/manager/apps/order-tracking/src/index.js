@@ -3,13 +3,13 @@ import 'script-loader!jquery'; // eslint-disable-line
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ssoAuth from '@ovh-ux/ng-ovh-sso-auth';
-import orderTracking from '@ovh-ux/order-tracking';
+import ngOvhOrderTracking from '@ovh-ux/ng-ovh-order-tracking';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 angular.module('orderTrackingApp', [
-  orderTracking,
+  ngOvhOrderTracking,
   ovhManagerCore,
   'oui',
   ssoAuth,
@@ -32,7 +32,7 @@ angular.module('orderTrackingApp', [
     })
     .state('app', {
       url: '/:orderId',
-      component: 'orderTrackingComponent',
+      component: 'ovhOrderTrackingComponent',
       resolve: {
         orderId: /* @ngInject */ $transition$ => $transition$.params().orderId,
         billingUrl: () => '#/billing/history',
