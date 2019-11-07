@@ -288,12 +288,12 @@ export const IPLB_CONFIG = {
       state: 'network.iplb.detail.home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-iplb',
-      app: [CLOUD],
+      app: [DEDICATED],
       searchKeys: ['IP Load Balancer', 'IPLB'],
     },
   ],
   icon: 'ovh-font ovh-font-iplb',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU', 'CA'],
 };
 

@@ -11646,9 +11646,9 @@ ovh-ngstrap@^4.0.2:
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
 ovh-ui-angular@^3.10.0, ovh-ui-angular@^3.9.9:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.10.1.tgz#d3baf9a5b744ae2286c691b5da6748499db5d592"
-  integrity sha512-AhMru6d25GhN0rep+56CDNWkU24EtwaqX8v0IteMPIpO3dins/HqYHQwQDcx6xY1nUwemt/zjXPjIBB254T3Rw==
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.10.0.tgz#60fdc148128d33233313151f0b4c524839c0b4fa"
+  integrity sha512-okbqbaoJ+PkqPW5x3TCU/jrPsR6qY9Fq3XWAtvTVp3MRAlk/JaLP3iA3+WpEKxDg42qs0xQeHcUBFJU0tIsUzg==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
@@ -11656,7 +11656,12 @@ ovh-ui-angular@^3.10.0, ovh-ui-angular@^3.9.9:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
-ovh-ui-kit-bs@^2.1.1, ovh-ui-kit-bs@^2.1.2, ovh-ui-kit-bs@^2.2.0:
+ovh-ui-kit-bs@^2.1.1, ovh-ui-kit-bs@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.2.tgz#db57d085858228175fe3bf2a67154f371d2722e7"
+  integrity sha512-E3N+2XWY/ywCBp1Eg+rDOts3D1Poi5fm/yhfKYaE3ylEp0zJMsEVb3DEQ7eZTUQ7e3yk1tCh48bDrel/XpkJdA==
+
+ovh-ui-kit-bs@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.2.0.tgz#6c64d96326e88194a597ba333de8dc188268ba62"
   integrity sha512-ggt3UHSvUVmwu6EXrq6WIPQtFZrWan9cz72mp1GmHFOBmSCk0HIsbENoAXzAcNx+wdFFWov2DD8w7MgkmFZj0A==
