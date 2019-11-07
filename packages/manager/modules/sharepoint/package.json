@@ -16,7 +16,7 @@
     "@ovh-ux/web-universe-components": "^7.0.0",
     "angular": "^1.7.5",
     "ovh-api-services": "^9.24.1",
-    "ovh-ui-angular": "^3.9.10",
+    "ovh-ui-angular": "^3.10.0",
     "ovh-ui-kit": "^2.33.3"
   }
 }
