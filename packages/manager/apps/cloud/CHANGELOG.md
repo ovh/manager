@@ -1,3 +1,12 @@
+## [7.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.0...@ovh-ux/manager-cloud@7.36.1) (2019-11-07)
+
+
+### Bug Fixes
+
+* **vps:** remove useless lodash call ([#1736](https://github.com/ovh/manager/issues/1736)) ([db9fbe3](https://github.com/ovh/manager/commit/db9fbe368d9badcd81342fa4f8eef428a871b69b))
+
+
+
 # [7.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.35.1...@ovh-ux/manager-cloud@7.36.0) (2019-11-07)
 
 
