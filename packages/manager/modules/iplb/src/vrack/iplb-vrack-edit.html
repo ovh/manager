@@ -1,0 +1,101 @@
+<section class="cui-page__content">
+    <oui-back-button data-heading="{{ ::($ctrl.editing() ? 'iplb_vrack_private_network_edit_title' : 'iplb_vrack_private_network_add_title') | translate }}">
+    </oui-back-button>
+    <oui-spinner data-ng-if="$ctrl.isLoading()"></oui-spinner>
+    <form data-ng-if="!$ctrl.isLoading()" novalidate name="$ctrl.form">
+        <oui-field label="{{:: 'iplb_vrack_private_network_add_edit_field_display_name_label' | translate }}"
+                   size="l">
+            <input class="oui-input"
+                   type="text"
+                   id="displayName"
+                   name="displayName"
+                   data-ng-model="$ctrl.model.displayName.value"
+                   minlength="0"
+                   maxlength="100"
+                   data-ng-disabled="$ctrl.creationRules.data.status !== 'active'">
+        </oui-field>
+        <oui-field label="{{:: 'iplb_vrack_private_network_add_edit_field_vlan_label' | translate }}"
+                   help-text="{{:: 'iplb_vrack_private_network_add_edit_field_vlan_helper' | translate }}"
+                   size="xs">
+            <input class="oui-input"
+                   type="number"
+                   id="vlan"
+                   name="vlan"
+                   data-ng-model="$ctrl.model.vlan.value"
+                   minlength="0"
+                   maxlength="Infinity"
+                   data-ng-disabled="$ctrl.creationRules.data.status !== 'active'">
+        </oui-field>
+        <oui-field label="{{:: 'iplb_vrack_private_network_add_edit_field_subnet_label' | translate }}"
+                   help-text="{{:: 'iplb_vrack_private_network_add_edit_field_subnet_helper' | translate }}"
+                   size="s">
+            <input class="oui-input"
+                   type="text"
+                   id="subnet"
+                   name="subnet"
+                   data-ng-model="$ctrl.model.subnet.value"
+                   minlength="0"
+                   maxlength="Infinity"
+                   data-ng-disabled="$ctrl.creationRules.data.status !== 'active'">
+        </oui-field>
+        <oui-field label="{{:: 'iplb_vrack_private_network_add_edit_field_nat_ip_label' | translate }}"
+                   help-text="{{:: 'iplb_vrack_private_network_add_edit_field_nat_ip_helper' | translate }}"
+                   size="s">
+            <input class="oui-input"
+                   type="text"
+                   id="natIp"
+                   name="natIp"
+                   data-ng-model="$ctrl.model.natIp.value"
+                   minlength="0"
+                   maxlength="Infinity"
+                   data-ng-disabled="$ctrl.creationRules.data.status !== 'active'">
+        </oui-field>
+        <oui-spinner data-ng-if="$ctrl.privateNetworkFarms.loading || $ctrl.farms.loading"></oui-spinner>
+        <div class="oui-field"
+            data-ng-if="!$ctrl.privateNetworkFarms.loading && !$ctrl.farms.loading">
+            <div class="oui-field__label oui-label" data-translate="iplb_vrack_private_network_add_edit_field_farm_label"></div>
+            <div class="oui-field__content cui-key-value-input">
+                <div class="cui-key-value-input__container" data-ng-repeat="associatedFarm in $ctrl.model.farmId.value track by $index">
+                    <div class="oui-field">
+                        <label for="farmId{{ $index }}"
+                            class="oui-field__label oui-label cui-key-value-input__label"
+                            data-translate="iplb_vrack_private_network_add_edit_field_farm_description"></label>
+                        <div class="oui-field__content cui-key-value-input__field">
+                            <div class="oui-field-control oui-field-control_3">
+                                <label class="oui-select">
+                                    <select id="farmId{{ $index }}"
+                                        name="farmId{{ $index }}"
+                                        class="oui-select__input"
+                                        data-ng-model="associatedFarm.farmId"
+                                        ng-options="farm.farmId as farm.displayName for farm in $ctrl.getAvailableFarm(associatedFarm.farmId)">
+                                        <option value="" data-translate="iplb_select"></option>
+                                    </select>
+                                    <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cui-key-value-input__action">
+                        <div data-ng-show="$last" data-ng-if="$ctrl.canAddFarm()">
+                            <button class="oui-button oui-button_secondary"
+                                type="button"
+                                data-ng-click="$ctrl.addFarm()" >+</button>
+                        </div>
+                        <div data-ng-hide="$last">
+                            <button class="oui-button oui-button_secondary"
+                                type="button"
+                                data-ng-click="$ctrl.removeFarm($index)">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <oui-spinner data-ng-if="$ctrl.saving"></oui-spinner>
+        <oui-form-actions on-submit="$ctrl.submit()"
+                          on-cancel="$ctrl.previousState.go()"
+                          submit-text="{{:: (!$ctrl.editing() ? 'iplb_add' : 'iplb_modify') | translate }}"
+                          cancel-text="{{:: 'iplb_cancel' | translate }}"
+                          data-disabled="$ctrl.privateNetworkFarms.loading || $ctrl.farms.loading || $ctrl.saving">
+        </oui-form-actions>
+    </form>
+</section>

@@ -1,0 +1,89 @@
+@import 'ovh-ui-kit/packages/oui-color/_variables';
+
+@iplb-bullet-chart-height: 10px;
+@iplb-bullet-chart-foreground-info: @oui-color-info-dark;
+@iplb-bullet-chart-foreground-success: @oui-color-success-dark;
+@iplb-bullet-chart-foreground-warning: @oui-color-warning-dark;
+@iplb-bullet-chart-foreground-error: @oui-color-error-dark;
+@iplb-bullet-chart-background-info: lighten(@oui-color-info-dark, 20%);
+@iplb-bullet-chart-background-success: lighten(@oui-color-success-dark, 15%);
+@iplb-bullet-chart-background-warning: lighten(@oui-color-warning-dark, 25%);
+@iplb-bullet-chart-background-error: lighten(@oui-color-error-dark, 25%);
+@iplb-bullet-chart-modifiers: success, warning, error;
+
+.iplb-bullet-chart {
+  padding: @iplb-bullet-chart-height 0;
+  background-color: white;
+  text-align: center;
+
+  .iplb-bullet-chart-modifiers(@i: length(@iplb-bullet-chart-modifiers)) when (@i > 0) {
+    .iplb-bullet-chart-modifiers(@i - 1);
+    @current-modifier: extract(@iplb-bullet-chart-modifiers, @i);
+    @foreground-color: "iplb-bullet-chart-foreground-@{current-modifier}";
+    @background-color: "iplb-bullet-chart-background-@{current-modifier}";
+
+    &_@{current-modifier} {
+      .iplb-bullet-chart__content {
+        background-color: @@background-color;
+      }
+
+      .iplb-bullet-chart__bar {
+        background-color: @@foreground-color;
+      }
+    }
+  }
+  .iplb-bullet-chart-modifiers();
+
+  &__content {
+    position: relative;
+    margin: @iplb-bullet-chart-height 0;
+    height: @iplb-bullet-chart-height;
+    border-radius: @iplb-bullet-chart-height / 2;
+    background-color: @iplb-bullet-chart-foreground-info;
+  }
+
+  &__step25 {
+    position: absolute;
+    left: 25%;
+    top: 0;
+    margin-left: -1px;
+    width: 2px;
+    height: @iplb-bullet-chart-height;
+    background-color: white;
+  }
+
+  &__step50 {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -1px;
+    width: 2px;
+    height: @iplb-bullet-chart-height;
+    background-color: white;
+  }
+
+  &__step75 {
+    position: absolute;
+    left: 75%;
+    top: 0;
+    margin-left: -1px;
+    width: 2px;
+    height: @iplb-bullet-chart-height;
+    background-color: white;
+  }
+
+  &__bar {
+    height: @iplb-bullet-chart-height;
+    border-radius: @iplb-bullet-chart-height / 2;
+    background-color: #3f5167;
+  }
+
+  &__limit {
+    position: absolute;
+    height: @iplb-bullet-chart-height * 3;
+    width: 2px;
+    background-color: black;
+    margin-left: -1px;
+    top: -@iplb-bullet-chart-height;
+  }
+}
