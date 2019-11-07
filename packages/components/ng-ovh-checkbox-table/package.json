@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-checkbox-table",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Multi checkbox management for table",
   "keywords": [
     "angular",
