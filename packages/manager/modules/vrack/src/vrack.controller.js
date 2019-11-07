@@ -1,25 +1,25 @@
 import cloneDeep from 'lodash/cloneDeep';
-import last from 'lodash/last';
-import isObject from 'lodash/isObject';
-import mapValues from 'lodash/mapValues';
-import isArray from 'lodash/isArray';
-import map from 'lodash/map';
-import has from 'lodash/has';
-import groupBy from 'lodash/groupBy';
-import without from 'lodash/without';
-import forEach from 'lodash/forEach';
+import difference from 'lodash/difference';
+import find from 'lodash/find';
 import flatten from 'lodash/flatten';
-import values from 'lodash/values';
-import remove from 'lodash/remove';
+import forEach from 'lodash/forEach';
+import groupBy from 'lodash/groupBy';
+import has from 'lodash/has';
+import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
-import uniq from 'lodash/uniq';
-import find from 'lodash/find';
-import reject from 'lodash/reject';
-import difference from 'lodash/difference';
-import startsWith from 'lodash/startsWith';
-import merge from 'lodash/merge';
+import isObject from 'lodash/isObject';
 import keys from 'lodash/keys';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
+import merge from 'lodash/merge';
+import reject from 'lodash/reject';
+import remove from 'lodash/remove';
+import startsWith from 'lodash/startsWith';
+import uniq from 'lodash/uniq';
+import values from 'lodash/values';
+import without from 'lodash/without';
 
 import angular from 'angular';
 
@@ -29,8 +29,8 @@ import constant from './vrack.constant';
 import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
 
 export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
-  $state, $timeout, $translate, $uibModal, CucCloudMessage,
-  OvhApiVrack, OvhApiCloudProject, OvhApiMe, VrackService) {
+  $rootScope, $state, $timeout, $translate, $uibModal, CucCloudMessage,
+  OvhApiVrack, OvhApiMe, CucVrackService) {
   const self = this;
   const pollingInterval = 5000;
 
@@ -44,7 +44,7 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   self.descriptionOptions = { maxLength: 255 };
   self.changeOwnerUrl = null;
   self.vRackCloudRoadmapGuide = null;
-  self.vrackService = VrackService;
+  self.vrackService = CucVrackService;
   self.arrowIcon = arrowIcon;
 
   self.modals = {
@@ -481,18 +481,15 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
     self.nameEditing = false;
 
     OvhApiVrack.v6().edit({ serviceName: self.serviceName }, { name: self.name }).$promise
+      .then(() => $rootScope.$broadcast('global_display_name_change', {
+        serviceName: self.serviceName,
+        displayName: self.name,
+      }))
       .catch((err) => {
         self.name = self.nameBackup;
         CucCloudMessage.error([$translate.instant('vrack_error'), (err.data && err.data.message) || err.message || ''].join(' '));
       })
       .finally(() => {
-        /*
-        const menuItem = SidebarMenu.getItemById(self.serviceName);
-        if (menuItem) {
-          menuItem.title = self.name || self.serviceName;
-        }
-        */
-        // @TODO emit event
         self.nameBackup = null;
       });
   };
