@@ -4,4 +4,8 @@ import template from './hosting-sql-database-order.html';
 export default {
   controller,
   template,
+  bindings: {
+    goBack: '<',
+    user: '<',
+  },
 };
