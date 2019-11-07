@@ -290,7 +290,7 @@ export default class OvhPaymentMethodLegacy {
    *  @return {Promise}
    */
   challengePaymentMean(paymentMean, challenge) {
-    return this.getPaymentMeanResource(paymentMean.paymentType)
+    return this.getPaymentMeanResource(paymentMean.meanType)
       .challenge({
         id: paymentMean.id,
       }, { challenge }).$promise;
