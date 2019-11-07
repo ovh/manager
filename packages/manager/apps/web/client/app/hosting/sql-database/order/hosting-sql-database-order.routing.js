@@ -7,17 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     component: 'hostingSqlDatabaseOrder',
     resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'private_database'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
+      goBack: /* @ngInject */ goToHosting => goToHosting,
     },
   });
 };

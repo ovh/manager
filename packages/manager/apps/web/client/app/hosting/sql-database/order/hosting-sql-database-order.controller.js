@@ -14,7 +14,7 @@ export default class HostingSqlDatabaseOrderCtrl {
   constructor(
     $q, $scope, $stateParams, $timeout, $translate, $window,
     atInternet,
-    WucConverterService, Hosting, HostingDatabase, HostingOptionOrder, PrivateDatabase, User,
+    WucConverterService, Hosting, HostingDatabase, HostingOptionOrder, PrivateDatabase,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -29,7 +29,6 @@ export default class HostingSqlDatabaseOrderCtrl {
     this.HostingDatabase = HostingDatabase;
     this.HostingOptionOrder = HostingOptionOrder;
     this.PrivateDatabase = PrivateDatabase;
-    this.User = User;
   }
 
   $onInit() {
@@ -66,10 +65,6 @@ export default class HostingSqlDatabaseOrderCtrl {
     };
 
     this.load();
-
-    this.User.getUser().then((user) => {
-      this.user = user;
-    });
 
     console.log(this);
   }
@@ -192,7 +187,6 @@ export default class HostingSqlDatabaseOrderCtrl {
     this.model.ram = null;
     this.model.dbPack = null;
     this.model.hosting = null;
-    this.getDuration();
     this.resetOrder();
   }
 
@@ -202,7 +196,6 @@ export default class HostingSqlDatabaseOrderCtrl {
     }
 
     this.setDatacenter();
-    this.getDuration();
     this.checkFreeDbOffer();
   }
 
