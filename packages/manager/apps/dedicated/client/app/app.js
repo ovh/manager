@@ -42,6 +42,7 @@ import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import ovhManagerVrack from '@ovh-ux/manager-vrack';
+import ovhManagerIplb from '@ovh-ux/manager-iplb';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -113,6 +114,7 @@ angular
     'ovh-angular-responsive-tabs',
     'ovh-api-services',
     ovhManagerPccDashboard,
+    ovhManagerIplb,
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
     ovhManagerSupport,
