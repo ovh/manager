@@ -40,6 +40,7 @@ import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
+import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -121,6 +122,7 @@ angular
     ovhManagerNasha,
     ovhManagerNavbar,
     ovhManagerVps,
+    ovhManagerVrack,
     ovhPaymentMethod,
     'pascalprecht.translate',
     preload,
