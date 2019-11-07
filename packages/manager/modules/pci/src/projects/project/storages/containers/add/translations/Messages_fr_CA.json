@@ -1,5 +1,6 @@
 {
   "pci_projects_project_storages_containers_add_title": "Créer un conteneur d'objets",
+  "pci_projects_project_storages_containers_add_archive_title": "Créer un conteneur d'archive",
   "pci_projects_project_storages_containers_add_region_title": "Sélectionnez une localisation",
   "pci_projects_project_storages_containers_add_type_title": "Sélectionnez un type de conteneur",
   "pci_projects_project_storages_containers_add_type_static_label": "Hébergement statique",

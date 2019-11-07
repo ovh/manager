@@ -14,5 +14,6 @@
   "pci_projects_project_storages_containers_add_cancel_label": "Cancelar",
   "pci_projects_project_storages_containers_add_save_form": "Creando el contenedor...",
   "pci_projects_project_storages_containers_add_success_message": "Se ha añadido el contenedor {{ container }}.",
-  "pci_projects_project_storages_containers_add_error_post": "Se ha producido un error al añadir el contenedor {{ container }}: {{ message }}."
+  "pci_projects_project_storages_containers_add_error_post": "Se ha producido un error al añadir el contenedor {{ container }}: {{ message }}.",
+  "pci_projects_project_storages_containers_add_archive_title": "Crear un contenedor de archivos"
 }

@@ -137,5 +137,6 @@
   "billing_autorenew_service_date_now": "Sofort",
   "billing_autorenew_service_terminate_webcoach": "WebCoach löschen",
   "billing_autorenew_service_type_WEBCOACH": "WebCoach",
-  "billing_autorenew_service_type_webcoach": "WebCoach"
+  "billing_autorenew_service_type_webcoach": "WebCoach",
+  "billing_autorenew_service_actions": "Aktionen"
 }
