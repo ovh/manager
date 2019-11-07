@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-q-allsettled",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "Copy of kriskowal/q for ovh control panels",
   "keywords": [
     "angular",
