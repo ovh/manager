@@ -26,7 +26,7 @@
   "orders_order_status_filter_expired": "Abgelaufen ",
   "orders_order_loading_error": "Fehler beim Abruf dieser Bestellung",
   "orders_search_input_title": "Per ID nach meinen Bestellungen suchen.",
-  "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung.",
-  "orders_order_action_retract": "Die Bestellung stornieren",
+  "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung",
+  "orders_order_action_retract": "Bestellung stornieren",
   "orders_tracking": "Bestellungsnachverfolgung"
 }
