@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-payment-method",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Get payment methods from different OVHcloud APIs",
   "keywords": [
     "angularjs",
@@ -44,7 +44,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.4.0",
+    "@ovh-ux/manager-core": "^7.5.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
