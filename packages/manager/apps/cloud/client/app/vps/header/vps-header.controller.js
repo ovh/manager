@@ -81,7 +81,7 @@ export default class {
       ),
       feature => ({
         textId: `vps_tab_${snakeCase(feature)}`,
-        state: `iaas.vps.detail.${snakeCase(feature)}`,
+        state: `iaas.vps.detail.${feature}`,
       }),
     );
   }
