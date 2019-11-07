@@ -146,7 +146,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   };
 
   self.getBulkParams = function getBulkParams() {
-    return pickBy(self.directoryForm, (value, key) => get(self.directoryProperties, [key, 'readOnly']) === 0);
+    return pickBy(self.directoryForm, (value, key) => !get(self.directoryProperties, [key, 'readOnly']));
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {
