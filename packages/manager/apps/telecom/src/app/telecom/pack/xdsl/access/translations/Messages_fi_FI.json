@@ -104,7 +104,10 @@
   "xdsl_access_amount_upload": "Volume émis dans le mois",
   "xdsl_details_action": "Actions",
   "xdsl_details_transfert": "Modifier mon offre",
-  "xdsl_modem_comfort_exchange_subtitle": "Modem exchange",
+  "xdsl_modem_comfort_exchange_subtitle": "Comfort modem exchange",
   "xdsl_modem_exchange": "Exchange my modem",
-  "xdsl_modem_exchange_title": "Exchange"
+  "xdsl_modem_exchange_title": "Exchange",
+  "xdsl_modem_comfort_exchange_description_part1": "You can exchange your existing modem with a Zyxel VMG8824 modem.",
+  "xdsl_modem_comfort_exchange_description_part2": "The cost of exchanging it will be €70 ex. VAT (€84 incl. VAT).",
+  "xdsl_modem_comfort_exchange_description_part3": "The new modem will be sent automatically to the connection address."
 }
