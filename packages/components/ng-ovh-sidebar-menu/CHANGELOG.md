@@ -1,3 +1,7 @@
+## [8.4.5](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.4...v8.4.5) (2019-11-08)
+
+
+
 ## [8.4.4](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.3...v8.4.4) (2019-10-25)
 
 
