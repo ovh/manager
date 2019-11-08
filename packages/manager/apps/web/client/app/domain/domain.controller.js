@@ -15,8 +15,10 @@ angular.module('App').controller(
       Alerter,
       constants,
       Domain,
+      associatedHostings,
       goToWebhostingOrder,
       Hosting,
+      orderedHosting,
       User,
       WucAllDom,
     ) {
@@ -30,8 +32,10 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.Domain = Domain;
+      this.associatedHostings = associatedHostings;
       this.goToWebhostingOrder = goToWebhostingOrder;
       this.Hosting = Hosting;
+      this.orderedHosting = orderedHosting;
       this.User = User;
       this.WucAllDom = WucAllDom;
     }
@@ -161,7 +165,8 @@ angular.module('App').controller(
           return this.$q.allSettled([
             this.Hosting.getHosting(domain.name, [404])
               .then((data) => {
-                this.canOrderHosting = data === null;
+                this.canOrderHosting = data === null
+                  && !this.orderedHosting;
               })
               .catch(() => {
                 this.canOrderHosting = false;
