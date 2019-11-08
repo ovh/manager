@@ -1,3 +1,12 @@
+## [7.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.1...@ovh-ux/manager-cloud@7.36.2) (2019-11-08)
+
+
+### Bug Fixes
+
+* **cloud.vps:** fix owner change url ([#1747](https://github.com/ovh/manager/issues/1747)) ([0ecb29b](https://github.com/ovh/manager/commit/0ecb29b18c009cb3c7ee3ede75ffb7bd8cacd955))
+
+
+
 ## [7.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.0...@ovh-ux/manager-cloud@7.36.1) (2019-11-07)
 
 
