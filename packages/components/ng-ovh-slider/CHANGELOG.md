@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-slider/compare/v1.0.0...v1.0.1) (2019-11-08)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-slider/compare/0.2.3...1.0.0) (2019-03-06)
 
 
