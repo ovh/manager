@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-jquery-ui-draggable/compare/v1.0.0...v1.0.1) (2019-11-08)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-jquery-ui-draggable/compare/0.0.5...1.0.0) (2019-03-07)
 
 
