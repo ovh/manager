@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import flatten from 'lodash/flatten';
@@ -101,7 +100,8 @@ export default /* @ngInject */ function (
   self.highlightUpdatedServices = function highlightUpdatedServices(services) {
     forEach(services, (service) => {
       forEach(self.billingAccounts, (billingAccount) => {
-        const findService = find(billingAccount.services, bind('serviceName', service.serviceName));
+        const findService = find(billingAccount.services,
+          ({ serviceName }) => serviceName === service.serviceName);
         if (findService) {
           findService.hasUpdate = true;
         }

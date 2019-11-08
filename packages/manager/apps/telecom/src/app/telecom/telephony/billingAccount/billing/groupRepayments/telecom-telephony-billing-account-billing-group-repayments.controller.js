@@ -57,8 +57,8 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingGr
 
         // repayable
         const repayable = filter(self.consumptions.all, 'repayable');
-        self.consumptions.repayable.price = repayable.pluck('price').sum().floor(2).value();
-        self.consumptions.repayable.call = repayable.size().value();
+        self.consumptions.repayable.price = floor(sumBy(repayable, 'price'), 2);
+        self.consumptions.repayable.call = size(repayable);
         self.consumptions.hasAmountAvailable = find(self.consumptions.raw, 'repayable');
 
         // deferred
