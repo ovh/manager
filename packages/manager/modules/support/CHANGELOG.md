@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.1...@ovh-ux/manager-support@0.4.2) (2019-11-08)
+
+
+### Bug Fixes
+
+* **support:** handle impactedResource for kubernetes ([#1749](https://github.com/ovh/manager/issues/1749)) ([1056601](https://github.com/ovh/manager/commit/10566015a954d555981eb661e4717a96afdb9efb))
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.0...@ovh-ux/manager-support@0.4.1) (2019-10-28)
 
 
