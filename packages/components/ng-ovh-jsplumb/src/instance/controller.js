@@ -151,7 +151,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
 
   this.getConnections = function getConnections(id) {
     const connections = $scope.instance.getAllConnections();
-    return filter(connections, conn => (conn.sourceId === id) || (conn.targetId === id));
+    return filter(connections, (conn) => (conn.sourceId === id) || (conn.targetId === id));
   };
 
   this.connectionExists = function connectionExists(sourceId, targetId) {
@@ -168,7 +168,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
 
     // Create new connections
     self.connectionForecast
-      .filter(conn => (conn.sourceId === newId) || (conn.targetId === newId))
+      .filter((conn) => (conn.sourceId === newId) || (conn.targetId === newId))
       .forEach((conn) => {
         $scope.instance.connect({
           source: conn.sourceId,
