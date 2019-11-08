@@ -86,7 +86,7 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('app.domain.product.webhosting.order', {
       url: '/order',
       views: {
-        'webhostingView@app.domain.product.webhosting': {
+        'domainView@app.domain.product': {
           component: component.name,
         },
       },
@@ -99,7 +99,7 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('app.domain.alldom.webhosting.order', {
       url: '/order',
       views: {
-        'webhostingView@app.domain.alldom.webhosting': {
+        'domainView@app.domain.alldom': {
           component: component.name,
         },
       },

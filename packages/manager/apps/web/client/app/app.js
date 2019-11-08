@@ -44,9 +44,7 @@ import orderPaymentMeans from './components/manager-order-payment-means';
 import orderService from './components/manager-order-service/manager-order-service.service';
 
 import domain from './domain';
-import domainEmailObfuscation from './domain/email-obfuscation/index';
-import domainOptin from './domain/optin/index';
-import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
+
 import domainDnsZone from './dns-zone';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
@@ -110,9 +108,6 @@ angular
     'Module.emailpro',
     domain,
     domainDnsZone,
-    domainEmailObfuscation,
-    domainZoneActivation,
-    domainOptin,
     errorPage,
     hosting,
     orderCatalogPrice,

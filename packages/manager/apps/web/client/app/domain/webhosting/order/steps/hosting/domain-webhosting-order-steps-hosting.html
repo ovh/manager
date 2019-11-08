@@ -12,11 +12,10 @@
     </oui-switch>
     <span>&nbsp;</span>
     <span data-translate="domain_webhosting_order_hosting_step_details"></span>
-    <div class="row d-md-flex my-3"
-         data-ng-repeat="chunkOffers in ::$ctrl.availableOffers track by $index">
+    <div class="row d-md-flex flex-wrap">
         <div
-            class="col-md-4"
-            data-ng-repeat="offer in ::chunkOffers track by offer.planCode">
+            class="col-md-4 my-3"
+            data-ng-repeat="offer in ::$ctrl.availableOffers track by offer.planCode">
             <oui-select-picker
                 class="h-100"
                 data-name="{{:: offer.planCode }}"

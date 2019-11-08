@@ -1,7 +1,4 @@
-import chunk from 'lodash/chunk';
 import sortBy from 'lodash/sortBy';
-
-import { OPTIONS_DETAILS } from './domain-webhosting-order-steps-hosting.constants';
 
 export default class {
   /* @ngInject */
@@ -11,24 +8,14 @@ export default class {
 
   $onInit() {
     this.showDetails = true;
-    this.availableOffers = chunk(
-      sortBy(
-        this.availableOffers.map((offer) => {
-          const order = OPTIONS_DETAILS
-            .find(({ label }) => label === offer.planCode);
-
-          Object.assign(
-            offer,
-            {
-              id: order ? order.id : null,
-              guideUrl: this.constants.urls.hosting[this.user.ovhSubsidiary],
-            },
-          );
-          return offer;
-        }),
-        'id',
-      ),
-      3,
+    this.availableOffers = sortBy(
+      this.availableOffers.map(offer => Object.assign(
+        offer,
+        {
+          guideUrl: this.constants.urls.hosting[this.user.ovhSubsidiary],
+        },
+      )),
+      'pricing.price',
     );
   }
 
