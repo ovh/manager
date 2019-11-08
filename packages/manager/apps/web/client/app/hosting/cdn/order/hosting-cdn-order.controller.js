@@ -50,10 +50,7 @@ export default class {
     );
   }
 
-  getDuration(_interval_) {
-    const interval = _interval_.toString();
-    const duration = this.$filter('wucDuration')(interval, 'longDate');
-
-    return duration;
+  getDuration(interval) {
+    return this.$filter('wucDuration')(interval.toString(), 'longDate');
   }
 }
