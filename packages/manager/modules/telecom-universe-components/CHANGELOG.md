@@ -1,3 +1,12 @@
+## [4.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.2.0...@ovh-ux/ng-ovh-telecom-universe-components@4.2.1) (2019-11-08)
+
+
+### Bug Fixes
+
+* **telephony:** bulk actions ([#1730](https://github.com/ovh/manager/issues/1730)) ([e087694](https://github.com/ovh/manager/commit/e087694ef9685bfc6b1df56e0af74bbfb077ebd8))
+
+
+
 # [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.1.5...@ovh-ux/ng-ovh-telecom-universe-components@4.2.0) (2019-11-05)
 
 
