@@ -13,7 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'GENERAL_INFORMATIONS',
     },
     resolve: {
-      goToDashboard: /* @ngInject */ ($state, $timeout, Alerter) => (message = false, type = 'success') => {
+      goToDashboard: /* @ngInject */ (
+        $state,
+        Alerter,
+      ) => (message = false, type = 'success') => {
         const promise = $state.go('app.domain.product.information');
 
         if (message) {
@@ -37,7 +40,10 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'GENERAL_INFORMATIONS',
     },
     resolve: {
-      goToDashboard: /* @ngInject */ ($state, Alerter) => (message = false, type = 'success') => {
+      goToDashboard: /* @ngInject */ (
+        $state,
+        Alerter,
+      ) => (message = false, type = 'success') => {
         const promise = $state.go('app.domain.alldom.information');
 
         if (message) {
