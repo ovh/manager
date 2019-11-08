@@ -176,13 +176,26 @@ export default class SupportNewIssuesFormController {
       name: `answer-finding-${isSuccess ? 'yes' : 'no'}`,
       type: 'action',
     });
+
+    const service = {
+      ...this.currentServiceName,
+      serviceName: this.serviceType.name === 'kube'
+        ? this.currentServiceName.url.match(/\/([a-f0-9]*)\//)[1]
+        : this.currentServiceName.serviceName,
+    };
+
+    const impactedResource = this.serviceType.name === 'kube'
+      ? this.currentServiceName.url.match(/\/((?:[a-f0-9]*-)+[a-f0-9]*)\//)[1]
+      : undefined;
+
     this.onSubmit({
       result: {
         isSuccess,
         issue: this.issue,
         category: this.category,
         serviceType: this.serviceType,
-        service: this.currentServiceName,
+        service,
+        impactedResource,
       },
     });
   }

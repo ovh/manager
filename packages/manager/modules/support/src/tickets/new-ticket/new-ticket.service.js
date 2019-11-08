@@ -57,13 +57,14 @@ export const definition = class SupportNewTicketService {
     return head + body;
   }
 
-  createTicket(issue, subject, serviceName, urgency) {
+  createTicket(issue, subject, serviceName, urgency, impactedResource) {
     return this.OvhApiSupport.v6().createTickets({}, {
       issueTypeId: issue.id,
       serviceName,
       subject,
       body: SupportNewTicketService.createTicketBody(issue),
       urgency: get(urgency, 'id'),
+      impactedResource,
     }).$promise;
   }
 };

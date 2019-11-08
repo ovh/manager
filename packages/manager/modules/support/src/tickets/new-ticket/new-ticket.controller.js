@@ -37,6 +37,7 @@ export default class SupportNewController {
       this.step = 'creation';
       this.issue = result.issue;
       this.service = result.service;
+      this.impactedResource = result.impactedResource;
       this.$window.scrollTo(0, 0);
     }
   }
@@ -50,6 +51,7 @@ export default class SupportNewController {
         result.subject,
         get(this.service, 'serviceName'),
         get(result, 'urgency'),
+        this.impactedResource,
       )
         .then(({ ticketId }) => this.SupportNewTicketService.getTicket(ticketId))
         .then((ticket) => {
