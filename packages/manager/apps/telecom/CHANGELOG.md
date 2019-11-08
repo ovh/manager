@@ -1,3 +1,13 @@
+## [10.40.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.3...@ovh-ux/manager-telecom@10.40.4) (2019-11-08)
+
+
+### Bug Fixes
+
+* **telephony:** bulk actions ([#1730](https://github.com/ovh/manager/issues/1730)) ([e087694](https://github.com/ovh/manager/commit/e087694ef9685bfc6b1df56e0af74bbfb077ebd8))
+* **telephony:** sva group repayments ([#1733](https://github.com/ovh/manager/issues/1733)) ([9f0d2b8](https://github.com/ovh/manager/commit/9f0d2b8df3e5bc4bd49b279e8ab7335bd7b00ff9))
+
+
+
 ## [10.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.2...@ovh-ux/manager-telecom@10.40.3) (2019-11-05)
 
 
