@@ -43,5 +43,7 @@
   "telephony_alias_portabilities_cancel_doing": "Annullamento in corso...",
   "telephony_alias_portabilities_cancel_success": "La demande de portabilité a bien été annulée.",
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
-  "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités en cours."
+  "telephony_alias_portabilities_load_error": "Ops! Si è verificato un errore durante il caricamenti delle portabilità: {{error}}.",
+  "telephony_alias_portabilities_attach_form": "Allega il tuo modulo di richiesta della portabilità firmato",
+  "telephony_alias_portabilities_attach_info": "Riservato alle richieste di portabilità senza codice di migrazione."
 }

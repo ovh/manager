@@ -70,5 +70,6 @@
   "telephony_line_phone_programmableKeys_bulk_error_details": "Cette fonction n'est pas supportée par ce téléphone",
   "telephony_line_phone_programmableKeys_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification de la configuration des touches.",
   "telephony_line_phone_programmableKeys_available_function_param_select": "Seleccione un parámetro",
-  "telephony_line_phone_programmableKeys_FAX": "Fax"
+  "telephony_line_phone_programmableKeys_FAX": "Fax",
+  "telephony_line_phone_programmableKeys_customLabel_title": "Realizado"
 }

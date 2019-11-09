@@ -847,5 +847,6 @@
   "email_tab_modal_delete_redirection_heading": "Stai per eliminare il reindirizzamento:",
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> verso <strong>{1}</strong>",
   "emails_common_continue_question": "Vuoi continuare?",
-  "emails_common_account_name_conditions": "Attenzione, il nome dell'account deve rispettare questi requisiti: <br/>- Min. {0} caratteri<br/>- Max. {1} caratteri<br/>- Nessuno spazio<br/>- Nessun carattere accentato<br/>- Nessun carattere speciale tranne ., - e _."
+  "emails_common_account_name_conditions": "Attenzione, il nome dell'account deve rispettare questi requisiti: <br/>- Min. {0} caratteri<br/>- Max. {1} caratteri<br/>- Nessuno spazio<br/>- Nessun carattere accentato<br/>- Nessun carattere speciale tranne ., - e _.",
+  "emailpro_ACTION_update_account_step1_password_contains_space": "La password non può contenere spazi."
 }
