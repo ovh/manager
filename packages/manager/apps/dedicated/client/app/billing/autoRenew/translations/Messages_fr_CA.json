@@ -18,6 +18,7 @@
   "billing_autorenew_service_expiration_weeks": "Expirant dans une semaine",
   "billing_autorenew_service_expiration_months": "Expirant dans un mois",
   "billing_autorenew_service_expiration_renew_month": "Renouvelés dans un mois",
+  "billing_autorenew_service_actions": "Actions",
 
   "billing_autorenew_criterion_serviceType": "Service",
   "billing_autorenew_criterion_status": "Statut",

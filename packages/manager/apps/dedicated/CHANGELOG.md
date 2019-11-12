@@ -1,3 +1,12 @@
+## [10.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.7...@ovh-ux/manager-dedicated@10.27.8) (2019-11-06)
+
+
+### Bug Fixes
+
+* **server.dns.add:** add validation ([#1723](https://github.com/ovh/manager/issues/1723)) ([7ba131e](https://github.com/ovh/manager/commit/7ba131ed625af029928f5025be0a045983cfefd5))
+
+
+
 ## [10.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.6...@ovh-ux/manager-dedicated@10.27.7) (2019-11-06)
 
 

@@ -107,6 +107,10 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
                 key.parameterLabel = `${line.description} (${key.parameter})`;
               }
             }
+            const customLabel = find(this.line.phone.configurations, { name: `KeyLabel${key.keyNum}` });
+            if (customLabel) {
+              key.customLabel = customLabel.value;
+            }
             return key;
           });
           this.functionKeys.raw.sort(this.constructor.sortFunctionKeys);

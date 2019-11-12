@@ -36,6 +36,7 @@ import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
+import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -49,7 +50,6 @@ import preload from './components/manager-preload/manager-preload.module';
 import dedicatedServerBandwidth from './dedicated/server/bandwidth/bandwidth.module';
 import dedicatedServerInterfaces from './dedicated/server/interfaces/interfaces.module';
 import dedicatedServerServers from './dedicated/server/servers/servers.module';
-
 
 Environment.setRegion(__WEBPACK_REGION__);
 Environment.setVersion(__VERSION__);
@@ -108,6 +108,7 @@ angular
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
     ovhManagerSupport,
+    ovhManagerVeeamEnterprise,
     ngTailLogs,
     'ovhBrowserAlert',
     ovhContacts,

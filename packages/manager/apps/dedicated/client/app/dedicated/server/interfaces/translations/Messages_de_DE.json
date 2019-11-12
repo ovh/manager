@@ -69,5 +69,7 @@
   "dedicated_server_interfaces_bandwith_title": "Bandbreite",
   "dedicated_server_interfaces_bandwith_description": "Was die öffentliche Bandbreite (von und zum Internet) betrifft, ist die eingehende Bandbreite unbegrenzt. Sie können die öffentliche und private Bandbreite erhöhen, indem Sie eine Option bestellen",
   "dedicated_server_interfaces_bandwith_public": "Öffentliche Bandbreite",
-  "dedicated_server_interfaces_bandwith_private": "Private Bandbreite"
+  "dedicated_server_interfaces_bandwith_private": "Private Bandbreite",
+  "dedicated_server_interfaces_guides": "Anleitungen",
+  "dedicated_server_interfaces_guides_ola": "Wie wird OLA konfiguriert?"
 }

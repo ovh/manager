@@ -1,0 +1,84 @@
+<section class="container-fluid cui-page__content cui-page__content-flex">
+    <div class="row d-lg-flex">
+        <div class="col-xm-12 col-md-4">
+            <oui-tile data-heading="{{ ::'veeam_enterprise_shortcut_title' | translate }}" class="h-100 oui-tile-h-100">
+                <oui-tile-button
+                    data-text="{{ ::'veeam_enterprise_shortcut_label_activate_license' | translate }}"
+                    data-on-click="$ctrl.activateLicense()">
+                </oui-tile-button>
+                <oui-tile-button
+                    data-text="{{ ::'veeam_enterprise_shortcut_label_update_informations' | translate }}"
+                    data-on-click="$ctrl.updateLicense()">
+                </oui-tile-button>
+                <oui-tile-button
+                    data-text="{{ ::'veeam_enterprise_shortcut_label_cancel_license' | translate }}"
+                    data-on-click="$ctrl.terminateLicense()">
+                </oui-tile-button>
+            </oui-tile>
+        </div>
+
+        <div class="col-xm-12 col-md-4">
+            <oui-tile class="h-100 oui-tile-h-100"
+                data-heading="{{ ::'veeam_enterprise_configuration_title' | translate }}"
+                data-loading="$ctrl.configurationInfos.loading">
+                <oui-tile-definition
+                    data-term="{{ ::'veeam_enterprise_configuration_label_name' | translate }}"
+                    data-description="{{ ::$ctrl.configurationInfos.data.serviceName }}">
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'veeam_enterprise_configuration_label_source_ip' | translate }}"
+                    data-description="{{ ::$ctrl.configurationInfos.data.sourceIp }}">
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'veeam_enterprise_configuration_label_ip' | translate }}"
+                    data-description="{{ ::$ctrl.configurationInfos.data.ip }}">
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'veeam_enterprise_configuration_label_port' | translate }}"
+                    data-description="{{ ::$ctrl.configurationInfos.data.port }}">
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-xm-12 col-md-4">
+            <oui-tile class="oui-tile-h-100 h-100"
+                data-heading="{{ ::'veeam_enterprise_tile_subscription' | translate }}"
+                data-loading="$ctrl.subscriptionInfos.loading">
+                <oui-tile-definition
+                    data-term="{{ ::($ctrl.subscriptionInfos.data.renew.forced || $ctrl.subscriptionInfos.data.renew.automatic) ? 'veeam_enterprise_tile_subscription_autorenew' : 'veeam_enterprise_tile_subscription_expiration_date' | translate }}"
+                    data-description="{{ ::$ctrl.subscriptionInfos.data.expiration  }}">
+                    <oui-action-menu data-compact data-align="end"
+                        data-ng-if="$ctrl.uiActions.manageAutorenew.isAvailable()">
+                        <oui-action-menu-item data-text="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
+                            aria-label="{{ ::$ctrl.uiActions.manageAutorenew.text }}"
+                            data-href="{{ $ctrl.uiActions.manageAutorenew.href }}">
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{::'veeam_enterprise_tile_subscription_contact' | translate}}">
+                    <oui-tile-description>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span data-ng-bind="::$ctrl.subscriptionInfos.data.contactAdmin"></span>
+                                <small data-translate="veeam_enterprise_tile_subscription_contact_admin"></small>
+                            </li>
+                            <li>
+                                <span data-ng-bind="::$ctrl.subscriptionInfos.data.contactBilling"></span>
+                                <small data-translate="veeam_enterprise_tile_subscription_contact_billing"></small>
+                            </li>
+                            <li>
+                                <span data-ng-bind="::$ctrl.subscriptionInfos.data.contactTech"></span>
+                                <small data-translate="veeam_enterprise_tile_subscription_contact_technical"></small>
+                            </li>
+                        </ul>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'veeam_enterprise_tile_subscription_creation_date' | translate }}"
+                    data-description="{{ ::$ctrl.subscriptionInfos.data.creation  }}">
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</section>

@@ -1,3 +1,30 @@
+## [7.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.1...@ovh-ux/manager-cloud@7.36.2) (2019-11-08)
+
+
+### Bug Fixes
+
+* **cloud.vps:** fix owner change url ([#1747](https://github.com/ovh/manager/issues/1747)) ([0ecb29b](https://github.com/ovh/manager/commit/0ecb29b18c009cb3c7ee3ede75ffb7bd8cacd955))
+
+
+
+## [7.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.0...@ovh-ux/manager-cloud@7.36.1) (2019-11-07)
+
+
+### Bug Fixes
+
+* **vps:** remove useless lodash call ([#1736](https://github.com/ovh/manager/issues/1736)) ([db9fbe3](https://github.com/ovh/manager/commit/db9fbe368d9badcd81342fa4f8eef428a871b69b))
+
+
+
+# [7.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.35.1...@ovh-ux/manager-cloud@7.36.0) (2019-11-07)
+
+
+### Features
+
+* **cloud.logs:** prepare network bulk management ([#1714](https://github.com/ovh/manager/issues/1714)) ([247b9f2](https://github.com/ovh/manager/commit/247b9f2374eaaf1b60d4ac26cabccbeabbeff789))
+
+
+
 ## [7.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.35.0...@ovh-ux/manager-cloud@7.35.1) (2019-11-05)
 
 

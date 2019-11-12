@@ -1,0 +1,12 @@
+{
+  "portabilities_attach_title": "Allega il modulo di richiesta della portabilità",
+  "portabilities_attach_action": "File modulo di richiesta della portabilità",
+  "portabilities_attach_invalid_format": "Formato del file non valido",
+  "portabilities_attach_file_format": "Dimensione massima: 10 MB, formato autorizzato: PDF",
+  "portabilities_attach_processing": "Allegazione del modulo di richiesta della portabilità in corso...",
+  "portabilities_attach_document_processing": "Allegazione del documento in corso...",
+  "portabilities_attach_document_succeed": "L’allegazione del documento è stata effettuata correttamente.",
+  "portabilities_attach_document_failed": "L’allegazione del documento non è andata a buon fine.",
+  "portabilities_attach_submit": "Conferma",
+  "portabilities_attach_cancel": "Annulla"
+}

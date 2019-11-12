@@ -4,5 +4,7 @@
   "sign_up_activity_field_corporationType": "Typ działalności",
   "sign_up_activity_field_nationalIdentificationNumber": "Krajowy numer identyfikacyjny",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Krajowy numer identyfikacyjny",
-  "sign_up_activity_field_italian_sdi": "Numer identyfikacji podatkowej"
+  "sign_up_activity_field_italian_sdi": "Kod nabywcy na fakturze elektronicznej (SDI)",
+  "sign_up_activity_field_vat_it": "Numer VAT",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Krajowy numer identyfikacyjny (SIREN)"
 }

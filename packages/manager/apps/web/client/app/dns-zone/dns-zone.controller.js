@@ -7,7 +7,6 @@ class DnsZoneCtrl {
        * @param $timeout
        * @param Alerter
        * @param Domain
-       * @param WucProducts
        * @param currentSection
        */
   /* @ngInject */
@@ -18,7 +17,6 @@ class DnsZoneCtrl {
     $translate,
     Alerter,
     Domain,
-    WucProducts,
     currentSection,
   ) {
     this.$scope = $scope;
@@ -27,7 +25,6 @@ class DnsZoneCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.Domain = Domain;
-    this.WucProducts = WucProducts;
     this.currentSection = currentSection;
   }
 

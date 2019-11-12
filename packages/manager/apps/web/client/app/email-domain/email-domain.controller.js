@@ -8,16 +8,14 @@ angular.module('App').controller(
      * @param $timeout
      * @param $translate
      * @param Alerter
-     * @param WucEmails
      */
-    constructor($scope, $stateParams, $timeout, $translate, Alerter, WucEmails, WucProducts) {
+    constructor($scope, $stateParams, $timeout, $translate, Alerter, WucEmails) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
       this.$translate = $translate;
       this.Alerter = Alerter;
       this.WucEmails = WucEmails;
-      this.WucProducts = WucProducts;
     }
 
     $onInit() {

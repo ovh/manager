@@ -18,7 +18,7 @@
   "telephony_alias_portabilities_step_status_doing": "En cours...",
   "telephony_alias_portabilities_step_status_done": "Terminé",
   "telephony_alias_portabilities_step_status_error": "En erreur",
-  "telephony_alias_portabilities_step_status_todo": "Planifié",
+  "telephony_alias_portabilities_step_status_todo": "Plannifié",
   "telephony_alias_portabilities_step_name_acknowledgmentReceivedFromOperator": "Accusé de l'opérateur reçu",
   "telephony_alias_portabilities_step_name_belgiumPortabilityRequestCreated": "Envoi de la demande à l'opérateur cédant",
   "telephony_alias_portabilities_step_name_belgiumPortabilityRequestExecutionAcked": "Exécution de la portabilité effectuée",
@@ -43,5 +43,7 @@
   "telephony_alias_portabilities_cancel_doing": "Annulation en cours…",
   "telephony_alias_portabilities_cancel_success": "La demande de portabilité a bien été annulée.",
   "telephony_alias_portabilities_cancel_error": "Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.",
-  "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités en cours."
+  "telephony_alias_portabilities_load_error": "Oups ! Une erreur est survenue lors du chargement des portabilités : {{error}}.",
+  "telephony_alias_portabilities_attach_form": "Attacher mon mandat de portabilité signé",
+  "telephony_alias_portabilities_attach_info": "Uniquement pour les demandes de portabilité sans RIO."
 }

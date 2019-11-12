@@ -200,7 +200,7 @@ export const PAAS_CONFIG = {
   loadOnState: [
     'paas.cda',
     'paas.veeam.detail',
-    'paas.veeam-enterprise',
+    'veeam-enterprise',
   ],
   types: [
     {
@@ -224,10 +224,10 @@ export const PAAS_CONFIG = {
     },
     {
       path: '/veeam/veeamEnterprise',
-      state: 'paas.veeam-enterprise.dashboard',
+      state: 'veeam-enterprise.dashboard',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-veeam',
-      app: [CLOUD],
+      app: [DEDICATED],
       regions: ['EU'],
       searchKeys: ['Veeam Enterprise', 'VEEAM_ENTERPRISE'],
     },

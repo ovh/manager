@@ -1,5 +1,5 @@
 {
- "sign_up_identity_field_name": "Apellidos",
- "sign_up_identity_field_firstname": "Nombre",
- "sign_up_identity_field_email": "Correo electrónico"
+  "sign_up_identity_field_name": "Apellidos",
+  "sign_up_identity_field_firstname": "Nombre",
+  "sign_up_identity_field_email": "Dirección de correo electrónico"
 }
