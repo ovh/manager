@@ -67,8 +67,8 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
         agentsStatus: self.fetchAgentsLiveStatus(queueId),
       }).then((result) => {
         self.stats = result.stats;
-        self.calls = result.calls;
-        self.agentsStatus = result.agentsStatus;
+        self.calls = result.calls.sort((a, b) => (a.begin > b.begin ? 1 : -1));
+        self.agentsStatus = result.agentsStatus.sort((a, b) => (a.agentId > b.agentId ? 1 : -1));
       });
     };
 
