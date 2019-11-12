@@ -1,0 +1,12 @@
+{
+  "portabilities_attach_title": "Adjuntar el formulario de solicitud de portabilidad",
+  "portabilities_attach_action": "Archivo del formulario de solicitud de portabilidad",
+  "portabilities_attach_invalid_format": "El formato del archivo no es válido",
+  "portabilities_attach_file_format": "Tamaño máx.: 10 MB, formato autorizado: PDF",
+  "portabilities_attach_processing": "Adjuntando el formulario de solicitud de portabilidad...",
+  "portabilities_attach_document_processing": "Adjuntando el documento...",
+  "portabilities_attach_document_succeed": "El documento se ha adjuntado.",
+  "portabilities_attach_document_failed": "No hemos podido adjuntar el documento.",
+  "portabilities_attach_submit": "Aceptar",
+  "portabilities_attach_cancel": "Cancelar"
+}
