@@ -9,7 +9,10 @@ module.exports = (
   license: 'BSD-3-Clause',
   author: 'OVH SAS',
   scripts: {
-    build: 'webpack --env.production',
+    build: 'yarn build:eu && yarn build:ca && yarn build:us',
+    'build:ca': 'webpack --env.production --env.region=\'CA\' && mv dist dist-CA',
+    'build:eu': 'webpack --env.production && mv dist dist-EU',
+    'build:us': 'webpack --env.production --env.region=\'US\' && mv dist dist-US',
     dev: 'webpack-dev-server',
     'dev:watch': 'yarn run dev',
     start: `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-filtered-dependencies -- npm run build --if-present`,
@@ -43,6 +46,7 @@ module.exports = (
   },
   devDependencies: {
     '@ovh-ux/manager-webpack-config': '^3.3.0',
+    lodash: '^4.17.15',
     'webpack-merge': '^4.2.2',
   },
 });
