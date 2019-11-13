@@ -1,0 +1,63 @@
+<section class="vps-veeam-order-legacy">
+
+    <div class="row d-lg-flex">
+        <div class="col-xm-12">
+            <h1 class="oui-header_1" data-translate="vps_configuration_veeam_order_title"></h1>
+            <oui-stepper data-on-init="$ctrl.loadUpgradesList()">
+                <oui-step-form data-header="{{ ::'vps_configuration_veeam_order_step1_question' | translate:{ serviceName: $ctrl.serviceName } }}"
+                    data-loading="!model.vps || !model.optionDetails"
+                    data-valid="model.contractsValidated"
+                    data-on-cancel="$ctrl.cancel()">
+                    <dl class="vps-dl-horizontal text-bold">
+                        <dt class="vps-item-horizontal"
+                            data-translate="vps_configuration_veeam_order_step1_totalHT"></dt>
+                        <dd class="vps-item-horizontal"
+                            data-ng-bind="::model.optionDetails.withoutTax"></dd>
+                        <dt class="vps-item-horizontal"
+                            data-translate="vps_configuration_veeam_order_step1_totalTTC"></dt>
+                        <dd class="vps-item-horizontal"
+                            data-ng-bind="::model.optionDetails.withTax"></dd>
+                    </dl>
+
+                    <div data-translate="vps_configuration_veeam_order_step1_info"></div>
+                    <div data-translate="vps_configuration_veeam_order_step1_info2" data-translate-values="{ price: model.optionDetails.unitaryPrice }"></div>
+                    <div class="text-bold" data-translate="vps_configuration_veeam_order_step1_id"></div>
+                    <oui-checkbox
+                        data-text="{{ ::'vps_configuration_veeam_order_step1_contracts' | translate }}"
+                        id="contractsValidated"
+                        name="contractsValidated"
+                        data-model="model.contractsValidated">
+                    </oui-checkbox>
+                    <ul class="mb-4">
+                        <li data-ng-repeat="contract in model.optionDetails.contracts track by $index">
+                            <a target="_blank"
+                                rel="noopener"
+                                class="oui-link oui-link_icon"
+                                title="{{ contract.name + ' (' + ('vps_common_new_window' | translate) + ')' }}"
+                                data-ng-href="{{ ::contract.url }}">
+                                <span data-ng-bind="contract.name"></span>
+                                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </oui-step-form>
+                <oui-step-form data-header="{{ ::'vps_configuration_veeam_order_step2_generation_bc' | translate }}"
+                    data-on-cancel="$ctrl.cancel()"
+                    data-on-submit="$ctrl.orderOption()">
+                    <div class="mb-4">
+                        <div class="bottom-space-p12">
+                            <div data-translate="vps_configuration_veeam_order_step2_bc"></div>
+                            <div class="text-bold"
+                                    data-translate="vps_configuration_veeam_order_step2_continue"></div>
+                            <div data-translate="vps_configuration_veeam_order_step2_explication"></div>
+                            <div>
+                                <em class="fs11 lh11"
+                                    data-translate="vps_configuration_veeam_order_step2_explication2"></em>
+                            </div>
+                        </div>
+                    </div>
+                </oui-step-form>
+            </oui-stepper>
+        </div>
+    </div>
+</section>

@@ -267,7 +267,7 @@
   "privateDatabase_restore_in_progress": "Trwa przywracanie...",
   "privateDatabase_dump_bdd_creationDate": "Data utworzenia",
   "privateDatabase_dump_bdd_deletionDate": "Data usunięcia",
-  "privateDatabase_dump_bdd_in_progress": "Kopia zapasowa bazy danych została wzięta pod uwagę.",
+  "privateDatabase_dump_bdd_in_progress": "Zlecenie wykonania kopii zapasowej bazy danych zostało zarejestrowane.",
   "privateDatabase_dump_bdd_success": "Kopia zapasowa bazy danych została utworzona.",
   "privateDatabase_dump_bdd_fail": "Wystąpił błąd podczas tworzenia kopii zapasowej bazy danych.",
   "privateDatabase_tabs_bdd_deleting": "Trwa usuwanie bazy danych...",

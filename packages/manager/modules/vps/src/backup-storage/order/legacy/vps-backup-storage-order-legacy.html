@@ -1,0 +1,44 @@
+<section class="vps-backup-storage-order-legacy">
+
+    <div class="row d-lg-flex">
+        <div class="col-xm-12">
+            <h2 class="oui-header_2" data-translate="vps_configuration_activate_ftpbackup_title"></h2>
+            <h3 class="oui-header_3" data-translate="vps_configuration_activate_ftpbackup_step1_question" data-translate-values="{ serviceName: '<strong>' + $ctrl.serviceName + '</strong>' }"></h3>
+            <div class="text-center" data-ng-if="!$ctrl.model.optionDetails">
+                <oui-spinner></oui-spinner>
+            </div>
+            <div data-ng-if="$ctrl.model.optionDetails">
+                <p class="oui-paragraph" data-translate="vps_configuration_activate_ftpbackup_step1_description"></p>
+                <p class="oui-paragraph" data-translate="vps_configuration_activate_ftpbackup_step1_alert" data-translate-values="{ price: $ctrl.model.optionDetails.unitaryPrice }"></p>
+                <div class="oui-box mb-4">
+                    <p class="oui-paragraph" data-translate="vps_configuration_activate_ftpbackup_step1_confirmation"></p>
+                    <p class="text-bold">
+                        <span data-translate="vps_configuration_activate_ftpbackup_step2_totalHT"></span>
+                        <span data-ng-bind="::$ctrl.model.optionDetails.withoutTax"></span>
+                    </p>
+                    <p class="text-bold">
+                        <span data-translate="vps_configuration_activate_ftpbackup_step2_totalTTC"></span>
+                        <span data-ng-bind="::$ctrl.model.optionDetails.withTax"></span>
+                    </p>
+                </div>
+                <div class="bottom-space-p12">
+                    <p class="oui-paragraph text-bold" data-translate="vps_configuration_activate_ftpbackup_step2_id"></p>
+                    <p class="oui-paragraph fs14" data-translate="vps_configuration_activate_ftpbackup_step2_explication"></p>
+                    <p class="oui-paragraph fs14" data-translate="vps_configuration_activate_ftpbackup_step2_explication2"></p>
+                </div>
+                <div>
+                    <oui-button variant="primary"
+                        data-text="{{ ::'vps_common_confirm' | translate }}"
+                        data-on-click="$ctrl.orderOption()"
+                        aria-label="{{ ::'vps_common_confirm' | translate }}">
+                    </oui-button>
+                    <oui-button variant="link"
+                        data-text="{{ ::'vps_common_cancel' | translate }}"
+                        data-on-click="$ctrl.cancel()"
+                        aria-label="{{ ::'vps_common_cancel' | translate }}">
+                    </oui-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

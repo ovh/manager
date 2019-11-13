@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -25,7 +25,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.3.0",
+    "@ovh-ux/manager-core": "^7.6.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",

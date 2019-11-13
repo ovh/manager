@@ -1,3 +1,26 @@
+# [7.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.2...@ovh-ux/manager-cloud@7.37.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* remove VPS changeOwner feature for CA (not available in CA) ([#1710](https://github.com/ovh/manager/issues/1710)) ([33e828d](https://github.com/ovh/manager/commit/33e828db762bdc9cc272f462f540cd6c3263c4f5))
+* **cloud:** update use of cucContracts directive ([8bf0410](https://github.com/ovh/manager/commit/8bf0410f48edaa3fa8b3627105b1dcd25c7a029a))
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
+
+
+### Features
+
+* add missing favicon ([61cea55](https://github.com/ovh/manager/commit/61cea5562cbd4a01aa3f25a225f76e40d142153a))
+* update microsoft icons ([#1725](https://github.com/ovh/manager/issues/1725)) ([99f02d7](https://github.com/ovh/manager/commit/99f02d7a6940adc5d5642a40aefcd7f489f9a7ac))
+* **cloud:** redirect legacy routes ([a2590ca](https://github.com/ovh/manager/commit/a2590ca0f1d5ad018f44c40ae8751ed2ecc6cf3e))
+* **cloud:** redirect legacy vps routes ([75b6a9b](https://github.com/ovh/manager/commit/75b6a9bf6af8ec453b8dc32b7a10d801a8c6b94f))
+* **veeam-enterprise:** migrate veeam-enterprise ([7bf5fd3](https://github.com/ovh/manager/commit/7bf5fd367375e38e141dc97ae04cd3b5a3a6d46b))
+* **vps:** migrate vps ([c27a0b3](https://github.com/ovh/manager/commit/c27a0b31007881ac29a9257a527d67e562737957))
+
+
+
 ## [7.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.1...@ovh-ux/manager-cloud@7.36.2) (2019-11-08)
 
 

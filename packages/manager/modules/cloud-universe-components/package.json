@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Cloud Universe Components",
   "keywords": [
     "cloud",
@@ -45,6 +45,7 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-ovh-form-flat": "^4.0.3",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.22",

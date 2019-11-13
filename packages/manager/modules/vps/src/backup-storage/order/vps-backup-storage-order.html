@@ -1,0 +1,35 @@
+<section class="vps-ftp-backup-order">
+
+    <oui-back-button data-heading="{{ ::'vps_configuration_activate_ftpbackup_title' | translate }}"
+                     data-aria-label="{{ ::'vps_configuration_activate_ftpbackup_back_btn_title' | translate }}"
+                     data-state="^">
+    </oui-back-button>
+
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row"
+         data-ng-if="!$ctrl.loading.init && !$ctrl.hasInitError">
+        <div class="col-lg-8">
+            <oui-stepper data-on-finish="$ctrl.onFtpBackupOrderStepperFinish()">
+                <oui-step-form data-header="{{ :: 'vps_common_order' | translate }}"
+                               data-description="{{ :: 'vps_configuration_activate_ftpbackup_step1_description' | translate }}"
+                               data-submit-text="{{ :: 'vps_common_order' | translate }}">
+
+                    <p data-translate="vps_configuration_activate_ftpbackup_step1_confirmation"></p>
+
+                    <p data-translate="vps_configuration_activate_ftpbackup_step1_next"
+                       data-translate-values="{ price: $ctrl.getFtpBackupMonthlyPrice($ctrl.ftpBackupOption).text }">
+                    </p>
+
+                    <p data-translate="vps_configuration_activate_ftpbackup_explain"></p>
+                    <p data-translate="vps_configuration_activate_ftpbackup_step2_explication2"></p>
+
+                </oui-step-form>
+            </oui-stepper>
+        </div>
+    </div>
+
+</section>

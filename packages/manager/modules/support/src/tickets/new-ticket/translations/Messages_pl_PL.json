@@ -112,5 +112,6 @@
   "ovhManagerSupport_new_business_2": "Prosimy szczegółowo opisać potrzeby dotyczące projektu i wysłać do nas wiadomość na adres:",
   "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane.",
   "ovhManagerSupport_new_serviceType_carrier_sip": "",
-  "ovhManagerSupport_new_creation_optional": "{{label}} (facultatif)"
+  "ovhManagerSupport_new_creation_optional": "{{label}} (facultatif)",
+  "ovhManagerSupport_new_open_new_tab": "Otwórz nową zakładkę"
 }

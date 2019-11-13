@@ -561,7 +561,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'enterprise_cloud_database',
     linkPart: '#/enterprise-cloud-database/create',
     app: [DEDICATED],
-    regions: ['EU', 'CA'],
+    regions: ['EU'],
   },
 ];
 

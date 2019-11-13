@@ -1,3 +1,25 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.1...@ovh-ux/manager-emailpro@1.2.2) (2019-11-13)
+
+
+### Bug Fixes
+
+* remove some bad a11y attribute ([#1770](https://github.com/ovh/manager/issues/1770)) ([ef9a6bd](https://github.com/ovh/manager/commit/ef9a6bd667721938dc94aa4d0961700b093a0b05))
+
+
+
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.0...@ovh-ux/manager-emailpro@1.2.1) (2019-11-13)
+
+
+### Bug Fixes
+
+* **emailpro:** check for space character in password ([#1712](https://github.com/ovh/manager/issues/1712)) ([49d2e4b](https://github.com/ovh/manager/commit/49d2e4b500eb85e6b932b5d8a26643e23e9bf0ed))
+* **i18n:** add missing translations [CDS 134] ([3828d7a](https://github.com/ovh/manager/commit/3828d7a0f00da9b7c2d3bce3758662a1162d8a4a))
+* **i18n:** add missing translations [CDS 138] ([6805f93](https://github.com/ovh/manager/commit/6805f93f3167da49076e5b6401af446200ad81d4))
+* **i18n:** add missing translations [CDS 139] ([259f422](https://github.com/ovh/manager/commit/259f422ebbbc2cf0d1aa8ed5d0a44f7b317e9971))
+* **i18n:** add missing translations [CDS 142] ([61290ea](https://github.com/ovh/manager/commit/61290ea9d2487fb540c63862662adcaea4e2d373))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.1.7...@ovh-ux/manager-emailpro@1.2.0) (2019-10-28)
 
 

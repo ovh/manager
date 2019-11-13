@@ -1,3 +1,19 @@
+## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.9...@ovh-ux/sign-up@1.0.10) (2019-11-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 130] ([65abea7](https://github.com/ovh/manager/commit/65abea76737442f55debb52aace46015bf35b6de))
+* **i18n:** add missing translations [CDS 131] ([ee2613b](https://github.com/ovh/manager/commit/ee2613b5f58fea9c78e0f05e4b7773069d68a7c9))
+* **i18n:** add missing translations [CDS 132] ([22f185e](https://github.com/ovh/manager/commit/22f185e5600324700f3f68a23487cf6ef8d52a6c))
+* **i18n:** add missing translations [CDS 133] ([b11c121](https://github.com/ovh/manager/commit/b11c121ea47fad196add967e4f8509d7f9f9a032))
+* **i18n:** add missing translations [CDS 134] ([3828d7a](https://github.com/ovh/manager/commit/3828d7a0f00da9b7c2d3bce3758662a1162d8a4a))
+* **i18n:** add missing translations [CDS 136] ([7f45bd7](https://github.com/ovh/manager/commit/7f45bd708418d911a7fb7d9287cfa4bf96b6ba00))
+* **i18n:** add missing translations [CDS 138] ([6805f93](https://github.com/ovh/manager/commit/6805f93f3167da49076e5b6401af446200ad81d4))
+* **sign-up:** specific translations ([e561831](https://github.com/ovh/manager/commit/e56183105f98fc5a6286ac5e96fe73f2c066d52f))
+
+
+
 ## [1.0.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.8...@ovh-ux/sign-up@1.0.9) (2019-10-23)
 
 

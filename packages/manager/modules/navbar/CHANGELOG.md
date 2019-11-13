@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.1.0...@ovh-ux/manager-navbar@2.1.1) (2019-11-13)
+
+
+### Bug Fixes
+
+* **navbar:** remove index.html to avoid reloading ([#1704](https://github.com/ovh/manager/issues/1704)) ([2282a1e](https://github.com/ovh/manager/commit/2282a1e70eccf76a1947084a7fdbb332e86795b0))
+
+
+
 # [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.0.5...@ovh-ux/manager-navbar@2.1.0) (2019-10-28)
 
 

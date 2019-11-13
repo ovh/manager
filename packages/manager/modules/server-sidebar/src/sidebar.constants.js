@@ -179,20 +179,20 @@ export const IP_CONFIG = {
 
 export const IAAS_CONFIG = {
   id: 'vps',
-  loadOnState: 'iaas',
+  loadOnState: 'vps',
   types: [
     {
       path: '/vps',
-      state: 'iaas.vps.detail.dashboard',
+      state: 'vps.detail.dashboard',
       stateParams: ['serviceName'],
-      loadOnState: 'iaas.vps.detail',
+      loadOnState: 'vps.detail',
       icon: 'ovh-font ovh-font-vps',
-      app: [CLOUD],
+      app: [DEDICATED],
       searchKeys: ['VPS'],
     },
   ],
   icon: 'ovh-font ovh-font-cloud-root',
-  app: [CLOUD],
+  app: [DEDICATED],
 };
 
 export const PAAS_CONFIG = {

@@ -1,0 +1,49 @@
+<section class="vps-additional-disk-order">
+
+    <oui-back-button data-heading="{{ ::'vps_order_additionnal_disk_title' | translate }}"
+                     data-aria-label="{{ ::'vps_order_additionnal_disk_title_back' | translate }}"
+                     data-state="^">
+    </oui-back-button>
+
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row"
+         data-ng-if="!$ctrl.loading.init">
+        <div class="col-lg-8">
+            <oui-stepper data-on-finish="$ctrl.onAdditionalDiskOrderStepperFinish()">
+                <oui-step-form data-header="{{ :: 'vps_order_additionnal_disk_choose_disk' | translate }}"
+                               data-description="{{ :: 'vps_order_additional_disk_select_capacity' | translate }}"
+                               data-submit-text="{{ :: 'vps_common_order' | translate }}">
+
+                    <div class="row mb-4"
+                         data-ng-repeat="chunkedDisk in $ctrl.chunkedDiskOptions track by $index">
+                        <div class="col-lg-4"
+                             data-ng-repeat="disk in chunkedDisk track by $index">
+                            <oui-select-picker data-name="diskChoice"
+                                               data-model="$ctrl.model.disk"
+                                               data-label="{{ :: 'vps_order_additionnal_disk_label' | translate:{ size: (disk.capacity.value | cucBytes:2:false:'GB') } }}"
+                                               data-variant="light"
+                                               data-values="[disk]"
+                                               data-required>
+                                <oui-select-picker-section>
+                                    <strong class="d-block text-right"
+                                            data-translate="vps_order_additional_disk_select_capacity_price_tax_free"
+                                            data-translate-values="{ price: $ctrl.getDiskMonthlyPrice(disk).text }">
+                                    </strong>
+                                </oui-select-picker-section>
+                            </oui-select-picker>
+                        </div>
+                    </div>
+
+                    <p data-translate="vps_order_additional_disk_explain"></p>
+                    <p data-translate="vps_order_additional_disk_step2"></p>
+
+                </oui-step-form>
+            </oui-stepper>
+        </div>
+    </div>
+
+</section>
