@@ -301,7 +301,7 @@
   "server_configuration_netboot_option_network": "Avviare in modalità network",
   "server_configuration_netboot_configuration": "Configurazione:",
   "server_configuration_netboot_rescue_choice": "Modalità Rescue disponibile:",
-  "server_configuration_netboot_rescue_mail": "Ricevi le credenziali all'indirizzo:",
+  "server_configuration_netboot_rescue_mail": "Ricevi le credenziali della modalità selezionata all'indirizzo email:",
   "server_configuration_netboot_rescue_mail_invalid": "Non valido",
   "server_configuration_netboot_kernel_choice": "Kernel disponibile:",
   "server_configuration_netboot_kernel_option": "Opzioni prese in carico da questo kernel:",

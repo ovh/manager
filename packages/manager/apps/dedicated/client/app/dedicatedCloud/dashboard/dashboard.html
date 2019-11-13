@@ -1,6 +1,18 @@
+<ovh-manager-dedicated-cloud-datacenter-drp-alerts
+    data-current-drp="$ctrl.currentDrp"
+    data-current-user="$ctrl.currentUser"></ovh-manager-dedicated-cloud-datacenter-drp-alerts>
+
 <ovh-manager-pcc-dashboard-legacy
+    data-current-drp="$ctrl.currentDrp"
     data-current-service="$ctrl.currentService"
     data-current-user="$ctrl.currentUser"
+    data-datacenter-list="$ctrl.datacenterList"
+    data-drp-global-status="$ctrl.drpGlobalStatus"
+    data-go-to-drp="$ctrl.goToDrp"
+    data-go-to-drp-datacenter-selection="$ctrl.goToDrpDatacenterSelection"
+    data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+    data-is-drp-action-possible="$ctrl.isDrpActionPossible"
+    data-is-drp-available="$ctrl.isDrpAvailable"
     data-ng-if="$ctrl.currentService.usesLegacyOrder"></ovh-manager-pcc-dashboard-legacy>
 
 <div
@@ -14,8 +26,16 @@
 
     <div class="col-md-4">
         <ovh-manager-pcc-dashboard-options
+            data-current-drp="$ctrl.currentDrp"
             data-current-service="$ctrl.currentService"
-            data-current-user="$ctrl.currentUser"></ovh-manager-pcc-dashboard-options>
+            data-current-user="$ctrl.currentUser"
+            data-datacenter-list="$ctrl.datacenterList"
+            data-drp-global-status="$ctrl.drpGlobalStatus"
+            data-go-to-drp="$ctrl.goToDrp"
+            data-go-to-drp-datacenter-selection="$ctrl.goToDrpDatacenterSelection"
+            data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+            data-is-drp-action-possible="$ctrl.isDrpActionPossible"
+            data-is-drp-available="$ctrl.isDrpAvailable"></ovh-manager-pcc-dashboard-options>
     </div>
 
     <div class="col-md-4">

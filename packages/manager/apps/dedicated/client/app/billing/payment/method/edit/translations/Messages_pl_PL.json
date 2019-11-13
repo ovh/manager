@@ -2,6 +2,6 @@
   "billing_payment_method_edit_title": "Zmiana opisu",
   "billing_payment_method_edit_action_save": "Zapisz opis",
   "billing_payment_method_edit_description": "Wprowadź nowy opis",
-  "billing_payment_method_edit_error": "Wystąpił błąd podczas modyfikacji opisu serwera {{t0}}",
-  "billing_payment_method_edit_success": "Nastąpiła zmiana opisu Twojej metody płatności."
+  "billing_payment_method_edit_error": "Wystąpił błąd podczas zmiany opisu: {{errorMessage}}.",
+  "billing_payment_method_edit_success": "Nastąpiła zmiana opisu Twojego sposobu płatności."
 }
