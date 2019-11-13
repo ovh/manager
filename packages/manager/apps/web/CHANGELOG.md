@@ -1,3 +1,24 @@
+# [13.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.34.1...@ovh-ux/manager-web@13.35.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* **exchange:** fix help button on modal ([#1587](https://github.com/ovh/manager/issues/1587)) ([955fc6e](https://github.com/ovh/manager/commit/955fc6e73a157de4a260899f16179f9419d549e8))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 125] ([1546463](https://github.com/ovh/manager/commit/15464639fb4bc02f124f481532a3e5dde44b8174))
+* **i18n:** add missing translations [CDS 129] ([5acca41](https://github.com/ovh/manager/commit/5acca41531fa79aea373d4b0b5b748b0c44fd1ea))
+* **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
+* add missing translations for gra2 datacenter ([#1763](https://github.com/ovh/manager/issues/1763)) ([6910061](https://github.com/ovh/manager/commit/6910061b36ab4e9c64334cd1a1783eafd0c60919))
+
+
+### Features
+
+* add missing favicon ([508fe1f](https://github.com/ovh/manager/commit/508fe1f4adaaea6f60805ddcf83baba5968bd0e3))
+* update microsoft icons ([#1725](https://github.com/ovh/manager/issues/1725)) ([99f02d7](https://github.com/ovh/manager/commit/99f02d7a6940adc5d5642a40aefcd7f489f9a7ac))
+* **domain.zone.activate:** change default duration ([#1764](https://github.com/ovh/manager/issues/1764)) ([2cfe427](https://github.com/ovh/manager/commit/2cfe427bdcc6e0c2e6dd34030238f420c4130bee))
+
+
+
 ## [13.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.34.0...@ovh-ux/manager-web@13.34.1) (2019-11-04)
 
 

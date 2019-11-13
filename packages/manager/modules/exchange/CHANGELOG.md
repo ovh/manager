@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.2.1...@ovh-ux/manager-exchange@1.2.2) (2019-11-13)
+
+
+### Bug Fixes
+
+* **exchange:** fix help button on modal ([#1587](https://github.com/ovh/manager/issues/1587)) ([955fc6e](https://github.com/ovh/manager/commit/955fc6e73a157de4a260899f16179f9419d549e8))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.2.0...@ovh-ux/manager-exchange@1.2.1) (2019-11-06)
 
 

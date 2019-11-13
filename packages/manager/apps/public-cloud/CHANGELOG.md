@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.3.0...@ovh-ux/manager-public-cloud@2.4.0) (2019-11-13)
+
+
+### Features
+
+* add missing favicon ([25480c8](https://github.com/ovh/manager/commit/25480c813b704f4f5d628ca650e2035a895d43ac))
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.2.0...@ovh-ux/manager-public-cloud@2.3.0) (2019-10-31)
 
 

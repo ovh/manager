@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-title@2.0.0...@ovh-ux/ng-ui-router-title@3.0.0) (2019-11-13)
+
+
+### Code Refactoring
+
+* rename `ng-uirouter-title` to `ng-ui-router-title` ([a7631fa](https://github.com/ovh/manager/commit/a7631fac619f9052cac9ab7770bc31b8631b8285))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngUiRouterTitle
+
+Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
+
+
+
 # [2.0.0](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.3...v2.0.0) (2019-10-22)
 
 

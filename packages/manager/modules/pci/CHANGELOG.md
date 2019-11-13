@@ -1,3 +1,23 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.2...@ovh-ux/manager-pci@3.2.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* instance capabilities ([#1515](https://github.com/ovh/manager/issues/1515)) ([76b512a](https://github.com/ovh/manager/commit/76b512a26c08fe7da53234f6cce55fb087506859))
+* **i18n:** add missing translations [CDS 134] ([3828d7a](https://github.com/ovh/manager/commit/3828d7a0f00da9b7c2d3bce3758662a1162d8a4a))
+* **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
+* **pci:** update title against the container type ([#1637](https://github.com/ovh/manager/issues/1637)) ([0554639](https://github.com/ovh/manager/commit/055463905f9073ce483274ca3826bfd9b240d815))
+* **pci-streams-add:** popover position ([#1660](https://github.com/ovh/manager/issues/1660)) ([8f9a81b](https://github.com/ovh/manager/commit/8f9a81b9bc269c5fb387cb866a7ea2f1acce4e1f))
+
+
+### Features
+
+* **pci.project:** filter out storage only regions ([#1613](https://github.com/ovh/manager/issues/1613)) ([894dd92](https://github.com/ovh/manager/commit/894dd92879821f914fc7605aabf9d1b57e3e5635))
+
+
+
 ## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.1...@ovh-ux/manager-pci@3.1.2) (2019-10-31)
 
 

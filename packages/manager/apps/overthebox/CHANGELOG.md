@@ -1,3 +1,19 @@
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@4.3.1...@ovh-ux/manager-overthebox-app@5.0.0) (2019-11-13)
+
+
+### Code Refactoring
+
+* rename `ng-uirouter-title` to `ng-ui-router-title` ([a7631fa](https://github.com/ovh/manager/commit/a7631fac619f9052cac9ab7770bc31b8631b8285))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngUiRouterTitle
+
+Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
+
+
+
 ## [4.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox-app@4.3.0...@ovh-ux/manager-overthebox-app@4.3.1) (2019-09-03)
 
 
