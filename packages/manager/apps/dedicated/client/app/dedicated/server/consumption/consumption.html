@@ -36,12 +36,12 @@
                         data-ng-bind="'server_consumption_current_period_label' | translate:{ t0: ctrl.traffic.data.usage.outputQuotaSize.text }"></dt>
                     <dd class="oui-tile__description"
                         data-ng-if="ctrl.traffic.data.usage.outputQuotaUsed.value">
-                        <div class="oui-progress oui-progress_info"
+                        <div class="oui-progress"
                              data-ng-class="{
                                 'oui-progress_warning': ctrl.traffic.data.usage.nearQuota,
                                 'oui-progress_error': ctrl.traffic.data.usage.overQuota
                             }">
-                            <div class="oui-progress__bar"
+                            <div class="oui-progress__bar oui-progress__bar_info"
                                  role="progressbar"
                                  aria-valuemin="0"
                                  aria-valuemax="{{ ctrl.traffic.data.usage.outputQuotaSize.value }}"
