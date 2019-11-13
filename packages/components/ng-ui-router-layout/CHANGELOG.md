@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-layout@3.1.0...@ovh-ux/ng-ui-router-layout@3.2.0) (2019-11-13)
+
+
+### Features
+
+* **ng-ui-router-layout:** add options to ouiModal ([c643031](https://github.com/ovh/manager/commit/c643031bfa497ce3b1be7d253181c6f859ee6f92))
+
+
+
 # [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@3.0.0...@ovh-ux/ng-ui-router-layout@3.1.0) (2019-10-25)
 
 

@@ -1,3 +1,34 @@
+# [10.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.8...@ovh-ux/manager-dedicated@10.28.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 123] ([3b7c5a5](https://github.com/ovh/manager/commit/3b7c5a5529a3e3c911e56ec29359e914d800ba91))
+* **i18n:** add missing translations [CDS 124] ([6d062cc](https://github.com/ovh/manager/commit/6d062cc3f6c817b81546171abfeb553975dde4f3))
+* **i18n:** add missing translations [CDS 128] ([799c85b](https://github.com/ovh/manager/commit/799c85b600b736436e6f5d111b0ed65f8998e8d5))
+* **i18n:** add missing translations [CDS 129] ([5acca41](https://github.com/ovh/manager/commit/5acca41531fa79aea373d4b0b5b748b0c44fd1ea))
+* **i18n:** add missing translations [CDS 132] ([22f185e](https://github.com/ovh/manager/commit/22f185e5600324700f3f68a23487cf6ef8d52a6c))
+* **i18n:** add missing translations [CDS 133] ([b11c121](https://github.com/ovh/manager/commit/b11c121ea47fad196add967e4f8509d7f9f9a032))
+* **i18n:** add missing translations [CDS 134] ([3828d7a](https://github.com/ovh/manager/commit/3828d7a0f00da9b7c2d3bce3758662a1162d8a4a))
+* **i18n:** add missing translations [CDS 138] ([6805f93](https://github.com/ovh/manager/commit/6805f93f3167da49076e5b6401af446200ad81d4))
+* **i18n:** add missing translations [CDS 139] ([259f422](https://github.com/ovh/manager/commit/259f422ebbbc2cf0d1aa8ed5d0a44f7b317e9971))
+* **i18n:** add missing translations [CDS 142] ([61290ea](https://github.com/ovh/manager/commit/61290ea9d2487fb540c63862662adcaea4e2d373))
+* **i18n:** add missing translations [CDS 143] ([74efd95](https://github.com/ovh/manager/commit/74efd9532bf7c7b7a1dc77903f973fe976a16033))
+* **server.ovh-tasks:** set right status tasks link ([#1647](https://github.com/ovh/manager/issues/1647)) ([31ed2d7](https://github.com/ovh/manager/commit/31ed2d7203619e38af5d8ea2ab4720e4b44ecfb6))
+
+
+### Features
+
+* add missing favicon ([4f13b17](https://github.com/ovh/manager/commit/4f13b17192a3b22560e3c822fa34e2266b130967))
+* orders refactoring ([#1640](https://github.com/ovh/manager/issues/1640)) ([e4c67fc](https://github.com/ovh/manager/commit/e4c67fcae4664e6c0f0a5f3d96b470519ea1d90a))
+* update microsoft icons ([#1725](https://github.com/ovh/manager/issues/1725)) ([99f02d7](https://github.com/ovh/manager/commit/99f02d7a6940adc5d5642a40aefcd7f489f9a7ac))
+* **dedicated:** add veeam enterprise ([1e66a4e](https://github.com/ovh/manager/commit/1e66a4e3beddcfed23c086a7e02a95e4d84b4d18))
+* **dedicated:** add vps module ([692dbce](https://github.com/ovh/manager/commit/692dbcedc1a15b033093411e7d3672321e78ad0b))
+* **dedicated.billing.autorenew:** add Actions column ([#1652](https://github.com/ovh/manager/issues/1652)) ([d0346c3](https://github.com/ovh/manager/commit/d0346c3dc9b35e9e7232815ed19b04f57665858e))
+* **dedicated.server:** add ola guides ([#1719](https://github.com/ovh/manager/issues/1719)) ([4d7d236](https://github.com/ovh/manager/commit/4d7d236f3e048f38547b89b8a9c7b0f339641454))
+
+
+
 ## [10.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.7...@ovh-ux/manager-dedicated@10.27.8) (2019-11-06)
 
 

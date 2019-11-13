@@ -1,3 +1,39 @@
+# [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.4...@ovh-ux/manager-telecom@11.0.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 138] ([6805f93](https://github.com/ovh/manager/commit/6805f93f3167da49076e5b6401af446200ad81d4))
+* **i18n:** add missing translations [CDS 139] ([259f422](https://github.com/ovh/manager/commit/259f422ebbbc2cf0d1aa8ed5d0a44f7b317e9971))
+* **i18n:** add missing translations [CDS 142] ([61290ea](https://github.com/ovh/manager/commit/61290ea9d2487fb540c63862662adcaea4e2d373))
+* **telephony.alias.live-calls:** sort calls and agents ([#1721](https://github.com/ovh/manager/issues/1721)) ([fc813a2](https://github.com/ovh/manager/commit/fc813a24b07b5a35e8765d146457cd17b684bd5c))
+* **telephony.line.last-registration:** use last item as sortBy sorts ASC ([#1684](https://github.com/ovh/manager/issues/1684)) ([19595c4](https://github.com/ovh/manager/commit/19595c45dadc8c28fc52739dce5ededf7bc5d300))
+* **telephony.line.phone.programmablekey:** show BLF description ([#1685](https://github.com/ovh/manager/issues/1685)) ([94c3099](https://github.com/ovh/manager/commit/94c3099a986c167242a7265d4efff7c520adc6e4))
+* **telephony.time-condition:** fix misspelled property ([#1715](https://github.com/ovh/manager/issues/1715)) ([7d2d213](https://github.com/ovh/manager/commit/7d2d21349a4ea8180b3d03936920c4889a7b429d))
+
+
+### Code Refactoring
+
+* rename `ng-uirouter-title` to `ng-ui-router-title` ([a7631fa](https://github.com/ovh/manager/commit/a7631fac619f9052cac9ab7770bc31b8631b8285))
+
+
+### Features
+
+* add missing favicon ([255317d](https://github.com/ovh/manager/commit/255317d7b58c9e2194a7e5d374d777bf7287cad0))
+* **telephony-line-phone-programmablekeys:** show custom label in list ([#1716](https://github.com/ovh/manager/issues/1716)) ([3929160](https://github.com/ovh/manager/commit/3929160571b8768a62151065ae5a77488c3a761b))
+* **xdsl.access.comfort.exchange:** add labels for exchange ([a1ef36d](https://github.com/ovh/manager/commit/a1ef36d172e91e2b2e54103bdeb5a2956c4d9a91))
+* **xdsl.access.exchange:** add warning for users ([803ddf5](https://github.com/ovh/manager/commit/803ddf505a50ec0ecde1af72f7656a6091a0057e))
+* **xdsl.access.exchange:** update labels ([098055b](https://github.com/ovh/manager/commit/098055b49e7e0b802fe9d845a8a1d0db46376e2c))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngUiRouterTitle
+
+Signed-off-by: Antoine Leblanc <antoine.leblanc@corp.ovh.com>
+
+
+
 ## [10.40.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.3...@ovh-ux/manager-telecom@10.40.4) (2019-11-08)
 
 

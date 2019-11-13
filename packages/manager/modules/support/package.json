@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -10,7 +10,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.5.0",
+    "@ovh-ux/manager-core": "^7.6.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-translate-async-loader": "^2.0.2",

@@ -1,3 +1,19 @@
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.5.0...@ovh-ux/manager-core@7.6.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* **core.translate:** prevent set specific header for CORS requests ([#1757](https://github.com/ovh/manager/issues/1757)) ([5301636](https://github.com/ovh/manager/commit/53016364c26533568774ad62a3a4106eeb0af0d0))
+* **i18n:** add missing translations [CDS 128] ([799c85b](https://github.com/ovh/manager/commit/799c85b600b736436e6f5d111b0ed65f8998e8d5))
+
+
+### Features
+
+* set lang attribute ([7c69389](https://github.com/ovh/manager/commit/7c693896d898dc3e7cacbb6e645a61f5b86f699c))
+* **core:** add locale header ([#1468](https://github.com/ovh/manager/issues/1468)) ([6b21a5a](https://github.com/ovh/manager/commit/6b21a5af6ef3e4b196cd93cc450679f0fd04f050))
+
+
+
 # [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.4.0...@ovh-ux/manager-core@7.5.0) (2019-10-28)
 
 

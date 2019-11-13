@@ -1,3 +1,18 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.2...@ovh-ux/ng-ovh-cloud-universe-components@1.4.0) (2019-11-13)
+
+
+### Bug Fixes
+
+* **cuc:** add missing translations ([ecb1bfd](https://github.com/ovh/manager/commit/ecb1bfdf6cb89f51697746b58e2a30787d744871))
+* **i18n:** add missing translations [CDS 142] ([61290ea](https://github.com/ovh/manager/commit/61290ea9d2487fb540c63862662adcaea4e2d373))
+
+
+### Features
+
+* **cloud:** add contracts directive ([ed1e6ad](https://github.com/ovh/manager/commit/ed1e6ad6b28de4e7924fb6b3792baeb93bc98c99))
+
+
+
 ## [1.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.1...@ovh-ux/ng-ovh-cloud-universe-components@1.3.2) (2019-10-17)
 
 
