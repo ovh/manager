@@ -3,7 +3,7 @@ export const ORDER = {
   productId: 'dns',
   pricingMode: 'default',
   quantity: 1,
-  duration: 'P0D',
+  duration: 'P1Y',
 };
 
 export const TEMPLATES = {
