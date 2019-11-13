@@ -1861,6 +1861,34 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/manager-freefax@^5.2.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-freefax/-/manager-freefax-5.2.2.tgz#370a6b8a31471180e669d52d8437cbb4cf0b7f7a"
+  integrity sha512-od1/aZjbHhR4fETWQZSuOb90SufarITJDR2MfJs0h59nhZzpQm1p5U3e+L7DVGif6L/2dA8t8/xbkXfoJH1Drw==
+  dependencies:
+    bootstrap4 twbs/bootstrap#v4.0.0
+    lodash "^4.17.15"
+
+"@ovh-ux/manager-overthebox@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-overthebox/-/manager-overthebox-4.3.2.tgz#f08858c975eb474801bf27dc57a41bcd5aaec817"
+  integrity sha512-fzioH0+JP2mQ2C2b9iWQOoahYP78aC7UIgvNl3LTTsHxH5cHwSoMXJfJTIPBBbTMSgRhJkkBeMLCdvJlSo+ITA==
+  dependencies:
+    lodash "4.17.15"
+    moment "^2.22.2"
+
+"@ovh-ux/manager-telecom-dashboard@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-telecom-dashboard/-/manager-telecom-dashboard-4.4.0.tgz#7e6a6b8f495c3c63c531b7a1590cdb96bc0c13c3"
+  integrity sha512-Bx8cqY1/3tYfxedyjxoYXplEzeaSMwdWemickmzBnXU7ioi7RiAuY0twylZbAzvRz+92eN9bHjsf3+2t73+U0g==
+
+"@ovh-ux/manager-telecom-task@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-telecom-task/-/manager-telecom-task-4.2.2.tgz#23de199cafe8d749cb57223e5e258d28dd0bb691"
+  integrity sha512-HPkc4MwlFsMneIr0VW0YLwuO2ojjhru+u8MRGK7pIjDa6T7ohpXlJibI0UbDZCmDc9iuPRd4A7+JyDoLxrsPZA==
+  dependencies:
+    lodash "^4.17.14"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.3.tgz#be33d9185ec95345d3d2dd2b8d945ae47981b778"

@@ -18,7 +18,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
     "@ovh-ux/manager-core": "^7.6.0",
-    "@ovh-ux/manager-vps": "^0.0.0",
+    "@ovh-ux/manager-vps": "^0.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.4",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",
