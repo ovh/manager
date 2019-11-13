@@ -6,6 +6,7 @@ import cucBytes from './bytes';
 import cucClickEnterOnKeypress from './clickEnterOnKeypress';
 import cucConfig from './config';
 import cucConsumption from './consumption';
+import cucContracts from './contracts';
 import cucCurrency from './currency';
 import cucFeatureAvailability from './featureAvailability';
 import cucFlavor from './flavor';
@@ -37,6 +38,7 @@ angular
     cucClickEnterOnKeypress,
     cucConfig,
     cucConsumption,
+    cucContracts,
     cucCurrency,
     cucFeatureAvailability,
     cucFlavor,

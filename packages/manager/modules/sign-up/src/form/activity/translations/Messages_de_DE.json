@@ -4,5 +4,7 @@
   "sign_up_activity_field_corporationType": "Rechtsform",
   "sign_up_activity_field_nationalIdentificationNumber": "Nationale Identifikationsnummer",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Nationale Identifikationsnummer",
-  "sign_up_activity_field_italian_sdi": "Steuernummer"
+  "sign_up_activity_field_italian_sdi": "Empfänger-Code für elektronische Abrechnung (SDI)",
+  "sign_up_activity_field_vat_it": "USt-IdNr.",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Nationale Identifikationsnummer (SIREN)"
 }

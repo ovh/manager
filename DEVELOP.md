@@ -5,6 +5,7 @@ If you've made it this far, **thank you**! We appreciate your contribution, and 
 * [Install](#install)
 * [Scripts](#scripts)
   * [Update README.md](#update-readmemd)
+  * [Generate a Module (or an Application)](#generate-module)
   * [Split a module](#split-a-module)
 * [Import branch from legacy repository](#import-branch-from-legacy-repository)
 
@@ -26,6 +27,19 @@ Our [`package.json`](package.json) houses a collection of [run-scripts](https://
 ```sh
 $ yarn run docs:update-readme
 ```
+
+<a name="generate-module"></a>
+### Generate a module (or an Application).
+
+![](media/generate-module-app.gif)
+
+```sh
+$ yarn run generate:module ./packages/manager/modules/foo # `foo` is the name of your module.
+$ yarn run generate:app ./packages/manager/apps/foo # `foo` is the name of your application.
+$ yarn && cd packages/manager/apps/foo && yarn run start:dev
+```
+
+Now you are able to visit `http://localhost:9000/#!/foo` (route based on the module name).
 
 ### Split a module
 

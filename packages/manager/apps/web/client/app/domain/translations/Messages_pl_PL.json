@@ -831,5 +831,7 @@
   "domain_tab_options_delete_dnsAnycast_title": "Zrezygnuj z opcji DNS Anycast",
   "domain_tab_options_delete_success": "Opcja została usunięta.",
   "domain_tab_options_delete_error": "Wystąpił błąd podczas rezygnowania z opcji.",
-  "domain_tab_options_delete_cancel": "Anuluj"
+  "domain_tab_options_delete_cancel": "Anuluj",
+  "domain_dashboard_options_dns_anycast_expiry": "Data wejścia w życie: {{date}}",
+  "domain_tab_options_delete_expiry": "Rezygnacja z opcji wejdzie w życie w dniu odnowienia usługi, czyli {{ date }}."
 }

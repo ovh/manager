@@ -1,5 +1,7 @@
 {
   "dedicated_server_interfaces_title": "Réseau",
+  "dedicated_server_interfaces_guides": "Guides",
+  "dedicated_server_interfaces_guides_ola": "Comment configurer OLA ?",
   "dedicated_server_interfaces_introduction" : "Vous trouverez dans cette section toutes les informations relatives aux interfaces réseau de votre serveur.",
   "dedicated_server_interfaces_vrack_information" : "Veuillez noter que par défaut aucune IP n’existe pour le réseau privé (vRack). En effet vous devez au préalable créer un réseau privé (vRack), y ajouter votre serveur, puis configurez vos IP.",
   "dedicated_server_interfaces_vrack_information_link_label" : "En savoir plus sur le vRack.",

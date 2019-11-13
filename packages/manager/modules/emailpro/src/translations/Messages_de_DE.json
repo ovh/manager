@@ -847,5 +847,6 @@
   "email_tab_modal_delete_redirection_heading": "Sie sind im Begriff, folgende Weiterleitung zu löschen:",
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> auf <strong>{1}</strong>",
   "emails_common_continue_question": "Möchten Sie fortfahren? ",
-  "emails_common_account_name_conditions": "Achtung, der Name des Accounts muss folgende Bedingungen erfüllen: <br/>- Mindestens {0} Zeichen<br/>- Höchstens {1} Zeichen<br/>- Keine Leerzeichen<br/>- Keine Zeichen mit Akzent oder Umlaute<br/>- Keine Sonderzeichen außer . und - und _."
+  "emails_common_account_name_conditions": "Achtung, der Name des Accounts muss folgende Bedingungen erfüllen: <br/>- Mindestens {0} Zeichen<br/>- Höchstens {1} Zeichen<br/>- Keine Leerzeichen<br/>- Keine Zeichen mit Akzent oder Umlaute<br/>- Keine Sonderzeichen außer . und - und _.",
+  "emailpro_ACTION_update_account_step1_password_contains_space": "Das Passwort darf keine Leerzeichen enthalten."
 }

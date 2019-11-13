@@ -4,7 +4,7 @@
 
 ## Usage
 
-After having installed the package and having injected the dependency in your AngularJS application (described in the main [README.md](../../README.md) file of the repository), you can use the `ouiModal` layout in 3 different ways:
+After having installed the package and having injected the dependency in your AngularJS application (described in the main [README.md](../../README.md) file of the repository), you can use the `ouiModal` layout in 3 differents ways:
 
 ### With controller and template
 
@@ -137,7 +137,30 @@ This will display `I can be used in controller too!` in the console and set `A b
 
 ## Available options
 
-*For modal options (all options except `redirectTo`), see the [oui-modal documentation](https://ovh-ux.github.io/ovh-ui-kit/?path=/story/components-modal--simple) for more informations.*
+### uibModal options
+
+You can provide options to the uibModal opened at uiRoute's onEnter. For this you can provide, an object as layout options like:
+
+```js
+$stateProvider
+  .state('state.name', {
+    url: '/my-url',
+    layout: {
+      name: 'ouiModal',
+      options: {
+        backdrop: false,
+        keyboard: false,
+      },
+    },
+    component: 'myAwesomeComponent',
+  });
+````
+
+This will open a ouiModal without backdrop and with `ESC` key disabled. For available options, see the [uibModal options](https://angular-ui.github.io/bootstrap/versioned-docs/1.3.3/#/modal). Note that uiState's options like controller, controllerAs, etc... won't be taken in consideration in that object. 
+
+### ouiModal options
+
+*For ouiModal options (all options except `redirectTo`), see the [oui-modal documentation](https://ovh-ux.github.io/ovh-ui-kit/?path=/story/components-modal--simple) for more informations.*
 
 All options can be provided through ui-state resolves.
 

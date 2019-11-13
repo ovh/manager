@@ -112,5 +112,6 @@
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Want to get your project reviewed?",
   "ovhManagerSupport_new_business_2": "Please detail your needs by sending an email to the following email address:",
-  "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed."
+  "ovhManagerSupport_new_business_3": "Support tickets sent to this email address will not be processed.",
+  "ovhManagerSupport_new_open_new_tab": "Opens a new tab"
 }

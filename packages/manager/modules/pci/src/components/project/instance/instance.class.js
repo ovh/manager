@@ -4,9 +4,27 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isObject from 'lodash/isObject';
 
+import { CAPABILITIES } from './instance.constants';
+
 export default class Instance {
   constructor(resource) {
     Object.assign(this, resource);
+  }
+
+  canAddSnapshot() {
+    return this.isCapabilityEnabled(CAPABILITIES.SNAPSHOT);
+  }
+
+  canAttachIPFO() {
+    return this.isCapabilityEnabled(CAPABILITIES.FAIL_OVER_IP);
+  }
+
+  canAttachVolume() {
+    return this.isCapabilityEnabled(CAPABILITIES.VOLUME);
+  }
+
+  canBeResized() {
+    return this.isCapabilityEnabled(CAPABILITIES.RESIZE);
   }
 
   get statusGroup() {
@@ -136,6 +154,10 @@ export default class Instance {
 
   isRescuableWithDefaultImage() {
     return !includes(['freebsd', 'windows'], get(this.image, 'distribution'));
+  }
+
+  isCapabilityEnabled(capability) {
+    return get(this.flavor, `capabilities.${capability}`, true);
   }
 
   get connectionInfos() {

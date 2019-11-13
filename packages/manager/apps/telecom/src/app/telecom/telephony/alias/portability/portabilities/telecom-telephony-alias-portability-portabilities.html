@@ -1,23 +1,23 @@
 <section class="telephony-portabilities">
 
     <header>
-        <tuc-section-back-link data-ng-if="PortabilitiesCtrl.serviceName === 'default'"
+        <tuc-section-back-link data-ng-if="$ctrl.serviceName === 'default'"
                            data-tuc-section-back-link-to-state="telecom.telephony.administration"
                            data-tuc-section-back-link-title="{{:: 'telephony_alias_default_portabilities_back_link' | translate }}">
         </tuc-section-back-link>
-        <tuc-section-back-link data-ng-if="PortabilitiesCtrl.serviceName !== 'default'"
+        <tuc-section-back-link data-ng-if="$ctrl.serviceName !== 'default'"
                            data-tuc-section-back-link-to-state="telecom.telephony.alias"
                            data-tuc-section-back-link-title="{{:: 'telephony_alias_portabilities_back_link' | translate }}">
         </tuc-section-back-link>
         <h1 data-translate="telephony_alias_portabilities_title"></h1>
     </header>
 
-    <div class="text-center" data-ng-if="PortabilitiesCtrl.isLoading">
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
         <oui-spinner></oui-spinner>
     </div>
 
     <div class="telecom-section-content"
-         data-ng-if="!PortabilitiesCtrl.isLoading">
+         data-ng-if="!$ctrl.isLoading">
         <div class="row">
             <div class="col-xs-12 col-md-8 widget-presentation">
                 <header class="widget-presentation-header">
@@ -26,13 +26,15 @@
                     </h2>
                 </header>
 
+                <tuc-toast-message></tuc-toast-message>
+
                 <div class="mt-4"
-                     data-ng-if="PortabilitiesCtrl.numbers.length === 0"
+                     data-ng-if="$ctrl.numbers.length === 0"
                      data-translate="telephony_alias_portabilities_empty">
                 </div>
 
                 <div class="mt-4">
-                    <uib-accordion data-ng-repeat="number in PortabilitiesCtrl.numbers track by $index">
+                    <uib-accordion data-ng-repeat="number in $ctrl.numbers track by $index">
                         <div uib-accordion-group
                              class="panel-default"
                              is-open="number.isOpen">
@@ -52,6 +54,15 @@
                                        data-ng-class="{'glyphicon-chevron-up': number.isOpen, 'glyphicon-chevron-down': !number.isOpen}"></i>
                                 </div>
                             </uib-accordion-heading>
+
+                            <!-- PORTABILITY ATTACH CUSTOMER FORM -->
+                            <button class="oui-button oui-button_primary oui-button_full-width oui-button_icon-right"
+                                    data-ng-click="$ctrl.attachMandate(number.portability)"
+                                    data-translate="telephony_alias_portabilities_attach_form"
+                                    oui-tooltip="{{:: 'telephony_alias_portabilities_attach_info' | translate}}"
+                                    oui-tooltip-placement="bottom"
+                                    data-ng-if="porta.documentAttached.length === 0">
+                            </button>
 
                             <!-- PORTABILITY DETAILS -->
                             <dl data-ng-init="porta = number.portability">
@@ -101,17 +112,17 @@
                             <button type="button"
                                     class="btn btn-primary"
                                     data-ng-if="porta.canBeCancelled"
-                                    data-ng-disabled="PortabilitiesCtrl.loading.cancel"
-                                    data-ng-really-click="PortabilitiesCtrl.confirmCancelPortability(porta)"
+                                    data-ng-disabled="$ctrl.loading.cancel"
+                                    data-ng-really-click="$ctrl.confirmCancelPortability(porta)"
                                     data-ng-really-message="{{ 'telephony_alias_portabilities_cancel_confirm' | translate }}"
                                     data-ng-really-confirm="{{ 'common_yes_capitalized' | translate }}"
                                     data-ng-really-cancel="{{ 'common_no_capitalized' | translate }}"
                                     data-ng-really-window-class="revert-really-buttons">
                                 <oui-spinner class="mr-2"
-                                             data-ng-if="PortabilitiesCtrl.loading.cancel"
+                                             data-ng-if="$ctrl.loading.cancel"
                                              data-size="s">
                                 </oui-spinner>
-                                <span data-translate="{{ !PortabilitiesCtrl.loading.cancel ? 'telephony_alias_portabilities_cancel' : 'telephony_alias_portabilities_cancel_doing' }}"></span>
+                                <span data-translate="{{ !$ctrl.loading.cancel ? 'telephony_alias_portabilities_cancel' : 'telephony_alias_portabilities_cancel_doing' }}"></span>
                             </button>
                             <!-- End of Cancel portability -->
 

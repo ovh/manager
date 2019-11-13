@@ -16,7 +16,6 @@ import wucGuides from './guides';
 import wucIncrementNumber from './incrementNumber';
 import wucJavaEnum from './java-enum';
 import wucOvhFileReader from './ovhFileReader';
-import wucProduct from './product';
 import wucProgressBarElementCounter from './progressBarElementCounter';
 import wucServiceStatusAction from './service-status';
 import wucString from './string';
@@ -44,7 +43,6 @@ angular
     wucIncrementNumber,
     wucJavaEnum,
     wucOvhFileReader,
-    wucProduct,
     wucProgressBarElementCounter,
     wucServiceStatusAction,
     wucString,

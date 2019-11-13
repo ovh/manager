@@ -1380,5 +1380,6 @@
   "hosting_dashboard_configuration": "Configuración",
   "hosting_dashboard_access": "Acceso",
   "common_api_hostingWeb-1": "No puede migrar a esta opción, ya que su solución actual dispone de más cuentas de correo que la opción seleccionada.",
-  "hosting_tab_WEBSITE_COACH": "Website Coach"
+  "hosting_tab_WEBSITE_COACH": "Website Coach",
+  "hosting_tab_BOOST_request_description_billing_new": "A partir del 1 de noviembre de 2019, nuestra tarificación cambia y el servicio se facturará por día de uso: {{price}} + IVA por día y tramo de servicio."
 }

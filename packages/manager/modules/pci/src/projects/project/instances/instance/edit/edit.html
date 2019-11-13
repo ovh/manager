@@ -142,7 +142,7 @@
                     data-variant="primary"
                     data-type="submit"
                     data-text="{{:: 'pci_projects_project_instances_instance_edit_flavor_submit_label' | translate }}"
-                    data-disabled="$ctrl.instance.flavor.id === $ctrl.editInstance.flavorId"></oui-button>
+                    data-disabled="$ctrl.instance.flavor.id === $ctrl.editInstance.flavorId || !$ctrl.instance.canBeResized()"></oui-button>
 
             </fieldset>
         </form>

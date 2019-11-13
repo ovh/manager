@@ -64,15 +64,9 @@ export default /* @ngInject */ ($stateProvider) => {
         },
 
         instances: /* @ngInject */ (
-          OvhApiCloudProject,
+          PciProjectsProjectInstanceService,
           projectId,
-        ) => OvhApiCloudProject
-          .Instance()
-          .v6()
-          .query({
-            serviceName: projectId,
-          })
-          .$promise
+        ) => PciProjectsProjectInstanceService.getAllInstanceDetails(projectId)
           .then(instances => filter(
             instances,
             ({ ipAddresses }) => find(ipAddresses, { type: 'public' }),

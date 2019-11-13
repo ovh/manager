@@ -38,7 +38,6 @@ import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
 import errorPage from './error/error.module';
-import ovhManagerVps from './vps/vps.module';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
@@ -105,11 +104,22 @@ angular.module('managerApp', [
   ovhManagerBanner,
   ovhManagerNavbar,
   ovhManagerServerSidebar,
-  ovhManagerVps,
   errorPage,
 ])
-  .config(($urlRouterProvider, $locationProvider) => {
-    $urlRouterProvider.otherwise('/');
+  .config(/* @ngInject */($urlServiceProvider, $locationProvider, MANAGER_URLS) => {
+    const dedicatedRedirections = [
+      '/paas/veeam-enterprise',
+      '/iaas/vps',
+    ];
+
+    dedicatedRedirections.forEach((redirectionPrefix) => {
+      $urlServiceProvider.rules.when(new RegExp(`^${redirectionPrefix}`), (match, { path }) => {
+        const { origin, pathname } = new URL(MANAGER_URLS.dedicated);
+        window.location.replace(`${origin}${pathname}#${path}`);
+      });
+    });
+
+    $urlServiceProvider.rules.otherwise('/');
     $locationProvider.html5Mode(false);
   })
   .config((responsivePopoverProvider) => {

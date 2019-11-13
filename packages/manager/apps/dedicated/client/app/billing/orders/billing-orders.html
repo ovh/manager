@@ -1,194 +1,85 @@
-<div>
-
-    <div class="page-header">
-        <h1 data-translate="orders_page_title"></h1>
-    </div>
-
-    <div class="tab-content"
-         data-ui-view>
-        <div data-ovh-alert></div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group text-right">
-                    <input type="text"
-                           class="form-control"
-                           maxlength="50"
-                           placeholder="{{ 'orders_table_head_id' | translate }}"
-                           autofocus
-                           data-ng-model-options="{ debounce: 1000 }"
-                           data-ng-model="activeFilter.orderId"
-                           data-ng-change="getOrders()"
-                           data-ng-attr-title="{{ 'orders_search_input_title' | translate }}" />
-                    <span class="input-group-addon">
-                        <span class="fa fa-search"
-                              aria-hidden="true">
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <table class="table table-hover mt-2">
-            <thead>
-                <tr>
-                    <th scope="col"
-                        class="align-middle"
-                        data-translate="orders_table_head_date">
-                    </th>
-                    <th scope="col"
-                        class="align-middle"
-                        data-translate="orders_table_head_id">
-                    </th>
-                    <th scope="col"
-                        class="align-middle">
-                        <label for="orderTableStatusFilterSelect"
-                               data-translate="orders_table_head_status"></label>
-                        <select class="form-control input-sm"
-                                id="orderTableStatusFilterSelect"
-                                data-ng-options="statusFilter as statusFilter.label for statusFilter in statusFilters"
-                                data-ng-model="activeFilter.status"
-                                data-ng-change="getOrders()"
-                                data-ng-attr-title="{{ 'orders_table_head_status' | translate }}">
-                        </select>
-                    </th>
-                    <th scope="col"
-                        class="align-middle"
-                        data-ng-if="isVATNeeded"
-                        data-translate="orders_table_head_total_taxes_included">
-                    </th>
-                    <th scope="col"
-                        class="align-middle text-right"
-                        data-ng-if="!isVATNeeded"
-                        data-translate="orders_table_head_total">
-                    </th>
-                    <th scope="col"
-                        class="align-middle text-center">
-                        <button type="button"
-                                class="btn btn-link"
-                                data-ng-click="refreshOrders()">
-                            <i class="fa fa-refresh"
-                               aria-hidden="true"></i>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody data-ng-show="loaders.orders">
-                <tr>
-                    <td colspan="6"
-                        class="text-center">
-                        <oui-spinner data-size="s"></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-
-            <tbody data-ng-show="!loaders.orders && orders.length === 0">
-                <tr>
-                    <td data-ng-if="activeFilter.status.id === 'all'"
-                        colspan="6"
-                        class="text-center"
-                        data-translate="orders_table_empty">
-                    </td>
-                    <td data-ng-if="activeFilter.status.id !== 'all'"
-                        colspan="6"
-                        class="text-center">
-                        <p data-translate="orders_table_empty_with_filter"></p>
-                        <ul class="list-unstyled">
-                            <li data-ng-bind="activeFilter.status.label"></li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-
-            <tbody data-ng-show="!loaders.orders && orders.length > 0">
-                <tr data-ng-repeat="order in orders track by order.orderId"
-                    data-ng-if="!order.error">
-                    <th scope="row"
-                        data-ng-bind="::order.date | date: 'mediumDate'" >
-                    </th>
-                    <td data-ng-bind="::order.orderId"></td>
-                    <td data-ng-class="order.status | lowercase">
-                        <i data-ng-if="order.status === ORDER_STATUS_ENUM.DELIVERING"
-                           class="fa fa-clock-o"
-                           aria-hidden="true">
-                        </i>
-                        <i data-ng-if="order.error"
-                           class="fa fa-warning"
-                           aria-hidden="true">
-                        </i>
-                        <span data-ng-if="order.status !== 'notPaid' || !order.expired"
-                              data-ng-bind="order.statusText">
-                        </span>
-                        <span data-ng-if="order.status === 'notPaid' && order.expired"
-                              data-translate="orders_order_bc_expired">
-                        </span>
-                    </td>
-                    <td data-ng-if="isVATNeeded"
-                        data-ng-bind="::order.priceWithTax.text">
-                    </td>
-                    <td data-ng-if="!isVATNeeded"
-                        data-ng-bind="::order.priceWithoutTax.text">
-                    </td>
-                    <td class="text-right">
-                        <oui-action-menu data-compact>
-                            <a role="menuitem"
-                               target="_blank"
-                               rel="noopener"
-                               class="oui-dropdown-option"
-                               data-ng-if="order.url && !order.bill"
-                               data-ng-href="{{ ::order.url }}"
-                               data-ng-attr-title="{{ 'table_download_html_order' | translate }}"
-                               data-track-on="click"
-                               data-track-type="action"
-                               data-track-name="orders::open_invoices">
-                                <span data-translate="table_download_html_order"></span>
-                                <span class="oui-icon oui-icon-page_line" aria-hidden="true"></span>
-                            </a>
-                            <a role="menuitem"
-                               target="_blank"
-                               rel="noopener"
-                               class="oui-dropdown-option"
-                               data-ng-if="order.bill.url"
-                               data-ng-href="{{ ::order.bill.url }}">
-                                <span data-translate="table_download_html_invoice"></span>
-                                <span class="oui-icon oui-icon-page_line" aria-hidden="true"></span>
-                            </a>
-                            <a role="menuitem"
-                               target="_blank"
-                               rel="noopener"
-                               class="oui-dropdown-option"
-                               data-ng-if="order.bill.pdfUrl"
-                               data-ng-href="{{ ::order.bill.pdfUrl}}">
-                                <span data-translate="table_download_pdf_invoice"></span>
-                                <span class="oui-icon oui-icon-pdf_line" aria-hidden="true"></span>
-                            </a>
-                            <a role="menuitem"
-                               target="_blank"
-                               rel="noopener"
-                               class="oui-dropdown-option"
-                               data-ng-if="order.canRetract"
-                               data-ui-sref="app.account.billing.orders.retract({ id: order.orderId })">
-                                <span data-translate="orders_order_action_retract"></span>
-                                <span class="fa fa-times" aria-hidden="true"></span>
-                            </a>
-                        </oui-action-menu>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div data-pagination-front
-             data-ng-show="orderIds.length > 5"
-             data-items="orderIds"
-             data-paginated-items="orders"
-             data-current-page="currentPage"
-             data-nb-pages="nbPages"
-             data-items-per-page="itemsPerPage"
-             data-transform-item="transformItem(item)"
-             data-on-transform-item-notify="onTransformItemNotify(item)"
-             data-on-transform-item-done="onTransformItemDone(items)"
-             data-page-placeholder="{{ 'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-             data-item-per-page-placeholder="{{ 'pagination_display' | translate }}">
-        </div>
-    </div>
+<div class="billing-orders">
+    <oui-page-header data-heading="{{ :: 'orders_page_title' | translate }}">
+        <oui-guide-menu text="{{:: 'orders_guides' | translate }}"
+                        data-ng-if="$ctrl.billingGuideUrl">
+            <oui-guide-menu-item data-ng-href="{{ $ctrl.billingGuideUrl }}"
+                                 data-external="true">
+                <span data-translate="orders_billing"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-page-header>
+    <oui-datagrid class="m-4"
+                  data-page-size="10"
+                  data-rows="$ctrl.orders"
+                  data-row-loader="$ctrl.loadRow($row)"
+                  data-criteria=":: $ctrl.criteria"
+                  data-on-criteria-change=":: $ctrl.onCriteriaChange($criteria)">
+        <oui-column data-title=":: 'orders_date' | translate"
+                    data-property="date"
+                    data-type="date"
+                    data-filterable
+                    data-sortable="desc">
+            <span data-ng-bind="$value | date: 'mediumDate'"></span>
+        </oui-column>
+        <oui-column data-title=":: 'orders_id' | translate"
+                    data-property="orderId"
+                    data-type="string"
+                    data-searchable
+                    data-filterable
+                    data-sortable>
+        </oui-column>
+        <oui-column data-title=":: 'orders_status' | translate"
+                    data-property="status"
+                    data-type="options"
+                    data-type-options="$ctrl.getStateEnumFilter()"
+                    data-filterable>
+            <span class="oui-status"
+                  data-ng-class="{
+                    'oui-status_error': $value === 'cancelled'
+                                     || $value === 'notPaid'
+                                     || $value === 'notPaid',
+                    'oui-status_info': $value === 'cancelling'
+                                    || $value === 'checking'
+                                    || $value === 'delivering',
+                    'oui-status_warning': $value === 'documentsRequested'
+                                       || $value === 'unknown',
+                    'oui-status_success': $value === 'delivered',
+                  }"
+                  data-ng-bind="('orders_order_status_' + $value) | translate">
+            </span>
+        </oui-column>
+        <oui-column data-title=":: 'orders_taxes_included' | translate"
+                    data-property="priceWithTax.value"
+                    data-type="number"
+                    data-sortable
+                    data-filterable>
+            <span data-ng-bind="$row.priceWithTax.text"></span>
+        </oui-column>
+        <oui-action-menu data-align="end"
+                         data-compact>
+            <oui-action-menu-item data-text="{{:: 'orders_tracking' | translate }}"
+                                  data-ng-if="$ctrl.allowOrderTracking"
+                                  data-on-click="$ctrl.goToOrder($row, $ctrl.filter)">
+            </oui-action-menu-item>
+            <oui-action-menu-item data-text="{{:: 'orders_url' | translate }}"
+                                  data-ng-href="{{ $row.url }}"
+                                  data-external>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-text="{{:: 'orders_bill_url' | translate }}"
+                                  data-ng-if="$row.bill"
+                                  data-ng-href="{{ $row.bill.url }}"
+                                  data-external>
+            </oui-action-menu-item>
+            <oui-action-menu-item text="{{:: 'orders_bill_url_pdf' | translate }}"
+                                  data-ng-if="$row.bill"
+                                  data-ng-href="{{ $row.bill.pdfUrl }}"
+                                  data-external>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="$row.canRetract"
+                data-ui-sref="app.account.billing.orders.retract({ id: $row.orderId })">
+                <span data-translate="orders_order_action_retract"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
 </div>

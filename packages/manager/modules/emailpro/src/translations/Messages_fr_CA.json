@@ -346,6 +346,7 @@
   "emailpro_ACTION_update_account_step1_password_label": "Mot de passe",
   "emailpro_ACTION_update_account_step1_password_placeholder": "Garder l'ancien",
   "emailpro_ACTION_update_account_step1_password_weak": "Mot de passe trop simple.",
+  "emailpro_ACTION_update_account_step1_password_contains_space": "Le mot de passe ne peut pas contenir d'espaces.",
   "emailpro_ACTION_update_account_step1_quota_label": "Quota",
   "emailpro_ACTION_update_account_step1_simple_password_tooltip": "Minimum {0} caractères.",
   "emailpro_ACTION_update_account_step1_type_label": "Type compte",
