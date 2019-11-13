@@ -28,6 +28,7 @@ module.exports = {
       {
         type: 'move',
         patterns: {
+          '_eslintrc.json': '.eslintrc.json',
           '_package.json': 'package.json',
         },
       },
