@@ -1,3 +1,8 @@
+import {
+  DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
+  DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
+} from './datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+
 angular
   .module('App')
   .controller('DedicatedCloudCtrl', class {
@@ -10,8 +15,10 @@ angular
       $translate,
       $uibModal,
       coreConfig,
-      currentService,
+      currentDrp,
       currentUser,
+      currentService,
+      datacenterList,
       DedicatedCloud,
       OvhApiDedicatedCloud,
       User,
@@ -23,11 +30,15 @@ angular
       this.$translate = $translate;
       this.$uibModal = $uibModal;
       this.coreConfig = coreConfig;
-      this.currentService = currentService;
+      this.currentDrp = currentDrp;
       this.currentUser = currentUser;
+      this.currentService = currentService;
+      this.datacenterList = datacenterList;
       this.DedicatedCloud = DedicatedCloud;
       this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
       this.User = User;
+      this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
+      this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
     }
 
     $onInit() {

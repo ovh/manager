@@ -1,0 +1,18 @@
+<oui-modal data-heading="{{:: 'dedicatedCloud_drp_datacenter_selection_title' | translate }}"
+           data-primary-action="$ctrl.goToDrpConfiguration($ctrl.datacenter.id)"
+           data-primary-label="{{:: 'dedicatedCloud_drp_datacenter_selection_action' | translate }}"
+           data-primary-disabled="!$ctrl.datacenter"
+           data-secondary-action="$ctrl.cancelSelection()"
+           data-secondary-label="{{:: 'common_cancel' | translate }}"
+           data-on-dismiss="$ctrl.cancelSelection()"
+           data-loading="$ctrl.isRedirecting">
+    <form novalidate name="$ctrl.datacenterSelection">
+        <oui-field data-label="{{:: 'dedicatedCloud_drp_datacenter_selection_label' | translate }}">
+            <oui-select name="datacenter"
+                        match="formattedName"
+                        data-model="$ctrl.datacenter"
+                        data-items="$ctrl.datacenterList">
+            </oui-select>
+        </oui-field>
+    </form>
+</oui-modal>

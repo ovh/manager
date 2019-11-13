@@ -1,11 +1,11 @@
 <div class="dedicatedCloud-datacenter">
 
     <div class="text-center mt-5"
-         data-ng-if="loadingInformations && !loadingError">
+         data-ng-if="$ctrl.loadingInformations && !$ctrl.loadingError">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div data-ng-if="!loadingInformations">
+    <div data-ng-if="!$ctrl.loadingInformations">
 
         <header class="page-header"
                 role="banner">

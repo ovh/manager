@@ -2,6 +2,6 @@
   "billing_payment_method_delete_title": "Usunięcie metody płatności",
   "billing_payment_method_delete_explain": "Usuwasz metodę płatności <strong>{{ label }}</strong>.",
   "billing_payment_method_delete_question": "Czy na pewno chcesz kontynuować?",
-  "billing_payment_method_delete_error": "Wystąpił błąd podczas usuwania sposobu płatności",
-  "billing_payment_method_delete_success": "Twoja metoda płatności została usunięta."
+  "billing_payment_method_delete_error": "Wystąpił błąd podczas usuwania sposobu płatności: {{errorMessage}}.",
+  "billing_payment_method_delete_success": "Twój sposób płatności został usunięty."
 }

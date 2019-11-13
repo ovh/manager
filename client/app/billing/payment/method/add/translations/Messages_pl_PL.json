@@ -3,7 +3,7 @@
   "billing_payment_method_add_back_btn_title": "Powrót do sposobów płatności",
   "billing_payment_method_add_choose_type": "Wybór metody płatności",
   "billing_payment_method_add_selected_common_redirect": "Po kliknięciu \"Dodaj\" zostaniesz przekierowany do systemu bezpiecznych płatności.",
-  "billing_payment_method_add_selected_paypal_redirect": "Klikając na przycisk \"Paypal\", otworzy się wyskakujące okno, aby dokończyć dodawanie metody płatności.",
+  "billing_payment_method_add_selected_paypal_redirect": "Po kliknięciu przycisku „Paypal” otworzy się okno, w którym będziesz mógł ukończyć proces dodawania sposobu płatności.",
   "billing_payment_method_add_selected_original_credit_card_redirect": "Klikając na przycisk \"Dodaj\", dokument zostanie pobrany. Proszę postępować zgodnie z procedurą opisaną w dokumencie, aby zatwierdzić metodę płatności.",
   "billing_payment_method_add_credit_card_selected": "Twoja karta bankowa zostanie natychmiast włączona.",
   "billing_payment_method_add_credit_card_selected_explain": "W celu potwierdzenia rejestracji i ważności Twojej nowej karty bankowej zablokujemy na Twoim koncie kwotę {{ amount }}. Kwota {{amount}} nie zostanie jednak przez nas pobrana. Kwota {{{kwota}}} nie zostanie odliczona.",
@@ -37,6 +37,6 @@
   "billing_payment_method_add_status_success": "Twoja metoda płatności została dodana.",
   "billing_payment_method_add_vantiv_recoverable_credit_card_error": "Wystąpił błąd podczas dodawania metody płatności. Sprawdź, czy numer Twojej karty kredytowej jest prawidłowy i spróbuj ponownie.",
   "billing_payment_method_add_vantiv_recoverable_card_validation_number_error": "Wystąpił błąd podczas dodawania metody płatności. Sprawdź, czy kod weryfikacyjny Twojej karty kredytowej jest prawidłowy i spróbuj ponownie.",
-  "billing_payment_method_add_success": "Twoja nowa metoda płatności została dodana.",
-  "billing_payment_method_add_error": "Wystąpił błąd podczas dodawania metody płatności: {{{errorMessage }}}"
+  "billing_payment_method_add_success": "Twój sposób płatności został dodany.",
+  "billing_payment_method_add_error": "Wystąpił błąd podczas dodawania Twojego sposobu płatności: {{errorMessage}}."
 }

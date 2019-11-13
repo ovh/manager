@@ -67,5 +67,7 @@
   "dedicated_server_interfaces_bandwith_title": "Przepustowość",
   "dedicated_server_interfaces_bandwith_description": "Przepustowość do sieci publicznej (do i z Internetu) nie jest ograniczone na wejściu. Możesz zwiększyć przepustowość do sieci publicznej oraz prywatnej, wykupując odpowiednią opcję.",
   "dedicated_server_interfaces_bandwith_public": "Przepustowość do sieci publicznej",
-  "dedicated_server_interfaces_bandwith_private": "Przepustowość do sieci prywatnej"
+  "dedicated_server_interfaces_bandwith_private": "Przepustowość do sieci prywatnej",
+  "dedicated_server_interfaces_current_operation": "Dla tego serwera wykonywana jest operacja ",
+  "dedicated_server_interfaces_task_error": "Wystąpił problem podczas konfiguracji: {{ errorMessage }}"
 }

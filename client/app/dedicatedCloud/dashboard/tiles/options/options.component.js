@@ -3,6 +3,7 @@ import template from './options.html';
 
 export default {
   bindings: {
+    currentDrp: '<',
     currentService: '<',
     currentUser: '<',
   },

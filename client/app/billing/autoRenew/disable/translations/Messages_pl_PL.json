@@ -6,5 +6,8 @@
   "billing_autorenew_disable_data": "Uwaga: po wygaśnięciu usługi zostanie ona natychmiast zawieszona i nie będzie już dostępna. W przypadku braku uregulowania płatności dane powiązane z tą usługą zostaną definitywnie usunięte po kilku dniach.",
   "billing_autorenew_disable_bulk_unavailable": "Automatyczne odnowienie zostanie wyłączone dla wszystkich wybranych usług, z wyjątkiem {{count}} usług:",
   "billing_autorenew_disable_success": "Odnowienie usług zostało zaktualizowane.",
-  "billing_autorenew_disable_error": "Wystąpił błąd podczas wyłączania automatycznego odnowienia {{message}}."
+  "billing_autorenew_disable_error": "Wystąpił błąd podczas wyłączania automatycznego odnowienia {{message}}.",
+  "billing_autorenew_disable_bulk_unavailable_one": "Automatyczne odnowienie zostanie wyłączone dla wszystkich wybranych usług, z wyjątkiem jednej usługi:",
+  "billing_autorenew_disable_bulk": "Automatyczne odnowienie zostanie wyłączone dla wszystkich wybranych usług.",
+  "billing_autorenew_disable_bulk_single": "Automatyczne odnowienie usługi {{serviceName}} zostanie wyłączone."
 }

@@ -1,31 +1,48 @@
 import _ from 'lodash';
 
+import {
+  DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
+  DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
+  DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
+} from '../../datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+
 export default class {
   /* @ngInject */
   constructor(
     $scope,
     $state,
     $stateParams,
-    $timeout,
     $translate,
     $uibModal,
     Alerter,
     coreConfig,
+    dedicatedCloudDrp,
   ) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
-    this.$timeout = $timeout;
     this.$translate = $translate;
     this.$uibModal = $uibModal;
     this.Alerter = Alerter;
     this.coreConfig = coreConfig;
+    this.dedicatedCloudDrp = dedicatedCloudDrp;
+    this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
+    this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
+    this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;
   }
 
   $onInit() {
     this.allowDedicatedServerComplianceOptions = this.coreConfig.getRegion() !== 'US';
 
     this.setAction = (action, data) => this.$scope.$parent.setAction(action, data);
+    this.getDrpStatus();
+  }
+
+  getDrpStatus() {
+    this.drpStatus = this.currentDrp.state;
+    this.drpRemotePccStatus = this.currentDrp.drpType === this.DRP_OPTIONS.ovh
+      ? this.dedicatedCloudDrp.constructor.formatStatus(_.get(this.currentDrp, 'remoteSiteInformation.state'))
+      : this.DRP_STATUS.delivered;
   }
 
   openModalToEditDescription() {
@@ -62,5 +79,36 @@ export default class {
     return _.isString(formattedPolicy) && !_.isEmpty(formattedPolicy)
       ? this.$translate.instant(`dedicatedCloud_user_access_policy_${formattedPolicy}`)
       : '-';
+  }
+
+  isDrpActionPossible() {
+    return [
+      this.DRP_STATUS.delivered,
+      this.DRP_STATUS.disabled,
+      this.DRP_STATUS.waitingConfiguration,
+    ].includes(this.drpStatus) && this.currentDrp
+      .vpnStatus !== DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.configuring;
+  }
+
+  goToVpnConfigurationState() {
+    return this.$state.go('app.dedicatedClouds.datacenter', {
+      datacenterId: this.currentDrp.datacenterId,
+    }).then(() => this.$state.go('app.dedicatedClouds.datacenter.drp.summary', {
+      drpInformations: this.currentDrp,
+    }));
+  }
+
+  chooseDatacenterForDrp() {
+    if (this.datacenterList.length === 1) {
+      this.loading = true;
+      const [{ id: datacenterId }] = this.datacenterList;
+      return this.$state
+        .go(
+          'app.dedicatedClouds.datacenter.drp',
+          { datacenterId, drpInformations: this.currentDrp },
+        );
+    }
+
+    return this.$state.go('app.dedicatedClouds.drpDatacenterSelection');
   }
 }
