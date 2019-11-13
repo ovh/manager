@@ -64,7 +64,7 @@
 
     <exchange-wizard-hosted-creation data-ng-if="ctrl.shouldOpenWizard && ctrl.hasNoDomain"></exchange-wizard-hosted-creation>
 
-    <div class="modal fade currentAction" id="currentAction" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade currentAction" id="currentAction" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content" id="modal-container" data-ng-include="ctrl.services.navigation.stepPath"></div>
             <div class="help4wizards" id="modal-help"></div>
