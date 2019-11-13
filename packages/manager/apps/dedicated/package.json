@@ -24,6 +24,7 @@
     "@ovh-ux/manager-enterprise-cloud-database": "^0.1.7",
     "@ovh-ux/manager-error-page": "^1.0.0",
     "@ovh-ux/manager-exchange": "^1.0.0",
+    "@ovh-ux/manager-nasha": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-navbar": "^2.1.1",
     "@ovh-ux/manager-server-sidebar": "^0.8.0",
     "@ovh-ux/manager-support": "^0.4.0",
