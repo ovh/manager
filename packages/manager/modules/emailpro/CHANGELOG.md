@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.1...@ovh-ux/manager-emailpro@1.2.2) (2019-11-13)
+
+
+### Bug Fixes
+
+* remove some bad a11y attribute ([#1770](https://github.com/ovh/manager/issues/1770)) ([ef9a6bd](https://github.com/ovh/manager/commit/ef9a6bd667721938dc94aa4d0961700b093a0b05))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.0...@ovh-ux/manager-emailpro@1.2.1) (2019-11-13)
 
 
