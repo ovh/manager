@@ -22,7 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .execute(null, true)
         .$promise
         .then(lastBill => head(lastBill.data)),
-      shortcuts: /* @ngInject */ $state => USER_DASHBOARD_SHORTCUTS
+      shortcuts: /* @ngInject */ ($state, coreConfig) => USER_DASHBOARD_SHORTCUTS
+        .filter(({ regions }) => !regions || regions.includes(coreConfig.getRegion()))
         .map(shortcut => ({ ...shortcut, href: $state.href(shortcut.state) })),
     },
   });
