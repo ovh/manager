@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.2...@ovh-ux/manager-emailpro@1.2.3) (2019-11-14)
+
+
+### Bug Fixes
+
+* **emailpro.account:** set right constants values ([#1775](https://github.com/ovh/manager/issues/1775)) ([824deee](https://github.com/ovh/manager/commit/824deee52364bb975f040e9a0fc8ebab82716c2c))
+
+
+
 ## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.1...@ovh-ux/manager-emailpro@1.2.2) (2019-11-13)
 
 
