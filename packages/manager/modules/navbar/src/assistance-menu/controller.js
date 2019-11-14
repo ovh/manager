@@ -2,7 +2,12 @@ import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 
 import {
-  AVAILABLE_SUPPORT_LEVEL, CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS,
+  ALL_SUPPORT_LEVEL_SUBSIDIARY,
+  AVAILABLE_SUPPORT_LEVEL,
+  CHATBOT_SUBSIDIARIES,
+  HELP_CENTER_SUBSIDIARIES,
+  INACTIVE_SUPPORT_LEVEL,
+  ASSISTANCE_URLS,
 } from './constants';
 
 export default class {
@@ -43,7 +48,9 @@ export default class {
             ...supportLevel,
             displayedLevel: capitalize(supportLevel.level),
           };
-          this.isSupportLevelAvailable = AVAILABLE_SUPPORT_LEVEL.includes(supportLevel.level);
+          this.isSupportLevelAvailable = (ALL_SUPPORT_LEVEL_SUBSIDIARY.includes(this.subsidiary)
+            && !INACTIVE_SUPPORT_LEVEL.includes(supportLevel.level))
+            || AVAILABLE_SUPPORT_LEVEL.includes(supportLevel.level);
         }
       })
       .then(() => this.getMenuTitle())

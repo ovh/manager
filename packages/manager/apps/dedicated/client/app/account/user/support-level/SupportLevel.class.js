@@ -1,12 +1,20 @@
-import { AVAILABLE_SUPPORT_LEVEL, INACTIVE_SUPPORT_LEVEL } from './support-level.constants';
+import {
+  AVAILABLE_SUPPORT_LEVEL,
+  FULL_SUPPORT_LEVEL_SUBSIDIARIES,
+  INACTIVE_SUPPORT_LEVEL,
+} from './support-level.constants';
 
 export default class SupportLevel {
   constructor(supportLevel) {
     Object.assign(this, supportLevel);
   }
 
-  isAvailable() {
-    return AVAILABLE_SUPPORT_LEVEL.includes(this.level);
+  isAvailable(subsidiary) {
+    return (
+      FULL_SUPPORT_LEVEL_SUBSIDIARIES.includes(subsidiary)
+      && this.isActive()
+    )
+      || AVAILABLE_SUPPORT_LEVEL.includes(this.level);
   }
 
   isActive() {
