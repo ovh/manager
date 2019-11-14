@@ -1,7 +1,7 @@
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('telecom.telephony.alias.portabilities.attach', {
+    .state('telecom.telephony.billingAccount.alias.portabilities.attach', {
       url: '/attach?portabilityId',
       views: {
         modal: {

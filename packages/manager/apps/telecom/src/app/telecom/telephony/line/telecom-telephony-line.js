@@ -1,19 +1,19 @@
 import merge from 'lodash/merge';
 
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.line', {
+  $stateProvider.state('telecom.telephony.billingAccount.line', {
     url: '/line/:serviceName',
     views: {
       'telephonyView@telecom.telephony': {
         templateUrl: 'app/telecom/telephony/line/telecom-telephony-line.html',
       },
-      'lineView@telecom.telephony.line': {
+      'lineView@telecom.telephony.billingAccount.line': {
         templateUrl:
           'app/telecom/telephony/line/telecom-telephony-line-main.view.html',
         controller: 'TelecomTelephonyLineCtrl',
         controllerAs: 'LineCtrl',
       },
-      'lineInnerView@telecom.telephony.line': {
+      'lineInnerView@telecom.telephony.billingAccount.line': {
         templateUrl:
           'app/telecom/telephony/line/management/telecom-telephony-line-management.html',
         controller: 'TelecomTelephonyLineManagementCtrl',

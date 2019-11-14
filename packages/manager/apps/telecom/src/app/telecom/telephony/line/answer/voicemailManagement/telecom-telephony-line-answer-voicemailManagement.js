@@ -1,12 +1,12 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.line.voicemailManagement', {
+  $stateProvider.state('telecom.telephony.billingAccount.line.voicemailManagement', {
     url: '/voicemailManagement',
     views: {
-      'lineView@telecom.telephony.line': {
+      'lineView@telecom.telephony.billingAccount.line': {
         templateUrl: 'app/telecom/telephony/line/answer/voicemailManagement/telecom-telephony-line-answer-voicemailManagement.html',
         noTranslations: true,
       },
-      'voicemailView@telecom.telephony.line.voicemailManagement': {
+      'voicemailView@telecom.telephony.billingAccount.line.voicemailManagement': {
         templateUrl: 'app/telecom/telephony/service/voicemail/management/telecom-telephony-service-voicemail-management.html',
         controller: 'TelecomTelephonyServiceVoicemailManagementCtrl',
         controllerAs: 'VoicemailManagementCtrl',

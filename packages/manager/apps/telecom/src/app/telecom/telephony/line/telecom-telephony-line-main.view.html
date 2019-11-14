@@ -21,48 +21,48 @@
         <nav role="navigation">
             <responsive-tabs>
 
-                <responsive-tab data-state="telecom.telephony.line"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line"
                                 data-dropdown-title="{{ 'telephony_line_tab_manage' | translate }}">
                     <span data-translate="telephony_line_tab_manage"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.consumption"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.consumption"
                                 data-dropdown-title="{{ 'telephony_line_tab_consumption' | translate }}">
                     <span data-translate="telephony_line_tab_consumption"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.calls"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.calls"
                                 data-dropdown-title="{{ 'telephony_line_tab_call_management' | translate }}">
                     <span data-translate="telephony_line_tab_call_management"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.tones"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.tones"
                                 data-dropdown-title="{{ 'telephony_line_tab_music_management' | translate }}"
                                 data-disabled="LineCtrl.loading.init || LineCtrl.line.isIndividual() || LineCtrl.line.isTrunk() || !LineCtrl.line.isPriceplan()">
                     <span data-translate="telephony_line_tab_music_management"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.answer"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.answer"
                                 data-dropdown-title="{{ 'telephony_line_tab_answering_machine' | translate }}">
                     <span data-translate="telephony_line_tab_answering_machine"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.phone"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.phone"
                                 data-dropdown-title="{{ 'telephony_line_tab_phone' | translate }}">
                     <span data-translate="telephony_line_tab_phone"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.assist"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.assist"
                                 data-dropdown-title="{{ 'telephony_line_tab_assist' | translate }}">
                     <span data-translate="telephony_line_tab_assist"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.contact"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.contact"
                                 data-dropdown-title="{{ 'telephony_line_tab_contact_details' | translate }}">
                     <span data-translate="telephony_line_tab_contact_details"></span>
                 </responsive-tab>
 
-                <responsive-tab data-state="telecom.telephony.line.fax"
+                <responsive-tab data-state="telecom.telephony.billingAccount.line.fax"
                                 data-dropdown-title="{{ 'telephony_line_tab_fax' | translate }}"
                                 data-disabled="LineCtrl.loading.init || !(LineCtrl.line.isPlugNFax || LineCtrl.fax) || LineCtrl.line.isTrunk()">
                     <span data-translate="telephony_line_tab_fax"></span>
@@ -83,7 +83,7 @@
             <span data-translate="telephony_line_expire_date"
                   data-translate-values="{date: LineCtrl.terminating.executionDate}">
             </span>
-            <a data-ui-sref="telecom.telephony.line.terminate.cancel"
+            <a data-ui-sref="telecom.telephony.billingAccount.line.terminate.cancel"
                data-translate="telephony_line_expire_link">
             </a>
         </div>
@@ -93,7 +93,7 @@
             <span data-translate="telephony_line_convert_date"
                   data-translate-values="{ date: (LineCtrl.converting.executionDate | date) }">
             </span>
-            <a data-ui-sref="telecom.telephony.line.convert"
+            <a data-ui-sref="telecom.telephony.billingAccount.line.convert"
                data-translate="telephony_line_convert_link">
             </a>
         </div>

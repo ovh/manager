@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConta
       },
     }).result.then(() => {
       this.OvhApiTelephony.Service().v6().resetCache();
-      this.$state.go('telecom.telephony.alias').then(() => { this.$state.reload(); });
+      this.$state.go('telecom.telephony.billingAccount.alias').then(() => { this.$state.reload(); });
     }).catch((error) => {
       if (error) {
         this.TucToast.error(

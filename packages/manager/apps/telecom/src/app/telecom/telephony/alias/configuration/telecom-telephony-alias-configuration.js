@@ -2,15 +2,15 @@ import upperFirst from 'lodash/upperFirst';
 import clone from 'lodash/clone';
 
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.alias.configuration', {
+  $stateProvider.state('telecom.telephony.billingAccount.alias.configuration', {
     url: '/configuration',
     views: {
-      'aliasInnerView@telecom.telephony.alias': {
+      'aliasInnerView@telecom.telephony.billingAccount.alias': {
         templateUrl: 'app/telecom/telephony/alias/configuration/telecom-telephony-alias-configuration.html',
         controller: 'TelecomTelephonyAliasConfigurationCtrl',
         controllerAs: '$ctrl',
       },
-      'featureView@telecom.telephony.alias.configuration': {
+      'featureView@telecom.telephony.billingAccount.alias.configuration': {
         templateProvider: (alias) => {
           const featureType = alias.featureType === 'ddi' ? 'redirect' : alias.featureType;
           return `<div data-ng-include="::'app/telecom/telephony/alias/configuration/feature/${featureType}/telecom-telephony-alias-configuration-${featureType}.html'"></div>`;

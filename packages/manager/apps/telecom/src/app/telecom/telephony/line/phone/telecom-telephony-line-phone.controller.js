@@ -20,38 +20,38 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCtrl', functio
   function initActions() {
     self.actions = [{
       name: 'line_details_phon_offer',
-      sref: 'telecom.telephony.line.phone.details',
+      sref: 'telecom.telephony.billingAccount.line.phone.details',
       text: $translate.instant('telephony_line_phone_actions_line_details_phon_offer'),
     }, {
       name: 'line_codecs_management',
-      sref: 'telecom.telephony.line.phone.codec',
+      sref: 'telecom.telephony.billingAccount.line.phone.codec',
       text: $translate.instant('telephony_line_phone_actions_line_codecs_management'),
     }, {
       name: 'line_plug_and_phone_custom_parameters_list',
       disabled: !self.line.phone || self.line.phone.configurations.length === 0,
-      sref: 'telecom.telephony.line.phone.configuration',
+      sref: 'telecom.telephony.billingAccount.line.phone.configuration',
       text: $translate.instant('telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list'),
     }, {
       name: 'line_programmable_keys',
       main: true,
       disabled: !self.line.hasPhone,
       picto: 'ovh-font-programmableKeys',
-      sref: 'telecom.telephony.line.phone.programmableKeys',
+      sref: 'telecom.telephony.billingAccount.line.phone.programmableKeys',
       text: $translate.instant('telephony_line_phone_actions_line_programmable_keys'),
     }, {
       name: 'line_phone_reboot',
       disabled: !self.line.hasPhone,
-      sref: 'telecom.telephony.line.phone.reboot',
+      sref: 'telecom.telephony.billingAccount.line.phone.reboot',
       text: $translate.instant('telephony_line_phone_actions_line_phone_reboot'),
     }, {
       name: 'line_phone_order_plug_and_phone',
-      sref: 'telecom.telephony.line.phone.order',
+      sref: 'telecom.telephony.billingAccount.line.phone.order',
       text: self.line.hasPhone
         ? $translate.instant('telephony_line_phone_actions_line_phone_change_plug_and_phone')
         : $translate.instant('telephony_line_phone_actions_line_phone_order_plug_and_phone'),
     }, {
       name: 'line_order_accessories',
-      sref: 'telecom.telephony.line.phone.accessories',
+      sref: 'telecom.telephony.billingAccount.line.phone.accessories',
       disabled: !(isAllowedOrder('accessory') || isAllowedOrder('accessories')),
       text: $translate.instant('telephony_line_phone_actions_line_order_accessories'),
     }, {
@@ -59,7 +59,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCtrl', functio
       main: true,
       disabled: !self.line.hasPhone || !self.line.hasSupportsPhonebook,
       picto: 'ovh-font-contacts',
-      sref: 'telecom.telephony.line.phone.phonebook',
+      sref: 'telecom.telephony.billingAccount.line.phone.phonebook',
       text: $translate.instant('telephony_line_phone_actions_line_phonebook'),
     }];
   }
