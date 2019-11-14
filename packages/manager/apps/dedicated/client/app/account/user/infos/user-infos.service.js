@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import keys from 'lodash/keys';
 import set from 'lodash/set';
 
-angular.module('UserAccount').service('UserAccount.services.Infos', [
+angular.module('UserAccount').service('userAccountServiceInfos', [
   '$http',
   '$q',
   'UserAccount.constants',
