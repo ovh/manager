@@ -7,7 +7,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
   '$q',
   '$location',
   '$translate',
-  'UserAccount.services.Infos',
+  'userAccountServiceInfos',
   'Alerter',
   'coreConfig',
 

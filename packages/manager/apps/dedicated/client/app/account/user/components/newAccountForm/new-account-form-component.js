@@ -29,7 +29,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
     'NewAccountFormConfig',
     'Alerter',
     'UserAccount.constants',
-    'UserAccount.services.Infos',
+    'userAccountServiceInfos',
     '$translate',
     function newAccountFormController(
       $scope,
