@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.deleteGroup', {
+  $stateProvider.state('telecom.telephony.billingAccount.deleteGroup', {
     url: '/deleteGroup',
     views: {
-      'groupView@telecom.telephony': {
+      'groupView@telecom.telephony.billingAccount': {
         templateUrl: 'app/telecom/telephony/billingAccount/administration/deleteGroup/telecom-telephony-billing-account-administration-delete-group.html',
         controller: 'TelecomTelephonyBillingAccountAdministrationDeleteGroup',
         controllerAs: 'DeleteGroupCtrl',

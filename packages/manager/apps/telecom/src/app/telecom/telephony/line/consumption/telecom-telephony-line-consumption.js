@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.line.consumption', {
+  $stateProvider.state('telecom.telephony.billingAccount.line.consumption', {
     url: '/consumption',
     views: {
-      'lineInnerView@telecom.telephony.line': {
+      'lineInnerView@telecom.telephony.billingAccount.line': {
         templateUrl:
           'app/telecom/telephony/line/consumption/telecom-telephony-line-consumption.html',
         controller: 'TelecomTelephonyLineConsumptionCtrl',

@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.line.click2call', {
+  $stateProvider.state('telecom.telephony.billingAccount.line.click2call', {
     url: '/click2call',
     views: {
-      'lineView@telecom.telephony.line': {
+      'lineView@telecom.telephony.billingAccount.line': {
         templateUrl: 'app/telecom/telephony/line/calls/click2Call/telecom-telephony-line-calls-click2Call.html',
         controller: 'TelecomTelephonyLineClick2CallCtrl',
         controllerAs: 'Click2CallCtrl',

@@ -17,17 +17,17 @@ angular.module('managerApp').controller('TelecomTelephonyFaxAssistCtrl', functio
   function initActions() {
     const actions = [{
       name: 'fax_assist_logs',
-      sref: 'telecom.telephony.fax.assist.logs',
+      sref: 'telecom.telephony.billingAccount.fax.assist.logs',
       text: $translate.instant('telephony_group_fax_assist_action_logs'),
     }, {
       name: 'fax_assist_logs',
-      sref: 'telecom.telephony.fax.assist.support',
+      sref: 'telecom.telephony.billingAccount.fax.assist.support',
       main: true,
       picto: 'ovh-font-docs',
       text: $translate.instant('telephony_group_fax_assist_action_support'),
     }, {
       name: 'fax_assist_orders',
-      sref: 'telecom.telephony.fax.assist.orders',
+      sref: 'telecom.telephony.billingAccount.fax.assist.orders',
       text: $translate.instant('telephony_group_fax_assist_action_orders'),
     }];
 

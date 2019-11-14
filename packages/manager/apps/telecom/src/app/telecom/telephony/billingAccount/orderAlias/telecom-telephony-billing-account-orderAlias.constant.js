@@ -12,7 +12,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_geographical_tip',
       description: 'telephony_order_geographical_description',
       clarification: '(&nbsp;01,&nbsp;02,&nbsp;...&nbsp;)',
-      state: 'telecom.telephony.orderAlias.geographical',
+      state: 'telecom.telephony.billingAccount.orderAlias.geographical',
     },
     'no-geographical': {
       id: 'no-geographical',
@@ -20,7 +20,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_nogeographical_tip',
       description: 'telephony_order_nogeographical_description',
       clarification: '(&nbsp;09&nbsp;)',
-      state: 'telecom.telephony.orderAlias.nongeographical',
+      state: 'telecom.telephony.billingAccount.orderAlias.nongeographical',
     },
     special: {
       id: 'special',
@@ -28,7 +28,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_special_tip',
       description: 'telephony_order_special_description',
       clarification: '(&nbsp;08&nbsp;)',
-      state: 'telecom.telephony.orderAlias.special',
+      state: 'telecom.telephony.billingAccount.orderAlias.special',
     },
     international: {
       id: 'international',
@@ -36,7 +36,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_international_tip',
       description: 'telephony_order_international_description',
       clarification: '(&nbsp;+32,&nbsp;+44,&nbsp;+49,&nbsp;...&nbsp;)',
-      state: 'telecom.telephony.orderAlias.international',
+      state: 'telecom.telephony.billingAccount.orderAlias.international',
     },
   },
   preAmount: [

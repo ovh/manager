@@ -11,7 +11,7 @@ angular.module('managerApp').controller('TelecomOrdersAliasCtrl', function Telec
 
   this.submit = function submit() {
     return $state.go(
-      'telecom.telephony.orderAlias',
+      'telecom.telephony.billingAccount.orderAlias',
       {
         billingAccount: self.billingAccount.billingAccount,
       },

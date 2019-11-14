@@ -1,5 +1,5 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.billing.tollfree-history', {
+  $stateProvider.state('telecom.telephony.billingAccount.billing.tollfree-history', {
     url: '/tollfree-history',
     views: {
       'telephonyView@telecom.telephony': {

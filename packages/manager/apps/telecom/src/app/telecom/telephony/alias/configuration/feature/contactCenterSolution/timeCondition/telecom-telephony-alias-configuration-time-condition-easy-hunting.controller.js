@@ -184,7 +184,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
 
   manageScheduler() {
     this.onTimeConditionFormReset();
-    this.$state.go('telecom.telephony.alias.configuration.timeCondition.scheduler');
+    this.$state.go('telecom.telephony.billingAccount.alias.configuration.timeCondition.scheduler');
   }
 
   filterServices() {

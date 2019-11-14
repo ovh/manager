@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.telephony.carrierSip.endpoints', {
+  $stateProvider.state('telecom.telephony.billingAccount.carrierSip.endpoints', {
     url: '/endpoints',
     views: {
-      '@telecom.telephony.carrierSip': 'carrierSipEndpoints',
+      '@telecom.telephony.billingAccount.carrierSip': 'carrierSipEndpoints',
     },
     resolve: {
       endpoints: /* @ngInject */ (

@@ -30,14 +30,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', fu
   };
 
   self.add = function add() {
-    $state.go('telecom.telephony.line.click2call.addUser', {
+    $state.go('telecom.telephony.billingAccount.line.click2call.addUser', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     });
   };
 
   self.edit = function edit(user) {
-    $state.go('telecom.telephony.line.click2call.changePassword', {
+    $state.go('telecom.telephony.billingAccount.line.click2call.changePassword', {
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
       userId: user.id,

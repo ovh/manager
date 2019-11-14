@@ -17,21 +17,21 @@ angular.module('managerApp').controller('TelecomTelephonyFaxVoicemailCtrl', func
   function initActions() {
     const actions = [{
       name: 'fax_voicemail_management',
-      sref: 'telecom.telephony.fax.voicemail.management',
+      sref: 'telecom.telephony.billingAccount.fax.voicemail.management',
       main: true,
       picto: 'ovh-font-messagesRead',
       text: $translate.instant('telephony_group_fax_voicemail_action_management'),
     }, {
       name: 'fax_voicemail_status',
-      sref: 'telecom.telephony.fax.voicemail.activation',
+      sref: 'telecom.telephony.billingAccount.fax.voicemail.activation',
       text: $translate.instant('telephony_group_fax_voicemail_action_status'),
     }, {
       name: 'fax_voicemail_password',
-      sref: 'telecom.telephony.fax.voicemail.password',
+      sref: 'telecom.telephony.billingAccount.fax.voicemail.password',
       text: $translate.instant('telephony_group_fax_voicemail_action_password'),
     }, {
       name: 'fax_voicemail_options',
-      sref: 'telecom.telephony.fax.voicemail.options',
+      sref: 'telecom.telephony.billingAccount.fax.voicemail.options',
       text: $translate.instant('telephony_group_fax_voicemail_action_options'),
     }];
 

@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.alias.configuration.lines', {
+  $stateProvider.state('telecom.telephony.billingAccount.alias.configuration.lines', {
     url: '/lines',
     views: {
-      'aliasInnerView@telecom.telephony.alias': {
+      'aliasInnerView@telecom.telephony.billingAccount.alias': {
         templateUrl: 'app/telecom/telephony/alias/configuration/feature/contactCenterSolution/lines/telecom-telephony-alias-configuration-lines.html',
         controller: 'TelecomTelephonyAliasConfigurationLinesCtrl',
         controllerAs: '$ctrl',
