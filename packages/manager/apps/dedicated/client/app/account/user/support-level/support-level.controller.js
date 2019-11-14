@@ -2,7 +2,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import slice from 'lodash/slice';
 
-import { URLS } from './support-level.constants';
+import { FULL_SUPPORT_LEVEL_SUBSIDIARIES, URLS } from './support-level.constants';
 import SupportLevel from './SupportLevel.class';
 
 export default class UserAccountSupportLevelCtrl {
@@ -16,6 +16,10 @@ export default class UserAccountSupportLevelCtrl {
 
   getRecommendedLevel() {
     const currentLevelIndex = this.supportLevelsEnum.indexOf(this.supportLevel.level);
-    return get(find(slice(this.supportLevels, currentLevelIndex + 1), level => level.isAvailable()), 'name');
+    return get(find(slice(this.supportLevels, currentLevelIndex + 1), level => level.isAvailable(this.currentUser.ovhSubsidiary)), 'name');
+  }
+
+  areAllLevelsAvailable() {
+    return FULL_SUPPORT_LEVEL_SUBSIDIARIES.includes(this.currentUser.ovhSubsidiary);
   }
 }
