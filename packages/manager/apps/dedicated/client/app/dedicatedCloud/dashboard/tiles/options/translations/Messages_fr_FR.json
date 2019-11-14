@@ -18,5 +18,20 @@
 
    "ovhManagerPccDashboardOptions_certification_actionMenu_activate": "Activer une certification",
    "ovhManagerPccDashboardOptions_certification_actionMenu_configure": "Configurer",
-   "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Valider l'activation"
+   "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Valider l'activation",
+
+   "ovhManagerPccDashboardOptions_security_term": "Options de sécurité",
+
+   "ovhManagerPccDashboardOptions_security_drp": "PRA Zerto",
+   "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Activé",
+   "ovhManagerPccDashboardOptions_security_drp_status_delivering": "En cours d’installation",
+   "ovhManagerPccDashboardOptions_security_drp_status_disabling": "En cours de suppression",
+   "ovhManagerPccDashboardOptions_security_drp_status_disabled": "Aucun",
+   "ovhManagerPccDashboardOptions_security_drp_status_error": "En erreur",
+   "ovhManagerPccDashboardOptions_security_drp_status_vpn_notConfigured": "En attente des IPs du VPN",
+   "ovhManagerPccDashboardOptions_security_drp_status_vpn_configuring": "VPN en cours de configuration",
+   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Configuration du VPN en erreur",
+   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Ajouter les IPs",
+   "ovhManagerPccDashboardOptions_security_drp_action_install": "Installer un PRA",
+   "ovhManagerPccDashboardOptions_security_drp_action_delete": "Supprimer Zerto PRA"
 }
