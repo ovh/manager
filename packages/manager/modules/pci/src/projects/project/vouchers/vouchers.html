@@ -26,6 +26,7 @@
                 data-translate="cpb_vouchers_add_credit_button"
             >
             </a>
+            <pci-project-black-friday class="mb-4 d-block"></pci-project-black-friday>
         </extra-top>
         <oui-column data-title="'cpb_vouchers_name_cell' | translate" data-property="id" data-sortable>
             {{ :: $ctrl.CloudVouchersService.getVoucherDisplayName($row) }}
@@ -44,4 +45,5 @@
         </oui-column>
         <oui-column data-title="'cpb_vouchers_available_credit_cell' | translate" data-property="available_credit.text" data-sortable></oui-column>
     </oui-datagrid>
+    <pci-project-black-friday-notice class="mt-4 d-block"></pci-project-black-friday-notice>
 </div>
