@@ -9,6 +9,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
+        availableFlavors: /* @ngInject */ (
+          cluster,
+          flavors,
+          Kubernetes,
+          projectId,
+        ) => Kubernetes.getAvailableFlavors(
+          cluster, flavors, projectId,
+        ),
         goBack: /* @ngInject */ goToKubernetesNodes => goToKubernetesNodes,
         flavors: /* @ngInject */ (
           cluster,
@@ -17,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => OvhApiCloudProjectFlavor.v6().query({
           serviceName: projectId,
           region: cluster.region,
-        }),
+        }).$promise,
         quotas: /* @ngInject */ (
           OvhApiCloudProjectQuota,
           projectId,

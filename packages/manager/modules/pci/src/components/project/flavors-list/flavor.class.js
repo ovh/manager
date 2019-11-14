@@ -19,7 +19,7 @@ export default class Flavors {
   }
 
   isAvailable() {
-    return this.available;
+    return this.available || get(this, 'state') === 'available';
   }
 
   isFlex() {

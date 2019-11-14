@@ -1,9 +1,9 @@
 import clone from 'lodash/clone';
-import find from 'lodash/find';
 import get from 'lodash/get';
-import includes from 'lodash/includes';
-
-import { FLAVOR_TYPES } from './constants';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
+import uniq from 'lodash/uniq';
 
 export default class KubernetesNodesAddCtrl {
   /* @ngInject */
@@ -35,21 +35,14 @@ export default class KubernetesNodesAddCtrl {
   }
 
   groupFlavorsByFamilies() {
-    this.flavorFamilies = this.CUC_FLAVOR_FLAVORTYPE_CATEGORY
-      .filter(type => includes(FLAVOR_TYPES, type.id))
-      .map(category => (
-        {
-          id: category.id,
-          familyName: this.$translate.instant(`kube_nodes_add_flavor_family_${category.id}`),
-          flavors: this.flavors
-            .filter(flavor => includes(category.types, flavor.type) && flavor.osType !== 'windows')
-            .map(flavor => ({
-              name: flavor.name,
-              displayedName: this.Kubernetes.formatFlavor(flavor),
-              quotaOverflow: this.getQuotaOverflow(flavor),
-              price: get(get(this.prices, flavor.planCodes.hourly), 'price.text'),
-            })),
-        }));
+    this.flavorByFamilies = groupBy(this.availableFlavors, 'category');
+    this.flavorFamilies = map(
+      uniq(map(this.availableFlavors, 'category')),
+      category => ({
+        id: category,
+        familyName: this.$translate.instant(`kube_nodes_add_flavor_family_${category}`),
+      }),
+    );
   }
 
   getQuotaOverflow(flavor) {
@@ -61,7 +54,15 @@ export default class KubernetesNodesAddCtrl {
 
   onFlavorFamilyChange(selectedFamily) {
     this.flavor = null;
-    this.flavors = find(this.flavorFamilies, family => family.id === selectedFamily.id).flavors;
+    this.flavors = sortBy(
+      map(this.flavorByFamilies[selectedFamily.id], flavor => ({
+        ...flavor,
+        displayedName: this.Kubernetes.formatFlavor(flavor),
+        quotaOverflow: this.getQuotaOverflow(flavor),
+        price: get(get(this.prices, flavor.planCodes.hourly), 'price.text'),
+      })),
+      flavor => flavor.vcpus,
+    );
   }
 
   addNode() {
