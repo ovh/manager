@@ -28,7 +28,7 @@ angular.module('managerApp').controller('TelecomOrdersAccessoriesCtrl', function
       billingAccount: self.model.billingAccount.billingAccount,
     }).$promise.then((lines) => {
       if (lines.length) {
-        return $state.go('telecom.telephony.line.phone.accessories', {
+        return $state.go('telecom.telephony.billingAccount.line.phone.accessories', {
           billingAccount: self.model.billingAccount.billingAccount,
           serviceName: lines[0],
         }, {

@@ -224,16 +224,16 @@ angular.module('managerApp')
       getGroup().then(() => {
         self.actions = [{
           name: 'telephony_group_admin_actions_order',
-          sref: 'telecom.telephony.orderAlias',
+          sref: 'telecom.telephony.billingAccount.orderAlias',
           disabled: isExpired(),
           text: $translate.instant('telephony_group_billing_dashboard_actions_group_order'),
         }, {
           name: 'telephony_group_admin_actions_bill',
-          sref: 'telecom.telephony.billing.bill',
+          sref: 'telecom.telephony.billingAccount.billing.bill',
           text: $translate.instant('telephony_group_billing_dashboard_go_to_my_bills'),
         }, {
           name: 'telephony_group_admin_actions_delete',
-          sref: 'telecom.telephony.deleteGroup',
+          sref: 'telecom.telephony.billingAccount.deleteGroup',
           disabled: isExpired(),
           text: $translate.instant('telephony_group_billing_dashboard_actions_group_delete'),
         }];
