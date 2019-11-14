@@ -198,7 +198,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', c
         this.OvhApiTelephony.Service().v6().resetCache();
         this.OvhApiTelephony.Service().v6().resetQueryCache();
 
-        this.$state.go('telecom.telephony.alias.configuration').then(() => {
+        this.$state.go('telecom.telephony.billingAccount.alias.configuration').then(() => {
           this.$state.reload();
         });
       }).catch(() => {

@@ -20,7 +20,7 @@
         <div class="oui-tile__item oui-tile__item_button"
              data-ng-repeat="service in VoipLine.services track by service.domain">
             <a class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
-               data-ui-sref="telecom.telephony.line({
+               data-ui-sref="telecom.telephony.billingAccount.line({
                    billingAccount: service.billingAccount,
                    serviceName: service.domain
                })">

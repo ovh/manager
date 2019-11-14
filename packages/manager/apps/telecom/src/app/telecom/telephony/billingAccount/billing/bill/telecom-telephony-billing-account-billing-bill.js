@@ -1,5 +1,5 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.billing.bill', {
+  $stateProvider.state('telecom.telephony.billingAccount.billing.bill', {
     url: '/bill',
     views: {
       'telephonyView@telecom.telephony': {

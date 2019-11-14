@@ -1,8 +1,8 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.telephony.carrierSip.cdr', {
+  $stateProvider.state('telecom.telephony.billingAccount.carrierSip.cdr', {
     url: '/cdr',
     views: {
-      '@telecom.telephony.carrierSip': 'carrierSipCdr',
+      '@telecom.telephony.billingAccount.carrierSip': 'carrierSipCdr',
     },
   });
 };

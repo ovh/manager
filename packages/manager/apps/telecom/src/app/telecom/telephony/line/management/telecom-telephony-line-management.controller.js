@@ -18,40 +18,40 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementCtrl', fu
       name: 'line_details_offer',
       main: true,
       picto: 'ovh-font-details',
-      sref: 'telecom.telephony.line.detailsOffer',
+      sref: 'telecom.telephony.billingAccount.line.detailsOffer',
       text: $translate.instant('telephony_line_management_actions_line_details_offer'),
     }, {
       name: 'line_sip_password',
-      sref: 'telecom.telephony.line.password',
+      sref: 'telecom.telephony.billingAccount.line.password',
       disabled: !self.canSipPassword,
       text: $translate.instant('telephony_line_management_actions_line_sip_password'),
     }, {
       name: 'line_sip_domain_management',
-      sref: 'telecom.telephony.line.domain',
+      sref: 'telecom.telephony.billingAccount.line.domain',
       disabled: !TelecomMediator.isVip,
       text: $translate.instant('telephony_line_management_actions_line_sip_domain_management'),
     }, get(self.line, 'phone.protocol') === 'mgcp' ? {
       name: 'line_manage_mgcp_ip_restriction',
       disabled: !self.line.hasPhone,
-      sref: 'telecom.telephony.line.mgcpIpRestriction',
+      sref: 'telecom.telephony.billingAccount.line.mgcpIpRestriction',
       text: $translate.instant('telephony_line_management_actions_line_mgcp_ip_restriction'),
     } : {
       name: 'line_sip_ips_restrictions',
-      sref: 'telecom.telephony.line.restrictions',
+      sref: 'telecom.telephony.billingAccount.line.restrictions',
       disabled: get(self.line, 'phone.protocol') === 'mgcp',
       text: $translate.instant('telephony_line_management_actions_line_sip_ips_restrictions'),
     }, {
       name: 'line_language',
-      sref: 'telecom.telephony.line.language',
+      sref: 'telecom.telephony.billingAccount.line.language',
       text: $translate.instant('telephony_line_management_actions_line_language'),
     }, {
       name: 'line_resume_offer',
       disabled: offerCount === 0 || self.line.isTrunk(),
-      sref: 'telecom.telephony.line.offerChange',
+      sref: 'telecom.telephony.billingAccount.line.offerChange',
       text: $translate.instant('telephony_line_management_actions_line_resume_offer'),
     }, {
       name: 'line_to_number',
-      sref: 'telecom.telephony.line.convert',
+      sref: 'telecom.telephony.billingAccount.line.convert',
       disabled: isInXdslPack || self.line.isVoicefax(),
       text: $translate.instant('telephony_line_management_actions_line_to_number'),
     }];
@@ -59,13 +59,13 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementCtrl', fu
     if (taskCount) {
       actions.push({
         name: 'line_cancel_delete_line_new',
-        sref: 'telecom.telephony.line.terminate.cancel',
+        sref: 'telecom.telephony.billingAccount.line.terminate.cancel',
         text: $translate.instant('telephony_line_management_actions_line_cancel_delete_line_new'),
       });
     } else {
       actions.push({
         name: 'line_delete_line_new',
-        sref: 'telecom.telephony.line.terminate',
+        sref: 'telecom.telephony.billingAccount.line.terminate',
         text: $translate.instant('telephony_line_management_actions_line_delete_line_new'),
       });
     }
