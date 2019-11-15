@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "7.6.0",
+  "version": "7.6.1",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
