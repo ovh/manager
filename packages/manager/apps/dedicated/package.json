@@ -28,6 +28,7 @@
     "@ovh-ux/manager-navbar": "^2.1.3",
     "@ovh-ux/manager-server-sidebar": "^0.8.2",
     "@ovh-ux/manager-support": "^0.4.0",
+    "@ovh-ux/manager-veeam-cloud-connect": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-veeam-enterprise": "^0.1.0",
     "@ovh-ux/manager-vps": "^0.1.0",
     "@ovh-ux/mfa-enrollment": "^0.0.0 || ^1.0.0",

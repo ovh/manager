@@ -1,0 +1,12 @@
+<header data-ui-view="veeamHeader"></header>
+<div class="veeam-messages">
+    <cui-message-container data-messages="$ctrl.VeeamCloudConnectService.unitOfWork.messages"></cui-message-container>
+    <oui-message type="warning" data-ng-show="$ctrl.hasTaskMessages()">
+        <p><strong data-translate="veeam_tasks_pending"></strong></p>
+        <ul>
+            <li data-ng-repeat="(taskName, taskData) in VeeamDetailCtrl.pendingTasksMessages"
+                data-ng-bind="taskData.message"></li>
+        </ul>
+    </oui-message>
+</div>
+<div data-ui-view="veeamContent"></div>
