@@ -139,8 +139,10 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
       id: 'telecom-telephony-section',
       category: 'telephony',
       icon: 'ovh-font ovh-font-phone',
+
+      state: 'telecom.telephony',
       allowSubItems: true,
-      onLoad: self.initTelephonySubsection,
+      // onLoad: self.initTelephonySubsection,
       loadOnState: 'telecom.telephony.billingAccount',
       allowSearch: true,
       infiniteScroll: true,
