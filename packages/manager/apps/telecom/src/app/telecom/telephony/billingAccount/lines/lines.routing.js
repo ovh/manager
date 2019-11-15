@@ -84,7 +84,7 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         });
 
-        return request.execute(null, true).$promise;
+        return request.execute(null).$promise;
       },
       paginationNumber: /* @ngInject */ resources => parseInt(
         get(resources.headers, 'x-pagination-number'),
