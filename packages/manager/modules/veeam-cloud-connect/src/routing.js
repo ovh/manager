@@ -41,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       translations: {
-        value: ['../common', '.', './dashboard', './storage/add', './dashboard/update-offer'],
+        value: ['.', './dashboard', './storage/add', './dashboard/update-offer'],
         format: 'json',
       },
     })
@@ -60,7 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       translations: {
-        value: ['../common', '.', './storage', './storage/add'],
+        value: ['.', './storage', './storage/add'],
         format: 'json',
       },
     });
