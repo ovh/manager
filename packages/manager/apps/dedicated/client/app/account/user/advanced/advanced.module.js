@@ -1,3 +1,5 @@
+import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
+
 import component from './advanced.component';
 
 import routing from './advanced.routing';
@@ -5,7 +7,9 @@ import routing from './advanced.routing';
 const moduleName = 'ovhManagerDedicatedAccountUserAdvanced';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    ovhManagerBetaPreference,
+  ])
   .config(routing)
   .component('accountUserAdvanced', component);
 
