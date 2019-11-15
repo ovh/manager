@@ -1,0 +1,31 @@
+<div class="container-fluid my-5">
+    <oui-datagrid id="dg-telephony-billingAccounts-lines"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadPage()"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-columns="$ctrl.columnsConfig">
+        <oui-column data-title=":: 'telephony_billing_account_line_description_title' | translate"
+            data-property="description"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string">
+            <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}">{{$value}}</a>
+        </oui-column>
+
+        <!-- <extra-top>
+            <a class="oui-button oui-button_primary oui-button_secondary oui-button_icon-right"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="dedicated::dedicated::servers::order"
+                target="_blank" rel="noopener"
+                data-ng-href="{{:: $ctrl.orderUrl }}">
+                <span data-translate="dedicated_servers_order"></span>
+                <span class="oui-icon  oui-icon-external_link" aria-hidden="true"></span>
+            </a>
+        </extra-top> -->
+    </oui-datagrid>
+</div>

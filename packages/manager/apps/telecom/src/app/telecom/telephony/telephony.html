@@ -1,0 +1,22 @@
+<oui-page-header data-heading="{{ :: 'telecom_telephony_title' | translate }}"></oui-page-header>
+
+<div class="container-fluid my-5">
+    <oui-datagrid id="dg-telephony-billingAccounts"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadPage()"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-columns="$ctrl.columnsConfig">
+
+        <oui-column data-title=":: 'telecom_telephony_description_title' | translate"
+            data-property="description"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string">
+            <a data-ng-href="{{ $ctrl.getBillingAccountLink($row) }}">{{ $row.description ? $row.description : $row.billingAccount }}</a>
+        </oui-column>
+    </oui-datagrid>
+</div>
