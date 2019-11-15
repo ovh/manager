@@ -4,7 +4,7 @@
     <oui-message type="warning" data-ng-show="$ctrl.hasTaskMessages()">
         <p><strong data-translate="veeam_tasks_pending"></strong></p>
         <ul>
-            <li data-ng-repeat="(taskName, taskData) in VeeamDetailCtrl.pendingTasksMessages"
+            <li data-ng-repeat="(taskName, taskData) in $ctrl.pendingTasksMessages"
                 data-ng-bind="taskData.message"></li>
         </ul>
     </oui-message>
