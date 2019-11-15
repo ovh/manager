@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.telephony.billingAccount.lines', {
-    url: '/lines?page&pageSize&sort&sortOrder&filter',
+  $stateProvider.state('telecom.telephony.billingAccount.services', {
+    url: '/services?page&pageSize&sort&sortOrder&filter',
     views: {
       'groupInnerView@telecom.telephony.billingAccount': {
-        component: 'telecomTelephonyBillingAccountLines',
+        component: 'telecomTelephonyBillingAccountServices',
       },
     },
     params: {
