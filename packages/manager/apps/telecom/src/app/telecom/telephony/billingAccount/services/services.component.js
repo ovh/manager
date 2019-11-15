@@ -17,6 +17,9 @@ export default {
     sort: '<',
     sortOrder: '<',
 
-    getServerDashboardLink: '<',
+    getServiceLink: '<',
+
+    telephonyFeatureTypes: '<',
+    telephonyServiceTypes: '<',
   },
 };

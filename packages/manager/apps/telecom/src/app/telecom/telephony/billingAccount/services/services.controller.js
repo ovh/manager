@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
+import startCase from 'lodash/startCase';
 import snakeCase from 'lodash/snakeCase';
 import reduce from 'lodash/reduce';
 
@@ -16,7 +17,7 @@ export default class TelecomTelephonyBillingAccountServicesController {
   }
 
   $onInit() {
-    this.defaultFilterColumn = 'description';
+    this.defaultFilterColumn = 'serviceName';
 
     this.criteria = JSON.parse(this.filter).map(criteria => ({
       property: get(criteria, 'field') || this.defaultFilterColumn,
@@ -24,16 +25,32 @@ export default class TelecomTelephonyBillingAccountServicesController {
       value: criteria.reference[0],
     }));
 
+    this.filtersOptions = {
+      serviceType: {
+        hideOperators: true,
+        values: this.telephonyServiceTypes.reduce((serviceTypes, serviceType) => ({
+          ...serviceTypes,
+          [serviceType]: this.$translate.instant(`telephony_billing_account_line_service_${serviceType}`),
+        }), {}),
+      },
+      featureType: {
+        hideOperators: true,
+        values: this.telephonyFeatureTypes.reduce((featureTypes, featureType) => ({
+          ...featureTypes,
+          [featureType]: this.formatFeatureType(featureType),
+        }), {}),
+      },
+    };
+
     // this.stateEnumFilter = this.getEnumFilter(this.serverStateEnum,
     // 'server_configuration_state_');
     // this.datacenterEnumFilter = this.getEnumFilter(this.datacenterEnum, 'server_datacenter_');
 
     this.columnsConfig = [
+      { name: 'serviceName', sortable: this.getSorting('serviceName') },
       { name: 'description', sortable: this.getSorting('description') },
-      // { name: 'reverse', sortable: this.getSorting('reverse') },
-      // { name: 'commercialRange', sortable: this.getSorting('commercialRange') },
-      // { name: 'datacenter', sortable: this.getSorting('datacenter') },
-      // { name: 'state', sortable: this.getSorting('state') },
+      { name: 'serviceType', sortable: this.getSorting('serviceType') },
+      { name: 'featureType', sortable: this.getSorting('featureType') },
     ];
   }
 
@@ -94,5 +111,9 @@ export default class TelecomTelephonyBillingAccountServicesController {
       sort: name,
       sortOrder: order,
     });
+  }
+
+  formatFeatureType(featureType) {
+    return ['empty'].includes(featureType) ? this.$translate.instant('telephony_billing_account_line_feature_no_configuration') : startCase(featureType);
   }
 }
