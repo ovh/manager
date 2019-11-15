@@ -3,7 +3,7 @@ import remove from 'lodash/remove';
 import some from 'lodash/some';
 
 export default class NashaPartitionAccessCtrl {
-  /* @ngInject */
+  /* @ngInject */ /* eslint-disable max-len */
   constructor($scope, $state, $stateParams, $translate, $uibModal, $q, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
     const self = this;
 

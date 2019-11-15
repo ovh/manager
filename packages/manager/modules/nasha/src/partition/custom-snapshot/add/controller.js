@@ -1,5 +1,5 @@
 export default class NashaPartitionCustomSnapshotAddCtrl {
-  /* @ngInject */
+  /* @ngInject */ /* eslint-disable max-len */
   constructor($scope, $stateParams, $translate, $uibModalInstance, OvhApiDedicatedNashaPartition, CucCloudMessage) {
     const self = this;
 

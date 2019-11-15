@@ -5,7 +5,7 @@ import isEqual from 'lodash/isEqual';
 import remove from 'lodash/remove';
 
 export default class NashaPartitionSnapshotCtrl {
-  /* @ngInject */
+  /* @ngInject */ /* eslint-disable max-len */
   constructor($stateParams, $scope, $uibModalInstance, $q, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
     const self = this;
 

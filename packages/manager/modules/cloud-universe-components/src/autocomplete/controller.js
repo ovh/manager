@@ -248,14 +248,17 @@ export default class CucAutoCompleteController {
     }
   }
 
+  /* eslint-disable class-methods-use-this */
   getDomList() {
     return document.querySelector('.cloud-autocomplete__list');
   }
 
+  /* eslint-disable class-methods-use-this */
   getDomListItems() {
     return document.querySelectorAll('.cloud-autocomplete__list__item');
   }
 
+  /* eslint-disable class-methods-use-this */
   preventEvent(event) {
     event.preventDefault();
   }
@@ -329,6 +332,7 @@ export default class CucAutoCompleteController {
     }
   }
 
+  /* eslint-disable class-methods-use-this */
   getArrangedGroupName(groupName) {
     return isUndefined(groupName) ? 'undefined' : groupName;
   }

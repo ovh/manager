@@ -1,5 +1,5 @@
 export default class NashaPartitionDeleteCtrl {
-  /* @ngInject */
+  /* @ngInject */ /* eslint-disable max-len */
   constructor(OvhApiDedicatedNasha, $stateParams, $scope, $uibModalInstance, $translate, CucCloudMessage) {
     const self = this;
     self.loading = false;

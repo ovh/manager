@@ -1,5 +1,5 @@
 export default class NashaPartitionAddCtrl {
-  /* @ngInject */
+  /* @ngInject */ /* eslint-disable max-len */
   constructor($stateParams, $scope, $q, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
     const self = this;
 
