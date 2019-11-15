@@ -5,7 +5,22 @@ import template from './telecom-telephony.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony', {
-    url: '/telephony?page&pageSize&sort&sortOrder&filter',
+    url: '/telephony',
+    abstract: true,
+    views: {
+      'telecomView@telecom': {
+        template,
+      },
+    },
+  });
+
+  $stateProvider.state('telecom.telephony.index', {
+    url: '?page&pageSize&sort&sortOrder&filter',
+    views: {
+      'telephonyView@telecom.telephony': {
+        component: 'telecomTelephony',
+      },
+    },
     params: {
       page: {
         value: '1',
@@ -28,15 +43,6 @@ export default /* @ngInject */ ($stateProvider) => {
         squash: true,
       },
     },
-    views: {
-      'telecomView@telecom': {
-        template,
-      },
-      'telephonyView@telecom.telephony': {
-        component: 'telecomTelephony',
-      },
-    },
-
     resolve: {
       filter: /* @ngInject */ $transition$ => $transition$.params().filter,
       paginationNumber: /* @ngInject */ resources => parseInt(
