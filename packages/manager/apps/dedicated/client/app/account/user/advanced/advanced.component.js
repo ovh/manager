@@ -5,4 +5,8 @@ export default {
   controllerAs: 'advancedCtrl',
   controller,
   template,
+  bindings: {
+    betaFlag: '<',
+    updateBeta: '<',
+  },
 };

@@ -3,6 +3,24 @@
     <div class="tab-content">
         <div data-ovh-alert="useraccount.alerts.dashboardAdvanced"></div>
 
+        <h2>Fonctionnalités Bêta</h2>
+
+        <p>
+            Bénéficiez de nouvelles fonctionnalités bêta en avant-première...
+            Per hoc minui studium suum existimans Paulus, ut erat in conplicandis negotiis artifex dirus, unde ei Catenae inditum est cognomentum, vicarium ipsum eos quibus praeerat adhuc defensantem ad sortem periculorum communium traxit. et instabat ut eum quoque cum tribunis et aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur Paulum. et quia languente dextera, letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit e vita iustissimus rector ausus miserabiles casus levare multorum.
+        </p>
+
+        <div class="oui-box oui-box_light mb-5">
+            <oui-spinner data-ng-if="advancedCtrl.isUpdatingBeta" data-size="s"></oui-spinner>
+            <oui-checkbox
+                data-ng-if="!advancedCtrl.isUpdatingBeta"
+                aria-label=""
+                data-model="advancedCtrl.beta.active"
+                data-on-change="advancedCtrl.onBetaChange(modelValue)">
+                <span >Activer les fonctionnalités Bêta</span>
+            </oui-checkbox>
+        </div>
+
         <h2 data-translate="user_account_advanced_section_developer_title"></h2>
 
         <form>
