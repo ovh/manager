@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import lines from './lines';
+import services from './services';
 
 import routing from './billingAccount.routing';
 
@@ -8,7 +8,7 @@ const moduleName = 'ovhManagerTelecomTelephonyBillingAccount';
 
 angular
   .module(moduleName, [
-    lines,
+    services,
   ])
   .config(routing);
 

@@ -16,6 +16,7 @@ angular
   ])
   .config(routing)
   .component('telecomTelephony', component)
-  .service('TelecomTelephonyService', service);
+  .service('TelecomTelephonyService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

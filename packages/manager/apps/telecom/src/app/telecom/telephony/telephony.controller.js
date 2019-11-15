@@ -35,6 +35,7 @@ export default class TelecomTelephonyController {
     const currentOffset = this.paginationNumber * this.paginationSize;
     set(this.ouiDatagridService, 'datagrids.dg-telephony-billingAccounts.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
 
+    // this.loadResource(this.resources.data[0]);
     return this.$q.resolve({
       data: get(this.resources, 'data'),
       meta: {

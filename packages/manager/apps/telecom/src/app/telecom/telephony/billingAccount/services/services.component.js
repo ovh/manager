@@ -1,5 +1,5 @@
-import controller from './lines.controller';
-import template from './lines.html';
+import controller from './services.controller';
+import template from './services.html';
 
 export default {
   controller,

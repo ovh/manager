@@ -1,16 +1,17 @@
-<oui-page-header data-heading="{{ :: 'telecom_telephony_title' | translate }}"></oui-page-header>
+<oui-page-header data-heading="{{ :: 'telephony_title' | translate }}"></oui-page-header>
 
 <div class="container-fluid my-5">
     <oui-datagrid id="dg-telephony-billingAccounts"
         data-page-size="{{ $ctrl.paginationSize }}"
         data-rows-loader="$ctrl.loadPage()"
+        data-row-loader="$ctrl.loadResource($row)"
         data-criteria="$ctrl.criteria"
         data-on-page-change="$ctrl.onPageChange($pagination)"
         data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig">
 
-        <oui-column data-title=":: 'telecom_telephony_description_title' | translate"
+        <oui-column data-title=":: 'telephony_description_label' | translate"
             data-property="description"
             data-searchable
             data-filterable
@@ -18,5 +19,13 @@
             data-type="string">
             <a data-ng-href="{{ $ctrl.getBillingAccountLink($row) }}">{{ $row.description ? $row.description : $row.billingAccount }}</a>
         </oui-column>
+        <oui-column data-title=":: 'telephony_num_service_label' | translate"
+            data-property="numServices"
+            data-type="number">
+            <a data-ng-href="{{ $ctrl.getBillingAccountServicesLink($row) }}"
+                data-translate="telephony_num_service_services"
+                data-translate-values="{ num: $value }"></a>
+        </oui-column>
     </oui-datagrid>
 </div>
+

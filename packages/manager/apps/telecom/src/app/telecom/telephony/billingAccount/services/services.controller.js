@@ -3,7 +3,7 @@ import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 import reduce from 'lodash/reduce';
 
-export default class TelecomTelephonyBillingAccountLinesController {
+export default class TelecomTelephonyBillingAccountServicesController {
   /* @ngInject */
   constructor(
     $q,
@@ -60,7 +60,7 @@ export default class TelecomTelephonyBillingAccountLinesController {
 
   loadPage() {
     const currentOffset = this.paginationNumber * this.paginationSize;
-    set(this.ouiDatagridService, 'datagrids.dg-telephony-billingAccounts-lines.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
+    set(this.ouiDatagridService, 'datagrids.dg-telephony-billingAccounts-services.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
 
     return this.$q.resolve({
       data: get(this.resources, 'data'),

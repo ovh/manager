@@ -44,6 +44,17 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      loadResource: /* @ngInject */ OvhApiTelephonyService => resource => OvhApiTelephonyService
+        .v6()
+        .query({
+          billingAccount: resource.billingAccount,
+        })
+        .$promise
+        .then(services => ({
+          ...resource,
+          numServices: services.length,
+        })),
+
       filter: /* @ngInject */ $transition$ => $transition$.params().filter,
       paginationNumber: /* @ngInject */ resources => parseInt(
         get(resources.headers, 'x-pagination-number'),
@@ -68,14 +79,6 @@ export default /* @ngInject */ ($stateProvider) => {
       ),
       sort: /* @ngInject */ resources => get(resources.headers, 'x-pagination-sort'),
       sortOrder: /* @ngInject */ resources => get(resources.headers, 'x-pagination-sort-order'),
-
-      getBillingAccountLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
-        'telecom.telephony.billingAccount',
-        {
-          billingAccount,
-        },
-      ),
-
       resources: /* @ngInject */ ($transition$, iceberg) => {
         const {
           filter,
@@ -131,6 +134,18 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return request.execute(null).$promise;
       },
+      getBillingAccountLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
+        'telecom.telephony.billingAccount',
+        {
+          billingAccount,
+        },
+      ),
+      getBillingAccountServicesLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
+        'telecom.telephony.billingAccount.services',
+        {
+          billingAccount,
+        },
+      ),
     },
   });
 };

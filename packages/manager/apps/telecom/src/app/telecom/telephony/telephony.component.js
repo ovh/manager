@@ -7,6 +7,7 @@ export default {
   bindings: {
     filter: '<',
     resources: '<',
+    loadResource: '<',
     serverStateEnum: '<',
     datacenterEnum: '<',
     onListParamsChange: '<',
@@ -16,5 +17,6 @@ export default {
     sort: '<',
     sortOrder: '<',
     getBillingAccountLink: '<',
+    getBillingAccountServicesLink: '<',
   },
 };

@@ -1,6 +1,7 @@
 {
   "telephony_group_back_link": "Retour à la gestion du groupe de facturation",
   "telephony_group_tab_admin": "Administration",
+  "telephony_group_tab_services": "Services",
   "telephony_group_tab_dashboard": "Tableau de bord",
   "telephony_group_tab_billing": "Facturation",
   "telephony_group_tab_orderAlias": "Commande de numéros",
