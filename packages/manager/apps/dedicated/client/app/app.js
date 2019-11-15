@@ -38,6 +38,7 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
+import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import account from './account';
 import config from './config/config';
@@ -111,6 +112,7 @@ angular
     ovhManagerServerSidebar,
     ovhManagerSupport,
     ovhManagerVeeamEnterprise,
+    ovhManagerVeeamCloudConnect,
     ngTailLogs,
     'ovhBrowserAlert',
     ovhContacts,
