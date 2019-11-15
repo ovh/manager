@@ -34,18 +34,15 @@
                         <thead class="table-comparison__head">
                             <tr>
                                 <th class="table-comparison__cell table-comparison__cell--head table-comparison__cell--empty"></th>
-                                <th class="table-comparison__cell table-comparison__cell--head table-comparison--item-base" data-translate="telecom_pack_migration_current_offer"
+                                <th class="table-comparison__cell table-comparison__cell--head table-comparison--item-base"
+                                    data-translate="telecom_pack_migration_current_offer"
                                     scope="col"
                                     data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription }">
                                 </th>
-                                <th class="table-comparison__cell table-comparison__cell--head" data-ng-repeat="offer in OffersCtrl.process.migrationOffers.result.offers track by $index"
+                                <th class="table-comparison__cell table-comparison__cell--head"
+                                    data-ng-repeat="offer in OffersCtrl.process.migrationOffers.result.offers track by $index"
                                     scope="col">
-                                    <a data-ng-href="{{ offer.url }}"
-                                       target="_blank"
-                                       title="{{ 'telecom_pack_migration_offer_choice_offer_more_infos' | translate:offer }}">
-                                        <span data-ng-bind="offer.description"></span>
-                                        <span class="ovh-font ovh-font-newtab ml-2"></span>
-                                    </a>
+                                    <span data-ng-bind="offer.description"></span>
                                 </th>
                             </tr>
                         </thead>
