@@ -200,19 +200,18 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
     =            INITIALIZATION            =
     ====================================== */
 
-  self.init = function init() {
-    self.mainSectionItem = SidebarMenu.addMenuItem({
+  self.init = function init(expand) {
+    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
       id: 'telecom-pack-section',
       title: $translate.instant('telecom_sidebar_section_pack'),
       error: $translate.instant('telecom_sidebar_load_error'),
       category: 'xdsl',
       icon: 'ovh-font ovh-font-telecom-ethernet',
-      allowSubItems: true,
-      onLoad: self.fetchData,
-      loadOnState: 'telecom.packs.pack',
-      allowSearch: true,
+      allowSubItems: !expand,
+      loadOnState: 'telecom.packs',
+      allowSearch: !expand,
       infiniteScroll: true,
-    });
+    }, expand ? { state: 'telecom.packs.internet-access.packs' } : { onLoad: self.fetchData }));
 
     return self.mainSectionItem;
   };
