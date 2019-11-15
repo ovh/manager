@@ -10,6 +10,14 @@ export default /* @ngInject */($stateProvider, coreConfigProvider) => {
       url: '/advanced',
       component: 'accountUserAdvanced',
       translations: ['../'],
+      resolve: {
+        betaFlag: /* @ngInject */ ovhUserPref => ovhUserPref
+          .getValue(BETA_PREFERENCE)
+          .then(() => true)
+          .catch(() => false),
+        updateBeta: /* @ngInject */ ovhUserPref => beta => ovhUserPref
+          .assign(BETA_PREFERENCE, beta),
+      },
     });
   }
 };
