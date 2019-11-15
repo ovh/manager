@@ -12,7 +12,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
   // add translation path
   SidebarMenuProvider.addTranslationPath('../components/sidebar');
 }).run((
-  $sce, $translate,
+  $q, $sce, $translate,
   atInternet, FaxSidebar, OverTheBoxSidebar, ovhUserPref, PackSidebar,
   SidebarMenu, SmsSidebar, TelecomMediator, TelephonySidebar,
   ORDER_URLS, REDIRECT_URLS,
@@ -238,11 +238,14 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     ====================================== */
 
   function init() {
+    const betaPreference = localStorage.getItem(BETA_PREFERENCE);
     // set initialization promise
     return SidebarMenu.setInitializationPromise(
-      ovhUserPref.getValue(BETA_PREFERENCE)
-        .then(() => true)
-        .catch(() => localStorage.getItem(BETA_PREFERENCE))
+      (betaPreference ? $q.resolve(betaPreference)
+        : ovhUserPref.getValue(BETA_PREFERENCE)
+          .then(() => true)
+          .catch(() => false)
+      )
         .then(beta => TelecomMediator.initServiceCount(false, beta)
           .then(count => $translate.refresh().then(() => count))
           .then((count) => {
