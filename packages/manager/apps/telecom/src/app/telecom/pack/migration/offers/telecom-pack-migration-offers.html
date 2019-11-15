@@ -183,7 +183,7 @@
                                                         data-model="offer.options.voip_line.choosedValue"
                                                         min="0"
                                                         max="offer.options.voip_line.optional"
-                                                        data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer)">
+                                                        data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer, offer.options.voip_line.name)">
                                             </oui-numeric>
                                             <small class="d-block mt-2"
                                                    data-ng-init="offer.options.voip_line.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('telecom_pack_migration_line_additional_text' | translate ) }"
@@ -239,7 +239,7 @@
                                                 min="0"
                                                 max="offer.options.exchange_account.optional"
                                                 data-model="offer.options.exchange_account.choosedValue"
-                                                data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer)">
+                                                data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer, offer.options.exchange_account.name)">
                                             </oui-numeric>
                                             <small class="d-block mt-2"
                                                    data-ng-init="offer.options.exchange_account.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('telecom_pack_migration_account_additional_text' | translate ) }"
@@ -333,7 +333,7 @@
                                                         data-model="offer.options.voip_ecofax.choosedValue"
                                                         min="0"
                                                         max="offer.options.voip_ecofax.optional"
-                                                        data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer)">
+                                                        data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer, offer.options.voip_ecofax.name)">
                                             </oui-numeric>
                                             <small class="d-block mt-2"
                                                    data-ng-init="offer.options.voip_ecofax.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('telecom_pack_migration_line_additional_text' | translate ) }"
@@ -388,7 +388,7 @@
                                                         data-model="offer.options.dom1.choosedValue"
                                                         min="0"
                                                         max="offer.options.dom1.optional"
-                                                        data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer)">
+                                                        data-on-change="OffersCtrl.updateOfferDisplayedPrice(modelValue, offer, offer.options.dom1.name)">
                                             </oui-numeric>
                                             <small class="d-block mt-2"
                                                   data-ng-init="offer.options.dom1.formatPriceOptions = { withoutTax : true, addBrackets : true, additionalText : ('telecom_pack_migration_domain_additional_text' | translate ) }"
@@ -426,7 +426,7 @@
                                             <div class="input-group d-inline-block align-middle mr-2">
                                                 <input type="checkbox"
                                                        data-ng-model="offer.options.gtr_ovh.selected"
-                                                       data-ng-change="OffersCtrl.updateOfferDisplayedPrice(offer.options.gtr_ovh, offer)">
+                                                       data-ng-change="OffersCtrl.updateOfferDisplayedPrice(offer.options.gtr_ovh, offer, offer.options.gtr_ovh.name)">
                                             </div>
                                             <small class="d-block align-middle">
                                                 <span data-translate="telecom_pack_migration_gtr_add"></span>
