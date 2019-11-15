@@ -132,21 +132,18 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
       });
   };
 
-  self.init = function init() {
-    self.mainSectionItem = SidebarMenu.addMenuItem({
+  self.init = function init(expand) {
+    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
       title: $translate.instant('telecom_sidebar_section_telephony'),
       error: $translate.instant('telecom_sidebar_load_error'),
       id: 'telecom-telephony-section',
       category: 'telephony',
       icon: 'ovh-font ovh-font-phone',
-
-      state: 'telecom.telephony',
-      allowSubItems: true,
-      // onLoad: self.initTelephonySubsection,
+      allowSubItems: !expand,
       loadOnState: 'telecom.telephony.billingAccount',
-      allowSearch: true,
+      allowSearch: !expand,
       infiniteScroll: true,
-    });
+    }, expand ? { state: 'telecom.telephony.index' } : { onLoad: self.initTelephonySubsection }));
 
     return self.mainSectionItem;
   };

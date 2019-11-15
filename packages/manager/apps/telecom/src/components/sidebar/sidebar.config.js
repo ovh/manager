@@ -1,3 +1,5 @@
+import { BETA_PREFERENCE } from './sidebar.constants';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -11,7 +13,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
   SidebarMenuProvider.addTranslationPath('../components/sidebar');
 }).run((
   $sce, $translate,
-  atInternet, FaxSidebar, OverTheBoxSidebar, PackSidebar,
+  atInternet, FaxSidebar, OverTheBoxSidebar, ovhUserPref, PackSidebar,
   SidebarMenu, SmsSidebar, TelecomMediator, TelephonySidebar,
   ORDER_URLS, REDIRECT_URLS,
 ) => {
@@ -60,7 +62,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
 
   /* ----------  SERVICES MENU ITEMS  ----------*/
 
-  function initSidebarMenuItems(count) {
+  function initSidebarMenuItems(count, beta) {
     // add v4 button
     addV4Section();
 
@@ -70,8 +72,8 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     }
 
     // add sidebar telephony item
-    if (count.telephony > 0) {
-      TelephonySidebar.init();
+    if (count.telephony > 0 || beta) {
+      TelephonySidebar.init(beta);
     }
 
     // add sidebar SMS item
@@ -238,12 +240,15 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
   function init() {
     // set initialization promise
     return SidebarMenu.setInitializationPromise(
-      TelecomMediator.initServiceCount()
-        .then(count => $translate.refresh().then(() => count))
-        .then((count) => {
-          initSidebarMenuItems(count);
-          initSidebarMenuActionsOptions();
-        }),
+      ovhUserPref.getValue(BETA_PREFERENCE)
+        .then(() => true)
+        .catch(() => localStorage.getItem(BETA_PREFERENCE))
+        .then(beta => TelecomMediator.initServiceCount(false, beta)
+          .then(count => $translate.refresh().then(() => count))
+          .then((count) => {
+            initSidebarMenuItems(count, beta);
+            initSidebarMenuActionsOptions();
+          })),
     );
   }
 
