@@ -2,13 +2,15 @@ import filter from 'lodash/filter';
 import head from 'lodash/head';
 import map from 'lodash/map';
 
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountCtrl', function TelecomTelephonyBillingAccountCtrl($q, $translate, $stateParams, TelephonyMediator, SidebarMenu, TucToast, OvhApiOrder, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountCtrl', function TelecomTelephonyBillingAccountCtrl($q, $translate, $stateParams, isBetaActive, TelephonyMediator, SidebarMenu, TucToast, OvhApiOrder, OvhApiTelephony) {
   const self = this;
 
   self.loading = {
     init: false,
     save: false,
   };
+
+  self.isBetaActive = isBetaActive;
 
   self.group = null;
   self.links = null;

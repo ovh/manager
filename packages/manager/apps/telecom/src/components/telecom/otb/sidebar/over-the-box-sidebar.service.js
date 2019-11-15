@@ -47,19 +47,18 @@ angular.module('managerApp')
       =            INITIALIZATION            =
       ====================================== */
 
-    self.init = function init() {
-      self.mainSectionItem = SidebarMenu.addMenuItem({
+    self.init = function init(expand) {
+      self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
         title: $translate.instant('telecom_sidebar_section_otb'),
         error: $translate.instant('telecom_sidebar_load_error'),
         id: 'telecom-otb-section',
         category: 'overTheBox',
         icon: 'ovh-font ovh-font-overTheBox',
-        allowSubItems: true,
-        onLoad: self.loadOtbMainSection,
-        loadOnState: 'overTheBoxes.overTheBox',
-        allowSearch: true,
+        allowSubItems: !expand,
+        loadOnState: 'overTheBoxes',
+        allowSearch: !expand,
         infiniteScroll: true,
-      });
+      }, expand ? { state: 'overTheBoxes.index' } : { onLoad: self.loadOtbMainSection }));
 
       return self.mainSectionItem;
     };

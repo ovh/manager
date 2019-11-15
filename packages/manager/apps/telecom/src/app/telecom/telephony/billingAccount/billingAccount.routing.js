@@ -30,6 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
           billingAccount: $stateParams.billingAccount,
         }).$promise.then(data => $translate.instant('telephony_page_title', { name: data.description || $stateParams.billingAccount }, null, null, 'escape')).catch(() => $translate('telephony_page_title', { name: $stateParams.billingAccount }));
       },
+      isBetaActive: /* @ngInject */ betaPreferenceService => betaPreferenceService.isBetaActive(),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });
