@@ -39,9 +39,9 @@ export default function /* @ngInject */ (userAccountServiceInfos, Alerter, $tran
     this.updateBeta(beta)
       .then(() => {
         this.beta.active = beta;
-        Alerter.success('Beta Update successful', 'useraccount.alerts.dashboardAdvanced');
+        Alerter.success($translate.instant('user_account_advanced_section_beta_success'), 'useraccount.alerts.dashboardAdvanced');
       })
-      .catch(() => Alerter.error('Beta Update failed', 'useraccount.alerts.dashboardAdvanced'))
+      .catch(() => Alerter.error($translate.instant('user_account_advanced_section_beta_error'), 'useraccount.alerts.dashboardAdvanced'))
       .finally(() => {
         this.isUpdatingBeta = false;
       });
