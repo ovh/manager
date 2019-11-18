@@ -1,5 +1,3 @@
-import { BETA_PREFERENCE } from './sidebar.constants';
-
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -12,8 +10,8 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
   // add translation path
   SidebarMenuProvider.addTranslationPath('../components/sidebar');
 }).run((
-  $q, $sce, $translate,
-  atInternet, FaxSidebar, OverTheBoxSidebar, ovhUserPref, PackSidebar,
+  $sce, $translate,
+  atInternet, betaPreferenceService, FaxSidebar, OverTheBoxSidebar, PackSidebar,
   SidebarMenu, SmsSidebar, TelecomMediator, TelephonySidebar,
   ORDER_URLS, REDIRECT_URLS,
 ) => {
@@ -238,14 +236,9 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     ====================================== */
 
   function init() {
-    const betaPreference = localStorage.getItem(BETA_PREFERENCE);
     // set initialization promise
     return SidebarMenu.setInitializationPromise(
-      (betaPreference ? $q.resolve(betaPreference)
-        : ovhUserPref.getValue(BETA_PREFERENCE)
-          .then(() => true)
-          .catch(() => false)
-      )
+      betaPreferenceService.isBetaActive()
         .then(beta => TelecomMediator.initServiceCount(false, beta)
           .then(count => $translate.refresh().then(() => count))
           .then((count) => {

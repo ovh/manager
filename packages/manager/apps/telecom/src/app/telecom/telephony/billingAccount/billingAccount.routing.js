@@ -1,5 +1,3 @@
-import { BETA_PREFERENCE } from '../../../../components/sidebar/sidebar.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount', {
     url: '/:billingAccount',
@@ -32,12 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
           billingAccount: $stateParams.billingAccount,
         }).$promise.then(data => $translate.instant('telephony_page_title', { name: data.description || $stateParams.billingAccount }, null, null, 'escape')).catch(() => $translate('telephony_page_title', { name: $stateParams.billingAccount }));
       },
-      isBetaActive: /* @ngInject */ ($q, ovhUserPref) => {
-        const beta = localStorage.getItem(BETA_PREFERENCE);
-        return (beta ? $q.resolve(true) : ovhUserPref.getValue(BETA_PREFERENCE))
-          .then(() => true)
-          .catch(() => false);
-      },
+      isBetaActive: /* @ngInject */ betaPreferenceService => betaPreferenceService.isBetaActive(),
     },
     translations: { value: ['..', '.', './dashboard'], format: 'json' },
   });
