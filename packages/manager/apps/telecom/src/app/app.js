@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
+import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
@@ -96,6 +97,7 @@ angular.module('managerApp', [
   'ovh-api-services',
   'ovhBrowserAlert',
   'ovh-ng-input-password',
+  ovhManagerBetaPreference,
   ovhManagerCore,
   ovhManagerDashboard,
   ovhManagerFreefax,

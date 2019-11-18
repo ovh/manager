@@ -5,18 +5,10 @@
 
         <h2 data-translate="user_account_advanced_section_beta"></h2>
 
-        <p data-translate="user_account_advanced_section_beta_description"></p>
-
-        <div class="oui-box oui-box_light mb-5">
-            <oui-spinner data-ng-if="advancedCtrl.isUpdatingBeta" data-size="s"></oui-spinner>
-            <oui-checkbox
-                data-ng-if="!advancedCtrl.isUpdatingBeta"
-                aria-label=""
-                data-model="advancedCtrl.beta.active"
-                data-on-change="advancedCtrl.onBetaChange(modelValue)">
-                <span data-translate="user_account_advanced_section_beta_activate"></span>
-            </oui-checkbox>
-        </div>
+        <ovh-manager-beta-preference
+            data-on-success="advancedCtrl.onBetaSuccess(message)"
+            data-on-error="advancedCtrl.onBetaError(message)">
+        </ovh-manager-beta-preference>
 
         <h2 data-translate="user_account_advanced_section_developer_title"></h2>
 
