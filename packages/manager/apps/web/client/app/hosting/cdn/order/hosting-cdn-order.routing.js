@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       checkoutOrderCart: /* @ngInject */ (
         goBack,
+        isOptionFree,
         $translate,
         $window,
         HostingCdnOrderService,
@@ -34,10 +35,16 @@ export default /* @ngInject */ ($stateProvider) => {
           const order = await HostingCdnOrderService
             .checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId);
 
-          $window.open(order.url, '_blank');
-          goBack(
-            $translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
-          );
+          if (isOptionFree) {
+            goBack(
+              $translate.instant('hosting_dashboard_cdn_order_success_activation'),
+            );
+          } else {
+            $window.open(order.url, '_blank');
+            goBack(
+              $translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
+            );
+          }
         } catch (error) {
           goBack(
             $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),

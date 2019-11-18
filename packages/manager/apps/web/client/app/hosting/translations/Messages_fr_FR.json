@@ -213,6 +213,7 @@
   "hosting_dashboard_cdn_order_choose_duration": "Choisissez une durée :",
   "hosting_dashboard_cdn_order_validation": "Cliquez sur \"Valider\" pour créer votre bon de commande.",
   "hosting_dashboard_cdn_order_success": "Votre <a href=\"{{t0}}\" traget=\"_blank\">bon de commande</a> à été généré avec succès. Votre produit sera activé lorsque vous l'aurez validé.",
+  "hosting_dashboard_cdn_order_success_activation": "Votre activation à été faites avec succès. Votre produit sera activé dans quelques instants.",
   "hosting_dashboard_cdn_order_error": "Une erreur est survenue lors de la commande d'un CDN.",
   "hosting_dashboard_cdn_order_select_pack_offer": "Sélectionnez l'offre CDN que vous souhaitez :",
   "hosting_dashboard_cdn_order_CDN_BUSINESS": "CDN 17 PoP",
