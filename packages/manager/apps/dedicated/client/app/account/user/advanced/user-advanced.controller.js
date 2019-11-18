@@ -1,10 +1,6 @@
 export default function /* @ngInject */ (userAccountServiceInfos, Alerter, $translate) {
   this.isLoadingDeveloperMode = false;
 
-  this.beta = {
-    active: this.betaFlag,
-  };
-
   this.$ngInit = () => {
     this.isLoadingDeveloperMode = true;
     userAccountServiceInfos
@@ -34,18 +30,8 @@ export default function /* @ngInject */ (userAccountServiceInfos, Alerter, $tran
       });
   };
 
-  this.onBetaChange = (beta) => {
-    this.isUpdatingBeta = true;
-    this.updateBeta(beta)
-      .then(() => {
-        this.beta.active = beta;
-        Alerter.success($translate.instant('user_account_advanced_section_beta_success'), 'useraccount.alerts.dashboardAdvanced');
-      })
-      .catch(() => Alerter.error($translate.instant('user_account_advanced_section_beta_error'), 'useraccount.alerts.dashboardAdvanced'))
-      .finally(() => {
-        this.isUpdatingBeta = false;
-      });
-  };
+  this.onBetaSuccess = message => Alerter.success(message, 'useraccount.alerts.dashboardAdvanced');
+  this.onBetaError = message => Alerter.error(message, 'useraccount.alerts.dashboardAdvanced');
 
   this.$ngInit();
 }
