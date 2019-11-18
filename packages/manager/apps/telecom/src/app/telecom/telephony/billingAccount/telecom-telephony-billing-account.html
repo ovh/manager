@@ -20,62 +20,49 @@
 
             <!-- GROUP ACTIONS -->
             <nav role="navigation">
-                <responsive-tabs>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount"
-                                    data-dropdown-title="{{ 'telephony_group_tab_dashboard' | translate }}">
-                        <span data-translate="telephony_group_tab_dashboard"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-ng-if="BillingAccountCtrl.isBetaActive"
-                                    data-state="telecom.telephony.billingAccount.services"
-                                    data-dropdown-title="{{ 'telephony_group_tab_services' | translate }}">
-                        <span data-translate="telephony_group_tab_services"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.administration"
-                                    data-dropdown-title="{{ 'telephony_group_tab_admin' | translate }}">
-                        <span data-translate="telephony_group_tab_admin"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.billing"
-                                    data-dropdown-title="{{ 'telephony_group_tab_billing' | translate }}">
-                        <span data-translate="telephony_group_tab_billing"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.orderAlias"
-                                     data-disabled="!BillingAccountCtrl.canOrderAlias"
-                                     data-dropdown-title="{{ 'telephony_group_tab_orderAlias' | translate }}">
-                        <span data-translate="telephony_group_tab_orderAlias"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.phonebook"
-                                    data-disabled="BillingAccountCtrl.loading.init"
-                                    data-dropdown-title="{{ 'telephony_group_tab_contacts_book' | translate }}">
-                        <span data-translate="telephony_group_tab_contacts_book"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.abbreviatedNumbers"
-                                    data-dropdown-title="{{ 'telephony_group_tab_short_numbers' | translate }}"
-                                    data-disabled="BillingAccountCtrl.loading.init">
-                        <span data-translate="telephony_group_tab_short_numbers"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.manageContacts"
-                                    data-dropdown-title="{{ 'telephony_group_tab_contacts_manage' | translate }}"
-                                    data-disabled="BillingAccountCtrl.loading.init">
-                        <span data-translate="telephony_group_tab_contacts_manage"></span>
-                    </responsive-tab>
-
-                    <responsive-tab data-state="telecom.telephony.billingAccount.guides"
-                                    data-dropdown-title="{{:: 'telephony_group_tab_guides' | translate }}">
-                        <span data-translate="telephony_group_tab_guides"></span>
-                    </responsive-tab>
-
-                    <responsive-tab-more>
-                        <i class="fa fa-plus"></i>
-                    </responsive-tab-more>
-                </responsive-tabs>
+                <oui-header-tabs>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_dashboard' | translate }}"
+                        data-state="telecom.telephony.billingAccount">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-ng-if="BillingAccountCtrl.isBetaActive"
+                        data-text="{{ 'telephony_group_tab_services' | translate }}"
+                        data-state="telecom.telephony.billingAccount.services">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_admin' | translate }}"
+                        data-state="telecom.telephony.billingAccount.administration">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_billing' | translate }}"
+                        data-state="telecom.telephony.billingAccount.billing">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_orderAlias' | translate }}"
+                        data-state="telecom.telephony.billingAccount.orderAlias"
+                        data-disabled="!BillingAccountCtrl.canOrderAlias">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_contacts_book' | translate }}"
+                        data-state="telecom.telephony.billingAccount.phonebook"
+                        data-disabled="BillingAccountCtrl.loading.init">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_short_numbers' | translate }}"
+                        data-state="telecom.telephony.billingAccount.abbreviatedNumbers"
+                        data-disabled="BillingAccountCtrl.loading.init">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_contacts_manage' | translate }}"
+                        data-state="telecom.telephony.billingAccount.manageContacts"
+                        data-disabled="BillingAccountCtrl.loading.init">
+                    </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        data-text="{{ 'telephony_group_tab_guides' | translate }}"
+                        data-state="telecom.telephony.billingAccount.guides">
+                    </oui-header-tabs-item>
+                </oui-header-tabs>
             </nav>
 
         </div>
