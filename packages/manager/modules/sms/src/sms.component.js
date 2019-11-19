@@ -1,3 +1,5 @@
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
+
 import controller from './sms.controller';
 import template from './sms.html';
 
@@ -5,14 +7,7 @@ export default {
   controller,
   template,
   bindings: {
-    filter: '<',
-    resources: '<',
-    onListParamsChange: '<',
-    paginationNumber: '<',
-    paginationSize: '<',
-    paginationTotalCount: '<',
-    sort: '<',
-    sortOrder: '<',
+    ...ListLayoutHelper.componentBindings,
 
     getSmsLink: '<',
   },
