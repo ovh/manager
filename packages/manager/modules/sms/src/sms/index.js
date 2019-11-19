@@ -16,7 +16,7 @@ angular.module(moduleName, [
 ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('sms.service.**', {
-      url: '/sms/:serviceName',
+      url: '/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
