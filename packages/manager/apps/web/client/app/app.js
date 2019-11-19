@@ -46,6 +46,7 @@ import domain from './domain';
 import domainDnsZone from './dns-zone';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
+import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
 import './css/source.less';
@@ -110,6 +111,7 @@ angular
     hosting,
     orderCatalogPrice,
     orderContracts,
+    privateDatabase,
     zone,
   ])
   .constant('constants', {
