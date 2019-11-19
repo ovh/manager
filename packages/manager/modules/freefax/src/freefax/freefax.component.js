@@ -42,8 +42,8 @@ export default angular
     $templateCache.put('freefax/information/freefax-information.html', freeFaxInformations);
   })
   .config(($stateProvider) => {
-    $stateProvider.state('freefax', {
-      url: '/freefax/:serviceName',
+    $stateProvider.state('freefaxes.freefax', {
+      url: '/:serviceName',
       translations: {
         value: ['.'],
         format: 'json',
