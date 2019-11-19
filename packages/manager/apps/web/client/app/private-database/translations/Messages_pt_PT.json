@@ -42,7 +42,7 @@
   "privateDatabase_dashboard_not_administrator_information": "Não é o administrador desta base de dados.",
   "privateDatabase_dashboard_datacenter": "Datacenter",
   "privateDatabase_dashboard_datacenter_p19": "Paris",
-  "privateDatabase_dashboard_datacenter_gra1": "Gravelines",
+  "privateDatabase_dashboard_datacenter_gra1": "Gravelines 1",
   "privateDatabase_dashboard_infrastructure": "Infraestrutura",
   "privateDatabase_dashboard_infrastructure_legacy": "Legacy",
   "privateDatabase_dashboard_infrastructure_sailabove": "SailAbove",
@@ -161,7 +161,7 @@
   "privateDatabase_tabs_user_adding": "Criação em curso...",
   "privateDatabase_tabs_add_user": "Adicionar utilizador",
   "privateDatabase_order_datacenter_p19": "Paris",
-  "privateDatabase_order_datacenter_gra1": "Gravelines",
+  "privateDatabase_order_datacenter_gra1": "Gravelines 1",
   "privateDatabase_order_step1_hosting": "Alojamento a utilizar",
   "privateDatabase_order_step1_hosting_warning": "O SQL privado só é compatível com os alojamentos localizados no mesmo datacentre (como o alojamento selecionado). Se desejar usar outro alojamento associado à sua ou a outra conta, mas se não tiver a certeza sobre a localização do mesmo, consulte a informação no separador “informações gerais” (associadas ao respetivo alojamento). ",
   "privateDatabase_order_step1_hosting_info": "A escolha do alojamento tem como objetivo o SQL privado no mesmo datacenter.",
@@ -551,5 +551,7 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Extensão ativada",
   "privateDatabase_tabs_list_extensions_enable_error": "Erro ao processar ativação da extensão",
   "privateDatabase_tabs_list_extensions_disable_success": "Extensão desativada",
-  "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão"
+  "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão",
+  "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
+  "privateDatabase_order_datacenter_gra2": "Gravelines 2"
 }
