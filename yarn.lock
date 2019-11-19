@@ -1975,10 +1975,10 @@
     lodash "^4.17.15"
     urijs "^1.19.2"
 
-"@ovh-ux/ng-ovh-line-diagnostics@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-line-diagnostics/-/ng-ovh-line-diagnostics-3.0.1.tgz#abcc8f86d4da8ff3071c49f8b7098a3383a0b41c"
-  integrity sha512-EBogtaSw9WsjSKxtI2FgUCMBpd67d7iiDPU6tlunnxnkPUlm8pnUU2b7TeZNVeFB0BOssht/As8kJBablK0Mrg==
+"@ovh-ux/ng-ovh-line-diagnostics@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-line-diagnostics/-/ng-ovh-line-diagnostics-3.0.2.tgz#d0d47fd7133b5a2e1ab59a09d96993f820cfbae7"
+  integrity sha512-pZQcWp2NAy333J/WNYPXt7gHa8nUhMDHIGM/QMYtiXhBbq1NWutrdEALtKMcRcFTwbYu3YoKuXNPyGeyHdXbWw==
   dependencies:
     lodash "^4.17.15"
 
