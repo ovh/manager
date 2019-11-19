@@ -1,6 +1,6 @@
-import { ListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
-export default class TelecomTelephonyController extends ListPagination.ListPaginationCtrl {
+export default class TelecomTelephonyController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
   constructor(
     $q,
