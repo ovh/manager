@@ -1,6 +1,13 @@
 export default class NashaPartitionCustomSnapshotAddCtrl {
   /* @ngInject */
-  constructor($scope, $stateParams, $translate, $uibModalInstance, OvhApiDedicatedNashaPartition, CucCloudMessage) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    $uibModalInstance,
+    CucCloudMessage,
+    OvhApiDedicatedNashaPartition,
+  ) {
     const self = this;
 
     self.saving = false;

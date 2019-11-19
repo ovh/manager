@@ -1,6 +1,13 @@
 export default class NashaPartitionDeleteCtrl {
   /* @ngInject */
-  constructor(OvhApiDedicatedNasha, $stateParams, $scope, $uibModalInstance, $translate, CucCloudMessage) {
+  constructor(
+    $scope,
+    $stateParams,
+    $uibModalInstance,
+    $translate,
+    CucCloudMessage,
+    OvhApiDedicatedNasha,
+  ) {
     const self = this;
     self.loading = false;
     self.data = {

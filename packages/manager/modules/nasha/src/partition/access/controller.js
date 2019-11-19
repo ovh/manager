@@ -4,9 +4,18 @@ import some from 'lodash/some';
 
 export default class NashaPartitionAccessCtrl {
   /* @ngInject */
-  constructor($scope, $state, $stateParams, $translate, $uibModal, $q, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
+  constructor(
+    $q,
+    $scope,
+    $state,
+    $stateParams,
+    $translate,
+    $uibModal,
+    CucCloudMessage,
+    Poller,
+    OvhApiDedicatedNasha,
+  ) {
     const self = this;
-
     self.$state = $state;
 
     self.data = {
