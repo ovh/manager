@@ -14,17 +14,12 @@ angular
     'ovhManagerCore',
     'oc.lazyLoad',
     freefax,
-  ]);
-// .config(/* @ngInject */($stateProvider) => {
-//   $stateProvider.state('freefax.**', {
-//     url: '/freefax/:serviceName',
-//     lazyLoad: ($transition$) => {
-//       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-//       return import('./freefax.component')
-//         .then(mod => $ocLazyLoad.inject(mod.default || mod));
-//     },
-//   });
-// });
+  ])
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('freefaxes', {
+      url: '/freefax',
+      abstract: true,
+    });
+  });
 
 export default moduleName;
