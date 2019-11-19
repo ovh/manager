@@ -3,7 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import order from './order';
+import sms from './sms';
 
 const moduleName = 'ovhManagerSms';
 
@@ -12,7 +12,7 @@ angular.module(moduleName, [
   'ui.router',
   'oc.lazyLoad',
   'ovhManagerCore',
-  order,
+  sms,
 ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('sms', {
@@ -20,15 +20,15 @@ angular.module(moduleName, [
       abstract: true,
     });
 
-    $stateProvider.state('sms.service.**', {
-      url: '/:serviceName',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+    // $stateProvider.state('sms.service.**', {
+    //   url: '/sms',
+    //   lazyLoad: ($transition$) => {
+    //     const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./telecom-sms.component')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
-      },
-    });
+    //     return import('./telecom-sms.component')
+    //       .then(mod => $ocLazyLoad.inject(mod.default || mod));
+    //   },
+    // });
   });
 
 export default moduleName;
