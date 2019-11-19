@@ -36,7 +36,7 @@ import tucUiSortableHelpers from './uiSortableHelpers';
 import tucUnitHumanize from './unit/humanize';
 import tucValidator from './validator';
 import tucBankHolidays from './bank-holidays';
-import ListPagination from './list-pagination';
+import ListLayoutHelper from './list-layout-helper';
 
 const moduleName = 'ngOvhTelecomUniverseComponents';
 
@@ -81,7 +81,7 @@ angular
   ]);
 
 export {
-  ListPagination,
+  ListLayoutHelper,
 };
 
 export default moduleName;
