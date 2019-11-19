@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 
-export default class ListPaginationCtrl {
+export default class ListLayoutCtrl {
   $onInit() {
     this.criteria = JSON.parse(this.filter).map(criteria => ({
       property: get(criteria, 'field') || this.defaultFilterColumn,

@@ -1,4 +1,4 @@
-import { ListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import template from './telecom-telephony.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -13,15 +13,15 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state('telecom.telephony.index', {
-    url: `?${ListPagination.urlQueryParams}`,
+    url: `?${ListLayoutHelper.urlQueryParams}`,
     views: {
       'telephonyView@telecom.telephony': {
         component: 'telecomTelephony',
       },
     },
-    params: ListPagination.stateParams,
+    params: ListLayoutHelper.stateParams,
     resolve: {
-      ...ListPagination.stateResolves,
+      ...ListLayoutHelper.stateResolves,
       apiPath: () => '/telephony',
       loadResource: /* @ngInject */ OvhApiTelephonyService => resource => OvhApiTelephonyService
         .v6()

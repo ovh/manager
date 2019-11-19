@@ -1,8 +1,8 @@
 import startCase from 'lodash/startCase';
-import { ListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default class TelecomTelephonyBillingAccountServicesController
-  extends ListPagination.ListPaginationCtrl {
+  extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
   constructor(
     $q,
