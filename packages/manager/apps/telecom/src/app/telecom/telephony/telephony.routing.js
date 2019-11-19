@@ -1,4 +1,4 @@
-import { uiRouterListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import template from './telecom-telephony.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -13,15 +13,15 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state('telecom.telephony.index', {
-    url: `?${uiRouterListPagination.urlQueryParams}`,
+    url: `?${ListPagination.urlQueryParams}`,
     views: {
       'telephonyView@telecom.telephony': {
         component: 'telecomTelephony',
       },
     },
-    params: uiRouterListPagination.stateParams,
+    params: ListPagination.stateParams,
     resolve: {
-      ...uiRouterListPagination.stateResolves,
+      ...ListPagination.stateResolves,
       apiPath: () => '/telephony',
       loadResource: /* @ngInject */ OvhApiTelephonyService => resource => OvhApiTelephonyService
         .v6()

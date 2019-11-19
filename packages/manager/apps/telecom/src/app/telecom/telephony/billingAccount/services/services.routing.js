@@ -1,17 +1,17 @@
 import get from 'lodash/get';
-import { uiRouterListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
+import { ListPagination } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.telephony.billingAccount.services', {
-    url: `/services?${uiRouterListPagination.urlQueryParams}`,
+    url: `/services?${ListPagination.urlQueryParams}`,
     views: {
       'groupInnerView@telecom.telephony.billingAccount': {
         component: 'telecomTelephonyBillingAccountServices',
       },
     },
-    params: uiRouterListPagination.stateParams,
+    params: ListPagination.stateParams,
     resolve: {
-      ...uiRouterListPagination.stateResolves,
+      ...ListPagination.stateResolves,
       apiPath: /* @ngInject */ billingAccountId => `/telephony/${billingAccountId}/service`,
       schema: /* @ngInject */ OvhApiTelephony => OvhApiTelephony
         .v6()
