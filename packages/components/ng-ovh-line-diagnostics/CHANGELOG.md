@@ -1,3 +1,12 @@
+## [3.0.2](https://github.com/ovh-ux/ng-ovh-line-diagnostics/compare/v3.0.1...v3.0.2) (2019-11-19)
+
+
+### Bug Fixes
+
+* **steps.investigation:** refer to the right filter image ([#26](https://github.com/ovh-ux/ng-ovh-line-diagnostics/issues/26)) ([8b92406](https://github.com/ovh-ux/ng-ovh-line-diagnostics/commit/8b92406640325fc7d710459569104e510d2bc069))
+
+
+
 ## [3.0.1](https://github.com/ovh-ux/ng-ovh-line-diagnostics/compare/v3.0.0...v3.0.1) (2019-08-29)
 
 
