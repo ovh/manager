@@ -22,7 +22,7 @@ angular
     'ui.router',
   ])
   .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('freefax.notifications', {
+    $stateProvider.state('freefaxes.freefax.notifications', {
       url: '/notifications',
       controller,
       controllerAs: 'FreefaxNotifications',
