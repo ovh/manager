@@ -6,5 +6,11 @@ const config = configGenerator({
 
 export default [
   config.cjs(),
-  config.umd(),
+  config.umd({
+    output: {
+      globals: {
+        angular: 'angular',
+      },
+    },
+  }),
 ];
