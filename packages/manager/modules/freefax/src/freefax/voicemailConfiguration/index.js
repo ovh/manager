@@ -20,7 +20,7 @@ angular
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('freefax.voicemail-configuration', {
+    $stateProvider.state('freefaxes.freefax.voicemail-configuration', {
       url: '/voicemail',
       template,
       controller,
