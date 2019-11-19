@@ -16,7 +16,8 @@
             data-searchable
             data-filterable
             data-sortable
-            data-type="string">
+            data-type="string"
+            data-type-options="$ctrl.stringColumnOptions">
             <a data-ng-href="{{ $ctrl.getBillingAccountLink($row) }}">{{ $row.description ? $row.description : $row.billingAccount }}</a>
         </oui-column>
         <oui-column data-title=":: 'telephony_num_service_label' | translate"
