@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import ListPaginationCtrl from './list-pagination.controller';
+
 const FILTER_OPERATORS = {
   contains: 'like',
   is: 'eq',
@@ -128,6 +130,7 @@ export const stateParams = {
 export const urlQueryParams = 'page&pageSize&sort&sortOrder&filter';
 
 export default {
+  ListPaginationCtrl,
   stateResolves,
   stateParams,
   urlQueryParams,
