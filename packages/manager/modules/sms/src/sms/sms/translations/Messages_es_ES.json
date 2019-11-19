@@ -1,0 +1,9 @@
+{
+ "sms_sms_compose": "Enviar un SMS",
+ "sms_sms_history": "Historial de envíos",
+ "sms_sms_received": "SMS recibidos",
+ "sms_sms_pending": "SMS programados",
+ "sms_sms_manage_hlrs": "HLR",
+ "sms_sms_manage_templates": "Gestionar las plantillas",
+ "sms_actions_credit_account": "Recargar mi cuenta"
+}
