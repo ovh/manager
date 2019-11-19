@@ -3,7 +3,10 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
+
 import sms from './sms';
+import component from './sms.component';
 
 const moduleName = 'ovhManagerSms';
 
@@ -20,15 +23,28 @@ angular.module(moduleName, [
       abstract: true,
     });
 
-    // $stateProvider.state('sms.service.**', {
-    //   url: '/sms',
-    //   lazyLoad: ($transition$) => {
-    //     const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-    //     return import('./telecom-sms.component')
-    //       .then(mod => $ocLazyLoad.inject(mod.default || mod));
-    //   },
-    // });
-  });
+    $stateProvider.state('sms.index', {
+      url: `?${ListLayoutHelper.urlQueryParams}`,
+      views: {
+        '': {
+          component: 'ovhManagerSms',
+        },
+      },
+      params: ListLayoutHelper.stateParams,
+      resolve: {
+        apiPath: () => '/sms',
+        ...ListLayoutHelper.stateResolves,
+        getSmsLink: /* @ngInject */ $state => ({ name }) => $state.href(
+          'sms.service',
+          {
+            serviceName: name,
+          },
+        ),
+      },
+    });
+  })
+  .component('ovhManagerSms', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

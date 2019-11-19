@@ -1,0 +1,29 @@
+<oui-page-header data-heading="{{ :: 'sms_title' | translate }}"></oui-page-header>
+
+<div class="container-fluid my-5">
+    <oui-datagrid id="{{:: $ctrl.datagridId }}"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadPage()"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+        data-columns="$ctrl.columnsConfig">
+
+        <oui-column data-title=":: 'sms_name_label' | translate"
+            data-property="name"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string">
+            <a data-ng-href="{{ $ctrl.getSmsLink($row) }}" data-ng-bind="$value"></a>
+        </oui-column>
+        <oui-column data-title=":: 'sms_description_label' | translate"
+            data-property="description"
+            data-type="string"
+            data-filterable
+            data-sortable>
+        </oui-column>
+    </oui-datagrid>
+</div>
+
