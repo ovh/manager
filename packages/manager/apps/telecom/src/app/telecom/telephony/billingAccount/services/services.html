@@ -12,7 +12,8 @@
             data-searchable
             data-filterable
             data-sortable
-            data-type="string">
+            data-type="string"
+            data-type-options="$ctrl.stringColumnOptions">
             <a data-ng-href="{{ $ctrl.getServiceLink($row) }}">{{$value}}</a>
         </oui-column>
         <oui-column data-title=":: 'telephony_billing_account_services_description_title' | translate"
@@ -20,7 +21,8 @@
             data-searchable
             data-filterable
             data-sortable
-            data-type="string">
+            data-type="string"
+            data-type-options="$ctrl.stringColumnOptions">
             <span data-ng-bind="$row.serviceName === $row.description ? '' : $row.description"></span>
         </oui-column>
         <oui-column data-title=":: 'telephony_billing_account_line_service' | translate"

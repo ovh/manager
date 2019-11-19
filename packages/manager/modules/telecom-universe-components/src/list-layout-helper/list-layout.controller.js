@@ -8,6 +8,10 @@ export default class ListLayoutCtrl {
       operator: get(criteria, 'comparator'),
       value: criteria.reference[0],
     }));
+
+    this.stringColumnOptions = {
+      operators: ['contains', 'startsWith', 'endsWith', 'is', 'isNot'],
+    };
   }
 
   loadPage() {
