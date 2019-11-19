@@ -5,17 +5,17 @@
                data-secondary-action="ctrl.cancel()"
                data-secondary-label="{{ ::'common_cancel' | translate }}"
                data-on-dismiss="ctrl.cancel()"
-               data-loading="ctrl.saving.loading">
-        <oui-field data-label="{{::'logs_roles_members_modal_user' | translate}}">
-            <oui-select name="userName"
+               data-loading="ctrl.isLoading || ctrl.saving.loading">
+        <oui-field data-label="{{::'logs_roles_members_modal_user' | translate}}"
+            data-ng-if="!ctrl.isLoading">
+            <input type="text"
+                class="oui-input"
+                name="userName"
+                data-oui-autocomplete="ctrl.users"
                 placeholder="logs-XX-XXXXX"
-                data-model="ctrl.member.username"
-                data-items="ctrl.logs.data"
-                data-match="username"
+                data-ng-model="ctrl.member.username"
                 data-ng-disabled="ctrl.saving"
-                data-searchable
-                required>
-            </oui-select>
+                required />
         </oui-field>
 
         <oui-field data-label="{{::'logs_roles_members_note' | translate}}">
