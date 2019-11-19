@@ -1,6 +1,6 @@
-angular.module('App').config(($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.private-database', {
-    url: '/configuration/private_database/:productId?tab',
+    url: '/configuration/private_database/:productId',
     templateUrl: 'private-database/private-database.html',
     controller: 'PrivateDatabaseCtrl',
     reloadOnSearch: false,
@@ -63,4 +63,4 @@ angular.module('App').config(($stateProvider) => {
     },
     translations: { value: ['../private-database'], format: 'json' },
   });
-});
+};
