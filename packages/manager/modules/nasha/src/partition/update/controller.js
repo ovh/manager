@@ -1,6 +1,13 @@
 export default class NashaPartitionUpdateCtrl {
   /* @ngInject */
-  constructor($stateParams, $scope, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    $uibModalInstance,
+    CucCloudMessage,
+    OvhApiDedicatedNasha,
+  ) {
     const self = this;
     self.loading = false;
 

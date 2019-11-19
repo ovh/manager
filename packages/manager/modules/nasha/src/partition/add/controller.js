@@ -1,6 +1,13 @@
 export default class NashaPartitionAddCtrl {
   /* @ngInject */
-  constructor($stateParams, $scope, $q, $uibModalInstance, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
+  constructor(
+    $q,
+    $stateParams,
+    $translate,
+    $uibModalInstance,
+    CucCloudMessage,
+    OvhApiDedicatedNasha,
+  ) {
     const self = this;
 
     self.nasha = null;

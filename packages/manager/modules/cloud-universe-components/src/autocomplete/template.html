@@ -18,7 +18,7 @@
     <ul class="cloud-autocomplete__list cloud-autocomplete__list-bordered"
         data-ng-class="{ 'cloud-autocomplete__list-scrollable': $ctrl.filteredOptions.length > $ctrl.defaultItemsNumber }" 
         data-ng-if="!$ctrl.groupBy && $ctrl.editing && $ctrl.showList"
-        data-ng-mousedown="$ctrl.preventEvent($event)">
+        data-ng-mousedown="$ctrl.constructor.preventEvent($event)">
         <li class="cloud-autocomplete__list__item cloud-autocomplete__list__item-first-level" 
             data-ng-repeat="item in $ctrl.filteredOptions track by $index"
             data-ng-mousedown="$ctrl.confirmChooseItem(item, $event)"
@@ -29,7 +29,7 @@
     <ul class="cloud-autocomplete__list cloud-autocomplete__list-bordered"
         data-ng-class="{ 'cloud-autocomplete__list-scrollable': $ctrl.filteredOptions.length > $ctrl.defaultItemsNumber }" 
         data-ng-if="$ctrl.groupBy && $ctrl.editing && $ctrl.showList"
-        data-ng-mousedown="$ctrl.preventEvent($event)">
+        data-ng-mousedown="$ctrl.constructor.preventEvent($event)">
         <li class="cloud-autocomplete__group__description" data-ng-if="$ctrl.groupDescription" data-ng-bind="::$ctrl.groupDescription"></li>
         <li class="cloud-autocomplete__group"
             data-ng-repeat="(key, values) in $ctrl.groupedOptions track by key">

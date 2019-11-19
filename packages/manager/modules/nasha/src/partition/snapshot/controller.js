@@ -6,7 +6,15 @@ import remove from 'lodash/remove';
 
 export default class NashaPartitionSnapshotCtrl {
   /* @ngInject */
-  constructor($stateParams, $scope, $uibModalInstance, $q, $translate, OvhApiDedicatedNasha, CucCloudMessage) {
+  constructor(
+    $q,
+    $scope,
+    $stateParams,
+    $uibModalInstance,
+    $translate,
+    CucCloudMessage,
+    OvhApiDedicatedNasha,
+  ) {
     const self = this;
 
     self.snapshotEnum = null;

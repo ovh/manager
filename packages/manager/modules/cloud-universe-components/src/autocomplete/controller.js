@@ -89,7 +89,7 @@ export default class CucAutoCompleteController {
         this.closeList();
       }
 
-      const list = this.getDomList();
+      const list = this.constructor.getDomList();
       if (list) {
         list.scrollTop = 0;
       }
@@ -215,12 +215,12 @@ export default class CucAutoCompleteController {
   moveHightlightUp() {
     // We check if the user it still editing to avoid DOM errors.
     if (this.editing) {
-      const list = this.getDomList();
+      const list = this.constructor.getDomList();
 
       if (this.highlightIndex !== 0) {
         this.decrementHighlightIndexes();
 
-        const elem = this.getDomListItems()[this.highlightIndex];
+        const elem = this.constructor.getDomListItems()[this.highlightIndex];
         if (list.scrollTop > elem.offsetTop) {
           list.scrollTop = elem.offsetTop;
         }
@@ -239,8 +239,8 @@ export default class CucAutoCompleteController {
   }
 
   scrollDownToHighlightedIndex() {
-    const list = this.getDomList();
-    const elem = this.getDomListItems()[this.highlightIndex];
+    const list = this.constructor.getDomList();
+    const elem = this.constructor.getDomListItems()[this.highlightIndex];
     const listOffsetBottom = list.clientHeight + list.scrollTop - elem.offsetHeight;
     if (listOffsetBottom < elem.offsetTop) {
       const scrollPosition = elem.offsetTop + elem.offsetHeight - list.clientHeight;
@@ -248,15 +248,15 @@ export default class CucAutoCompleteController {
     }
   }
 
-  getDomList() {
+  static getDomList() {
     return document.querySelector('.cloud-autocomplete__list');
   }
 
-  getDomListItems() {
+  static getDomListItems() {
     return document.querySelectorAll('.cloud-autocomplete__list__item');
   }
 
-  preventEvent(event) {
+  static preventEvent(event) {
     event.preventDefault();
   }
 
@@ -275,7 +275,7 @@ export default class CucAutoCompleteController {
   adjustHighlightGroupIndexes(direction) {
     if (this.groupBy) {
       const currItem = this.filteredOptions[this.highlightIndex];
-      this.highlightedGroupKey = this.getArrangedGroupName(currItem[this.groupBy]);
+      this.highlightedGroupKey = this.constructor.getArrangedGroupName(currItem[this.groupBy]);
       let precItem = null;
       switch (direction) {
         case 'up':
@@ -306,7 +306,7 @@ export default class CucAutoCompleteController {
       this.highlightIndex = findIndex(this.options, item => item === selectedModel);
 
       if (this.groupBy) {
-        this.highlightedGroupKey = this.getArrangedGroupName(
+        this.highlightedGroupKey = this.constructor.getArrangedGroupName(
           this.options[this.highlightIndex][this.groupBy],
         );
 
@@ -324,12 +324,13 @@ export default class CucAutoCompleteController {
     this.highlightIndex = 0;
 
     if (this.groupBy) {
-      this.highlightedGroupKey = this.getArrangedGroupName(this.filteredOptions[0][this.groupBy]);
+      this.name = this.filteredOptions[0][this.groupBy];
+      this.highlightedGroupKey = this.constructor.getArrangedGroupName(this.name);
       this.highlightedGroupIndex = 0;
     }
   }
 
-  getArrangedGroupName(groupName) {
+  static getArrangedGroupName(groupName) {
     return isUndefined(groupName) ? 'undefined' : groupName;
   }
 }

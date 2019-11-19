@@ -2,7 +2,13 @@ import set from 'lodash/set';
 
 export default class NashaPartitionAccessAddCtrl {
   /* @ngInject */
-  constructor($scope, $translate, $q, $uibModalInstance, OvhApiDedicatedNasha, CucCloudMessage) {
+  constructor(
+    $scope,
+    $translate,
+    $uibModalInstance,
+    CucCloudMessage,
+    OvhApiDedicatedNasha,
+  ) {
     const self = this;
 
     self.loading = false;
