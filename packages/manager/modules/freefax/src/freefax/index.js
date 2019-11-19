@@ -13,8 +13,8 @@ angular
     'oc.lazyLoad',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('freefax.**', {
-      url: '/freefax/:serviceName',
+    $stateProvider.state('freefaxes.freefax.**', {
+      url: '/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
