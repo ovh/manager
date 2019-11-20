@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_serving_namespace_infos_detach_registry": "Detach your docker registry",
+  "pci_projects_project_serving_namespace_infos_detach_registry_common_detach": "Detach",
+  "pci_projects_project_serving_namespace_infos_detach_registry_common_cancel": "Cancel",
+  "pci_projects_project_serving_namespace_infos_detach_registry_warning": "You will unlink your registry from the namespace.",
+  "pci_projects_project_serving_namespace_infos_detach_registry_success": "Your registry is detached from your namespace",
+  "pci_projects_project_serving_namespace_infos_detach_registry_error": "An error occurred during the registry detachment : {{ message }}"
+}

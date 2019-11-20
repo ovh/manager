@@ -1,0 +1,138 @@
+<div class="servingAddModel">
+    <h1 data-translate="pci_projects_project_serving_namespace_models_add"></h1>
+
+    <oui-stepper data-on-finish="$ctrl.addModel()">
+
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_type' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-loading="$ctrl.isAdding"
+        >
+            <oui-radio
+                data-ng-repeat="kind in $ctrl.types track by $index"
+                data-model="$ctrl.model.kind"
+                data-name="kind"
+                data-value="kind"
+                data-required>
+                <span
+                    data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + kind.toLowerCase() }}"></span>
+                <button
+                    type="button"
+                    class="oui-popover-button"
+                    data-oui-popover="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + kind.toLowerCase() + '_popover' | translate }}"
+                    data-oui-popover-placement="auto"></button>
+            </oui-radio>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_model' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-loading="$ctrl.isAdding">
+            <div class="container-fluid px-0" data-ng-if="$ctrl.model.kind == 'preset'">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 my-3"
+                         data-ng-repeat="preset in $ctrl.presets track by $index">
+                        <oui-select-picker
+                            data-name="{{:: preset.id }}"
+                            data-model="$ctrl.model.preset"
+                            data-label="{{:: preset.name }}"
+                            data-variant="light"
+                            data-values="[preset]"
+                            data-required>
+                        </oui-select-picker>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-if="$ctrl.model.kind == 'user'">
+                <span data-translate="pci_projects_project_serving_namespace_models_add_storage_path_info"></span>
+
+                <oui-field data-size="xl">
+                    <oui-select
+                        disabled="$ctrl.paths.length == 0"
+                        id="storagePath"
+                        name="storagePath"
+                        model="$ctrl.model.storagePath"
+                        items="$ctrl.paths"
+                        data-required>
+                    </oui-select>
+                </oui-field>
+                <p data-ng-if="!$ctrl.paths.length">
+                    <span class="text-danger" ng-click="$ctrl.goToContainer()"
+                          data-translate="pci_projects_project_serving_namespace_models_add_storage_path_no_path"></span>
+                </p>
+            </div>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_name' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-loading="$ctrl.isAdding">
+
+            <oui-field  data-size="xl"
+                        data-help-text="{{ :: 'pci_projects_project_serving_namespace_models_add_name_help' | translate }}">
+                <input class="oui-input" type="text"
+                       id="name" name="id"
+                       data-ng-model="$ctrl.model.id"
+                       data-required
+                       data-ng-pattern="/^[\w-]+$/"/>
+            </oui-field>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_autoscaling' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-loading="$ctrl.isAdding">
+
+            <span data-translate="pci_projects_project_serving_namespace_models_add_autoscaling_info"></span>
+
+            <oui-field data-label="{{:: 'pci_projects_project_serving_namespace_models_storage_scale_min' | translate }}"
+                       data-size="auto">
+                <oui-numeric min="1" max="1" model="$ctrl.core" name="test" disabled>
+                </oui-numeric>
+            </oui-field>
+            <oui-field data-label="{{:: 'pci_projects_project_serving_namespace_models_storage_scale_max' | translate }}"
+                       data-size="auto">
+                <oui-numeric min="3" max="3" model="$ctrl.max" name="test2" disabled>
+                </oui-numeric>
+            </oui-field>
+        </oui-step-form>
+
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_instances' | translate }}"
+            data-submit-text="{{ :: 'pci_projects_project_serving_namespace_models_common_add' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-loading="$ctrl.isAdding">
+
+            <span data-translate="pci_projects_project_serving_namespace_models_add_instances_info"></span>
+
+            <div class="container-fluid px-0">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 my-3"
+                         data-ng-repeat="flavor in $ctrl.flavors track by $index">
+                        <oui-select-picker
+                            data-name="{{:: flavor.id }}"
+                            data-model="$ctrl.model.flavor"
+                            data-label="{{:: flavor.name }}"
+                            data-variant="light"
+                            data-values="[flavor]"
+                            data-required>
+                            <oui-select-picker-section>
+                                <div class="text-right">
+                                    <span
+                                        class="d-block"
+                                        data-translate="pci_projects_project_serving_namespace_models_add_instances_price"
+                                        data-translate-values="{ price: flavor.price }">
+                                </span>
+                                </div>
+                            </oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                </div>
+            </div>
+
+        </oui-step-form>
+
+    </oui-stepper>
+</div>
+
