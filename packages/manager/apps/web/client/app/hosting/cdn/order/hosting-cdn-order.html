@@ -26,7 +26,12 @@
                     data-model="$ctrl.interval"
                     data-value="pricing.interval"
                     data-required>
-                    <span data-ng-bind=":: '' + pricing.interval | wucDuration:'longDate'"></span>&nbsp;:&nbsp;
+                    <span
+                        data-translate="hosting_cdn_order_duration_label"
+                        data-translate-values="{
+                            duration: $ctrl.getDuration(pricing.interval)
+                        }">
+                    </span>
                     <ovh-manager-order-catalog-price
                         data-price="pricing.price"
                         data-tax="pricing.tax"
