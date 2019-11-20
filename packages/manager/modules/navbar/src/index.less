@@ -2,6 +2,7 @@
 @import "~ovh-ui-kit/packages/oui-color/_variables";
 @import '~ovh-ui-kit/packages/oui-icons/_icons';
 @import '~ovh-ui-kit/packages/oui-navbar/_variables';
+@import "~ovh-ui-kit/packages/oui-responsive/_variables";
 @import "~ovh-ui-kit/packages/oui-typography/_variables";
 
 .oui-navbar-link_active {
@@ -21,5 +22,25 @@
     top: 50%;
     right: @oui-navbar-arrow-size;
     transform: translateY(-50%);
+  }
+}
+
+@media screen and (max-width: (@oui-responsive-breakpoint-medium - 1px)) {
+  .oui-navbar-link_icon {
+    padding: @oui-navbar-link-padding-h 0;
+  }
+}
+
+.oui-navbar-link_icon {
+  &,
+  &:focus,
+  &:hover {
+    .navbar-small-icon {
+      @small-icon-size: 1.25rem;
+
+      font-size: @small-icon-size;
+      width: @small-icon-size;
+      height: @small-icon-size;
+    }
   }
 }
