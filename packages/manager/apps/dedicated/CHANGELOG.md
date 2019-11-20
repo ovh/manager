@@ -1,3 +1,12 @@
+## [10.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.28.1...@ovh-ux/manager-dedicated@10.28.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **orders:** avoid blank screen when url of guides is undefined ([9e9ac1e](https://github.com/ovh/manager/commit/9e9ac1e5964feeb0f60f37678c05836c8f3e27ce))
+
+
+
 ## [10.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.28.0...@ovh-ux/manager-dedicated@10.28.1) (2019-11-15)
 
 
