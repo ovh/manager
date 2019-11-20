@@ -1,6 +1,7 @@
 export default class {
   /* @ngInject */
-  constructor($timeout) {
+  constructor($filter, $timeout) {
+    this.$filter = $filter;
     this.$timeout = $timeout;
   }
 
@@ -45,5 +46,12 @@ export default class {
       this.isOptionFree ? this.isOptionFree : this.autoPayWithPreferredPaymentMethod,
       this.cartId,
     );
+  }
+
+  getDuration(_interval_) {
+    const interval = _interval_.toString();
+    const duration = this.$filter('wucDuration')(interval, 'longDate');
+
+    return duration;
   }
 }
