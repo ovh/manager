@@ -20,6 +20,13 @@
         </div>
     </oui-navbar-main>
     <oui-navbar-aside data-ng-if="$ctrl.user">
+        <a
+            class="oui-navbar-link oui-navbar-link_tertiary oui-navbar-link_icon px-0 text-center"
+            data-ng-href="{{:: $ctrl.globalSearchLink }}"
+            data-ng-if="$ctrl.globalSearchLink">
+            <span class="navbar-small-icon oui-icon oui-icon-search_extra-thin mr-0" aria-hidden="true"></span>
+            <span class="sr-only" data-translate="navbar_search"></span>
+        </a>
         <ovh-manager-navbar-language-menu data-lang-options="$ctrl.langOptions"></ovh-manager-navbar-language-menu>
         <ovh-manager-navbar-notifications-menu data-subsidiary="{{:: $ctrl.user.ovhSubsidiary }}"></ovh-manager-navbar-notifications-menu>
         <ovh-manager-navbar-assistance-menu data-subsidiary="{{:: $ctrl.user.ovhSubsidiary }}" data-universe="$ctrl.navbarOptions.universe"></ovh-manager-navbar-assistance-menu>
