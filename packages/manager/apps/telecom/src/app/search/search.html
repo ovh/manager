@@ -1,0 +1,36 @@
+<div class="m-5">
+    <h1 class="text-center text-md-left" data-translate="telecom_search_how_can_we_help_you"></h1>
+    <form data-ng-submit="$ctrl.search()">
+        <div class="oui-input-group">
+            <input class="oui-input" placeholder="{{ 'telecom_search_search_placeholder' | translate }}" data-ng-model="$ctrl.query" required autofocus type="search">
+            <button class="oui-button" type="submit" data-translate="telecom_search_search_button"></button>
+        </div>
+    </form>
+    <div class="row mt-4" data-ng-if="!$ctrl.hasResults() && $ctrl.rawQuery">
+        <div class="col-md-6">
+            <strong data-translate="telecom_search_no_result"></strong>
+            <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et laoreet massa. Mauris eu suscipit lorem. Aenean sed ullamcorper neque, quis facilisis nisi. Nunc accumsan gravida nunc in finibus. Morbi ut ipsum ante.</p>
+        </div>
+    </div>
+    <div class="container-fluid px-0" data-ng-if="$ctrl.hasResults()">
+        <telecom-search-results
+            class="d-block mt-4"
+            title="{{ ::'telecom_search_services' | translate }}"
+            results="$ctrl.results.services">
+            <div><strong data-ng-bind="$parent.result.value.serviceName"></strong></div>
+            <div>
+                <small data-ng-bind="$parent.result.value.description"></small>
+            </div>
+            <small class="d-block mt-2"><span class="border rounded p-1 mr-1" data-ng-bind="$parent.result.value.serviceType"></span><span class="border rounded p-1" data-ng-bind="$parent.result.value.featureType"></span></small>
+        </telecom-search-results>
+        <telecom-search-results
+            class="d-block mt-4"
+            title="{{ ::'telecom_search_billingAccount' | translate }}"
+            results="$ctrl.results.billingAccount">
+            <div><strong data-ng-bind="$parent.result.billingAccount"></strong></div>
+            <div>
+                <small data-ng-bind="$parent.result.description || 'No description'"></small>
+            </div>
+        </telecom-search-results>
+    </div>
+</div>
