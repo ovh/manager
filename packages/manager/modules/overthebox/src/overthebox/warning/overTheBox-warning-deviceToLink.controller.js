@@ -14,7 +14,7 @@ export default /* @ngInject */ function ($scope, $translate, $state,
     if ((parent.orphanDevices.length !== 1) && (parent.unlinkedServices.length === 1)) {
       self.configService = {
         service: parent.unlinkedServices[0].service,
-        url: $state.href('overTheBox.details', { serviceName: parent.unlinkedServices[0].service }),
+        url: $state.href('overTheBoxes.overTheBox.details', { serviceName: parent.unlinkedServices[0].service }),
       };
     }
     if ((parent.orphanDevices.length !== 1) && (parent.unlinkedServices.length !== 1)) {

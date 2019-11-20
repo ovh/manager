@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerOtbTasks';
 
 angular.module(moduleName, [])
   .config(($stateProvider) => {
-    $stateProvider.state('overTheBox.tasks', {
+    $stateProvider.state('overTheBoxes.overTheBox.tasks', {
       url: '/tasks',
       views: {
         otbView: {
