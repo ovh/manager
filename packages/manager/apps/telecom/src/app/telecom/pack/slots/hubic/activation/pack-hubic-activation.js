@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.pack.hubic-activation', {
+  $stateProvider.state('telecom.packs.pack.hubic-activation', {
     url: '/hubic/activation',
     views: {
-      'packView@telecom.pack': {
+      'packView@telecom.packs': {
         templateUrl: 'app/telecom/pack/slots/hubic/activation/pack-hubic-activation.html',
         controller: 'PackHubicActivationCtrl',
         controllerAs: 'PackHubicActivation',

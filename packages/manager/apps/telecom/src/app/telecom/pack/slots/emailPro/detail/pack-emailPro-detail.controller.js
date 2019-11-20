@@ -28,7 +28,7 @@ angular.module('managerApp').controller('PackEmailProDetailCtrl', class PackEmai
         this.getAccount(),
         this.loadPackInfo(),
       ])
-      .catch(() => this.$state.go('telecom.pack').then(() => this.TucToast.error(this.$translate.instant('email_pro_detail_loading_error'))))
+      .catch(() => this.$state.go('telecom.packs.pack').then(() => this.TucToast.error(this.$translate.instant('email_pro_detail_loading_error'))))
       .finally(() => {
         this.loading = false;
       });
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('PackEmailProDetailCtrl', class PackEmai
     }, {
       password: this.password,
     }).$promise
-      .then(() => this.$state.go('telecom.pack'))
+      .then(() => this.$state.go('telecom.packs.pack'))
       .then(() => this.TucToast.success(this.$translate.instant('email_pro_detail_change_password_success', { email: this.$stateParams.serviceName })))
       .catch((error) => {
         this.TucToast.error(this.$translate.instant('email_pro_detail_change_password_error'));
@@ -83,7 +83,7 @@ angular.module('managerApp').controller('PackEmailProDetailCtrl', class PackEmai
 
     return this.OvhApiXdsl.Email().Pro().v6().delete({ email: this.$stateParams.serviceName })
       .$promise
-      .then(() => this.$state.go('telecom.pack'))
+      .then(() => this.$state.go('telecom.packs.pack'))
       .then(() => this.TucToast.success(this.$translate.instant('email_pro_detail_client_delete_account_success', { email: this.$stateParams.serviceName })))
       .catch((error) => {
         this.TucToast.error(this.$translate.instant('email_pro_detail_client_delete_account_error'));

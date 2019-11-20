@@ -70,7 +70,7 @@ angular.module('managerApp').controller('PackEmailProAddCtrl', class PackEmailPr
         email: this.account.name + this.account.domain,
         password: this.account.password,
       }).$promise
-      .then(() => this.$state.go('telecom.pack', { packName: this.$stateParams.packName }))
+      .then(() => this.$state.go('telecom.packs.pack', { packName: this.$stateParams.packName }))
       .then(() => this.TucToast.success(this.$translate.instant('success_validation')))
       .catch((error) => {
         this.TucToast.error([this.$translate.instant('an_error_ocurred'), get(error, 'data.message', '')].join(' '));

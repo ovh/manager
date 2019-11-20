@@ -1,6 +1,6 @@
 <div class="telecom-pack-move">
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="{{ PackMove.packName === 'sdsl' ? 'telecom.dashboard' : 'telecom.pack' }}"></tuc-section-back-link>
+        <tuc-section-back-link data-tuc-section-back-link-to-state="{{ PackMove.packName === 'sdsl' ? 'telecom.dashboard' : 'telecom.packs.pack' }}"></tuc-section-back-link>
         <h1 data-translate="pack_move_title"></h1>
     </header>
 
@@ -22,7 +22,7 @@
                  data-ng-if="!PackMove.operationAlreadyPending && PackMove.offer.current.isLegacy">
                 <strong data-translate="pack_move_legacy_offer"></strong>
                 <a data-translate="pack_move_legacy_offer_upgrade_offer"
-                   data-ui-sref="telecom.pack.migration">
+                   data-ui-sref="telecom.packs.pack.migration">
                 </a>
             </div>
 

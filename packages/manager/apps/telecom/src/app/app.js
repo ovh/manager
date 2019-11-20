@@ -35,6 +35,7 @@ import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
+import pack from './telecom/pack';
 import telephony from './telecom/telephony';
 
 import errorPage from './error-page/error-page.module';
@@ -116,6 +117,7 @@ angular.module('managerApp', [
   'ui.sortable',
   'ui.validate',
   'validation.match',
+  pack,
   telephony,
   portabilities,
   searchPage,
