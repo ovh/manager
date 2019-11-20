@@ -1,0 +1,12 @@
+<oui-modal data-heading="{{ ::'data_processing_details_metrics_token_modal_title' | translate }}"
+           data-primary-action="$ctrl.dismissModal()"
+           data-primary-label="{{ ::'data_processing_details_metrics_token_modal_dismiss_button' | translate }}"
+           data-on-dismiss="$ctrl.dismissModal()">
+    <span data-translate="data_processing_details_metrics_token_modal_description">
+    </span>
+    <br />
+    <br />
+    <span data-translate="data_processing_details_metrics_token_modal_token_label">
+    </span>
+    <oui-clipboard data-model="$ctrl.metricsToken.data.token"></oui-clipboard>
+</oui-modal>
