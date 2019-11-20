@@ -1,0 +1,9 @@
+{
+  "telecom_search_how_can_we_help_you": "Comment pouvons-nous vous aider ?",
+  "telecom_search_search_button": "Rechercher",
+  "telecom_search_search_placeholder": "Saisissez votre recherche (mots-clés, nom du service...)",
+  "telecom_search_services": "Services",
+  "telecom_search_billingAccount": "Compte de facturation",
+  "telecom_search_no_result": "Aucun résultat ne correspond à votre recherche",
+  "telecom_search_no_result_content": "Aucun résultat n'a été trouvé pour la recherche \"{{ query }}\"."
+}
