@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class LogsHelperService {
   constructor($translate, $state, OvhApiDbaas, CucServiceHelper,
     CucCloudPoll, CucControllerModalHelper, LogsConstants, ovhDocUrl, URLS) {
@@ -68,7 +70,7 @@ class LogsHelperService {
     return this.pollOperation(serviceName, operation)
       .$promise
       .then((pollResult) => {
-        if (pollResult[0].item.state !== this.LogsConstants.SUCCESS) {
+        if (get(pollResult, '[0].item.state') !== this.LogsConstants.SUCCESS) {
           const error = { data: { message: 'Operation failed' } };
           return Promise.reject(error);
         }
