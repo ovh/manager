@@ -67,7 +67,7 @@ angular.module('managerApp').controller('PackXdslCtrl',
     this.updateUIForState = function updateUIForState(state) {
       self.currentState = state.name;
       if ($stateParams.packName === PACK_XDSL.sdsl) {
-        if (state.name === 'telecom.pack.xdsl' || state.name === 'telecom.pack.xdsl.modem' || state.name === 'telecom.pack.xdsl.tasks') {
+        if (state.name === 'telecom.packs.pack.xdsl' || state.name === 'telecom.packs.pack.xdsl.modem' || state.name === 'telecom.packs.pack.xdsl.tasks') {
           setAnim('anim');
           return;
         }
@@ -76,19 +76,19 @@ angular.module('managerApp').controller('PackXdslCtrl',
       smoothScroll(document.body);
 
       switch (state.name) {
-        case 'telecom.pack.xdsl.modem.wifi':
-        case 'telecom.pack.xdsl.modem.dmz':
-        case 'telecom.pack.xdsl.access-notifications':
-        case 'telecom.pack.xdsl.access-diagnostic':
-        case 'telecom.pack.xdsl.access-migration':
-        case 'telecom.pack.xdsl.access-ip':
-        case 'telecom.pack.xdsl.access-deconsolidation':
-        case 'telecom.pack.xdsl.access-order':
-        case 'telecom.pack.xdsl.access-resiliation':
-        case 'telecom.pack.xdsl.missing-rio':
-        case 'telecom.pack.xdsl.line-diagnostic':
-        case 'telecom.pack.xdsl.modem.templates':
-        case 'telecom.pack.xdsl.access-modem-exchange':
+        case 'telecom.packs.pack.xdsl.modem.wifi':
+        case 'telecom.packs.pack.xdsl.modem.dmz':
+        case 'telecom.packs.pack.xdsl.access-notifications':
+        case 'telecom.packs.pack.xdsl.access-diagnostic':
+        case 'telecom.packs.pack.xdsl.access-migration':
+        case 'telecom.packs.pack.xdsl.access-ip':
+        case 'telecom.packs.pack.xdsl.access-deconsolidation':
+        case 'telecom.packs.pack.xdsl.access-order':
+        case 'telecom.packs.pack.xdsl.access-resiliation':
+        case 'telecom.packs.pack.xdsl.missing-rio':
+        case 'telecom.packs.pack.xdsl.line-diagnostic':
+        case 'telecom.packs.pack.xdsl.modem.templates':
+        case 'telecom.packs.pack.xdsl.access-modem-exchange':
           setAnim('invert-anim');
           self.content.back.state = '^';
           getXdsl().then((xdsl) => {
@@ -96,11 +96,11 @@ angular.module('managerApp').controller('PackXdslCtrl',
             self.content.accessType = xdsl.accessType;
           });
           break;
-        case 'telecom.pack.xdsl.modem':
-        case 'telecom.pack.xdsl.tasks':
-        case 'telecom.pack.xdsl':
+        case 'telecom.packs.pack.xdsl.modem':
+        case 'telecom.packs.pack.xdsl.tasks':
+        case 'telecom.packs.pack.xdsl':
           setAnim('anim');
-          self.content.back.state = 'telecom.pack';
+          self.content.back.state = 'telecom.packs.pack';
           getXdsl().then((xdsl) => {
             self.content.status = xdsl.status;
             self.content.accessType = xdsl.accessType;

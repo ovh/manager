@@ -130,7 +130,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
     }).then((response) => {
       if (get(response, 'data.answer.status') === 'done') {
         TucToast.success($translate.instant('hosted_email_detail_change_password_success', { email: $stateParams.serviceName }));
-        return $state.go('telecom.pack');
+        return $state.go('telecom.packs.pack');
       }
       const msg = get(response, 'data.error.message') || '';
       TucToast.error([$translate.instant('hosted_email_detail_change_password_error'), msg].join(' '));
@@ -163,7 +163,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
     }).then((response) => {
       if (get(response, 'data.answer.status') === 'done' || get(response, 'data.answer.status') === 'pending') {
         TucToast.success($translate.instant('hosted_email_detail_client_delete_account_success', { email: $stateParams.serviceName }));
-        return $state.go('telecom.pack');
+        return $state.go('telecom.packs.pack');
       }
       const msg = get(response, 'data.error.message') || '';
       return TucToast.error([$translate.instant('hosted_email_detail_client_delete_account_error'), msg].join(' '));
