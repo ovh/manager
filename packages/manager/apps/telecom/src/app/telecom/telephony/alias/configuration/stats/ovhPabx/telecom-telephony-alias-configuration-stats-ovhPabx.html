@@ -36,31 +36,21 @@
             </dl>
 
             <!-- QUEUE LIST -->
-            <uib-accordion class="mb-4"
-                           data-ng-repeat="queue in StatsOvhPabxCtrl.queues track by queue.queueId">
-                <div data-uib-accordion-group
-                     class="panel-default"
-                     data-is-open="queue.isOpen">
-                    <uib-accordion-heading>
-                        <div class="accordion-heading-container">
-                            <span data-translate="telephony_alias_configuration_stats_queue"></span>
-                            <span data-ng-bind="queue.description"></span>
-                            <span data-ng-if="!queue.description"
-                                  class="ml-1"
-                                  data-ng-bind="'#' + queue.queueId"></span>
-                            <i class="float-right glyphicon"
-                               data-ng-class="{'glyphicon-chevron-up': queue.isOpen, 'glyphicon-chevron-down': !queue.isOpen}"></i>
-                        </div>
-                    </uib-accordion-heading>
+            <oui-collapsible 
+                data-ng-repeat="queue in StatsOvhPabxCtrl.queues track by queue.queueId"
+                data-heading="{{ ::queue.description ?
+                    ('telephony_alias_configuration_stats_queue' | translate) + queue.description :
+                    ('telephony_alias_configuration_stats_queue' | translate) + '#' + queue.queueId
+                    }}"
+                data-expanded="queue.isOpen ? true : false"
+                data-on-toggle="queue.isOpen = !queue.isOpen">
 
-                    <telecom-telephony-alias-live-calls
-                        data-ng-if="queue.isOpen"
-                        data-api-endpoint="StatsOvhPabxCtrl.apiEndpoint"
-                        data-queue-id="queue.queueId">
-                    </telecom-telephony-alias-live-calls>
-
-                </div>
-            </uib-accordion>
+                <telecom-telephony-alias-live-calls
+                    data-ng-if="queue.isOpen"
+                    data-api-endpoint="StatsOvhPabxCtrl.apiEndpoint"
+                    data-queue-id="queue.queueId">
+                </telecom-telephony-alias-live-calls>
+            </oui-collapsible>
 
         </div>
         <!-- /.widget-presentation -->
