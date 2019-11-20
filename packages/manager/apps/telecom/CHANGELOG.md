@@ -1,3 +1,12 @@
+## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.1...@ovh-ux/manager-telecom@11.0.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **telephony.portability.attach:** fix uploadFile method ([c983a58](https://github.com/ovh/manager/commit/c983a581bf5d6b12cf76517ed722ce320518fb77))
+
+
+
 ## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.0...@ovh-ux/manager-telecom@11.0.1) (2019-11-15)
 
 
