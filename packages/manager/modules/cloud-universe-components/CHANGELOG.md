@@ -1,3 +1,12 @@
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.1...@ovh-ux/ng-ovh-cloud-universe-components@1.4.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **vps:** move cui-grid styles to cuc ([#1801](https://github.com/ovh/manager/issues/1801)) ([0770785](https://github.com/ovh/manager/commit/07707855811a87fb2f8daf5ffe1102cba65eeec2))
+
+
+
 ## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.0...@ovh-ux/ng-ovh-cloud-universe-components@1.4.1) (2019-11-15)
 
 

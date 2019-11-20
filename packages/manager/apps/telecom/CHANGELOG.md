@@ -1,3 +1,14 @@
+## [11.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.2...@ovh-ux/manager-telecom@11.0.3) (2019-11-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ng-ovh-line-diagnostics to v3.0.2 ([#1805](https://github.com/ovh/manager/issues/1805)) ([b78e4d3](https://github.com/ovh/manager/commit/b78e4d33f0d9c2565a2251c1ac95808f0c352ab3))
+* **portability.upload:** update to upload the file ([#1817](https://github.com/ovh/manager/issues/1817)) ([a9a8f7a](https://github.com/ovh/manager/commit/a9a8f7a61fc821f416127222297ae6341d7b4a50))
+* **telephony:** change minutes to seconds according to API description ([#1797](https://github.com/ovh/manager/issues/1797)) ([b584f95](https://github.com/ovh/manager/commit/b584f957c1e876c5cee67dc7041466e96a881fe9))
+
+
+
 ## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.1...@ovh-ux/manager-telecom@11.0.2) (2019-11-20)
 
 
