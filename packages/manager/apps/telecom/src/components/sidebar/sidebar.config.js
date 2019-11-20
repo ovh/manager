@@ -67,8 +67,8 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     addV4Section();
 
     // add sidebar pack item
-    if (count.pack > 0) {
-      PackSidebar.init();
+    if (count.pack > 0 || beta) {
+      PackSidebar.init(beta);
     }
 
     // add sidebar telephony item
