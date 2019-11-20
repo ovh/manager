@@ -19,7 +19,7 @@ export default class {
       this.billingAccount,
       this.portabilityId,
       this.uploadedFile[0].name,
-      this.uploadedFile,
+      this.uploadedFile[0],
     )
       .then(() => this.goBack(
         this.$translate.instant('portabilities_attach_document_succeed'),
