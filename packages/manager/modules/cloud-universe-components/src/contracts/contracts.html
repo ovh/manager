@@ -31,11 +31,13 @@
         <p class="bold" data-ng-if="ContractsCtrl.contracts.length === 1" data-translate="contract_list_title"></p>
 
         <div class="contracts-list clearfix shadow-z-1">
-            <uib-accordion close-others="false" class="clearfix">
-                <uib-accordion-group heading="{{contract.name}}" is-open="true" data-ng-repeat="contract in ContractsCtrl.contracts" id="contract-{{$index}}">
-                    <pre class="contracts-content">{{contract.content || contract.text}}</pre>
-                </uib-accordion-group>
-            </uib-accordion>
+            <oui-collapsible
+                data-ng-repeat="contract in ContractsCtrl.contracts"
+                data-heading="{{ contract.name }}"
+                data-expanded="true"
+                data-on-toggle="number.isOpen = !number.isOpen">
+                <pre class="contracts-content">{{contract.content || contract.text}}</pre>
+            </oui-collapsible>
         </div>
 
         <div class="contracts-breadcrumb top-space-m8 bottom-space-m4 text-center clearfix" role="navigation" data-ng-show="ContractsCtrl.contracts.length > 1">
