@@ -1,9 +1,10 @@
 export default class TelecomSearchController {
-  constructor(apiv7, iceberg, $q, query, $state, billingAccount, services) {
+  constructor(apiv7, iceberg, $q, query, $state, billingAccount, services, telecomBillingAccount) {
     this.apiv7 = apiv7;
     this.iceberg = iceberg;
     this.$q = $q;
     this.$state = $state;
+    this.telecomBillingAccount = telecomBillingAccount;
 
     this.rawQuery = query;
     this.query = query;
@@ -27,5 +28,9 @@ export default class TelecomSearchController {
 
   hasResults() {
     return this.results.services.length > 0 || this.results.billingAccount.length > 0;
+  }
+
+  getServiceLink(billingAccount, service) {
+    return this.telecomBillingAccount.getServiceLink(billingAccount, service);
   }
 }
