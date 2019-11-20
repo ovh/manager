@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 import controller from './search.controller';
 import template from './search.html';
 
@@ -23,7 +25,11 @@ export default /* @ngInject */ ($stateProvider) => {
         .query()
         .addFilter('serviceName', 'like', [`%${query}%`])
         .execute()
-        .$promise,
+        .$promise
+        .then(results => map(results, result => ({
+          ...result,
+          billingAccount: result.path.split('/')[2],
+        }))),
       billingAccount: (query, iceberg) => iceberg('/telephony')
         .query()
         .expand('CachedObjectList-Pages')

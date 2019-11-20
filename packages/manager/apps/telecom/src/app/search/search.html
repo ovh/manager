@@ -17,7 +17,7 @@
             class="d-block mt-4"
             title="{{ ::'telecom_search_services' | translate }}"
             results="$ctrl.results.services">
-            <div><strong data-ng-bind="$parent.result.value.serviceName"></strong></div>
+            <a class="d-block" ng-href="{{ $ctrl.getServiceLink($parent.result.billingAccount, $parent.result.value) }}" data-ng-bind="$parent.result.value.serviceName"></a>
             <div>
                 <small data-ng-bind="$parent.result.value.description"></small>
             </div>
