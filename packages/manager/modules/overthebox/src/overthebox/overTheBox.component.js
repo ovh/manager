@@ -46,8 +46,8 @@ angular
     tasks,
   ])
   .config(($stateProvider) => {
-    $stateProvider.state('overTheBox', {
-      url: '/overTheBox/:serviceName',
+    $stateProvider.state('overTheBoxes.overTheBox', {
+      url: '/:serviceName',
       abstract: true,
       component: 'ovhManagerOverTheBoxComponent',
       translations: {
