@@ -15,11 +15,11 @@ export default class ListLayoutCtrl {
   }
 
   loadPage() {
-    const currentOffset = this.paginationNumber * this.paginationSize;
+    const currentOffset = (this.paginationNumber - 1) * this.paginationSize;
     set(
       this.ouiDatagridService,
       `datagrids.${this.datagridId}.paging.offset`,
-      currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount,
+      currentOffset + 1,
     );
 
     return this.$q.resolve({
