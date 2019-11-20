@@ -10,10 +10,20 @@ import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import reduce from 'lodash/reduce';
 
-angular.module('managerApp').controller('PackCtrl', class PackCtrl {
+export default class PackCtrl {
+  /* @ngInject */
   constructor(
-    $q, $scope, $stateParams, $translate,
-    DASHBOARD, OvhApiPackXdsl, PACK, resiliationNotification, SidebarMenu, TucToast, tucValidator,
+    $q,
+    $scope,
+    $stateParams,
+    $translate,
+    DASHBOARD,
+    OvhApiPackXdsl,
+    PACK,
+    resiliationNotification,
+    SidebarMenu,
+    TucToast,
+    tucValidator,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -196,4 +206,4 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
         this.loader.save = false;
       });
   }
-});
+}

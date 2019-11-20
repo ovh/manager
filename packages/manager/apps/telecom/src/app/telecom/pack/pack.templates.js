@@ -8,7 +8,7 @@ import packInformations from './slots/informations/pack-informations.html';
 import packPromotionCode from './slots/promotionCode/pack-promotionCode.html';
 import packDomain from './slots/domain/pack-domain.html';
 
-angular.module('managerApp').run(($templateCache) => {
+export default /* @ngInject */ ($templateCache) => {
   // import templates required by ng-include
   $templateCache.put(
     'app/telecom/pack/slots/voipLine/pack-voipLine.html',
@@ -40,50 +40,4 @@ angular.module('managerApp').run(($templateCache) => {
     'app/telecom/pack/slots/domain/pack-domain.html',
     packDomain,
   );
-});
-angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.pack', {
-    url: '/pack/:packName',
-    views: {
-      'telecomView@telecom': {
-        templateUrl: 'app/telecom/pack/pack-main.view.html',
-      },
-      'packView@telecom.pack': {
-        templateUrl: 'app/telecom/pack/pack.html',
-        controller: 'PackCtrl',
-        controllerAs: 'Pack',
-      },
-    },
-    resolve: {
-      resiliationNotification() {
-        return {};
-      },
-      $title(translations, $translate, OvhApiPackXdsl, $stateParams) {
-        return OvhApiPackXdsl.v6()
-          .get({
-            packId: $stateParams.packName,
-          })
-          .$promise.then(data => $translate.instant(
-            'pack_xdsl_page_title',
-            { name: data.description || $stateParams.packName },
-            null,
-            null,
-            'escape',
-          ))
-          .catch(() => $translate.instant('pack_xdsl_page_title', {
-            name: $stateParams.packName,
-          }));
-      },
-    },
-    translations: {
-      value: [
-        '.',
-        './common',
-        '../task',
-        '../pack/slots/emailPro',
-        '../pack/slots/task',
-      ],
-      format: 'json',
-    },
-  });
-});
+};

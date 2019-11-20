@@ -166,7 +166,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
       TucToast.success($translate.instant('domain_activation_domain_is_saved'));
 
       $timeout(() => {
-        $state.go('telecom.pack', {
+        $state.go('telecom.packs.pack', {
           packName: $stateParams.packName,
         });
       }, 2000);
