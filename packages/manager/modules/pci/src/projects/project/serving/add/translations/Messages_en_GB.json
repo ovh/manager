@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_serving_add_title": "Create a Serving Engine namespace",
+  "pci_projects_project_serving_add_region_title": "Select a region",
+  "pci_projects_project_serving_add_stream_description_title": "Namespace description",
+  "pci_projects_project_serving_add_stream_description_help": "Can only contains letter, numbers, dash and underscore",
+  "pci_projects_project_serving_add_stream_container_title": "Object Storage Container Name",
+  "pci_projects_project_serving_add_stream_container_help": "A reference through the object storage container. Will be created if don't exists.",
+  "pci_projects_project_serving_add_success": "Your namespace {{ name }} as been created",
+  "pci_projects_project_serving_add_error": "An error occur during the namespace creation: {{ errorMessage }}"
+}

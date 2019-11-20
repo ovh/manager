@@ -1,0 +1,76 @@
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<div>
+    <p class="mb-3">
+        <span data-translate="pci_projects_project_serving_namespace_models_description_1"
+              data-translate-values="{
+                  description: $ctrl.project.description
+              }">
+        </span>
+        <span data-translate="pci_projects_project_serving_namespace_models_description_2"></span>
+    </p>
+    <oui-datagrid data-rows="$ctrl.models" data-row-loader="$row">
+        <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_id' | translate"
+                    data-property="id"
+                    data-type="string"
+                    data-searchable
+                    data-filterable></oui-column>
+
+        <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_version_status' | translate"
+                    data-property="versionStatus">
+            <span class="oui-status"
+                    data-ng-class="{
+                    'oui-status_success' : $row.versionStatus === $ctrl.VERSION_STATUS.deployed,
+                    'oui-status_warning' : $row.versionProcessing(),
+                    'oui-status_error' : $row.versionError()
+                    }"
+                    data-translate="{{:: 'pci_projects_project_serving_namespace_models_version_status_' + $row.versionStatus }}">
+            </span>
+        </oui-column>
+        <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_api_status' | translate"
+                    data-property="apiStatus">
+            <span class="oui-status"
+                  data-ng-class="{
+                    'oui-status_success' : $row.apiStatus === $ctrl.API_STATUS.running,
+                    'oui-status_warning' : $row.apiStatus !== $ctrl.API_STATUS.running
+                    }"
+                  data-translate="{{:: 'pci_projects_project_serving_namespace_models_api_status_' + $row.apiStatus }}">
+            </span>
+        </oui-column>
+        <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_url' | translate"
+                    data-property="url"
+                    data-type="string"
+                    data-searchable
+                    data-filterable>
+            <a href="{{$row.url}}" target="_blank">{{$row.url}}</a>
+        </oui-column>
+        <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_version' | translate"
+                    data-property="version"
+                    data-type="number"
+                    data-searchable
+                    data-filterable>
+        </oui-column>
+        <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_replicas' | translate"
+                    data-property="replicas"
+                    data-type="number"
+                    data-searchable
+                    data-filterable>
+        </oui-column>
+        <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu-item data-text="{{:: 'pci_projects_project_serving_namespace_models_gen_token' | translate }}"
+                                  data-on-click="$ctrl.generateToken($row.id)">
+            </oui-action-menu-item>
+            <oui-action-menu-item data-text="{{:: 'pci_projects_project_serving_namespace_models_update' | translate }}"
+                                  data-on-click="$ctrl.updateModel($row.id)">
+            </oui-action-menu-item>
+            <oui-action-menu-item data-text="{{:: 'pci_projects_project_serving_namespace_models_delete' | translate }}"
+                                  data-on-click="$ctrl.deleteModel($row.id)">
+            </oui-action-menu-item>
+        </oui-action-menu>
+        <extra-top>
+            <oui-button data-aria-label="{{:: 'pci_projects_project_serving_namespace_models_deploy_model' | translate }}"
+                        data-text="{{:: 'pci_projects_project_serving_namespace_models_deploy_model' | translate }}"
+                        data-on-click="$ctrl.addModel()">
+            </oui-button>
+        </extra-top>
+    </oui-datagrid>
+</div>

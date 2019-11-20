@@ -1,0 +1,29 @@
+<form id="servingAddToken"
+      name="servingAddToken"
+      data-ng-submit="servingAddToken.$valid && $ctrl.addToken()"
+      novalidate>
+    <oui-modal data-heading="{{:: 'pci_projects_project_serving_namespace_tokens_add' | translate }}"
+               data-primary-label="{{:: 'pci_projects_project_serving_namespace_tokens_common_add' | translate }}"
+               data-secondary-label="{{:: 'pci_projects_project_serving_namespace_tokens_common_cancel' | translate }}"
+               data-secondary-action="$ctrl.goBack()"
+               data-on-dismiss="$ctrl.goBack()"
+               data-loading="$ctrl.isAdding">
+        <span data-translate="pci_projects_project_serving_namespace_tokens_add_info"></span>
+
+        <oui-field data-label="{{:: 'pci_projects_project_serving_namespace_tokens_resource' | translate }}"
+                   data-error-messages="{ pattern: ('pci_projects_project_serving_namespace_tokens_resource_validation_error' | translate) }"
+                   data-size="auto">
+            <input class="oui-input"
+                   type="text"
+                   id="resource"
+                   name="resource"
+                   required
+                   maxlength="50"
+                   data-ng-model="$ctrl.token.resource"
+                   data-ng-pattern="/^([0-9a-zA-Z-]+\*?|\*)$/">
+        </oui-field>
+        <oui-select name="groups" model="$ctrl.token.groups" placeholder="Select a group"
+                    items="$ctrl.GROUPS" match="id" multiple searchable>
+        </oui-select>
+    </oui-modal>
+</form>
