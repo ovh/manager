@@ -27,7 +27,7 @@
             class="d-block mt-4"
             title="{{ ::'telecom_search_billingAccount' | translate }}"
             results="$ctrl.results.billingAccount">
-            <div><strong data-ng-bind="$parent.result.billingAccount"></strong></div>
+            <a class="d-block" data-ui-sref="telecom.telephony.billingAccount({ billingAccount: $parent.result.billingAccount })" data-ng-bind="$parent.result.billingAccount"></a>
             <div>
                 <small data-ng-bind="$parent.result.description || 'No description'"></small>
             </div>
