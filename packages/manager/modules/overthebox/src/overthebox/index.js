@@ -21,6 +21,16 @@ angular.module(moduleName, [
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });
+
+    $stateProvider.state('overTheBoxes.overTheBox.details.**', {
+      url: '/:serviceName/details',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./details/index')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
   });
 
 export default moduleName;
