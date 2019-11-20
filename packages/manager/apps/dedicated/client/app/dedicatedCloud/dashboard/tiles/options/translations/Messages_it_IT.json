@@ -11,5 +11,18 @@
   "ovhManagerPccDashboardOptions_certification_description_presentation": "Scopri le nostre certificazioni",
   "ovhManagerPccDashboardOptions_certification_actionMenu_activate": "Attiva una certificazione",
   "ovhManagerPccDashboardOptions_certification_actionMenu_configure": "Configura",
-  "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Conferma l’attivazione"
+  "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Conferma l’attivazione",
+  "ovhManagerPccDashboardOptions_security_term": "Opzioni di sicurezza",
+  "ovhManagerPccDashboardOptions_security_drp": "DRP Zerto",
+  "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Attivo",
+  "ovhManagerPccDashboardOptions_security_drp_status_delivering": "Installazione in corso...",
+  "ovhManagerPccDashboardOptions_security_drp_status_disabling": "Eliminazione in corso...",
+  "ovhManagerPccDashboardOptions_security_drp_status_disabled": "Nessuno",
+  "ovhManagerPccDashboardOptions_security_drp_status_error": "In errore",
+  "ovhManagerPccDashboardOptions_security_drp_status_vpn_notConfigured": "In attesa degli IP della VPN",
+  "ovhManagerPccDashboardOptions_security_drp_status_vpn_configuring": "Configurazione della VPN in corso...",
+  "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Configurazione della VPN in errore",
+  "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Aggiungi IP",
+  "ovhManagerPccDashboardOptions_security_drp_action_install": "Installa un DRP",
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Elimina DRP Zerto "
 }

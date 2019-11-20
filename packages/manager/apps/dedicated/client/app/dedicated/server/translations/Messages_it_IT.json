@@ -908,7 +908,7 @@
   "server_cancel_traffic_cancel_success": "Ti abbiamo inviato un'email!",
   "server_cancel_traffic_cancel_error": "Si è verificato un errore durante la disattivazione dell'opzione.",
   "server_order_bandwidth_vrack_plan_text": "di banda passante privata, traffico illimitato (vRack)",
-  "server_order_bandwidth_declaration": "La data di rinnovo dell’opzione verrà allineata con quella del server. La fatturazione del primo mese sarà quindi calcolata sulla base del prorata temporis del mese in corso.",
+  "server_order_bandwidth_declaration": "La data di rinnovo dell’opzione verrà allineata a quella del server. L’importo mostrato corrisponde al primo mese di fatturazione dell’opzione, calcolato sulla base del prorata temporis del mese in corso.",
   "server_order_bandwidth_auto_pay": "Paga utilizzando il metodo di pagamento predefinito",
   "day_1": "1 giorno",
   "day_other": "{} giorni",
@@ -1201,5 +1201,7 @@
   "server_error_vrack_detach": "Si è verificato un errore durante la separazione della rete privata: {{error}}",
   "server_error_ola_activation": "Si è verificato un errore durante l'attivazione del tuo servizio: {{error}}",
   "server_error_bandwidth_order": "Si è verificato un errore durante l'ordine della banda passante: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps di banda passante pubblica - Traffico illimitato"
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps di banda passante pubblica - Traffico illimitato",
+  "server_order_bandwidth_info": "L’importo indicato corrisponde alla somma che sarà fatturata al prossimo rinnovo dell’opzione.",
+  "server_order_bandwidth_warning": "La modifica della banda passante sarà applicata entro qualche minuto dall’attivazione dell’opzione."
 }

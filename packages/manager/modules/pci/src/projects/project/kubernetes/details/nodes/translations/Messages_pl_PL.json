@@ -60,5 +60,6 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Czy na pewno chcesz zmienić płatność za węzeł '{{instanceName}}' na płatność miesięczną?",
   "kube_nodes_switch_to_monthly_billing_info": "Otrzymasz natychmiast fakturę opiewającą na kwotę odpowiadającą liczbie dni do końca miesiąca.",
   "kube_nodes_switch_billing_type_success": "Sposób rozliczania za użycie węzła został zmieniony na płatność miesięczną",
-  "kube_nodes_switch_billing_type_error": "Nie można zmienić płatności na miesięczną: {{ message }}."
+  "kube_nodes_switch_billing_type_error": "Nie można zmienić płatności na miesięczną: {{ message }}.",
+  "kube_nodes_add_button": "Dodaj węzeł"
 }

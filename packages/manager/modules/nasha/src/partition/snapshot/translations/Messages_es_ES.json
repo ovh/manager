@@ -10,7 +10,7 @@
   "nasha_snapshot_day-7": "Semanal",
   "nasha_snapshot_hour-1": "Cada hora",
   "nasha_snapshot_hour-6": "Cada 6 horas",
-  "nasha_snapshot_informations": "Un snapshot es una fotografía instantánea que registra el estado del NAS-HA en el momento de su captura.",
-  "nasha_snapshot_informations_size": "Los snapshots utilizan espacio de su partición para funcionar correctamente. No se guarda ningún historial de los snapshots: para una misma frecuencia, el último snapshot tomado sustituye al anterior.",
+  "nasha_snapshot_informations": "Un snapshot es una imagen instantánea. Registra el estado del NAS-HA en el momento en que se realiza el snapshot.",
+  "nasha_snapshot_informations_size": "Los snapshots utilizan espacio de su partición para funcionar correctamente. No se guarda ningún historial de los snapshots: para una misma frecuencia, el último snapshot sustituye al anterior.",
   "nasha_snapshot_warning_frequency": "Si no selecciona ninguna duración, se eliminarán los snapshots existentes de esta partición."
 }

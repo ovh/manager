@@ -60,5 +60,6 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Are you sure you want to switch the billing type to monthly for the '{{ instanceName }}' node?",
   "kube_nodes_switch_to_monthly_billing_info": "You will be billed immediately on a pro rata basis for the remaining days of the current month.",
   "kube_nodes_switch_billing_type_success": "The billing for the node has been switched to monthly billing",
-  "kube_nodes_switch_billing_type_error": "Unable to switch to monthly billing: {{ message }}"
+  "kube_nodes_switch_billing_type_error": "Unable to switch to monthly billing: {{ message }}",
+  "kube_nodes_add_button": "Add node"
 }
