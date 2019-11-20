@@ -4,7 +4,11 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
+
 import overTheBox from './overTheBox';
+
+import component from './overtheboxes.component';
 
 const moduleName = 'ovhManagerOverTheBoxes';
 
@@ -20,6 +24,21 @@ angular
       url: '/overTheBox',
       abstract: true,
     });
-  });
+
+    $stateProvider.state('overTheBoxes.index', {
+      url: `?${ListLayoutHelper.urlQueryParams}`,
+      component: 'ovhManagerOverTheBoxes',
+      params: ListLayoutHelper.stateParams,
+      resolve: {
+        apiPath: () => '/overTheBox',
+        ...ListLayoutHelper.stateResolves,
+        getOvertheboxLink: /* @ngInject */ $state => otb => $state.href('overTheBoxes.overTheBox.details', {
+          serviceName: otb.serviceName,
+        }),
+      },
+    });
+  })
+  .component('ovhManagerOverTheBoxes', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
