@@ -14,12 +14,12 @@ angular
     'ovhManagerCore',
     'oc.lazyLoad',
     overTheBox,
-  ]);
-// .config(/* @ngInject */($stateProvider) => {
-//   $stateProvider.state('overtheboxes', {
-//     url: '/overThebox',
-//     abstract: true,
-//   });
-// });
+  ])
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('overTheBoxes', {
+      url: '/overTheBox',
+      abstract: true,
+    });
+  });
 
 export default moduleName;

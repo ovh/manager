@@ -31,7 +31,7 @@ angular.module('managerApp')
             SidebarMenu.addMenuItem({
               title: overTheBoxDetail.customerDescription || overTheBoxDetail.serviceName,
               id: overTheBoxDetail.serviceName,
-              state: 'overTheBox.details',
+              state: 'overTheBoxes.overTheBox.details',
               stateParams: {
                 serviceName: overTheBoxDetail.serviceName,
               },
@@ -56,7 +56,7 @@ angular.module('managerApp')
         icon: 'ovh-font ovh-font-overTheBox',
         allowSubItems: true,
         onLoad: self.loadOtbMainSection,
-        loadOnState: 'overTheBox',
+        loadOnState: 'overTheBoxes.overTheBox',
         allowSearch: true,
         infiniteScroll: true,
       });

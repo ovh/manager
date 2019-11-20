@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerOtbLogs';
 
 angular.module(moduleName, [])
   .config(($stateProvider) => {
-    $stateProvider.state('overTheBox.logs', {
+    $stateProvider.state('overTheBoxes.overTheBox.logs', {
       url: '/logs',
       views: {
         otbView: {

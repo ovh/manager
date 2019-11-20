@@ -15,7 +15,7 @@ angular
   ])
   .constant('OVERTHEBOX_DETAILS', constant)
   .config(($stateProvider) => {
-    $stateProvider.state('overTheBox.details', {
+    $stateProvider.state('overTheBoxes.overTheBox.details', {
       url: '/details',
       views: {
         otbView: {

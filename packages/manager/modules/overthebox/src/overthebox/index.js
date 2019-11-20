@@ -12,8 +12,8 @@ angular.module(moduleName, [
   'ovhManagerCore',
 ])
   .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('overTheBox.**', {
-      url: '/overTheBox/:serviceName',
+    $stateProvider.state('overTheBoxes.overTheBox.**', {
+      url: '/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
