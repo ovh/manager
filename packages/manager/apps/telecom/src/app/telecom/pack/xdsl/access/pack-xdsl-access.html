@@ -33,7 +33,7 @@
                                             <p data-ng-if="!access.xdsl.isFiber" data-translate="xdsl_details_diagnostic_description"></p>
                                             <p data-ng-if="access.xdsl.isFiber" data-translate="xdsl_details_diagnostic_not_yet_available"></p>
                                             <button class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                                    data-ui-sref="telecom.pack.xdsl.access-diagnostic"
+                                                    data-ui-sref="telecom.packs.pack.xdsl.access-diagnostic"
                                                     data-ng-disabled="access.xdsl.isFiber">
                                                 <span data-translate="xdsl_details_button_diagnostic"></span>
                                                 <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
@@ -121,7 +121,7 @@
                                     <div class="oui-tile__description"
                                          data-ng-if="XdslAccess.lineDetails.deconsolidation === 'partial' && !access.tasks.current.accessPartToTotal">
                                         <a class="service-button"
-                                           data-ui-sref="telecom.pack.xdsl.access-deconsolidation"
+                                           data-ui-sref="telecom.packs.pack.xdsl.access-deconsolidation"
                                            data-uib-tooltip-template="'pack-xdsl-access-tooltip-deconsolidation.html'"
                                            data-tooltip-enable="XdslAccess.lineDetails.deconsolidation"
                                            data-tooltip-placement="right">
@@ -166,7 +166,7 @@
 
                                             <button class="oui-button oui-button_secondary oui-button_full-width oui-button_icon-right"
                                                     data-ng-disabled="access.xdsl.isFiber"
-                                                    data-ui-sref="telecom.pack.move"
+                                                    data-ui-sref="telecom.packs.pack.move"
                                                     role="button">
                                                 <span data-translate="xdsl_details_button_move"></span>
                                                 <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
@@ -192,7 +192,7 @@
                                                data-ng-bind="XdslAccess.actualOrder.doneDateLocale"></p>
                                         </div>
                                         <a class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                           data-ui-sref="telecom.pack.xdsl.access-order">
+                                           data-ui-sref="telecom.packs.pack.xdsl.access-order">
                                             <span data-translate="xdsl_details_followUp_label_step_name_detail"></span>
                                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
                                                   aria-hidden="true"></span>
@@ -222,7 +222,7 @@
                                         </div>
 
                                         <a class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                           data-ui-sref="telecom.pack.xdsl.access-notifications">
+                                           data-ui-sref="telecom.packs.pack.xdsl.access-notifications">
                                             <span data-translate="xdsl_details_notif_show_alerts"></span>
                                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
                                                   aria-hidden="true"></span>
@@ -234,7 +234,7 @@
                             <li class="oui-tile__item">
                                 <div class="oui-tile__definition">
                                     <a class="btn btn-default btn-block"
-                                       data-ui-sref="telecom.pack.xdsl.access-resiliation"
+                                       data-ui-sref="telecom.packs.pack.xdsl.access-resiliation"
                                        data-translate="xdsl_resiliate"
                                        data-translate-attr="{title: 'common_resiliation'}"></a>
                                 </div>
@@ -249,7 +249,7 @@
                                         <p data-translate="xdsl_modem_comfort_exchange_description_part2"></p>
                                         <p data-translate="xdsl_modem_comfort_exchange_description_part3"></p>
                                         <a class="oui-button oui-button_full-width oui-button_secondary"
-                                           data-ui-sref="telecom.pack.xdsl.access-modem-exchange"
+                                           data-ui-sref="telecom.packs.pack.xdsl.access-modem-exchange"
                                            data-translate="xdsl_modem_exchange">
                                         </a>
                                     </div>
@@ -372,7 +372,7 @@
                                                 <div class="float-right">
                                                     <a data-ng-disabled="ip.deleting"
                                                        title="{{ip.ip}} / {{ip.range}} : {{::'xdsl_details_ips_manage' | translate }}"
-                                                       data-ui-sref="telecom.pack.xdsl.access-ip({block:ip.getBlock()})"
+                                                       data-ui-sref="telecom.packs.pack.xdsl.access-ip({block:ip.getBlock()})"
                                                        class="btn btn-default">
                                                         <span class="oui-icon oui-icon-gear_line"
                                                               aria-hidden="true"></span>
@@ -414,7 +414,7 @@
                                                 </div>
                                                 <div class="float-right">
                                                     <a data-ng-disabled="ip.deleting"
-                                                       data-ui-sref="telecom.pack.xdsl.access-ip({block:ip.getBlock()})"
+                                                       data-ui-sref="telecom.packs.pack.xdsl.access-ip({block:ip.getBlock()})"
                                                        title="{{ip.ip}} / {{ip.range}} : {{::'xdsl_details_ips_manage' | translate }}"
                                                        class="btn btn-default">
                                                         <span class="oui-icon oui-icon-gear_line"></span>

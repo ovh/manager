@@ -43,7 +43,7 @@
                                       data-ng-bind="Pack.pack.offerDescription">
                                 </span>
                                 <a class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                   data-ui-sref="telecom.pack.migration">
+                                   data-ui-sref="telecom.packs.pack.migration">
                                    <span data-translate="pack_offer_migration"></span>
                                     <i class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></i>
                                 </a>
@@ -93,7 +93,7 @@
                                       data-ng-bind="(Pack.pack.informations.engagedUpTo | date) || '-'">
                                 </span>
                                 <a class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                   data-ui-sref="telecom.pack.resiliation">
+                                   data-ui-sref="telecom.packs.pack.resiliation">
                                     <span data-translate="common_resiliation"></span>
                                     <i class="oui-icon oui-icon_circle oui-icon-chevron-right" aria-hidden="true"></i>
                                 </a>
@@ -113,7 +113,7 @@
                         </strong>
                         <div class="oui-tile__description">
                             <a class="service-button"
-                               data-ui-sref="telecom.pack.resiliation"
+                               data-ui-sref="telecom.packs.pack.resiliation"
                                data-translate-attr="{ title: 'common_resiliation_cancel' }">
                                 <strong class="resiliation-date text-warning"
                                       data-ng-bind="PackInformation.resiliationFollowUp.dateTodo | date"></strong>

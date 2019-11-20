@@ -11,7 +11,7 @@
         <div class="oui-tile__item oui-tile__item_button"
              data-ng-repeat="service in $ctrl.services track by service.name">
             <a class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
-               data-ui-sref="telecom.pack.emailPro-detail({ serviceName: service.name })">
+               data-ui-sref="telecom.packs.pack.emailPro-detail({ serviceName: service.name })">
                 <span class="d-inline-block">
                     <span class="text-secondary"
                           data-ng-bind="service.name">
@@ -29,7 +29,7 @@
         <div class="oui-tile__item">
             <div class="oui-tile__definition">
                 <a class="btn btn-default btn-block"
-                   data-ui-sref="telecom.pack.emailPro-add"
+                   data-ui-sref="telecom.packs.pack.emailPro-add"
                    data-translate="common_order_activate_service">
                 </a>
             </div>

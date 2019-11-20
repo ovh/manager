@@ -50,7 +50,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
           id: pack.packName,
           title: pack.description || pack.offerDescription || pack.packName,
           prefix: $translate.instant('back_my_pack'),
-          state: 'telecom.pack',
+          state: 'telecom.packs.pack',
           stateParams: {
             packName: pack.packName,
           },
@@ -69,7 +69,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
                 id: xdsl.accessName,
                 title: xdsl.description || xdsl.accessName,
                 prefix: upperFirst(xdsl.accessType),
-                state: 'telecom.pack.xdsl',
+                state: 'telecom.packs.pack.xdsl',
                 stateParams: {
                   packName: pack.packName,
                   serviceName: xdsl.accessName,
@@ -124,7 +124,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
         id: xdsl.accessName,
         title: xdsl.description || xdsl.accessName,
         prefix: upperFirst(xdsl.accessType),
-        loadOnState: 'telecom.pack.xdsl',
+        loadOnState: 'telecom.packs.pack.xdsl',
         loadOnStateParams: {
           packName: xdsl.accessType,
           serviceName: xdsl.accessName,
@@ -141,7 +141,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
         const elt = SidebarMenu.addMenuItem({
           id: line.number,
           title: line.number,
-          state: 'telecom.pack.xdsl',
+          state: 'telecom.packs.pack.xdsl',
           stateParams: {
             packName: xdsl.accessType,
             serviceName: xdsl.accessName,
@@ -209,7 +209,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
       icon: 'ovh-font ovh-font-telecom-ethernet',
       allowSubItems: true,
       onLoad: self.fetchData,
-      loadOnState: 'telecom.pack',
+      loadOnState: 'telecom.packs.pack',
       allowSearch: true,
       infiniteScroll: true,
     });
