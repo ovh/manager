@@ -97,7 +97,7 @@
     "ng-ckeditor": "^2.0.5",
     "ng-slide-down": "TheRusskiy/ng-slide-down#^1.0.0",
     "office-ui-fabric-core": "^11.0.0",
-    "ovh-api-services": "^9.26.0",
+    "ovh-api-services": "^9.26.1",
     "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.0.1",
     "ovh-ui-angular": "^3.10.0",
     "ovh-ui-kit": "^2.35.2",
