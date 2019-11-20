@@ -23,3 +23,17 @@
     transform: translateY(-50%);
   }
 }
+
+.oui-navbar-link_icon {
+  &,
+  &:focus,
+  &:hover {
+    .navbar-small-icon {
+      @small-icon-size: 1.25rem;
+
+      font-size: @small-icon-size;
+      width: @small-icon-size;
+      height: @small-icon-size;
+    }
+  }
+}

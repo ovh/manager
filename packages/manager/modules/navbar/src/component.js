@@ -4,6 +4,7 @@ import template from './template.html';
 const component = {
   bindings: {
     brandLabel: '@',
+    globalSearchLink: '@?',
     langOptions: '<?',
     navbarOptions: '<?',
     sidebarLinks: '<?',
