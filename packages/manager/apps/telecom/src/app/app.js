@@ -40,6 +40,7 @@ import pack from './telecom/pack';
 import telephony from './telecom/telephony';
 
 import errorPage from './error-page/error-page.module';
+import searchPage from './search/search.module';
 import navbar from '../components/navbar';
 
 import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
@@ -121,6 +122,7 @@ angular.module('managerApp', [
   pack,
   telephony,
   portabilities,
+  searchPage,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */
