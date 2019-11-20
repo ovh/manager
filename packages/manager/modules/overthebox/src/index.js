@@ -6,6 +6,9 @@ import '@ovh-ux/manager-core';
 
 import overTheBox from './overthebox';
 
+import component from './overtheboxes.component';
+import routing from './overtheboxes.routing';
+
 const moduleName = 'ovhManagerOverTheBoxes';
 
 angular
@@ -15,11 +18,8 @@ angular
     'oc.lazyLoad',
     overTheBox,
   ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('overTheBoxes', {
-      url: '/overTheBox',
-      abstract: true,
-    });
-  });
+  .config(routing)
+  .component('ovhManagerOverTheBoxes', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
