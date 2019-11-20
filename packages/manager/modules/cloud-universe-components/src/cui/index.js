@@ -7,6 +7,8 @@ import modal from './modal';
 import page from './page';
 import tabs from './tabs';
 
+import './grid.less';
+
 const moduleName = 'ngOvhCloudUniverseComponentsCui';
 
 angular
