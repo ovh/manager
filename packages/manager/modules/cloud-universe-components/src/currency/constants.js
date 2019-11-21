@@ -33,6 +33,9 @@ export const CURRENCY_SUBSIDIARY = {
   ASIA: 'USD$',
 };
 
+export const UCENTS_FACTOR = 100000000;
+
 export default {
   CURRENCY_SUBSIDIARY,
+  UCENTS_FACTOR,
 };

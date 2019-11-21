@@ -1,4 +1,4 @@
-import { CURRENCY_SUBSIDIARY } from './constants';
+import { CURRENCY_SUBSIDIARY, UCENTS_FACTOR } from './constants';
 
 export default class CucCurrencyService {
   /* @ngInject */
@@ -6,6 +6,7 @@ export default class CucCurrencyService {
     this.OvhApiMe = OvhApiMe;
     this.CucConfig = CucConfig;
     this.currency = CURRENCY_SUBSIDIARY[this.CucConfig.getRegion()];
+    this.ucentsFactor = UCENTS_FACTOR;
   }
 
   getSubsidiary() {
@@ -27,5 +28,9 @@ export default class CucCurrencyService {
 
   getCurrentCurrency() {
     return this.currency;
+  }
+
+  convertUcentsToCurrency(value, interval = 1) {
+    return (value / interval) / this.ucentsFactor;
   }
 }
