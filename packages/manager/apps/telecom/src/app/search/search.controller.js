@@ -1,8 +1,6 @@
 export default class TelecomSearchController {
-  constructor(apiv7, iceberg, $q, query, $state, billingAccount, services, telecomBillingAccount) {
-    this.apiv7 = apiv7;
-    this.iceberg = iceberg;
-    this.$q = $q;
+  /* @ngInject */
+  constructor(query, $state, billingAccount, services, telecomBillingAccount) {
     this.$state = $state;
     this.telecomBillingAccount = telecomBillingAccount;
 
