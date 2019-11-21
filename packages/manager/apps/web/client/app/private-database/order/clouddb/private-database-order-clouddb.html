@@ -86,7 +86,9 @@
                 data-model="$ctrl.model.duration"
                 data-value="duration"
                 data-on-change="$ctrl.goToPaymentStep()">
-                <span data-translate="{{ 'private_database_order_clouddb_duration_' + duration.duration }}"></span> :
+                <span
+                    data-translate="private_database_order_clouddb_duration_month"
+                    data-translate-values="{ 'number': duration.interval }"></span> :
                 <ovh-manager-order-catalog-price
                     data-price="duration.price"
                     data-tax="duration.tax"
@@ -112,7 +114,9 @@
                     <dt data-translate="private_database_order_clouddb_payment_total_price_with_tax"></dt>
                     <dd data-ng-bind="$ctrl.prices.withTax.text"></dd>
                     <dt data-translate="private_database_order_clouddb_payment_duration"></dt>
-                    <dd data-translate="{{ 'private_database_order_clouddb_duration_' + $ctrl.model.duration.duration }}"></dd>
+                    <dd
+                        data-translate="private_database_order_clouddb_duration_month"
+                        data-translate-values="{ 'number': $ctrl.model.duration.interval }"></dd>
                 </dl>
             </div>
 
