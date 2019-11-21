@@ -1,5 +1,8 @@
-import find from 'lodash/find';
+import first from 'lodash/first';
 import get from 'lodash/get';
+import isNil from 'lodash/isNil';
+import map from 'lodash/map';
+import snakeCase from 'lodash/snakeCase';
 
 angular
   .module('App')
@@ -16,9 +19,14 @@ angular
       Alerter,
       Hosting,
       HostingDatabase,
+      OvhApiHostingWeb,
       User,
     ) => {
       const MAX_USER_LENGTH = 16;
+      const EXTRA_SQL_PERSO = 'extraSqlPerso';
+
+      $scope.primaryLogin = $scope.hosting.primaryLogin;
+      $scope.maxUserLength = MAX_USER_LENGTH - $scope.primaryLogin.length;
 
       User.getUrlOf('guides').then((guides) => {
         if (guides && guides.hostingPrivateDatabase) {
@@ -26,152 +34,143 @@ angular
         }
       });
 
-      const isPasswordValid = () => $scope.model.selected.password.value
-        && $scope.model.selected.password.confirmation
-        && $scope.model.selected.password.value
-          === $scope.model.selected.password.confirmation
+      const isPasswordValid = () => $scope.model.password.value
+        && $scope.model.password.confirmation
+        && $scope.model.password.value
+          === $scope.model.password.confirmation
         && Hosting.constructor.isPasswordValid(
-          $scope.model.selected.password.value,
+          $scope.model.password.value,
           $scope.customPasswordConditions,
         );
 
-      function getAvailableVersion(type) {
-        $scope.model.capabilities.bdVersions = null;
-        $scope.model.selected.version = null;
-        HostingDatabase.getAvailableVersion($stateParams.productId, type).then((result) => {
-          $scope.model.capabilities.bdVersions = result.list;
-          $scope.model.selected.version = find(
-            $scope.model.capabilities.bdVersions,
-            elt => elt === result.default,
-          );
-        }); // no need error function
-      }
-
-      $scope.$watch('model.selected.type', () => {
-        if ($scope.model.selected.type) {
-          getAvailableVersion($scope.model.selected.type.toLowerCase());
-        }
-      });
-
       $scope.model = {
-        capabilities: null,
-        selected: {
-          type: null,
-          capabilitie: null,
-          password: {
-            value: null,
-            confirmation: null,
-          },
-          quota: null,
-          user: '',
+        capability: null,
+        type: null,
+        version: null,
+        quota: null,
+        user: null,
+        password: {
+          value: null,
+          confirmation: null,
         },
-        types: {
-          EXTRA_SQL_PERSO: 'EXTRA_SQL_PERSO',
-        },
-        maxUserLength: 6,
       };
 
       $scope.customPasswordConditions = {
         max: 30,
       };
 
-      $scope.load = () => {
-        $q.all({
-          capabilities: HostingDatabase.getCreationCapabilities($stateParams.productId),
-          availableDatabasesType: HostingDatabase.getDatabaseAvailableType($stateParams.productId),
+      $scope.load = () => OvhApiHostingWeb.v6()
+        .getDatabaseCreationCapabilities({
+          serviceName: $stateParams.productId,
         })
-          .then((resp) => {
-            $scope.model.capabilities = resp.capabilities;
-            $scope.model.maxUserLength = MAX_USER_LENGTH - resp.capabilities.primaryLogin.length;
+        .$promise
+        .then((capabilities) => {
+          $scope.capabilities = capabilities;
 
-            if (resp.capabilities.availableDatabases.length === 1) {
-              [
-                $scope.model.selected.capabilitie,
-              ] = resp.capabilities.availableDatabases;
-            }
-
-            $scope.availableDatabasesType = resp.availableDatabasesType;
-            $scope.model.selected.type = 'MYSQL';
-          })
-          .catch((err) => {
-            Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-              get(err, 'data', err),
-              $scope.alerts.main,
-            );
+          map($scope.capabilities, (capa) => {
+            const capability = capa;
+            capability.snakeType = snakeCase(capability.type);
+            return capability;
           });
-      };
 
-      $scope.isStep1Valid = () => $scope.model.selected.type !== null
-        && $scope.model.selected.capabilitie !== null;
+          $scope.model.capability = first($scope.capabilities);
+          $scope.model.type = first($scope.model.capability.engines);
+
+          // load available versions
+          return $scope.loadAvailableDatabaseVersions();
+        })
+        .catch((err) => {
+          Alerter.alertFromSWS(
+            $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+            get(err, 'data', err),
+            $scope.alerts.main,
+          );
+        });
+
+      $scope.loadAvailableDatabaseVersions = () => OvhApiHostingWeb.v6()
+        .getDatabaseAvailableVersion({
+          serviceName: $stateParams.productId,
+          type: $scope.model.type,
+        })
+        .$promise
+        .then((response) => {
+          $scope.dbVersions = response.list;
+          $scope.model.version = response.default;
+        })
+        .catch((err) => {
+          Alerter.alertFromSWS(
+            $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
+            get(err, 'data', err),
+            $scope.alerts.main,
+          );
+        });
+
+      $scope.isStep1Valid = () => $scope.model.type !== null
+        && $scope.model.capability !== null;
 
       $scope.isStep2Valid = () => isPasswordValid() && $scope.isUserValid();
 
-      $scope.shouldDisplayDifferentPasswordMessage = () => $scope.model.selected.password.value
-        && $scope.model.selected.password.confirmation
-        && $scope.model.selected.password.value
-          !== $scope.model.selected.password.confirmation;
+      $scope.shouldDisplayDifferentPasswordMessage = () => $scope.model.password.value
+        && $scope.model.password.confirmation
+        && $scope.model.password.value
+          !== $scope.model.password.confirmation;
 
       $scope.condition = Hosting.constructor.getPasswordConditions($scope.customPasswordConditions);
 
       $scope.isPasswordInvalid = () => !Hosting.constructor.isPasswordValid(
-        get($scope.model, 'selected.password.value'),
+        get($scope.model, 'password.value'),
         $scope.customPasswordConditions,
       );
 
       $scope.isPasswordConfirmationInvalid = () => (Hosting.constructor.isPasswordValid(
-        get($scope.model, 'selected.password.confirmation'),
+        get($scope.model, 'password.confirmation'),
         $scope.customPasswordConditions,
       ) && !$scope.shouldDisplayDifferentPasswordMessage()
         ? ''
         : 'has-error');
 
-      $scope.isUserValid = () => $scope.model.selected.user !== undefined
-        && $scope.model.selected.user.length > 0
-        && $scope.model.selected.user.length <= $scope.model.maxUserLength
-        && /^[a-z0-9]+$/.test($scope.model.selected.user);
+      $scope.isUserValid = () => !isNil($scope.model.user)
+        && $scope.model.user.length > 0
+        && $scope.model.user.length <= $scope.maxUserLength
+        && /^[a-z0-9]+$/.test($scope.model.user);
 
-      function convertEnumToString(e) {
-        const enumTab = e.toLowerCase().split('_');
-        $.each(enumTab, (index, subString) => {
-          if (index > 0) {
-            enumTab[index] = subString.charAt(0).toUpperCase() + subString.slice(1);
-          }
-        });
-        return enumTab.join('');
-      }
-
-      $scope.createDatabase = () => {
-        $scope.resetAction();
-        HostingDatabase.createDatabase(
-          $stateParams.productId,
-          convertEnumToString($scope.model.selected.capabilitie.type),
-          $scope.model.selected.password.value,
-          $scope.model.selected.capabilitie.type
-          === $scope.model.types.EXTRA_SQL_PERSO
-            ? convertEnumToString($scope.model.selected.capabilitie.extraSqlQuota)
+      $scope.createDatabase = () => OvhApiHostingWeb.Database().v6()
+        .save({
+          serviceName: $stateParams.productId,
+        }, {
+          capabilitie: $scope.model.capability.type,
+          password: $scope.model.password.value,
+          quota: $scope.model.capability.type === EXTRA_SQL_PERSO
+            ? $scope.model.capability.quota.value
             : null,
-          convertEnumToString($scope.model.selected.type),
-          $scope.model.capabilities.primaryLogin
-            + ($scope.model.selected.user === null
-              ? ''
-              : $scope.model.selected.user),
-          $scope.model.selected.version,
-        )
-          .then(() => {
-            Alerter.success(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_bdd_adding'),
-              $scope.alerts.main,
-            );
-          })
-          .catch((err) => {
-            Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DATABASES_configuration_create_fail'),
-              get(err, 'data', err),
-              $scope.alerts.main,
-            );
+          type: $scope.model.type,
+          user: `${$scope.primaryLogin}${$scope.model.user || ''}`,
+          version: $scope.model.version,
+        })
+        .$promise
+        .then((task) => {
+          HostingDatabase.pollTasks($stateParams.productId, {
+            namespace: Hosting.events.tabDatabasesCreation,
+            task,
+            dump: 'hosting',
+            successSates: ['canceled', 'done'],
+            errorsSates: ['error'],
           });
-      };
+
+          Alerter.success(
+            $translate.instant('hosting_tab_DATABASES_configuration_create_bdd_adding'),
+            $scope.alerts.main,
+          );
+        }).catch((err) => {
+          Alerter.alertFromSWS(
+            $translate.instant('hosting_tab_DATABASES_configuration_create_fail'),
+            get(err, 'data', err),
+            $scope.alerts.main,
+          );
+        })
+        .finally(() => {
+          $scope.resetAction();
+        });
 
       $scope.isPerf = () => /^PERF/.test($scope.hosting.offer);
 
