@@ -142,8 +142,12 @@ export default class OrderService {
   deleteAllItems(cartId) {
     this.OvhApiOrder.Cart().Item().v6().resetQueryCache();
     return this.getCartItems(cartId)
-      .then(itemsId => this.$q.all(
-        itemsId.map(id => this.deleteItem(cartId, id)),
+      .then((itemsId) => this.$q.all(
+        itemsId.map((id) => this.deleteItem(cartId, id)),
       ));
+  }
+
+  getOrderApiSchema() {
+    return this.OvhApiOrder.v6().schema().$promise;
   }
 }
