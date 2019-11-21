@@ -90,7 +90,7 @@
                             <div class="d-flex justify-content-center">
                                 <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
                                 <oui-checkbox data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
-                                              data-uib-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
+                                              data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
                                               data-model="account.newSendAsValue"
                                               disabled>
                                 </oui-checkbox>
@@ -99,13 +99,13 @@
                                 <div data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing">
                                     <!-- Mutual exclusive option (sendOnBehalf) is activated or will be -->
                                     <oui-checkbox data-ng-if="(account.sendOnBehalfTo && account.newSendOnBehalfToValue) || (!account.sendOnBehalfTo && account.newSendOnBehalfToValue)"
-                                                  data-uib-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}"
+                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}"
                                                   data-model="account.newSendAsValue"
                                                   disabled>
                                     </oui-checkbox>
                                     <!-- Wait until mutual exclusive option (sendOnBehalf) will be deactivated-->
                                     <oui-checkbox data-ng-if="account.sendOnBehalfTo && !account.newSendOnBehalfToValue"
-                                                  data-uib-tooltip="{{'exchange_ACTION_delegation_wait_sendas_tooltip' | translate}}"
+                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_wait_sendas_tooltip' | translate}}"
                                                   data-model="account.newSendAsValue"
                                                   disabled>
                                     </oui-checkbox>
@@ -121,7 +121,7 @@
                             <div class="d-flex justify-content-center">
                                 <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
                                 <oui-checkbox data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
-                                              data-uib-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
+                                              data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}"
                                               data-model="account.newSendOnBehalfToValue"
                                               disabled>
                                 </oui-checkbox>
@@ -130,13 +130,13 @@
                                 <div data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing">
                                     <!-- Mutual exclusive option (sendAs) is activated or will be-->
                                     <oui-checkbox data-ng-if="(account.sendAs && account.newSendAsValue) || (!account.sendAs && account.newSendAsValue)"
-                                                  data-uib-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}"
+                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}"
                                                   data-model="account.newSendOnBehalfToValue"
                                                   disabled>
                                     </oui-checkbox>
                                     <!-- Wait until mutual exclusive option (sendAs) will be activated-->
                                     <oui-checkbox data-ng-if="account.sendAs && !account.newSendAsValue"
-                                                  data-uib-tooltip="{{'exchange_ACTION_delegation_wait_behalf_tooltip' | translate}}"
+                                                  data-oui-tooltip="{{'exchange_ACTION_delegation_wait_behalf_tooltip' | translate}}"
                                                   data-model="account.newSendOnBehalfToValue"
                                                   disabled>
                                     </oui-checkbox>
@@ -154,7 +154,7 @@
                         <td colspan="3" >
                             <span class="a fa-exclamation-triangle mr-2" aria-hidden="true"></span>
                             <span data-ng-bind="account.id"
-                                  data-uib-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: account.message } }}"></span>
+                                  data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: account.message } }}"></span>
                         </td>
                     </tr>
                 </tbody>

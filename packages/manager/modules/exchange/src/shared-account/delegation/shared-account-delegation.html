@@ -75,26 +75,26 @@
                         <td class="text-center">
                             <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
                             <div data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing"
-                                 data-uib-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}">
+                                 data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}">
                                 <input type="checkbox" disabled>
                             </div>
                             <!-- No task on doing-->
                             <div data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing">
                                 <!-- Mutual exclusive option (sendOnBehalf) is activated-->
                                 <div data-ng-if="account.sendOnBehalfTo && account.newSendOnBehalfTo"
-                                     data-uib-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}">
+                                     data-oui-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}">
                                     <input type="checkbox" disabled>
                                 </div>
 
                                 <!-- Mutual exclusive option (sendOnBehalf) will be activated-->
                                 <div data-ng-if="!account.sendOnBehalfTo && account.newSendOnBehalfTo"
-                                     data-uib-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}">
+                                     data-oui-tooltip="{{'exchange_ACTION_delegation_sendas_tooltip' | translate}}">
                                     <input type="checkbox" disabled>
                                 </div>
 
                                 <!-- Wait until mutual exclusive option (sendOnBehalf) will be deactivated-->
                                 <div data-ng-if="account.sendOnBehalfTo && !account.newSendOnBehalfTo"
-                                     data-uib-tooltip="{{'exchange_ACTION_delegation_wait_sendas_tooltip' | translate}}">
+                                     data-oui-tooltip="{{'exchange_ACTION_delegation_wait_sendas_tooltip' | translate}}">
                                     <input type="checkbox" disabled>
                                 </div>
 
@@ -106,23 +106,23 @@
                         </td>
                         <td class="text-center">
                             <!-- A task is on doing (activation or deactivation, sendAs or sendOnBehalf)-->
-                            <div data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing" data-uib-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}">
+                            <div data-ng-if="account.sendAsOnDoing || account.sendOnBehalfToOnDoing" data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}">
                                 <input type="checkbox" disabled>
                             </div>
                             <!-- No task on doing-->
                             <div data-ng-if="!account.sendAsOnDoing && !account.sendOnBehalfToOnDoing">
                                 <!-- Mutual exclusive option (sendAs) is activated-->
-                                <div data-ng-if="account.sendAs && account.newSendAs" data-uib-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}">
+                                <div data-ng-if="account.sendAs && account.newSendAs" data-oui-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}">
                                     <input type="checkbox" disabled>
                                 </div>
 
                                 <!-- Mutual exclusive option (sendAs) will be activated-->
-                                <div data-ng-if="!account.sendAs && account.newSendAs" data-uib-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}">
+                                <div data-ng-if="!account.sendAs && account.newSendAs" data-oui-tooltip="{{'exchange_ACTION_delegation_behalf_tooltip' | translate}}">
                                     <input type="checkbox" disabled>
                                 </div>
 
                                 <!-- Wait until mutual exclusive option (sendAs) will be activated-->
-                                <div data-ng-if="account.sendAs && !account.newSendAs" data-uib-tooltip="{{'exchange_ACTION_delegation_wait_behalf_tooltip' | translate}}">
+                                <div data-ng-if="account.sendAs && !account.newSendAs" data-oui-tooltip="{{'exchange_ACTION_delegation_wait_behalf_tooltip' | translate}}">
                                     <input type="checkbox" disabled>
                                 </div>
 
@@ -133,7 +133,7 @@
                             </div>
                         </td>
                         <td class="text-center">
-                            <div data-ng-if="account.fullAccessOnDoing" data-uib-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}">
+                            <div data-ng-if="account.fullAccessOnDoing" data-oui-tooltip="{{'exchange_ACTION_delegation_step1_task_on_doing' | translate}}">
                                 <input type="checkbox" disabled
                                        data-ng-model="account.newFullAccess">
                             </div>
@@ -146,7 +146,7 @@
                     <tr data-ng-repeat="account in ctrl.accounts.list.messages | orderBy:'id':false track by $index">
                         <td colspan="4">
                             <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-                            <span data-ng-bind="account.id" data-uib-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: account.message } }}"></span>
+                            <span data-ng-bind="account.id" data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: account.message } }}"></span>
                         </td>
                     </tr>
                 </tbody>
