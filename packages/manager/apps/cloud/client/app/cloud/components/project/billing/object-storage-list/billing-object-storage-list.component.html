@@ -5,16 +5,16 @@
     <oui-column data-title="::'cpbc_object_storage_col_consumption' | translate">
         <span data-ng-bind=":: ($row.stored ? $row.stored.totalPrice : 0).toFixed(2) + ' ' + $ctrl.currencySymbol "></span>
         <i class="fa fa-question-circle left-space-m4"
-           data-uib-tooltip="{{ :: $ctrl.getStorageVolumeInfoTooltip($row) }}"
-           data-tooltip-placement="left" aria-hidden="true">
+           data-oui-tooltip="{{ :: $ctrl.getStorageVolumeInfoTooltip($row) }}"
+           data-oui-tooltip-placement="left" aria-hidden="true">
         </i>
         <span class="sr-only" data-ng-bind=":: $ctrl.getStorageVolumeInfoTooltip($row)"></span>
     </oui-column>
     <oui-column data-title="::'cpbc_object_storage_col_output_traffic' | translate">
         <span data-ng-bind=":: $row.outgoingBandwidth.totalPrice.toFixed(2) + ' ' + $ctrl.currencySymbol"></span>
         <i class="fa fa-question-circle left-space-m4"
-           data-uib-tooltip="{{:: $ctrl.getStorageBandwidthInfoTooltip($row) }}"
-           data-tooltip-placement="left" aria-hidden="true">
+           data-oui-tooltip="{{:: $ctrl.getStorageBandwidthInfoTooltip($row) }}"
+           data-oui-tooltip-placement="left" aria-hidden="true">
         </i>
         <span class="sr-only" data-ng-bind=":: $ctrl.getStorageBandwidthInfoTooltip($row)"></span>
     </oui-column>
