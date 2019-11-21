@@ -20,8 +20,14 @@
 
             <oui-checkbox class="mt-4" id="removeWWW" name="removeWWW"
                 data-ng-if="ctrl.wwwDomainToDelete.data"
-                data-model="ctrl.wwwDomainToDelete.removeWWW"
-                data-text="{{ 'domain_tab_REDIRECTION_delete_www_confirm' | translate: { t0: ctrl.constructor.getDomainName(ctrl.wwwDomainToDelete.data), t1: ctrl.wwwDomainToDelete.data.targetDisplayName } }}">
+                data-model="ctrl.wwwDomainToDelete.removeWWW">
+                <span
+                    data-translate="domain_tab_REDIRECTION_delete_www_confirm"
+                    data-translate-values="{
+                        t0: ctrl.constructor.getDomainName(ctrl.wwwDomainToDelete.data),
+                        t1: ctrl.wwwDomainToDelete.data.targetDisplayName
+                    }">
+                </span>
             </oui-checkbox>
         </div>
     </div>
