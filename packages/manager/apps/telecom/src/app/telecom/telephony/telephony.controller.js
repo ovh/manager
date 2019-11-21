@@ -7,10 +7,8 @@ export default class TelecomTelephonyController extends ListLayoutHelper.ListLay
     $translate,
     ouiDatagridService,
   ) {
-    super();
-    this.$q = $q;
+    super($q, ouiDatagridService);
     this.$translate = $translate;
-    this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {

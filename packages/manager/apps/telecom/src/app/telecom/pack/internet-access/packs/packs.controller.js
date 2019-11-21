@@ -8,10 +8,8 @@ export default class TelecomPacksController extends ListLayoutHelper.ListLayoutC
     $translate,
     ouiDatagridService,
   ) {
-    super();
-    this.$q = $q;
+    super($q, ouiDatagridService);
     this.$translate = $translate;
-    this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {
