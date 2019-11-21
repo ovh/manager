@@ -24,10 +24,7 @@
   "private_database_order_clouddb_datacenter_gra1": "Gravelines 1",
 
   "private_database_order_clouddb_duration": "Choisissez la durée",
-  "private_database_order_clouddb_duration_P1M": "1 mois",
-  "private_database_order_clouddb_duration_P3M": "3 mois",
-  "private_database_order_clouddb_duration_P6M": "6 mois",
-  "private_database_order_clouddb_duration_P1Y": "1 an",
+  "private_database_order_clouddb_duration_month": "{{ number }} mois",
 
   "private_database_order_clouddb_payment": "Paiement",
   "private_database_order_clouddb_payment_subtitle": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
