@@ -34,7 +34,7 @@ export default class PciProjectInstanceService {
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolume,
     OvhApiIp,
-    OvhApiOrderCatalogFormatted,
+    OvhApiOrderCatalogPublic,
     PciProjectRegions,
   ) {
     this.$q = $q;
@@ -48,7 +48,7 @@ export default class PciProjectInstanceService {
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
     this.OvhApiIp = OvhApiIp;
-    this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.PciProjectRegions = PciProjectRegions;
   }
 
@@ -561,23 +561,24 @@ export default class PciProjectInstanceService {
   }
 
   getExtraBandwidthCost(project, user) {
-    return this.OvhApiOrderCatalogFormatted.v6().get({
-      catalogName: 'cloud',
+    return this.OvhApiOrderCatalogPublic.v6().get({
+      productName: 'cloud',
       ovhSubsidiary: user.ovhSubsidiary,
     }).$promise
       .then((catalog) => {
         const projectPlan = find(catalog.plans, { planCode: project.planCode });
         const bandwidthOut = filter(
-          find(projectPlan.addonsFamily, { family: BANDWIDTH_CONSUMPTION }).addons,
+          map(find(projectPlan.addonFamilies, { name: BANDWIDTH_CONSUMPTION }).addons,
+            planCode => find(catalog.addons, { planCode })),
           { invoiceName: BANDWIDTH_OUT_INVOICE },
         );
 
         return bandwidthOut.reduce(
-          (prices, { plan }) => ({
+          (prices, addon) => ({
             ...prices,
-            [plan.planCode]: find(
-              plan.details.pricings.default,
-              { minimumQuantity: BANDWIDTH_LIMIT },
+            [addon.planCode]: find(
+              addon.pricings,
+              pricing => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
             ),
           }),
           {},

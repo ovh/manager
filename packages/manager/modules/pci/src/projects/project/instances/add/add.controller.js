@@ -20,12 +20,14 @@ export default class PciInstancesAddController {
     $q,
     $translate,
     CucCloudMessage,
+    cucUcentsToCurrencyFilter,
     OvhApiCloudProjectInstance,
     PciProjectsProjectInstanceService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
@@ -272,6 +274,6 @@ export default class PciInstancesAddController {
   }
 
   getBandwidthExtraCost(region) {
-    return get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price.text;
+    return this.cucUcentsToCurrencyFilter(get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price);
   }
 }
