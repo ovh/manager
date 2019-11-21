@@ -104,7 +104,8 @@
                                placeholder="{{$ctrl.getPasswordPlaceholder()}}"
                                data-ng-model="$ctrl.selectedAccount.password"
                                data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
-                               data-uib-tooltip="{{ $ctrl.passwordTooltip }}">
+                               data-oui-tooltip="{{:: $ctrl.passwordTooltip }}"
+                               data-oui-tooltip-placement="top">
                         <span class="help-block" data-ng-if="$ctrl.simplePasswordFlag"
                               data-translate="emailpro_ACTION_update_account_step1_password_weak"></span>
                         <span class="help-block" data-ng-if="$ctrl.containsNameFlag"
@@ -126,7 +127,8 @@
                                 placeholder="{{ $ctrl.getPasswordPlaceholder() }}"
                                 data-ng-model="$ctrl.selectedAccount.passwordConfirmation"
                                 data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
-                                data-uib-tooltip="{{ $ctrl.passwordTooltip }}">
+                                data-oui-tooltip="{{:: $ctrl.passwordTooltip }}"
+                                data-oui-tooltip-placement="top">
                         <span class="help-block"
                               data-ng-if="$ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag"
                               data-translate="emailpro_ACTION_update_account_step1_password_different"></span>
