@@ -1,7 +1,7 @@
 import flatten from 'lodash/flatten';
 
 angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
-  ($q, OvhApiCloudProjectVolume, OvhCloudPriceHelper) => {
+  ($q, CucPriceHelper, OvhApiCloudProjectVolume) => {
     /**
      *  Defines a cloud project compute volume
      *
@@ -80,7 +80,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
      */
     VolumeFactory.prototype.getFullInformations = function getFullInformations() {
       const self = this;
-      return OvhCloudPriceHelper.getPrices(this.serviceName).then((response) => {
+      return CucPriceHelper.getPrices(this.serviceName).then((response) => {
         self.volumePricesMap = response;
       });
     };

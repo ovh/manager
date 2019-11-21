@@ -3,7 +3,7 @@ import map from 'lodash/map';
 
 angular.module('managerApp')
   .controller('BillingInstanceListComponentCtrl', function BillingInstanceListComponentCtrl($q,
-    $stateParams, $translate, CucRegionService, OvhCloudPriceHelper, OvhApiCloudProjectImage,
+    $stateParams, $translate, CucPriceHelper, CucRegionService, OvhApiCloudProjectImage,
     OvhApiCloudProjectInstance, OvhApiMe, Toast) {
     const self = this;
     self.windowsStringPattern = '/^win-/';
@@ -118,7 +118,7 @@ angular.module('managerApp')
       self.data.instanceToMonthlyPrice = null;
       self.loaders.monthlyBilling = true;
 
-      OvhCloudPriceHelper.getPrices($stateParams.projectId).then((prices) => {
+      CucPriceHelper.getPrices($stateParams.projectId).then((prices) => {
         const monthlyPrice = prices[instance.planCode && instance.planCode.replace('consumption', 'monthly')];
         if (!monthlyPrice) {
           self.endInstanceToMonthlyConversion();

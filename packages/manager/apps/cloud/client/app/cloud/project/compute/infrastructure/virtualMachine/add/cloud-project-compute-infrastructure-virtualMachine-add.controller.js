@@ -15,7 +15,7 @@ import some from 'lodash/some';
 class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   constructor($q, $state, $stateParams, atInternet,
     CloudFlavorService, CloudImageService, CloudProjectVirtualMachineAddService, CloudRegionService,
-    CucControllerHelper, OvhCloudPriceHelper, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
+    CucControllerHelper, CucPriceHelper, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
     OvhApiCloudProjectInstance, OvhApiCloudProjectNetworkPrivate, OvhApiCloudProjectNetworkPublic,
     OvhApiCloudProjectQuota, OvhApiCloudProjectRegion, OvhApiCloudProjectSnapshot,
     OvhApiCloudProjectSshKey, CucCurrencyService, CucRegionService, CucServiceHelper, ovhDocUrl,
@@ -26,9 +26,9 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.atInternet = atInternet;
     this.CloudFlavorService = CloudFlavorService;
     this.CloudImageService = CloudImageService;
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
     this.CloudRegionService = CloudRegionService;
     this.CucControllerHelper = CucControllerHelper;
+    this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
@@ -345,7 +345,7 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     return this.$q.all({
       flavors: this.fetchingAugmentedFlavors(),
       hasVRack: this.VirtualMachineAddService.hasVRack(this.serviceName),
-      prices: this.OvhCloudPriceHelper.getPrices(this.serviceName),
+      prices: this.CucPriceHelper.getPrices(this.serviceName),
     })
       .then(({ flavors, hasVRack, prices }) => {
         this.prices = prices;

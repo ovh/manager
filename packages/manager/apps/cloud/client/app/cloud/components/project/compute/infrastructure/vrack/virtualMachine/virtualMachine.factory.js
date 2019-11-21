@@ -8,8 +8,8 @@ import maxBy from 'lodash/maxBy';
 import set from 'lodash/set';
 
 angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
-  $rootScope, $q, OvhApiCloudProjectInstance, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
-  OvhCloudPriceHelper, OvhApiCloudProjectSnapshot, OvhApiCloudProjectSshKey,
+  $rootScope, $q, CucPriceHelper, OvhApiCloudProjectInstance, OvhApiCloudProjectFlavor,
+  OvhApiCloudProjectImage, OvhApiCloudProjectSnapshot, OvhApiCloudProjectSshKey,
   CLOUD_VM_STATE, CLOUD_MONITORING,
 ) => {
   /**
@@ -90,7 +90,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
      */
   VirtualMachineFactory.prototype.updatePrice = function updatePrice() {
     const self = this;
-    return OvhCloudPriceHelper.getPrices(self.serviceName).then((prices) => {
+    return CucPriceHelper.getPrices(self.serviceName).then((prices) => {
       self.price = prices[self.planCode];
       // Set 3 digits for hourly price
       if (!self.monthlyBillingBoolean) {
