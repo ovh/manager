@@ -1,0 +1,12 @@
+{
+  "portabilities_attach_title": "Dodaj plik ze zleceniem przeniesienia",
+  "portabilities_attach_action": "Plik ze zleceniem przeniesienia",
+  "portabilities_attach_invalid_format": "Nieprawidłowy format pliku",
+  "portabilities_attach_file_format": "Maksymalny rozmiar: 10 MB, dopuszczalny format: [PDF]",
+  "portabilities_attach_processing": "Trwa dodawanie zlecenia przeniesienia",
+  "portabilities_attach_document_processing": "Trwa dodawanie dokumentu",
+  "portabilities_attach_document_succeed": "Dodanie dokumentu powiodło się.",
+  "portabilities_attach_document_failed": "Dodanie dokumentu nie powiodło się.",
+  "portabilities_attach_submit": "Zatwierdź",
+  "portabilities_attach_cancel": "Anuluj"
+}
