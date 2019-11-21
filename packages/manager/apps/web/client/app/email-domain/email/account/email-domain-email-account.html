@@ -178,8 +178,7 @@
                     data-ng-click="setAction('email-domain/email/account/create/email-domain-email-account-create')"
                     data-ng-disabled="!ctrlEmailDomainEmail.canAddAccount()"
                     data-ng-if="ctrlEmailDomainEmail.quotas.account > 0">
-                <span data-uib-tooltip="{{:: 'email_tab_table_emails_quota_excedeed' | translate }}"
-                    data-tooltip-append-to-body="true"
+                <span data-oui-tooltip="{{:: 'email_tab_table_emails_quota_excedeed' | translate }}"
                     data-ng-if="!ctrlEmailDomainEmail.canAddAccount()">
                     <span data-translate="email_tab_button_emails_create_account"></span>
                 </span>

@@ -114,8 +114,7 @@
                                     <span class="oui-status"
                                           data-ng-bind="(('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate) == 'hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl)? domain.ssl: ('hosting_tab_DOMAINS_table_ssl_state_' + domain.ssl | translate)"
                                           data-ng-class="{'oui-status_success': domain.ssl === 2, 'oui-status_error': domain.ssl === 0, 'oui-status_warning': domain.ssl === 1}"
-                                          data-uib-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}"
-                                          data-tooltip-append-to-body="true">
+                                          data-oui-tooltip="{{ domain.ssl === 1 ? ('hosting_tab_DOMAINS_table_ssl_state_1_tooltip' | translate) : '' }}">
                                     </span>
                                 </td>
                                 <td class="text-center">

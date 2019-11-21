@@ -81,9 +81,8 @@
                                        min="{{::ctrlDomainDnssec.const.TAG_MIN}}"
                                        max="{{::ctrlDomainDnssec.const.TAG_MAX}}"
                                        data-ng-model="myDnssec.tag"
-                                       data-uib-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_tag' | translate }}"
-                                       data-tooltip-placement="bottom"
-                                       data-tooltip-append-to-body="true">
+                                       data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_tag' | translate }}"
+                                       data-oui-tooltip-placement="bottom">
                             </td>
                             <td class="form-group"
                                 data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.flags_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.flags_{{$index}}.$invalid}">
@@ -93,9 +92,8 @@
                                 <select class="form-control input-sm" id="flags-{{$index}}" name="flags_{{$index}}" required
                                         data-ng-model="myDnssec.flags"
                                         data-ng-options="flag as ctrlDomainDnssec.constructor.getLabel(flag, ctrlDomainDnssec.const.FLAGS_OPTIONS) for flag in ctrlDomainDnssec.keyFlagEnum track by flag"
-                                        data-uib-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_flags' | translate }}"
-                                        data-tooltip-placement="bottom"
-                                        data-tooltip-append-to-body="true">
+                                        data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_flags' | translate }}"
+                                        data-oui-tooltip-placement="bottom">
                                 </select>
                             </td>
                             <td class="form-group"
@@ -106,9 +104,8 @@
                                 <select class="form-control input-sm" id="algorithm-{{$index}}" name="algorithm_{{$index}}" required
                                         data-ng-model="myDnssec.algorithm"
                                         data-ng-options="algorithm as ctrlDomainDnssec.constructor.getLabel(algorithm, ctrlDomainDnssec.const.ALGORITHM_OPTIONS) for algorithm in ctrlDomainDnssec.keyAlgorithmEnum track by algorithm"
-                                        data-uib-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_algorithm' | translate }}"
-                                        data-tooltip-placement="bottom"
-                                        data-tooltip-append-to-body="true">
+                                        data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_algorithm' | translate }}"
+                                        data-oui-tooltip-placement="bottom">
                                 </select>
                             </td>
                             <td class="form-group"
@@ -119,9 +116,8 @@
                                 <textarea class="form-control" id="publicKey-{{$index}}" name="publicKey_{{$index}}" required
                                           data-ng-model="myDnssec.publicKey"
                                           data-ng-pattern="ctrlDomainDnssec.const.PUBLIC_KEY_REGEX"
-                                          data-uib-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_publickey' | translate }}"
-                                          data-tooltip-placement="bottom"
-                                          data-tooltip-append-to-body="true">
+                                          data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_publickey' | translate }}"
+                                          data-oui-tooltip-placement="bottom">
                                 </textarea>
                             </td>
                             <td class="align-middle text-center">
