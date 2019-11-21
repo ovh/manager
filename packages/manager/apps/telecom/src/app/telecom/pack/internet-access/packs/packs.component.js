@@ -1,3 +1,4 @@
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import controller from './packs.controller';
 import template from './packs.html';
 
@@ -5,16 +6,8 @@ export default {
   controller,
   template,
   bindings: {
-    filter: '<',
-    resources: '<',
+    ...ListLayoutHelper.componentBindings,
     loadResource: '<',
-    datacenterEnum: '<',
-    onListParamsChange: '<',
-    paginationNumber: '<',
-    paginationSize: '<',
-    paginationTotalCount: '<',
-    sort: '<',
-    sortOrder: '<',
 
     getPackLink: '<',
     viewPack: '<',

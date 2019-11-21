@@ -1,17 +1,10 @@
+import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import controller from './overtheboxes.controller';
 import template from './overtheboxes.html';
 
 export default {
   bindings: {
-    filter: '<',
-    resources: '<',
-    onListParamsChange: '<',
-    paginationNumber: '<',
-    paginationSize: '<',
-    paginationTotalCount: '<',
-    sort: '<',
-    sortOrder: '<',
-    overTheBoxStatusTypes: '<',
+    ...ListLayoutHelper.componentBindings,
 
     getOvertheboxLink: '<',
     viewOverthebox: '<',
