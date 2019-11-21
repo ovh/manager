@@ -301,7 +301,7 @@
   "server_configuration_netboot_option_network": "Arrancar en modo network",
   "server_configuration_netboot_configuration": "Configuración:",
   "server_configuration_netboot_rescue_choice": "Rescue disponible:",
-  "server_configuration_netboot_rescue_mail": "Recibir las claves del modo seleccionado en:",
+  "server_configuration_netboot_rescue_mail": "Recibir las claves del modo seleccionado en la siguiente dirección de correo electrónico:",
   "server_configuration_netboot_rescue_mail_invalid": "No válido",
   "server_configuration_netboot_kernel_choice": "Kernel disponible:",
   "server_configuration_netboot_kernel_option": "Opciones soportadas por el kernel:",
@@ -908,7 +908,7 @@
   "server_cancel_traffic_cancel_success": "Le hemos enviado un mensaje de correo electrónico.",
   "server_cancel_traffic_cancel_error": "Se ha producido un error al dar de baja la opción.",
   "server_order_bandwidth_vrack_plan_text": "de ancho de banda privado, tráfico ilimitado (vRack)",
-  "server_order_bandwidth_declaration": "Para alinear la fecha de renovación de la opción con la del servidor, el primer mes se facturará la parte proporcional al período restante del mes en curso.",
+  "server_order_bandwidth_declaration": "La fecha de renovación de la opción será la misma que la de su servidor. El importe mostrado corresponde al primer mes de facturación de su opción, equivalente a la parte proporcional al período restante del mes en curso.",
   "server_order_bandwidth_auto_pay": "Pagar con la forma de pago por defecto",
   "day_1": "1 día",
   "day_other": "{} días",
@@ -1201,5 +1201,7 @@
   "server_error_vrack_detach": "Se ha producido un error al desvincular la red privada: {{error}}.",
   "server_error_ola_activation": "Se ha producido un error al activar el servicio: {{error}}.",
   "server_error_bandwidth_order": "Se ha producido un error al contratar al ancho de banda: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra": "Ancho de banda público de 2 Gb/s - Tráfico ilimitado"
+  "plan_bandwidth-1000-burst-2gbps-infra": "Ancho de banda público de 2 Gb/s - Tráfico ilimitado",
+  "server_order_bandwidth_info": "El importe mostrado corresponde a la cantidad que será facturada en la próxima renovación de su opción.",
+  "server_order_bandwidth_warning": "Una vez activada la opción, el cambio del ancho de banda se aplicará en unos minutos."
 }

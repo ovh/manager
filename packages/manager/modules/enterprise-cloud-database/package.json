@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-enterprise-cloud-database",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "OVH Enterprise Cloud Database product control panel",
   "keywords": [
     "control",
@@ -43,8 +43,8 @@
     "@ovh-ux/component-rollup-config": "^7.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.6.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.0",
+    "@ovh-ux/manager-core": "^7.6.1",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.1",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^5.0.2",
     "@ovh-ux/ng-ovh-toaster": "^1.0.3",
@@ -57,7 +57,7 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "font-awesome": "4.7.0",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.24.1",
+    "ovh-api-services": "^9.26.1",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-angular": "^3.10.0",
     "ovh-ui-kit": "^3.6.0",

@@ -126,6 +126,11 @@ export default class PciProjectNewCtrl {
     return currentStep.model.mode === 'paymentMethod' && this.hasCreditToOrder();
   }
 
+  isBlackFridayAsteriskVisible() {
+    if (this.dlpStatus) return false;
+    return ['paymentMethod', 'credits'].includes(get(this.getCurrentStep(), 'model.mode'));
+  }
+
   /* ----------  Some payment helpers  ---------- */
 
   buildPaymentCallbackUrlBase(projectId = null) {

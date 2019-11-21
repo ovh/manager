@@ -60,5 +60,6 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Sind Sie sicher, dass Sie die Abrechnung des Nodes '{{ instanceName }}' auf monatliche Abrechnung umstellen möchten?",
   "kube_nodes_switch_to_monthly_billing_info": "Es wird dann direkt im Anschluss eine anteilige Rechnung für die verbleibenden Tage des laufenden Monats erstellt.",
   "kube_nodes_switch_billing_type_success": "Der Abrechnungstyp des Nodes wurde auf monatliche Abrechnung umgestellt.",
-  "kube_nodes_switch_billing_type_error": "Es konnte nicht auf monatliche Abrechnung umgestellt werden: {{ message }}"
+  "kube_nodes_switch_billing_type_error": "Es konnte nicht auf monatliche Abrechnung umgestellt werden: {{ message }}",
+  "kube_nodes_add_button": "Node hinzufügen"
 }

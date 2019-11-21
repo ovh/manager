@@ -8,12 +8,14 @@
     <oui-datagrid rows="ctrl.roleDetails.data.members">
         <extra-top>
             <button type="button"
-                class="oui-button oui-button_secondary
-                "
+                class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.add()"
-                data-ng-disabled="ctrl.delete.loading">
+                data-ng-if="!ctrl.delete.loading">
                     <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i> {{ ::'logs_roles_members_add' | translate }}
             </button>
+            <oui-spinner data-size="m"
+                data-ng-if="ctrl.delete.loading">
+            </oui-spinner>
         </extra-top>
         <oui-column title=":: 'logs_roles_members_user_account' | translate" property="username" sortable="asc" type="string" searchable filterable></oui-column>
         <oui-column title=":: 'logs_roles_members_note' | translate" property="note" sortable type="string" searchable filterable></oui-column>

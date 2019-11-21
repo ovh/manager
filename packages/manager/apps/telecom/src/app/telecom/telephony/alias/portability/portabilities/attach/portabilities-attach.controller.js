@@ -15,12 +15,12 @@ export default class {
 
   uploadFile() {
     this.isLoading = true;
-    return this.OvhApiTelephony.Portability().PortabilityDocument().v6().create({
-      billingAccount: this.billingAccount,
-      id: this.portabilityId,
-    }, {
-      name: this.uploadedFile[0].name,
-    }).$promise
+    return this.OvhApiTelephony.Portability().PortabilityDocument().v6().upload(
+      this.billingAccount,
+      this.portabilityId,
+      this.uploadedFile[0].name,
+      this.uploadedFile[0],
+    )
       .then(() => this.goBack(
         this.$translate.instant('portabilities_attach_document_succeed'),
       ))

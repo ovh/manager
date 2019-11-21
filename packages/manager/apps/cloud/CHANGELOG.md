@@ -1,3 +1,23 @@
+## [7.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.1...@ovh-ux/manager-cloud@7.37.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **cloud:** dbaas logs polling ([#1803](https://github.com/ovh/manager/issues/1803)) ([2256dbd](https://github.com/ovh/manager/commit/2256dbd37246ee220b90da8bf10a0ad9eee8a9f4))
+* **cloud:** dbaas members add ([#1802](https://github.com/ovh/manager/issues/1802)) ([0cc2afc](https://github.com/ovh/manager/commit/0cc2afc9a268ac0452328344229e0372ae553eda))
+* **vps:** move cui-grid styles to cuc ([#1801](https://github.com/ovh/manager/issues/1801)) ([0770785](https://github.com/ovh/manager/commit/07707855811a87fb2f8daf5ffe1102cba65eeec2))
+
+
+
+## [7.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.0...@ovh-ux/manager-cloud@7.37.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [7.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.2...@ovh-ux/manager-cloud@7.37.0) (2019-11-13)
 
 

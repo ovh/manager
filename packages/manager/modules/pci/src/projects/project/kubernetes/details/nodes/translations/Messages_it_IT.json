@@ -60,5 +60,6 @@
   "kube_nodes_switch_to_monthly_billing_desc": "Vuoi davvero attivare la fatturazione mensile sul nodo '{{ instanceName }}'?",
   "kube_nodes_switch_to_monthly_billing_info": "Ti invieremo subito una fattura del pro rata corrispondente ai  giorni restanti del mese in corso.",
   "kube_nodes_switch_billing_type_success": "Il tipo di fatturazione del nodo è stata modificata in fatturazione mensile.",
-  "kube_nodes_switch_billing_type_error": "Impossibile attivare la fatturazione mensile: {{ message }}"
+  "kube_nodes_switch_billing_type_error": "Impossibile attivare la fatturazione mensile: {{ message }}",
+  "kube_nodes_add_button": "Aggiungi un nodo"
 }

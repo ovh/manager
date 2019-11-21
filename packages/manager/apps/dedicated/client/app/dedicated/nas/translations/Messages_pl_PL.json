@@ -34,7 +34,7 @@
   "nas_order_bc_contracts": "Zapoznałem się i akceptuję regulamin:",
   "nas_order_bc_price_HT": "Cena netto:",
   "nas_order_bc_price_TTC": "Cena brutto:",
-  "nas_order_bc_finish_success": "Zamówienie numer <a href='{{t0}}' target='_blank'>{{t1}}</a> dotyczące Backup Storage zostało zarejestrowane.",
+  "nas_order_bc_finish_success": "Zamówienie numer <a href='{{t0}}' target='_blank'>{{t1}}</a> dotyczące NAS zostało zarejestrowane.",
   "nas_order_bc_finish_fail": "Wystąpił błąd podczas zamawiania usługi nas",
   "nas_snapshot_informations_valid": "Potwierdź zmiany",
   "nas_snapshot_informations_cancel": "Anuluj zmiany",

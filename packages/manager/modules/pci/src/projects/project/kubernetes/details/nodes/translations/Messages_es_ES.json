@@ -60,5 +60,6 @@
   "kube_nodes_switch_to_monthly_billing_desc": "¿Seguro que quiere cambiar la facturación del nodo {{ instanceName }} a la modalidad mensual?",
   "kube_nodes_switch_to_monthly_billing_info": "Se emitirá inmediatamente una factura de la parte proporcional al período restante del mes actual.",
   "kube_nodes_switch_billing_type_success": "La facturación del nodo ha cambiado a la modalidad mensual.",
-  "kube_nodes_switch_billing_type_error": "No es posible cambiar la facturación a la modalidad mensual: {{ message }}"
+  "kube_nodes_switch_billing_type_error": "No es posible cambiar la facturación a la modalidad mensual: {{ message }}",
+  "kube_nodes_add_button": "Añadir un nodo"
 }

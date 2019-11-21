@@ -42,7 +42,7 @@
   "privateDatabase_dashboard_not_administrator_information": "Sie sind nicht der Administrator dieser Datenbank.",
   "privateDatabase_dashboard_datacenter": "Datacenter",
   "privateDatabase_dashboard_datacenter_p19": "Paris",
-  "privateDatabase_dashboard_datacenter_gra1": "Gravelines",
+  "privateDatabase_dashboard_datacenter_gra1": "Gravelines 1",
   "privateDatabase_dashboard_infrastructure": "Infrastruktur",
   "privateDatabase_dashboard_infrastructure_legacy": "Legacy",
   "privateDatabase_dashboard_infrastructure_sailabove": "SailAbove",
@@ -161,7 +161,7 @@
   "privateDatabase_tabs_user_adding": "Wird hinzugefügt...",
   "privateDatabase_tabs_add_user": "Einen Benutzer hinzufügen",
   "privateDatabase_order_datacenter_p19": "Paris",
-  "privateDatabase_order_datacenter_gra1": "Gravelines",
+  "privateDatabase_order_datacenter_gra1": "Gravelines 1",
   "privateDatabase_order_step1_hosting": "Zu verwendendes Hosting",
   "privateDatabase_order_step1_hosting_warning": "SQL Private ist nur mit Webhosting-Paketen im selben Rechenzentrum kompatibel, also zum Beispiel mit der hier vorgewählten Lösung. Wenn Sie ein anderes Webhosting Ihres Accounts oder ein Webhosting eines anderen Accounts verwenden möchten und nicht wissen, in welchem Rechenzentrum dieses gehostet ist, können Sie diese Informationen in dem Tab \"Allgemeine Informationen\" des jeweiligen Webhostings einsehen.",
   "privateDatabase_order_step1_hosting_info": "Die Wahl des Hostings dient dazu, das SQL Private im gleichen Rechenzentrum zu installieren",
@@ -551,5 +551,7 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Die Erweiterung wurde erfolgreich aktiviert.",
   "privateDatabase_tabs_list_extensions_enable_error": "Beim Einrichten der Erweiterung ist ein Fehler aufgetreten.",
   "privateDatabase_tabs_list_extensions_disable_success": "Die Erweiterung wurde erfolgreich deaktiviert.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten."
+  "privateDatabase_tabs_list_extensions_disable_error": "Bei der Deaktivierung der Erweiterung ist ein Fehler aufgetreten.",
+  "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
+  "privateDatabase_order_datacenter_gra2": "Gravelines 2"
 }
