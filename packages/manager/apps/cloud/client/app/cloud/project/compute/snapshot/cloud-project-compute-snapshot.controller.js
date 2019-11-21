@@ -12,7 +12,7 @@ angular.module('managerApp')
   .controller('CloudProjectComputeSnapshotCtrl',
     function CloudProjectComputeSnapshotCtrl(
       $uibModal,
-      OvhCloudPriceHelper,
+      CucPriceHelper,
       OvhApiCloudProjectSnapshot,
       OvhApiCloudProjectInstance,
       OvhApiCloudProjectVolume,
@@ -374,7 +374,7 @@ angular.module('managerApp')
       }
 
       function getPricesPromise() {
-        return OvhCloudPriceHelper.getPrices(serviceName);
+        return CucPriceHelper.getPrices(serviceName);
       }
 
       function getVolumeSnapshotPromise() {

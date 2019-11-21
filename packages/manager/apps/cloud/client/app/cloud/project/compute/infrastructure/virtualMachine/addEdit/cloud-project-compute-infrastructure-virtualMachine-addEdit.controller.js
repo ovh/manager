@@ -113,9 +113,9 @@ angular.module('managerApp')
       CucCloudMessage,
       CloudProjectComputeInfrastructureOrchestrator,
       CucControllerHelper,
+      CucPriceHelper,
       OvhApiCloudProjectSshKey,
       OvhApiCloudProjectFlavor,
-      OvhCloudPriceHelper,
       OvhApiCloudProjectImage,
       OvhApiCloudProjectNetworkPrivate,
       OvhApiCloudProjectNetworkPrivateSubnet,
@@ -1220,7 +1220,7 @@ angular.module('managerApp')
               self.cancelVm();
               return $q.reject(err);
             }),
-            OvhCloudPriceHelper.getPrices(serviceName).then((flavorsPrices) => {
+            CucPriceHelper.getPrices(serviceName).then((flavorsPrices) => {
               self.panelsData.prices = flavorsPrices;
             }, (err) => {
               CucCloudMessage.error([$translate.instant('cpcivm_addedit_flavor_price_error'), err.data.message || ''].join(' '));

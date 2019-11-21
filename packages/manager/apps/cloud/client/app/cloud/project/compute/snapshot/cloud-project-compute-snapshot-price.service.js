@@ -1,12 +1,12 @@
 import round from 'lodash/round';
 
 class CloudProjectComputeSnapshotPriceService {
-  constructor(OvhCloudPriceHelper) {
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
+  constructor(CucPriceHelper) {
+    this.CucPriceHelper = CucPriceHelper;
   }
 
   getSnapshotPrice({ size, serviceName, region }) {
-    return this.OvhCloudPriceHelper.getPrices(serviceName).then((prices) => {
+    return this.CucPriceHelper.getPrices(serviceName).then((prices) => {
       let snapshotPrice = prices[`snapshot.consumption.${region}`] || prices['snapshot.consumption'];
       // if (!snapshotPrice) {
       //   console.warn('price not found for this snapshot');
