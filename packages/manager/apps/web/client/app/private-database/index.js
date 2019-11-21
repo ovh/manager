@@ -3,10 +3,14 @@ import routing from './private-database.routing';
 import service from './private-database.service';
 import tabController from './private-database-tabs.controller';
 
+import orderCloudDb from './order/clouddb';
+
 const moduleName = 'ovhManagerWebPrivateDatabaseModule';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    orderCloudDb,
+  ])
   .config(routing)
   .controller('PrivateDatabaseCtrl', controller)
   .controller('PrivateDatabaseTabsCtrl', tabController)
