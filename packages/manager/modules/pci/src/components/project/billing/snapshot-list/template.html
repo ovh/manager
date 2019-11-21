@@ -34,8 +34,8 @@
                             <td class="oui-datagrid__cell text-right" data-title="{{ :: 'cpbc_snapshot_col_usage' | translate }}">
                                 <span>{{ snapshot.totalPrice.toFixed(2)  + ' ' + $ctrl.currencySymbol }}</span>
                                 <i class="fa fa-question-circle left-space-m4"
-                                data-uib-tooltip="{{ :: $ctrl.getSnapshotPriceInfoTooltip(snapshot) }}"
-                                tooltip-placement="left"></i>
+                                data-oui-tooltip="{{:: $ctrl.getSnapshotPriceInfoTooltip(snapshot) }}"
+                                data-oui-tooltip-placement="left"></i>
                             </td>
                         </tr>
                     </tbody>
