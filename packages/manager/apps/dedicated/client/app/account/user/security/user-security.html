@@ -539,11 +539,11 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"
                                             for="inputWarning">
+                                            
                                         <span data-translate="user_ipRestrictions_alert"></span>
                                         <span class="oui-icon oui-icon-help_circle"
-                                                data-uib-tooltip="{{ 'user_ipRestrictions_alert_information' | translate }}"
-                                                data-tooltip-placement="bottom"
-                                                data-tooltip-append-to-body="true"
+                                                data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                                data-oui-tooltip-placement="bottom"
                                                 aria-hidden="true">
                                         </span>
                                     </label>
@@ -589,12 +589,13 @@
                                         <th scope="col"
                                             class="center">
                                             <span data-translate="user_ipRestrictions_alert"></span>
-                                            <span class="oui-icon oui-icon-help_circle"
-                                                    data-uib-tooltip="{{ 'user_ipRestrictions_alert_information' | translate }}"
-                                                    data-tooltip-placement="right"
-                                                    data-tooltip-append-to-body="true"
-                                                    aria-hidden="true">
-                                            </span>
+                                            <div class="tooltip-container">
+                                                <span class="oui-icon oui-icon-help_circle"
+                                                      data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                                      data-oui-tooltip-placement="right"
+                                                      aria-hidden="true">
+                                                </span>
+                                            </div>
                                         </th>
                                         <th scope="col"
                                             data-translate="user_ipRestrictions_rule">

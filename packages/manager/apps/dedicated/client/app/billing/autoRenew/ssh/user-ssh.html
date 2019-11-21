@@ -97,9 +97,8 @@
                                     data-ng-if="ssh.category === 'dedicated'"
                                     data-ng-click="ctrlSsh.setDefaultDedicatedSshKey(ssh)"
                                     data-ng-class="{ 'text-primary': ssh.default }"
-                                    data-uib-tooltip="{{ 'user_ssh_tooltip_default_'+ssh.default | translate }}"
-                                    data-tooltip-placement="right"
-                                    data-tooltip-append-to-body="true">
+                                    data-oui-tooltip="{{:: 'user_ssh_tooltip_default_'+ssh.default | translate }}"
+                                    data-oui-tooltip-placement="right">
                                 <span class="fa fa-key"
                                       aria-hidden="true">
                                 </span>
