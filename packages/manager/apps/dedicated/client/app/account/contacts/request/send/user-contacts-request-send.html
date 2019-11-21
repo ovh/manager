@@ -72,8 +72,8 @@
                             <button class="btn btn-icon btn-transparent"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {action: 'ACCEPT', method: 'SEND', task: task})"
                                     data-ng-if="task.state === 'validatingByCustomers' && !task.hasPendingChange"
-                                    data-tooltip="{{ 'useraccount_contacts_confirm_request' | translate }}"
-                                    data-tooltip-placement="bottom">
+                                    data-oui-tooltip="{{:: 'useraccount_contacts_confirm_request' | translate }}"
+                                    data-oui-tooltip-placement="bottom">
                                 <i class="icon-ok"></i>
                             </button>
                         </td>
@@ -81,8 +81,8 @@
                             <button class="btn btn-icon btn-transparent"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {action: 'REFUSE', method: 'SEND', task: task})"
                                     data-ng-if="task.state === 'validatingByCustomers'  && !task.hasPendingChange"
-                                    data-tooltip="{{ 'useraccount_contacts_cancel_request' | translate }}"
-                                    data-tooltip-placement="bottom">
+                                    data-oui-tooltip="{{:: 'useraccount_contacts_cancel_request' | translate }}"
+                                    data-oui-tooltip-placement="bottom">
                                 <i class="icon-remove"></i>
                             </button>
 

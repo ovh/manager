@@ -255,8 +255,8 @@
                                data-ng-change="postInstallationScriptLinkValidator()"
                                data-ng-trim="true" />
                         <span class="icon-question-sign"
-                              data-uib-tooltip="{{ 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
-                              data-tooltip-placement="left">
+                              data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
+                              data-oui-tooltip-placement="left">
                         </span>
                         <div class="errorFormLabel"
                              data-ng-if="optionForm.postInstallationScriptLink.$invalid && optionForm.$dirty">
@@ -281,8 +281,8 @@
                                data-ng-model="installation.options.postInstallationScriptReturn"
                                data-ng-trim="true" />
                         <span class="icon-question-sign"
-                              data-uib-tooltip="{{ 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
-                              data-tooltip-placement="left">
+                              data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
+                              data-oui-tooltip-placement="left">
                         </span>
                     </div>
 
@@ -335,8 +335,8 @@
                                 <option value="" data-translate="server_configuration_installation_form_ssh_no"></option>
                             </select>
                             <span class="icon-question-sign"
-                                  data-uib-tooltip="{{ 'server_configuration_installation_form_ssh_help' | translate }}"
-                                  data-tooltip-placement="left">
+                                  data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
+                                  data-oui-tooltip-placement="left">
                             </span>
                         </div>
                         <div class="mt-1 text-danger"
