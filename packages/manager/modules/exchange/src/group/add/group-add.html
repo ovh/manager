@@ -60,7 +60,7 @@
                                data-ng-min="0" min="0"
                                data-ng-max="100" max="100"
                                data-ng-model="ctrl.groupToAdd.maxReceiveSize"
-                               data-uib-tooltip="{{'exchange_GROUPS_add_group_receive_size_tooltip' | translate}}">
+                               data-oui-tooltip="{{'exchange_GROUPS_add_group_receive_size_tooltip' | translate}}">
                         <span class="input-group-addon" data-translate="unit_size_MB"></span>
                     </div>
 
@@ -80,7 +80,7 @@
                                data-ng-min="0" min="0"
                                data-ng-max="100" max="100"
                                data-ng-model="ctrl.groupToAdd.maxSendSize"
-                               data-uib-tooltip="{{'exchange_GROUPS_add_group_sent_size_tooltip' | translate}}">
+                               data-oui-tooltip="{{'exchange_GROUPS_add_group_sent_size_tooltip' | translate}}">
                         <span class="input-group-addon" data-translate="unit_size_MB"></span>
                     </div>
 
@@ -219,7 +219,7 @@
                                        data-ng-model="account.manager">
                             </label>
 
-                            <div data-uib-tooltip="{{'exchange_GROUPS_add_group_contact_as_manager_info' | translate}}"
+                            <div data-oui-tooltip="{{'exchange_GROUPS_add_group_contact_as_manager_info' | translate}}"
                                  data-ng-if="account.type === 'CONTACT'">
                                 <label>
                                     <input type="checkbox" disabled>
@@ -235,7 +235,7 @@
                     </tr>
 
                     <tr data-ng-repeat="account in ctrl.accountsList.list.messages | orderBy:'id': false track by $index">
-                        <td colspan="3" data-uib-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}">
+                        <td colspan="3" data-oui-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}">
                             <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
                             <span data-ng-bind="account.id"></span>
                         </td>

@@ -75,10 +75,10 @@
                             <td class="text-center">
                                 <span class="oui-status oui-status_warning"
                                       data-ng-if="account.state === ctrl.stateTaskError"
-                                      data-uib-tooltip="{{'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"></span>
+                                      data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"></span>
                                 <span class="oui-status oui-status_warning"
                                       data-ng-if="account.state === ctrl.stateTaskDoing"
-                                      data-uib-tooltip="{{'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"></span>
+                                      data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"></span>
                                 <span class="oui-status oui-status_success"
                                       data-ng-if="account.state == ctrl.stateOk"
                                       data-translate="exchange_tab_ACCOUNTS_state_OK"></span>
@@ -122,7 +122,7 @@
                         <tr data-ng-repeat="account in ctrl.accounts.list.messages | orderBy:'id':false track by $index">
                             <td colspan="4">
                                 <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-                                <span data-ng-bind="account.primaryEmailAddress" data-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}"></span>
+                                <span data-ng-bind="account.primaryEmailAddress" data-oui-tooltip="{{:: 'exchange_tab_ACCOUNTS_partial_account' | translate}}"></span>
                             </td>
                         </tr>
                     </tbody>

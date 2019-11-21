@@ -137,7 +137,7 @@
                                    data-ng-class="{'oui-input_error': ctrl.simplePasswordFlag || ctrl.containsNameFlag || ctrl.containsSamAccountNameFlag || ctrl.containsWhitespaces}"
                                    data-ng-model="ctrl.selectedAccount.password"
                                    data-ng-required="!ctrl.selectedAccount.canBeConfigured"
-                                   data-uib-tooltip="{{ctrl.passwordTooltip}}">
+                                   data-oui-tooltip="{{ctrl.passwordTooltip}}">
                             <small class="help-block"
                                    data-translate="exchange_ACTION_update_account_step1_password_weak"
                                    data-ng-if="ctrl.simplePasswordFlag"></small>
@@ -165,7 +165,7 @@
                                    data-ng-change="ctrl.setPasswordsFlag(ctrl.selectedAccount)"
                                    data-ng-class="{'oui-input_error': ctrl.selectedAccount.passwordConfirmation && ctrl.differentPasswordFlag}"
                                    data-ng-model="ctrl.selectedAccount.passwordConfirmation"
-                                   data-uib-tooltip="{{ctrl.passwordTooltip}}">
+                                   data-oui-tooltip="{{ctrl.passwordTooltip}}">
                             <small class="help-block"
                                    data-translate="exchange_ACTION_update_account_step1_password_different"
                                    data-ng-if="ctrl.selectedAccount.passwordConfirmation && ctrl.differentPasswordFlag"></small>

@@ -56,7 +56,7 @@
                         data-ng-repeat="permission in ctrl.permissionsList.list.messages | orderBy:'id':false track by $index">
                         <td colspan="3">
                             <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-                            <span data-ng-bind="permission.id" data-uib-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: permission.message } }}"></span>
+                            <span data-ng-bind="permission.id" data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: permission.message } }}"></span>
                         </td>
                     </tr>
                 </tbody>
