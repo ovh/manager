@@ -3,12 +3,12 @@ import map from 'lodash/map';
 export default class PciProjectNewService {
   /* @ngInject */
   constructor($q, OvhApiCloud, OvhApiMeAgreements, OvhApiMeVoucherAccount,
-    OvhApiOrderCatalogFormatted) {
+    OvhApiOrderCatalogPublic) {
     this.$q = $q;
     this.OvhApiCloud = OvhApiCloud;
     this.OvhApiMeAgreements = OvhApiMeAgreements;
     this.OvhApiMeVoucherAccount = OvhApiMeVoucherAccount;
-    this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
   }
 
   acceptAgreements(contactList = []) {
@@ -47,10 +47,10 @@ export default class PciProjectNewService {
   }
 
   getFormattedCatalog(ovhSubsidiary) {
-    return this.OvhApiOrderCatalogFormatted
+    return this.OvhApiOrderCatalogPublic
       .v6()
       .get({
-        catalogName: 'cloud',
+        productName: 'cloud',
         ovhSubsidiary,
       })
       .$promise;

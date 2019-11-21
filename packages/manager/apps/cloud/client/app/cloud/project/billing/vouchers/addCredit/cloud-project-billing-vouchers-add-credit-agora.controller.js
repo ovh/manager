@@ -3,13 +3,17 @@ import head from 'lodash/head';
 import filter from 'lodash/filter';
 
 angular.module('managerApp').controller('CloudProjectBillingVouchersAddcreditAgoraCtrl', class CloudProjectBillingVouchersAddcreditAgoraCtrl {
-  constructor($http, $q, $translate, $uibModalInstance, $window, CucCloudMessage) {
+  constructor($http, $q, $translate, $uibModalInstance, $window,
+    CucCloudMessage, CucCurrencyService, OvhApiMe, OvhApiOrderCatalogPublic) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
+    this.CucCurrencyService = CucCurrencyService;
+    this.OvhApiMe = OvhApiMe;
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.orderLimits = {
       min: 1,
       max: 20000000,
@@ -19,36 +23,36 @@ angular.module('managerApp').controller('CloudProjectBillingVouchersAddcreditAgo
   $onInit() {
     this.amount = 10;
     this.loading = true;
-    return this.$http.get('/order/catalog/formatted/cloud', {
-      serviceType: 'apiv6',
-      params: {
-        ovhSubsidiary: 'US',
-      },
-    }).then((result) => {
-      this.price = get(
-        head(
-          filter(
-            get(
-              head(
-                filter(
-                  get(result, 'data.plans'),
-                  p => p.planCode === 'credit' && p.pricingType === 'purchase',
+    return this.OvhApiMe.v6().get().$promise
+      .then(me => this.OvhApiOrderCatalogPublic.v6()
+        .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary }).$promise.then((result) => {
+          const pricing = head(
+            filter(
+              get(
+                head(
+                  filter(
+                    get(result, 'plans'),
+                    p => p.planCode === 'credit' && p.pricingType === 'purchase',
+                  ),
                 ),
+                'pricings',
               ),
-              'details.pricings.default',
+              p => p.capacities.includes('installation'),
             ),
-            p => p.capacities.indexOf('installation') >= 0,
-          ),
-        ),
-        'price',
-      );
-    }).catch((err) => {
-      this.CucCloudMessage.error([this.$translate.instant('cpb_vouchers_add_credit_load_err'), get(err, 'data.message', '')].join(' '));
-      this.$uibModalInstance.dismiss();
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.loading = false;
-    });
+          );
+          this.price = pricing ? {
+            currencyCode: get(result, 'locale.currencyCode'),
+            value: this.CucCurrencyService.convertUcentsToCurrency(pricing.price),
+          } : undefined;
+        }))
+      .catch((err) => {
+        this.CucCloudMessage.error([this.$translate.instant('cpb_vouchers_add_credit_load_err'), get(err, 'data.message', '')].join(' '));
+        this.$uibModalInstance.dismiss();
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   order() {

@@ -26,7 +26,7 @@ import {
 export default class {
   /* @ngInject */
   constructor($state, $translate, analyticsDataPlatformService, CucControllerHelper,
-    CucCloudMessage, CucServiceHelper) {
+    CucCloudMessage, CucCurrencyService, CucServiceHelper) {
     this.$state = $state;
     this.$translate = $translate;
     this.ANALYTICS_DATA_PLATFORM_COMPUTE = ANALYTICS_DATA_PLATFORM_COMPUTE;
@@ -36,6 +36,7 @@ export default class {
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucCloudMessage = CucCloudMessage;
+    this.cucCurrencyService = CucCurrencyService;
     this.cucServiceHelper = CucServiceHelper;
 
     this.displaySelectedRegion = true;
@@ -470,7 +471,7 @@ export default class {
   initReview() {
     const priceMap = this.priceCatalog.pricesMap;
     const computePrice = this.getComputePrice(priceMap);
-    const storagePrice = this.constructor.getStoragePrice(
+    const storagePrice = this.getStoragePrice(
       priceMap,
       (this.analyticsDataPlatform.hdfsEffectiveStorage
         * this.analyticsDataPlatform.hdfsReplicationFactor)
@@ -498,11 +499,13 @@ export default class {
     const nodes = values(this.nodesConfig);
     const monthlyPrice = sumBy(nodes, (node) => {
       const flavourMonthly = get(node, ['selectedFlavor', 'planCodes', 'monthly']);
-      return get(catalog, [flavourMonthly, 'price', 'value'], 0) * get(node, 'count', 0);
+      return this.cucCurrencyService.convertUcentsToCurrency(get(catalog, [flavourMonthly, 'price'], 0))
+        * get(node, 'count', 0);
     });
     const hourlyPrice = sumBy(nodes, (node) => {
       const flavourConsumption = get(node, ['selectedFlavor', 'planCodes', 'hourly']);
-      return get(catalog, [flavourConsumption, 'price', 'value'], 0) * get(node, 'count', 0);
+      return this.cucCurrencyService.convertUcentsToCurrency(get(catalog, [flavourConsumption, 'price'], 0))
+        * get(node, 'count', 0);
     });
     return {
       hourlyPrice,
@@ -516,9 +519,10 @@ export default class {
    * @param {*} catalog cloud price catalog
    * @returns object of hourlyPrice and monthlyPrice
    */
-  static getStoragePrice(catalog, size, type = 'high-speed') {
+  getStoragePrice(catalog, size, type = 'high-speed') {
     const storagePriceCatalog = get(catalog, `volume.${type}.consumption`);
-    const hourlyPrice = size * get(storagePriceCatalog, ['price', 'value'], 0);
+    const hourlyPrice = size * this.cucCurrencyService
+      .convertUcentsToCurrency(get(storagePriceCatalog, 'price', 0));
     const monthlyPrice = hourlyPrice * 24 * 30;
     return {
       hourlyPrice,

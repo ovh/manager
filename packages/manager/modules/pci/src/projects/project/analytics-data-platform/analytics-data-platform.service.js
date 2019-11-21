@@ -11,7 +11,7 @@ import {
 export default class AnalyticsDataPlatformService {
   /* @ngInject */
   constructor($q, $translate, OvhApiAnalytics, OvhApiCloudProject,
-    OvhApiMe, OvhApiOrder, OvhApiOrderCatalogFormatted, OvhApiVrack, Poller) {
+    OvhApiMe, OvhApiOrder, OvhApiOrderCatalogPublic, OvhApiVrack, Poller) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiAnalyticsPlatforms = OvhApiAnalytics.Platforms().v6();
@@ -26,7 +26,7 @@ export default class AnalyticsDataPlatformService {
     this.OvhApiCloudServiceInfos = OvhApiCloudProject.ServiceInfos().v6();
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
     this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
-    this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted.v6();
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic.v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiVrack = OvhApiVrack.v6();
     this.OvhApiMe = OvhApiMe;
@@ -290,8 +290,8 @@ export default class AnalyticsDataPlatformService {
    */
   getPriceCatalog(publicCloudPlanCode) {
     return this.getAccountDetails()
-      .then(({ ovhSubsidiary, currency }) => this.OvhApiOrderCatalogFormatted
-        .get({ catalogName: this.CLOUD_CATALOG_NAME, ovhSubsidiary })
+      .then(({ ovhSubsidiary, currency }) => this.OvhApiOrderCatalogPublic
+        .get({ productName: this.CLOUD_CATALOG_NAME, ovhSubsidiary })
         .$promise
         .then((catalog) => {
           const projectPlan = find(catalog.plans, { planCode: publicCloudPlanCode });
@@ -299,15 +299,11 @@ export default class AnalyticsDataPlatformService {
             throw new Error({ message: 'Price details not available for public cloud' });
           }
           const pricesMap = {};
-          forEach(projectPlan.addonsFamily, (family) => {
-            forEach(family.addons, (price) => {
-              const planCode = get(price, ['plan', 'planCode']);
-              const defaultPlan = get(
-                price,
-                ['plan', 'details', 'pricings', 'default'],
-              );
-              pricesMap[planCode] = get(defaultPlan, ['length'], 0)
-                ? defaultPlan[0]
+          forEach(projectPlan.addonFamilies, (family) => {
+            forEach(family.addons, (planCode) => {
+              const addon = find(catalog.addons, { planCode });
+              pricesMap[planCode] = get(addon.pricings, ['length'], 0)
+                ? addon.pricings[0]
                 : null;
             });
           });
