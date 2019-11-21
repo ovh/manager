@@ -42,9 +42,8 @@
                             data-ng-click="SmsIncomingCtrl.exportHistory()"
                             data-ng-disabled="!SmsIncomingCtrl.incoming.sorted.length || SmsIncomingCtrl.incoming.isExporting"
                             data-translate="sms_common_download"
-                            data-uib-tooltip="{{:: 'sms_sms_incoming_download_history' | translate }}"
-                            data-tooltip-placement="right"
-                            data-tooltip-append-to-body="true">
+                            data-oui-tooltip="{{:: 'sms_sms_incoming_download_history' | translate }}"
+                            data-oui-tooltip-placement="right">
                         </button>
                     </li>
                     <li role="menuitem">
@@ -55,9 +54,8 @@
                             data-ng-click="SmsIncomingCtrl.refresh()"
                             data-ng-disabled="SmsIncomingCtrl.incoming.isDeleting"
                             data-translate="sms_common_refresh"
-                            data-uib-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
-                            data-tooltip-placement="right"
-                            data-tooltip-append-to-body="true">
+                            data-oui-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
+                            data-oui-tooltip-placement="right">
                         </button>
                     </li>
                 </ul>
@@ -210,7 +208,7 @@
                         <td>
                             <span data-ng-if="sms.message.length >= 25">
                                 <span data-ng-bind="sms.message | limitTo: 25"
-                                      data-uib-tooltip="{{ sms.message }}">
+                                      data-oui-tooltip="{{ sms.message }}">
                                 </span>…
                             </span>
                             <span data-ng-if="sms.message.length < 25"

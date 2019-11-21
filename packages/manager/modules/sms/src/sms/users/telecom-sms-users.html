@@ -37,9 +37,8 @@
                             class="btn btn-link"
                             data-ng-click="SmsUsersCtrl.templates()"
                             data-translate="sms_users_actions_templates"
-                            data-uib-tooltip="{{:: 'sms_users_templates_title' | translate }}"
-                            data-tooltip-placement="right"
-                            data-tooltip-append-to-body="true">
+                            data-oui-tooltip="{{:: 'sms_users_templates_title' | translate }}"
+                            data-oui-tooltip-placement="right">
                         </button>
                     </li>
                     <li role="menuitem">
@@ -59,9 +58,7 @@
             <oui-column data-title="'sms_users_label_id' | translate" data-property="login" data-sortable>
                 <span data-ng-if="$row.login.length >= 25">
                     <span data-ng-bind="$row.login | limitTo: 25"
-                            data-uib-tooltip="{{ $row.login }}"
-                            data-tooltip-class="word-break"
-                            data-tooltip-append-to-body="true">
+                            data-oui-tooltip="{{:: $row.login }}">
                     </span>...
                 </span>
                 <span data-ng-if="$row.login.length < 25"
@@ -98,10 +95,9 @@
             <oui-column data-title="'sms_users_label_notification' | translate"
                         data-property="alertThresholdInformations.support"
                         data-sortable>
-                <span data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"
-                    data-uib-tooltip="{{ $row.alertThresholdInformations.alertEmail }}"
-                    data-tooltip-append-to-body="true">
-                </span>
+                <span data-ng-if="$row.alertThresholdInformations.alertEmail.length > 0" data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"
+                      data-oui-tooltip="{{:: $row.alertThresholdInformations.alertEmail }}"></span>
+                <span data-ng-if="$row.alertThresholdInformations.alertEmail.length < 1" data-ng-bind="::'sms_users_limit_user_support_' + $row.alertThresholdInformations.support | translate"></span>
             </oui-column>
             <oui-action-menu data-align="end"
                              data-compact>

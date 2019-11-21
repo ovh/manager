@@ -132,9 +132,8 @@
                                 <strong data-ng-bind="TelecomSmsOptionsResponseCtrl.message.remainingCharacters"></strong>&nbsp;/&nbsp;<span data-ng-bind="TelecomSmsOptionsResponseCtrl.message.defaultSize"></span>
                                 <i class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
                                    data-ng-if="TelecomSmsOptionsResponseCtrl.message.coding === '8bit'"
-                                   data-uib-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
-                                   data-tooltip-placement="left"
-                                   data-tooltip-append-to-body="true">
+                                   data-oui-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
+                                   data-oui-tooltip-placement="left">
                                 </i>
                                 <br />
                                 <span data-translate="sms_options_response_action_text_equivalent"></span>
