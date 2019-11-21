@@ -847,5 +847,6 @@
   "email_tab_modal_delete_redirection_heading": "Chcesz usunąć przekierowanie:",
   "email_tab_modal_delete_redirection_accounts": "<strong>{0}</strong> na <strong>{1}</strong>",
   "emails_common_continue_question": "Czy chcesz kontynuować?",
-  "emails_common_account_name_conditions": "Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _."
+  "emails_common_account_name_conditions": "Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _.",
+  "emailpro_ACTION_update_account_step1_password_contains_space": "Hasło nie może zawierać spacji."
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^7.5.0",
-    "@ovh-ux/manager-navbar": "^2.1.0",
+    "@ovh-ux/manager-core": "^7.6.1",
+    "@ovh-ux/manager-navbar": "^2.1.2",
     "@ovh-ux/manager-support": "^0.4.0",
     "@ovh-ux/ng-at-internet": "^4.0.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^4.0.5",
@@ -26,7 +26,7 @@
     "font-awesome": "~4.7.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "ovh-api-services": "^9.24.1",
+    "ovh-api-services": "^9.26.1",
     "ovh-ui-angular": "^3.10.0",
     "ovh-ui-kit": "^2.35.2",
     "ovh-ui-kit-bs": "^2.2.0"

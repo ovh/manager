@@ -39,7 +39,7 @@ module.exports = (
     'angular-translate': '^2.18.1',
     'angular-translate-loader-pluggable': '^1.3.1',
     jquery: '^2.1.3',
-    'ovh-api-services': '^9.23.2',
+    'ovh-api-services': '^9.26.0',
     'ovh-ui-angular': '^3.9.9',
     'ovh-ui-kit': '^2.35.3',
     flatpickr: '~4.5.2',

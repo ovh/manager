@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 class LogsRolesAddMembersCtrl {
   constructor(
     $q,
@@ -16,6 +18,7 @@ class LogsRolesAddMembersCtrl {
     this.logs = logs;
     this.LogsRolesService = LogsRolesService;
     this.isEdit = false;
+    this.member = {};
   }
 
   $onInit() {
@@ -24,6 +27,12 @@ class LogsRolesAddMembersCtrl {
     } else {
       this.title = 'logs_member_modal_add_title';
     }
+    this.isLoading = true;
+    this.logs.promise.then(() => {
+      this.users = map(this.logs.data, 'username');
+    }).finally(() => {
+      this.isLoading = false;
+    });
   }
 
   cancel() {
@@ -36,7 +45,7 @@ class LogsRolesAddMembersCtrl {
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsRolesService.createMember(this.serviceName, this.roleId, {
-        username: this.member.username.username,
+        username: this.member.username,
         note: this.member.note,
       })
         .then(response => this.$uibModalInstance.close(response))

@@ -1,6 +1,6 @@
 {
   "dedicatedCloudDashboardTilesOptionsOrderConfigureUsers_stepper_header": "Skonfiguruj uprawnienia użytkowników",
-  "dedicatedCloud_servicePack_configureUsers_noUser": "Co najmniej jeden z użytkowników administratorów powinien być zarejestrowany jako „token validator”, posiadać numer telefonu komórkowego i adres e-mail.  Umożliwia to włączenie dwustopniowego uwierzytelniania dla operacji administracyjnych w vCenter.  Możesz skonfigurować uprawnienia Twoich użytkowników, klikając zakładkę",
+  "dedicatedCloud_servicePack_configureUsers_noUser": "Co najmniej jeden z użytkowników administratorów powinien być zarejestrowany jako „token validator”, posiadać numer telefonu komórkowego i adres e-mail. Umożliwia to włączenie dwustopniowego uwierzytelniania dla operacji administracyjnych w vCenter. Możesz skonfigurować uprawnienia Twoich użytkowników, klikając zakładkę",
   "dedicatedCloud_servicePack_configureUsers_noUser_linkToUserConfiguration": "Użytkownicy.",
   "dedicatedCloud_servicePack_configureUsers_hasUser": "Niektórzy z Twoich użytkowników otrzymają token w wiadomości SMS służący do zatwierdzenia aktywacji dwustopniowego uwierzytelniania.",
   "dedicatedCloud_servicePack_configureUsers_hasUser_table_header": "Użytkownicy, którzy będą mogli zatwierdzać tokeny przez SMS:",

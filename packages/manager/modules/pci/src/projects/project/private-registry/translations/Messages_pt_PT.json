@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Escolher um nome para o registo privado",
   "private_registry_update_success": "O nome do registo privado foi alterado para {{ newRegistryName }}",
   "private_registry_update_error": "Ocorreu um erro ao mudar o nome do registo privado {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "O seu registo privado {{ registryName }} foi criado. Deverá gerar informações de identificação para aceder ao seu registo",
+  "private_registry_onboarding_success": "O seu registo privado {{ registryName }} foi criado. Assim que o seu registo estiver disponível, poderá gerar informações de identificação para aceder ao mesmo.",
   "private_registry_onboarding_error": "A criação do registo privado falhou: {{ message }}",
   "private_registry_harbor_api_title": "API do registo privado",
   "private_registry_harbor_api_url": "URL API do registo privado",

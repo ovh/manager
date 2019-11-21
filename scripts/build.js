@@ -6,6 +6,8 @@ const remove = require('lodash/remove');
 const EventEmitter = require('events');
 const { Worker } = require('worker_threads');
 
+EventEmitter.defaultMaxListeners = 100; // Increase the default limit to avoid memory leaks
+
 const myEmitter = new EventEmitter();
 
 let modules;
@@ -79,7 +81,10 @@ function unstack() {
         remove(modules.doing, workerData);
         modules.done.push(workerData);
         myEmitter.emit('unstack');
-      });
+      })
+        .catch(() => {
+          process.exit(1);
+        });
     }
     return null;
   });
