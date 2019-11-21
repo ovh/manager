@@ -109,10 +109,9 @@
                     <td data-ng-bind="::operation.doneDate | date:'short'"></td>
                     <td class="text-nowrap" data-ng-bind="(('domains_operations_statusOperation_' + operation.status | translate) == 'domains_operations_statusOperation_' + operation.status)? operation.status: ('domains_operations_statusOperation_' + operation.status | translate)" title="{{operation.comment}}"></td>
                     <td class="text-center">
-                        <span data-uib-tooltip="{{ 'domains_operations_no_action' | translate }}"
-                              data-tooltip-enable="{{!operation.canCancel && !operation.canRelaunch && !operation.canAccelerate}}"
-                              data-tooltip-append-to-body="true"
-                              data-tooltip-placement="left">
+                        <span data-oui-tooltip="{{:: 'domains_operations_no_action' | translate }}"
+                              data-oui-tooltip-enable="{{!operation.canCancel && !operation.canRelaunch && !operation.canAccelerate}}"
+                              data-oui-tooltip-placement="left">
                             <oui-action-menu data-compact
                                              data-align="end"
                                              data-disabled="!operation.canCancel && !operation.canRelaunch && !operation.canAccelerate && operation.function !== 'DomainIncomingTransfer'">

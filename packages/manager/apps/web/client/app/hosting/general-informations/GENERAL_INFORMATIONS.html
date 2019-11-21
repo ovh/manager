@@ -171,7 +171,7 @@
                                     'text-danger': phpVersionSupport.support === 'END_OF_LIFE'
                                   }"
                                   data-ng-if="phpVersionSupport.support && phpVersionSupport.support !== 'SUPPORTED'"
-                                  data-oui-tooltip="{{ 'hosting_dashboard_php_support_'+ phpVersionSupport.support | translate }}"
+                                  data-oui-tooltip="{{:: 'hosting_dashboard_php_support_'+ phpVersionSupport.support | translate }}"
                                   data-oui-tooltip-placement="bottom">
                             </span>
                             <div class="d-inline ml-2" data-ng-if="ovhConfig.taskPending">
@@ -377,7 +377,7 @@
                                 data-ng-bind="::'hosting_dashboard_service_offer_'+ hosting.offer | translate"></span>
                           <span class="fa fa-exclamation-triangle text-warning" aria-hidden="true"
                                 data-ng-if="hostingProxy.recommendedOffer"
-                                data-uib-tooltip="{{ ::'hosting_dashboard_service_offer_recommanded' | translate: { t0: hostingProxy.recommendedOffer } }}"></span>
+                                data-oui-tooltip="{{ ::'hosting_dashboard_service_offer_recommanded' | translate: { t0: hostingProxy.recommendedOffer } }}"></span>
                         </oui-tile-description>
                         <oui-action-menu data-ng-if="$ctrl.availableOffers.length > 0"
                                          data-compact

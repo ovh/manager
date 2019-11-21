@@ -140,9 +140,8 @@
                     data-translate="hosting_tab_AUTOMATED_EMAILS_purge"
                     data-ng-click="ctrl.purge()"
                     data-ng-disabled="(ctrl.automatedEmails.state !== 'ko' && ctrl.automatedEmails.state !== 'spam' && ctrl.automatedEmails.state !== 'bounce') || ctrl.isPurging"
-                    data-uib-tooltip="{{ 'hosting_tab_AUTOMATED_EMAILS_purge_info' | translate }}"
-                    data-tooltip-append-to-body="true"
-                    data-tooltip-placement="bottom">
+                    data-oui-tooltip="{{:: 'hosting_tab_AUTOMATED_EMAILS_purge_info' | translate }}"
+                    data-oui-tooltip-placement="bottom">
             </button>
             <button class="btn btn-block btn-default" type="button"
                     data-translate="hosting_tab_AUTOMATED_EMAILS_volume_history"
