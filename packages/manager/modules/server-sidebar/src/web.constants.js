@@ -335,6 +335,14 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     regions: ['EU'],
     app: [WEB],
   },
+  {
+    id: 'orderCloudDatabase',
+    title: 'cloudDatabase',
+    icon: 'ovh-font ovh-font-database',
+    state: 'app.private-database-order-clouddb',
+    regions: ['EU'],
+    app: [WEB],
+  },
 ];
 
 export default { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG };
