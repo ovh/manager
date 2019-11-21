@@ -1,4 +1,4 @@
-export default function /* @ngInject */ (userAccountServiceInfos, Alerter, $translate) {
+export default /* @ngInject */ function (userAccountServiceInfos, Alerter, $translate) {
   this.isLoadingDeveloperMode = false;
 
   this.$ngInit = () => {
