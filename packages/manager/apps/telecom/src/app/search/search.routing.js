@@ -1,7 +1,16 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
+import some from 'lodash/some';
 
 import controller from './search.controller';
 import template from './search.html';
+
+const filterResults = (results, query, properties) => (query ? filter(
+  results,
+  result => some(properties, property => includes(get(result, property), query)),
+) : results);
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecomSearch', {
@@ -23,20 +32,21 @@ export default /* @ngInject */ ($stateProvider) => {
       query: $transition$ => $transition$.params().q,
       services: (apiv7, query) => apiv7('/telephony/*/service?$aggreg=1')
         .query()
-        .addFilter('serviceName', 'like', [`%${query}%`])
         .execute()
         .$promise
-        .then(results => map(results, result => ({
-          ...result,
-          billingAccount: result.path.split('/')[2],
-        }))),
+        .then((results) => {
+          const filteredResults = filterResults(results, query, ['value.serviceName', 'value.description']);
+          return map(filteredResults, result => ({
+            ...result,
+            billingAccount: result.path.split('/')[2],
+          }));
+        }),
       billingAccount: (query, iceberg) => iceberg('/telephony')
         .query()
         .expand('CachedObjectList-Pages')
-        .addFilter('billingAccount', 'like', [`%25${query}%25`])
         .execute()
         .$promise
-        .then(({ data }) => data),
+        .then(({ data }) => filterResults(data, query, ['billingAccount', 'description'])),
     },
   });
 };
