@@ -35,7 +35,7 @@ angular.module('managerApp').service('TelecomMediator', function TelecomMediator
 
   /* ----------  SERVICE COUNT  ----------*/
 
-  self.initServiceCount = function initServiceCount(force, noCount) {
+  self.initServiceCount = function initServiceCount(force) {
     if (self.deferred.count && !force) {
       return self.deferred.count.promise;
     }
@@ -51,7 +51,7 @@ angular.module('managerApp').service('TelecomMediator', function TelecomMediator
     // get service count for telecom
     $q.all({
       pack: TucPackMediator.getCount().catch(handleCountError),
-      telephony: noCount ? $q.resolve() : TelephonyMediator.getCount().catch(handleCountError),
+      telephony: TelephonyMediator.getCount().catch(handleCountError),
       sms: TucSmsMediator.getCount().catch(handleCountError),
       freefax: TucFaxMediator.getCount().catch(handleCountError),
       overTheBox: TucOverTheBoxMediator.getCount().catch(handleCountError),
