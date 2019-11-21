@@ -1,20 +1,10 @@
 {
-    "extends": "ovh",
-    "rules": {
-        "class-methods-use-this": "off"
-    },
-    "globals": {
-        "Buffer": true,
-        "require": true,
-        "module": true,
-        "__dirname": true,
-        "inject": true,
-        "angular": true
-    },
-    "env": {
-        "jasmine": true
-    },
-    "parserOptions": {
-        "sourceType": "module"
-    }
+  "extends": "airbnb-base",
+  "plugins": [
+    "markdown"
+  ],
+  "rules": {
+    "import/no-unresolved": 0,
+    "class-methods-use-this": 0
+  }
 }

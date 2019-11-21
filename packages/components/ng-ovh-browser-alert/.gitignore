@@ -1,5 +1,2 @@
-node_modules/
-.work
-.idea
-coverage/
-*.log
+dist
+node_modules

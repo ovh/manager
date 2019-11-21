@@ -1,6 +1,13 @@
-import AlertComponent from "./ovh-angular-browser-alert.component";
-import AlertService from "./ovh-angular-browser-alert.service";
+import angular from 'angular';
 
-angular.module("ovhBrowserAlert", [])
-    .service("browserAlertService", AlertService)
-    .component("ovhBrowserAlert", AlertComponent);
+import component from './component';
+import service from './service';
+
+const moduleName = 'ngOvhBrowserAlert';
+
+angular
+  .module(moduleName, [])
+  .service('ovhBrowserAlertService', service)
+  .component('ovhBrowserAlert', component);
+
+export default moduleName;
