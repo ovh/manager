@@ -6,7 +6,7 @@ import '@ovh-ux/manager-core';
 
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
-import overTheBox from './overTheBox';
+import overTheBox from './overthebox';
 
 import component from './overtheboxes.component';
 
