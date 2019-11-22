@@ -45,6 +45,6 @@
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^9.26.1"
+    "ovh-api-services": "^9.27.1"
   }
 }
