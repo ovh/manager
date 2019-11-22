@@ -4,9 +4,8 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
-import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
-
 import component from './freefaxes.component';
+import routing from './freefaxes.routing';
 import freefax from './freefax';
 
 const moduleName = 'ovhManagerFreeFaxes';
@@ -18,23 +17,7 @@ angular
     'oc.lazyLoad',
     freefax,
   ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('freefaxes', {
-      url: '/freefax',
-      abstract: true,
-    });
-
-    $stateProvider.state('freefaxes.index', {
-      url: `?${ListLayoutHelper.urlQueryParams}`,
-      component: 'ovhManagerFreefaxes',
-      params: ListLayoutHelper.stateParams,
-      resolve: {
-        apiPath: () => '/freefax',
-        ...ListLayoutHelper.stateResolves,
-        getFreefaxLink: /* @ngInject */ $state => fax => $state.href('freefaxes.freefax', { serviceName: fax.number }),
-      },
-    });
-  })
+  .config(routing)
   .component('ovhManagerFreefaxes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

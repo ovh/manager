@@ -30,5 +30,13 @@
             data-filterable
             data-sortable>
         </oui-column>
+        <oui-action-menu
+            data-align="left-start"
+            data-compact>
+            <oui-action-menu-item
+                data-text="{{:: 'freefaxes_view_freefax_label' | translate }}"
+                data-on-click="$ctrl.viewFreefax($row)">
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-datagrid>
 </div>

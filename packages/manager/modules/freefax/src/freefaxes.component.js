@@ -13,6 +13,7 @@ export default {
     sortOrder: '<',
 
     getFreefaxLink: '<',
+    viewFreefax: '<',
   },
   controller,
   template,
