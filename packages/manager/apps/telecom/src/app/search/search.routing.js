@@ -47,6 +47,30 @@ export default /* @ngInject */ ($stateProvider) => {
         .execute()
         .$promise
         .then(({ data }) => filterResults(data, query, ['billingAccount', 'description'])) : null),
+      packs: (query, iceberg) => (query ? iceberg('/pack/xdsl')
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise
+        .then(({ data }) => filterResults(data, query, ['packName', 'description'])) : null),
+      sms: (query, iceberg) => (query ? iceberg('/sms')
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise
+        .then(({ data }) => filterResults(data, query, ['name', 'description'])) : null),
+      freefax: (query, iceberg) => (query ? iceberg('/freefax')
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise
+        .then(({ data }) => filterResults(data, query, ['number', 'fromName'])) : null),
+      overTheBox: (query, iceberg) => (query ? iceberg('/overTheBox')
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise
+        .then(({ data }) => filterResults(data, query, ['serviceName', 'customerDescription'])) : null),
     },
   });
 };
