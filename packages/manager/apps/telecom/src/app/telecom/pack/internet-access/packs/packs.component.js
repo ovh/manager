@@ -17,6 +17,6 @@ export default {
     sortOrder: '<',
 
     getPackLink: '<',
-    getPackServicesLink: '<',
+    viewPack: '<',
   },
 };

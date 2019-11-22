@@ -1,6 +1,6 @@
 {
   "packs_pack_name_label": "Pack",
-  "packs_num_service_label": "Accès",
-  "packs_num_services": "{{ num }} accès",
-  "packs_no_services": "Aucun accès"
+  "packs_description_label": "Description",
+  "packs_num_service_label": "Accès Internet",
+  "packs_view_label": "Détail du pack"
 }

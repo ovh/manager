@@ -8,27 +8,32 @@
         data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
         data-on-sort-change="$ctrl.onSortChange($sort)"
         data-columns="$ctrl.columnsConfig">
-
         <oui-column data-title=":: 'packs_pack_name_label' | translate"
+            data-property="packName"
+            data-searchable
+            data-filterable
+            data-sortable
+            data-type="string">
+            <a data-ng-href="{{ $ctrl.getPackLink($row) }}">{{ $value }}</a>
+        </oui-column>
+        <oui-column data-title=":: 'packs_description_label' | translate"
             data-property="description"
             data-searchable
             data-filterable
             data-sortable
-            data-type="string"
-            >
-            <!-- data-type-options="$ctrl.stringColumnOptions" -->
-            <a data-ng-href="{{ $ctrl.getPackLink($row) }}">{{ $row.description ? $row.description : $row.offerDescription }}</a>
+            data-type="string">
         </oui-column>
         <oui-column data-title=":: 'packs_num_service_label' | translate"
-            data-property="numServices"
-            data-type="number">
-            <a data-ng-if="$value"
-                data-ng-href="{{ $ctrl.getPackServicesLink($row) }}"
-                data-translate="packs_num_services"
-                data-translate-values="{ num: $value }"></a>
-            <span data-ng-if="!$value"
-                data-translate="packs_no_services"></span>
+            data-property="numServices">
         </oui-column>
+        <oui-action-menu
+            data-align="left-start"
+            data-compact>
+            <oui-action-menu-item
+                data-text="{{:: 'packs_view_label' | translate }}"
+                data-on-click="$ctrl.viewPack($row)">
+            </oui-action-menu-item>
+        </oui-action-menu>
     </oui-datagrid>
 </div>
 

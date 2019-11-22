@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           packName,
         },
       ),
-      getPackServicesLink: /* @ngInject */ $state => ({ packName }) => $state.href(
+      viewPack: /* @ngInject */ $state => ({ packName }) => $state.go(
         'telecom.packs.pack',
         {
           packName,
