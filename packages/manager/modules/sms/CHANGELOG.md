@@ -1,3 +1,12 @@
+## [7.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.6...@ovh-ux/manager-sms@7.2.7) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
 ## [7.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.5...@ovh-ux/manager-sms@7.2.6) (2019-11-15)
 
 

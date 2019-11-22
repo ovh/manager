@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core": "^7.6.1",
+    "@ovh-ux/manager-core": "^7.6.2",
     "@ovh-ux/ng-ovh-http": "^4.0.5",
     "@ovh-ux/ng-ovh-order-tracking": "^0.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.3",
