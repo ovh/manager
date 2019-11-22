@@ -103,7 +103,7 @@ export default class PciProjectLabsService {
         .activate({
           serviceName: projectId,
           labId: lab.id,
-        }, {})
+        })
         .$promise);
   }
 }
