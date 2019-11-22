@@ -10,7 +10,17 @@ import some from 'lodash/some';
 
 export default class NashaPartitionCtrl {
   /* @ngInject */
-  constructor($state, $scope, $uibModal, $q, $translate, $stateParams, OvhApiDedicatedNasha, Poller, CucCloudMessage) {
+  constructor(
+    $state,
+    $scope,
+    $uibModal,
+    $q,
+    $translate,
+    $stateParams,
+    OvhApiDedicatedNasha,
+    Poller,
+    CucCloudMessage,
+  ) {
     const self = this;
 
     self.trackedTaskStatus = ['todo', 'doing'];
