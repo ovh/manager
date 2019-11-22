@@ -114,7 +114,7 @@
     "office-ui-fabric-core": "^11.0.0",
     "ovh-angular-browser-alert": "ovh-ux/ovh-angular-browser-alert#^1.0.0",
     "ovh-angular-responsive-tabs": "^4.0.0",
-    "ovh-api-services": "^9.26.1",
+    "ovh-api-services": "^9.27.1",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-angular": "^3.10.0",
     "ovh-ui-kit": "^2.35.2",
