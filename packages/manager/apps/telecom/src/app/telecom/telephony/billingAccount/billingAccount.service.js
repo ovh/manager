@@ -4,21 +4,32 @@ export default class TelecomBillingAccountService {
     this.$state = $state;
   }
 
-  getServiceLink(billingAccount, { featureType, serviceName, serviceType }) {
+  static getServiceState(billingAccount, { featureType, serviceName, serviceType }) {
     const statePrefix = 'telecom.telephony.billingAccount.';
+    let state = `${statePrefix}line`;
 
     if (['alias'].includes(serviceType)) {
-      return this.$state.href(`${statePrefix}alias`, { billingAccount, serviceName });
+      state = `${statePrefix}alias`;
+    } else if (['fax', 'voicefax'].includes(featureType)) {
+      state = `${statePrefix}fax`;
+    } else if (['carrierSip'].includes(featureType)) {
+      state = `${statePrefix}carrierSip`;
     }
 
-    if (['fax', 'voicefax'].includes(featureType)) {
-      return this.$state.href(`${statePrefix}fax`, { billingAccount, serviceName });
-    }
+    return {
+      state,
+      stateParams: {
+        billingAccount,
+        serviceName,
+      },
+    };
+  }
 
-    if (['carrierSip'].includes(featureType)) {
-      return this.$state.href(`${statePrefix}carrierSip`, { billingAccount, serviceName });
-    }
-
-    return this.$state.href(`${statePrefix}line`, { billingAccount, serviceName });
+  getServiceLink(billingAccount, { featureType, serviceName, serviceType }) {
+    const { state, stateParams } = this.constructor.getServiceState(
+      billingAccount,
+      { featureType, serviceName, serviceType },
+    );
+    return this.$state.href(state, stateParams);
   }
 }

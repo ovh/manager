@@ -19,9 +19,23 @@ export default /* @ngInject */ ($stateProvider) => {
         .$promise,
       telephonyFeatureTypes: /* @ngInject */ schema => get(schema.models, 'telephony.TypeEnum').enum,
       telephonyServiceTypes: /* @ngInject */ schema => get(schema.models, 'telephony.TypeServiceEnum').enum,
-      getServiceLink:
-      /* @ngInject */ (billingAccountId, telecomBillingAccount) => service => telecomBillingAccount
+      getServiceLink: /* @ngInject */ (
+        billingAccountId,
+        telecomBillingAccount,
+      ) => service => telecomBillingAccount
         .getServiceLink(billingAccountId, service),
+
+      viewService: /* @ngInject */ (
+        $state,
+        billingAccountId,
+        telecomBillingAccount,
+      ) => (service) => {
+        const { state, stateParams } = telecomBillingAccount
+          .constructor
+          .getServiceState(billingAccountId, service);
+        return $state.go(state, stateParams);
+      },
+
     },
   });
 };

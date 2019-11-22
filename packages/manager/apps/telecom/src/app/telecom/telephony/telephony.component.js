@@ -9,7 +9,12 @@ export default {
   bindings: {
     ...ListLayoutHelper.componentBindings,
     loadResource: '<',
+    telephonyStatusTypes: '<',
+
     getBillingAccountLink: '<',
     getBillingAccountServicesLink: '<',
+
+    viewBillingAccount: '<',
+    viewBillingAccountServices: '<',
   },
 };

@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import template from './telecom-telephony.html';
 
@@ -34,6 +35,12 @@ export default /* @ngInject */ ($stateProvider) => {
           numServices: services.length,
         })),
 
+      schema: /* @ngInject */ OvhApiTelephony => OvhApiTelephony
+        .v6()
+        .schema()
+        .$promise,
+      telephonyStatusTypes: /* @ngInject */ schema => get(schema.models, 'telephony.BillingAccountStatusEnum').enum,
+
       getBillingAccountLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
         'telecom.telephony.billingAccount',
         {
@@ -41,6 +48,19 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       ),
       getBillingAccountServicesLink: /* @ngInject */ $state => ({ billingAccount }) => $state.href(
+        'telecom.telephony.billingAccount.services',
+        {
+          billingAccount,
+        },
+      ),
+
+      viewBillingAccount: /* @ngInject */ $state => ({ billingAccount }) => $state.go(
+        'telecom.telephony.billingAccount',
+        {
+          billingAccount,
+        },
+      ),
+      viewBillingAccountServices: /* @ngInject */ $state => ({ billingAccount }) => $state.go(
         'telecom.telephony.billingAccount.services',
         {
           billingAccount,

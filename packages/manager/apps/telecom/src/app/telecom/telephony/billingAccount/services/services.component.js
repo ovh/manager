@@ -10,6 +10,7 @@ export default {
     ...ListLayoutHelper.componentBindings,
     orderUrl: '<',
     getServiceLink: '<',
+    viewService: '<',
 
     telephonyFeatureTypes: '<',
     telephonyServiceTypes: '<',
