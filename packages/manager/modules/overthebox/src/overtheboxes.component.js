@@ -11,8 +11,10 @@ export default {
     paginationTotalCount: '<',
     sort: '<',
     sortOrder: '<',
+    overTheBoxStatusTypes: '<',
 
     getOvertheboxLink: '<',
+    viewOverthebox: '<',
   },
   controller,
   template,
