@@ -8,7 +8,9 @@ export default {
   template,
   bindings: {
     ...ListLayoutHelper.componentBindings,
+    smsStatusTypes: '<',
 
     getSmsLink: '<',
+    viewSms: '<',
   },
 };

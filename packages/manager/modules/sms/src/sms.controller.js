@@ -2,9 +2,10 @@ import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default class SmsCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, ouiDatagridService) {
+  constructor($q, $translate, ouiDatagridService) {
     super();
     this.$q = $q;
+    this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
   }
 
@@ -14,9 +15,20 @@ export default class SmsCtrl extends ListLayoutHelper.ListLayoutCtrl {
 
     super.$onInit();
 
+    this.filtersOptions = {
+      status: {
+        hideOperators: true,
+        values: this.smsStatusTypes.reduce((statusTypes, statusType) => ({
+          ...statusTypes,
+          [statusType]: this.$translate.instant(`sms_status_label_${statusType}`),
+        }), {}),
+      },
+    };
+
     this.columnsConfig = [
       { name: 'name', sortable: this.getSorting('name') },
       { name: 'description', sortable: this.getSorting('description') },
+      { name: 'status', sortable: this.getSorting('status') },
     ];
   }
 }
