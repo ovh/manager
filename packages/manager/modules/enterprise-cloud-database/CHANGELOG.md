@@ -1,3 +1,12 @@
+## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@0.1.8...@ovh-ux/manager-enterprise-cloud-database@0.1.9) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
 ## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-enterprise-cloud-database@0.1.7...@ovh-ux/manager-enterprise-cloud-database@0.1.8) (2019-11-15)
 
 

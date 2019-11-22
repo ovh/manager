@@ -1,3 +1,13 @@
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.2.1...@ovh-ux/manager-pci@3.2.2) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+* **pci.components.project.labs:** fix activateLab method ([84086d6](https://github.com/ovh/manager/commit/84086d6ac90a0b3e12725ea66e24e19d62a9ec16))
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.2.0...@ovh-ux/manager-pci@3.2.1) (2019-11-15)
 
 

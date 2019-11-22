@@ -1,3 +1,12 @@
+## [7.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.4...@ovh-ux/ng-ovh-web-universe-components@7.1.5) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
 ## [7.1.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.3...@ovh-ux/ng-ovh-web-universe-components@7.1.4) (2019-11-15)
 
 

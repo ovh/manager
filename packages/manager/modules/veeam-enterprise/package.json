@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "OVHcloud VeeamEnterprise product",
   "license": "BSD-3-Clause",
@@ -14,8 +14,8 @@
     "bootstrap4": "twbs/bootstrap#v4.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^7.6.1",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.1",
+    "@ovh-ux/manager-core": "^7.6.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
