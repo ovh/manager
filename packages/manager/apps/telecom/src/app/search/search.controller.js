@@ -1,6 +1,18 @@
+import isEmpty from 'lodash/isEmpty';
+
 export default class TelecomSearchController {
   /* @ngInject */
-  constructor(query, $state, billingAccount, services, telecomBillingAccount) {
+  constructor(
+    query,
+    $state,
+    billingAccount,
+    packs,
+    services,
+    sms,
+    freefax,
+    overTheBox,
+    telecomBillingAccount,
+  ) {
     this.$state = $state;
     this.telecomBillingAccount = telecomBillingAccount;
 
@@ -9,6 +21,10 @@ export default class TelecomSearchController {
     this.results = {
       billingAccount,
       services,
+      packs,
+      sms,
+      freefax,
+      overTheBox,
     };
   }
 
@@ -25,7 +41,12 @@ export default class TelecomSearchController {
   }
 
   hasResults() {
-    return this.results.services.length > 0 || this.results.billingAccount.length > 0;
+    return !isEmpty(this.results.services)
+      || !isEmpty(this.results.billingAccount)
+      || !isEmpty(this.results.packs)
+      || !isEmpty(this.results.sms)
+      || !isEmpty(this.results.freefax)
+      || !isEmpty(this.results.overTheBox);
   }
 
   getServiceLink(billingAccount, service) {

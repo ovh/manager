@@ -15,9 +15,22 @@
     <div class="container-fluid px-0" data-ng-if="$ctrl.hasResults()">
         <telecom-search-results
             class="d-block mt-4"
+            title="{{ ::'telecom_search_packs' | translate }}"
+            results="$ctrl.results.packs">
+            <a class="d-block"
+                data-ui-sref="telecom.packs.pack({ packName: $parent.result.packName })"
+                data-ng-bind="$parent.result.packName"></a>
+            <div>
+                <small data-ng-bind="$parent.result.description || 'No description'"></small>
+            </div>
+        </telecom-search-results>
+        <telecom-search-results
+            class="d-block mt-4"
             title="{{ ::'telecom_search_services' | translate }}"
             results="$ctrl.results.services">
-            <a class="d-block" ng-href="{{ $ctrl.getServiceLink($parent.result.billingAccount, $parent.result.value) }}" data-ng-bind="$parent.result.value.serviceName"></a>
+            <a class="d-block"
+                data-ng-href="{{ $ctrl.getServiceLink($parent.result.billingAccount, $parent.result.value) }}"
+                data-ng-bind="$parent.result.value.serviceName"></a>
             <div>
                 <small data-ng-bind="$parent.result.value.description"></small>
             </div>
@@ -27,9 +40,44 @@
             class="d-block mt-4"
             title="{{ ::'telecom_search_billingAccount' | translate }}"
             results="$ctrl.results.billingAccount">
-            <a class="d-block" data-ui-sref="telecom.telephony.billingAccount({ billingAccount: $parent.result.billingAccount })" data-ng-bind="$parent.result.billingAccount"></a>
+            <a class="d-block"
+                data-ui-sref="telecom.telephony.billingAccount({ billingAccount: $parent.result.billingAccount })"
+                data-ng-bind="$parent.result.billingAccount"></a>
             <div>
-                <small data-ng-bind="$parent.result.description || 'No description'"></small>
+                <small data-ng-bind="$parent.result.description || ( 'telecom_search_no_description' | translate ) "></small>
+            </div>
+        </telecom-search-results>
+        <telecom-search-results
+            class="d-block mt-4"
+            title="{{ ::'telecom_search_sms' | translate }}"
+            results="$ctrl.results.sms">
+            <a class="d-block"
+                data-ui-sref="sms.service.dashboard({ serviceName: $parent.result.name })"
+                data-ng-bind="$parent.result.name"></a>
+            <div>
+                <small data-ng-bind="$parent.result.description || ( 'telecom_search_no_description' | translate ) "></small>
+            </div>
+        </telecom-search-results>
+        <telecom-search-results
+            class="d-block mt-4"
+            title="{{ ::'telecom_search_freefax' | translate }}"
+            results="$ctrl.results.freefax">
+            <a class="d-block"
+                data-ui-sref="freefaxes.freefax({ serviceName: $parent.result.number })"
+                data-ng-bind="$parent.result.number"></a>
+            <div>
+                <small data-ng-bind="$parent.result.fromName || ( 'telecom_search_no_description' | translate ) "></small>
+            </div>
+        </telecom-search-results>
+        <telecom-search-results
+            class="d-block mt-4"
+            title="{{ ::'telecom_search_overthebox' | translate }}"
+            results="$ctrl.results.overTheBox">
+            <a class="d-block"
+                data-ui-sref="overTheBoxes.overTheBox.details({ serviceName: $parent.result.serviceName })"
+                data-ng-bind="$parent.result.serviceName"></a>
+            <div>
+                <small data-ng-bind="$parent.result.customerDescription || ( 'telecom_search_no_description' | translate ) "></small>
             </div>
         </telecom-search-results>
     </div>
