@@ -11910,6 +11910,13 @@ ovh-ui-kit@^2.35.3:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
+ovh-ui-kit@^2.36.1:
+  version "2.36.1"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.36.1.tgz#ac39276e6e2a22f27f9489cb1c171dc7802ffaed"
+  integrity sha512-OO7VSMBa1ZHYzG6kyFTZRih1ujJ2fMpvDsBz6wKvIqHaWsrFMeUKNO9JN1pCH5bDtYT8K0o7QsIuKibtFUAjjw==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
 "ovh-ui-kit@git+https://github.com/ovh-ux/ovh-ui-kit.git":
   version "0.0.0"
   resolved "git+https://github.com/ovh-ux/ovh-ui-kit.git#1b4b27fc073ab81fe1c8f24f115ebb7af31e5d6e"

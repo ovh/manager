@@ -11,6 +11,8 @@ import creationFormComponent from './creation-form/creation-form.component';
 import feedback from './feedback';
 import issuesSelectorComponent from './issues-selector/issues-selector.component';
 import issuesFormComponent from './issues-form/issues-form.component';
+import issuesFormResourcesComponent from './issues-form/resources/resources.component';
+import issuesFormService from './issues-form/issues-form.service';
 import { name as serviceName, definition as serviceDefinition } from './new-ticket.service';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -27,14 +29,21 @@ angular
   ])
   .component(component.name, component)
   .component(creationFormComponent.name, creationFormComponent)
+  .component(issuesFormResourcesComponent.name, issuesFormResourcesComponent)
   .component(issuesSelectorComponent.name, issuesSelectorComponent)
   .component(issuesFormComponent.name, issuesFormComponent)
   .run(/* @ngTranslationsInject:json ./translations */)
   .service(serviceName, serviceDefinition)
+  .service('IssueForm', issuesFormService)
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state({
       name: 'support.tickets.new',
       params: {
+        categoryName: {
+          value: null,
+          type: 'string',
+          squash: true,
+        },
         serviceName: {
           value: null,
           type: 'string',
@@ -48,6 +57,7 @@ angular
       },
       resolve: {
         goToTickets: /* @ngInject */ $state => () => $state.go('support.tickets'),
+        categoryName: /* @ngInject */ $transition$ => $transition$.params().categoryName,
         serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
         serviceTypeName: /* @ngInject */ $transition$ => $transition$.params().serviceTypeName,
         urls: /* @ngInject */ (OvhApiMe, CORE_URLS) => OvhApiMe.v6()
@@ -56,7 +66,7 @@ angular
             forum: get(CORE_URLS, `forum.${me.ovhSubsidiary}`),
           })),
       },
-      url: '/new?serviceName&serviceTypeName',
+      url: '/new?categoryName&serviceName&serviceTypeName',
       views: {
         'support@support': component.name,
       },
