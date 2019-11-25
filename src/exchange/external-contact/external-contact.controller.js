@@ -25,8 +25,6 @@ angular.module('Module.exchange.controllers').controller(
       this.contacts = null;
       this.filter = null;
 
-      this.debouncedRetrieveAccounts = _.debounce(this.loadContacts, 300);
-
       $scope.$on(Exchange.events.externalcontactsChanged, () => $scope.$broadcast('paginationServerSide.reload', 'externalContactsTable'));
 
       $scope.getContacts = () => this.contacts;
@@ -35,7 +33,7 @@ angular.module('Module.exchange.controllers').controller(
     }
 
     onSearchValueChange() {
-      this.debouncedRetrieveAccounts();
+      this.loadContacts();
     }
 
     loadContacts(count, offset) {

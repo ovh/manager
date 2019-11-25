@@ -1622,7 +1622,21 @@ angular.module('Module.exchange.services').service(
             exchangeService: name,
           },
         },
-      ).then(this.getSuccessDataOrReject);
+      );
+    }
+
+    updateExchangeServer(organization, name, data) {
+      return this.services.OvhHttp.put(
+        '/email/exchange/{organizationName}/service/{exchangeService}/server',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            organizationName: organization,
+            exchangeService: name,
+          },
+          data,
+        },
+      );
     }
 
     /**

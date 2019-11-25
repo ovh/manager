@@ -43,6 +43,7 @@ angular.module('Module.exchange.controllers').controller(
           }
 
           this.tabs.push('DIAGNOSTIC');
+          this.tabs.push('SECURITY');
           this.selectedTab = 'INFORMATION';
           this.dropdownMenuItems = {
             title: $translate.instant('navigation_more'),
@@ -81,13 +82,13 @@ angular.module('Module.exchange.controllers').controller(
             {
               type: 'SEPARATOR',
             },
-            {
-              label: $translate.instant('exchange_action_configuration'),
+            /* {
+             label: $translate.instant('exchange_action_configuration'),
               type: 'ACTION',
               fn: () => {
                 navigation.setAction('exchange/configure/service-configure');
               },
-            },
+            }, */
           );
         }
 

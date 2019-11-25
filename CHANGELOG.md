@@ -1,3 +1,21 @@
+## [9.4.9](https://github.com/ovh-ux/ovh-module-exchange/compare/v9.4.8...v9.4.9) (2019-10-08)
+
+
+### Bug Fixes
+
+* **exchange:** prevent infinite api calls on search ([ab1b767](https://github.com/ovh-ux/ovh-module-exchange/commit/ab1b767))
+
+
+
+## [9.4.8](https://github.com/ovh-ux/ovh-module-exchange/compare/v9.4.7...v9.4.8) (2019-09-23)
+
+
+### Bug Fixes
+
+* **group:** remove debounce ([8bb1d9a](https://github.com/ovh-ux/ovh-module-exchange/commit/8bb1d9a))
+
+
+
 ## [9.4.7](https://github.com/ovh-ux/ovh-module-exchange/compare/v9.4.6...v9.4.7) (2019-08-21)
 
 

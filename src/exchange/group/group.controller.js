@@ -25,7 +25,6 @@ angular.module('Module.exchange.controllers').controller(
       $scope.$on('showGroups', () => this.displayGroups());
       $scope.$on('showManagers', () => this.displayManagersByGroup());
       $scope.$on('showMembers', () => this.displayMembersByGroup());
-      this.debouncedGetMailingLists = _.debounce(this.getMailingLists, 300);
 
       $scope.getLoading = () => this.getLoading();
       $scope.getMailingListObjects = () => this.getMailingListObjects();
@@ -33,7 +32,7 @@ angular.module('Module.exchange.controllers').controller(
     }
 
     onSearchValueChange() {
-      this.debouncedGetMailingLists();
+      this.getMailingLists();
     }
 
     displayGroups() {

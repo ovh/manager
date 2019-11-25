@@ -13,6 +13,7 @@
    <translation id="exchange_accountCreationMethods_ordering" qtlid="8302">Commande</translation>
    <translation id="exchange_all_domains" qtlid="127372">Tous les domaines</translation>
    <translation id="exchange_common_confirm" qtlid="26047">Valider</translation>
+   <translation id="exchange_common_save_modification">Enregistrer les modifications</translation>
    <translation id="exchange_common_cancel" qtlid="37863">Annuler</translation>
 
 <!-- ########################################## -->
@@ -104,6 +105,7 @@
    <translation id="exchange_tab_TASKS" qtlid="136217">Tâches récentes</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACT" qtlid="82015">Contacts externes</translation>
    <translation id="exchange_tab_DIAGNOSTIC" qtlid="136282">Diagnostics</translation>
+   <translation id="exchange_tab_SECURITY">Sécurité</translation>
 
 <!-- ########################################## -->
 
@@ -141,6 +143,7 @@
    <translation id="exchange_tab_ACCOUNTS_table_group" qtlid="59507">Groupe</translation>
    <translation id="exchange_tab_ACCOUNTS_table_outlook" qtlid="24427">Outlook</translation>
    <translation id="exchange_tab_ACCOUNTS_table_status" qtlid="26443">Statut</translation>
+   <translation id="exchange_tab_ACCOUNTS_table_mfa">Double facteur d'authentification</translation>
    <translation id="exchange_tab_ACCOUNTS_table_settings" qtlid="4406">Configuration</translation>
    <translation id="exchange_tab_ACCOUNTS_type_ALL" qtlid="69173">Tous</translation>
    <translation id="exchange_tab_ACCOUNTS_type_BASIC" qtlid="48986">Basic</translation>
@@ -180,6 +183,11 @@
    <translation id="exchange_tab_ACCOUNTS_menu_alias" qtlid="485801">Gérer les alias</translation>
    <translation id="exchange_tab_ACCOUNTS_menu_delegations" qtlid="288782">Gérer les délégations</translation>
    <translation id="exchange_tab_ACCOUNTS_menu_exportToPST" qtlid="485814">Exporter au format PST</translation>
+   <translation id="exchange_tab_ACCOUNTS_menu_mfa_ENABLE">Activer la double authentification</translation>
+   <translation id="exchange_tab_ACCOUNTS_menu_mfa_DISABLE">Désactiver la double authentification</translation>
+   <translation id="exchange_tab_ACCOUNTS_menu_mfa_DELETE">Supprimer la double authentification</translation>
+   <translation id="exchange_tab_ACCOUNTS_menu_mfa_RESET">Réinitialiser la double authentification</translation>
+
    <translation id="exchange_tab_ACCOUNTS_menu_upgradeTo300Gb" qtlid="485827">Augmenter la capacité à 300 {0}</translation>
    <translation id="exchange_tab_ACCOUNTS_menu_contactSupportForSpam" qtlid="61824">Débloquer</translation>
    <translation id="exchange_tab_ACCOUNTS_menu_outlook_activate" qtlid="397416">Activer la licence Outlook</translation>
@@ -213,6 +221,9 @@
    <translation id="exchange_tab_ACCOUNTS_popover_span_title" qtlid="277676">Compte bloqué SPAM</translation>
    <translation id="exchange_tab_ACCOUNTS_popover_span_text" qtlid="277689">L'envoi d'e-mail à partir de ce compte a été bloqué pour cause de SPAM. <br />Afin de débloquer ce compte, il est nécessaire de répondre au ticket en attente.<br /><br /><a href="{0}" class="link pull-right">Répondre au ticket</a><br /></translation>
 
+   <translation id="exchange_tab_ACCOUNTS_table_mfa_ENABLED" qtlid="62028">Activée</translation>
+   <translation id="exchange_tab_ACCOUNTS_table_mfa_NOT_CREATED" qtlid="125084">Désactivée</translation>
+   <translation id="exchange_tab_ACCOUNTS_table_mfa_DISABLED" qtlid="125084">Désactivée</translation>
 <!-- ########################################## -->
 <!-- ALIAS -->
    <translation id="exchange_tab_ALIAS_back_button" qtlid="485879">Gestion des alias pour {0}</translation>
@@ -1199,6 +1210,8 @@ Exchange&#160;: profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync
 
 <!-- ########################################## -->
 <!-- CONFIGURE SERVICE -->
+   <translation id="exchange_ACTION_configure_services_label_mfa">Double authentification</translation>
+   <translation id="exchange_ACTION_configure_services_label_account_locker">Vérouillage des comptes</translation>
    <translation id="exchange_ACTION_configure_services_label_lockoutDuration" qtlid="179706">Durée de verrouillage</translation>
    <translation id="exchange_ACTION_configure_services_label_lockoutObservationWindow" qtlid="179719">Délai de réinitialisation</translation>
    <translation id="exchange_ACTION_configure_services_label_lockoutThreshold" qtlid="179732">Seuil de verrouillage</translation>
@@ -1260,7 +1273,6 @@ Exchange&#160;: profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync
    <translation id="lockoutDuration_required_error" qtlid="192019">Champs obligatoire</translation>
    <translation id="lockoutDuration_pattern_error" qtlid="178042">La durée du verrouillage doit être un nombre entier.</translation>
    <translation id="exchange_ACTION_configure_success" qtlid="178263">Les modifications vont être prises en compte</translation>
-   <translation id="exchange_ACTION_configure_error" qtlid="178276">Erreur lors de la requête, les modifications ne seront pas appliquées</translation>
    <translation id="exchange_ACTION_configure_step2_intro" qtlid="434668">Récapitulatif de configuration pour votre service Exchange <strong>{0}</strong></translation>
    <translation id="exchange_ACTION_configure_step2_label_lockoutDuration" qtlid="178302">Durée de verrouillage du compte :</translation>
    <translation id="exchange_ACTION_configure_step2_label_lockoutObservationWindow" qtlid="178315">Fenêtre d’observation pour le verrouillage :</translation>
@@ -1306,7 +1318,7 @@ Exchange&#160;: profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync
    <translation id="minPasswordLength_unit_value_1" qtlid="178523">1 caractère</translation>
    <translation id="minPasswordLength_unit_value_many" qtlid="178536">{0} caractères</translation>
    <translation id="exchange_ACTION_configure_success" qtlid="176700">Les modifications seront prises en compte</translation>
-   <translation id="exchange_ACTION_configure_error" qtlid="178276">Erreur lors de la requête, les modifications ne seront pas appliquées</translation>
+   <translation id="exchange_ACTION_configure_error" qtlid="178276">Erreur lors de la requête, les modifications ne seront pas appliquées : {{ error }}</translation>
    <translation id="exchange_ACTION_configure_services_password_expire" qtlid="175114">L'utilisateur devra changer son mot de passe immédiatement</translation>
    <translation id="exchange_ACTION_configure_services_password_never_expire" qtlid="175127">Le mot de passe sera toujours valide</translation>
    <translation id="exchange_ACTION_configure_services_never_block" qtlid="176713">Le compte ne sera jamais verrouillé</translation>
@@ -1321,23 +1333,25 @@ Exchange&#160;: profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync
    <translation id="exchange_ACTION_sending" qtlid="71009">Envoi en cours...</translation>
    <translation id="exchange_ACTION_configure_help_title" qtlid="178614">Configuration service Exchange</translation>
    <translation id="exchange_ACTION_configure_help_lockoutThreshold_title" qtlid="177990">Seuil de verrouillage du compte</translation>
-   <translation id="exchange_ACTION_configure_help_lockoutThreshold_text" qtlid="178627">Ce paramètre de sécurité détermine le nombre de tentatives d'ouverture de session infructueuses qui provoque le verrouillage d'un compte utilisateur. Un compte verrouillé ne peut pas être utilisé jusqu'à sa réinitialisation par un administrateur ou jusqu'à ce que la durée de verrouillage du compte soit expirée. Vous pouvez définir une valeur comprise entre 1 et 14 tentatives d'ouverture de session infructueuses. Si vous définissez la valeur sur 0, le compte ne se verrouille jamais.</translation>
+   <translation id="exchange_ACTION_configure_help_mfa_text"><p>Cette fonctionnalité vous permet d'activer ou de désactiver la double authentification pour <strong>l'ensemble de votre service Exchange</strong>.</p><p>
+L'utilisateur final devra télécharger une application d'authification (Microsoft Authenticator, Google Authenticator, Authy...), scanner le QR code affiché à la prochaine connexion à son compte exchange, puis saisir le code fourni.</p><p>Une fois la fonctionnalité activée sur votre service, vous pourrez l'activer sur les comptes désirés dans la section comptes e-mail.</p></translation>
+   <translation id="exchange_ACTION_configure_help_lockoutThreshold_text" qtlid="178627"><p>Ce paramètre de sécurité détermine le nombre de tentatives d'ouverture de session infructueuses qui provoque le verrouillage d'un compte utilisateur.</p><p>Un compte verrouillé ne peut pas être utilisé jusqu'à sa réinitialisation par un administrateur ou jusqu'à ce que la durée de verrouillage du compte soit expirée. Vous pouvez définir une valeur comprise entre 1 et 14 tentatives d'ouverture de session infructueuses.</p><p><strong>Si vous définissez la valeur sur 0, le compte ne se verrouille jamais.</strong></p></translation>
    <translation id="exchange_ACTION_configure_help_lockoutDuration_title" qtlid="178640">Durée de verrouillage des comptes</translation>
-   <translation id="exchange_ACTION_configure_help_lockoutDuration_text" qtlid="178653">Ce paramètre de sécurité détermine le nombre de minutes durant lequel un compte reste verrouillé avant d'être déverrouillé automatiquement. La plage disponible s'étend de 1 à 90 minutes.<br/>Si le seuil de verrouillage d'un compte est défini, la durée de verrouillage des comptes doit être supérieure ou égale à la durée de réinitialisation.</translation>
+   <translation id="exchange_ACTION_configure_help_lockoutDuration_text" qtlid="178653"><p>Ce paramètre de sécurité détermine le nombre de minutes durant lequel un compte reste verrouillé avant d'être déverrouillé automatiquement.</p><p> La plage disponible s'étend de 1 à 90 minutes.</p><p><strong>Si le seuil de verrouillage d'un compte est défini, la durée de verrouillage des comptes doit être supérieure ou égale à la durée de réinitialisation.</strong></p></translation>
    <translation id="exchange_ACTION_configure_help_lockoutObservationWindow_title" qtlid="178666">Délai de réinitialisation du compteur de verrouillages</translation>
-   <translation id="exchange_ACTION_configure_help_lockoutObservationWindow_text" qtlid="178679">Ce paramètre de sécurité détermine le nombre de minutes qui doivent s'écouler après une tentative d'ouverture de session infructueuse pour que le compteur de tentatives d'ouverture de session infructueuses soit remis à zéro. La plage disponible s'étend de 1 minute à 90 minutes.<br/>Si le seuil de verrouillage d'un compte est défini, le délai avant réinitialisation doit être inférieur ou égal à la durée de verrouillage des comptes.</translation>
+   <translation id="exchange_ACTION_configure_help_lockoutObservationWindow_text" qtlid="178679"><p>Ce paramètre de sécurité détermine le nombre de minutes qui doivent s'écouler après une tentative d'ouverture de session infructueuse pour que le compteur de tentatives d'ouverture de session infructueuses soit remis à zéro.</p><p>La plage disponible s'étend de 1 minute à 90 minutes.</p><p><strong>Si le seuil de verrouillage d'un compte est défini, le délai avant réinitialisation doit être inférieur ou égal à la durée de verrouillage des comptes.</strong></p></translation>
    <translation id="exchange_ACTION_configure_help_complexityEnabled_title" qtlid="178003">Exigences de complexité</translation>
    <translation id="exchange_ACTION_configure_help_complexityEnabled_text" qtlid="178692">Ce paramètre de sécurité détermine si les mots de passe doivent respecter des exigences de complexité.<br/>Si cette stratégie est activée, les mots de passe doivent respecter les exigences minimales suivantes : <ul><li>Ne pas contenir tout ou partie du nom du compte de l'utilisateur</li> <li>Avoir une longueur d'au moins 6 caractères</li> <li>Contenir des caractères de trois des quatre catégories suivantes : <ol><li>Caractères majuscules de l'alphabet anglais (A à Z)</li> <li>Caractères minuscules de l'alphabet anglais (a à z)</li> <li>Chiffres de la base 10 (0 à 9)</li> <li>Caractères non alphabétiques (par exemple, !, $, #, %)</li></ol></li> </ul>Les exigences de complexité sont appliquées quand les mots de passe sont modifiés ou créés.</translation>
    <translation id="exchange_ACTION_configure_help_minPasswordAge_title" qtlid="178705">Durée de vie minimale des mots de passe</translation>
-   <translation id="exchange_ACTION_configure_help_minPasswordAge_text" qtlid="178718">Ce paramètre détermine la période de temps (en jours) durant laquelle un mot de passe doit être utilisé avant que l'utilisateur puisse le modifier. Vous pouvez définir une valeur comprise entre 1 et 90 jours ou bien vous pouvez autoriser immédiatement des modifications en définissant ce nombre de jours sur la valeur 0.</translation>
+   <translation id="exchange_ACTION_configure_help_minPasswordAge_text" qtlid="178718"><p>Ce paramètre détermine la période de temps (en jours) durant laquelle un mot de passe doit être utilisé avant que l'utilisateur puisse le modifier.</p><p> Vous pouvez définir une valeur comprise entre 1 et 90 jours ou bien vous pouvez autoriser immédiatement des modifications en définissant ce nombre de jours sur la valeur 0.</p></translation>
    <translation id="exchange_ACTION_configure_help_maxPasswordAge_title" qtlid="178731">Durée de vie maximale des mots de passe</translation>
-   <translation id="exchange_ACTION_configure_help_maxPasswordAge_text" qtlid="181578">Ce paramètre de sécurité détermine la période de temps (en jours) durant laquelle un mot de passe peut être utilisé avant que le système ne demande à l'utilisateur de le modifier. Vous pouvez définir ce paramètre pour que les mots de passe expirent après un nombre de jours compris entre 1 et 90 ou vous pouvez spécifier que les mots de passe ne doivent jamais expirer en définissant le nombre de jours sur la valeur 0. Si la durée de vie maximale du mot de passe est comprise entre 1 et 90 jours, la durée de vie minimale des mots de passe doit être inférieure à la durée de vie maximale de celui-ci. Si la durée de vie maximale du mot de passe est définie sur la valeur 0, la durée de vie minimale peut être définie sur n'importe quelle valeur comprise entre 0 et 90 jours.</translation>
+   <translation id="exchange_ACTION_configure_help_maxPasswordAge_text" qtlid="181578"><p>Ce paramètre de sécurité détermine la période de temps (en jours) durant laquelle un mot de passe peut être utilisé avant que le système ne demande à l'utilisateur de le modifier.</p><p>Vous pouvez définir ce paramètre pour que les mots de passe expirent après un nombre de jours compris entre 1 et 90 ou vous pouvez spécifier que les mots de passe ne doivent jamais expirer en définissant le nombre de jours sur la valeur 0.</p><p>Si la durée de vie maximale du mot de passe est comprise entre 1 et 90 jours, la durée de vie minimale des mots de passe doit être inférieure à la durée de vie maximale de celui-ci.</p><p> Si la durée de vie maximale du mot de passe est définie sur la valeur 0, la durée de vie minimale peut être définie sur n'importe quelle valeur comprise entre 0 et 90 jours.</p></translation>
    <translation id="exchange_ACTION_configure_help_minPasswordLength_title" qtlid="174828">Longueur minimale du mot de passe</translation>
-   <translation id="exchange_ACTION_configure_help_minPasswordLength_text" qtlid="178757">Ce paramètre de sécurité détermine le nombre minimal de caractères que peut contenir un mot de passe pour un compte d'utilisateur. Vous pouvez définir une valeur comprise entre 3 et 14 caractères ou bien vous pouvez indiquer qu'un mot de passe n'est pas requis en définissant ce nombre de caractères à 0.</translation>
+   <translation id="exchange_ACTION_configure_help_minPasswordLength_text" qtlid="178757"><p>Ce paramètre de sécurité détermine le nombre minimal de caractères que peut contenir un mot de passe pour un compte d'utilisateur.</p><p>Vous pouvez définir une valeur comprise entre 3 et 14 caractères ou bien vous pouvez indiquer qu'un mot de passe n'est pas requis en définissant ce nombre de caractères à 0.</p></translation>
    <translation id="exchange_ACTION_configure_help_spf_title" qtlid="402516">SPF :</translation>
-   <translation id="exchange_ACTION_configure_help_spf_text" qtlid="402529">Le SPF vise à réduire les possibilités d'usurpation en publiant dans la zone DNS, un enregistrement indiquant quelles adresses IP sont autorisées ou non à envoyer des e-mails. En activant cette option un tag SPAM serra mis sur les e-mails provenant de domaine avec un SPF incorrecte.</translation>
+   <translation id="exchange_ACTION_configure_help_spf_text" qtlid="402529"><p>Le SPF vise à réduire les possibilités d'usurpation en publiant dans la zone DNS, un enregistrement indiquant quelles adresses IP sont autorisées ou non à envoyer des e-mails.</p><p><strong>En activant cette option un tag SPAM serra mis sur les e-mails provenant de domaine avec un SPF incorrecte.</strong></p></translation>
    <translation id="exchange_ACTION_configure_help_dkim_title" qtlid="402542">DKIM :</translation>
-   <translation id="exchange_ACTION_configure_help_dkim_text" qtlid="402555">Une signature DKIM vérifie l'authenticité du domaine expéditeur et garantit l'intégrité du message grâce à une clé publiée dans la zone DNS. En activant cette option un tag SPAM serra mis sur les e-mails provenant de domaine avec un DKIM incorrecte.</translation>
+   <translation id="exchange_ACTION_configure_help_dkim_text" qtlid="402555"><p>Une signature DKIM vérifie l'authenticité du domaine expéditeur et garantit l'intégrité du message grâce à une clé publiée dans la zone DNS.</p> <p><strong>En activant cette option un tag SPAM serra mis sur les e-mails provenant de domaine avec un DKIM incorrecte.</strong></p></translation>
    <translation id="exchange_ACTION_configure_help_spam_title" qtlid="402568">Tag Spam :</translation>
    <translation id="exchange_ACTION_configure_help_spam_text" qtlid="402581">Applique un tag sur un e-mail détecté comme SPAM, ce qui vous permet ensuite de créer une règle de messagerie afin de le supprimer ou de le déplacer dans un dossier spécifique.</translation>
    <translation id="exchange_ACTION_configure_help_putinjunk_title" qtlid="402594">Déplacer les messages indésirables :</translation>
@@ -1677,4 +1691,20 @@ Exchange&#160;: profitez de 50 Go de stockage, des protocoles MAPI et ActiveSync
 
    <translation id="exchange_table_manage_entry" qtlid="404395">: gérer</translation>
    <translation id="sharepoint_activate_which_service_label" qtlid="297592">Serveur Exchange à associer</translation>
+
+   <translation id="exchange_mfa_description_ENABLE">Êtes-vous sûr de vouloir activer la double authentification pour le compte <strong>{{account}}</strong>?</translation>
+   <translation id="exchange_mfa_description_DELETE">Êtes-vous sûr de vouloir supprimer la double authentification pour le compte <strong>{{account}}</strong>?</translation>
+   <translation id="exchange_mfa_description_DISABLE">Êtes-vous sûr de vouloir désactiver la double authentification pour le compte <strong>{{account}}</strong> ?</translation>
+   <translation id="exchange_mfa_description_DISABLE_period">Période de désactivation de la double authentification : </translation>
+   <translation id="exchange_mfa_description_DISABLE_period_help">durée en heures</translation>
+   <translation id="exchange_mfa_description_RESET">Êtes-vous sûr de vouloir réinitialiser la double authentification pour le compte <strong>{{account}}</strong> ?</translation>
+   <translation id="exchange_enable_mfa_error">Une erreur est survenue lors de l'activation de la double authentification : {{error}}</translation>
+   <translation id="exchange_enable_mfa_success">La double authentification a été activée avec succès.</translation>
+   <translation id="exchange_disable_mfa_error">Une erreur est survenue lors de la désactivation de la double authentification : {{error}}</translation>
+   <translation id="exchange_disable_mfa_success">La double authentification a été désactivée avec succès.</translation>
+   <translation id="exchange_reset_mfa_error">Une erreur est survenue lors de la réinitialisation de la double authentification : {{error}}</translation>
+   <translation id="exchange_reset_mfa_success">La double authentification a été réinitialisé avec succès.</translation>
+   <translation id="exchange_mfa_error">Une erreur est survenue : {{error}}</translation>
+   <translation id="exchange_delete_mfa_success">La double authentification a été supprimée avec succès.</translation>
+   <translation id="exchange_delete_mfa_error">Une erreur est survenue lors de la suppression de la double authentification : {{error}}</translation>
 </translations>

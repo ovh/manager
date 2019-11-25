@@ -36,7 +36,9 @@
         .then(() => this.fetchingCanActivateOfficeAttach())
         .catch((error) => {
           this.messaging.writeError(
-            this.$translate.instant('exchange_ACTION_configure_error'),
+            this.$translate.instant('exchange_ACTION_configure_error', {
+              error: error.message,
+            }),
             error,
           );
         })

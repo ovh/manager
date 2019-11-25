@@ -34,8 +34,6 @@ angular.module('Module.exchange.controllers').controller(
 
       $scope.$on(Exchange.events.publicFoldersChanged, () => $scope.$broadcast('paginationServerSide.reload', 'publicFoldersTable'));
 
-      this.debouncedRetrievingMailingLists = _.debounce(this.retrievingMailingLists, 300);
-
       $scope.retrievingMailingLists = (count, offset) => this.retrievingMailingLists(count, offset);
       $scope.getPublicFoldersList = () => this.publicFoldersList;
       $scope.getLoading = () => this.loading;
@@ -43,7 +41,7 @@ angular.module('Module.exchange.controllers').controller(
     }
 
     onSearch() {
-      this.debouncedRetrievingMailingLists();
+      this.retrievingMailingLists();
     }
 
     retrievingMailingLists(count, offset) {
