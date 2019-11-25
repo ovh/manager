@@ -221,7 +221,7 @@ export const MICROSOFT_CONFIG = {
         },
       ],
       loadOnState: 'app.microsoft.sharepoint',
-      icon: 'ms-Icon ms-Icon--ExchangeLogo',
+      icon: 'ms-Icon ms-Icon--SharepointLogo',
       app: [WEB],
     },
   ],
