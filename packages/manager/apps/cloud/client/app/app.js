@@ -8,6 +8,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
@@ -56,6 +57,7 @@ angular.module('managerApp', [
   ngAtInternet,
   ngAtInternetUiRouterPlugin,
   ngOvhApiWrappers,
+  ngOvhBrowserAlert,
   ngOvhChatbot,
   ngOvhCheckboxTable,
   ngOvhDocUrl,
@@ -95,7 +97,6 @@ angular.module('managerApp', [
   ngOvhSlider,
   ngTailLogs,
   'matchmedia-ng',
-  'ovhBrowserAlert',
   'angular-websocket',
   'angular-translate-loader-pluggable',
 
