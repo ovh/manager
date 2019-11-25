@@ -209,7 +209,10 @@
                 </span>
                 <span
                     data-ng-if="$row.hasAutomaticRenewal() && !$row.isOneShot() && !$row.hasDebt() && !$row.isResiliated() && !$row.hasPendingResiliation()"
-                    data-ng-bind="$ctrl.getAutomaticExpirationDate($row)">
+                    data-translate="billing_autorenew_service_date_expiry"
+                    data-translate-values="{
+                        date: $ctrl.getAutomaticExpirationDate($row)
+                    }">
                 </span>
             </oui-column>
             <!-- /Columns -->

@@ -59,6 +59,7 @@
   "billing_autorenew_service_date_now": "Immédiatement",
   "billing_autorenew_service_date_before": "Avant le {{ date }}",
   "billing_autorenew_service_date_renew": "Le {{ date }}",
+  "billing_autorenew_service_date_expiry": "Le {{ date }}",
   "billing_autorenew_service_expiration_date": "Expire le",
 
   "autorenew_service_after_expiration_date": "Expiré le",

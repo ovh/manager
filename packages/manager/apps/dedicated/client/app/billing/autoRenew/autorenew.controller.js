@@ -213,7 +213,7 @@ export default class AutorenewCtrl {
   getAutomaticExpirationDate(service) {
     return upperFirst(
       new Intl.DateTimeFormat(
-        this.$translate.use().replace('_', '-'), { year: 'numeric', month: 'long' },
+        this.$translate.use().replace('_', '-'), { year: 'numeric', month: 'long', day: 'numeric' },
       ).format(new Date(service.expiration)),
     );
   }
