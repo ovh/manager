@@ -104,18 +104,15 @@
                     <div class="form-group">
                         <label class="control-label service-title"
                                data-translate="xdsl_modem_wifi_config_wifi"></label>
-                        <div class="btn-group d-block clearfix mb-3">
-                            <label class="btn btn-default"
-                                   data-ng-model="ConfigWifiCtrl.wifi.enabled"
-                                   data-uib-btn-radio="true"
-                                   data-translate="common_yes_capitalized">
-                            </label>
-
-                            <label class="btn btn-default"
-                                   data-ng-model="ConfigWifiCtrl.wifi.enabled"
-                                   data-uib-btn-radio="false"
-                                   data-translate="common_no_capitalized">
-                            </label>
+                        <div class="mb-3">
+                            <oui-radio-toggle-group data-model="ConfigWifiCtrl.wifi.enabled">
+                                <oui-radio data-value="true">
+                                    <span data-translate="common_yes_capitalized"></span>
+                                </oui-radio>
+                                <oui-radio data-value="false">
+                                    <span data-translate="common_no_capitalized"></span>
+                                </oui-radio>
+                            </oui-radio-toggle-group>
                         </div>
                     </div> <!-- End of Enabling Wifi -->
 
@@ -186,18 +183,15 @@
                                   aria-hidden="true">
                             </span>
                         </label>
-                        <div class="btn-group d-block clearfix mb-3">
-                            <label class="btn btn-default"
-                                   data-ng-model="ConfigWifiCtrl.wifi.SSIDAdvertisementEnabled"
-                                   data-uib-btn-radio="true"
-                                   data-translate="xdsl_modem_wifi_config_visible">
-                            </label>
-
-                            <label class="btn btn-default"
-                                   data-ng-model="ConfigWifiCtrl.wifi.SSIDAdvertisementEnabled"
-                                   data-uib-btn-radio="false"
-                                   data-translate="xdsl_modem_wifi_config_hidden">
-                            </label>
+                        <div class="mb-3">
+                            <oui-radio-toggle-group data-model="ConfigWifiCtrl.wifi.SSIDAdvertisementEnabled">
+                                <oui-radio data-value="true">
+                                    <span data-translate="xdsl_modem_wifi_config_visible"></span>
+                                </oui-radio>
+                                <oui-radio data-value="false">
+                                    <span data-translate="xdsl_modem_wifi_config_hidden"></span>
+                                </oui-radio>
+                            </oui-radio-toggle-group>
                         </div>
                     </div> <!-- End of SSID Advertisement -->
 

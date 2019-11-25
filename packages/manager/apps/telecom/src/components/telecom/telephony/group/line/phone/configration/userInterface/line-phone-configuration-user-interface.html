@@ -8,16 +8,15 @@
     </line-phone-configuration>
 
     <!-- SCREEN CHOICE -->
-    <div class="btn-group mb-3"
+    <div class="mb-3"
          data-ng-if="$ctrl.screenPages.length > 1">
-        <button class="btn btn-default"
-                type="button"
-                data-ng-repeat="screen in $ctrl.screenPages track by $index"
-                data-ng-model="$ctrl.currentScreenPage"
-                data-uib-btn-radio="$index"
-                data-translate="telephony_line_phone_configuration_user_interface_screen"
-                data-translate-values="{ number: $index + 1 }">
-        </button>
+        <oui-radio-toggle-group data-model="$ctrl.currentScreenPage">
+            <oui-radio data-ng-repeat="screen in $ctrl.screenPages track by $index"
+                        data-value="$index">
+                <span data-translate="telephony_line_phone_configuration_user_interface_screen"
+                        data-translate-values="{ number: $index + 1 }"></span>
+            </oui-radio>
+        </oui-radio-toggle-group>
     </div>
 
     <!-- CONSULT MODE -->

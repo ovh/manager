@@ -63,21 +63,16 @@
                     <label class="service-title"
                            data-translate="telephony_line_calls_time_condition_params_enable">
                     </label>
-                    <div class="btn-group d-block">
-                        <label class="btn btn-default"
-                               data-ng-model="$ctrl.line.timeCondition.enable"
-                               data-uib-btn-radio="true"
-                               data-ng-disabled="$ctrl.line.timeCondition.status === 'SAVING'"
-                               data-translate="common_yes_capitalized">
-                        </label>
-
-                        <label class="btn btn-default"
-                               data-ng-model="$ctrl.line.timeCondition.enable"
-                               data-uib-btn-radio="false"
-                               data-ng-disabled="$ctrl.line.timeCondition.status === 'SAVING'"
-                               data-translate="common_no_capitalized">
-                        </label>
-                    </div>
+                    <oui-radio-toggle-group data-model="$ctrl.line.timeCondition.enable">
+                        <oui-radio data-value="true"
+                                   data-disabled="$ctrl.line.timeCondition.status === 'SAVING'">
+                            <span data-translate="common_yes_capitalized"></span>
+                        </oui-radio>
+                        <oui-radio data-value="false"
+                                   data-disabled="$ctrl.line.timeCondition.status === 'SAVING'">
+                            <span data-translate="common_no_capitalized"></span>
+                        </oui-radio>
+                    </oui-radio-toggle-group>
                 </div> <!-- END OF ENABLE / DISABLE -->
 
                 <!-- TIMEOUT -->

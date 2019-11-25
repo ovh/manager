@@ -42,15 +42,13 @@
                     <div class="btn-group-vertical w-100"
                          role="group"
                          data-translate-attr="{ 'aria-label': 'telephony_scheduler_bank_holidays_year_aria_label' }">
-                        <button class="btn btn-default"
-                                type="button"
-                                data-ng-class="{ active: SchedulerHolidaysCtrl.model.year === year }"
-                                data-ng-repeat="year in SchedulerHolidaysCtrl.yearList track by $index"
-                                data-ng-model="SchedulerHolidaysCtrl.model.year"
-                                data-uib-btn-radio="'{{ year }}'">
-                            <span data-ng-bind="year"></span>
-                            <span data-ng-bind="'(' + SchedulerHolidaysCtrl.filterEvents(year).length + ')'"></span>
-                        </button>
+                        <oui-radio-toggle-group class="year-list" data-model="SchedulerHolidaysCtrl.model.year">
+                            <oui-radio data-ng-repeat="year in SchedulerHolidaysCtrl.yearList track by $index"
+                                        data-value="year">
+                                <span data-ng-bind="year"></span>
+                                <span data-ng-bind="'(' + SchedulerHolidaysCtrl.filterEvents(year).length + ')'"></span>
+                            </oui-radio>
+                        </oui-radio-toggle-group>
                     </div>
                 </div> <!-- YEAR -->
             </div> <!-- "FILTERS" -->
