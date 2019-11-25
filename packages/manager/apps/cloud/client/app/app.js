@@ -112,6 +112,7 @@ angular.module('managerApp', [
       '/paas/veeam',
       '/iaas/vps',
       '/paas/nasha',
+      '/vrack',
     ];
 
     dedicatedRedirections.forEach((redirectionPrefix) => {

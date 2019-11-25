@@ -6,7 +6,7 @@ export default /* @ngInject */ function (
   $state,
   $rootScope,
   CucCloudMessage,
-  VrackService,
+  CucVrackService,
   OvhApiOrder,
   coreConfig,
 ) {
@@ -55,7 +55,7 @@ export default /* @ngInject */ function (
     self.vrackOrderUrl = null;
 
     const promise = {
-      vrackOrderUrl: VrackService.getOrderUrl(),
+      vrackOrderUrl: CucVrackService.getOrderUrl(),
     };
 
     if (self.region !== 'US') {
