@@ -9,7 +9,9 @@
     <div class="row mt-4" data-ng-if="!$ctrl.hasResults() && $ctrl.rawQuery">
         <div class="col-md-6">
             <strong data-translate="telecom_search_no_result"></strong>
-            <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et laoreet massa. Mauris eu suscipit lorem. Aenean sed ullamcorper neque, quis facilisis nisi. Nunc accumsan gravida nunc in finibus. Morbi ut ipsum ante.</p>
+            <p class="mt-2"
+                data-translate="telecom_search_no_result_content"
+                data-translate-values="{ query: $ctrl.rawQuery }"></p>
         </div>
     </div>
     <div class="container-fluid px-0" data-ng-if="$ctrl.hasResults()">

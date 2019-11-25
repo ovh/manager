@@ -9,5 +9,6 @@
   "telecom_search_freefax": "Fax",
   "telecom_search_overthebox": "OverTheBox",
   "telecom_search_no_result": "Aucun résultat ne correspond à votre recherche",
+  "telecom_search_no_result_content": "Aucun résultat n'a été trouvé pour la recherche \"{{ query }}\".",
   "telecom_search_no_description": "Pas de description"
 }
