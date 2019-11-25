@@ -105,7 +105,7 @@
                         </i>
                         <span data-ng-bind="('hosted_email_detail_server_' + service.type) | translate"></span>
                     </button>
-                    <div data-uib-collapse="!service.visible">
+                    <div data-ng-if="service.visible">
                         <!-- Host -->
                         <div class="row">
                             <div class="col-xs-12 col-md-4 service-title" data-translate="hosted_email_detail_host"></div>

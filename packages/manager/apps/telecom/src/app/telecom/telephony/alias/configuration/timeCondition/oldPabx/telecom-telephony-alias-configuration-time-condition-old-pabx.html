@@ -31,7 +31,7 @@
                     data-ng-click="$ctrl.helpCollapsed = !$ctrl.helpCollapsed"
                     data-translate="{{ $ctrl.helpCollapsed ? 'telephony_alias_configuration_time_condition_need_help' : 'telephony_alias_configuration_time_condition_hide_help'}}">
             </button>
-            <div data-uib-collapse="$ctrl.helpCollapsed"
+            <div data-ng-if="!$ctrl.helpCollapsed"
                  class="mt-1">
                 <p data-translate="telephony_alias_configuration_time_condition_help_1"></p>
                 <p data-translate="telephony_alias_configuration_time_condition_help_2"></p>

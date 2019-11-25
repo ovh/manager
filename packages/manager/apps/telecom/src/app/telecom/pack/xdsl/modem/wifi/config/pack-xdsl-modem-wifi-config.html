@@ -230,7 +230,7 @@
 
                     <!-- securityKey -->
                     <div class="form-group"
-                         data-uib-collapse="ConfigWifiCtrl.wifi.securityType === 'None'"
+                         data-ng-if="ConfigWifiCtrl.wifi.securityType !== 'None'"
                          data-ng-class="{ 'has-error': wifiConfigForm.wifiSecurityKey.$invalid && wifiConfigForm.wifiSecurityKey.$dirty }">
                         <label class="control-label service-title"
                                for="wifiSecurityKey">
@@ -281,7 +281,7 @@
 
                     <!-- confirmSecurityKey -->
                     <div class="form-group"
-                         data-uib-collapse="ConfigWifiCtrl.wifi.securityType === 'None'"
+                         data-ng-if="ConfigWifiCtrl.wifi.securityType !== 'None'"
                          data-ng-class="{ 'has-error': wifiConfigForm.wifiConfirmSecurityKey.$invalid && wifiConfigForm.wifiConfirmSecurityKey.$dirty }">
                         <label class="control-label service-title"
                                for="wifiConfirmSecurityKey"

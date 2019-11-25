@@ -70,7 +70,7 @@
 
                     <!-- DETAILS -->
                     <div class="form-group"
-                         data-uib-collapse="$ctrl.model.reason !== 'other'">
+                         data-ng-if="$ctrl.model.reason === 'other'">
                         <label for="terminateDetails"
                                data-translate="telephony_group_fax_management_terminate_details">
                         </label>

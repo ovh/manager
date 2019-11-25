@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <div class="section-item dtmf-value text-center"
-                         data-uib-collapse="$ctrl.model.singleDigitKey">
+                         data-ng-if="!$ctrl.model.singleDigitKey">
                         <em data-ng-if="!$ctrl.menuEntryCtrl.menuEntry.dtmf"
                             data-translate="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_multi_digit_choose">
                         </em>
