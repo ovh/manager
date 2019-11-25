@@ -7,7 +7,6 @@ import disclaimerRemoveTemplate from './disclaimer/remove/disclaimer-remove.html
 import disclaimerUpdateTemplate from './disclaimer/update/disclaimer-update.html';
 import disclaimerTemplate from './disclaimer/disclaimer.html';
 import disclaimerAddTemplate from './disclaimer/add/disclaimer-add.html';
-import serviceConfigureTemplate from './configure/service-configure.html';
 import groupAliasRemoveTemplate from './group/alias/remove/group-alias-remove.html';
 import groupAliasTemplate from './group/alias/group-alias.html';
 import groupAliasAddTemplate from './group/alias/add/group-alias-add.html';
@@ -79,6 +78,7 @@ import accountOutlookTemplate from './account/outlook/account-outlook.html';
 import accountOutlookAddTemplate from './account/outlook/add/account-outlook-add.html';
 import accountOutlookDeactivateTemplate from './account/outlook/deactivate/account-outlook-deactivate.html';
 import accountOutlookActivateTemplate from './account/outlook/activate/account-outlook-activate.html';
+import accountMfaTemplate from './account/mfa/account-mfa.html';
 import errorMessagesPopoverTemplate from './error-messages.popover.html';
 import resourceRemoveTemplate from './resource/remove/resource-remove.html';
 import resourceUpdateTemplate from './resource/update/resource-update.html';
@@ -96,6 +96,7 @@ import serviceLicenseHistoryTemplate from './header/license/service-license-hist
 import headerTemplate from './header/header.html';
 import billingAccountRenewTemplate from './billing/account-renew/renew.html';
 import exchangeTemplate from './exchange.html';
+import securityTemplate from './security/security.html';
 
 export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/order/order.html', orderTemplate);
@@ -107,7 +108,6 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/disclaimer/update/disclaimer-update.html', disclaimerUpdateTemplate);
   $templateCache.put('exchange/disclaimer/disclaimer.html', disclaimerTemplate);
   $templateCache.put('exchange/disclaimer/add/disclaimer-add.html', disclaimerAddTemplate);
-  $templateCache.put('exchange/configure/service-configure.html', serviceConfigureTemplate);
   $templateCache.put('exchange/group/alias/remove/group-alias-remove.html', groupAliasRemoveTemplate);
   $templateCache.put('exchange/group/alias/group-alias.html', groupAliasTemplate);
   $templateCache.put('exchange/group/alias/add/group-alias-add.html', groupAliasAddTemplate);
@@ -179,6 +179,7 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/account/outlook/add/account-outlook-add.html', accountOutlookAddTemplate);
   $templateCache.put('exchange/account/outlook/deactivate/account-outlook-deactivate.html', accountOutlookDeactivateTemplate);
   $templateCache.put('exchange/account/outlook/activate/account-outlook-activate.html', accountOutlookActivateTemplate);
+  $templateCache.put('exchange/account/mfa/account-mfa.html', accountMfaTemplate);
   $templateCache.put('exchange/error-messages.popover.html', errorMessagesPopoverTemplate);
   $templateCache.put('exchange/resource/remove/resource-remove.html', resourceRemoveTemplate);
   $templateCache.put('exchange/resource/update/resource-update.html', resourceUpdateTemplate);
@@ -196,4 +197,5 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put('exchange/header/header.html', headerTemplate);
   $templateCache.put('exchange/billing/account-renew/billing-account-renew.template.html', billingAccountRenewTemplate);
   $templateCache.put('exchange/exchange.html', exchangeTemplate);
+  $templateCache.put('exchange/security/security.html', securityTemplate);
 };

@@ -46,6 +46,7 @@ export default class ExchangeTabsCtrl {
         }
 
         this.tabs.push('DIAGNOSTIC');
+        this.tabs.push('SECURITY');
         this.selectedTab = 'INFORMATION';
         this.dropdownMenuItems = {
           title: $translate.instant('navigation_more'),
@@ -83,13 +84,6 @@ export default class ExchangeTabsCtrl {
           },
           {
             type: 'SEPARATOR',
-          },
-          {
-            label: $translate.instant('exchange_action_configuration'),
-            type: 'ACTION',
-            fn: () => {
-              navigation.setAction('exchange/configure/service-configure');
-            },
           },
         );
       }

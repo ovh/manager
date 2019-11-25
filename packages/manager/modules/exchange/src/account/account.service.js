@@ -81,6 +81,78 @@ export default class ExchangeAccount {
   }
 
   /**
+   * @param {string} serviceName
+   * @param {object} userPrincipalName
+   */
+  createMfa(serviceName, userPrincipalName) {
+    return this.OvhHttp.post(
+      `/msServices/${serviceName}/account/${userPrincipalName}/mfa`,
+      {
+        rootPath: 'apiv6',
+      },
+    );
+  }
+
+  /**
+   * @param {string} serviceName
+   * @param {object} userPrincipalName
+   */
+  enableMfa(serviceName, userPrincipalName) {
+    return this.OvhHttp.post(
+      `/msServices/${serviceName}/account/${userPrincipalName}/mfa/enable`,
+      {
+        rootPath: 'apiv6',
+        broadcast: this.Exchange.events.accountsChanged,
+      },
+    );
+  }
+
+  /**
+   * @param {string} serviceName
+   * @param {object} userPrincipalName
+   */
+  deleteMfa(serviceName, userPrincipalName) {
+    return this.OvhHttp.delete(
+      `/msServices/${serviceName}/account/${userPrincipalName}/mfa`,
+      {
+        rootPath: 'apiv6',
+        broadcast: this.Exchange.events.accountsChanged,
+      },
+    );
+  }
+
+  /**
+   * @param {string} serviceName
+   * @param {object} userPrincipalName
+   */
+  disableMfa(serviceName, userPrincipalName, period) {
+    return this.OvhHttp.post(
+      `/msServices/${serviceName}/account/${userPrincipalName}/mfa/disable`,
+      {
+        rootPath: 'apiv6',
+        data: {
+          period,
+        },
+        broadcast: this.Exchange.events.accountsChanged,
+      },
+    );
+  }
+
+  /**
+   * @param {string} serviceName
+   * @param {object} userPrincipalName
+   */
+  resetMfa(serviceName, userPrincipalName) {
+    return this.OvhHttp.post(
+      `/msServices/${serviceName}/account/${userPrincipalName}/mfa/reset`,
+      {
+        rootPath: 'apiv6',
+        broadcast: this.Exchange.events.accountsChanged,
+      },
+    );
+  }
+
+  /**
    * @param {object} account
    * @returns {boolean} True if the account can be edited
    */

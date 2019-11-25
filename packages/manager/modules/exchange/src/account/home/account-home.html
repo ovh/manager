@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <p class="text-nowrap">
             <strong data-translate="exchange_tab_INFORMATIONS_webmail"></strong>
 
@@ -64,10 +64,10 @@
                 <div
                     class="oui-progress m-0"
                     data-ng-class=":: {
-                       'oui-progress_success': $value.usage < 51,
-                       'oui-progress_warning': $value.usage > 50 && $value.usage < 81,
-                       'oui-progress_error': $value.usage > 80
-                   }">
+                        'oui-progress_success': $value.usage < 51,
+                        'oui-progress_warning': $value.usage > 50 && $value.usage < 81,
+                        'oui-progress_error': $value.usage > 80
+                    }">
                     <div
                         class="oui-progress__bar oui-progress__bar_text-left"
                         role="progressbar"
@@ -102,7 +102,13 @@
                 data-property="status"
                 data-type="string">
             </oui-column>
-            <oui-action-menu data-compact>
+            <oui-column
+                data-title=":: 'exchange_tab_ACCOUNTS_table_mfa' | translate"
+                data-property="mfa"
+                data-type="boolean">
+                <span data-translate="{{:: 'exchange_tab_ACCOUNTS_table_mfa_' + $value.status | translate}}"></span>
+            </oui-column>
+            <oui-action-menu data-compact align="bottom-end">
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_edit' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/update/account-update', $row)"
@@ -119,6 +125,22 @@
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_exportToPST' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/export-as-pst/account-export-as-pst', $row)"
                     data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{:: 'exchange_tab_ACCOUNTS_menu_mfa_ENABLE' | translate }}"
+                    data-on-click="$ctrl.navigation.setAction('exchange/account/mfa/account-mfa', { account: $row, action: 'ENABLE' })"
+                    data-ng-if="$row.mfa.status !== 'ENABLED'"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{:: 'exchange_tab_ACCOUNTS_menu_mfa_DISABLE' | translate }}"
+                    data-on-click="$ctrl.navigation.setAction('exchange/account/mfa/account-mfa', { account: $row, action: 'DISABLE' })"
+                    data-ng-if="$row.mfa.status === 'ENABLED'"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{:: 'exchange_tab_ACCOUNTS_menu_mfa_RESET' | translate }}"
+                    data-on-click="$ctrl.navigation.setAction('exchange/account/mfa/account-mfa', { account: $row, action: 'RESET' })"
+                    data-ng-if="$row.mfa.status === 'ENABLED'"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-text="{{:: 'exchange_tab_ACCOUNTS_menu_mfa_DELETE' | translate }}"
+                    data-on-click="$ctrl.navigation.setAction('exchange/account/mfa/account-mfa', { account: $row, action: 'DELETE' })"
+                    data-ng-if="$row.mfa.status === 'ENABLED' || $row.mfa.status === 'DISABLED'"></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_upgradeTo300Gb' | translate:{ t0: ('unit_size_GiB'|translate) } }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/upgrade-300g/account-upgrade-300g', $row)"
@@ -167,39 +189,32 @@
                     data-ng-if="$ctrl.exchangeAccount.CAN_DO.DESTRUCTION_METHOD.DELETING()"
                     data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
             </oui-action-menu>
+            <extra-top data-ng-if="!$ctrl.initialLoading" data-ng-disabled="$ctrl.initialAccountRetrieval">
+                <oui-action-menu text="Actions"  align="start">
+                    <oui-action-menu-item
+                        data-text="{{:: 'exchange_ACTION_export_accounts_office_attached_button' | translate}}"
+                        data-ng-if="$ctrl.userCanSubscribeToOfficeAttach"
+                        data-on-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog')">
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-text="{{:: 'exchange_ACTION_add_account_button' | translate}}"
+                        data-ng-if="$ctrl.exchangeAccount.CAN_DO.CREATION_METHOD.ADDING()"
+                        data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
+                        data-on-click="$ctrl.displayAccountAddingView()">
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-text="{{:: 'exchange_ACTION_order_accounts_button' | translate}}"
+                        data-ng-if="$ctrl.exchangeAccount.CAN_DO.CREATION_METHOD.ORDERING()"
+                        data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
+                        data-on-click="$ctrl.openAccountOrderingDialog()">
+                    </oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-text="{{:: 'exchange_ACTION_export_accounts_button' | translate}}"
+                        data-ng-disabled="$ctrl.accounts.count === 0 || $ctrl.accounts.list.messages.length > 0"
+                        data-on-click="$ctrl.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { filterType : $ctrl.filterType, search : $ctrl.search.value, total : $ctrl.accounts.length, exchange : $ctrl.exchange, csvExportType: 'accounts'})">
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </extra-top>
         </oui-datagrid>
     </div>
-
-    <!-- This fieldset is used to disable all buttons for the same conditions -->
-    <fieldset
-        class="col-md-3"
-        data-ng-if="!$ctrl.initialLoading"
-        data-ng-disabled="$ctrl.initialAccountRetrieval">
-        <button
-            class="oui-button oui-button_secondary w-100"
-            type="button"
-            data-translate="exchange_ACTION_export_accounts_office_attached_button"
-            data-ng-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog')"
-            data-ng-if="$ctrl.userCanSubscribeToOfficeAttach"></button>
-        <button
-            class="oui-button oui-button_secondary w-100 mt-2"
-            type="button"
-            data-ng-click="$ctrl.displayAccountAddingView()"
-            data-translate="exchange_ACTION_add_account_button"
-            data-ng-if="$ctrl.exchangeAccount.CAN_DO.CREATION_METHOD.ADDING()"
-            data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"></button>
-        <button
-            class="oui-button oui-button_secondary w-100 mt-2"
-            type="button"
-            data-ng-click="$ctrl.openAccountOrderingDialog()"
-            data-translate="exchange_ACTION_order_accounts_button"
-            data-ng-if="$ctrl.exchangeAccount.CAN_DO.CREATION_METHOD.ORDERING()"
-            data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"></button>
-        <button
-            class="oui-button oui-button_secondary w-100 mt-2"
-            type="button"
-            data-ng-click="$ctrl.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { filterType : $ctrl.filterType, search : $ctrl.search.value, total : $ctrl.accounts.length, exchange : $ctrl.exchange, csvExportType: 'accounts'})"
-            data-ng-disabled="$ctrl.accounts.count === 0 || $ctrl.accounts.list.messages.length > 0"
-            data-translate="exchange_ACTION_export_accounts_button"></button>
-    </fieldset>
 </div>
