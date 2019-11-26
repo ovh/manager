@@ -52,9 +52,7 @@ export default class Instance {
         'PAUSED',
       ],
       this.status,
-    )
-      || (this.status === 'ACTIVE' && this.isMonthlyBillingPending())
-    ) {
+    )) {
       return 'PENDING';
     }
 
