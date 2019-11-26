@@ -77,41 +77,27 @@
                         </div>
                         <div data-ng-if="hardware.line.needHardware" class="mt-2">
                             <!-- choices -->
-                            <div data-uib-carousel id="{{'carousel' + hardware.index}}"
-                                 data-ng-if="!hardware.line.hardware"
-                                 data-active="hardware.carouselIndex"
-                                 class="block-emphasis">
-                                <div data-uib-slide
-                                     index="$index"
-                                     data-ng-repeat="slide in hardware.availableHardwares track by slide.name">
-                                    <div class="voipLine-hardware-image">
-                                       <img data-ng-src="{{slide.image}}" alt="">
-                                    </div>
-
-                                    <div class="carousel-caption">
-                                        <h4 data-ng-bind="slide.label"></h4>
-                                        <div>
-                                            ( <span data-translate="telefony_activation_hardware_caution_label"></span> :
-                                            <span class="text-price" data-ng-bind="slide.deposit.text"></span> )
-                                        </div>
-
-                                        <div>
-                                            <a data-ng-href="{{slide.url}}"
-                                               target="_blank"
-                                               title="{{:: 'telefony_activation_hardware_doc_label' | translate }} {{:: 'common_newtab' | translate }}">
-                                               <span data-translate="telefony_activation_hardware_doc_label"></span>
-                                               <span class="ovh-font ovh-font-newtab ml-2" aria-hidden="true"></span>
-                                           </a>
-                                        </div>
-
-                                        <button type="button"
-                                                class="btn btn-primary mt-3"
-                                                data-ng-click="hardware.line.hardware = slide"
-                                                data-translate="telefony_activation_hardware_select_label">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <oui-slideshow data-ng-if="!hardware.line.hardware"
+                                id="{{'carousel' + hardware.index}}"
+                                class="block-emphasis">
+                                <oui-slideshow-panel
+                                    data-ng-repeat="slide in hardware.availableHardwares track by slide.name"
+                                    data-heading="{{ :: slide.label }}"
+                                    data-picture="{{ :: slide.image }}"
+                                    data-label="{{ ::'telefony_activation_hardware_select_label' | translate }}"
+                                    data-on-click="hardware.line.hardware = slide">
+                                    ( <span data-translate="telefony_activation_hardware_caution_label"></span> :
+                                    <span class="text-price" data-ng-bind="slide.deposit.text"></span> )
+                                    <a data-ng-href="{{slide.url}}"
+                                        class="text-white pt-2 d-block"
+                                        target="_blank"
+                                        title="{{:: 'telefony_activation_hardware_doc_label' | translate }} {{:: 'common_newtab' | translate }}"
+                                        rel="noopener">
+                                        <span data-translate="telefony_activation_hardware_doc_label"></span>
+                                        <span class="ovh-font ovh-font-newtab ml-2" aria-hidden="true"></span>
+                                    </a>
+                                </oui-slideshow-panel>
+                            </oui-slideshow>
 
                             <!-- user selection -->
                             <div data-ng-if="hardware.line.hardware" class="block-emphasis selected-hardware">
