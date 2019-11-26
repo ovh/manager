@@ -17,6 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      billingAccountId: /* @ngInject */  $transition$ => $transition$.params().billingAccount,
       initTelephony($q, $stateParams, TelephonyMediator) {
         // init all groups, lines and numbers
         TelephonyMediator.init()

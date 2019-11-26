@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import mapValues from 'lodash/mapValues';
 
 import ListLayoutCtrl from './list-layout.controller';
 
@@ -129,7 +130,10 @@ export const stateParams = {
 
 export const urlQueryParams = 'page&pageSize&sort&sortOrder&filter';
 
+export const componentBindings = mapValues(stateResolves, () => '<');
+
 export default {
+  componentBindings,
   ListLayoutCtrl,
   stateResolves,
   stateParams,
