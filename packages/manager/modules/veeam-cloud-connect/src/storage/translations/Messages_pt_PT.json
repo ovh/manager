@@ -1,11 +1,12 @@
 {
- "veeam_storage_title": "Espaço de armazenamento",
- "veeam_storage_back": "Voltar à página inicial",
- "veeam_storage_add_storage": "Adicionar um espaço de armazenamento",
- "veeam_storage_search": "Procurar...",
- "veeam_storage_update_title": "Alterar",
- "veeam_storage_update_quota_title": "Modificar o espaço de armazenamento",
- "veeam_storage_update_quota_information": "Defina a quota máxima do seu espaço de armazenamento. O valor é compreendido entre 1000GB e {{maxquota}} GB.",
- "veeam_storage_update_quota_cancel": "Anular",
- "veeam_storage_update_quota_confirm": "Alterar"
+  "veeam_storage_title": "Espaço de armazenamento",
+  "veeam_storage_back": "Voltar à página inicial",
+  "veeam_storage_add_storage": "Adicionar um espaço de armazenamento",
+  "veeam_storage_search": "Procurar...",
+  "veeam_storage_update_title": "Alterar",
+  "veeam_storage_update_quota_title": "Modificar o espaço de armazenamento",
+  "veeam_storage_update_quota_information": "Defina a quota máxima do espaço de armazenamento. O valor está entre 1000 GB e {{maxquota}} GB.",
+  "veeam_storage_update_quota_cancel": "Cancelar",
+  "veeam_storage_update_quota_confirm": "Alterar",
+  "veeam_storage_update_step_error": "Insira um múltiplo de {{ step }}."
 }

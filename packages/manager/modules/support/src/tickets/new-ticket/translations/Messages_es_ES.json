@@ -41,7 +41,7 @@
   "ovhManagerSupport_new_serviceType_kube": "Kubernetes",
   "ovhManagerSupport_new_serviceType_ip_service": "IP Failover",
   "ovhManagerSupport_new_serviceTther_services": "Otro servicio",
-  "ovhManagerSupport_new_serviceType_email_domain": "Dominio del correo electrónico",
+  "ovhManagerSupport_new_serviceType_email_domain": "Email dominio",
   "ovhManagerSupport_new_serviceType_stack_mis": "Infraestructura administrada",
   "ovhManagerSupport_new_serviceType_over_the_box": "OverTheBox",
   "ovhManagerSupport_new_serviceType_CSP2": "Revendedor de Office",
@@ -113,5 +113,7 @@
   "ovhManagerSupport_new_business_3": "Las solicitudes de asistencia recibidas en esta dirección no serán tratadas por nuestro equipo de soporte.",
   "ovhManagerSupport_new_serviceType_carrier_sip": "Proveedor SIP",
   "ovhManagerSupport_new_creation_optional": "{{label}} (opcional)",
-  "ovhManagerSupport_new_open_new_tab": "Abrir una nueva pestaña"
+  "ovhManagerSupport_new_open_new_tab": "Abrir una nueva pestaña",
+  "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Guías",
+  "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Trucos"
 }

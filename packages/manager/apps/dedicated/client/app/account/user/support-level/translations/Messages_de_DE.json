@@ -20,5 +20,6 @@
   "user_account_support_level_section_premium_description": "Direkter Zugriff auf unsere Experten für Unterstützung bei der Konfiguration und täglichen Verwendung Ihrer Lösung sowie bei kritischen Störungen.",
   "user_account_support_level_section_business_description": "Rund-um-die-Uhr-Kundendienst mit verbesserten Antwortzeiten, geeignet für anspruchsvolle Herausforderungen.",
   "user_account_support_level_section_enterprise_description": "Rund-um-die-Uhr-Kundendienst durch die privilegierte Beziehung mit einem engagierten Team, das Ihnen hilft, die Herausforderungen Ihres Unternehmens zu meistern.",
-  "user_account_support_level_section_title_annex_1": "Unsere Support-Angebote entwickeln sich weiter. Bitte beachten Sie, dass alle Kunden, die kein bestimmtes Support-Angebot abonnieren, automatisch den Standard-Level erhalten."
+  "user_account_support_level_section_title_annex_1": "Unsere Support-Angebote entwickeln sich weiter. Bitte beachten Sie, dass alle Kunden, die kein bestimmtes Support-Angebot abonnieren, automatisch den Standard-Level erhalten.",
+  "user_account_support_level_section_title_annex_all_available": "Standardmäßig wird jeder OVHcloud-Kunde auf unsere Standard-Supportstufe umgestellt, wenn er ein bestimmtes Supportangebot nicht abonniert."
 }

@@ -1188,5 +1188,8 @@
   "server_error_vrack_detach": "Wystąpił błąd podczas odłączania sieci prywatnej: {{error}}.",
   "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps przepustowości do sieci publicznej - nieograniczony transfer",
   "server_error_ola_activation": "Wystąpił błąd podczas aktywacji Twojej usługi:{{error}}.",
-  "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}."
+  "server_error_bandwidth_order": "Wystąpił błąd podczas zamawiania przepustowości: {{error}}.",
+  "server_order_bandwidth_declaration": "Data odnowienia Twojej opcji zostanie zrównana z datą odnowienia serwera. Wyświetlana kwota odpowiada należności za pierwszy miesiąc fakturowania Twojej opcji i jest obliczana proporcjonalnie do liczby dni korzystania z usługi w danym miesiącu.",
+  "server_order_bandwidth_info": "Podana kwota odpowiada kwocie, która zostanie zafakturowana przy kolejnym odnowieniu Twojej opcji.",
+  "server_order_bandwidth_warning": "Zmiana przepustowości zostanie wdrożona kilka minut po włączeniu opcji."
 }
