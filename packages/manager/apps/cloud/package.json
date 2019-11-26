@@ -99,7 +99,7 @@
     "moment-duration-format": "^1.3",
     "ng-slide-down": "TheRusskiy/ng-slide-down#~1.2",
     "office-ui-fabric-core": "^11.0.0",
-    "ovh-angular-browser-alert": "ovh-ux/ovh-angular-browser-alert#^1.0.0",
+    "ovh-angular-browser-alert": "^1.0.0",
     "ovh-angular-list-view": "ovh-ux/ovh-angular-list-view#^0.1.5",
     "ovh-angular-responsive-page-switcher": "^1.1.1",
     "ovh-api-services": "^9.27.1",
