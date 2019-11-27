@@ -113,5 +113,7 @@
   "ovhManagerSupport_new_business_3": "Le richieste di supporto ricevute a questo indirizzo non verranno prese in carico.",
   "ovhManagerSupport_new_serviceType_carrier_sip": "Operatore SIP",
   "ovhManagerSupport_new_creation_optional": "{{label}} (facoltativo)",
-  "ovhManagerSupport_new_open_new_tab": "Apre una nuova scheda"
+  "ovhManagerSupport_new_open_new_tab": "Apre una nuova scheda",
+  "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Guide",
+  "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Suggerimenti"
 }

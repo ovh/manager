@@ -1,0 +1,9 @@
+{
+  "pci_error_button_action_pay_debt": "Salda il debito",
+  "pci_error_button_action_contact_support": "Contatta il supporto",
+  "pci_error_account_not_eligible": "Al momento non è possibile creare un nuovo progetto Public Cloud con il tuo account. Per maggiori informazioni, contatta il nostro supporto.",
+  "pci_error_max_projects_limit_reached": "Al momento non è possibile creare altri progetti Public Cloud in quanto è stato raggiunto il numero massimo di progetti autorizzati.  Per sbloccare questo limite, contatta il nostro supporto.",
+  "pci_error_paypal_account_not_verified": "Al momento non è possibile creare altri progetti Public Cloud con questo conto PayPal in quanto l’account non risulta verificato. Ti consigliamo di eseguire il processo di verifica nell’interfaccia PayPal e riprovare a effettuare l’operazione. È inoltre possibile modificare <a href=\"{{ href }}\">il metodo di pagamento predefinito</a>.",
+  "pci_error_unpaid_debts": "Al momento non è possibile creare progetti Public Cloud in quanto alcuni importi non risultano ancora saldati. Ti invitiamo a pagare gli importi dovuti e riprovare.",
+  "pci_error_invalid_payment_mean": "Al momento non è possibile creare un nuovo progetto Public Cloud con il tuo account. Ti consigliamo di modificare <a href=\"{{ href }}\">il tuo metodo di pagamento predefinito</a>."
+}

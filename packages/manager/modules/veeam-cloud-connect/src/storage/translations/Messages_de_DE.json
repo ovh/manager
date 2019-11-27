@@ -5,7 +5,7 @@
   "veeam_storage_search": "Suchen...",
   "veeam_storage_update_title": "Ändern",
   "veeam_storage_update_quota_title": "Storage anpassen",
-  "veeam_storage_update_quota_information": "Definieren Sie die maximale Quote Ihres Speicherplatzes. Der Wert liegt zwischen 1000 GB und {{maxquota}}} GB.",
+  "veeam_storage_update_quota_information": "Legen Sie das maximale Quota Ihres Storage fest. Der eingegebene Wert muss zwischen 1000 GB und {{maxquota}} GB liegen.",
   "veeam_storage_update_quota_cancel": "Abbrechen",
   "veeam_storage_update_quota_confirm": "Bearbeiten",
   "veeam_storage_update_step_error": "Bitte geben Sie ein Vielfaches von {{ Step }}} ein."

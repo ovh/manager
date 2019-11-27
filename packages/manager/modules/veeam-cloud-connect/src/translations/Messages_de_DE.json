@@ -26,7 +26,7 @@
   "veeam_tasks_pending": "Aktuelle Tasks",
   "veeam_action_upgrade_offer_no_upgrade": "Das Angebot {{offer}} kann zurzeit nicht erweitert werden.",
   "veeam_action_add_storage_unavailable_offer": "Bei Ihrem Angebot {{offer}} kann kein weiterer Storage hinzugefügt werden.",
-  "veeam_action_add_storage_unavailable_storage_number": "Sie haben die maximale Anzahl an Storage erreicht. Sie können keinen weiteren Storage hinzufügen. Das Hinzufügen ist deaktiviert.",
+  "veeam_action_add_storage_unavailable_storage_number": "Sie haben die maximale Anzahl an Storage erreicht. Hinzufügen ist deaktiviert.",
   "veeam_action_add_storage_unavailable_usage_percentage": "Sie können keinen weiteren Storage hinzufügen, wenn Sie nicht mindestens {{usagePercentage}} % Ihres verfügbaren Storage nutzen.",
   "veeam_common_action_unavailable": "Aktion nicht verfügbar",
   "veeam_common_cancel": "Abbrechen",
