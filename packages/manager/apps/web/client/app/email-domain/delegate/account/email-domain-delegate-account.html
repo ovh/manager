@@ -68,7 +68,11 @@
                     <tr data-ng-repeat="email in ctrlEmailDelegate.emailsDetails track by $index">
                         <td data-ng-bind="email.accountName"></td>
                         <td data-ng-bind="email.description"></td>
-                        <td>
+                        <td class="text-center"
+                            data-ng-if="email.quota === undefined">
+                            <span>-</span>
+                        </td>
+                        <td data-ng-if="email.quota !== undefined">
                             <div class="col-xs-11 p-0">
                                 <div class="oui-progress m-0"
                                      data-ng-class="{
