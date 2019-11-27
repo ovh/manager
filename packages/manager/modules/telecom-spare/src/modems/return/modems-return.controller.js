@@ -7,7 +7,6 @@ export default class {
 
   $onInit() {
     this.loading = false;
-    this.title = 'xdsl_modem_return_title';
   }
 
   returnMerchandise() {

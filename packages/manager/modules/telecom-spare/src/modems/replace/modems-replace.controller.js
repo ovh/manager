@@ -11,7 +11,6 @@ export default class {
     this.selectedDomain = '';
 
     this.loading = false;
-    this.title = 'xdsl_modem_replace_title';
     this.loading = true;
     this.retrieveCompatibleReplacement();
   }

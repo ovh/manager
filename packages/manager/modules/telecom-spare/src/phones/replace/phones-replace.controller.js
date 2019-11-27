@@ -10,7 +10,6 @@ export default class {
   $onInit() {
     this.isApplyAvailable = false;
 
-    this.title = 'phones_replace_title';
     this.loading = true;
     this.retrieveCompatibleReplacement();
   }
@@ -36,8 +35,8 @@ export default class {
     return this.OvhApiTelephony.Spare().v6().replaceSpare({
       spare: this.spare,
     }, {
-      domain: this.domain,
-      ip: this.ip,
+      domain: this.selectedDomain,
+      ip: this.phoneIP,
     }).$promise
       .then(() => this.goBack(
         this.$translate.instant('phones_replace_succeed'),

@@ -11,7 +11,6 @@ export default class {
 
   $onInit() {
     this.loading = false;
-    this.title = 'phones_delete_title';
   }
 
   deleteSpare() {

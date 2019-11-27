@@ -11,7 +11,7 @@
     </div>
 
     <oui-datagrid data-rows="$ctrl.phones" data-row-loader="$ctrl.loadRow($row)" data-page-size="10">
-        <oui-column data-title=" ::'phones_name_col' | translate " data-data-property="spare"></oui-column>
+        <oui-column data-title=" ::'phones_name_col' | translate " data-property="spare"></oui-column>
         <oui-column data-title=" ::'phones_brand_col' | translate " data-property="brand">
             <span data-ng-bind="$row.brand | formatPhoneBrandFilter:$row.brand"></span>
         </oui-column>
