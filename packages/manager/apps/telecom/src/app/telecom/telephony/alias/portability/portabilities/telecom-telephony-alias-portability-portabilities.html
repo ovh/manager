@@ -74,16 +74,6 @@
                                 </div>
                             </uib-accordion-heading>
 
-                            <!-- PORTABILITY ATTACH CUSTOMER FORM -->
-                            <button
-                                class="oui-button oui-button_primary oui-button_full-width oui-button_icon-right"
-                                data-ng-click="$ctrl.attachMandate(number.portability)"
-                                data-translate="telephony_alias_portabilities_attach_form"
-                                oui-tooltip="{{:: 'telephony_alias_portabilities_attach_info' | translate}}"
-                                oui-tooltip-placement="bottom"
-                                data-ng-if="porta.documentAttached.length === 0"
-                            ></button>
-
                             <!-- PORTABILITY DETAILS -->
                             <dl data-ng-init="porta = number.portability">
                                 <dt
@@ -103,6 +93,30 @@
                                     data-ng-bind="(porta.desiredExecutionDate | date) || '-'"
                                 ></dd>
                             </dl>
+
+                            <!-- PORTABILITY ATTACH CUSTOMER FORM -->
+                            <div data-ng-if="(number.portability.rio == null) && ['customerFormSent','customerFormReceived'].includes(number.lastStepDone.name)">
+                                <button class="oui-button oui-button_primary oui-button_full-width oui-button_icon-right"
+                                        data-ng-click="$ctrl.attachMandate(number.portability)"
+                                        data-translate="telephony_alias_portabilities_attach_form">
+                                </button>
+                            </div>
+                            <!-- PORTABILITY UPLOADED DOCUMENTS -->
+                            <div data-ng-if="number.portability.documentAttached.length > 0">
+                                <oui-collapsible data-heading="{{ 'telephony_alias_portabilities_attach_list_files' | translate }}">
+                                    <oui-datagrid data-rows="number.portability.uploadedDocuments">
+                                        <oui-column data-title="'telephony_alias_portabilities_attach_file_name' | translate"
+                                                    data-property="name">
+                                        </oui-column>
+                                        <oui-action-menu data-align="end" data-compact
+                                                        data-ng-if="['customerFormSent','customerFormReceived'].includes(number.lastStepDone.name)">
+                                            <oui-action-menu-item text="{{'telephony_alias_portabilities_attach_delete' | translate}}"
+                                                data-on-click="$ctrl.deleteDocument(number.portability, $row.documentId)">
+                                            </oui-action-menu-item>
+                                        </oui-action-menu>
+                                    </oui-datagrid>
+                                </oui-collapsible>
+                            </div>
 
                             <!-- PORTABILITY STEPS TIMELINE -->
                             <ul class="list-unstyled pl-5">

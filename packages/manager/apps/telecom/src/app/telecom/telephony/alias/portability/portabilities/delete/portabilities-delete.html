@@ -1,0 +1,13 @@
+<form name="form" enctype="multipart/form-data" novalidate>
+    <oui-modal data-heading="{{:: 'portabilities_delete_title' | translate }}"
+        data-primary-action="$ctrl.deleteDocument()"
+        data-primary-label= "{{:: 'portabilities_delete_submit' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'portabilities_delete_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading">
+
+        <div data-translate="portabilities_delete_action"></div>
+    </oui-modal>
+</form>
