@@ -1,3 +1,15 @@
+## [13.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.35.2...@ovh-ux/manager-web@13.35.3) (2019-11-27)
+
+
+### Bug Fixes
+
+* **domain.redirection.delete:** translate correctly the checkbox field ([#1828](https://github.com/ovh/manager/issues/1828)) ([4bccc39](https://github.com/ovh/manager/commit/4bccc39272abca8424a22bb87630676a637273c8)), closes [#1827](https://github.com/ovh/manager/issues/1827)
+* **i18n:** add missing translations [CDS 150] ([446c03f](https://github.com/ovh/manager/commit/446c03ff321e4ce9830e024cb225a7ad8223fdd4))
+* **i18n:** add missing translations [CDS 151] ([736c90f](https://github.com/ovh/manager/commit/736c90f0537e65a3706c3348d630763024a6f774))
+* **i18n:** add missing translations [CDS 153] ([0ff8abe](https://github.com/ovh/manager/commit/0ff8abed010d90f88e3f23c642ca134466c0cf86))
+
+
+
 ## [13.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.35.1...@ovh-ux/manager-web@13.35.2) (2019-11-22)
 
 

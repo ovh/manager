@@ -1,3 +1,22 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.3...@ovh-ux/manager-cloud@8.0.0) (2019-11-27)
+
+
+### Features
+
+* **cloud:** redirect legacy routes ([5160a0c](https://github.com/ovh/manager/commit/5160a0c5d606678e96283a3c3845929e047d55f6))
+* **nasha:** migrate nasha module ([4de5800](https://github.com/ovh/manager/commit/4de5800b2dbcd85495f330cd39f19488d165928e))
+* **veeam:** add veeam app & module ([4fd53ef](https://github.com/ovh/manager/commit/4fd53efd2cf11f255e92f6fa45cb3ffe910ca244))
+* **veeam:** move veeam from cloud to dedicated ([31992d7](https://github.com/ovh/manager/commit/31992d7b3e7cf3eab4b99d3ba72383afe5ca3e0e))
+* **vrack:** migrate vrack ([588b012](https://github.com/ovh/manager/commit/588b012291e0cd495d38de95f786fc8123a09845))
+
+
+### BREAKING CHANGES
+
+* **veeam:** init @ovh-ux/manager-veeam-cloud-connect application.
+* **nasha:** init @ovh-ux/manager-nasha module
+
+
+
 ## [7.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.2...@ovh-ux/manager-cloud@7.37.3) (2019-11-22)
 
 

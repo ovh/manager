@@ -1,3 +1,12 @@
+## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.2...@ovh-ux/ng-ovh-payment-method@5.0.3) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 151] ([736c90f](https://github.com/ovh/manager/commit/736c90f0537e65a3706c3348d630763024a6f774))
+
+
+
 ## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.1...@ovh-ux/ng-ovh-payment-method@5.0.2) (2019-11-07)
 
 

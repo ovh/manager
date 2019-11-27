@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@0.2.4...@ovh-ux/manager-vrack-app@0.3.0) (2019-11-27)
+
+
+### Features
+
+* **vrack:** migrate vrack ([588b012](https://github.com/ovh/manager/commit/588b012291e0cd495d38de95f786fc8123a09845))
+
+
+
 ## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@0.2.3...@ovh-ux/manager-vrack-app@0.2.4) (2019-11-22)
 
 
