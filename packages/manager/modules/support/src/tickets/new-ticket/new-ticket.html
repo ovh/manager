@@ -5,6 +5,7 @@
 <support-new-issues-form
     data-ng-show="$ctrl.step === 'issues'"
     data-on-submit="$ctrl.onIssuesFormSubmit(result)"
+    data-category-name="$ctrl.categoryName"
     data-service-name="$ctrl.serviceName"
     data-service-type-name="$ctrl.serviceTypeName">
 </support-new-issues-form>
@@ -13,7 +14,8 @@
     id="creationForm"
     data-issue="$ctrl.issue"
     data-ng-show="$ctrl.step === 'creation'"
-    data-on-submit="$ctrl.onCreationFormSubmit(result)">
+    data-on-submit="$ctrl.onCreationFormSubmit(result)"
+    data-go-back="$ctrl.goBack()">
 </support-new-creation-form>
 
 <div class="text-center"

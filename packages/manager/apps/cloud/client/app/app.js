@@ -109,8 +109,10 @@ angular.module('managerApp', [
   .config(/* @ngInject */($urlServiceProvider, $locationProvider, MANAGER_URLS) => {
     const dedicatedRedirections = [
       '/paas/veeam-enterprise',
+      '/paas/veeam',
       '/iaas/vps',
       '/paas/nasha',
+      '/vrack',
     ];
 
     dedicatedRedirections.forEach((redirectionPrefix) => {

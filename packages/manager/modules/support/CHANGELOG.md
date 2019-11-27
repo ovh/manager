@@ -1,3 +1,12 @@
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.4...@ovh-ux/manager-support@0.4.5) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
 ## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.3...@ovh-ux/manager-support@0.4.4) (2019-11-15)
 
 

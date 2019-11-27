@@ -1,0 +1,5 @@
+{
+  "enterprise_cloud_database_name_change_title": "Aktualizacja klastra",
+  "enterprise_cloud_database_name_change_success": "Nazwa klastra została zaktualizowana",
+  "enterprise_cloud_database_name_change_error": "Nie można zaktualizować nazwy: {{message}}."
+}

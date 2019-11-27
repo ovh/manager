@@ -5,6 +5,7 @@ export default {
   bindings: {
     issue: '<',
     onSubmit: '&',
+    goBack: '&',
   },
   controller,
   name: 'supportNewCreationForm',
