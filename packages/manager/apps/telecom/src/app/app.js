@@ -13,6 +13,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhMondialRelay from '@ovh-ux/ng-ovh-mondial-relay';
@@ -75,6 +76,7 @@ angular.module('managerApp', [
   'ngSanitize',
   ngOvhCheckboxTable,
   ngOvhApiWrappers,
+  ngOvhBrowserAlert,
   ngOvhChatbot,
   ngOvhHttp,
   ngOvhMondialRelay,
@@ -98,7 +100,6 @@ angular.module('managerApp', [
   'ovh-angular-timeline',
   'ovh-angular-ui-confirm-modal',
   'ovh-api-services',
-  'ovhBrowserAlert',
   'ovh-ng-input-password',
   ovhManagerCore,
   ovhManagerDashboard,

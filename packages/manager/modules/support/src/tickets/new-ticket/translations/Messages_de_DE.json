@@ -110,8 +110,10 @@
   "ovhManagerSupport_new_business_telecom": "Telekom",
   "ovhManagerSupport_new_business_cloud": "Cloud",
   "ovhManagerSupport_new_business_1": "Sie wünschen Beratung zu einem Projekt?",
-  "ovhManagerSupport_new_business_2": "Bitte senden Sie uns eine E-Mail mit ausführlichen Informationen an die Adresse:",
+  "ovhManagerSupport_new_business_2": "Bitte beschreiben Sie Ihre Bedürfnisse, indem Sie uns eine E-Mail an die Adresse senden:",
   "ovhManagerSupport_new_business_3": "Support-Anfragen, die an diese Adresse versendet werden, werden nicht bearbeitet.",
   "ovhManagerSupport_new_creation_optional": "{{label}} (optional)",
-  "ovhManagerSupport_new_open_new_tab": "Öffnet einen neuen Tab"
+  "ovhManagerSupport_new_open_new_tab": "Öffnet einen neuen Tab",
+  "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Anleitungen",
+  "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Tipps"
 }

@@ -4,6 +4,7 @@ import 'angular-translate';
 
 import blackFriday from './black-friday.component';
 import blackFridayNotice from './black-friday-notice.component';
+import blackFridayService from './black-friday.service';
 
 import './black-friday.scss';
 
@@ -16,6 +17,7 @@ angular
   ])
   .component('pciProjectBlackFriday', blackFriday)
   .component('pciProjectBlackFridayNotice', blackFridayNotice)
+  .service('pciProjectBlackFridayService', blackFridayService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
