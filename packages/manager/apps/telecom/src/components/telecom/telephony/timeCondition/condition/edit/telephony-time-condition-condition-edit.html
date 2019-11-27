@@ -63,21 +63,20 @@
                                data-translate="voip_time_condition_condition_popover_time_slot">
                         </label>
                         <div data-translate="voip_time_condition_condition_popover_time_slot_from"></div>
-                        <div data-uib-timepicker
-                             data-ng-model="$ctrl.model.timeFrom"
-                             data-ng-change="$ctrl.onTimeFromChange()"
-                             data-show-meridian="false"
-                             data-minute-step="15"
-                             data-max="$ctrl.maxFrom">
-                        </div>
+                        <oui-timepicker
+                            data-on-change="$ctrl.onTimeFromChange(modelValue)"
+                            data-model="$ctrl.model.timeFrom"
+                            data-placeholder="HH:MM"
+                            data-inline="true">
+                        </oui-timepicker>
 
                         <div data-translate="voip_time_condition_condition_popover_time_slot_to"></div>
-                        <div data-uib-timepicker
-                             data-ng-model="$ctrl.model.timeTo"
-                             data-ng-change="$ctrl.onTimeToChange()"
-                             data-show-meridian="false"
-                             data-minute-step="15">
-                        </div>
+                        <oui-timepicker
+                            data-on-change="$ctrl.onTimeToChange(modelValue)"
+                            data-model="$ctrl.model.timeTo"
+                            data-placeholder="HH:MM"
+                            data-inline="true">
+                        </oui-timepicker>
                     </div> <!-- END OF TIME -->
 
                     <div class="alert alert-danger mb-0"
@@ -91,25 +90,22 @@
             <!-- FOOTER ACTIONS -->
             <footer class="float-sm-right"
                     data-ng-if="!$ctrl.loading.init">
-                <button type="button"
-                        class="btn btn-primary"
-                        data-ng-click="$ctrl.onValidateBtnClick()"
-                        data-ng-disabled="(!$ctrl.isConditionValid() || conditionEditForm.$invalid || !$ctrl.condition.hasChange()) && $ctrl.repeatToDays.length === 0"
-                        data-translate="{{ $ctrl.condition.state === 'DRAFT' ? 'common_add' : 'modify' }}">
-                </button>
+                <oui-button variant="primary"
+                            data-on-click="$ctrl.onValidateBtnClick()"
+                            data-disabled="(!$ctrl.isConditionValid() || conditionEditForm.$invalid || !$ctrl.condition.hasChange()) && $ctrl.repeatToDays.length === 0">
+                    <span data-translate="{{ $ctrl.condition.state === 'DRAFT' ? 'common_add' : 'modify' }}"></span>
+                </oui-button>
 
-                <button type="button"
-                        class="btn btn-danger mr-sm-4 float-left"
+                <oui-button variant="secondary"
                         data-ng-if="$ctrl.condition.state !== 'DRAFT'"
-                        data-ng-click="$ctrl.onDeleteBtnClick()"
-                        data-translate="delete">
-                </button>
+                        data-on-click="$ctrl.onDeleteBtnClick()">
+                    <span data-translate="delete"></span>
+                </oui-button>
 
-                <button type="button"
-                        class="btn btn-default mr-sm-2 float-left"
-                        data-ng-click="$ctrl.onCancelBtnClick()"
-                        data-translate="cancel">
-                </button>
+                <oui-button variant="secondary"
+                        data-on-click="$ctrl.onCancelBtnClick()">
+                    <span data-translate="cancel"></span>
+                </oui-button>
             </footer> <!-- FOOTER ACTIONS -->
         </section>
 
