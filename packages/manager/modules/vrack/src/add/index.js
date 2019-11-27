@@ -1,28 +1,18 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import template from './vrack-add.html';
 import controller from './vrack-add.controller';
+import routing from './vrack-add.routing';
 
 import './vrack-add.less';
 
-const moduleName = 'ovhManagerVrackAddComponent';
+const moduleName = 'ovhManagerVrackAdd';
 
 angular
   .module(moduleName, [
     'ui.router',
   ])
-  .config(($stateProvider) => {
-    $stateProvider.state('vrack.add', {
-      url: '/vrack/new',
-      template,
-      controller,
-      controllerAs: 'VrackAddCtrl',
-      translations: {
-        value: ['..', '.'],
-        format: 'json',
-      },
-    });
-  });
+  .config(routing)
+  .controller('VrackAddCtrl', controller);
 
 export default moduleName;

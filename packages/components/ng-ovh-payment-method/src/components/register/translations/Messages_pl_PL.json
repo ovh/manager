@@ -1,4 +1,4 @@
 {
-  "ovh_payment_method_register_force_as_default": "Ten sposób płatności będzie używany do automatycznych płatności za Twoją usługę. Możesz to zmienić w każdej chwili w swoich metodach płatności. Dostaniesz powiadomienie e-mailem przed każdym nowym terminem płatności,",
-  "ovh_payment_method_register_set_as_default_choice": "Chcę wybrać ten domyślny sposób płatności od chwili jego zatwierdzenia."
+  "ovh_payment_method_register_force_as_default": "Ten sposób płatności będzie używany do automatycznych płatności za Twoją usługę. Możesz w każdej chwili zmienić go w Sposobach płatności. Przed każdym nowym terminem płatności dostaniesz powiadomienie e-mailem.",
+  "ovh_payment_method_register_set_as_default_choice": "Chcę wybrać ten sposób płatności jako domyślny od chwili jego zatwierdzenia."
 }

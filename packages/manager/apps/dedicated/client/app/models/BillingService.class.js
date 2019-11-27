@@ -82,7 +82,7 @@ export default class BillingService {
   }
 
   hasEngagement() {
-    return !isNull(this.engagedUpTo);
+    return !isNull(this.engagedUpTo) && moment().isBefore(this.engagedUpTo);
   }
 
   setRenewPeriod(period) {

@@ -42,7 +42,7 @@
   "privateDatabase_dashboard_not_administrator_information": "Nie jesteś administratorem tej bazy danych.",
   "privateDatabase_dashboard_datacenter": "Data center",
   "privateDatabase_dashboard_datacenter_p19": "Paryż",
-  "privateDatabase_dashboard_datacenter_gra1": "Gravelines",
+  "privateDatabase_dashboard_datacenter_gra1": "Gravelines 1",
   "privateDatabase_dashboard_infrastructure": "Infrastruktura",
   "privateDatabase_dashboard_infrastructure_legacy": "Legacy",
   "privateDatabase_dashboard_infrastructure_sailabove": "SailAbove",
@@ -161,7 +161,7 @@
   "privateDatabase_tabs_user_adding": "Dodawanie w trakcie...",
   "privateDatabase_tabs_add_user": "Dodaj użytkownika",
   "privateDatabase_order_datacenter_p19": "Paryż",
-  "privateDatabase_order_datacenter_gra1": "Gravelines",
+  "privateDatabase_order_datacenter_gra1": "Gravelines 1",
   "privateDatabase_order_step1_hosting": "Hosting, z którego chcesz korzystać.",
   "privateDatabase_order_step1_hosting_warning": "Usługa Prywatnego SQL jest kompatybilna wyłącznie z hostingiem zlokalizowanym w tym samym centrum danych. Jeśli chcesz korzystać z innego hostingu na Twoim koncie lub z hostingu na innym koncie klienta, i nie wiesz, w jakim centrum danych znajduje się ten hosting, informację tę odnajdziesz w zakładce \"Informacje ogólne\" dla tego hostingu.",
   "privateDatabase_order_step1_hosting_info": "Wybór hostingu ma na celu zainstalowanie Prywatnego SQL w tym samym centrum danych.",
@@ -551,5 +551,7 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Rozszerzenie poprawnie aktywowane.",
   "privateDatabase_tabs_list_extensions_enable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
   "privateDatabase_tabs_list_extensions_disable_success": "Rozszerzenie poprawnie dezaktywowane.",
-  "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia."
+  "privateDatabase_tabs_list_extensions_disable_error": "Wystąpił błąd podczas aktywowania rozszerzenia.",
+  "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
+  "privateDatabase_order_datacenter_gra2": "Gravelines 2"
 }

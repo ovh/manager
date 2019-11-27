@@ -35,7 +35,6 @@ import 'script-loader!validator/validator.min.js';
 import 'script-loader!@bower_components/angular-ui-utils/ui-utils.min.js';
 import 'script-loader!df-tab-menu/build/df-tab-menu.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.min.js';
-import 'script-loader!ovh-angular-browser-alert/dist/ovh-angular-browser-alert.js';
 import 'script-loader!randexp/build/randexp.min';
 import 'script-loader!ui-select/dist/select.min.js';
 import 'angular-resource';

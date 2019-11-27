@@ -1,0 +1,9 @@
+{
+  "pci_error_button_action_pay_debt": "Ausstehende Rechnung bezahlen",
+  "pci_error_button_action_contact_support": "Support kontaktieren",
+  "pci_error_account_not_eligible": "Sie können für Ihren Account kein neues Public Cloud Projekt erstellen. Bitte kontaktieren Sie unseren Support für mehr Informationen.",
+  "pci_error_max_projects_limit_reached": "Sie können kein weiteres Public Cloud Projekt erstellen, da Sie die maximale Zahl an Projekten bereits erreicht haben. Um das Quota zu erhöhen, wenden Sie sich bitte an den Support.",
+  "pci_error_paypal_account_not_verified": "Sie können mit Ihrem PayPal-Konto kein Public Cloud Projekt erstellen, da das Konto noch nicht verifiziert wurde. Bitte ergreifen Sie die notwendigen Maßnahmen bei PayPal, um Ihr Konto zu verifizieren, und versuchen Sie es erneut. Wahlweise können Sie auch ein anderes <a href=\"{{ href }}\">Standardzahlungsmittel</a> verwenden.",
+  "pci_error_unpaid_debts": "Sie können kein Public Cloud Projekt erstellen, da noch eine ausstehende Rechnung bei OVHcloud vorliegt. Bitte begleichen Sie die ausstehende Rechnung und versuchen Sie es erneut.",
+  "pci_error_invalid_payment_mean": "Sie können für Ihren Account kein neues Public Cloud Projekt erstellen. Bitte ändern Sie Ihr <a href=\"{{ href }}\">Standardzahlungsmittel</a>."
+}

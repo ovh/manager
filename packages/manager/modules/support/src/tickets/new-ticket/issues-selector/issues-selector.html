@@ -1,22 +1,21 @@
-<oui-spinner data-ng-if="$ctrl.isLoading && !$ctrl.issueTypes">
-</oui-spinner>
+<oui-field
+    data-label="{{:: 'ovhManagerSupport_new_issue' | translate }}"
+    data-size="xl">
+    <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
 
-<oui-field data-label="{{ ('ovhManagerSupport_new_issue' | translate) + ' ' + $ctrl.rank }}"
-           data-ng-if="!$ctrl.isLoading && $ctrl.issueTypes.length"
-           data-size="xl">
-    <oui-select name="issue"
-                data-model="$ctrl.issueType"
-                data-items="$ctrl.issueTypes"
-                data-disabled="!$ctrl.issueTypes.length"
-                data-on-change="$ctrl.onIssueTypeSelected()"
-                data-match="label">
-    </oui-select>
+    <oui-select
+        data-name="issue"
+        data-ng-show="!$ctrl.isLoading"
+        data-model="$ctrl.issue"
+        data-items="$ctrl.issues"
+        data-disabled="!$ctrl.issues.length"
+        data-on-change="$ctrl.onIssueChange()"
+        data-match="label"></oui-select>
 </oui-field>
 
 <support-issues-selector
-    data-ng-if="$ctrl.issueType.hasChildren"
+    data-ng-if="$ctrl.issue.hasChildren"
     data-category="$ctrl.category"
     data-service-type="$ctrl.serviceType"
-    data-parent-issue="$ctrl.issueType"
-    data-issue="$ctrl.issue">
-</support-issues-selector>
+    data-parent-issue="$ctrl.issue"
+    data-on-change="$ctrl.onChildChange(changes)"></support-issues-selector>

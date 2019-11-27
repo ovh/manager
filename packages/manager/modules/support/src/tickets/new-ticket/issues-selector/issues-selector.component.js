@@ -3,10 +3,10 @@ import template from './issues-selector.html';
 
 export default {
   bindings: {
+    onChange: '&',
     category: '<',
     serviceType: '<',
     parentIssue: '<',
-    issue: '=',
   },
   controller,
   name: 'supportIssuesSelector',

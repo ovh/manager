@@ -7,6 +7,7 @@ import set from 'lodash/set';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -29,6 +30,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerEnterpriseCloudDatabase from '@ovh-ux/manager-enterprise-cloud-database';
 import ovhManagerMfaEnrollment from '@ovh-ux/mfa-enrollment';
+import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhManagerSupport from '@ovh-ux/manager-support';
@@ -37,7 +39,9 @@ import uiRouter, { RejectType } from '@uirouter/angularjs';
 
 import moduleExchange from '@ovh-ux/manager-exchange';
 import ovhManagerVeeamEnterprise from '@ovh-ux/manager-veeam-enterprise';
+import ovhManagerVeeamCloudConnect from '@ovh-ux/manager-veeam-cloud-connect';
 import ovhManagerVps from '@ovh-ux/manager-vps';
+import ovhManagerVrack from '@ovh-ux/manager-vrack';
 import account from './account';
 import config from './config/config';
 import contactsService from './account/contacts/service/contacts-service.module';
@@ -84,6 +88,7 @@ angular
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
+    ngOvhBrowserAlert,
     ngOvhChatbot,
     ngOvhHttp,
     ngOvhOtrs,
@@ -110,13 +115,15 @@ angular
     ovhManagerServerSidebar,
     ovhManagerSupport,
     ovhManagerVeeamEnterprise,
+    ovhManagerVeeamCloudConnect,
     ngTailLogs,
-    'ovhBrowserAlert',
     ovhContacts,
     ovhManagerBanner,
     ovhManagerEnterpriseCloudDatabase,
+    ovhManagerNasha,
     ovhManagerNavbar,
     ovhManagerVps,
+    ovhManagerVrack,
     ovhPaymentMethod,
     'pascalprecht.translate',
     preload,

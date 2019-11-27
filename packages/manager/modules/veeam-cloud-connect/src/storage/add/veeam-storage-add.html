@@ -1,0 +1,30 @@
+<div class="oui-modal oui-modal_shadow">
+  <form name="VeeamCloudConnectAddStorageForm">
+    <div class="oui-modal__header">
+      <button class="oui-icon oui-icon-close_thin oui-modal__close-button"
+        type="button"
+        aria-label="Exit" data-ng-click="VeeamCloudConnectStorageAddCtrl.cancel()"
+        ></button>
+    </div>
+    <div class="oui-modal__body oui-modal__body_no-icon">
+      <div class="oui-modal__body-text">
+        <h2 class="oui-modal__title" data-translate="veeam_storage_add_title"></h2>
+        <oui-spinner data-ng-show="VeeamCloudConnectStorageAddCtrl.loading"></oui-spinner>
+        <div data-ng-hide="VeeamCloudConnectStorageAddCtrl.loading">
+          <p class="oui-modal__text" data-translate="veeam_storage_add_confirmation"></p>
+        </div>
+      </div>
+    </div>
+    <div class="oui-modal__footer">
+      <button class="oui-button oui-button_secondary"
+        type="button"
+        data-translate="veeam_storage_add_cancel"
+        data-ng-click="VeeamCloudConnectStorageAddCtrl.cancel()"></button>
+      <button class="oui-button oui-button_primary"
+        type="submit"
+        data-translate="veeam_storage_add_confirm"
+        data-ng-click="VeeamCloudConnectStorageAddCtrl.confirm()"
+        data-ng-disabled="VeeamCloudConnectAddStorageForm.$invalid || VeeamCloudConnectStorageAddCtrl.loading"></button>
+    </div>
+  </form>
+</div>
