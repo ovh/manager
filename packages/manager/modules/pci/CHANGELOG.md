@@ -1,3 +1,13 @@
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.3.0...@ovh-ux/manager-pci@3.3.1) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 162] ([1ea9611](https://github.com/ovh/manager/commit/1ea96117169d152a5e999357de0d8d72c6d9dbb0))
+* **pci:** black friday legal notice ([#1865](https://github.com/ovh/manager/issues/1865)) ([e70239c](https://github.com/ovh/manager/commit/e70239c962f9ff7541c828dae4748d9c219a3e56))
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.2.2...@ovh-ux/manager-pci@3.3.0) (2019-11-27)
 
 
