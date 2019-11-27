@@ -76,8 +76,8 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
   }
 
   function refreshTime() {
-    self.condition.timeFrom = moment(self.model.timeFrom).format('HH:mm:ss');
-    self.condition.timeTo = moment(self.model.timeTo).subtract(1, 'second').format('HH:mm:ss');
+    self.condition.timeFrom = moment(self.model.timeFrom, 'HH:mm').format('HH:mm:ss');
+    self.condition.timeTo = moment(self.model.timeTo, 'HH:mm').subtract(1, 'second').format('HH:mm:ss');
   }
 
   self.isConditionValid = function isConditionValid() {
@@ -90,9 +90,11 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
       condition => condition.weekDay === self.condition.weekDay
         && condition.conditionId !== self.condition.conditionId,
     );
+
     const isConditionOverlap = some(dayConditions, (condition) => {
       const momentFrom = condition.getTimeMoment('from');
       const momentTo = condition.getTimeMoment('to');
+
       return (moment(self.model.timeFrom).isBetween(momentFrom, momentTo) || moment(self.model.timeTo).subtract(1, 'second').isBetween(momentFrom, momentTo)) && condition.state !== 'TO_DELETE';
     });
     if (isConditionOverlap) {
@@ -186,8 +188,8 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
   };
 
   /* ----------  TimeFrom and TimeTo  ----------*/
-
-  self.onTimeFromChange = function onTimeFromChange() {
+  self.onTimeFromChange = function onTimeFromChange(modelValue) {
+    self.model.timeFrom = modelValue;
     const timeToMoment = moment(self.model.timeTo);
     const isEndMidnight = timeToMoment.get('hour') === 0 && timeToMoment.get('minute') === 0;
     if (!isEndMidnight && self.model.timeFrom >= self.model.timeTo) {
@@ -196,7 +198,8 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
     refreshTime();
   };
 
-  self.onTimeToChange = function onTimeToChange() {
+  self.onTimeToChange = function onTimeToChange(modelValue) {
+    self.model.timeTo = modelValue;
     const timeToMoment = moment(self.model.timeTo);
     const isMidnight = timeToMoment.get('hour') === 0 && timeToMoment.get('minute') === 0;
     if (!isMidnight && self.model.timeFrom >= self.model.timeTo) {
