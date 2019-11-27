@@ -6,6 +6,10 @@ export default {
       this.isAvailable = false;
       pciProjectBlackFridayService.isAvailable().then((available) => {
         this.isAvailable = available;
+        this.legalNotice = null;
+        return pciProjectBlackFridayService.getLegalNotice().then((notice) => {
+          this.legalNotice = notice;
+        });
       });
     };
   },
