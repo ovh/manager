@@ -1,3 +1,25 @@
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@0.8.2...@ovh-ux/manager-server-sidebar@1.0.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **server-sidebar:** update vrack ([1e27b5e](https://github.com/ovh/manager/commit/1e27b5e0f78e80305655f603608c11ea1a8a96a9))
+* **web.constant:** use sharepoint icon for sidebar entry ([#1852](https://github.com/ovh/manager/issues/1852)) ([5441f23](https://github.com/ovh/manager/commit/5441f235456f751ab4cb956663f42003b73b591e))
+
+
+### Features
+
+* **sidebar:** add nasha module in sidebar ([7df8d69](https://github.com/ovh/manager/commit/7df8d69f691ee553429c3ab1ab4502ded3308652))
+* **veeam:** add veeam app & module ([4fd53ef](https://github.com/ovh/manager/commit/4fd53efd2cf11f255e92f6fa45cb3ffe910ca244))
+* **veeam:** move veeam from cloud to dedicated ([31992d7](https://github.com/ovh/manager/commit/31992d7b3e7cf3eab4b99d3ba72383afe5ca3e0e))
+
+
+### BREAKING CHANGES
+
+* **veeam:** init @ovh-ux/manager-veeam-cloud-connect application.
+
+
+
 ## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@0.8.1...@ovh-ux/manager-server-sidebar@0.8.2) (2019-11-22)
 
 

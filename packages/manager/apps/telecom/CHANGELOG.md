@@ -1,3 +1,14 @@
+## [11.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.4...@ovh-ux/manager-telecom@11.0.5) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 153] ([0ff8abe](https://github.com/ovh/manager/commit/0ff8abed010d90f88e3f23c642ca134466c0cf86))
+* **i18n:** add missing translations [CDS 159] ([6bf8e3f](https://github.com/ovh/manager/commit/6bf8e3fd6bf29143eac0a4114c9471032d50a519))
+* **xdsl.migration.offer:** update the sum for selected options ([#1786](https://github.com/ovh/manager/issues/1786)) ([ed24b32](https://github.com/ovh/manager/commit/ed24b322ccb1d0fa2d964cdec80ed86036679213))
+
+
+
 ## [11.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.3...@ovh-ux/manager-telecom@11.0.4) (2019-11-22)
 
 

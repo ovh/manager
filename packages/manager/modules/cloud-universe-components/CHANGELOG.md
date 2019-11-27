@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.3...@ovh-ux/ng-ovh-cloud-universe-components@1.5.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 150] ([446c03f](https://github.com/ovh/manager/commit/446c03ff321e4ce9830e024cb225a7ad8223fdd4))
+
+
+### Features
+
+* **cloud-universe-components:** add autocomplete component ([ad0c5e9](https://github.com/ovh/manager/commit/ad0c5e9b5bb2a22206f160c6532ee2907472704c))
+
+
+
 ## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.2...@ovh-ux/ng-ovh-cloud-universe-components@1.4.3) (2019-11-22)
 
 

@@ -1,3 +1,12 @@
+## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.5...@ovh-ux/manager-emailpro@1.2.6) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 152] ([b780fd4](https://github.com/ovh/manager/commit/b780fd4c9ba8983c2f98e967752cda4e09345259))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.4...@ovh-ux/manager-emailpro@1.2.5) (2019-11-22)
 
 

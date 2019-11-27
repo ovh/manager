@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.0.0...@ovh-ux/sao-ovh-manager-module@1.0.1) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 151] ([736c90f](https://github.com/ovh/manager/commit/736c90f0537e65a3706c3348d630763024a6f774))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@0.0.0...@ovh-ux/sao-ovh-manager-module@1.0.0) (2019-11-13)
 
 
