@@ -24,7 +24,6 @@ angular
   ])
   .component('phonesComponent', component)
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ./modal/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
