@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-cloud-connect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "OVHcloud Veeam Cloud Connect product",
   "license": "BSD-3-Clause",
