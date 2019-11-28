@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.0.0...@ovh-ux/manager-overthebox@5.1.0) (2019-11-28)
+
+
+### Features
+
+* **overthebox:** add overthebox listing page ([9e63976](https://github.com/ovh/manager/commit/9e63976ecc298a8bbd9e752504d3ec3abee2d4ba))
+
+
+
 # [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@4.3.4...@ovh-ux/manager-overthebox@5.0.0) (2019-11-13)
 
 

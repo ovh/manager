@@ -1,3 +1,12 @@
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.7...@ovh-ux/manager-sms@7.3.0) (2019-11-28)
+
+
+### Features
+
+* **sms:** add service listing page ([09cfb54](https://github.com/ovh/manager/commit/09cfb54ea635670e8ecb10a05976a885cd5a2124))
+
+
+
 ## [7.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.6...@ovh-ux/manager-sms@7.2.7) (2019-11-22)
 
 

@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.1.3...@ovh-ux/manager-navbar@2.2.0) (2019-11-28)
+
+
+### Features
+
+* **navbar:** add global search option ([a3ea4fa](https://github.com/ovh/manager/commit/a3ea4fae632b140209f456dc77058fb59f69bdec))
+
+
+
 ## [2.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.1.2...@ovh-ux/manager-navbar@2.1.3) (2019-11-22)
 
 

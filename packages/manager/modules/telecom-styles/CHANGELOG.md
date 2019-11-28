@@ -1,3 +1,12 @@
+## [3.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@3.1.1...@ovh-ux/manager-telecom-styles@3.1.2) (2019-11-28)
+
+
+### Bug Fixes
+
+* **telecom-styles:** prevent overriding oui-page-header style ([b5284fe](https://github.com/ovh/manager/commit/b5284fe6ad35fa25cb67595fbefb6e5d41361595))
+
+
+
 ## [3.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@3.1.0...@ovh-ux/manager-telecom-styles@3.1.1) (2019-10-17)
 
 

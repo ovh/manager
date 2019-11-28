@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.0.1...@ovh-ux/ng-ui-router-line-progress@1.1.0) (2019-11-28)
+
+
+### Features
+
+* progress line is now more visible ([4e6b16e](https://github.com/ovh/manager/commit/4e6b16e9693297240afa12c07ed639e1838ecbfa))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-line-progress@1.0.0...@ovh-ux/ng-ui-router-line-progress@1.0.1) (2019-10-17)
 
 

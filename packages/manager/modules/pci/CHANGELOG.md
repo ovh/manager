@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.3.1...@ovh-ux/manager-pci@3.4.0) (2019-11-28)
+
+
+### Features
+
+* **component:** add an easter-eggs ([ba3d14e](https://github.com/ovh/manager/commit/ba3d14e54afad01a8ed4e76e7cc3979cd8c71bcc))
+
+
+
 ## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.3.0...@ovh-ux/manager-pci@3.3.1) (2019-11-27)
 
 
