@@ -24,8 +24,15 @@ export default class BetaPreferenceCtrl {
   }
 
   onBetaChange(beta) {
+    let promise;
     this.isUpdatingBeta = true;
-    return this.ovhUserPref.assign(BETA_PREFERENCE, beta)
+    if (beta) {
+      promise = this.ovhUserPref.assign(BETA_PREFERENCE, beta);
+    } else {
+      promise = this.ovhUserPref.remove(BETA_PREFERENCE);
+    }
+
+    return promise
       .then(() => {
         this.beta.active = beta;
         return this.onSuccess({ message: this.$translate.instant('user_account_advanced_section_beta_success') });
