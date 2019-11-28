@@ -19,6 +19,7 @@ export default class TelecomPacksController extends ListLayoutHelper.ListLayoutC
     super.$onInit();
 
     this.columnsConfig = [
+      { name: 'packName', sortable: this.getSorting('packName') },
       { name: 'description', sortable: this.getSorting('description') },
     ];
   }
