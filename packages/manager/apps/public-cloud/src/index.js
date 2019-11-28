@@ -31,10 +31,10 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import atInternet from './components/at-internet';
+import darkMode from './components/dark-mode';
 import preload from './components/manager-preload';
 
-import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
-import './assets/theme/index.less';
+import './assets/theme/default/index.less';
 import './index.scss';
 
 import controller from './index.controller';
@@ -47,19 +47,20 @@ Environment.setVersion(__VERSION__);
 angular
   .module('ovhPublicCloudApp', [
     __NG_APP_INJECTIONS__,
-    uiRouter,
     atInternet,
+    darkMode,
+    ngAnimate,
     ngUiRouterBreadcrumb,
     ngUiRouterLineProgress,
-    ovhManagerCore,
-    ovhManagerMfaEnrollment,
-    ovhManagerPci,
     ngOvhApiWrappers,
     ngOvhUserPref,
     navbar,
-    preload,
-    ngAnimate,
     'oui',
+    ovhManagerCore,
+    ovhManagerMfaEnrollment,
+    ovhManagerPci,
+    preload,
+    uiRouter,
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)

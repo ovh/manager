@@ -9525,6 +9525,11 @@ known-css-properties@^0.11.0:
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.11.0.tgz#0da784f115ea77c76b81536d7052e90ee6c86a8a"
   integrity sha512-bEZlJzXo5V/ApNNa5z375mJC6Nrz4vG43UgcSCrg2OHC+yuB6j0iDSrY7RQ/+PRofFB03wNIIt9iXIVLr4wc7w==
 
+konami-code-js@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/konami-code-js/-/konami-code-js-0.8.0.tgz#27c2a4b359aabbcd6bbd24e924f63943415ed316"
+  integrity sha1-J8Kks1mqu81rvSTpJPY5Q0Fe0xY=
+
 latest-version@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/latest-version/-/latest-version-3.1.0.tgz#a205383fea322b33b5ae3b18abee0dc2f356ee15"
