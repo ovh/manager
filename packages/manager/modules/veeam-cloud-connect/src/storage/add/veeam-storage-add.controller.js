@@ -1,22 +1,47 @@
 export default class VeeamCloudConnectStorageAddCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, serviceName, VeeamCloudConnectService) {
-    this.$uibModalInstance = $uibModalInstance;
-    this.serviceName = serviceName;
+  constructor(CucControllerHelper, VeeamCloudConnectService) {
+    this.CucControllerHelper = CucControllerHelper;
     this.VeeamCloudConnectService = VeeamCloudConnectService;
+    this.isLoading = true;
+    this.isAvailable = false;
   }
 
-  confirm() {
-    this.loading = true;
+  $onInit() {
+    this.actions = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () => this.VeeamCloudConnectService.getActions(this.serviceName),
+    });
+    this.actions.load().then(() => {
+      if (this.actions.data.addStorage.available) {
+        this.isAvailable = true;
+      }
+    }).finally(() => {
+      this.isLoading = false;
+    });
+  }
+
+  onCancel() {
+    this.goToStorage();
+  }
+
+  onConfirm() {
+    this.isLoading = true;
     return this.VeeamCloudConnectService.addBackupRepository(this.serviceName)
-      .then(response => this.$uibModalInstance.close(response))
-      .catch(err => this.$uibModalInstance.dismiss(err))
+      .then((result) => {
+        this.VeeamCloudConnectService.startPolling(
+          this.$stateParams.serviceName,
+          result.data,
+        );
+      })
+      .catch((err) => {
+        this.VeeamCloudConnectService.unitOfWork.messages.push({
+          text: err.message,
+          type: 'error',
+        });
+      })
       .finally(() => {
-        this.loading = false;
+        this.isLoading = false;
+        this.goToStorage();
       });
-  }
-
-  cancel() {
-    this.$uibModalInstance.dismiss();
   }
 }

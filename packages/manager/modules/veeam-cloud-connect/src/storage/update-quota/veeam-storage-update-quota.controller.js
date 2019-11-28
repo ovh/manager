@@ -1,10 +1,6 @@
 export default class VeeamCloudConnectStorageUpdateQuotaCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, inventoryName, serviceName,
-    CucControllerHelper, VeeamCloudConnectService) {
-    this.$uibModalInstance = $uibModalInstance;
-    this.inventoryName = inventoryName;
-    this.serviceName = serviceName;
+  constructor(CucControllerHelper, VeeamCloudConnectService) {
     this.CucControllerHelper = CucControllerHelper;
     this.VeeamCloudConnectService = VeeamCloudConnectService;
 
@@ -21,13 +17,23 @@ export default class VeeamCloudConnectStorageUpdateQuotaCtrl {
     this.updateQuota = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VeeamCloudConnectService
         .updateRepositoryQuota(this.serviceName, this.inventoryName, this.newQuota)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response)),
+        .then((result) => {
+          this.VeeamCloudConnectService.startPolling(this.serviceName, result.data);
+        })
+        .catch((error) => {
+          this.VeeamCloudConnectService.unitOfWork.messages.push({
+            text: error.message,
+            type: 'error',
+          });
+        })
+        .finally(() => {
+          this.goToStorage();
+        }),
     });
     return this.updateQuota.load();
   }
 
   cancel() {
-    this.$uibModalInstance.dismiss();
+    this.goToStorage();
   }
 }
