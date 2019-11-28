@@ -1,4 +1,4 @@
-angular.module('managerApp').config($stateProvider => $stateProvider.state('telecom.telephony.billing.groupRepayments', {
+angular.module('managerApp').config($stateProvider => $stateProvider.state('telecom.telephony.billingAccount.billing.groupRepayments', {
   url: '/groupRepayments',
   views: {
     'telephonyView@telecom.telephony': {

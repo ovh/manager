@@ -1,0 +1,9 @@
+<div class="oui-box oui-box_light mb-5">
+    <oui-spinner data-ng-if="$ctrl.isUpdatingBeta" data-size="s"></oui-spinner>
+    <oui-checkbox
+        data-ng-if="!$ctrl.isUpdatingBeta"
+        data-model="$ctrl.beta.active"
+        data-on-change="$ctrl.onBetaChange(modelValue)">
+        <span data-translate="user_account_advanced_section_beta_activate"></span>
+    </oui-checkbox>
+</div>

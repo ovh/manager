@@ -44,7 +44,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
           const billingAccountSubSection = SidebarMenu.addMenuItem({
             id: billingAccount.billingAccount,
             title: billingAccount.getDisplayedName(),
-            state: 'telecom.telephony',
+            state: 'telecom.telephony.billingAccount',
             stateParams: {
               billingAccount: billingAccount.billingAccount,
             },
@@ -59,7 +59,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
 
           // add number subsections to billingAccount subsection
           addServiceMenuItems(sortedAlias, {
-            state: 'telecom.telephony.alias',
+            state: 'telecom.telephony.billingAccount.alias',
             prefix: $translate.instant('telecom_sidebar_section_telephony_number'),
           }, billingAccountSubSection);
 
@@ -82,7 +82,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
 
           if (!isEmpty(sortedSipLines)) {
             addServiceMenuItems(sortedSipLines, {
-              state: 'telecom.telephony.line',
+              state: 'telecom.telephony.billingAccount.line',
               prefix(lineService) {
                 return lineService.isSipTrunk() ? sipTrunkPrefix : sipPrefix;
               },
@@ -98,7 +98,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
           // add plugAndFax subsections to billingAccount subsection
           if (!isEmpty(sortedPlugAndFaxLines)) {
             addServiceMenuItems(sortedPlugAndFaxLines, {
-              state: 'telecom.telephony.line',
+              state: 'telecom.telephony.billingAccount.line',
               prefix: $translate.instant('telecom_sidebar_section_telephony_plug_fax'),
             }, billingAccountSubSection);
           }
@@ -112,7 +112,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
           // add fax subsections to billingAccount subsection
           if (!isEmpty(sortedFaxLines)) {
             addServiceMenuItems(sortedFaxLines, {
-              state: 'telecom.telephony.fax',
+              state: 'telecom.telephony.billingAccount.fax',
               prefix: $translate.instant('telecom_sidebar_section_telephony_fax'),
             }, billingAccountSubSection);
           }
@@ -124,7 +124,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
 
           if (!isEmpty(sortedCarrierSipLines)) {
             addServiceMenuItems(sortedCarrierSipLines, {
-              state: 'telecom.telephony.carrierSip',
+              state: 'telecom.telephony.billingAccount.carrierSip',
               prefix: $translate.instant('telecom_sidebar_section_telephony_carrier_sip'),
             }, billingAccountSubSection);
           }
@@ -132,19 +132,18 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
       });
   };
 
-  self.init = function init() {
-    self.mainSectionItem = SidebarMenu.addMenuItem({
+  self.init = function init(expand) {
+    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
       title: $translate.instant('telecom_sidebar_section_telephony'),
       error: $translate.instant('telecom_sidebar_load_error'),
       id: 'telecom-telephony-section',
       category: 'telephony',
       icon: 'ovh-font ovh-font-phone',
-      allowSubItems: true,
-      onLoad: self.initTelephonySubsection,
+      allowSubItems: !expand,
       loadOnState: 'telecom.telephony',
-      allowSearch: true,
+      allowSearch: !expand,
       infiniteScroll: true,
-    });
+    }, expand ? { state: 'telecom.telephony.index' } : { onLoad: self.initTelephonySubsection }));
 
     return self.mainSectionItem;
   };

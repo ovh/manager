@@ -10,7 +10,7 @@
         <tuc-toast-message></tuc-toast-message>
 
         <oui-back-button data-heading="{{:: 'telephony_options_group_title' | translate }}"
-                         data-href="{{ OptionsGroupCtrl.$state.href('telecom.telephony.administration') }}">
+                         data-href="{{ OptionsGroupCtrl.$state.href('telecom.telephony.billingAccount.administration') }}">
         </oui-back-button>
 
         <form name="OptionsGroupCtrl.optionsGroupSettings"
@@ -34,7 +34,7 @@
             </oui-field>
 
             <oui-form-actions
-                data-href="{{ OptionsGroupCtrl.$state.href('telecom.telephony.administration') }}"
+                data-href="{{ OptionsGroupCtrl.$state.href('telecom.telephony.billingAccount.administration') }}"
                 data-cancel-text="{{:: 'cancel' | translate }}"
                 data-submit-text="{{:: 'submit' | translate }}" >
             </oui-form-actions>

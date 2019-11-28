@@ -1,8 +1,14 @@
 {
-  "sms_sms_compose": "Wyślij SMS",
-  "sms_sms_history": "Historia wysyłki",
-  "sms_sms_received": "Otrzymane wiadomości SMS",
-  "sms_sms_pending": "Zaplanowane wiadomości SMS",
-  "sms_sms_manage_hlrs": "HLR",
-  "sms_sms_manage_templates": "Zarządzaj modelami"
+  "sms_page_title": "SMS \"{{name}}\"",
+  "sms_tabs_dashboard": "Informacje ogólne",
+  "sms_tabs_sms": "SMS",
+  "sms_tabs_contacts": "Kontakt",
+  "sms_tabs_phonebooks": "Carnet d’adresses",
+  "sms_tabs_senders": "Nadawcy",
+  "sms_tabs_api_users": "Użytkownicy API",
+  "sms_tabs_options": "Opcje",
+  "sms_tabs_guides": "Przewodniki",
+  "sms_rename_error": "Nie można zmienić nazwy pakietu {{serviceName}}.",
+  "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
+  "sms_feature_soon_available": "Funkcjonalność ta będzie wkrótce dostępna."
 }

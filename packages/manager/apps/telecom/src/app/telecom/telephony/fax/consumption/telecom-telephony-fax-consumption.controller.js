@@ -19,13 +19,13 @@ angular.module('managerApp').controller('TelecomTelephonyFaxConsumptionCtrl', fu
       name: 'fax_information',
       main: true,
       picto: 'ovh-font-faxReceiving',
-      sref: 'telecom.telephony.fax.consumption.incomingFax',
+      sref: 'telecom.telephony.billingAccount.fax.consumption.incomingFax',
       text: $translate.instant('telephony_group_fax_consumption_action_incoming_fax'),
     }, {
       name: 'fax_information',
       main: true,
       picto: 'ovh-font-faxEmitting',
-      sref: 'telecom.telephony.fax.consumption.outgoingFax',
+      sref: 'telecom.telephony.billingAccount.fax.consumption.outgoingFax',
       text: $translate.instant('telephony_group_fax_consumption_action_outgoing_fax'),
     }];
 

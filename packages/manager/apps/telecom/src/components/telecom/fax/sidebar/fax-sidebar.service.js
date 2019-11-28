@@ -15,7 +15,7 @@ angular.module('managerApp').service('FaxSidebar', function FaxSidebar($translat
         SidebarMenu.addMenuItem({
           title: fax,
           prefix: $translate.instant('telecom_sidebar_fax_prefix_freefax'),
-          state: 'freefax',
+          state: 'freefaxes.freefax',
           stateParams: {
             serviceName: fax,
           },
@@ -30,16 +30,15 @@ angular.module('managerApp').service('FaxSidebar', function FaxSidebar($translat
     =            INITIALIZATION            =
     ====================================== */
 
-  self.init = function init() {
-    self.mainSectionItem = SidebarMenu.addMenuItem({
+  self.init = function init(expand) {
+    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
       title: $translate.instant('telecom_sidebar_section_fax'),
       error: $translate.instant('telecom_sidebar_load_error'),
       category: 'freefax',
       icon: 'ovh-font ovh-font-print',
-      allowSubItems: true,
-      onLoad: self.loadFaxMainSection,
-      loadOnState: 'freefax',
-    });
+      allowSubItems: !expand,
+      loadOnState: 'freefaxes',
+    }, expand ? { state: 'freefaxes.index' } : { onLoad: self.loadFaxMainSection }));
 
     return self.mainSectionItem;
   };

@@ -19,11 +19,11 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementCtrl', fun
       name: 'fax_management_information',
       main: true,
       picto: 'ovh-font-details',
-      sref: 'telecom.telephony.fax.management.informations',
+      sref: 'telecom.telephony.billingAccount.fax.management.informations',
       text: $translate.instant('telephony_group_fax_management_action_informations'),
     }, {
       name: 'fax_management_terminate',
-      sref: 'telecom.telephony.fax.management.terminate',
+      sref: 'telecom.telephony.billingAccount.fax.management.terminate',
       main: true,
       picto: 'ovh-font-filled-error',
       text: $translate.instant('telephony_group_fax_management_action_terminate'),

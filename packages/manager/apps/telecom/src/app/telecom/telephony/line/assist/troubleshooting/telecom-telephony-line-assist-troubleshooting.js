@@ -17,7 +17,7 @@ angular.module('managerApp').run(($templateCache) => {
   $templateCache.put('app/telecom/telephony/line/assist/troubleshooting/procedure/thomson/telecom-telephony-line-assist-troubleshooting-procedure-thomson.html', telecomTelephonyLineAssistTroubleshootingProcedureThomson);
 });
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.line.assist.troubleshooting', {
+  $stateProvider.state('telecom.telephony.billingAccount.line.assist.troubleshooting', {
     url: '/troubleshooting',
     resolve: {
       // this is the object that will be used by each view to display the different steps
@@ -31,22 +31,22 @@ angular.module('managerApp').config(($stateProvider) => {
       },
     },
     views: {
-      'lineView@telecom.telephony.line': {
+      'lineView@telecom.telephony.billingAccount.line': {
         templateUrl: 'app/telecom/telephony/line/assist/troubleshooting/telecom-telephony-line-assist-troubleshooting.html',
         controller: 'TelecomTelephonyLineAssistTroubleshootingCtrl',
         controllerAs: 'TroubleshootingCtrl',
       },
-      'procedureStepView@telecom.telephony.line.assist.troubleshooting': {
+      'procedureStepView@telecom.telephony.billingAccount.line.assist.troubleshooting': {
         templateUrl: 'app/telecom/telephony/line/assist/troubleshooting/procedure/telecom-telephony-line-assist-troubleshooting-procedure.html',
         controller: 'TelecomTelephonyLineAssistTroubleshootingProcedureCtrl',
         controllerAs: 'ProcedureCtrl',
       },
-      'autoConfigStepView@telecom.telephony.line.assist.troubleshooting': {
+      'autoConfigStepView@telecom.telephony.billingAccount.line.assist.troubleshooting': {
         templateUrl: 'app/telecom/telephony/line/assist/troubleshooting/autoConfig/telecom-telephony-line-assist-troubleshooting-auto-config.html',
         controller: 'TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl',
         controllerAs: 'AutoConfigCtrl',
       },
-      'manualConfigStepView@telecom.telephony.line.assist.troubleshooting': {
+      'manualConfigStepView@telecom.telephony.billingAccount.line.assist.troubleshooting': {
         templateUrl: 'app/telecom/telephony/line/assist/troubleshooting/manualConfig/telecom-telephony-line-assist-troubleshooting-manual-config.html',
         controller: 'TelecomTelephonyLineAssistTroubleshootingManualConfigCtrl',
         controllerAs: 'ManualConfigCtrl',

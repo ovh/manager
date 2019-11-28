@@ -10,21 +10,21 @@ angular.module('managerApp').controller('TelecomTelephonyLineAnswerCtrl', functi
   function init() {
     self.actions = [{
       name: 'line_default_voicemail',
-      sref: 'telecom.telephony.line.defaultVoicemail',
+      sref: 'telecom.telephony.billingAccount.line.defaultVoicemail',
       text: $translate.instant('telephony_line_answer_actions_line_default_voicemail'),
     }, {
       name: 'line_voicemail_password',
-      sref: 'telecom.telephony.line.voicemailPassword',
+      sref: 'telecom.telephony.billingAccount.line.voicemailPassword',
       text: $translate.instant('telephony_line_answer_actions_line_voicemail_password'),
     }, {
       name: 'line_voicemail_options',
-      sref: 'telecom.telephony.line.voicemailOptions',
+      sref: 'telecom.telephony.billingAccount.line.voicemailOptions',
       text: $translate.instant('telephony_line_answer_actions_line_voicemail_options'),
     }, {
       name: 'line_voicemail_management',
       main: true,
       picto: 'ovh-font-messagesRead',
-      sref: 'telecom.telephony.line.voicemailManagement',
+      sref: 'telecom.telephony.billingAccount.line.voicemailManagement',
       text: $translate.instant('telephony_line_answer_actions_line_voicemail_management'),
     }];
   }
