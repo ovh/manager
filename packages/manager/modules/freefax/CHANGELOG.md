@@ -1,3 +1,12 @@
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.0.2...@ovh-ux/manager-freefax@6.1.0) (2019-11-28)
+
+
+### Features
+
+* **freefax:** add freefax listing view ([ca27a24](https://github.com/ovh/manager/commit/ca27a244ec72cb7a6cbb5be73f453e53dd3eca2c))
+
+
+
 ## [6.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@6.0.1...@ovh-ux/manager-freefax@6.0.2) (2019-11-22)
 
 

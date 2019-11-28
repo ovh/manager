@@ -1,3 +1,13 @@
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.2.3...@ovh-ux/ng-ovh-telecom-universe-components@4.3.0) (2019-11-28)
+
+
+### Features
+
+* **telecom:** create list layout helper ([5e2f2dd](https://github.com/ovh/manager/commit/5e2f2ddbb74928146f5a8bb3732b7b49ab8cce1f))
+* **telecom.telephony:** add telephony listings ([bcc0067](https://github.com/ovh/manager/commit/bcc0067bfacd2b100a2def09a89af342116b0cc2))
+
+
+
 ## [4.2.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.2.2...@ovh-ux/ng-ovh-telecom-universe-components@4.2.3) (2019-11-22)
 
 

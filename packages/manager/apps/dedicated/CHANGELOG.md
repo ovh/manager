@@ -1,3 +1,12 @@
+# [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.0.1...@ovh-ux/manager-dedicated@11.1.0) (2019-11-28)
+
+
+### Features
+
+* **dedictated.account.user.advanced:** add beta flag ([c644a97](https://github.com/ovh/manager/commit/c644a97dec6efd5a742abaad1bf764e905b08c27))
+
+
+
 ## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.0.0...@ovh-ux/manager-dedicated@11.0.1) (2019-11-27)
 
 

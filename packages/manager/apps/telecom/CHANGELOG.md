@@ -1,3 +1,22 @@
+# [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.6...@ovh-ux/manager-telecom@11.1.0) (2019-11-28)
+
+
+### Bug Fixes
+
+* avoid empty line in pack listing ([d58449b](https://github.com/ovh/manager/commit/d58449bfb9156d6083e3a568ae3521cb5ce85938))
+
+
+### Features
+
+* **search:** add pack, sms, freefax and overthebox in search results ([bdd7e14](https://github.com/ovh/manager/commit/bdd7e146db91ba73caf02281ef28ea361840df44))
+* **telecom:** activate beta menu ([d52f14e](https://github.com/ovh/manager/commit/d52f14ed4cf7bb68fe944affef4b16905a1d19d2))
+* **telecom:** add globals search for beta accounts ([eea21d5](https://github.com/ovh/manager/commit/eea21d58fde395ede4e0d90359b628ecdd2ced13))
+* add search engine ([3d233ff](https://github.com/ovh/manager/commit/3d233ffb2f4198ac2e9aa4745ea2fe1fbb397aa4))
+* **telecom.pack:** add packs list for beta ([1a48da2](https://github.com/ovh/manager/commit/1a48da2665fcdce452dec30859e18dc75332818f))
+* **telecom.telephony:** add telephony listings ([bcc0067](https://github.com/ovh/manager/commit/bcc0067bfacd2b100a2def09a89af342116b0cc2))
+
+
+
 ## [11.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.5...@ovh-ux/manager-telecom@11.0.6) (2019-11-27)
 
 
