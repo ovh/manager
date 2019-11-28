@@ -1,4 +1,4 @@
-export default class EasterEggsModalController {
+export default class DarkModeModalController {
   /* @ngInject */
   constructor($uibModalInstance) {
     this.$uibModalInstance = $uibModalInstance;

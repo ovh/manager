@@ -3,9 +3,9 @@ import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-ui-angular';
 
-import component from './easter-eggs.component';
+import component from './dark-mode.component';
 
-const moduleName = 'publicCloudEasterEggs';
+const moduleName = 'ovhManagerPublicCloudDarkMode';
 
 angular
   .module(moduleName, [
@@ -13,7 +13,7 @@ angular
     'pascalprecht.translate',
     'ui.bootstrap',
   ])
-  .component('publicCloudEasterEggs', component)
+  .component('publicCloudDarkMode', component)
   .run(/* @ngTranslationsInject:json ./modal/translations */);
 
 export default moduleName;

@@ -2,17 +2,17 @@ import angular from 'angular';
 import Konami from 'konami-code-js';
 
 import {
-  EASTER_EGGS_LOCAL_STORAGE_KEY,
-  EASTER_EGGS_LOCAL_STORAGE_KEY_ACTIVATE,
-  EASTER_EGGS_LOCAL_STORAGE_KEY_DEACTIVATE,
-  EASTER_EGGS_THEME_NAME,
-  EASTER_EGGS_TRACKING_KEY,
-} from './easter-eggs.constants';
+  DARK_MODE_LOCAL_STORAGE_KEY,
+  DARK_MODE_LOCAL_STORAGE_KEY_ACTIVATE,
+  DARK_MODE_LOCAL_STORAGE_KEY_DEACTIVATE,
+  DARK_MODE_THEME_NAME,
+  DARK_MODE_TRACKING_KEY,
+} from './dark-mode.constants';
 
 import controller from './modal/controller';
 import template from './modal/template.html';
 
-export default class EasterEggsController {
+export default class DarkModeController {
   /* @ngInject */
   constructor($document, $timeout, $uibModal, atInternet) {
     this.$document = $document;
@@ -24,7 +24,7 @@ export default class EasterEggsController {
   $onInit() {
     this.rootElement = this.$document[0].querySelector('html');
 
-    if (EasterEggsController.isDarkThemeActive()) {
+    if (DarkModeController.isDarkThemeActive()) {
       this.injectDarkTheme();
     }
 
@@ -37,7 +37,7 @@ export default class EasterEggsController {
    */
   static isDarkThemeActive() {
     return localStorage
-      .getItem(EASTER_EGGS_LOCAL_STORAGE_KEY) === EASTER_EGGS_LOCAL_STORAGE_KEY_ACTIVATE;
+      .getItem(DARK_MODE_LOCAL_STORAGE_KEY) === DARK_MODE_LOCAL_STORAGE_KEY_ACTIVATE;
   }
 
   /**
@@ -46,12 +46,12 @@ export default class EasterEggsController {
    */
   activateDarkTheme() {
     localStorage.setItem(
-      EASTER_EGGS_LOCAL_STORAGE_KEY,
-      EASTER_EGGS_LOCAL_STORAGE_KEY_ACTIVATE,
+      DARK_MODE_LOCAL_STORAGE_KEY,
+      DARK_MODE_LOCAL_STORAGE_KEY_ACTIVATE,
     );
 
     this.atInternet.trackClick({
-      name: EASTER_EGGS_TRACKING_KEY,
+      name: DARK_MODE_TRACKING_KEY,
       type: 'action',
     });
 
@@ -64,11 +64,11 @@ export default class EasterEggsController {
    */
   deactiveDarkTheme() {
     localStorage.setItem(
-      EASTER_EGGS_LOCAL_STORAGE_KEY,
-      EASTER_EGGS_LOCAL_STORAGE_KEY_DEACTIVATE,
+      DARK_MODE_LOCAL_STORAGE_KEY,
+      DARK_MODE_LOCAL_STORAGE_KEY_DEACTIVATE,
     );
 
-    this.rootElement.classList.remove(EASTER_EGGS_THEME_NAME);
+    this.rootElement.classList.remove(DARK_MODE_THEME_NAME);
   }
 
   /**
@@ -77,7 +77,7 @@ export default class EasterEggsController {
 
   injectDarkTheme() {
     return import('../../assets/theme/dark/index.less')
-      .then(() => this.rootElement.classList.add(EASTER_EGGS_THEME_NAME));
+      .then(() => this.rootElement.classList.add(DARK_MODE_THEME_NAME));
   }
 
   /**
@@ -100,7 +100,7 @@ export default class EasterEggsController {
   }
 
   toggle() {
-    if (EasterEggsController.isDarkThemeActive()) {
+    if (DarkModeController.isDarkThemeActive()) {
       return this.deactiveDarkTheme();
     }
     return this.openModal();

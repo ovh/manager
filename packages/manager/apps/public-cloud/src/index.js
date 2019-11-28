@@ -31,7 +31,7 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import atInternet from './components/at-internet';
-import easterEggs from './components/easter-eggs';
+import darkMode from './components/dark-mode';
 import preload from './components/manager-preload';
 
 import './assets/theme/default/index.less';
@@ -48,7 +48,7 @@ angular
   .module('ovhPublicCloudApp', [
     __NG_APP_INJECTIONS__,
     atInternet,
-    easterEggs,
+    darkMode,
     ngAnimate,
     ngUiRouterBreadcrumb,
     ngUiRouterLineProgress,
