@@ -1,3 +1,12 @@
+## [11.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.0...@ovh-ux/manager-telecom@11.1.1) (2019-11-29)
+
+
+### Bug Fixes
+
+* **telecom.pack.migration:** fix loading setting ([#1874](https://github.com/ovh/manager/issues/1874)) ([2016b4d](https://github.com/ovh/manager/commit/2016b4d2036c24ca496e0f5534085b2b40314218))
+
+
+
 # [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.6...@ovh-ux/manager-telecom@11.1.0) (2019-11-28)
 
 
