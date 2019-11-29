@@ -17,7 +17,15 @@ import OvhPaymentMethodLegacy from './legacy/payment-method-legacy';
 
 export default class OvhPaymentMethodService {
   /* @ngInject */
-  constructor($log, $q, $translate, $window, coreConfig, OvhApiMe) {
+  constructor(
+    $log,
+    $q,
+    $translate,
+    $window,
+    coreConfig,
+    OvhApiMe,
+    paymentMethodPageUrl,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
@@ -27,6 +35,8 @@ export default class OvhPaymentMethodService {
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
       $log, $q, $translate, $window, OvhApiMe, coreConfig.getRegion(),
     );
+
+    this.paymentMethodPageUrl = paymentMethodPageUrl;
   }
 
   /**
