@@ -1,0 +1,39 @@
+<div data-ng-if="$ctrl.loading">
+    <oui-skeleton data-size="xl"></oui-skeleton>
+    <oui-skeleton data-size="xl"></oui-skeleton>
+    <oui-skeleton data-size="xl"></oui-skeleton>
+</div>
+
+<oui-field
+    data-label="{{:: 'ovh_payment_method_choice_title' | translate }}"
+    data-ng-if="!$ctrl.loading">
+    <oui-radio
+        data-name="paymentMethod"
+        data-model="$ctrl.model"
+        data-value="true"
+        data-disabled="!$ctrl.defaultPaymentMethod"
+        data-required>
+        <div data-ng-if="!$ctrl.loading">
+            <span class="mr-2 d-inline oui-status oui-status_success"
+                data-translate="ovh_payment_method_choice_tag_recommended">
+            </span>
+            <span data-translate="ovh_payment_method_choice_payment_method_default"></span>
+            <span class="oui-color-success-dark"
+                data-ng-if="::$ctrl.defaultPaymentMethod"
+                data-ng-bind="::$ctrl.getPaymentMethodText()">
+            </span>
+            <span class="oui-color-error-dark"
+                data-ng-if="::!$ctrl.defaultPaymentMethod"
+                data-translate="ovh_payment_method_choice_payment_method_add_link"
+                data-translate-values="{ 'paymentMethodPageUrl': $ctrl.paymentMethodPageUrl }">
+            </span>
+        </div>
+    </oui-radio>
+    <oui-radio
+        data-name="paymentMethod"
+        data-model="$ctrl.model"
+        data-value="false"
+        data-required>
+        <span data-ng-if="!$ctrl.loading" data-translate="ovh_payment_method_choice_payment_method_other"></span>
+    </oui-radio>
+</oui-field>
