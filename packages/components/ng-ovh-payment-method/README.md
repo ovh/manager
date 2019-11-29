@@ -21,9 +21,10 @@ angular
   .module('myApp', [
     ngOvhPaymentMethod,
   ])
-  .config(/* @ngInject */(ovhPaymentMethodProvider, constants) => {
-    // Tell the component which APIs must be to called.
-    ovhPaymentMethodProvider.setTarget(constants.target);
+  .config(/* @ngInject */(ovhPaymentMethodProvider) => {
+    // Set the url of payment method list page, where the user
+    // should be redirected when he has no default payment method.
+    ovhPaymentMethodProvider.setPaymentMethodPageUrl(constants.target);
   });
 ```
 
