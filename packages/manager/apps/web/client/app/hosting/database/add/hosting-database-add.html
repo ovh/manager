@@ -22,7 +22,7 @@
                             data-ng-model="model.capability"
                             data-ng-change="loadAvailableDatabaseVersions()">
                         <option data-ng-repeat="capability in capabilities track by $index"
-                                data-translate="{{ 'hosting_tab_DATABASES_configuration_create_step1_select_type_' + capability.snakeType }}"
+                                data-translate="{{ 'hosting_tab_DATABASES_configuration_create_step1_select_type_' + capability.snakeCasedType }}"
                                 data-translate-values="{
                                     t0: capability.quota.value,
                                     t1: capability.quota.unit,
@@ -176,7 +176,7 @@
             <p data-translate="hosting_tab_DATABASES_configuration_create_step3_question"></p>
             <dl class="dl-horizontal dl-lg">
                 <dt data-translate="hosting_tab_DATABASES_configuration_create_step3_type"></dt>
-                <dd data-translate="{{ 'hosting_tab_DATABASES_configuration_create_step3_type_' + model.capability.snakeType }}"
+                <dd data-translate="{{ 'hosting_tab_DATABASES_configuration_create_step3_type_' + model.capability.snakeCasedType }}"
                     data-translate-values="{
                         t0: model.capability.quota.value,
                         t1: model.capability.quota.unit

@@ -4,6 +4,11 @@ import isNil from 'lodash/isNil';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
+import {
+  EXTRA_SQL_PERSO,
+  MAX_USER_LENGTH,
+} from './add.constants';
+
 angular
   .module('App')
   .controller(
@@ -22,9 +27,6 @@ angular
       OvhApiHostingWeb,
       User,
     ) => {
-      const MAX_USER_LENGTH = 16;
-      const EXTRA_SQL_PERSO = 'extraSqlPerso';
-
       $scope.primaryLogin = $scope.hosting.primaryLogin;
       $scope.maxUserLength = MAX_USER_LENGTH - $scope.primaryLogin.length;
 
@@ -65,13 +67,10 @@ angular
         })
         .$promise
         .then((capabilities) => {
-          $scope.capabilities = capabilities;
-
-          map($scope.capabilities, (capa) => {
-            const capability = capa;
-            capability.snakeType = snakeCase(capability.type);
-            return capability;
-          });
+          $scope.capabilities = map(capabilities, capability => ({
+            ...capability,
+            snakeCasedType: snakeCase(capability.type),
+          }));
 
           $scope.model.capability = first($scope.capabilities);
           $scope.model.type = first($scope.model.capability.engines);
