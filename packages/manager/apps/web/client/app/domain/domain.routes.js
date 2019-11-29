@@ -1,6 +1,7 @@
 import clone from 'lodash/clone';
 
 import generalInformationState from './general-informations/domain-general-informations.state';
+import anycastState from './anycast/domain-dns-anycast.state';
 import dnsState from './dns/domain-dns.state';
 import redirectionState from './redirection/domain-redirection.state';
 import dynHostState from './dynhost/domain-dynhost.state';
@@ -38,6 +39,8 @@ angular.module('App').config(($stateProvider) => {
           });
         },
       ],
+      goToDns: /* @ngInject */ $state => () => $state.go('app.domain.product.dns'),
+      goToDnsAnycast: /* @ngInject */ $state => () => $state.go('app.domain.product.anycast'),
     },
     translations: { value: ['../core', '../domain', '../email', '../hosting', '../domain-operation'], format: 'json' },
   });
@@ -63,12 +66,15 @@ angular.module('App').config(($stateProvider) => {
           });
         },
       ],
+      goToDns: /* @ngInject */ $state => () => $state.go('app.domain.alldom.dns'),
+      goToDnsAnycast: /* @ngInject */ $state => () => $state.go('app.domain.alldom.anycast'),
     },
     translations: { value: ['../core', '../domain', '../email', '../hosting', '../domain-operation'], format: 'json' },
   });
 
   ['product', 'alldom'].forEach((stateType) => {
     // Clone state before using it as it will be modified by UI Router
+    $stateProvider.state(`app.domain.${stateType}.anycast`, clone(anycastState));
     $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
     $stateProvider.state(`app.domain.${stateType}.redirection`, clone(redirectionState));
     $stateProvider.state(`app.domain.${stateType}.dynhost`, clone(dynHostState));
