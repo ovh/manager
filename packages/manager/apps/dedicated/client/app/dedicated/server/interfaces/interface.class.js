@@ -3,8 +3,26 @@ import isEmpty from 'lodash/isEmpty';
 import { PHYSICAL_TYPE, VIRTUAL_TYPE } from './interfaces.constants';
 
 export default class Interface {
-  constructor(resource) {
-    Object.assign(this, resource);
+  constructor({
+    id,
+    name,
+    mac,
+    type,
+    virtualNetworkInterface,
+    vrack,
+    enabled,
+    uuid,
+  }) {
+    Object.assign(this, {
+      id,
+      name,
+      mac,
+      type,
+      virtualNetworkInterface,
+      vrack,
+      enabled,
+      uuid,
+    });
   }
 
   isPhysical() {
@@ -37,6 +55,10 @@ export default class Interface {
   }
 
   hasVrack() {
-    return this.vrack !== null;
+    return this.vrack;
+  }
+
+  isLegacy() {
+    return !this.virtualNetworkInterface && !this.uuid;
   }
 }

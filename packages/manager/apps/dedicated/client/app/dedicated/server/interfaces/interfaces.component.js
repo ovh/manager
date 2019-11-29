@@ -23,5 +23,6 @@ export default {
     taskPolling: '<',
     urls: '<',
     user: '<',
+    vrack: '<',
   },
 };

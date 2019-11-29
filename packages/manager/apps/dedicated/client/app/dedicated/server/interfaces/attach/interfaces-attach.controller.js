@@ -11,17 +11,29 @@ export default class {
   }
 
   attach() {
-    return this.Vrack.DedicatedServerInterface()
-      .v6()
-      .post(
-        {
-          serviceName: this.vrack,
-        },
-        {
-          dedicatedServerInterface: this.interface.id,
-        },
-      )
-      .$promise.then(() => {
+    return (this.interface.isLegacy()
+      ? this.Vrack.DedicatedServer()
+          .v6()
+          .create(
+            {
+              serviceName: this.vrack,
+            },
+            {
+              dedicatedServer: this.serverName,
+            },
+          ).$promise
+      : this.Vrack.DedicatedServerInterface()
+          .v6()
+          .post(
+            {
+              serviceName: this.vrack,
+            },
+            {
+              dedicatedServerInterface: this.interface.id,
+            },
+          ).$promise
+    )
+      .then(() => {
         this.goBack();
       })
       .catch((error) => {

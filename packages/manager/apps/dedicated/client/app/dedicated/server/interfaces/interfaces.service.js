@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
@@ -75,7 +76,7 @@ export default class DedicatedServerInterfacesService {
     );
   }
 
-  getInterfaces(serverName) {
+  getInterfaces(serverName, serverVrack) {
     let nics;
 
     return this.getNetworkInterfaceControllers(serverName)
@@ -93,13 +94,13 @@ export default class DedicatedServerInterfacesService {
                 includes(networkInterfaceController, mac),
               ),
           ),
-          ({ mac, linkType: type }) =>
+          (networkInterface) =>
             new Interface({
-              id: mac,
-              name: mac,
-              mac,
-              type,
-              vrack: null,
+              ...networkInterface,
+              type: networkInterface.linkType,
+              id: networkInterface.mac,
+              name: networkInterface.mac,
+              vrack: head(serverVrack),
               enabled: true, // physical interface is always enabled
             }),
         ),
@@ -115,6 +116,7 @@ export default class DedicatedServerInterfacesService {
           }) =>
             new Interface({
               id: uuid,
+              uuid,
               name,
               mac: networkInterfaceController.join(', '),
               type,

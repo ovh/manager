@@ -237,7 +237,10 @@
         <span data-ng-if="!$row.hasVrack()">-</span>
     </oui-column>
 
-    <oui-action-menu data-align="top-end" data-compact>
+    <oui-action-menu
+        data-align="top-end"
+        data-compact
+        data-ng-if="!$row.isPrivate() || $ctrl.specifications.vrack.type">
         <oui-action-menu-item
             data-ui-sref="app.dedicated.server.interfaces.rename({ interface: $row })"
             data-ng-if="$row.isVirtual()"
