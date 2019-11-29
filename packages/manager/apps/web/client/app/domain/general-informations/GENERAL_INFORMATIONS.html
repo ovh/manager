@@ -1,4 +1,4 @@
-<div class="container-fluid px-0" data-ng-controller="DomainTabGeneralInformationsCtrl as $ctrl">
+<div class="container-fluid px-0">
     <div data-ovh-alert="{{alerts.main}}"></div>
     <div class="row d-lg-flex">
         <div class="col-md-4 mb-5">
@@ -73,7 +73,7 @@
                         data-ng-if="!$ctrl.domain.hasDnsAnycast">
                         <oui-action-menu-item
                             data-text="{{ ::'domain_configuration_dnsanycast_title_button' | translate }}"
-                            data-on-click="setAction('anycast/domain-dns-anycast', $ctrl.domain)">
+                            data-on-click="$ctrl.goToDnsAnycast()">
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
