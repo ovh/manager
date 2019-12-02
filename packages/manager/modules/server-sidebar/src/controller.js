@@ -105,6 +105,7 @@ export default class OvhManagerServerSidebarController {
   }
 
   buildOrderMenu() {
+    this.SidebarMenu.actionsMenuOptions = [];
     return this.SessionService.getUser()
       .then(({ ovhSubsidiary }) => {
         const actionsMenuOptions = map(
