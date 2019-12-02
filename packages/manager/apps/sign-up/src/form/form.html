@@ -8,9 +8,11 @@
         <small data-ng-bind-html="$ctrl.saveError.data.message"></small>
     </oui-message>
 
-    <ovh-sign-up-form data-action="update"
-                  data-me="$ctrl.me"
-                  data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)">
+    <ovh-sign-up-form
+        data-action="update"
+        data-me="$ctrl.me"
+        data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)"
+        data-post-params="$ctrl.postParams">
         <oui-stepper data-current-index="1"
                      data-on-finish="$ctrl.onStepperFinished()">
             <oui-step-form data-header="{{ 'sign_up_form_identity_step_title' | translate }}"

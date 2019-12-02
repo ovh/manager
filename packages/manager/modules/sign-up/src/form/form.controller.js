@@ -110,35 +110,30 @@ export default class SignUpFormCtrl {
       });
   }
 
+  /**
+   *  Define the model with the values from the response of GET /me.
+   *  Be sure to take only the attributes from the available post params of POST /newAccount/rules
+   *  to avoid errors on POST.
+   */
   initModel() {
     this.model = {};
-    // define model from GET /me
-    const meCopy = Object.assign({}, this.me);
-    // and remove some unecessary attributes
-    delete meCopy.state;
-    delete meCopy.currency;
-    delete meCopy.customerCode;
-    delete meCopy.nichandle;
-    delete meCopy.model;
-    // define model properties
-    Object.keys(meCopy).forEach((key) => {
-      Object.defineProperty(this.model, `$${key}`, {
+
+    this.postParams.forEach(({ name }) => {
+      Object.defineProperty(this.model, `$${name}`, {
         enumerable: false,
         value: new WatchableModel(
-          get(meCopy, key),
+          get(this.me, name),
           this.getRules.bind(this),
           MODEL_DEBOUNCE_DELAY,
         ),
       });
 
-      Object.defineProperty(this.model, key, {
+      Object.defineProperty(this.model, name, {
         enumerable: true,
-        get: () => get(this.model, `$${key}.value`),
-        set: newValue => set(this.model, `$${key}.value`, newValue),
+        get: () => get(this.model, `$${name}.value`),
+        set: newValue => set(this.model, `$${name}.value`, newValue),
       });
     });
-    // add some informations
-    // set(this.model, 'action', this.action);
   }
 
   /* ============================
