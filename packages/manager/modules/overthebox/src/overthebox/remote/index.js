@@ -2,6 +2,7 @@ import angular from 'angular';
 import constant from './overTheBox-remote.constant';
 import controller from './overTheBox-remote.controller';
 import template from './overTheBox-remote.html';
+import './overTheBox-remote.less';
 
 const moduleName = 'ovhManagerOtbRemote';
 

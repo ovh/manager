@@ -297,51 +297,18 @@
                             >
                             </label>
                             <div class="input-group date-picker-input">
-                                <input
-                                    name="expirationDate"
-                                    class="form-control"
-                                    data-uib-datepicker-popup="dd/MM/yyyy"
-                                    data-datepicker-options="OverTheBoxRemote.datepickerOptions"
-                                    data-ng-model="OverTheBoxRemote.newRemote.expirationDate"
-                                    data-ng-focus="OverTheBoxRemote.openDatePicker($event)"
-                                    data-ui-validate="{date: 'OverTheBoxRemote.validator.isDate($value) || !$value', future: 'OverTheBoxRemote.isInFuture($value)'}"
-                                    data-ng-disabled="OverTheBoxRemote.adding"
-                                    data-is-open="OverTheBoxRemote.pickerOpened"
-                                    data-show-button-bar="false"
-                                    data-current-text="{{:: 'today' | translate }}"
-                                    data-clear-text="{{:: 'reset' | translate }}"
-                                    data-close-text="{{:: 'close' | translate }}"
-                                    placeholder="{{ OverTheBoxRemote.datepickerOptions.minDate | date:'dd/MM/yyyy'}}"
-                                />
-                                <span class="input-group-btn">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link btn-xs"
-                                        data-ng-click="OverTheBoxRemote.openDatePicker($event)"
-                                    >
-                                        <i
-                                            class="ovh-font ovh-font-scheduled"
-                                        ></i>
-                                    </button>
+                                <oui-calendar data-name="expirationDate"
+                                              data-model="OverTheBoxRemote.expirationDateStr"
+                                              data-on-change="OverTheBoxRemote.onDateChange(selectedDates)"
+                                              data-alt-format="d-m-Y"
+                                              data-options="OverTheBoxRemote.datepickerOptions"
+                                              data-disabled="OverTheBoxRemote.adding"
+                                              data-placeholder="{{ OverTheBoxRemote.datepickerOptions.minDate | date:'dd/MM/yyyy'}}"
+                                              data-week-numbers></oui-calendar>
+                                <span class="input-group-addon">
+                                    <i class="ovh-font ovh-font-scheduled"></i>
                                 </span>
                             </div>
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="overTheBoxAdd.expirationDate.$touched"
-                                data-ng-messages="overTheBoxAdd.expirationDate.$error"
-                            >
-                                <span
-                                    data-ng-message="date"
-                                    data-translate="overTheBox_remote_add_expirationDate_error"
-                                >
-                                </span>
-                                <span
-                                    data-ng-message="future"
-                                    data-translate="overTheBox_remote_add_expirationDate_error_future"
-                                >
-                                </span>
-                            </span>
                         </div>
 
                         <div class="form-group">

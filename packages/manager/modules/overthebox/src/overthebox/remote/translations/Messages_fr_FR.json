@@ -28,8 +28,6 @@
   "overTheBox_remote_add_publicKey": "Clef publique :",
   "overTheBox_remote_add_allowedIp_error": "L'adresse IP n'est pas correcte.",
   "overTheBox_remote_add_exposedPort_error": "Le port est invalide.",
-  "overTheBox_remote_add_expirationDate_error": "La date d'expiration est invalide.",
-  "overTheBox_remote_add_expirationDate_error_future": "Spécifiez une date future.",
   "overTheBox_remote_add_publicKey_error": "Une clef publique est obligatoire sur le port 22.",
   "overTheBox_remote_authorize_confirm": "Voulez-vous vraiment autoriser l'accès à distance sur le port {{port}} ?",
   "overTheBox_remote_authorize_tooltip": "Autoriser l'accès à distance sur le port {{port}}.",
