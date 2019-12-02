@@ -2,15 +2,15 @@ import map from 'lodash/map';
 
 export default class OvhManagerPciServingAddService {
   /* @ngInject */
-  constructor($q, OvhApiCloudProjectIo, OvhApiCloudProjectServing) {
+  constructor($q, OvhApiCloudProjectIo, OvhApiCloudProjectAiServing) {
     this.$q = $q;
     this.OvhApiCloudProjectIo = OvhApiCloudProjectIo; // TODO REMOVE
-    this.OvhApiCloudProjectServing = OvhApiCloudProjectServing;
+    this.OvhApiCloudProjectAiServing = OvhApiCloudProjectAiServing;
   }
 
   addNamespace(serviceName, namespaceCreation) {
-    return this.OvhApiCloudProjectServing
-      .Namespace().v6().save({
+    return this.OvhApiCloudProjectAiServing
+      .v6().save({
         serviceName,
       }, namespaceCreation).$promise;
   }
