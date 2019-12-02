@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { SMSFeatureAvailability } from '@ovh-ux/manager-sms';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -12,10 +14,20 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
   // add translation path
   SidebarMenuProvider.addTranslationPath('../components/sidebar');
 }).run(/* @ngInject */(
-  $sce, $translate,
-  atInternet, betaPreferenceService, FaxSidebar, OverTheBoxSidebar, PackSidebar,
-  SidebarMenu, SmsSidebar, TelecomMediator, TelephonySidebar,
-  ORDER_URLS, REDIRECT_URLS,
+  $sce,
+  $translate,
+  atInternet,
+  betaPreferenceService,
+  FaxSidebar,
+  OverTheBoxSidebar,
+  OvhApiMe,
+  PackSidebar,
+  SidebarMenu,
+  SmsSidebar,
+  TelecomMediator,
+  TelephonySidebar,
+  ORDER_URLS,
+  REDIRECT_URLS,
 ) => {
   /*= =========================================
     =                   HELPERS                 =
@@ -101,7 +113,8 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     =            ACTIONS MENU OPTIONS            =
     ============================================ */
 
-  function initSidebarMenuActionsOptions() {
+  function initSidebarMenuActionsOptions(user) {
+    const smsAvailability = new SMSFeatureAvailability(user);
     SidebarMenu.addActionsMenuOptions([{
       title: $translate.instant('telecom_sidebar_actions_menu_number'),
       icon: 'ovh-font ovh-font-hashtag',
@@ -208,20 +221,26 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
         onClick: setTracker('order-O365_Sharepoint', 'navigation', 'Telecom', 'telecom'),
       }],
     },
-    {
+    ...smsAvailability.isAvailable('order') ? [{
       title: $translate.instant('telecom_sidebar_actions_menu_sms'),
       icon: 'ovh-font ovh-font-message',
-      subActions: [{
-        title: $translate.instant('telecom_sidebar_actions_menu_sms'),
+      ...smsAvailability.isAvailable('hlr') ? {
+        subActions: [{
+          title: $translate.instant('telecom_sidebar_actions_menu_sms'),
+          state: 'sms.order',
+        },
+        {
+          title: $translate.instant('telecom_sidebar_actions_menu_sms_hlr'),
+          href: ORDER_URLS.sms.hlr,
+          target: '_blank',
+          external: true,
+          onClick: setTracker('order-sms-HLR', 'navigation', 'Telecom', 'telecom'),
+        }],
+      } : {
         state: 'sms.order',
-      }, {
-        title: $translate.instant('telecom_sidebar_actions_menu_sms_hlr'),
-        href: ORDER_URLS.sms.hlr,
-        target: '_blank',
-        external: true,
-        onClick: setTracker('order-sms-HLR', 'navigation', 'Telecom', 'telecom'),
-      }],
-    }, {
+      },
+    }] : [],
+    {
       title: $translate.instant('telecom_sidebar_actions_menu_fax'),
       icon: 'ovh-font ovh-font-print',
       href: ORDER_URLS.fax,
@@ -251,7 +270,8 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
               initSidebarMenuItems(count, beta);
             });
         })
-        .finally(() => initSidebarMenuActionsOptions()),
+        .then(() => OvhApiMe.v6().get().$promise)
+        .then(user => initSidebarMenuActionsOptions(user)),
     );
   }
 
