@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-welcome",
   "version": "2.1.1",
+  "private": true,
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/welcome#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
