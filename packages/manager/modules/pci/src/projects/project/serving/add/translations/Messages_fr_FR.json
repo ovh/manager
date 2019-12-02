@@ -1,0 +1,10 @@
+{
+  "pci_projects_project_serving_add_title": "Créer un namespace Serving Engine",
+  "pci_projects_project_serving_add_region_title": "Sélectionnez une localisation",
+  "pci_projects_project_serving_add_description_title": "Description du namespace",
+  "pci_projects_project_serving_add_description_help": "Le nom du namespace doit commencer par un caractère alphanumérique minuscule ou majuscule (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : « - », « _ ».",
+  "pci_projects_project_serving_add_container_title": "Nom du conteneur Object Storage",
+  "pci_projects_project_serving_add_container_help": "Nom du conteneur dans lequel trouver les modèles sérialisés. Le conteneur sera créé s'il n'existe pas.",
+  "pci_projects_project_serving_add_success": "Votre namespace {{ name }} a été créé avec succès",
+  "pci_projects_project_serving_add_error": "Une erreur est survenue durant la création du namespace: {{ errorMessage }}"
+}

@@ -1,6 +1,6 @@
 {
   "pci_projects_project_serving_namespace_models": "Models",
-  "pci_projects_project_serving_namespace_infos": "Informations",
+  "pci_projects_project_serving_namespace_infos": "Information",
   "pci_projects_project_serving_namespace_tokens": "Token",
   "pci_projects_project_serving_namespace_models_description_1": "Deploy here your AI models in few clicks.",
   "pci_projects_project_serving_namespace_models_description_2": "Once deployed, generate a security token, then use the API endpoint to test and use your model. You will also find code snippets for easy code integration",

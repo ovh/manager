@@ -2,7 +2,7 @@
   "pci_projects_project_serving_delete": "Delete namespace",
   "pci_projects_project_serving_delete_common_delete": "Delete",
   "pci_projects_project_serving_delete_common_cancel": "Cancel",
-  "pci_projects_project_serving_delete_warning": "Warning LOREM",
+  "pci_projects_project_serving_delete_warning": "Warning! You are about to delete your namespace. All models and tokens associated will be deleted as well.",
   "pci_projects_project_serving_delete_success": "Your namespace {{ name }} as been deleted",
   "pci_projects_project_serving_delete_error": "An error occur during the namespace deletion: {{ errorMessage }}"
 }
