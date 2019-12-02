@@ -113,5 +113,7 @@
   "ovhManagerSupport_new_business_3": "Zgłoszenia wysłane na ten adres nie będą przetwarzane.",
   "ovhManagerSupport_new_serviceType_carrier_sip": "",
   "ovhManagerSupport_new_creation_optional": "{{label}} (facultatif)",
-  "ovhManagerSupport_new_open_new_tab": "Otwórz nową zakładkę"
+  "ovhManagerSupport_new_open_new_tab": "Otwórz nową zakładkę",
+  "ovh_manager_support_tickets_new_issues_form_resources_guides_header": "Przewodniki",
+  "ovh_manager_support_tickets_new_issues_form_resources_tips_header": "Wskazówki"
 }
