@@ -114,7 +114,6 @@ export default class {
     this.moreOptions = false;
     this.picker = {
       date: null,
-      dateOpened: false,
       time: moment().toDate(),
       options: {
         minDate: moment().toDate(),
@@ -311,14 +310,8 @@ export default class {
     return this.user.ovhSubsidiary === 'FR';
   }
 
-  /**
-   * Open date picker.
-   * @param  {Object} $event
-   */
-  openDatePicker($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    this.picker.dateOpened = true;
+  onDateChange([selectedDate]) {
+    this.picker.date = selectedDate;
   }
 
   /**

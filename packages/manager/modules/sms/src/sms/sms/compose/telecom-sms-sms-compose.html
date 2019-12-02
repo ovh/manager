@@ -516,12 +516,9 @@
                                             ></span>
                                         </label>
                                     </div>
-                                    <div
-                                        data-ng-show="$ctrl.sms.differedPeriod"
-                                    >
-                                        <div
-                                            class="form-group"
-                                            data-ng-class="{
+                                    <div data-ng-if="$ctrl.sms.differedPeriod">
+                                        <div class="form-group"
+                                             data-ng-class="{
                                                  'has-error': sendSmsForm.delayedDate.$touched && sendSmsForm.delayedDate.$invalid
                                              }"
                                         >
@@ -531,37 +528,18 @@
                                                 data-translate="sms_sms_compose_differed_period_date_label"
                                             >
                                             </label>
-                                            <div
-                                                class="input-group date-picker-input"
-                                            >
-                                                <input
-                                                    type="text"
-                                                    name="delayedDate"
-                                                    id="delayedDate"
-                                                    class="form-control input-block"
-                                                    data-ng-model="$ctrl.picker.date"
-                                                    data-min-date="$ctrl.picker.minDate"
-                                                    data-is-open="$ctrl.picker.dateOpened"
-                                                    data-uib-datepicker-popup="dd/MM/yyyy"
-                                                    data-datepicker-options="$ctrl.picker.options"
-                                                    data-show-button-bar="false"
-                                                    data-current-text="{{ ::'sms_today' | translate }}"
-                                                    data-clear-text="{{ ::'sms_reset' | translate }}"
-                                                    data-close-text="{{ ::'sms_close' | translate }}"
-                                                    data-ng-focus="$ctrl.openDatePicker($event)"
-                                                    data-ng-required="$ctrl.sms.differedPeriod"
-                                                    data-translate-attr="{ placeholder: 'sms_sms_compose_differed_period_date_placeholder' }"
-                                                />
-                                                <span class="input-group-btn">
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-link btn-xs"
-                                                        data-ng-click="$ctrl.openDatePicker($event)"
-                                                    >
-                                                        <i
-                                                            class="fa fa-calendar"
-                                                        ></i>
-                                                    </button>
+                                            <div class="input-group">
+                                                <oui-calendar data-id="delayedDate"
+                                                              data-name="delayedDate"
+                                                              data-model="$ctrl.picker.dateStr"
+                                                              data-on-change="$ctrl.onDateChange(selectedDates)"
+                                                              data-format="d-m-Y"
+                                                              data-required="$ctrl.sms.differedPeriod"
+                                                              data-options="$ctrl.picker.options"
+                                                              data-placeholder="{{ 'sms_sms_compose_differed_period_date_placeholder' | translate }}"
+                                                              data-week-numbers></oui-calendar>
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
                                                 </span>
                                             </div>
                                             <span
