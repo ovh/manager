@@ -17,32 +17,18 @@
             class="ovh-form-flat animate-opacity2-leave"
         >
             <div>
-                <div
-                    flat-input-container
-                    class="pull-right"
-                    style="width: 160px;"
-                >
+                <div class="pull-right" style="width: 160px;">
+
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
 
-                        <input
-                            type="text"
-                            class="form-control datepicker-ui-pretty"
-                            id="searchCreationEnd"
-                            name="searchCreationEnd"
-                            placeholder="{{ 'cpc_volume_date_end' | translate}}"
-                            data-uib-datepicker-popup="shortDate"
-                            data-is-open="openedCreationEnd"
-                            data-ng-click="openedCreationEnd = true"
-                            data-ng-model="CloudProjectComputeVolumeCtrl.search.creationEnd"
-                            data-ui-validate-watch="'CloudProjectComputeVolumeCtrl.search.creationStart'"
-                            data-ui-validate="{'startBeforeEndDate' : '!$value
-                                                || !CloudProjectComputeVolumeCtrl.search.creationStart
-                                                || CloudProjectComputeVolumeCtrl.search.creationStart < $value' }"
-                            data-ng-disabled="CloudProjectComputeVolumeCtrl.loaders.remove.volume || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti"
-                        />
+                        <oui-calendar data-id="searchCreationEnd"
+                                      data-name="searchCreationEnd"
+                                      data-model="CloudProjectComputeVolumeCtrl.search.creationEnd"
+                                      data-disabled="CloudProjectComputeVolumeCtrl.loaders.remove.volume || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti"
+                                      data-placeholder="{{ 'cpc_volume_date_end' | translate }}"></oui-calendar>
 
                         <div
                             class="input-group-btn"
@@ -57,34 +43,21 @@
                             </button>
                         </div>
                     </div>
+                    <span class="text-danger" data-ng-if="!CloudProjectComputeVolumeCtrl.isStartBeforeEndDate()" data-translate="cpc_volume_date_end_error"></span>
                 </div>
 
-                <div
-                    flat-input-container
-                    class="pull-right"
-                    style="width: 160px;"
-                >
+                <div class="pull-right" style="width: 160px;">
+
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
 
-                        <input
-                            type="text"
-                            class="form-control datepicker-ui-pretty"
-                            id="searchCreationStart"
-                            name="searchCreationStart"
-                            placeholder="{{ 'cpc_volume_date_start' | translate}}"
-                            data-uib-datepicker-popup="shortDate"
-                            data-is-open="openedCreationStart"
-                            data-ng-click="openedCreationStart = true"
-                            data-ui-validate-watch="'CloudProjectComputeVolumeCtrl.search.creationEnd'"
-                            data-ui-validate="{'startBeforeEndDate' : '!$value
-                                            || !CloudProjectComputeVolumeCtrl.search.creationEnd
-                                            || CloudProjectComputeVolumeCtrl.search.creationEnd > $value' }"
-                            data-ng-model="CloudProjectComputeVolumeCtrl.search.creationStart"
-                            data-ng-disabled="CloudProjectComputeVolumeCtrl.loaders.remove.volume || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti"
-                        />
+                        <oui-calendar data-id="searchCreationStart"
+                                      data-name="searchCreationStart"
+                                      data-model="CloudProjectComputeVolumeCtrl.search.creationStart"
+                                      data-disabled="CloudProjectComputeVolumeCtrl.loaders.remove.volume || CloudProjectComputeVolumeCtrl.loaders.remove.volumeMulti"
+                                      data-placeholder="{{ 'cpc_volume_date_start' | translate }}"></oui-calendar>
 
                         <div
                             class="input-group-btn"
@@ -99,6 +72,7 @@
                             </button>
                         </div>
                     </div>
+                    <span class="text-danger" data-ng-if="!CloudProjectComputeVolumeCtrl.isStartBeforeEndDate()" data-translate="cpc_volume_date_start_error"></span>
                 </div>
 
                 <div

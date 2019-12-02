@@ -56,39 +56,17 @@
                         translate="cpc_snapshot_min_disk1"
                     ></label>
                 </div>
-                <div
-                    flat-input-container
-                    class="pull-right"
-                    style="width: 185px;"
-                >
+
+                <div class="pull-right" style="width: 185px;">
                     <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-
-                        <input
-                            type="text"
-                            class="form-control datepicker-ui-pretty"
-                            id="searchCreationEnd"
-                            name="searchCreationEnd"
-                            placeholder="{{ 'cpc_snapshot_date_end' | translate}}"
-                            data-uib-datepicker-popup="shortDate"
-                            data-is-open="openedCreationEnd"
-                            data-ng-click="openedCreationEnd = true"
-                            data-ng-model="CloudProjectComputeSnapshotCtrl.search.creationEnd"
-                            data-ui-validate-watch="'CloudProjectComputeSnapshotCtrl.search.creationStart'"
-                            data-ui-validate="{'startBeforeEndDate' : '!$value
-                                                || !CloudProjectComputeSnapshotCtrl.search.creationStart
-                                                || CloudProjectComputeSnapshotCtrl.search.creationStart < $value' }"
-                            data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
-                        />
-
-                        <div
-                            class="input-group-btn"
-                            data-ng-show="CloudProjectComputeSnapshotCtrl.search.creationEnd"
-                        >
-                            <button
-                                class="no-style btn"
+                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                        <oui-calendar data-id="searchCreationEnd"
+                                      data-name="searchCreationEnd"
+                                      data-model="CloudProjectComputeSnapshotCtrl.search.creationEnd"
+                                      data-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
+                                      data-placeholder="{{ 'cpc_snapshot_date_end' | translate }}"></oui-calendar>
+                        <div class="input-group-btn" data-ng-show="CloudProjectComputeSnapshotCtrl.search.creationEnd">
+                            <button class="no-style btn"
                                 type="button"
                                 data-ng-click="CloudProjectComputeSnapshotCtrl.search.creationEnd = null"
                                 data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
@@ -97,46 +75,19 @@
                             </button>
                         </div>
                     </div>
-                    <label
-                        for="searchCreationEnd"
-                        class="text-nowrap"
-                        translate="cpc_snapshot_date_end"
-                    ></label>
+                    <span class="text-danger" data-ng-if="!CloudProjectComputeSnapshotCtrl.isStartBeforeEndDate()" data-translate="cpc_snapshot_date_end_error"></span>
                 </div>
 
-                <div
-                    flat-input-container
-                    class="pull-right"
-                    style="width: 185px;"
-                >
+                <div class="pull-right" style="width: 185px;">
                     <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-
-                        <input
-                            type="text"
-                            class="form-control datepicker-ui-pretty"
-                            id="searchCreationStart"
-                            name="searchCreationStart"
-                            placeholder="{{ 'cpc_snapshot_date_start' | translate}}"
-                            data-uib-datepicker-popup="shortDate"
-                            data-is-open="openedCreationStart"
-                            data-ng-click="openedCreationStart = true"
-                            data-ui-validate-watch="'CloudProjectComputeSnapshotCtrl.search.creationEnd'"
-                            data-ui-validate="{'startBeforeEndDate' : '!$value
-                                            || !CloudProjectComputeSnapshotCtrl.search.creationEnd
-                                            || CloudProjectComputeSnapshotCtrl.search.creationEnd > $value' }"
-                            data-ng-model="CloudProjectComputeSnapshotCtrl.search.creationStart"
-                            data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
-                        />
-
-                        <div
-                            class="input-group-btn"
-                            data-ng-show="CloudProjectComputeSnapshotCtrl.search.creationStart"
-                        >
-                            <button
-                                class="no-style btn"
+                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                        <oui-calendar data-id="searchCreationStart"
+                                      data-name="searchCreationStart"
+                                      data-model="CloudProjectComputeSnapshotCtrl.search.creationStart"
+                                      data-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
+                                      data-placeholder="{{ 'cpc_snapshot_date_start' | translate }}"></oui-calendar>
+                        <div class="input-group-btn" data-ng-show="CloudProjectComputeSnapshotCtrl.search.creationStart">
+                            <button class="no-style btn"
                                 type="button"
                                 data-ng-click="CloudProjectComputeSnapshotCtrl.search.creationStart = null"
                                 data-ng-disabled="CloudProjectComputeSnapshotCtrl.loaders.remove.snapshot || CloudProjectComputeSnapshotCtrl.loaders.remove.snapshotMulti"
@@ -145,11 +96,7 @@
                             </button>
                         </div>
                     </div>
-                    <label
-                        for="searchCreationStart"
-                        class="text-nowrap"
-                        translate="cpc_snapshot_date_start"
-                    ></label>
+                    <span class="text-danger" data-ng-if="!CloudProjectComputeSnapshotCtrl.isStartBeforeEndDate()" data-translate="cpc_snapshot_date_start_error"></span>
                 </div>
 
                 <div

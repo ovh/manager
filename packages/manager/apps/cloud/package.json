@@ -89,6 +89,7 @@
     "chart.js": "chartjs/Chart.js#^2.0",
     "d3": "~3.5.13",
     "flag-icon-css": "~0.8.5",
+    "flatpickr": "~4.5.2",
     "font-awesome": "^4.0.0",
     "jasmine-expect": "^3.8.0",
     "jquery": "^2.1.3",
