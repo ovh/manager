@@ -7,6 +7,8 @@ import 'angular-translate';
 
 import component from './component';
 
+import './index.scss';
+
 const moduleName = 'ovhSignUpFormView';
 
 angular
