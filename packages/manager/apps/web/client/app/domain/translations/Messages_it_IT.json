@@ -40,7 +40,7 @@
   "domain_dashboard_whois_not_allowed": "Il Registro responsabile del dominio non autorizza la visualizzazione dei tuoi dati personali",
   "domain_dashboard_whois_pending": "Questo servizio è in fase di creazione. Attendi ancora qualche istante.",
   "domain_dashboard_whois_invalid_contact": "Solo il contatto amministratore è autorizzato ad effettuare quest'azione.",
-  "domain_dashboard_whois_error": "Si è verificato un errore. Riprova più tardi.",
+  "domain_dashboard_whois_error": "Si è verificato un errore durante il caricamento delle informazioni relative al Whois. Riprova più tardi.",
   "domain_dashboard_obfuscated_email": "Indirizzi email riservati",
   "domain_dashboard_obfuscated_email_regenerate_button": "Gestisci gli indirizzi email riservati",
   "domain_dashboard_offer": "Servizio",
