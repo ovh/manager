@@ -1,0 +1,346 @@
+0 warn deprecated --include-filtered-dependencies has been renamed --include-dependencies
+1 silly argv {
+1 silly argv   _: [ 'exec' ],
+1 silly argv   stream: true,
+1 silly argv   scope: '@ovh-ux/manager-nasha-app',
+1 silly argv   args: [],
+1 silly argv   '--': [ 'npm', 'run', 'dev', '--if-present' ],
+1 silly argv   lernaVersion: '3.19.0',
+1 silly argv   '$0': '/Users/raadired/ovh-manager/manager/node_modules/.bin/lerna',
+1 silly argv   includeDependencies: true,
+1 silly argv   'include-dependencies': true
+1 silly argv }
+2 notice cli v3.19.0
+3 verbose rootPath /Users/raadired/ovh-manager/manager
+4 info versioning independent
+5 notice filter including "@ovh-ux/manager-nasha-app"
+6 notice filter including dependencies
+7 info filter [ '@ovh-ux/manager-nasha-app' ]
+8 info Executing command in 11 packages: "npm run dev --if-present"
+9 error Error: Command failed: npm run dev --if-present
+9 error [BABEL] Note: The code generator has deoptimised the styling of /Users/raadired/ovh-manager/manager/packages/manager/modules/cloud-universe-components/dist/cjs/index.js as it exceeds the max of 500KB.
+9 error
+9 error
+9 error > @ovh-ux/manager-nasha-app@1.0.1 dev /Users/raadired/ovh-manager/manager/packages/manager/apps/nasha
+9 error > webpack-dev-server
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled with some errors in 14.91s
+9 error  ERROR  Failed to compile with 1 errors11:56:49 AM
+9 error
+9 error This relative module was not found:
+9 error
+9 error * ./add.routing in /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/add/add.module.js
+9 error  WAIT  Compiling...11:57:24 AM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 347.83ms
+9 error  DONE  Compiled successfully in 348ms11:57:24 AM
+9 error
+9 error  WAIT  Compiling...11:59:36 AM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 1.07s
+9 error  DONE  Compiled successfully in 1072ms11:59:38 AM
+9 error
+9 error  WAIT  Compiling...12:01:52 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 207.54ms
+9 error  DONE  Compiled successfully in 207ms12:01:52 PM
+9 error
+9 error  WAIT  Compiling...12:05:12 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 425.75ms
+9 error  DONE  Compiled successfully in 426ms12:05:13 PM
+9 error
+9 error  WAIT  Compiling...12:05:49 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 763.54ms
+9 error  DONE  Compiled successfully in 764ms12:05:50 PM
+9 error
+9 error  WAIT  Compiling...12:06:06 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 303.72ms
+9 error  DONE  Compiled successfully in 304ms12:06:06 PM
+9 error
+9 error  WAIT  Compiling...12:11:31 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 613.45ms
+9 error  DONE  Compiled successfully in 613ms12:11:31 PM
+9 error
+9 error  WAIT  Compiling...12:11:56 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 323.52ms
+9 error  DONE  Compiled successfully in 323ms12:11:57 PM
+9 error
+9 error  WAIT  Compiling...12:21:02 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 653.10ms
+9 error  DONE  Compiled successfully in 653ms12:21:03 PM
+9 error
+9 error  WAIT  Compiling...12:21:35 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 1.06s
+9 error  DONE  Compiled successfully in 1058ms12:21:36 PM
+9 error
+9 error  WAIT  Compiling...12:25:19 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 630.02ms
+9 error  DONE  Compiled successfully in 630ms12:25:20 PM
+9 error
+9 error  WAIT  Compiling...12:27:20 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 555.70ms
+9 error  DONE  Compiled successfully in 556ms12:27:21 PM
+9 error
+9 error  WAIT  Compiling...12:27:52 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 242.71ms
+9 error  DONE  Compiled successfully in 243ms12:27:53 PM
+9 error
+9 error  WAIT  Compiling...12:33:02 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 256.82ms
+9 error  DONE  Compiled successfully in 257ms12:33:02 PM
+9 error
+9 error  WAIT  Compiling...12:35:12 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 283.94ms
+9 error  DONE  Compiled successfully in 288ms12:35:12 PM
+9 error
+9 error  WAIT  Compiling...12:37:25 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 455.46ms
+9 error  DONE  Compiled successfully in 456ms12:37:26 PM
+9 error
+9 error  WAIT  Compiling...12:39:24 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 472.96ms
+9 error  DONE  Compiled successfully in 474ms12:39:25 PM
+9 error
+9 error  WAIT  Compiling...12:40:09 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 202.57ms
+9 error  DONE  Compiled successfully in 203ms12:40:09 PM
+9 error
+9 error  WAIT  Compiling...12:42:13 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 265.31ms
+9 error  DONE  Compiled successfully in 267ms12:42:13 PM
+9 error
+9 error  WAIT  Compiling...12:52:50 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 388.10ms
+9 error  DONE  Compiled successfully in 388ms12:52:51 PM
+9 error
+9 error  WAIT  Compiling...12:56:47 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 297.13ms
+9 error  DONE  Compiled successfully in 298ms12:56:48 PM
+9 error
+9 error  WAIT  Compiling...12:57:19 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 235.05ms
+9 error  DONE  Compiled successfully in 235ms12:57:20 PM
+9 error
+9 error  WAIT  Compiling...12:57:59 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 200.59ms
+9 error  DONE  Compiled successfully in 200ms12:57:59 PM
+9 error
+9 error  WAIT  Compiling...1:03:27 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 656.48ms
+9 error  DONE  Compiled successfully in 658ms1:03:28 PM
+9 error
+9 error  WAIT  Compiling...1:03:59 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 389.32ms
+9 error  DONE  Compiled successfully in 389ms1:03:59 PM
+9 error
+9 error  WAIT  Compiling...1:06:17 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 381.00ms
+9 error  DONE  Compiled successfully in 381ms1:06:17 PM
+9 error
+9 error  WAIT  Compiling...1:07:11 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 524.60ms
+9 error  DONE  Compiled successfully in 525ms1:07:12 PM
+9 error
+9 error  WAIT  Compiling...1:07:40 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 399.42ms
+9 error  DONE  Compiled successfully in 400ms1:07:41 PM
+9 error
+9 error  WAIT  Compiling...1:07:59 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 421.67ms
+9 error  DONE  Compiled successfully in 422ms1:08:00 PM
+9 error
+9 error  WAIT  Compiling...2:19:41 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 448.89ms
+9 error  DONE  Compiled successfully in 449ms2:19:42 PM
+9 error
+9 error  WAIT  Compiling...2:21:30 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 374.10ms
+9 error  DONE  Compiled successfully in 374ms2:21:31 PM
+9 error
+9 error  WAIT  Compiling...2:35:37 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 490.45ms
+9 error  DONE  Compiled successfully in 490ms2:35:38 PM
+9 error
+9 error  WAIT  Compiling...2:39:09 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 243.13ms
+9 error  DONE  Compiled successfully in 243ms2:39:09 PM
+9 error
+9 error  WAIT  Compiling...2:42:32 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 707.67ms
+9 error  DONE  Compiled successfully in 708ms2:42:33 PM
+9 error
+9 error  WAIT  Compiling...2:42:33 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 299.53ms
+9 error  DONE  Compiled successfully in 300ms2:42:34 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled with some errors in 325.12ms
+9 error  ERROR  Failed to compile with 1 errors2:42:45 PM
+9 error
+9 error  error  in /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/controller.js
+9 error
+9 error Module build failed (from /Users/raadired/ovh-manager/manager/packages/manager/tools/webpack-config/dist/loaders/translation-inject.js):
+9 error Error: ENOENT: no such file or directory, open '/Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/controller.js'
+9 error
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/index.js 20:0-65 27:46-76
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/index.js
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/index.js
+9 error  @ ./src/index.js
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled with some errors in 143.72ms
+9 error  ERROR  Failed to compile with 2 errors2:42:49 PM
+9 error
+9 error  error  in /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/template.html
+9 error
+9 error Module build failed (from /Users/raadired/ovh-manager/manager/node_modules/raw-loader/index.js):
+9 error Error: ENOENT: no such file or directory, open '/Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/template.html'
+9 error
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/index.js 22:0-52 493:68-82
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/index.js
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/index.js
+9 error  @ ./src/index.js
+9 error
+9 error  error  in /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/controller.js
+9 error
+9 error Module build failed (from /Users/raadired/ovh-manager/manager/packages/manager/tools/webpack-config/dist/loaders/translation-inject.js):
+9 error Error: ENOENT: no such file or directory, open '/Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/controller.js'
+9 error
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/index.js 20:0-65 27:46-76
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/index.js
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/index.js
+9 error  @ ./src/index.js
+9 error
+9 error  WAIT  Compiling...2:45:53 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled with some errors in 153.17ms
+9 error  ERROR  Failed to compile with 2 errors2:45:54 PM
+9 error
+9 error  error  in /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/template.html
+9 error
+9 error Module build failed (from /Users/raadired/ovh-manager/manager/node_modules/raw-loader/index.js):
+9 error Error: ENOENT: no such file or directory, open '/Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/template.html'
+9 error
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/index.js 22:0-52 493:68-82
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/index.js
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/index.js
+9 error  @ ./src/index.js
+9 error
+9 error  error  in /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/controller.js
+9 error
+9 error Module build failed (from /Users/raadired/ovh-manager/manager/packages/manager/tools/webpack-config/dist/loaders/translation-inject.js):
+9 error Error: ENOENT: no such file or directory, open '/Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/delete/controller.js'
+9 error
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/access/index.js 20:0-65 27:46-76
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/partition/index.js
+9 error  @ /Users/raadired/ovh-manager/manager/packages/manager/modules/nasha/src/index.js
+9 error  @ ./src/index.js
+9 error
+9 error  WAIT  Compiling...2:48:22 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 689.38ms
+9 error  DONE  Compiled successfully in 689ms2:48:22 PM
+9 error
+9 error  WAIT  Compiling...2:48:58 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 486.56ms
+9 error  DONE  Compiled successfully in 487ms2:48:59 PM
+9 error
+9 error  WAIT  Compiling...2:52:32 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 470.61ms
+9 error  DONE  Compiled successfully in 471ms2:52:33 PM
+9 error
+9 error  WAIT  Compiling...2:54:15 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 235.19ms
+9 error  DONE  Compiled successfully in 235ms2:54:15 PM
+9 error
+9 error  WAIT  Compiling...2:57:18 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 365.74ms
+9 error  DONE  Compiled successfully in 367ms2:57:18 PM
+9 error
+9 error  WAIT  Compiling...3:10:28 PM
+9 error
+9 error ℹ Compiling OVH Manager
+9 error ✔ OVH Manager: Compiled successfully in 267.49ms
+9 error  DONE  Compiled successfully in 267ms3:10:28 PM
+9 error
+9 error
+9 error     at makeError (/Users/raadired/ovh-manager/manager/node_modules/@lerna/child-process/node_modules/execa/index.js:174:9)
+9 error     at /Users/raadired/ovh-manager/manager/node_modules/@lerna/child-process/node_modules/execa/index.js:278:16

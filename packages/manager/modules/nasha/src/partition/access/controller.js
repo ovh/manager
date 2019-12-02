@@ -17,7 +17,6 @@ export default class NashaPartitionAccessCtrl {
   ) {
     const self = this;
     self.$state = $state;
-
     self.data = {
       nasha: {},
       partition: {},
@@ -95,12 +94,12 @@ export default class NashaPartitionAccessCtrl {
       });
     };
 
-    self.addAccess = function addAccess() {
-      self.openModal('nasha/partition/access/add/template.html', 'NashaPartitionAccessAddCtrl', {
-        serviceName: self.data.nasha.serviceName,
-        partition: self.data.partition,
-      });
-    };
+    // self.addAccess = function addAccess() {
+    //   self.openModal('nasha/partition/access/add/template.html', 'NashaPartitionAccessAddCtrl', {
+    //     serviceName: self.data.nasha.serviceName,
+    //     partition: self.data.partition,
+    //   });
+    // };
 
     /*= =====================================
        =                Polling              =
