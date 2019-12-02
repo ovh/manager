@@ -28,6 +28,8 @@ import senders from './senders';
 import sms from './sms';
 import users from './users';
 
+import SMSFeatureAvailability from '../feature-availability/feature-availability.class';
+
 import './telecom-sms.scss';
 
 const moduleName = 'ovhManagerSmsComponent';
@@ -71,6 +73,8 @@ angular
             .setCurrentSmsService(smsDetails[$stateParams.serviceName]));
           return $q.when({ init: true });
         },
+        smsFeatureAvailability: /* @ngInject */ user => new SMSFeatureAvailability(user),
+        user: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
         $title: (translations, $translate, OvhApiSms, $stateParams) => OvhApiSms.v6()
           .get({
             serviceName: $stateParams.serviceName,

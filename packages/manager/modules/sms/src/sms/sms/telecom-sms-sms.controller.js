@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, smsFeatureAvailability) {
     this.$translate = $translate;
+    this.smsFeatureAvailability = smsFeatureAvailability;
   }
 
   $onInit() {
@@ -29,11 +30,12 @@ export default class {
       picto: 'ovh-font-SMSPlanned',
       sref: 'sms.service.sms.pending',
       text: this.$translate.instant('sms_sms_pending'),
-    }, {
+    },
+    ...this.smsFeatureAvailability.isAvailable('hlr') ? [{
       name: 'sms_manage_hlrs',
       sref: 'sms.service.sms.hlr',
       text: this.$translate.instant('sms_sms_manage_hlrs'),
-    }, {
+    }] : [], {
       name: 'sms_manage_templates',
       sref: 'sms.service.sms.templates',
       text: this.$translate.instant('sms_sms_manage_templates'),
