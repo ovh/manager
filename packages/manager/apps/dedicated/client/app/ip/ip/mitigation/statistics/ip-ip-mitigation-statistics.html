@@ -61,31 +61,17 @@
                                 >
                                 </label>
                                 <div class="input-group date-picker-input">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="statTo"
-                                        name="statTo"
-                                        data-ng-disabled="statsLoading"
-                                        data-ng-model="model.from"
-                                        data-uib-datepicker-popup="{{ datePicker.dateFormat }}"
-                                        data-datepicker-options="{ maxDate: datePicker.maxDate }"
-                                        data-is-open="datePicker.isOpen"
-                                        data-show-button-bar="false"
-                                        data-ng-change="getStatistics()"
-                                    />
-                                    <span class="input-group-btn">
-                                        <button
-                                            type="button"
-                                            class="btn btn-default"
-                                            data-ng-click="datePicker.isOpen = !datePicker.isOpen"
-                                        >
-                                            <span
-                                                class="fa fa-calendar"
-                                                aria-hidden="true"
-                                            >
-                                            </span>
-                                        </button>
+                                    <oui-calendar data-id="statTo"
+                                                  data-name="statTo"
+                                                  data-disabled="statsLoading"
+                                                  data-model="model.from"
+                                                  data-on-change="getStatistics(selectedDates, dateStr)"
+                                                  data-format="Y-m-dTH:i:S\\Z"
+                                                  data-alt-format="{{ datePicker.dateFormat }}"
+                                                  data-max-date="datePicker.maxDate"
+                                                  data-week-numbers></oui-calendar>
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
                                     </span>
                                 </div>
                             </div>

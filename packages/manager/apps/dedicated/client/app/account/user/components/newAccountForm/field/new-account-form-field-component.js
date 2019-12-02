@@ -345,9 +345,8 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       };
 
       // callback for when model changed
-      this.onChange = () => {
-        // eslint-disable-next-line prefer-destructuring
-        let value = this.value;
+      this.onChange = (valueObj, valueStr) => {
+        let value = valueStr || this.value; // eslint-disable-line
         const fieldType = this.getFieldType();
 
         // normalize input to make it easier for the user

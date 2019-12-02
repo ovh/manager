@@ -206,37 +206,15 @@
             data-ng-bind="$ctrl.rule.prefix"
         >
         </span>
-        <input
-            type="text"
-            class="form-control"
-            placeholder="{{ 'signup_field_date_placeholder' | translate }}"
-            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
-            data-ng-model="$ctrl.value"
-            data-ng-model-options="{ debounce: $ctrl.debounce }"
-            data-ng-change="$ctrl.onChange()"
-            data-ng-focus="$ctrl.focused = true"
-            data-ng-blur="$ctrl.focused = false"
-            data-ng-pattern="$ctrl.inputValidator"
-            data-ng-required="$ctrl.rule.mandatory"
-            data-uib-datepicker-popup="yyyy-MM-dd"
-            datepicker-options="{
-                   showWeeks: false,
-                   initDate: $ctrl.value,
-                   datepickerMode: 'year'
-               }"
-            data-is-open="datePickerOpen"
-            data-show-button-bar="false"
-        />
-        <span class="input-group-btn">
-            <button
-                type="button"
-                class="btn btn-default"
-                title="{{:: 'signup_field_date_calendar' | translate }}"
-                data-ng-click="datePickerOpen = !datePickerOpen"
-            >
-                <span class="fa fa-calendar" aria-hidden="true"> </span>
-            </button>
+        <oui-calendar data-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                      data-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+                      data-model="$ctrl.value"
+                      data-on-change="$ctrl.onChange(selectedDates, dateStr)"
+                      data-placeholder="{{ 'signup_field_date_placeholder' | translate }}"
+                      data-required="$ctrl.rule.mandatory"
+                      data-format="Y-m-d"></oui-calendar>
+        <span class="input-group-addon">
+            <i class="fa fa-calendar"></i>
         </span>
     </div>
 </div>

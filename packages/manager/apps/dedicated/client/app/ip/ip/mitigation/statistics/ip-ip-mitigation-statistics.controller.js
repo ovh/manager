@@ -134,24 +134,28 @@ angular
       );
 
       $scope.model = {
-        from: new Date(),
+        from: new Date().toISOString(),
         scale: null,
         mode: null,
       };
 
       $scope.datePicker = {
-        dateFormat: get($locale, 'DATETIME_FORMATS.shortDate'),
+        dateFormat: get($locale, 'DATETIME_FORMATS.shortDate', '')
+          .replace('dd', 'd')
+          .replace('MM', 'm')
+          .replace('y', 'Y'),
         isOpen: false,
         maxDate: new Date(),
       };
 
-      $scope.getStatistics = function getStatistics() {
-        if ($scope.model.from && $scope.model.scale) {
+      $scope.getStatistics = function getStatistics(selectDate, dateStr) {
+        const fromDate = dateStr || $scope.model.from;
+        if (fromDate && $scope.model.scale) {
           $scope.statsLoading = true;
           IpMitigation.getMitigationStatistics(
             $scope.data.ipBlock.ipBlock,
             $scope.data.ip.ip,
-            $scope.model.from.toISOString(),
+            fromDate,
             $scope.model.scale,
           )
             .then((data) => {

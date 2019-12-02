@@ -148,35 +148,18 @@
                 >
                 </label>
                 <div class="input-group">
-                    <span class="input-group-btn">
-                        <button
-                            type="button"
-                            class="btn btn-default"
-                            data-ng-click="minCreationDate()"
-                        >
-                            <span class="fa fa-calendar"></span>
-                        </button>
-                    </span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        data-ng-model="search.minCreationDate"
-                        data-ng-required="true"
-                        data-ng-focus="minCreationDate()"
-                        data-uib-datepicker-popup="dd-MMMM-yyyy"
-                        data-is-open="minCreationDateSearch.opened"
-                        data-close-text="Close"
-                        data-show-button-bar="false"
-                    />
-                    <span
-                        class="input-group-btn"
-                        data-ng-show="search.minCreationDate && !loaders.tickets"
-                    >
-                        <button type="button" class="btn btn-default">
-                            <span
-                                class="fa fa-times"
-                                data-ng-click="search.minCreationDate = ''"
-                            >
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <oui-calendar data-id="minCreationDateSearch"
+                                  data-name="minCreationDateSearch"
+                                  data-model="search.minCreationDate"></oui-calendar>
+                    <span class="input-group-btn"
+                          data-ng-show="search.minCreationDate && !loaders.tickets">
+                        <button type="button"
+                                class="btn btn-default">
+                            <span class="fa fa-times"
+                                 data-ng-click="search.minCreationDate = ''">
                             </span>
                         </button>
                     </span>
@@ -190,35 +173,18 @@
                 >
                 </label>
                 <div class="input-group">
-                    <span class="input-group-btn">
-                        <button
-                            type="button"
-                            class="btn btn-default"
-                            data-ng-click="maxCreationDate()"
-                        >
-                            <span class="fa fa-calendar"></span>
-                        </button>
-                    </span>
-                    <input
-                        type="text"
-                        class="form-control"
-                        data-ng-model="search.maxCreationDate"
-                        data-ng-focus="maxCreationDate()"
-                        data-ng-required="true"
-                        data-uib-datepicker-popup="dd-MMMM-yyyy"
-                        data-is-open="maxCreationDateSearch.opened"
-                        data-close-text="Close"
-                        data-show-button-bar="false"
-                    />
-                    <span
-                        class="input-group-btn"
-                        data-ng-show="search.maxCreationDate && !loaders.tickets"
-                    >
-                        <button type="button" class="btn btn-default">
-                            <span
-                                class="fa fa-times"
-                                data-ng-click="search.maxCreationDate = ''"
-                            >
+                    <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <oui-calendar data-id="maxCreationDateSearch"
+                                  data-name="maxCreationDateSearch"
+                                  data-model="search.maxCreationDate"></oui-calendar>
+                    <span class="input-group-btn"
+                          data-ng-show="search.maxCreationDate && !loaders.tickets">
+                        <button type="button"
+                                class="btn btn-default">
+                            <span class="fa fa-times"
+                                 data-ng-click="search.maxCreationDate = ''">
                             </span>
                         </button>
                     </span>

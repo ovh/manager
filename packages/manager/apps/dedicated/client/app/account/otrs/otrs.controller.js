@@ -2,7 +2,6 @@ import debounce from 'lodash/debounce';
 import forEach from 'lodash/forEach';
 import find from 'lodash/find';
 import includes from 'lodash/includes';
-import isDate from 'lodash/isDate';
 import map from 'lodash/map';
 import set from 'lodash/set';
 
@@ -31,12 +30,6 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
 
     $scope.itemsPerPage = 10;
     $scope.today = new Date();
-    $scope.minCreationDateSearch = {
-      opened: false,
-    };
-    $scope.maxCreationDateSearch = {
-      opened: false,
-    };
     $scope.worldPart = coreConfig.getRegion();
     $scope.showFilters = false;
     $scope.currentPage =
@@ -165,10 +158,10 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
         filters.subject = window.encodeURIComponent(filters.subject);
       }
 
-      if (isDate(filters.minCreationDate)) {
+      if (filters.minCreationDate) {
         filters.minCreationDate = moment(filters.minCreationDate).format();
       }
-      if (isDate(filters.maxCreationDate)) {
+      if (filters.maxCreationDate) {
         filters.maxCreationDate = moment(filters.maxCreationDate).format();
       }
 
@@ -292,14 +285,6 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
     };
 
     $rootScope.$on('ticket.otrs.reload', $scope.getTicketsIds);
-
-    $scope.minCreationDate = function minCreationDate() {
-      $scope.minCreationDateSearch.opened = true;
-    };
-
-    $scope.maxCreationDate = function maxCreationDate() {
-      $scope.maxCreationDateSearch.opened = true;
-    };
 
     $scope.init();
   },
