@@ -158,32 +158,18 @@
             >
             </label>
             <div class="input-group date-picker-input">
-                <input
-                    type="text"
-                    name="sendDate"
-                    id="sendDate"
-                    class="form-control input-block"
-                    data-ng-model="CampaignsAddCtrl.campaign.sendDate"
-                    data-ng-focus="CampaignsAddCtrl.openDatePicker($event)"
-                    data-ng-required="CampaignsAddCtrl.campaign.sendType === 'scheduled'"
-                    data-uib-datepicker-popup="dd/MM/yyyy"
-                    data-datepicker-options="CampaignsAddCtrl.picker.options"
-                    data-is-open="CampaignsAddCtrl.picker.dateOpened"
-                    data-show-button-bar="false"
-                    data-current-text="{{ ::'today' | translate }}"
-                    data-clear-text="{{ ::'reset' | translate }}"
-                    data-close-text="{{ ::'close' | translate }}"
-                    data-translate-attr="{ placeholder: 'telephony_service_fax_campaigns_add_campaign_label_send_date' }"
-                />
-                <span class="input-group-btn">
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                        data-ng-click="CampaignsAddCtrl.openDatePicker($event)"
-                    >
+                    <oui-calendar data-id="sendDate"
+                                  data-name="sendDate"
+                                  data-model="CampaignsAddCtrl.campaign.sendDateStr"
+                                  data-on-change="CampaignsAddCtrl.onDateChange(selectedDates)"
+                                  data-required="CampaignsAddCtrl.campaign.sendType === 'scheduled'"
+                                  data-format="d-m-Y"
+                                  data-min-date="CampaignsAddCtrl.picker.options.minDate"
+                                  data-placeholder="{{ 'telephony_service_fax_campaigns_add_campaign_label_send_date' | translate }}"
+                                  data-week-numbers></oui-calendar>
+                    <span class="input-group-addon">
                         <i class="fa fa-calendar"></i>
-                    </button>
-                </span>
+                    </span>
             </div>
             <span
                 class="help-block"

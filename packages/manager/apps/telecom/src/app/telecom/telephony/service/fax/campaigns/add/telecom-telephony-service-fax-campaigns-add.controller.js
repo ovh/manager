@@ -76,6 +76,10 @@ angular
         return found;
       };
 
+      self.onDateChange = function onDateChange([selectedDate]) {
+        self.campaign.sendDate = selectedDate;
+      };
+
       function uploadDocuments() {
         const promise = {};
         promise.pdf = OvhApiMe.Document()
@@ -130,18 +134,6 @@ angular
       }
 
       /* -----  End of HELPERS  ------ */
-
-      /* ===============================
-    =            EVENTS            =
-    =============================== */
-
-      self.openDatePicker = function openDatePicker($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        self.picker.dateOpened = true;
-      };
-
-      /* -----  End of EVENTS  ------ */
 
       /* ===============================
     =            ACTIONS            =

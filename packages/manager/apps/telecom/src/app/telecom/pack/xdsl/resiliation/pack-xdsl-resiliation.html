@@ -56,28 +56,16 @@
                             <label
                                 class="col-xs-12 col-md-4 service-title"
                                 for="expirationDate"
-                                data-translate="xdsl_resiliation_resiliation_date"
-                            ></label>
-                            <div
-                                class="col-xs-12 col-md-4 service-item date-picker-input"
-                            >
-                                <input
-                                    id="expirationDate"
-                                    name="expirationDate"
-                                    placeholder="{{ 'xdsl_resiliation_service_date_format' | translate }}"
-                                    data-uib-datepicker-popup="dd/MM/yyyy"
-                                    class="form-control input-sm"
-                                    data-datepicker-options="PackXdslResiliation.dpOpts"
-                                    data-ng-model="PackXdslResiliation.when"
-                                    data-ui-validate="'PackXdslResiliation.checkDate($value)'"
-                                    data-is-open="PackXdslResiliation.pickerOpened"
-                                    data-show-button-bar="false"
-                                    current-text="{{:: 'today' | translate }}"
-                                    clear-text="{{:: 'reset' | translate }}"
-                                    close-text="{{:: 'close' | translate }}"
-                                    data-ng-click="PackXdslResiliation.switchDatePickerState($event)"
-                                    data-ng-focus="PackXdslResiliation.openDatePicker($event)"
-                                />
+                                data-translate="xdsl_resiliation_resiliation_date"></label>
+                            <div class="col-xs-12 col-md-4 service-item date-picker-input">
+                                <oui-calendar data-id="expirationDate"
+                                              data-name="expirationDate"
+                                              data-placeholder="{{ 'xdsl_resiliation_service_date_format' | translate }}"
+                                              data-model="PackXdslResiliation.whenStr"
+                                              data-on-change="PackXdslResiliation.computePrice(selectedDates)"
+                                              data-alt-format="d/m/Y"
+                                              data-min-date="PackXdslResiliation.minResiliationDate"
+                                              data-week-numbers></oui-calendar>
                             </div>
                         </div>
                     </form>

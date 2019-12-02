@@ -380,34 +380,17 @@
                                 ></span>
                             </label>
                         </div>
-                        <div
-                            class="input-group date-picker-input"
-                            data-ng-if="!PortabilityOrderCtrl.order.executeAsSoonAsPossible"
-                        >
-                            <input
-                                id="desireDate"
-                                name="desireDate"
-                                class="form-control input-block"
-                                data-uib-datepicker-popup="dd/MM/yyyy"
-                                data-datepicker-options="PortabilityOrderCtrl.datePickerOptions"
-                                data-ui-validate=""
-                                data-show-button-bar="false"
-                                data-is-open="PortabilityOrderCtrl.desireDatePickerOpened"
-                                data-ng-focus="PortabilityOrderCtrl.openDesireDatePicker($event)"
-                                data-current-text="{{:: 'today' | translate }}"
-                                data-clear-text="{{:: 'reset' | translate }}"
-                                data-close-text="{{:: 'close' | translate }}"
-                                data-ng-model="PortabilityOrderCtrl.order.desireDate"
-                                required
-                            />
-                            <span class="input-group-btn">
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    data-ng-click="PortabilityOrderCtrl.openDesireDatePicker($event)"
-                                >
-                                    <i class="fa fa-calendar"></i>
-                                </button>
+                        <div class="input-group date-picker-input"
+                             data-ng-if="!PortabilityOrderCtrl.order.executeAsSoonAsPossible">
+                             <oui-calendar data-id="desireDate"
+                                           data-name="desireDate"
+                                           data-model="PortabilityOrderCtrl.order.desireDateStr"
+                                           data-options="PortabilityOrderCtrl.datePickerOptions"
+                                           data-on-change="PortabilityOrderCtrl.orderDateChanged(selectedDates)"
+                                           data-format="d/m/Y"
+                                           data-week-numbers></oui-calendar>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
                             </span>
                         </div>
                         <span

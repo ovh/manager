@@ -75,47 +75,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label
-                                for="resiliationNativeDateElem"
-                                class="control-label"
-                                data-translate="pack_resiliation_resiliation_date"
-                            ></label>
-                            <input
-                                name="expirationNativeDate"
-                                id="resiliationNativeDateElem"
-                                placeholder="{{ 'pack_resiliation_date_format' | translate }}"
-                                class="form-control w-50"
-                                data-datepicker-options="PackResiliation.dpOpts"
-                                data-uib-datepicker-popup="dd/MM/yyyy"
-                                data-min-date="PackResiliation.minResiliationDate"
-                                data-ui-validate="'PackResiliation.checkDate()'"
-                                data-is-open="PackResiliation.pickerOpened"
-                                data-ng-disabled="PackResiliation.loading"
-                                data-show-button-bar="false"
-                                current-text="{{:: 'today' | translate }}"
-                                clear-text="{{:: 'reset' | translate }}"
-                                close-text="{{:: 'close' | translate }}"
-                                min="{{PackResiliation.minResiliationDate.toISOString()}}"
-                                data-ng-focus="PackResiliation.openDatePicker($event)"
-                                data-ng-click="PackResiliation.switchDatePickerState($event)"
-                                data-ng-model="PackResiliation.model.when"
-                                data-ng-change="PackResiliation.computePrice()"
-                            />
-                            <span
-                                class="help-block"
-                                role="alert"
-                                data-ng-if="reasonForm.expirationNativeDate.$error.date || !PackResiliation.checkDate()"
-                            >
-                                <span
-                                    class="ovh-font ovh-font-failure text-danger"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-translate="pack_resiliation_date_format_error"
-                                ></span>
-                                <span
-                                    data-translate="pack_resiliation_date_format"
-                                ></span>
+                            <label for="resiliationNativeDateElem"
+                                   class="control-label"
+                                   data-translate="pack_resiliation_resiliation_date"></label>
+                            <oui-calendar data-id="resiliationNativeDateElem"
+                                          data-name="expirationNativeDate"
+                                          data-placeholder="{{ 'pack_resiliation_date_format' | translate }}"
+                                          data-disabled="PackResiliation.loading"
+                                          data-model="PackResiliation.model.whenStr"
+                                          data-on-change="PackResiliation.computePrice(selectedDates)"
+                                          data-alt-format="d/m/Y"
+                                          data-min-date="PackResiliation.minResiliationDate"
+                                          data-week-numbers></oui-calendar>
+                            <span class="help-block"
+                                  role="alert"
+                                  data-ng-if="reasonForm.expirationNativeDate.$error.date || !PackResiliation.checkDate()">
+                                <span class="ovh-font ovh-font-failure text-danger" aria-hidden="true"></span>
+                                <span data-translate="pack_resiliation_date_format_error"></span>
+                                <span data-translate="pack_resiliation_date_format"></span>
                             </span>
                         </div>
 

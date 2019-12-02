@@ -84,7 +84,7 @@ angular
           .add(15, 'days')
           .toDate();
         self.order.desireDate = moment(self.minDate).toDate();
-        self.desireDatePickerOpened = false;
+        self.order.desireDateStr = self.order.desireDate.toISOString();
         self.isSDA = false;
 
         // reset contract when step changes
@@ -113,6 +113,10 @@ angular
 
         self.datePickerOptions = {
           minDate: self.minDate,
+          disable: [(date) => {
+            const isBankHoliday = TucBankHolidays.checkIsBankHoliday('FR', date);
+            return ((date.getDay() === 0 || date.getDay() === 6) || (isBankHoliday));
+          }],
           dateDisabled(dateAndMode) {
             const isBankHoliday = TucBankHolidays.checkIsBankHoliday(
               'FR',
@@ -184,12 +188,6 @@ angular
 
       self.onSDATypeChange = function onSDATypeChange() {
         self.order.socialReason = self.isSDA ? 'corporation' : 'individual';
-      };
-
-      self.openDesireDatePicker = function openDesireDatePicker(evt) {
-        evt.preventDefault();
-        evt.stopPropagation();
-        self.desireDatePickerOpened = true;
       };
 
       // select number corresponding country automatically
@@ -268,6 +266,10 @@ angular
 
         self.step = 'config';
         return true;
+      };
+
+      self.orderDateChanged = function orderDateChanged([selectedDate]) {
+        self.order.desireDate = selectedDate;
       };
 
       self.getOrderParams = function getOrderParams() {

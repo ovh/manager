@@ -378,14 +378,14 @@
                 <section data-ng-switch-default>
                     <div class="section-group">
                         <div class="section-item">
-                            <div
-                                data-uib-datepicker
-                                class="pretty-date-picker"
-                                data-datepicker-options="$ctrl.datepickerOptions"
-                                data-ng-change="$ctrl.manageOnDateChange()"
-                                data-ng-model="$ctrl.rightPageDateModel"
-                                data-ng-model-options="{ getterSetter: true }"
-                            ></div>
+                            <oui-calendar data-ng-if="$ctrl.model.specialEdit.attr === 'dateStart'"
+                                          data-model="$ctrl.event.dateStartStr"
+                                          data-on-change="$ctrl.manageOnDateChange(selectedDates)"
+                                          data-inline></oui-calendar>
+                            <oui-calendar data-ng-if="$ctrl.model.specialEdit.attr !== 'dateStart'"
+                                          data-model="$ctrl.event.dateEndStr"
+                                          data-on-change="$ctrl.manageOnDateChange(selectedDates)"
+                                          data-inline></oui-calendar>
                         </div>
                     </div>
                 </section>

@@ -148,10 +148,11 @@ angular
   })
 
   /*= =========  TRANSLATOR  ========== */
-  .config((TranslateServiceProvider) => {
-    const defaultLanguage = TranslateServiceProvider.getUserLocale();
+  .config((ouiCalendarConfigurationProvider, TranslateServiceProvider) => {
+    const defaultLanguage = TranslateServiceProvider.getUserLocale(true);
     // set moment locale
-    moment.locale(defaultLanguage.split('_')[0]);
+    moment.locale(defaultLanguage);
+    ouiCalendarConfigurationProvider.setLocale(defaultLanguage);
   })
 
   /*= =========  PAGE TRACKING  ========== */
