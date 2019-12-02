@@ -138,5 +138,6 @@
   "billing_autorenew_service_terminate_webcoach": "Usuń moje narzędzie WebCoach",
   "billing_autorenew_service_type_WEBCOACH": "WebCoach",
   "billing_autorenew_service_type_webcoach": "WebCoach",
-  "billing_autorenew_service_actions": "Operacje"
+  "billing_autorenew_service_actions": "Operacje",
+  "billing_autorenew_criterion_state": "Dostępność"
 }
