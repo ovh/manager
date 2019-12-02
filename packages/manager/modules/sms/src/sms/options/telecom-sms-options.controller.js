@@ -1,7 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, smsFeatureAvailability) {
     this.$translate = $translate;
+    this.smsFeatureAvailability = smsFeatureAvailability;
   }
 
   $onInit() {
@@ -9,11 +10,12 @@ export default class {
       name: 'options_manage',
       sref: 'sms.service.options.manage',
       text: this.$translate.instant('sms_options_manage'),
-    }, {
+    },
+    ...this.smsFeatureAvailability.isAvailable('response') ? [{
       name: 'options_response',
       sref: 'sms.service.options.response',
       text: this.$translate.instant('sms_options_response'),
-    }, {
+    }] : [], {
       name: 'options_recredit',
       sref: 'sms.service.options.recredit',
       text: this.$translate.instant('sms_options_recredit'),
