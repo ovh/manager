@@ -4,15 +4,15 @@
             <oui-tile data-heading="{{ ::'veeam_enterprise_shortcut_title' | translate }}" class="h-100 oui-tile-h-100">
                 <oui-tile-button
                     data-text="{{ ::'veeam_enterprise_shortcut_label_activate_license' | translate }}"
-                    data-on-click="$ctrl.activateLicense()">
+                    data-on-click="$ctrl.goToLicenseActivate()">
                 </oui-tile-button>
                 <oui-tile-button
                     data-text="{{ ::'veeam_enterprise_shortcut_label_update_informations' | translate }}"
-                    data-on-click="$ctrl.updateLicense()">
+                    data-on-click="$ctrl.goToLicenseUpdate()">
                 </oui-tile-button>
                 <oui-tile-button
                     data-text="{{ ::'veeam_enterprise_shortcut_label_cancel_license' | translate }}"
-                    data-on-click="$ctrl.terminateLicense()">
+                    data-on-click="$ctrl.goToLicenseTerminate()">
                 </oui-tile-button>
             </oui-tile>
         </div>
