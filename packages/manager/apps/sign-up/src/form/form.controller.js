@@ -6,6 +6,10 @@ export default class SignUpFormAppCtrl {
   constructor() {
     this.isActivityStepVisible = false;
     this.saveError = null;
+
+    this.loading = {
+      init: true,
+    };
   }
 
   /* =============================
@@ -13,6 +17,8 @@ export default class SignUpFormAppCtrl {
   ============================== */
 
   onRulesUpdated({ rules }) {
+    this.loading.init = false;
+
     if (rules) {
       this.isActivityStepVisible = some([
         'organisation',
@@ -42,6 +48,7 @@ export default class SignUpFormAppCtrl {
 
   $onInit() {
     this.saveError = null;
+    this.loading.init = true;
 
     if (this.me.state === 'incomplete') {
       this.me.legalform = null;
