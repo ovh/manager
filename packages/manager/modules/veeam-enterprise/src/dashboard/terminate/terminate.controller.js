@@ -1,13 +1,11 @@
 export default class VeeamEnterpriseTerminateCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, serviceName, VeeamEnterpriseService) {
-    this.$uibModalInstance = $uibModalInstance;
-    this.serviceName = serviceName;
+  constructor(VeeamEnterpriseService) {
     this.VeeamEnterpriseService = VeeamEnterpriseService;
   }
 
   dismissModal() {
-    this.$uibModalInstance.dismiss('cancel');
+    this.goToDashboard();
   }
 
   terminate() {
@@ -26,6 +24,6 @@ export default class VeeamEnterpriseTerminateCtrl {
           type: 'error',
         });
       })
-      .finally(() => this.$uibModalInstance.close());
+      .finally(() => this.goToDashboard());
   }
 }

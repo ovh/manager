@@ -1,16 +1,12 @@
 export default class VeeamEnterpriseLicenseCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, action, serviceName, VeeamEnterpriseService) {
-    this.$uibModalInstance = $uibModalInstance;
-    this.action = action;
-    this.serviceName = serviceName;
+  constructor(VeeamEnterpriseService) {
     this.VeeamEnterpriseService = VeeamEnterpriseService;
-
     this.form = {};
   }
 
   dismissModal() {
-    this.$uibModalInstance.dismiss('cancel');
+    this.goToDashboard();
   }
 
   submitForm(form) {
@@ -37,7 +33,7 @@ export default class VeeamEnterpriseLicenseCtrl {
             type: 'error',
           });
         })
-        .finally(() => this.$uibModalInstance.close());
+        .finally(() => this.goToDashboard());
     }
   }
 }
