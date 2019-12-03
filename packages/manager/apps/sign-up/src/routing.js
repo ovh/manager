@@ -71,8 +71,6 @@ export const state = {
         }
       }),
 
-    postParams: /* @ngInject */ signUp => signUp.getCreationRulesParams(),
-
     steps: () => [{
       name: 'identity',
       state: 'sign-up.identity',

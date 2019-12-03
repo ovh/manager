@@ -115,10 +115,10 @@ export default class SignUpFormCtrl {
    *  Be sure to take only the attributes from the available post params of POST /newAccount/rules
    *  to avoid errors on POST.
    */
-  initModel() {
+  initModel(postParams) {
     this.model = {};
 
-    this.postParams.forEach(({ name }) => {
+    postParams.forEach(({ name }) => {
       Object.defineProperty(this.model, `$${name}`, {
         enumerable: false,
         value: new WatchableModel(
@@ -141,9 +141,12 @@ export default class SignUpFormCtrl {
   ============================= */
 
   $onInit() {
-    this.initModel();
-    set(this.me, 'model', this.model);
-    return this.getRules();
+    return this.signUp.getCreationRulesParams()
+      .then((params) => {
+        this.initModel(params);
+        set(this.me, 'model', this.model);
+        return this.getRules();
+      });
   }
 
   /* -----  End of Hooks  ------ */

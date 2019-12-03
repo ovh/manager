@@ -11,6 +11,5 @@ export default {
     onStepCancel: '<',
     onStepFocus: '<',
     finishSignUp: '<',
-    postParams: '<',
   },
 };

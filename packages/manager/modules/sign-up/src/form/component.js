@@ -8,6 +8,5 @@ export default {
     me: '<',
     onRulesUpdated: '&',
     model: '<',
-    postParams: '<',
   },
 };
