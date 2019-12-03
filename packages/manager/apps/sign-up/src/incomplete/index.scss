@@ -1,0 +1,10 @@
+$hourglass-container-size: 144px;
+
+.sign-up-incomplete {
+  .hourglass-container {
+    height: $hourglass-container-size;
+    width: $hourglass-container-size;
+    border-radius: $hourglass-container-size / 2;
+    background-color: #eff9fd;
+  }
+}

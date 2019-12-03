@@ -1,12 +1,18 @@
 <div class="sign-up-incomplete d-flex align-items-center h-100 p-5">
     <div class="p-5">
+        <div class="hourglass-container d-flex align-items-center justify-content-center mb-3 mx-auto text-center">
+            <img data-ng-src="{{ $ctrl.hourglassImg }}"
+                 alt="" />
+        </div>
         <h1 class="oui-heading_3 text-center"
             data-translate="sign_up_incomplete_title">
         </h1>
         <p data-translate="sign_up_incomplete_explain"></p>
-        <a class="oui-button oui-button_primary text-center"
-           data-ng-href="{{ $ctrl.finishHref }}"
-           data-translate="sign_up_incomplete_finish_complete">
-        </a>
+        <div class="text-center">
+            <a class="oui-button oui-button_primary text-center"
+               data-ng-href="{{ $ctrl.finishHref }}"
+               data-translate="sign_up_incomplete_finish_complete">
+            </a>
+        </div>
     </div>
 </div>

@@ -23,6 +23,11 @@ export const HOME_PAGE = {
   WS: 'https://www.ovh.com/us/es/',
 };
 
+export const NIC_STATUS_ENUM = {
+  COMPLETE: 'complete',
+  INCOMPLETE: 'incomplete',
+};
+
 export const OVH_LOGO = 'https://eu.api.ovh.com/images/com-square-bichro.png';
 
 export const SANITIZATION = {
@@ -31,6 +36,7 @@ export const SANITIZATION = {
 
 export default {
   HOME_PAGE,
+  NIC_STATUS_ENUM,
   OVH_LOGO,
   SANITIZATION,
 };

@@ -165,7 +165,7 @@ angular
   .config((ssoAuthenticationProvider, $httpProvider, OVH_SSO_AUTH_LOGIN_URL) => {
     ssoAuthenticationProvider.setLoginUrl(OVH_SSO_AUTH_LOGIN_URL);
     ssoAuthenticationProvider.setLogoutUrl(`${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`);
-    ssoAuthenticationProvider.setSignUpUrl(`${OVH_SSO_AUTH_LOGIN_URL}/signup/new`);
+    ssoAuthenticationProvider.setSignUpUrl(`${OVH_SSO_AUTH_LOGIN_URL}/signup/new/#/incomplete`);
 
     // if (!constants.prodMode) {
     ssoAuthenticationProvider.setUserUrl('/engine/apiv6/me');

@@ -1,6 +1,8 @@
 import find from 'lodash/find';
 
-import { SANITIZATION } from './constants';
+import {
+  SANITIZATION,
+} from './constants';
 
 import signupFormComponent from './form/component';
 
@@ -44,6 +46,7 @@ export const state = {
     me: /* @ngInject */ ssoAuthentication => ssoAuthentication
       .getSsoAuthPendingPromise()
       .then(() => ssoAuthentication.user),
+
     onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {
       ssoAuthentication.logout($location.search().onsuccess);
     },

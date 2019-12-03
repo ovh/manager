@@ -5,6 +5,8 @@ import 'angular-translate';
 import routing from './routing';
 import component from './component';
 
+import './index.scss';
+
 const moduleName = 'signUpIncomplete';
 
 angular

@@ -5,5 +5,6 @@ export default {
   template,
   bindings: {
     finishHref: '<',
+    hourglassImg: '<',
   },
 };
