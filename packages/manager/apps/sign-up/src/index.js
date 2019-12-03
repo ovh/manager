@@ -21,6 +21,7 @@ import '@ovh-ux/sign-up';
 import signUpFormView from './form';
 import detailsState from './details';
 import activityState from './activity';
+import incompleteModule from './incomplete';
 import { registerState } from './routing';
 
 import controller from './index.controller';
@@ -44,6 +45,7 @@ angular
     signUpFormView,
     detailsState,
     activityState,
+    incompleteModule,
     'ovhSignUp',
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .config(/* @ngInject */ ($locationProvider, $urlRouterProvider) => {
