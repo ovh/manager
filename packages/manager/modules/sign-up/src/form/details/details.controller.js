@@ -32,6 +32,29 @@ export default class SignUpDetailsCtrl {
         },
       },
     };
+
+    this.zipModel = {
+      value: null,
+      model: (...args) => {
+        if (args.length) {
+          const newZipModel = args[0];
+          this.zipModel.value = newZipModel
+            .replace(get(this.signUpFormCtrl.rules, 'zip.prefix'), '');
+          this.signUpFormCtrl.model.zip = SignUpDetailsCtrl
+            .cleanZipCode(newZipModel, get(this.signUpFormCtrl.rules, 'zip.prefix'));
+        }
+        return this.zipModel.value;
+      },
+      validator: {
+        test: () => {
+          if (this.signUpFormCtrl.rules && this.signUpFormCtrl.rules.zip.regularExpression) {
+            return new RegExp(this.signUpFormCtrl.rules.zip.regularExpression)
+              .test(this.signUpFormCtrl.model.zip);
+          }
+          return true;
+        },
+      },
+    };
   }
 
   /* ==============================
@@ -58,6 +81,19 @@ export default class SignUpDetailsCtrl {
       }
     }
     return phoneNumber;
+  }
+
+  static cleanZipCode(zipCodeParam, zipPrefix) {
+    let zipCode = zipCodeParam;
+
+    if (zipPrefix) {
+      if (!startsWith(zipCode, zipPrefix)) {
+        // if zip code starts with prefix, remove it
+        zipCode = `${zipPrefix}${zipCode}`;
+      }
+    }
+
+    return zipCode;
   }
 
   /* -----  End of Helpers  ------ */
@@ -118,11 +154,17 @@ export default class SignUpDetailsCtrl {
   $onInit() {
     // clean phone number
     const phonePrefix = get(PHONE_PREFIX, this.signUpFormCtrl.model.phoneCountry);
-    // this.phoneModel.value = this.signUpFormCtrl.model.phone;
     this.phoneModel.value = this.signUpFormCtrl.model.phone;
     this.phoneModel.model(SignUpDetailsCtrl.cleanPhoneNumber(
       this.signUpFormCtrl.model.phone,
       phonePrefix,
+    ));
+
+    // clean zip code
+    this.zipModel.value = this.signUpFormCtrl.model.zip;
+    this.zipModel.model(SignUpDetailsCtrl.cleanZipCode(
+      this.signUpFormCtrl.model.zip,
+      get(this.signUpFormCtrl.rules, 'zip.prefix'),
     ));
 
     // set specific model callbacks
