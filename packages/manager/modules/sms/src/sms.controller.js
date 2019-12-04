@@ -1,6 +1,12 @@
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default class SmsCtrl extends ListLayoutHelper.ListLayoutCtrl {
+  /* @ngInject */
+  constructor($translate) {
+    super();
+    this.$translate = $translate;
+  }
+
   $onInit() {
     this.datagridId = 'dg-sms';
     this.defaultFilterColumn = 'name';

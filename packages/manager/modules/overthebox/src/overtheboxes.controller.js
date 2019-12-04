@@ -1,6 +1,12 @@
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default class OverTheBoxesCtrl extends ListLayoutHelper.ListLayoutCtrl {
+  /* @ngInject */
+  constructor($translate) {
+    super();
+    this.$translate = $translate;
+  }
+
   $onInit() {
     this.datagridId = 'dg-overtheboxes';
     this.defaultFilterColumn = 'serviceName';
