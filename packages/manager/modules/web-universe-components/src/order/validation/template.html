@@ -1,0 +1,15 @@
+<div class="row">
+    <dl class="oui-description oui-description_horizontal oui-heading_underline col-md-2">
+        <dt data-translate="manager_order_validation_payment_total_price_without_tax"></dt>
+        <dd data-ng-bind="$ctrl.checkout.prices.withoutTax.text"></dd>
+        <dt data-translate="manager_order_validation_payment_total_price_with_tax"></dt>
+        <dd data-ng-bind="$ctrl.checkout.prices.withTax.text"></dd>
+    </dl>
+</div>
+<ovh-payment-method-choice
+    data-model="$ctrl.paymentMethod">
+</ovh-payment-method-choice>
+<ovh-inline-contracts
+    data-items="$ctrl.checkout.contracts"
+    data-model="$ctrl.agreeContracts">
+</ovh-inline-contracts>

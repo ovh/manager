@@ -13,6 +13,7 @@
     "ovh-ui-kit": "^2.35.2"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-ovh-contracts": "^3.0.1",
     "@ovh-ux/ng-ovh-http": "^4.0.2",
     "@ovh-ux/ng-ovh-payment-method": "^5.0.2",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
