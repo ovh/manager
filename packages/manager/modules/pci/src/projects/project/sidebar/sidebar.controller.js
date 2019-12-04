@@ -1,13 +1,17 @@
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
+import get from 'lodash/get';
+import map from 'lodash/map';
 import set from 'lodash/set';
 
-import { MENU, UNIVERSE } from './sidebar.constant';
+import { MENU, UNIVERSE, USER_TYPES_MAP } from './sidebar.constant';
 
 export default class SidebarController {
   /* @ngInject */
 
   constructor(
+    $q,
     $translate,
     $rootScope,
     $scope,
@@ -15,9 +19,11 @@ export default class SidebarController {
     $transitions,
     atInternet,
     coreConfig,
-    OvhApiServices,
     OvhApiCloudProject,
+    OvhApiMe,
+    OvhApiServices,
   ) {
+    this.$q = $q;
     this.$translate = $translate;
     this.$transitions = $transitions;
     this.$rootScope = $rootScope;
@@ -26,8 +32,10 @@ export default class SidebarController {
     this.$stateParams = $stateParams;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
-    this.OvhApiServices = OvhApiServices;
+    this.OvhApiMe = OvhApiMe;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.OvhApiServices = OvhApiServices;
+    this.OvhApiCloudProjectServiceInfos = OvhApiCloudProject.ServiceInfos();
 
     this.isOpen = false;
     this.isLoading = false;
@@ -35,6 +43,12 @@ export default class SidebarController {
 
     this.REGION = coreConfig.getRegion();
     this.UNIVERSE = UNIVERSE;
+  }
+
+  isAvailableToUser(subItem) {
+    const allowedUsers = map(subItem.users,
+      userType => get(this.serviceInfo, get(USER_TYPES_MAP, userType)));
+    return !subItem.users || includes(allowedUsers, this.user.nichandle);
   }
 
   toggleProjectsList() {
@@ -48,19 +62,16 @@ export default class SidebarController {
 
     this.isLoading = true;
 
-    return this.OvhApiCloudProject
-      .v6()
-      .get({
-        serviceName,
-      })
-      .$promise
-      .then((project) => {
-        this.project = project;
-      })
-      .finally(() => {
-        this.$rootScope.$broadcast('sidebar:loaded');
-        this.isLoading = false;
-      });
+    return this.$q.all([
+      this.getProjectInfo(serviceName),
+      this.getServiceInfo(serviceName),
+    ]).then(([project, serviceInfo]) => {
+      this.project = project;
+      this.serviceInfo = serviceInfo;
+    }).finally(() => {
+      this.$rootScope.$broadcast('sidebar:loaded');
+      this.isLoading = false;
+    });
   }
 
   $onInit() {
@@ -81,6 +92,16 @@ export default class SidebarController {
       }
       this.isDisplayingProjectsList = false;
     });
+  }
+
+  getProjectInfo(serviceName) {
+    return this.OvhApiCloudProject.v6().get({ serviceName }).$promise;
+  }
+
+  getServiceInfo(serviceName) {
+    return this.OvhApiCloudProjectServiceInfos.v6().get({
+      serviceName,
+    }).$promise;
   }
 
   onMenuItemClick({ id }) {

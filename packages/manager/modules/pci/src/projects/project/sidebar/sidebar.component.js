@@ -4,6 +4,7 @@ import controller from './sidebar.controller';
 export default {
   bindings: {
     isOpen: '<',
+    user: '<',
     onClick: '&',
   },
   controller,
