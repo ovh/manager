@@ -13,6 +13,7 @@ import wucExpiration from './expiration';
 import wucFileChange from './fileChange';
 import wucFileEditor from './fileEditor';
 import wucGuides from './guides';
+import wucHelper from './helper';
 import wucIncrementNumber from './incrementNumber';
 import wucJavaEnum from './java-enum';
 import wucOvhFileReader from './ovhFileReader';
@@ -40,6 +41,7 @@ angular
     wucFileChange,
     wucFileEditor,
     wucGuides,
+    wucHelper,
     wucIncrementNumber,
     wucJavaEnum,
     wucOvhFileReader,
