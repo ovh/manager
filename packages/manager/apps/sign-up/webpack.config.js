@@ -17,13 +17,24 @@ module.exports = (env = {}) => {
     },
   }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
+  let WEBPACK_REGION;
+
+  if (env.region) {
+    WEBPACK_REGION = `${env.region}`;
+  } else {
+    WEBPACK_REGION = process.env.REGION ? `${process.env.REGION.toUpperCase()}` : 'EU';
+  }
+
   // Extra config files
+  const extrasRegion = glob.sync(`./.extras-${WEBPACK_REGION}/**/*.js`);
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
     entry: Object.assign({
       main: './src/index.js',
-    }, extras.length > 0 ? { extras } : {}),
+    },
+    extras.length > 0 ? { extras } : {},
+    extrasRegion.length > 0 ? { extrasRegion } : {}),
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
