@@ -67,6 +67,7 @@ export const state = {
 
         atInternet.trackEvent({
           page,
+          event: TRACKING.event,
         });
       }
     },
@@ -84,6 +85,7 @@ export const state = {
         // manage tracking
         atInternet.trackEvent({
           page: `${TRACKING.pagePrefix}ok-${me.model.legalform}`,
+          event: TRACKING.event,
         });
 
         // for tracking purposes
@@ -106,6 +108,7 @@ export const state = {
       // manage tracking
       atInternet.trackEvent({
         page: `${TRACKING.pagePrefix}${currentStep.tracking}-error-${field.$name}-${me.model.legalform}`,
+        event: TRACKING.event,
       });
     },
 

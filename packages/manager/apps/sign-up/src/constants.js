@@ -35,6 +35,7 @@ export const SANITIZATION = {
 };
 
 export const TRACKING = {
+  event: 'ACCOUNT_CREATION_VALIDATION',
   pagePrefix: 'accountcreation-',
 };
 
