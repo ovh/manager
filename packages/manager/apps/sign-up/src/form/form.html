@@ -11,7 +11,8 @@
     <ovh-sign-up-form
         data-action="update"
         data-me="$ctrl.me"
-        data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)">
+        data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)"
+        data-on-blurred-field-in-error="$ctrl.trackBlurredFieldInError">
         <oui-stepper data-current-index="1"
                      data-on-finish="$ctrl.onStepperFinished()">
             <oui-step-form data-header="{{ 'sign_up_form_identity_step_title' | translate }}"

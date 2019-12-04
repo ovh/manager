@@ -7,6 +7,7 @@ export default {
     action: '@',
     me: '<',
     onRulesUpdated: '&',
+    onBlurredFieldInError: '&?',
     model: '<',
   },
 };

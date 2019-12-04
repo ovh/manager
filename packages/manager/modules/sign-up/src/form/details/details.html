@@ -10,7 +10,8 @@
                             class="oui-select__input"
                             data-ng-options="legalform.value as legalform.label for legalform in $ctrl.signUpFormCtrl.rules.legalform.in"
                             data-ng-model="$ctrl.signUpFormCtrl.model.legalform"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.legalform.mandatory">
+                            data-ng-required="$ctrl.signUpFormCtrl.rules.legalform.mandatory"
+                            data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.legalform)">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down bg-transparent"
                           aria-hidden="true">
@@ -29,7 +30,8 @@
                             data-ng-options="country.value as country.label for country in $ctrl.signUpFormCtrl.rules.country.in"
                             data-ng-model="$ctrl.signUpFormCtrl.model.country"
                             data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
-                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1">
+                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
+                            data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.country)">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down bg-transparent"
                           aria-hidden="true">
@@ -64,7 +66,8 @@
                            data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                            data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
                            data-ng-pattern="$ctrl.phoneModel.validator"
-                           data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"/>
+                           data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"
+                           data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.phone)" />
                 </div>
             </oui-field> <!-- /input[name="phone"] -->
         </div>
@@ -79,7 +82,8 @@
                             data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
                             data-ng-model="$ctrl.signUpFormCtrl.model.language"
                             data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
-                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 1">
+                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 1"
+                            data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.language)">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down bg-transparent"
                           aria-hidden="true">
@@ -104,7 +108,8 @@
                            data-ng-model="$ctrl.zipModel.model"
                            data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                            data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
-                           data-ng-pattern="$ctrl.zipModel.validator" />
+                           data-ng-pattern="$ctrl.zipModel.validator"
+                           data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.zip)" />
                 </div>
             </oui-field> <!-- /input[name="zip"] -->
         </div>
@@ -118,7 +123,8 @@
                        id="city"
                        data-ng-model="$ctrl.signUpFormCtrl.model.city"
                        data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression" />
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.city)" />
             </oui-field> <!-- /input[name="city"] -->
         </div>
     </div>
@@ -133,7 +139,8 @@
                        id="address"
                        data-ng-model="$ctrl.signUpFormCtrl.model.address"
                        data-ng-required="$ctrl.signUpFormCtrl.rules.address.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression" />
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.address)" />
             </oui-field> <!-- /input[name="address"] -->
         </div>
 
@@ -147,7 +154,8 @@
                             class="oui-select__input"
                             data-ng-options="area.value as area.label for area in $ctrl.signUpFormCtrl.rules.area.in"
                             data-ng-model="$ctrl.signUpFormCtrl.model.area"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory">
+                            data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory"
+                            data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.area)">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down bg-transparent"
                           aria-hidden="true">

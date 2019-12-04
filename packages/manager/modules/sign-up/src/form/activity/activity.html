@@ -11,7 +11,8 @@
                        id="nationalIdentificationNumber"
                        data-ng-model="$ctrl.signUpFormCtrl.model.nationalIdentificationNumber"
                        data-ng-required="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.regularExpression" />
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.regularExpression"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.nationalIdentificationNumber)" />
             </oui-field> <!-- /input[name="nationalIdentificationNumber"] -->
         </div>
 
@@ -24,7 +25,8 @@
                        name="organisation"
                        id="organisation"
                        data-ng-model="$ctrl.signUpFormCtrl.model.organisation"
-                       data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory" />
+                       data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.organisation)" />
             </oui-field> <!-- /input[name="organisation"] -->
         </div>
 
@@ -38,7 +40,8 @@
                        id="vat"
                        data-ng-model="$ctrl.signUpFormCtrl.model.vat"
                        data-ng-required="$ctrl.signUpFormCtrl.rules.vat.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.vat.regularExpression" />
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.vat.regularExpression"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.vat)" />
             </oui-field> <!-- /input[name="vat"] -->
         </div>
 
@@ -52,7 +55,8 @@
                             class="oui-select__input"
                             data-ng-options="corporationType.value as corporationType.label for corporationType in $ctrl.signUpFormCtrl.rules.corporationType.in"
                             data-ng-model="$ctrl.signUpFormCtrl.model.corporationType"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.corporationType.mandatory">
+                            data-ng-required="$ctrl.signUpFormCtrl.rules.corporationType.mandatory"
+                            data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.corporationType)">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down bg-transparent"
                           aria-hidden="true">
@@ -71,7 +75,8 @@
                        id="companyNationalIdentificationNumber"
                        data-ng-model="$ctrl.signUpFormCtrl.model.companyNationalIdentificationNumber"
                        data-ng-required="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.regularExpression" />
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.regularExpression"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.companyNationalIdentificationNumber)" />
             </oui-field> <!-- /input[name="companyNationalIdentificationNumber"] -->
         </div>
 
@@ -85,7 +90,8 @@
                        id="italianSDI"
                        data-ng-model="$ctrl.signUpFormCtrl.model.italianSDI"
                        data-ng-required="$ctrl.signUpFormCtrl.rules.italianSDI.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.italianSDI.regularExpression" />
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.italianSDI.regularExpression"
+                       data-ng-blur="$ctrl.signUpFormCtrl.onFieldBlur($ctrl.formCtrl.italianSDI)" />
             </oui-field> <!-- /input[name="italianSDI"] -->
         </div>
     </div>

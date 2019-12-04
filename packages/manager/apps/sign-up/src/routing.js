@@ -2,6 +2,7 @@ import find from 'lodash/find';
 
 import {
   SANITIZATION,
+  TRACKING,
 } from './constants';
 
 import signupFormComponent from './form/component';
@@ -51,18 +52,40 @@ export const state = {
       ssoAuthentication.logout($location.search().onsuccess);
     },
 
-    onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
+    onStepFocus: /* @ngInject */ ($state, atInternet, getStepByName, me) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
         $state.transitionTo(focusedStep.state, $state.params, {
           location: false,
         });
+
+        // manage tracking
+        let page = `${TRACKING.pagePrefix}${focusedStep.tracking}`;
+        if (focusedStep.name === 'activity') {
+          page = `${page}-${me.model.legalform}`;
+        }
+
+        atInternet.trackEvent({
+          page,
+        });
       }
     },
 
-    finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
+    finishSignUp: /* @ngInject */ (
+      $window,
+      atInternet,
+      getRedirectLocation,
+      isActiveStep,
+      me,
+      signUp,
+    ) => () => signUp
       .saveNic(me.model)
       .then(() => {
+        // manage tracking
+        atInternet.trackEvent({
+          page: `${TRACKING.pagePrefix}ok-${me.model.legalform}`,
+        });
+
         // for tracking purposes
         if ($window.sessionStorage) {
           $window.sessionStorage.setItem('ovhSessionSuccess', true);
@@ -74,15 +97,29 @@ export const state = {
         }
       }),
 
+    trackBlurredFieldInError: /* @ngInject */ ($state, atInternet, me, steps) => (field) => {
+      // get current step
+      const currentStep = find(steps, {
+        state: $state.current.name,
+      });
+
+      // manage tracking
+      atInternet.trackEvent({
+        page: `${TRACKING.pagePrefix}${currentStep.tracking}-error-${field.$name}-${me.model.legalform}`,
+      });
+    },
+
     steps: () => [{
       name: 'identity',
       state: 'sign-up.identity',
     }, {
       name: 'details',
       state: 'sign-up.details',
+      tracking: 'step2',
     }, {
       name: 'activity',
       state: 'sign-up.activity',
+      tracking: 'step3',
     }],
   },
 };

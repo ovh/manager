@@ -22,6 +22,7 @@ import detailsState from './details';
 import activityState from './activity';
 import incompleteModule from './incomplete';
 import { registerState } from './routing';
+import atInternet from './components/at-internet';
 
 import controller from './index.controller';
 import { SANITIZATION } from './constants';
@@ -45,6 +46,7 @@ angular
     detailsState,
     activityState,
     incompleteModule,
+    atInternet,
     'ovhSignUp',
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .config(/* @ngInject */ ($locationProvider, $urlRouterProvider) => {

@@ -136,6 +136,14 @@ export default class SignUpFormCtrl {
     });
   }
 
+  onFieldBlur(formField) {
+    if (formField.$invalid && this.onBlurredFieldInError && isFunction(this.onBlurredFieldInError({
+      formField,
+    }))) {
+      this.onBlurredFieldInError()(formField);
+    }
+  }
+
   /* ============================
   =            Hooks            =
   ============================= */
