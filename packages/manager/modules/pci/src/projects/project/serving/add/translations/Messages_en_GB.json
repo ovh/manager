@@ -2,7 +2,7 @@
   "pci_projects_project_serving_add_title": "Create a Serving Engine namespace",
   "pci_projects_project_serving_add_region_title": "Select a region",
   "pci_projects_project_serving_add_description_title": "Namespace description",
-  "pci_projects_project_serving_add_description_help": "The namespace name can include lowercase or uppercase alphanumeric character ( a to z and 0 to 9) and the following characters:  « - », « _ ».",
+  "pci_projects_project_serving_add_description_help": "The namespace name must start with lowercase or uppercase alphanumeric character (a to z and 0 to 9) and can include the following characters:  « - », « _ ».",
   "pci_projects_project_serving_add_container_title": "Object Storage Container Name",
   "pci_projects_project_serving_add_container_help": "A reference through the object storage container. Will be created if don't exists.",
   "pci_projects_project_serving_add_success": "Your namespace {{ name }} has been created",

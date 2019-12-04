@@ -4,5 +4,5 @@
   "pci_projects_project_serving_namespace_models_delete": "Delete model",
   "pci_projects_project_serving_namespace_models_delete_common_delete": "Delete",
   "pci_projects_project_serving_namespace_models_delete_common_cancel": "Cancel",
-  "pci_projects_project_serving_namespace_models_delete_warning": "Are you sure you want to delete {{ modelId }}?"
+  "pci_projects_project_serving_namespace_models_delete_warning": "Are you sure you want to delete the model {{ modelId }}?"
 }

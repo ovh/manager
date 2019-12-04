@@ -4,5 +4,5 @@
   "pci_projects_project_serving_namespace_tokens_delete": "Delete token",
   "pci_projects_project_serving_namespace_tokens_delete_common_delete": "Delete",
   "pci_projects_project_serving_namespace_tokens_delete_common_cancel": "Cancel",
-  "pci_projects_project_serving_namespace_tokens_delete_warning": "Are you sure you want to delete {{ tokenId }}?"
+  "pci_projects_project_serving_namespace_tokens_delete_warning": "Are you sure you want to delete the token {{ tokenId }}?"
 }

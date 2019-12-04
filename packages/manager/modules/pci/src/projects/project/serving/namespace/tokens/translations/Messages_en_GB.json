@@ -2,7 +2,7 @@
   "pci_projects_project_serving_namespace_models": "Models",
   "pci_projects_project_serving_namespace_infos": "Information",
   "pci_projects_project_serving_namespace_tokens": "Token",
-  "pci_projects_project_serving_namespace_tokens_description_1": "Tokens are unique identifiers used to authenticate  and fetch your deployed ML models.",
+  "pci_projects_project_serving_namespace_tokens_description_1": "Tokens are unique identifiers used to authenticate and fetch your deployed models.",
   "pci_projects_project_serving_namespace_tokens_description_2": "",
   "pci_projects_project_serving_namespace_tokens_resource": "Resource",
   "pci_projects_project_serving_namespace_tokens_groups": "Groups",
