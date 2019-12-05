@@ -1,4 +1,30 @@
 .sign-up-form-details {
+  .oui-field {
+    &.oui-field_error .oui-input-group.zip-group {
+      span {
+        background-color: #ffd2dd;
+        border-color: #c11b1b;
+        color: #b04020;
+      }
+    }
+
+    .oui-input-group.zip-group {
+      box-shadow: -1px 0 0 rgba(40, 89, 192, 0.2), 1px 0 0 rgba(40, 89, 192, 0.2);
+
+      span {
+        padding: 0 0 0 0.688rem;
+        border-bottom: 2px solid;
+        border-color: #2859C0;
+        line-height: 2.4;
+      }
+
+      input {
+        box-shadow: none;
+        padding-left: 0.1rem;
+      }
+    }
+  }
+
   .phone-number-field {
     position: relative;
 

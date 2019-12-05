@@ -8,7 +8,6 @@ import 'script-loader!lodash';
 
 // lodash imports
 import get from 'lodash/get';
-import head from 'lodash/head';
 // deps
 import angular from 'angular';
 import 'angular-sanitize';
@@ -63,15 +62,11 @@ angular
       }
       return '';
     };
-    const navigatorLg = window.navigator.language || window.navigator.userLanguage;
-    let language;
-    if (navigatorLg) {
-      language = head(navigatorLg.split('-'));
-    }
 
-    if (!language) {
-      language = getQueryVariable('lang') || 'fr';
-    }
+    const language = getQueryVariable('lang')
+      || window.navigator.language
+      || window.navigator.userLanguage
+      || 'en';
 
     const userLocale = TranslateServiceProvider.findLanguage(language, language);
     TranslateServiceProvider.setUserLocale(userLocale);
