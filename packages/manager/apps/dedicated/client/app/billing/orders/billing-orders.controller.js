@@ -5,9 +5,22 @@ import set from 'lodash/set';
 
 export default class BillingOrdersCtrl {
   /* @ngInject */
-  constructor($q, $log, $translate, OvhApiMeOrder, constants,
-    orders, schema, criteria, currentUser, filter, goToOrder,
-    updateFilterParam, billingFeatureAvailability) {
+  constructor(
+    $q,
+    $log,
+    $translate,
+    OvhApiMeOrder,
+    constants,
+    orders,
+    schema,
+    criteria,
+    currentUser,
+    filter,
+    goToOrder,
+    goToOrderRetractation,
+    updateFilterParam,
+    billingFeatureAvailability,
+  ) {
     this.$q = $q;
     this.$log = $log;
     this.$translate = $translate;
@@ -17,6 +30,7 @@ export default class BillingOrdersCtrl {
     this.criteria = criteria || [];
     this.filter = filter;
     this.goToOrder = goToOrder;
+    this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
     this.billingGuideUrl = get(constants.urls[currentUser.ovhSubsidiary], 'guides.billing');
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
@@ -26,7 +40,13 @@ export default class BillingOrdersCtrl {
     return this.OvhApiMeOrder.v6()
       .getStatus({ orderId: $row.orderId })
       .$promise
-      .then(status => assign($row, status));
+      .then(status => assign($row, status))
+      .then(() => assign(
+        $row,
+        {
+          canRetract: moment($row.retractionDate || 0).isAfter(this.timeNow),
+        },
+      ));
   }
 
   getStateEnumFilter() {
