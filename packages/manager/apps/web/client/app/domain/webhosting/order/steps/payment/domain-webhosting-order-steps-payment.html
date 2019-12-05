@@ -21,12 +21,10 @@
     <form
         name="$ctrl.paymentMeans"
         novalidate>
-        <ovh-manager-order-payment-means
-            name="paymentMeans"
-            data-label="{{:: 'domain_webhosting_order_payment_choice' | translate }}"
-            data-default-payment-mean="$ctrl.defaultPaymentMean"
-            data-model="$ctrl.autoPayWithPreferredPaymentMethod">
-        </ovh-manager-order-payment-means>
+        <ovh-payment-method-choice
+            data-model="$ctrl.autoPayWithPreferredPaymentMethod"
+            data-error-callback="$ctrl.alertCheckoutError('domain_webhosting_order_payment_get_payment_method_error')">
+        </ovh-payment-method-choice>
     </form>
 
     <form

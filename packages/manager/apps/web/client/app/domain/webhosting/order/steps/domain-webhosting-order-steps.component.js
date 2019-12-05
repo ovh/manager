@@ -3,7 +3,6 @@ import template from './domain-webhosting-order-steps.html';
 
 export default {
   bindings: {
-    alertCheckoutError: '<',
     availableModules: '<',
     availableOffers: '<',
     cartId: '<',
@@ -14,6 +13,8 @@ export default {
     prepareCheckout: '<',
     user: '<',
     validateCheckout: '<',
+
+    displayErrorMessage: '<',
   },
   controller,
   name: 'ovhManagerWebDomainWebhostingOrderSteps',

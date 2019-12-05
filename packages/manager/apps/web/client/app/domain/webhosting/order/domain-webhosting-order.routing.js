@@ -1,10 +1,6 @@
 import component from './domain-webhosting-order.component';
 
 const resolve = {
-  alertCheckoutError: /* @ngInject */ (
-    $translate,
-    Alerter,
-  ) => translationId => Alerter.error($translate.instant(translationId), 'webhosting-order-alert'),
   assignCart: /* @ngInject */ OrderService => cartId => OrderService
     .assignCart(cartId),
   availableModules: /* @ngInject */
@@ -29,6 +25,10 @@ const resolve = {
     ovhPaymentMethod => ovhPaymentMethod.getDefaultPaymentMethod(),
   deleteCartItems: /* @ngInject */ (cartId, OrderService) => () => OrderService
     .deleteAllItems(cartId),
+  displayErrorMessage: /* @ngInject */ (
+    $translate,
+    Alerter,
+  ) => translationId => Alerter.error($translate.instant(translationId), 'webhosting-order-alert'),
   displayOrderBillSuccessMessage: /* @ngInject */ (
     $translate,
     Alerter,
@@ -55,8 +55,8 @@ const resolve = {
       .prepareCheckout(cartId, cartOption, domainName),
   validateCheckout: /* @ngInject */ (
     $timeout,
-    alertCheckoutError,
     defaultPaymentMean,
+    displayErrorMessage,
     displayOrderBillSuccessMessage,
     displayPayCheckoutSuccessMessage,
     domain,
@@ -65,7 +65,7 @@ const resolve = {
     WebHostingOrder,
   ) => (cartId, checkoutToPay) => WebHostingOrder
     .validateCheckout(cartId, checkoutToPay)
-    .catch(() => { alertCheckoutError('domain_webhosting_order_payment_checkout_error'); })
+    .catch(() => { displayErrorMessage('domain_webhosting_order_payment_checkout_error'); })
     .then(checkout => goBackToDashboard()
       .then(() => {
         if (checkoutToPay.autoPayWithPreferredPaymentMethod) {
