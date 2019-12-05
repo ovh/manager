@@ -1,6 +1,7 @@
 import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isObject from 'lodash/isObject';
+import isEmpty from 'lodash/isEmpty';
 
 import { QUOTA_DECIMAL_PRECISION } from './general-informations.constants';
 
@@ -15,6 +16,7 @@ export default class HostingGeneralInformationsCtrl {
     atInternet,
     Alerter,
     Hosting,
+    hostingEmailService,
     HostingLocalSeo,
     HostingRuntimes,
     hostingSSLCertificate,
@@ -29,6 +31,7 @@ export default class HostingGeneralInformationsCtrl {
     this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.Hosting = Hosting;
+    this.hostingEmailService = hostingEmailService;
     this.HostingLocalSeo = HostingLocalSeo;
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
@@ -70,6 +73,7 @@ export default class HostingGeneralInformationsCtrl {
       this.getScreenshot(),
       this.retrievingSSLCertificate(),
       this.retrievingAvailableOffers(this.serviceName),
+      this.getEmailOfferDetails(this.serviceName),
     ])
       .then(() => this.HostingRuntimes.getDefault(this.serviceName))
       .then((runtime) => {
@@ -216,5 +220,32 @@ export default class HostingGeneralInformationsCtrl {
 
   isHostingOffer() {
     return !includes(['KIMSUFI_2015', '__60_FREE', 'DEMO_1_G', 'START_1_M', 'START_10_M', '_ASPFREE'], this.$scope.hosting.offer);
+  }
+
+  getEmailOfferDetails(serviceName) {
+    this.isRetrievingEmailOffer = true;
+    return this.hostingEmailService.getEmailOfferDetails(serviceName)
+      .then((offer) => {
+        this.emailOffer = offer;
+      })
+      .catch((error) => {
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('hosting_dashboard_email_offer_get_error'),
+          error,
+          this.$scope.alerts.main,
+        );
+      })
+      .finally(() => {
+        this.isRetrievingEmailOffer = false;
+      });
+  }
+
+  isEmailOfferExists() {
+    // empty array means user has no email offer
+    return !isEmpty(this.emailOffer);
+  }
+
+  activateEmailOffer() {
+    this.$state.go('app.hosting.activate', { serviceName: this.serviceName });
   }
 }

@@ -1384,5 +1384,10 @@
   "hosting_dashboard_general_informations": "Informations générales",
   "hosting_dashboard_configuration": "Configuration",
   "hosting_dashboard_access": "Accès",
-  "common_api_hostingWeb-1": "Vous ne pouvez pas migrer vers cette offre car votre offre actuelle dispose de plus d'emails que l'offre choisie."
+  "common_api_hostingWeb-1": "Vous ne pouvez pas migrer vers cette offre car votre offre actuelle dispose de plus d'emails que l'offre choisie.",
+  "hosting_dashboard_service_activate_email": "Activate",
+  "hosting_dashboard_service_email_address": "Email address",
+  "hosting_dashboard_service_common_active": "Active",
+  "hosting_dashboard_service_common_inactive": "Inactive",
+  "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse email"
 }

@@ -11,7 +11,6 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
-// import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
@@ -49,6 +48,10 @@ import domainDnsZone from './dns-zone';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
 import zone from './domain/zone/zone.module';
+
+import hostingEmailService from './hosting/email/hosting-email.service';
+
+import hostingEmailActivateModule from './hosting/email/activate';
 
 import './css/source.less';
 import './css/source.scss';
@@ -114,6 +117,7 @@ angular
     orderContracts,
     orderPaymentMeans,
     zone,
+    hostingEmailActivateModule,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -495,4 +499,6 @@ angular
         }, { location: false });
       }
     });
-  });
+  })
+  .service('hostingEmailService', hostingEmailService)
+  .run(/* @ngTranslationsInject:json ./translations */);
