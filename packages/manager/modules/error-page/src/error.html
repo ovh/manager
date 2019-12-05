@@ -34,7 +34,7 @@
                 </oui-message>
                 <div class="d-flex flex-row-reverse">
                     <oui-button
-                        data-ng-if="$ctrl.submitAction"
+                        data-ng-if="$ctrl.submitAction && !$ctrl.submitLink"
                         data-variant="primary"
                         data-on-click="$ctrl.submitAction()"
                     >

@@ -1,0 +1,57 @@
+<form
+    class="pci-project-new-payment-challenge"
+    data-ng-switch="$ctrl.defaultPaymentMethod.paymentType"
+    novalidate
+    name="challengeForm"
+    id="challengeForm"
+>
+    <oui-message data-ng-if="$ctrl.model.challenge.error" data-type="error">
+        <span
+            data-translate="{{ 'pci_project_new_payment_challenge_error_' + $ctrl.model.challenge.error.toLowerCase() }}"
+        ></span>
+    </oui-message>
+
+    <div
+        data-ng-switch-when="CREDIT_CARD"
+        class="oui-box border-0 rounded-0 m-0 row"
+    >
+        <div
+            class="col-md-6"
+            data-translate="pci_project_new_payment_challenge_credit_card"
+        ></div>
+        <div class="col-md-6">
+            <div class="challenge-credit-card">
+                <input
+                    type="text"
+                    name="challenge"
+                    class="challenge-input"
+                    data-ng-model="$ctrl.model.challenge.value"
+                    data-ng-attr-placeholder="{{ $ctrl.inputPlaceHolder }}"
+                    data-ng-attr-maxlength="{{ $ctrl.inputMaxLength }}"
+                    data-ng-disabled="$ctrl.globalLoading.finalize"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div
+        data-ng-switch-when="PAYPAL"
+        class="oui-box border-0 rounded-0 m-0"
+        data-translate="pci_project_new_payment_challenge_paypal"
+    ></div>
+
+    <div
+        data-ng-switch-when="BANK_ACCOUNT"
+        class="oui-box border-0 rounded-0 m-0"
+    >
+        <p data-translate="pci_project_new_payment_challenge_bank_account"></p>
+        <input
+            class="oui-input"
+            type="text"
+            id="challenge"
+            name="challenge"
+            data-ng-model="$ctrl.model.challenge.value"
+            data-ng-disabled="$ctrl.globalLoading.finalize"
+        />
+    </div>
+</form>

@@ -1,9 +1,0 @@
-{
-  "pci_error_button_action_pay_debt": "Ureguluj należności",
-  "pci_error_button_action_contact_support": "Skontaktuj się z pomocą techniczną",
-  "pci_error_account_not_eligible": "Utworzenie nowego projektu Public Cloud nie jest możliwe przy użyciu Twojego konta.  Prosimy o kontakt z pomocą techniczną.",
-  "pci_error_max_projects_limit_reached": "Niestety, nie możesz utworzyć dodatkowego projektu Public Cloud, ponieważ osiągnąłeś maksymalny limit projektów.  Aby zwiększyć limity, skontaktuj się z pomocą techniczną.",
-  "pci_error_paypal_account_not_verified": "Niestety, nie możesz utworzyć projektu Public Cloud, używając Twojego konta PayPal, ponieważ nie zostało ono zweryfikowane.  Prosimy o wykonanie kroków niezbędnych do zatwierdzenia konta PayPal i podjęcie nowej próby utworzenia projektu. Możesz również zmienić <a href=\"{{ href }}\">Twój domyślny sposób płatności</a>.",
-  "pci_error_unpaid_debts": "Niestety, nie możesz utworzyć projektu Public Cloud, ponieważ masz zadłużenie w OVHcloud.  Ureguluj należność i spróbuj ponownie.",
-  "pci_error_invalid_payment_mean": "Utworzenie nowego projektu Public Cloud nie jest możliwe przy użyciu Twojego konta.  Prosimy o zmianę <a href=\"{{ href }}\">Twojego domyślnego sposobu płatności</a>."
-}

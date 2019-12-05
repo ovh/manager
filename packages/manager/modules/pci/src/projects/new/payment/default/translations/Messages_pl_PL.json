@@ -1,5 +1,0 @@
-{
- "pci_projects_new_payment_default_title": "Twój sposób płatności",
- "pci_projects_new_payment_default_explain": "Poniższy sposób płatności zostanie wykorzystany do rozliczenia zużycia Twojego projektu Public Cloud. Jeśli nie zużyjesz zasobów, nie zostaniesz obciążony żadnymi kosztami. Aby zmienić sposób płatności, przejdź do „Moje konto”, a następnie <a href=\"{{ href }}\">”Moje sposoby płatności”</a>.",
- "pci_projects_new_payment_default_payment_method": "Domyślny sposób płatności"
-}

@@ -153,9 +153,13 @@ export const PCI_REDIRECT_URLS = {
       'https://www.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
     paymentMethods:
       'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method',
+    paymentMethodAdd:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method/add',
     support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
     vRack:
       'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
+    myAccount:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/dashboard',
   },
   CA: {
     addCreditCard:
@@ -169,9 +173,12 @@ export const PCI_REDIRECT_URLS = {
     paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean', // should not be used anymore
     paymentMethods:
       'https://ca.ovh.com/manager/index.html#/billing/payment/method',
+    paymentMethodAdd:
+      'https://ca.ovh.com/manager/index.html#/billing/payment/method/add',
     support: 'https://ca.ovh.com/manager/index.html#/support',
     vRack:
       'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
+    myAccount: 'https://ca.ovh.com/manager/index.html#/useraccount/dashboard',
   },
   US: {
     addCreditCard:
@@ -187,9 +194,13 @@ export const PCI_REDIRECT_URLS = {
       'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
     paymentMethods:
       'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method',
+    paymentMethodAdd:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method/add',
     support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
     vRack:
       'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
+    myAccount:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/useraccount/dashboard',
   },
 };
 

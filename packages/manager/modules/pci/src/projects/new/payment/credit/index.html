@@ -1,0 +1,35 @@
+<div class="pci-project-new-payment-credit">
+    <strong
+        class="d-inline-block mb-3"
+        data-translate="pci_project_new_payment_credit_thanks"
+    >
+    </strong>
+    <p
+        data-translate="pci_project_new_payment_credit_explain"
+        data-translate-values="{ amount: $ctrl.checkout.prices.withoutTax.text }"
+    ></p>
+
+    <small data-translate="pci_project_new_payment_credit_info"></small>
+
+    <!-- footer -->
+    <div
+        class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
+    >
+        <oui-button
+            data-variant="primary"
+            data-aria-label="{{ :: 'pci_project_new_payment_credit_credit_and_pay' | translate }}"
+            data-on-click="$ctrl.onCreditBtnClick()"
+            data-disabled="$ctrl.globalLoading.finalize"
+        >
+            <span
+                data-translate="pci_project_new_payment_credit_credit_and_pay"
+            ></span>
+        </oui-button>
+
+        <a
+            data-ng-href="{{ :: $ctrl.getCancelHref() }}"
+            data-translate="pci_project_new_config_btn_cancel"
+        >
+        </a>
+    </div>
+</div>

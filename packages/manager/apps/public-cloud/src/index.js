@@ -2,6 +2,7 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
+import 'babel-polyfill';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';

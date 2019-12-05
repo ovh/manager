@@ -6,6 +6,11 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'managerErrorPage',
     params: {
       detail: null,
+      submitLabel: null,
+      submitLink: null,
+      submitAction: null,
+      message: null,
+      image: null,
     },
     resolve: {
       breadcrumb: () => null,
@@ -27,6 +32,18 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       submitAction: /* @ngInject */ ($window) => () =>
         $window.location.reload(),
+
+      message: /* @ngInject */ ($transition$) =>
+        $transition$.params().message || null,
+
+      image: /* @ngInject */ ($transition$) =>
+        $transition$.params().image || null,
+
+      submitLabel: /* @ngInject */ ($transition$) =>
+        $transition$.params().submitLabel || null,
+
+      submitLink: /* @ngInject */ ($transition$) =>
+        $transition$.params().submitLink || null,
     },
   });
 };

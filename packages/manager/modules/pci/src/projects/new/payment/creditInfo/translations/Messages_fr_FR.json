@@ -1,4 +1,0 @@
-{
-  "pci_projects_new_payment_credit_info_message": "Un montant de {{ amount }} est nécessaire pour la confirmation de la saisie et de la validité de votre moyen de paiement. Cette somme sera convertie en crédits* utilisables pour votre projet.",
-  "pci_projects_new_payment_credit_info_explain": "En cliquant sur « Créditer et créer mon projet », vous allez être redirigé vers l’interface sécurisée de notre prestataire. Vous pourrez retrouver votre facture en cliquant sur « Mon compte », puis <a href=\"{{ href }}\">« Mes commandes »</a>."
-}
