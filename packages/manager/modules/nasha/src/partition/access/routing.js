@@ -11,9 +11,17 @@ export default /* @ngInject */ ($stateProvider) => {
         value: ['../../../common', '.'],
         format: 'json',
       },
+      params: {
+        access: null,
+        task: null,
+        isNew: null,
+      },
       resolve: {
         serviceName: /* @ngInject */ $transition$ => $transition$.params().nashaId,
         partition: /* @ngInject */ $transition$ => $transition$.params().partitionName,
+        access: /* @ngInject */ $transition$ => $transition$.params().access,
+        task: /* @ngInject */ $transition$ => $transition$.params().task,
+        isNew: /* @ngInject */ $transition$ => $transition$.params().isNew,
         goToPartitionAccessAddPage: /* @ngInject */ ($state, serviceName, partition) => () => $state.go('nasha.nasha-partition-access.add', {
           serviceName,
           partition,
@@ -24,13 +32,9 @@ export default /* @ngInject */ ($stateProvider) => {
           access,
         }),
         goToPartitionAccessPage: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
-          type = 'success') => {
-          const reload = message && type === 'success';
+          type = 'success', data) => {
           const state = 'nasha.nasha-partition-access';
-          const promise = $state.go(state,
-            {
-              reload,
-            });
+          const promise = $state.go(state, data);
           if (message) {
             promise.then(() => {
               CucCloudMessage[type]({ textHtml: message }, state);

@@ -14,7 +14,7 @@
             class="oui-button oui-button_secondary"
             data-ng-disabled="NashaPartitionCtrl.loaders.table"
             data-ng-if="NashaPartitionCtrl.data.nasha.canCreatePartition"
-            data-ng-click="NashaPartitionCtrl.openModal('nasha/partition/add/template.html', 'NashaPartitionAddCtrl')"
+            data-ng-click="NashaPartitionCtrl.goToPartitionAdd()"
             data-translate="nasha_partitions_action_add"></button>
 
         <oui-datagrid data-rows="NashaPartitionCtrl.data.table.partitions">
@@ -40,23 +40,23 @@
             </oui-column>
             <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item data-text="{{ 'nasha_partitions_action_update' | translate }}"
-                    data-on-click="NashaPartitionCtrl.openModal('nasha/partition/update/template.html', 'NashaPartitionUpdateCtrl', $row)">
+                    data-on-click="NashaPartitionCtrl.goToPartitionUpdate($row)">
                 </oui-action-menu-item>
                 <oui-action-menu-item data-text="{{ 'nasha_partitions_action_change_access' | translate }}"
                     data-on-click="NashaPartitionCtrl.goToNashaPartitionAccess($row.partitionName)">
                 </oui-action-menu-item>
                 <oui-action-menu-item data-text="{{ 'nasha_partitions_action_display_snapshot' | translate }}"
-                    data-on-click="NashaPartitionCtrl.openModal('nasha/partition/snapshot/template.html', 'NashaPartitionSnapshotCtrl', $row)">
+                    data-on-click="NashaPartitionCtrl.goToPartitionSnapshot($row)">
                 </oui-action-menu-item>
                 <oui-action-menu-item data-text="{{ 'nasha_partitions_action_display_custom_snapshot' | translate }}"
-                    data-on-click="NashaPartitionCtrl.openModal('nasha/partition/custom-snapshot/add/template.html', 'NashaPartitionCustomSnapshotAddCtrl', $row)">
+                    data-on-click="NashaPartitionCtrl.goToPartitionCustomSnapshot($row)">
                 </oui-action-menu-item>
                 <oui-action-menu-item data-text="{{ 'nasha_partitions_action_z_file_system' | translate }}"
-                    data-on-click="NashaPartitionCtrl.openModal('nasha/partition/zfs-options/template.html', 'NashaPartitionZFSOptionsCtrl', $row)">
+                    data-on-click="NashaPartitionCtrl.goToPartitionZfsOptions($row)">
                 </oui-action-menu-item>
                 <oui-action-menu-item data-ng-show="NashaPartitionCtrl.data.nasha.canCreatePartition"
                     data-text="{{ 'nasha_common_remove' | translate }}"
-                    data-on-click="NashaPartitionCtrl.openModal('nasha/partition/delete/template.html', 'NashaPartitionDeleteCtrl', $row)">
+                    data-on-click="NashaPartitionCtrl.goToPartitionDelete($row)">
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

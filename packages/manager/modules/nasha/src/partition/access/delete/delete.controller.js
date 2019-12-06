@@ -28,9 +28,6 @@ export default class NashaPartitionAccessDeleteCtrl {
         }),
         'success',
         { access: this.toRemove.access, task: result.data.taskId },
-        // $uibModalInstance.close({ access: this.toRemove.access, task: result.data.taskId });
-        // this.CucCloudMessage.success(this.$translate.instant(
-        // 'nasha_access_action_delete_success', { accessIp: this.toRemove.access.ip }));
       )).catch(error => this.goToPartitionAccessPage(
         this.$translate.instant('nasha_access_action_delete_failure', {
           accessIp: this.toRemove.access.ip,

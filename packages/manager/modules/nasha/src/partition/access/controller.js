@@ -8,164 +8,138 @@ export default class NashaPartitionAccessCtrl {
     $q,
     $scope,
     $state,
-    $stateParams,
     $translate,
-    $uibModal,
     CucCloudMessage,
     Poller,
     OvhApiDedicatedNasha,
   ) {
-    const self = this;
-    self.$state = $state;
-    self.data = {
+    this.$q = $q;
+    this.$state = $state;
+    this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
+    this.Poller = Poller;
+    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
+
+    this.data = {
       nasha: {},
       partition: {},
       addAccessInProgress: [],
       taskForAccess: [],
     };
 
-    self.table = {
+    this.table = {
       accessIps: [],
       refresh: false,
     };
 
-    self.loaders = {
+    this.loaders = {
       table: false,
     };
 
-    self.load = function load(resetCache) {
-      self.loaders.table = true;
-      if (resetCache) {
-        OvhApiDedicatedNasha.Partition().Access().v6().resetCache();
-      }
-      $q.all({
-        nasha: OvhApiDedicatedNasha.v6().get({ serviceName: $stateParams.nashaId }).$promise,
-        partition: OvhApiDedicatedNasha.Partition().v6()
-          .get({
-            serviceName: $stateParams.nashaId,
-            partitionName: $stateParams.partitionName,
-          }).$promise,
-        accesses: OvhApiDedicatedNasha.Partition().Access().v6()
-          .query({
-            serviceName: $stateParams.nashaId,
-            partitionName: $stateParams.partitionName,
-          }).$promise,
-      }).then((data) => {
-        self.data.nasha = data.nasha;
-        self.data.partition = data.partition;
-        self.table.accessIps = data.accesses.map(ip => ({
-          ip,
-        }));
-        if (resetCache) {
-          self.table.refresh = !self.table.refresh;
-        }
-      }).catch((err) => {
-        CucCloudMessage.error($translate.instant('nasha_partitions_access_no_data_error'));
-        return $q.reject(err);
-      }).finally(() => {
-        self.loaders.table = false;
-      });
-    };
-
-    self.getAccessForIp = function getAccessForIp(accessIp) {
-      // If the access is being added, return the local data
-      const accessAddInProgress = find(self.data.addAccessInProgress, item => item.ip === accessIp);
-      if (accessAddInProgress) {
-        return accessAddInProgress;
-      }
-
-      // if not we get the details form the api
-      return OvhApiDedicatedNasha.Partition().Access().v6().get({
-        serviceName: self.data.nasha.serviceName,
-        partitionName: self.data.partition.partitionName,
-        ip: accessIp,
-      }).$promise.then(data => data);
-    };
-
-    self.transformItem = function transformItem(access) {
-      return self.getAccessForIp(access.ip);
-    };
-
-    self.removeAccess = function removeAccess(access) {
-      self.openModal('nasha/partition/access/delete/template.html', 'NashaPartitionAccessDeleteCtrl', {
-        serviceName: self.data.nasha.serviceName,
-        access,
-        partitionName: self.data.partition.partitionName,
-      });
-    };
-
-    // self.addAccess = function addAccess() {
-    //   self.openModal('nasha/partition/access/add/template.html', 'NashaPartitionAccessAddCtrl', {
-    //     serviceName: self.data.nasha.serviceName,
-    //     partition: self.data.partition,
-    //   });
-    // };
-
-    /*= =====================================
-       =                Polling              =
-       ====================================== */
-
-    function launchPolling(taskId) {
-      return Poller.poll(`/dedicated/nasha/${self.data.nasha.serviceName}/task/${taskId}`,
-        null,
-        {
-          successRule(task) {
-            return task.status === 'done';
-          },
-          errorRule(task) {
-            return ['doing', 'todo', 'done'].indexOf(task.status) === -1;
-          },
-          namespace: 'nasha.access',
-        });
-    }
-
-    function pollTasksForAccess(access, taskId) {
-      launchPolling(taskId)
-        .finally(() => {
-          // Remove from the polling list
-          remove(self.data.taskForAccess, item => item.task === taskId);
-
-          // If the partition was in creation, remove it from the creation list
-          remove(self.data.addAccessInProgress, item => item.ip === access.ip);
-
-          self.updateAccess(access);
-        });
-    }
-
     $scope.$on('$destroy', () => {
-      Poller.kill({ namespace: 'nasha.access' });
+      this.Poller.kill({ namespace: 'nasha.access' });
     });
+  }
 
-    self.openModal = function openModal(template, controller, params) {
-      const modal = $uibModal.open({
-        templateUrl: template,
-        controller,
-        controllerAs: controller,
-        resolve: {
-          items() {
-            return params;
-          },
+  $onInit() {
+    if (this.task) {
+      this.pollTasksForAccess(this.access, this.task);
+      this.data.taskForAccess.push({ task: this.task, access: this.access });
+    }
+    this.load();
+  }
+
+  load(resetCache) {
+    this.loaders.table = true;
+    if (resetCache) {
+      this.OvhApiDedicatedNasha.Partition().Access().v6().resetCache();
+    }
+
+    this.$q.all({
+      nasha: this.OvhApiDedicatedNasha.v6().get({ serviceName: this.serviceName }).$promise,
+      partition: this.OvhApiDedicatedNasha.Partition().v6()
+        .get({
+          serviceName: this.serviceName,
+          partitionName: this.partition,
+        }).$promise,
+      accesses: this.OvhApiDedicatedNasha.Partition().Access().v6()
+        .query({
+          serviceName: this.serviceName,
+          partitionName: this.partition,
+        }).$promise,
+    }).then((data) => {
+      this.data.nasha = data.nasha;
+      this.data.partition = data.partition;
+      this.table.accessIps = data.accesses.map(ip => ({
+        ip,
+      }));
+      if (resetCache) {
+        this.table.refresh = !this.table.refresh;
+      }
+      if (this.isNew) {
+        this.table.accessIps.push(this.access);
+        this.data.addAccessInProgress.push(this.access);
+      }
+    }).catch((err) => {
+      this.CucCloudMessage.error(this.$translate.instant('nasha_partitions_access_no_data_error'));
+      return this.$q.reject(err);
+    }).finally(() => {
+      this.loaders.table = false;
+    });
+  }
+
+
+  getAccessForIp(accessIp) {
+    // If the access is being added, return the local data
+    const accessAddInProgress = find(this.data.addAccessInProgress, item => item.ip === accessIp);
+    if (accessAddInProgress) {
+      return accessAddInProgress;
+    }
+
+    // if not we get the details form the api
+    return this.OvhApiDedicatedNasha.Partition().Access().v6().get({
+      serviceName: this.serviceName,
+      partitionName: this.data.partition.partitionName,
+      ip: accessIp,
+    }).$promise.then(data => data);
+  }
+
+  transformItem(access) {
+    return this.getAccessForIp(access.ip);
+  }
+
+  launchPolling(taskId) {
+    return this.Poller.poll(`/dedicated/nasha/${this.serviceName}/task/${taskId}`,
+      null,
+      {
+        successRule(task) {
+          return task.status === 'done';
         },
+        errorRule(task) {
+          return ['doing', 'todo', 'done'].indexOf(task.status) === -1;
+        },
+        namespace: 'nasha.access',
       });
+  }
 
-      modal.result.then((data) => {
-        if (data.isNew) {
-          self.table.accessIps.push(data.access);
-          self.data.addAccessInProgress.push(data.access);
-        }
-        self.data.taskForAccess.push({ task: data.task, access: data.access });
-        pollTasksForAccess(data.access, data.task);
+  pollTasksForAccess(access, taskId) {
+    this.launchPolling(taskId)
+      .finally(() => {
+        // Remove from the polling list
+        remove(this.data.taskForAccess, item => item.task === taskId);
+
+        // If the partition was in creation, remove it from the creation list
+        remove(this.data.addAccessInProgress, item => item.ip === access.ip);
+        this.task = null;
+        this.updateAccess(access);
       });
-    };
+  }
 
-    self.updateAccess = function updateAccess() {
-      self.load(true);
-    };
+  updateAccess() {
+    this.load(true);
+  }
 
-    self.hasTaskInProgress = function hasTaskInProgress(access) {
-      return some(self.data.taskForAccess, { access });
-    };
-
-    self.load();
+  hasTaskInProgress(access) {
+    return some(this.data.taskForAccess, { access });
   }
 }

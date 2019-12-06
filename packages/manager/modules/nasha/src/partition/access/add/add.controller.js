@@ -81,18 +81,6 @@ export default class NashaPartitionAccessAddCtrl {
       });
   }
 
-
-  // $uibModalInstance.close({
-  //   access: {
-  //     ip: this.data.accessToAdd.ip,
-  //     type: this.data.type,
-  //   },
-  //   task: result.data.taskId,
-  //   isNew: true,
-  // });
-  // this.CucCloudMessage.success(this.$translate.instant(
-  // 'nasha_access_action_add_success', { accessIp: this.data.accessToAdd.ip }));
-
   dismiss() {
     this.goToPartitionAccessPage();
   }
