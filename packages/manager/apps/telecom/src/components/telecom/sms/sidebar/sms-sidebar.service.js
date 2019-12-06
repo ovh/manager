@@ -36,17 +36,17 @@ angular.module('managerApp')
       =            INITIALIZATION            =
       ====================================== */
 
-    self.init = function init() {
-      self.mainSectionItem = SidebarMenu.addMenuItem({
+    self.init = function init(expand) {
+      self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
         title: $translate.instant('telecom_sidebar_section_sms'),
         error: $translate.instant('telecom_sidebar_load_error'),
         id: 'telecom-sms-section',
         category: 'sms',
         icon: 'ovh-font ovh-font-message',
-        allowSubItems: true,
-        onLoad: self.loadSmsMainSection,
+        allowSubItems: !expand,
+        allowSearch: !expand,
         loadOnState: 'sms',
-      });
+      }, expand ? { state: 'sms.index' } : { onLoad: self.loadSmsMainSection }));
 
       return self.mainSectionItem;
     };

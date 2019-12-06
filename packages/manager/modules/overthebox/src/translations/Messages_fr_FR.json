@@ -1,11 +1,13 @@
 {
-  "overTheBox_page_title": "Mon OverTheBox \"{{name}}\"",
-  "overTheBox_title": "OverTheBox",
-  "overTheBox_back": "Retour",
-  "overTheBox_tabs_detail": "Mon OverTheBox",
-  "overTheBox_tabs_remote": "Accès à distance",
-  "overTheBox_tabs_tasks": "Tâches",
-  "overTheBox_tabs_docs": "Guides",
-  "overTheBox_tabs_logs": "Logs",
-  "overTheBox_no_device_found": "Aucune OverTheBox n'est branchée. Vous ne pourrez pas créer d'accès à distance, ni utiliser les accès créés. Pour vous aider lors de la configuration de votre OverTheBox, veuillez trouver le guide d'installation <a href=\"{{url}}\" target=\"_blank\" title=\"Nouvelle fenêtre\">ici</a>."
+  "overtheboxes_title": "OverTheBox",
+  "overtheboxes_name_label": "Service",
+  "overtheboxes_description_label": "Description",
+  "overtheboxes_status_label": "Statut",
+  "overtheboxes_status_label_active": "OK",
+  "overtheboxes_status_label_creating": "Création en cours",
+  "overtheboxes_status_label_deleted": "Supprimé",
+  "overtheboxes_status_label_suspended": "Suspendu",
+  "overtheboxes_status_label_toCreate": "A créer",
+  "overtheboxes_status_label_toDelete": "A supprimer",
+  "overtheboxes_view_overthebox_label": "Détails de l'OverTheBox"
 }

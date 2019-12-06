@@ -1,3 +1,44 @@
+## [2.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.5.0...@ovh-ux/manager-public-cloud@2.5.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
+# [2.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.4.2...@ovh-ux/manager-public-cloud@2.5.0) (2019-11-28)
+
+
+### Bug Fixes
+
+* **public-cloud.dark-mode:** reword dark mode to mode sombre ([bd6b71b](https://github.com/ovh/manager/commit/bd6b71b049f261237217578a6e7b220ce8d37e38))
+
+
+### Features
+
+* **component:** add an easter-eggs ([ba3d14e](https://github.com/ovh/manager/commit/ba3d14e54afad01a8ed4e76e7cc3979cd8c71bcc))
+
+
+
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.4.1...@ovh-ux/manager-public-cloud@2.4.2) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.4.0...@ovh-ux/manager-public-cloud@2.4.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.3.0...@ovh-ux/manager-public-cloud@2.4.0) (2019-11-13)
 
 

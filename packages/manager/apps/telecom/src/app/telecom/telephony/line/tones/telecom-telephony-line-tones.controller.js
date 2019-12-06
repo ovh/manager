@@ -13,7 +13,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
       .getGroup($stateParams.billingAccount)
       .then(group => group.getLine($stateParams.serviceName)).then((line) => {
         if (line.isIndividual()) {
-          $state.go('telecom.telephony.line');
+          $state.go('telecom.telephony.billingAccount.line');
           return $q.reject(disabledFeatureError);
         }
         return line;

@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "0.3.2",
+  "version": "0.4.0",
+  "private": true,
   "description": "OVH vRack product control panel",
   "keywords": [
     "control",
@@ -21,20 +22,8 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/vrack.js",
-  "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-vrack' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-vrack' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack' --include-filtered-dependencies -- yarn run dev"
-  },
+  "main": "./src/index.js",
   "dependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.22.2"
   },
@@ -44,16 +33,14 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.1",
-    "@ovh-ux/manager-core": "^7.1.4",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.2",
-    "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
+    "@ovh-ux/manager-core": "^7.6.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-toaster": "^1.0.3",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-ui-bootstrap": "~1.3.3",
     "font-awesome": "4.7.0",
-    "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.24.1",
+    "ovh-api-services": "^9.27.1",
     "ovh-manager-webfont": "^1.1.0",
     "ovh-ui-kit": "^2.33.3",
     "ovh-ui-kit-bs": "^2.1.1"

@@ -348,7 +348,7 @@
   "server_configuration_rack": "Rack",
   "server_configuration_server_id": "ID do servidor",
   "server_configuration_name": "Nome OVH",
-  "server_configuration_displayname": "Nome",
+  "server_configuration_displayname": "Sobrenome",
   "server_configuration_displayname_edit_button": "Alterar",
   "server_configuration_description": "Nome comercial",
   "server_configuration_description_housing": "Housing",
@@ -908,7 +908,7 @@
   "server_cancel_traffic_cancel_success": "Um e-mail acaba de ser enviado.",
   "server_cancel_traffic_cancel_error": "Ocorreu um erro durante o cancelamento da opção.",
   "server_order_bandwidth_vrack_plan_text": "de largura de banda privada, tráfego ilimitado (vRack)",
-  "server_order_bandwidth_declaration": "A data de renovação da sua opção será alinhada com a do seu servidor, pelo que o primeiro mês de faturação da sua opção será calculado numa base pro rata para o mês corrente.",
+  "server_order_bandwidth_declaration": "A data de renovação da sua opção corresponderá com a do seu servidor. O montante indicado corresponde ao primeiro mês de faturação da sua opção, calculado proporcionalmente ao mês a decorrer.",
   "server_order_bandwidth_auto_pay": "Pagar com o método de pagamento predefinido",
   "day_1": "1 dia",
   "day_other": "{} dias",
@@ -1201,5 +1201,7 @@
   "server_error_vrack_detach": "Lamentamos, mas ocorreu um erro ao desassociar a rede privada: {{error}}",
   "server_error_ola_activation": "Ocorreu um erro ao ativar o seu serviço: {{error}}",
   "server_error_bandwidth_order": "Ocorreu um erro aquando da encomenda da largura de banda: {{error}}",
-  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps de largura de banda pública - Tráfego ilimitado"
+  "plan_bandwidth-1000-burst-2gbps-infra": "2 Gbps de largura de banda pública - Tráfego ilimitado",
+  "server_order_bandwidth_info": "O montante indicado corresponde ao montante faturado na próxima renovação da sua opção.",
+  "server_order_bandwidth_warning": "A alteração da sua largura de banda será aplicada alguns minutos após a ativação da opção."
 }

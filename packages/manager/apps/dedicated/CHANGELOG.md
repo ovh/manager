@@ -1,3 +1,91 @@
+## [11.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.1.0...@ovh-ux/manager-dedicated@11.1.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
+# [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.0.1...@ovh-ux/manager-dedicated@11.1.0) (2019-11-28)
+
+
+### Features
+
+* **dedictated.account.user.advanced:** add beta flag ([c644a97](https://github.com/ovh/manager/commit/c644a97dec6efd5a742abaad1bf764e905b08c27))
+
+
+
+## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.0.0...@ovh-ux/manager-dedicated@11.0.1) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 162] ([1ea9611](https://github.com/ovh/manager/commit/1ea96117169d152a5e999357de0d8d72c6d9dbb0))
+
+
+
+# [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.28.3...@ovh-ux/manager-dedicated@11.0.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **dedicated.account.contacts:** display error detail ([#1795](https://github.com/ovh/manager/issues/1795)) ([3556a1a](https://github.com/ovh/manager/commit/3556a1a1f2c8377770a7c3657a93ef676d46d537))
+* **dedicated.billing:** check engagement date is a past date ([039eef0](https://github.com/ovh/manager/commit/039eef0ba45c7033b79c123b40984d35fdbe40c7))
+* **dedicated.server:** add message for bandwith upgrade/downgrade ([#1632](https://github.com/ovh/manager/issues/1632)) ([a60cdfe](https://github.com/ovh/manager/commit/a60cdfef1e382e929513663a144499972299abe5))
+* **dedicated.server:** disable ipmi when not available ([#1758](https://github.com/ovh/manager/issues/1758)) ([ae66044](https://github.com/ovh/manager/commit/ae660447922d8580538a0eea532cb408fb11c3ad))
+* **i18n:** add missing translations [CDS 148] ([156e571](https://github.com/ovh/manager/commit/156e571e04d9730cfe642c1cf6a84a9c5823712a))
+* **i18n:** add missing translations [CDS 150] ([446c03f](https://github.com/ovh/manager/commit/446c03ff321e4ce9830e024cb225a7ad8223fdd4))
+* **i18n:** add missing translations [CDS 151] ([736c90f](https://github.com/ovh/manager/commit/736c90f0537e65a3706c3348d630763024a6f774))
+* **i18n:** add missing translations [CDS 152] ([b780fd4](https://github.com/ovh/manager/commit/b780fd4c9ba8983c2f98e967752cda4e09345259))
+* **i18n:** add missing translations [CDS 154] ([78f5505](https://github.com/ovh/manager/commit/78f55058ce497fff456ba3a8e63991b340584de7))
+* **i18n:** add missing translations [CDS 159] ([6bf8e3f](https://github.com/ovh/manager/commit/6bf8e3fd6bf29143eac0a4114c9471032d50a519))
+* **i18n:** add missing translations [CDS 161] ([7a6e245](https://github.com/ovh/manager/commit/7a6e245904f0263d603712bb444043bab1aad808))
+
+
+### Features
+
+* **dedicated:** add nasha module to dedicated ([68251e8](https://github.com/ovh/manager/commit/68251e8c17cc9cf78857e300fcf1a8bbe84a9553))
+* **dedicated:** add vrack ([d0d531f](https://github.com/ovh/manager/commit/d0d531f9bbb3a2d334bea242c3844c64745b2857))
+* **dedicated.account.user:** extract support level translations ([#1829](https://github.com/ovh/manager/issues/1829)) ([895f625](https://github.com/ovh/manager/commit/895f62525a28a4eff058e2085d99cf1055adf692))
+* **dedicated.account.user.advanced:** enable developer mode fo… ([#1787](https://github.com/ovh/manager/issues/1787)) ([4219467](https://github.com/ovh/manager/commit/42194678b8b91b30cd6331ce4d31540df58b3c91))
+* **dedicatedcloud.dashboard.tiles.options:** extract translations ([#1783](https://github.com/ovh/manager/issues/1783)) ([fd9eec5](https://github.com/ovh/manager/commit/fd9eec53f7d68edaebff316622598851f8c8d6ff))
+* **veeam:** add veeam app & module ([4fd53ef](https://github.com/ovh/manager/commit/4fd53efd2cf11f255e92f6fa45cb3ffe910ca244))
+
+
+### BREAKING CHANGES
+
+* **veeam:** init @ovh-ux/manager-veeam-cloud-connect application.
+
+
+
+## [10.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.28.2...@ovh-ux/manager-dedicated@10.28.3) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [10.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.28.1...@ovh-ux/manager-dedicated@10.28.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **orders:** avoid blank screen when url of guides is undefined ([9e9ac1e](https://github.com/ovh/manager/commit/9e9ac1e5964feeb0f60f37678c05836c8f3e27ce))
+
+
+
+## [10.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.28.0...@ovh-ux/manager-dedicated@10.28.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [10.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@10.27.8...@ovh-ux/manager-dedicated@10.28.0) (2019-11-13)
 
 

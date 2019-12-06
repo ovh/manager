@@ -55,7 +55,7 @@
                             required>
                             <div class="d-flex align-items-center">
                                 <span data-ng-if="$item.quotaOverflow" class="oui-icon oui-icon-warning_circle d-inline position-static" aria-hidden="true"></span>
-                                <span data-ng-bind="$item.displayedName" data-ng-class="{ 'ml-5': !$item.quotaOverflow, 'ml-1': $item.quotaOverflow }"></span>
+                                <span data-ng-bind="$item.displayedName"></span>
                                 <span data-ng-if="!$item.quotaOverflow" data-translate="kube_flavor_price" data-translate-values="{ price : $item.price }" class="ml-2"></span>
                             </div>
                 </oui-select>

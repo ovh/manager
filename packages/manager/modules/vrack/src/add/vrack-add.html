@@ -28,9 +28,9 @@
                 <div data-ng-if="!VrackAddCtrl.loaders.validationPending">
                     <!-- contracts -->
                     <div class="row" data-ng-if="!VrackAddCtrl.model.contractsAccepted && VrackAddCtrl.model.agreements.length"
-                         data-contracts="VrackAddCtrl.model.agreements"
                          data-full-text="true"
-                         data-contracts-validated="VrackAddCtrl.model.contractsAccepted">
+                         data-cuc-contracts="VrackAddCtrl.model.agreements"
+                         data-cuc-contracts-validated="VrackAddCtrl.model.contractsAccepted">
                     </div>
 
                     <!-- contracts: okey (only shown if its the first project) -->

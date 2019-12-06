@@ -15,7 +15,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
   'UserAccount.services.doubleAuth.sms',
   'UserAccount.services.doubleAuth.totp',
   'UserAccount.services.doubleAuth.u2f',
-  'UserAccount.services.Infos',
+  'userAccountServiceInfos',
   'OvhApiAuth',
   function (
     $q,

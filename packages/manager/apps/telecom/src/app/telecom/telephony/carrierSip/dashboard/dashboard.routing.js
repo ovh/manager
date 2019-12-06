@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('telecom.telephony.carrierSip', {
+  $stateProvider.state('telecom.telephony.billingAccount.carrierSip', {
     url: '/carrierSip/:serviceName',
     views: {
       'telephonyView@telecom.telephony': 'carrierSipDashboard',
@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       billingLink: /* @ngInject */ (
         $state,
         billingAccount,
-      ) => $state.href('telecom.telephony.billing.bill', { billingAccount }),
+      ) => $state.href('telecom.telephony.billingAccount.billing.bill', { billingAccount }),
       carrierSip: /* @ngInject */ (
         billingAccount,
         CarrierSipService,
@@ -19,19 +19,19 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         billingAccount,
         serviceName,
-      ) => $state.href('telecom.telephony.carrierSip.cdr', { billingAccount, serviceName }),
+      ) => $state.href('telecom.telephony.billingAccount.carrierSip.cdr', { billingAccount, serviceName }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () => $state
         .href($state.current.name, $transition$.params()),
       dashboardLink: /* @ngInject */ (
         $state,
         billingAccount,
         serviceName,
-      ) => $state.href('telecom.telephony.carrierSip', { billingAccount, serviceName }),
+      ) => $state.href('telecom.telephony.billingAccount.carrierSip', { billingAccount, serviceName }),
       endpointsLink: /* @ngInject */ (
         $state,
         billingAccount,
         serviceName,
-      ) => $state.href('telecom.telephony.carrierSip.endpoints', { billingAccount, serviceName }),
+      ) => $state.href('telecom.telephony.billingAccount.carrierSip.endpoints', { billingAccount, serviceName }),
       serviceInfos: /* @ngInject */ (
         CarrierSipService,
         serviceName,

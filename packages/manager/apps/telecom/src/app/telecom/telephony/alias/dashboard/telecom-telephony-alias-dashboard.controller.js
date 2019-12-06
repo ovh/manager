@@ -238,7 +238,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
   }
 
   redirectToChangeTypePage() {
-    return this.$state.go('telecom.telephony.alias.changeType').then(() => this.atInternet.trackClick({
+    return this.$state.go('telecom.telephony.billingAccount.alias.changeType').then(() => this.atInternet.trackClick({
       name: 'telecom::telephony::alias::dashboard::choose_configuration',
       type: 'action',
     }));

@@ -12,7 +12,7 @@ angular
     uiRouter,
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('telecom.telephony.carrierSip.endpoints.**', {
+    $stateProvider.state('telecom.telephony.billingAccount.carrierSip.endpoints.**', {
       url: '/endpoints',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

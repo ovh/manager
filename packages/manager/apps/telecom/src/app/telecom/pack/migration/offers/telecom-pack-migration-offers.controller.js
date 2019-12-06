@@ -3,35 +3,60 @@ import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', function TelecomPackMigrationOffersCtrl($q, $translate, TucPackMigrationProcess, TucToast) {
-  const self = this;
+angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', class TelecomPackMigrationOffersCtrl {
+  /* @ngInject */
+  constructor($q, $translate, TucPackMigrationProcess, TucToast) {
+    this.$q = $q;
+    this.$translate = $translate;
+    this.TucPackMigrationProcess = TucPackMigrationProcess;
+    this.TucToast = TucToast;
+  }
 
-  self.process = null;
-  self.loading = {
-    init: false,
-  };
+  /*= =====================================
+  =            INITIALIZATION            =
+  ====================================== */
+
+  $onInit() {
+    this.process = null;
+    this.loading = {
+      init: true,
+    };
+
+    return this.TucPackMigrationProcess.initOffersView().then((migrationProcess) => {
+      this.process = migrationProcess;
+    }, (error) => {
+      this.TucToast.error([this.$translate.instant('telecom_pack_migration_offer_choice_error_loading'), get(error, 'data.message', '')].join(' '));
+      return this.$q.reject(error);
+    }).finally(() => {
+      this.loading.init = false;
+    });
+  }
+
+  /* -----  End of INITIALIZATION  ------*/
 
   /*= ==============================
   =            ACTIONS            =
   =============================== */
 
-  self.updateOfferDisplayedPrice = function updateOfferDisplayedPrice(value, offer) {
+  updateOfferDisplayedPrice(value, offer, optionName) {
     let totalOfferPrice = offer.price.value;
 
     angular.forEach(offer.options, (option) => {
       if (option.name === 'gtr_ovh' && option.selected) {
         totalOfferPrice += option.optionalPrice.value;
-      } else if (option.name !== 'gtr_ovh' && !isUndefined(option.choosedValue)) {
+      } else if (option.name === optionName) {
         totalOfferPrice += value * option.optionalPrice.value;
+      } else if (option.name !== 'gtr_ovh' && !isUndefined(option.choosedValue)) {
+        totalOfferPrice += option.choosedValue * option.optionalPrice.value;
       }
     });
 
-    set(offer, 'displayedPrice', TucPackMigrationProcess.getPriceStruct(totalOfferPrice));
-  };
+    set(offer, 'displayedPrice', this.TucPackMigrationProcess.getPriceStruct(totalOfferPrice));
+  }
 
-  self.selectOffer = function selectOffer(offer) {
-    TucPackMigrationProcess.selectOffer(offer);
-  };
+  selectOffer(offer) {
+    this.TucPackMigrationProcess.selectOffer(offer);
+  }
 
   /* -----  End of ACTIONS  ------*/
 
@@ -39,33 +64,12 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
   =            HELPERS            =
   =============================== */
 
-  self.hasOfferWithSubServicesToDelete = function hasOfferWithSubServicesToDelete() {
+  hasOfferWithSubServicesToDelete() {
     return !!find(
-      self.process.migrationOffers.result.offers,
+      this.process.migrationOffers.result.offers,
       offer => offer.totalSubServiceToDelete > 0,
     );
-  };
-
-  /* -----  End of HELPERS  ------*/
-
-  /*= =====================================
-  =            INITIALIZATION            =
-  ====================================== */
-
-  function init() {
-    self.loading.init = true;
-
-    return TucPackMigrationProcess.initOffersView().then((migrationProcess) => {
-      self.process = migrationProcess;
-    }, (error) => {
-      TucToast.error([$translate.instant('telecom_pack_migration_offer_choice_error_loading'), get(error, 'data.message', '')].join(' '));
-      return $q.reject(error);
-    }).finally(() => {
-      self.loading.init = false;
-    });
   }
 
-  /* -----  End of INITIALIZATION  ------*/
-
-  init();
+  /* -----  End of HELPERS  ------*/
 });

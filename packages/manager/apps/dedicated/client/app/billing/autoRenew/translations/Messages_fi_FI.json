@@ -137,5 +137,7 @@
   "billing_autorenew_service_date_now": "Immediately",
   "billing_autorenew_service_type_WEBCOACH": "Web Coach",
   "billing_autorenew_service_type_webcoach": "Web Coach",
-  "billing_autorenew_service_actions": "Actions"
+  "billing_autorenew_service_actions": "Actions",
+  "billing_autorenew_renew_action": "Renew",
+  "billing_autorenew_criterion_state": "Availability"
 }

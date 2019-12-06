@@ -29,15 +29,15 @@ angular.module('managerApp').run(($templateCache) => {
 });
 
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.pack.xdsl', {
+  $stateProvider.state('telecom.packs.pack.xdsl', {
     url: '/xdsl/:serviceName/lines/:number',
     views: {
-      'packView@telecom.pack': {
+      'packView@telecom.packs': {
         templateUrl: 'app/telecom/pack/xdsl/pack-xdsl.html',
         controller: 'PackXdslCtrl',
         controllerAs: 'PackXdslCtrl',
       },
-      'xdslView@telecom.pack.xdsl': {
+      'xdslView@telecom.packs.pack.xdsl': {
         controller: 'XdslAccessCtrl',
         controllerAs: 'XdslAccess',
         templateUrl: 'app/telecom/pack/xdsl/access/pack-xdsl-access.html',

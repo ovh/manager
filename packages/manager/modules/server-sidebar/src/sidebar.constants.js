@@ -99,16 +99,16 @@ export const NETWORKS_CONFIG = {
     },
     {
       path: '/dedicated/nasha',
-      state: 'paas.nasha.nasha-partitions',
+      state: 'nasha.nasha-partitions',
       stateParams: ['nashaId'],
       icon: 'ovh-font ovh-font-cloudnas',
-      app: [CLOUD],
+      app: [DEDICATED],
       regions: ['EU', 'CA'],
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
   ],
   loadOnState: [
-    'paas.nasha.nasha-partitions',
+    'nasha.nasha-partitions',
     'app.networks',
   ],
   icon: 'ovh-font ovh-font-network',
@@ -200,6 +200,7 @@ export const PAAS_CONFIG = {
   loadOnState: [
     'paas.cda',
     'paas.veeam.detail',
+    'veeam-cloud-connect',
     'veeam-enterprise',
   ],
   types: [
@@ -214,11 +215,10 @@ export const PAAS_CONFIG = {
     },
     {
       path: '/veeamCloudConnect',
-      state: 'paas.veeam.detail.dashboard',
+      state: 'veeam-cloud-connect.detail.dashboard',
       stateParams: ['serviceName'],
-      loadOnState: 'paas.veeam.detail',
       icon: 'ovh-font ovh-font-veeam',
-      app: [CLOUD],
+      app: [DEDICATED],
       regions: ['EU', 'CA'],
       searchKeys: ['Veeam Cloud Connect', 'VEEAM'],
     },
@@ -305,11 +305,11 @@ export const VRACK_CONFIG = {
       path: '/vrack',
       state: 'vrack',
       stateParams: ['vrackId'],
-      app: [CLOUD],
+      app: [DEDICATED],
     },
   ],
   icon: 'ovh-font ovh-font-vRack',
-  app: [CLOUD],
+  app: [DEDICATED],
   regions: ['EU', 'CA', 'US'],
 };
 

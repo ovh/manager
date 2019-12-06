@@ -1,3 +1,44 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.3...@ovh-ux/ng-ovh-cloud-universe-components@1.5.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 150] ([446c03f](https://github.com/ovh/manager/commit/446c03ff321e4ce9830e024cb225a7ad8223fdd4))
+
+
+### Features
+
+* **cloud-universe-components:** add autocomplete component ([ad0c5e9](https://github.com/ovh/manager/commit/ad0c5e9b5bb2a22206f160c6532ee2907472704c))
+
+
+
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.2...@ovh-ux/ng-ovh-cloud-universe-components@1.4.3) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.1...@ovh-ux/ng-ovh-cloud-universe-components@1.4.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **vps:** move cui-grid styles to cuc ([#1801](https://github.com/ovh/manager/issues/1801)) ([0770785](https://github.com/ovh/manager/commit/07707855811a87fb2f8daf5ffe1102cba65eeec2))
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.0...@ovh-ux/ng-ovh-cloud-universe-components@1.4.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.2...@ovh-ux/ng-ovh-cloud-universe-components@1.4.0) (2019-11-13)
 
 

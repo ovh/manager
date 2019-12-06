@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Wybierz nazwę dla Prywatnego rejestru",
   "private_registry_update_success": "Nazwa Prywatnego rejestru została zmieniona na {{ newRegistryName }}",
   "private_registry_update_error": "Wystąpił błąd podczas zmiany nazwy Prywatnego rejestru {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "Twój prywatny rejestr {{ registryName }} został utworzony. Wygeneruj dane do logowania do rejestru.",
+  "private_registry_onboarding_success": "Twój prywatny rejestr {{ registryName }} został utworzony. Będziesz mógł wygenerować dane do logowania do rejestru, kiedy stanie się dostępny.",
   "private_registry_onboarding_error": "Nie udało się utworzyć Prywatnego rejestru: {{ message }}",
   "private_registry_harbor_api_title": "API Prywatnego rejestru",
   "private_registry_harbor_api_url": "URL API Prywatnego rejestru",

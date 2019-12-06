@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
+import Flavors from '../../../../components/project/flavors-list/flavor.class';
 import { CONFIG_FILENAME, ERROR_STATUS, PROCESSING_STATUS } from './constants';
 
 export default class Kubernetes {
@@ -57,6 +61,30 @@ export default class Kubernetes {
         fileName: CONFIG_FILENAME,
       }))
       .catch(error => (error.status === 400 ? false : Promise.reject(error)));
+  }
+
+  getAvailableFlavors(cluster, flavors, projectId) {
+    return this.OvhApiCloudProjectKube
+      .Flavors()
+      .v6()
+      .query({
+        serviceName: projectId,
+        kubeId: cluster.id,
+      })
+      .$promise
+      .then((kubeFlavors) => {
+        const detailedFlavors = map(
+          kubeFlavors,
+          (flavor) => {
+            const pciFlavor = flavors.find(flavorDetails => flavorDetails.name === flavor.name);
+            return new Flavors({
+              ...flavor,
+              ...pciFlavor,
+            });
+          },
+        );
+        return filter(detailedFlavors, flavor => flavor.isAvailable());
+      });
   }
 
   getProjectInstances(projectId) {

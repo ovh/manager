@@ -1,3 +1,40 @@
+## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.6...@ovh-ux/manager-support@0.4.7) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 162] ([1ea9611](https://github.com/ovh/manager/commit/1ea96117169d152a5e999357de0d8d72c6d9dbb0))
+
+
+
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.5...@ovh-ux/manager-support@0.4.6) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 159] ([6bf8e3f](https://github.com/ovh/manager/commit/6bf8e3fd6bf29143eac0a4114c9471032d50a519))
+* **i18n:** add missing translations [CDS 161] ([7a6e245](https://github.com/ovh/manager/commit/7a6e245904f0263d603712bb444043bab1aad808))
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.4...@ovh-ux/manager-support@0.4.5) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.3...@ovh-ux/manager-support@0.4.4) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 ## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@0.4.2...@ovh-ux/manager-support@0.4.3) (2019-11-13)
 
 

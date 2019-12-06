@@ -1,5 +1,5 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.fax.consumption', {
+  $stateProvider.state('telecom.telephony.billingAccount.fax.consumption', {
     url: '/consumption',
     views: {
       faxInnerView: {

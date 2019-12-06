@@ -23,6 +23,22 @@ export const ALIGNMENT_URLS = {
 
 export const AUTORENEW_EVENT = 'billing.autorenew.changed';
 
+export const COLUMNS_CONFIG = [{
+  property: 'serviceId',
+},
+{
+  property: 'serviceType',
+},
+{
+  property: 'state',
+},
+{
+  property: 'status',
+},
+{
+  property: 'expiration',
+}];
+
 export const CONTRACTS_IDS = {
   CA: 1752,
   QC: 1753,
@@ -64,6 +80,11 @@ export const SERVICE_EXPIRATION = {
   RENEWED_IN_AMONTH: 'renew_month',
 };
 
+export const SERVICE_STATES = {
+  UP: 'UP',
+  EXPIRED: 'EXPIRED',
+};
+
 export const SERVICE_STATUS = {
   AUTOMATIC: 'auto',
   MANUAL: 'manual',
@@ -81,6 +102,7 @@ export default {
   NIC_ALL,
   RENEW_URL,
   SERVICE_EXPIRATION,
+  SERVICE_STATES,
   SERVICE_STATUS,
   URL_PARAMETER_SEPARATOR,
 };

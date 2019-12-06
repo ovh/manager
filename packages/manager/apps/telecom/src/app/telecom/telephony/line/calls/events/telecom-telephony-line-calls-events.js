@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.telephony.line.calls.events', {
+  $stateProvider.state('telecom.telephony.billingAccount.line.calls.events', {
     url: '/events',
     views: {
-      'lineView@telecom.telephony.line': {
+      'lineView@telecom.telephony.billingAccount.line': {
         templateUrl: 'app/telecom/telephony/line/calls/events/telecom-telephony-line-calls-events.html',
         controller: 'TelecomTelephonyLineCallsEventsCtrl',
         controllerAs: 'EventsCtrl',

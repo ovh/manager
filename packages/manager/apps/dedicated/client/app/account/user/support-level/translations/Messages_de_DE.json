@@ -3,7 +3,7 @@
   "user_account_support_level_section_title_what": "Was sind die verschiedenen Support-Level?",
   "user_account_support_level_section_title_description_old": "Um allen Anforderungen gerecht zu werden, hat OVH 4 Support-Level eingerichtet. Unsere Lösungen werden standardmäßig mit dem Standard-Level geliefert. Je nach den gewählten Lösungen empfehlen wir Ihnen den Support-Level, der am besten zu Ihnen passt. So profitieren Sie vom bestmöglichen Kundenservice.",
   "user_account_support_level_section_title_subscribe": "Sie haben die Wahl, ob Sie Ihren aktuellen Support-Level behalten oder auf einen anderen als den empfohlenen Level wechseln möchten.",
-  "user_account_support_level_section_title_description_1": "Um allen Anforderungen gerecht zu werden, hat OVH 4 Support-Level eingerichtet<sup aria-label=\"(1)\">*</sup>.",
+  "user_account_support_level_section_title_description_1": "Um allen Anforderungen gerecht zu werden, hat OVHcloud 4 Support-Level eingerichtet<sup aria-label=\"(1)\">*</sup>.",
   "user_account_support_level_section_title_description_2": "Unsere Lösungen werden standardmäßig mit dem Standard-Level geliefert.",
   "user_account_support_level_section_title_description_3": "Je nach den gewählten Lösungen empfehlen wir Ihnen den Support-Level, der am besten zu Ihnen passt. So profitieren Sie vom bestmöglichen Kundenservice. Sie haben die Wahl, ob Sie Ihren aktuellen Support-Level behalten oder auf einen anderen als den empfohlenen Level wechseln möchten.",
   "user_account_support_level_section_more": "Mehr erfahren",
@@ -20,5 +20,6 @@
   "user_account_support_level_section_premium_description": "Direkter Zugriff auf unsere Experten für Unterstützung bei der Konfiguration und täglichen Verwendung Ihrer Lösung sowie bei kritischen Störungen.",
   "user_account_support_level_section_business_description": "Rund-um-die-Uhr-Kundendienst mit verbesserten Antwortzeiten, geeignet für anspruchsvolle Herausforderungen.",
   "user_account_support_level_section_enterprise_description": "Rund-um-die-Uhr-Kundendienst durch die privilegierte Beziehung mit einem engagierten Team, das Ihnen hilft, die Herausforderungen Ihres Unternehmens zu meistern.",
-  "user_account_support_level_section_title_annex_1": "Unsere Support-Angebote entwickeln sich weiter. Bitte beachten Sie, dass alle Kunden, die kein bestimmtes Support-Angebot abonnieren, automatisch den Standard-Level erhalten."
+  "user_account_support_level_section_title_annex_1": "Unsere Support-Angebote entwickeln sich weiter. Bitte beachten Sie, dass alle Kunden, die kein bestimmtes Support-Angebot abonnieren, automatisch den Standard-Level erhalten.",
+  "user_account_support_level_section_title_annex_all_available": "Standardmäßig erhält jeder OVHcloud Kunde unseren Standard-Support, solange er kein bestimmtes Supportangebot abonniert."
 }

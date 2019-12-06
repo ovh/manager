@@ -908,7 +908,7 @@
   "server_cancel_traffic_cancel_success": "Ihnen wurde eine E-Mail zugesandt.",
   "server_cancel_traffic_cancel_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
   "server_order_bandwidth_vrack_plan_text": "private Bandbreite, unbegrenzter Traffic (vRack)",
-  "server_order_bandwidth_declaration": "Das Verlängerungsdatum Ihrer Option wird an das Ihres Servers angepasst. Das bedeutet, dass der erste Abrechnungsmonat Ihrer Option anteilig für den aktuellen Monat berechnet wird.",
+  "server_order_bandwidth_declaration": "Das Verlängerungsdatum Ihrer Option wird an das Ihres Servers angepasst. Der angezeigte Betrag entspricht dem ersten Abrechnungsmonat Ihrer Option, der anteilig für den laufenden Monat berechnet wird.",
   "server_order_bandwidth_auto_pay": "Mit dem Standardzahlungsmittel bezahlen",
   "day_1": "1 Tag",
   "day_other": "{} Tage",
@@ -1201,5 +1201,7 @@
   "server_vrack_none": "Kein vRack verbunden",
   "server_error_ola_terminate": "Bei der Kündigung des Dienstes ist ein Fehler aufgetreten: {{error}}",
   "server_error_vrack_attach": "Beim Verbinden des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
-  "server_error_vrack_detach": "Beim Trennen des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}"
+  "server_error_vrack_detach": "Beim Trennen des privaten Netzwerks ist ein Fehler aufgetreten: {{error}}",
+  "server_order_bandwidth_info": "Der angezeigte Betrag entspricht dem Betrag für die nächste Verlängerung Ihrer Option.",
+  "server_order_bandwidth_warning": "Die Änderung Ihrer Bandbreite wird einige Minuten nach Aktivierung der Option angewendet."
 }

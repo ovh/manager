@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -9,9 +11,9 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
 angular.module('managerApp').config((SidebarMenuProvider) => {
   // add translation path
   SidebarMenuProvider.addTranslationPath('../components/sidebar');
-}).run((
+}).run(/* @ngInject */(
   $sce, $translate,
-  atInternet, FaxSidebar, OverTheBoxSidebar, PackSidebar,
+  atInternet, betaPreferenceService, FaxSidebar, OverTheBoxSidebar, PackSidebar,
   SidebarMenu, SmsSidebar, TelecomMediator, TelephonySidebar,
   ORDER_URLS, REDIRECT_URLS,
 ) => {
@@ -60,33 +62,33 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
 
   /* ----------  SERVICES MENU ITEMS  ----------*/
 
-  function initSidebarMenuItems(count) {
+  function initSidebarMenuItems(count, beta) {
     // add v4 button
     addV4Section();
 
     // add sidebar pack item
-    if (count.pack > 0) {
-      PackSidebar.init();
+    if (count.pack > 0 || beta) {
+      PackSidebar.init(beta);
     }
 
     // add sidebar telephony item
-    if (count.telephony > 0) {
-      TelephonySidebar.init();
+    if (get(count, 'telephony', beta)) {
+      TelephonySidebar.init(beta);
     }
 
     // add sidebar SMS item
-    if (count.sms > 0) {
-      SmsSidebar.init();
+    if (get(count, 'sms', beta)) {
+      SmsSidebar.init(beta);
     }
 
     // add sidebar fax item
-    if (count.freefax > 0) {
-      FaxSidebar.init();
+    if (get(count, 'freefax', beta)) {
+      FaxSidebar.init(beta);
     }
 
     // add sidenar otb item
-    if (count.overTheBox > 0) {
-      OverTheBoxSidebar.init();
+    if (get(count, 'overTheBox', beta)) {
+      OverTheBoxSidebar.init(beta);
     }
 
     // add sidebar task item
@@ -238,12 +240,18 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
   function init() {
     // set initialization promise
     return SidebarMenu.setInitializationPromise(
-      TelecomMediator.initServiceCount()
-        .then(count => $translate.refresh().then(() => count))
-        .then((count) => {
-          initSidebarMenuItems(count);
-          initSidebarMenuActionsOptions();
-        }),
+      betaPreferenceService.isBetaActive()
+        .then(beta => $translate.refresh().then(() => beta))
+        .then((beta) => {
+          if (beta) {
+            return initSidebarMenuItems({}, beta);
+          }
+          return TelecomMediator.initServiceCount(false)
+            .then((count) => {
+              initSidebarMenuItems(count, beta);
+            });
+        })
+        .finally(() => initSidebarMenuActionsOptions()),
     );
   }
 

@@ -1,3 +1,39 @@
+## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.0...@ovh-ux/manager-sms@7.3.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.7...@ovh-ux/manager-sms@7.3.0) (2019-11-28)
+
+
+### Features
+
+* **sms:** add service listing page ([09cfb54](https://github.com/ovh/manager/commit/09cfb54ea635670e8ecb10a05976a885cd5a2124))
+
+
+
+## [7.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.6...@ovh-ux/manager-sms@7.2.7) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [7.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.5...@ovh-ux/manager-sms@7.2.6) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 ## [7.2.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.2.4...@ovh-ux/manager-sms@7.2.5) (2019-10-17)
 
 

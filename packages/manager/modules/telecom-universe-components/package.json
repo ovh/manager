@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "private": true,
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -27,7 +27,7 @@
     "jsplumb": "^2.11.2",
     "moment": "^2.15.2",
     "ng-csv": "^0.3.6",
-    "ovh-api-services": "^9.24.1",
+    "ovh-api-services": "^9.27.1",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.10.0",
     "punycode": "^1.4.1",

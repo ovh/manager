@@ -3,7 +3,7 @@ import template from './template.html';
 
 const component = {
   bindings: {
-    flavors: '<',
+    availableFlavors: '<',
     goBack: '<',
     goToProjectQuota: '<',
     kubeId: '<',

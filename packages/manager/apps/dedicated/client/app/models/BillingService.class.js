@@ -11,6 +11,7 @@ export default class BillingService {
     Object.assign(this, service);
 
     this.expirationDate = moment(this.expiration);
+    this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
   }
 
   getServiceName() {
@@ -82,7 +83,7 @@ export default class BillingService {
   }
 
   hasEngagement() {
-    return !isNull(this.engagedUpTo);
+    return !isNull(this.engagedUpTo) && moment().isBefore(this.engagedUpTo);
   }
 
   setRenewPeriod(period) {

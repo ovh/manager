@@ -50,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
   getFeatureTypeActions() {
     const ovhPabxActions = [{
       name: 'number_modification_new',
-      sref: 'telecom.telephony.alias.changeType',
+      sref: 'telecom.telephony.billingAccount.alias.changeType',
       text: this.$translate.instant('telephony_alias_configuration_actions_number_modification_new'),
     }];
 
@@ -62,14 +62,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
         // agents for "CCS expert" - members for "File d'appel expert"
         ovhPabxActions.push({
           name: isContactCenterSolutionExpert ? 'number_cloud_hunting_agents' : 'number_easy_hunting_members',
-          sref: 'telecom.telephony.alias.configuration.agents.ovhPabx',
+          sref: 'telecom.telephony.billingAccount.alias.configuration.agents.ovhPabx',
           text: this.$translate.instant(isContactCenterSolutionExpert ? 'telephony_alias_configuration_actions_number_hunting_agents' : 'telephony_alias_configuration_actions_number_hunting_members'),
         });
 
         // queue for both "CCS expert" and "File d'appel expert"
         ovhPabxActions.push({
           name: 'number_cloud_hunting_queues',
-          sref: 'telecom.telephony.alias.configuration.queues.ovhPabx',
+          sref: 'telecom.telephony.billingAccount.alias.configuration.queues.ovhPabx',
           text: this.$translate.instant('telephony_alias_configuration_actions_number_hunting_queues'),
         });
       }
@@ -78,7 +78,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
       if (['cloudIvr', 'contactCenterSolutionExpert'].includes(this.number.feature.featureType)) {
         ovhPabxActions.push({
           name: 'number_ovh_pabx_menus',
-          sref: 'telecom.telephony.alias.configuration.ovhPabx.menus',
+          sref: 'telecom.telephony.billingAccount.alias.configuration.ovhPabx.menus',
           text: this.$translate.instant('telephony_alias_configuration_actions_menus_management'),
         });
       }
@@ -87,7 +87,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
       if (this.number.feature.featureType === 'contactCenterSolutionExpert') {
         ovhPabxActions.push({
           name: 'number_ovh_pabx_tts',
-          sref: 'telecom.telephony.alias.configuration.ovhPabx.tts',
+          sref: 'telecom.telephony.billingAccount.alias.configuration.ovhPabx.tts',
           text: this.$translate.instant('telephony_alias_configuration_actions_tts_management'),
         });
       }
@@ -97,13 +97,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
       // events
       ovhPabxActions.push({
         name: 'number_ovh_pabx_sounds',
-        sref: 'telecom.telephony.alias.configuration.ovhPabx.sounds',
+        sref: 'telecom.telephony.billingAccount.alias.configuration.ovhPabx.sounds',
         text: this.$translate.instant('telephony_alias_configuration_actions_sounds_management'),
       }, {
         divider: true,
       }, {
         name: 'number_cloud_hunting_events',
-        sref: 'telecom.telephony.alias.configuration.schedulerOvhPabx',
+        sref: 'telecom.telephony.billingAccount.alias.configuration.schedulerOvhPabx',
         text: this.$translate.instant('telephony_alias_configuration_actions_number_cloud_hunting_events'),
       });
 
@@ -113,11 +113,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
           divider: true,
         }, {
           name: 'number_cloud_hunting_board',
-          sref: 'telecom.telephony.alias.configuration.stats.ovhPabx',
+          sref: 'telecom.telephony.billingAccount.alias.configuration.stats.ovhPabx',
           text: this.$translate.instant('telephony_alias_configuration_actions_number_hunting_board'),
         }, {
           name: 'number_cloud_hunting_records',
-          sref: 'telecom.telephony.alias.configuration.recordsOvhPabx',
+          sref: 'telecom.telephony.billingAccount.alias.configuration.recordsOvhPabx',
           text: this.$translate.instant('telephony_alias_configuration_actions_number_hunting_records'),
         });
       }

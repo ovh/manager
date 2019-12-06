@@ -3,7 +3,7 @@
   "user_account_support_level_section_title_what": "Quali sono i diversi livelli di supporto?",
   "user_account_support_level_section_title_description_old": "Per rispondere alle molteplici esigenze dei propri clienti, OVHcloud ha organizzato il proprio servizio di supporto in 4 livelli. Tutte le soluzioni includono di default il livello Standard e, in base al servizio attivato, viene poi consigliato il livello più adeguato.",
   "user_account_support_level_section_title_subscribe": "È comunque possibile scegliere di mantenere il livello di supporto corrente oppure optare per un livello diverso da quello proposto.",
-  "user_account_support_level_section_title_description_1": "Per rispondere alle molteplici esigenze dei propri clienti, OVHcloud ha organizzato il proprio servizio di supporto in 4 livelli<sup aria-label=\"(1)\">*</sup>.",
+  "user_account_support_level_section_title_description_1": "Per rispondere alle molteplici esigenze dei clienti, OVHcloud ha organizzato la propria assistenza in 4 livelli<sup aria-label=\"(1)\">*</sup>.",
   "user_account_support_level_section_title_description_2": "Tutte le soluzioni includono di default il livello Standard",
   "user_account_support_level_section_title_description_3": "e, in base al servizio attivato, viene poi consigliato il livello più adeguato. È comunque possibile scegliere di mantenere il livello di supporto corrente oppure optare per un livello diverso da quello proposto.",
   "user_account_support_level_section_more": "Scopri di più",
@@ -20,5 +20,6 @@
   "user_account_support_level_section_premium_description": "Accesso diretto ai nostri esperti per assistenza sulla configurazione e l’utilizzo delle nostre soluzioni nelle attività quotidiane e nei momenti critici.",
   "user_account_support_level_section_business_description": "Assistenza 24/7 e tempi di risposta ottimizzati per le sfide più impegnative.",
   "user_account_support_level_section_enterprise_description": "Assistenza 24/7 e rapporto privilegiato con un team dedicato, per aiutarti a superare le principali sfide poste dalla tua attività.",
-  "user_account_support_level_section_title_annex_1": "Il nostro servizio di supporto si evolve. I clienti che non scelgono di attivare un tipo di supporto specifico usufruiscono di default del livello Standard."
+  "user_account_support_level_section_title_annex_1": "Il nostro servizio di supporto si evolve. I clienti che non scelgono di attivare un tipo di supporto specifico usufruiscono di default del livello Standard.",
+  "user_account_support_level_section_title_annex_all_available": "Il supporto Standard è incluso su tutte le nostre soluzioni e viene applicato di default a tutti i clienti che non hanno ancora scelto un livello di supporto specifico."
 }

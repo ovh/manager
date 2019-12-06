@@ -81,7 +81,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasStatisticsCtrl', c
   pollStats() {
     const periodicRefresh = () => {
       this.refreshStats(this.queue.queueId).finally(() => {
-        if (!this.stopPolling && this.$state.current.name === 'telecom.telephony.alias.statistics') {
+        if (!this.stopPolling && this.$state.current.name === 'telecom.telephony.billingAccount.alias.statistics') {
           this.poller = this.$timeout(periodicRefresh, 1000);
         } else {
           this.stopPoller();

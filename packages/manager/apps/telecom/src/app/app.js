@@ -2,6 +2,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
+import ovhManagerBetaPreference from '@ovh-ux/manager-beta-preference';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
 import ovhManagerFreefax from '@ovh-ux/manager-freefax';
@@ -13,6 +14,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
 import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhMondialRelay from '@ovh-ux/ng-ovh-mondial-relay';
@@ -35,9 +37,11 @@ import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import TelecomAppCtrl from './app.controller';
-import carrierSip from './telecom/telephony/carrierSip';
+import pack from './telecom/pack';
+import telephony from './telecom/telephony';
 
 import errorPage from './error-page/error-page.module';
+import searchPage from './search/search.module';
 import navbar from '../components/navbar';
 
 import portabilities from './telecom/telephony/alias/portability/portabilities/telecom-telephony-alias-portability-portabilities.module';
@@ -69,6 +73,7 @@ angular.module('managerApp', [
   'ngSanitize',
   ngOvhCheckboxTable,
   ngOvhApiWrappers,
+  ngOvhBrowserAlert,
   ngOvhChatbot,
   ngOvhHttp,
   ngOvhMondialRelay,
@@ -92,8 +97,8 @@ angular.module('managerApp', [
   'ovh-angular-timeline',
   'ovh-angular-ui-confirm-modal',
   'ovh-api-services',
-  'ovhBrowserAlert',
   'ovh-ng-input-password',
+  ovhManagerBetaPreference,
   ovhManagerCore,
   ovhManagerDashboard,
   ovhManagerFreefax,
@@ -115,8 +120,10 @@ angular.module('managerApp', [
   'ui.sortable',
   'ui.validate',
   'validation.match',
-  carrierSip,
+  pack,
+  telephony,
   portabilities,
+  searchPage,
 ])
 
 /*= =========  GLOBAL OPTIONS  ========== */

@@ -3,7 +3,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.pas
   '$translate',
   'Alerter',
   'atInternet',
-  'UserAccount.services.Infos',
+  'userAccountServiceInfos',
   function UserAccountDoubleAuthPasswordController(
     $scope,
     $translate,

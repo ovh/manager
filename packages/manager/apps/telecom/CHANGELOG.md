@@ -1,3 +1,98 @@
+## [11.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.1...@ovh-ux/manager-telecom@11.1.2) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
+## [11.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.0...@ovh-ux/manager-telecom@11.1.1) (2019-11-29)
+
+
+### Bug Fixes
+
+* **telecom.pack.migration:** fix loading setting ([#1874](https://github.com/ovh/manager/issues/1874)) ([2016b4d](https://github.com/ovh/manager/commit/2016b4d2036c24ca496e0f5534085b2b40314218))
+
+
+
+# [11.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.6...@ovh-ux/manager-telecom@11.1.0) (2019-11-28)
+
+
+### Bug Fixes
+
+* avoid empty line in pack listing ([d58449b](https://github.com/ovh/manager/commit/d58449bfb9156d6083e3a568ae3521cb5ce85938))
+
+
+### Features
+
+* **search:** add pack, sms, freefax and overthebox in search results ([bdd7e14](https://github.com/ovh/manager/commit/bdd7e146db91ba73caf02281ef28ea361840df44))
+* **telecom:** activate beta menu ([d52f14e](https://github.com/ovh/manager/commit/d52f14ed4cf7bb68fe944affef4b16905a1d19d2))
+* **telecom:** add globals search for beta accounts ([eea21d5](https://github.com/ovh/manager/commit/eea21d58fde395ede4e0d90359b628ecdd2ced13))
+* add search engine ([3d233ff](https://github.com/ovh/manager/commit/3d233ffb2f4198ac2e9aa4745ea2fe1fbb397aa4))
+* **telecom.pack:** add packs list for beta ([1a48da2](https://github.com/ovh/manager/commit/1a48da2665fcdce452dec30859e18dc75332818f))
+* **telecom.telephony:** add telephony listings ([bcc0067](https://github.com/ovh/manager/commit/bcc0067bfacd2b100a2def09a89af342116b0cc2))
+
+
+
+## [11.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.5...@ovh-ux/manager-telecom@11.0.6) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 162] ([1ea9611](https://github.com/ovh/manager/commit/1ea96117169d152a5e999357de0d8d72c6d9dbb0))
+
+
+
+## [11.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.4...@ovh-ux/manager-telecom@11.0.5) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 153] ([0ff8abe](https://github.com/ovh/manager/commit/0ff8abed010d90f88e3f23c642ca134466c0cf86))
+* **i18n:** add missing translations [CDS 159] ([6bf8e3f](https://github.com/ovh/manager/commit/6bf8e3fd6bf29143eac0a4114c9471032d50a519))
+* **xdsl.migration.offer:** update the sum for selected options ([#1786](https://github.com/ovh/manager/issues/1786)) ([ed24b32](https://github.com/ovh/manager/commit/ed24b322ccb1d0fa2d964cdec80ed86036679213))
+
+
+
+## [11.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.3...@ovh-ux/manager-telecom@11.0.4) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [11.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.2...@ovh-ux/manager-telecom@11.0.3) (2019-11-20)
+
+
+### Bug Fixes
+
+* **deps:** upgrade @ovh-ux/ng-ovh-line-diagnostics to v3.0.2 ([#1805](https://github.com/ovh/manager/issues/1805)) ([b78e4d3](https://github.com/ovh/manager/commit/b78e4d33f0d9c2565a2251c1ac95808f0c352ab3))
+* **portability.upload:** update to upload the file ([#1817](https://github.com/ovh/manager/issues/1817)) ([a9a8f7a](https://github.com/ovh/manager/commit/a9a8f7a61fc821f416127222297ae6341d7b4a50))
+* **telephony:** change minutes to seconds according to API description ([#1797](https://github.com/ovh/manager/issues/1797)) ([b584f95](https://github.com/ovh/manager/commit/b584f957c1e876c5cee67dc7041466e96a881fe9))
+
+
+
+## [11.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.1...@ovh-ux/manager-telecom@11.0.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **telephony.portability.attach:** fix uploadFile method ([c983a58](https://github.com/ovh/manager/commit/c983a581bf5d6b12cf76517ed722ce320518fb77))
+
+
+
+## [11.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.0.0...@ovh-ux/manager-telecom@11.0.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [11.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@10.40.4...@ovh-ux/manager-telecom@11.0.0) (2019-11-13)
 
 

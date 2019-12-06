@@ -8,20 +8,23 @@
         <small data-ng-bind-html="$ctrl.saveError.data.message"></small>
     </oui-message>
 
-    <ovh-sign-up-form data-action="update"
-                  data-me="$ctrl.me"
-                  data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)">
+    <ovh-sign-up-form
+        data-action="update"
+        data-me="$ctrl.me"
+        data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)">
         <oui-stepper data-current-index="1"
                      data-on-finish="$ctrl.onStepperFinished()">
             <oui-step-form data-header="{{ 'sign_up_form_identity_step_title' | translate }}"
                            data-valid="true"
-                           data-editable="false">
+                           data-editable="false"
+                           data-ng-if="!$ctrl.loading.init">
             </oui-step-form>
             <oui-step-form data-header="{{ 'sign_up_form_details_step_title' | translate }}"
                            data-on-focus="$ctrl.onStepFocus('details')"
                            data-on-cancel="$ctrl.onStepCancel('details')"
                            data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('details') }"
-                           data-prevent-next="true">
+                           data-prevent-next="true"
+                           data-ng-if="!$ctrl.loading.init">
                 <p data-translate="sign_up_form_global_information"
                    data-ng-if="$ctrl.isActiveStep('details')">
                 </p>
@@ -31,7 +34,7 @@
                            data-on-focus="$ctrl.onStepFocus('activity')"
                            data-on-cancel="$ctrl.onStepCancel('activity')"
                            data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('activity') }"
-                           data-ng-if="$ctrl.isActivityStepVisible"
+                           data-ng-if="!$ctrl.loading.init && $ctrl.isActivityStepVisible"
                            data-prevent-next="true">
                 <div data-ui-view="activity"></div>
             </oui-step-form>

@@ -1,3 +1,75 @@
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.4.0...@ovh-ux/manager-pci@3.5.0) (2019-12-03)
+
+
+### Features
+
+* **pci:** remove blackfriday offer ([20962d3](https://github.com/ovh/manager/commit/20962d36d26839747e9e0370a498784ba439a78c)), closes [#1865](https://github.com/ovh/manager/issues/1865)
+
+
+
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.3.1...@ovh-ux/manager-pci@3.4.0) (2019-11-28)
+
+
+### Features
+
+* **component:** add an easter-eggs ([ba3d14e](https://github.com/ovh/manager/commit/ba3d14e54afad01a8ed4e76e7cc3979cd8c71bcc))
+
+
+
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.3.0...@ovh-ux/manager-pci@3.3.1) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 162] ([1ea9611](https://github.com/ovh/manager/commit/1ea96117169d152a5e999357de0d8d72c6d9dbb0))
+* **pci:** black friday legal notice ([#1865](https://github.com/ovh/manager/issues/1865)) ([e70239c](https://github.com/ovh/manager/commit/e70239c962f9ff7541c828dae4748d9c219a3e56))
+
+
+
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.2.2...@ovh-ux/manager-pci@3.3.0) (2019-11-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 151] ([736c90f](https://github.com/ovh/manager/commit/736c90f0537e65a3706c3348d630763024a6f774))
+* **i18n:** add missing translations [CDS 152] ([b780fd4](https://github.com/ovh/manager/commit/b780fd4c9ba8983c2f98e967752cda4e09345259))
+* **i18n:** add missing translations [CDS 154] ([78f5505](https://github.com/ovh/manager/commit/78f55058ce497fff456ba3a8e63991b340584de7))
+* **i18n:** add missing translations [CDS 155] ([08d7337](https://github.com/ovh/manager/commit/08d7337e17ffdf2992aa51074e345d7305bcabce))
+* **i18n:** add missing translations [CDS 158] ([bda9c00](https://github.com/ovh/manager/commit/bda9c0037dd4ddde9c23352ee5c54764ded959c1))
+* **i18n:** add missing translations [CDS 159] ([6bf8e3f](https://github.com/ovh/manager/commit/6bf8e3fd6bf29143eac0a4114c9471032d50a519))
+* **instance:** update statusGroup when monthly billing is pending ([c288176](https://github.com/ovh/manager/commit/c288176516436182f71dda06968cf027f6d60062))
+* **pci:** black friday subsidiaries ([3011e37](https://github.com/ovh/manager/commit/3011e376472a8e727bcc1f67dd2897d36d554c8d))
+* **pci.project.billing:** use the right controller name ([#1649](https://github.com/ovh/manager/issues/1649)) ([edc68af](https://github.com/ovh/manager/commit/edc68af68c9fa2a0409308f253b3f37f54d0796e))
+* **pci.project.private-registry:** fix success message ([#1644](https://github.com/ovh/manager/issues/1644)) ([fd4d0e5](https://github.com/ovh/manager/commit/fd4d0e5a3f11d85884289e9167836b9ccfa4a029))
+
+
+### Features
+
+* **pci:** add black friday description in credit datagrid ([f614465](https://github.com/ovh/manager/commit/f61446539c982865ce51941df137b818b5a47b89))
+* **pci:** add black friday offer ([a43701d](https://github.com/ovh/manager/commit/a43701dbd3936642ed334e4c61eeba4e2fba06dd))
+* **pci.kube.nodes.add:** get available flavors from api ([444c53f](https://github.com/ovh/manager/commit/444c53fdbc1a2db599bbb3b44d1c616474bd29b1))
+
+
+
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.2.1...@ovh-ux/manager-pci@3.2.2) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+* **pci.components.project.labs:** fix activateLab method ([84086d6](https://github.com/ovh/manager/commit/84086d6ac90a0b3e12725ea66e24e19d62a9ec16))
+
+
+
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.2.0...@ovh-ux/manager-pci@3.2.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.1.2...@ovh-ux/manager-pci@3.2.0) (2019-11-13)
 
 

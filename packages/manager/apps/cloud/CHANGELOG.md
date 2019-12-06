@@ -1,3 +1,51 @@
+# [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.3...@ovh-ux/manager-cloud@8.0.0) (2019-11-27)
+
+
+### Features
+
+* **cloud:** redirect legacy routes ([5160a0c](https://github.com/ovh/manager/commit/5160a0c5d606678e96283a3c3845929e047d55f6))
+* **nasha:** migrate nasha module ([4de5800](https://github.com/ovh/manager/commit/4de5800b2dbcd85495f330cd39f19488d165928e))
+* **veeam:** add veeam app & module ([4fd53ef](https://github.com/ovh/manager/commit/4fd53efd2cf11f255e92f6fa45cb3ffe910ca244))
+* **veeam:** move veeam from cloud to dedicated ([31992d7](https://github.com/ovh/manager/commit/31992d7b3e7cf3eab4b99d3ba72383afe5ca3e0e))
+* **vrack:** migrate vrack ([588b012](https://github.com/ovh/manager/commit/588b012291e0cd495d38de95f786fc8123a09845))
+
+
+### BREAKING CHANGES
+
+* **veeam:** init @ovh-ux/manager-veeam-cloud-connect application.
+* **nasha:** init @ovh-ux/manager-nasha module
+
+
+
+## [7.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.2...@ovh-ux/manager-cloud@7.37.3) (2019-11-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.27.1 ([fb116c4](https://github.com/ovh/manager/commit/fb116c4a0e9085c71e8fe1266b818f3464e5bc94))
+
+
+
+## [7.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.1...@ovh-ux/manager-cloud@7.37.2) (2019-11-20)
+
+
+### Bug Fixes
+
+* **cloud:** dbaas logs polling ([#1803](https://github.com/ovh/manager/issues/1803)) ([2256dbd](https://github.com/ovh/manager/commit/2256dbd37246ee220b90da8bf10a0ad9eee8a9f4))
+* **cloud:** dbaas members add ([#1802](https://github.com/ovh/manager/issues/1802)) ([0cc2afc](https://github.com/ovh/manager/commit/0cc2afc9a268ac0452328344229e0372ae553eda))
+* **vps:** move cui-grid styles to cuc ([#1801](https://github.com/ovh/manager/issues/1801)) ([0770785](https://github.com/ovh/manager/commit/07707855811a87fb2f8daf5ffe1102cba65eeec2))
+
+
+
+## [7.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.0...@ovh-ux/manager-cloud@7.37.1) (2019-11-15)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-api-services to v9.26.0 ([#1789](https://github.com/ovh/manager/issues/1789)) ([90361dc](https://github.com/ovh/manager/commit/90361dc945014853db1cf4535e2d5b89b67efbea))
+
+
+
 # [7.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.36.2...@ovh-ux/manager-cloud@7.37.0) (2019-11-13)
 
 

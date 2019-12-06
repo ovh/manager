@@ -174,7 +174,7 @@
   "hosting_dashboard_service_urchin": "Statistiche e log",
   "hosting_dashboard_service_datacenter": "Datacenter",
   "hosting_dashboard_service_datacenter_p19": "Parigi",
-  "hosting_dashboard_service_datacenter_gra1": "Gravelines",
+  "hosting_dashboard_service_datacenter_gra1": "Gravelines 1",
   "hosting_dashboard_service_default_runtime": "Programma d'esecuzione di default",
   "hosting_dashboard_available_space": "Spazio disponibile",
   "hosting_tab_DOMAINS_OLD": "Siti Web",
@@ -1381,5 +1381,17 @@
   "hosting_dashboard_access": "Accesso",
   "common_api_hostingWeb-1": "Non è possibile effettuare la migrazione verso questa offerta perché il servizio corrente dispone di un numero maggiore di email rispetto alla nuova soluzione scelta.",
   "hosting_tab_WEBSITE_COACH": "Website Coach",
-  "hosting_tab_BOOST_request_description_billing_new": "A partire dal 1° novembre le nostre tariffe cambiano e la fatturazione avverrà per giorno di utilizzo: {{price}} +IVA per giorno e offerta selezionata."
+  "hosting_tab_BOOST_request_description_billing_new": "A partire dal 1° novembre le nostre tariffe cambiano e la fatturazione avverrà per giorno di utilizzo: {{price}} +IVA per giorno e offerta selezionata.",
+  "hosting_dashboard_service_datacenter_gra2": "Gravelines 2",
+  "hosting_tab_DATABASES_configuration_create_sgbd_mysql": "MySQL",
+  "hosting_tab_DATABASES_configuration_create_sgbd_postgresql": "PostgreSQL",
+  "hosting_tab_DATABASES_configuration_create_sgbd_mongodb": "MongoDB",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_sql_perso": "SQL Personale {{t0}} {{t1}}: {{t2}} rimanenti",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_sql_pro": "SQL Pro {{t0}} {{t1}}: {{t2}} rimanenti",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_sql_local": "Archiviata nella tua istanza Cloud Web",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_extra_sql_perso": "Extra SQL Personale {{t0}} {{t1}}: {{t2}} rimanenti",
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_perso": "SQL Personale {{t0}} {{t1}}",
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_pro": "SQL Pro {{t0}} {{t1}}",
+  "hosting_tab_DATABASES_configuration_create_step3_type_extra_sql_perso": "Extra SQL Personale {{t0}} {{t1}}",
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "Archiviata nella tua istanza Cloud Web"
 }

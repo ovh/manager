@@ -1,0 +1,29 @@
+<oui-tile data-ng-if="$ctrl.guides.length > 0 || $ctrl.tips.length > 0">
+    <div data-ng-if="$ctrl.guides.length > 0">
+        <h2 data-translate="ovh_manager_support_tickets_new_issues_form_resources_guides_header"></h2>
+
+        <ul>
+            <li data-ng-repeat="guide in $ctrl.guides track by $index">
+                <a
+                    data-ng-href="{{ guide.url }}"
+                    target="_blank"
+                    rel="noopener"
+                    class="oui-link_icon">
+                    <span data-ng-bind-html="guide.label"></span>
+                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    <span class="sr-only" data-translate="ovh_manager_support_tickets_new_issues_form_resources_open_new_tab"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div data-ng-if="$ctrl.tips.length > 0">
+        <h2 data-translate="ovh_manager_support_tickets_new_issues_form_resources_tips_header"></h2>
+
+        <ul class="resourcesList">
+            <li
+                data-ng-repeat="tip in $ctrl.tips track by $index"
+                data-ng-bind-html="tip.label | linky: '_blank'"></li>
+        </ul>
+    </div>
+</oui-tile>

@@ -12,8 +12,8 @@ angular
     uiRouter,
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('telecom.telephony.carrierSip.**', {
-      url: '/carrierSip',
+    $stateProvider.state('telecom.telephony.billingAccount.carrierSip.**', {
+      url: '/carrierSip/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
