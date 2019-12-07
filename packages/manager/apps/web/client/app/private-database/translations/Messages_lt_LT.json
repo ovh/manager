@@ -551,5 +551,6 @@
   "privateDatabase_tabs_list_extensions_enable_success": "Extension correctly enabled.",
   "privateDatabase_tabs_list_extensions_enable_error": "An error has occurred enabling your extension.",
   "privateDatabase_tabs_list_extensions_disable_success": "Extension correctly disabled.",
-  "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension."
+  "privateDatabase_tabs_list_extensions_disable_error": "An error has occurred disabling the extension.",
+  "privateDatabase_dashboard_hostname_tooltip": "Please use the host name provided to connect to your instance, as the IP address associated with it may change over time."
 }
