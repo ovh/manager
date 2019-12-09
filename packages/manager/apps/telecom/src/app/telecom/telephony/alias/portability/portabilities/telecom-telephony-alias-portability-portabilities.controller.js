@@ -101,9 +101,4 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
     return [PORTABILITY_STATUS.formSent, PORTABILITY_STATUS.formReceived]
       .includes(this.numbers[index].lastStepDone.name);
   }
-
-  checkPortabilityStatus(index) {
-    return [PORTABILITY_STATUS.formSent, PORTABILITY_STATUS.formReceived]
-      .includes(this.numbers[index].lastStepDone.name);
-  }
 }
