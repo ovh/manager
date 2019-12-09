@@ -40,7 +40,7 @@
   "domain_dashboard_whois_not_allowed": "Rejestr, któremu podlega ta domena nie zezwala na wyświetlanie  Twoich danych osobowych.",
   "domain_dashboard_whois_pending": "Trwa tworzenie tej usługi. Prosimy o cierpliwość.",
   "domain_dashboard_whois_invalid_contact": "Tylko kontakt administracyjny jest uprawniony do wykonania tej czynności.",
-  "domain_dashboard_whois_error": "Wystąpił błąd. Spróbuj ponownie później.",
+  "domain_dashboard_whois_error": "Wystąpił błąd podczas pobierania danych z bazy WHOIS. Spróbuj ponownie później.",
   "domain_dashboard_obfuscated_email": "Zastępcze adresy e-mail",
   "domain_dashboard_obfuscated_email_regenerate_button": "Zarządzaj zastępczymi adresami e-mail",
   "domain_dashboard_offer": "Pakiet",

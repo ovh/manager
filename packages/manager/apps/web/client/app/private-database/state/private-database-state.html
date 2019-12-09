@@ -182,7 +182,8 @@
                         <oui-tile data-heading="{{ ::'privateDatabase_dashboard_connections_title' | translate}}"
                                   class="mb-5">
                             <h4 class="oui-header_5 oui-tile__definition">SQL</h4>
-                            <oui-tile-definition data-term="{{ ::'privateDatabase_dashboard_hostname' | translate}}">
+                            <oui-tile-definition data-term="{{ ::'privateDatabase_dashboard_hostname' | translate}}"
+                                                 data-term-popover="{{ ::'privateDatabase_dashboard_hostname_tooltip' | translate }}">
                                 <oui-tile-description>
                                     <span data-ng-if="stateCtrl.database.infrastructure === 'docker'"
                                           data-ng-bind="::stateCtrl.database.hostname"></span>

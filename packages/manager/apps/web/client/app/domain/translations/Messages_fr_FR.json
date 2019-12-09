@@ -40,7 +40,7 @@
   "domain_dashboard_whois_not_allowed": "Le registre en charge de ce nom de domaine n'autorise pas l'affichage de vos données personnalisées",
   "domain_dashboard_whois_pending": "Ce service est en cours de création. Merci de patienter.",
   "domain_dashboard_whois_invalid_contact": "Seul le contact administrateur est autorisé à effectuer cette action.",
-  "domain_dashboard_whois_error": "Une erreur est survenue. Veuillez réessayer ultérieurement.",
+  "domain_dashboard_whois_error": "Une erreur est survenue lors du chargement des informations du WHOIS. Veuillez réessayer ultérieurement.",
   "domain_dashboard_obfuscated_email": "Adresses e-mails de substitution",
   "domain_dashboard_obfuscated_email_regenerate_button": "Gérer les e-mails de substitution",
   "domain_dashboard_offer": "Offre",

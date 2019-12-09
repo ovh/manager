@@ -3,7 +3,6 @@ import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
 import billing from './billing';
-import blackFriday from './black-friday';
 import empty from './empty';
 import flavorBilling from './flavor-billing';
 import flavorsList from './flavors-list';
@@ -19,7 +18,6 @@ const moduleName = 'ovhManagerPciComponentsProject';
 angular
   .module(moduleName, [
     billing,
-    blackFriday,
     empty,
     flavorBilling,
     flavorsList,

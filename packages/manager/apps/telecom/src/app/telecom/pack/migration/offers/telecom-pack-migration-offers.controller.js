@@ -18,7 +18,9 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', class 
 
   $onInit() {
     this.process = null;
-    this.loading.init = true;
+    this.loading = {
+      init: true,
+    };
 
     return this.TucPackMigrationProcess.initOffersView().then((migrationProcess) => {
       this.process = migrationProcess;

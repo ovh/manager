@@ -348,7 +348,7 @@
   "server_configuration_rack": "Rack",
   "server_configuration_server_id": "Server ID",
   "server_configuration_name": "OVH Name",
-  "server_configuration_displayname": "Name",
+  "server_configuration_displayname": "Surname",
   "server_configuration_displayname_edit_button": "Modify",
   "server_configuration_description": "Commercial name",
   "server_configuration_description_housing": "Hosting",
