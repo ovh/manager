@@ -7,7 +7,8 @@
     <oui-stepper data-on-finish="$ctrl.onStepperFinish()">
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_serving_add_region_title' | translate }}"
-            data-editable="!$ctrl.loading.add">
+            data-editable="!$ctrl.loading"
+            data-loading="$ctrl.loading">
             <pci-project-regions-list
                 data-regions="$ctrl.regions"
                 data-selected-region="$ctrl.model.region">
@@ -16,7 +17,8 @@
 
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_serving_add_description_title' | translate }}"
-            data-editable="!$ctrl.loading.add">
+            data-editable="!$ctrl.loading"
+            data-loading="$ctrl.loading">
             <oui-field data-size="xl"
                        data-help-text="{{ :: 'pci_projects_project_serving_add_description_help' | translate }}">
                 <input class="oui-input" type="text"
@@ -29,7 +31,8 @@
 
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_serving_add_container_title' | translate }}"
-            data-editable="!$ctrl.loading.add">
+            data-editable="!$ctrl.loading"
+            data-loading="$ctrl.loading">
             <oui-field data-size="xl"
                        data-help-text="{{ :: 'pci_projects_project_serving_add_container_help' | translate }}">
                 <input class="oui-input" type="text"

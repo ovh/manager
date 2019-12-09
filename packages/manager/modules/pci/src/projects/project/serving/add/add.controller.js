@@ -13,9 +13,7 @@ export default class PciServingAddController {
       container: null,
     };
 
-    this.loading = {
-      add: false,
-    };
+    this.loading = false;
 
     this.messageHandler = null;
   }
@@ -25,13 +23,13 @@ export default class PciServingAddController {
   ================================= */
 
   onStepperFinish() {
-    this.loading.add = true;
+    this.loading = true;
     return this.addNamespace({
       region: this.model.region.region.name,
       description: this.model.description,
       container: this.model.container,
     }).catch((error) => {
-      this.loading.add = false;
+      this.loading = false;
 
       this.CucCloudMessage.error(
         this.$translate.instant('pci_projects_project_serving_add_error', {
