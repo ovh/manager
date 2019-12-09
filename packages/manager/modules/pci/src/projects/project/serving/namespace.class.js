@@ -9,6 +9,7 @@ export default class Namespace {
     region,
     id,
     url,
+    hubUrl,
   }) {
     Object.assign(this, {
       clusterId,
@@ -19,6 +20,7 @@ export default class Namespace {
       region,
       id,
       url,
+      hubUrl,
     });
   }
 }

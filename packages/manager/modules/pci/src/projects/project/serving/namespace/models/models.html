@@ -19,9 +19,9 @@
                     data-property="versionStatus">
             <span class="oui-status"
                     data-ng-class="{
-                    'oui-status_success' : $row.versionStatus === $ctrl.VERSION_STATUS.deployed,
-                    'oui-status_warning' : $row.versionProcessing(),
-                    'oui-status_error' : $row.versionError()
+                    'oui-status_success' : $row.isDeployed(),
+                    'oui-status_warning' : $row.isProcessing(),
+                    'oui-status_error' : $row.isInError()
                     }"
                     data-translate="{{:: 'pci_projects_project_serving_namespace_models_version_status_' + $row.versionStatus }}">
             </span>
@@ -30,8 +30,8 @@
                     data-property="apiStatus">
             <span class="oui-status"
                   data-ng-class="{
-                    'oui-status_success' : $row.apiStatus === $ctrl.API_STATUS.running,
-                    'oui-status_warning' : $row.apiStatus !== $ctrl.API_STATUS.running
+                    'oui-status_success' : $row.isRunning(),
+                    'oui-status_warning' : !$row.isRunning()
                     }"
                   data-translate="{{:: 'pci_projects_project_serving_namespace_models_api_status_' + $row.apiStatus }}">
             </span>
@@ -41,7 +41,7 @@
                     data-type="string"
                     data-searchable
                     data-filterable>
-            <a href="{{$row.url}}" target="_blank">{{$row.url}}</a>
+            <a data-ng-href="{{$row.url}}" target="_blank" rel="noopener" >{{$row.url}}</a>
         </oui-column>
         <oui-column data-title=":: 'pci_projects_project_serving_namespace_models_version' | translate"
                     data-property="version"
@@ -56,14 +56,14 @@
                     data-filterable>
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item data-text="{{:: 'pci_projects_project_serving_namespace_models_gen_token' | translate }}"
-                                  data-on-click="$ctrl.generateToken($row.id)">
+            <oui-action-menu-item data-on-click="$ctrl.generateToken($row.id)">
+                <span data-translate="pci_projects_project_serving_namespace_models_gen_token"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-text="{{:: 'pci_projects_project_serving_namespace_models_update' | translate }}"
-                                  data-on-click="$ctrl.updateModel($row.id)">
+            <oui-action-menu-item data-on-click="$ctrl.updateModel($row.id)">
+                <span data-translate="pci_projects_project_serving_namespace_models_update"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-text="{{:: 'pci_projects_project_serving_namespace_models_delete' | translate }}"
-                                  data-on-click="$ctrl.deleteModel($row.id)">
+            <oui-action-menu-item data-on-click="$ctrl.deleteModel($row.id)">
+                <span data-translate="pci_projects_project_serving_namespace_models_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>
         <extra-top>

@@ -1,5 +1,7 @@
 
-import { PROCESSING_VERSION_STATUS, ERROR_VERSION_STATUS } from './models.constants';
+import {
+  PROCESSING_VERSION_STATUS, ERROR_VERSION_STATUS, VERSION_STATUS, API_STATUS,
+} from './models.constants';
 
 export default class Model {
   constructor({
@@ -24,11 +26,19 @@ export default class Model {
     });
   }
 
-  versionError() {
+  isInError() {
     return ERROR_VERSION_STATUS.includes(this.versionStatus);
   }
 
-  versionProcessing() {
+  isProcessing() {
     return PROCESSING_VERSION_STATUS.includes(this.versionStatus);
+  }
+
+  isDeployed() {
+    return this.versionStatus === VERSION_STATUS.deployed;
+  }
+
+  isRunning() {
+    return this.apiStatus === API_STATUS.running;
   }
 }

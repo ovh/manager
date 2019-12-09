@@ -9,17 +9,17 @@
             data-loading="$ctrl.isAdding"
         >
             <oui-radio
-                data-ng-repeat="kind in $ctrl.types track by $index"
-                data-model="$ctrl.model.kind"
-                data-name="kind"
-                data-value="kind"
+                data-ng-repeat="workflowTemplate in $ctrl.workflowTemplates track by $index"
+                data-model="$ctrl.model.workflowTemplate"
+                data-name="workflowTemplate"
+                data-value="workflowTemplate"
                 data-required>
                 <span
-                    data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + kind.toLowerCase() }}"></span>
+                    data-translate="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() }}"></span>
                 <button
                     type="button"
                     class="oui-popover-button"
-                    data-oui-popover="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + kind.toLowerCase() + '_popover' | translate }}"
+                    data-oui-popover="{{:: 'pci_projects_project_serving_namespace_models_add_type_' + workflowTemplate.toLowerCase() + '_popover' | translate }}"
                     data-oui-popover-placement="auto"></button>
             </oui-radio>
         </oui-step-form>
@@ -28,14 +28,14 @@
             data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_model' | translate }}"
             data-editable="!$ctrl.isAdding"
             data-loading="$ctrl.isAdding">
-            <div class="container-fluid px-0" data-ng-if="$ctrl.model.kind == 'preset'">
+            <div class="container-fluid px-0" data-ng-if="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE">
                 <div class="row">
                     <div class="col-md-6 col-xl-4 my-3"
-                         data-ng-repeat="preset in $ctrl.presets track by $index">
+                         data-ng-repeat="preset in $ctrl.presetImages track by preset.id">
                         <oui-select-picker
                             data-name="{{:: preset.id }}"
-                            data-model="$ctrl.model.preset"
-                            data-label="{{:: preset.name }}"
+                            data-model="$ctrl.model.imageId"
+                            data-label="{{:: preset.description }}"
                             data-variant="light"
                             data-values="[preset]"
                             data-required>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div data-ng-if="$ctrl.model.kind == 'user'">
+            <div data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE">
                 <span data-translate="pci_projects_project_serving_namespace_models_add_storage_path_info"></span>
 
                 <oui-field data-size="xl">
@@ -109,11 +109,11 @@
             <div class="container-fluid px-0">
                 <div class="row">
                     <div class="col-md-6 col-xl-4 my-3"
-                         data-ng-repeat="flavor in $ctrl.flavors track by $index">
+                         data-ng-repeat="flavor in $ctrl.flavors track by flavor.id">
                         <oui-select-picker
                             data-name="{{:: flavor.id }}"
                             data-model="$ctrl.model.flavor"
-                            data-label="{{:: flavor.name }}"
+                            data-label="{{:: flavor.description }}"
                             data-variant="light"
                             data-values="[flavor]"
                             data-required>

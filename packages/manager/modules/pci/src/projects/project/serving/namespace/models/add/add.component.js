@@ -6,6 +6,8 @@ const component = {
     goBack: '<',
     namespaceId: '<',
     namespace: '<',
+    presetImages: '<',
+    flavors: '<',
     goToContainer: '<',
     projectId: '<',
   },

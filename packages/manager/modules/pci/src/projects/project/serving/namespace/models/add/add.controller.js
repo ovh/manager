@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { PRESET_IMAGE, BUILD_IMAGE } from './add.constants';
+
 export default class PciServingNamespaceModelsAddController {
   /* @ngInject */
   constructor(
@@ -10,6 +12,8 @@ export default class PciServingNamespaceModelsAddController {
     this.$translate = $translate;
     this.OvhManagerPciServingModelsService = OvhManagerPciServingModelsService;
     this.PciStoragesContainersService = PciStoragesContainersService;
+    this.PRESET_IMAGE = PRESET_IMAGE;
+    this.BUILD_IMAGE = BUILD_IMAGE;
   }
 
   $onInit() {
@@ -19,40 +23,15 @@ export default class PciServingNamespaceModelsAddController {
       id: null,
       storagePath: null,
       flavor: null,
-      kind: null,
-      preset: null,
+      workflowTemplate: null,
+      imageId: null,
     };
-
-    this.presets = [
-      {
-        id: '3b2c0bdf8b5349e8bafb79b76419b3f0',
-        name: 'Text Sentiment Analysis',
-        link: 'https://market-place.ai.ovh.net/#!/apis/3072602f-7adb-4398-b260-2f7adb2398f9/pages/ae10410c-a12c-495d-9041-0ca12ca95da6',
-      },
-      {
-        id: '3b2c0bdf8b5349e8bafb79b76419b3f2',
-        name: 'Text Sentiment Analysis 2',
-        link: 'https://market-place.ai.ovh.net/#!/apis/3072602f-7adb-4398-b260-2f7adb2398f9/pages/ae10410c-a12c-495d-9041-0ca12ca95da6',
-      },
-    ];
-
-    this.flavors = [
-      {
-        id: '3b2c0bdf8b5349e8bafb79b76419b3f0',
-        name: 'Preview',
-        type: 'CPU',
-        infos: {
-
-        },
-        price: 0,
-      },
-    ];
 
     [this.model.flavor] = this.flavors;
 
-    this.types = [
-      'preset',
-      'user',
+    this.workflowTemplates = [
+      this.BUILD_IMAGE,
+      this.PRESET_IMAGE,
     ];
 
     this.paths = [];
@@ -81,6 +60,9 @@ export default class PciServingNamespaceModelsAddController {
     this.OvhManagerPciServingModelsService.add(this.projectId, this.namespaceId, {
       id: this.model.id,
       storagePath: this.model.storagePath,
+      flavor: this.model.flavor.id,
+      workflowTemplate: this.model.workflowTemplate,
+      imageId: this.model.imageId && this.model.imageId.id,
     }).then(() => this.goBack(
       this.$translate.instant('pci_projects_project_serving_namespace_models_add_success'),
     ))
