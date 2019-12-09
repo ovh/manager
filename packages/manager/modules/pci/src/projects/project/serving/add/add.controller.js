@@ -26,9 +26,8 @@ export default class PciServingAddController {
 
   onStepperFinish() {
     this.loading.add = true;
-
     return this.addNamespace({
-      region: this.model.region.region,
+      region: this.model.region.region.name,
       description: this.model.description,
       container: this.model.container,
     }).catch((error) => {
