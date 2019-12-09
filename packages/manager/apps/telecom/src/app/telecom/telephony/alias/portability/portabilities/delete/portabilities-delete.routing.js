@@ -1,4 +1,3 @@
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('telecom.telephony.alias.portabilities.delete', {
