@@ -326,6 +326,7 @@
   "hosting_tab_DATABASES_table_header_state": "Etat",
   "hosting_tab_DATABASES_table_header_server": "Type",
   "hosting_tab_DATABASES_table_header_server_address": "Adresse du serveur",
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Veuillez utiliser le nom d'hôte fourni pour vous connecter à votre instance, l'adresse IP associée pouvant évoluer au fil du temps.",
   "hosting_tab_DATABASES_table_header_backup": "Sauvegardes",
   "hosting_tab_DATABASES_table_empty": "La liste est vide.",
   "hosting_tab_DATABASES_table_popover_update_password": "Changer le mot de passe",
