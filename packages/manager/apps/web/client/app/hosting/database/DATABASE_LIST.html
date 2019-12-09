@@ -113,7 +113,15 @@
                         <tr>
                             <th scope="col" data-translate="hosting_tab_DATABASES_table_header_name"></th>
                             <th scope="col" data-translate="hosting_tab_DATABASES_table_header_database_name"></th>
-                            <th scope="col" data-translate="hosting_tab_DATABASES_table_header_server_address"></th>
+                            <th scope="col">
+                                <span data-translate="hosting_tab_DATABASES_table_header_server_address"></span>
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
+                                    data-uib-tooltip="{{:: 'hosting_tab_DATABASES_table_header_server_address_tooltip' | translate }}"
+                                    data-tooltip-append-to-body="true"
+                                    data-tooltip-placement="right"></button>
+                            </th>
                             <th scope="col" data-translate="hosting_tab_DATABASES_table_header_size" data-ng-if="!hosting.isCloudWeb"></th>
                             <th scope="col" data-translate="hosting_tab_DATABASES_table_header_server"></th>
                             <th class="text-center" scope="col" data-translate="hosting_tab_DATABASES_table_header_state"></th>
