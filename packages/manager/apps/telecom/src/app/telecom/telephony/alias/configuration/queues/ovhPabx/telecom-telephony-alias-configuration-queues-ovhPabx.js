@@ -8,6 +8,6 @@ angular.module('managerApp').config(($stateProvider) => {
         controllerAs: 'QueuesOvhPabxCtrl',
       },
     },
-    translations: { value: ['..'], format: 'json' },
+    translations: { value: ['..', './hunting-sounds'], format: 'json' },
   });
 });
