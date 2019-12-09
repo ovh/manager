@@ -3,25 +3,25 @@
     <div class="col-md-4">
         <oui-tile data-heading="{{ ::'pci_projects_project_serving_namespace_infos_namespace_information_management' | translate }}">
             <oui-tile-button
-                data-ui-sref="pci.projects.project.serving.namespace.models.add">
+                data-on-click="$ctrl.addModel()">
                 <span data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_deploy_model"></span>
             </oui-tile-button>
             <oui-tile-button
-                data-ui-sref="pci.projects.project.serving.namespace.models">
+                data-on-click="$ctrl.listModels()">
                 <span data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_list_model"></span>
             </oui-tile-button>
             <oui-tile-button
                 data-ng-if="!$ctrl.registry.custom"
-                data-on-click="$ctrl.attachRegistry()" >
+                data-on-click="$ctrl.attachRegistry()">
                 <span data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_registry_attach"></span>
             </oui-tile-button>
             <oui-tile-button
                 data-ng-if="$ctrl.registry.custom"
-                data-on-click="$ctrl.detachRegistry()" >
+                data-on-click="$ctrl.detachRegistry()">
                 <span data-translate="pci_projects_project_serving_namespace_infos_namespace_information_management_registry_detach"></span>
             </oui-tile-button>
             <oui-tile-button
-                data-on-click="$ctrl.deleteNamespace()" >
+                data-on-click="$ctrl.deleteNamespace()">
                 <span data-translate="pci_projects_project_serving_delete_label"></span>
             </oui-tile-button>
         </oui-tile>

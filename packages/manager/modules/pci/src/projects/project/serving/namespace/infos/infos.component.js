@@ -8,6 +8,8 @@ const component = {
     namespaceId: '<',
     goToContainer: '<',
     attachRegistry: '<',
+    addModel: '<',
+    listModels: '<',
     detachRegistry: '<',
     deleteNamespace: '<',
     projectId: '<',

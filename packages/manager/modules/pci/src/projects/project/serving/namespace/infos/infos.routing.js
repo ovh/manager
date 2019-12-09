@@ -35,6 +35,18 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           namespaceId,
         }),
+        addModel: /* @ngInject */ (
+          $state, projectId, namespaceId,
+        ) => () => $state.go('pci.projects.project.serving.namespace.models.add', {
+          projectId,
+          namespaceId,
+        }),
+        listModels: /* @ngInject */ (
+          $state, projectId, namespaceId,
+        ) => () => $state.go('pci.projects.project.serving.namespace.models', {
+          projectId,
+          namespaceId,
+        }),
         goToContainer: /* @ngInject */ (
           $state, projectId, namespace,
         ) => () => $state.go('pci.projects.project.storages.objects.object', {
