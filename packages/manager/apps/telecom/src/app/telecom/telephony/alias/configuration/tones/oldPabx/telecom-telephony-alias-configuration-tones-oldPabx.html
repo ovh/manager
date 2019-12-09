@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="form-group"
-                             data-uib-collapse="$ctrl.formOptions.ringback !== 'Custom sound'"
+                             data-ng-if="$ctrl.formOptions.ringback === 'Custom sound'"
                              data-ng-class="{ 'has-error': $ctrl.formErrors.ringback.format }">
                             <label class="control-label"
                                    for="ringBackFile"
@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="form-group"
-                             data-uib-collapse="$ctrl.formOptions.onHold !== 'Custom sound'"
+                             data-ng-if="$ctrl.formOptions.onHold === 'Custom sound'"
                              data-ng-class="{ 'has-error': $ctrl.formErrors.onHold.format }">
                             <label class="control-label"
                                    for="onHoldFile"
@@ -179,7 +179,7 @@
                         </div>
 
                         <div class="form-group"
-                             data-uib-collapse="$ctrl.formOptions.endCall !== 'Custom sound'"
+                             data-ng-if="$ctrl.formOptions.endCall === 'Custom sound'"
                              data-ng-class="{ 'has-error': $ctrl.formErrors.endCall.format }">
                             <label class="control-label"
                                    for="endCallFile"
