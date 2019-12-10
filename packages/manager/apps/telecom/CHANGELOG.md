@@ -1,3 +1,12 @@
+## [11.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.3...@ovh-ux/manager-telecom@11.1.4) (2019-12-10)
+
+
+### Bug Fixes
+
+* **telephony.line.contact:** send siret instead of siren to API ([2fa1712](https://github.com/ovh/manager/commit/2fa1712b9ae6a8fde277887c1d70175125243829))
+
+
+
 ## [11.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.2...@ovh-ux/manager-telecom@11.1.3) (2019-12-10)
 
 
