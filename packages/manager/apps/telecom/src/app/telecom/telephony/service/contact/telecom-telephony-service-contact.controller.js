@@ -239,8 +239,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
           });
         };
 
-        // we take only first 10 chars which is SIREN code
-        fetchInfos(self.directoryForm.siret.substring(0, 9)).then((infos) => {
+        fetchInfos(self.directoryForm.siret).then((infos) => {
           if (infos.informations.isValid) {
             self.directoryForm.ape = infos.informations.ape;
             self.directoryForm.socialNomination = infos.informations.name;
