@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.1...@ovh-ux/manager-server-sidebar@1.1.0) (2019-12-10)
+
+
+### Features
+
+* **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.0...@ovh-ux/manager-server-sidebar@1.0.1) (2019-12-02)
 
 

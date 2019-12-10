@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.6...@ovh-ux/manager-emailpro@1.3.0) (2019-12-10)
+
+
+### Features
+
+* **emailpro:** replace uib-tooltip with oui tooltip ([30036ad](https://github.com/ovh/manager/commit/30036ad4dc0b98846e3cc2aaf3ac4e351c1bf7a2))
+
+
+
 ## [1.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.5...@ovh-ux/manager-emailpro@1.2.6) (2019-11-27)
 
 

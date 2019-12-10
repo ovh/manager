@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@1.0.1...@ovh-ux/manager-veeam-cloud-connect@1.0.2) (2019-12-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 167] ([c1d3c91](https://github.com/ovh/manager/commit/c1d3c91004d6d5170573efa1071764bc0392b512))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-cloud-connect@1.0.0...@ovh-ux/manager-veeam-cloud-connect@1.0.1) (2019-11-27)
 
 

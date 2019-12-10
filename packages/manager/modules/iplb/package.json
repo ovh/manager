@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iplb",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "OVHcloud Iplb product",
   "license": "BSD-3-Clause",
