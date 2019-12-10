@@ -366,9 +366,24 @@
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
-                    <oui-tile-definition
-                        data-term="{{:: 'hosting_dashboard_service_cdn' | translate }}"
-                    >
+                    <!-- email offer -->
+                    <oui-tile-definition data-term="{{ :: 'hosting_dashboard_service_email_address' | translate}}">
+                        <oui-tile-description>
+                            <span data-ng-if="!$ctrl.isRetrievingEmailOffer"
+                                data-ng-bind="$ctrl.doesEmailOfferExists()  ? ('hosting_dashboard_service_common_active' | translate) : ('hosting_dashboard_service_common_inactive' | translate)"></span>
+                            <oui-spinner data-ng-if="$ctrl.isRetrievingEmailOffer"></oui-spinner>
+                        </oui-tile-description>
+                        <oui-action-menu
+                            data-compact data-align="end"
+                            data-ng-if="!$ctrl.isRetrievingEmailOffer && !$ctrl.doesEmailOfferExists()"
+                            data-disabled="$ctrl.doesEmailOfferExists()">
+                            <oui-action-menu-item data-text="{{ ::'hosting_dashboard_service_activate_email' | translate }}"
+                                data-on-click="$ctrl.activateEmailOffer()">
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </oui-tile-definition>
+                    <!-- end of email offer -->
+                    <oui-tile-definition data-term="{{:: 'hosting_dashboard_service_cdn' | translate }}">
                         <oui-tile-description>
                             <span
                                 class="mr-2"
