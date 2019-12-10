@@ -20,13 +20,13 @@ export const state = {
 
       // use callback for redirection if provided
       if (callback) {
-        return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}`;
+        return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}&ovhSessionSuccess=true`;
       }
 
 
       // redirect to login page on success
       if (onsuccess && SANITIZATION.regex.test(onsuccess)) {
-        return onsuccess;
+        return `${onsuccess}${/\?/.test(onsuccess) ? '&' : '?'}ovhSessionSuccess=true`;
       }
 
       return '/auth/?action=gotomanager';
