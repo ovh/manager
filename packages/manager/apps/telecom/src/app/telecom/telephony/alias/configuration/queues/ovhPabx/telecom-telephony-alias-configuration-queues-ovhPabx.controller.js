@@ -15,6 +15,9 @@ import sortBy from 'lodash/sortBy';
 import { NUMBER_EXTERNAL_TYPE } from './telecom-telephony-alias-configuration-queues-ovhPabx.constants';
 import modalTemplate from './telecom-telephony-alias-configuration-queues-ovhPabx-modal.html';
 
+import huntingSoundsController from './hunting-sounds/huntings-sounds.controller';
+import huntingSoundsTemplate from './hunting-sounds/huntings-sounds.html';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl', function TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl($stateParams, $q, $translate, $timeout, $uibModal, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
@@ -331,8 +334,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
     self.managingSounds = true;
     const modal = $uibModal.open({
       animation: true,
-      templateUrl: 'components/telecom/alias/hunting/sounds/telecom-telephony-alias-hunting-sounds.html',
-      controller: 'TelecomTelephonyAliasHuntingSoundsCtrl',
+      template: huntingSoundsTemplate,
+      controller: huntingSoundsController,
       controllerAs: '$ctrl',
       resolve: {
         params() {

@@ -1,3 +1,12 @@
+## [11.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.2...@ovh-ux/manager-telecom@11.1.3) (2019-12-10)
+
+
+### Bug Fixes
+
+* **telecom:** restore ovhPabx sounds part ([5843473](https://github.com/ovh/manager/commit/5843473e25815541b2e3b61b7b363411a69c3f0a))
+
+
+
 ## [11.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.1...@ovh-ux/manager-telecom@11.1.2) (2019-12-02)
 
 

@@ -486,7 +486,7 @@
 
                 <!-- ADD TTS BTN -->
                 <div class="section-group"
-                     data-uib-collapse="$ctrl.state.collapse">
+                     data-ng-if="!$ctrl.state.collapse">
                     <button type="button"
                             class="section-item large-popover-item text-left"
                             data-ng-click="$ctrl.onAddTtsButtonClick()">
@@ -508,7 +508,7 @@
 
                 <!-- ADD TTS FORM -->
                 <div class="section-group"
-                     data-uib-collapse="!$ctrl.state.collapse">
+                     data-ng-if="$ctrl.state.collapse">
                     <div class="section-item">
                         <telephony-number-ovh-pabx-tts-create data-on-tts-creation-cancel="$ctrl.onTtsCreationCancel"
                                                               data-on-tts-creation-success="$ctrl.onTtsCreationSuccess">

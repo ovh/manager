@@ -44,7 +44,7 @@
                     </h2>
                 </header>
 
-                <div data-uib-collapse="$ctrl.state.collapse">
+                <div data-ng-if="!$ctrl.state.collapse">
                     <button type="button"
                             class="btn btn-primary mb-3"
                             data-ng-click="$ctrl.state.collapse = true">
@@ -58,7 +58,7 @@
                 </div>
 
                 <!-- TTS ADD -->
-                <div data-uib-collapse="!$ctrl.state.collapse">
+                <div data-ng-if="$ctrl.state.collapse">
                     <div class="mb-3">
                         <telephony-number-ovh-pabx-tts-create data-ovh-pabx="$ctrl.number.feature"
                                                               data-on-tts-creation-cancel="$ctrl.onCreationCancel"

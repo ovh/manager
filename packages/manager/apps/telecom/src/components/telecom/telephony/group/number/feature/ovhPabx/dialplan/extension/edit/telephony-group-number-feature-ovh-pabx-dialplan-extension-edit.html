@@ -223,25 +223,14 @@
                 <div class="section-group"
                      data-ng-repeat="conditionsGroup in $ctrl.groupedTimeConditions track by $index">
 
-                    <div class="group-title group-title-btn">
-                        <button type="button"
-                                class="btn btn-link w-100 text-left p-0 m-0"
-                                data-ng-click="conditionsGroup.collapsed = !conditionsGroup.collapsed">
-                            <span data-translate="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot"
-                                  data-translate-values="{ index: $index + 1 }"
-                                  data-ng-if="!conditionsGroup.slots.length">
-                            </span>
-                            <span data-ng-bind="conditionsGroup.getDisplayedText()"
-                                  data-ng-if="conditionsGroup.slots.length">
-                            </span>
-                            <i class="float-right ovh-font"
-                               data-ng-class="{ 'ovh-font-small-arrow-right': conditionsGroup.collapsed, 'ovh-font-small-arrow-down': !conditionsGroup.collapsed }">
-                            </i>
-                        </button>
-                    </div>
-
-                    <div data-uib-collapse="conditionsGroup.collapsed">
-                        <!-- DAY CHOICE -->
+                    <oui-collapsible
+                        data-heading="{{
+                            !conditionsGroup.slots.length
+                            ? ('telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot' | translate: {index: $index + 1})
+                            : conditionsGroup.getDisplayedText()
+                         }}"
+                         data-expanded="!conditionsGroup.collapsed"
+                         data-on-toggle="conditionsGroup.collapsed = !conditionsGroup.collapsed">
                         <div class="section-item">
                             <div class="btn-group w-100">
                                 <button type="button"
@@ -351,7 +340,7 @@
                                data-translate="telephony_number_feature_ovh_pabx_step_conditions_time_condition_bad_hours">
                             </p> <!-- END OF COLLISION ERROR -->
                         </div> <!-- END OF ERROR DISPLAY -->
-                    </div>
+                    </oui-collapsible>
                 </div>
 
                 <div class="section-group">
@@ -400,7 +389,7 @@
 
                 <!-- NUMBER LIST -->
                 <div class="section-group"
-                     data-uib-collapse="$ctrl.extension.screenListType === null"
+                     data-ng-if="$ctrl.extension.screenListType !== null"
                      data-ng-form="$ctrl.addScreenListConditionForm">
 
                     <div class="section-item d-table w-100">
