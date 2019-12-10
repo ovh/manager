@@ -1,3 +1,13 @@
+## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.0...@ovh-ux/manager-dedicated@11.2.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* **dedicated.billing:** get state only when available ([e41fd78](https://github.com/ovh/manager/commit/e41fd780bd7bc1a7bbe09583c35c857a71285313))
+* **pcc.drp:** fix check on payment method list ([c142d7a](https://github.com/ovh/manager/commit/c142d7a0e38e1e2189426264b7ae2761c80c4c30))
+
+
+
 # [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.1.1...@ovh-ux/manager-dedicated@11.2.0) (2019-12-10)
 
 
