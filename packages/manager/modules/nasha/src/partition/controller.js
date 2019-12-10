@@ -11,20 +11,24 @@ import some from 'lodash/some';
 export default class NashaPartitionCtrl {
   /* @ngInject */
   constructor(
-    $state,
-    $scope,
-    $uibModal,
     $q,
+    $scope,
+    $state,
     $translate,
-    $stateParams,
+    CucCloudMessage,
     OvhApiDedicatedNasha,
     Poller,
-    CucCloudMessage,
   ) {
-    const self = this;
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$state = $state;
+    this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
+    this.OvhApiDedicatedNasha = OvhApiDedicatedNasha;
+    this.Poller = Poller;
 
-    self.trackedTaskStatus = ['todo', 'doing'];
-    self.trackedTaskOperations = [
+    this.trackedTaskStatus = ['todo', 'doing'];
+    this.trackedTaskOperations = [
       'clusterLeclercPartitionAdd',
       'clusterLeclercPartitionDelete',
       'clusterLeclercPartitionUpdate',
@@ -32,7 +36,6 @@ export default class NashaPartitionCtrl {
       'clusterLeclercCustomSnapCreate',
       'clusterLeclercZfsOptions',
     ];
-
     // object that contain tasks for each partition
     // e.g. [
     //   {
@@ -43,7 +46,7 @@ export default class NashaPartitionCtrl {
     //     tasks: [9998,9999]
     //   },
     // ]
-    self.data = {
+    this.data = {
       partitionsTasks: {},
       nasha: null,
       table: {
@@ -54,194 +57,179 @@ export default class NashaPartitionCtrl {
       },
     };
 
-    self.loaders = {
+    this.loaders = {
       table: false,
     };
 
-    function getTasksPromise(status) {
-      return OvhApiDedicatedNasha.Task().v6()
-        .query({ serviceName: $stateParams.nashaId, status }).$promise;
-    }
-
-    function buildPartitionsInCreation(task, accumulator) {
-      if (task.operation === 'clusterLeclercPartitionAdd') {
-        const partition = find(
-          self.data.table.partitionIds,
-          partitionId => task.partitionName === partitionId,
-        );
-
-        if (!partition) {
-          self.data.table.partitionIds.unshift(task.partitionName);
-          self.data.table.partitions.unshift({ partitionName: task.partitionName });
-        }
-
-        accumulator.push({ partitionName: task.partitionName });
-      }
-    }
-
-    function buildPartitionsTasks(task, accumulator) {
-      if (includes(self.trackedTaskOperations, task.operation)) {
-        if (accumulator[task.partitionName] === undefined) {
-          accumulator[task.partitionName] = [task];
-        }
-      }
-    }
-
-    function launchPolling(taskId) {
-      return Poller.poll(`/dedicated/nasha/${self.data.nasha.serviceName}/task/${taskId}`,
-        null,
-        {
-
-          successRule(task) {
-            return task.status === 'done';
-          },
-          errorRule(task) {
-            return ['doing', 'todo', 'done'].indexOf(task.status) === -1;
-          },
-          namespace: 'nasha.partition',
-        });
-    }
-
-    function initPartitions(resetCache) {
-      self.data.table.partitionsInCreation = [];
-      if (resetCache) {
-        OvhApiDedicatedNasha.Aapi().resetAllCache();
-      }
-
-      return OvhApiDedicatedNasha.Aapi()
-        .partitions({ serviceName: $stateParams.nashaId }).$promise
-        .then((partitions) => {
-          self.data.table.partitions = map(partitions, partition => partition.partitionName);
-          self.data.table.partitionIds = self.data.table.partitions;
-
-          self.data.table.partitions = map(partitions, (partition) => {
-            forEach(partition.use, (part, key) => {
-              set(part, 'name', $translate.instant(`nasha_storage_usage_type_${key}`));
-            });
-            return partition;
-          });
-        });
-    }
-
-    function pollPartitionTask(task) {
-      launchPolling(task.taskId)
-        .finally(() => {
-          initPartitions(true).then(() => {
-            const taskIndex = findIndex(
-              self.data.partitionsTasks[task.partitionName],
-              partitionTask => task.taskId === partitionTask.taskId,
-            );
-
-            if (taskIndex > -1) {
-              self.data.partitionsTasks[task.partitionName].splice(taskIndex, 1);
-            }
-          }).catch((err) => {
-            CucCloudMessage.error($translate.instant('nasha_partitions_no_data_error'));
-            return $q.reject(err);
-          });
-        });
-    }
-
-    function initTasks() {
-      OvhApiDedicatedNasha.Task().v6().resetCache();
-
-      const tasksPromises = map(self.trackedTaskStatus, status => getTasksPromise(status));
-
-      return $q.all(tasksPromises).then(data => flatten(data)).then((taskIds) => {
-        const taskPromises = map(taskIds, taskId => OvhApiDedicatedNasha.Task().v6()
-          .get({ serviceName: $stateParams.nashaId, taskId }).$promise);
-
-        return $q.all(taskPromises);
-      }).then((taskObjects) => {
-        // We don't wipe self.data.partitionsTasks right away because we don't want the spinners
-        // to disapear while we reload.
-        const partitionsTasksAccumulator = {};
-        self.data.table.partitionsInCreation = [];
-
-        forEach(taskObjects, (taskObject) => {
-          buildPartitionsInCreation(taskObject, self.data.table.partitionsInCreation);
-          buildPartitionsTasks(taskObject, partitionsTasksAccumulator);
-          pollPartitionTask(taskObject);
-        });
-
-        self.data.partitionsTasks = partitionsTasksAccumulator;
-        return $q.when(taskObjects);
-      });
-    }
-
-    self.openModal = function openModal(template, controller, params) {
-      const modal = $uibModal.open({
-        windowTopClass: 'cui-modal',
-        templateUrl: template,
-        controller,
-        controllerAs: controller,
-        resolve: {
-          items() {
-            return params;
-          },
-        },
-      });
-
-      modal.result.then(() => {
-        initTasks();
-      });
-    };
-
-    function initNasha() {
-      return OvhApiDedicatedNasha.Aapi()
-        .get({ serviceName: $stateParams.nashaId }).$promise
-        .then((nasha) => {
-          self.data.nasha = nasha;
-        });
-    }
-
-    self.load = function load(resetCache) {
-      self.loaders.table = true;
-      $q.all([
-        initNasha(),
-        initPartitions(),
-      ]).then(() => initTasks()).then(() => {
-        if (resetCache) {
-          self.data.table.refresh = !self.data.table.refresh;
-        }
-      }).catch((err) => {
-        CucCloudMessage.error($translate.instant('nasha_partitions_no_data_error'));
-        return $q.reject(err);
-      })
-        .finally(() => {
-          self.loaders.table = false;
-        });
-    };
-
-    self.hasTaskInProgress = function hasTaskInProgress(partition) {
-      return some(self.data.partitionsTasks[partition.partitionName]);
-    };
-
-    self.updatePartition = function updatePartition(partition) {
-      return self.getPartition(partition.partitionName)
-        .then((updatedPartition) => {
-          set(partition, 'size', updatedPartition.size);
-        }).catch((data) => {
-          // partition is not found, probably deleted
-          if (data.status === 404) {
-            remove(self.data.table.partitionIds, item => item === partition.partitionName);
-          } else {
-            return $q.reject(data);
-          }
-          return null;
-        });
-    };
-
-    self.goToNashaPartitionAccess = function goToNashaPartitionAccess(partitionName) {
-      $state.go('nasha.nasha-partition-access', {
-        partitionName,
-      });
-    };
-
     $scope.$on('$destroy', () => {
-      Poller.kill({ namespace: 'nasha.partition' });
+      this.Poller.kill({ namespace: 'nasha.partition' });
     });
+  }
 
-    self.load();
+  $onInit() {
+    if (this.task) {
+      this.initTasks();
+    }
+    this.load();
+  }
+
+  getTasksPromise(status) {
+    return this.OvhApiDedicatedNasha.Task().v6()
+      .query({ serviceName: this.serviceName, status }).$promise;
+  }
+
+  buildPartitionsInCreation(task, accumulator) {
+    if (task.operation === 'clusterLeclercPartitionAdd') {
+      const partition = find(
+        this.data.table.partitionIds,
+        partitionId => task.partitionName === partitionId,
+      );
+
+      if (!partition) {
+        this.data.table.partitionIds.unshift(task.partitionName);
+        this.data.table.partitions.unshift({ partitionName: task.partitionName });
+      }
+
+      accumulator.push({ partitionName: task.partitionName });
+    }
+  }
+
+  buildPartitionsTasks(task, accumulator) {
+    if (includes(this.trackedTaskOperations, task.operation)) {
+      if (accumulator[task.partitionName] === undefined) {
+        accumulator[task.partitionName] = [task];
+      }
+    }
+  }
+
+  launchPolling(taskId) {
+    return this.Poller.poll(`/dedicated/nasha/${this.data.nasha.serviceName}/task/${taskId}`,
+      null,
+      {
+
+        successRule(task) {
+          return task.status === 'done';
+        },
+        errorRule(task) {
+          return ['doing', 'todo', 'done'].indexOf(task.status) === -1;
+        },
+        namespace: 'nasha.partition',
+      });
+  }
+
+  initPartitions(resetCache) {
+    this.data.table.partitionsInCreation = [];
+    if (resetCache) {
+      this.OvhApiDedicatedNasha.Aapi().resetAllCache();
+    }
+
+    return this.OvhApiDedicatedNasha.Aapi()
+      .partitions({ serviceName: this.serviceName }).$promise
+      .then((partitions) => {
+        this.data.table.partitions = map(partitions, partition => partition.partitionName);
+        this.data.table.partitionIds = this.data.table.partitions;
+
+        this.data.table.partitions = map(partitions, (partition) => {
+          forEach(partition.use, (part, key) => {
+            set(part, 'name', this.$translate.instant(`nasha_storage_usage_type_${key}`));
+          });
+          return partition;
+        });
+      });
+  }
+
+  pollPartitionTask(task) {
+    this.launchPolling(task.taskId)
+      .finally(() => {
+        this.initPartitions(true).then(() => {
+          const taskIndex = findIndex(
+            this.data.partitionsTasks[task.partitionName],
+            partitionTask => task.taskId === partitionTask.taskId,
+          );
+
+          if (taskIndex > -1) {
+            this.data.partitionsTasks[task.partitionName].splice(taskIndex, 1);
+          }
+        }).catch((err) => {
+          this.CucCloudMessage.error(this.$translate.instant('nasha_partitions_no_data_error'));
+          return this.$q.reject(err);
+        });
+      });
+  }
+
+  initTasks() {
+    this.OvhApiDedicatedNasha.Task().v6().resetCache();
+
+    const tasksPromises = map(this.trackedTaskStatus, status => this.getTasksPromise(status));
+
+    return this.$q.all(tasksPromises).then(data => flatten(data)).then((taskIds) => {
+      const taskPromises = map(taskIds, taskId => this.OvhApiDedicatedNasha.Task().v6()
+        .get({ serviceName: this.serviceName, taskId }).$promise);
+
+      return this.$q.all(taskPromises);
+    }).then((taskObjects) => {
+      // We don't wipe this.data.partitionsTasks right away because we don't want the spinners
+      // to disapear while we reload.
+      const partitionsTasksAccumulator = {};
+      this.data.table.partitionsInCreation = [];
+      forEach(taskObjects, (taskObject) => {
+        this.buildPartitionsInCreation(taskObject, this.data.table.partitionsInCreation);
+        this.buildPartitionsTasks(taskObject, partitionsTasksAccumulator);
+        this.pollPartitionTask(taskObject);
+      });
+      this.data.partitionsTasks = partitionsTasksAccumulator;
+      return this.$q.when(taskObjects);
+    });
+  }
+
+  initNasha() {
+    return this.OvhApiDedicatedNasha.Aapi()
+      .get({ serviceName: this.serviceName }).$promise
+      .then((nasha) => {
+        this.data.nasha = nasha;
+      });
+  }
+
+  load(resetCache) {
+    this.loaders.table = true;
+    this.$q.all([
+      this.initNasha(),
+      this.initPartitions(),
+    ]).then(() => this.initTasks()).then(() => {
+      if (resetCache) {
+        this.data.table.refresh = !this.data.table.refresh;
+      }
+    }).catch((err) => {
+      this.CucCloudMessage.error(this.$translate.instant('nasha_partitions_no_data_error'));
+      return this.$q.reject(err);
+    })
+      .finally(() => {
+        this.loaders.table = false;
+      });
+  }
+
+  hasTaskInProgress(partition) {
+    return some(this.data.partitionsTasks[partition.partitionName]);
+  }
+
+  updatePartition(partition) {
+    return this.getPartition(partition.partitionName)
+      .then((updatedPartition) => {
+        set(partition, 'size', updatedPartition.size);
+      }).catch((data) => {
+        // partition is not found, probably deleted
+        if (data.status === 404) {
+          remove(this.data.table.partitionIds, item => item === partition.partitionName);
+        } else {
+          return this.$q.reject(data);
+        }
+        return null;
+      });
+  }
+
+  goToNashaPartitionAccess(partitionName) {
+    this.$state.go('nasha.nasha-partition-access', {
+      partitionName,
+    });
   }
 }

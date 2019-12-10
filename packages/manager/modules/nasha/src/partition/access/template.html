@@ -9,7 +9,7 @@
     <button type="button"
         class="oui-button oui-button_secondary"
         data-ng-disabled="NashaPartitionAccessCtrl.loaders.table"
-        data-ng-click="NashaPartitionAccessCtrl.addAccess()"
+        data-ng-click="NashaPartitionAccessCtrl.goToPartitionAccessAddPage()"
         data-translate="nasha_access_action_add"></button>
 
     <oui-datagrid data-rows="NashaPartitionAccessCtrl.table.accessIps"
@@ -27,7 +27,7 @@
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item data-text="{{ 'nasha_common_remove' | translate }}"
-                data-on-click="NashaPartitionAccessCtrl.removeAccess($row)"
+                data-on-click="NashaPartitionAccessCtrl.goToPartitionAccessDeletePage($row)"
                 data-disabled="NashaPartitionAccessCtrl.hasTaskInProgress($row)">
             </oui-action-menu-item>
         </oui-action-menu>

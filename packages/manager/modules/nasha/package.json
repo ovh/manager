@@ -14,6 +14,7 @@
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0",
+    "@ovh-ux/ng-ui-router-layout": "^3.2.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
