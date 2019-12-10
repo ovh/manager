@@ -1,3 +1,12 @@
+## [7.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.6.2...@ovh-ux/manager-core@7.6.3) (2019-12-10)
+
+
+### Bug Fixes
+
+* **cloud:** content-language header ([9184066](https://github.com/ovh/manager/commit/9184066f99723095e01602eb681c830d65d78065))
+
+
+
 ## [7.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@7.6.1...@ovh-ux/manager-core@7.6.2) (2019-11-22)
 
 

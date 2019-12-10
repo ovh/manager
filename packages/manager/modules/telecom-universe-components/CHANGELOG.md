@@ -1,3 +1,12 @@
+# [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.3.0...@ovh-ux/ng-ovh-telecom-universe-components@4.4.0) (2019-12-10)
+
+
+### Features
+
+* **telecom-universe-components:** replace uib-progress by oui-progress ([a64752d](https://github.com/ovh/manager/commit/a64752de96d5eae098fd9116a4fdcd58a98420c9))
+
+
+
 # [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.2.3...@ovh-ux/ng-ovh-telecom-universe-components@4.3.0) (2019-11-28)
 
 

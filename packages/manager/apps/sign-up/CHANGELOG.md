@@ -1,3 +1,19 @@
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.4.5...@ovh-ux/sign-up-app@1.5.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* **sign-up:** remove some domain from sanitize ([b5d5d82](https://github.com/ovh/manager/commit/b5d5d8280d43bf281e75d9186f645b256e2aa3cd))
+* **sign-up:** set ovhSessionSuccess as param of redirect url ([b80c053](https://github.com/ovh/manager/commit/b80c0534c9f44c0eaa552fb8aff30091383e776b))
+* **sign-up:** take language from query param first ([45d2d94](https://github.com/ovh/manager/commit/45d2d946174118bbfd21655ea813c213d1d66201))
+
+
+### Features
+
+* **sign-up:** add prefix to zip code ([d8b7aea](https://github.com/ovh/manager/commit/d8b7aea6cf83b1b2d36d40fa23f07c161881aea2))
+
+
+
 ## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@1.4.4...@ovh-ux/sign-up-app@1.4.5) (2019-10-25)
 
 
