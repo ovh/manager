@@ -37,5 +37,5 @@
   "dedicatedCloud_datacenter_drp_vpn_success": "Die VPN-Konfiguration wurde erfolgreich aktualisiert",
   "dedicatedCloud_datacenter_drp_vpn_error": "Bei der Aktualisierung der VPN-Konfiguration ist ein Fehler aufgetreten",
   "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Bitte geben Sie eine gültige IPv4-Adresse an (z. B. 192.168.0.1)",
-  "dedicatedCloud_datacenter_drp_confirm_order": ""
+  "dedicatedCloud_datacenter_drp_confirm_order": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been generated. Once you have paid the amount due, you can check the enableDisasterRecovery task in the Operations tab to track the option being enabled."
 }
