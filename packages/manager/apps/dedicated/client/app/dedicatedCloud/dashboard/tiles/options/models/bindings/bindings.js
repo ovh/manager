@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
@@ -10,6 +11,12 @@ import { ServicePackOptionService } from '../../../../../service-pack/option/opt
 import { ACTIVATION_STATUS } from '../../components/activation-status/activation-status.constants';
 import { OPTION_TYPES } from '../../../../../service-pack/option/option.constants';
 import { ORDER_STATUS } from '../../options.constants';
+
+import {
+  DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
+  DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
+  DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
+} from '../../../../../datacenter/drp/dedicatedCloud-datacenter-drp.constants';
 
 export default class {
   constructor() {
@@ -80,6 +87,29 @@ export default class {
           },
         },
       },
+      security: {
+        drpGlobalStatus: {
+          value: undefined,
+          detail: undefined,
+        },
+        actionMenu: {
+          exists: undefined,
+          items: {
+            selectDatacenter: {
+              exists: undefined,
+              action: undefined,
+            },
+            goToVpnConfiguration: {
+              exists: undefined,
+              action: undefined,
+            },
+            deleteDrp: {
+              exists: undefined,
+              sref: undefined,
+            },
+          },
+        },
+      },
     };
   }
 
@@ -89,6 +119,7 @@ export default class {
 
     this.updateOptionsBasic();
     this.updateOptionsCertification();
+    this.updateOptionsSecurity();
   }
 
   updateOptionsBasic() {
@@ -141,6 +172,19 @@ export default class {
       .computeOptionsCertificationActionMenuItemsConfigure();
     this.options.certification.actionMenu.items.payCheckout = this
       .computeOptionsCertificationActionMenuItemsPayCheckout();
+  }
+
+  updateOptionsSecurity() {
+    this.options.security.drpGlobalStatus = this
+      .computeOptionsSecurityDrpGlobalStatus();
+
+    this.options.security.actionMenu.exists = this.model.drp.isDrpActionPossible;
+    this.options.security.actionMenu.items.selectDatacenter = this
+      .computeOptionsSecurityActionMenuItemsSelectDatacenter();
+    this.options.security.actionMenu.items.goToVpnConfiguration = this
+      .computeOptionsSecurityActionMenuItemsVpnConfiguration();
+    this.options.security.actionMenu.items.deleteDrp = this
+      .computeOptionsSecurityActionMenuItemsDeleteDrp();
   }
 
   computeOptionsBasicDescriptionItems() {
@@ -308,6 +352,62 @@ export default class {
         && !this.model.pendingOrder.hasBeenPaid
         && this.model.servicePacks.ordered.certification.exists,
       url: this.model.pendingOrder.url,
+    };
+  }
+
+  computeOptionsSecurityDrpGlobalStatus() {
+    return {
+      value: this.model.drp.drpGlobalStatus,
+      detail: this.model.drp.currentDrp.isWaitingVpnConfiguration
+        ? `ovhManagerPccDashboardOptions_security_drp_status_vpn_${this.model.drp.currentDrp.vpnStatus}`
+        : `ovhManagerPccDashboardOptions_security_drp_status_${this.model.drp.currentDrp.state}`,
+    };
+  }
+
+  computeOptionsSecurityActionMenuItemsSelectDatacenter() {
+    return {
+      exists: this.model.drp.currentDrp
+        .state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
+      action: this.computeOptionsSecurityActionMenuItemsSelectDatacenterAction(),
+    };
+  }
+
+  computeOptionsSecurityActionMenuItemsSelectDatacenterAction() {
+    return () => {
+      if (this.model.drp.datacenterList.length === 1) {
+        const [{ id: datacenterId }] = this.model.drp.datacenterList;
+        return this.model.drp.goToDrp(datacenterId);
+      }
+
+      return this.model.drp.goToDrpDatacenterSelection();
+    };
+  }
+
+  computeOptionsSecurityActionMenuItemsVpnConfiguration() {
+    return {
+      exists: this.model.drp.currentDrp
+        .vpnStatus === DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS
+        .notConfigured,
+      action: this.model.drp.goToVpnConfiguration,
+    };
+  }
+
+  computeOptionsSecurityActionMenuItemsDeleteDrp() {
+    const drpStatus = this.model.drp.currentDrp.state;
+    const drpRemotePccStatus = this.model.drp.currentDrp
+      .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+      ? this.model.drp.service.constructor.formatStatus(
+        get(this.model.drp.currentDrp, 'remoteSiteInformation.state'),
+      )
+      : DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered;
+
+    return {
+      exists: drpStatus === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered
+        && drpRemotePccStatus === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered
+        && this.model.drp.currentDrp
+          .vpnStatus !== DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS
+          .configuring,
+      sref: 'app.dedicatedClouds.deleteDrp',
     };
   }
 }

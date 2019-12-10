@@ -12,7 +12,7 @@
   "ovhManagerPccDashboardOptions_certification_actionMenu_activate": "Activar una certificación",
   "ovhManagerPccDashboardOptions_certification_actionMenu_configure": "Configurar",
   "ovhManagerPccDashboardOptions_certification_actionMenu_payCheckout": "Confirmar la activación",
-  "ovhManagerPccDashboardOptions_security_term": "Opc. de seguridad",
+  "ovhManagerPccDashboardOptions_security_term": "Opciones de seguridad",
   "ovhManagerPccDashboardOptions_security_drp": "DRP Zerto",
   "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Activado",
   "ovhManagerPccDashboardOptions_security_drp_status_delivering": "Instalando...",

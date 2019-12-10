@@ -1,3 +1,5 @@
 {
-  "dedicatedCloud_datacenter_remote_vra_network": "Sieć VRA Lokalne centrum danych"
+  "dedicatedCloud_datacenter_remote_vra_network": "Sieć VRA Lokalne centrum danych",
+  "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Wprowadź zdalną podsieć VRA",
+  "dedicatedCloud_datacenter_local_vra_network_help": "Możesz wybrać lokalną podsieć VRA lub użyć sieci zaproponowanej powyżej przez OVH"
 }
