@@ -81,19 +81,16 @@
 
     <div class="modal-body"
          data-ng-if="AbbreviatedNumberModal.loading.getFile && !AbbreviatedNumberModal.errorLoading">
-        <uib-progressbar class="progress-striped"
-                         max="AbbreviatedNumberModal.total"
-                         value="AbbreviatedNumberModal.progress">
-        </uib-progressbar>
+        <oui-progress data-max-value="{{AbbreviatedNumberModal.total}}">
+            <oui-progress-bar data-type="info" data-value="AbbreviatedNumberModal.progress"></oui-progress-bar>
+        </oui-progress>
     </div>
 
     <div class="modal-body"
          data-ng-if="AbbreviatedNumberModal.importing">
-        <uib-progressbar class="progress-striped"
-                         max="AbbreviatedNumberModal.total"
-                         value="AbbreviatedNumberModal.progress">
-            {{AbbreviatedNumberModal.progress}}
-        </uib-progressbar>
+        <oui-progress data-max-value="{{AbbreviatedNumberModal.total}}">
+            <oui-progress-bar data-type="info" data-value="AbbreviatedNumberModal.progress">{{AbbreviatedNumberModal.progress}}</oui-progress-bar>
+        </oui-progress>
         <div>
             <span data-translate="telephony_abbreviated_numbers_import_item_imported"></span>
             <span data-ng-bind="AbbreviatedNumberModal.imported.length"></span>

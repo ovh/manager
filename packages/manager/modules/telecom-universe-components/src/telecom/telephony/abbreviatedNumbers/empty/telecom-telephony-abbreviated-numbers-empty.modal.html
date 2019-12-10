@@ -21,11 +21,9 @@
 
     <div class="modal-body"
          data-ng-if="AbbreviatedNumberModal.removing">
-        <uib-progressbar class="progress-striped"
-                         max="AbbreviatedNumberModal.total"
-                         value="AbbreviatedNumberModal.progress">
-            {{AbbreviatedNumberModal.progress}}
-        </uib-progressbar>
+        <oui-progress data-max-value="{{AbbreviatedNumberModal.total}}">
+            <oui-progress-bar data-type="info" data-value="AbbreviatedNumberModal.progress">{{AbbreviatedNumberModal.progress}}</oui-progress-bar>
+        </oui-progress>
     </div>
 
     <div class="modal-footer">

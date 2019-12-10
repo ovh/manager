@@ -2,7 +2,7 @@
   "dedicatedCloud_datacenter_pcc_name": "Nazwa Private Cloud: {{pcc}}",
   "dedicatedCloud_datacenter_main_datacenter_name": "Identyfikator odpowiedniego centrum danych Private Cloud",
   "dedicatedCloud_datacenter_main_datacenter_name_placeholder": "Wybierz Twoje główne centrum danych",
-  "dedicatedCloud_datacenter_order_ip": "Brak dostępnej puli adresów IP.  <a ui-sref=\"{{sref}}\">Zamów pulę</a>",
+  "dedicatedCloud_datacenter_order_ip": "Brak dostępnej puli adresów IP. <a ui-sref=\"{{sref}}\">Zamów pulę</a>",
   "dedicatedCloud_datacenter_main_ip_address_pool_available": "Dostępna pula publicznych adresów IP",
   "dedicatedCloud_datacenter_main_ip_address_pool_available_placeholder": "Wybierz wolny publiczny adres IP",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Twój Zerto DRP został utworzony.",
@@ -36,5 +36,6 @@
   "dedicatedCloud_datacenter_drp_vpn_change_parameters": "Zmień parametry",
   "dedicatedCloud_datacenter_drp_vpn_success": "Aktualizacja konfiguracji VPN został została przeprowadzona.",
   "dedicatedCloud_datacenter_drp_vpn_error": "Wystąpił błąd podczas aktualizacji konfiguracji VPN.  ",
-  "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Wybierz prawidłowy adres IPv4 (np. 192.168.0.1)"
+  "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Wybierz prawidłowy adres IPv4 (np. 192.168.0.1)",
+  "dedicatedCloud_datacenter_drp_confirm_order": "<a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Zamówienie</a> zostało wygenerowane. Po opłaceniu zamówienia możesz śledzić postęp aktywacji tej opcji w zakładce Operacje. W tym celu kliknij zadanie enableDisasterRecovery."
 }

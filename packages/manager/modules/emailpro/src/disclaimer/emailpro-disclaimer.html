@@ -18,16 +18,14 @@
         <oui-column data-title="'emailpro_tab_DISCLAIMER_disclaimer_outside_only' | translate">
             <span data-translate="emailpro_tab_DISCLAIMER_disclaimer_outside_only_true"
                   data-ng-if="$row.outsideOnly"
-                  data-uib-tooltip="{{ 'emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip' | translate }}"
-                  data-tooltip-append-to-body="true"></span>
+                  data-oui-tooltip="{{:: 'emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip' | translate }}"></span>
             <span data-translate="emailpro_tab_DISCLAIMER_disclaimer_outside_only_false"
                   data-ng-if="!$row.outsideOnly"></span>
         </oui-column>
         <oui-column data-title="'emailpro_tab_DISCLAIMER_state_header' | translate">
             <span class="fa fa-hourglass-half"
                   data-ng-if="$row.taskPendingId"
-                  data-uib-tooltip="{{ 'emailpro_tab_DISCLAIMER_state_doing_tooltip' | translate }}"
-                  data-tooltip-append-to-body="true"></span>
+                  data-oui-tooltip="{{:: 'emailpro_tab_DISCLAIMER_state_doing_tooltip' | translate }}"></span>
             <span class="oui-status oui-status_warning"
                   data-translate="common_not_configurated"
                   data-ng-if="$row.emptySlotFlag"></span>

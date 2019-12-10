@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 export default class SignUpService {
   /* @ngInject */
   constructor($http) {
@@ -16,6 +18,20 @@ export default class SignUpService {
         timeout: timeout.promise,
       })
       .then(({ data }) => data);
+  }
+
+  getCreationRulesParams() {
+    return this.$http
+      .get('/newAccount.json')
+      .then(({ data }) => {
+        const api = find(data.apis, {
+          path: '/newAccount/rules',
+        });
+
+        return find(api.operations, {
+          httpMethod: 'POST',
+        }).parameters;
+      });
   }
 
   saveNic(nicInfos) {

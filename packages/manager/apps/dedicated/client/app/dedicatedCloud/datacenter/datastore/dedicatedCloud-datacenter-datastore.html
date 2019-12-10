@@ -31,8 +31,8 @@
 
             <span
                 data-ng-if="$row.consumption != null && $row.consumption > 0"
-                data-uib-tooltip="{{:: 'dedicatedCloud_tab_host_hourly_usage_update' | translate:{ t0: ($row.consumptionLastUpdate|date:'short') } }}"
-                data-tooltip-placement="top">
+                data-oui-tooltip="{{:: 'dedicatedCloud_tab_host_hourly_usage_update' | translate:{ t0: ($row.consumptionLastUpdate|date:'short') } }}"
+                data-oui-tooltip-placement="top">
                 <span
                     data-ng-if="$row.consumption <= 1"
                     data-translate="dedicatedCloud_tab_datastores_hourly_consumption_1"></span>

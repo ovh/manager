@@ -40,7 +40,7 @@
   "domain_dashboard_whois_not_allowed": "O registry responsável por este domínio não autoriza a visualização dos seus dados personalizados.",
   "domain_dashboard_whois_pending": "Este serviço está a ser criado. Aguarde, por favor.",
   "domain_dashboard_whois_invalid_contact": "Apenas o contacto administrador está autorizado a realizar esta ação.",
-  "domain_dashboard_whois_error": "Ocorreu um erro. Tente novamente mais tarde.",
+  "domain_dashboard_whois_error": "Ocorreu um erro aquando do carregamento das informações do WHOIS. Tente novamente mais tarde.",
   "domain_dashboard_obfuscated_email": "Endereços de e-mail de substituição",
   "domain_dashboard_obfuscated_email_regenerate_button": "Gerir os e-mails de substituição",
   "domain_dashboard_offer": "Oferta",

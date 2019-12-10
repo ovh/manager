@@ -35,7 +35,7 @@
                 </div>
             </oui-button>
             <oui-button data-variant="primary"
-                        data-uib-tooltip="{{ :: 'cpbc_hourly_instance_pass_to_monthly_info' | translate }}"
+                        data-oui-tooltip="{{ :: 'cpbc_hourly_instance_pass_to_monthly_info' | translate }}"
                         type="submit"
                         data-on-click="$ctrl.confirmMonthlyPaymentActivation()"
                         data-disabled="$ctrl.loaders.monthlyBilling">
@@ -54,7 +54,7 @@
             'opacity2-leave' : $row.instanceId === $ctrl.instanceToMonthly,
             'opacity2-enter' : $row.instanceId !== $ctrl.instanceToMonthly
         }">
-            <oui-button data-uib-tooltip="{{ :: 'cpbc_hourly_instance_pass_to_monthly_info' | translate }}"
+            <oui-button data-oui-tooltip="{{ :: 'cpbc_hourly_instance_pass_to_monthly_info' | translate }}"
                         data-ng-if="$row.monthlyBilling === null && !$row.isDeleted"
                         data-on-click="$ctrl.prepareMonthlyPaymentActivation($row)"
                         data-disabled="$ctrl.loaders.monthlyBilling"

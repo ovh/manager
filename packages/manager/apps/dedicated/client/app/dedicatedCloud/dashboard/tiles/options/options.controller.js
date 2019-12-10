@@ -8,11 +8,13 @@ export default class Options {
     $q,
     $translate,
     Alerter,
+    dedicatedCloudDrp,
     ovhManagerPccDashboardOptionsService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.dedicatedCloudDrp = dedicatedCloudDrp;
     this.ovhManagerPccDashboardOptionsService = ovhManagerPccDashboardOptionsService;
   }
 
@@ -63,6 +65,21 @@ export default class Options {
         this.model = model;
         this.model.currentUser = this.currentUser;
         this.model.currentService = this.currentService;
+
+        this.model.drp = {
+          currentDrp: this.currentDrp,
+          datacenterList: this.datacenterList,
+          drpGlobalStatus: this.drpGlobalStatus,
+
+          goToDrp: this.goToDrp,
+          goToDrpDatacenterSelection: this.goToDrpDatacenterSelection,
+          goToVpnConfiguration: this.goToVpnConfiguration,
+
+          isDrpActionPossible: this.isDrpActionPossible,
+          isDrpAvailable: this.isDrpAvailable,
+
+          service: this.dedicatedCloudDrp,
+        };
 
         this.bindings.update(model);
       })

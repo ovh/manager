@@ -35,9 +35,8 @@
                             data-ng-click="SmsPendingCtrl.cancelAll()"
                             data-ng-disabled="!SmsPendingCtrl.pending.sorted.length || SmsPendingCtrl.loading.cancelAll"
                             data-translate="sms_cancel"
-                            data-uib-tooltip="{{:: 'sms_sms_pending_cancel_all' | translate }}"
-                            data-tooltip-placement="right"
-                            data-tooltip-append-to-body="true">
+                            data-oui-tooltip="{{:: 'sms_sms_pending_cancel_all' | translate }}"
+                            data-oui-tooltip-placement="right">
                         </button>
                     </li>
                     <li role="menuitem">
@@ -48,9 +47,8 @@
                             data-ng-click="SmsPendingCtrl.refresh()"
                             data-ng-disabled="SmsPendingCtrl.pending.isDeleting"
                             data-translate="sms_common_refresh"
-                            data-uib-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
-                            data-tooltip-placement="right"
-                            data-tooltip-append-to-body="true">
+                            data-oui-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
+                            data-oui-tooltip-placement="right">
                         </button>
                     </li>
                 </ul>
@@ -229,7 +227,7 @@
                                   data-ng-bind="sms.sender">
                             </span>
                             <span data-ng-if="!sms.sender.length"
-                                  data-uib-tooltip="{{ ::'sms_sms_pending_number_allowed_response_fr_only' | translate }}"
+                                  data-oui-tooltip="{{ ::'sms_sms_pending_number_allowed_response_fr_only' | translate }}"
                                   data-translate="sms_sms_pending_number_allowed_response">
                             </span>
                         </td>
@@ -237,7 +235,7 @@
                         <td>
                             <span data-ng-if="sms.message.length >= 25">
                                 <span data-ng-bind="sms.message | limitTo: 25"
-                                      data-uib-tooltip="{{ sms.message }}">
+                                      data-oui-tooltip="{{ sms.message }}">
                                 </span>…
                             </span>
                             <span data-ng-if="sms.message.length < 25"
@@ -247,7 +245,7 @@
                         <td>
                             <span data-ng-if="sms.status.length >= 25">
                                 <span data-ng-bind="sms.status | limitTo: 25"
-                                      data-uib-tooltip="{{ sms.status }}">
+                                      data-oui-tooltip="{{ sms.status }}">
                                 </span>…
                             </span>
                             <span data-ng-if="sms.status.length < 25"

@@ -323,7 +323,7 @@ angular.module('services').service(
             available: capa.available,
           })),
           databaseTypes: models.models[
-            'hosting.web.database.DatabaseTypeEnum'
+            'hosting.web.database.DatabaseCreationTypeEnum'
           ].enum.map(m => this.WucJavaEnum.tr(m)),
           primaryLogin: hosting.primaryLogin,
         }));

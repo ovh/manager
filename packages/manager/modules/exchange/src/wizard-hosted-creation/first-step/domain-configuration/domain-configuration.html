@@ -132,8 +132,8 @@
                         <span class="oui-radio__label">
                             <span data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_isNotUsedByMails' | translate"></span>
                             <span class="small"
-                                data-uib-tooltip-html="$ctrl.mxRelayTooltip"
-                                data-tooltip-class="text-left">
+                                data-oui-tooltip="{{::$ctrl.mxRelayTooltip}}"
+                                data-oui-tooltip-placement="left">
                                 <span class="fa fa-question-circle" aria-hidden="true"></span>
                             </span>
                         </span>
@@ -171,8 +171,8 @@
             <div class="mt-5" data-ng-show="!$ctrl.homepage.domainIsNotManagedByCurrentNIC && ($ctrl.homepage.domainIsOnlyForExchange === true || $ctrl.homepage.domainIsAssociatedToEmailService === true || ($ctrl.homepage.domainIsAssociatedToEmailService === false && $ctrl.mxRelayForm.$valid === true))">
                 <span data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_header' | translate"></span>
                 <span class="as-superscript"
-                      data-uib-tooltip-html="$ctrl.tooltipText"
-                      data-tooltip-class="text-left">
+                      data-oui-tooltip="{{::$ctrl.tooltipText}}"
+                      data-oui-tooltip-placement="top">
                     <span class="fa fa-question-circle" aria-hidden="true"></span>
                 </span>
                 <div class="oui-radio">
@@ -198,8 +198,8 @@
                         <p class="oui-radio__description">
                             <span data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_manual_explanation1' | translate"></span>
                             <span class="small as-superscript"
-                                data-uib-tooltip-html="$ctrl.mxAndSRVTooltipText"
-                                data-tooltip-class="text-left">
+                                data-oui-tooltip="{{::$ctrl.mxAndSRVTooltipText}}"
+                                data-oui-tooltip-placement="top-end">
                                 <span class="fa fa-question-circle" aria-hidden="true"></span>
                             </span>
                             <span data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_ovhDomain_dnsZone_manual_explanation2' | translate"></span>
@@ -238,8 +238,8 @@
             <h1 class="oui-header_3 oui-header_underline mt-3">
                 <span data-ng-bind="'exchange_wizardHostedCreation_addDomainName_domainNameSelection_nonOvhDomain_header' | translate"></span>
                 <span class="as-superscript small"
-                      data-uib-tooltip-html="$ctrl.tooltipText"
-                      data-tooltip-class="text-left">
+                      data-oui-tooltip="{{::$ctrl.tooltipText}}"
+                      data-oui-tooltip-placement="top">
                     <span class="fa fa-question-circle" aria-hidden="true"></span>
                 </span>
             </h1>

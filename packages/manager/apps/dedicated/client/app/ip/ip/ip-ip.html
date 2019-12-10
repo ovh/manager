@@ -343,8 +343,8 @@
                         <td>
                             <div class="text-warning"
                                  data-ng-if="alertsCount(ipBlock)"
-                                 data-uib-tooltip="{{ alertsTooltip(ipBlock) }}"
-                                 data-tooltip-placement="left">
+                                 data-oui-tooltip="{{ alertsTooltip(ipBlock) }}"
+                                 data-oui-tooltip-placement="left">
                                 <span class="fa fa-warning"
                                       aria-hidden="true">
                                 </span>
@@ -446,8 +446,8 @@
                                 <span class="badge"
                                       data-ng-if="ipBlock.service.virtualmac.status === 'PENDING'"
                                       data-translate="ip_taskpending_label"
-                                      data-uib-tooltip="{{ 'ip_manage_task_pending' | translate }}"
-                                      data-tooltip-placement="top">
+                                      data-oui-tooltip="{{:: 'ip_manage_task_pending' | translate }}"
+                                      data-oui-tooltip-placement="top">
                                 </span>
                             </div>
                             <oui-spinner size="s"
@@ -489,23 +489,23 @@
                         <td class="text-warning">
                             <span class="fa fa-minus-circle"
                                   data-ng-if="ip.spam === 'BLOCKED_FOR_SPAM'"
-                                  data-uib-tooltip="{{ 'ip_alerts_spam_1' | translate }}"
-                                  data-tooltip-placement="left">
+                                  data-oui-tooltip="{{:: 'ip_alerts_spam_1' | translate }}"
+                                  data-oui-tooltip-placement="left">
                             </span>
                             <span class="fa fa-bug"
                                   data-ng-if="ip.antihack === 'BLOCKED'"
-                                  data-uib-tooltip="{{ 'ip_alerts_antihack_1' | translate }}"
-                                  data-tooltip-placement="left">
+                                  data-oui-tooltip="{{:: 'ip_alerts_antihack_1' | translate }}"
+                                  data-oui-tooltip-placement="left">
                             </span>
                             <span class="fa fa-minus-circle"
                                   data-ng-if="ip.arp === 'BLOCKED'"
-                                  data-uib-tooltip="{{ 'ip_alerts_arp_1' | translate }}"
-                                  data-tooltip-placement="left">
+                                  data-oui-tooltip="{{:: 'ip_alerts_arp_1' | translate }}"
+                                  data-oui-tooltip-placement="left">
                             </span>
                             <span class="fa fa-bolt"
                                   data-ng-if="ip.mitigation === 'FORCED'"
-                                  data-uib-tooltip="{{ 'ip_alerts_mitigation_1' | translate }}"
-                                  data-tooltip-placement="left">
+                                  data-oui-tooltip="{{:: 'ip_alerts_mitigation_1' | translate }}"
+                                  data-oui-tooltip-placement="left">
                             </span>
                         </td>
 

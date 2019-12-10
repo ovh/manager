@@ -10,8 +10,8 @@
     <oui-column data-title="::'cpbc_volume_col_consumption' | translate" data-property="totalPrice" data-sortable>
         <span data-ng-bind=":: $row.totalPrice"></span>
         <i class="fa fa-question-circle left-space-m4"
-           data-uib-tooltip="{{ :: 'cpbc_volume_consumption_tooltip_part1' | translate }}{{ :: 'cpbc_volume_consumption_tooltip_part2' | translate : {amount: volume.amount} }}"
-           data-tooltip-placement="left" aria-hidden="true">
+           data-oui-tooltip="{{:: 'cpbc_volume_consumption_tooltip_part1' | translate }}{{:: 'cpbc_volume_consumption_tooltip_part2' | translate : {amount: volume.amount} }}"
+           data-oui-tooltip-placement="left" aria-hidden="true">
         </i>
     </oui-column>
 </oui-datagrid>

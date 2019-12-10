@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       domainView: {
         template,
         controller: 'DomainTabGeneralInformationsCtrl',
+        controllerAs: '$ctrl',
       },
     },
     atInternet: {
@@ -31,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
       domainView: {
         template,
         controller: 'DomainTabGeneralInformationsCtrl',
+        controllerAs: '$ctrl',
       },
     },
     atInternet: {

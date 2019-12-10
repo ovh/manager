@@ -23,7 +23,6 @@
 <div data-ui-view>
     <div class="tab-content">
         <div data-ovh-alert></div>
-
         <oui-message
             class="mb-4"
             data-ng-if="$ctrl.BillingAutoRenew.isAutomaticRenewV2Available() && (
@@ -154,24 +153,30 @@
                 data-title="::'billing_autorenew_service' | translate"
                 data-type="options"
                 data-type-options="$ctrl.filtersOptions.serviceType"
-                data-filterable>
+                data-filterable
+                data-sortable>
                 <span data-ng-bind-html="('billing_autorenew_service_type_' + $row.serviceType) | translate"></span>
             </oui-column>
             <oui-column
-                data-title="::'billing_autorenew_service_state' | translate">
-                <span class="oui-icon oui-icon-success_circle oui-color-success-medium"
-                    aria-label="{{:: 'billing_autorenew_service_state_UP' | translate }}"
-                    title="{{:: 'billing_autorenew_service_state_UP' | translate }}"
-                    data-ng-if="!$row.isSuspended()">
-                </span>
-                <span class="oui-status oui-status_error"
-                    data-ng-if="$row.isSuspended()"
-                    data-translate="billing_autorenew_service_state_EXPIRED">
+                data-property="state"
+                data-title="::'billing_autorenew_criterion_state' | translate"
+                data-type="options"
+                data-type-options="$ctrl.filtersOptions.state"
+                data-filterable
+                data-sortable>
+                <span
+                    class="oui-status"
+                    data-ng-class="{
+                        'oui-status_success': !$row.isSuspended(),
+                        'oui-status_error': $row.isSuspended()
+                    }"
+                    data-translate="{{ 'billing_autorenew_service_state_' + $row.state | translate }}">
                 </span>
             </oui-column>
             <oui-column
                 data-title="::'billing_autorenew_service_status' | translate"
                 data-property="status"
+                data-sortable
                 data-type="options"
                 data-type-options="$ctrl.filtersOptions.status"
                 data-filterable>
@@ -192,7 +197,7 @@
                 data-filterable
                 data-sortable>
                 <span data-ng-if="$row.hasDebt()" data-translate="billing_autorenew_service_date_now"></span>
-                <span data-ng-if="$row.isOneShot()">-</span>
+                <span data-ng-if="$row.isOneShot() && !$row.isResiliated() && !$row.hasPendingResiliation()">-</span>
                 <span
                     data-ng-if="$row.hasManualRenew() && !$row.isResiliated() && !$row.hasDebt()"
                     data-translate="billing_autorenew_service_date_before"

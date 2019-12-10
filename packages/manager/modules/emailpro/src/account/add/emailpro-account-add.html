@@ -91,7 +91,7 @@
                         <input type="password" class="form-control" id="password" placeholder="**********" required
                                data-ng-model="accountToAdd.password"
                                data-ng-change="setPasswordsFlag(accountToAdd)"
-                               data-uib-tooltip="{{passwordTooltip}}">
+                               data-oui-tooltip="{{passwordTooltip}}">
                         <span class="help-block"
                               data-ng-if="simplePasswordFlag"
                               data-translate="emailpro_ACTION_update_account_step1_password_weak"></span>
@@ -113,7 +113,7 @@
                     <div class="col-md-9">
                         <input type="password" class="form-control" id="passwordConfirm" placeholder="**********" required
                                data-ng-model="accountToAdd.passwordConfirmation"
-                               data-uib-tooltip="{{passwordTooltip}}"
+                               data-oui-tooltip="{{passwordTooltip}}"
                                data-ng-change="setPasswordsFlag(accountToAdd)">
                         <span class="help-block"
                               data-ng-if="differentPasswordFlag"

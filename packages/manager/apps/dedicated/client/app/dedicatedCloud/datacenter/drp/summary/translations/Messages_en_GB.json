@@ -36,5 +36,6 @@
   "dedicatedCloud_datacenter_drp_vpn_change_parameters": "Modify settings",
   "dedicatedCloud_datacenter_drp_vpn_success": "The VPN configuration has been updated",
   "dedicatedCloud_datacenter_drp_vpn_error": "An error has occurred updating the VPN configuration",
-  "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Please enter a valid IPv4 (e.g. 192.168.0.1)"
+  "dedicatedCloud_datacenter_drp_vpn_ip_invalid": "Please enter a valid IPv4 (e.g. 192.168.0.1)",
+  "dedicatedCloud_datacenter_drp_confirm_order": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been generated. Once you have paid the amount due, you can check the enableDisasterRecovery task in the Operations tab to track the option being enabled."
 }

@@ -20,30 +20,34 @@ export const state = {
 
       // use callback for redirection if provided
       if (callback) {
-        return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}`;
+        return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}&ovhSessionSuccess=true`;
       }
 
 
       // redirect to login page on success
       if (onsuccess && SANITIZATION.regex.test(onsuccess)) {
-        return onsuccess;
+        return `${onsuccess}${/\?/.test(onsuccess) ? '&' : '?'}ovhSessionSuccess=true`;
       }
 
       return '/auth/?action=gotomanager';
     },
+
     getStepByName: /* @ngInject */ steps => name => find(steps, {
       name,
     }),
+
     isActiveStep: /* @ngInject */ ($state, getStepByName) => (name) => {
       const step = getStepByName(name);
       return $state.is(step.state);
     },
+
     me: /* @ngInject */ ssoAuthentication => ssoAuthentication
       .getSsoAuthPendingPromise()
       .then(() => ssoAuthentication.user),
     onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {
       ssoAuthentication.logout($location.search().onsuccess);
     },
+
     onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
@@ -52,6 +56,7 @@ export const state = {
         });
       }
     },
+
     finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
       .saveNic(me.model)
       .then(() => {
@@ -65,6 +70,7 @@ export const state = {
           $window.location.assign(redirectUrl);
         }
       }),
+
     steps: () => [{
       name: 'identity',
       state: 'sign-up.identity',

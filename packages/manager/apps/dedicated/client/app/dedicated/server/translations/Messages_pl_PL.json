@@ -348,7 +348,7 @@
   "server_configuration_rack": "Szafa",
   "server_configuration_server_id": "ID serwera",
   "server_configuration_name": "Nazwa OVH",
-  "server_configuration_displayname": "Nazwa",
+  "server_configuration_displayname": "Nazwisko",
   "server_configuration_displayname_edit_button": "Zmień",
   "server_configuration_description": "Nazwa handlowa",
   "server_configuration_description_housing": "Housing",

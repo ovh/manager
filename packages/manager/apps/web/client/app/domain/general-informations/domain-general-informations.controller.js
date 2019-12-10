@@ -13,6 +13,8 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import some from 'lodash/some';
 
+import { OWNER_CHANGE_URL } from './general-information.constants';
+
 export default class DomainTabGeneralInformationsCtrl {
   /* @ngInject */
   constructor(
@@ -32,6 +34,7 @@ export default class DomainTabGeneralInformationsCtrl {
     User,
     WucAllDom,
     DOMAIN,
+    goToDnsAnycast,
   ) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
@@ -49,6 +52,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.User = User;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
+    this.goToDnsAnycast = goToDnsAnycast;
   }
 
   $onInit() {
@@ -383,24 +387,17 @@ export default class DomainTabGeneralInformationsCtrl {
   getUpdateOwnerUrl(domain) {
     const ownerUrlInfo = { target: '', error: '' };
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
-      ownerUrlInfo.target = `#/useraccount/contact/${domain.name}/${domain.whoisOwner.id}`;
+      ownerUrlInfo.target = `${this.constants.MANAGER_URLS.dedicated}${OWNER_CHANGE_URL}${domain.name}/${domain.whoisOwner.id}`;
     } else if (!has(domain, 'name')) {
       ownerUrlInfo.error = this.$translate.instant('domain_tab_REDIRECTION_add_step4_server_cname_error');
     } else {
-      switch (domain.whoisOwner) {
-        case this.DOMAIN.WHOIS_STATUS.PENDING:
-          ownerUrlInfo.error = this.$translate.instant('domain_dashboard_whois_pending');
-          break;
-        case this.DOMAIN.WHOIS_STATUS.INVALID_CONTACT:
-          ownerUrlInfo.error = this.$translate.instant('domain_dashboard_whois_invalid_contact');
-          break;
-        default:
-          ownerUrlInfo.error = this.$translate.instant('domain_dashboard_whois_error');
-      }
+      ownerUrlInfo.error = domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.PENDING
+        && domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.INVALID_CONTACT
+        && this.$translate.instant('domain_dashboard_whois_error');
     }
 
     if (ownerUrlInfo.error) {
-      this.Alerter.error(ownerUrlInfo.error, this.$scope.alerts.page);
+      this.Alerter.error(ownerUrlInfo.error, this.$scope.alerts.tabs);
     }
 
     return ownerUrlInfo;

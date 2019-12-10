@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import cucAutoComplete from './autocomplete';
+import cucAdvancedOptions from './cui/advanced-options';
 import cucAutofocus from './autofocus';
 import cucAutoSelect from './autoselect';
 import cucBytes from './bytes';
@@ -34,6 +35,7 @@ angular
   .module(moduleName, [
     cui,
     cucAutoComplete,
+    cucAdvancedOptions,
     cucAutofocus,
     cucAutoSelect,
     cucBytes,

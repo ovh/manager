@@ -90,8 +90,8 @@
                            data-ng-model="rule.sourcePort">
                     <span class="fa fa-info-circle"
                           data-ng-show="validator.sourcePort === false"
-                          data-uib-tooltip="{{ 'ip_firewall_source_port_tooltip' | translate }}"
-                          data-tooltip-placement="left">
+                          data-oui-tooltip="{{:: 'ip_firewall_source_port_tooltip' | translate }}"
+                          data-oui-tooltip-placement="left">
                     </span>
                 </div>
 
@@ -112,8 +112,8 @@
                            data-ng-model="rule.destinationPort">
                     <span data-ng-show="validator.destinationPort === false"
                           class="fa fa-info-circle"
-                          data-uib-tooltip="{{ 'ip_firewall_destination_port_tooltip' | translate }}"
-                          data-tooltip-placement="left">
+                          data-oui-tooltip="{{:: 'ip_firewall_destination_port_tooltip' | translate }}"
+                          data-oui-tooltip-placement="left">
                     </span>
                 </div>
 
@@ -129,8 +129,8 @@
                             <span data-ng-bind=":: 'ip_firewall_rule_fragments' | translate"></span>
                             <span data-ng-show="validator.fragment === false"
                                   class="fa fa-info-circle"
-                                  data-tooltip="{{ 'ip_firewall_rule_fragments_tooltip' | translate }}"
-                                  data-tooltip-placement="left">
+                                  data-oui-tooltip="{{:: 'ip_firewall_rule_fragments_tooltip' | translate }}"
+                                  data-oui-tooltip-placement="left">
                             </span>
                         </label>
                     </div>

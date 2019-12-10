@@ -1,11 +1,6 @@
 import template from './template.html';
-import dashboardTemplate from './dashboard/veeam-dashboard.html';
 import headerTemplate from './header/veeam-dashboard-header.html';
-import storageTemplate from './storage/veeam-storage.html';
-
-import dashboardCtrl from './dashboard/veeam-dashboard.controller';
 import headerCtrl from './header/veeam-dashboard-header.controller';
-import storageCtrl from './storage/veeam-storage.controller';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -25,6 +20,25 @@ export default /* @ngInject */ ($stateProvider) => {
           component: 'ovhManagerVeeamCloudConnectComponent',
         },
       },
+      resolve: {
+        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        goToDashboard: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.dashboard', {
+          serviceName,
+        }),
+        goToStorage: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.storage', {
+          serviceName,
+        }),
+        goToStorageAdd: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.storage.add', {
+          serviceName,
+        }),
+        goToStorageQuota: /* @ngInject */ ($state, serviceName) => inventoryName => $state.go('veeam-cloud-connect.detail.storage.quota', {
+          inventoryName,
+          serviceName,
+        }),
+        goToOfferChange: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.dashboard.update-offer', {
+          serviceName,
+        }),
+      },
     })
     .state('veeam-cloud-connect.detail.dashboard', {
       url: '/dashboard',
@@ -35,15 +49,22 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'VeeamCloudConnectDashboardHeaderCtrl',
         },
         veeamContent: {
-          template: dashboardTemplate,
-          controller: dashboardCtrl,
-          controllerAs: '$ctrl',
+          component: 'ovhManagerVeeamCloudConnectDashboardComponent',
         },
       },
       translations: {
         value: ['.', './dashboard', './storage/add', './dashboard/update-offer'],
         format: 'json',
       },
+    })
+    .state('veeam-cloud-connect.detail.dashboard.update-offer', {
+      url: '/update-offer',
+      views: {
+        modal: {
+          component: 'ovhManagerVeeamCloudConnectUpdateOfferComponent',
+        },
+      },
+      layout: 'modal',
     })
     .state('veeam-cloud-connect.detail.storage', {
       url: '/storage',
@@ -54,14 +75,33 @@ export default /* @ngInject */ ($stateProvider) => {
           controllerAs: 'VeeamCloudConnectDashboardHeaderCtrl',
         },
         veeamContent: {
-          template: storageTemplate,
-          controller: storageCtrl,
-          controllerAs: 'VeeamCloudConnectStorageCtrl',
+          component: 'ovhManagerVeeamCloudConnectStorageComponent',
         },
       },
       translations: {
         value: ['.', './storage', './storage/add'],
         format: 'json',
+      },
+    })
+    .state('veeam-cloud-connect.detail.storage.add', {
+      url: '/add',
+      views: {
+        modal: {
+          component: 'ovhManagerVeeamCloudConnectStorageAddComponent',
+        },
+      },
+      layout: 'modal',
+    })
+    .state('veeam-cloud-connect.detail.storage.quota', {
+      url: '/quota/{inventoryName}',
+      views: {
+        modal: {
+          component: 'ovhManagerVeeamCloudConnectStorageQuotaComponent',
+        },
+      },
+      layout: 'modal',
+      resolve: {
+        inventoryName: /* @ngInject */ $transition$ => $transition$.params().inventoryName,
       },
     });
 };
