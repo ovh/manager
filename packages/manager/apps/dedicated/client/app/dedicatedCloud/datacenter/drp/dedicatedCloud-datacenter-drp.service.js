@@ -210,8 +210,8 @@ export default class {
         );
         autoPayWithPreferredPaymentMethod = availablePaymentType
           .some(
-            ({ value }) => get(
-              availableAutomaticPaymentsMean, camelCase(value),
+            paymentType => get(
+              availableAutomaticPaymentsMean, camelCase(paymentType),
             ),
           );
 
