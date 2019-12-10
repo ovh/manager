@@ -1,7 +1,7 @@
 import controller from './detach.controller';
 import template from './detach.html';
 
-const component = {
+export default {
   bindings: {
     goBack: '<',
     namespaceId: '<',
@@ -10,5 +10,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

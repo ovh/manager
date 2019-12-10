@@ -1,7 +1,7 @@
 import controller from './delete.controller';
 import template from './delete.html';
 
-const component = {
+export default {
   bindings: {
     goBack: '<',
     namespaceId: '<',
@@ -11,5 +11,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

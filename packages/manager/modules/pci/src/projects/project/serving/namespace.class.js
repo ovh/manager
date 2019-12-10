@@ -1,4 +1,3 @@
-
 export default class Namespace {
   constructor({
     clusterId,

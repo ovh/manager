@@ -1,4 +1,3 @@
-
 export default class PciServingNamespaceTokensController {
   /* @ngInject */
   constructor(

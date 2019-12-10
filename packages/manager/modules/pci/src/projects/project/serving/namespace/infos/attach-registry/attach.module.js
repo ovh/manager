@@ -6,7 +6,13 @@ import service from '../registry.service';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceInfosAttachRegistry';
 
-angular.module(moduleName, [])
+angular.module(moduleName, [
+  'ngTranslateAsyncLoader',
+  'oui',
+  'ovh-api-services',
+  'pascalprecht.translate',
+  'ui.router',
+])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerPciProjectServingNamespaceInfosAttachRegistryComponent', component)

@@ -1,4 +1,3 @@
-<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <div>
     <p class="mb-3">
         <span data-translate="pci_projects_project_serving_namespace_models_description_1"
@@ -19,9 +18,9 @@
                     data-property="versionStatus">
             <span class="oui-status"
                     data-ng-class="{
-                    'oui-status_success' : $row.isDeployed(),
-                    'oui-status_warning' : $row.isProcessing(),
-                    'oui-status_error' : $row.isInError()
+                        'oui-status_success' : $row.isDeployed(),
+                        'oui-status_warning' : $row.isProcessing(),
+                        'oui-status_error' : $row.isInError()
                     }"
                     data-translate="{{:: 'pci_projects_project_serving_namespace_models_version_status_' + $row.versionStatus }}">
             </span>
@@ -67,9 +66,8 @@
             </oui-action-menu-item>
         </oui-action-menu>
         <extra-top>
-            <oui-button data-aria-label="{{:: 'pci_projects_project_serving_namespace_models_deploy_model' | translate }}"
-                        data-text="{{:: 'pci_projects_project_serving_namespace_models_deploy_model' | translate }}"
-                        data-on-click="$ctrl.addModel()">
+            <oui-button data-on-click="$ctrl.addModel()">
+                <span data-translate="pci_projects_project_serving_namespace_models_deploy_model"></span>
             </oui-button>
         </extra-top>
     </oui-datagrid>

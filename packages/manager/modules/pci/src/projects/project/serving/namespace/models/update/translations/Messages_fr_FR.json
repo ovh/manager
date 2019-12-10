@@ -4,5 +4,5 @@
   "pci_projects_project_serving_namespace_models_update": "Actualiser un modèle",
   "pci_projects_project_serving_namespace_models_update_common_update": "Actualiser",
   "pci_projects_project_serving_namespace_models_update_common_cancel": "Annuler",
-  "pci_projects_project_serving_namespace_models_update_warning": "Votre modèle {{ modelId }} sera reconstruit depuis le même répertoire dans l'Object Storage, assurez vous de mettre à jour les fichiers avant d'actualiser votre modèle."
+  "pci_projects_project_serving_namespace_models_update_warning": "Votre modèle {{ modelId }} sera reconstruit depuis le même répertoire dans l'Object Storage, assurez-vous de mettre à jour les fichiers avant d'actualiser votre modèle."
 }

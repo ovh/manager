@@ -1,7 +1,7 @@
 import controller from './attach.controller';
 import template from './attach.html';
 
-const component = {
+export default {
   bindings: {
     goBack: '<',
     namespaceId: '<',
@@ -10,5 +10,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

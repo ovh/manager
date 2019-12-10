@@ -22,8 +22,8 @@
                    data-ng-model="$ctrl.token.resource"
                    data-ng-pattern="/^([0-9a-zA-Z-]+\*?|\*)$/">
         </oui-field>
-        <oui-select name="groups" model="$ctrl.token.groups" placeholder="Select a group"
-                    items="$ctrl.GROUPS" match="id" multiple searchable>
+        <oui-select data-name="groups" data-model="$ctrl.token.groups" data-placeholder="{{:: 'pci_projects_project_serving_namespace_tokens_groups' | translate }}"
+                    data-items="$ctrl.GROUPS" data-match="id" data-multiple data-searchable>
         </oui-select>
     </oui-modal>
 </form>

@@ -42,15 +42,11 @@ export default class PciServingNamespaceModelsAddController {
     this.PciStoragesContainersService.getContainer(
       this.projectId, this.namespace.containerId,
     ).then((container) => {
-      const result = {};
-      container.objects.forEach(({ name }) => {
+      this.paths = container.objects.map(({ name }) => {
         const split = name.split('/');
         split.pop();
-        const directory = split.join('/');
-        result[directory] = true;
-      });
-
-      this.paths = Object.keys(result);
+        return split.join('/');
+      }).filter(path => path !== '');
     });
   }
 
@@ -62,7 +58,7 @@ export default class PciServingNamespaceModelsAddController {
       storagePath: this.model.storagePath,
       flavor: this.model.flavor.id,
       workflowTemplate: this.model.workflowTemplate,
-      imageId: this.model.imageId && this.model.imageId.id,
+      imageId: get(this.model.imageId, 'id'),
     }).then(() => this.goBack(
       this.$translate.instant('pci_projects_project_serving_namespace_models_add_success'),
     ))

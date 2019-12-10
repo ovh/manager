@@ -7,11 +7,16 @@ import service from '../tokens.service';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceTokensDelete';
 
-angular.module(moduleName, [])
+angular.module(moduleName, [
+  'ngTranslateAsyncLoader',
+  'oui',
+  'ovh-api-services',
+  'pascalprecht.translate',
+  'ui.router',
+])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerPciProjectServingNamespaceTokensDeleteComponent', component)
   .service('OvhManagerPciServingTokensService', service);
-
 
 export default moduleName;

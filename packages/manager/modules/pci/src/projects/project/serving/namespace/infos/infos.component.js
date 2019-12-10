@@ -1,7 +1,7 @@
 import controller from './infos.controller';
 import template from './infos.html';
 
-const component = {
+export default {
   bindings: {
     namespace: '<',
     registry: '<',
@@ -17,5 +17,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

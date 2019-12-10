@@ -18,7 +18,6 @@ import component from './serving.component';
 import routing from './serving.routing';
 import service from './serving.service';
 
-
 const moduleName = 'ovhManagerPciServing';
 
 angular

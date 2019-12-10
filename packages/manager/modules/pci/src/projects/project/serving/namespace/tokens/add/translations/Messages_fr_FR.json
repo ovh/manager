@@ -7,5 +7,6 @@
   "pci_projects_project_serving_namespace_tokens_resource": "Ressource",
   "pci_projects_project_serving_namespace_tokens_group": "Groupe",
   "pci_projects_project_serving_namespace_tokens_add_info": "Les tokens peuvent être assignés à un modèle spécifique ou à votre namespace complet en utilisant le wildcard \"*\". Vous pouvez également spécifier si les privilèges du token se limitent à l'administration des modèles, leur évaluation ou les deux.",
-  "pci_projects_project_serving_namespace_tokens_resource_validation_error": "La ressource doit commencer par un caractère alphanumérique minuscule ou majuscule (de a à z et de 0 à 9), peut comporter les signes de ponctuation suivants : « . » et « - » et peut se terminer par « * » afin d'inclure toutes les sous-ressources."
+  "pci_projects_project_serving_namespace_tokens_resource_validation_error": "La ressource doit commencer par un caractère alphanumérique minuscule ou majuscule (de a à z et de 0 à 9), peut comporter les signes de ponctuation suivants : « . » et « - » et peut se terminer par « * » afin d'inclure toutes les sous-ressources.",
+  "pci_projects_project_serving_namespace_tokens_groups": "Choisir un ou plusieurs groupes"
 }

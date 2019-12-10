@@ -1,4 +1,3 @@
-
 export const PROCESSING_API_STATUS = [
   'pending',
   'starting',
@@ -39,6 +38,9 @@ export const ERROR_VERSION_STATUS = [
 ];
 
 export default {
+  PROCESSING_API_STATUS,
   API_STATUS,
   VERSION_STATUS,
+  PROCESSING_VERSION_STATUS,
+  ERROR_VERSION_STATUS,
 };

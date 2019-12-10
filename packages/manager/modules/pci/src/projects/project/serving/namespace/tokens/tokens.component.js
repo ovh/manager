@@ -1,7 +1,7 @@
 import controller from './tokens.controller';
 import template from './tokens.html';
 
-const component = {
+export default {
   bindings: {
     addToken: '<',
     deleteToken: '<',
@@ -14,5 +14,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

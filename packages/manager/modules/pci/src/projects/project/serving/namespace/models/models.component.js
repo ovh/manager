@@ -1,7 +1,7 @@
 import controller from './models.controller';
 import template from './models.html';
 
-const component = {
+export default {
   bindings: {
     addModel: '<',
     namespaces: '<',
@@ -16,5 +16,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

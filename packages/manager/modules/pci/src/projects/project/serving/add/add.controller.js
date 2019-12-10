@@ -5,17 +5,6 @@ export default class PciServingAddController {
   constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-
-    // other attributes
-    this.model = {
-      region: null,
-      description: null,
-      container: null,
-    };
-
-    this.loading = false;
-
-    this.messageHandler = null;
   }
 
   /* ================================
@@ -54,6 +43,14 @@ export default class PciServingAddController {
   }
 
   $onInit() {
+    this.model = {
+      region: null,
+      description: null,
+      container: null,
+    };
+
+    this.loading = false;
+
     this.loadMessages();
   }
 }

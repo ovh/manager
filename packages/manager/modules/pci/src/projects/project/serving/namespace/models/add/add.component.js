@@ -1,7 +1,7 @@
 import controller from './add.controller';
 import template from './add.html';
 
-const component = {
+export default {
   bindings: {
     goBack: '<',
     namespaceId: '<',
@@ -14,5 +14,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;

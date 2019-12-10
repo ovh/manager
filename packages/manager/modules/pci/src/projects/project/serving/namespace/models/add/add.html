@@ -6,8 +6,7 @@
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_type' | translate }}"
             data-editable="!$ctrl.isAdding"
-            data-loading="$ctrl.isAdding"
-        >
+            data-loading="$ctrl.isAdding">
             <oui-radio
                 data-ng-repeat="workflowTemplate in $ctrl.workflowTemplates track by $index"
                 data-model="$ctrl.model.workflowTemplate"
@@ -27,6 +26,7 @@
         <oui-step-form
             data-header="{{ :: 'pci_projects_project_serving_namespace_models_add_model' | translate }}"
             data-editable="!$ctrl.isAdding"
+            data-valid="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE || $ctrl.model.storagePath"
             data-loading="$ctrl.isAdding">
             <div class="container-fluid px-0" data-ng-if="$ctrl.model.workflowTemplate == $ctrl.PRESET_IMAGE">
                 <div class="row">
@@ -45,22 +45,24 @@
             </div>
 
             <div data-ng-if="$ctrl.model.workflowTemplate == $ctrl.BUILD_IMAGE">
-                <span data-translate="pci_projects_project_serving_namespace_models_add_storage_path_info"></span>
+                <div data-ng-if="$ctrl.paths.length">
+                    <span data-translate="pci_projects_project_serving_namespace_models_add_storage_path_info"></span>
 
-                <oui-field data-size="xl">
-                    <oui-select
-                        disabled="$ctrl.paths.length == 0"
-                        id="storagePath"
-                        name="storagePath"
-                        model="$ctrl.model.storagePath"
-                        items="$ctrl.paths"
-                        data-required>
-                    </oui-select>
-                </oui-field>
-                <p data-ng-if="!$ctrl.paths.length">
-                    <span class="text-danger" ng-click="$ctrl.goToContainer()"
+                    <oui-field data-size="xl" data-ng-if="$ctrl.paths.length">
+                        <oui-select
+                            disabled="$ctrl.paths.length == 0"
+                            id="storagePath"
+                            name="storagePath"
+                            model="$ctrl.model.storagePath"
+                            items="$ctrl.paths"
+                            data-required>
+                        </oui-select>
+                    </oui-field>
+                </div>
+                <button class="oui-button oui-button_link" ng-click="$ctrl.goToContainer()" data-ng-if="!$ctrl.paths.length">
+                    <span class="text-danger"
                           data-translate="pci_projects_project_serving_namespace_models_add_storage_path_no_path"></span>
-                </p>
+                </button>
             </div>
         </oui-step-form>
 
@@ -88,12 +90,12 @@
 
             <oui-field data-label="{{:: 'pci_projects_project_serving_namespace_models_storage_scale_min' | translate }}"
                        data-size="auto">
-                <oui-numeric min="1" max="1" model="$ctrl.core" name="test" disabled>
+                <oui-numeric min="1" max="1" data-model="$ctrl.scale_min" name="scale_min" disabled>
                 </oui-numeric>
             </oui-field>
             <oui-field data-label="{{:: 'pci_projects_project_serving_namespace_models_storage_scale_max' | translate }}"
                        data-size="auto">
-                <oui-numeric min="3" max="3" model="$ctrl.max" name="test2" disabled>
+                <oui-numeric min="3" max="3" data-model="$ctrl.scale_max" name="scale_max" disabled>
                 </oui-numeric>
             </oui-field>
         </oui-step-form>
@@ -117,22 +119,11 @@
                             data-variant="light"
                             data-values="[flavor]"
                             data-required>
-                            <oui-select-picker-section>
-                                <div class="text-right">
-                                    <span
-                                        class="d-block"
-                                        data-translate="pci_projects_project_serving_namespace_models_add_instances_price"
-                                        data-translate-values="{ price: flavor.price }">
-                                </span>
-                                </div>
-                            </oui-select-picker-section>
                         </oui-select-picker>
                     </div>
                 </div>
             </div>
-
         </oui-step-form>
-
     </oui-stepper>
 </div>
 

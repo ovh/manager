@@ -13,7 +13,6 @@
   "pci_projects_project_serving_namespace_models_add_instances": "Configuration des instances",
   "pci_projects_project_serving_namespace_models_add_instances_info": "Pendant la phase de découverte un seul type d'instance est disponible. Des types d'instance additionnels seront créés pour s'adapter aux besoins spécifiques.",
   "pci_projects_project_serving_namespace_models_add_autoscaling": "Auto Scaling",
-  "pci_projects_project_serving_namespace_models_add_instances_price": "{{price}}€ ex. HT/heure",
   "pci_projects_project_serving_namespace_models_add_storage_path_info": "Sélectionnez le chemin vers le répertoire de votre modèle dans l'Object Storage",
   "pci_projects_project_serving_namespace_models_add_storage_path_no_path": "Votre Object Storage semble vide, vous pouvez ajouter vos modèles ici",
   "pci_projects_project_serving_namespace_models_common_add": "Déployer",

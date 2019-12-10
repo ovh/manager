@@ -11,6 +11,11 @@ import update from './update';
 const moduleName = 'ovhManagerPciProjectServingNamespaceModels';
 
 angular.module(moduleName, [
+  'ngTranslateAsyncLoader',
+  'oui',
+  'ovh-api-services',
+  'pascalprecht.translate',
+  'ui.router',
   add,
   deleteModule,
   update,
