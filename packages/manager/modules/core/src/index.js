@@ -64,6 +64,7 @@ angular
   .config(
     (
       $translateProvider,
+      ouiCalendarConfigurationProvider,
       translatePluggableLoaderProvider,
       TranslateServiceProvider,
     ) => {
@@ -85,6 +86,10 @@ angular
 
       $translateProvider.use(defaultLanguage);
       $translateProvider.fallbackLanguage(LANGUAGES.fallback);
+
+      ouiCalendarConfigurationProvider.setLocale(
+        TranslateServiceProvider.getUserLocale(true),
+      );
     },
   )
   .service('SessionService', sessionService)
