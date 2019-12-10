@@ -3,13 +3,14 @@ import template from './domain-webhosting-order-steps-payment.html';
 
 export default {
   bindings: {
-    alertCheckoutError: '<',
     cartId: '<',
     defaultPaymentMean: '<',
     deleteCartItems: '<',
     domainName: '<',
     goBackToDashboard: '<',
     prepareCheckout: '<',
+
+    displayErrorMessage: '<',
   },
   controller,
   name: 'ovhManagerWebDomainWebhostingOrderStepsPayment',

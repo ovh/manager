@@ -49,6 +49,7 @@
   "privateDatabase_dashboard_infrastructure_sailabove": "SailAbove",
   "privateDatabase_dashboard_infrastructure_docker": "Docker",
   "privateDatabase_dashboard_hostname": "Nom d'hôte",
+  "privateDatabase_dashboard_hostname_tooltip": "Veuillez utiliser le nom d'hôte fourni pour vous connecter à votre instance, l'adresse IP associée pouvant évoluer au fil du temps.",
   "privateDatabase_dashboard_host": "Host",
   "privateDatabase_dashboard_port_legacy": "Port FTP",
   "privateDatabase_dashboard_port_docker": "Port SFTP",

@@ -43,7 +43,7 @@
         <oui-step-form
             name="checkout"
             data-header="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_header_activation' : 'hosting_cdn_order_step_header_payment') | translate }}"
-            data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : 'hosting_cdn_order_step_description_payment') | translate }}"
+            data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : '') | translate }}"
             data-submit-text="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_submit_activate' : 'hosting_cdn_order_submit_pay') | translate }}"
             data-cancel-text="{{:: 'hosting_cdn_order_cancel' | translate }}"
             data-editable="::false"
@@ -54,12 +54,11 @@
             data-prevent-next>
 
             <!-- Payment Means -->
-            <ovh-manager-order-payment-means
-                name="paymentMean"
+            <ovh-payment-method-choice
                 data-ng-if="::!$ctrl.isOptionFree"
-                data-default-payment-mean="$ctrl.defaultPaymentMean"
-                data-model="$ctrl.autoPayWithPreferredPaymentMethod">
-            </ovh-manager-order-payment-means>
+                data-model="$ctrl.autoPayWithPreferredPaymentMethod"
+                data-error-callback="$ctrl.goBackWithError()">
+            </ovh-payment-method-choice>
 
             <!-- Contracts -->
             <ovh-manager-order-contracts

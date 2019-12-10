@@ -9,20 +9,18 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
 
       catalogAddon: /* @ngInject */ (
-        goBack,
+        goBackWithError,
         serviceOption,
         user,
         $translate,
         HostingCdnOrderService,
       ) => HostingCdnOrderService
         .getCatalogAddon(user.ovhSubsidiary, serviceOption)
-        .catch(error => goBack(
-          $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
-          'danger',
-        )),
+        .catch(error => goBackWithError(get(error, 'data.message', error))),
 
       checkoutOrderCart: /* @ngInject */ (
         goBack,
+        goBackWithError,
         isOptionFree,
         $translate,
         $window,
@@ -46,22 +44,27 @@ export default /* @ngInject */ ($stateProvider) => {
             );
           }
         } catch (error) {
-          goBack(
-            $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
-            'danger',
-          );
+          goBackWithError(get(error, 'data.message', error));
         }
       },
 
-      defaultPaymentMean: /* @ngInject */
-        ovhPaymentMethod => ovhPaymentMethod.getDefaultPaymentMethod(),
-
       goBack: /* @ngInject */ goToHosting => goToHosting,
+
+      goBackWithError: /* @ngInject */ (
+        $translate,
+        goBack,
+      ) => error => goBack(
+        $translate.instant(
+          'hosting_dashboard_cdn_order_error',
+          { message: error },
+        ),
+        'danger',
+      ),
 
       isOptionFree: /* @ngInject */ serviceOption => serviceOption.planCode === 'cdn_free_business',
 
       prepareOrderCart: /* @ngInject */ (
-        goBack,
+        goBackWithError,
         serviceName,
         serviceOption,
         user,
@@ -76,10 +79,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return { cart, cartId };
         } catch (error) {
-          goBack(
-            $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
-            'danger',
-          );
+          goBackWithError(get(error, 'data.message', error));
 
           return {};
         }
@@ -88,16 +88,13 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ $transition$ => $transition$.params().productId,
 
       serviceOption: /* @ngInject */ (
-        goBack,
+        goBackWithError,
         serviceName,
         $translate,
         HostingCdnOrderService,
       ) => HostingCdnOrderService
         .getServiceOption(serviceName)
-        .catch(error => goBack(
-          $translate.instant('hosting_dashboard_cdn_order_error', { message: get(error, 'data.message', error) }),
-          'danger',
-        )),
+        .catch(error => goBackWithError(get(error, 'data.message', error))),
     },
   });
 };

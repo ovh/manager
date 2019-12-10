@@ -43,9 +43,6 @@ export default class CloudVouchersService {
 
   getVoucherDisplayName(voucher) {
     if (voucher.bill) {
-      if (/Black Friday/.test(voucher.description)) {
-        return voucher.description;
-      }
       return this.$translate.instant('cpb_vouchers_name_credit_provisionning');
     }
     return voucher.description;

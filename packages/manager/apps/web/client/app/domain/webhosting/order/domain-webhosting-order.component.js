@@ -2,7 +2,6 @@ import template from './domain-webhosting-order.html';
 
 export default {
   bindings: {
-    alertCheckoutError: '<',
     availableModules: '<',
     availableOffers: '<',
     cartId: '<',
@@ -15,6 +14,8 @@ export default {
     renewDate: '<',
     user: '<',
     validateCheckout: '<',
+
+    displayErrorMessage: '<',
   },
   name: 'ovhManagerWebDomainWebhostingOrder',
   template,

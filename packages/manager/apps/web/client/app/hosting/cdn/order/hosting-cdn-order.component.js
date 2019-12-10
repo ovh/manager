@@ -10,6 +10,7 @@ export default {
     checkoutOrderCart: '<',
     defaultPaymentMean: '<',
     goBack: '<',
+    goBackWithError: '<',
     isOptionFree: '<',
     prepareOrderCart: '<',
     serviceName: '<',

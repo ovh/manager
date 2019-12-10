@@ -93,13 +93,19 @@
         <div class="col-lg-6">
             <!-- zip -->
             <oui-field data-label="{{ 'sign_up_details_field_zip' | translate }}">
-                <input type="text"
-                       class="oui-input"
-                       name="zip"
-                       id="zip"
-                       data-ng-model="$ctrl.signUpFormCtrl.model.zip"
-                       data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.zip.regularExpression" />
+                <div data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }">
+                    <span data-ng-if="$ctrl.signUpFormCtrl.rules.zip.prefix"
+                          data-ng-bind="$ctrl.signUpFormCtrl.rules.zip.prefix">
+                    </span>
+                    <input type="text"
+                           class="oui-input"
+                           name="zip"
+                           id="zip"
+                           data-ng-model="$ctrl.zipModel.model"
+                           data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
+                           data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
+                           data-ng-pattern="$ctrl.zipModel.validator" />
+                </div>
             </oui-field> <!-- /input[name="zip"] -->
         </div>
 

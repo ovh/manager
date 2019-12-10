@@ -39,7 +39,6 @@ import moment from 'moment';
 import config from './config/config';
 import orderCatalogPrice from './components/manager-order-catalog-price';
 import orderContracts from './components/manager-order-contracts';
-import orderPaymentMeans from './components/manager-order-payment-means';
 import orderService from './components/manager-order-service/manager-order-service.service';
 
 import domain from './domain';
@@ -115,7 +114,6 @@ angular
     hosting,
     orderCatalogPrice,
     orderContracts,
-    orderPaymentMeans,
     zone,
     hostingEmailActivateModule,
   ])
@@ -179,6 +177,11 @@ angular
       $qProvider.errorOnUnhandledRejections(false);
     },
   ])
+  .config(/* @ngInject */ (ovhPaymentMethodProvider) => {
+    ovhPaymentMethodProvider.setPaymentMethodPageUrl(
+      config.constants.PAYMENT_METHOD_URL,
+    );
+  })
   .config(/* @ngInject */(ovhProxyRequestProvider) => {
     ovhProxyRequestProvider.proxy('$http');
     ovhProxyRequestProvider.pathPrefix('apiv6');
