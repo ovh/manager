@@ -1,3 +1,12 @@
+## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.1...@ovh-ux/manager-dedicated@11.2.2) (2019-12-11)
+
+
+### Bug Fixes
+
+* **dedicated:** add back order retractation screen ([c0bb703](https://github.com/ovh/manager/commit/c0bb7037c3d9bbbcce018cb3f2e1cabdafdf2d61))
+
+
+
 ## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.0...@ovh-ux/manager-dedicated@11.2.1) (2019-12-10)
 
 
