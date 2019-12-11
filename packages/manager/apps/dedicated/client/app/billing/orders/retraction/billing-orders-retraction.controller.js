@@ -1,26 +1,28 @@
-angular.module('Billing.controllers').controller('Billing.controllers.OrderRetractionCtrl', function BillingOrderRetractionCtrl(
+export default /* @ngInject */ function BillingOrderRetractionCtrl(
   $log,
-  $scope,
-  $state,
-  $stateParams,
   $translate,
   Alerter,
   BillingOrders,
+  goToOrders,
+  orderId,
 ) {
-  $scope.orderId = $stateParams.id;
+  this.goToOrders = goToOrders;
+  this.orderId = orderId;
+  this.loading = false;
 
-  this.$state = $state;
-
-  this.retract = function retract() {
-    $scope.success = false;
-
-    BillingOrders.retractOrder($scope.orderId)
+  this.retract = () => {
+    this.success = false;
+    this.loading = true;
+    return BillingOrders.retractOrder(orderId)
       .then(() => {
-        $scope.success = true;
+        this.success = true;
       })
       .catch((err) => {
         Alerter.alertFromSWS($translate.instant('orders_retract_error'), err);
         $log.error(err);
+      })
+      .finally(() => {
+        this.loading = false;
       });
   };
-});
+}
