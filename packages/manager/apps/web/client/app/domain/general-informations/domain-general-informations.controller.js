@@ -34,6 +34,7 @@ export default class DomainTabGeneralInformationsCtrl {
     User,
     WucAllDom,
     DOMAIN,
+    goToDnsAnycast,
   ) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
@@ -51,6 +52,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.User = User;
     this.constants = constants;
     this.DOMAIN = DOMAIN;
+    this.goToDnsAnycast = goToDnsAnycast;
   }
 
   $onInit() {

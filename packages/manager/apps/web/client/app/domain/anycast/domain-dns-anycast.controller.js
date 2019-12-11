@@ -1,77 +1,69 @@
-import get from 'lodash/get';
+export default class DomainDnsAnycastActivateCtrl {
+  /* @ngInject */
+  constructor($translate, $window, Alerter, atInternet, Domain) {
+    this.$translate = $translate;
+    this.$window = $window;
+    this.Alerter = Alerter;
+    this.atInternet = atInternet;
+    this.Domain = Domain;
+  }
 
-angular.module('App').controller(
-  'DomainDnsAnycastActivateCtrl',
-  class DomainDnsAnycastActivateCtrl {
-    constructor($scope, $translate, $window, Alerter, atInternet, Domain) {
-      this.$scope = $scope;
-      this.$translate = $translate;
-      this.$window = $window;
-      this.Alerter = Alerter;
-      this.atInternet = atInternet;
-      this.Domain = Domain;
-    }
+  $onInit() {
+    this.domainName = this.domainName;
+    this.domainId = this.domainName;
+    this.optionName = 'dnsAnycast';
+    this.loading = false;
+    this.loadOptionDetails();
+  }
 
-    $onInit() {
-      this.domain = this.$scope.currentActionData;
-      this.domainName = this.domain.displayName;
-      this.domainId = this.domain.name;
-      this.optionName = 'dnsAnycast';
-      this.loading = false;
+  loadOptionDetails() {
+    this.loading = true;
+    this.error = null;
 
-      this.$scope.orderDnsanycast = () => this.orderDnsanycast();
-      this.$scope.displayBC = () => this.displayBC();
-
-      this.loadOptionDetails();
-    }
-
-    loadOptionDetails() {
-      this.loading = true;
-      return this.Domain
-        .getOptionDetails(this.domainId, this.optionName)
-        .then((data) => {
-          this.optionDetails = data;
-        })
-        .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('domain_configuration_dnsanycast_fail'), get(err, 'data', err), this.$scope.alerts.main);
-          this.$scope.resetAction();
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-    }
-
-    orderDnsanycast() {
-      this.url = null;
-      this.loading = true;
-
-      return this.Domain
-        .orderOption(this.domainId, this.optionName, this.optionDetails.duration.duration)
-        .then((order) => {
-          this.order = order;
-          this.url = order.url;
-        })
-        .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('domain_configuration_dnsanycast_fail'), get(err, 'data', err), this.$scope.alerts.main);
-          this.$scope.resetAction();
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-    }
-
-    displayBC() {
-      this.$scope.resetAction();
-      this.atInternet.trackOrder({
-        name: `[domain]::${this.optionName}[${this.optionName}]`,
-        page: 'web::payment-pending',
-        orderId: this.order.orderId,
-        priceTaxFree: this.order.prices.withoutTax.value,
-        price: this.order.prices.withTax.value,
-        status: 1,
+    return this.Domain
+      .getOptionDetails(this.domainId, this.optionName)
+      .then((data) => {
+        this.optionDetails = data;
+      })
+      .catch(() => {
+        this.error = this.$translate.instant('domain_configuration_dnsanycast_fail');
+      })
+      .finally(() => {
+        this.loading = false;
       });
-      this.Alerter.success(this.$translate.instant('domain_order_dns_anycast_success', { t0: this.url }), this.$scope.alerts.main);
-      this.$window.open(this.url, '_blank');
-    }
-  },
-);
+  }
+
+  orderDnsanycast() {
+    this.url = null;
+    this.error = null;
+    this.loading = true;
+
+    return this.Domain
+      .orderOption(this.domainId, this.optionName, this.optionDetails.duration.duration)
+      .then((order) => {
+        this.order = order;
+        this.url = order.url;
+      })
+      .catch(() => {
+        this.error = this.$translate.instant('domain_configuration_dnsanycast_fail');
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  displayBC() {
+    this.atInternet.trackOrder({
+      name: `[domain]::${this.optionName}[${this.optionName}]`,
+      page: 'web::payment-pending',
+      orderId: this.order.orderId,
+      priceTaxFree: this.order.prices.withoutTax.value,
+      price: this.order.prices.withTax.value,
+      status: 1,
+    });
+    this.goToDns().then(() => {
+      this.Alerter.success(this.$translate.instant('domain_order_dns_anycast_success', { t0: this.url }), 'domain_alert_main');
+    });
+    this.$window.open(this.url, '_blank');
+  }
+}

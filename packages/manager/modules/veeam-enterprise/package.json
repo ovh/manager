@@ -16,6 +16,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^7.6.2",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.4.3",
+    "@ovh-ux/ng-ui-router-layout": "^3.2.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

@@ -1,3 +1,22 @@
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.5.0...@ovh-ux/manager-pci@3.6.0) (2019-12-10)
+
+
+### Features
+
+* **pci:** remove blackfriday offer ([20962d3](https://github.com/ovh/manager/commit/20962d36d26839747e9e0370a498784ba439a78c)), closes [#1865](https://github.com/ovh/manager/issues/1865)
+* **pci:** replace uib-tooltip with oui tooltip ([395719f](https://github.com/ovh/manager/commit/395719fd40251f8e644c9a12ac4bbc6901bf7274))
+
+
+
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.4.0...@ovh-ux/manager-pci@3.5.0) (2019-12-03)
+
+
+### Features
+
+* **pci:** remove blackfriday offer ([20962d3](https://github.com/ovh/manager/commit/20962d36d26839747e9e0370a498784ba439a78c)), closes [#1865](https://github.com/ovh/manager/issues/1865)
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.3.1...@ovh-ux/manager-pci@3.4.0) (2019-11-28)
 
 

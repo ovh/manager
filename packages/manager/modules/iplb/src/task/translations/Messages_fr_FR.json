@@ -1,0 +1,16 @@
+{
+  "iplb_task_title": "Tâches",
+  "iplb_task_intro_text": "Les tâches en cours pour votre Load Balancer sont automatiquement retirées de cette liste 48 h après avoir été complétées.",
+  "iplb_task_list_col_creation_date": "Date de création",
+  "iplb_task_list_col_task": "Tâche",
+  "iplb_task_list_col_progress": "Progression",
+  "iplb_task_list_col_status": "État",
+  "iplb_task_list_col_action": "Action",
+  "iplb_task_preview_title": "Aperçu de la tâche",
+  "iplb_task_preview_creation_date": "Date de création",
+  "iplb_task_preview_task": "Tâche",
+  "iplb_task_preview_progress": "Progression",
+  "iplb_task_preview_status": "État",
+  "iplb_task_preview_id": "Identifiant",
+  "iplb_task_no_task": "Aucune tâche en cours"
+}

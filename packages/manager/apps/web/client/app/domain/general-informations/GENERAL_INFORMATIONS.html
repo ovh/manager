@@ -1,4 +1,4 @@
-<div class="container-fluid px-0" data-ng-controller="DomainTabGeneralInformationsCtrl as $ctrl">
+<div class="container-fluid px-0">
     <div data-ovh-alert="{{alerts.main}}"></div>
     <div class="row d-lg-flex">
         <div class="col-md-4 mb-5">
@@ -73,7 +73,7 @@
                         data-ng-if="!$ctrl.domain.hasDnsAnycast">
                         <oui-action-menu-item
                             data-text="{{ ::'domain_configuration_dnsanycast_title_button' | translate }}"
-                            data-on-click="setAction('anycast/domain-dns-anycast', $ctrl.domain)">
+                            data-on-click="$ctrl.goToDnsAnycast()">
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -144,15 +144,14 @@
                               data-wuc-v6-ui-switch
                               data-ng-change="$ctrl.switchTheStateOfProtection()"
                               data-ng-model="$ctrl.vm.protection.uiSwitch"
-                              data-uib-tooltip="{{($ctrl.domain.protection === 'unlocking' ||
+                              data-oui-tooltip="{{($ctrl.domain.protection === 'unlocking' ||
                               $ctrl.domain.protection === 'locking' ||
-                              $ctrl.domain.protection === 'unavailable') ? ('domain_dashboard_protection_' + $ctrl.domain.protection | translate) : ''}}"
-                              data-tooltip-append-to-body="true"></span>
+                              $ctrl.domain.protection === 'unavailable') ? ('domain_dashboard_protection_' + $ctrl.domain.protection | translate) : ''}}"></span>
                         <button class="btn btn-link ml-3 p-0" type="button"
                                 data-translate="domain_dashboard_show_authinfo"
                                 data-ng-click="setAction('authinfo/domain-authinfo', $ctrl.domain)"
                                 data-ng-if="!$ctrl.domain.isExpired && $ctrl.domain.protection === 'unlocked'"
-                                data-uib-tooltip="{{ ::'domain_dashboard_show_authinfo_title' | translate }}">
+                                data-oui-tooltip="{{ ::'domain_dashboard_show_authinfo_title' | translate }}">
                         </button>
                         <button class="btn btn-link ml-3 p-0" type="button"
                                 data-translate="domain_dashboard_add_uk_tags"
@@ -176,9 +175,8 @@
                             data-ng-change="setAction('dns/sec/domain-dns-sec', $ctrl.domain)"
                             data-ng-disabled="!$ctrl.domain.zoneDnssecSupported"
                             data-ng-model="$ctrl.vm.dnssec.uiSwitch"
-                            data-uib-tooltip="{{($ctrl.domain.dnssecStatus === 'ENABLE_IN_PROGRESS' ||
-                              $ctrl.domain.dnssecStatus === 'DISABLE_IN_PROGRESS') ? ('domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus | translate) : ''}}"
-                            data-uib-tooltip-append-to-body="true"></span>
+                            data-oui-tooltip="{{($ctrl.domain.dnssecStatus === 'ENABLE_IN_PROGRESS' ||
+                              $ctrl.domain.dnssecStatus === 'DISABLE_IN_PROGRESS') ? ('domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus | translate) : ''}}"></span>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <!-- WHOIS configuration  -->

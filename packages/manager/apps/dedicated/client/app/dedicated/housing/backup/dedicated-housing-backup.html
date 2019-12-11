@@ -152,14 +152,14 @@
                                             class="btn btn-link"
                                             data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
                                             data-ng-click="setIpBackupCurrentEdit(ipbackup)"
-                                            data-uib-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_edit' | translate }}">
+                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_edit' | translate }}">
                                         <span class="oui-icon oui-icon-pen_line" aria-hidden="true"></span>
                                     </button>
                                     <button type="button"
                                             class="btn btn-link"
                                             data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied"
                                             data-ng-click="cancelIpBackupCurrentEdit()"
-                                            data-uib-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_cancel' | translate }}">
+                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_cancel' | translate }}">
                                         <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                                     </button>
                                 </td>
@@ -168,14 +168,14 @@
                                             class="btn btn-link"
                                             data-ng-if="ipbackup != ipbackupCurrentEditBack && !disable.deleteFtp && ipbackup.isApplied"
                                             data-ng-click="setAction('backup/access/delete/dedicated-housing-backup-access-delete', ipbackup)"
-                                            data-uib-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_delete' | translate }}">
+                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_delete' | translate }}">
                                         <span class="oui-icon oui-icon-trash_line" aria-hidden="true"></span>
                                     </button>
                                     <button type="button"
                                             class="btn btn-link"
                                             data-ng-if="ipbackup == ipbackupCurrentEditBack && !loaders.edit && ipbackup.isApplied && (ipbackupCurrentEdit.cifs || ipbackupCurrentEdit.ftp || ipbackupCurrentEdit.nfs)"
                                             data-ng-click="saveIpBackupCurrentEdit()"
-                                            data-uib-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_modify' | translate }}">
+                                            data-oui-tooltip="{{ 'housing_configuration_ftpbackup_table_ip_modify' | translate }}">
                                          <i class="oui-icon oui-icon-success" aria-hidden="true"></i>
                                     </button>
                                     <oui-spinner data-ng-if="ipbackup == ipbackupCurrentEditBack && loaders.edit"

@@ -1,10 +1,4 @@
 import get from 'lodash/get';
-
-import storageAddTemplate from '../storage/add/veeam-storage-add.html';
-import updateOfferTemplate from './update-offer/veeam-update-offer.html';
-import storageAddCtrl from '../storage/add/veeam-storage-add.controller';
-import updateOfferCtrl from './update-offer/veeam-update-offer.controller';
-
 import { REDIRECT_URLS } from '../constants';
 
 export default class VeeamCloudConnectDashboardCtrl {
@@ -98,61 +92,8 @@ export default class VeeamCloudConnectDashboardCtrl {
     this.orderableOffers.load();
   }
 
-  addStorage() {
-    if (this.actions.data.addStorage.available) {
-      this.CucControllerHelper.modal
-        .showModal({
-          modalConfig: {
-            template: storageAddTemplate,
-            controller: storageAddCtrl,
-            controllerAs: 'VeeamCloudConnectStorageAddCtrl',
-            resolve: {
-              serviceName: () => this.serviceName,
-            },
-          },
-        })
-        .then(result => this.VeeamCloudConnectService.startPolling(
-          this.$stateParams.serviceName,
-          result.data,
-        ))
-        .catch(err => this.VeeamCloudConnectService.unitOfWork.messages.push({
-          text: err.message,
-          type: 'error',
-        }));
-    } else {
-      this.CucControllerHelper.modal.showWarningModal({
-        title: this.$translate.instant('veeam_common_action_unavailable'),
-        message: this.actions.data.addStorage.reason,
-      });
-    }
-  }
-
   changeOffer() {
-    if (this.actions.data.upgradeOffer.available) {
-      this.CucControllerHelper.modal.showModal({
-        modalConfig: {
-          template: updateOfferTemplate,
-          controller: updateOfferCtrl,
-          controllerAs: 'VeeamCloudConnectUpdateOfferCtrl',
-          resolve: {
-            serviceName: () => this.serviceName,
-          },
-        },
-      })
-        .then(result => this.VeeamCloudConnectService.unitOfWork.messages.push({
-          textHtml: result.message,
-          type: 'success',
-        }))
-        .catch(err => this.VeeamCloudConnectService.unitOfWork.messages.push({
-          text: err.message,
-          type: 'error',
-        }));
-    } else {
-      this.CucControllerHelper.modal.showWarningModal({
-        title: this.$translate.instant('veeam_common_action_unavailable'),
-        message: this.actions.data.upgradeOffer.reason,
-      });
-    }
+    this.goToOfferChange();
   }
 
   getRegion(region) {

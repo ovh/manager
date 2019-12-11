@@ -1,21 +1,12 @@
-import has from 'lodash/has';
-
 import template from './template.html';
+import controller from './controller';
 
 export default /* @ngInject */ {
-  template,
+  controller,
   bindings: {
     legend: '<',
     large: '<',
     usage: '<',
   },
-  controller() {
-    this.getMaxSize = function getMaxSize() {
-      if (!has(this.usage, 'size.value')) {
-        return null;
-      }
-
-      return parseInt(this.usage.size.value, 10);
-    };
-  },
+  template,
 };

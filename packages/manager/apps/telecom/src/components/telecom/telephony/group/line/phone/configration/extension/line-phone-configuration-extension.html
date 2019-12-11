@@ -68,14 +68,14 @@
             </div>
 
             <!-- MODULE PAGE SELECTION -->
-            <div class="btn-group ml-4">
-                <label class="btn btn-default"
-                       data-ng-repeat="page in $ctrl.modules[$ctrl.model.moduleIndex] track by $index"
-                       data-ng-model="$ctrl.model.pageIndex"
-                       data-uib-btn-radio="$index"
-                       data-translate="telephony_line_phone_configuration_config_extension_key_module_page_number"
-                       data-translate-values="{ number: $index + 1 }">
-                </label>
+            <div class="ml-4">
+                <oui-radio-toggle-group data-model="$ctrl.model.pageIndex">
+                    <oui-radio data-ng-repeat="page in $ctrl.modules[$ctrl.model.moduleIndex] track by $index"
+                               data-value="$index">
+                        <span data-translate="telephony_line_phone_configuration_config_extension_key_module_page_number"
+                              data-translate-values="{ number: $index + 1 }"></span>
+                    </oui-radio>
+                </oui-radio-toggle-group>
             </div>
 
         </div>

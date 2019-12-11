@@ -1,7 +1,7 @@
 {
   "sms_section_back_link": "Retour aux SMS",
   "sms_sms_compose_title": "Envoyer un SMS",
-  "sms_sms_compose_section_configure": "Configurer l’éxpéditeur et le destinataire",
+  "sms_sms_compose_section_configure": "Configurer l’expéditeur et le destinataire",
   "sms_sms_compose_section_compose": "Composer un message",
   "sms_sms_compose_alert_not_enough_credits": "Votre crédit est insuffisant pour permettre l’envoi de SMS.",
   "sms_sms_compose_alert_not_enough_credits_receivers": "Votre crédit risque d’être insuffisant pour permettre l’envoi à l’ensemble de vos contacts séléctionnés.",
@@ -61,7 +61,7 @@
   "sms_sms_compose_send": "Envoyer",
   "sms_sms_compose_status_success": "Votre SMS a bien été envoyé",
   "sms_sms_compose_status_failed": "Une erreur est survenue lors de l’envoi de votre SMS",
-  "sms_sms_compose_status_invalid_receivers": "Votre SMS n’a pu être envoyé aux numéros suivants : ",
+  "sms_sms_compose_status_invalid_receiver": "Votre SMS n’a pu être envoyé au numéro suivant : {{invalidReceivers}} (destinataire invalide)",
   "sms_sms_compose_open_new_tab": "Nouvelle fenêtre",
   "sms_sms_compose_tips_title": "Astuces",
   "sms_sms_compose_tip_compose_title": "Composition d’un SMS",

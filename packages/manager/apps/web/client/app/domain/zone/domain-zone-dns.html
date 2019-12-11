@@ -197,8 +197,8 @@
                                         <span data-ng-bind="record.targetToDisplay"></span>
                                         <span class="fa fa-exclamation-triangle text-warning ml-2" aria-hidden="true"
                                               data-ng-if="ctrlDomainTabZoneDns.targetIsRelativeDomain(record)"
-                                              data-tooltip-placement="bottom"
-                                              data-uib-tooltip="{{ 'domain_configuration_dns_entry_relative_warning_title' | translate }}&nbsp;&laquo;&nbsp;{{record.targetToDisplay}}.{{record.zoneToDisplay}}&nbsp;&raquo;&nbsp;">
+                                              data-oui-tooltip-placement="bottom"
+                                              data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_title' | translate }}&nbsp;&laquo;&nbsp;{{record.targetToDisplay}}.{{record.zoneToDisplay}}&nbsp;&raquo;&nbsp;">
                                         </span>
                                     </td>
                                     <td class="text-right">

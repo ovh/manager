@@ -23,8 +23,8 @@
                        data-ng-change="ctrl.checkMxTarget(ctrl.zoneRecordForm.target); ctrl.setTargetValue('MX')"
                        data-ng-model="ctrl.model.target.target">
                 <span class="input-group-addon"
-                      data-uib-tooltip="{{ 'domain_configuration_dns_entry_add_target_host_valid' | translate }}"
-                      data-tooltip-placement="left">
+                      data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_target_host_valid' | translate }}"
+                      data-oui-tooltip-placement="left">
                     <span class="fa fa-question-circle" aria-hidden="true"></span>
                 </span>
             </div>
@@ -33,8 +33,8 @@
                 <span data-ng-bind="('domain_configuration_dns_entry_relative_warning_title' | translate) + ' &laquo;&nbsp;' + ctrl.model.target.target + '.' + ctrl.domain.displayName + '&nbsp;&raquo;'"></span>
                 <button class="btn btn-icon" type="button"
                         data-ng-click="ctrl.switchTargetToAbsolute()"
-                        data-uib-tooltip="{{ 'domain_configuration_dns_entry_relative_warning_tooltip' | translate }}"
-                        data-tooltip-placement="left">
+                        data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_tooltip' | translate }}"
+                        data-oui-tooltip-placement="left">
                     <span class="fa fa-question-circle" aria-hidden="true"></span>
                 </button>
             </small>

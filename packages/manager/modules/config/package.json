@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-config",
   "version": "0.4.0",
+  "private": true,
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/config#readme",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"

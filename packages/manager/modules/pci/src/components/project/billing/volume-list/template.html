@@ -35,8 +35,8 @@
                             <td class="oui-datagrid__cell text-right" data-title="{{ :: 'cpbc_volume_col_consumption' | translate }}">
                                 <span data-ng-bind=" ::  volume.totalPrice"></span>
                                 <i class="fa fa-question-circle left-space-m4"
-                                data-uib-tooltip="{{ :: 'cpbc_volume_consumption_tooltip_part1' | translate }}{{ :: 'cpbc_volume_consumption_tooltip_part2' | translate : {amount: volume.amount} }}"
-                                tooltip-placement="left">
+                                data-oui-tooltip="{{ :: 'cpbc_volume_consumption_tooltip_part1' | translate }}{{ :: 'cpbc_volume_consumption_tooltip_part2' | translate : {amount: volume.amount} }}"
+                                data-oui-tooltip-placement="left">
                                 </i>
                             </td>
                         </tr>

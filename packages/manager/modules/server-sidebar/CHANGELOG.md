@@ -1,3 +1,21 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.1...@ovh-ux/manager-server-sidebar@1.1.0) (2019-12-10)
+
+
+### Features
+
+* **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
+
+
+
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.0...@ovh-ux/manager-server-sidebar@1.0.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* **server-sidebar:** clear action menu before creating order menu ([4b5ace8](https://github.com/ovh/manager/commit/4b5ace88727609958bd0acafe41b213ae2dcea06))
+
+
+
 # [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@0.8.2...@ovh-ux/manager-server-sidebar@1.0.0) (2019-11-27)
 
 

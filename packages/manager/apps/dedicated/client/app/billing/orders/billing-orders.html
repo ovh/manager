@@ -1,6 +1,6 @@
 <div class="billing-orders">
     <oui-page-header data-heading="{{ :: 'orders_page_title' | translate }}">
-        <oui-guide-menu text="{{:: 'orders_guides' | translate }}"
+        <oui-guide-menu data-text="{{:: 'orders_guides' | translate }}"
                         data-ng-if="$ctrl.billingGuideUrl">
             <oui-guide-menu-item data-ng-href="{{ $ctrl.billingGuideUrl }}"
                                  data-external="true">
@@ -70,14 +70,14 @@
                                   data-ng-href="{{ $row.bill.url }}"
                                   data-external>
             </oui-action-menu-item>
-            <oui-action-menu-item text="{{:: 'orders_bill_url_pdf' | translate }}"
+            <oui-action-menu-item data-text="{{:: 'orders_bill_url_pdf' | translate }}"
                                   data-ng-if="$row.bill"
                                   data-ng-href="{{ $row.bill.pdfUrl }}"
                                   data-external>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$row.canRetract"
-                data-ui-sref="app.account.billing.orders.retract({ id: $row.orderId })">
+                data-on-click="$ctrl.goToOrderRetractation($row)">
                 <span data-translate="orders_order_action_retract"></span>
             </oui-action-menu-item>
         </oui-action-menu>

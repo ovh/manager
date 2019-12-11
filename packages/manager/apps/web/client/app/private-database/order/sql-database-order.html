@@ -38,8 +38,9 @@
                             <label class="oui-radio__label-container" for="sqlType-{{$index}}">
                                 <span class="oui-radio__label">
                                     <span data-ng-bind-html="'privateDatabase_order_sql_type_' + item.key + '_label' | translate"></span>
-                                    <span class="fa fa-question-circle"
-                                          data-uib-tooltip-template="'private-database/order/tooltip/sql-database-order-' + item.key + '.html'"></span>
+                                    <button type="button" class="oui-popover-button"
+                                          data-oui-popover
+                                          data-oui-popover-template="{{$ctrl.constructor.getTooltipTemplatePath(item)}}"></button>
                                 </span>
                             </label>
                             <div class="mb-3 small" data-ng-bind="'privateDatabase_order_sql_type_' + item.key + '_text' | translate"></div>

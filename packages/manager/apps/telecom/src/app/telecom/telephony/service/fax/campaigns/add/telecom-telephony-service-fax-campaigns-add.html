@@ -164,12 +164,8 @@
                    class="control-label"
                    data-translate="telephony_service_fax_campaigns_add_campaign_label_send_date_time">
             </label>
-            <div data-uib-timepicker
-                 data-hour-step="1"
-                 data-minute-step="1"
-                 data-show-meridian="false"
-                 data-ng-model="CampaignsAddCtrl.picker.time">
-            </div>
+            <oui-timepicker data-model="CampaignsAddCtrl.picker.time" data-placeholder="HH:MM">
+            </oui-timepicker>
         </div>
 
         <!-- RECIPIENTS TYPE -->

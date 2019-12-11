@@ -1,3 +1,5 @@
+import drpAlerts from '../datacenter/drp/alerts';
+
 import generalInformation from './tiles/general-information';
 import legacy from './legacy';
 import options from './tiles/options';
@@ -9,6 +11,7 @@ const moduleName = 'ovhManagerPccDashboard';
 
 angular
   .module(moduleName, [
+    drpAlerts,
     'oui',
     generalInformation,
     legacy,

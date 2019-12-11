@@ -553,5 +553,6 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Estensione disattivata correttamente.",
   "privateDatabase_tabs_list_extensions_disable_error": "Si è verificato un errore durante la disattivazione dell'estensione.",
   "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
-  "privateDatabase_order_datacenter_gra2": "Gravelines 2"
+  "privateDatabase_order_datacenter_gra2": "Gravelines 2",
+  "privateDatabase_dashboard_hostname_tooltip": "Per accedere all’istanza utilizza il nome dell’host fornito: l’indirizzo IP associato potrebbe variare nel corso del tempo."
 }

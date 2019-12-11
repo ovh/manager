@@ -1,3 +1,34 @@
+# [13.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.35.4...@ovh-ux/manager-web@13.36.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 167] ([c1d3c91](https://github.com/ovh/manager/commit/c1d3c91004d6d5170573efa1071764bc0392b512))
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+* **i18n:** add missing translations [CDS 168] ([a4de58a](https://github.com/ovh/manager/commit/a4de58af1be0ffce69120c6815a861e9fbd0b0d4))
+* **i18n:** add missing translations [CDS 172] ([d36cbc4](https://github.com/ovh/manager/commit/d36cbc424c66dff63777cf95c3bc0025b8c242af))
+* **i18n:** add missing translations [CDS 175] ([e0b1879](https://github.com/ovh/manager/commit/e0b187942e060047c62f277f4618f04e5634ec5c))
+* **i18n:** add missing translations [CDS 177] ([9113797](https://github.com/ovh/manager/commit/911379704ff4c659245ed6f311f8ced0e49f69be))
+* **web.domain:** prevent displaying error if it is due to contact rights ([#1840](https://github.com/ovh/manager/issues/1840)) ([d466974](https://github.com/ovh/manager/commit/d466974f41ed4122e5e7d19fd6eba3651efb6a2e))
+
+
+### Features
+
+* **web:** replace uib-tooltip with oui tooltip ([b714753](https://github.com/ovh/manager/commit/b71475332361447146e1a23b3ca7da47c68a7b5c))
+* **web.private-database:** add clouddb hostname popover about ip ([2c17b8f](https://github.com/ovh/manager/commit/2c17b8f6701ab7bb2b5b64be047893c0566691f7))
+* remove of mongoDb ([#1830](https://github.com/ovh/manager/issues/1830)) ([9fe61fa](https://github.com/ovh/manager/commit/9fe61fa03fb753c979520ed93e93302bec6411fc))
+
+
+
+## [13.35.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.35.3...@ovh-ux/manager-web@13.35.4) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
 ## [13.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.35.2...@ovh-ux/manager-web@13.35.3) (2019-11-27)
 
 

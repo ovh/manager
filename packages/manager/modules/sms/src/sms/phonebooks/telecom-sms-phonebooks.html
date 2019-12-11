@@ -530,13 +530,12 @@
                                 </td>
                                 <td data-ng-bind="contact.surname"></td>
                                 <td data-ng-bind="contact.name"></td>
-                                <td
-                                    data-ng-bind="contact.group || '-' | limitTo:25"
-                                    data-uib-tooltip="{{ contact.group }}"
-                                    data-tooltip-enable="contact.group.length > 25"
-                                    data-tooltip-class="word-break"
-                                    data-tooltip-append-to-body="true"
-                                ></td>
+                                <td>
+                                    <span data-ng-bind="contact.group || '-' | limitTo:25"></span>
+                                    <span class="oui-icon oui-icon-help_circle small"
+                                          data-ng-if="contact.group.length > 25"
+                                          data-oui-tooltip="{{:: contact.group }}"></span>
+                                </td>
                                 <td
                                     data-ng-bind="contact.homePhone || '-'"
                                 ></td>

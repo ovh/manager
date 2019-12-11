@@ -106,7 +106,7 @@
                                                    aria-label="{{ 'server_tab_MONITORING_add_port' | translate }}"
                                                    data-ng-model="ctrlMonitoringAdd.monitoring.port"
                                                    data-ng-pattern="/^[0-9]+$/"
-                                                   data-uib-tooltip="{{ 'server_tab_MONITORING_add_port_text_help' | translate }}" />
+                                                   data-oui-tooltip="{{ ::'server_tab_MONITORING_add_port_text_help' | translate }}" />
                                         </td>
                                         <td>
                                             <input type="text"
@@ -117,7 +117,8 @@
                                                    aria-label="{{ 'server_tab_MONITORING_add_challenge_text' | translate }}"
                                                    data-ng-model="ctrlMonitoringAdd.monitoring.challengeText"
                                                    data-ng-pattern="/^[a-zA-Z0-9\s\.\-=\(\)\\\/;]*$/i"
-                                                   data-uib-tooltip="{{ 'server_tab_MONITORING_add_challenge_text_help' | translate }}" />
+                                                   data-oui-tooltip="{{ ::'server_tab_MONITORING_add_challenge_text_help' | translate }}"
+                                                   data-oui-tooltip-placement="right"/>
                                             <p class="text-danger"
                                                data-ng-if="formAddMonitoring.txtChallengeTextAdd.$touched && formAddMonitoring.txtChallengeTextAdd.$error.pattern"
                                                data-ng-bind-html="'server_tab_MONITORING_add_challengeText_invalid' | translate ">
@@ -477,7 +478,7 @@
                                                    aria-label="{{ 'server_tab_MONITORING_add_port' | translate }}"
                                                    data-ng-model="ctrlMonitoringUpdate.monitoring.port"
                                                    data-ng-pattern="/^[0-9]+$/"
-                                                   data-uib-tooltip="{{ 'server_tab_MONITORING_add_port_text_help' | translate }}" />
+                                                   data-oui-tooltip="{{ 'server_tab_MONITORING_add_port_text_help' | translate }}" />
                                         </td>
                                         <td>
                                             <input type="text"
@@ -488,7 +489,7 @@
                                                    aria-label="{{ 'server_tab_MONITORING_add_challenge_text' | translate }}"
                                                    data-ng-pattern="/^[a-zA-Z0-9\s\.\-=\(\)\\\/;]*$/i"
                                                    data-ng-model="ctrlMonitoringUpdate.monitoring.challengeText"
-                                                   data-uib-tooltip="{{ 'server_tab_MONITORING_add_challenge_text_help' | translate }}" />
+                                                   data-oui-tooltip="{{ 'server_tab_MONITORING_add_challenge_text_help' | translate }}" />
                                             <p class="text-danger"
                                                data-ng-if="formUpdateMonitoring.txtChallengeTextUpdate.$error.pattern"
                                                data-ng-bind-html="'server_tab_MONITORING_add_challengeText_invalid' | translate ">

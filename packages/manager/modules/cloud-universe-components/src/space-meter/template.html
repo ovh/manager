@@ -20,14 +20,11 @@
         'col-sm-12': $ctrl.large,
         'col-sm-12 col-md-8': !$ctrl.large
     }">
-        <uib-progress class="cloud-space-meter__progress-bar"
-                      data-max="$ctrl.getMaxSize()"
-                      data-ng-class="{ 'cloud-space-meter__progress-bar_large': $ctrl.large }">
-            <uib-bar data-ng-repeat="(type, part) in $ctrl.usage track by type"
-                     data-value="part.value"
-                     data-type="{{ type }}"
-                     data-ng-if="type !== 'size'">
-            </uib-bar>
-        </uib-progress>
+    <oui-progress data-max-value="{{ $ctrl.getMaxSize() }}">
+        <oui-progress-bar data-ng-repeat="(type, part) in $ctrl.usage track by type"
+                          data-ng-if="type !== 'size'"
+                          data-type="{{ type }}"
+                          data-value="part.value"><span></span></oui-progress-bar>
+        </oui-progress>
     </div>
 </div>

@@ -1,5 +1,0 @@
-{
-  "dedicatedCloud_datacenter_remote_vra_network": "Red vRA remota",
-  "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Introduzca la subred vRA remota",
-  "dedicatedCloud_datacenter_local_vra_network_help": "Puede elegir entre su subred vRA local o utilizar la que le ofrece OVH más arriba."
-}

@@ -1,0 +1,16 @@
+{
+  "iplb_task_title": "Tarefas",
+  "iplb_task_intro_text": "As tarefas em curso para o Load Balancer serão eliminadas desta lista 48 horas após sua conclusão.",
+  "iplb_task_list_col_creation_date": "Data de criação",
+  "iplb_task_list_col_task": "Operação",
+  "iplb_task_list_col_progress": "Progresso",
+  "iplb_task_list_col_status": "Estado",
+  "iplb_task_list_col_action": "Ação",
+  "iplb_task_preview_title": "Pré-visualização da tarefa",
+  "iplb_task_preview_creation_date": "Data de criação",
+  "iplb_task_preview_task": "Operação",
+  "iplb_task_preview_progress": "Progresso",
+  "iplb_task_preview_status": "Estado",
+  "iplb_task_preview_id": "ID de utilizador",
+  "iplb_task_no_task": "Nenhum tarefa em curso"
+}

@@ -1,3 +1,38 @@
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.2...@ovh-ux/manager-sms@7.4.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* add missing $translate injection ([0348f3c](https://github.com/ovh/manager/commit/0348f3caed68bb4dfcd508b415134e836ee3f74c))
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+* **i18n:** add missing translations [CDS 175] ([e0b1879](https://github.com/ovh/manager/commit/e0b187942e060047c62f277f4618f04e5634ec5c))
+
+
+### Features
+
+* **sms:** replace uib-timepicker with oui-timepicker ([ba100e3](https://github.com/ovh/manager/commit/ba100e3c682bf8f4d401ec2475c5f988012fa1df))
+* **sms:** replace uib-tooltip with oui tooltip ([1a352f9](https://github.com/ovh/manager/commit/1a352f960d7f10372284df085a00dd332dd975a2))
+
+
+
+## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.1...@ovh-ux/manager-sms@7.3.2) (2019-12-10)
+
+
+### Bug Fixes
+
+* add missing $translate injection ([0348f3c](https://github.com/ovh/manager/commit/0348f3caed68bb4dfcd508b415134e836ee3f74c))
+
+
+
+## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.0...@ovh-ux/manager-sms@7.3.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
 # [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.2.7...@ovh-ux/manager-sms@7.3.0) (2019-11-28)
 
 

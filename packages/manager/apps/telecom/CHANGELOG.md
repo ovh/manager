@@ -1,3 +1,51 @@
+# [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.4...@ovh-ux/manager-telecom@11.2.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* **telephony.line.contact:** send siret instead of siren to API ([2fa1712](https://github.com/ovh/manager/commit/2fa1712b9ae6a8fde277887c1d70175125243829))
+* replace uib-btn-radio by oui-radio ([bf648e6](https://github.com/ovh/manager/commit/bf648e65ec566d4cc2aadd1d52791f589d5826c3))
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+* **i18n:** add missing translations [CDS 170] ([eda145e](https://github.com/ovh/manager/commit/eda145e62b2c15789b9616b2fe3980e71bd9bfde))
+* **i18n:** add missing translations [CDS 175] ([e0b1879](https://github.com/ovh/manager/commit/e0b187942e060047c62f277f4618f04e5634ec5c))
+* **telecom:** restore ovhPabx sounds part ([5843473](https://github.com/ovh/manager/commit/5843473e25815541b2e3b61b7b363411a69c3f0a))
+
+
+### Features
+
+* **telecom:** kill uib-carousel ([#1856](https://github.com/ovh/manager/issues/1856)) ([70daea1](https://github.com/ovh/manager/commit/70daea1ab222e44beea1af1e58c4e0e894b3c1e7))
+* **telecom:** kill uib-collapse ([#1850](https://github.com/ovh/manager/issues/1850)) ([089054a](https://github.com/ovh/manager/commit/089054a30281908f41ca236375f774233323f678))
+* **telecom:** replace uib-timepicker with oui-timepicker ([afe8665](https://github.com/ovh/manager/commit/afe86659b0d3af0a6c039000f790fe6105d5ef73))
+
+
+
+## [11.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.3...@ovh-ux/manager-telecom@11.1.4) (2019-12-10)
+
+
+### Bug Fixes
+
+* **telephony.line.contact:** send siret instead of siren to API ([2fa1712](https://github.com/ovh/manager/commit/2fa1712b9ae6a8fde277887c1d70175125243829))
+
+
+
+## [11.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.2...@ovh-ux/manager-telecom@11.1.3) (2019-12-10)
+
+
+### Bug Fixes
+
+* **telecom:** restore ovhPabx sounds part ([5843473](https://github.com/ovh/manager/commit/5843473e25815541b2e3b61b7b363411a69c3f0a))
+
+
+
+## [11.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.1...@ovh-ux/manager-telecom@11.1.2) (2019-12-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+
+
+
 ## [11.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.0...@ovh-ux/manager-telecom@11.1.1) (2019-11-29)
 
 

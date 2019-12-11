@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.10...@ovh-ux/sign-up@1.1.0) (2019-12-10)
+
+
+### Features
+
+* **sign-up:** add prefix to zip code ([d8b7aea](https://github.com/ovh/manager/commit/d8b7aea6cf83b1b2d36d40fa23f07c161881aea2))
+
+
+
 ## [1.0.10](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@1.0.9...@ovh-ux/sign-up@1.0.10) (2019-11-13)
 
 

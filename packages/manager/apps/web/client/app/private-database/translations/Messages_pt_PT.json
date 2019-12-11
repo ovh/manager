@@ -553,5 +553,6 @@
   "privateDatabase_tabs_list_extensions_disable_success": "Extensão desativada",
   "privateDatabase_tabs_list_extensions_disable_error": "Erro ao processar desativação da extensão",
   "privateDatabase_dashboard_datacenter_gra2": "Gravelines 2",
-  "privateDatabase_order_datacenter_gra2": "Gravelines 2"
+  "privateDatabase_order_datacenter_gra2": "Gravelines 2",
+  "privateDatabase_dashboard_hostname_tooltip": "Utilize o nome do host fornecido para se ligar à sua instância, o endereço IP associado pode evoluir ao longo do tempo."
 }

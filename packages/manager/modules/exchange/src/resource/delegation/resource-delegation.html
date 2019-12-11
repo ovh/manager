@@ -90,7 +90,7 @@
 
                     <tr data-ng-repeat="account in (ctrl.delegationList.list.messages | orderBy:'id':false) track by $index">
                         <td colspan="2">
-                            <div data-uib-tooltip="{{ 'exchange_GROUPS_partial_account' | translate:{ t0: account.message } }}">
+                            <div data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate:{ t0: account.message } }}">
                                 <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
                                 <span data-ng-bind="account.id"></span>
                             </div>

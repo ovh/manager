@@ -1,5 +1,0 @@
-{
-  "dedicatedCloud_datacenter_remote_vra_network": "Remote-vRA-Netz",
-  "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Geben Sie das Subnetz des Remote-vRA-Netzes an",
-  "dedicatedCloud_datacenter_local_vra_network_help": "Sie können Ihr vRA-Subnetz selbst auswählen oder das nachstehende von OVH vorgeschlagene Subnetz verwenden"
-}
