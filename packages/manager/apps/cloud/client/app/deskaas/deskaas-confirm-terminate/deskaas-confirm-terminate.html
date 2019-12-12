@@ -1,5 +1,5 @@
 <form name="confirmTerminateForm"
-      data-ng-submit="confirmTerminateForm.$valid && DeskaasConfirmTerminateCtrl.ok()"
+      data-ng-submit="confirmTerminateForm.$valid && $ctrl.ok()"
       novalidate>
     <oui-modal
         data-secondary-action="$ctrl.cancel()"
@@ -7,14 +7,14 @@
         data-secondary-label="{{ ::'common_modal_cancel' | translate }}"
         data-primary-label="{{ ::'common_modal_ok' | translate}}"
         data-on-dismiss="$ctrl.cancel()"
-        data-loading="DeskaasConfirmTerminateCtrl.flags.init">
+        data-loading="$ctrl.flags.init">
         <oui-field data-label="{{ ::'Token' | translate }}">
             <input
                 data-type="text"
                 name="vdi-token"
                 id="vdi-token"
                 class="oui-input"
-                data-ng-model="DeskaasConfirmTerminateCtrl.values.token"
+                data-ng-model="$ctrl.values.token"
                 data-ng-disabled="true"
                 required />
         </oui-field>
@@ -22,7 +22,7 @@
             <label class="oui-select">
                 <select id="vdi-reason"
                     name="vdi-reason"
-                    data-ng-model="DeskaasConfirmTerminateCtrl.values.reason"
+                    data-ng-model="$ctrl.values.reason"
                     class="oui-select__input"
                     required>
                     <option selected value="" data-translate="common_select"></option>
@@ -43,7 +43,7 @@
                 id="vdi-comment"
                 name="vdi-comment"
                 class="oui-input"
-                data-ng-model="DeskaasConfirmTerminateCtrl.values.commentary"
+                data-ng-model="$ctrl.values.commentary"
                 value="DeskaasDetailsCtrl.stateParams.token"/>
         </oui-field>
     </oui-modal>

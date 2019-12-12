@@ -41,5 +41,6 @@
   "vdi_ram": "RAM",
   "vdi_disk": "Disque",
   "vdi_gpu": "GPU",
-  "vdi_price": "Prix"
+  "vdi_price": "Prix",
+  "vdi_api_error": ""
 }

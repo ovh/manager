@@ -1,33 +1,72 @@
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 
-angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function DeskaasChangePasswordCtrl($uibModalInstance, OvhApiDeskaasService, service) {
-  const self = this;
+export default class DeskaasChangePasswordCtrl {
+  /* @ngInject */
+  constructor($translate, OvhApiDeskaasService) {
+    this.OvhApiDeskaasService = OvhApiDeskaasService;
+    this.$translate = $translate;
+    this.policies = {};
 
-  self.policies = {};
+    this.values = {
+      password: '',
+      generatePwd: false,
+    };
 
-  self.values = {
-    password: '',
-    generatePwd: false,
-  };
+    this.flags = {
+      init: false,
+    };
+  }
 
-  self.flags = {
-    init: false,
-  };
-
-  self.cancel = function cancel() {
-    $uibModalInstance.dismiss('cancel');
-  };
-
-  self.ok = function ok() {
-    if (!self.values.generatePwd && !self.values.password) {
-      $uibModalInstance.dismiss('cancel');
+  ok() {
+    if (!this.values.generatePwd && !this.values.password) {
+      this.cancel();
       return;
     }
+    return this.resetPassword(this.values);
+  }
 
-    $uibModalInstance.close(self.values);
-  };
+  resetPassword(passwordParams) {
+    this.flags.init = true;
+    let promise;
+    if (passwordParams.generatePwd) {
+      promise = this.OvhApiDeskaasService.v6()
+        .resetPassword({ serviceName: this.serviceName }, null).$promise;
+    } else if (passwordParams.password) {
+      promise = this.OvhApiDeskaasService.v6()
+        .resetPassword({
+          serviceName: this.serviceName,
+        }, {
+          password: passwordParams.password,
+        }).$promise;
+    } else {
+      return this.$q.when();
+    }
 
-  function createExpression(policies) {
+    return promise.then(result => this.goBackToDetails(
+      this.$translate.instant('vdi_resetting_password', {
+        serviceName: this.serviceName,
+      }),
+      'success',
+      {
+        task: result.taskId,
+      },
+    ))
+      .catch((error) => {
+        this.goBackToDetails(
+          this.$translate.instant('vdi_task_error', {
+            id: this.serviceName,
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        );
+      })
+      .finally(() => {
+        this.flags.init = false;
+      });
+  }
+
+  createExpression(policies) {
     let exp = '';
 
     // lookaheads to enforce mandatory patterns
@@ -61,20 +100,22 @@ angular.module('managerApp').controller('DeskaasChangePasswordCtrl', function De
     return exp;
   }
 
-  function init() {
-    self.flags.init = true;
-
-    OvhApiDeskaasService.v6().getPwdPolicy({ serviceName: service }, null).$promise
-      .then((policies) => {
-        self.policies = policies;
-
-        self.policies.deniedCharsString = policies.deniedChars.join(', ');
-        self.policies.pattern = createExpression(policies);
-      })
-      .finally(() => {
-        self.flags.init = false;
-      });
+  cancel() {
+    this.goBackToDetails();
   }
 
-  init();
-});
+  $onInit() {
+    this.flags.init = true;
+
+    this.OvhApiDeskaasService.v6().getPwdPolicy({ serviceName: this.serviceName }, null).$promise
+      .then((policies) => {
+        this.policies = policies;
+
+        this.policies.deniedCharsString = policies.deniedChars.join(', ');
+        this.policies.pattern = this.createExpression(policies);
+      })
+      .finally(() => {
+        this.flags.init = false;
+      });
+  }
+}

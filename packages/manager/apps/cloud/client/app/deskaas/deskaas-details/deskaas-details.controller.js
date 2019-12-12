@@ -5,9 +5,10 @@ import isEmpty from 'lodash/isEmpty';
 import mapValues from 'lodash/mapValues';
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('DeskaasDetailsCtrl',
-  function DeskaasDetailsCtrl(OvhApiDeskaasService, $stateParams, $scope, CucControllerHelper,
-    CucCloudMessage, $translate, $state, $q, DESKAAS_ACTIONS, $uibModal, OvhApiMe, deskaasSidebar,
+export default class DeskaasDetailsCtrl {
+  /* @ngInject */
+  constructor(OvhApiDeskaasService, $stateParams, $scope, CucControllerHelper,
+    CucCloudMessage, $translate, $state, $q, DESKAAS_ACTIONS,
     DeskaasService, DESKAAS_REFERENCES, SidebarMenu, CucFeatureAvailabilityService,
     CucServiceHelper, REDIRECT_URLS) {
     const self = this;
@@ -399,38 +400,6 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
         });
     }
 
-    function getConsole() {
-      const promise = OvhApiDeskaasService.v6()
-        .console({ serviceName: $stateParams.serviceName }, null).$promise;
-
-      return handleServiceMethodCall(
-        promise,
-        $translate.instant('vdi_console_task'),
-        'getConsoleAccess',
-      )
-        .then((response) => {
-          handleTask(response.taskId, true);
-        });
-    }
-
-    self.getConsole = function getConsoleFn() {
-      return CucControllerHelper.modal.showModal({
-        modalConfig: {
-          templateUrl: 'app/deskaas/deskaas-get-console-access/deskaas-get-console-access.html',
-          controller: 'DeskaasGetConsoleAccessCtrl',
-          controllerAs: 'DeskaasGetConsoleAccessCtrl',
-          backdrop: 'static',
-          size: 'md',
-        },
-      })
-        .then(() => {
-          getConsole().catch((err) => {
-            const msg = get(err, 'data.message', '');
-            CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
-          });
-        });
-    };
-
     self.deleteService = function deleteService() {
       return CucControllerHelper.modal.showConfirmationModal({
         titleText: $translate.instant('vdi_btn_delete'),
@@ -446,54 +415,6 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
             'deleting',
           );
         });
-    };
-
-    function resetPassword(passwordParams) {
-      let promise;
-
-      if (passwordParams.generatePwd) {
-        promise = OvhApiDeskaasService.v6()
-          .resetPassword({ serviceName: $stateParams.serviceName }, null).$promise;
-      } else if (passwordParams.password) {
-        promise = OvhApiDeskaasService.v6()
-          .resetPassword({
-            serviceName: $stateParams.serviceName,
-          }, {
-            password: passwordParams.password,
-          }).$promise;
-      } else {
-        return $q.when();
-      }
-
-      return handleServiceMethodCall(
-        promise,
-        $translate.instant('vdi_resetting_password'),
-        'resettingPassword',
-      )
-        .then((response) => {
-          handleTask(response.taskId, true);
-        });
-    }
-
-    self.resetPassword = function resetPasswordFn() {
-      const modal = $uibModal.open({
-        templateUrl: 'app/deskaas/deskaas-change-password/deskaas-change-password.html',
-        controller: 'DeskaasChangePasswordCtrl',
-        controllerAs: 'vm',
-        backdrop: 'static',
-        size: 'lg',
-        resolve: {
-          service() { return self.serviceName; },
-        },
-      });
-
-      modal.result.then((modalValues) => {
-        resetPassword(modalValues)
-          .catch((err) => {
-            const msg = get(err, 'data.message', '');
-            CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
-          });
-      });
     };
 
     self.restoreService = function restoreService() {
@@ -602,96 +523,8 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       });
     };
 
-    function changeUsername(modalData) {
-      let promise;
-
-      if (modalData.newUsername) {
-        promise = OvhApiDeskaasService.v6()
-          .changeUsername({
-            serviceName: $stateParams.serviceName,
-          }, {
-            username: modalData.newUsername,
-          }).$promise;
-      } else {
-        return $q.when();
-      }
-
-      return handleServiceMethodCall(
-        promise,
-        $translate.instant('vdi_username_changing'),
-        'changingUsername',
-      )
-        .then((response) => {
-          handleTask(response.taskId, true);
-        });
-    }
-
-    self.changeUsername = function changeUsernameFn() {
-      const modal = $uibModal.open({
-        templateUrl: 'app/deskaas/deskaas-change-username/deskaas-change-username.html',
-        controller: 'DeskaasChangeUsernameCtrl',
-        controllerAs: 'DeskaasChangeUsernameCtrl',
-        backdrop: 'static',
-        size: 'md',
-        resolve: {
-          service() { return self.serviceName; },
-        },
-      });
-
-      modal.result.then((modalData) => {
-        changeUsername(modalData).catch((err) => {
-          const msg = get(err, 'data.message', '');
-          CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
-        });
-      });
-    };
-
-    function confirmTerminate(terminateParams) {
-      let promise;
-
-      if (terminateParams.token && terminateParams.reason) {
-        promise = OvhApiDeskaasService.v6()
-          .confirmTerminate({
-            serviceName: $stateParams.serviceName,
-          }, {
-            token: terminateParams.token,
-            reason: terminateParams.reason,
-            commentary: terminateParams.commentary,
-          }).$promise;
-      } else {
-        return $q.when();
-      }
-
-      return handleServiceMethodCall(
-        promise,
-        $translate.instant('vdi_terminate_confirming'),
-        'confirmingTerminate',
-      )
-        .then((response) => {
-          handleTask(response.taskId, true);
-        });
-    }
-
     self.confirmTerminate = function confirmTerminateFn() {
-      return CucControllerHelper.modal.showModal({
-        modalConfig: {
-          templateUrl: 'app/deskaas/deskaas-confirm-terminate/deskaas-confirm-terminate.html',
-          controller: 'DeskaasConfirmTerminateCtrl',
-          controllerAs: 'DeskaasConfirmTerminateCtrl',
-          backdrop: 'static',
-          size: 'md',
-          resolve: {
-            service() { return self.serviceName; },
-            token() { return $stateParams.token; },
-          },
-        },
-      })
-        .then((modalData) => {
-          confirmTerminate(modalData).catch((err) => {
-            const msg = get(err, 'data.message', '');
-            CucCloudMessage.error([$translate.instant('common_api_error'), msg].join(' '));
-          });
-        });
+      this.goToConfirmTerminate();
     };
 
     self.getDetails = function getDetails() {
@@ -789,7 +622,6 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
 
         tasks = difference(tasks, elements[1]);
         tasks = difference(tasks, elements[2]);
-
         return tasks;
       }).then((runningTasks) => {
         getInitTasks(runningTasks);
@@ -797,4 +629,5 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
     };
 
     init(true);
-  });
+  }
+}
