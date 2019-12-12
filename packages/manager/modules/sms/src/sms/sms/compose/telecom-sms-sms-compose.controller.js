@@ -95,6 +95,7 @@ export default class {
       receivers: null,
       sender: 'shortNumber',
       senderForResponse: false,
+      noCommercialClause: false,
     };
     this.moreOptions = false;
     this.picker = {
@@ -217,9 +218,13 @@ export default class {
    * @return {Object}
    */
   computeRemainingChar() {
+    let suffix = false;
+    if (!this.isShortNumber()) {
+      suffix = !this.sms.noStopClause;
+    }
     return assign(this.message, this.TucSmsMediator.getSmsInfoText(
       this.sms.message,
-      !this.sms.noStopClause, // suffix
+      suffix,
     ));
   }
 
@@ -246,6 +251,10 @@ export default class {
     this.sms.noStopClause = isRealNumber;
 
     return this.computeRemainingChar();
+  }
+
+  isShortNumber() {
+    return this.sms.sender === 'shortNumber';
   }
 
   /**
@@ -294,7 +303,7 @@ export default class {
       coding: this.message.coding,
       differedPeriod,
       message: this.sms.message,
-      noStopClause: !!this.sms.noStopClause,
+      noStopClause: !!this.sms.noStopClause || !!this.sms.noCommercialClause,
       priority: 'high',
       receivers,
       receiversSlotId: slotId || null,
