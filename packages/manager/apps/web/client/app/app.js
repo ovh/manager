@@ -178,6 +178,11 @@ angular
       $qProvider.errorOnUnhandledRejections(false);
     },
   ])
+  .config(/* @ngInject */ (ovhPaymentMethodProvider) => {
+    ovhPaymentMethodProvider.setPaymentMethodPageUrl(
+      config.constants.PAYMENT_METHOD_URL,
+    );
+  })
   .config(/* @ngInject */(ovhProxyRequestProvider) => {
     ovhProxyRequestProvider.proxy('$http');
     ovhProxyRequestProvider.pathPrefix('apiv6');
