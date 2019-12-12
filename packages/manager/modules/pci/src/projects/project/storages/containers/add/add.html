@@ -14,7 +14,12 @@
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
         name="storage_container_add_region">
+        <oui-message data-type="error"
+                     data-ng-if="!$ctrl.regions.length">
+            <span data-translate="pci_projects_project_storages_containers_add_region_unavailable"></span>
+        </oui-message>
         <pci-project-regions-list
+            data-ng-if="$ctrl.regions.length"
             data-regions="$ctrl.regions"
             data-selected-region="$ctrl.container.region"
             data-display-selected-region="$ctrl.displaySelectedRegion"></pci-project-regions-list>
