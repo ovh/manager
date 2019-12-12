@@ -1,3 +1,12 @@
+## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.1.0...@ovh-ux/manager-cloud@8.1.1) (2019-12-12)
+
+
+### Bug Fixes
+
+* **cloud.dbaas:** fix service injection ([892cdcf](https://github.com/ovh/manager/commit/892cdcffbcfab4a612a431a6ee138c3ade35e0d0))
+
+
+
 # [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.0.0...@ovh-ux/manager-cloud@8.1.0) (2019-12-10)
 
 
