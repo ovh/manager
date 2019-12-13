@@ -146,9 +146,8 @@
                 <span data-translate="mailing_list_tab_create_subscribers"
                       data-ng-if="!ctrlSubscribers.subscribers.ids.length || ctrlSubscribers.subscribers.ids.length < ctrlSubscribers.mailingList.limits.subscribers">
                 </span>
-                <span data-uib-tooltip="{{:: 'mailing_list_tab_subscribers_limit_excedeed' | translate }}"
-                      data-tooltip-append-to-body="true"
-                      data-tooltip-placement="bottom"
+                <span data-oui-tooltip="{{:: 'mailing_list_tab_subscribers_limit_excedeed' | translate }}"
+                      data-oui-tooltip-placement="bottom"
                       data-translate="mailing_list_tab_create_subscribers"
                       data-ng-if="ctrlSubscribers.subscribers.ids.length >= ctrlSubscribers.mailingList.limits.subscribers">
                 </span>

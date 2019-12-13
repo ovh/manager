@@ -295,9 +295,8 @@
                                         <strong data-ng-bind="$ctrl.message.remainingCharacters"></strong>&nbsp;/&nbsp;<span data-ng-bind="$ctrl.message.defaultSize"></span>
                                         <i class="ovh-font ovh-font-filled-warning font-weight-normal text-warning"
                                            data-ng-if="$ctrl.message.coding === '8bit'"
-                                           data-uib-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
-                                           data-tooltip-placement="left"
-                                           data-tooltip-append-to-body="true">
+                                           data-oui-tooltip="{{ ::'sms_sms_compose_message_characters_left_warning_8bit' | translate }}"
+                                           data-oui-tooltip-placement="left">
                                         </i>
                                         <br />
                                         <span data-translate="sms_sms_compose_message_equivalent"></span>
@@ -318,7 +317,7 @@
                                 <p>
                                     <span data-translate="sms_sms_compose_message_stop_info_start"></span>
                                     <i class="ovh-font ovh-font-question"
-                                        data-uib-tooltip="{{ ::'sms_sms_compose_message_stop_info_tooltip' | translate }}">
+                                       data-oui-tooltip="{{ ::'sms_sms_compose_message_stop_info_tooltip' | translate }}">
                                     </i>
                                     <span data-translate="sms_sms_compose_message_stop_info_end"></span>
                                 </p>
@@ -437,12 +436,7 @@
                                                    class="control-label"
                                                    data-translate="sms_sms_compose_differed_period_time_label">
                                             </label>
-                                            <div data-uib-timepicker
-                                                 data-ng-model="$ctrl.picker.time"
-                                                 data-hour-step="1"
-                                                 data-minute-step="1"
-                                                 data-show-meridian="false">
-                                            </div>
+                                            <oui-timepicker data-model="$ctrl.picker.time"></oui-timepicker>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,19 @@
+{
+  "iplb_configuration_title": "Applica la configurazione",
+  "iplb_configuration_intro": "Questa procedura permette di effettuare più modifiche contemporaneamente. La configurazione del Load Balancer deve essere applicata a ogni datacenter in cui sono localizzati i servizi. Una volta completata l’operazione, la propagazione potrebbe richiedere da pochi minuti a diverse ore, in base alla quantità di modifiche da applicare.",
+  "iplb_configuration_datacenter": "Datacenter",
+  "iplb_configuration_progress": "Progressione",
+  "iplb_configuration_status": "Numero di modifiche da applicare",
+  "iplb_configuration_action_apply": "Applica la configurazione",
+  "iplb_configuration_changes_0": "Nessuna modifica",
+  "iplb_configuration_changes_1": "1 modifica",
+  "iplb_configuration_changes_count": "{{count}} modifiche",
+  "iplb_configuration_changesApplied": "Applicazione terminata",
+  "iplb_configuration_excludedZones_some": "La configurazione è già in corso di applicazione per questi datacenter: {{datacenters}}.",
+  "iplb_configuration_excludedZones_all": "La configurazione è già in corso su tutti i datacenter selezionati.",
+  "iplb_configuration_excludedZones_explanation": "Una configurazione può essere applicata solo ai datacenter in cui non sono presenti modifiche in corso.",
+  "iplb_configuration_info_error": "Si è verificato un errore durante il recupero delle informazioni del Load Balancer: {{message}}",
+  "iplb_configuration_apply_success": "Configurazione del Load Balancer in corso...",
+  "iplb_configuration_apply_error": "Si è verificato un errore durante l'applicazione della configurazione del Load Balancer: {{message}}",
+  "iplb_configuration_pending_changes": "La configurazione del Load Balancer non è stata applicata a tutti i datacenter."
+}

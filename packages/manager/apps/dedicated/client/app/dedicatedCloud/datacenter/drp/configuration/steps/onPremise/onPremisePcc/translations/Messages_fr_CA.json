@@ -1,5 +1,0 @@
-{
-  "dedicatedCloud_datacenter_remote_vra_network": "Réseau VRA distant",
-  "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Saississez le sous-réseau du VRA distant",
-  "dedicatedCloud_datacenter_local_vra_network_help": "Vous pouvez choisir votre sous-réseau VRA local ou utiliser celui proposé par OVH ci-dessus"
-}

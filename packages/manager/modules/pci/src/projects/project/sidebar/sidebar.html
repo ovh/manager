@@ -46,7 +46,8 @@
                         <div class="oui-sidebar-menu oui-sidebar-menu_fixed menu-sub-items">
                             <ul class="oui-sidebar-list">
                                 <li class="oui-sidebar-list__item"
-                                    data-ng-repeat="subitem in item.subitems">
+                                    data-ng-repeat="subitem in item.subitems track by $index"
+                                    data-ng-if="::$ctrl.isAvailableToUser(subitem)">
                                     <a
                                         data-ng-if="subitem.options.state"
                                         data-ng-click="$ctrl.onMenuItemClick(subitem)"

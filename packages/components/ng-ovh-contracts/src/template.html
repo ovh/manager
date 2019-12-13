@@ -1,0 +1,101 @@
+<div class="contracts-ctnr">
+
+    <div data-ng-if="ContractsCtrl.fullText === false">
+        <table class="table table-bordered"
+               data-ng-class="{
+                   'table-striped': ContractsCtrl.ovhContracts.length > 1
+               }">
+            <tr data-ng-repeat="contract in ContractsCtrl.ovhContracts track by $index">
+                <td>
+                    <a target="_blank"
+                       rel="noopener"
+                       data-ng-href="{{ contract.url || contract.pdf }}">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                        <span data-ng-bind="contract.name"></span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"
+                       data-ng-model="ContractsCtrl.agree" />
+                <span data-ng-if="ContractsCtrl.ovhContracts.length > 1"
+                      data-translate="ovh_contracts_agree">
+                </span>
+                <span data-ng-if="ContractsCtrl.ovhContracts.length === 1"
+                      data-translate="ovh_contract_agree">
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <div data-ng-if="ContractsCtrl.fullText === true">
+        <p data-ng-if="ContractsCtrl.ovhContracts.length > 1"
+           data-translate="ovh_contracts_list_title"
+           data-translate-values="{ 'nbr': ContractsCtrl.ovhContracts.length }">
+        </p>
+        <p data-ng-if="ContractsCtrl.ovhContracts.length === 1"
+           data-translate="ovh_contract_list_title">
+        </p>
+        <div class="contracts-list">
+            <uib-accordion data-close-others="false" data-ng-init="init()">
+                <uib-accordion-group id="contract-{{ $index }}"
+                                     data-heading="{{ contract.name }}"
+                                     data-is-open="true"
+                                     data-ng-repeat="contract in ContractsCtrl.ovhContracts track by $index">
+                    <pre class="contracts-content"
+                         data-ng-bind="contract.content || contract.text">
+                    </pre>
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
+        <div class="contracts-breadcrumb text-center clearfix"
+             role="navigation"
+             data-ng-show="ContractsCtrl.ovhContracts.length > 1">
+            <button type="button" class="btn btn-link pull-left contracts-breadcrumb-navigate contracts-breadcrumb-navigate-previous" data-ng-click="ContractsCtrl.previous()" data-ng-disabled="!ContractsCtrl.hasPreviousElement()">
+                <i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i>
+                <span data-translate="ovh_contract_previous"></span>
+            </button>
+            <ul class="contracts-menu list-unstyled">
+                <li class="contracts-breadcrumb-navigate"
+                    data-ng-repeat="contract in ContractsCtrl.ovhContracts track by $index">
+                    <a title="{{ contract.name }}"
+                       data-href="#contract-{{ $index }}"
+                       data-ng-click="ContractsCtrl.scroll($index)"
+                       data-ng-class="{
+                            'active' : $index === ContractsCtrl.currentIndex
+                       }">
+                    </a>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-link pull-right contracts-breadcrumb-navigate contracts-breadcrumb-navigate-next" data-ng-click="ContractsCtrl.next()" data-ng-disabled="!ContractsCtrl.hasNextElement()">
+                <span data-translate="ovh_contract_next"></span>
+                <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+        <a class="contracts-link"
+           title="{{ contract.name }}"
+           target="_blank"
+           rel="noopener"
+           data-ng-if="ContractsCtrl.currentContract.name"
+           data-ng-href="{{ ContractsCtrl.currentContract.url || ContractsCtrl.currentContract.pdf }}">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            <span data-translate="ovh_contract_download"
+                  data-translate-values="{ 'id': ContractsCtrl.currentContract.name }">
+            </span>
+        </a>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"
+                       data-ng-model="ContractsCtrl.agree" />
+                <span data-ng-if="ContractsCtrl.ovhContracts.length > 1"
+                      data-translate="ovh_contracts_agree">
+                </span>
+                <span data-ng-if="ContractsCtrl.ovhContracts.length === 1"
+                      data-translate="ovh_contract_agree">
+                </span>
+            </label>
+        </div>
+    </div>
+</div>

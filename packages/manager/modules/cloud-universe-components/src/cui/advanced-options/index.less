@@ -1,0 +1,27 @@
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import "~ovh-ui-kit/packages/oui/_settings";
+
+.cui-advanced-options {
+  padding: rem-calc(24);
+  color: #000;
+  background-color: @oui-color-concrete;
+  border: 1px solid @oui-color-silver;
+  border-radius: @oui-global-base-radius;
+  font-size: rem-calc(16);
+
+  &__header {
+    display: flex;
+
+    &-text {
+      flex-grow: 1;
+    }
+  }
+
+  &__content {
+    margin-top: rem-calc(24);
+  }
+
+  .oui-field-control {
+    width: 100%;
+  }
+}

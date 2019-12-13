@@ -23,19 +23,14 @@
                tooltip-append-to-body="true">
             </i>
         </label>
-        <div class="d-block btn-group">
-            <label class="btn btn-default"
-                   data-ng-model="$ctrl.telephonySchedulerCtrl.timeCondition.enable"
-                   data-uib-btn-radio="true"
-                   data-translate="telephony_scheduler_category_activation_yes">
-            </label>
-
-            <label class="btn btn-default"
-                   data-ng-model="$ctrl.telephonySchedulerCtrl.timeCondition.enable"
-                   data-uib-btn-radio="false"
-                   data-translate="telephony_scheduler_category_activation_no">
-            </label>
-        </div>
+        <oui-radio-toggle-group data-model="$ctrl.telephonySchedulerCtrl.timeCondition.enable">
+            <oui-radio data-value="true">
+                <span data-translate="telephony_scheduler_category_activation_yes"></span>
+            </oui-radio>
+            <oui-radio data-value="false">
+                <span data-translate="telephony_scheduler_category_activation_no"></span>
+            </oui-radio>
+        </oui-radio-toggle-group>
 
     </div>
 

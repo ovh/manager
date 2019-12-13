@@ -4,6 +4,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ovh-responsive-popover';
+import '@ovh-ux/ng-ui-router-layout';
 
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -39,6 +40,7 @@ angular
     'ovh-api-services',
     'ngOvhCloudUniverseComponents',
     'ngOvhDocUrl',
+    'ngUiRouterLayout',
     'ui.bootstrap',
     'oui',
     'ngOvhResponsivePopover',

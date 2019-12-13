@@ -1,16 +1,16 @@
 {
-  "preload_welcome": "Tervetuloa",
-  "preload_manager_ovh": "OVH:n hallintapaneeliin",
+  "preload_welcome": "Welcome to your",
+  "preload_manager_ovh": "OVHcloud Control Panel",
   "common_tabs_more": "Autres catégories",
   "common_newtab": "(nouvel onglet)",
-  "common_window": "(uusi ikkuna)",
+  "common_window": "(new window)",
   "common_vip": "Statut VIP",
-  "common_table_header_type": "Tyyppi",
+  "common_table_header_type": "Type",
   "common_table_edit": ": éditer",
   "common_table_delete": ": supprimer",
   "common_table_validate_entry": ": ajouter cette entrée",
   "common_table_cancel_entry": ": annuler l'ajout",
   "common_table_validate_modifications": ": valider les modifications",
   "common_table_cancel_modifications": ": annuler les modifications",
-  "common_required_fields": "Tähdellä merkityt kentät ovat pakollisia."
+  "common_required_fields": "Fields marked with an asterix are mandatory. "
 }

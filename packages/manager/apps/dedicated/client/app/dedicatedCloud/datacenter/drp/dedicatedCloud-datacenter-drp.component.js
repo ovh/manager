@@ -1,13 +1,19 @@
-import template from './dedicatedCloud-datacenter-drp.html';
 import controller from './dedicatedCloud-datacenter-drp.controller';
+import template from './dedicatedCloud-datacenter-drp.html';
 
 export default {
-  template,
-  controller,
   bindings: {
+    currentDrp: '<',
+    currentService: '<',
+    currentUser: '<',
     datacenterHosts: '<',
     datacenterList: '<',
-    pccList: '<',
-    pccPlan: '<',
+    goToConfiguration: '<',
+    goToSummary: '<',
+    selectedDrpType: '<?',
+    storedDrpInformations: '<?',
   },
+  controller,
+  name: 'dedicatedCloudDatacenterDrp',
+  template,
 };

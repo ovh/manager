@@ -1,0 +1,28 @@
+<section class="cui-page__content">
+    <oui-back-button data-heading="{{ ::'iplb_zone_delete_title' | translate }}"></oui-back-button>
+    <p data-ng-if="$ctrl.getDeletableZoneCount() === 1"
+        data-translate="iplb_zone_delete_intro_text_single"
+        data-translate-values="{ zoneQuantity: $ctrl.getDeletableZoneCount() -1 }"></p>
+    <p data-ng-if="$ctrl.getDeletableZoneCount() > 1"
+        data-translate="iplb_zone_delete_intro_text_plural"
+        data-translate-values="{ zoneQuantity: $ctrl.getDeletableZoneCount() -1 }"></p>
+    <p data-ng-if="$ctrl.getDeletableZoneCount() < 1"
+        data-translate="iplb_zone_delete_intro_text_none"></p>
+    <form novalidate name="$ctrl.form">
+        <iplb-zone-picker data-zones="$ctrl.zones.data"
+            data-on-selection-change="$ctrl.model.zones.value = value"></iplb-zone-picker>
+
+        <div class="cui-form-actions">
+            <oui-spinner data-ng-if="$ctrl.isLoading()"></oui-spinner>
+            <div data-ng-if="!$ctrl.isLoading()">
+                <oui-button
+                    data-variant="primary"
+                    data-text="{{::'iplb_delete' | translate}}"
+                    data-on-click="$ctrl.submit()"></oui-button>
+                <a class="oui-button oui-button_link"
+                    data-translate="iplb_cancel"
+                    data-ui-sref="network.iplb.detail.home"></a>
+            </div>
+        </div>
+    </form>
+</section>

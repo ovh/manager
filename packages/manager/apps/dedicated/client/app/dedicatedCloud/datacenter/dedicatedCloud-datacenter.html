@@ -1,11 +1,11 @@
 <div class="dedicatedCloud-datacenter">
 
     <div class="text-center mt-5"
-         data-ng-if="loadingInformations && !loadingError">
+         data-ng-if="$ctrl.loadingInformations && !$ctrl.loadingError">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div data-ng-if="!loadingInformations">
+    <div data-ng-if="!$ctrl.loadingInformations">
 
         <header class="page-header"
                 role="banner">
@@ -17,10 +17,10 @@
                              data-ng-if="!datacenterName.editMode && !datacenterDescription.editMode">
                             <div class="d-flex">
                                 <h1 class="oui-header_2 d-inline-block mb-0 word-break"
-                                    data-ng-bind="datacenterName.model || 'dedicatedCloud_datacenter_no_name' | translate:{ t0: datacenter.id }">
+                                    data-ng-bind="datacenterName.model || 'dedicatedCloud_datacenter_no_name' | translate:{ t0: datacenter.id }">
                                 </h1>
                                 <button type="button"
-                                        title="{{ 'wizard_modify' | translate }}"
+                                        title="{{ 'wizard_modify' | translate }}"
                                         class="btn btn-icon my-auto ml-2"
                                         data-ng-click="editDescription(datacenterName.model, 'dedicatedCloud_datacenter_name')">
                                     <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
@@ -30,7 +30,7 @@
                                 class="align-middle">
                             </em>
                             <button type="button"
-                                    title="{{ 'wizard_modify' | translate }}"
+                                    title="{{ 'wizard_modify' | translate }}"
                                     class="btn btn-icon my-auto ml-2 d-inline-block align-middle"
                                     data-ng-click="editDescription(datacenterDescription.model, 'dedicatedCloud_datacenter_description')">
                                 <span class="oui-icon oui-icon-pen_line" aria-hidden="true"></span>
@@ -44,16 +44,16 @@
         <!-- Tabs -->
         <oui-header-tabs class="oui-page-header">
             <oui-header-tabs-item data-state="app.dedicatedClouds.datacenter.dashboard"
-                                  data-text="{{:: 'dedicatedCloud_tab_dashboard' | translate }}"></oui-header-tabs-item>
+                                  data-text="{{:: 'dedicatedCloud_tab_dashboard' | translate }}"></oui-header-tabs-item>
             <oui-header-tabs-item data-state="app.dedicatedClouds.datacenter.hosts"
-                                  data-text="{{:: 'dedicatedCloud_tab_host' | translate }}"></oui-header-tabs-item>
+                                  data-text="{{:: 'dedicatedCloud_tab_host' | translate }}"></oui-header-tabs-item>
             <oui-header-tabs-item data-state="app.dedicatedClouds.datacenter.datastores"
-                                  data-text="{{:: 'dedicatedCloud_tab_datastore' | translate }}"></oui-header-tabs-item>
+                                  data-text="{{:: 'dedicatedCloud_tab_datastore' | translate }}"></oui-header-tabs-item>
             <oui-header-tabs-item data-state="app.dedicatedClouds.datacenter.backup"
-                                  data-text="{{:: 'dedicatedCloud_tab_backup' | translate }}"></oui-header-tabs-item>
+                                  data-text="{{:: 'dedicatedCloud_tab_backup' | translate }}"></oui-header-tabs-item>
             <oui-header-tabs-item data-state="app.dedicatedClouds.datacenter.drp"
-                                  data-ng-if="$ctrl.coreConfig.getRegion() !== 'US'"
-                                  data-text="{{:: 'dedicatedCloud_tab_drp' | translate }}"></oui-header-tabs-item>
+                                  data-ng-if="$ctrl.isDrpAvailable"
+                                  data-text="{{:: 'dedicatedCloud_tab_drp' | translate }}"></oui-header-tabs-item>
         </oui-header-tabs>
         <div class="tab-content">
 

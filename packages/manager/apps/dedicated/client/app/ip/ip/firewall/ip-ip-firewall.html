@@ -29,8 +29,8 @@
                     <th scope="col">
                         <span data-translate="ip_firewall_position"></span>
                         <i class="fa fa-info-circle"
-                           data-uib-tooltip="{{ 'ip_firewall_position_tooltip' | translate }}"
-                           data-tooltip-placement="right">
+                           data-oui-tooltip="{{:: 'ip_firewall_position_tooltip' | translate }}"
+                           data-oui-tooltip-placement="right">
                         </i>
                     </th>
                     <th scope="col"
@@ -104,9 +104,8 @@
                     <td>
                         <button type="button"
                                 class="btn btn-link"
-                                data-uib-tooltip="{{ 'ip_firewall_remove_rule' | translate }}"
-                                data-tooltip-placement="left"
-                                data-tooltip-append-to-body="true"
+                                data-oui-tooltip="{{:: 'ip_firewall_remove_rule' | translate }}"
+                                data-oui-tooltip-placement="left"
                                 data-ng-click="setAction('ip/firewall/rule/delete/ip-ip-firewall-rule-delete', { ipBlock: selectedBlock, ip: selectedIp, rule: rule })"
                                 data-ng-show="rule.state === 'ok'">
                             <span class="fa fa-trash"

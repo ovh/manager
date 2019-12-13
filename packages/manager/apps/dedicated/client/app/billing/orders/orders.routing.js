@@ -22,6 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .execute(null, true)
         .$promise
         .then(({ data }) => data),
+      timeNow: /* @ngInject */
+        BillingAuth => BillingAuth.getCurrentTimestamp().then(timestamp => moment(timestamp)),
       filter: /* @ngInject */ $transition$ => $transition$.params().filter,
       criteria: /* @ngInject */ ($log, filter) => {
         if (filter) {
@@ -42,6 +44,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToOrder: /* @ngInject */ $state => (order, filter) => $state.go('app.account.billing.order', {
         orderId: order.orderId,
         ordersFilter: filter,
+      }),
+      goToOrderRetractation: /* @ngInject */ $state => ({ orderId }) => $state.go('app.account.billing.retract', {
+        id: orderId,
       }),
       updateFilterParam: /* @ngInject */ $state => filter => $state.go('app.account.billing.orders', {
         filter,

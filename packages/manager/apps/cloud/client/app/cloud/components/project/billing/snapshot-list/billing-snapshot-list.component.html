@@ -8,8 +8,8 @@
     <oui-column data-title="::'cpbc_snapshot_col_usage' | translate">
         <span data-ng-bind=":: $row.totalPrice.toFixed(2)  + ' ' + $ctrl.currencySymbol"></span>
         <i class="fa fa-question-circle left-space-m4"
-           data-uib-tooltip="{{ :: $ctrl.getSnapshotPriceInfoTooltip($row) }}"
-           data-tooltip-placement="left" aria-hidden="true"></i>
+           data-oui-tooltip="{{:: $ctrl.getSnapshotPriceInfoTooltip($row) }}"
+           data-oui-tooltip-placement="left" aria-hidden="true"></i>
         <span class="sr-only" data-ng-bind=":: $ctrl.getSnapshotPriceInfoTooltip($row)"></span>
     </oui-column>
 </oui-datagrid>

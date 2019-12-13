@@ -31,15 +31,15 @@
                             <td class="oui-datagrid__cell" data-title="{{ :: 'cpbc_object_storage_col_consumption' | translate }}">
                                 <span>{{(storage.stored ? storage.stored.totalPrice : 0).toFixed(2) + ' ' + $ctrl.currencySymbol }}</span>
                                 <i class="fa fa-question-circle left-space-m4"
-                                data-uib-tooltip="{{ :: $ctrl.getStorageVolumeInfoTooltip(storage) }}"
-                                tooltip-placement="left">
+                                data-oui-tooltip="{{:: $ctrl.getStorageVolumeInfoTooltip(storage) }}"
+                                data-oui-tooltip-placement="left">
                                 </i>
                             </td>
                             <td class="oui-datagrid__cell text-right" data-title="{{ :: 'cpbc_object_storage_col_output_traffic' | translate }}">
                                 <span>{{ storage.outgoingBandwidth.totalPrice.toFixed(2) + ' ' + $ctrl.currencySymbol }}</span>
                                 <i class="fa fa-question-circle left-space-m4"
-                                data-uib-tooltip="{{:: $ctrl.getStorageBandwidthInfoTooltip(storage) }}"
-                                tooltip-placement="left">
+                                data-oui-tooltip="{{:: $ctrl.getStorageBandwidthInfoTooltip(storage) }}"
+                                data-oui-tooltip-placement="left">
                                 </i>
                             </td>
                         </tr>

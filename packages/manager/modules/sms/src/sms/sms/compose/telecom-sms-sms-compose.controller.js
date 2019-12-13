@@ -274,8 +274,8 @@ export default class {
   getDifferedPeriod() {
     const date = new Date();
     if (this.picker.date) {
-      this.picker.date.setHours(this.picker.time.getHours());
-      this.picker.date.setMinutes(this.picker.time.getMinutes());
+      this.picker.date.setHours(moment(this.picker.time, 'HH:mm').hours());
+      this.picker.date.setMinutes(moment(this.picker.time, 'HH:mm').minutes());
       if (this.picker.date > date) {
         const minutes = moment(this.picker.date).diff(moment(), 'minutes');
         return minutes;

@@ -1,11 +1,13 @@
+import controller from './domain-dns.controller';
 import template from './DNS.html';
 
 const state = {
   url: '/dns',
   views: {
     domainView: {
+      controller,
+      controllerAs: '$ctrl',
       template,
-      controller: 'controllers.Domain.Dns',
     },
   },
   atInternet: {

@@ -1,3 +1,27 @@
+## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.1.0...@ovh-ux/manager-cloud@8.1.1) (2019-12-12)
+
+
+### Bug Fixes
+
+* **cloud.dbaas:** fix service injection ([892cdcf](https://github.com/ovh/manager/commit/892cdcffbcfab4a612a431a6ee138c3ade35e0d0))
+
+
+
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.0.0...@ovh-ux/manager-cloud@8.1.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* **cloud:** remove IPLB references ([ffc4045](https://github.com/ovh/manager/commit/ffc40450d0100235ea5da6b6dcb1967d797da89a))
+
+
+### Features
+
+* **cloud:** replace uib-tooltip with oui tooltip ([c2133be](https://github.com/ovh/manager/commit/c2133be3dba1f098b5b3708c9f4ea115acbd6f85))
+* **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
+
+
+
 # [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.3...@ovh-ux/manager-cloud@8.0.0) (2019-11-27)
 
 

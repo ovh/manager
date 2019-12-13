@@ -492,5 +492,9 @@ angular.module('App').controller(
         ? ramSize + this.$translate.instant('unit_size_MB')
         : ramSize / 1024 + this.$translate.instant('unit_size_GB');
     }
+
+    static getTooltipTemplatePath(item) {
+      return `private-database/order/tooltip/sql-database-order-${item.key}.html`;
+    }
   },
 );

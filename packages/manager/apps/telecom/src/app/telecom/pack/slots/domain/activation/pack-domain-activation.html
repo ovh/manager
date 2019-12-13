@@ -139,18 +139,15 @@
 
                         <p class="mt-3" data-translate="domain_activation_do_you_transfert"></p>
 
-                        <div class="btn-group d-block clearfix mb-3">
-                            <label class="btn btn-default"
-                                   data-ng-model="toggles.transfertWanted"
-                                   data-uib-btn-radio="true"
-                                   data-translate="common_yes_capitalized">
-                            </label>
-
-                            <label class="btn btn-default"
-                                   data-ng-model="toggles.transfertWanted"
-                                   data-uib-btn-radio="false"
-                                   data-translate="common_no_capitalized">
-                            </label>
+                        <div class="mb-3">
+                            <oui-radio-toggle-group data-model="toggles.transfertWanted">
+                                <oui-radio data-value="true">
+                                    <span data-translate="common_yes_capitalized"></span>
+                                </oui-radio>
+                                <oui-radio data-value="false">
+                                    <span data-translate="common_no_capitalized"></span>
+                                </oui-radio>
+                            </oui-radio-toggle-group>
                         </div>
 
                         <div class="alert alert-info"

@@ -1,0 +1,9 @@
+{
+  "ovh_contract_agree": "Ho letto e accetto il contratto",
+  "ovh_contracts_agree": "Ho letto e accetto i contratti",
+  "ovh_contract_list_title": "C'è 1 contratto da leggere",
+  "ovh_contracts_list_title": "Ci sono {{nbr}} contratti da leggere",
+  "ovh_contract_next": "Continua",
+  "ovh_contract_previous": "Indietro",
+  "ovh_contract_download": "Apri il contratto \"{{id}}\" in PDF"
+}

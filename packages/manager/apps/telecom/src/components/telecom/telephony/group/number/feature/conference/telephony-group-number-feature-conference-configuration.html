@@ -70,18 +70,14 @@
                                            for="conferenceSettingsAnnoucement"
                                            data-translate="telephony_number_feature_conference_general_settings_annoucement">
                                     </label>
-                                    <div class="d-block btn-group clearfix">
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.announceFile"
-                                               data-uib-btn-radio="true"
-                                               data-translate="common_yes_capitalized">
-                                        </label>
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.announceFile"
-                                               data-uib-btn-radio="false"
-                                               data-translate="common_no_capitalized">
-                                        </label>
-                                    </div>
+                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.announceFile">
+                                        <oui-radio data-value="true">
+                                            <span data-translate="common_yes_capitalized"></span>
+                                        </oui-radio>
+                                        <oui-radio data-value="false">
+                                            <span data-translate="common_no_capitalized"></span>
+                                        </oui-radio>
+                                    </oui-radio-toggle-group>
                                 </div> <!-- ANNOUCEMENT -->
                             </div>
                             <div class="col-xs-6">
@@ -91,18 +87,14 @@
                                            for="conferenceSettingsRecord"
                                            data-translate="telephony_number_feature_conference_general_settings_record">
                                     </label>
-                                    <div class="d-block btn-group clearfix">
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.recordStatus"
-                                               data-uib-btn-radio="true"
-                                               data-translate="common_yes_capitalized">
-                                        </label>
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.recordStatus"
-                                               data-uib-btn-radio="false"
-                                               data-translate="common_no_capitalized">
-                                        </label>
-                                    </div>
+                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.recordStatus">
+                                        <oui-radio data-value="true">
+                                            <span data-translate="common_yes_capitalized"></span>
+                                        </oui-radio>
+                                        <oui-radio data-value="false">
+                                            <span data-translate="common_no_capitalized"></span>
+                                        </oui-radio>
+                                    </oui-radio-toggle-group>
                                 </div> <!-- RECORD -->
                             </div>
                         </div>
@@ -114,18 +106,14 @@
                                            for="conferenceSettingsEnterMuted"
                                            data-translate="telephony_number_feature_conference_general_settings_enter_muted">
                                     </label>
-                                    <div class="d-block btn-group clearfix">
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.enterMuted"
-                                               data-uib-btn-radio="true"
-                                               data-translate="common_yes_capitalized">
-                                        </label>
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.enterMuted"
-                                               data-uib-btn-radio="false"
-                                               data-translate="common_no_capitalized">
-                                        </label>
-                                    </div>
+                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.enterMuted">
+                                        <oui-radio data-value="true">
+                                            <span data-translate="common_yes_capitalized"></span>
+                                        </oui-radio>
+                                        <oui-radio data-value="false">
+                                            <span data-translate="common_no_capitalized"></span>
+                                        </oui-radio>
+                                    </oui-radio-toggle-group>
                                 </div> <!-- ENTER MUTED -->
                             </div>
                             <div class="col-xs-6">
@@ -135,18 +123,14 @@
                                            for="conferenceSettingsRejectAnonymous"
                                            data-translate="telephony_number_feature_conference_general_settings_reject_anonymous">
                                     </label>
-                                    <div class="d-block btn-group clearfix">
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.anonymousRejection"
-                                               data-uib-btn-radio="true"
-                                               data-translate="common_yes_capitalized">
-                                        </label>
-                                        <label class="btn btn-default"
-                                               data-ng-model="$ctrl.numberCtrl.number.feature.anonymousRejection"
-                                               data-uib-btn-radio="false"
-                                               data-translate="common_no_capitalized">
-                                        </label>
-                                    </div>
+                                    <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.anonymousRejection">
+                                        <oui-radio data-value="true">
+                                            <span data-translate="common_yes_capitalized"></span>
+                                        </oui-radio>
+                                        <oui-radio data-value="false">
+                                            <span data-translate="common_no_capitalized"></span>
+                                        </oui-radio>
+                                    </oui-radio-toggle-group>                                    
                                 </div> <!-- REJECT ANONYMOUS -->
                             </div>
                         </div>
@@ -415,18 +399,14 @@
                                    for="conferenceReportWhiteLabel"
                                    data-translate="telephony_number_feature_conference_report_white_label">
                             </label>
-                            <div class="d-block btn-group clearfix">
-                                <label class="btn btn-default"
-                                       data-ng-model="$ctrl.numberCtrl.number.feature.whiteLabelReport"
-                                       data-uib-btn-radio="true"
-                                       data-translate="common_yes_capitalized">
-                                </label>
-                                <label class="btn btn-default"
-                                       data-ng-model="$ctrl.numberCtrl.number.feature.whiteLabelReport"
-                                       data-uib-btn-radio="false"
-                                       data-translate="common_no_capitalized">
-                                </label>
-                            </div>
+                            <oui-radio-toggle-group data-model="$ctrl.numberCtrl.number.feature.whiteLabelReport">
+                                <oui-radio data-value="true">
+                                    <span data-translate="common_yes_capitalized"></span>
+                                </oui-radio>
+                                <oui-radio data-value="false">
+                                    <span data-translate="common_no_capitalized"></span>
+                                </oui-radio>
+                            </oui-radio-toggle-group>
                         </div>
                     </div>
 

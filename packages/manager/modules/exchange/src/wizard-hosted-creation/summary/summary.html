@@ -37,8 +37,8 @@
         <p>
             <span data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_explanation_part_1' | translate"></span>
             <span class="as-superscript"
-                  data-uib-tooltip-html="$ctrl.tooltipText"
-                  data-tooltip-class="text-left">
+                  data-oui-tooltip="{{::$ctrl.tooltipText}}"
+                  data-oui-tooltip-placement="top-left">
                 <span class="fa fa-question-circle" aria-hidden="true"></span>
             </span>
             <span data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_explanation_part_2' | translate:{ t0: $ctrl.homepage.domainName }"></span>

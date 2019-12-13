@@ -47,8 +47,8 @@
                             'one': ('dedicatedCloud_tab_host_hourly_usage_1' | translate),
                             'other': ('dedicatedCloud_tab_host_hourly_usage_other' | translate: { count: $row.consumption.value })
                         }"
-                        data-uib-tooltip="{{ 'dedicatedCloud_tab_host_hourly_usage_update' | translate:{ t0: ($row.lastUpdate|date:'short') } }}"
-                        data-tooltip-placement="top"></span>
+                        data-oui-tooltip="{{:: 'dedicatedCloud_tab_host_hourly_usage_update' | translate:{ t0: ($row.lastUpdate|date:'short') } }}"
+                        data-oui-tooltip-placement="top"></span>
                 </span>
             </oui-column>
             <oui-action-menu
