@@ -65,10 +65,10 @@
     "matchmedia-ng": "^1.0.8",
     "moment": "^2.22.2",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.28.0",
+    "ovh-api-services": "^9.29.0",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.10.0",
+    "ovh-ui-angular": "^3.10.1",
     "ovh-ui-kit": "^2.35.2",
     "ovh-ui-kit-bs": "^2.2.0",
     "tweetnacl-util": "^0.15.0"
