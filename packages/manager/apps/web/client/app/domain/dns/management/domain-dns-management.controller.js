@@ -3,8 +3,9 @@ import includes from 'lodash/includes';
 angular.module('App').controller(
   'DomainDnsManagementCtrl',
   class DomainDnsManagementCtrl {
-    constructor($scope, Domain) {
+    constructor($scope, $state, Domain) {
       this.$scope = $scope;
+      this.$state = $state;
       this.Domain = Domain;
     }
 
@@ -34,10 +35,7 @@ angular.module('App').controller(
       if (this.hasZone) {
         this.$scope.setAction('dns/lock/domain-dns-lock', false);
       } else {
-        this.$scope.setAction(
-          'zone/activate/domain-zone-activate',
-          this.domain,
-        );
+        this.$state.go('^.zone.activate');
       }
     }
   },
