@@ -142,6 +142,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group" data-ng-hide="$ctrl.isVirtualNumber()">
+                            <div data-ng-if="$ctrl.displaySenderCustomizationAdvice">
+                                <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
+                                <p data-translate="sms_sms_compose_message_advice_info"></p>
+                                <p>
+                                    <span data-translate="sms_sms_compose_message_advice_description_1"></span>
+                                    <a href="#"
+                                        data-ui-sref="sms.service.senders"
+                                        data-translate="sms_sms_compose_message_advice_description_2">
+                                    </a>
+                                    <span data-translate="sms_sms_compose_message_advice_description_3"></span>
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="form-group"
                              data-ng-class="{
                                  'has-error': sendSmsForm.recipient.$touched && sendSmsForm.recipient.$invalid
@@ -299,37 +314,25 @@
                         </div>
 
                         <div class="form-group" data-ng-hide="$ctrl.isVirtualNumber()">
-                            <div data-ng-if="$ctrl.displaySenderCustomizationAdvice">
-                                <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
-                                <p data-translate="sms_sms_compose_message_advice_info"></p>
+                            <div data-ng-if="$ctrl.canHaveSTOPAnswer">
                                 <p>
-                                    <span data-translate="sms_sms_compose_message_advice_description_1"></span>
-                                    <a href="#"
-                                       data-ui-sref="sms.service.senders"
-                                       data-translate="sms_sms_compose_message_advice_description_2">
-                                    </a>
-                                    <span data-translate="sms_sms_compose_message_advice_description_3"></span>
+                                    <span data-translate="sms_sms_compose_message_stop_info_start"></span>
+                                    <i class="ovh-font ovh-font-question"
+                                        data-uib-tooltip="{{ ::'sms_sms_compose_message_stop_info_tooltip' | translate }}">
+                                    </i>
+                                    <span data-translate="sms_sms_compose_message_stop_info_end"></span>
                                 </p>
+                                <p data-translate="sms_sms_compose_message_stop_description"></p>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="noStopClause"
+                                        id="noStopClause"
+                                        data-ng-model="$ctrl.sms.noStopClause"
+                                        data-ng-change="$ctrl.computeRemainingChar()" />
+                                    <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
+                                </label>
                             </div>
-                        </div>
-                        <div data-ng-if="$ctrl.canHaveSTOPAnswer">
-                            <p>
-                                <span data-translate="sms_sms_compose_message_stop_info_start"></span>
-                                <i class="ovh-font ovh-font-question"
-                                    data-uib-tooltip="{{ ::'sms_sms_compose_message_stop_info_tooltip' | translate }}">
-                                </i>
-                                <span data-translate="sms_sms_compose_message_stop_info_end"></span>
-                            </p>
-                            <p data-translate="sms_sms_compose_message_stop_description"></p>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="noStopClause"
-                                    id="noStopClause"
-                                    data-ng-model="$ctrl.sms.noStopClause"
-                                    data-ng-change="$ctrl.computeRemainingChar()" />
-                                <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
-                            </label>
                         </div>
                         <div data-ng-if="$ctrl.isShortNumber()">
                             <p data-translate="sms_sms_compose_message_stop_description"></p>
