@@ -1,0 +1,9 @@
+{
+  "ovh_contract_agree": "Przeczytałem i akceptuję regulamin.",
+  "ovh_contracts_agree": "Przeczytałem i akceptuję regulaminy.",
+  "ovh_contract_list_title": "Masz 1 regulamin do przeczytania.",
+  "ovh_contracts_list_title": "{{nbr}} regulaminy(ów) do przeczytania.",
+  "ovh_contract_next": "Dalej",
+  "ovh_contract_previous": "Wstecz",
+  "ovh_contract_download": "Otwórz regulamin \"{{id}}\" w formacie PDF."
+}
