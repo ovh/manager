@@ -37,9 +37,9 @@
     "jquery": "^2.1.3",
     "lodash": "^4.17.15",
     "messenger": "HubSpot/messenger#~1.4.1",
-    "ovh-api-services": "^9.28.0",
+    "ovh-api-services": "^9.29.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^3.10.0",
+    "ovh-ui-angular": "^3.10.1",
     "ovh-ui-kit": "^2.35.2"
   },
   "devDependencies": {

@@ -27,7 +27,7 @@
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
-    "ovh-ui-angular": "^3.10.0",
+    "ovh-ui-angular": "^3.10.1",
     "ovh-ui-kit": "^2.35.2"
   },
   "devDependencies": {
