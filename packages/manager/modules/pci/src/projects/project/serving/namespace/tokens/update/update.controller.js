@@ -22,8 +22,8 @@ export default class PciServingNamespaceTokensUpdateController {
       this.tokenId,
     )
       .then(({ token }) => this.goBack({
-        textHtml: this.$translate.instant('pci_projects_project_serving_namespace_tokens_update_success', { token }),
-      }))
+        textHtml: this.$translate.instant('pci_projects_project_serving_namespace_tokens_update_success'),
+      }, 'success', token))
       .catch(error => this.goBack(
         this.$translate.instant('pci_projects_project_serving_namespace_tokens_update_error', {
           message: get(error, 'data.message'),

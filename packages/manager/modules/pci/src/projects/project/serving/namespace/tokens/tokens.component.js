@@ -3,6 +3,7 @@ import template from './tokens.html';
 
 export default {
   bindings: {
+    jwtToken: '<',
     addToken: '<',
     deleteToken: '<',
     updateToken: '<',

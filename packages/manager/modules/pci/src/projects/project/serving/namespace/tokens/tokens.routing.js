@@ -2,10 +2,14 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.serving.namespace.tokens', {
       url: '/tokens',
+      params: {
+        jwtToken: null,
+      },
       views: {
         servingView: 'ovhManagerPciProjectServingNamespaceTokensComponent',
       },
       resolve: {
+        jwtToken: /* @ngInject */ $stateParams => $stateParams.jwtToken,
         addToken: /* @ngInject */ (
           $state, projectId, namespaceId,
         ) => () => $state.go('pci.projects.project.serving.namespace.tokens.add', {
@@ -34,12 +38,13 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           namespaceId,
         ) => OvhManagerPciServingTokenService.getAll(projectId, namespaceId),
-        goToNamespaceTokens: ($state, CucCloudMessage, projectId, namespaceId) => (message = false, type = 'success') => {
+        goToNamespaceTokens: ($state, CucCloudMessage, projectId, namespaceId) => (message = false, type = 'success', jwtToken) => {
           const reload = message && type === 'success';
 
           const promise = $state.go('pci.projects.project.serving.namespace.tokens', {
             projectId,
             namespaceId,
+            jwtToken,
           },
           {
             reload,
