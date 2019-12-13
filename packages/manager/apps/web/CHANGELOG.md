@@ -1,3 +1,12 @@
+## [13.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.0...@ovh-ux/manager-web@13.36.1) (2019-12-13)
+
+
+### Bug Fixes
+
+* **domain.dns:** fix link to zone activation ([4f746af](https://github.com/ovh/manager/commit/4f746af1dcff9c847130bd0d5c93a9907243c0fb))
+
+
+
 # [13.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.35.4...@ovh-ux/manager-web@13.36.0) (2019-12-10)
 
 
