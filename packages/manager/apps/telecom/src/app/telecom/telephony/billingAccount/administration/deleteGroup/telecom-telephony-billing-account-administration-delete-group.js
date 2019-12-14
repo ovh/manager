@@ -10,5 +10,13 @@ angular.module('managerApp').config(($stateProvider) => {
       },
     },
     translations: { value: ['.', '..'], format: 'json' },
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .get('TelephonyMediator')
+        .getGroup(transition.params().billingAccount)
+        .then((group) =>
+          group.isNicAdmin ? false : 'telecom.telephony.billingAccount',
+        ),
   });
 });

@@ -42,6 +42,7 @@
                     <oui-header-tabs-item
                         data-text="{{ 'telephony_group_tab_billing' | translate }}"
                         data-href="{{:: BillingAccountCtrl.billingLink }}"
+                        data-disabled="!(BillingAccountCtrl.group.isNicAdmin || BillingAccountCtrl.group.isNicBilling)"
                         data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.billingLink"
                     >
                     </oui-header-tabs-item>
@@ -69,7 +70,7 @@
                     <oui-header-tabs-item
                         data-text="{{ 'telephony_group_tab_contacts_manage' | translate }}"
                         data-href="{{:: BillingAccountCtrl.manageContactsLink }}"
-                        data-disabled="BillingAccountCtrl.loading.init"
+                        data-disabled="BillingAccountCtrl.loading.init || !BillingAccountCtrl.group.isNicAdmin"
                         data-active="BillingAccountCtrl.currentActiveLink() === BillingAccountCtrl.manageContactsLink"
                     >
                     </oui-header-tabs-item>

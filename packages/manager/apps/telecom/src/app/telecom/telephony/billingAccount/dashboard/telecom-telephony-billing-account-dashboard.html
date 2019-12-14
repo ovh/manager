@@ -19,6 +19,7 @@
                     <div
                         class="oui-tile__item oui-tile__item_button"
                         data-ng-repeat="action in DashboardCtrl.actions track by $index"
+                        data-ng-if="!action.disabled"
                     >
                         <a
                             class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
@@ -31,7 +32,10 @@
                             ></i>
                         </a>
                     </div>
-                    <div class="oui-tile__item oui-tile__item_button">
+                    <div
+                        class="oui-tile__item oui-tile__item_button"
+                        data-ng-if="DashboardCtrl.group.isNicAdmin"
+                    >
                         <a
                             class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
                             data-ui-sref="telecom.telephony.billingAccount.alias.portabilities({ serviceName: 'default'})"
@@ -59,7 +63,10 @@
                             ></i>
                         </a>
                     </div>
-                    <div class="oui-tile__item oui-tile__item_button">
+                    <div
+                        class="oui-tile__item oui-tile__item_button"
+                        data-ng-if="DashboardCtrl.group.isNicAdmin"
+                    >
                         <a
                             class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
                             data-ui-sref="telecom.telephony.billingAccount.portabilityOrder"
@@ -188,7 +195,7 @@
                             >
                             </group-consumption-pie-chart>
                             <span
-                                data-ng-if="!DashboardCtrl.loading.consumption"
+                                data-ng-if="!DashboardCtrl.loading.consumption && (DashboardCtrl.group.isNicAdmin || DashboardCtrl.group.isNicBilling)"
                             >
                                 <span
                                     data-translate="telephony_group_billing_dashboard_credit_current_out_plan"
@@ -295,7 +302,10 @@
         </div>
     </div>
 
-    <div class="oui-tile mb-5">
+    <div
+        class="oui-tile mb-5"
+        data-ng-if="DashboardCtrl.group.isNicAdmin || DashboardCtrl.group.isNicBilling"
+    >
         <h3
             class="oui-header_3 oui-tile__title"
             data-translate="telephony_group_billing_dashboard_bill_title"
@@ -359,6 +369,7 @@
             </div>
         </div>
     </div>
+
     <!-- /.widget-presentation -->
 </div>
 <!-- /.telephony-group-dashboard -->

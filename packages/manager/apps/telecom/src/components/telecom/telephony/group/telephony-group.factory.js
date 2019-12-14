@@ -57,6 +57,10 @@ angular
         this.calledFees = null;
         this.groupRepayments = null;
 
+        this.isNicAdmin = false;
+        this.isNicTech = false;
+        this.isNicBilling = false;
+
         // lines
         this.lines = [];
         this.numbers = [];

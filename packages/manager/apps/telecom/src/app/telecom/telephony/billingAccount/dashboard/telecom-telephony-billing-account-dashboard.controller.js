@@ -295,7 +295,9 @@ angular
             {
               name: 'telephony_group_admin_actions_order',
               sref: 'telecom.telephony.billingAccount.orderAlias',
-              disabled: isExpired(),
+              disabled:
+                isExpired() ||
+                !(self.group.isNicAdmin || self.group.isNicBilling),
               text: $translate.instant(
                 'telephony_group_billing_dashboard_actions_group_order',
               ),
@@ -303,6 +305,7 @@ angular
             {
               name: 'telephony_group_admin_actions_bill',
               sref: 'telecom.telephony.billingAccount.billing.bill',
+              disabled: !(self.group.isNicAdmin || self.group.isNicBilling),
               text: $translate.instant(
                 'telephony_group_billing_dashboard_go_to_my_bills',
               ),
@@ -310,7 +313,7 @@ angular
             {
               name: 'telephony_group_admin_actions_delete',
               sref: 'telecom.telephony.billingAccount.deleteGroup',
-              disabled: isExpired(),
+              disabled: isExpired() || !self.group.isNicAdmin,
               text: $translate.instant(
                 'telephony_group_billing_dashboard_actions_group_delete',
               ),
