@@ -142,7 +142,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" data-ng-hide="$ctrl.isVirtualNumber()">
+                        <div class="form-group" data-ng-if="!$ctrl.isVirtualNumber()">
                             <div data-ng-if="$ctrl.displaySenderCustomizationAdvice">
                                 <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
                                 <p data-translate="sms_sms_compose_message_advice_info"></p>
@@ -322,28 +322,28 @@
                                     <span data-translate="sms_sms_compose_message_stop_info_end"></span>
                                 </p>
                                 <p data-translate="sms_sms_compose_message_stop_description"></p>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="noStopClause"
-                                        id="noStopClause"
-                                        data-ng-model="$ctrl.sms.noStopClause"
-                                        data-ng-change="$ctrl.computeRemainingChar()" />
+                                <oui-checkbox
+                                    data-name="noStopClause"
+                                    data-id="noStopClause"
+                                    data-model="$ctrl.sms.noStopClause"
+                                    data-on-change="$ctrl.computeRemainingChar(modelValue)"
+                                    data-text="{{ 'sms_sms_compose_no_stop_clause_label' | translate }}">
                                     <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
-                                </label>
+                                </oui-checkbox>
                             </div>
                         </div>
                         <div data-ng-if="$ctrl.isShortNumber()">
-                            <p data-translate="sms_sms_compose_message_commercial_description"></p>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="noCommercialClause"
-                                    id="noCommercialClause"
-                                    data-ng-model="$ctrl.sms.noCommercialClause"
-                                    data-ng-change="$ctrl.computeRemainingChar()" />
+                            <p>
+                                <span data-translate="sms_sms_compose_message_commercial_description1"></span>
+                                <strong><span data-translate="sms_sms_compose_message_commercial_description2"></span></strong>
+                            </p>
+                            <oui-checkbox
+                                data-name="noCommercialClause"
+                                data-id="noCommercialClause"
+                                data-model="$ctrl.sms.noCommercialClause"
+                                data-on-change="$ctrl.computeRemainingChar()">
                                 <span data-translate="sms_sms_compose_no_commercial_clause_label"></span>
-                            </label>
+                            </oui-checkbox>
                         </div>
                     </section>
 

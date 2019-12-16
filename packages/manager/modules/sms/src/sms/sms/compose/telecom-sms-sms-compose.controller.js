@@ -25,6 +25,8 @@ import tipsController from './tips/telecom-sms-sms-compose-tips.controller';
 import tipsComposeTemplate from './tips/telecom-sms-sms-compose-tips-compose.html';
 import tipsSizeTemplate from './tips/telecom-sms-sms-compose-tips-size.html';
 
+import { SMS_COMPOSE } from './telecom-sms-sms-compose.constant';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -93,7 +95,7 @@ export default class {
       message: null,
       noStopClause: false,
       receivers: null,
-      sender: 'shortNumber',
+      sender: SMS_COMPOSE.shortNumber,
       senderForResponse: false,
       noCommercialClause: false,
     };
@@ -215,16 +217,16 @@ export default class {
 
   /**
    * Compute remaining characters.
+   * @param checkValue
    * @return {Object}
    */
-  computeRemainingChar() {
-    let suffix = false;
-    if (!this.isShortNumber()) {
-      suffix = !this.sms.noStopClause;
-    }
+  computeRemainingChar(checkValue) {
+    const isShort = this.isShortNumber() ? true : this.sms.noStopClause;
+    const suffix = checkValue !== undefined ? checkValue : isShort;
+    console.log('compute', isShort, this.sms.noStopClause, checkValue, suffix);
     return assign(this.message, this.TucSmsMediator.getSmsInfoText(
       this.sms.message,
-      suffix,
+      !suffix,
     ));
   }
 
@@ -245,16 +247,16 @@ export default class {
       && !this.isVirtualNumber();
 
     this.displaySenderCustomizationAdvice = isRealNumber
-      || this.sms.sender === 'shortNumber';
+      || this.sms.sender === SMS_COMPOSE.shortNumber;
     this.canHaveSTOPAnswer = !isRealNumber
-      && this.sms.sender !== 'shortNumber';
+      && this.sms.sender !== SMS_COMPOSE.shortNumber;
     this.sms.noStopClause = isRealNumber;
 
     return this.computeRemainingChar();
   }
 
   isShortNumber() {
-    return this.sms.sender === 'shortNumber';
+    return this.sms.sender === SMS_COMPOSE.shortNumber;
   }
 
   /**
@@ -295,8 +297,8 @@ export default class {
     each(this.phonebooks.lists, contact => phonebookContactNumber.push(get(contact, contact.type)));
     const receivers = union(phonebookContactNumber, this.sms.receivers ? [this.sms.receivers] : null);
     const differedPeriod = this.sms.differedPeriod ? this.getDifferedPeriod() : null;
-    const sender = this.sms.sender === 'shortNumber' ? null : this.sms.sender;
-    const senderForResponse = this.sms.sender === 'shortNumber' ? true : this.sms.senderForResponse;
+    const sender = this.sms.sender === SMS_COMPOSE.shortNumber ? null : this.sms.sender;
+    const senderForResponse = this.sms.sender === SMS_COMPOSE.shortNumber ? true : this.sms.senderForResponse;
     return {
       charset: 'UTF-8',
       class: this.sms.class,
@@ -326,7 +328,7 @@ export default class {
       message: null,
       receivers: null,
       noStopClause: false,
-      sender: 'shortNumber',
+      sender: SMS_COMPOSE.shortNumber,
       senderForResponse: false,
     };
     this.computeRemainingChar();
