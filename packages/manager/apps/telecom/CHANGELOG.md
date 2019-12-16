@@ -1,3 +1,12 @@
+## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.1...@ovh-ux/manager-telecom@11.2.2) (2019-12-16)
+
+
+### Bug Fixes
+
+* **telephony.fax.campaign:** disable native validation on creation form ([#1947](https://github.com/ovh/manager/issues/1947)) ([e8e86e1](https://github.com/ovh/manager/commit/e8e86e198b6f8c15a5d7e6f081480d05959e5048))
+
+
+
 ## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.0...@ovh-ux/manager-telecom@11.2.1) (2019-12-16)
 
 
