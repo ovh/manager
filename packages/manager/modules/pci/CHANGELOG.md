@@ -1,3 +1,12 @@
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.0...@ovh-ux/manager-pci@3.6.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **analytics-data-platform.onboarding:** set right docs URLs ([#1964](https://github.com/ovh/manager/issues/1964)) ([c3d199c](https://github.com/ovh/manager/commit/c3d199c7406ff5152984dbcd682ff592cafa2d12))
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.5.0...@ovh-ux/manager-pci@3.6.0) (2019-12-10)
 
 
