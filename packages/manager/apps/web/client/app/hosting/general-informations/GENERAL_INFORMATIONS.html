@@ -261,11 +261,11 @@
                             <oui-action-menu-item data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude > 0 && hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude && sqlPriveState !== 'doing'"
                                 data-text="{{ ::'hosting_dashboard_service_privatesql_active' | translate }}"
                                 data-disabled="sqlPriveState === 'check' || sqlPriveState === 'doing'"
-                                data-on-click="setAction('database/private-activation/database-private-activation', hosting)"></oui-action-menu-item>
+                                data-on-click="$ctrl.goToPrivateSqlActivation()"></oui-action-menu-item>
                             <oui-action-menu-item data-ng-if="hosting.sqlPriveInfo.nbDataBaseInclude > 0 && hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude && sqlPriveState === 'doing'"
                                 data-text="{{ ::'hosting_dashboard_service_privatesql_active_doing' | translate }}"
                                 data-disabled="sqlPriveState === 'check' || sqlPriveState === 'doing'"
-                                data-on-click="setAction('database/private-activation/database-private-activation', hosting)"></oui-action-menu-item>
+                                data-on-click="$ctrl.goToPrivateSqlActivation()"></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{ ::'hosting_dashboard_service_privatesql_order' | translate }}"
                                 data-ui-sref="app.sql-order({orderType: 'private', currentHosting: hosting.serviceName})">

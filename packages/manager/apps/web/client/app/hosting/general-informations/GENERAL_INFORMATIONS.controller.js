@@ -217,4 +217,8 @@ export default class HostingGeneralInformationsCtrl {
   isHostingOffer() {
     return !includes(['KIMSUFI_2015', '__60_FREE', 'DEMO_1_G', 'START_1_M', 'START_10_M', '_ASPFREE'], this.$scope.hosting.offer);
   }
+
+  goToPrivateSqlActivation() {
+    this.$state.go('app.hosting.private-sql-activation');
+  }
 }
