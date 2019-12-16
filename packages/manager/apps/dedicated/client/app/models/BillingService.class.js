@@ -244,6 +244,10 @@ export default class BillingService {
     return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
   }
 
+  canHandleRenew() {
+    return !['VIP'].includes(this.serviceType);
+  }
+
   isOneShot() {
     return this.renewalType === 'oneShot';
   }
