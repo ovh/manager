@@ -46,7 +46,7 @@ export default class {
           res => has(res, 'value') || (withError && has(res, 'error')),
         ),
         (res) => {
-          if (res.value) {
+          if (res.value && res.value.billingAccount) {
             return new this.TucVoipBillingAccount(res.value);
           }
           return new this.TucVoipBillingAccount({

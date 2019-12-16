@@ -13,7 +13,7 @@ angular.module('managerApp').service('TelephonyVoipService', function TelephonyV
     // fetch all billing accounts
     return OvhApiTelephony.v7().query().expand().execute().$promise.then((result) => {
       forEach(result, (item) => {
-        if (!item.error) { // how should we handle errors ?
+        if (!item.error && item.value.billingAccount) { // how should we handle errors ?
           const telephonyGroup = new TelephonyGroup(item.value);
           groups[telephonyGroup.billingAccount] = telephonyGroup;
         }
@@ -29,6 +29,9 @@ angular.module('managerApp').service('TelephonyVoipService', function TelephonyV
             const pathParts = item.path.split('/');
             if (pathParts.length >= 2) {
               const billingAccount = pathParts[2].toLowerCase();
+              if (groups[billingAccount] === undefined) {
+                return;
+              }
               const service = item.value;
               service.billingAccount = billingAccount;
               if (has(item, 'value.serviceName')) {
