@@ -1,0 +1,17 @@
+{
+  "wuc_order_pricing_header": "Tarification",
+  "wuc_order_confirmation_header": "Confirmation",
+
+  "wuc_order_pricing_duration": "{{ duration }} :",
+  "wuc_order_pricing_day": "{{ number }} jour",
+  "wuc_order_pricing_days": "{{ number }} jours",
+  "wuc_order_pricing_month": "{{ number }} mois",
+  "wuc_order_pricing_months": "{{ number }} mois",
+
+  "wuc_order_confirmation_pay": "Payer",
+  "wuc_order_confirmation_activate": "Activer",
+
+  "wuc_order_total_price_without_tax": "Prix HT :",
+  "wuc_order_total_price_with_tax": "Prix TTC :",
+  "wuc_order_duration": "Durée :"
+}
