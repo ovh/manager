@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         lab: /* @ngInject */ (
           PciProjectLabsService,
           projectId,
-        ) => PciProjectLabsService.getLabByName(projectId, 'ioStream'),
+        ) => PciProjectLabsService.getLabByName(projectId, 'serving'),
 
         namespaces: /* @ngInject */ (
           PciProjectServingService,
