@@ -1,3 +1,12 @@
+## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.0...@ovh-ux/manager-telecom@11.2.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** bypass API error when loading groups ([#1834](https://github.com/ovh/manager/issues/1834)) ([2acd199](https://github.com/ovh/manager/commit/2acd199347b89b1532d37d0a2e9331f344867498))
+
+
+
 # [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.1.4...@ovh-ux/manager-telecom@11.2.0) (2019-12-10)
 
 
