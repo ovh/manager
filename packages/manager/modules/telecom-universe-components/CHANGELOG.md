@@ -1,3 +1,12 @@
+## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.0...@ovh-ux/ng-ovh-telecom-universe-components@4.4.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** bypass API error when loading groups ([#1834](https://github.com/ovh/manager/issues/1834)) ([2acd199](https://github.com/ovh/manager/commit/2acd199347b89b1532d37d0a2e9331f344867498))
+
+
+
 # [4.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.3.0...@ovh-ux/ng-ovh-telecom-universe-components@4.4.0) (2019-12-10)
 
 
