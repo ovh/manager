@@ -7,10 +7,11 @@
          data-ng-if="hosting && ctrlEmailProMXPlanMailingLists.quotas.mailingList <= 0">
         <div>
             <p class="mb-3" data-translate="mailing_list_tab_table_no_quota"></p>
-            <button class="btn btn-info" type="button"
-                    data-translate="hosting_dashboard_service_change_offer"
-                    data-ng-click="setAction('hosting/offer/upgrade/hosting-offer-upgrade', hosting)">
-            </button>
+            <a
+                class="oui-button oui-button_secondary"
+                data-ng-href="#/configuration/email-domain/{{exchange.associatedDomainName}}/upgrade">
+                <span data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"></span>
+            </a>
         </div>
     </div>
 
