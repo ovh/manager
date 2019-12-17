@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <a class="d-inline-block mt-2"
-                                       data-ui-sref="sms.service.senders"
+                                    data-ng-href="{{:: $ctrl.sendersLink() }}"
                                        data-translate="sms_sms_compose_sender_manage"
                                        data-translate-attr="{ title: 'sms_sms_compose_sender_manage' }">
                                     </a>
@@ -142,19 +142,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group" data-ng-if="!$ctrl.isVirtualNumber()">
-                            <div data-ng-if="$ctrl.displaySenderCustomizationAdvice">
-                                <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
-                                <p data-translate="sms_sms_compose_message_advice_info"></p>
-                                <p>
-                                    <span data-translate="sms_sms_compose_message_advice_description_1"></span>
-                                    <a href="#"
-                                        data-ui-sref="sms.service.senders"
-                                        data-translate="sms_sms_compose_message_advice_description_2">
-                                    </a>
-                                    <span data-translate="sms_sms_compose_message_advice_description_3"></span>
-                                </p>
-                            </div>
+                        <div class="form-group" data-ng-if="!$ctrl.isVirtualNumber() && $ctrl.displaySenderCustomizationAdvice">
+                            <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
+                            <p data-translate="sms_sms_compose_message_advice_info"></p>
+                            <p>
+                                <span data-translate="sms_sms_compose_message_advice_description_1"></span>
+                                <a data-ng-href="{{:: $ctrl.sendersLink() }}"
+                                   data-translate="sms_sms_compose_message_advice_description_2">
+                                </a>
+                                <span data-translate="sms_sms_compose_message_advice_description_3"></span>
+                            </p>
                         </div>
 
                         <div class="form-group"
@@ -326,16 +323,13 @@
                                     data-name="noStopClause"
                                     data-id="noStopClause"
                                     data-model="$ctrl.sms.noStopClause"
-                                    data-on-change="$ctrl.computeRemainingChar(modelValue)"
-                                    data-text="{{ 'sms_sms_compose_no_stop_clause_label' | translate }}">
+                                    data-on-change="$ctrl.computeRemainingChar(modelValue)">
                                     <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
                                 </oui-checkbox>
                             </div>
                         </div>
                         <div data-ng-if="$ctrl.isShortNumber()">
-                            <p>
-                                <span data-translate="sms_sms_compose_message_commercial_description1"></span>
-                                <strong><span data-translate="sms_sms_compose_message_commercial_description2"></span></strong>
+                            <p data-translate="sms_sms_compose_message_commercial_description">
                             </p>
                             <oui-checkbox
                                 data-name="noCommercialClause"

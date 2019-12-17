@@ -8,5 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'smsView@sms.service': componentName,
     },
+    resolve: {
+      sendersLink: /* @ngInject */ $state => () => $state.href('sms.service.senders'),
+    },
   });
 };

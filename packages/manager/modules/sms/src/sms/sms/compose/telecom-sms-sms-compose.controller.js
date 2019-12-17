@@ -223,7 +223,6 @@ export default class {
   computeRemainingChar(checkValue) {
     const isShort = this.isShortNumber() ? true : this.sms.noStopClause;
     const suffix = checkValue !== undefined ? checkValue : isShort;
-    console.log('compute', isShort, this.sms.noStopClause, checkValue, suffix);
     return assign(this.message, this.TucSmsMediator.getSmsInfoText(
       this.sms.message,
       !suffix,
