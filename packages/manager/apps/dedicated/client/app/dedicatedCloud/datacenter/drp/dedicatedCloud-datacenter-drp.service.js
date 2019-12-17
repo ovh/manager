@@ -398,23 +398,30 @@ export default class {
     );
   }
 
-  deleteZertoOptionOrderInUserPref(drpKey) {
-    return this.ovhUserPref.remove(drpKey, true);
+  deleteZertoOptionOrderInUserPref(pccId) {
+    const preferenceKey = this.constructor.formatPreferenceKey(
+      pccId,
+      DEDICATEDCLOUD_DATACENTER_ZERTO.title,
+    );
+
+    return this.ovhUserPref.remove(preferenceKey, true);
   }
 
   /* ------- Order ZERTO option ------ */
 
   disableDrp(drpInformations) {
-    const deleteDrpPromise =
-      drpInformations.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-        ? this.disableDrpOvh(drpInformations)
-        : this.disableDrpOnPremise(drpInformations);
-
     const drpPccId = drpInformations.primaryPcc.serviceName;
 
-    return deleteDrpPromise
-      .then(() => this.deleteZertoOptionOrderInUserPref(drpPccId))
-      .then(() => this.deleteDisableSuccessAlertPreference(drpPccId));
+    return (drpInformations.drpType ===
+    DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+      ? this.disableDrpOvh(drpInformations)
+      : this.disableDrpOnPremise(drpInformations)
+    ).then(() =>
+      Promise.allSettled([
+        this.deleteZertoOptionOrderInUserPref(drpPccId),
+        this.deleteDisableSuccessAlertPreference(drpPccId),
+      ]),
+    );
   }
 
   disableDrpOvh({
@@ -499,13 +506,13 @@ export default class {
     return this.ovhUserPref.getValue(preferenceKey);
   }
 
-  setDisableSuccessAlertPreference(pccId) {
+  setDisableSuccessAlertPreference(pccId, value) {
     const preferenceKey = this.constructor.formatPreferenceKey(
       pccId,
       DEDICATEDCLOUD_DATACENTER_ZERTO.alertPreference,
     );
 
-    return this.ovhUserPref.create(preferenceKey, true);
+    return this.ovhUserPref.create(preferenceKey, value);
   }
 
   deleteDisableSuccessAlertPreference(pccId) {

@@ -45,11 +45,11 @@ angular.module('App').config(
                 .getDisableSuccessAlertPreference(
                   $transition$.params().productId,
                 )
-                .then(() => {
-                  currentDrp.isSuccessAlertDisable = true;
+                .then((alertPreferenceValue) => {
+                  currentDrp.isSuccessAlertDisable = alertPreferenceValue;
                 })
                 .catch(() => {
-                  currentDrp.isSuccessAlertDisable = false;
+                  currentDrp.isSuccessAlertDisable = true;
                 })
                 .then(() => currentDrp);
             }),
