@@ -26,11 +26,14 @@ export default class PciInstanceAttachVolumeController {
           'pci_projects_project_instances_instance_attach-volume_success_message',
           {
             volume: storage.name,
-            instance: this.instance.id,
+            instance: this.instance.name,
+            volumeId: storage.id,
+            instanceId: this.instance.id,
+            type: storage.type,
           },
         ),
       ))
-      .catch(err => this.goBack(
+      .catch((err) => this.goBack(
         this.$translate.instant(
           'pci_projects_project_instances_instance_attach-volume_error_attach',
           {

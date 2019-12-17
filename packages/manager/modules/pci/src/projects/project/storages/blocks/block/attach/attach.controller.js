@@ -33,9 +33,12 @@ export default class PciBlockStorageDetailsAttachController {
         {
           volume: this.storage.name,
           instance: instanceName,
+          volumeId: this.storage.id,
+          instanceId: id,
+          type: this.storage.type,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_storages_blocks_block_attach_error_attach',
         {
           message: get(err, 'data.message', null),
