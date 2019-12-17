@@ -23,6 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       disableForUS: /* @ngInject */ ($q, isDrpAvailable) =>
         !isDrpAvailable ? $q.reject() : $q.when(),
+      setDisableSuccessAlertPreference: /* @ngInject */ (dedicatedCloudDrp) => (
+        pccId,
+        value,
+      ) => dedicatedCloudDrp.setDisableSuccessAlertPreference(pccId, value),
       selectedDrpType: /* @ngInject */ ($transition$) => ({
         id: get($transition$.params().selectedDrpType, 'id', null),
       }),

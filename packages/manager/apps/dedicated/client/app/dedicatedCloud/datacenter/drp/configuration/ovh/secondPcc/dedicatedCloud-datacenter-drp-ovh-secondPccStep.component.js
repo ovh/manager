@@ -6,6 +6,7 @@ export default {
     availablePccs: '<',
     currentUser: '<',
     drpInformations: '=',
+    setDisableSuccessAlertPreference: '<',
     storeZertoOptionOrderInUserPref: '<',
 
     displayErrorMessage: '<',
