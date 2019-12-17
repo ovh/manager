@@ -147,7 +147,7 @@
   "hosting_dashboard_add_or_order_step1_order": "Order a new domain ",
   "hosting_dashboard_add_or_order_step1_attach": "Attach an existing domain ",
   "hosting_dashboard_service_ssl": "SSL Certificate",
-  "hosting_dashboard_service_cdn": "CDN + HTTP/2 option ",
+  "hosting_dashboard_service_cdn": "CDN option",
   "hosting_dashboard_service_web": "Websites",
   "hosting_dashboard_service_privatesql": "Private database",
   "hosting_dashboard_service_privatesql_more": "See list ",
@@ -1380,5 +1380,7 @@
   "hosting_dashboard_configuration": "Configuration",
   "hosting_dashboard_access": "Access",
   "common_api_hostingWeb-1": "You cannot migrate to this solution, because your current solution has more email capacity than the solution you have selected.",
-  "hosting_tab_BOOST_request_description_billing_new": "From 01st November 2019, our pricing will change, and you will be billed per day of usage: {{price}} ex. VAT per day and per solution level."
+  "hosting_tab_BOOST_request_description_billing_new": "From 01st November 2019, our pricing will change, and you will be billed per day of usage: {{price}} ex. VAT per day and per solution level.",
+  "hosting_dashboard_service_activate_cdn": "Enable a CDN",
+  "hosting_dashboard_cdn_order_success_activation": "You have enabled the CDN successfully. Your product will be enabled shortly."
 }

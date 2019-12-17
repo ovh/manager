@@ -1,0 +1,13 @@
+{
+  "hosting_cdn_order_title": "Ordina una CDN",
+  "hosting_cdn_order_description": "L’opzione CDN attiva una rete di server di cache per i tuoi file statici (HTML, CSS, JavaScript). Permette di accelerare il caricamento delle pagine Web e utilizzare le risorse dell’hosting esclusivamente per gli elementi dinamici.",
+  "hosting_cdn_order_duration_label": "{{duration}}:",
+  "hosting_cdn_order_step_header_duration": "Scegli la durata",
+  "hosting_cdn_order_step_header_activation": "Attivazione",
+  "hosting_cdn_order_step_header_payment": "Pagamento",
+  "hosting_cdn_order_step_description_activation": "Per confermare la richiesta, accetta le condizioni di utilizzo.",
+  "hosting_cdn_order_step_description_payment": "Per confermare la richiesta, seleziona il metodo di pagamento e accetta le condizioni di utilizzo.",
+  "hosting_cdn_order_submit_activate": "Attiva",
+  "hosting_cdn_order_submit_pay": "Paga",
+  "hosting_cdn_order_cancel": "Annulla"
+}
