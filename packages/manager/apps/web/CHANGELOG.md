@@ -1,3 +1,12 @@
+## [13.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.1...@ovh-ux/manager-web@13.36.2) (2019-12-18)
+
+
+### Bug Fixes
+
+* **web:** domain email delegation ([#1864](https://github.com/ovh/manager/issues/1864)) ([405dfe2](https://github.com/ovh/manager/commit/405dfe2ccc58795264df4facf31ce3e8d1e22d35))
+
+
+
 ## [13.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.0...@ovh-ux/manager-web@13.36.1) (2019-12-13)
 
 
