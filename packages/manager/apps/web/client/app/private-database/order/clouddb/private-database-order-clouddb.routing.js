@@ -6,10 +6,10 @@ export default /* @ngInject */ ($stateProvider) => {
     component: component.name,
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      assignCart: /* @ngInject */ (cartId, OrderService) =>
-        OrderService.assignCart(cartId),
-      cartId: /* @ngInject */ (OrderService, user) =>
-        OrderService.createNewCart(user.ovhSubsidiary).then(
+      assignCart: /* @ngInject */ (cartId, WucOrderCartService) =>
+        WucOrderCartService.assignCart(cartId),
+      cartId: /* @ngInject */ (WucOrderCartService, user) =>
+        WucOrderCartService.createNewCart(user.ovhSubsidiary).then(
           ({ cartId }) => cartId,
         ),
       catalog: /* @ngInject */ (user, PrivateDatabaseOrderCloudDb) =>
@@ -27,8 +27,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       openBill: /* @ngInject */ ($window) => (billUrl) =>
         $window.open(billUrl, '_blank'),
-      orderApiSchema: /* @ngInject */ (OrderService) =>
-        OrderService.getOrderApiSchema(),
+      orderApiSchema: /* @ngInject */ (WucOrderCartService) =>
+        WucOrderCartService.getOrderApiSchema(),
       pricings: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
         PrivateDatabaseOrderCloudDb.constructor.getPricings(catalog.plans),
       ramSizes: /* @ngInject */ (orderApiSchema, PrivateDatabaseOrderCloudDb) =>

@@ -9,15 +9,20 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($q, OrderService, OvhApiHostingWebModuleList, OvhApiOrder) {
+  constructor(
+    $q,
+    OvhApiHostingWebModuleList,
+    OvhApiOrder,
+    WucOrderCartService,
+  ) {
     this.$q = $q;
-    this.OrderService = OrderService;
     this.OvhApiHostingWebModuleList = OvhApiHostingWebModuleList;
     this.OvhApiOrder = OvhApiOrder;
+    this.WucOrderCartService = WucOrderCartService;
   }
 
   getAvailableModules(cartId) {
-    return this.OrderService.getProductOptions(
+    return this.WucOrderCartService.getProductOptions(
       cartId,
       WEBHOSTING_ORDER_PRODUCT,
       { planCode: DEFAULT_PLANCODE },
@@ -94,12 +99,12 @@ export default class {
           ? this.addModuleToCart(cartId, itemId, domainName, moduleOptions)
           : null,
       )
-      .then(() => this.OrderService.getCheckoutInformations(cartId));
+      .then(() => this.WucOrderCartService.getCheckoutInformations(cartId));
   }
 
   addHostingToCart(cartId, domainName, productOptions, dnsConfiguration) {
     const { label, value } = dnsConfiguration;
-    return this.OrderService.addProductToCart(
+    return this.WucOrderCartService.addProductToCart(
       cartId,
       WEBHOSTING_ORDER_PRODUCT,
       {
@@ -111,20 +116,25 @@ export default class {
     ).then(({ itemId }) =>
       this.$q
         .all([
-          this.OrderService.addConfigurationItem(
+          this.WucOrderCartService.addConfigurationItem(
             cartId,
             itemId,
             CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
             domainName,
           ),
-          this.OrderService.addConfigurationItem(cartId, itemId, label, value),
+          this.WucOrderCartService.addConfigurationItem(
+            cartId,
+            itemId,
+            label,
+            value,
+          ),
         ])
         .then(() => itemId),
     );
   }
 
   addModuleToCart(cartId, itemId, domainName, moduleOptions) {
-    return this.OrderService.addProductOptionToCart(
+    return this.WucOrderCartService.addProductOptionToCart(
       cartId,
       WEBHOSTING_ORDER_PRODUCT,
       {
@@ -135,7 +145,7 @@ export default class {
         quantity: OPTION_QUANTITY,
       },
     ).then(({ itemId: productId }) =>
-      this.OrderService.addConfigurationItem(
+      this.WucOrderCartService.addConfigurationItem(
         cartId,
         productId,
         CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
@@ -145,7 +155,7 @@ export default class {
   }
 
   validateCheckout(cartId, checkout) {
-    return this.OrderService.checkoutCart(cartId, checkout);
+    return this.WucOrderCartService.checkoutCart(cartId, checkout);
   }
 
   static mapDnsZoneValue(dnsConfiguration) {
