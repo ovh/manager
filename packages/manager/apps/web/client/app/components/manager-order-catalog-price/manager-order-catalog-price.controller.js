@@ -11,8 +11,9 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($attrs) {
+  constructor($attrs, TranslateService) {
     this.$attrs = $attrs;
+    this.TranslateService = TranslateService;
   }
 
   $onInit() {
@@ -25,12 +26,10 @@ export default class {
   }
 
   getPriceText(priceInCents) {
+    const locale = this.TranslateService.getUserLocale().replace('_', '-');
     const price = this.getIntervalPrice(priceInCents / 100000000);
 
-    if (this.isFrenchFormat() || this.isGermanFormat()) {
-      return `${price}${this.user.currency.symbol}`;
-    }
-    return `${this.user.currency.symbol}${price}`;
+    return new Intl.NumberFormat(locale, { style: 'currency', currency: this.user.currency.code }).format(price);
   }
 
   getIntervalPrice(price) {
