@@ -4,6 +4,8 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
+import { FREEFAX_AVAILABILITY } from './feature-availability/feature-availability.constants';
+
 import component from './freefaxes.component';
 import routing from './freefaxes.routing';
 import freefax from './freefax';
@@ -20,5 +22,9 @@ angular
   .config(routing)
   .component('ovhManagerFreefaxes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
+
+export {
+  FREEFAX_AVAILABILITY,
+};
 
 export default moduleName;
