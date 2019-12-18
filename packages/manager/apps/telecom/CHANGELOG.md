@@ -1,3 +1,12 @@
+## [11.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.2...@ovh-ux/manager-telecom@11.2.3) (2019-12-18)
+
+
+### Bug Fixes
+
+* **telephony.fax:** retrieve time from oui date picker ([bd5795f](https://github.com/ovh/manager/commit/bd5795fca7503c79b2012f518da8793df93e677c))
+
+
+
 ## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.2.1...@ovh-ux/manager-telecom@11.2.2) (2019-12-16)
 
 
