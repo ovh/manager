@@ -232,7 +232,7 @@ export default class AnalyticsDataPlatformService {
         {
           method: 'get',
           namespace: `analytics-data-platform.order.${orderId}`,
-          successRule: orderDetail => orderDetail.domain !== '*',
+          successRule: orderDetail => orderDetail.domain !== '*001',
         },
       ))
       .then(orderDetail => orderDetail.domain);
