@@ -6,6 +6,7 @@ export default {
   template,
   bindings: {
     addInstance: '<',
+    betaWarning: '<',
     createBackupInstance: '<',
     deleteInstance: '<',
     editInstance: '<',

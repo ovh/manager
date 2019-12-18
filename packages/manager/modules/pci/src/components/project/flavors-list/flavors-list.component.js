@@ -8,9 +8,13 @@ export default {
     selectedFlavor: '=?',
     displaySelectedFlavor: '<',
     defaultFlavor: '<?',
+    excludeCategories: '<?',
     image: '<?',
+    includeCategories: '<?',
     onChange: '&?',
     region: '<?',
+    selectedCategory: '@?',
     serviceName: '@',
+    singleFlavorWarning: '@?',
   },
 };

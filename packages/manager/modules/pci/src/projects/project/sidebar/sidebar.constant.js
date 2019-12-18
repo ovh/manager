@@ -14,6 +14,14 @@ export const MENU = [
         },
         title: 'Instances',
       },
+      {
+        beta: true,
+        id: 'baremetal',
+        options: {
+          state: 'pci.projects.project.baremetal',
+        },
+        title: 'Bare Metal',
+      },
     ],
     title: 'Compute',
   },

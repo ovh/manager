@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
+import { TYPES_TO_EXCLUDE } from './instances.constants';
+import Instance from '../../../components/project/instance/instance.class';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
     url: '/instances?help',
@@ -16,9 +24,36 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('pci_projects_project_instances_title'),
       help: /* @ngInject */ ($transition$) => $transition$.params().help,
       instances: /* @ngInject */ (
+        $q,
         PciProjectsProjectInstanceService,
         projectId,
-      ) => PciProjectsProjectInstanceService.getAll(projectId),
+      ) =>
+        PciProjectsProjectInstanceService.getAll(projectId)
+          .then((instances) =>
+            $q.all(
+              map(instances, (instance) =>
+                PciProjectsProjectInstanceService.getInstanceFlavor(
+                  projectId,
+                  instance,
+                ).then(
+                  (flavor) =>
+                    new Instance({
+                      ...instance,
+                      flavor,
+                    }),
+                ),
+              ),
+            ),
+          )
+          .then((instances) =>
+            filter(
+              instances,
+              (instance) =>
+                !find(TYPES_TO_EXCLUDE, (pattern) =>
+                  pattern.test(get(instance, 'flavor.type')),
+                ),
+            ),
+          ),
       addInstance: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.instances.add', {
           projectId,

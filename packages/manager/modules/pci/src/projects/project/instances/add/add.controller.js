@@ -76,6 +76,12 @@ export default class PciInstancesAddController {
       schedule: null,
       price: null,
     };
+    this.addInstanceSuccessMessage =
+      this.addInstanceSuccessMessage ||
+      'pci_projects_project_instances_add_success_message';
+    this.addInstancesSuccessMessage =
+      this.addInstancesSuccessMessage ||
+      'pci_projects_project_instances_add_success_multiple_message';
   }
 
   loadMessages() {
@@ -296,16 +302,11 @@ export default class PciInstancesAddController {
       .then(() => {
         const message =
           this.model.number === 1
-            ? this.$translate.instant(
-                'pci_projects_project_instances_add_success_message',
-                {
-                  instance: this.instance.name,
-                },
-              )
-            : this.$translate.instant(
-                'pci_projects_project_instances_add_success_multiple_message',
-              );
-        return this.goBack(message);
+            ? this.$translate.instant(this.addInstanceSuccessMessage, {
+                instance: this.instance.name,
+              })
+            : this.$translate.instant(this.addInstancesSuccessMessage);
+        return this.goBack(message, 'success');
       })
       .catch((error) => {
         let message;

@@ -7,6 +7,7 @@
         >
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="!$ctrl.vncDisabled"
             data-text="{{ 'pci_projects_project_instances_instance_vnc_title' | translate }}"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
@@ -448,6 +449,7 @@
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             text="{{:: 'pci_projects_project_instances_instance_private_networks_action_attach_label' | translate }}"
+                            data-disabled="$ctrl.disablePrivateNetworks"
                             data-on-click="$ctrl.attachPrivateNetwork()"
                         >
                         </oui-action-menu-item>

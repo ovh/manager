@@ -37,7 +37,8 @@ export default class FlavorsListController {
       this.flavors = this.PciProjectFlavors.constructor.groupByCategory(
         flavorGroups,
       );
-      this.selectedCategory = get(first(this.flavors), 'category');
+      this.selectedCategory =
+        this.selectedCategory || get(first(this.flavors), 'category');
       this.findFlavor();
 
       return flavors;
@@ -77,5 +78,12 @@ export default class FlavorsListController {
     }
 
     return true;
+  }
+
+  isFlavorCategoryIncluded(category) {
+    return (
+      (!this.includeCategories || this.includeCategories.includes(category)) &&
+      !(this.excludeCategories && this.excludeCategories.includes(category))
+    );
   }
 }
