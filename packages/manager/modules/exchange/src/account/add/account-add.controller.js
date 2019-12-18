@@ -112,7 +112,8 @@ export default class ExchangeAccountAddController {
     if (this.accountCreationOptions.passwordComplexityEnabled) {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordComplexityCheck(
+        this.ExchangePassword.passwordComplexityCheck(this.newAccount.password)
+        && this.ExchangePassword.passwordSimpleCheck(
           this.newAccount.password,
           true,
           this.accountCreationOptions.minPasswordLength,
