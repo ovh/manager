@@ -125,14 +125,16 @@ angular.module('App').controller(
       return this.$q
         .all({
           email: this.WucEmails.getDelegatedEmail(item),
-          usage: this.WucEmails.getEmailDelegatedUsage(item),
+          usage: this.WucEmails.getEmailDelegatedUsage(item).catch(() => null),
         })
         .then(({ email, usage }) => {
           const emailData = clone(email);
 
-          emailData.quota = usage.quota;
-          emailData.emailCount = usage.emailCount;
-          emailData.date = usage.date;
+          if (usage) {
+            emailData.quota = usage.quota;
+            emailData.emailCount = usage.emailCount;
+            emailData.date = usage.date;
+          }
 
           this.constructor.setAccountPercentUse(emailData);
 
