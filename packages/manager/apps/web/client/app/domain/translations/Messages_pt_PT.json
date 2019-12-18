@@ -833,5 +833,10 @@
   "domain_tab_options_delete_error": "Ocorreu um erro durante a rescisão da opção.",
   "domain_tab_options_delete_cancel": "Anular",
   "domain_dashboard_options_dns_anycast_expiry": "data de entrada em vigor: {{date}}",
-  "domain_tab_options_delete_expiry": "A rescisão do serviço terá efeito a partir da data de renovação, ou seja, {{date}}"
+  "domain_tab_options_delete_expiry": "A rescisão do serviço terá efeito a partir da data de renovação, ou seja, {{date}}",
+  "domain_dashboard_web_hosting_ordered": "Alojamentos encomendados",
+  "domain_dashboard_web_hosting_ordered_none": "Outro alojamento encomendado",
+  "domain_dashboard_web_hosting_subdomains_and_multisites": "Subdomínios e multi-sites",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Mostrar tudo",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "Nenhum subdomínio ou multi-site"
 }
