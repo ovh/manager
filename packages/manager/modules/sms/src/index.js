@@ -8,7 +8,7 @@ import sms from './sms';
 import routing from './sms.routing';
 import component from './sms.component';
 
-import SMSFeatureAvailability from './feature-availability/feature-availability.class';
+import { SMS_AVAILABILITY } from './feature-availability/feature-availability.constants';
 
 const moduleName = 'ovhManagerSms';
 
@@ -23,7 +23,7 @@ angular.module(moduleName, [
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export {
-  SMSFeatureAvailability,
+  SMS_AVAILABILITY,
 };
 
 export default moduleName;
