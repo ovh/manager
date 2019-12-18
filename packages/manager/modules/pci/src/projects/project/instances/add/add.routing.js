@@ -1,3 +1,5 @@
+import { EXCLUDE_FLAVOR_CATEGORIES } from './add.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.add', {
     url: '/new',
@@ -36,6 +38,8 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         project,
       ) => PciProjectsProjectInstanceService.getExtraBandwidthCost(project, me),
+
+      excludeCategories: () => EXCLUDE_FLAVOR_CATEGORIES,
     },
   });
 };

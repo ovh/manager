@@ -72,6 +72,13 @@ export default class PciProjectInstanceService {
     );
   }
 
+  getInstanceFlavor(projectId, instance) {
+    return this.OvhApiCloudProjectFlavor.v6().get({
+      serviceName: projectId,
+      flavorId: instance.flavorId,
+    }).$promise;
+  }
+
   getInstanceDetails(projectId, instance) {
     return this.$q
       .all({

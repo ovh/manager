@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import analyticsDataPlatform from './analytics-data-platform';
+import baremetal from './baremetal';
 import billing from './billing';
 import contacts from './contacts';
 import creating from './creating';
@@ -34,6 +35,7 @@ const moduleName = 'ovhManagerPciProject';
 angular
   .module(moduleName, [
     analyticsDataPlatform,
+    baremetal,
     billing,
     contacts,
     creating,

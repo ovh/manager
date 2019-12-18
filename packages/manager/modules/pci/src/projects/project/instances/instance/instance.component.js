@@ -5,6 +5,7 @@ export default {
   template,
   controller,
   bindings: {
+    disablePrivateNetworks: '<',
     projectId: '<',
     instanceId: '<',
     instance: '<',
@@ -35,5 +36,6 @@ export default {
     attachPrivateNetwork: '<',
     scheduleAutoBackup: '<',
     guideUrl: '<',
+    vncDisabled: '<',
   },
 };
