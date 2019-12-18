@@ -65,13 +65,13 @@
             </ovh-payment-method-choice>
 
             <!-- Contracts -->
-            <ovh-manager-order-contracts
+            <ovh-contracts-summary
                 name="agreeContracts"
                 data-ng-if="$ctrl.cart"
                 data-items="$ctrl.cart.contracts"
                 data-model="$ctrl.agreeContracts"
             >
-            </ovh-manager-order-contracts>
+            </ovh-contracts-summary>
         </oui-step-form>
     </oui-stepper>
 </div>
