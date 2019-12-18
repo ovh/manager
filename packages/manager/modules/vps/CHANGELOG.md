@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.2...@ovh-ux/manager-vps@0.1.3) (2019-12-18)
+
+
+### Bug Fixes
+
+* **vps:** add missing translation ([#1971](https://github.com/ovh/manager/issues/1971)) ([80c6ee9](https://github.com/ovh/manager/commit/80c6ee9bd21afc8f54ed39e078a3e8607be33093))
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.1...@ovh-ux/manager-vps@0.1.2) (2019-11-22)
 
 
