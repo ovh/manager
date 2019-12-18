@@ -16,6 +16,7 @@ export default class {
       .getDefaultPaymentMethod()
       .then((defaultPaymentMethod) => {
         this.defaultPaymentMethod = defaultPaymentMethod;
+        this.model = true;
       })
       .catch((error) => {
         this.$log.error(`An error has occured during initialization of choice component : ${error}`);
