@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 
-import { SMSFeatureAvailability } from '@ovh-ux/manager-sms';
 import { FeatureAvailability } from '@ovh-ux/ng-ovh-telecom-universe-components';
 import { FREEFAX_AVAILABILITY } from '@ovh-ux/manager-freefax';
 import { OTB_AVAILABILITY } from '@ovh-ux/manager-overthebox';
+import { SMS_AVAILABILITY } from '@ovh-ux/manager-sms';
 import { ALIAS_AVAILABILITY } from '../../app/telecom/orders/alias/orders-alias.constants';
 import { PACK_AVAILABILITY } from '../../app/telecom/pack/pack.constant';
 import { TELEPHONY_AVAILABILITY } from '../../app/telecom/telephony/telecom-telephony.constant';
@@ -124,7 +124,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     const freefaxAvailability = new FeatureAvailability(user, FREEFAX_AVAILABILITY);
     const otbAvailability = new FeatureAvailability(user, OTB_AVAILABILITY);
     const packAvailability = new FeatureAvailability(user, PACK_AVAILABILITY);
-    const smsAvailability = new SMSFeatureAvailability(user);
+    const smsAvailability = new FeatureAvailability(user, SMS_AVAILABILITY);
     const telephonyAvailability = new FeatureAvailability(user, TELEPHONY_AVAILABILITY);
     SidebarMenu.addActionsMenuOptions([
       ...aliasAvailability.isAvailable('order') ? [{
