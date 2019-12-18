@@ -1,3 +1,7 @@
+export const TELEPHONY_AVAILABILITY = {
+  order: ['FR'],
+};
+
 angular.module('managerApp').constant('TELEPHONY_INFRASTRUCTURE_OPTIONS', {
   instanceOptions: {
     PaintStyle: {
@@ -292,3 +296,7 @@ angular.module('managerApp').constant('TELEPHONY_INFRASTRUCTURE_OPTIONS', {
       },
     ],
   });
+
+export default {
+  TELEPHONY_AVAILABILITY,
+};
