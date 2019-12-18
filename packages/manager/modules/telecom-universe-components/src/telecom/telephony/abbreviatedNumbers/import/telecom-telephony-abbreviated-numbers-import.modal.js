@@ -7,6 +7,7 @@ import reduce from 'lodash/reduce';
 export default /* @ngInject */ function (
   $scope,
   $q,
+  $timeout,
   $translate,
   $uibModalInstance,
   data,
@@ -134,19 +135,29 @@ export default /* @ngInject */ function (
     this.total = validData.length;
     this.rejected = this.sample.length - this.total;
     this.progress = this.rejected;
-    return $q.all(map(
-      validData,
-      elt => $q.when(self.saveCallback({ value: elt })).then(
-        () => {
-          self.imported.push(elt);
-        },
-        () => {
-          self.rejected += 1;
-        },
-      ).finally(() => {
-        self.progress += 1;
-      }),
-    )).finally(() => {
+
+    // In order to handle large CSV imports, we are sending api calls in chunks to
+    // avoid making too many request in a short amount of time
+
+    const chunkSize = 10; // elements count in a chunk
+    const chunkDelay = 100; // delay in ms to way between each chunk
+
+    const chunkedMap = (remaining, callback) => {
+      const chunk = remaining.slice(0, chunkSize);
+      const rest = remaining.slice(chunkSize);
+      return $timeout(
+        () => $q.all(map(chunk, callback))
+          .then(result => (rest.length ? result.concat(chunkedMap(rest, callback)) : result)),
+        chunkDelay,
+      );
+    };
+
+    const saveElement = elt => $q.when(self.saveCallback({ value: elt }))
+      .then(() => self.imported.push(elt))
+      .catch(() => { self.rejected += 1; })
+      .finally(() => { self.progress += 1; });
+
+    return chunkedMap(validData, saveElement).finally(() => {
       self.done = true;
     });
   };
