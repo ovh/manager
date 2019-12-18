@@ -1,3 +1,12 @@
+## [4.4.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.1...@ovh-ux/ng-ovh-telecom-universe-components@4.4.2) (2019-12-18)
+
+
+### Bug Fixes
+
+* **telecom:** abbreviated number large csv import ([#1945](https://github.com/ovh/manager/issues/1945)) ([8d7cac1](https://github.com/ovh/manager/commit/8d7cac1fb7efa7e6eadfc65f279b691464e32047))
+
+
+
 ## [4.4.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.4.0...@ovh-ux/ng-ovh-telecom-universe-components@4.4.1) (2019-12-16)
 
 
