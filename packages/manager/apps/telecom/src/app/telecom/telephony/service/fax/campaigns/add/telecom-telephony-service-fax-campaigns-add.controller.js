@@ -24,8 +24,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
 
   function setCampainDateTime() {
     if (self.campaign.sendDate) {
-      self.campaign.sendDate.setHours(self.picker.time.getHours());
-      self.campaign.sendDate.setMinutes(self.picker.time.getMinutes());
+      self.campaign.sendDate.setHours(new Date(self.picker.time).getHours());
+      self.campaign.sendDate.setMinutes(new Date(self.picker.time).getMinutes());
     }
     return self.campaign.sendDate;
   }
