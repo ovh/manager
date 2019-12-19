@@ -23,7 +23,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .config(/* @ngInject */ $sceDelegateProvider => $sceDelegateProvider.resourceUrlWhitelist([
+  .config(/* @ngInject */ ($sceDelegateProvider) => $sceDelegateProvider.resourceUrlWhitelist([
     ...$sceDelegateProvider.resourceUrlWhitelist(),
     ...URL_WHITELIST,
   ]))

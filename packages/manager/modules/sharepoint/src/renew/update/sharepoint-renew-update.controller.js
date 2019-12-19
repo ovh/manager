@@ -36,7 +36,7 @@ export default class SharepointUpdateRenewCtrl {
 
     this.$scope.submit = () => {
       this.$q.all(
-        map(this.buffer.changes, sharepoint => this.sharepointService.updateSharepointAccount(
+        map(this.buffer.changes, (sharepoint) => this.sharepointService.updateSharepointAccount(
           this.$stateParams.exchangeId,
           sharepoint.userPrincipalName,
           {

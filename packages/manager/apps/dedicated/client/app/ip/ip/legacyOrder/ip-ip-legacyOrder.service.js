@@ -37,7 +37,7 @@ angular
         queue.push(this.$http
           .get('apiv6/order/dedicated/server')
           .then(({ data }) => {
-            const items = data.map(svc => ({
+            const items = data.map((svc) => ({
               serviceType: 'DEDICATED',
               serviceName: svc,
             }));
@@ -50,7 +50,7 @@ angular
         queue.push(this.$http
           .get('apiv6/order/dedicatedCloud')
           .then(({ data }) => {
-            const items = data.map(svc => ({
+            const items = data.map((svc) => ({
               serviceType: 'PCC',
               serviceName: svc,
             }));
@@ -63,7 +63,7 @@ angular
         queue.push(this.$http
           .get('apiv6/order/vps')
           .then(({ data }) => {
-            const items = data.map(svc => ({
+            const items = data.map((svc) => ({
               serviceType: 'VPS',
               serviceName: svc,
             }));
@@ -98,7 +98,7 @@ angular
               }
 
               ['ipv4', 'ipv6'].forEach((ipType) => {
-                data[ipType] = filter(data[ipType], ipBlock => ipBlock.ipNumber > 0);
+                data[ipType] = filter(data[ipType], (ipBlock) => ipBlock.ipNumber > 0);
               });
 
               data.ipv4BlockSizesAll = data.ipv4.reduce(
@@ -147,13 +147,13 @@ angular
                         ),
                         vpsInfos: data.data,
                       }))
-                      .catch(http => this.$q.reject(http));
+                      .catch((http) => this.$q.reject(http));
                   })
-                  .catch(http => this.$q.reject(http));
+                  .catch((http) => this.$q.reject(http));
               }
               return false;
             })
-            .catch(http => this.$q.reject(http));
+            .catch((http) => this.$q.reject(http));
         default:
           return null;
       }
@@ -164,18 +164,18 @@ angular
         case 'DEDICATED':
           return this.$http
             .get(`apiv6/dedicated/server/${service.serviceName}/ipCountryAvailable`)
-            .then(data => (data.data || []).sort())
-            .catch(http => this.$q.reject(http.data));
+            .then((data) => (data.data || []).sort())
+            .catch((http) => this.$q.reject(http.data));
         case 'PCC':
           return this.$http
             .get(`apiv6/dedicatedCloud/${service.serviceName}/orderableIpCountries`)
-            .then(data => (data.data || []).sort())
-            .catch(http => this.$q.reject(http.data));
+            .then((data) => (data.data || []).sort())
+            .catch((http) => this.$q.reject(http.data));
         case 'VPS':
           return this.$http
             .get(`apiv6/vps/${service.serviceName}/ipCountryAvailable`)
-            .then(data => (data.data || []).sort())
-            .catch(http => this.$q.reject(http.data));
+            .then((data) => (data.data || []).sort())
+            .catch((http) => this.$q.reject(http.data));
         default:
           return null;
       }
@@ -188,12 +188,12 @@ angular
           if (data.data.professionalUse === false) {
             return this.$http
               .get(`apiv6/price/dedicated/server/professionalUse/${data.data.commercialRange}`)
-              .then(data2 => data2.data.text)
-              .catch(http => this.$q.reject(http.data));
+              .then((data2) => data2.data.text)
+              .catch((http) => this.$q.reject(http.data));
           }
           return null;
         })
-        .catch(http => this.$q.reject(http.data));
+        .catch((http) => this.$q.reject(http.data));
     }
 
     checkIfCanadianServer(serviceName) {
@@ -205,28 +205,28 @@ angular
           }
           return false;
         })
-        .catch(http => this.$q.reject(http.data));
+        .catch((http) => this.$q.reject(http.data));
     }
 
     getOrder(service, params) {
       return this.$http
         .get(`apiv6/order/${DedicatedIPOrder.getRouteFragmentForService(service.serviceType)}/${service.serviceName}/ip`, { params })
-        .then(data => data.data)
-        .catch(http => this.$q.reject(http.data));
+        .then((data) => data.data)
+        .catch((http) => this.$q.reject(http.data));
     }
 
     getOrderForDuration(service, params, duration) {
       return this.$http
         .get(`apiv6/order/${DedicatedIPOrder.getRouteFragmentForService(service.serviceType)}/${service.serviceName}/ip/${duration}`, { params })
-        .then(data => data.data)
-        .catch(http => this.$q.reject(http.data));
+        .then((data) => data.data)
+        .catch((http) => this.$q.reject(http.data));
     }
 
     postOrder(service, params, duration) {
       return this.$http
         .post(`apiv6/order/${DedicatedIPOrder.getRouteFragmentForService(service.serviceType)}/${service.serviceName}/ip/${duration}`, params)
-        .then(data => data.data)
-        .catch(http => this.$q.reject(http.data));
+        .then((data) => data.data)
+        .catch((http) => this.$q.reject(http.data));
     }
 
     /*= ================================
@@ -241,8 +241,8 @@ angular
             token: params.token,
           },
         })
-        .then(data => data.data)
-        .catch(http => this.$q.reject(http));
+        .then((data) => data.data)
+        .catch((http) => this.$q.reject(http));
     }
 
     getMigrateIpOrder(params, duration) {
@@ -253,8 +253,8 @@ angular
             token: params.token,
           },
         })
-        .then(data => data.data)
-        .catch(http => this.$q.reject(http.data));
+        .then((data) => data.data)
+        .catch((http) => this.$q.reject(http.data));
     }
 
     postMigrateIpOrder(params) {
@@ -263,7 +263,7 @@ angular
           ip: params.ip,
           token: params.token,
         })
-        .then(data => data.data)
-        .catch(http => this.$q.reject(http.data));
+        .then((data) => data.data)
+        .catch((http) => this.$q.reject(http.data));
     }
   });

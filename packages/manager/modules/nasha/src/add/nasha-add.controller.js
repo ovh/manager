@@ -29,7 +29,7 @@ export default class NashaAddCtrl {
 
   order() {
     this.NashaAddService.order(this.data)
-      .then(response => this.$state.go('nasha-order-complete', { orderUrl: response.url }));
+      .then((response) => this.$state.go('nasha-order-complete', { orderUrl: response.url }));
   }
 
   refreshMessage() {

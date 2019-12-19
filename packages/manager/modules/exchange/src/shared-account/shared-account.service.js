@@ -135,7 +135,7 @@ export default class ExchangeSharedAccounts {
       opts.count,
       offset,
       opts.filter,
-    ).then(accounts => ({
+    ).then((accounts) => ({
       accounts: accounts.list.results,
       headers: keys(accounts.list.results[0]),
     }));

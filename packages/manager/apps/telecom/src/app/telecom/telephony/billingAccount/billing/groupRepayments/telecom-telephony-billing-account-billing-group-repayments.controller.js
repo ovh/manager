@@ -46,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingGr
 
     return TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getRepaymentConsumption().then((repaymentConsumptions) => {
+      .then((group) => group.getRepaymentConsumption().then((repaymentConsumptions) => {
         self.consumptions.all = get(repaymentConsumptions, 'groupRepayments.all');
         self.consumptions.raw = get(repaymentConsumptions, 'groupRepayments.raw');
 

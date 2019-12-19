@@ -11,8 +11,8 @@ class MetricService {
       .get({
         serviceName,
       }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_err_service')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_err_service')));
   }
 
   getServiceInfos(serviceName) {
@@ -20,8 +20,8 @@ class MetricService {
       .getServiceInfos({
         serviceName,
       }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_err_service')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_err_service')));
   }
 
   setServiceDescription(serviceName, description) {
@@ -31,8 +31,8 @@ class MetricService {
       }, {
         description,
       }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_setting_updated')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_setting_updated')));
   }
 
   getConsumption(serviceName) {
@@ -40,8 +40,8 @@ class MetricService {
       .getConsumption({
         serviceName,
       }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_err_conso')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_err_conso')));
   }
 
   getTokens(serviceName) {
@@ -51,7 +51,7 @@ class MetricService {
         serviceName,
       })
       .$promise
-      .then(tokenList => this.$q.all(tokenList.map(tokenID => this.metrics.Token().v6()
+      .then((tokenList) => this.$q.all(tokenList.map((tokenID) => this.metrics.Token().v6()
         .get({
           serviceName,
           tokenID,
@@ -74,7 +74,7 @@ class MetricService {
         this.metrics.Token().v6().resetAllCache();
         return this.acceptResponse(response, this.$translate.instant('metrics_token_created'));
       })
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_token_err_create')));
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_token_err_create')));
   }
 
   updateToken(serviceName, tokenID, description) {
@@ -88,7 +88,7 @@ class MetricService {
         this.metrics.Token().v6().resetAllCache();
         return this.acceptResponse(response, this.$translate.instant('metrics_token_updated'));
       })
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_token_err_create')));
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_token_err_create')));
   }
 
   deleteToken(serviceName, tokenID) {
@@ -102,7 +102,7 @@ class MetricService {
         this.metrics.Token().v6().resetAllCache();
         return this.acceptResponse(response, this.$translate.instant('metrics_token_revoked'));
       })
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('metrics_err_delete_token')));
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('metrics_err_delete_token')));
   }
 
   acceptResponse(data, message) {

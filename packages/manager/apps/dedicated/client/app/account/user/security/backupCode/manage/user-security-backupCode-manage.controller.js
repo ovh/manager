@@ -35,7 +35,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
       $scope.backupCode.isValidating = true;
       return DoubleAuthBackupCodeService.validate(head($scope.backupCode.codes))
         .then(() => Alerter.success($translate.instant('user_account_security_double_auth_type_backup_code_validate_success'), 'doubleAuthAlertBackupCode'))
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_validate_error'), err.data, 'doubleAuthAlertBackupCode'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_validate_error'), err.data, 'doubleAuthAlertBackupCode'))
         .finally(() => {
           $scope.backupCode.isValidating = false;
           $rootScope.$broadcast('doubleAuthBackupCode.reload');
@@ -66,7 +66,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
           $scope.backupCode.isGenerated = true;
           return sotpAccount;
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_generate_error'), err.data, 'doubleAuthAlertBackupCode'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_generate_error'), err.data, 'doubleAuthAlertBackupCode'))
         .finally(() => {
           $scope.backupCode.isGenerating = false;
         });

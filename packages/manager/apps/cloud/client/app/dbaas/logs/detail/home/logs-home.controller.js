@@ -67,7 +67,7 @@ class LogsHomeCtrl {
     const offerLimit = this.account.data.offer
       .esStorage * this.LogsConstants.OFFER_STORAGE_MULTIPLIER;
     const maxDataReceived = max(this.storageData.data.usageData[0]);
-    this.dataUsageGraphData.labels = this.storageData.data.timestamps.map(timestamp => moment(timestamp).format('DD MMM'));
+    this.dataUsageGraphData.labels = this.storageData.data.timestamps.map((timestamp) => moment(timestamp).format('DD MMM'));
     this.dataUsageGraphData.data = this.storageData.data.usageData;
     this.dataUsageGraphData.series = [this.$translate.instant('logs_home_data_received'), this.$translate.instant('logs_home_number_of_documents')];
     if (offerLimit <= maxDataReceived * 1.5) {
@@ -77,12 +77,12 @@ class LogsHomeCtrl {
     this.dataUsageGraphData.options.scales.yAxes[0].ticks = {
       suggestedMin: 0,
       suggestedMax: maxDataReceived * 1.3 || 5,
-      callback: value => (value % 1 === 0 ? this.bytesFilter(value, 2, true) : ''),
+      callback: (value) => (value % 1 === 0 ? this.bytesFilter(value, 2, true) : ''),
     };
     this.dataUsageGraphData.options.scales.yAxes[1].ticks = {
       suggestedMin: 0,
       suggestedMax: max(this.dataUsageGraphData.data[1]) * 1.3 || 5,
-      callback: value => (value % 1 === 0 ? value : ''),
+      callback: (value) => (value % 1 === 0 ? value : ''),
     };
 
     this.dataUsageGraphData.options.tooltips.callbacks = {

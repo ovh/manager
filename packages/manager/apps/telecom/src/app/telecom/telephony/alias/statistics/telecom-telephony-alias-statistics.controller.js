@@ -107,13 +107,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasStatisticsCtrl', c
 
   getOngoingCalls() {
     return this.calls.filter(
-      call => call && call.state === 'Answered' && call.answered && !call.end,
+      (call) => call && call.state === 'Answered' && call.answered && !call.end,
     );
   }
 
   getPendingCalls() {
     return this.calls.filter(
-      call => call && call.state === 'Waiting' && call.answered && !call.end,
+      (call) => call && call.state === 'Waiting' && call.answered && !call.end,
     );
   }
 

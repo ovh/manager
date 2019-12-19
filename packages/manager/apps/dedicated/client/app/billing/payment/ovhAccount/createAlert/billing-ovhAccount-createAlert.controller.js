@@ -20,7 +20,7 @@ angular.module('Billing.controllers')
           $scope.loadOvhAccount();
           Alerter.success($translate.instant('ovhAccount_create_alert_success'));
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('ovhAccount_create_alert_error'), err))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('ovhAccount_create_alert_error'), err))
         .finally(() => $scope.resetAction());
     };
 

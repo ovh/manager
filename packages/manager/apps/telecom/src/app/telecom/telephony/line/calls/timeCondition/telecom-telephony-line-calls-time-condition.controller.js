@@ -195,9 +195,9 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
     ============================ */
 
   self.filterServices = function filterServices(services) {
-    const filteredServices = filter(services, service => !some(service.offers, method('includes', 'individual')));
+    const filteredServices = filter(services, (service) => !some(service.offers, method('includes', 'individual')));
 
-    return filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(filteredServices, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.bulkDatas = {
@@ -300,7 +300,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
       }
     });
 
-    return map(conditions, condition => ({
+    return map(conditions, (condition) => ({
       id: condition.conditionId,
       day: condition.weekDay,
       hourBegin: voipTimeCondition.getSipTime(condition.timeFrom),

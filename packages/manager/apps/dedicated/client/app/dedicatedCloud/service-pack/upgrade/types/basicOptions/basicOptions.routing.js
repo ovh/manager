@@ -8,7 +8,7 @@ export const state = {
     activationType: 'basic',
   },
   resolve: {
-    backButtonText: /* @ngInject */ $translate => $translate
+    backButtonText: /* @ngInject */ ($translate) => $translate
       .instant('ovhManagerPccServicePackUpgradeBasicOptions_header'),
     orderableServicePacks: /* @ngInject */ (
       currentService,
@@ -20,7 +20,7 @@ export const state = {
         currentUser.ovhSubsidiary,
         currentService.servicePackName,
       ),
-    steps: /* @ngInject */ pccServicePackUpgradeService => pccServicePackUpgradeService
+    steps: /* @ngInject */ (pccServicePackUpgradeService) => pccServicePackUpgradeService
       .buildSteps(stepModuleNames),
   },
   translations: {

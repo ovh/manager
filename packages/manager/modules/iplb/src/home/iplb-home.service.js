@@ -19,7 +19,7 @@ export default class IpLoadBalancerHomeService {
       failoverIp: this.OvhApiIpLoadBalancing.v6().failoverIp({ serviceName }).$promise,
       natIp: this.OvhApiIpLoadBalancing.v6().natIp({ serviceName }).$promise,
     })
-      .then(response => ({
+      .then((response) => ({
         ipV4: response.configuration.ipLoadbalancing,
         ipV6: response.configuration.ipv6,
         failoverIp: response.failoverIp,
@@ -43,8 +43,8 @@ export default class IpLoadBalancerHomeService {
   getUsage(serviceName) {
     return this.OvhApiIpLoadBalancing.Quota().v6().query({ serviceName })
       .$promise
-      .then(zones => this.$q.all(zones.map(zone => this.getUsageForZone(serviceName, zone))))
-      .then(quotas => quotas.map((quota) => {
+      .then((zones) => this.$q.all(zones.map((zone) => this.getUsageForZone(serviceName, zone))))
+      .then((quotas) => quotas.map((quota) => {
         set(quota, 'region', this.CucRegionService.getRegion(quota.zone));
         return quota;
       }))
@@ -73,7 +73,7 @@ export default class IpLoadBalancerHomeService {
       .$promise
       .then((response) => {
         this.getConfiguration(serviceName)
-          .then(configuration => this.changeMenuTitle(
+          .then((configuration) => this.changeMenuTitle(
             serviceName,
             configuration.displayName || serviceName,
           ));
@@ -94,7 +94,7 @@ export default class IpLoadBalancerHomeService {
       configuration: this.OvhApiIpLoadBalancing.v6().get({ serviceName }).$promise,
       serviceInfos: this.OvhApiIpLoadBalancing.v6().serviceInfos({ serviceName }).$promise,
     })
-      .then(response => assignIn(response.serviceInfos, { offer: response.configuration.offer }))
+      .then((response) => assignIn(response.serviceInfos, { offer: response.configuration.offer }))
       .catch(this.CucServiceHelper.errorHandler('iplb_subscription_loading_error'));
   }
 }

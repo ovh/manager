@@ -54,7 +54,7 @@ export default class PciBlockStorageAddController {
 
         this.typesList = map(
           this.types,
-          type => ({
+          (type) => ({
             id: type,
             name: this.$translate.instant(`pci_projects_project_storages_blocks_add_type_${type}_description`),
           }),
@@ -69,7 +69,7 @@ export default class PciBlockStorageAddController {
       .then((typeRegionPrices) => {
         this.typeRegionPrices = typeRegionPrices;
       })
-      .catch(err => this.CucCloudMessage.error(
+      .catch((err) => this.CucCloudMessage.error(
         this.$translate.instant(
           'pci_projects_project_storages_blocks_add_error_query',
           { message: get(err, 'data.message', '') },

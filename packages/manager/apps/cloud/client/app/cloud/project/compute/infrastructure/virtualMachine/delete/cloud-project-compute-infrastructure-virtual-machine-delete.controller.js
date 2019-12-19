@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .controller('CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl', function CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl(
     $uibModalInstance, params,

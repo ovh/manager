@@ -56,6 +56,6 @@ angular.module('App')
           this.$rootScope.$broadcast('nas_launch_task', task);
           this.Alerter.success(this.$translate.instant('nas_partitions_action_add_success', { t0: this.$scope.newPartition.name }), this.alerterId);
         })
-        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('nas_partitions_action_add_failure', { t0: this.$scope.newPartition.name }), err, this.alerterId));
+        .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('nas_partitions_action_add_failure', { t0: this.$scope.newPartition.name }), err, this.alerterId));
     }
   });

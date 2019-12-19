@@ -157,7 +157,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

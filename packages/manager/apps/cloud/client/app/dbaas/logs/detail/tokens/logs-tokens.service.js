@@ -16,7 +16,7 @@ class LogsTokensService {
    */
   getTokens(serviceName) {
     return this.getTokensDetails(serviceName)
-      .catch(err => this.LogsHelperService.handleError('logs_tokens_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_tokens_get_error', err, {}));
   }
 
   /**
@@ -29,7 +29,7 @@ class LogsTokensService {
   getTokensDetails(serviceName) {
     return this.getTokensIds(serviceName)
       .then((tokens) => {
-        const promises = tokens.map(tokenId => this.getToken(serviceName, tokenId));
+        const promises = tokens.map((tokenId) => this.getToken(serviceName, tokenId));
         return this.$q.all(promises);
       });
   }
@@ -55,7 +55,7 @@ class LogsTokensService {
    */
   getToken(serviceName, tokenId) {
     return this.TokenApiService.get({ serviceName, tokenId })
-      .$promise.catch(err => this.LogsHelperService.handleError('logs_tokens_get_detail_error', err, {}));
+      .$promise.catch((err) => this.LogsHelperService.handleError('logs_tokens_get_detail_error', err, {}));
   }
 
   /**
@@ -73,7 +73,7 @@ class LogsTokensService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_tokens_delete_success', { tokenName: token.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_tokens_delete_error', err, { tokenName: token.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_tokens_delete_error', err, { tokenName: token.name }));
   }
 
   /**
@@ -91,7 +91,7 @@ class LogsTokensService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_tokens_create_success', { tokenName: token.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_tokens_create_error', err, { tokenName: token.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_tokens_create_error', err, { tokenName: token.name }));
   }
 
   /**
@@ -105,8 +105,8 @@ class LogsTokensService {
     const errorMessage = errorMessageParam || 'logs_tokens_cluster_get_error';
     return this.DetailsAapiService.me({ serviceName })
       .$promise
-      .then(details => details.clusters)
-      .catch(err => this.LogsHelperService.handleError(
+      .then((details) => details.clusters)
+      .catch((err) => this.LogsHelperService.handleError(
         errorMessage,
         err,
         { accountName: serviceName },
@@ -123,7 +123,7 @@ class LogsTokensService {
   getDefaultCluster(serviceName, errorMessage) {
     return this.getClusters(serviceName, errorMessage)
       .then((clusters) => {
-        const defaultClusters = clusters.filter(cluster => cluster.isDefault);
+        const defaultClusters = clusters.filter((cluster) => cluster.isDefault);
         return defaultClusters.length > 0 ? defaultClusters[0] : null;
       });
   }
@@ -135,7 +135,7 @@ class LogsTokensService {
    * @memberof LogsTokensService
    */
   getNewToken(serviceName) {
-    return this.getDefaultCluster(serviceName).then(defaultCluster => ({
+    return this.getDefaultCluster(serviceName).then((defaultCluster) => ({
       name: null,
       clusterId: defaultCluster ? defaultCluster.clusterId : null,
     }));

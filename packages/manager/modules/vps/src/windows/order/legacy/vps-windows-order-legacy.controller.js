@@ -41,7 +41,7 @@ export default class VpsWindowsOrderLegacyCtrl {
         this.durations.available = durations;
         return this.loadPrices(durations);
       })
-      .catch(err => this.CucCloudMessage.error(err.data.message || err.data))
+      .catch((err) => this.CucCloudMessage.error(err.data.message || err.data))
       .finally(() => { this.loaders.durations = false; });
   }
 
@@ -60,7 +60,7 @@ export default class VpsWindowsOrderLegacyCtrl {
     });
 
     return this.$q.all(queue)
-      .catch(err => this.CucCloudMessage.error(err.data || this.$translate.instant('vps_order_windows_price_error')))
+      .catch((err) => this.CucCloudMessage.error(err.data || this.$translate.instant('vps_order_windows_price_error')))
       .finally(() => {
         this.loaders.prices = false;
       });
@@ -78,7 +78,7 @@ export default class VpsWindowsOrderLegacyCtrl {
   orderOption() {
     this.VpsService.postWindowsOptionOrder(this.serviceName, this.model.duration)
       .then(({ url }) => { this.model.url = url; })
-      .catch(error => this.CucCloudMessage.error(error || this.$translate.instant('vps_order_windows_order_error')));
+      .catch((error) => this.CucCloudMessage.error(error || this.$translate.instant('vps_order_windows_order_error')));
   }
 
   cancel() {

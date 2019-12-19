@@ -56,12 +56,12 @@ angular
         },
       },
       resolve: {
-        goToTickets: /* @ngInject */ $state => () => $state.go('support.tickets'),
-        categoryName: /* @ngInject */ $transition$ => $transition$.params().categoryName,
-        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
-        serviceTypeName: /* @ngInject */ $transition$ => $transition$.params().serviceTypeName,
+        goToTickets: /* @ngInject */ ($state) => () => $state.go('support.tickets'),
+        categoryName: /* @ngInject */ ($transition$) => $transition$.params().categoryName,
+        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
+        serviceTypeName: /* @ngInject */ ($transition$) => $transition$.params().serviceTypeName,
         urls: /* @ngInject */ (OvhApiMe, CORE_URLS) => OvhApiMe.v6()
-          .get().$promise.then(me => ({
+          .get().$promise.then((me) => ({
             guide: get(CORE_URLS, `guides.home.${me.ovhSubsidiary}`),
             forum: get(CORE_URLS, `forum.${me.ovhSubsidiary}`),
           })),

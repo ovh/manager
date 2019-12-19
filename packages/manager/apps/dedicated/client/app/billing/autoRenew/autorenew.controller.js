@@ -69,7 +69,7 @@ export default class AutorenewCtrl {
     if (this.sort.predicate) {
       this.columnsConfig = map(
         COLUMNS_CONFIG,
-        column => (column.property === this.sort.predicate ? ({
+        (column) => (column.property === this.sort.predicate ? ({
           ...this.columnsConfig,
           sortable: this.sort.reverse ? 'desc' : 'asc',
         }) : column),

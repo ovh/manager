@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export default /* @ngInject */ $timeout => ({
+export default /* @ngInject */ ($timeout) => ({
   restrict: 'A',
   scope: {
     wucOvhFilereaderAction: '&',

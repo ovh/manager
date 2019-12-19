@@ -32,7 +32,7 @@ export default class {
       .then(() => this.goBack(
         this.$translate.instant('private_registry_update_success', { newRegistryName: this.newRegistryName }),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('private_registry_update_error', {
           message: get(error, 'data.message'),
           registryName: this.registryName,

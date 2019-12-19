@@ -148,7 +148,7 @@ angular.module('App').controller('ImpiCtrl', (
     setPasswordState(false, true, false);
     setPingState(true, false, false);
 
-    return Server.ipmiStartTest($stateParams.productId, 'ping', $scope.ttl).then(task => startIpmiPollPing(task)).catch((data) => {
+    return Server.ipmiStartTest($stateParams.productId, 'ping', $scope.ttl).then((task) => startIpmiPollPing(task)).catch((data) => {
       $scope.disable.testIpmi = false;
       setPingState(false, false, false);
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_loading_error'), data, $scope.alert);
@@ -178,7 +178,7 @@ angular.module('App').controller('ImpiCtrl', (
     setHttpState(false, true, false);
     setPasswordState(true, false, false);
 
-    return Server.ipmiStartTest($stateParams.productId, 'password', $scope.ttl).then(task => startIpmiPollPassword(task)).catch((data) => {
+    return Server.ipmiStartTest($stateParams.productId, 'password', $scope.ttl).then((task) => startIpmiPollPassword(task)).catch((data) => {
       $scope.disable.testIpmi = false;
       setPasswordState(false, false, false);
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_loading_error'), data, $scope.alert);
@@ -206,7 +206,7 @@ angular.module('App').controller('ImpiCtrl', (
     startIpmiTestStatus();
     setHttpState(true, false, false);
 
-    return Server.ipmiStartTest($stateParams.productId, 'http', $scope.ttl).then(task => startIpmiPollHttp(task)).catch((data) => {
+    return Server.ipmiStartTest($stateParams.productId, 'http', $scope.ttl).then((task) => startIpmiPollHttp(task)).catch((data) => {
       setHttpState(false, false, false);
       $scope.disable.testIpmi = true;
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_loading_error'), data, $scope.alert);

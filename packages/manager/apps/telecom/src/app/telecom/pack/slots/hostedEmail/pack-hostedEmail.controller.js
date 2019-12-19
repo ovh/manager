@@ -13,7 +13,7 @@ angular.module('managerApp').controller('PackHostedEmailCtrl', function PackHost
     return OvhApiPackXdslHostedEmail.v6().query({
       packId: $stateParams.packName,
     }).$promise.then((services) => {
-      self.services = map(services, service => ({
+      self.services = map(services, (service) => ({
         name: service,
         domain: service.replace(/^.+\./, '.'),
       }));

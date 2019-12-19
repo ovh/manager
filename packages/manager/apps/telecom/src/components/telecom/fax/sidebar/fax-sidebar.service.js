@@ -31,14 +31,15 @@ angular.module('managerApp').service('FaxSidebar', function FaxSidebar($translat
     ====================================== */
 
   self.init = function init(expand) {
-    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
+    self.mainSectionItem = SidebarMenu.addMenuItem({
       title: $translate.instant('telecom_sidebar_section_fax'),
       error: $translate.instant('telecom_sidebar_load_error'),
       category: 'freefax',
       icon: 'ovh-font ovh-font-print',
       allowSubItems: !expand,
       loadOnState: 'freefaxes',
-    }, expand ? { state: 'freefaxes.index' } : { onLoad: self.loadFaxMainSection }));
+      ...(expand ? { state: 'freefaxes.index' } : { onLoad: self.loadFaxMainSection }),
+    });
 
     return self.mainSectionItem;
   };

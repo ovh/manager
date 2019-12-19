@@ -134,7 +134,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
     return OvhApiTelephony.Vxml().v6().settings({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(settings => self.setInfos(settings), (error) => {
+    }).$promise.then((settings) => self.setInfos(settings), (error) => {
       if (error.status === 404) {
         return self;
       }

@@ -9,8 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
-      nic: /* @ngInject */ $transition$ => $transition$.params().nic,
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      nic: /* @ngInject */ ($transition$) => $transition$.params().nic,
     },
   });
 };

@@ -19,10 +19,10 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTo
       .query({
         billingAccount: $stateParams.billingAccount,
       }).$promise
-      .then(dates => $q
+      .then((dates) => $q
         .all(map(
           chunk(dates, 50),
-          chunkDates => OvhApiTelephony.HistoryTollfreeConsumption().v6().getBatch({
+          (chunkDates) => OvhApiTelephony.HistoryTollfreeConsumption().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             date: chunkDates,
           }).$promise,

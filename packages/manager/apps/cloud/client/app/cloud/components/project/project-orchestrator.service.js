@@ -38,14 +38,14 @@ angular.module('managerApp').service('CloudProjectOrchestrator',
       return OvhApiCloudProject.Instance().v6().query({
         serviceName: projectId,
       }).$promise
-        .then(instances => instances.length > CLOUD_PROJECT_OVERVIEW_THRESHOLD.instances);
+        .then((instances) => instances.length > CLOUD_PROJECT_OVERVIEW_THRESHOLD.instances);
     };
 
     this.hasTooManyIps = function hasTooManyIps(projectId) {
       return OvhApiCloudProjectIpV6.query({
         serviceName: projectId,
       }).$promise
-        .then(ips => ips.length > CLOUD_PROJECT_OVERVIEW_THRESHOLD.ips);
+        .then((ips) => ips.length > CLOUD_PROJECT_OVERVIEW_THRESHOLD.ips);
     };
 
     /*= =====================================

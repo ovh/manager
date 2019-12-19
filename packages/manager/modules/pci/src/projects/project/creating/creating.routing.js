@@ -8,12 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/creating',
       views: {
         '@pci': {
-          componentProvider: /* @ngInject */ projectOrder => (projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating'),
+          componentProvider: /* @ngInject */ (projectOrder) => (projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating'),
         },
       },
       resolve: {
         breadcrumb: () => null,
-        guideUrl: /* @ngInject */ me => get(
+        guideUrl: /* @ngInject */ (me) => get(
           GUIDE_URLS,
           me.ovhSubsidiary,
         ),

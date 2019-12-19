@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .controller('CloudProjectComputeSnapshotAddCtrl', function CloudProjectComputeSnapshotAddCtrl(
     $uibModalInstance, $translate, $filter, params, CucCloudMessage, OvhApiCloudProjectSnapshot,

@@ -38,7 +38,7 @@ export default class XdslAccessComfortExchangeCtrl {
   getListOpenedRMA() {
     if (this.openedRMAs.length > 0) {
       this.rmas = [];
-      this.openedRMAs.forEach(id => this.OvhApiXdsl.RMA()
+      this.openedRMAs.forEach((id) => this.OvhApiXdsl.RMA()
         .v6()
         .get(
           {

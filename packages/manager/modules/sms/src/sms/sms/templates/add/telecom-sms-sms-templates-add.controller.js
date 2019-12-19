@@ -60,7 +60,7 @@ export default class {
     return this.$q.all([
       this.api.sms.templates.create({
         serviceName: this.$stateParams.serviceName,
-      }, this.template).$promise.catch(error => this.cancel({
+      }, this.template).$promise.catch((error) => this.cancel({
         type: 'API',
         msg: error,
       })),

@@ -14,7 +14,7 @@ angular.module('App')
     loadDatacenters({ offset, pageSize }) {
       return this.DedicatedCloud
         .getDatacentersInformations(this.$stateParams.productId, pageSize, offset - 1)
-        .then(result => ({
+        .then((result) => ({
           data: get(result, 'list.results'),
           meta: {
             totalCount: result.count,

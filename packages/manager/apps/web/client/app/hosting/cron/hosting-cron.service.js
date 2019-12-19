@@ -43,7 +43,7 @@ export default class HostingCron {
         });
         return uniq(result);
       },
-      err => this.$q.reject(err),
+      (err) => this.$q.reject(err),
     );
   }
 

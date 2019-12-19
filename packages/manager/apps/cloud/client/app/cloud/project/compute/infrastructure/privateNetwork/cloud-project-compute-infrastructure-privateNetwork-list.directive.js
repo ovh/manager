@@ -102,7 +102,7 @@ class PrivateNetworkListCtrl {
       })
       .then(() => this.VrackService.listOperations(this.$stateParams.projectId))
       .then((result) => {
-        const [status] = filter(result, f => f.status !== 'completed');
+        const [status] = filter(result, (f) => f.status !== 'completed');
         if (status) {
           this.loaders.vrack.link = true;
           this.pollOperationStatus(status.id);
@@ -127,7 +127,7 @@ class PrivateNetworkListCtrl {
 
   linkProjectToVrack(selectedVrack) {
     this.VrackService.linkCloudProjectToVrack(selectedVrack.serviceName, this.serviceName).$promise
-      .then(vrackTaskId => this.startVrackTaskPolling(this.models.vrack.id, vrackTaskId).$promise)
+      .then((vrackTaskId) => this.startVrackTaskPolling(this.models.vrack.id, vrackTaskId).$promise)
       .then(() => {
         this.CucCloudMessage.success(this.$translate.instant('cpci_private_network_add_vrack_success'));
       })
@@ -197,12 +197,12 @@ class PrivateNetworkListCtrl {
 
     this.poller = this.CucCloudPoll.poll({
       item: taskToPoll,
-      pollFunction: task => this.VrackService.getOperation(this.serviceName, task.id)
+      pollFunction: (task) => this.VrackService.getOperation(this.serviceName, task.id)
         .then((res) => {
           this.loaders.vrack.progress = res.progress;
           return res;
         }),
-      stopCondition: task => !task || includes(['completed', 'error'], task.status),
+      stopCondition: (task) => !task || includes(['completed', 'error'], task.status),
     });
 
     return this.poller;
@@ -221,7 +221,7 @@ class PrivateNetworkListCtrl {
           this.serviceName,
         );
       })
-      .then(vrackTaskId => this.startVrackTaskPolling(this.models.vrack.id, vrackTaskId).$promise)
+      .then((vrackTaskId) => this.startVrackTaskPolling(this.models.vrack.id, vrackTaskId).$promise)
       .then(() => {
         this.models.vrack = null;
         this.collections.privateNetworks = [];
@@ -246,8 +246,8 @@ class PrivateNetworkListCtrl {
 
     this.poller = this.CucCloudPoll.poll({
       item: taskToPoll,
-      pollFunction: task => this.VrackService.getTask(vrack, task.id),
-      stopCondition: task => !task || includes(['done', 'error'], task.status),
+      pollFunction: (task) => this.VrackService.getTask(vrack, task.id),
+      stopCondition: (task) => !task || includes(['done', 'error'], task.status),
     });
 
     return this.poller;
@@ -279,7 +279,7 @@ class PrivateNetworkListCtrl {
 
   deletePrivateNetworkFromList(privateNetwork) {
     const newPrivateNetworks = this.collections.privateNetworks
-      .filter(el => el.id !== privateNetwork);
+      .filter((el) => el.id !== privateNetwork);
     this.collections.privateNetworks = newPrivateNetworks;
     return this.collections;
   }
@@ -291,13 +291,13 @@ class PrivateNetworkListCtrl {
         values(
           args.subnets,
         ),
-        subnet => includes(args.privateNetwork.regions, subnet.region),
+        (subnet) => includes(args.privateNetwork.regions, subnet.region),
       ),
-      subnet => assign(subnet, { dhcp: args.isDHCPEnabled, network: args.globalNetwork }),
+      (subnet) => assign(subnet, { dhcp: args.isDHCPEnabled, network: args.globalNetwork }),
     );
 
     const onNetworkCreated = function onNetworkCreated(network) {
-      const promises = map(subnets, subnet => this.service
+      const promises = map(subnets, (subnet) => this.service
         .saveSubnet(args.projectId, network.id, subnet).$promise, this);
       return this.$q.all(promises).then(() => this.fetchPrivateNetworks());
     }.bind(this);
@@ -364,7 +364,7 @@ class PrivateNetworkListCtrl {
   }
 
   gotoVrack() {
-    this.getVrackId().then(id => this.$state.go('vrack', { vrackId: id }));
+    this.getVrackId().then((id) => this.$state.go('vrack', { vrackId: id }));
   }
 
   canGotoVrack() {

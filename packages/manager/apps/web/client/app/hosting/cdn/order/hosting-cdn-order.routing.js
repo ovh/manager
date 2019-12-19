@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'hostingCdnOrder',
     resolve: {
       autoPayWithPreferredPaymentMethod: /* @ngInject */
-        ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+        (ovhPaymentMethod) => ovhPaymentMethod.hasDefaultPaymentMethod(),
 
       catalogAddon: /* @ngInject */ (
         goBackWithError,
@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingCdnOrderService,
       ) => HostingCdnOrderService
         .getCatalogAddon(user.ovhSubsidiary, serviceOption)
-        .catch(error => goBackWithError(get(error, 'data.message', error))),
+        .catch((error) => goBackWithError(get(error, 'data.message', error))),
 
       checkoutOrderCart: /* @ngInject */ (
         goBack,
@@ -48,12 +48,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }
       },
 
-      goBack: /* @ngInject */ goToHosting => goToHosting,
+      goBack: /* @ngInject */ (goToHosting) => goToHosting,
 
       goBackWithError: /* @ngInject */ (
         $translate,
         goBack,
-      ) => error => goBack(
+      ) => (error) => goBack(
         $translate.instant(
           'hosting_dashboard_cdn_order_error',
           { message: error },
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'danger',
       ),
 
-      isOptionFree: /* @ngInject */ serviceOption => serviceOption.planCode === 'cdn_free_business',
+      isOptionFree: /* @ngInject */ (serviceOption) => serviceOption.planCode === 'cdn_free_business',
 
       prepareOrderCart: /* @ngInject */ (
         goBackWithError,
@@ -85,7 +85,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
       },
 
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().productId,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().productId,
 
       serviceOption: /* @ngInject */ (
         goBackWithError,
@@ -94,7 +94,7 @@ export default /* @ngInject */ ($stateProvider) => {
         HostingCdnOrderService,
       ) => HostingCdnOrderService
         .getServiceOption(serviceName)
-        .catch(error => goBackWithError(get(error, 'data.message', error))),
+        .catch((error) => goBackWithError(get(error, 'data.message', error))),
     },
   });
 };

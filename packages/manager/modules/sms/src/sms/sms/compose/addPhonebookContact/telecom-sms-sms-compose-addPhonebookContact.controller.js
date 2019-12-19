@@ -80,10 +80,10 @@ export default class {
         serviceName: this.$stateParams.serviceName,
         bookKey: get(phonebook, 'bookKey'),
       }).$promise
-      .then(phonebookContactIds => this.$q
+      .then((phonebookContactIds) => this.$q
         .all(map(
           chunk(phonebookContactIds, 50),
-          id => this.api.sms.phonebooks.phonebookcontact.getBatch({
+          (id) => this.api.sms.phonebooks.phonebookcontact.getBatch({
             serviceName: this.$stateParams.serviceName,
             bookKey: get(phonebook, 'bookKey'),
             id,

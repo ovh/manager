@@ -70,7 +70,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkDialogService {
         } else {
           this.pollPrivateNetworkStatus(options, onSuccess, onFailure);
         }
-      }).catch(error => onFailure(error));
+      }).catch((error) => onFailure(error));
     }, options.delay || 2000);
   }
 

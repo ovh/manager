@@ -18,10 +18,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
             id: chunkIds,
@@ -92,7 +92,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     };
     self.serviceName = $stateParams.serviceName;
     self.isInitializing = true;
-    return self.refresh().catch(err => new TucToastError(err)).finally(() => {
+    return self.refresh().catch((err) => new TucToastError(err)).finally(() => {
       self.isInitializing = false;
     });
   }
@@ -192,7 +192,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
         assign(self.options.raw, pick(self.options.modified, opt));
         $timeout(angular.noop, 500);
       })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.options.isUpdating = null;
       });
@@ -208,7 +208,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
       self.screen.modified = angular.copy(self.screen.raw);
       self.options.raw = result.options;
       self.options.modified = angular.copy(result.options);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   };

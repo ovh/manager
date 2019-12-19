@@ -12,7 +12,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
   self.checkValidTextExtention = function checkValidTextExtention(file) {
     const validExtensions = ['csv', 'xls', 'xlsx'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_phonebook_contact_action_import_file_invalid'));
     }
@@ -32,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
       import: OvhApiMe.Document().v6().upload(
         self.phonecontactForm.uploadedFile.name,
         self.phonecontactForm.uploadedFile,
-      ).then(doc => OvhApiTelephony.Phonebook().v6().import({
+      ).then((doc) => OvhApiTelephony.Phonebook().v6().import({
         billingAccount: $stateParams.billingAccount,
         bookKey,
       }, {
@@ -44,7 +44,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
       return $timeout(self.close({
         taskId: get(result.import, 'taskId'),
       }), 1000);
-    }).catch(err => self.cancel({
+    }).catch((err) => self.cancel({
       type: 'API',
       msg: err,
     }));

@@ -69,7 +69,7 @@ angular.module('App').controller(
         .getUsers(this.productId)
         .then((users) => {
           this.usersIds = users.sort((a, b) => a.localeCompare(b));
-          this.users = this.usersIds.map(id => ({ id }));
+          this.users = this.usersIds.map((id) => ({ id }));
         })
         .catch((err) => {
           this.alerter.error(get(err, 'message', err), this.$scope.alerts.main);
@@ -115,7 +115,7 @@ angular.module('App').controller(
     onUserCreatedone(evt, opts) {
       this.currentUsers.add = remove(
         this.currentUsers.add,
-        userName => userName !== opts.userName,
+        (userName) => userName !== opts.userName,
       );
       this.getUsers();
     }
@@ -123,7 +123,7 @@ angular.module('App').controller(
     onUserCreateerror(evt, opts) {
       this.currentUsers.add = remove(
         this.currentUsers.add,
-        userName => userName !== opts.userName,
+        (userName) => userName !== opts.userName,
       );
       this.alerter.error(this.$translate.instant('privateDatabase_add_user_fail'), this.$scope.alerts.main);
     }
@@ -136,7 +136,7 @@ angular.module('App').controller(
     onUserDeletestart(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, usr => usr.userName === opts.userName);
+        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
 
         if (idx !== -1) {
           this.userDetails[idx].waitDelete = true;
@@ -161,7 +161,7 @@ angular.module('App').controller(
     onUserDeleteerror(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, usr => usr.userName === opts.userName);
+        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
 
         if (idx !== -1) {
           delete this.userDetails[idx].waiteDelete;
@@ -186,7 +186,7 @@ angular.module('App').controller(
     onUserChangePasswordstart(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, usr => usr.userName === opts.userName);
+        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
 
         if (idx !== -1) {
           this.userDetails[idx].waitChangePassword = true;
@@ -207,7 +207,7 @@ angular.module('App').controller(
     onUserChangePassworddone(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, usr => usr.userName === opts.userName);
+        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
 
         if (idx !== -1) {
           delete this.userDetails[idx].waitChangePassword;
@@ -230,7 +230,7 @@ angular.module('App').controller(
     onUserChangePassworderror(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, usr => usr.userName === opts.userName);
+        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
 
         if (idx !== -1) {
           delete this.userDetails[idx].waitChangePassword;

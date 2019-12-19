@@ -68,7 +68,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function Pa
           self.configuration.services,
           (service, type) => (isObject(service) ? assignIn({ type }, service) : false),
         ),
-        service => isObject(service),
+        (service) => isObject(service),
       );
       self.configuration.type = {
         value: self.configuration.type,

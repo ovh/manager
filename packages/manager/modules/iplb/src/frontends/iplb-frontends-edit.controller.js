@@ -60,7 +60,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
             this.$stateParams.serviceName,
             this.$stateParams.frontendId,
           );
-        }).then(frontend => this.parseFrontend(frontend)),
+        }).then((frontend) => this.parseFrontend(frontend)),
     });
   }
 
@@ -237,7 +237,7 @@ export default class IpLoadBalancerFrontendsEditCtrl {
       request.defaultFarmId = null;
     }
     if (this.frontend.allowedSource) {
-      request.allowedSource = map(this.frontend.allowedSource.split(','), source => trim(source));
+      request.allowedSource = map(this.frontend.allowedSource.split(','), (source) => trim(source));
     } else {
       request.allowedSource = [];
     }

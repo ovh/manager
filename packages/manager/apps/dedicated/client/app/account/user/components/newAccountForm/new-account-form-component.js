@@ -270,7 +270,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         const fields = NewAccountFormConfig.sections[section];
         return filter(
           this.rules,
-          rule => indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
+          (rule) => indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
         );
       };
 

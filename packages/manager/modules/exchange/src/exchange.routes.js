@@ -4,7 +4,7 @@ import template from './exchange.html';
 import orderTemplate from './order/order.html';
 
 export default /* @ngInject */($stateProvider) => {
-  const getNavigationInformations = currentSectionInformation => /* @ngInject */(
+  const getNavigationInformations = (currentSectionInformation) => /* @ngInject */(
     Navigator,
     $rootScope,
   ) => {

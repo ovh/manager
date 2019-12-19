@@ -23,7 +23,7 @@ class LogsTokensCtrl {
   initLoaders() {
     this.tokens = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsTokensService.getTokens(this.serviceName)
-        .then(tokens => tokens.map((token) => {
+        .then((tokens) => tokens.map((token) => {
           set(token, 'isLoadingCluster', true);
           return token;
         })),
@@ -38,7 +38,7 @@ class LogsTokensCtrl {
         const clusters = result[0];
         const tokens = result[1];
         tokens.map((token) => {
-          set(token, 'cluster', clusters.find(cluster => cluster.clusterId === token.clusterId) || {});
+          set(token, 'cluster', clusters.find((cluster) => cluster.clusterId === token.clusterId) || {});
           set(token, 'isLoadingCluster', false);
           return token;
         });

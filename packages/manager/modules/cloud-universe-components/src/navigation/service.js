@@ -23,7 +23,7 @@ export default class CucCloudNavigation {
       const fromParams = transition.params('from');
       const correspondingState = find(
         this.history,
-        elem => elem.state === toState.name && isEqual(elem.stateParams, toParams),
+        (elem) => elem.state === toState.name && isEqual(elem.stateParams, toParams),
       );
 
       if (correspondingState) {
@@ -65,7 +65,7 @@ export default class CucCloudNavigation {
   findInHistory(stateToFind) {
     return find(
       this.history,
-      state => state.state === stateToFind.state
+      (state) => state.state === stateToFind.state
         && isEqual(state.stateParams, stateToFind.stateParams),
     );
   }

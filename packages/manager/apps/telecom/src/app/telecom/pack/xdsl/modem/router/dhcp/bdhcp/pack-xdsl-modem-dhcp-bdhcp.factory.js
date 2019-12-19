@@ -108,7 +108,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
       }).$promise.then(() => {
         TucToast.success($translate.instant('xdsl_modem_bdhcp_del_success', { name: self.name }));
         return self;
-      }).catch(err => $q.reject(`${$translate.inatant('xdsl_modem_bdhcp_del_error', { name: self.name })}<em>${err.data.message}</em>`)).finally(() => {
+      }).catch((err) => $q.reject(`${$translate.inatant('xdsl_modem_bdhcp_del_error', { name: self.name })}<em>${err.data.message}</em>`)).finally(() => {
         self.busy = false;
       });
   };

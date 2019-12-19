@@ -18,7 +18,7 @@ angular.module('managerApp').service('telephonyGroupNumberConferencePolling', fu
     pollingPromise = $timeout(() => self.conference.getInfos(), 1000).then(() => {
       pollingDeferred.notify();
       poll();
-    }, error => pollingDeferred.reject(error));
+    }, (error) => pollingDeferred.reject(error));
   }
 
   self.startPolling = function startPolling() {

@@ -23,7 +23,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCa
     };
     self.consumptions.isLoading = true;
     return TelephonyMediator.getGroup($stateParams.billingAccount)
-      .then(group => group.getRepaymentConsumption().then((repaymentConsumptions) => {
+      .then((group) => group.getRepaymentConsumption().then((repaymentConsumptions) => {
         self.consumptions.raw = get(repaymentConsumptions, 'calledFees');
         self.consumptions.totalPrice = $filter('number')(-round(sumBy(self.consumptions.raw, 'price'), 2), 2);
         const dialedNumbers = keysIn(groupBy(self.consumptions.raw, 'dialed'));

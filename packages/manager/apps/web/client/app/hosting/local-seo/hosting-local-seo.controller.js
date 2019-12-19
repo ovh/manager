@@ -78,8 +78,8 @@ angular.module('App').controller(
 
     getAccounts() {
       return this.HostingLocalSeo.getAccounts(this.productId)
-        .then(accounts => this.$q.all(
-          map(accounts, account => this.HostingLocalSeo.getAccount(this.productId, account)),
+        .then((accounts) => this.$q.all(
+          map(accounts, (account) => this.HostingLocalSeo.getAccount(this.productId, account)),
         ));
     }
 
@@ -97,8 +97,8 @@ angular.module('App').controller(
 
     getLocations() {
       return this.HostingLocalSeo.getLocations(this.productId)
-        .then(locationIds => ({
-          data: map(locationIds, id => ({ id })),
+        .then((locationIds) => ({
+          data: map(locationIds, (id) => ({ id })),
           meta: {
             totalCount: locationIds.length,
           },

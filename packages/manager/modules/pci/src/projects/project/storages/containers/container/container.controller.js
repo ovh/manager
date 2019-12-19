@@ -48,7 +48,7 @@ export default class PciStoragesContainersContainerController {
       .then((url) => {
         this.$window.location = url;
       })
-      .catch(err => this.CucCloudMessage.error(
+      .catch((err) => this.CucCloudMessage.error(
         this.$translate.instant(
           `pci_projects_project_storages_containers_container_${this.archive ? 'archive' : 'object'}_error_download`,
           { message: get(err, 'data.message', '') },
@@ -66,7 +66,7 @@ export default class PciStoragesContainersContainerController {
           archive: object.name,
         },
       )))
-      .catch(err => this.refresh(this.$translate.instant(
+      .catch((err) => this.refresh(this.$translate.instant(
         'pci_projects_project_storages_containers_container_archive_error_unseal',
         {
           message: get(err, 'data.message', ''),

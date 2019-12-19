@@ -24,7 +24,7 @@ export default class PciProjectLabsService {
 
   getLabByName(projectId, labName) {
     return this.getLabs(projectId)
-      .then(labs => find(labs, { name: labName }))
+      .then((labs) => find(labs, { name: labName }))
       .then(({ id: labId }) => this.getLab(projectId, labId));
   }
 
@@ -36,7 +36,7 @@ export default class PciProjectLabsService {
         labId,
       })
       .$promise
-      .then(lab => new Lab({ ...lab }))
+      .then((lab) => new Lab({ ...lab }))
       .then((lab) => {
         if (lab.isOpen()) {
           return this.getLabAgreements(projectId, lab);
@@ -62,8 +62,8 @@ export default class PciProjectLabsService {
           },
         }),
         contracts: this.$q.all([
-          ...accepted.map(agreementId => this.getContract(agreementId)),
-          ...toAccept.map(agreementId => this.getContract(agreementId)),
+          ...accepted.map((agreementId) => this.getContract(agreementId)),
+          ...toAccept.map((agreementId) => this.getContract(agreementId)),
         ]),
       }))
       .then(({ lab: labWithAgreements, contracts }) => new Lab({
@@ -79,7 +79,7 @@ export default class PciProjectLabsService {
         id,
       })
       .$promise
-      .then(contract => ({
+      .then((contract) => ({
         id,
         ...contract,
       }));

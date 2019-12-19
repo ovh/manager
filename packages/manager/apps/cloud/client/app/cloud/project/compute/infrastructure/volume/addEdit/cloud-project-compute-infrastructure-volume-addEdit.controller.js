@@ -226,7 +226,7 @@ angular.module('managerApp')
           loaderFunction: () => OvhApiCloudProjectRegion.AvailableRegions().v6()
             .query({ serviceName })
             .$promise
-            .catch(error => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+            .catch((error) => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
         });
         return self.availableRegions.load();
       };

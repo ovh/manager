@@ -20,7 +20,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsLogsRevokeAccessCtrl {
     this.isLoading = true;
     this.enterpriseCloudDatabaseService.revokeAccessToLdpAccount(this.clusterId, this.ldpAccount.id)
       .then(() => this.goBackToLogs(this.$translate.instant('enterprise_cloud_database_service_details_logs_revoke_access_success', { ldpName: this.ldpAccount.username })))
-      .catch(error => this.goBackToLogs(
+      .catch((error) => this.goBackToLogs(
         this.$translate.instant('enterprise_cloud_database_service_details_logs_revoke_access_error', {
           message: get(error, 'data.message'),
         }), STATUS.ERROR,

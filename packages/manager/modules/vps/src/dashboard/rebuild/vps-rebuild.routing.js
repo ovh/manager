@@ -14,7 +14,7 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       availableImages: /* @ngInject */ (serviceName, vpsRebuild) => vpsRebuild
         .getAvailableImages(serviceName)
-        .then(availableImages => sortBy(availableImages, 'name')),
+        .then((availableImages) => sortBy(availableImages, 'name')),
       displayError: /* @ngInject */ (
         $translate,
         CucCloudMessage,
@@ -26,9 +26,9 @@ export default /* @ngInject */($stateProvider) => {
         CucCloudMessage,
         serviceName,
       ) => () => CucCloudMessage.success($translate.instant('vps_configuration_reinstall_success', { serviceName })),
-      goBackToDashboard: /* @ngInject */ $state => () => $state.go('^'),
-      sshKeys: /* @ngInject */ VpsReinstallService => VpsReinstallService
-        .getSshKeys().then(sshKeys => sshKeys.sort()),
+      goBackToDashboard: /* @ngInject */ ($state) => () => $state.go('^'),
+      sshKeys: /* @ngInject */ (VpsReinstallService) => VpsReinstallService
+        .getSshKeys().then((sshKeys) => sshKeys.sort()),
     },
   });
 };

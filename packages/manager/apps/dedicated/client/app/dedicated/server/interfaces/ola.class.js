@@ -28,6 +28,6 @@ export default class Ola {
   }
 
   isConfigured() {
-    return this.interfaces.some(i => i.type === VIRTUAL_TYPE.vrackAggregation);
+    return this.interfaces.some((i) => i.type === VIRTUAL_TYPE.vrackAggregation);
   }
 }

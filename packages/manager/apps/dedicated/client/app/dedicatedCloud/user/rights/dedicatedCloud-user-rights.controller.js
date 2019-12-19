@@ -12,7 +12,7 @@ angular.module('App').controller('DedicatedCloudUserRightsCtrl', function Dedica
     $stateParams.userId,
     pageSize,
     offset - 1,
-  ).then(results => ({
+  ).then((results) => ({
     data: get(results, 'list.results'),
     meta: {
       totalCount: results.count,

@@ -23,7 +23,7 @@ export default class WebHostingOffer {
       : [];
 
     this.sharedDatabases = sharedDatabases
-      .map(database => ({
+      .map((database) => ({
         available: database.available,
         ...this.constructor.formatSizeValue(database.quota),
         type: database.type,
@@ -60,7 +60,7 @@ export default class WebHostingOffer {
   get formattedLanguages() {
     const languagesKeys = Object.keys(this.languages);
     const availableLanguages = languagesKeys
-      .filter(language => this.languages[language].length > 0);
+      .filter((language) => this.languages[language].length > 0);
 
     return availableLanguages;
   }

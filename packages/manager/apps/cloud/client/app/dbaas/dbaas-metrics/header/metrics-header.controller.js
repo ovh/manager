@@ -53,11 +53,11 @@ import map from 'lodash/map';
     }
 
     getProtocolDocs() {
-      return map(this.METRICS_ENDPOINTS.protos, proto => this.getProtocolDoc(proto));
+      return map(this.METRICS_ENDPOINTS.protos, (proto) => this.getProtocolDoc(proto));
     }
 
     getPlatformDocs() {
-      return map(this.METRICS_ENDPOINTS.graphs, graph => this.getPlatformDoc(graph.name));
+      return map(this.METRICS_ENDPOINTS.graphs, (graph) => this.getPlatformDoc(graph.name));
     }
 
     getPlatformDoc(graph) {

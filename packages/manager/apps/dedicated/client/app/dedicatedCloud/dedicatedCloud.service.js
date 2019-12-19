@@ -42,10 +42,10 @@ angular
 
     /* ------- INFORMATIONS -------*/
     this.getAllPccs = () => OvhApiDedicatedCloud.v6().query().$promise
-      .then(pccIds => $q.all(pccIds.map(pccId => OvhApiDedicatedCloud.v6().get({
+      .then((pccIds) => $q.all(pccIds.map((pccId) => OvhApiDedicatedCloud.v6().get({
         serviceName: pccId,
       }).$promise
-        .catch(error => (error.status === UNAVAILABLE_PCC_CODE
+        .catch((error) => (error.status === UNAVAILABLE_PCC_CODE
           ? undefined : $q.reject(error))))));
 
     this.getSelected = (serviceName, forceRefresh) => OvhHttp
@@ -57,7 +57,7 @@ angular
         cache: dedicatedCloudCache.all,
         clearAllCache: forceRefresh,
       })
-      .then(service => (isString(service) || service.status === 'expired'
+      .then((service) => (isString(service) || service.status === 'expired'
         ? {
           ...(isObject(service) ? service : undefined),
           isExpired: true,
@@ -67,7 +67,7 @@ angular
           isExpired: false,
         }));
 
-    this.getDescription = serviceName => OvhHttp.get('/dedicatedCloud/{serviceName}', {
+    this.getDescription = (serviceName) => OvhHttp.get('/dedicatedCloud/{serviceName}', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -90,7 +90,7 @@ angular
       clearAllCache: dedicatedCloudCache.all,
     });
 
-    this.getNewPrices = serviceName => OvhHttp.get('/dedicatedCloud/{serviceName}/newPrices', {
+    this.getNewPrices = (serviceName) => OvhHttp.get('/dedicatedCloud/{serviceName}/newPrices', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -100,7 +100,7 @@ angular
 
     /* ------- DATACENTER -------*/
 
-    this.getDatacenters = serviceName => OvhHttp.get('/sws/dedicatedCloud/{serviceName}/datacenters-summary', {
+    this.getDatacenters = (serviceName) => OvhHttp.get('/sws/dedicatedCloud/{serviceName}/datacenters-summary', {
       rootPath: '2api',
       urlParams: {
         serviceName,
@@ -188,7 +188,7 @@ angular
       },
     });
 
-    this.getCommercialRangeList = serviceName => OvhHttp.get('/dedicatedCloud/{serviceName}/commercialRange/orderable', {
+    this.getCommercialRangeList = (serviceName) => OvhHttp.get('/dedicatedCloud/{serviceName}/commercialRange/orderable', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -304,7 +304,7 @@ angular
       });
     };
 
-    this.hostHasNoPrice = billingType => billingType === 'freeSpare';
+    this.hostHasNoPrice = (billingType) => billingType === 'freeSpare';
 
     /* ------- SUB DATACENTER DATASTORES -------*/
 
@@ -358,7 +358,7 @@ angular
           urlParams: {
             serviceName,
           },
-        }).then(pcc => ({
+        }).then((pcc) => ({
           canOrderSpla: !pcc.spla,
           isSplaActive: pcc.spla,
         }));
@@ -378,11 +378,11 @@ angular
             },
           }),
         })
-        .then(data => ({
+        .then((data) => ({
           canOrderSpla: data.order.indexOf('spla') !== -1,
           isSplaActive: data.pcc.spla,
         }))
-        .catch(err => $q.reject({
+        .catch((err) => $q.reject({
           canOrderSpla: false,
           isSplaActive: false,
           messages: Array.isArray(err) ? err : [err],
@@ -390,14 +390,14 @@ angular
         }));
     };
 
-    this.getSplaOrder = serviceName => OvhHttp.get('/order/dedicatedCloud/{serviceName}/spla', {
+    this.getSplaOrder = (serviceName) => OvhHttp.get('/order/dedicatedCloud/{serviceName}/spla', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
     });
 
-    this.postSplaOrder = serviceName => OvhHttp.post('/order/dedicatedCloud/{serviceName}/spla', {
+    this.postSplaOrder = (serviceName) => OvhHttp.post('/order/dedicatedCloud/{serviceName}/spla', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -525,7 +525,7 @@ angular
       },
     });
 
-    this.getPasswordPolicy = serviceName => OvhHttp.get('/dedicatedCloud/{serviceName}/passwordPolicy', {
+    this.getPasswordPolicy = (serviceName) => OvhHttp.get('/dedicatedCloud/{serviceName}/passwordPolicy', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -534,12 +534,12 @@ angular
 
     /* ------- SECURITY -------*/
 
-    this.getSecurityInformations = serviceName => OvhHttp.get('/dedicatedCloud/{serviceName}', {
+    this.getSecurityInformations = (serviceName) => OvhHttp.get('/dedicatedCloud/{serviceName}', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
-    }).then(dedicatedCloud => ({
+    }).then((dedicatedCloud) => ({
       userLimitConcurrentSession: dedicatedCloud.userLimitConcurrentSession,
       userSessionTimeout: dedicatedCloud.userSessionTimeout / 60,
       userAccessPolicy: snakeCase(dedicatedCloud.userAccessPolicy).toUpperCase(),
@@ -716,21 +716,21 @@ angular
 
     this.hasSecurityOption = (serviceName) => {
       const promises = DEDICATED_CLOUD_CONSTANTS.securityOptions
-        .map(optionName => self.getOptionState(optionName, serviceName));
-      return $q.all(promises).then(results => results.some(optionInfo => optionInfo !== 'disabled'));
+        .map((optionName) => self.getOptionState(optionName, serviceName));
+      return $q.all(promises).then((results) => results.some((optionInfo) => optionInfo !== 'disabled'));
     };
 
     /* --- Virtual Machine Encryption KMS --- */
-    this.getVMEncryptionKMSList = serviceName => OvhApiDedicatedCloud.VMEncryption().kms().v6()
+    this.getVMEncryptionKMSList = (serviceName) => OvhApiDedicatedCloud.VMEncryption().kms().v6()
       .query({
         serviceName,
-      }).$promise.then(kmsIds => kmsIds);
+      }).$promise.then((kmsIds) => kmsIds);
 
     this.getVMEncryptionKMSDetail = (serviceName, kmsId) => OvhApiDedicatedCloud
       .VMEncryption().kms().v6().get({
         serviceName,
         kmsId,
-      }).$promise.then(kms => kms);
+      }).$promise.then((kms) => kms);
 
     this.createVMEncryptionKMS = (
       serviceName,
@@ -774,12 +774,12 @@ angular
         method: 'get',
         namespace: taskId,
         interval,
-        successRule: taskResult => taskResult.state !== 'error',
-        errorRule: taskResult => taskResult.state === 'error',
+        successRule: (taskResult) => taskResult.state !== 'error',
+        errorRule: (taskResult) => taskResult.state === 'error',
       });
     };
 
-    this.stopVMEncryptionPoller = taskId => Poller.kill({ namespace: taskId });
+    this.stopVMEncryptionPoller = (taskId) => Poller.kill({ namespace: taskId });
 
     /* ------- Resource -------*/
 
@@ -865,7 +865,7 @@ angular
     };
 
     /* ------- Upgrade -------*/
-    this.upgrade = serviceName => OvhHttp.post('/dedicatedCloud/{serviceName}/upgradeHypervisor', {
+    this.upgrade = (serviceName) => OvhHttp.post('/dedicatedCloud/{serviceName}/upgradeHypervisor', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -906,7 +906,7 @@ angular
           }
           return response;
         })
-        .catch(err => ({ toggable: false, error: err }));
+        .catch((err) => ({ toggable: false, error: err }));
     };
 
     this.getOptionState = (optionName, serviceName) => OvhHttp.get('/dedicatedCloud/{serviceName}/{optionName}', {
@@ -915,7 +915,7 @@ angular
         optionName,
       },
       rootPath: 'apiv6',
-    }).then(response => response.state);
+    }).then((response) => response.state);
 
     this.enableOption = (serviceName, optionName) => OvhHttp.post('/dedicatedCloud/{serviceName}/{optionName}/enable', {
       rootPath: 'apiv6',
@@ -944,13 +944,13 @@ angular
         const currentHosts = angular.copy(hosts);
         const nextHosts = angular.copy(hosts);
         return $q.all({
-          current: $q.all(currentHosts.map(host => self.fillHostPrice(
+          current: $q.all(currentHosts.map((host) => self.fillHostPrice(
             currentCommercialRangeName,
             host.commercialSubRange,
             location,
             host,
           ))),
-          next: $q.all(nextHosts.map(host => self.fillHostPrice(
+          next: $q.all(nextHosts.map((host) => self.fillHostPrice(
             newCommercialRange,
             host.commercialSubRange,
             location,
@@ -959,30 +959,30 @@ angular
         });
       });
 
-    this.fetchHosts = serviceName => self.getDatacenters(serviceName).then((dataCenters) => {
+    this.fetchHosts = (serviceName) => self.getDatacenters(serviceName).then((dataCenters) => {
       if (dataCenters.results && dataCenters.results.length > 0) {
         return $q
           .all(
-            dataCenters.results.map(dataCenter => self
+            dataCenters.results.map((dataCenter) => self
               .getHosts(serviceName, dataCenter.id)
-              .then(hostIds => $q.all(hostIds.map(hostId => self.getHost(
+              .then((hostIds) => $q.all(hostIds.map((hostId) => self.getHost(
                 serviceName,
                 dataCenter.id,
                 hostId,
               ))))
-              .then(hosts => hosts.map(host => assign(host, {
+              .then((hosts) => hosts.map((host) => assign(host, {
                 datacenter: dataCenter.name,
                 commercialSubRange: dataCenter.commercialRangeName.substr(6).toLowerCase(),
               })))),
           )
-          .then(dataCentersHosts => flatten(dataCentersHosts));
+          .then((dataCentersHosts) => flatten(dataCentersHosts));
       }
       return [];
     });
 
     this.fillHostPrice = (commercialRange, commercialSubRange, location, host) => self
       .getHostPrice(commercialRange, commercialSubRange, location, host.billingType, host.profile)
-      .then(price => assign(host, { price: price.text }));
+      .then((price) => assign(host, { price: price.text }));
 
     /**
              * Poll request
@@ -1020,7 +1020,7 @@ angular
     /**
          *  DEPRECATED : use OvhApiDedicatedCloudV6.terminate from ovh-api-services instead.
          */
-    this.terminate = serviceName => OvhHttp.post('/dedicatedCloud/{serviceName}/terminate', {
+    this.terminate = (serviceName) => OvhHttp.post('/dedicatedCloud/{serviceName}/terminate', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -1098,7 +1098,7 @@ angular
     this.getUserOperationsDetail = (serviceName, opts) => this
       .getUserOperations(serviceName, opts)
       .then((tasks) => {
-        const taskPromises = tasks.map(task => OvhHttp.get('/dedicatedCloud/{serviceName}/user/{userId}/task/{taskId}', {
+        const taskPromises = tasks.map((task) => OvhHttp.get('/dedicatedCloud/{serviceName}/user/{userId}/task/{taskId}', {
           rootPath: 'apiv6',
           urlParams: {
             serviceName,

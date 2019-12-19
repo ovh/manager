@@ -60,7 +60,7 @@ class DeskaasCtrl {
 
     return promise.then((serviceIds) => {
       const promises = [];
-      serviceIds.forEach(serviceId => promises.push(this.loadService(serviceId)));
+      serviceIds.forEach((serviceId) => promises.push(this.loadService(serviceId)));
       return this.$q.all(promises);
     });
   }

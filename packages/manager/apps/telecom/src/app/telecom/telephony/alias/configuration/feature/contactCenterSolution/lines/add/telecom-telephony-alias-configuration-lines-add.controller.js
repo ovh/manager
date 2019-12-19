@@ -71,7 +71,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
       this.addLineForm.numbers[0].value = null;
     }
 
-    remove(this.linesToExclude, line => line === lineToRemove);
+    remove(this.linesToExclude, (line) => line === lineToRemove);
   }
 
   resetLinesToAdd() {
@@ -85,8 +85,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
   addLines() {
     this.loading = true;
     const linesToAdd = this.addLineForm.numbers
-      .map(({ description, value }) => Object
-        .assign({ number: value, description }, this.addLineForm.options));
+      .map(({ description, value }) => ({
+        number: value,
+        description,
+        ...this.addLineForm.options,
+      }));
     let promiseChain = this.$q.when();
 
     linesToAdd.reverse().forEach((line) => {

@@ -286,7 +286,7 @@ angular.module('managerApp').controller('XdslModemServiceCtrl', class XdslModemS
   }
 
   getService(name) {
-    return this.modemServices.find(service => service.name === name);
+    return this.modemServices.find((service) => service.name === name);
   }
 
   changeValue(name, value) {

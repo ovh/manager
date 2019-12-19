@@ -9,7 +9,7 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        instanceId: /* @ngInject */$transition$ => $transition$.params().instanceId,
+        instanceId: /* @ngInject */($transition$) => $transition$.params().instanceId,
         instance: /* @ngInject */ (
           PciProjectsProjectInstanceService,
           projectId,
@@ -17,7 +17,7 @@ export default /* @ngInject */($stateProvider) => {
         ) => PciProjectsProjectInstanceService
           .get(projectId, instanceId),
 
-        goBack: /* @ngInject */ goToInstances => goToInstances,
+        goBack: /* @ngInject */ (goToInstances) => goToInstances,
         breadcrumb: () => null,
       },
     });

@@ -27,7 +27,7 @@ export default {
         }
 
         onSelectionChanged(selectedZone, value) {
-          let selection = find(this.selections, item => item.zone === selectedZone);
+          let selection = find(this.selections, (item) => item.zone === selectedZone);
           if (!selection) {
             selection = {
               zone: selectedZone,
@@ -38,12 +38,12 @@ export default {
           selection.selected = value;
 
           this.onSelectionChange({
-            value: map(filter(this.selections, item => item.selected), item => item.zone),
+            value: map(filter(this.selections, (item) => item.selected), (item) => item.zone),
           });
         }
 
         groupZones() {
-          this.groupedZones = groupBy(this.zones, zone => zone.country);
+          this.groupedZones = groupBy(this.zones, (zone) => zone.country);
         }
       },
   bindings: {

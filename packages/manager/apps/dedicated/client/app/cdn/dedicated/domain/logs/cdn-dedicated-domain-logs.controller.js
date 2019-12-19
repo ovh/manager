@@ -12,7 +12,7 @@ angular.module('App').controller('CdnDomainTabLogsCtrl',
         source: () => this.OvhApiCdn.Dedicated().Domains().v6().logs({
           serviceName: this.$stateParams.productId,
           domain: this.$stateParams.domain,
-        }, {}).$promise.then(logs => logs.url),
+        }, {}).$promise.then((logs) => logs.url),
         delay: 2000,
       });
       this.startLog();

@@ -13,7 +13,7 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        userId: /* @ngInject */$transition$ => $transition$.params().userId,
+        userId: /* @ngInject */($transition$) => $transition$.params().userId,
         user: /* @ngInject */ (
           PciProjectsProjectUsersService,
           projectId,
@@ -23,12 +23,12 @@ export default /* @ngInject */($stateProvider) => {
           PciProjectsProjectUsersService,
           projectId,
         ) => PciProjectsProjectUsersService.getRegions(projectId),
-        rcloneGuide: /* @ngInject */ SessionService => SessionService.getUser()
+        rcloneGuide: /* @ngInject */ (SessionService) => SessionService.getUser()
           .then(({ ovhSubsidiary }) => get(
             RCLONE_GUIDE,
             ovhSubsidiary,
           )),
-        goBack: /* @ngInject */ goToUsers => goToUsers,
+        goBack: /* @ngInject */ (goToUsers) => goToUsers,
       },
     });
 };

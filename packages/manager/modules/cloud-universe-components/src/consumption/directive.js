@@ -142,9 +142,9 @@ export default /* @ngInject */($window) => {
   Chart.prototype.setModel = function setModel(model) {
     this.data = model;
     const dataValues = values(model.estimate);
-    this.x.domain(dataValues.map(d => d.label));
-    const maxYDomainEstimate = d3.max(dataValues, d => d.value);
-    const maxYDomainThreshold = d3.max(values(model.threshold), d => d.value);
+    this.x.domain(dataValues.map((d) => d.label));
+    const maxYDomainEstimate = d3.max(dataValues, (d) => d.value);
+    const maxYDomainThreshold = d3.max(values(model.threshold), (d) => d.value);
     const maxYDomain = max([maxYDomainEstimate, maxYDomainThreshold]);
     this.y.domain([0, maxYDomain * 1.20]);
     this.margin = model.margin || this.margin;
@@ -171,7 +171,7 @@ export default /* @ngInject */($window) => {
         const parentWidth = $element.parent().width();
         if (parentWidth > 0 && $element.parent().height() > 0) {
           chart.width = parentWidth;
-          chart.height = parentWidth / defaultWidth * defaultHeight;
+          chart.height = (parentWidth / defaultWidth) * defaultHeight;
           if (chart.data) {
             chart.resize();
           }

@@ -38,7 +38,7 @@ export default class {
   getVracks() {
     return this.OvhApiVrack.Aapi().query().$promise
       .then((vracks) => {
-        this.vracks = vracks.map(vrack => ({
+        this.vracks = vracks.map((vrack) => ({
           ...vrack,
           displayName: vrack.name || vrack.id,
         }));

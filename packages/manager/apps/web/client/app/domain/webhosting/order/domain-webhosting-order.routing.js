@@ -1,7 +1,7 @@
 import component from './domain-webhosting-order.component';
 
 const resolve = {
-  assignCart: /* @ngInject */ OrderService => cartId => OrderService
+  assignCart: /* @ngInject */ (OrderService) => (cartId) => OrderService
     .assignCart(cartId),
   availableModules: /* @ngInject */
     (cartId, WebHostingOrder) => WebHostingOrder
@@ -21,18 +21,18 @@ const resolve = {
     user,
   ) => () => OrderService
     .createNewCart(user.ovhSubsidiary),
-  defaultPaymentMethod: /* @ngInject */ ovhPaymentMethod => ovhPaymentMethod
+  defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) => ovhPaymentMethod
     .getDefaultPaymentMethod(),
   deleteCartItems: /* @ngInject */ (cartId, OrderService) => () => OrderService
     .deleteAllItems(cartId),
   displayErrorMessage: /* @ngInject */ (
     $translate,
     Alerter,
-  ) => translationId => Alerter.error($translate.instant(translationId), 'webhosting-order-alert'),
+  ) => (translationId) => Alerter.error($translate.instant(translationId), 'webhosting-order-alert'),
   displayOrderBillSuccessMessage: /* @ngInject */ (
     $translate,
     Alerter,
-  ) => billUrl => Alerter.success($translate.instant('domain_webhosting_order_bill_success', {
+  ) => (billUrl) => Alerter.success($translate.instant('domain_webhosting_order_bill_success', {
     billUrl,
   }), 'domain_alert_main'),
   displayPayCheckoutSuccessMessage: /* @ngInject */ (
@@ -49,9 +49,9 @@ const resolve = {
     price,
     renewDate,
   }), 'domain_alert_main'),
-  openBill: /* @ngInject */ $window => billUrl => $window.open(billUrl, '_blank'),
+  openBill: /* @ngInject */ ($window) => (billUrl) => $window.open(billUrl, '_blank'),
   prepareCheckout: /* @ngInject */
-    WebHostingOrder => (cartId, cartOption, domainName) => WebHostingOrder
+    (WebHostingOrder) => (cartId, cartOption, domainName) => WebHostingOrder
       .prepareCheckout(cartId, cartOption, domainName),
   validateCheckout: /* @ngInject */ (
     $timeout,
@@ -65,7 +65,7 @@ const resolve = {
     WebHostingOrder,
   ) => (cartId, checkoutToPay) => WebHostingOrder
     .validateCheckout(cartId, checkoutToPay)
-    .then(checkout => goBackToDashboard()
+    .then((checkout) => goBackToDashboard()
       .then(() => {
         if (checkoutToPay.autoPayWithPreferredPaymentMethod) {
           return displayPayCheckoutSuccessMessage(
@@ -90,11 +90,11 @@ export default /* @ngInject */ ($stateProvider) => {
           component: component.name,
         },
       },
-      resolve: Object.assign(
-        {},
-        resolve,
-        { goBackToDashboard: /* @ngInject */ $state => () => $state.go('app.domain.product.information') },
-      ),
+      resolve: {
+
+        ...resolve,
+        goBackToDashboard: /* @ngInject */ ($state) => () => $state.go('app.domain.product.information'),
+      },
     })
     .state('app.domain.alldom.webhosting.order', {
       url: '/order',
@@ -103,10 +103,10 @@ export default /* @ngInject */ ($stateProvider) => {
           component: component.name,
         },
       },
-      resolve: Object.assign(
-        {},
-        resolve,
-        { goBackToDashboard: /* @ngInject */ $state => () => $state.go('app.domain.alldom.information') },
-      ),
+      resolve: {
+
+        ...resolve,
+        goBackToDashboard: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.information'),
+      },
     });
 };

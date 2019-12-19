@@ -15,7 +15,7 @@ export default class IpLoadBalancerSslCertificateService {
   getCertificates(serviceName) {
     return this.Ssl.query({ serviceName })
       .$promise
-      .then(sslIds => this.$q.all(sslIds.map(sslId => this.getCertificate(serviceName, sslId))))
+      .then((sslIds) => this.$q.all(sslIds.map((sslId) => this.getCertificate(serviceName, sslId))))
       .catch(this.CucServiceHelper.errorHandler('iplb_ssl_list_error'));
   }
 
@@ -57,10 +57,10 @@ export default class IpLoadBalancerSslCertificateService {
       serviceName,
     })
       .$promise
-      .then(options => options.filter(option => option.family === 'ssl'))
-      .then(options => options.map((option) => {
+      .then((options) => options.filter((option) => option.family === 'ssl'))
+      .then((options) => options.map((option) => {
         // Keep only 1 year prices
-        set(option, 'prices', option.prices.filter(price => price.interval === 12));
+        set(option, 'prices', option.prices.filter((price) => price.interval === 12));
         return option;
       }))
       .catch(this.CucServiceHelper.errorHandler('iplb_ssl_order_loading_error'));
@@ -83,7 +83,7 @@ export default class IpLoadBalancerSslCertificateService {
   orderPaidCertificate(serviceName, orderOptions, configuration) {
     let cartId;
     return this.User.v6().get().$promise
-      .then(me => this.OvhApiOrder.Cart().v6()
+      .then((me) => this.OvhApiOrder.Cart().v6()
         .post({}, { ovhSubsidiary: me.ovhSubsidiary }).$promise)
       .then((cart) => {
         cartId = get(cart, 'cartId');
@@ -92,13 +92,11 @@ export default class IpLoadBalancerSslCertificateService {
       .then(() => this.OvhApiOrder.Cart().ServiceOption().v6().post({
         productName: 'ipLoadbalancing',
         serviceName,
-      }, Object.assign({}, orderOptions, {
-        cartId,
-      })).$promise)
+      }, { ...orderOptions, cartId }).$promise)
       .then((item) => {
         // Apply item configuration
         const promises = Object.keys(configuration)
-          .map(label => this.configureCartItem(cartId, item.itemId, label, configuration[label]));
+          .map((label) => this.configureCartItem(cartId, item.itemId, label, configuration[label]));
         return this.$q.all(promises);
       })
       .then(() => this.OvhApiOrder.Cart().v6().checkout({ cartId }, {}).$promise)

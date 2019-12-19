@@ -42,16 +42,16 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSound
         this.copyQueueOptions = angular.copy(this.queueOptions);
 
         this.toneOnOpening = this.sounds
-          .find(sound => sound.soundId === this.options.toneOnOpening);
+          .find((sound) => sound.soundId === this.options.toneOnOpening);
         this.toneOnHold = this.sounds
-          .find(sound => sound.soundId === this.options.toneOnHold);
+          .find((sound) => sound.soundId === this.options.toneOnHold);
 
         const overflowPlayback = this.sounds
-          .find(sound => sound.soundId === parseInt(this.queueOptions.actionOnOverflowParam, 10));
+          .find((sound) => sound.soundId === parseInt(this.queueOptions.actionOnOverflowParam, 10));
         this.overflowPlayback = overflowPlayback || head(this.sounds);
 
         const closurePlayback = this.sounds
-          .find(sound => sound.soundId === parseInt(this.queueOptions.actionOnClosureParam, 10));
+          .find((sound) => sound.soundId === parseInt(this.queueOptions.actionOnClosureParam, 10));
         this.closurePlayback = closurePlayback || head(this.sounds);
       })
       .catch((error) => {

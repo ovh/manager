@@ -15,7 +15,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
   function fetchEnums() {
     return OvhApiTelephony.v6().schema({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(schema => ({
+    }).$promise.then((schema) => ({
       quality: schema.models['telephony.FaxQualityEnum'].enum,
       sendingTries: schema.models['telephony.FaxSendingTries'].enum,
       mailFormat: schema.models['telephony.FaxMailFormatEnum'].enum,
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
     OvhApiTelephony.Fax().v6().resetCache();
     OvhApiTelephony.Fax().v6().resetQueryCache();
     return fetchSettings()
-      .then(settings => assignWith(self.settings, pick(settings, ['faxQuality', 'faxMaxCall', 'faxTagLine', 'fromName', 'fromEmail', 'mailFormat', 'redirectionEmail']), (objectValue, sourceValue) => (isArray(sourceValue) ? sourceValue : sourceValue.toString())));
+      .then((settings) => assignWith(self.settings, pick(settings, ['faxQuality', 'faxMaxCall', 'faxTagLine', 'fromName', 'fromEmail', 'mailFormat', 'redirectionEmail']), (objectValue, sourceValue) => (isArray(sourceValue) ? sourceValue : sourceValue.toString())));
   }
 
   /* -----  End of HELPERS  ------ */
@@ -130,7 +130,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

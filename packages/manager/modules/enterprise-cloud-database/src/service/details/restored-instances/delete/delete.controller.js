@@ -22,13 +22,13 @@ export default class EnterpriseCloudDatabaseDeleteCtrl {
   deleteInstance() {
     this.isLoading = true;
     return this.service.deleteRestoredInstance(this.clusterId, this.instanceId)
-      .then(res => this.goBack(
+      .then((res) => this.goBack(
         this.$translate.instant('enterprise_cloud_database_restored_instance_delete_success',
           { instanceId: this.instanceId }),
         STATUS.SUCCESS,
         res.id,
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('enterprise_cloud_database_restored_instance_delete_error', {
           message: get(error, 'data.message'),
         }),

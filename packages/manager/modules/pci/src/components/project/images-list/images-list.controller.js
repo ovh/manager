@@ -53,7 +53,7 @@ export default class ImagesListController {
 
   updateImages(images) {
     const [appImages, osImages] = partition(
-      filter(images, image => image.isActive()), image => image.isApp(),
+      filter(images, (image) => image.isActive()), (image) => image.isApp(),
     );
     this.os = reduce(this.PciProjectImages.constructor.groupByType(osImages),
       (imagesByType, imagesOfType, type) => ({
@@ -146,6 +146,6 @@ export default class ImagesListController {
   }
 
   isDistributionCompatible(images) {
-    return some(images, image => this.isCompatible(image));
+    return some(images, (image) => this.isCompatible(image));
   }
 }

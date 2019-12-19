@@ -30,7 +30,7 @@ angular.module('controllers').controller(
             );
           }
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant(`domain_configuration_dnssec_error_${newState}`),
           get(err, 'data', err),
           this.$scope.alerts.main,

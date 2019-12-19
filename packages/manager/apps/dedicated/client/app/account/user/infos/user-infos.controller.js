@@ -61,7 +61,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
       promise = promise.then(() => UseraccountInfos.getListOfRulesFieldName());
 
       promise
-        .then(fieldNames => UseraccountInfos.getUseraccountInfos().then((response) => {
+        .then((fieldNames) => UseraccountInfos.getUseraccountInfos().then((response) => {
           // pick attributes that belong to /rules
           // add customer code since it will be displayed in the form
           $scope.user = pick(response, fieldNames.concat('customerCode'));

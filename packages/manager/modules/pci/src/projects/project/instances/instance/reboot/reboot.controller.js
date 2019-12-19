@@ -28,7 +28,7 @@ export default class PciInstanceRebootController {
           },
         ),
       ))
-      .catch(err => this.goBack(
+      .catch((err) => this.goBack(
         this.$translate.instant(
           'pci_projects_project_instances_instance_reboot_error_reboot',
           {

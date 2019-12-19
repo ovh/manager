@@ -21,7 +21,7 @@ angular
       },
       layout: 'modal',
       resolve: {
-        minDate: /* @ngInject */ $transition$ => $transition$.params().minDate,
+        minDate: /* @ngInject */ ($transition$) => $transition$.params().minDate,
       },
     });
   })

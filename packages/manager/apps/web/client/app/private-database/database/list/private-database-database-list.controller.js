@@ -127,7 +127,7 @@ angular
       let unregisterWatch = null;
 
       const todo = () => {
-        const idx = findIndex(this.bddsDetails, bdd => bdd.databaseName === databaseName);
+        const idx = findIndex(this.bddsDetails, (bdd) => bdd.databaseName === databaseName);
 
         if (idx !== -1) {
           deferred.resolve(idx);
@@ -181,7 +181,7 @@ angular
     onDataBaseCreatedone(evt, opts) {
       this.getBDDS();
 
-      remove(this.currentAddBdds, name => opts.databaseName === name);
+      remove(this.currentAddBdds, (name) => opts.databaseName === name);
 
       this.alerter.success(this.$translate.instant('privateDatabase_add_bdd_success'), this.$scope.alerts.main);
     }

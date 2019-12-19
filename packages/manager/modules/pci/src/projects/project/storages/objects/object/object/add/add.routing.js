@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ goToStorageContainer => goToStorageContainer,
+        goBack: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
         breadcrumb: () => null,
       },
     });

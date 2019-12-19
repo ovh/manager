@@ -38,7 +38,7 @@ export default class {
       this.api.sms.senders.edit({
         serviceName: this.$stateParams.serviceName,
         sender: this.model.sender.sender,
-      }, pick(this.model.sender, this.attributs)).$promise.catch(error => this.$q.reject(error)),
+      }, pick(this.model.sender, this.attributs)).$promise.catch((error) => this.$q.reject(error)),
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.editSender = false;
@@ -46,7 +46,7 @@ export default class {
       this.sender.description = this.model.sender.description;
       this.sender.status = this.model.sender.status;
       return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

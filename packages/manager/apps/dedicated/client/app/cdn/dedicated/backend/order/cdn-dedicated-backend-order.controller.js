@@ -12,7 +12,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
   $scope.loadBackendPrice = () => {
     if (!$scope.price) {
       Cdn.getSelected()
-        .then(cdn => Cdn.getBackendPrice(cdn.serviceName))
+        .then((cdn) => Cdn.getBackendPrice(cdn.serviceName))
         .then((price) => {
           $scope.price = price;
         });
@@ -38,7 +38,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
   $scope.updateOrder = function updateOrder() {
     const choosenOrder = $.grep(
       $scope.orders,
-      e => e.duration.duration === $scope.choices.duration,
+      (e) => e.duration.duration === $scope.choices.duration,
     );
     if (choosenOrder.length > 0) {
       $scope.choices.order = head(choosenOrder);

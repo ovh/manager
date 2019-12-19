@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/subscriptions',
       component: 'pciProjectStreamsStreamSubscriptions',
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_streams_stream_subscriptions_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_streams_stream_subscriptions_title'),
         subscriptions: /* @ngInject */ (
           projectId,
           streamId,
@@ -14,18 +14,18 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           streamId,
           PciProjectStreamsStreamSubscriptionsService,
-        ) => subscription => PciProjectStreamsStreamSubscriptionsService
+        ) => (subscription) => PciProjectStreamsStreamSubscriptionsService
           .getStats(projectId, streamId, subscription),
         addSubscribtionLink: /* @ngInject */($state, projectId, streamId) => $state.href('pci.projects.project.streams.stream.subscriptions.add', {
           projectId,
           streamId,
         }),
-        resetSubscription: /* @ngInject */ ($state, projectId, streamId) => subscription => $state.go('pci.projects.project.streams.stream.subscriptions.resetCursor', {
+        resetSubscription: /* @ngInject */ ($state, projectId, streamId) => (subscription) => $state.go('pci.projects.project.streams.stream.subscriptions.resetCursor', {
           projectId,
           streamId,
           subscriptionId: subscription.id,
         }),
-        deleteSubscription: /* @ngInject */ ($state, projectId, streamId) => subscription => $state.go('pci.projects.project.streams.stream.subscriptions.delete', {
+        deleteSubscription: /* @ngInject */ ($state, projectId, streamId) => (subscription) => $state.go('pci.projects.project.streams.stream.subscriptions.delete', {
           projectId,
           streamId,
           subscriptionId: subscription.id,

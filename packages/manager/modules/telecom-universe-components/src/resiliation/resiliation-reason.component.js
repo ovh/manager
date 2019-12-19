@@ -33,7 +33,7 @@ export default {
       { name: 'other', caption: 'resiliation_choice_other', needComment: true },
     ];
 
-    this.resiliationChoices = this.resiliationChoices.filter(elt => !self.tucResiliationReasonFilter || (self.tucResiliationReasonFilter.split(',').indexOf(elt.name) > -1));
+    this.resiliationChoices = this.resiliationChoices.filter((elt) => !self.tucResiliationReasonFilter || (self.tucResiliationReasonFilter.split(',').indexOf(elt.name) > -1));
 
     this.canResiliate = function canResiliate() {
       if (self.resiliationReasonModel) {

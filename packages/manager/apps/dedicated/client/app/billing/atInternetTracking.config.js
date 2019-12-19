@@ -17,7 +17,7 @@ angular.module('Billing.services').run(['$rootScope', 'atInternet', 'AUTORENEW_E
     function trackServiceClickEvent(event, data) {
       const services = Array.isArray(data) ? data : [data];
 
-      services.forEach(s => atInternet.trackClick({
+      services.forEach((s) => atInternet.trackClick({
         name: `${s.serviceType}-${event.name}`,
         type: 'action',
       }));

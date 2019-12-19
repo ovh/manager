@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
         goToDashboard: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.dashboard', {
           serviceName,
         }),
@@ -31,7 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goToStorageAdd: /* @ngInject */ ($state, serviceName) => () => $state.go('veeam-cloud-connect.detail.storage.add', {
           serviceName,
         }),
-        goToStorageQuota: /* @ngInject */ ($state, serviceName) => inventoryName => $state.go('veeam-cloud-connect.detail.storage.quota', {
+        goToStorageQuota: /* @ngInject */ ($state, serviceName) => (inventoryName) => $state.go('veeam-cloud-connect.detail.storage.quota', {
           inventoryName,
           serviceName,
         }),
@@ -101,7 +101,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        inventoryName: /* @ngInject */ $transition$ => $transition$.params().inventoryName,
+        inventoryName: /* @ngInject */ ($transition$) => $transition$.params().inventoryName,
       },
     });
 };

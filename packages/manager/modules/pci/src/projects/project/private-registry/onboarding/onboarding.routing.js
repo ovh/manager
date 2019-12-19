@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         registryId: null,
       },
       resolve: {
-        registryId: /* @ngInject */ $stateParams => $stateParams.registryId,
+        registryId: /* @ngInject */ ($stateParams) => $stateParams.registryId,
         registryContracts: /* @ngInject */(
           $q,
           pciPrivateRegistryService,
@@ -17,8 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((agreements) => {
             const agreementPromises = map(
               agreements || [],
-              agreement => pciPrivateRegistryService.getContractInfo(agreement.id)
-                .then(contract => Object.assign(contract, {
+              (agreement) => pciPrivateRegistryService.getContractInfo(agreement.id)
+                .then((contract) => Object.assign(contract, {
                   id: agreement.id,
                   validated: agreement.validated,
                 })),

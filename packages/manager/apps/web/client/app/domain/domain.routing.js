@@ -33,9 +33,9 @@ export default /* @ngInject */ ($stateProvider) => {
       currentSection: () => 'domain',
       domain: /* @ngInject */ (Domain, domainName) => Domain
         .getSelected(domainName),
-      domainName: /* @ngInject */ $transition$ => $transition$
+      domainName: /* @ngInject */ ($transition$) => $transition$
         .params().productId,
-      goToWebhostingOrder: /* @ngInject */ $state => () => $state.go('app.domain.product.webhosting.order'),
+      goToWebhostingOrder: /* @ngInject */ ($state) => () => $state.go('app.domain.product.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -53,10 +53,10 @@ export default /* @ngInject */ ($stateProvider) => {
         Hosting,
       ) => Hosting.getSelected(domainName)
         .then(({ offer, serviceName }) => (isEmpty(offer) ? null : serviceName))
-        .catch(error => (error.code === 404 ? null : $q.reject(error))),
+        .catch((error) => (error.code === 404 ? null : $q.reject(error))),
 
-      goToDns: /* @ngInject */ $state => () => $state.go('app.domain.product.dns'),
-      goToDnsAnycast: /* @ngInject */ $state => () => $state.go('app.domain.product.anycast'),
+      goToDns: /* @ngInject */ ($state) => () => $state.go('app.domain.product.dns'),
+      goToDnsAnycast: /* @ngInject */ ($state) => () => $state.go('app.domain.product.anycast'),
     },
     translations: { value: ['../core', '../domain', '../email', '../hosting', '../domain-operation'], format: 'json' },
   });
@@ -76,8 +76,8 @@ export default /* @ngInject */ ($stateProvider) => {
       currentSection: () => 'domain',
       domain: /* @ngInject */ (Domain, domainName) => Domain
         .getSelected(domainName),
-      domainName: /* @ngInject */ $transition$ => $transition$.params().productId,
-      goToWebhostingOrder: /* @ngInject */ $state => () => $state.go('app.domain.alldom.webhosting.order'),
+      domainName: /* @ngInject */ ($transition$) => $transition$.params().productId,
+      goToWebhostingOrder: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.webhosting.order'),
       navigationInformations: [
         'Navigator',
         '$rootScope',
@@ -95,10 +95,10 @@ export default /* @ngInject */ ($stateProvider) => {
         Hosting,
       ) => Hosting.getSelected(domainName)
         .then(({ offer, serviceName }) => (isEmpty(offer) ? null : serviceName))
-        .catch(error => (error.code === 404 ? null : $q.reject(error))),
+        .catch((error) => (error.code === 404 ? null : $q.reject(error))),
 
-      goToDns: /* @ngInject */ $state => () => $state.go('app.domain.alldom.dns'),
-      goToDnsAnycast: /* @ngInject */ $state => () => $state.go('app.domain.alldom.anycast'),
+      goToDns: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.dns'),
+      goToDnsAnycast: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.anycast'),
     },
     translations: { value: ['../core', '../domain', '../email', '../hosting', '../domain-operation'], format: 'json' },
   });

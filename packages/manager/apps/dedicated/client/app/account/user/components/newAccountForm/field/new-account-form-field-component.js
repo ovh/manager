@@ -75,7 +75,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
             '$ctrl.newAccountForm.rules',
             (rules) => {
               const rule = find(rules, { fieldName: 'phoneCountry' });
-              this.phoneCountryList = map(get(rule, 'in'), country => ({
+              this.phoneCountryList = map(get(rule, 'in'), (country) => ({
                 country,
                 prefix: NewAccountFormConfig.phonePrefix[country],
                 label: $translate.instant(`signup_enum_country_${country}`),

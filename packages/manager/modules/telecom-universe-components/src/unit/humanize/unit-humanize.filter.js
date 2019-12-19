@@ -2,7 +2,7 @@ import isFinite from 'lodash/isFinite';
 import isNaN from 'lodash/isNaN';
 import isUndefined from 'lodash/isUndefined';
 
-export default /* @ngInject */ $translate => function unitHumanizeFilter(bytes, type, precision) {
+export default /* @ngInject */ ($translate) => function unitHumanizeFilter(bytes, type, precision) {
   let precisionVal = precision;
   if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) {
     return '-';

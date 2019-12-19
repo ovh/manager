@@ -67,7 +67,7 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', class 
   hasOfferWithSubServicesToDelete() {
     return !!find(
       this.process.migrationOffers.result.offers,
-      offer => offer.totalSubServiceToDelete > 0,
+      (offer) => offer.totalSubServiceToDelete > 0,
     );
   }
 

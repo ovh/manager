@@ -106,12 +106,12 @@ angular.module('managerApp').service('CloudStorageContainer', [
     self.getMetaData = function getMetaData(projectId, containerId) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
-        .then(containerMeta => requestContainer(
+        .then((containerMeta) => requestContainer(
           self.endpoints[containerMeta.region.toLowerCase()],
           containerMeta.name,
           { method: 'HEAD' },
         ))
-        .then(data => pickBy(data.headers(), (value, key) => /^(X-Container|X-Storage)/i.test(key)))
+        .then((data) => pickBy(data.headers(), (value, key) => /^(X-Container|X-Storage)/i.test(key)))
         .then((data) => {
           // Guess storage type
           if (data[xStoragePolicy] === 'PCS') {
@@ -154,7 +154,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
       const uploadProgress = function uploadProgress(e) {
         let res;
         if (e.lengthComputable) {
-          res = Math.round(e.loaded * 100 / e.total);
+          res = Math.round((e.loaded * 100) / e.total);
         } else {
           res = undefined;
         }
@@ -287,7 +287,7 @@ angular.module('managerApp').service('CloudStorageContainer', [
     self.delete = function deleteFn(projectId, containerId, file) {
       return ensureAccess(projectId)
         .then(() => getContainerMeta(projectId, containerId))
-        .then(containerMeta => requestContainer(
+        .then((containerMeta) => requestContainer(
           self.endpoints[containerMeta.region.toLowerCase()],
           containerMeta.name,
           {

@@ -64,7 +64,7 @@ export default class {
       this.phonecontactForm.isCreating = false;
       this.phonecontactForm.hasBeenCreated = true;
       return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

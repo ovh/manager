@@ -13,20 +13,20 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.Service().FaxConsumption().v6()
+          (chunkIds) => OvhApiTelephony.Service().FaxConsumption().v6()
             .getBatch({
               billingAccount: $stateParams.billingAccount,
               serviceName: $stateParams.serviceName,
               consumptionId: chunkIds,
             }).$promise,
         ))
-        .then(chunkResult => flatten(chunkResult)))
+        .then((chunkResult) => flatten(chunkResult)))
       .then((resultParam) => {
         let result = map(resultParam, 'value');
-        result = filter(result, conso => conso.wayType === 'received');
+        result = filter(result, (conso) => conso.wayType === 'received');
         return result;
       });
   }
@@ -56,8 +56,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
     fetchIncomingConsumption().then((result) => {
       self.consumption.raw = angular.copy(result);
       self.applySorting();
-      self.consumption.pagesSum = sumBy(self.consumption.raw, conso => conso.pages);
-    }).catch(err => new TucToastError(err)).finally(() => {
+      self.consumption.pagesSum = sumBy(self.consumption.raw, (conso) => conso.pages);
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.consumption.isLoading = false;
     });
   }

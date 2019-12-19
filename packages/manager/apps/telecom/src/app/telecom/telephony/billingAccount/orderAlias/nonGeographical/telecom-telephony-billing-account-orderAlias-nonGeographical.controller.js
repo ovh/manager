@@ -90,7 +90,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
         axiom,
       },
       null,
-    ).$promise.then(zones => zones);
+    ).$promise.then((zones) => zones);
   };
 
   /**
@@ -116,7 +116,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
     }
     if (this.prices) {
       const price = this.prices[this.form.numberType].withTax.text;
-      return price.replace(/^([\d.,]*)/, forOne => forOne * count);
+      return price.replace(/^([\d.,]*)/, (forOne) => forOne * count);
     }
     return null;
   };
@@ -238,7 +238,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
       init: true,
     };
 
-    self.preAmount = TELEPHONY_NUMBER_OFFER.preAmount.map(elt => ({
+    self.preAmount = TELEPHONY_NUMBER_OFFER.preAmount.map((elt) => ({
       label: $translate.instant(elt.label, elt),
       value: elt.value,
     }));

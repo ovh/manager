@@ -57,8 +57,8 @@ angular.module('App').controller(
       }
       if (isArray(data.email) && !isEmpty(data.email)) {
         dnsRecords = dnsRecords.concat(map(
-          data.email.filter(dnsRecord => dnsRecord.fieldType === 'MX' && !dnsRecord.subDomain),
-          dnsRecord => ({ fieldType: 'MX', target: dnsRecord.target }),
+          data.email.filter((dnsRecord) => dnsRecord.fieldType === 'MX' && !dnsRecord.subDomain),
+          (dnsRecord) => ({ fieldType: 'MX', target: dnsRecord.target }),
         ));
       }
       if (this.aOpts.custom) {
@@ -66,8 +66,8 @@ angular.module('App').controller(
       }
       if (this.mxOpts.custom) {
         dnsRecords = dnsRecords.concat(map(
-          this.mxOpts.custom.filter(custom => custom && custom.target !== ''),
-          custom => ({
+          this.mxOpts.custom.filter((custom) => custom && custom.target !== ''),
+          (custom) => ({
             fieldType: 'MX',
             target: `${custom.priority} ${custom.target}`,
           }),
@@ -88,10 +88,10 @@ angular.module('App').controller(
           this.hostingList = data.hostingList;
           if (data.email) {
             this.mxOpts.enum = data.email.offer === 'MXREDIRECT'
-              ? this.mxOpts.enum.filter(enumMx => enumMx !== 'EMAILS')
+              ? this.mxOpts.enum.filter((enumMx) => enumMx !== 'EMAILS')
               : this.mxOpts.enum;
           } else {
-            this.mxOpts.enum = this.mxOpts.enum.filter(enumMx => enumMx !== 'EMAILS');
+            this.mxOpts.enum = this.mxOpts.enum.filter((enumMx) => enumMx !== 'EMAILS');
           }
         })
         .catch((err) => {
@@ -141,7 +141,7 @@ angular.module('App').controller(
           this.$translate.instant('domain_configuration_zonedns_reset_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_configuration_zonedns_reset_error'),
           err,
           this.$scope.alerts.main,

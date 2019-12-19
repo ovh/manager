@@ -56,7 +56,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
           $rootScope.$broadcast('doubleAuthSMS.reload');
           $scope.resetAction();
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_delete_error'), err, 'doubleAuthAlertSmsDelete'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_delete_error'), err, 'doubleAuthAlertSmsDelete'))
         .finally(() => {
           $scope.sms.isDeleting = false;
         });

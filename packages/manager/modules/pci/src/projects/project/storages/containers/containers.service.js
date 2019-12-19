@@ -135,7 +135,7 @@ export default class PciStoragesContainersService {
       .Aapi()
       .query(queryParams)
       .$promise
-      .then(containers => map(containers, container => new Container(container)));
+      .then((containers) => map(containers, (container) => new Container(container)));
   }
 
   getContainer(projectId, containerId) {
@@ -146,13 +146,13 @@ export default class PciStoragesContainersService {
         containerId,
       })
       .$promise
-      .then(container => this.$q.all({
+      .then((container) => this.$q.all({
         container,
         publicUrl: this.getContainerUrl(projectId, container),
       }))
       .then(({ container, publicUrl }) => new Container({
         ...container,
-        objects: map(container.objects, object => new ContainerObject(object)),
+        objects: map(container.objects, (object) => new ContainerObject(object)),
         id: containerId,
         publicUrl,
         storageGateway: STORAGE_GATEWAY[this.coreConfig.getRegion()].replace(
@@ -176,7 +176,7 @@ export default class PciStoragesContainersService {
   requestContainer(projectId, container, optsParam = {}) {
     const opts = pickBy(optsParam, (value, key) => key !== 'file');
     return this.getAccessAndToken(projectId)
-      .then(accessToken => this.$q.all({
+      .then((accessToken) => this.$q.all({
         accessToken,
         url: this.getContainerUrl(projectId, container, optsParam.file),
       }))
@@ -191,7 +191,7 @@ export default class PciStoragesContainersService {
 
   getContainerMetaData(projectId, container) {
     return this.requestContainer(projectId, container, { method: 'HEAD' })
-      .then(metadata => pickBy(
+      .then((metadata) => pickBy(
         metadata.headers(),
         (value, key) => X_CONTAINER_HEADERS_REGEX.test(key),
       ));
@@ -285,7 +285,7 @@ export default class PciStoragesContainersService {
   addObjects(projectId, container, filePrefix, files) {
     return this.$q.all(map(
       files,
-      file => this.addObject(projectId, container, filePrefix, file),
+      (file) => this.addObject(projectId, container, filePrefix, file),
     ));
   }
 
@@ -340,7 +340,7 @@ export default class PciStoragesContainersService {
         expirationDate,
         objectName: object.name,
       }).$promise
-      .then(resp => resp.getURL);
+      .then((resp) => resp.getURL);
   }
 
   downloadObject(projectId, containerId, object) {
@@ -350,7 +350,7 @@ export default class PciStoragesContainersService {
   unsealObject(projectId, container, object) {
     if (object.retrievalState === OBJECT_TYPE_SEALED) {
       return this.getObjectUrl(projectId, container.id, object)
-        .then(url => this.$http.get(url))
+        .then((url) => this.$http.get(url))
         .catch((error) => {
           // This call make a CORS error, but still initiate the process,
           // swallow status -1 which is what we get when cors fail.

@@ -68,7 +68,7 @@ export default class CucVrackService {
       orderUrl: this.getOrderUrl(),
       vracks: this.getVracks(),
     })
-      .then(data => this.selectVrackModal(data.vracks, data.orderUrl));
+      .then((data) => this.selectVrackModal(data.vracks, data.orderUrl));
   }
 
   linkCloudProjectToVrack(selectedVrack, projectId) {
@@ -77,7 +77,7 @@ export default class CucVrackService {
     }, {
       project: projectId,
     }).$promise
-      .then(vrackTask => vrackTask.data.id);
+      .then((vrackTask) => vrackTask.data.id);
   }
 
   createNewVrack(serviceName) {
@@ -105,7 +105,7 @@ export default class CucVrackService {
       serviceName: selectedVrack,
       project: projectId,
     }).$promise
-      .then(vrackTask => vrackTask.data.id);
+      .then((vrackTask) => vrackTask.data.id);
   }
 
   getTask(serviceName, taskId) {

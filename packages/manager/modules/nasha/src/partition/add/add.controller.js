@@ -75,7 +75,7 @@ export default class NashaPartitionAddCtrl {
         },
       );
     })
-      .catch(error => this.goToPartitionPage(
+      .catch((error) => this.goToPartitionPage(
         this.$translate.instant('nasha_partitions_action_add_failure', {
           partitionName: this.newPartition.name,
           message: get(error, 'data.message'),

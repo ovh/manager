@@ -22,7 +22,7 @@ export default class VpsMountCtrl {
     this.loader.init = true;
     this.VpsService.getVeeamAttachedBackup(this.serviceName)
       .then((data) => { this.attachedBackup = data.length; })
-      .catch(err => this.CucCloudMessage.error(err))
+      .catch((err) => this.CucCloudMessage.error(err))
       .finally(() => { this.loader.init = false; });
   }
 

@@ -82,17 +82,17 @@ export default class SharepointOrderCtrl {
   }
 
   checkReseller() {
-    return this.OvhApiMeVipStatus.v6().get().$promise.then(status => get(status, 'web', false));
+    return this.OvhApiMeVipStatus.v6().get().$promise.then((status) => get(status, 'web', false));
   }
 
   getExchanges() {
     return this.Sharepoint.getExchangeServices()
-      .then(exchanges => map(exchanges, (exchange) => {
+      .then((exchanges) => map(exchanges, (exchange) => {
         const newExchange = angular.copy(exchange);
         newExchange.domain = newExchange.name;
         return newExchange;
       }))
-      .then(exchanges => this.filterSupportedExchanges(exchanges))
+      .then((exchanges) => this.filterSupportedExchanges(exchanges))
       .then((exchanges) => {
         this.exchanges = exchanges;
         if (exchanges.length === 0) {
@@ -100,7 +100,7 @@ export default class SharepointOrderCtrl {
         }
         return exchanges;
       })
-      .then(exchanges => this.selectAssociatedExchangeFromRouteParams(exchanges));
+      .then((exchanges) => this.selectAssociatedExchangeFromRouteParams(exchanges));
   }
 
   filterSupportedExchanges(exchanges) {
@@ -108,11 +108,11 @@ export default class SharepointOrderCtrl {
       filter(
         filter(
           exchanges,
-          exchange => this.constructor.isSupportedExchangeType(exchange),
+          (exchange) => this.constructor.isSupportedExchangeType(exchange),
         ),
-        exchange => this.isSupportedExchangeAdditionalCondition(exchange),
+        (exchange) => this.isSupportedExchangeAdditionalCondition(exchange),
       ),
-      exchangesList => this.filterExchangesThatAlreadyHaveSharepoint(exchangesList),
+      (exchangesList) => this.filterExchangesThatAlreadyHaveSharepoint(exchangesList),
     );
   }
 
@@ -122,18 +122,18 @@ export default class SharepointOrderCtrl {
 
   isSupportedExchangeAdditionalCondition(exchange) {
     return this.Exchange.getExchangeServer(exchange.organization, exchange.name)
-      .then(server => server.individual2010 === false);
+      .then((server) => server.individual2010 === false);
   }
 
   filterExchangesThatAlreadyHaveSharepoint(exchanges) {
     return this.buildSharepointChecklist(exchanges)
-      .then(checklist => filter(exchanges, (exchange, index) => !checklist[index]));
+      .then((checklist) => filter(exchanges, (exchange, index) => !checklist[index]));
   }
 
   selectAssociatedExchangeFromRouteParams(exchanges) {
     this.associatedExchange = find(
       exchanges,
-      exchange => exchange.organization === this.organizationId
+      (exchange) => exchange.organization === this.organizationId
         && exchange.name === this.exchangeId,
     );
     if (this.associatedExchange) {
@@ -143,7 +143,7 @@ export default class SharepointOrderCtrl {
 
   buildSharepointChecklist(exchanges) {
     return this.$q.all(
-      map(exchanges, exchange => this.hasSharepoint(exchange)),
+      map(exchanges, (exchange) => this.hasSharepoint(exchange)),
     );
   }
 
@@ -157,8 +157,8 @@ export default class SharepointOrderCtrl {
     return this.Exchange.getAccountIds({
       organizationName: this.associatedExchange.organization,
       exchangeService: this.associatedExchange.domain,
-    }).then(accountEmails => ({
-      data: map(accountEmails, email => ({ email })),
+    }).then((accountEmails) => ({
+      data: map(accountEmails, (email) => ({ email })),
       meta: {
         totalCount: accountEmails.length,
       },

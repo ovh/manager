@@ -47,7 +47,7 @@ angular.module('App').controller(
 
       return this.Domain.getGlueRecords(this.domain.name)
         .then((hosts) => {
-          this.glueHosts = hosts.map(host => ({ host }));
+          this.glueHosts = hosts.map((host) => ({ host }));
         })
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');

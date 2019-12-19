@@ -48,7 +48,7 @@ angular.module('App').controller(
         })
         .then((availableOffers) => {
           this.availableOffers = availableOffers
-            .map(offer => ({
+            .map((offer) => ({
               name: this.$translate.instant(`hosting_dashboard_service_offer_${offer}`),
               value: offer,
             }));

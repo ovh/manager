@@ -21,8 +21,8 @@ angular
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */  goBackToList => goBackToList,
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_update_modal_title'),
+        goBack: /* @ngInject */  (goBackToList) => goBackToList,
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('private_registry_update_modal_title'),
       },
     });
   })

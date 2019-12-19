@@ -30,7 +30,7 @@ export default class IpLoadBalancerFrontendsService {
 
   getFrontends(serviceName) {
     return this.getFrontendIndex(serviceName)
-      .then(frontends => frontends.map(frontend => this.transformFrontend(frontend)))
+      .then((frontends) => frontends.map((frontend) => this.transformFrontend(frontend)))
       .catch(this.CucServiceHelper.errorHandler('iplb_frontend_list_error'));
   }
 
@@ -38,7 +38,7 @@ export default class IpLoadBalancerFrontendsService {
     return this.getAllFrontendsTypes(serviceName)
       .then((frontends) => {
         const promises = frontends
-          .map(frontend => this.getFrontend(frontend.type, serviceName, frontend.id));
+          .map((frontend) => this.getFrontend(frontend.type, serviceName, frontend.id));
         return this.$q.all(promises);
       });
   }
@@ -88,8 +88,8 @@ export default class IpLoadBalancerFrontendsService {
   getFarms(type, serviceName) {
     return this.Farm[type].query({ serviceName })
       .$promise
-      .then(ids => this.$q.all(ids.map(id => this.getFarm(type, serviceName, id))))
-      .then(farms => farms.map(farm => this.constructor.transformFarm(farm, type)));
+      .then((ids) => this.$q.all(ids.map((id) => this.getFarm(type, serviceName, id))))
+      .then((farms) => farms.map((farm) => this.constructor.transformFarm(farm, type)));
   }
 
   static transformFarm(farm, type) {
@@ -118,14 +118,14 @@ export default class IpLoadBalancerFrontendsService {
 
   getZones() {
     return this.IpLoadBalancerZoneService.getIPLBZones()
-      .then(zones => zones.reduce((zonesMapParam, zoneName) => {
+      .then((zones) => zones.reduce((zonesMapParam, zoneName) => {
         const zonesMap = zonesMapParam;
         zonesMap[zoneName] = this.CucRegionService.getRegion(zoneName).microRegion.text;
         return zonesMap;
       }, {}))
       .then((zones) => {
         set(zones, 'all', this.$translate.instant('iplb_frontend_add_datacenter_all'));
-        return Object.keys(zones).map(zoneKey => ({
+        return Object.keys(zones).map((zoneKey) => ({
           id: zoneKey,
           name: zones[zoneKey],
         }));
@@ -145,7 +145,7 @@ export default class IpLoadBalancerFrontendsService {
 
   getCertificates(serviceName) {
     return this.IpLoadBalancing.Ssl().v6().query({ serviceName }).$promise
-      .then(ids => this.$q.all(ids.map(id => this.getCertificate(serviceName, id))));
+      .then((ids) => this.$q.all(ids.map((id) => this.getCertificate(serviceName, id))));
   }
 
   getCertificate(serviceName, sslId) {

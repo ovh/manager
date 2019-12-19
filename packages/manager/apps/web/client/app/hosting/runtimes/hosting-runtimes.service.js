@@ -44,7 +44,7 @@ angular.module('services').service(
           return uniq(result);
         },
 
-        err => this.$q.reject(err),
+        (err) => this.$q.reject(err),
       );
     }
 
@@ -65,10 +65,10 @@ angular.module('services').service(
      */
     getDefault(serviceName) {
       return this.list(serviceName)
-        .then(runtimeIds => this.$q.all(
-          map(runtimeIds, runtimeId => this.get(serviceName, runtimeId)),
+        .then((runtimeIds) => this.$q.all(
+          map(runtimeIds, (runtimeId) => this.get(serviceName, runtimeId)),
         ))
-        .then(runtimes => head(lodashFilter(runtimes, runtime => runtime.isDefault)));
+        .then((runtimes) => head(lodashFilter(runtimes, (runtime) => runtime.isDefault)));
     }
 
     /**
@@ -126,7 +126,7 @@ angular.module('services').service(
           return data;
         },
 
-        http => this.$q.reject(http),
+        (http) => this.$q.reject(http),
       );
     }
 
@@ -174,7 +174,7 @@ angular.module('services').service(
           return data;
         },
 
-        http => this.$q.reject(http),
+        (http) => this.$q.reject(http),
       );
     }
 
@@ -197,7 +197,7 @@ angular.module('services').service(
           return data;
         },
 
-        http => this.$q.reject(http),
+        (http) => this.$q.reject(http),
       );
     }
   },

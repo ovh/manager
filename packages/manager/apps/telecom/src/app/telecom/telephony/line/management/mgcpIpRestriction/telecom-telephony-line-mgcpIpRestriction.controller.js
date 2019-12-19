@@ -21,9 +21,9 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
   function fetchDefaultMgcpIpRestriction() {
     return OvhApiMe.Telephony().DefaultIpRestriction().v6()
       .query().$promise
-      .then(ids => $q.all(ids.map(id => OvhApiMe.Telephony().DefaultIpRestriction().v6().get({
+      .then((ids) => $q.all(ids.map((id) => OvhApiMe.Telephony().DefaultIpRestriction().v6().get({
         id,
-      }).$promise))).then(ips => find(ips, { type: 'mgcp' }));
+      }).$promise))).then((ips) => find(ips, { type: 'mgcp' }));
   }
 
   self.ipValidator = (function ipValidator() {
@@ -126,7 +126,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
       self.mgcpIpRestrictionForm = angular.copy(self.mgcpIpRestriction);
       self.mgcpDefaultIpRestriction = result.defaultMgcpIpRestriction;
       self.mgcpDefaultIpRestrictionForm = angular.copy(self.mgcpDefaultIpRestriction);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -148,7 +148,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineMgcpIpRestrictionCt
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

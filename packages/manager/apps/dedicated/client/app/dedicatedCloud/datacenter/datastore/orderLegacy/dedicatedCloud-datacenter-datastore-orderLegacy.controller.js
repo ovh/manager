@@ -97,7 +97,7 @@ angular.module('App').controller('DedicatedCloudDatacentersOrderDatastoresCtrl',
           t1: data.orderId,
         }), true);
       })
-      .catch(err => $scope.setMessage($translate.instant('dedicatedCloud_configuration_order_datastores_finish_fail', {
+      .catch((err) => $scope.setMessage($translate.instant('dedicatedCloud_configuration_order_datastores_finish_fail', {
         t0: $scope.orderDatastores.datacenter.name,
       }), angular.extend(err, { type: 'ERROR' })))
       .finally(() => {

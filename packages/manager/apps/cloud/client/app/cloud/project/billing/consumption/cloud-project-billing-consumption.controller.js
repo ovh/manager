@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').controller('CloudProjectBillingConsumptionCtrl',
   function CloudProjectBillingConsumptionCtrl($state) {
     const self = this;

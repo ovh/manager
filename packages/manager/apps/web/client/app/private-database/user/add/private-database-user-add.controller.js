@@ -37,7 +37,7 @@ angular.module('App').controller(
         },
       };
 
-      this.$scope.hasError = label => label.$invalid && label.$dirty;
+      this.$scope.hasError = (label) => label.$invalid && label.$dirty;
       this.$scope.addUser = () => this.addUser();
     }
 

@@ -56,9 +56,9 @@ angular
 
         HostingModule.getModulesLatestList().then(
           (moduleTemplates) => {
-            $q.all(moduleTemplates.map(id => HostingModule.getAvailableModule(id))).then(
+            $q.all(moduleTemplates.map((id) => HostingModule.getAvailableModule(id))).then(
               (templates) => {
-                $scope.model.moduleTemplates = templates.filter(tpl => tpl.branch === 'stable');
+                $scope.model.moduleTemplates = templates.filter((tpl) => tpl.branch === 'stable');
                 $scope.databasesType = moduleTemplates.databasesType;
               },
               (err) => {

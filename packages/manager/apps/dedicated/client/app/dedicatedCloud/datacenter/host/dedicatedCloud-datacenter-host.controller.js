@@ -53,20 +53,20 @@ angular
 
     fetchLegacyHostConsumption(hosts) {
       return this.$q.all(hosts
-        .map(host => (host.billingType === this.RESOURCE_BILLING_TYPES.hourly
+        .map((host) => (host.billingType === this.RESOURCE_BILLING_TYPES.hourly
           ? this.dedicatedCloudDataCenterHostService
             .getHostHourlyConsumption(
               this.$stateParams.productId,
               this.$stateParams.datacenterId,
               host.hostId,
             )
-            .then(consumption => ({ ...host, ...consumption }))
+            .then((consumption) => ({ ...host, ...consumption }))
             .catch(() => host)
           : host)));
     }
 
     fetchConsumptionForHosts(hosts) {
-      return serviceConsumption => this.$q.all(
+      return (serviceConsumption) => this.$q.all(
         serviceConsumption
           ? hosts.map(
             this.fetchConsumptionForHost(serviceConsumption),
@@ -113,8 +113,8 @@ angular
           pageSize,
           offset - 1,
         )
-        .then(result => this.chooseConsumptionFetchingMethod(result.list.results)
-          .then(hostsWithConsumption => ({
+        .then((result) => this.chooseConsumptionFetchingMethod(result.list.results)
+          .then((hostsWithConsumption) => ({
             data: hostsWithConsumption,
             meta: {
               totalCount: result.count,

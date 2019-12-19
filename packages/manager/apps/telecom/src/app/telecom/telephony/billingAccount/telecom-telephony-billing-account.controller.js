@@ -73,10 +73,13 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountCtrl',
         .query({
           billingAccount: group.billingAccount,
         }).$promise
-        .then(offerTaskIds => $q.all(map(offerTaskIds, id => OvhApiTelephony.OfferTask().v6().get({
-          billingAccount: group.billingAccount,
-          taskId: id,
-        }).$promise)).then((tasks) => {
+        .then((offerTaskIds) => $q.all(map(
+          offerTaskIds,
+          (id) => OvhApiTelephony.OfferTask().v6().get({
+            billingAccount: group.billingAccount,
+            taskId: id,
+          }).$promise,
+        )).then((tasks) => {
           self.terminationTask = head(filter(tasks, { action: 'termination', status: 'todo', type: 'offer' }));
         }));
     }

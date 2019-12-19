@@ -133,7 +133,7 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
   };
 
   self.init = function init(expand) {
-    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
+    self.mainSectionItem = SidebarMenu.addMenuItem({
       title: $translate.instant('telecom_sidebar_section_telephony'),
       error: $translate.instant('telecom_sidebar_load_error'),
       id: 'telecom-telephony-section',
@@ -143,7 +143,8 @@ angular.module('managerApp').service('TelephonySidebar', function TelephonySideb
       loadOnState: 'telecom.telephony',
       allowSearch: !expand,
       infiniteScroll: true,
-    }, expand ? { state: 'telecom.telephony.index' } : { onLoad: self.initTelephonySubsection }));
+      ...(expand ? { state: 'telecom.telephony.index' } : { onLoad: self.initTelephonySubsection }),
+    });
 
     return self.mainSectionItem;
   };

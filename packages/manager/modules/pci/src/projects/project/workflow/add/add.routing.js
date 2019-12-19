@@ -12,19 +12,19 @@ export default /* @ngInject */ ($stateProvider) => {
       params: {
         selectedInstance: null,
       },
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('instances')
-        .then(instances => (instances.length === 0 ? { state: 'pci.projects.project.instances' } : false)),
+        .then((instances) => (instances.length === 0 ? { state: 'pci.projects.project.instances' } : false)),
       resolve: {
-        selectedInstance: /* @ngInject */ $transition$ => $transition$.params().selectedInstance,
+        selectedInstance: /* @ngInject */ ($transition$) => $transition$.params().selectedInstance,
         instances: /* @ngInject */ (
           projectId,
           OvhApiCloudProjectInstance,
         ) => OvhApiCloudProjectInstance.v6().query({
           serviceName: projectId,
         }).$promise
-          .then(instances => map(instances, instance => new Instance(instance))),
+          .then((instances) => map(instances, (instance) => new Instance(instance))),
         regions: /* @ngInject */ (
           $q,
           projectId,
@@ -32,11 +32,11 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => OvhApiCloudProjectRegion.v6().query({
           serviceName: projectId,
         }).$promise
-          .then(regionIds => $q.all(regionIds
-            .map(id => OvhApiCloudProjectRegion
+          .then((regionIds) => $q.all(regionIds
+            .map((id) => OvhApiCloudProjectRegion
               .v6().get({ serviceName: projectId, id }).$promise))),
-        isWorkflowSupportedOnRegion: /* @ngInject */ regions => (regionName) => {
-          const region = find(regions, regionObj => regionObj.name === regionName);
+        isWorkflowSupportedOnRegion: /* @ngInject */ (regions) => (regionName) => {
+          const region = find(regions, (regionObj) => regionObj.name === regionName);
           return !isEmpty(find(region.services, { name: 'workflow', status: 'UP' }));
         },
         initialStep: /* @ngInject */ (
@@ -55,7 +55,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_workflow_add'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_workflow_add'),
       },
     });
 };

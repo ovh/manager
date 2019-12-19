@@ -14,7 +14,7 @@ export default class {
     return this.OvhApiCloudProjectNetworkPrivate.v6().query({
       serviceName,
     }).$promise
-      .then(privateNetworks => sortBy(privateNetworks, 'vlanId')
+      .then((privateNetworks) => sortBy(privateNetworks, 'vlanId')
         .filter(({ status }) => !DELETING_STATUS.includes(status)));
   }
 
@@ -22,13 +22,13 @@ export default class {
     return this.OvhApiCloudProject.v6().vrack({
       serviceName,
     }).$promise
-      .catch(error => (error.status === 404 ? {} : Promise.reject(error)));
+      .catch((error) => (error.status === 404 ? {} : Promise.reject(error)));
   }
 
   getVrackCreationOperation(serviceName) {
     return this.OvhApiCloudProject.v6().operations({
       serviceName,
     }).$promise
-      .then(operations => operations.find(({ action }) => action === VRACK_CREATION_ACTION));
+      .then((operations) => operations.find(({ action }) => action === VRACK_CREATION_ACTION));
   }
 }

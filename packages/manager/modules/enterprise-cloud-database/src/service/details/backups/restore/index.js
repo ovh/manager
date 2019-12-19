@@ -21,7 +21,7 @@ angular
       },
       layout: 'modal',
       resolve: {
-        backupInstance: /* @ngInject */ $transition$ => $transition$.params().backupInstance,
+        backupInstance: /* @ngInject */ ($transition$) => $transition$.params().backupInstance,
       },
     });
   })

@@ -19,7 +19,7 @@ angular.module('App').controller('CacherulesModifyTtlCtrl', ($scope, $stateParam
         true,
         $scope.alert,
       ))
-      .catch(data => Alerter.alertFromSWS(
+      .catch((data) => Alerter.alertFromSWS(
         $translate.instant('cdn_configuration_cacherule_update_fail'),
         data,
         $scope.alert,

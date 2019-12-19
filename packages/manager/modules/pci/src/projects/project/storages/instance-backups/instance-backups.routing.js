@@ -7,10 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
         value: ['.'],
         format: 'json',
       },
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('instanceBackups')
-        .then(instanceBackups => (instanceBackups.length === 0 ? { state: 'pci.projects.project.storages.instance-backups.onboarding' } : false)),
+        .then((instanceBackups) => (instanceBackups.length === 0 ? { state: 'pci.projects.project.storages.instance-backups.onboarding' } : false)),
       resolve: {
         instanceBackups: /* @ngInject */ (
           PciProjectStorageInstanceBackupService,
@@ -34,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
-        breadcrumb: /* @ngInject */ $translate => $translate
+        breadcrumb: /* @ngInject */ ($translate) => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_storages_instance-backups_title')),
 
@@ -42,11 +42,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           help: 'backup',
         }),
-        createInstance: /* @ngInject */ ($state, projectId) => instanceBackup => $state.go('pci.projects.project.storages.instance-backups.add', {
+        createInstance: /* @ngInject */ ($state, projectId) => (instanceBackup) => $state.go('pci.projects.project.storages.instance-backups.add', {
           projectId,
           instanceBackupId: instanceBackup.id,
         }),
-        deleteInstanceBackup: /* @ngInject */ ($state, projectId) => instanceBackup => $state.go('pci.projects.project.storages.instance-backups.delete', {
+        deleteInstanceBackup: /* @ngInject */ ($state, projectId) => (instanceBackup) => $state.go('pci.projects.project.storages.instance-backups.delete', {
           projectId,
           instanceBackupId: instanceBackup.id,
         }),

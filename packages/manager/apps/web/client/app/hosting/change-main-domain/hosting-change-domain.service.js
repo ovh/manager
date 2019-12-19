@@ -42,5 +42,5 @@ angular.module('App').service('hostingChangeDomain', function hostingChangeDomai
 
   this.getModels = () => OvhHttp.get('/order.json', {
     rootPath: 'apiv6',
-  }).then(data => data.models);
+  }).then((data) => data.models);
 });

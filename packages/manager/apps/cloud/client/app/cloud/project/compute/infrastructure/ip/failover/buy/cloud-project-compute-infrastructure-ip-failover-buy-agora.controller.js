@@ -17,7 +17,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFail
       if (result.status !== 200) {
         return $q.reject(result);
       }
-      return filter(get(result, 'data.plans'), offer => /failover/.test(offer.planCode));
+      return filter(get(result, 'data.plans'), (offer) => /failover/.test(offer.planCode));
     });
   }
 
@@ -48,20 +48,20 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFail
     });
   }
 
-  self.getPrice = product => get(
+  self.getPrice = (product) => get(
     head(
       filter(
         get(
           product,
           'details.pricings.default',
         ),
-        p => p.capacities.indexOf('installation') >= 0,
+        (p) => p.capacities.indexOf('installation') >= 0,
       ),
     ),
     'price',
   );
 
-  self.getCountries = product => get(
+  self.getCountries = (product) => get(
     find(
       get(
         product,
@@ -72,14 +72,14 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructureIpFail
     'values',
   );
 
-  self.getMaximumQuantity = product => get(
+  self.getMaximumQuantity = (product) => get(
     minBy(
       filter(
         get(
           product,
           'details.pricings.default',
         ),
-        p => angular.isNumber(p.maximumQuantity), 'maximumQuantity',
+        (p) => angular.isNumber(p.maximumQuantity), 'maximumQuantity',
       ),
       'maximumQuantity',
     ),

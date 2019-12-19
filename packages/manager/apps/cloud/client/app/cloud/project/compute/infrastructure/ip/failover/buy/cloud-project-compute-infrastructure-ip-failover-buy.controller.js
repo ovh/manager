@@ -56,7 +56,7 @@ angular.module('managerApp')
         const instanceLoc = head(
           keys(
             pickBy(CLOUD_GEOLOCALISATION.instance,
-              region => indexOf(region, self.form.instance.region) >= 0),
+              (region) => indexOf(region, self.form.instance.region) >= 0),
           ),
         );
         self.form.countryEnum = defaults(CLOUD_GEOLOCALISATION.ipfo, {
@@ -148,9 +148,9 @@ angular.module('managerApp')
         // subtract current IP from limit
         const currentIps = filter(
           self.form.failoverIps,
-          ip => !ip.routedTo || find(
+          (ip) => !ip.routedTo || find(
             self.form.instances,
-            instance => instance.id === ip.routedTo,
+            (instance) => instance.id === ip.routedTo,
           ),
         );
         self.form.maxIp -= currentIps.length;

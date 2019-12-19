@@ -11,12 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
         value: ['.'],
       },
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('failoverIps')
-        .then(failoverIps => (failoverIps.length === 0 ? { state: 'pci.projects.project.failover-ips.onboarding' } : false)),
+        .then((failoverIps) => (failoverIps.length === 0 ? { state: 'pci.projects.project.failover-ips.onboarding' } : false)),
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate
+        breadcrumb: /* @ngInject */ ($translate) => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_failoverip_title')),
         failoverIps: /* @ngInject */ (
@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
             .$promise,
         }).then(({ failoverIps, instances }) => map(
           failoverIps,
-          failoverIp => ({
+          (failoverIp) => ({
             ...failoverIp,
             instance: failoverIp.routedTo ? find(instances, { id: failoverIp.routedTo }) : null,
           }),
@@ -67,7 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
           PciProjectsProjectInstanceService,
           projectId,
         ) => PciProjectsProjectInstanceService.getAllInstanceDetails(projectId)
-          .then(instances => filter(
+          .then((instances) => filter(
             instances,
             ({ ipAddresses }) => find(ipAddresses, { type: 'public' }),
           )),

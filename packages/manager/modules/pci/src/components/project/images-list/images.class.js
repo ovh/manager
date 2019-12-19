@@ -50,7 +50,7 @@ export default class Image {
 
   isCompatibleWithFlavor(flavorType) {
     return isEmpty(this.flavorType)
-    || some(this.getFlavorTypes(), type => includes(flavorType, type));
+    || some(this.getFlavorTypes(), (type) => includes(flavorType, type));
   }
 
   isCompatibleWithOsTypes(osTypes) {

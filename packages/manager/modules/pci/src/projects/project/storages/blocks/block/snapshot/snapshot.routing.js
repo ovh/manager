@@ -9,7 +9,7 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        storageId: /* @ngInject */$transition$ => $transition$.params().storageId,
+        storageId: /* @ngInject */($transition$) => $transition$.params().storageId,
         storage: /* @ngInject */ (
           PciProjectStorageBlockService,
           projectId,
@@ -22,7 +22,7 @@ export default /* @ngInject */($stateProvider) => {
           storage,
         ) => PciProjectStorageBlockService.getSnapshotPriceEstimation(projectId, storage),
 
-        goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
+        goBack: /* @ngInject */ (goToBlockStorage) => goToBlockStorage,
         breadcrumb: () => null,
       },
     });

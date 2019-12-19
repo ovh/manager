@@ -20,7 +20,7 @@ export default class VeeamCloudConnectDashboardCtrl {
   }
 
   initLoaders() {
-    const errorHandler = response => this.VeeamCloudConnectService.unitOfWork.messages.push({
+    const errorHandler = (response) => this.VeeamCloudConnectService.unitOfWork.messages.push({
       text: response.message,
       type: 'error',
     });

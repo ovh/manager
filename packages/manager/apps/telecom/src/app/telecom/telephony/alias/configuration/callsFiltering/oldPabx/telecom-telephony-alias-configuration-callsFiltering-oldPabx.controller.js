@@ -22,10 +22,10 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
             id: chunkIds,
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
         ))
         .then((chunkResult) => {
           const result = map(flatten(chunkResult), 'value');
-          return map(result, res => angular.extend(res, {
+          return map(result, (res) => angular.extend(res, {
             shortType: startsWith(res.type, 'incoming') ? 'incoming' : 'outgoing',
             list: res.type.indexOf('White') >= 0 ? 'white' : 'black',
           }));
@@ -98,7 +98,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     return self.fetchStatus().then((result) => {
       self.screenStatus.raw = result.incomingScreenList;
       self.screenStatus.modified = angular.copy(result.incomingScreenList);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.screenStatus.isLoading = false;
     });
   }
@@ -126,7 +126,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {

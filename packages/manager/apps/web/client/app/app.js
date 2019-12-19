@@ -219,7 +219,7 @@ angular
 
       atInternetUiRouterPluginProvider
         .setTrackStateChange(constants.prodMode && window.location.port.length <= 3);
-      atInternetUiRouterPluginProvider.addStateNameFilter(routeName => (routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : ''));
+      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => (routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : ''));
     },
   ])
   .constant('TRACKING', {
@@ -409,7 +409,7 @@ angular
       forEach(
         filter(
           URLS_REDIRECTED_TO_DEDICATED,
-          url => url.test(window.location.href),
+          (url) => url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
@@ -425,7 +425,7 @@ angular
       forEach(
         filter(
           URLS_REDIRECTED_TO_DEDICATED,
-          url => !url.test(window.location.href),
+          (url) => !url.test(window.location.href),
         ),
         () => {
           authentication.login();

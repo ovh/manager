@@ -41,7 +41,7 @@ angular.module('managerApp').controller('TelecomPackMigrationBuildingDetailsCtrl
       }, params).$promise.then((buildingDetails) => {
         if (has(buildingDetails, 'result.stairs')) {
           this.process.selectedOffer.buildings[i].stairs = buildingDetails.result.stairs.map(
-            stair => this.convertStairs(stair),
+            (stair) => this.convertStairs(stair),
           );
         }
       }).finally(() => {
@@ -111,7 +111,7 @@ angular.module('managerApp').controller('TelecomPackMigrationBuildingDetailsCtrl
         value: stair.floors[0],
       }];
     } else {
-      stairsModel.floors = stair.floors.map(floor => ({ label: floor, value: floor }));
+      stairsModel.floors = stair.floors.map((floor) => ({ label: floor, value: floor }));
     }
     return stairsModel;
   }
@@ -146,7 +146,7 @@ angular.module('managerApp').controller('TelecomPackMigrationBuildingDetailsCtrl
               this.model.selectedBuilding.stairs.push(stairModel);
             } else {
               this.model.selectedBuilding.stairs = buildingDetails.result.stairs.map(
-                stair => this.convertStairs(stair),
+                (stair) => this.convertStairs(stair),
               );
             }
           }

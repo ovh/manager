@@ -12,13 +12,13 @@ class LogsOptionsManageOverviewCtrl {
   }
 
   sortServices() {
-    this.aliases = this.aliases.filter(alias => alias.info.optionId === this.option.optionId);
+    this.aliases = this.aliases.filter((alias) => alias.info.optionId === this.option.optionId);
     this.dashboards = this.dashboards
-      .filter(dashboard => dashboard.info.optionId === this.option.optionId);
-    this.indices = this.indices.filter(index => index.info.optionId === this.option.optionId);
-    this.streams = this.streams.filter(stream => stream.info.optionId === this.option.optionId);
-    this.roles = this.roles.filter(role => role.info.optionId === this.option.optionId);
-    this.inputs = this.inputs.filter(input => input.info.optionId === this.option.optionId);
+      .filter((dashboard) => dashboard.info.optionId === this.option.optionId);
+    this.indices = this.indices.filter((index) => index.info.optionId === this.option.optionId);
+    this.streams = this.streams.filter((stream) => stream.info.optionId === this.option.optionId);
+    this.roles = this.roles.filter((role) => role.info.optionId === this.option.optionId);
+    this.inputs = this.inputs.filter((input) => input.info.optionId === this.option.optionId);
   }
 
   cancel() {

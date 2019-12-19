@@ -100,7 +100,7 @@ angular.module('managerApp')
       self.loading = true;
 
       $q.allSettled([initHealth(), initCrushTunablesOptions()]).catch((errors) => {
-        displayError(find(errors, error => error));
+        displayError(find(errors, (error) => error));
       }).finally(() => {
         self.loading = false;
       });

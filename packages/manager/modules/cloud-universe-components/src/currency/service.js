@@ -11,7 +11,7 @@ export default class CucCurrencyService {
 
   getSubsidiary() {
     return this.OvhApiMe.v6().get().$promise
-      .then(user => user.ovhSubsidiary);
+      .then((user) => user.ovhSubsidiary);
   }
 
   loadCurrency() {

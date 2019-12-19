@@ -49,7 +49,7 @@ angular.module('managerApp')
       if (self.user) {
         continent = head(keys(pickBy(
           CLOUD_GEOLOCALISATION.user,
-          region => indexOf(region, self.user.ovhSubsidiary) >= 0,
+          (region) => indexOf(region, self.user.ovhSubsidiary) >= 0,
         )));
       }
       return continent;
@@ -70,7 +70,7 @@ angular.module('managerApp')
             if (linkedVm) {
               continent = head(keys(pickBy(
                 CLOUD_GEOLOCALISATION.instance,
-                region => indexOf(region, linkedVm.region) >= 0,
+                (region) => indexOf(region, linkedVm.region) >= 0,
               )));
             }
           }

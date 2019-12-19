@@ -43,7 +43,7 @@ export default class IpLoadBalancerServerEditCtrl {
         this.$stateParams.serviceName,
         this.$stateParams.farmId,
         this.$stateParams.serverId,
-      ).then(server => this.parseServer(server)),
+      ).then((server) => this.parseServer(server)),
     });
   }
 

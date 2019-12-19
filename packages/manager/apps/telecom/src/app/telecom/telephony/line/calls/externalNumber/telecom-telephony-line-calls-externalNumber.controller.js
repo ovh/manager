@@ -35,18 +35,18 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(numbers => $q
+      .then((numbers) => $q
         .all(map(
           chunk(numbers, 50),
-          chunkNumbers => OvhApiTelephony.Trunk().ExternalDisplayedNumber().v6()
+          (chunkNumbers) => OvhApiTelephony.Trunk().ExternalDisplayedNumber().v6()
             .getBatch({
               billingAccount: $stateParams.billingAccount,
               serviceName: $stateParams.serviceName,
               number: chunkNumbers,
             }).$promise,
         ))
-        .then(chunkResult => flatten(chunkResult)))
-      .then(resultParam => map(filter(resultParam, number => number.value !== null), 'value'));
+        .then((chunkResult) => flatten(chunkResult)))
+      .then((resultParam) => map(filter(resultParam, (number) => number.value !== null), 'value'));
   }
 
   function resetModel() {
@@ -132,7 +132,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
       serviceName: $stateParams.serviceName,
       number: self.toDelete.number,
     }).$promise.then(() => {
-      remove(self.list, number => number.number === self.toDelete.number);
+      remove(self.list, (number) => number.number === self.toDelete.number);
       TucToast.success($translate.instant('telephony_trunk_external_number_delete_success'));
     }).catch((error) => {
       TucToast.error([$translate.instant('telephony_trunk_external_number_delete_error'), get(error, 'data.message')].join(' '));

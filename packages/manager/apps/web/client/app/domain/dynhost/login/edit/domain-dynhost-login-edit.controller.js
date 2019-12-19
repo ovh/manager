@@ -83,7 +83,7 @@ angular.module('App').controller(
           this.$translate.instant('domain_tab_DYNHOSTLOGIN_edit_success'),
           this.$scope.alerts.main,
         )))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_DYNHOST_error'),
           get(err, 'data', err),
           this.$scope.alerts.main,

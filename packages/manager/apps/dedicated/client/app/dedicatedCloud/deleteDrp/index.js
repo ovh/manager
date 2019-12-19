@@ -18,7 +18,7 @@ angular
           drpInformations: /* @ngInject */ (currentDrp, dedicatedCloudDrp) => dedicatedCloudDrp
             .constructor.getPlanServiceInformations(currentDrp),
 
-          goBack: /* @ngInject */ $state => () => $state.go('^'),
+          goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         },
       });
   });

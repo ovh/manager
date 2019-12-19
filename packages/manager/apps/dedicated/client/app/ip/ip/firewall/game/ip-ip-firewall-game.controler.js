@@ -109,7 +109,7 @@ angular.module('Module.ip.controllers').controller('IpGameFirewallCtrl', functio
   }
 
   function removeRule(ruleId) {
-    self.table.rules = remove(self.table.rules, ruleToDrop => ruleToDrop.id !== ruleId);
+    self.table.rules = remove(self.table.rules, (ruleToDrop) => ruleToDrop.id !== ruleId);
   }
 
   function getRule(ruleId) {

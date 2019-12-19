@@ -14,7 +14,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.totp', [
          * @param  {String} id
          * @return {Promise}
          */
-    this.get = id => OvhHttp.get('/me/accessRestriction/totp/{id}', {
+    this.get = (id) => OvhHttp.get('/me/accessRestriction/totp/{id}', {
       rootPath: 'apiv6',
       urlParams: {
         id,
@@ -50,7 +50,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.totp', [
          * @param  {Integer} id
          * @return {Promise}
          */
-    this.delete = id => OvhHttp.delete('/me/accessRestriction/totp/{id}', {
+    this.delete = (id) => OvhHttp.delete('/me/accessRestriction/totp/{id}', {
       rootPath: 'apiv6',
       urlParams: {
         id,

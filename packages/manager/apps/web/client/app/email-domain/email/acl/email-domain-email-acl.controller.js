@@ -49,7 +49,7 @@ angular.module('App').controller(
         .then((user) => {
           const nicLanguage = find(
             this.LANGUAGES,
-            language => endsWith(language.value, user.ovhSubsidiary),
+            (language) => endsWith(language.value, user.ovhSubsidiary),
           );
           if (nicLanguage) {
             this.createNicUrl.value = this.constants.WEBSITE_URLS.new_nic[
@@ -98,7 +98,7 @@ angular.module('App').controller(
         .then((acls) => {
           this.acls = acls;
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_acls_error'),
           err,
           this.$scope.alerts.main,

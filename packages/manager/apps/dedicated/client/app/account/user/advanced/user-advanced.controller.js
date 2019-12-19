@@ -30,8 +30,8 @@ export default /* @ngInject */ function (userAccountServiceInfos, Alerter, $tran
       });
   };
 
-  this.onBetaSuccess = message => Alerter.success(message, 'useraccount.alerts.dashboardAdvanced');
-  this.onBetaError = message => Alerter.error(message, 'useraccount.alerts.dashboardAdvanced');
+  this.onBetaSuccess = (message) => Alerter.success(message, 'useraccount.alerts.dashboardAdvanced');
+  this.onBetaError = (message) => Alerter.error(message, 'useraccount.alerts.dashboardAdvanced');
 
   this.$ngInit();
 }

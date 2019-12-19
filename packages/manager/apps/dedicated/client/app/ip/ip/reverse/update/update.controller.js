@@ -29,7 +29,7 @@ export default class IpReverseUpdateCtrl {
           ({ ipDetails, serviceList }) => {
             const serviceForIp = find(
               serviceList,
-              service => ipDetails.routedTo.serviceName === service.serviceName,
+              (service) => ipDetails.routedTo.serviceName === service.serviceName,
             );
             if (serviceForIp) {
               this.ip = { ip: this.$location.search().ip };
@@ -40,7 +40,7 @@ export default class IpReverseUpdateCtrl {
             }
           },
         )
-        .catch(error => this.Alerter.alertFromSWS(this.$translate.instant('ip_dashboard_error'), error))
+        .catch((error) => this.Alerter.alertFromSWS(this.$translate.instant('ip_dashboard_error'), error))
         .then(() => this.IpReverse
           .getReverse(this.$location.search().ipBlock, this.$location.search().ip))
         .then((reverseData) => {
@@ -76,7 +76,7 @@ export default class IpReverseUpdateCtrl {
         this.$rootScope.$broadcast('ips.table.refreshBlock', this.ipBlock);
         this.Alerter.success(this.$translate.instant('ip_table_manage_reverse_success'));
       })
-      .catch(error => this.Alerter.alertFromSWS(this.$translate.instant('ip_table_manage_reverse_failure', { message: get(error, 'data.message') })))
+      .catch((error) => this.Alerter.alertFromSWS(this.$translate.instant('ip_table_manage_reverse_failure', { message: get(error, 'data.message') })))
       .finally(() => this.cancelAction());
   }
 

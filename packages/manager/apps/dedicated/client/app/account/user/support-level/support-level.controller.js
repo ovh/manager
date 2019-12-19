@@ -8,7 +8,7 @@ import SupportLevel from './SupportLevel.class';
 export default class UserAccountSupportLevelCtrl {
   $onInit() {
     this.supportLevelsEnum = get(this.schema.models, 'me.SupportLevel.LevelTypeEnum').enum;
-    this.supportLevels = this.supportLevelsEnum.map(level => new SupportLevel({
+    this.supportLevels = this.supportLevelsEnum.map((level) => new SupportLevel({
       level,
       url: get(URLS, `${this.currentUser.ovhSubsidiary.toUpperCase()}.${level}`, `FR.${level}`),
     }));
@@ -16,7 +16,7 @@ export default class UserAccountSupportLevelCtrl {
 
   getRecommendedLevel() {
     const currentLevelIndex = this.supportLevelsEnum.indexOf(this.supportLevel.level);
-    return get(find(slice(this.supportLevels, currentLevelIndex + 1), level => level.isAvailable(this.currentUser.ovhSubsidiary)), 'name');
+    return get(find(slice(this.supportLevels, currentLevelIndex + 1), (level) => level.isAvailable(this.currentUser.ovhSubsidiary)), 'name');
   }
 
   areAllLevelsAvailable() {

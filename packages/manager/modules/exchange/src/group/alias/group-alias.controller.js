@@ -42,7 +42,7 @@ export default class ExchangeTabGroupAliasCtrl {
         };
         return this.aliasesParams.results;
       })
-      .catch(err => this.services.messaging.writeError(
+      .catch((err) => this.services.messaging.writeError(
         this.services.$translate.instant('exchange_tab_ALIAS_error_message'),
         err,
       ));
@@ -65,7 +65,7 @@ export default class ExchangeTabGroupAliasCtrl {
           this.aliases.splice(i, 1);
         }
       })
-      .catch(err => this.services.messaging.writeError(
+      .catch((err) => this.services.messaging.writeError(
         this.services.$translate.instant('exchange_tab_ALIAS_error_message'),
         err,
       ));

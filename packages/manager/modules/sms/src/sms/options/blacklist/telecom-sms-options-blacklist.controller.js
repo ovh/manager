@@ -66,8 +66,8 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(blacklistsIds => this.$q
-        .all(map(blacklistsIds, number => this.api.sms.blacklists.get({
+      .then((blacklistsIds) => this.$q
+        .all(map(blacklistsIds, (number) => this.api.sms.blacklists.get({
           serviceName: this.$stateParams.serviceName,
           number,
         }).$promise)));
@@ -106,7 +106,7 @@ export default class {
   getSelection() {
     return filter(
       this.blacklists.raw,
-      list => list && this.blacklists.selected && this.blacklists.selected[list.number],
+      (list) => list && this.blacklists.selected && this.blacklists.selected[list.number],
     );
   }
 
@@ -116,7 +116,7 @@ export default class {
    */
   deleteSelectedBlacklist() {
     const blackLists = this.getSelection();
-    const queries = blackLists.map(list => this.api.sms.blacklists.delete({
+    const queries = blackLists.map((list) => this.api.sms.blacklists.delete({
       serviceName: this.$stateParams.serviceName,
       number: list.number,
     }).$promise);

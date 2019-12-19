@@ -35,7 +35,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
           $rootScope.$broadcast('doubleAuthBackupCode.reload');
           $scope.resetAction();
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_delete_error'), err.data, 'doubleAuthAlertBackupCodeDelete'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_delete_error'), err.data, 'doubleAuthAlertBackupCodeDelete'))
         .finally(() => {
           $scope.backupCode.isDeleting = false;
         });

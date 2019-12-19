@@ -42,10 +42,10 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
     function fetchSmsDetails() {
       return DoubleAuthSmsService
         .query()
-        .then(smsIds => $q
+        .then((smsIds) => $q
           .all(map(
             smsIds,
-            smsId => DoubleAuthSmsService.get(smsId),
+            (smsId) => DoubleAuthSmsService.get(smsId),
           ))
           .then((smsDetails) => {
             if (some(smsDetails, { status: 'enabled' })) {
@@ -57,7 +57,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
             }
             return smsDetails;
           }))
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_error'), err.data, 'doubleAuthAlert'));
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_error'), err.data, 'doubleAuthAlert'));
     }
 
     /**
@@ -67,10 +67,10 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
     function fetchTotpDetails() {
       return DoubleAuthTotpService
         .query()
-        .then(totpIds => $q
+        .then((totpIds) => $q
           .all(map(
             totpIds,
-            totpId => DoubleAuthTotpService.get(totpId),
+            (totpId) => DoubleAuthTotpService.get(totpId),
           ))
           .then((totpDetails) => {
             if (some(totpDetails, { status: 'enabled' })) {
@@ -82,7 +82,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
             }
             return totpDetails;
           }))
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_totp_error'), err.data, 'doubleAuthAlert'));
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_totp_error'), err.data, 'doubleAuthAlert'));
     }
 
     /**
@@ -92,10 +92,10 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
     function fetchU2fDetails() {
       return DoubleAuthU2fService
         .query()
-        .then(u2fIds => $q
+        .then((u2fIds) => $q
           .all(map(
             u2fIds,
-            u2fId => DoubleAuthU2fService.get(u2fId),
+            (u2fId) => DoubleAuthU2fService.get(u2fId),
           ))
           .then((u2fDetails) => {
             if (some(u2fDetails, { status: 'enabled' })) {
@@ -107,7 +107,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
             }
             return u2fDetails;
           }))
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_u2f_error'), err.data, 'doubleAuthAlert'));
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_u2f_error'), err.data, 'doubleAuthAlert'));
     }
 
     /**
@@ -181,7 +181,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
       $scope.doubleAuth.isLoading = true;
       return $q
         .all(promises)
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_error'), err.data, 'doubleAuthAlert'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_error'), err.data, 'doubleAuthAlert'))
         .finally(() => {
           $scope.doubleAuth.isLoading = false;
         });

@@ -48,22 +48,22 @@ export default class SharepointAddDomainController {
     return this.OvhApiDomain.v6()
       .query()
       .$promise
-      .then(domains => sortBy(map(domains, domain => ({
+      .then((domains) => sortBy(map(domains, (domain) => ({
         name: domain,
         displayName: this.punycode.toUnicode(domain),
         type: 'DOMAIN',
       })), 'displayName'))
-      .then(domains => this.prepareData(domains))
-      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
+      .then((domains) => this.prepareData(domains))
+      .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
       .finally(() => { this.loading = false; });
   }
 
   prepareData(data) {
-    const domains = filter(data, item => item.type === 'DOMAIN');
+    const domains = filter(data, (item) => item.type === 'DOMAIN');
 
     return this.sharepointService.getUsedUpnSuffixes()
       .then((upnSuffixes) => {
-        remove(domains, domain => indexOf(upnSuffixes, domain.name) >= 0);
+        remove(domains, (domain) => indexOf(upnSuffixes, domain.name) >= 0);
       })
       .finally(() => {
         this.availableDomains = domains;
@@ -80,7 +80,7 @@ export default class SharepointAddDomainController {
     if (!isUndefined(this.search) && has(this.search, 'value')) {
       this.availableDomains = filter(
         this.availableDomainsBuffer,
-        n => n.displayName.search(this.search.value) > -1,
+        (n) => n.displayName.search(this.search.value) > -1,
       );
     }
 
@@ -99,7 +99,7 @@ export default class SharepointAddDomainController {
     return this.sharepointService
       .addSharepointUpnSuffixe(this.$stateParams.exchangeId, this.model.name)
       .then(() => this.alerter.success(this.$translate.instant('sharepoint_add_domain_confirm_message_text', { t0: this.model.displayName }), this.$scope.alerts.main))
-      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
+      .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
       .finally(() => {
         this.$scope.resetAction();
       });

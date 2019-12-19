@@ -51,7 +51,7 @@ export default class IpLoadBalancerVrackCtrl {
       activateVrack: {
         text: this.$translate.instant('iplb_activate'),
         callback: () => this.VrackService.selectVrack()
-          .then(result => this.IpLoadBalancerVrackHelper
+          .then((result) => this.IpLoadBalancerVrackHelper
             .associateVrack(this.serviceName, result.serviceName, this.creationRules.data)),
         isAvailable: () => !this.creationRules.loading
           && !this.creationRules.hasErrors
@@ -74,12 +74,12 @@ export default class IpLoadBalancerVrackCtrl {
       },
       editPrivateNetwork: {
         text: this.$translate.instant('iplb_modify'),
-        callback: network => this.$state.go('network.iplb.detail.vrack.edit', { serviceName: this.serviceName, networkId: network.vrackNetworkId }),
+        callback: (network) => this.$state.go('network.iplb.detail.vrack.edit', { serviceName: this.serviceName, networkId: network.vrackNetworkId }),
         isAvailable: () => !this.creationRules.loading && includes(['active', 'inactive'], this.creationRules.data.status),
       },
       deletePrivateNetwork: {
         text: this.$translate.instant('iplb_delete'),
-        callback: network => this.CucControllerHelper.modal.showDeleteModal({
+        callback: (network) => this.CucControllerHelper.modal.showDeleteModal({
           titleText: this.$translate.instant('iplb_vrack_private_network_delete_title'),
           text: this.$translate.instant('iplb_vrack_private_network_delete_text', { network: network.displayName }),
         })

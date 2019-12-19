@@ -66,7 +66,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const defaultClusters = this
       .databasePlanMap[defaultDb.originalName][defaultDatacenter].clusters;
     this.clusters = defaultClusters;
-    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+    this.clusters = sortBy(this.clusters, (cluster) => cluster.memory.size);
     const defaultCluster = this.getDefaultCluster(this.clusters, defaultDatacenter);
     this.populateAdditionalReplicas(defaultCluster, defaultDatacenter);
     this.enterpriseDb = {
@@ -102,7 +102,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   populateCapabilityDetails(catalog, capabilities, hostCount) {
     map(capabilities, (capability) => {
       const plans = get(catalog, 'plans', []);
-      const plan = find(plans, p => p.planCode === capability.name);
+      const plan = find(plans, (p) => p.planCode === capability.name);
       if (!isEmpty(plan)) {
         // populate supported databases and regions
         this.populateDatabasesAndRegions(capability, plan, get(capability, 'status'), hostCount);
@@ -151,7 +151,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   getUniqueDatabases() {
-    const allDatabases = flatMap(this.capabilities, capability => capability.databases);
+    const allDatabases = flatMap(this.capabilities, (capability) => capability.databases);
     return uniqBy(allDatabases, 'originalName');
   }
 
@@ -202,7 +202,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const databaseName = this.enterpriseDb.database.originalName;
     const regionMap = this.databasePlanMap[databaseName][region];
     this.clusters = regionMap.clusters;
-    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+    this.clusters = sortBy(this.clusters, (cluster) => cluster.memory.size);
     this.enterpriseDb.cluster = this.getDefaultCluster(this.clusters, this.enterpriseDb.datacenter);
   }
 

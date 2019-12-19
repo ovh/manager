@@ -51,7 +51,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
           Alerter.success($translate.instant('user_account_security_double_auth_type_u2f_edit_success', 'doubleAuthAlertU2f'));
           $rootScope.$broadcast('doubleAuthU2F.reload');
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_u2f_edit_error'), err.data, 'doubleAuthAlertU2f'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_u2f_edit_error'), err.data, 'doubleAuthAlertU2f'))
         .finally(() => {
           $scope.u2f.isEditing = false;
           $scope.resetAction();

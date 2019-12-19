@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').directive('writeRightRequired', ($stateParams, CloudProjectRightService) => ({
   // The directive must be applied after all directives to overwrite conflicts(ex: ng-if)
   priority: -1001,

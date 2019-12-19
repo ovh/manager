@@ -64,8 +64,8 @@ export default class HostingCronsCtrl {
       this.$stateParams.productId,
       filters,
     )
-      .then(crons => ({
-        data: map(crons, id => ({ id })),
+      .then((crons) => ({
+        data: map(crons, (id) => ({ id })),
         meta: {
           totalCount: crons.length,
         },
@@ -81,7 +81,7 @@ export default class HostingCronsCtrl {
 
   getCron({ id }) {
     return this.HostingCron.getCron(this.$stateParams.productId, id)
-      .then(cron => ({
+      .then((cron) => ({
         ...cron,
         displayedLanguage: this.HostingCron.formatLanguage(cron.language),
       }));

@@ -8,7 +8,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionOutgo
     return tucVoipService.getServiceConsumption({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
-    }).then(result => result.filter(conso => conso.wayType !== 'incoming' && conso.duration > 0)
+    }).then((result) => result.filter((conso) => conso.wayType !== 'incoming' && conso.duration > 0)
       .map((conso) => {
         set(conso, 'durationAsDate', new Date(conso.duration * 1000));
         return conso;
@@ -49,10 +49,10 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionOutgo
       self.consumption.raw = angular.copy(result);
       self.consumption.sorted = angular.copy(result);
       self.applySorting();
-      self.consumption.sum.pricePlan.calls = sumBy(self.consumption.raw, conso => (conso.planType === 'priceplan' ? 1 : 0));
-      self.consumption.sum.pricePlan.durationAsDate = new Date(sumBy(self.consumption.raw, conso => (conso.planType === 'priceplan' ? conso.duration : 0)) * 1000);
-      self.consumption.sum.outPlan.calls = sumBy(self.consumption.raw, conso => (conso.planType === 'outplan' ? 1 : 0));
-      self.consumption.sum.outPlan.durationAsDate = new Date(sumBy(self.consumption.raw, conso => (conso.planType === 'outplan' ? conso.duration : 0)) * 1000);
+      self.consumption.sum.pricePlan.calls = sumBy(self.consumption.raw, (conso) => (conso.planType === 'priceplan' ? 1 : 0));
+      self.consumption.sum.pricePlan.durationAsDate = new Date(sumBy(self.consumption.raw, (conso) => (conso.planType === 'priceplan' ? conso.duration : 0)) * 1000);
+      self.consumption.sum.outPlan.calls = sumBy(self.consumption.raw, (conso) => (conso.planType === 'outplan' ? 1 : 0));
+      self.consumption.sum.outPlan.durationAsDate = new Date(sumBy(self.consumption.raw, (conso) => (conso.planType === 'outplan' ? conso.duration : 0)) * 1000);
       let priceSuffix = '';
       self.consumption.sum.outPlan.price = sumBy(self.consumption.raw, (conso) => {
         if (conso.planType === 'outplan' && conso.priceWithoutTax) {
@@ -64,7 +64,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionOutgo
         return null;
       });
       self.consumption.sum.outPlan.price = `${Math.floor(self.consumption.sum.outPlan.price * 100.0, 2) / 100.0} ${priceSuffix}`;
-    }, err => new TucToastError(err));
+    }, (err) => new TucToastError(err));
   }
 
   self.refresh = function refresh() {

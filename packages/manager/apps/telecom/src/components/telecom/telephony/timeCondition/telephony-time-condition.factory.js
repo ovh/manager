@@ -153,7 +153,7 @@ angular.module('managerApp').factory('VoipTimeCondition', (
 
     return getResource(voipTimeCondition
       .getResourceCallParams(self)).$promise
-      .then(options => self.setOptions(options));
+      .then((options) => self.setOptions(options));
   };
 
   VoipTimeCondition.prototype.save = function save() {
@@ -171,7 +171,7 @@ angular.module('managerApp').factory('VoipTimeCondition', (
     const savePromises = [];
     let actionPromise;
 
-    filter(self.conditions, condition => condition.hasChange(null, true)).forEach((condition) => {
+    filter(self.conditions, (condition) => condition.hasChange(null, true)).forEach((condition) => {
       if (condition.state === 'TO_CREATE') {
         actionPromise = condition.create().then(() => {
           condition.stopEdition(false, false, true);
@@ -201,10 +201,10 @@ angular.module('managerApp').factory('VoipTimeCondition', (
 
     return conditionResources
       .query(voipTimeCondition.getResourceCallParams(self)).$promise
-      .then(conditionIds => $q
+      .then((conditionIds) => $q
         .all(map(
           chunk(conditionIds, 50),
-          chunkIds => conditionResources
+          (chunkIds) => conditionResources
             .getBatch(voipTimeCondition.getConditionResourceCallParams(self, chunkIds))
             .$promise
             .then((resources) => {
@@ -348,9 +348,9 @@ angular.module('managerApp').factory('VoipTimeCondition', (
     if (property) {
       switch (property) {
         case 'slots':
-          return some(self.slots, slot => !slot.inEdition && slot.hasChange(null, true));
+          return some(self.slots, (slot) => !slot.inEdition && slot.hasChange(null, true));
         case 'conditions':
-          return some(self.conditions, condition => condition.hasChange(null, true));
+          return some(self.conditions, (condition) => condition.hasChange(null, true));
         default:
           return !isEqual(get(self, property), get(self.saveForEdition, property));
       }

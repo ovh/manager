@@ -21,7 +21,7 @@ export default class BreadcrumbService {
       let state = this.$state.$current;
 
       while (state.parent) {
-        const breadcrumbResolvable = state.resolvables.find(resolvable => resolvable.token === 'breadcrumb');
+        const breadcrumbResolvable = state.resolvables.find((resolvable) => resolvable.token === 'breadcrumb');
 
         if (!state.self.abstract || breadcrumbResolvable) {
           const entry = {
@@ -42,7 +42,7 @@ export default class BreadcrumbService {
               entry.name = value;
             } else {
               this.breadcrumb = this.breadcrumb
-                .filter(breadcrumbEntry => breadcrumbEntry !== entry);
+                .filter((breadcrumbEntry) => breadcrumbEntry !== entry);
             }
           });
         }
@@ -50,7 +50,7 @@ export default class BreadcrumbService {
         state = state.parent.self.$$state();
       }
 
-      return this.$q.all(this.breadcrumb.map(entry => entry.promise))
+      return this.$q.all(this.breadcrumb.map((entry) => entry.promise))
         .then(() => this.notifyAll())
         .then(() => this.breadcrumb);
     });
@@ -61,6 +61,6 @@ export default class BreadcrumbService {
   }
 
   notifyAll() {
-    this.listeners.forEach(listener => listener(this.breadcrumb));
+    this.listeners.forEach((listener) => listener(this.breadcrumb));
   }
 }

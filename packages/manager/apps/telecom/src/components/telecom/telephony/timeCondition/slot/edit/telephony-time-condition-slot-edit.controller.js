@@ -157,9 +157,9 @@ angular.module('managerApp').controller('voipTimeConditionSlotEditCtrl', functio
       self.groups = sortBy(
         filter(
           TelephonyMediator.groups,
-          group => group.getAllServices().length > 0,
+          (group) => group.getAllServices().length > 0,
         ),
-        group => group.getDisplayedName(),
+        (group) => group.getDisplayedName(),
       );
     }).finally(() => {
       self.loading.init = false;

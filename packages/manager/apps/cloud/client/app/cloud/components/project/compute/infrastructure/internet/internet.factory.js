@@ -93,7 +93,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraInternetFactory',
     InternetFactory.prototype.prepareToJson = function prepareToJson() {
       const self = this;
       return {
-        ipList: map(this.ipList.sortedKeys, ipId => self.ipList.get(ipId).prepareToJson()),
+        ipList: map(this.ipList.sortedKeys, (ipId) => self.ipList.get(ipId).prepareToJson()),
       };
     };
 

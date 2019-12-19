@@ -66,7 +66,7 @@ export default /* @ngInject */ ($scope, EmailPro, $q,
         $scope.noDomainFlag = false;
       }
 
-      $scope.accountsConfigured = filter(accounts, account => !/.*configureme\.me$/.test(account));
+      $scope.accountsConfigured = filter(accounts, (account) => !/.*configureme\.me$/.test(account));
     }).catch((err) => {
       $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), err);
     });
@@ -209,7 +209,7 @@ export default /* @ngInject */ ($scope, EmailPro, $q,
         });
         $scope.setAction('emailpro/account/update/emailpro-account-update', account);
       })
-      .catch(err => $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), err))
+      .catch((err) => $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), err))
       .finally(() => {
         $scope.loadingNewConfiguredAccount = false;
       });

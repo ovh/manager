@@ -30,7 +30,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemo
       self.removed = true;
 
       return $timeout(self.close, 1500);
-    }, error => self.cancel({
+    }, (error) => self.cancel({
       type: 'API',
       message: get(error, 'data.message'),
     }));

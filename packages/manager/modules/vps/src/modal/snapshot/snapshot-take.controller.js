@@ -21,7 +21,7 @@ export default class VpsTakeSnapshotCtrl {
     this.save = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.takeSnapshot(this.serviceName, this.snapshot)
         .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_snapshot_take_success', { serviceName: this.serviceName })))
-        .catch(err => this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_snapshot_take_fail')))
+        .catch((err) => this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_snapshot_take_fail')))
         .finally(() => this.$uibModalInstance.close()),
     });
     return this.save.load();

@@ -4,7 +4,7 @@ export default /* @ngInject */($stateProvider) => {
       url: '/{snapshotId}',
       abstract: true,
       resolve: {
-        snapshotId: /* @ngInject */$transition$ => $transition$.params().snapshotId,
+        snapshotId: /* @ngInject */($transition$) => $transition$.params().snapshotId,
         snapshot: /* @ngInject */ (
           PciProjectStorageSnapshotsService,
           projectId,

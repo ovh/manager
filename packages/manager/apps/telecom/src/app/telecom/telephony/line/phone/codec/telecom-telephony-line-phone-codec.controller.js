@@ -124,11 +124,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
   };
 
   self.filterServices = function filterServices(services) {
-    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     return tucVoipLinePhone
       .fetchAll()
-      .then(voipLinePhones => filter(filteredServices, service => some(voipLinePhones, {
+      .then((voipLinePhones) => filter(filteredServices, (service) => some(voipLinePhones, {
         serviceName: service.serviceName,
         billingAccount: service.billingAccount,
       })));

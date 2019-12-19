@@ -47,7 +47,7 @@ export default class ExchangeAccountAddController {
     function transformAccountTypes(accountTypes) {
       return map(
         accountTypes,
-        accountType => ({
+        (accountType) => ({
           name: accountType,
           displayName: this.exchangeAccountTypes.getDisplayValue(accountType),
         }),
@@ -91,7 +91,7 @@ export default class ExchangeAccountAddController {
     const emailAddressIsAlreadyTaken = !isEmpty(
       find(
         this.accountCreationOptions.takenEmails,
-        emailAddress => emailAddress === `${this.newAccount.login}@${this.newAccount.domain.name}`,
+        (emailAddress) => emailAddress === `${this.newAccount.login}@${this.newAccount.domain.name}`,
       ),
     );
 

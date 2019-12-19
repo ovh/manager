@@ -192,7 +192,7 @@ export default class OvhManagerServerSidebarController {
       .all(promises)
       .then((typesServices) => {
         this.addItems(get(parentService, 'children'), parent);
-        if (sumBy(typesServices, typeServices => typeServices.items.length) === 0) {
+        if (sumBy(typesServices, (typeServices) => typeServices.items.length) === 0) {
           this.SidebarMenu.addMenuItem({
             title: this.$translate.instant('server_sidebar_item_empty_title'),
             allowSubItems: false,
@@ -209,7 +209,7 @@ export default class OvhManagerServerSidebarController {
                 items,
                 find(
                   typesServices,
-                  service => get(service, 'type.category') === get(typeServices, 'type.filter.category'),
+                  (service) => get(service, 'type.category') === get(typeServices, 'type.filter.category'),
                 ),
               );
             }
@@ -261,7 +261,7 @@ export default class OvhManagerServerSidebarController {
 
               // add searchKeys from type definition in item searchKeys
               if (has(typeServices.type, 'searchKeys') && isArray(typeServices.type.searchKeys)) {
-                each(typeServices.type.searchKeys, key => menuItem.addSearchKey(key));
+                each(typeServices.type.searchKeys, (key) => menuItem.addSearchKey(key));
               }
 
               if (hasSubItems && !isExternal) {
@@ -298,7 +298,7 @@ export default class OvhManagerServerSidebarController {
         exclude,
       })
       .$promise
-      .then(items => ({
+      .then((items) => ({
         type: typeDefinition,
         items,
       }));

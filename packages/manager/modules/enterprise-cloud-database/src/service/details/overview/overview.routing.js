@@ -19,7 +19,7 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),
       goBack: /* @ngInject */
-        $state => () => $state.go('^'),
+        ($state) => () => $state.go('^'),
       goToChangeName: /* @ngInject */ ($state, clusterId) => () => $state
         .go('enterprise-cloud-database.service.details.overview.update-name', { clusterId }),
       goToClusterNodes: /* @ngInject */ ($state, clusterId) => () => $state

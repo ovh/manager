@@ -25,6 +25,6 @@ export default /* @ngInject */ function (TUC_TELEPHONY_PHONEBOOK) {
     if (!contact) {
       return null;
     }
-    return some(TUC_TELEPHONY_PHONEBOOK.numberFields, field => !isEmpty(get(contact, field)));
+    return some(TUC_TELEPHONY_PHONEBOOK.numberFields, (field) => !isEmpty(get(contact, field)));
   };
 }

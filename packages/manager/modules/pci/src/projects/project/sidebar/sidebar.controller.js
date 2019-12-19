@@ -47,7 +47,7 @@ export default class SidebarController {
 
   isAvailableToUser(subItem) {
     const allowedUsers = map(subItem.users,
-      userType => get(this.serviceInfo, get(USER_TYPES_MAP, userType)));
+      (userType) => get(this.serviceInfo, get(USER_TYPES_MAP, userType)));
     return !subItem.users || includes(allowedUsers, this.user.nichandle);
   }
 

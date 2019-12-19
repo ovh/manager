@@ -99,7 +99,7 @@ angular
               const promises = map(
                 filter(
                   $scope.domains.list.results,
-                  domain => domain.runtimeId,
+                  (domain) => domain.runtimeId,
                 ),
                 (originalDomain) => {
                   const domain = clone(originalDomain);
@@ -147,11 +147,11 @@ angular
         $scope.setAction('multisite/delete/hosting-multisite-delete', domain);
       };
 
-      $scope.isLetsEncryptCertificate = sslCertificate => (
+      $scope.isLetsEncryptCertificate = (sslCertificate) => (
         sslCertificate.provider === $scope.certificateTypes.LETS_ENCRYPT.providerName
       );
 
-      $scope.isSSLCertificateOperationInProgress = sslCertificate => (
+      $scope.isSSLCertificateOperationInProgress = (sslCertificate) => (
         sslCertificate.status === HOSTING_STATUS.DELETING
         || sslCertificate.status === HOSTING_STATUS.REGENERATING
         || sslCertificate.status === HOSTING_STATUS.CREATING);
@@ -160,7 +160,7 @@ angular
         $scope.setAction('multisite/update/hosting-multisite-update', domain);
       };
 
-      $scope.restartDomain = domain => HostingDomain.restartVirtualHostOfAttachedDomain(
+      $scope.restartDomain = (domain) => HostingDomain.restartVirtualHostOfAttachedDomain(
         $stateParams.productId,
         domain.name,
       ).then(() => {

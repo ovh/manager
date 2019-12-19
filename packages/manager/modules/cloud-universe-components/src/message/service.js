@@ -107,7 +107,7 @@ export default class CucCloudMessage {
       const now = moment().valueOf();
       messageHandler.messages = filter(
         messageHandler.messages,
-        message => message.origin === messageHandler.containerName
+        (message) => message.origin === messageHandler.containerName
           || (!message.forceFlush && now - 500 < message.timestamp),
       );
 

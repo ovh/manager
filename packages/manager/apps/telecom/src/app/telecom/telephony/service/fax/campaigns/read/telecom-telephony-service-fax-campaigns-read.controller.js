@@ -52,7 +52,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRead
 
     self.loading.init = true;
     return fetchCampaignDetail(campaign)
-      .then(details => assign(self.details, details))
+      .then((details) => assign(self.details, details))
       .catch((err) => {
         if (err.status === 400) {
           return $q.reject(err);

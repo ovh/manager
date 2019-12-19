@@ -47,7 +47,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
   };
 
   self.getOptionsSelected = function getOptionsSelected() {
-    return filter(values(migrationProcess.selectedOffer.options), option => option.optional && option.choosedValue > 0 && option.name !== 'gtr_ovh');
+    return filter(values(migrationProcess.selectedOffer.options), (option) => option.optional && option.choosedValue > 0 && option.name !== 'gtr_ovh');
   };
 
   /* -----  End of HELPERS  ------*/
@@ -68,7 +68,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     return $q.all({
       todo: getMigrationTaskByStatus('todo'),
       doing: getMigrationTaskByStatus('doing'),
-    }).then(tasksIds => tasksIds.todo.concat(tasksIds.doing));
+    }).then((tasksIds) => tasksIds.todo.concat(tasksIds.doing));
   };
 
   self.startMigration = function startMigration() {
@@ -78,7 +78,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
     };
 
     // options post params
-    const migrationOptions = map(self.getOptionsSelected(), option => ({
+    const migrationOptions = map(self.getOptionsSelected(), (option) => ({
       name: option.name,
       quantity: option.choosedValue,
     }));
@@ -107,7 +107,7 @@ export default /* @ngInject */ function ($q, OvhApiPackXdsl, Poller) {
         postParams.subServicesToDelete = postParams
           .subServicesToDelete.concat(map(filter(subService.services, {
             selected: true,
-          }), service => ({
+          }), (service) => ({
             service: service.name,
             type: subService.type,
           })));

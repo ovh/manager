@@ -20,7 +20,7 @@ export default class PciProjectsProjectUsersService {
   }
 
   checkGlobalRegion(regions) {
-    return some(regions, region => this.ALPHA_CHARACTERS_REGEX.test(region.id));
+    return some(regions, (region) => this.ALPHA_CHARACTERS_REGEX.test(region.id));
   }
 
   getAll(projectId) {
@@ -142,7 +142,7 @@ export default class PciProjectsProjectUsersService {
           ({ description, name, id }) => ({ id, description, name }),
         );
 
-        const buildRoles = permissionRoles => map(roles, role => ({
+        const buildRoles = (permissionRoles) => map(roles, (role) => ({
           ...role,
           active: [...permissionRoles || []].includes(role.id),
         }));

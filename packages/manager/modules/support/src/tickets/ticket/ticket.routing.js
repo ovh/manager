@@ -9,9 +9,9 @@ export const state = {
     },
   },
   resolve: {
-    goBack: /* @ngInject */ $state => () => $state
+    goBack: /* @ngInject */ ($state) => () => $state
       .go(ticketsState.name),
-    reload: /* @ngInject */ $state => params => $state
+    reload: /* @ngInject */ ($state) => (params) => $state
       .transitionTo(
         $state.current,
         { ...$state.params, ...params },

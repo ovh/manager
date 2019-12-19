@@ -44,7 +44,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     return self.scheduler.getEvents({
       'dateStart.from': start.format(),
       'dateEnd.to': end.format(),
-    }).then(events => events).catch((error) => {
+    }).then((events) => events).catch((error) => {
       TucToast.error([$translate.instant('telephony_scheduler_load_error'), (error.data && error.data.message) || ''].join(' '));
       return $q.reject(error);
     }).finally(() => {
@@ -56,9 +56,9 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     return map(
       filter(
         events,
-        event => event.status !== 'TODELETE' && (self.model.filters.categories ? self.model.filters.categories.indexOf(event.categories) === -1 : true),
+        (event) => event.status !== 'TODELETE' && (self.model.filters.categories ? self.model.filters.categories.indexOf(event.categories) === -1 : true),
       ),
-      event => angular.extend(event.toFullCalendarEvent(), {
+      (event) => angular.extend(event.toFullCalendarEvent(), {
         className: event.categories,
       }),
     );

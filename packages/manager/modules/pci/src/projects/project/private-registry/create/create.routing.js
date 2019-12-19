@@ -20,8 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((agreements) => {
             const agreementPromises = map(
               agreements || [],
-              agreement => pciPrivateRegistryService.getContractInfo(agreement.id)
-                .then(contract => Object.assign(contract, {
+              (agreement) => pciPrivateRegistryService.getContractInfo(agreement.id)
+                .then((contract) => Object.assign(contract, {
                   id: agreement.id,
                   validated: agreement.validated,
                 })),
@@ -29,7 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
             return $q.all(agreementPromises);
           }),
 
-        goBack: /* @ngInject */  goBackToList => goBackToList,
+        goBack: /* @ngInject */  (goBackToList) => goBackToList,
       },
     });
 };

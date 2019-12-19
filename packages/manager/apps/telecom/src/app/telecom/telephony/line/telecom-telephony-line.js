@@ -32,15 +32,15 @@ angular.module('managerApp').config(($stateProvider) => {
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
           })
-          .$promise.then(line => OvhApiTelephony.Line()
+          .$promise.then((line) => OvhApiTelephony.Line()
             .v6()
             .simultaneousChannelsDetails({
               billingAccount: $stateParams.billingAccount,
               serviceName: $stateParams.serviceName,
             })
-            .$promise.then(details => details)
+            .$promise.then((details) => details)
             .catch(() => null)
-            .then(details => merge(line, {
+            .then((details) => merge(line, {
               simultaneousLinesDetails: details || null,
             })))
           .catch(() => ({}));

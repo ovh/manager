@@ -55,10 +55,10 @@ export default class {
       .expand()
       .execute()
       .$promise
-      .then(result => map(
+      .then((result) => map(
         filter(
           result,
-          res => has(res, 'value') || (withError && (keys(res.value).length && has(res.value, 'message'))),
+          (res) => has(res, 'value') || (withError && (keys(res.value).length && has(res.value, 'message'))),
         ),
         (res) => {
           const billingAccount = get(res.path.split('/'), '[2]');
@@ -172,13 +172,13 @@ export default class {
         serviceName: service.serviceName,
         action: 'termination',
         type: 'offer',
-      }).$promise.then(offerTaskIds => this.$q
-        .all(map(offerTaskIds, id => this.OvhApiTelephony.Service().OfferTask().v6().get({
+      }).$promise.then((offerTaskIds) => this.$q
+        .all(map(offerTaskIds, (id) => this.OvhApiTelephony.Service().OfferTask().v6().get({
           billingAccount: service.billingAccount,
           serviceName: service.serviceName,
           taskId: id,
         }).$promise))
-        .then(tasks => head(filter(tasks, { status: 'todo' }))));
+        .then((tasks) => head(filter(tasks, { status: 'todo' }))));
   }
 
   /**
@@ -218,18 +218,18 @@ export default class {
       .query({
         billingAccount: service.billingAccount,
         serviceName: service.serviceName,
-      }).$promise.then(ids => this.$q
+      }).$promise.then((ids) => this.$q
         .all(map(
           chunk(ids, 50),
-          chunkIds => this.OvhApiTelephony.Service().VoiceConsumption().v6()
+          (chunkIds) => this.OvhApiTelephony.Service().VoiceConsumption().v6()
             .getBatch({
               billingAccount: service.billingAccount,
               serviceName: service.serviceName,
               consumptionId: chunkIds,
             }).$promise,
         ))
-        .then(chunkResult => flatten(chunkResult)))
-      .then(result => map(result, 'value'));
+        .then((chunkResult) => flatten(chunkResult)))
+      .then((result) => map(result, 'value'));
   }
 
   /**
@@ -249,7 +249,7 @@ export default class {
       billingAccount,
       serviceName,
     }).$promise
-      .then(repaymentsIds => this.$q.all(repaymentsIds.map(repayment => this.OvhApiTelephony
+      .then((repaymentsIds) => this.$q.all(repaymentsIds.map((repayment) => this.OvhApiTelephony
         .Service().RepaymentConsumption().v6().get({
           billingAccount,
           serviceName,
@@ -264,7 +264,7 @@ export default class {
   static groupByFeatureType(services) {
     return groupBy(
       services,
-      service => get(
+      (service) => get(
         FEATURE_TYPES.GROUPS,
         service.featureType,
         FEATURE_TYPES.DEFAULT_GROUP,
@@ -343,7 +343,7 @@ export default class {
    *  @return {Array.<VoipSercice>} The filtered list of fax.
    */
   static filterFaxServices(services) {
-    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   }
 
   /* -----  End of Filters  ------ */

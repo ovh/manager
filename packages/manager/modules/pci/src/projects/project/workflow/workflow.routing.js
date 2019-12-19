@@ -10,10 +10,10 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.workflow', {
       url: '/workflow',
       component: 'ovhManagerPciProjectsProjectWorkflow',
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('workflows')
-        .then(workflow => (workflow.length === 0 ? { state: 'pci.projects.project.workflow.onboarding' } : false)),
+        .then((workflow) => (workflow.length === 0 ? { state: 'pci.projects.project.workflow.onboarding' } : false)),
       resolve: {
         add: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.workflow.new', { projectId }),
 
@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((regions) => {
             let workflows = [];
             return $q.all(
-              map(regions, region => OvhApiCloudProjectRegionWorkflowBackup.v6().query({
+              map(regions, (region) => OvhApiCloudProjectRegionWorkflowBackup.v6().query({
                 serviceName: projectId,
                 regionName: region,
               }).$promise
@@ -81,7 +81,7 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_workflow_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_workflow_title'),
       },
     });
 };

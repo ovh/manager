@@ -74,7 +74,7 @@ angular.module('managerApp').factory(
         serviceName: self.serviceName,
       }, {
         calledNumber,
-      }).$promise.then(voidResponse => voidResponse);
+      }).$promise.then((voidResponse) => voidResponse);
     };
 
     return TelephonyGroupLineClickToCall;

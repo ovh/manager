@@ -68,8 +68,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
 
     return TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getLine($stateParams.serviceName))
-      .then(line => line.getPhone().then((phone) => {
+      .then((group) => group.getLine($stateParams.serviceName))
+      .then((line) => line.getPhone().then((phone) => {
         self.phone = phone;
         return phone;
       }))
@@ -114,7 +114,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

@@ -43,7 +43,7 @@ angular.module('App').controller(
       });
       this.$scope.$on(
         'privateDatabase.whitelist.update.done',
-        opts => (opts.serviceName === this.serviceName ? this.getList() : undefined),
+        (opts) => (opts.serviceName === this.serviceName ? this.getList() : undefined),
       );
 
       forEach(['done', 'error'], (state) => {
@@ -68,10 +68,10 @@ angular.module('App').controller(
       return this.whitelistService
         .getWhitelistIds(this.serviceName)
         .then((res) => {
-          this.whitelistIps = res.map(id => ({ id }));
+          this.whitelistIps = res.map((id) => ({ id }));
           return this.whitelistIps;
         })
-        .catch(err => this.alerter.error(err));
+        .catch((err) => this.alerter.error(err));
     }
 
     createWhitelist() {
@@ -95,7 +95,7 @@ angular.module('App').controller(
     transformItem(whitelist) {
       return this.whitelistService
         .getWhitelist(this.serviceName, whitelist.id)
-        .catch(err => this.alerter.error(err));
+        .catch((err) => this.alerter.error(err));
     }
 
     /*
@@ -127,7 +127,7 @@ angular.module('App').controller(
       const todo = () => {
         const el = find(
           this.whitelistIps,
-          whitelist => whitelist.ip === opts.whitelistIp,
+          (whitelist) => whitelist.ip === opts.whitelistIp,
         );
 
         if (el) {
@@ -162,7 +162,7 @@ angular.module('App').controller(
       const todo = () => {
         const el = find(
           this.whitelistIps,
-          whitelist => whitelist.ip === opts.whitelistIp,
+          (whitelist) => whitelist.ip === opts.whitelistIp,
         );
 
         if (el) {

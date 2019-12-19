@@ -71,7 +71,7 @@ angular
             const resolves = initial(componentProvider);
             const componentGetter = last(componentProvider);
             componentName = componentGetter(
-              ...map(resolves, resolve => transition.injector().get(resolve)),
+              ...map(resolves, (resolve) => transition.injector().get(resolve)),
             );
           }
 
@@ -79,7 +79,7 @@ angular
             const directives = $injector.get(`${componentName}Directive`);
             // look for those directives that are components
             const candidateDirectives = directives.filter(
-              directiveInfo => directiveInfo.controller
+              (directiveInfo) => directiveInfo.controller
                 && directiveInfo.controllerAs
                 && directiveInfo.restrict === 'E',
             );

@@ -30,7 +30,7 @@ angular.module('Billing.services').service('BillingOvhAccount', function Billing
         params: data,
         serviceType: 'aapi',
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.getOvhAccount = function getOvhAccount() {
@@ -40,7 +40,8 @@ angular.module('Billing.services').service('BillingOvhAccount', function Billing
       })
       .then((response) => {
         if (angular.isArray(response.data)) {
-          return $q.all(response.data.map(ovhAccountId => self.getOvhAccountDetails(ovhAccountId)));
+          return $q
+            .all(response.data.map((ovhAccountId) => self.getOvhAccountDetails(ovhAccountId)));
         }
         return response.data;
       });
@@ -51,11 +52,11 @@ angular.module('Billing.services').service('BillingOvhAccount', function Billing
       .get(['apiv6/me/ovhAccount', ovhAccountId].join('/'), {
         cache: billingAccountCache,
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.putOvhAccountDetails = function putOvhAccountDetails(ovhAccountId, ovhAccountInfos) {
-    return $http.put(['apiv6/me/ovhAccount', ovhAccountId].join('/'), ovhAccountInfos).then(response => response.data);
+    return $http.put(['apiv6/me/ovhAccount', ovhAccountId].join('/'), ovhAccountInfos).then((response) => response.data);
   };
 
   this.creditOvhAccount = function creditOvhAccount(ovhAccountId, amount) {
@@ -76,5 +77,5 @@ angular.module('Billing.services').service('BillingOvhAccount', function Billing
       amount,
       bankAccountId,
     })
-    .then(resp => resp.data);
+    .then((resp) => resp.data);
 });

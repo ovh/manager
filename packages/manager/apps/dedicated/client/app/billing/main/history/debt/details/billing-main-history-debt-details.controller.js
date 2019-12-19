@@ -27,20 +27,20 @@ angular.module('Billing.controllers').controller('BillingHistoryDebtDetailsCtrl'
     return this.OvhApiMe.DebtAccount().Debt().Operation().v6()
       .query({
         debtId: this.$stateParams.debtId,
-      }).$promise.then(operationIds => this.getOperationsDetails(operationIds));
+      }).$promise.then((operationIds) => this.getOperationsDetails(operationIds));
   }
 
   getOperationsDetails(operationIds) {
     return this.$q
       .all(map(
         chunk(operationIds, 50),
-        chunkIds => this.OvhApiMe.DebtAccount().Debt().Operation().v6()
+        (chunkIds) => this.OvhApiMe.DebtAccount().Debt().Operation().v6()
           .getBatch({
             debtId: this.$stateParams.debtId,
             operationId: chunkIds,
-          }).$promise.then(results => filter(results, ({ error }) => !error)),
+          }).$promise.then((results) => filter(results, ({ error }) => !error)),
       ))
-      .then(resources => map(flatten(resources), 'value'));
+      .then((resources) => map(flatten(resources), 'value'));
   }
 
   getBill(orderId) {

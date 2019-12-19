@@ -25,7 +25,7 @@ export default class FlavorsListController {
     return this.PciProjectFlavors.getFlavors(this.serviceName, get(this.region, 'name'))
       .then((flavors) => {
         const flavorGroups = this.PciProjectFlavors.constructor.mapByFlavorType(
-          filter(flavors, flavor => flavor.isAvailable()
+          filter(flavors, (flavor) => flavor.isAvailable()
             && flavor.hasSsdDisk()
             && (!this.image || flavor.hasOsType(this.image.type))),
           get(this.image, 'type'),
@@ -44,7 +44,7 @@ export default class FlavorsListController {
       forEach(this.flavors, (flavorCategory) => {
         const flavorGroup = find(
           flavorCategory.flavors,
-          group => group.getFlavor(this.defaultFlavor.id),
+          (group) => group.getFlavor(this.defaultFlavor.id),
         );
 
         if (flavorGroup) {

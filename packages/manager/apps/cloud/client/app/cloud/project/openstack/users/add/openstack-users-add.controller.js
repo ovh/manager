@@ -30,7 +30,7 @@ class CloudProjectOpenStackUserAddCtrl {
           this.OpenstackUsersPassword.put(this.serviceName, newUser.id, newUser.password);
           this.CucCloudMessage.success(this.$translate.instant('openstackusers_users_userlist_add_submit_success'));
         })
-        .catch(err => this.CucCloudMessage.error([this.$translate.instant('openstackusers_users_userlist_add_submit_error'), (err.data && err.data.message) || ''].join(' ')))
+        .catch((err) => this.CucCloudMessage.error([this.$translate.instant('openstackusers_users_userlist_add_submit_error'), (err.data && err.data.message) || ''].join(' ')))
         .finally(() => this.$uibModalInstance.close()),
     });
     return this.saving.load();

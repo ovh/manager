@@ -95,13 +95,13 @@ angular.module('managerApp')
           return $q.reject(err);
         }).then(() => OvhApiOrder.v6().schema().$promise.then((schema) => {
           if (schema && schema.models['telephony.NumberSpecialTypologyEnum'] && schema.models['telephony.NumberSpecialTypologyEnum'].enum) {
-            const typologies = map(schema.models['telephony.NumberSpecialTypologyEnum'].enum, typo => ({
+            const typologies = map(schema.models['telephony.NumberSpecialTypologyEnum'].enum, (typo) => ({
               value: typo,
               label: $translate.instant(`telephony_order_specific_typology_${typo.replace(new RegExp('^be_|fr_'), '')}_label`),
             }));
 
-            self.typologies.france = filter(typologies, typo => startsWith(typo.value, 'fr_'));
-            self.typologies.belgium = filter(typologies, typo => startsWith(typo.value, 'be_'));
+            self.typologies.france = filter(typologies, (typo) => startsWith(typo.value, 'fr_'));
+            self.typologies.belgium = filter(typologies, (typo) => startsWith(typo.value, 'be_'));
             return self.typologies;
           }
 
@@ -139,7 +139,7 @@ angular.module('managerApp')
         // handle special number
         self.isSpecialNumber = some(
           TELEPHONY_REPAYMENT_CONSUMPTION.specialNumberPrefix[self.order.country],
-          prefix => startsWith(number, prefix),
+          (prefix) => startsWith(number, prefix),
         );
         self.order.specialNumberCategory = self.isSpecialNumber
           ? head(self.typologies[self.order.country]).value : null;

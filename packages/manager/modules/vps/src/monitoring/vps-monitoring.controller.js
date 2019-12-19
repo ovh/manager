@@ -53,9 +53,9 @@ export default class {
           data.cpu.pointStart,
           this.monitoring.labels,
         );
-        this.noCpuData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('cpu') !== -1);
-        this.noRamData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('mem') !== -1);
-        this.noNetData = find(get(this.data, 'messages'), type => get(type, 'params.type').indexOf('net') !== -1);
+        this.noCpuData = find(get(this.data, 'messages'), (type) => get(type, 'params.type').indexOf('cpu') !== -1);
+        this.noRamData = find(get(this.data, 'messages'), (type) => get(type, 'params.type').indexOf('mem') !== -1);
+        this.noNetData = find(get(this.data, 'messages'), (type) => get(type, 'params.type').indexOf('net') !== -1);
       })
       .catch(() => { this.error = true; })
       .finally(() => { this.loaders.init = false; });

@@ -27,7 +27,7 @@ export default class WorkflowDeleteCtrl {
       .then(() => this.goToHomePage(
         this.$translate.instant('pci_workflow_delete_success', { workflowName: this.workflow.name }),
       ))
-      .catch(error => this.goToHomePage(
+      .catch((error) => this.goToHomePage(
         this.$translate.instant('pci_workflow_delete_error', {
           message: get(error, 'data.message'),
         }), 'error',

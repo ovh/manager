@@ -23,7 +23,7 @@ angular.module('services').service(
     getWhitelistIds(serviceName) {
       return this.$http
         .get(`${this.rootPath}/${this.swsProxypassPath}/${serviceName}/whitelist`)
-        .then(res => res.data);
+        .then((res) => res.data);
     }
 
     /**
@@ -99,7 +99,7 @@ angular.module('services').service(
         .get(`${this.rootPath}/${
           this.swsProxypassPath
         }/${serviceName}/whitelist/${encodeURIComponent(whitelistId)}`)
-        .then(res => res.data);
+        .then((res) => res.data);
     }
 
     /**
@@ -146,7 +146,7 @@ angular.module('services').service(
 
           return res.data.id;
         })
-        .catch(err => this.$q.reject(err));
+        .catch((err) => this.$q.reject(err));
     }
 
     pollwhitelistdelete(serviceName, opts) {

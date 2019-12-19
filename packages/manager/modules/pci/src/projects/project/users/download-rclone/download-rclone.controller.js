@@ -23,7 +23,7 @@ export default class PciUsersDownloadRcloneController {
   $onInit() {
     this.isLoading = false;
 
-    this.regions = map(this.regions, region => ({
+    this.regions = map(this.regions, (region) => ({
       id: region,
       label: this.CucRegionService.getTranslatedMicroRegion(region),
     }));
@@ -44,7 +44,7 @@ export default class PciUsersDownloadRcloneController {
           reader.onloadend = () => resolve(reader.result);
           reader.readAsDataURL(data);
         })
-          .then(link => this.goBack({
+          .then((link) => this.goBack({
             text: this.$translate.instant(
               'pci_projects_project_users_download-rclone_success_message',
               {
@@ -59,7 +59,7 @@ export default class PciUsersDownloadRcloneController {
             },
           }));
       })
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_users_download-rclone_error_rclone',
         {
           message: get(err, 'data.message', null),

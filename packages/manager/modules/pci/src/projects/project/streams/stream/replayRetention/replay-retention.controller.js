@@ -27,7 +27,7 @@ export default class PciStreamsStreamReplayRetentionController {
       .then(() => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_replay_retention_success_message',
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_replay_retention_error_replay_retention',
         {
           message: get(err, 'data.message', null),

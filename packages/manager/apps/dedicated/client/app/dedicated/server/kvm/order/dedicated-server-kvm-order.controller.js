@@ -45,7 +45,7 @@ angular.module('App').controller('KvmOrderCtrl', ($scope, $rootScope, $statePara
 ============================== */
   $scope.loadDetail = function loadDetail() {
     $scope.orderDetail = $scope.order.details
-      .filter(detail => detail.duration === $scope.order.durationSelected)[0] || {};
+      .filter((detail) => detail.duration === $scope.order.durationSelected)[0] || {};
   };
 
   $scope.confirmOrder = function confirmOrder() {

@@ -62,7 +62,7 @@ export default class KubernetesNodesCtrl {
   getBillingType(node) {
     return this.Kubernetes.getProjectInstances(this.projectId)
       .then((instances) => {
-        const instance = find(instances, item => item.id === node.instanceId);
+        const instance = find(instances, (item) => item.id === node.instanceId);
         const monthlyBilling = get(instance, 'monthlyBilling');
         if (isEmpty(monthlyBilling)) {
           set(node, 'billingType', 'hourly');

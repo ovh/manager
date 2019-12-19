@@ -115,8 +115,8 @@ class LogsStreamsService {
    */
   getStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then(streams => streams.map(stream => this.transformStream(serviceName, stream)))
-      .catch(err => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
+      .then((streams) => streams.map((stream) => this.transformStream(serviceName, stream)))
+      .catch((err) => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
   }
 
   /**
@@ -129,8 +129,8 @@ class LogsStreamsService {
    */
   getOwnStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then(streams => streams.filter(aapiStream => aapiStream.info.isEditable))
-      .catch(err => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
+      .then((streams) => streams.filter((aapiStream) => aapiStream.info.isEditable))
+      .catch((err) => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
   }
 
   /**
@@ -143,8 +143,8 @@ class LogsStreamsService {
    */
   getShareableStreams(serviceName) {
     return this.getStreamDetails(serviceName)
-      .then(streams => streams.filter(aapiStream => aapiStream.info.isShareable))
-      .catch(err => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
+      .then((streams) => streams.filter((aapiStream) => aapiStream.info.isShareable))
+      .catch((err) => this.LogsHelperService.handleError('logs_streams_get_error', err, {}));
   }
 
   /**
@@ -157,7 +157,7 @@ class LogsStreamsService {
   getStreamDetails(serviceName) {
     return this.getAllStreams(serviceName)
       .then((streams) => {
-        const promises = streams.map(stream => this.getAapiStream(serviceName, stream));
+        const promises = streams.map((stream) => this.getAapiStream(serviceName, stream));
         return this.$q.all(promises);
       });
   }
@@ -173,7 +173,7 @@ class LogsStreamsService {
   getStream(serviceName, streamId) {
     return this.StreamsApiService.get({ serviceName, streamId })
       .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_stream_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_stream_get_error', err, {}));
   }
 
   /**
@@ -187,7 +187,7 @@ class LogsStreamsService {
   getAapiStream(serviceName, streamId) {
     return this.StreamsAapiService.get({ serviceName, streamId })
       .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_stream_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_stream_get_error', err, {}));
   }
 
   /**
@@ -205,7 +205,7 @@ class LogsStreamsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_stream_delete_success', { streamName: stream.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_stream_delete_error', err, { streamName: stream.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_stream_delete_error', err, { streamName: stream.title }));
   }
 
   /**
@@ -236,7 +236,7 @@ class LogsStreamsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_stream_create_success', { streamName: stream.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_stream_create_error', err, { streamName: stream.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_stream_create_error', err, { streamName: stream.title }));
   }
 
   /**
@@ -267,7 +267,7 @@ class LogsStreamsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_stream_update_success', { streamName: stream.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_stream_update_error', err, { streamName: stream.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_stream_update_error', err, { streamName: stream.title }));
   }
 
   /**
@@ -295,19 +295,19 @@ class LogsStreamsService {
         const quota = {
           max: me.total.maxNbStream,
           configured: me.total.curNbStream,
-          currentUsage: me.total.curNbStream * 100 / me.total.maxNbStream,
+          currentUsage: (me.total.curNbStream * 100) / me.total.maxNbStream,
         };
         return quota;
-      }).catch(err => this.LogsHelperService.handleError('logs_streams_quota_get_error', err, {}));
+      }).catch((err) => this.LogsHelperService.handleError('logs_streams_quota_get_error', err, {}));
   }
 
   getMainOffer(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+      .then((me) => ({
         max: me.offer.maxNbStream,
         current: me.offer.curNbStream,
         planCode: me.offer.reference,
-      })).catch(err => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
+      })).catch((err) => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
   }
 
   getCompressionAlgorithms() {
@@ -412,7 +412,7 @@ class LogsStreamsService {
    * @return {string} stream token if found, empty string otherwise
    */
   findStreamTokenValue(stream) {
-    const ruleObj = find(stream.rules, rule => rule.field === this.LogsConstants.X_OVH_TOKEN);
+    const ruleObj = find(stream.rules, (rule) => rule.field === this.LogsConstants.X_OVH_TOKEN);
     return get(ruleObj, 'value');
   }
 

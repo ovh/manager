@@ -51,16 +51,16 @@ angular.module('controllers').controller('controllers.Server.Stats', (
     $q
       .all([
         Server.getBandwidth($stateParams.productId)
-          .then(bandwidth => ($scope.bandwidth = bandwidth))
-          .then(data => Server.getBandwidthOption($stateParams.productId, data))
-          .then(bandwidthOption => ($scope.bandwidthOption = bandwidthOption)),
-        Server.getBandwidthVrackOption($stateParams.productId).then(bandwidthVrackOption => ($scope.bandwidthVrackOption = bandwidthVrackOption)),
-        BandwidthVrackOrderService.getOrderableBandwidths($stateParams.productId).then(bandwidthVrackOptions => ($scope.bandwidthVrackOrderOptions = bandwidthVrackOptions)),
-        ServerTrafficService.getTraffic($stateParams.productId).then(traffic => ($scope.traffic = traffic.data)),
-        ServerOrderTrafficService.getOrderables($stateParams.productId).then(trafficOrderables => ($scope.trafficOrderables = trafficOrderables.data)),
-        ServerOrderTrafficService.getOption($stateParams.productId).then(trafficOption => ($scope.trafficOption = trafficOption.data)),
+          .then((bandwidth) => ($scope.bandwidth = bandwidth))
+          .then((data) => Server.getBandwidthOption($stateParams.productId, data))
+          .then((bandwidthOption) => ($scope.bandwidthOption = bandwidthOption)),
+        Server.getBandwidthVrackOption($stateParams.productId).then((bandwidthVrackOption) => ($scope.bandwidthVrackOption = bandwidthVrackOption)),
+        BandwidthVrackOrderService.getOrderableBandwidths($stateParams.productId).then((bandwidthVrackOptions) => ($scope.bandwidthVrackOrderOptions = bandwidthVrackOptions)),
+        ServerTrafficService.getTraffic($stateParams.productId).then((traffic) => ($scope.traffic = traffic.data)),
+        ServerOrderTrafficService.getOrderables($stateParams.productId).then((trafficOrderables) => ($scope.trafficOrderables = trafficOrderables.data)),
+        ServerOrderTrafficService.getOption($stateParams.productId).then((trafficOption) => ($scope.trafficOption = trafficOption.data)),
       ])
-      .catch(data => Alerter.alertFromSWS($translate.instant('server_bandwidth_loading_error'), data.data, 'bandwithError'))
+      .catch((data) => Alerter.alertFromSWS($translate.instant('server_bandwidth_loading_error'), data.data, 'bandwithError'))
       .finally(() => {
         $scope.bandwidthInformationsLoad = false;
       });
@@ -73,18 +73,18 @@ angular.module('controllers').controller('controllers.Server.Stats', (
   $scope.canOrderTraffic = () => dedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() && !$scope.server.isExpired && $scope.server.canOrderQuota;
   $scope.canOrderMoreTraffic = () => !$scope.server.isExpired && $scope.server.canOrderQuota && get($scope.trafficOrderables, 'length');
 
-  $scope.isFullAgora = commercialRange => $scope.pattern.test(commercialRange);
+  $scope.isFullAgora = (commercialRange) => $scope.pattern.test(commercialRange);
 
   $scope.$on('dedicated.informations.bandwidth', $scope.loadBandwidthInformations);
 
   function convertData(list) {
-    return map(list, value => (value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y));
+    return map(list, (value) => (value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y));
   }
 
   function createChart(data) {
     $scope.series = [];
     $scope.data = [];
-    $scope.labels = map(get(data, 'download.values'), value => moment.unix(value.timestamp).calendar());
+    $scope.labels = map(get(data, 'download.values'), (value) => moment.unix(value.timestamp).calendar());
     $scope.series.push($translate.instant('server_tab_STATS_legend_download'));
     $scope.series.push($translate.instant('server_tab_STATS_legend_upload'));
     $scope.data.push(convertData(get(data, 'download.values')));
@@ -123,7 +123,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
 
     $q.all(promises)
       .then((stats) => {
-        const hasVrack = some(stats.interfaces, networkInterface => networkInterface.linkType === 'private');
+        const hasVrack = some(stats.interfaces, (networkInterface) => networkInterface.linkType === 'private');
         if (!hasVrack) {
           stats.interfaces.push({
             linkType: 'no_vrack',
@@ -131,7 +131,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
           });
         }
 
-        $scope.networks = map(stats.interfaces, networkInterface => ({
+        $scope.networks = map(stats.interfaces, (networkInterface) => ({
           id: networkInterface.mac,
           linkType: networkInterface.linkType,
           displayName: $translate.instant(`server_tab_stats_network_${networkInterface.linkType}`, {

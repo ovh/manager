@@ -42,7 +42,7 @@ export default class IpLoadBalancerVrackHelper {
         .task({ serviceName: task.serviceName, taskId: task.id })
         .$promise
         .catch(() => ({ status: 'done' })),
-      stopCondition: item => item.status === 'done' || item.status === 'error',
+      stopCondition: (item) => item.status === 'done' || item.status === 'error',
     }).$promise;
   }
 }

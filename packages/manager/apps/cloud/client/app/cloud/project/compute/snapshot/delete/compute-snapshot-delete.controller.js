@@ -32,8 +32,8 @@
       const promiseDelete = this.snapshot.type === 'volume'
         ? this.deleteVolumeSnapshot(this.snapshot.id) : this.deleteSnapshot(this.snapshot.id);
       promiseDelete
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(err => this.$uibModalInstance.dismiss(err))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((err) => this.$uibModalInstance.dismiss(err))
         .finally(() => {
           this.loaders.delete = false;
         });

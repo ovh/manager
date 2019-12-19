@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').controller('CloudProjectComputeInfrastructureVirtualmachineVncCtrl',
   function CloudProjectComputeInfrastructureVirtualmachineVncCtrl(
     $uibModalInstance, params, $translate, CucCloudMessage, OvhApiCloudProjectInstance,

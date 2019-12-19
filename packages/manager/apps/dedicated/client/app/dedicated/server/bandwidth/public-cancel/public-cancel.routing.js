@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
             serverName,
             Server,
           ) => () => Server.cancelBandwidthOption(serverName),
-          goBack: /* @ngInject */ $state => () => $state.go('^'),
+          goBack: /* @ngInject */ ($state) => () => $state.go('^'),
         },
       });
     },

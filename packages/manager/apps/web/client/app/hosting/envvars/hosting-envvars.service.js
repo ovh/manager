@@ -25,7 +25,7 @@ angular.module('services').service(
         filtersAsArray = [filters];
       }
 
-      const promises = filtersAsArray.map(filter => this.OvhHttp.get(`/hosting/web/${serviceName}/envVar`, {
+      const promises = filtersAsArray.map((filter) => this.OvhHttp.get(`/hosting/web/${serviceName}/envVar`, {
         rootPath: 'apiv6',
         params: filter,
       }));
@@ -41,7 +41,7 @@ angular.module('services').service(
           flatten(
             map(
               dataAsArray,
-              datum => (isArray(datum) ? flatten(datum) : datum),
+              (datum) => (isArray(datum) ? flatten(datum) : datum),
             ),
           ),
         );

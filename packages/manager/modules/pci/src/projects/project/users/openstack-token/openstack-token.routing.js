@@ -14,7 +14,7 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        userId: /* @ngInject */$transition$ => $transition$.params().userId,
+        userId: /* @ngInject */($transition$) => $transition$.params().userId,
         user: /* @ngInject */ (
           PciProjectsProjectUsersService,
           projectId,
@@ -25,7 +25,7 @@ export default /* @ngInject */($stateProvider) => {
             TOKEN_GUIDE,
             [coreConfig.getRegion(), ovhSubsidiary],
           )),
-        goBack: /* @ngInject */ goToUsers => goToUsers,
+        goBack: /* @ngInject */ (goToUsers) => goToUsers,
       },
     });
 };

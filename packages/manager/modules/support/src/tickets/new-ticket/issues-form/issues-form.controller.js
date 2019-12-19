@@ -141,7 +141,7 @@ export default class SupportNewIssuesFormController {
       || (
         this.props.categoryName
           ? categories
-            .find(category => isEqual(
+            .find((category) => isEqual(
               category.id.toLowerCase(),
               this.props.categoryName.toLowerCase(),
             ))
@@ -158,7 +158,7 @@ export default class SupportNewIssuesFormController {
       || (
         this.props.serviceTypeName
           ? serviceTypes
-            .find(serviceType => isEqual(
+            .find((serviceType) => isEqual(
               serviceType.name.toLowerCase(),
               this.props.serviceTypeName.toLowerCase(),
             ))
@@ -209,7 +209,7 @@ export default class SupportNewIssuesFormController {
   setService(services) {
     this.bindings.service.values = services;
     this.bindings.service.value = services
-      .find(service => [service.serviceName, service.displayName]
+      .find((service) => [service.serviceName, service.displayName]
         .includes(this.props.serviceName)
         && this.props.serviceTypeName
         && isEqual(

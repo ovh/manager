@@ -9,8 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
-      serviceId: /* @ngInject */ $transition$ => $transition$.params().serviceId,
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      serviceId: /* @ngInject */ ($transition$) => $transition$.params().serviceId,
       terminateWebCoach: /* @ngInject */ (
         OvhApiWebCoach,
         serviceId,

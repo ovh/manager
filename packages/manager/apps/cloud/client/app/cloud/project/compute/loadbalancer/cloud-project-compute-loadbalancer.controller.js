@@ -68,14 +68,14 @@ class CloudProjectComputeLoadbalancerCtrl {
           .v6()
           .query()
           .$promise
-          .then(response => this.$q.all(
-            map(response, id => this.CloudProjectComputeLoadbalancerService.getLoadbalancer(id)),
+          .then((response) => this.$q.all(
+            map(response, (id) => this.CloudProjectComputeLoadbalancerService.getLoadbalancer(id)),
           )),
         loadbalancersImportedArray:
                     this.OvhApiCloudProjectIplb.v6().query({
                       serviceName: this.serviceName,
-                    }).$promise.then(ids => this.$q.all(
-                      map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
+                    }).$promise.then((ids) => this.$q.all(
+                      map(ids, (id) => this.OvhApiCloudProjectIplb.v6().get({
                         serviceName: this.serviceName,
                         id,
                       }).$promise),

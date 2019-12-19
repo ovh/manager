@@ -10,7 +10,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountOrderAlia
   function loadOffers() {
     $q.when()
       .then(() => TelecomTelephonyBillingAccountOrderAliasService.getUser())
-      .then(user => TelecomTelephonyBillingAccountOrderAliasService.getOffers(
+      .then((user) => TelecomTelephonyBillingAccountOrderAliasService.getOffers(
         $stateParams.billingAccount,
         user.country,
         {

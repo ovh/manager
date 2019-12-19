@@ -1,4 +1,4 @@
-export default /* @ngInject */ $parse => ({
+export default /* @ngInject */ ($parse) => ({
   restrict: 'A',
   link($scope, $element, $attrs) {
     $element.on('keyup', (e) => {

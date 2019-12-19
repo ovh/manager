@@ -3,14 +3,14 @@ export default /* @ngInject */($stateProvider) => {
     url: '/log',
     component: 'analyticsDataPlatformDetailsActivityLogComponent',
     resolve: {
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
 
       activities: /* @ngInject */ (
         analyticsDataPlatformService,
         serviceName,
       ) => analyticsDataPlatformService.getAnalyticsDataPlatformActivityLogs(serviceName),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_header_nav_activity'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('analytics_data_platform_header_nav_activity'),
     },
   });
 };

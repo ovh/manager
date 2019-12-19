@@ -104,10 +104,11 @@ export default class ExchangeMailingListDelegationCtrl {
     const newSendAsValue = sendAsAccountChange ? get(sendAsAccountChange, 'operation') === 'POST' : account.sendAs;
     const newSendOnBehalfToValue = sendOnBehalfToAccountChange ? get(sendOnBehalfToAccountChange, 'operation') === 'POST' : account.sendOnBehalfTo;
 
-    return Object.assign({}, account, {
+    return {
+      ...account,
       newSendAsValue,
       newSendOnBehalfToValue,
-    });
+    };
   }
 
   hasChanged() {
@@ -141,7 +142,7 @@ export default class ExchangeMailingListDelegationCtrl {
           ...accountCreationOptions.availableDomains,
         ];
         this.selectedDomain = find(accountCreationOptions.availableDomains,
-          domain => domain.name === this.selectedDomain.name);
+          (domain) => domain.name === this.selectedDomain.name);
       })
       .catch((error) => {
         this.services.messaging.writeError(
@@ -172,7 +173,7 @@ export default class ExchangeMailingListDelegationCtrl {
         this.delegationList = angular.copy(accounts);
 
         this.delegationList.list.results = accounts.list.results
-          .map(account => this.applyAccountSelection(account));
+          .map((account) => this.applyAccountSelection(account));
       })
       .catch((failure) => {
         this.services.messaging.writeError(

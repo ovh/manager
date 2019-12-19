@@ -38,7 +38,7 @@ angular.module('App').controller(
           return this.$scope.setAction('redirection/add/domain-redirection-add', domain);
         }
         case 'addRecord':
-          return this.Domain.getTabZoneDns(this.domain.name).then(zone => this.$scope.setAction('zone/record/add/domain-zone-record-add', { domain: this.domain, fieldTypes: zone.fieldsTypes, subdomainPreset: this.model.subdomain }));
+          return this.Domain.getTabZoneDns(this.domain.name).then((zone) => this.$scope.setAction('zone/record/add/domain-zone-record-add', { domain: this.domain, fieldTypes: zone.fieldsTypes, subdomainPreset: this.model.subdomain }));
         case 'addToMutu':
           return this.$scope.setAction('subdomain/add/domain-subdomain-add-hosting-choice', { domain: this.domain, subdomain: this.model.subdomain });
         default:

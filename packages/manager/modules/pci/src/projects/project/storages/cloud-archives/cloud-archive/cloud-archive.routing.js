@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/{containerId}',
       component: 'pciProjectStorageContainersContainer',
       resolve: {
-        containerId: /* @ngInject */ $transition$ => $transition$.params().containerId,
+        containerId: /* @ngInject */ ($transition$) => $transition$.params().containerId,
         container: /* @ngInject */ (
           PciProjectStorageContainersService,
           projectId,
@@ -21,13 +21,13 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           containerId,
         }),
-        deleteObject: /* @ngInject */ ($state, projectId, containerId) => object => $state.go('pci.projects.project.storages.archives.archive.delete', {
+        deleteObject: /* @ngInject */ ($state, projectId, containerId) => (object) => $state.go('pci.projects.project.storages.archives.archive.delete', {
           projectId,
           containerId,
           objectId: object.name,
         }),
 
-        goBack: /* @ngInject */ goToStorageContainers => goToStorageContainers,
+        goBack: /* @ngInject */ (goToStorageContainers) => goToStorageContainers,
 
         goToStorageContainer: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId, containerId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
@@ -47,9 +47,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        refresh: /* @ngInject */ goToStorageContainer => goToStorageContainer,
+        refresh: /* @ngInject */ (goToStorageContainer) => goToStorageContainer,
 
-        breadcrumb: /* @ngInject */ container => container.name,
+        breadcrumb: /* @ngInject */ (container) => container.name,
       },
     });
 };

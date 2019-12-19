@@ -13,7 +13,7 @@
     }
 
     percentToSize(percent) {
-      return percent * this.ringSize / 100 || 0;
+      return (percent * this.ringSize) / 100 || 0;
     }
   }
 

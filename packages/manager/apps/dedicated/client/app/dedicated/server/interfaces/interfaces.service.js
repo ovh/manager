@@ -35,8 +35,8 @@ export default class DedicatedServerInterfacesService {
       .v6()
       .query({ serverName })
       .$promise
-      .then(macs => this.$q.all(
-        macs.map(mac => this.PhysicalInterface.v6().get({ serverName, mac }).$promise),
+      .then((macs) => this.$q.all(
+        macs.map((mac) => this.PhysicalInterface.v6().get({ serverName, mac }).$promise),
       ))
       .catch((err) => {
         if (err.status === 460) {
@@ -63,7 +63,7 @@ export default class DedicatedServerInterfacesService {
     return this.$q.all(
       map(
         vniUUids,
-        uuid => this.VirtualInterface
+        (uuid) => this.VirtualInterface
           .v6()
           .get({
             serverName,
@@ -83,7 +83,7 @@ export default class DedicatedServerInterfacesService {
 
         return this.getVirtualNetworkInterfaces(nics, serverName);
       })
-      .then(vnis => [
+      .then((vnis) => [
         ...map(
           filter(
             nics,
@@ -119,21 +119,21 @@ export default class DedicatedServerInterfacesService {
 
   getTasks(serverName) {
     return this.$http.get(`/dedicated/server/${serverName}/task?function=${INTERFACE_TASK}`)
-      .then(response => response.data, () => [])
-      .then(taskIds => ({
-        promise: this.waitAllTasks(serverName, taskIds.map(taskId => ({ taskId }))),
+      .then((response) => response.data, () => [])
+      .then((taskIds) => ({
+        promise: this.waitAllTasks(serverName, taskIds.map((taskId) => ({ taskId }))),
       }));
   }
 
   disableInterfaces(serverName, interfaces) {
     return this.$q.all(
       interfaces
-        .filter(i => i.enabled === true)
-        .map(i => this.VirtualInterface.v6().disable({
+        .filter((i) => i.enabled === true)
+        .map((i) => this.VirtualInterface.v6().disable({
           serverName,
           uuid: i.id,
         }, {}).$promise),
-    ).then(tasks => this.waitAllTasks(serverName, tasks));
+    ).then((tasks) => this.waitAllTasks(serverName, tasks));
   }
 
   setPrivateAggregation(serverName, name, interfacesToGroup) {
@@ -150,7 +150,7 @@ export default class DedicatedServerInterfacesService {
   }
 
   waitAllTasks(serverName, tasks) {
-    return this.$q.all(tasks.map(task => this.Poller.poll(
+    return this.$q.all(tasks.map((task) => this.Poller.poll(
       `/dedicated/server/${serverName}/task/${task.taskId}`,
       null,
       { namespace: 'dedicated.server.interfaces.ola', method: 'get' },
@@ -160,7 +160,7 @@ export default class DedicatedServerInterfacesService {
   terminateOla(serverName) {
     return this.$http.delete(`/dedicated/server/${serverName}/option/OLA`)
       .then(
-        response => response.data,
+        (response) => response.data,
         (error) => { throw error; },
       );
   }

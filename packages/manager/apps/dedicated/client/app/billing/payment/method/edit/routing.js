@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       redirectTo: () => 'app.account.billing.payment.method',
 
-      model: /* @ngInject */ paymentMethod => ({
+      model: /* @ngInject */ (paymentMethod) => ({
         description: paymentMethod.description,
       }),
 
@@ -23,10 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       /* ----------  ouiModal layout resolves  ---------- */
 
-      heading: /* @ngInject */ $translate => $translate
+      heading: /* @ngInject */ ($translate) => $translate
         .instant('billing_payment_method_edit_title'),
 
-      primaryLabel: /* @ngInject */ $translate => $translate
+      primaryLabel: /* @ngInject */ ($translate) => $translate
         .instant('billing_payment_method_edit_action_save'),
 
       primaryAction: /* @ngInject */ (
@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }).then(() => goPaymentList({
           type: 'success',
           text: $translate.instant('billing_payment_method_edit_success'),
-        })).catch(error => goPaymentList({
+        })).catch((error) => goPaymentList({
           type: 'error',
           text: $translate.instant('billing_payment_method_edit_error', {
             errorMessage: get(error, 'data.message'),
@@ -52,12 +52,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }));
       },
 
-      secondaryLabel: /* @ngInject */ $translate => $translate
+      secondaryLabel: /* @ngInject */ ($translate) => $translate
         .instant('common_cancel'),
 
-      secondaryAction: /* @ngInject */ goPaymentList => goPaymentList,
+      secondaryAction: /* @ngInject */ (goPaymentList) => goPaymentList,
 
-      loading: /* @ngInject */ loaders => () => loaders.save,
+      loading: /* @ngInject */ (loaders) => () => loaders.save,
     },
   });
 };

@@ -115,13 +115,13 @@ export default /* @ngInject */ function
       const outData = data[1] && data[1].data ? data[1].data : [];
 
       const filteredDown = inData
-        .filter(d => self.kpiInterfaces.indexOf(d.tags.iface) > -1);
+        .filter((d) => self.kpiInterfaces.indexOf(d.tags.iface) > -1);
 
       forEach(filteredDown, makeGraphPositive);
       self.download = computeSpeed(filteredDown);
 
       const filteredUp = outData
-        .filter(d => self.kpiInterfaces.indexOf(d.tags.iface) > -1);
+        .filter((d) => self.kpiInterfaces.indexOf(d.tags.iface) > -1);
       forEach(filteredUp, makeGraphPositive);
       self.upload = computeSpeed(filteredUp);
 
@@ -135,13 +135,13 @@ export default /* @ngInject */ function
       });
       self.chartDown.setTooltipCallback(
         'label',
-        item => displayBitrate(item.yLabel),
+        (item) => displayBitrate(item.yLabel),
       );
 
       const downSeries = sortBy(
-        map(filteredDown, d => ({
+        map(filteredDown, (d) => ({
           name: d.tags.iface,
-          data: Object.keys(d.dps).map(key => ({
+          data: Object.keys(d.dps).map((key) => ({
             x: key * 1000,
             y: d.dps[key] * 8,
           })),
@@ -175,13 +175,13 @@ export default /* @ngInject */ function
       });
       self.chartUp.setTooltipCallback(
         'label',
-        item => displayBitrate(item.yLabel),
+        (item) => displayBitrate(item.yLabel),
       );
 
       const upSeries = sortBy(
-        map(filteredUp, d => ({
+        map(filteredUp, (d) => ({
           name: d.tags.iface,
-          data: Object.keys(d.dps).map(key => ({
+          data: Object.keys(d.dps).map((key) => ({
             x: key * 1000,
             y: d.dps[key] * 8,
           })),
@@ -324,7 +324,7 @@ export default /* @ngInject */ function
     self.loaders.checking = true;
     return OvhApiOverTheBox.v6().checkDevices().$promise.then((devices) => {
       self.allDevices = devices;
-      self.deviceIds = devices.map(device => device.deviceId);
+      self.deviceIds = devices.map((device) => device.deviceId);
       return self.deviceIds;
     }).catch((error) => {
       self.error.checking = error.data;
@@ -345,8 +345,8 @@ export default /* @ngInject */ function
     }).$promise.then((devices) => {
       self.device = devices;
       self.kpiInterfaces = devices.networkInterfaces
-        .filter(netInterface => netInterface.gateway != null)
-        .map(netInterface => (netInterface.device ? netInterface.device : netInterface.name));
+        .filter((netInterface) => netInterface.gateway != null)
+        .map((netInterface) => (netInterface.device ? netInterface.device : netInterface.name));
       return devices;
     }).catch((error) => {
       if (error.status === 404) {

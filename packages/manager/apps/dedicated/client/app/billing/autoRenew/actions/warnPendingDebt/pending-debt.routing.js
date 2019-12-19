@@ -9,11 +9,11 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
-      payDebt: /* @ngInject */ $state => () => {
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      payDebt: /* @ngInject */ ($state) => () => {
         $state.go('app.account.billing.main.history');
       },
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
     },
   });
 };

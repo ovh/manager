@@ -36,7 +36,7 @@ angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function
       const fileName = file ? file.name : '';
       self.isFileExtentionInvalid = !some(
         validExtensions,
-        ext => endsWith(fileName.toLowerCase(), ext),
+        (ext) => endsWith(fileName.toLowerCase(), ext),
       );
     }
     return self.isFileExtentionInvalid;
@@ -61,7 +61,7 @@ angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function
 
     // upload file to /me/document
     return uploadFile()
-      .then(document => self.scheduler.importIcsCalendar(document.getUrl).then((importTask) => {
+      .then((document) => self.scheduler.importIcsCalendar(document.getUrl).then((importTask) => {
         self.status.uploaded = true;
 
         return $timeout(() => {
@@ -70,7 +70,7 @@ angular.module('managerApp').controller('TelephonySchedulerImportCtrl', function
             uploadedDocument: document,
           });
         }, 1000);
-      })).catch(error => self.cancel(error)).finally(() => {
+      })).catch((error) => self.cancel(error)).finally(() => {
         self.loading.import = false;
       });
   };

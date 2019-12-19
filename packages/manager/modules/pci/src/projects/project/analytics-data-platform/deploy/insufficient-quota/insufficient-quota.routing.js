@@ -13,9 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
         quotas: null,
       },
       resolve: {
-        publicCloudName: $transition$ => $transition$.params().publicCloudName,
-        quotas: $transition$ => $transition$.params().quotas,
-        goBack: /* @ngInject */ goToDeploy => goToDeploy,
+        publicCloudName: ($transition$) => $transition$.params().publicCloudName,
+        quotas: ($transition$) => $transition$.params().quotas,
+        goBack: /* @ngInject */ (goToDeploy) => goToDeploy,
       },
     });
 };

@@ -61,7 +61,7 @@ angular.module('managerApp').controller('DBaasTsProjectDetailsKeyAddOrEditCtrl',
       let req;
 
       // Filter empty keys in the tags
-      self.model.tags = filter(self.model.tags, tag => tag.key);
+      self.model.tags = filter(self.model.tags, (tag) => tag.key);
 
       self.model.serviceName = serviceName;
 

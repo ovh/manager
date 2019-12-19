@@ -1,6 +1,6 @@
 import component from './place-order.component';
 
-const resolveActivationType = /* @ngInject */ $transition$ => $transition$
+const resolveActivationType = /* @ngInject */ ($transition$) => $transition$
   .params().activationType;
 
 const resolveCurrentService = /* @ngInject */ (
@@ -9,7 +9,7 @@ const resolveCurrentService = /* @ngInject */ (
 ) => $transition$.params().currentService
   || DedicatedCloud.getSelected($transition$.params().productId, true);
 
-const resolveServicePackToOrder = /* @ngInject */ $transition$ => $transition$
+const resolveServicePackToOrder = /* @ngInject */ ($transition$) => $transition$
   .params().servicePackToOrder;
 
 export default {

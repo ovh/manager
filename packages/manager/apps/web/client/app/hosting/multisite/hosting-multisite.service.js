@@ -232,7 +232,7 @@ angular.module('services').service(
             },
           },
         )
-        .then(response => response.data);
+        .then((response) => response.data);
     }
 
     /**
@@ -256,7 +256,7 @@ angular.module('services').service(
       return this.OvhHttp.get('/domain/zone', {
         rootPath: 'apiv6',
       }).then((zones) => {
-        const zonesJava = map(zones, zone => ({
+        const zonesJava = map(zones, (zone) => ({
           displayName: zone,
           formattedName: zone,
           name: zone,
@@ -281,7 +281,7 @@ angular.module('services').service(
             function: fn,
           },
         })
-        .then(response => response.data);
+        .then((response) => response.data);
     }
 
     /**
@@ -343,7 +343,7 @@ angular.module('services').service(
           subDomain,
           fieldType,
         },
-      }).then(response => response.data);
+      }).then((response) => response.data);
     }
 
     /**
@@ -395,7 +395,7 @@ angular.module('services').service(
           searchedType: 'AAAA',
         },
       })
-        .then(data => get(data, 'paginatedZone.records.results'))
+        .then((data) => get(data, 'paginatedZone.records.results'))
         .catch((error) => {
           if (error.code === 404) {
             return this.$q.resolve([]);

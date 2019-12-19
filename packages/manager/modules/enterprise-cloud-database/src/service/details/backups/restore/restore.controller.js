@@ -21,13 +21,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRestoreCtrl {
   restoreInstance() {
     this.isLoading = true;
     this.service.createRestore(this.backupInstance.clusterId, this.backupInstance.id)
-      .then(res => this.goBackToBackups(
+      .then((res) => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_restore_success',
           { name: this.backupInstance.name }),
         STATUS.SUCCESS,
         res.id,
       ))
-      .catch(error => this.goBackToBackups(
+      .catch((error) => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_restore_error', {
           message: get(error, 'data.message'),
         }),

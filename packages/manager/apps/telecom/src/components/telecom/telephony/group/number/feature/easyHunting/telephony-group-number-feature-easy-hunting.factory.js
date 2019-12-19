@@ -150,7 +150,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyHunting', ($q, Voi
     return OvhApiTelephony.EasyHunting().v6().get({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(featureOptions => self.setOptions(featureOptions));
+    }).$promise.then((featureOptions) => self.setOptions(featureOptions));
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

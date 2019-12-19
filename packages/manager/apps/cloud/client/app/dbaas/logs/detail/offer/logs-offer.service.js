@@ -10,7 +10,7 @@ class LogsOfferService {
     return this.OvhApiDbaasLogsOffer.get({
       serviceName,
     }).$promise
-      .catch(err => this.LogsHelperService.handleError('logs_offer_load_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_offer_load_error', err, {}));
   }
 
   getOfferDetail(offerCode) {

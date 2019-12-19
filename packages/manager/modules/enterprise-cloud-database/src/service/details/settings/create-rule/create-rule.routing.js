@@ -23,7 +23,7 @@ export default /* @ngInject */($stateProvider) => {
           }
           return promise;
         },
-        securityGroup: /* @ngInject */ $transition$ => $transition$.params().securityGroup,
+        securityGroup: /* @ngInject */ ($transition$) => $transition$.params().securityGroup,
       },
       translations: {
         value: ['.'],

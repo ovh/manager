@@ -54,7 +54,7 @@ export default class {
    * @return {Promise}
    */
   fetchEnums() {
-    return this.TucSmsMediator.getApiScheme().then(schema => schema.models['sms.SupportEnum'].enum);
+    return this.TucSmsMediator.getApiScheme().then((schema) => schema.models['sms.SupportEnum'].enum);
   }
 
   /**
@@ -115,7 +115,7 @@ export default class {
       this.loading.limitUser = false;
       this.limited = true;
       return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

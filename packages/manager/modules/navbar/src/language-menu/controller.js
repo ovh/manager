@@ -85,7 +85,7 @@ export default class {
   }
 
   getSublinks() {
-    return this.availableLangs.map(lang => ({
+    return this.availableLangs.map((lang) => ({
       title: lang.name,
       isActive: lang.key === this.currentLanguage.key,
       lang: head(words(lang.key)),

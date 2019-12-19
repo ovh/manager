@@ -108,7 +108,7 @@ angular.module('managerApp').controller('RA.add.storageCtrl', [
         loaderFunction: () => OvhApiCloudProjectRegion.AvailableRegions().v6()
           .query({ serviceName: $scope.projectId })
           .$promise
-          .catch(error => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+          .catch((error) => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
       });
       return $scope.availableRegions.load();
     }

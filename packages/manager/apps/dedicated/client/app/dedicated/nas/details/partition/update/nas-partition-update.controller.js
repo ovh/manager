@@ -25,6 +25,6 @@ angular.module('App').controller('NasPartitionUpdateCtrl', ($scope, $stateParams
         $rootScope.$broadcast('nas_launch_task');
         Alerter.success($translate.instant('nas_partitions_action_update_success', { t0: $scope.partition.partitionName }), alerterId);
       })
-      .catch(data => Alerter.alertFromSWS($translate.instant('nas_partitions_action_update_failure', { t0: $scope.partition.partitionName }), data, alerterId));
+      .catch((data) => Alerter.alertFromSWS($translate.instant('nas_partitions_action_update_failure', { t0: $scope.partition.partitionName }), data, alerterId));
   };
 });

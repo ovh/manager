@@ -67,7 +67,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxSound', ($q, $t
     // first upload file to user document
     return OvhApiMe.Document().v6()
       .upload(self.name, file)
-      .then(doc => OvhApiTelephony.OvhPabx().v6()
+      .then((doc) => OvhApiTelephony.OvhPabx().v6()
         .soundUpload({
           billingAccount: self.billingAccount,
           serviceName: self.serviceName,
@@ -75,7 +75,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxSound', ($q, $t
           name: self.name,
           url: doc.getUrl,
         }).$promise
-        .then(task => tucVoipServiceTask
+        .then((task) => tucVoipServiceTask
           .startPolling(
             self.billingAccount,
             self.serviceName, task.taskId,

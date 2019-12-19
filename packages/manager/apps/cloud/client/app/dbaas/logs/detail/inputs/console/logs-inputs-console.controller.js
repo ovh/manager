@@ -12,7 +12,7 @@ class LogsInputsConsoleCtrl {
   $onInit() {
     this.input.load();
     this.logger = new this.TailLogs({
-      source: () => this.inputLogUrl.load().then(urlInfo => urlInfo.data.url),
+      source: () => this.inputLogUrl.load().then((urlInfo) => urlInfo.data.url),
       delay: 10000,
     });
     this.logger.log();

@@ -28,7 +28,7 @@ export default class {
     this.phonebookToAdd.isAdding = true;
     return this.api.sms.phonebooks.create({
       serviceName: this.$stateParams.serviceName,
-    }, pick(this.phonebookToAdd, 'name')).$promise.then(phonebook => this.$state.go('sms.service.phonebooks', {
+    }, pick(this.phonebookToAdd, 'name')).$promise.then((phonebook) => this.$state.go('sms.service.phonebooks', {
       bookKey: phonebook.bookKey,
     })).catch((err) => {
       this.TucToastError(err);

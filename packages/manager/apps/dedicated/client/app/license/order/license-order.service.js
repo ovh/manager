@@ -55,7 +55,7 @@ class LicenseOrder {
 
         const promises = map(
           durations,
-          duration => plan
+          (duration) => plan
             .getPrice({
               duration: Number(duration),
               options: activeOptions,

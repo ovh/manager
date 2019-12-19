@@ -9,7 +9,7 @@ export const state = {
   url: '/?lang&ovhSubsidiary&ovhCompany&callback&onsuccess',
   component: signupFormComponent.name,
   resolve: {
-    getRedirectLocation: /* @ngInject */ $location => (nic) => {
+    getRedirectLocation: /* @ngInject */ ($location) => (nic) => {
       const { callback, onsuccess } = $location.search();
 
       if (callback && !SANITIZATION.regex.test(callback)) {
@@ -32,7 +32,7 @@ export const state = {
       return '/auth/?action=gotomanager';
     },
 
-    getStepByName: /* @ngInject */ steps => name => find(steps, {
+    getStepByName: /* @ngInject */ (steps) => (name) => find(steps, {
       name,
     }),
 
@@ -41,7 +41,7 @@ export const state = {
       return $state.is(step.state);
     },
 
-    me: /* @ngInject */ ssoAuthentication => ssoAuthentication
+    me: /* @ngInject */ (ssoAuthentication) => ssoAuthentication
       .getSsoAuthPendingPromise()
       .then(() => ssoAuthentication.user),
     onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {

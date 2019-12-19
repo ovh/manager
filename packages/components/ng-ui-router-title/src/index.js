@@ -17,7 +17,7 @@ angular
       const getStateTitle = (state) => {
         const stateTitle = find(
           get(state, 'resolvables'),
-          resolvable => resolvable.token === '$title',
+          (resolvable) => resolvable.token === '$title',
         );
         if (!stateTitle && has(state, 'parent')) {
           return getStateTitle(get(state, 'parent'));

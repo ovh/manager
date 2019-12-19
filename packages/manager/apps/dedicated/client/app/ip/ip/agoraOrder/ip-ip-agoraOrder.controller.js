@@ -81,23 +81,23 @@ angular
     createOfferDto(ipOffer) {
       const maximumQuantity = get(
         ipOffer.details.pricings.default.find(
-          price => head(price.capacities) === 'renew',
+          (price) => head(price.capacities) === 'renew',
         ),
         'maximumQuantity',
       );
 
       const countryCodes = ipOffer.details.product.configurations
-        .find(config => config.name === 'country').values;
+        .find((config) => config.name === 'country').values;
 
       return {
         productName: ipOffer.invoiceName,
         productShortName: ipOffer.invoiceName.replace(/^.*\]\s*/, ''),
         productRegion: get(ipOffer.invoiceName.match(/^\[([^\]]+)\]/), '1'),
         planCode: ipOffer.planCode,
-        price: ipOffer.details.pricings.default.find(price => price.capacities[0] === 'installation').price,
+        price: ipOffer.details.pricings.default.find((price) => price.capacities[0] === 'installation').price,
         maximumQuantity,
         quantities: range(1, maximumQuantity + 1),
-        countries: countryCodes.map(countryCode => ({
+        countries: countryCodes.map((countryCode) => ({
           code: countryCode,
           description: this.$translate.instant(`country_${countryCode.toUpperCase()}`),
         })),

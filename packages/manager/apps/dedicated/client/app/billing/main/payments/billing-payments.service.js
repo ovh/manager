@@ -37,7 +37,7 @@ angular.module('Billing.services').service('BillingPayments', [
           cache: billingCache,
           serviceType: 'apiv7',
         })
-        .then(response => response.data);
+        .then((response) => response.data);
     };
 
     this.getPayments = (_ids, limit = 0, offset = 0) => {
@@ -66,28 +66,28 @@ angular.module('Billing.services').service('BillingPayments', [
         .then((response) => {
           const res = response.data.sort((a, b) => ids.indexOf(a.key) - ids.indexOf(b.key));
 
-          return res.map(item => (item.error
+          return res.map((item) => (item.error
             ? angular.extend({ error: item.error }, item.value)
             : item.value));
         });
     };
 
-    this.getPayment = id => $http
+    this.getPayment = (id) => $http
       .get(`/me/deposit/${id}`, {
         cache: billingCache,
         serviceType: 'apiv7',
       })
-      .then(response => response.data);
+      .then((response) => response.data);
 
-    this.getBillsIds = id => $http
+    this.getBillsIds = (id) => $http
       .get(`/me/deposit/${id}/paidBills`, {
         cache: billingCache,
         serviceType: 'apiv7',
       })
-      .then(response => response.data);
+      .then((response) => response.data);
 
     this.getBillDetails = (id, billId) => this.getBill(id, billId)
-      .then(bill => this.getOperationsDetails(id, billId, bill.orderId).then((operations) => {
+      .then((bill) => this.getOperationsDetails(id, billId, bill.orderId).then((operations) => {
         const billdetails = clone(bill);
         if (!operations || operations.length === 0) {
           throw new Error('No operation for a bill concerned by a deposit');
@@ -104,12 +104,12 @@ angular.module('Billing.services').service('BillingPayments', [
         cache: billingCache,
         serviceType: 'apiv7',
       })
-      .then(response => response.data);
+      .then((response) => response.data);
 
     this.getOperationsDetails = (id, billId, orderId) => this.getOperationsIds(id, billId, orderId)
-      .then(operationsIds => $q.all(map(
+      .then((operationsIds) => $q.all(map(
         operationsIds,
-        operationId => this.getOperation(id, billId, operationId),
+        (operationId) => this.getOperation(id, billId, operationId),
       )));
 
     this.getOperationsIds = (id, billId, orderId) => $http
@@ -120,13 +120,13 @@ angular.module('Billing.services').service('BillingPayments', [
           depositOrderId: orderId,
         },
       })
-      .then(response => response.data);
+      .then((response) => response.data);
 
     this.getOperation = (id, billId, operationId) => $http
       .get(`/me/deposit/${id}/paidBills/${billId}/debt/operation/${operationId}`, {
         cache: billingCache,
         serviceType: 'apiv7',
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   },
 ]);

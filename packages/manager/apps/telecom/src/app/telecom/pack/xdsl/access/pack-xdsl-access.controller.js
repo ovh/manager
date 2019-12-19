@@ -218,7 +218,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
   }
 
   canHaveMoreIps() {
-    return filter(this.ipsV4, ip => ip.range !== this.PACK_IP.baseIpv4Range).length === 0;
+    return filter(this.ipsV4, (ip) => ip.range !== this.PACK_IP.baseIpv4Range).length === 0;
   }
 
   orderIps() {
@@ -272,8 +272,8 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     this.XdslTaskPoller.start(
       this.$stateParams.serviceName,
       this.$scope,
-      result => this.onTaskPollSuccess(result),
-      error => this.onTaskPollError(error),
+      (result) => this.onTaskPollSuccess(result),
+      (error) => this.onTaskPollError(error),
     );
 
     return this.$q.allSettled([
@@ -334,10 +334,10 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
       this.OvhApiXdsl.v6().getOrder({
         xdslId: this.$stateParams.serviceName,
       }).$promise.then((orders) => {
-        this.actualOrder = find(orders, order => order.status === 'doing');
+        this.actualOrder = find(orders, (order) => order.status === 'doing');
 
         if (!this.actualOrder) {
-          this.actualOrder = findLast(orders, order => order.status === 'done');
+          this.actualOrder = findLast(orders, (order) => order.status === 'done');
         }
 
         if (this.actualOrder.doneDate) {

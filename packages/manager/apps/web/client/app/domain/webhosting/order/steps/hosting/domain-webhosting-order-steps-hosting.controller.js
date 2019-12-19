@@ -9,7 +9,7 @@ export default class {
   $onInit() {
     this.showDetails = true;
     this.availableOffers = sortBy(
-      this.availableOffers.map(offer => Object.assign(
+      this.availableOffers.map((offer) => Object.assign(
         offer,
         {
           guideUrl: this.constants.urls.hosting[this.user.ovhSubsidiary],

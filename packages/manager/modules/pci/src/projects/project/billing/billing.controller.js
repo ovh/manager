@@ -24,7 +24,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
       .v6()
       .get({ serviceName: projectId })
       .$promise
-      .then(billingInfo => CloudProjectBilling.getConsumptionDetails(
+      .then((billingInfo) => CloudProjectBilling.getConsumptionDetails(
         billingInfo,
         billingInfo,
       ))

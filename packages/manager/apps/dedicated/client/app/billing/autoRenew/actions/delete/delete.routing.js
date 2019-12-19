@@ -19,8 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => (service.canHaveEngagement()
         ? Server.getSelected(service.serviceId) : Promise.resolve({ engagement: null }))
         .then(({ engagement }) => engagement),
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
-      serviceId: /* @ngInject */ $transition$ => $transition$.params().serviceId,
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      serviceId: /* @ngInject */ ($transition$) => $transition$.params().serviceId,
       service: /* @ngInject */ (
         BillingAutoRenew,
         serviceId,
@@ -29,9 +29,8 @@ export default /* @ngInject */ ($stateProvider) => {
         constants,
         currentUser,
       ) => constants.SUPPORT[currentUser.ovhSubsidiary],
-      updateService: /* @ngInject */ BillingAutoRenew => service => BillingAutoRenew.updateService(
-        service,
-      ),
+      updateService: /* @ngInject */ (BillingAutoRenew) => (service) => BillingAutoRenew
+        .updateService(service),
     },
   });
 };

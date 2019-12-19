@@ -1,6 +1,5 @@
 import moment from 'moment';
 
-/* global btoa */
 export default /* @ngInject */ function ($http) {
   this.getGraphData = function getGraphData(opts) {
     const req = {

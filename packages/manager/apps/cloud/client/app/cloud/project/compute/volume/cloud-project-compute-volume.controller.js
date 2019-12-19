@@ -87,7 +87,7 @@ angular.module('managerApp')
           if (self.table.selected[volumeId] === false) {
             delete self.table.selected[volumeId];
           } else {
-            const isInVolumeTable = find(self.table.volume, volume => volume.id === volumeId && volume.status === 'active');
+            const isInVolumeTable = find(self.table.volume, (volume) => volume.id === volumeId && volume.status === 'active');
             if (isInVolumeTable && self.table.selected[volumeId]) {
               self.table.selected[volumeId] = true;
             }
@@ -108,7 +108,7 @@ angular.module('managerApp')
     };
 
     $scope.$watch('CloudProjectComputeVolumeCtrl.table.volumeFilterPage', (pageVolumes) => {
-      self.table.volumeFilterCheckboxPage = filter(pageVolumes, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
+      self.table.volumeFilterCheckboxPage = filter(pageVolumes, (volume) => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
     });
 
     // ---------SEARCH BAR---------
@@ -137,7 +137,7 @@ angular.module('managerApp')
         });
 
         self.table.volumeFilter = tab;
-        self.table.volumeFilterCheckbox = filter(tab, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
+        self.table.volumeFilterCheckbox = filter(tab, (volume) => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
 
         if (self.table.volumeFilter.length) {
           self.orderBy();
@@ -171,7 +171,7 @@ angular.module('managerApp')
         orderByExpression,
         self.order.reverse,
       );
-      self.table.volumeFilterCheckbox = filter(self.table.volumeFilter, volume => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
+      self.table.volumeFilterCheckbox = filter(self.table.volumeFilter, (volume) => volume.getStatusGroup() === 'ACTIVE' && !volume.snapshotted);
     };
 
     // ---------VOLUME---------
@@ -305,7 +305,7 @@ angular.module('managerApp')
           self.getVolume(true);
           CucCloudMessage.success($translate.instant('cpc_volume_delete_success'));
         },
-        errorHandler: err => CucCloudMessage.error([$translate.instant('cpc_volume_delete_error'), (err.data && err.data.message) || ''].join(' ')),
+        errorHandler: (err) => CucCloudMessage.error([$translate.instant('cpc_volume_delete_error'), (err.data && err.data.message) || ''].join(' ')),
       });
     };
 

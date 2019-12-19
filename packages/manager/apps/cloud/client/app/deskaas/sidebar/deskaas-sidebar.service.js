@@ -22,7 +22,7 @@ angular.module('managerApp').service('deskaasSidebar', function deskaasSidebar($
                   OvhApiDeskaasService.v6()
                     .get({ serviceName })
                     .$promise
-                    .then(service => service, () => ({ serviceName, alias: '', error: true })),
+                    .then((service) => service, () => ({ serviceName, alias: '', error: true })),
                 );
             },
           );

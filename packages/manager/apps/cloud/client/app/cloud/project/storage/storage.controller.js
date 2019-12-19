@@ -119,7 +119,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
     // Search callbacks
     $scope.search = function search(value) {
       const regexp = new RegExp(value, 'i');
-      $scope.storagesFiltered = filter($scope.storages, storage => regexp.test(storage.name));
+      $scope.storagesFiltered = filter($scope.storages, (storage) => regexp.test(storage.name));
     };
 
     $scope.showAll = function showAll() {
@@ -145,7 +145,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
       if ($scope.filter.enabled) {
         $scope.storagesFiltered = filter(
           $scope.storages,
-          storage => storage.name
+          (storage) => storage.name
             && storage.name.toLowerCase().indexOf($scope.filter.name.toLowerCase()) !== -1,
         );
       } else {
@@ -165,7 +165,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
 
       function refreshView() {
         $rootScope.$broadcast('delete_container', [container.name]);
-        $scope.storages = filter($scope.storages, storage => storage.id !== container.id);
+        $scope.storages = filter($scope.storages, (storage) => storage.id !== container.id);
         $scope.filterStorages();
       }
 
@@ -193,7 +193,7 @@ angular.module('managerApp').controller('RA.storageCtrl', [
 
       // First, delete all objects from the container
       return CloudStorageContainer.list($scope.projectId, container.id)
-        .then(containerData => containerData.objects)
+        .then((containerData) => containerData.objects)
         .then((objects) => {
           const deleteObjectTasks = map(objects, createDeleteObjectTask);
           return CloudStorageContainerTasksRunner

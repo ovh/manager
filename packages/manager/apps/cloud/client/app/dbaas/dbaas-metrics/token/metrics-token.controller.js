@@ -21,7 +21,7 @@
       this.loading = true;
       this.MetricService.getTokens(serviceName)
         .then((data) => {
-          this.tokens = data.filter(token => token.isRevoked === false);
+          this.tokens = data.filter((token) => token.isRevoked === false);
           this.loading = false;
         });
     }

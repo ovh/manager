@@ -115,7 +115,7 @@ export default class DomainConfigurationController {
       this.$routerParams.productId,
     )
       .then((domainData) => {
-        this.availableDomainNames = domainData.availableDomains.map(domain => domain.name);
+        this.availableDomainNames = domainData.availableDomains.map((domain) => domain.name);
       })
       .catch((error) => {
         this.messaging.writeError(
@@ -146,7 +146,7 @@ export default class DomainConfigurationController {
               this.$routerParams.productId,
               domain.taskPendingId,
             )
-            .then(domainCreationTask => ({ domain, domainCreationTask }));
+            .then((domainCreationTask) => ({ domain, domainCreationTask }));
         }
 
         if (this.exchangeStates.constructor.isDeleting(domain)) {
@@ -341,7 +341,7 @@ export default class DomainConfigurationController {
     const formattedDomainName = this.homepage.domainName.replace(/^www\./, '');
 
     return this.addingDomain()
-      .then(domainCreationTask => this.wizardHostedCreationDomainConfiguration
+      .then((domainCreationTask) => this.wizardHostedCreationDomainConfiguration
         .pollingCNAMEToCheck(
           this.$routerParams.organization,
           this.$routerParams.productId,

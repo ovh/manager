@@ -187,7 +187,7 @@ angular
 
     atInternetUiRouterPluginProvider.setTrackStateChange(constants.prodMode
       && window.location.port.length <= 3);
-    atInternetUiRouterPluginProvider.addStateNameFilter(routeName => (routeName ? routeName.replace(/^app/, 'dedicated').replace(/\./g, '::') : ''));
+    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => (routeName ? routeName.replace(/^app/, 'dedicated').replace(/\./g, '::') : ''));
   })
   .constant('REGEX', {
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,

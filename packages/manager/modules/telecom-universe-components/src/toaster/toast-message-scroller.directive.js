@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export default /* @ngInject */ $window => ({
+export default /* @ngInject */ ($window) => ({
   restrict: 'A',
   link(scope, element) {
     const delay = 250;

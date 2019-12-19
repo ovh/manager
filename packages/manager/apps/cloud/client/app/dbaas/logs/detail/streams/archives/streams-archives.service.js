@@ -37,7 +37,7 @@ class LogsStreamsArchivesService {
   getArchives(serviceName, streamId, archiveIds) {
     return this.getArchiveDetails(serviceName, streamId, archiveIds)
       .then((archives) => {
-        archives.forEach(archive => this.transformArchive(archive));
+        archives.forEach((archive) => this.transformArchive(archive));
         return archives;
       })
       .catch(this.CucServiceHelper.errorHandler('streams_archives_loading_error'));
@@ -53,7 +53,8 @@ class LogsStreamsArchivesService {
    * @memberof LogsStreamsArchivesService
    */
   getArchiveDetails(serviceName, streamId, archiveIds) {
-    const promises = archiveIds.map(archiveId => this.getArchive(serviceName, streamId, archiveId));
+    const promises = archiveIds
+      .map((archiveId) => this.getArchive(serviceName, streamId, archiveId));
     return this.$q.all(promises);
   }
 
@@ -84,7 +85,7 @@ class LogsStreamsArchivesService {
       streamId,
       archiveId,
       expirationInSeconds: this.LogsConstants.expirationInSeconds,
-    }).$promise.then(response => response.data);
+    }).$promise.then((response) => response.data);
   }
 
   /**

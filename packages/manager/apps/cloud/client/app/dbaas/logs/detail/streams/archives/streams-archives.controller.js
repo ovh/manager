@@ -226,7 +226,7 @@ class LogsStreamsArchivesCtrl {
       ),
     });
     return this.archives.load()
-      .then(archives => ({
+      .then((archives) => ({
         data: archives,
         meta: {
           totalCount: this.archiveIds.data.length,
@@ -234,7 +234,7 @@ class LogsStreamsArchivesCtrl {
       }))
       .then(this.startRetrievalDelayUpdate())
       .then((archivesData) => {
-        archivesData.data.forEach(archive => this.updateUnfreezingNotification(archive));
+        archivesData.data.forEach((archive) => this.updateUnfreezingNotification(archive));
         return archivesData;
       });
   }
@@ -261,7 +261,7 @@ class LogsStreamsArchivesCtrl {
       archive.archiveId,
     )
       .then(() => this.reloadArchiveDetail(archive.archiveId))
-      .then(updatedArchive => this.updateUnfreezingNotification(updatedArchive))
+      .then((updatedArchive) => this.updateUnfreezingNotification(updatedArchive))
       .catch((err) => {
         this.updateNotification({
           text: this.$translate.instant('streams_archives_url_load_error', {

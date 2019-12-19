@@ -166,7 +166,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEntryEditCtrl
             return true;
           },
         ),
-        enumVal => ({
+        (enumVal) => ({
           value: enumVal,
           label: $translate.instant(`telephony_number_feature_ovh_pabx_menu_entry_action_${snakeCase(enumVal)}`),
           explain: $translate.instant(`telephony_number_feature_ovh_pabx_menu_entry_action_${snakeCase(enumVal)}_explain`),

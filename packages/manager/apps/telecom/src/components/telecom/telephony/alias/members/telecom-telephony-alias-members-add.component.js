@@ -31,7 +31,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       $translatePartialLoader.addPart('../components/telecom/telephony/alias/members');
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
-        return self.refreshMembers().catch(err => new TucToastError(err));
+        return self.refreshMembers().catch((err) => new TucToastError(err));
       });
     };
 
@@ -71,16 +71,16 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
           .addMembers(map(
             filter(
               self.addMemberForm.numbers,
-              number => number && number.length,
+              (number) => number && number.length,
             ),
-            number => assign({ number }, self.addMemberForm.options),
+            (number) => assign({ number }, self.addMemberForm.options),
           ))
           .then(() => {
             TucToast.success($translate.instant('telephony_alias_members_add_success'));
             self.resetMemberAddForm();
             form.$setPristine();
           })
-          .catch(err => new TucToastError(err))
+          .catch((err) => new TucToastError(err))
           .finally(() => {
             self.loaders.adding = false;
           });

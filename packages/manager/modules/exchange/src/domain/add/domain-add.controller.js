@@ -222,7 +222,7 @@ export default class ExchangeAddDomainController {
     if (!isEmpty(this.search.value)) {
       this.availableDomains = filter(
         this.availableDomainsBuffer,
-        currentItem => includes(currentItem.displayName, this.search.value),
+        (currentItem) => includes(currentItem.displayName, this.search.value),
       );
     }
 

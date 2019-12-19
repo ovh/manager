@@ -22,13 +22,13 @@ export default class NashaPartitionAccessDeleteCtrl {
         serviceName: this.toRemove.serviceName,
         partitionName: this.toRemove.partitionName,
         ip: this.toRemove.access.ip,
-      }).$promise.then(result => this.goToPartitionAccessPage(
+      }).$promise.then((result) => this.goToPartitionAccessPage(
         this.$translate.instant('nasha_access_action_delete_success', {
           accessIp: this.toRemove.access.ip,
         }),
         'success',
         { access: this.toRemove.access, task: result.data.taskId },
-      )).catch(error => this.goToPartitionAccessPage(
+      )).catch((error) => this.goToPartitionAccessPage(
         this.$translate.instant('nasha_access_action_delete_failure', {
           accessIp: this.toRemove.access.ip,
           message: get(error, 'data.message'),

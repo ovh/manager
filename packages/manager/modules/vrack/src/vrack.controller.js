@@ -226,7 +226,7 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
         let allServices = allServicesParam;
         allServices = mapValues(allServices, (services, serviceType) => {
           if (isArray(services)) {
-            return map(services, service => fillServiceData(serviceType, service));
+            return map(services, (service) => fillServiceData(serviceType, service));
           }
           return services;
         });
@@ -256,7 +256,7 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
         allServices = mapValues(allServices, (servicesParams, serviceType) => {
           let services = servicesParams;
           if (isArray(services)) {
-            services = map(services, service => fillServiceData(serviceType, service));
+            services = map(services, (service) => fillServiceData(serviceType, service));
           }
           return services;
         });
@@ -291,14 +291,14 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
       .tasks({
         serviceName: self.serviceName,
       }).$promise
-      .then(taskIds => $q.all(map(taskIds, id => OvhApiVrack.v6()
+      .then((taskIds) => $q.all(map(taskIds, (id) => OvhApiVrack.v6()
         .task({
           serviceName: self.serviceName,
           taskId: id,
         }).$promise
-        .then(task => task)
-        .catch(err => (err.status === 404 ? $q.when(null) : $q.reject(err)))))
-        .then(tasks => without(tasks, null)));
+        .then((task) => task)
+        .catch((err) => (err.status === 404 ? $q.when(null) : $q.reject(err)))))
+        .then((tasks) => without(tasks, null)));
   };
 
   self.resetCache = function resetCache() {

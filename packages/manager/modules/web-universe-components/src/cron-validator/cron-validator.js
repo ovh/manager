@@ -130,7 +130,7 @@ export default function cronValidator() {
   this.getSimpleModeItems = (cronValue, field) => {
     let selectValuesTempo = pickBy(
       cronValue.simple.items[field],
-      selectValue => !!selectValue,
+      (selectValue) => !!selectValue,
     );
     selectValuesTempo = keys(selectValuesTempo);
     return selectValuesTempo.sort((a, b) => a - b);

@@ -84,7 +84,7 @@ angular.module('managerApp')
     function loadConsumptionDetails() {
       self.instanceConsumptionDetailsInit = map(
         self.instances,
-        billingDetail => getInstanceConsumptionDetails(billingDetail),
+        (billingDetail) => getInstanceConsumptionDetails(billingDetail),
       );
 
       $q.allSettled(self.instanceConsumptionDetailsInit).then((instances) => {

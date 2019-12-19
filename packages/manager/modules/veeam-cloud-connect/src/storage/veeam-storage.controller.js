@@ -11,7 +11,7 @@ export default class VeeamCloudConnectStorageCtrl {
     this.storageInfos = CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.VeeamCloudConnectService
         .getStorages(this.$stateParams.serviceName),
-      errorHandler: response => this.VeeamCloudConnectService.unitOfWork.messages.push({
+      errorHandler: (response) => this.VeeamCloudConnectService.unitOfWork.messages.push({
         text: response.message,
         type: 'error',
       }),

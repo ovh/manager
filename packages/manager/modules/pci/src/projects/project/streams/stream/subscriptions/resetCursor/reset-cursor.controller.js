@@ -24,7 +24,7 @@ export default class PciStreamsStreamSubscriptionsResetCursorController {
           subscription: this.subscription.name,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_subscriptions_reset_cursor_error_reset_cursor',
         {
           message: get(err, 'data.message', null),

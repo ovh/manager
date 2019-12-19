@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').controller('CloudProjectComputeInfrastructureVirtualmachineMonthlyConfirm', function CloudProjectComputeInfrastructureVirtualmachineMonthlyConfirm($uibModalInstance, params, $translate, CucCloudMessage, CloudProjectComputeInfrastructureOrchestrator) {
   const self = this;
 

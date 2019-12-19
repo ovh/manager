@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName: projectId,
           })
           .$promise,
-        goBack: /* @ngInject */ $state => () => $state.go('^'),
+        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       },
     });
 };

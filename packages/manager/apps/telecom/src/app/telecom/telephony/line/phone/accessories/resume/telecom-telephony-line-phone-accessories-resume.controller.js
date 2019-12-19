@@ -24,7 +24,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesRes
     self.process = TucTelephonyAccessoriesOrderProcess.getOrderProcess();
 
     return TucTelephonyAccessoriesOrderProcess.getOrderCheckout().then((order) => {
-      remove(order.details, detail => ['SPECIAL', 'MUTE'].indexOf(detail.detailType) > -1 || (isEqual(detail.detailType, 'DELIVERY') && detail.totalPrice.value === 0));
+      remove(order.details, (detail) => ['SPECIAL', 'MUTE'].indexOf(detail.detailType) > -1 || (isEqual(detail.detailType, 'DELIVERY') && detail.totalPrice.value === 0));
 
       self.order = order;
     }, (error) => {

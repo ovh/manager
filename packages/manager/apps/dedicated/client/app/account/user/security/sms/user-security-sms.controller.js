@@ -28,7 +28,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
          * @return {Promise}
          */
     function fetchSmsAccounts() {
-      return DoubleAuthSmsService.query().then(smsIds => $q.all(map(smsIds, smsId => DoubleAuthSmsService.get(smsId))).then(smsAccounts => filter(smsAccounts, smsAccount => smsAccount.status !== 'needCodeValidation')));
+      return DoubleAuthSmsService.query().then((smsIds) => $q.all(map(smsIds, (smsId) => DoubleAuthSmsService.get(smsId))).then((smsAccounts) => filter(smsAccounts, (smsAccount) => smsAccount.status !== 'needCodeValidation')));
     }
 
     /* -----  End of HELPERS  ------ */
@@ -55,7 +55,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
         .then((smsAccounts) => {
           $scope.sms.smsAccounts = smsAccounts;
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_error'), err.data, 'doubleAuthAlert'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_error'), err.data, 'doubleAuthAlert'))
         .finally(() => {
           $scope.sms.isLoading = false;
         });

@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'ZONE',
     },
     resolve: {
-      activateZone: /* @ngInject */ $state => () => $state.go('app.domain.product.zone.activate'),
+      activateZone: /* @ngInject */ ($state) => () => $state.go('app.domain.product.zone.activate'),
       goToZone: /* @ngInject */ ($state, Alerter) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
 
@@ -47,8 +47,8 @@ export default /* @ngInject */ ($stateProvider) => {
       rename: 'ZONE',
     },
     resolve: {
-      activateZone: /* @ngInject */ $state => () => $state.go('app.domain.alldom.zone.activate'),
-      goToZone: /* @ngInject */ $state => () => $state.go('app.domain.alldom.zone'),
+      activateZone: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.zone.activate'),
+      goToZone: /* @ngInject */ ($state) => () => $state.go('app.domain.alldom.zone'),
     },
   });
 };

@@ -35,7 +35,7 @@ export default class VpsUpgradeLegacyCtrl {
   }
 
   getCurrentModel() {
-    return find(this.upgradesList, upgrade => upgrade.isCurrentModel === true);
+    return find(this.upgradesList, (upgrade) => upgrade.isCurrentModel === true);
   }
 
   validateStep1() {
@@ -76,7 +76,7 @@ export default class VpsUpgradeLegacyCtrl {
     this.conditionsAgree = false;
     this.loaders.step2 = true;
     this.order = null;
-    const modelToUpgradeTo = find(this.upgradesList, e => e.model === head(this.selectedModel.model.split(':')) && e.name === this.selectedModel.model.split(':')[1]);
+    const modelToUpgradeTo = find(this.upgradesList, (e) => e.model === head(this.selectedModel.model.split(':')) && e.name === this.selectedModel.model.split(':')[1]);
 
     if (isEmpty(modelToUpgradeTo)) {
       return this.$q.when(true);

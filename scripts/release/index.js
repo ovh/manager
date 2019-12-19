@@ -17,13 +17,13 @@ const getChangedRepositories = (force = false) => MonoRepository
   .getRepositories(true)
   .logging('listing repositories')
   .then((repos) => {
-    repos.forEach(r => console.log(`    ${r.toString()}`));
-    const changes = repos.map(r => r.hasChanges());
+    repos.forEach((r) => console.log(`    ${r.toString()}`));
+    const changes = repos.map((r) => r.hasChanges());
     return Promise.all(changes)
-      .then(hasChanges => repos.filter((r, id) => force || hasChanges[id]))
+      .then((hasChanges) => repos.filter((r, id) => force || hasChanges[id]))
       .logging('listing changes')
       .then((changedRepos) => {
-        changedRepos.forEach(r => console.log(`    ${r.toString()} has changes`));
+        changedRepos.forEach((r) => console.log(`    ${r.toString()} has changes`));
         return changedRepos;
       });
   });
@@ -35,34 +35,34 @@ const bumpRepositories = (
   preid = null,
   checkPreReleaseFile = true,
 ) => Promise.all(
-  repos.map(repo => repo.bump(type, prerelease, preid, checkPreReleaseFile)),
+  repos.map((repo) => repo.bump(type, prerelease, preid, checkPreReleaseFile)),
 )
   .logging('bumping repositories')
   .then((bumps) => {
-    bumps.forEach(b => console.log(`    ${b.releaseType} ${b.repository.toString()} to ${b.newVersion}`));
-    return bumps.map(b => b.repository);
+    bumps.forEach((b) => console.log(`    ${b.releaseType} ${b.repository.toString()} to ${b.newVersion}`));
+    return bumps.map((b) => b.repository);
   });
 
-const updateChangelogs = repos => Promise.all(repos.map(repo => repo.updateChangelog()))
+const updateChangelogs = (repos) => Promise.all(repos.map((repo) => repo.updateChangelog()))
   .logging('updating changelogs')
   .then((updatedRepos) => {
-    updatedRepos.forEach(r => console.log(`    updated changelog of ${r.toString()}`));
+    updatedRepos.forEach((r) => console.log(`    updated changelog of ${r.toString()}`));
     return repos;
   });
 
-const getDependenciesToUpdate = repos => Promise.all(repos.map(r => r.getDependencies()))
-  .then(deps => [].concat(...deps)) // flatten all deps
-  .then(deps => deps.filter(dep => dep.needsUpdate()))
+const getDependenciesToUpdate = (repos) => Promise.all(repos.map((r) => r.getDependencies()))
+  .then((deps) => [].concat(...deps)) // flatten all deps
+  .then((deps) => deps.filter((dep) => dep.needsUpdate()))
   .logging('listing dependencies to update')
   .then((deps) => {
-    deps.forEach(d => console.log(`    in ${d.repository.name}: ${d.dependency.name}${d.semanticVersion} needs to be updated to ${d.dependency.version}`));
+    deps.forEach((d) => console.log(`    in ${d.repository.name}: ${d.dependency.name}${d.semanticVersion} needs to be updated to ${d.dependency.version}`));
     return deps;
   });
 
-const checkDependencies = dependencies => new Promise((resolve, reject) => {
-  const invalid = dependencies.filter(d => !d.isValid());
+const checkDependencies = (dependencies) => new Promise((resolve, reject) => {
+  const invalid = dependencies.filter((d) => !d.isValid());
   if (invalid.length) {
-    reject(invalid.map(d => `invalid dependency ${String(d)}`));
+    reject(invalid.map((d) => `invalid dependency ${String(d)}`));
   } else {
     resolve(dependencies);
   }
@@ -74,16 +74,16 @@ const checkDependencies = dependencies => new Promise((resolve, reject) => {
   });
 
 const updateDependencies = (dependencies) => {
-  const promiseSerial = funcs => funcs.reduce((promise, func) => promise.then(
-    result => func()
+  const promiseSerial = (funcs) => funcs.reduce((promise, func) => promise.then(
+    (result) => func()
       .then(Array.prototype.concat.bind(result)),
   ),
   Promise.resolve([]));
 
-  return promiseSerial(dependencies.map(d => () => d.update()))
+  return promiseSerial(dependencies.map((d) => () => d.update()))
     .logging('updating dependencies')
     .then((deps) => {
-      deps.forEach(d => console.log(`    in ${d.repository.name}: updated ${d.dependency.name} dependency to ${d.semanticVersion}`));
+      deps.forEach((d) => console.log(`    in ${d.repository.name}: updated ${d.dependency.name} dependency to ${d.semanticVersion}`));
       return deps;
     });
 };

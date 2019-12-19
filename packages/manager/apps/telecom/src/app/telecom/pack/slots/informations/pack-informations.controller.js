@@ -6,21 +6,21 @@ angular.module('managerApp').controller('PackInformationCtrl', function PackInfo
   function getResiliationFollowUp() {
     return OvhApiPackXdsl.v6().resiliationFollowUp({
       packName: $stateParams.packName,
-    }).$promise.catch(err => (err.status === 404 ? $q.when(null) : $q.reject(err)));
+    }).$promise.catch((err) => (err.status === 404 ? $q.when(null) : $q.reject(err)));
   }
 
   function getIsResiliationCancellable() {
     return OvhApiPackXdsl.Resiliation().v6().canCancelResiliation({
       packName: $stateParams.packName,
-    }, null).$promise.then(result => result.value);
+    }, null).$promise.then((result) => result.value);
   }
 
   function getAssociatedLine() {
     return OvhApiPackXdsl.Access().v6().getServices({
       packId: $stateParams.packName,
-    }).$promise.then(access => OvhApiXdsl.Lines().v6().query({
+    }).$promise.then((access) => OvhApiXdsl.Lines().v6().query({
       xdslId: head(access),
-    }).$promise.then(lines => head(lines)));
+    }).$promise.then((lines) => head(lines)));
   }
 
   function init() {

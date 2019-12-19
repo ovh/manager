@@ -45,7 +45,7 @@ angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', func
     }).$promise.then((shippingAddresses) => {
       self.ovhContactOptions.customList = map(
         shippingAddresses,
-        shippingAddress => new OvhContact({
+        (shippingAddress) => new OvhContact({
           address: {
             line1: shippingAddress.address,
             city: shippingAddress.cityName,

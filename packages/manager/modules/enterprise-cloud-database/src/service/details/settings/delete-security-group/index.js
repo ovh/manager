@@ -14,7 +14,7 @@ angular.module(moduleName, [
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
       return import('./delete-security-group.module')
-        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+        .then((mod) => $ocLazyLoad.inject(mod.default || mod));
     },
   });
 });

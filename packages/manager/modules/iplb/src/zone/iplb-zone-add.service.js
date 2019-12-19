@@ -21,17 +21,17 @@ export default class IpLoadBalancerZoneAddService {
       orderableZones: this.OvhApiIpLoadBalancing.v6()
         .get({ serviceName })
         .$promise
-        .then(response => response.orderableZone),
+        .then((response) => response.orderableZone),
       suspendedZones: this.getSuspendedZones(serviceName),
     })
       .then((response) => {
         const availableZones = response.orderableZones.concat(response.suspendedZones);
         return map(
           availableZones,
-          zone => assignIn(zone, this.CucRegionService.getRegion(zone.name)),
+          (zone) => assignIn(zone, this.CucRegionService.getRegion(zone.name)),
         );
       })
-      .then(availableZones => map(availableZones, zone => assignIn(zone, {
+      .then((availableZones) => map(availableZones, (zone) => assignIn(zone, {
         selectable: {
           value: true,
           reason: zone.state === 'released' ? this.$translate.instant('iplb_zone_add_available_released') : '',
@@ -46,8 +46,8 @@ export default class IpLoadBalancerZoneAddService {
     }
 
     return this.$q.all({
-      created: this.createZones(serviceName, filter(zones, zone => zone.state !== 'released')),
-      activated: this.activateZones(serviceName, filter(zones, zone => zone.state === 'released')),
+      created: this.createZones(serviceName, filter(zones, (zone) => zone.state !== 'released')),
+      activated: this.activateZones(serviceName, filter(zones, (zone) => zone.state === 'released')),
     })
       .then((response) => {
         if (response.created.quantity > 0) {
@@ -77,12 +77,12 @@ export default class IpLoadBalancerZoneAddService {
       return emptyResponse;
     }
 
-    return this.CucOrderHelperService.getExpressOrderUrl(map(zones, zone => ({
+    return this.CucOrderHelperService.getExpressOrderUrl(map(zones, (zone) => ({
       productId: 'ipLoadbalancing',
       serviceName,
       planCode: zone.planCode,
     })))
-      .then(response => ({
+      .then((response) => ({
         quantity: zones.length,
         url: response,
       }))
@@ -100,7 +100,7 @@ export default class IpLoadBalancerZoneAddService {
 
     const promises = map(
       zones,
-      zone => this.OvhApiIpLoadBalancing.Zone().v6()
+      (zone) => this.OvhApiIpLoadBalancing.Zone().v6()
         .cancelDelete({ serviceName, name: zone.name }, {}).$promise,
     );
     return this.$q.all(promises)
@@ -119,11 +119,11 @@ export default class IpLoadBalancerZoneAddService {
       .then((zoneIds) => {
         const promises = map(
           zoneIds,
-          zoneId => this.OvhApiIpLoadBalancing.Zone().v6()
+          (zoneId) => this.OvhApiIpLoadBalancing.Zone().v6()
             .get({ serviceName, name: zoneId }).$promise,
         );
         return this.$q.all(promises);
       })
-      .then(zones => filter(zones, zone => zone.state === 'released'));
+      .then((zones) => filter(zones, (zone) => zone.state === 'released'));
   }
 }

@@ -7,7 +7,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/new',
     component: 'ovhManagerPciStreamsAdd',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_streams_add_title'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_streams_add_title'),
       cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.streams', {
         projectId,
       }),
@@ -21,7 +21,7 @@ export default /* @ngInject */($stateProvider) => {
         goToStreams,
         ovhManagerPciStreamsAdd,
         projectId,
-      ) => streamCreation => ovhManagerPciStreamsAdd
+      ) => (streamCreation) => ovhManagerPciStreamsAdd
         .addStream(projectId, streamCreation)
         .then(({ name }) => goToStreams(
           $translate.instant('pci_projects_project_streams_add_success', { name }),

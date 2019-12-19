@@ -26,7 +26,7 @@ export default class HostingDatabaseOrderPrivateService {
       .getProductPublicCatalog(ovhSubsidiary, name);
 
     return products.map(
-      item => find(catalog[category], { planCode: item.planCode }),
+      (item) => find(catalog[category], { planCode: item.planCode }),
     );
   }
 

@@ -32,7 +32,7 @@ angular
     });
   })
   .factory('TelecomSmsPhoneBooksNumber', () => ({
-    isValid: number => !!(number
+    isValid: (number) => !!(number
         && number.match(/^\+?(\d|\.| |#|-)+$/)
         && number.length < 26
         && number.length > 2),

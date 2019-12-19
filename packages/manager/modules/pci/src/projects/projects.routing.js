@@ -22,15 +22,15 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: /* @ngInject */ () => null,
-        confirmDeletion: /* @ngInject */ $state => project => $state.go('pci.projects.remove', { projectId: project.project_id }),
+        confirmDeletion: /* @ngInject */ ($state) => (project) => $state.go('pci.projects.remove', { projectId: project.project_id }),
         defaultProject: /* @ngInject */
-          PciProjectsService => PciProjectsService.getDefaultProject(),
-        getProject: /* @ngInject */ OvhApiCloudProject => project => OvhApiCloudProject
+          (PciProjectsService) => PciProjectsService.getDefaultProject(),
+        getProject: /* @ngInject */ (OvhApiCloudProject) => (project) => OvhApiCloudProject
           .v6()
           .get({ serviceName: project.serviceName })
           .$promise
-          .then(projectDetails => new Project(projectDetails)),
-        goToProject: /* @ngInject */ $state => project => $state.go('pci.projects.project', { projectId: project.serviceName }),
+          .then((projectDetails) => new Project(projectDetails)),
+        goToProject: /* @ngInject */ ($state) => (project) => $state.go('pci.projects.project', { projectId: project.serviceName }),
         goToProjects: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
@@ -46,12 +46,12 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
         guideUrl: () => GUIDES_URL,
-        projects: /* @ngInject */ OvhApiCloudProject => OvhApiCloudProject
+        projects: /* @ngInject */ (OvhApiCloudProject) => OvhApiCloudProject
           .v6()
           .query()
           .$promise
-          .then(projects => map(projects, serviceName => new Project({ serviceName }))),
-        terminateProject: /* @ngInject */ OvhApiCloudProject => project => OvhApiCloudProject
+          .then((projects) => map(projects, (serviceName) => new Project({ serviceName }))),
+        terminateProject: /* @ngInject */ (OvhApiCloudProject) => (project) => OvhApiCloudProject
           .v6()
           .delete({ serviceName: project.serviceName })
           .$promise,

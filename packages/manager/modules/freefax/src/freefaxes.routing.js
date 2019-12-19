@@ -13,8 +13,8 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       apiPath: () => '/freefax',
       ...ListLayoutHelper.stateResolves,
-      getFreefaxLink: /* @ngInject */ $state => fax => $state.href('freefaxes.freefax', { serviceName: fax.number }),
-      viewFreefax: /* @ngInject */ $state => fax => $state.go('freefaxes.freefax', { serviceName: fax.number }),
+      getFreefaxLink: /* @ngInject */ ($state) => (fax) => $state.href('freefaxes.freefax', { serviceName: fax.number }),
+      viewFreefax: /* @ngInject */ ($state) => (fax) => $state.go('freefaxes.freefax', { serviceName: fax.number }),
     },
   });
 };

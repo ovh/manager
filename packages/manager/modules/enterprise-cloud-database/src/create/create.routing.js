@@ -10,20 +10,20 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       hasDefaultPaymentMethod: /* @ngInject */
-        ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+        (ovhPaymentMethod) => ovhPaymentMethod.hasDefaultPaymentMethod(),
       defaultPaymentMethod: /* @ngInject */
-      ovhPaymentMethod => ovhPaymentMethod.getDefaultPaymentMethod(),
+      (ovhPaymentMethod) => ovhPaymentMethod.getDefaultPaymentMethod(),
       regions: /* @ngInject */ (
         $q,
         capabilities,
         enterpriseCloudDatabaseService,
-      ) => $q.all(map(capabilities, offer => enterpriseCloudDatabaseService
+      ) => $q.all(map(capabilities, (offer) => enterpriseCloudDatabaseService
         .getRegions(offer.name))),
       hostCount: /* @ngInject */ (
         enterpriseCloudDatabaseService,
         regions,
       ) => enterpriseCloudDatabaseService.getAllHostCount(regions),
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('enterprise_cloud_database_create_title'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('enterprise_cloud_database_create_title'),
     },
   });
 };

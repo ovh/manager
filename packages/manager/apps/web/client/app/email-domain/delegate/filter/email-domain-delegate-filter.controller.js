@@ -29,9 +29,9 @@ angular.module('App').controller(
 
       return this.WucEmails.getDelegatedFilters(this.currentAccount.email)
         .then((data) => {
-          this.filters = data.map(name => ({ name }));
+          this.filters = data.map((name) => ({ name }));
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_filters_error'),
           err,
           this.$scope.alerts.main,

@@ -33,8 +33,8 @@ export default class IpLoadBalancerCipherChangeCtrl {
     this.saving = true;
     return this.IpLoadBalancerCipherService
       .updateCipher(this.serviceName, this.model.cipherType.value)
-      .then(response => this.$uibModalInstance.close(response))
-      .catch(response => this.$uibModalInstance.dismiss(response))
+      .then((response) => this.$uibModalInstance.close(response))
+      .catch((response) => this.$uibModalInstance.dismiss(response))
       .finally(() => {
         this.saving = false;
       });

@@ -71,7 +71,7 @@ angular.module('Module.otrs.services').service('Module.otrs.services.Interventio
         serverInfo: getServerInfo(serviceName),
         hardwareInfo: getHardwareInfo(serviceName),
       })
-      .then(results => ({
+      .then((results) => ({
         canHotSwap: canHotSwap(results.serverInfo, results.hardwareInfo),
         hasMegaRaid: hasMegaRaidCard(results.hardwareInfo),
         slotInfo: slotInfo(results.serverInfo, results.hardwareInfo),

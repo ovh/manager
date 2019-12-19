@@ -49,7 +49,7 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
           self.offers.forEach((offer) => {
             set(offer, 'lineNumber', self.lineNumber);
             if (offer.meetingSlots) {
-              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map(slot => ({
+              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map((slot) => ({
                 tooltip: [$filter('date')(slot.startDate, 'HH:mm'), $filter('date')(slot.endDate, 'HH:mm')].join(' - '),
                 title: '',
                 start: slot.startDate,

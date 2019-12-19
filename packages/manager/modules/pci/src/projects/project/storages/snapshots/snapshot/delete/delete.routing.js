@@ -9,13 +9,13 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        snapshotId: /* @ngInject */$transition$ => $transition$.params().snapshotId,
+        snapshotId: /* @ngInject */($transition$) => $transition$.params().snapshotId,
         snapshot: /* @ngInject */ (
           PciProjectStorageSnapshotsService,
           projectId,
           snapshotId,
         ) => PciProjectStorageSnapshotsService.get(projectId, snapshotId),
-        goBack: /* @ngInject */goToSnapshots => goToSnapshots,
+        goBack: /* @ngInject */(goToSnapshots) => goToSnapshots,
         breadcrumb: () => null,
       },
     });

@@ -34,7 +34,7 @@ export default class {
       : this.dedicatedCloudDrp.constructor.formatStatus(get(this.drpInformations, 'remoteSiteInformation.state')) === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered;
 
     this.ipValidator = (() => ({
-      test: ip => this.Validator.isValidIpv4(ip),
+      test: (ip) => this.Validator.isValidIpv4(ip),
     }))();
 
     this.canConfigureVpn = this.canSetVpnConfiguration();

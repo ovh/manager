@@ -23,7 +23,7 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
       )
         .then((offers) => {
           this.offers = offers;
-          this.sslTypes = map(offers, 'planCode').map(planCode => planCode.replace(/-/g, '_'));
+          this.sslTypes = map(offers, 'planCode').map((planCode) => planCode.replace(/-/g, '_'));
 
           // Add separate free certificate in first position.
           this.sslTypes.unshift('free');
@@ -55,7 +55,7 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
       return this.orderFreeCertificate();
     }
 
-    const sslOffer = this.offers.find(offer => offer.planCode === this.planCode);
+    const sslOffer = this.offers.find((offer) => offer.planCode === this.planCode);
 
     if (!sslOffer) {
       return null;
@@ -73,7 +73,7 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
   }
 
   orderFreeCertificate() {
-    const fqdn = this.newSsl.fqdn.split(',').map(item => item.trim());
+    const fqdn = this.newSsl.fqdn.split(',').map((item) => item.trim());
     this.saving = true;
     this.IpLoadBalancerSslCertificateService
       .orderFreeCertificate(this.$stateParams.serviceName, fqdn)
@@ -84,7 +84,7 @@ export default class IpLoadBalancerSslCertificateOrderCtrl {
   }
 
   orderPaidCertificate(options) {
-    const configuration = Object.assign({}, this.newSsl);
+    const configuration = { ...this.newSsl };
 
     if (this.planCode === 'iplb-ssl-ev-single') {
       configuration.commonName = configuration.fqdn;

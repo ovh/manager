@@ -26,7 +26,7 @@ export default class {
         isValid: () => !this.user.loading,
         isLoading: () => this.user.loading || this.cancelAction.loading,
         load: () => this.handleAPIGet(() => this.User.getUser()
-          .then(user => ({ data: user })), this.user),
+          .then((user) => ({ data: user })), this.user),
       },
     ];
 

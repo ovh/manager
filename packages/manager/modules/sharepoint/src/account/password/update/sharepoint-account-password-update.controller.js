@@ -36,7 +36,7 @@ export default class SharepointUpdatePasswordCtrl {
         password: this.account.password,
       })
       .then(() => this.alerter.success(this.$translate.instant('sharepoint_ACTION_update_password_confirm_message_text', { t0: this.account.userPrincipalName }), this.$scope.alerts.main))
-      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_ACTION_update_password_error_message_text'), err, this.$scope.alerts.main))
+      .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_ACTION_update_password_error_message_text'), err, this.$scope.alerts.main))
       .finally(() => {
         this.$scope.resetAction();
       });

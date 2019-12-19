@@ -16,16 +16,16 @@ export default class NashaAddService {
   getAvailableRegions() {
     return this.OvhApiOrder.v6().schema()
       .$promise
-      .then(response => filter(response.models['dedicated.NasHAZoneEnum'].enum, datacenter => datacenter !== 'gra'))
+      .then((response) => filter(response.models['dedicated.NasHAZoneEnum'].enum, (datacenter) => datacenter !== 'gra'))
       .catch(this.CucServiceHelper.errorHandler('nasha_order_loading_error'));
   }
 
   getOffers() {
     return this.OvhApiMe.v6().get()
       .$promise
-      .then(user => this.OvhApiOrder.Cart().v6()
+      .then((user) => this.OvhApiOrder.Cart().v6()
         .post({}, { ovhSubsidiary: user.ovhSubsidiary }).$promise)
-      .then(cart => this.OvhApiOrder.Cart().Product().v6().get({ cartId: cart.cartId, productName: 'nasha' }).$promise.then(offers => ({ cart, offers })))
+      .then((cart) => this.OvhApiOrder.Cart().Product().v6().get({ cartId: cart.cartId, productName: 'nasha' }).$promise.then((offers) => ({ cart, offers })))
       .then((response) => {
         forEach(response.offers, (offer) => {
           set(offer, 'productName', this.$translate.instant(`nasha_order_nasha_${offer.planCode}`));
@@ -68,7 +68,7 @@ export default class NashaAddService {
         values: [model.selectedDatacenter.toUpperCase()],
       }],
     })
-      .then(response => ({ url: response }))
+      .then((response) => ({ url: response }))
       .catch(this.CucServiceHelper.errorHandler('nasha_order_validation_error'));
   }
 }

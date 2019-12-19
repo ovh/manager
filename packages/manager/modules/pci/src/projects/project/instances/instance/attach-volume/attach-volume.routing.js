@@ -9,7 +9,7 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ goToInstance => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => goToInstance,
         volumes: /* @ngInject */ (
           PciProjectsProjectInstanceService,
           instance,

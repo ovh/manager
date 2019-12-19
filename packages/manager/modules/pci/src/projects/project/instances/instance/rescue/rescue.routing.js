@@ -16,7 +16,7 @@ export default /* @ngInject */($stateProvider) => {
         ) => PciProjectsProjectInstanceService
           .getCompatibleRescueImages(projectId, instance),
 
-        goBack: /* @ngInject */ goToInstance => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => goToInstance,
         breadcrumb: () => null,
       },
     });

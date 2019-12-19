@@ -24,7 +24,7 @@ angular.module('Module.license').service('License', [
 
     this.types = filter(
       types,
-      type => !licenseFeatureAvailability.allowLicenseAgoraOrder()
+      (type) => !licenseFeatureAvailability.allowLicenseAgoraOrder()
         || licenseFeatureAvailability.allowLicenseTypeAgoraOrder(type),
     );
 
@@ -42,7 +42,8 @@ angular.module('Module.license').service('License', [
             opts = b;
           }
 
-          return WucApi[operationType](url, opts).then(data => data, reason => $q.reject(reason));
+          return WucApi[operationType](url, opts)
+            .then((data) => data, (reason) => $q.reject(reason));
         };
       });
     }
@@ -50,7 +51,7 @@ angular.module('Module.license').service('License', [
     this.ips = function ips(opts) {
       const opts2api = assign({}, opts, { rootPath: '2api' });
 
-      return OvhHttp.get('/sws/license/availableIps', opts2api).then(data => data, reason => $q.reject(reason));
+      return OvhHttp.get('/sws/license/availableIps', opts2api).then((data) => data, (reason) => $q.reject(reason));
     };
 
     this.orderableVersion = function orderableVersion(ip) {
@@ -60,7 +61,7 @@ angular.module('Module.license').service('License', [
           ip,
         },
         cache: 'license',
-      }).then(data => data.options);
+      }).then((data) => data.options);
     };
 
     this.migrate = function migrate(data) {
@@ -270,7 +271,7 @@ angular.module('Module.license').service('License', [
     this.model = function model(name) {
       return OvhHttp.get(`${constants.swsProxyRootPath}order.json`, {
         cache: 'licenseOrder',
-      }).then(schema => schema.models[name] || null);
+      }).then((schema) => schema.models[name] || null);
     };
 
     this.getDirectAdminModels = function getDirectAdminModels() {
@@ -296,7 +297,7 @@ angular.module('Module.license').service('License', [
     this.splaAddAvailableServers = function splaAddAvailableServers() {
       return OvhHttp.get('/sws/license/server/availables', {
         rootPath: '2api',
-      }).then(data => ({ availableServers: data }));
+      }).then((data) => ({ availableServers: data }));
     };
 
     this.splaAddAvailableTypes = function splaAddAvailableTypes(server) {
@@ -305,7 +306,7 @@ angular.module('Module.license').service('License', [
         urlParams: {
           serverServiceName: server,
         },
-      }).then(data => ({ availableTypes: data }));
+      }).then((data) => ({ availableTypes: data }));
     };
 
     this.splaAdd = function splaAdd(serviceName, data) {

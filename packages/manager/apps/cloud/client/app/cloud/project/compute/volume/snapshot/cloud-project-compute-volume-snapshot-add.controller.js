@@ -24,7 +24,7 @@ angular.module('managerApp')
       CucPriceHelper.getPrices(serviceName).then((prices) => {
         const price = prices[`${volumeSnapshotConsumption}.${self.snapshot.volume.region}`] || prices[volumeSnapshotConsumption];
         if (price) {
-          self.snapshot.price = price.priceInUcents * self.snapshot.volume.size * moment.duration(1, 'months').asHours() / 100000000;
+          self.snapshot.price = (price.priceInUcents * self.snapshot.volume.size * moment.duration(1, 'months').asHours()) / 100000000;
           self.snapshot.priceText = price.price.text.replace(/\d+(?:[.,]\d+)?/, round(self.snapshot.price.toString(), 2));
         }
         self.snapshot.name = `${self.snapshot.volume.name} ${$filter('date')(new Date(), 'short')}`;

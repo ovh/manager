@@ -30,8 +30,8 @@ class CloudProjectBillingRightsAddCtrl {
         accountId: CloudProjectBillingRightsAddCtrl.normalizedNic(this.right.contact),
         type: this.right.type,
       }).$promise
-        .then(res => this.$uibModalInstance.close(res))
-        .catch(res => this.$uibModalInstance.dismiss(res)),
+        .then((res) => this.$uibModalInstance.close(res))
+        .catch((res) => this.$uibModalInstance.dismiss(res)),
     });
     return this.loader.load();
   }

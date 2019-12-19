@@ -40,7 +40,7 @@ angular.module('App').controller(
           this.$translate.instant('domain_configuration_dns_importtext_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_configuration_dns_importtext_error'),
           err,
           this.$scope.alerts.main,

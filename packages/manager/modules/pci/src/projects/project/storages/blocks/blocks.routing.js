@@ -4,28 +4,28 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/blocks?help',
       component: 'pciProjectStorageBlocks',
 
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('storages')
-        .then(storages => (storages.length === 0 ? { state: 'pci.projects.project.storages.blocks.onboarding' } : false)),
+        .then((storages) => (storages.length === 0 ? { state: 'pci.projects.project.storages.blocks.onboarding' } : false)),
 
       resolve: {
         addStorage: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.blocks.add', {
           projectId,
         }),
-        editStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.block.edit', {
+        editStorage: /* @ngInject */ ($state, projectId) => (storage) => $state.go('pci.projects.project.storages.blocks.block.edit', {
           projectId,
           storageId: storage.id,
         }),
-        attachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.attach', {
+        attachStorage: /* @ngInject */ ($state, projectId) => (storage) => $state.go('pci.projects.project.storages.blocks.attach', {
           projectId,
           storageId: storage.id,
         }),
-        detachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.detach', {
+        detachStorage: /* @ngInject */ ($state, projectId) => (storage) => $state.go('pci.projects.project.storages.blocks.detach', {
           projectId,
           storageId: storage.id,
         }),
-        createSnapshot: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.snapshot', {
+        createSnapshot: /* @ngInject */ ($state, projectId) => (storage) => $state.go('pci.projects.project.storages.blocks.snapshot', {
           projectId,
           storageId: storage.id,
         }),
@@ -33,8 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           storageId,
         }),
-        help: /* @ngInject */ $transition$ => $transition$.params().help,
-        instanceLink: /* @ngInject */ ($state, projectId) => instanceId => $state.href('pci.projects.project.instances.instance', {
+        help: /* @ngInject */ ($transition$) => $transition$.params().help,
+        instanceLink: /* @ngInject */ ($state, projectId) => (instanceId) => $state.href('pci.projects.project.instances.instance', {
           projectId,
           instanceId,
         }),
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_blocks_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_storages_blocks_title'),
       },
     });
 };
