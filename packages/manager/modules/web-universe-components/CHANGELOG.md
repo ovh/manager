@@ -1,3 +1,12 @@
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.5...@ovh-ux/ng-ovh-web-universe-components@7.2.0) (2019-12-19)
+
+
+### Features
+
+* **order.cart:** add wucOrderCartService service ([#1933](https://github.com/ovh/manager/issues/1933)) ([6e08c2c](https://github.com/ovh/manager/commit/6e08c2c0f211dcbad0dbfa72fb354a250c0dafea))
+
+
+
 ## [7.1.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.4...@ovh-ux/ng-ovh-web-universe-components@7.1.5) (2019-11-22)
 
 

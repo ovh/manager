@@ -1,3 +1,13 @@
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.6.0...@ovh-ux/ng-ovh-cloud-universe-components@1.7.0) (2019-12-19)
+
+
+### Features
+
+* move ucent to currency conversion to service ([b97c979](https://github.com/ovh/manager/commit/b97c9798c915232bc0c728b61ac2d4bfc68ac99e))
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.5.0...@ovh-ux/ng-ovh-cloud-universe-components@1.6.0) (2019-12-10)
 
 

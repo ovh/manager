@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "7.1.5",
+  "version": "7.2.0",
   "private": true,
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -14,7 +14,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-http": "^4.0.2",
-    "@ovh-ux/ng-ovh-payment-method": "^5.0.2",
+    "@ovh-ux/ng-ovh-payment-method": "^5.1.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.3",

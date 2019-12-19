@@ -1,3 +1,14 @@
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.2.0...@ovh-ux/manager-navbar@2.3.0) (2019-12-19)
+
+
+### Features
+
+* display standard and premium support levels for FR customers ([569b19e](https://github.com/ovh/manager/commit/569b19e231123f820cb537cd4c85f2a079fd9c03))
+* **navbar.user-menu:** redirect to user dasboard instead of form ([3b5b410](https://github.com/ovh/manager/commit/3b5b41004a833e5a99f8b490064e26726984f1dc))
+* **navbar.usermenu:** update link to contacts section ([#1967](https://github.com/ovh/manager/issues/1967)) ([01c7264](https://github.com/ovh/manager/commit/01c7264a65b2021159c57b53f80ebe50961e580a))
+
+
+
 # [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-navbar@2.1.3...@ovh-ux/manager-navbar@2.2.0) (2019-11-28)
 
 

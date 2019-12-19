@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "11.2.3",
+  "version": "11.3.0",
   "private": true,
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-chatbot": "^2.0.2",
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.3",
     "@ovh-ux/ng-ovh-contact": "^4.0.4",
-    "@ovh-ux/ng-ovh-contracts": "^3.0.1",
+    "@ovh-ux/ng-ovh-contracts": "^3.1.0",
     "@ovh-ux/ng-ovh-http": "^4.0.5",
     "@ovh-ux/ng-ovh-line-diagnostics": "^3.0.2",
     "@ovh-ux/ng-ovh-mondial-relay": "^6.0.2",

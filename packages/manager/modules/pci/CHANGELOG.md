@@ -1,3 +1,20 @@
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.1...@ovh-ux/manager-pci@3.7.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **analytics-data-platform:** fix service name check when ordering ([#1949](https://github.com/ovh/manager/issues/1949)) ([6801ff9](https://github.com/ovh/manager/commit/6801ff95128ecacc22c95e22ae7123aa7048ebf4))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* **pci:** remove billing for non admin and billing nics ([749536f](https://github.com/ovh/manager/commit/749536f1ae70d639f31f91716575a06b7854a32b))
+
+
+### Features
+
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+* **pci.project.block:** improve attach message ([#1969](https://github.com/ovh/manager/issues/1969)) ([9d13c37](https://github.com/ovh/manager/commit/9d13c3705b1a87ce48525f0c33d9f01fb9ab7cb5))
+
+
+
 ## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.0...@ovh-ux/manager-pci@3.6.1) (2019-12-16)
 
 

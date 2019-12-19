@@ -1,3 +1,18 @@
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.3...@ovh-ux/ng-ovh-payment-method@5.1.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 194] ([b6c91ed](https://github.com/ovh/manager/commit/b6c91ed9d2a2dd86f20c31ac8fccdc8c72c40b3f))
+* **i18n:** add missing translations [CDS 195] ([7b63630](https://github.com/ovh/manager/commit/7b63630b213b9da1947fa6ccc36a290efa294a67))
+
+
+### Features
+
+* **components:** add choice component for ng ovh payment method ([3023ed7](https://github.com/ovh/manager/commit/3023ed78adb510c4e689e9cee473b1f0ce6a46c4))
+
+
+
 ## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.0.2...@ovh-ux/ng-ovh-payment-method@5.0.3) (2019-11-27)
 
 
