@@ -259,14 +259,6 @@ export const WEB_ORDER_SIDEBAR_CONFIG = [
     app: [WEB],
   },
   {
-    id: 'orderPrivateDatabase',
-    title: 'privateDatabase',
-    icon: 'ovh-font ovh-font-database',
-    state: 'app.sql-order',
-    regions: ['EU'],
-    app: [WEB],
-  },
-  {
     id: 'orderHosting',
     title: 'hosting',
     icon: 'ovh-font ovh-font-hosting',
