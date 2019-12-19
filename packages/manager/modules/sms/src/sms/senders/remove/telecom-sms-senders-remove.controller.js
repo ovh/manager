@@ -32,13 +32,13 @@ export default class {
       this.api.sms.senders.delete({
         serviceName: this.$stateParams.serviceName,
         sender: this.sender.sender,
-      }).$promise.catch(error => this.$q.reject(error)),
+      }).$promise.catch((error) => this.$q.reject(error)),
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.removeSender = false;
       this.removed = true;
       return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

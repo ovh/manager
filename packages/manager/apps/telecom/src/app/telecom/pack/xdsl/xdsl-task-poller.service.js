@@ -15,9 +15,9 @@ angular.module('managerApp').service('XdslTaskPoller', class XdslTaskPoller {
     return this.OvhApiXdslTasksCurrent.Aapi().poll(scope, {
       xdslId: serviceName,
     }).then(
-      result => this.handleResult(result),
-      error => this.errorHandler(error),
-      pending => this.handleResult(pending),
+      (result) => this.handleResult(result),
+      (error) => this.errorHandler(error),
+      (pending) => this.handleResult(pending),
     );
   }
 
@@ -25,7 +25,7 @@ angular.module('managerApp').service('XdslTaskPoller', class XdslTaskPoller {
     if (result.success) {
       Object.keys(this.handlers).forEach((taskId) => {
         if (this.lastResult && this.lastResult[taskId] && !result.data[taskId]) {
-          (this.handlers[taskId] || []).forEach(handler => handler());
+          (this.handlers[taskId] || []).forEach((handler) => handler());
         }
       });
 

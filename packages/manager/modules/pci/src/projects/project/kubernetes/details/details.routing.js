@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/:kubeId',
       component: 'ovhManagerPciProjectKubernetesDetailComponent',
       resolve: {
-        breadcrumb: /* @ngInject */ cluster => cluster.name,
+        breadcrumb: /* @ngInject */ (cluster) => cluster.name,
         cluster: /* @ngInject */ (
           kubeId,
           OvhApiCloudProjectKube,
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: projectId,
           kubeId,
         }).$promise
-          .then(cluster => new Kubernetes(cluster)),
+          .then((cluster) => new Kubernetes(cluster)),
         containersLink: /* @ngInject */ (
           $state,
           kubeId,
@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-        kubeId: /* @ngInject */ $stateParams => $stateParams.kubeId,
+        kubeId: /* @ngInject */ ($stateParams) => $stateParams.kubeId,
         nodesLink: /* @ngInject */ (
           $state,
           kubeId,

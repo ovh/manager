@@ -23,7 +23,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesCho
     =============================== */
 
   self.hasAtLeastOneAccessory = function hasAtLeastOneAccessory() {
-    return !!find(self.process.accessoriesList, accessory => accessory.quantity > 0);
+    return !!find(self.process.accessoriesList, (accessory) => accessory.quantity > 0);
   };
 
   /* -----  End of HELPERS  ------*/

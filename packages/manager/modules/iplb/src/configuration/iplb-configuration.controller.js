@@ -60,14 +60,14 @@ export default class IpLoadBalancerConfigurationCtrl {
       ? zone
       : [this.zones.data.find(({ id }) => id === zone)];
 
-    const targetsThatCantBeChanged = targets.filter(target => has(target, 'task.status') && get(target, 'task.status') !== 'done');
+    const targetsThatCantBeChanged = targets.filter((target) => has(target, 'task.status') && get(target, 'task.status') !== 'done');
 
     if (!isEmpty(targetsThatCantBeChanged)) {
       const messageToDisplay = targetsThatCantBeChanged.length !== targets.length
         ? `${this.$translate.instant(
           'iplb_configuration_excludedZones_some',
           {
-            datacenters: targetsThatCantBeChanged.map(target => target.name).join(','),
+            datacenters: targetsThatCantBeChanged.map((target) => target.name).join(','),
           },
         )} ${this.$translate.instant('iplb_configuration_excludedZones_explanation')}`
         : `${this.$translate.instant('iplb_configuration_excludedZones_all')} ${this.$translate.instant('iplb_configuration_excludedZones_explanation')}`;
@@ -75,7 +75,7 @@ export default class IpLoadBalancerConfigurationCtrl {
       this.CucCloudMessage.success(messageToDisplay);
     }
 
-    const targetsToApplyChangesTo = targets.filter(target => !has(target, 'task.status') || target.task.status === 'done');
+    const targetsToApplyChangesTo = targets.filter((target) => !has(target, 'task.status') || target.task.status === 'done');
 
     if (targetsToApplyChangesTo.length === zoneData.length) {
       // All selected, just call the API with no zone.
@@ -89,7 +89,7 @@ export default class IpLoadBalancerConfigurationCtrl {
     promise
       .then(() => {
         this.zones.data
-          .filter(currentZone => targetsToApplyChangesTo
+          .filter((currentZone) => targetsToApplyChangesTo
             .find(({ name }) => name === currentZone.name))
           .forEach((target) => {
             this.applications[target.id] = true;
@@ -131,9 +131,9 @@ export default class IpLoadBalancerConfigurationCtrl {
 
     this.poller = this.CucCloudPoll.pollArray({
       items: this.zones.data,
-      pollFunction: zone => this.IpLoadBalancerConfigurationService
+      pollFunction: (zone) => this.IpLoadBalancerConfigurationService
         .getZoneChanges(this.$stateParams.serviceName, zone.id),
-      stopCondition: zone => !zone.task || (zone.task && includes(['done', 'error'], zone.task.status) && (zone.changes === 0 || zone.task.progress === 100)),
+      stopCondition: (zone) => !zone.task || (zone.task && includes(['done', 'error'], zone.task.status) && (zone.changes === 0 || zone.task.progress === 100)),
     });
   }
 

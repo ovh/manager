@@ -22,7 +22,7 @@ export default class SharepointDomainsCtrl {
     this.upnSuffixesIds = null;
 
     return this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
-      .then((ids) => { this.upnSuffixesIds = ids.map(id => ({ id })); })
+      .then((ids) => { this.upnSuffixesIds = ids.map((id) => ({ id })); })
       .catch((err) => { this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main); });
   }
 

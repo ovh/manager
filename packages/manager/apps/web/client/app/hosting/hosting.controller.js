@@ -129,18 +129,18 @@ export default class {
       .then((user) => {
         this.$scope.userInfos = user;
       })
-      .catch(err => this.$q.reject(err));
+      .catch((err) => this.$q.reject(err));
 
-    this.$scope.isAdminPrivateDb = privateDb => this.$scope
+    this.$scope.isAdminPrivateDb = (privateDb) => this.$scope
       .getUserInfos()
       .then(() => this.PrivateDatabase.getServiceInfos(privateDb))
-      .then(privateDbInfo => some(
+      .then((privateDbInfo) => some(
         [
           privateDbInfo.contactBilling,
           privateDbInfo.contactTech,
           privateDbInfo.contactAdmin,
         ],
-        contactName => this.$scope.userInfos.nichandle === contactName,
+        (contactName) => this.$scope.userInfos.nichandle === contactName,
       ))
       .catch((err) => {
         this.Alerter.alertFromSWS(
@@ -374,7 +374,7 @@ export default class {
         }
 
         if (hosting.isCloudWeb) {
-          remove(this.tabs, t => t === 'TASK');
+          remove(this.tabs, (t) => t === 'TASK');
           this.tabs.splice(1, 0, 'RUNTIMES', 'ENVVARS');
           this.tabMenu.items.splice(0, 0, {
             label: this.$translate.instant('hosting_tab_TASK'),
@@ -476,7 +476,7 @@ export default class {
 
             queue = map(
               tasks,
-              task => this.HostingTask
+              (task) => this.HostingTask
                 .poll(this.$stateParams.productId, task)
                 .catch(() => {
                   set(this.$scope.ovhConfig, 'taskPendingError', false);
@@ -577,9 +577,9 @@ export default class {
 
   getLinkedPrivateDatabases() {
     return this.Hosting.getPrivateDatabasesLinked(this.$stateParams.productId)
-      .then(databases => this.$q.all(
-        databases.map(databaseName => this.$scope.isAdminPrivateDb(databaseName)
-          .then(isAdmin => ({
+      .then((databases) => this.$q.all(
+        databases.map((databaseName) => this.$scope.isAdminPrivateDb(databaseName)
+          .then((isAdmin) => ({
             name: databaseName,
             isAdmin,
           }))),
@@ -704,7 +704,7 @@ export default class {
       })
       .then(() => {
         if (moment().isAfter(moment(this.$scope.hostingProxy.lastOvhConfigScan).add(12, 'hours'))) {
-          return this.HostingOvhConfig.ovhConfigRefresh(this.$stateParams.productId, { returnErrorKey: '' }).then(data => data).catch((err) => {
+          return this.HostingOvhConfig.ovhConfigRefresh(this.$stateParams.productId, { returnErrorKey: '' }).then((data) => data).catch((err) => {
             if (get(err, 'status') === 403) {
               return null;
             }
@@ -729,7 +729,7 @@ export default class {
   setSelectedTab(tab) {
     if (includes(this.tabs, tab)) {
       this.selectedTab = tab;
-    } else if (includes(map(this.tabMenu.items, item => item.type === 'SWITCH_TABS' && item.target), tab)) {
+    } else if (includes(map(this.tabMenu.items, (item) => item.type === 'SWITCH_TABS' && item.target), tab)) {
       this.selectedTab = tab;
     } else {
       this.selectedTab = this.defaultTab;

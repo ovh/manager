@@ -28,7 +28,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl
     const validExtensions = ['ogg', 'mp3', 'wav', 'wma'];
     const fileName = self.file ? self.file.name : '';
     const fileNameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
-    const isValidFormat = some(validExtensions, ext => endsWith(fileName.toLowerCase(), `.${ext}`));
+    const isValidFormat = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), `.${ext}`));
     const nameRegex = new RegExp(/^[\w\s]{1,26}$/, 'g');
 
     // check for errors

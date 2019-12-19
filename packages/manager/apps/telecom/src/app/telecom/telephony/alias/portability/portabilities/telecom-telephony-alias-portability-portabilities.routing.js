@@ -6,8 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      billingAccount: /* @ngInject */ $transition$ => $transition$.params().billingAccount,
-      attachMandate: /* @ngInject */ ($state, billingAccount) => portability => $state.go('telecom.telephony.billingAccount.alias.portabilities.attach', {
+      billingAccount: /* @ngInject */ ($transition$) => $transition$.params().billingAccount,
+      attachMandate: /* @ngInject */ ($state, billingAccount) => (portability) => $state.go('telecom.telephony.billingAccount.alias.portabilities.attach', {
         billingAccount,
         portabilityId: portability.id,
       }),

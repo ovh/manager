@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/onboarding',
       component: 'pciProjectStreamsOnboarding',
 
-      redirectTo: transition => Promise.all([
+      redirectTo: (transition) => Promise.all([
         transition.injector().getAsync('lab'),
         transition.injector().getAsync('streams'),
       ]).then(([lab, streams]) => {

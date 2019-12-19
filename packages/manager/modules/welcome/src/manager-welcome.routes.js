@@ -6,7 +6,7 @@ export default /* @ngInject */ function ($stateProvider) {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
       return import('./manager-welcome.component')
-        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+        .then((mod) => $ocLazyLoad.inject(mod.default || mod));
     },
   });
 }

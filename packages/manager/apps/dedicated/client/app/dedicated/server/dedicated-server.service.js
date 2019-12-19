@@ -166,7 +166,7 @@ angular
             }
             return response;
           },
-          response => $q.reject(response),
+          (response) => $q.reject(response),
         );
       };
     });
@@ -558,13 +558,13 @@ angular
     /* ------- STATISTICS -------*/
 
     this.getStatisticsConst = function getStatisticsConst() {
-      return self.getModels().then(models => ({
+      return self.getModels().then((models) => ({
         types: uniq(map(
           models.data.models['dedicated.server.MrtgTypeEnum'].enum,
-          type => type.split(':')[0].toUpperCase(),
+          (type) => type.split(':')[0].toUpperCase(),
         )),
         defaultType: 'TRAFFIC',
-        periods: models.data.models['dedicated.server.MrtgPeriodEnum'].enum.map(period => snakeCase(period).toUpperCase()),
+        periods: models.data.models['dedicated.server.MrtgPeriodEnum'].enum.map((period) => snakeCase(period).toUpperCase()),
         defaultPeriod: 'DAILY',
       }));
     };
@@ -578,7 +578,7 @@ angular
           return $http.get([path.dedicatedServer, serverName, 'networkInterfaceController'].join('/'));
         })
         .then((networkInterfaceIds) => {
-          const promises = map(networkInterfaceIds.data, networkInterfaceId => $http.get([path.dedicatedServer, serverName, 'networkInterfaceController', networkInterfaceId].join('/')).then(response => response.data));
+          const promises = map(networkInterfaceIds.data, (networkInterfaceId) => $http.get([path.dedicatedServer, serverName, 'networkInterfaceController', networkInterfaceId].join('/')).then((response) => response.data));
           return $q.all(promises);
         })
         .catch((err) => {
@@ -664,7 +664,7 @@ angular
     }
 
     function aggregateMRTG(productId, mac, type, period) {
-      return self.getSelected(productId).then(server => $q
+      return self.getSelected(productId).then((server) => $q
         .all([
           $http.get([path.dedicatedServer, server.name, 'networkInterfaceController', mac, 'mrtg'].join('/'), {
             params: {
@@ -746,7 +746,7 @@ angular
         promise = this.getIpGeolocation().then(({ ip }) => ip);
       }
 
-      return promise.then(ip => OvhHttp.post('/dedicated/server/{serviceName}/features/ipmi/access', {
+      return promise.then((ip) => OvhHttp.post('/dedicated/server/{serviceName}/features/ipmi/access', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
@@ -1022,7 +1022,7 @@ angular
     ) {
       return self
         .getPartitionSchemePriority(productId, gabaritName, newPartitioningScheme.name)
-        .catch(data => (data.status === 404 ? 'no_partition' : $q.reject(data)))
+        .catch((data) => (data.status === 404 ? 'no_partition' : $q.reject(data)))
         .then((status) => {
           if (status === 'no_partition') {
             return self.post(productId, '{gabaritName}/partitionScheme', {
@@ -1052,7 +1052,7 @@ angular
           urlPath: path.installationMe,
         })
         .then((mountpoints) => {
-          const getMountpoints = map(mountpoints, mountpoint => self
+          const getMountpoints = map(mountpoints, (mountpoint) => self
             .get(productId, '{gabaritName}/partitionScheme/{schemeName}/partition/{mountpoint}', {
               urlParams: {
                 gabaritName,
@@ -1063,7 +1063,7 @@ angular
               urlPath: path.installationMe,
               returnErrorKey: null,
             })
-            .catch(data => (data.status === 404 ? 'no_mountpoint' : $q.reject(data)))
+            .catch((data) => (data.status === 404 ? 'no_mountpoint' : $q.reject(data)))
             .then((status) => {
               if (status === 'no_mountpoint') {
                 return self
@@ -1075,7 +1075,7 @@ angular
                     proxypass: true,
                     urlPath: path.installationMe,
                   })
-                  .then(mountpointDetails => self.post(productId, '{gabaritName}/partitionScheme/{schemeName}/partition', {
+                  .then((mountpointDetails) => self.post(productId, '{gabaritName}/partitionScheme/{schemeName}/partition', {
                     urlParams: {
                       gabaritName,
                       schemeName: newPartitioningSchemeName,
@@ -1202,7 +1202,7 @@ angular
       return this.get(productId, 'specifications/network', {
         proxypass: true,
       })
-        .then(data => data)
+        .then((data) => data)
         .catch((err) => {
           if (err.status === 404 || err.status === 460) {
             return {};
@@ -1217,7 +1217,7 @@ angular
           proxypass: true,
         })
         .then(
-          data => data.state,
+          (data) => data.state,
           (response) => {
             if (response.status === 404 || response.status === 460) {
               return 'notSubscribed';
@@ -1232,7 +1232,7 @@ angular
         .get(productId, 'option/BANDWIDTH_VRACK', {
           proxypass: true,
         })
-        .then(data => data.state)
+        .then((data) => data.state)
         .catch((response) => {
           if (response.status === 404 || response.status === 460) {
             return 'notSubscribed';
@@ -1305,7 +1305,7 @@ angular
         proxypass: true,
       }).then((durations) => {
         const returnData = [];
-        const promises = map(durations, duration => self
+        const promises = map(durations, (duration) => self
           .get(productId, `${data.optionName}/{duration}`, {
             urlParams: {
               duration,
@@ -1344,7 +1344,7 @@ angular
         .get(productId, `option/${optionName}`, {
           proxypass: true,
         })
-        .then(data => data.state)
+        .then((data) => data.state)
         .catch((response) => {
           if (response.status === 404) {
             return 'notSubscribed';
@@ -1377,7 +1377,7 @@ angular
         },
         urlPath: 'order/dedicated/server/{serviceName}',
         proxypass: true,
-      }).then(details => details, () => null);
+      }).then((details) => details, () => null);
     };
 
     this.getValidBandwidthPlans = function getValidBandwidthPlans(plans, existingBandwidth) {
@@ -1385,7 +1385,7 @@ angular
         // Not to include already included plans (existing plan)
         if (!plan.planCode.includes('included')) {
           // Extract bandwidth value from product name
-          const bandwidth = parseInt(head(filter(plan.productName.split('-'), ele => /^\d+$/.test(ele))));
+          const bandwidth = parseInt(head(filter(plan.productName.split('-'), (ele) => /^\d+$/.test(ele))));
           assign(plan, { bandwidth });
 
           if (bandwidth !== existingBandwidth) {
@@ -1652,15 +1652,15 @@ angular
       return deferedObject.promise;
     };
 
-    this.getMotherBoard = productId => self.get(productId, 'statistics/motherboard', {
+    this.getMotherBoard = (productId) => self.get(productId, 'statistics/motherboard', {
       proxypass: true,
     });
 
-    this.getCpu = productId => self.get(productId, 'statistics/cpu', {
+    this.getCpu = (productId) => self.get(productId, 'statistics/cpu', {
       proxypass: true,
     });
 
-    this.getMemory = productId => self.get(productId, 'statistics/memory', {
+    this.getMemory = (productId) => self.get(productId, 'statistics/memory', {
       proxypass: true,
     });
 
@@ -1823,7 +1823,7 @@ angular
           proxypass: true,
         })
         .then((ids) => {
-          promises = ids.map(id => self.get(productId, 'serviceMonitoring/{monitoringId}', {
+          promises = ids.map((id) => self.get(productId, 'serviceMonitoring/{monitoringId}', {
             proxypass: true,
             urlParams: {
               monitoringId: id,
@@ -1897,7 +1897,7 @@ angular
           },
         })
         .then((ids) => {
-          const promises = ids.map(alertId => self.get(productId, 'serviceMonitoring/{monitoringId}/alert/{type}/{alertId}', {
+          const promises = ids.map((alertId) => self.get(productId, 'serviceMonitoring/{monitoringId}/alert/{type}/{alertId}', {
             proxypass: true,
             urlParams: {
               monitoringId: opts.monitoringId,
@@ -2021,7 +2021,7 @@ angular
           urlPath: path.sms,
         })
         .then((ids) => {
-          promises = ids.map(smsId => self.get(productId, '{serviceName}', {
+          promises = ids.map((smsId) => self.get(productId, '{serviceName}', {
             proxypass: true,
             urlPath: path.sms,
             urlParams: {
@@ -2068,14 +2068,14 @@ angular
     };
 
     this.getVrack = function getVrack(serviceName) {
-      return self.getSelected(serviceName).then(selectedServer => $http.get(`apiv6/dedicated/server/${selectedServer.name}/vrack`).then(results => results.data));
+      return self.getSelected(serviceName).then((selectedServer) => $http.get(`apiv6/dedicated/server/${selectedServer.name}/vrack`).then((results) => results.data));
     };
 
     this.getVrackInfos = function getVrackInfos(serviceName) {
       return self
         .getVrack(serviceName)
         .then((results) => {
-          const promises = results.map(vrack => $http
+          const promises = results.map((vrack) => $http
             .get(`apiv6/vrack/${vrack}`)
             .then(({ data }) => ({
               serviceName: vrack,
@@ -2096,7 +2096,7 @@ angular
     /* ------- Hard Raid -------*/
 
     this.getHardwareRaidProfile = function getHardwareRaidProfile(serviceName) {
-      return self.getSelected(serviceName).then(selectedServer => $http.get(`apiv6/dedicated/server/${selectedServer.name}/install/hardwareRaidProfile`).then(results => results.data));
+      return self.getSelected(serviceName).then((selectedServer) => $http.get(`apiv6/dedicated/server/${selectedServer.name}/install/hardwareRaidProfile`).then((results) => results.data));
     };
 
     this.postHardwareRaid = function postHardwareRaid(
@@ -2204,7 +2204,7 @@ angular
       return self.getPartitionSchemes(productId, templateName).then((schemes) => {
         const getSchemes = map(
           schemes,
-          scheme => self.getPartitionSchemePriority(productId, templateName, scheme),
+          (scheme) => self.getPartitionSchemePriority(productId, templateName, scheme),
         );
         return $q.all(getSchemes).then((schemesDetails) => {
           const list = sortBy(schemesDetails, 'priority').reverse();
@@ -2239,7 +2239,7 @@ angular
     };
 
     this.isAutoRenewable = function isAutoRenewable(productId) {
-      return this.getSelected(productId).then(server => moment(server.expiration).diff(moment().date(), 'days') > 0);
+      return this.getSelected(productId).then((server) => moment(server.expiration).diff(moment().date(), 'days') > 0);
     };
 
     this.getUpgradeProductName = (planName, ovhSubsidiary) => this.OvhApiOrderCatalogPublic

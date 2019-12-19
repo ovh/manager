@@ -59,15 +59,15 @@ export default class TicketService {
   getWithMessages(id) {
     return this
       .get(id)
-      .then(ticketFromApi => this.buildFromApi(ticketFromApi))
-      .then(ticket => this.ticketMessageService
+      .then((ticketFromApi) => this.buildFromApi(ticketFromApi))
+      .then((ticket) => this.ticketMessageService
         .query(id)
-        .then(messagesFromApi => set(
+        .then((messagesFromApi) => set(
           ticket,
           'messages',
           map(
             messagesFromApi,
-            messageFromApi => this.ticketMessageService.buildFromApi(messageFromApi),
+            (messageFromApi) => this.ticketMessageService.buildFromApi(messageFromApi),
           ),
         )));
   }
@@ -80,9 +80,9 @@ export default class TicketService {
       .expand('CachedObjectList-Pages')
       .execute({}, true)
       .$promise
-      .then(tickets => map(
+      .then((tickets) => map(
         tickets.data,
-        ticket => this.buildFromApi(ticket),
+        (ticket) => this.buildFromApi(ticket),
       ));
   }
 

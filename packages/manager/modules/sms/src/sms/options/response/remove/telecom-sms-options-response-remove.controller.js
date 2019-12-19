@@ -56,7 +56,7 @@ export default class {
       this.loading.removeTrackingOption = false;
       this.removed = true;
       return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

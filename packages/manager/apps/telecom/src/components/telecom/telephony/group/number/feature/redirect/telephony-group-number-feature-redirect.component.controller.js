@@ -45,7 +45,7 @@ angular.module('managerApp').controller('TelephonyNumberRedirectCtrl', function 
   }
 
   function getNumberList() {
-    return self.numberCtrl.number.feature.featureType === 'ddi' ? [] : filter(self.group.numbers, number => number.serviceName !== self.numberCtrl.number.serviceName);
+    return self.numberCtrl.number.feature.featureType === 'ddi' ? [] : filter(self.group.numbers, (number) => number.serviceName !== self.numberCtrl.number.serviceName);
   }
 
   function refreshAvailableServices() {
@@ -70,7 +70,7 @@ angular.module('managerApp').controller('TelephonyNumberRedirectCtrl', function 
      *  Set the save feature for parent component
      */
   function saveFeature() {
-    return self.numberCtrl.number.feature.save().then(task => tucVoipServiceTask.startPolling(
+    return self.numberCtrl.number.feature.save().then((task) => tucVoipServiceTask.startPolling(
       self.numberCtrl.number.billingAccount,
       self.numberCtrl.number.serviceName,
       task.taskId,

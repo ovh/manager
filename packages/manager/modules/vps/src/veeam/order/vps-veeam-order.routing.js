@@ -9,9 +9,9 @@ import orderController from './vps-veeam-order.controller';
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('vps.detail.veeam.order', {
     url: '/order',
-    templateProvider: /* @ngInject */ stateVps => (stateVps
+    templateProvider: /* @ngInject */ (stateVps) => (stateVps
       .isLegacy ? legacyOrderTemplate : orderTemplate),
-    controllerProvider: /* @ngInject */ stateVps => (stateVps
+    controllerProvider: /* @ngInject */ (stateVps) => (stateVps
       .isLegacy ? legacyOrderController : orderController),
     controllerAs: '$ctrl',
     translations: {

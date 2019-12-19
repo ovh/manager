@@ -29,6 +29,6 @@ angular.module('Billing.services').service('BillingRefunds', function BillingRef
         cache: billingCache,
         serviceType: 'aapi',
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 });

@@ -27,7 +27,7 @@ class CloudProjectComputeInfrastructureOpenstackClientService {
 
   getSession({ serviceName, term }) {
     return this.OvhApiCloudProjectOpenstackClient.v6().post({ serviceName }, {}).$promise
-      .then(session => this.setSession(session, term))
+      .then((session) => this.setSession(session, term))
       .catch(this.CucServiceHelper.errorHandler('cpci_openstack_client_session_error', 'iaas.pci-project.compute.openstack-console'));
   }
 

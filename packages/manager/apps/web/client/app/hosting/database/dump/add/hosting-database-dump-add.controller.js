@@ -38,7 +38,7 @@ angular.module('App').controller(
         .then((data) => {
           this.model.options = data;
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('hosting_tab_DATABASES_configuration_dump_step1_loaderror'),
           get(err, 'data', err),
           this.$scope.alerts.main,
@@ -56,7 +56,7 @@ angular.module('App').controller(
           this.$translate.instant('hosting_tab_DATABASES_configuration_dump_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('hosting_tab_DATABASES_configuration_dump_fail', {
             t0: this.entryToDump,
           }),

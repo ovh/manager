@@ -48,8 +48,8 @@ class LogsRolesAddMembersCtrl {
         username: this.member.username,
         note: this.member.note,
       })
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((response) => this.$uibModalInstance.dismiss(response))
         .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();

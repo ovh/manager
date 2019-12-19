@@ -19,8 +19,8 @@ export default class PciProjectStreamsTokensService {
         streamId: stream.id,
       })
       .$promise
-      .then(tokens => this.$q.all(
-        tokens.map(tokenId => this.get(projectId, stream, tokenId)),
+      .then((tokens) => this.$q.all(
+        tokens.map((tokenId) => this.get(projectId, stream, tokenId)),
       ));
   }
 
@@ -35,7 +35,7 @@ export default class PciProjectStreamsTokensService {
         tokenId,
       })
       .$promise
-      .then(token => new Token({
+      .then((token) => new Token({
         ...token,
       }));
   }
@@ -55,8 +55,8 @@ export default class PciProjectStreamsTokensService {
         streamId: stream.id,
       })
       .$promise
-      .then(tokens => this.$q.all(
-        tokens.map(tokenId => this.delete(projectId, stream, tokenId)),
+      .then((tokens) => this.$q.all(
+        tokens.map((tokenId) => this.delete(projectId, stream, tokenId)),
       ));
   }
 

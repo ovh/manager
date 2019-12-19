@@ -33,12 +33,12 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
     this.isLoading = true;
     this.timestamp = moment(`${this.selectedDate} ${this.selectedTime}`).format();
     return this.service.createRestore(this.clusterId, null, this.timestamp)
-      .then(res => this.goBackToBackups(
+      .then((res) => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_recovery_success'),
         STATUS.SUCCESS,
         res.id,
       ))
-      .catch(error => this.goBackToBackups(
+      .catch((error) => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_recovery_error', {
           message: get(error, 'data.message'),
         }),

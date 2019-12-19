@@ -34,7 +34,7 @@ export default class WalkMe {
       name: 'public-cloud-walkme',
       steps: this.getSteps(),
       // AngularJS will not be interpreted within the popover
-      template: index => popoverTemplate.replace('{{ navigation }}', WalkMeTemplate.getNavigation(index, this.STEPS)),
+      template: (index) => popoverTemplate.replace('{{ navigation }}', WalkMeTemplate.getNavigation(index, this.STEPS)),
       storage: false,
       onEnd: () => {
         angular.element('.tour-backdrop').remove();
@@ -50,7 +50,7 @@ export default class WalkMe {
   }
 
   getSteps() {
-    return this.STEPS.map(step => ({
+    return this.STEPS.map((step) => ({
       element: step.element,
       content: this.getStepContent(step),
       placement: 'bottom',

@@ -51,7 +51,8 @@ import set from 'lodash/set';
             && this.model.duration,
           isLoading: () => this.durations.loading || this.user.loading,
           load: () => {
-            this.handleAPIGet(() => this.User.getUser().then(user => ({ data: user })), this.user);
+            this.handleAPIGet(() => this.User.getUser()
+              .then((user) => ({ data: user })), this.user);
             this.handleAPIGet(() => this.ServerOrderTrafficService
               .getOrderableDurations(
                 this.$stateParams.productId,

@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .controller('DeskaasChangeUsernameCtrl',
     function DeskaasChangeUsernameCtrl($uibModalInstance) {

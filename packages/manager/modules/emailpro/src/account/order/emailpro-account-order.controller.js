@@ -66,7 +66,7 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, User
     if ($scope.ordersList) {
       const selected = $.grep(
         $scope.ordersList,
-        e => $scope.accountsToAdd.duration === e.duration.duration,
+        (e) => $scope.accountsToAdd.duration === e.duration.duration,
       );
       return selected ? selected[0] : null;
     }

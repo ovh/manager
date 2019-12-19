@@ -19,7 +19,7 @@ export default class KubernetesNodesBillingTypeCtrl {
       .then(() => this.goBack(
         this.$translate.instant('kube_nodes_switch_billing_type_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('kube_nodes_switch_billing_type_error', {
           message: get(error, 'data.message'),
         }), 'error',

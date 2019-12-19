@@ -24,8 +24,8 @@ angular
         },
       },
       resolve: {
-        serviceName: /* @ngInject */ $stateParams => $stateParams.productId,
-        datacenterId: /* @ngInject */ $stateParams => $stateParams.datacenterId,
+        serviceName: /* @ngInject */ ($stateParams) => $stateParams.productId,
+        datacenterId: /* @ngInject */ ($stateParams) => $stateParams.datacenterId,
       },
     });
   });

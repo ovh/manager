@@ -21,14 +21,14 @@ angular.module('Module.ip.services').service('IpOrganisation', [
               }),
             );
           });
-          return $q.all(queue).then(() => organisations, http => $q.reject(http.data));
+          return $q.all(queue).then(() => organisations, (http) => $q.reject(http.data));
         },
-        http => $q.reject(http.data),
+        (http) => $q.reject(http.data),
       );
     };
 
     this.getIpOrganisationDetails = function getIpOrganisationDetails(orgId) {
-      return $http.get([swsProxypassPath, 'me/ipOrganisation', orgId].join('/')).then(data => data.data);
+      return $http.get([swsProxypassPath, 'me/ipOrganisation', orgId].join('/')).then((data) => data.data);
     };
 
     this.getAccountRegexp = function getAccountRegexp(country, ovhSubsidiary) {
@@ -41,7 +41,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
             ovhSubsidiary,
           },
         })
-        .then(data => data.data, http => $q.reject(http.data));
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.postOrganisation = function postOrganisation(params) {
@@ -50,7 +50,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
           $rootScope.$broadcast('ips.organisation.display');
           return data.data;
         },
-        http => $q.reject(http.data),
+        (http) => $q.reject(http.data),
       );
     };
 
@@ -63,7 +63,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
           $rootScope.$broadcast('ips.organisation.display');
           return data.data;
         },
-        http => $q.reject(http.data),
+        (http) => $q.reject(http.data),
       );
     };
 

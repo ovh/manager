@@ -25,7 +25,7 @@ export default class PciStreamsStreamSubscriptionsAddController {
           subscription: this.name,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_subscriptions_add_error_add',
         {
           message: get(err, 'data.message', null),

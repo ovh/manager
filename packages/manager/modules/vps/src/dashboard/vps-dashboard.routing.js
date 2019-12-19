@@ -6,8 +6,8 @@ export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('vps.detail.dashboard', {
     url: '/dashboard',
     resolve: {
-      features: /* @ngInject */ capabilities => Object.values(DASHBOARD_FEATURES)
-        .filter(feature => capabilities.includes(feature)),
+      features: /* @ngInject */ (capabilities) => Object.values(DASHBOARD_FEATURES)
+        .filter((feature) => capabilities.includes(feature)),
     },
     views: {
       'vpsContent@vps.detail': {

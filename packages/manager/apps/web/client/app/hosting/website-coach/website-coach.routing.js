@@ -29,13 +29,13 @@ export default /* @ngInject */($stateProvider) => {
       },
       attachedDomains: /* @ngInject */ (productId, HostingModule) => HostingModule
         .getAttachedDomains(productId),
-      productId: /* @ngInject */ $transition$ => $transition$.params().productId,
+      productId: /* @ngInject */ ($transition$) => $transition$.params().productId,
       screenshot: /* @ngInject */ (productId, OvhApiScreenshot) => OvhApiScreenshot
         .Aapi()
         .get({ url: productId })
         .$promise
-        .then(screenshot => screenshot),
-      user: /* @ngInject */ User => User.getUser(),
+        .then((screenshot) => screenshot),
+      user: /* @ngInject */ (User) => User.getUser(),
     },
   });
 };

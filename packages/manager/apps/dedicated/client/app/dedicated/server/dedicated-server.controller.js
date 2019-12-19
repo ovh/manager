@@ -332,8 +332,8 @@ angular.module('App').controller('ServerCtrl', /* @ngInject */ (
       });
   }
 
-  $scope.isMonitoringEnabled = protocol => $scope.serviceMonitoring
-    .filter(monitoring => monitoring.enabled && monitoring.protocol === protocol).length > 0;
+  $scope.isMonitoringEnabled = (protocol) => $scope.serviceMonitoring
+    .filter((monitoring) => monitoring.enabled && monitoring.protocol === protocol).length > 0;
 
   $scope.$on('server.monitoring.reload', loadMonitoring);
 
@@ -498,7 +498,7 @@ angular.module('App').controller('ServerCtrl', /* @ngInject */ (
         serverArrayToStopBother.push(dedicatedServer.name);
         return ovhUserPref.assign('SERVER_AUTORENEW_STOP_BOTHER', serverArrayToStopBother);
       })
-      .catch(error => (error.status === 404 ? $scope.createStopBotherAutoRenewUserPref() : $scope.setMessage($translate.instant('server_autorenew_stop_bother_error'), error.data)));
+      .catch((error) => (error.status === 404 ? $scope.createStopBotherAutoRenewUserPref() : $scope.setMessage($translate.instant('server_autorenew_stop_bother_error'), error.data)));
   };
 
   $scope.createStopBotherAutoRenewUserPref = () => {

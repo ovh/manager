@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .controller('DeskaasGetConsoleAccessCtrl',
     function DeskaasGetConsoleAccessCtrl($scope, $location, $uibModalInstance) {

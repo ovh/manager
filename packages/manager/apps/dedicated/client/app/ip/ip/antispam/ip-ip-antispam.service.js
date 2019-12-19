@@ -10,7 +10,7 @@ angular.module('Module.ip.services').service('IpSpam', [
 
     this.killPollSpamState = () => Poll.kill({ namespace: 'ip.antispam' });
 
-    this.getIpSpam = (block, ipSpamming) => $http.get([aapiIpPath, window.encodeURIComponent(block), 'antispam', ipSpamming].join('/'), { serviceType: 'aapi' }).then(data => data.data, http => $q.reject(http.data));
+    this.getIpSpam = (block, ipSpamming) => $http.get([aapiIpPath, window.encodeURIComponent(block), 'antispam', ipSpamming].join('/'), { serviceType: 'aapi' }).then((data) => data.data, (http) => $q.reject(http.data));
 
     this.getIpSpamStats = (block, ipSpamming, timestamp, count, offset, search) => $http
       .get(`${aapiIpPath}/${window.encodeURIComponent(block)}/antispam/${ipSpamming}/stats/${timestamp}`, {
@@ -21,7 +21,7 @@ angular.module('Module.ip.services').service('IpSpam', [
           search,
         },
       })
-      .then(data => data.data, http => $q.reject(http.data));
+      .then((data) => data.data, (http) => $q.reject(http.data));
 
     this.unblockIp = (block, ipSpamming) => $http
       .post(
@@ -32,7 +32,7 @@ angular.module('Module.ip.services').service('IpSpam', [
         },
       )
       .then(
-        data => data.data,
+        (data) => data.data,
       );
   },
 ]);

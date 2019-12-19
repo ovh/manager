@@ -44,8 +44,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
     return OvhApiOrder.v6().schema().$promise.then(
       (schema) => {
         if (schema && schema.models['telephony.NumberSpecialTypologyEnum'] && schema.models['telephony.NumberSpecialTypologyEnum'].enum) {
-          const typologies = filter(schema.models['telephony.NumberSpecialTypologyEnum'].enum, elt => elt.match(new RegExp(`^${country}_`)));
-          self.typologies = map(typologies, typo => ({
+          const typologies = filter(schema.models['telephony.NumberSpecialTypologyEnum'].enum, (elt) => elt.match(new RegExp(`^${country}_`)));
+          self.typologies = map(typologies, (typo) => ({
             value: typo,
             label: $translate.instant(`telephony_alias_special_rsva_infos_typology_${typo.replace(new RegExp(`^${country}_`), '')}_label`),
           }));
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
       country,
     }).$promise.then(
       (ranges) => {
-        self.ranges = map(ranges, elt => ({
+        self.ranges = map(ranges, (elt) => ({
           label: elt,
           value: elt,
         }));
@@ -110,7 +110,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
     const count = this.form.amount.value;
     if (this.prices) {
       const price = this.prices[this.form.numberType].withTax.text;
-      return price.replace(/^([\d.,]*)/, forOne => forOne * count);
+      return price.replace(/^([\d.,]*)/, (forOne) => forOne * count);
     }
     return null;
   };
@@ -198,7 +198,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
       init: true,
     };
 
-    self.preAmount = TELEPHONY_NUMBER_OFFER.preAmount.map(elt => ({
+    self.preAmount = TELEPHONY_NUMBER_OFFER.preAmount.map((elt) => ({
       label: $translate.instant(elt.label, elt),
       value: elt.value,
     }));

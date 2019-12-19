@@ -26,12 +26,10 @@ angular
           serviceType = this.getServiceTypeFromPrefix(serviceApi.route.path);
           return serviceApi.route.url;
         })
-        .then(url => OvhHttp.get(`${url}/serviceInfos`, {
+        .then((url) => OvhHttp.get(`${url}/serviceInfos`, {
           rootPath: 'apiv6',
         }))
-        .then(serviceInfos => Object.assign({}, serviceInfos, {
-          serviceType,
-        }));
+        .then((serviceInfos) => ({ ...serviceInfos, serviceType }));
     };
 
     this.confirmTermination = function confirmTermination(
@@ -43,8 +41,8 @@ angular
       token,
     ) {
       return this.getServiceApi(serviceId)
-        .then(serviceApi => serviceApi.route.url)
-        .then(url => OvhHttp.post(`${url}/confirmTermination`, {
+        .then((serviceApi) => serviceApi.route.url)
+        .then((url) => OvhHttp.post(`${url}/confirmTermination`, {
           rootPath: 'apiv6',
           data: {
             reason,

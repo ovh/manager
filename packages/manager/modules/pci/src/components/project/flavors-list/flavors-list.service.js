@@ -34,10 +34,10 @@ export default class FlavorsList {
     })
       .then(({ flavors, prices }) => map(
         groupBy(flavors.filter(({ planCodes }) => !isNil(planCodes.hourly)), 'name'),
-        groupedFlavors => new Flavor({
+        (groupedFlavors) => new Flavor({
           ...omit(groupedFlavors[0], ['available', 'id', 'region']),
           available: some(groupedFlavors, 'available'),
-          prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
+          prices: mapValues(groupedFlavors[0].planCodes, (planCode) => prices[planCode].price),
           regions: map(filter(groupedFlavors, 'available'), ({ id, region }) => ({ id, region })),
           frequency: get(CPU_FREQUENCY, groupedFlavors[0].type),
           groupName: groupedFlavors[0].groupName.replace(/-flex/, ''),
@@ -46,7 +46,7 @@ export default class FlavorsList {
   }
 
   static mapByFlavorType(flavors, image) {
-    return map(FlavorsList.groupByGroupName(flavors), group => new FlavorGroup(group, image));
+    return map(FlavorsList.groupByGroupName(flavors), (group) => new FlavorGroup(group, image));
   }
 
   static groupByGroupName(flavors) {
@@ -57,7 +57,7 @@ export default class FlavorsList {
     return CATEGORIES.map(({ category, title, pattern }) => ({
       category,
       title,
-      flavors: filter(flavors, flavor => pattern.test(flavor.type)),
+      flavors: filter(flavors, (flavor) => pattern.test(flavor.type)),
     }));
   }
 

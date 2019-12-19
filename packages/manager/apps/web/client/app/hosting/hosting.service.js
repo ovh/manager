@@ -240,7 +240,7 @@ import union from 'lodash/union';
              */
       getHosting(serviceName, catchOpt) {
         return this.$http.get(`/hosting/web/${serviceName}`)
-          .then(response => response.data)
+          .then((response) => response.data)
           .catch((http) => {
             if (isArray(catchOpt) && indexOf(catchOpt, http.status) !== -1) {
               return null;
@@ -506,19 +506,19 @@ import union from 'lodash/union';
       /* -------------------------POLLING-------------------------*/
 
       pollFlushCdn(serviceName, taskIds) {
-        return this.$q.all(map(taskIds, taskId => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
+        return this.$q.all(map(taskIds, (taskId) => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
           namespace: 'hosting.cdn.flush.refresh',
           interval: 30000,
-        }).then(resp => resp, err => err)));
+        }).then((resp) => resp, (err) => err)));
       }
 
       pollSqlPrive(serviceName, taskIds) {
-        return this.$q.all(map(taskIds, taskId => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
+        return this.$q.all(map(taskIds, (taskId) => this.Poll.poll(`apiv6/hosting/web/${serviceName}/tasks/${taskId}`, null, {
           namespace: 'hosting.database.sqlPrive',
           interval: 30000,
         })
-          .then(resp => resp)
-          .catch(err => err)));
+          .then((resp) => resp)
+          .catch((err) => err)));
       }
 
       killPollFlushCdn() {
@@ -540,7 +540,7 @@ import union from 'lodash/union';
              */
       checkTaskUnique(serviceName, fct) {
         let tasks = [];
-        const r = map(['init', 'doing', 'todo'], status => this.OvhHttp.get(`/hosting/web/${serviceName}/tasks`, {
+        const r = map(['init', 'doing', 'todo'], (status) => this.OvhHttp.get(`/hosting/web/${serviceName}/tasks`, {
           rootPath: 'apiv6',
           params: {
             function: fct,
@@ -573,7 +573,7 @@ import union from 'lodash/union';
           const defer = this.$q.defer();
           defer.notify(durations);
 
-          const requests = map(durations, duration => this.OvhHttp.get(`/order/hosting/web/${serviceName}/upgrade/${duration}`, {
+          const requests = map(durations, (duration) => this.OvhHttp.get(`/order/hosting/web/${serviceName}/upgrade/${duration}`, {
             rootPath: 'apiv6',
             params: {
               offer,

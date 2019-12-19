@@ -1,4 +1,4 @@
-angular.module('services').service('MePaymentMethodApi', $resource => $resource(
+angular.module('services').service('MePaymentMethodApi', ($resource) => $resource(
   'apiv6/me/paymentMethod',
   {
     id: '@id',

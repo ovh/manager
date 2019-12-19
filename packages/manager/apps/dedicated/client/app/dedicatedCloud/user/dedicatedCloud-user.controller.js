@@ -44,8 +44,8 @@ angular.module('App').controller('DedicatedCloudUserCtrl', function DedicatedClo
   this.loadUsers = ({ offset, pageSize }) => DedicatedCloud.getUsers(
     $stateParams.productId,
     this.usersEntrySearchSelected,
-  ).then(users => ({
-    data: users.slice(offset - 1, offset - 1 + pageSize).map(id => ({ id })),
+  ).then((users) => ({
+    data: users.slice(offset - 1, offset - 1 + pageSize).map((id) => ({ id })),
     meta: {
       totalCount: users.length,
     },

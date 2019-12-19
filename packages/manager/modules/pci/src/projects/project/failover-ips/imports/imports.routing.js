@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         value: ['.'],
       },
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate
+        breadcrumb: /* @ngInject */ ($translate) => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_failoverip_imports_title')),
       },

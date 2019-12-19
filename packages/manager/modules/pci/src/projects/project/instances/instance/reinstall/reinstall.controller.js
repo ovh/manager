@@ -28,7 +28,7 @@ export default class PciInstanceReinstallController {
           },
         ),
       ))
-      .catch(err => this.goBack(
+      .catch((err) => this.goBack(
         this.$translate.instant(
           'pci_projects_project_instances_instance_reinstall_error_reinstall',
           {

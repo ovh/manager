@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      activateZone: /* @ngInject */ $state => () => $state.go('app.domain.product.zone.activate'),
+      activateZone: /* @ngInject */ ($state) => () => $state.go('app.domain.product.zone.activate'),
       goToZone: /* @ngInject */ (
         $state,
         Alerter,

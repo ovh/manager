@@ -6,8 +6,8 @@ angular
     $stateProvider.state('app', {
       abstract: true,
       resolve: {
-        currentUser: /* @ngInject */ User => User.getUser()
-          .then(user => new UserModel(user)),
+        currentUser: /* @ngInject */ (User) => User.getUser()
+          .then((user) => new UserModel(user)),
         rootState: () => 'app.configuration',
       },
       templateUrl: 'app.html',
@@ -29,8 +29,8 @@ angular
       },
       translations: { value: ['.'], format: 'json' },
       resolve: {
-        forced: /* @ngInject */ $transition$ => $transition$.params().forced,
-        from: /* @ngInject */ $transition$ => $transition$.$from().name,
+        forced: /* @ngInject */ ($transition$) => $transition$.params().forced,
+        from: /* @ngInject */ ($transition$) => $transition$.$from().name,
       },
     });
 

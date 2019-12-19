@@ -11,12 +11,12 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: projectId,
         }).$promise,
 
-        region: /* @ngInject */ coreConfig => coreConfig.getRegion(),
+        region: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
 
         defaultPaymentMean: /* @ngInject */
           (PciProjectQuota, region) => PciProjectQuota.getDefaultPaymentMean(region),
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_quota'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_quota'),
       },
     });
 };

@@ -11,7 +11,7 @@ export default class FlavorGroup {
   constructor(flavors, image = DEFAULT_OS) {
     Object.assign(
       this,
-      omit(find(flavors, flavor => flavor.osType === image && !flavor.isFlex()), [
+      omit(find(flavors, (flavor) => flavor.osType === image && !flavor.isFlex()), [
         'regions', 'id', 'osType', 'planCodes',
       ]),
     );
@@ -29,7 +29,7 @@ export default class FlavorGroup {
     this.osTypes = uniq(
       map(
         this.flavors,
-        flavor => flavor.osType,
+        (flavor) => flavor.osType,
       ),
     );
   }
@@ -39,7 +39,7 @@ export default class FlavorGroup {
   }
 
   getFlavorByOsType(osType, isFlex = false) {
-    return find(this.flavors, flavor => flavor.osType === osType && flavor.isFlex() === isFlex);
+    return find(this.flavors, (flavor) => flavor.osType === osType && flavor.isFlex() === isFlex);
   }
 
   getFlavorId(osType, region, isFlex = false) {
@@ -51,10 +51,10 @@ export default class FlavorGroup {
   }
 
   getFlavor(flavorId) {
-    return find(this.flavors, flavor => flavor.containsFlavor(flavorId));
+    return find(this.flavors, (flavor) => flavor.containsFlavor(flavorId));
   }
 
   hasFlexOption() {
-    return some(this.flavors, flavor => flavor.isFlex());
+    return some(this.flavors, (flavor) => flavor.isFlex());
   }
 }

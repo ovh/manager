@@ -188,7 +188,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   }
 
   filterServices() {
-    return services => services
+    return (services) => services
       .filter(({ featureType }) => this.TUC_TELEPHONY_ALIAS_FEATURE_TYPES.contactCenterSolution
         .includes(featureType));
   }
@@ -232,7 +232,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
             return null;
         }
       })
-      .map(condition => ({
+      .map((condition) => ({
         conditionId: condition.conditionId,
         weekDay: condition.weekDay,
         timeFrom: condition.timeFrom,

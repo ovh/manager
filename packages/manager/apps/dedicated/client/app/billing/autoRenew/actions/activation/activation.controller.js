@@ -21,7 +21,7 @@ export default class {
       .then(() => this.goBack(
         this.$translate.instant('billing_autorenew_service_activation_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('billing_autorenew_service_activation_error', { message: get(error, 'data.message') }),
         'danger',
       ));

@@ -108,7 +108,7 @@ angular.module('App').controller(
         .then((data) => {
           this.emails = data.sort();
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_accounts_error'),
           err,
           this.$scope.alerts.main,
@@ -157,7 +157,7 @@ angular.module('App').controller(
         .then(() => this.WucEmails
           .getEmailDelegatedUsage(account.email)
           .then(() => this.constructor.setAccountPercentUse(account)))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_update_usage_error'),
           err,
           this.$scope.alerts.main,

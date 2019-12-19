@@ -35,7 +35,7 @@ export default class SharepointActivateOfficeCtrl {
             this.$scope.alerts.main,
           );
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.main))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.main))
         .finally(() => this.$scope.resetAction());
     };
   }

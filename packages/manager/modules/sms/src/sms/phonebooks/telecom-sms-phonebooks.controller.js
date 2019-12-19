@@ -117,13 +117,13 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(phonebooksIds => this.$q
-        .all(map(phonebooksIds, bookKey => this.api.sms.phonebooks
+      .then((phonebooksIds) => this.$q
+        .all(map(phonebooksIds, (bookKey) => this.api.sms.phonebooks
           .get({
             serviceName: this.$stateParams.serviceName,
             bookKey,
           }).$promise))
-        .then(phonebooks => sortBy(phonebooks, 'name')));
+        .then((phonebooks) => sortBy(phonebooks, 'name')));
   }
 
   /**
@@ -140,10 +140,10 @@ export default class {
         serviceName: this.$stateParams.serviceName,
         bookKey: get(phonebook, 'bookKey'),
       }).$promise
-      .then(phonebookContactIds => this.$q
+      .then((phonebookContactIds) => this.$q
         .all(map(
           chunk(phonebookContactIds, 50),
-          id => this.api.sms.phonebookContact
+          (id) => this.api.sms.phonebookContact
             .getBatch({
               serviceName: this.$stateParams.serviceName,
               bookKey: get(phonebook, 'bookKey'),
@@ -224,7 +224,7 @@ export default class {
   getSelection() {
     return filter(
       this.phonebookContact.raw,
-      contact => contact
+      (contact) => contact
         && this.phonebookContact.selected
         && this.phonebookContact.selected[contact.id],
     );
@@ -400,7 +400,7 @@ export default class {
    */
   deleteSelectedPhonebookContact() {
     const contacts = this.getSelection();
-    const queries = contacts.map(contact => this.api.sms.phonebookContact.delete({
+    const queries = contacts.map((contact) => this.api.sms.phonebookContact.delete({
       serviceName: this.$stateParams.serviceName,
       bookKey: get(this.phonebooks.current, 'bookKey'),
       id: contact.id,

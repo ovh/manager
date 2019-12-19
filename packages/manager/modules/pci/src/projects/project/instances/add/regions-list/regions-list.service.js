@@ -18,14 +18,14 @@ export default class {
 
   getRegions(serviceName) {
     return this.OvhApiCloudProjectRegion.v6().query({ serviceName }).$promise
-      .then(regions => this.$q.all({
+      .then((regions) => this.$q.all({
         quota: this.OvhApiCloudProjectQuota.v6().query({ serviceName }).$promise,
         regions: this.$q.all(regions
-          .map(region => this.OvhApiCloudProjectRegion
+          .map((region) => this.OvhApiCloudProjectRegion
             .v6().get({ serviceName, id: region }).$promise)),
       }))
       .then(({ quota, regions }) => regions
-        .map(region => ({ ...region, quota: find(quota, { region: region.name }) })));
+        .map((region) => ({ ...region, quota: find(quota, { region: region.name }) })));
   }
 
   groupByContinentAndDatacenterLocation(regions) {

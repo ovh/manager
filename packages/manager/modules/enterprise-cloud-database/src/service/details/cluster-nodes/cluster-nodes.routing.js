@@ -15,7 +15,7 @@ export default /* @ngInject */($stateProvider) => {
       hosts: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService, planCatalog) => enterpriseCloudDatabaseService
           .getHostsWithDetails(clusterId)
-          .then(hosts => each(hosts, (host) => {
+          .then((hosts) => each(hosts, (host) => {
             set(host, 'ram', get(planCatalog, 'memory.size', 0));
             set(host, 'storage', get(planCatalog, 'storage'));
           })),

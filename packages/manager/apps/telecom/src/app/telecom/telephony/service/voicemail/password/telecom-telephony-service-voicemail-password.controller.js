@@ -17,7 +17,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
       serviceName: $stateParams.serviceName,
     }).$promise.then((options) => {
       self.options = options;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   }
@@ -69,7 +69,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp', 'fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp', 'fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

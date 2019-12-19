@@ -22,7 +22,7 @@ angular.module('App').controller('DedicatedCloudTerminateCtrl', class DedicatedC
       serviceName: this.$stateParams.productId,
     }).$promise
       .then(() => this.Alerter.success(this.$translate.instant('dedicatedCloud_close_service_success')))
-      .catch(error => this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_close_service_error'), error))
+      .catch((error) => this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_close_service_error'), error))
       .finally(() => {
         this.loading.terminate = false;
         this.onCancelBtnClick();

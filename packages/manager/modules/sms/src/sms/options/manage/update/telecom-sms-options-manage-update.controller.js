@@ -44,7 +44,7 @@ export default class {
       this.service.callBack = this.model.service.callBack;
       this.service.stopCallBack = this.model.service.stopCallBack;
       return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToDashboard => goToDashboard,
+      goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },
 
   });
@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToDashboard => goToDashboard,
+      goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
     },
   });
 };

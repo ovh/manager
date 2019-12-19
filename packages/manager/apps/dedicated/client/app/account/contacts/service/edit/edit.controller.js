@@ -19,7 +19,7 @@ export default class {
       .then(() => this.goBack(
         this.$translate.instant('account_contacts_service_edit_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('account_contacts_service_edit_error', { message: get(error, 'message') }),
         'danger',
       ));

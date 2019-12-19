@@ -94,7 +94,7 @@ angular.module('Billing.directives').controller('Billing.directives.billingDateR
       return;
     }
 
-    let preset = _self.presets.find(_preset => _preset.id === BillingdateRangeSelection.mode);
+    let preset = _self.presets.find((_preset) => _preset.id === BillingdateRangeSelection.mode);
     if (!preset) {
       preset = head(_self.presets);
       set(BillingdateRangeSelection, 'mode', preset.id);

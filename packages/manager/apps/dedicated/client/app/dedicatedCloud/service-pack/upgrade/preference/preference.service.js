@@ -41,7 +41,7 @@ export const PreferenceService = class {
     return this
       .ovhUserPref
       .getValue(PREFERENCE_NAME)
-      .then(preference => (isObject(preference[serviceName])
+      .then((preference) => (isObject(preference[serviceName])
         ? preference[serviceName]
         : this.$q.reject({ status: 404 })));
   }
@@ -49,7 +49,7 @@ export const PreferenceService = class {
   removePreference(serviceName) {
     return this
       .getPreferenceForService(serviceName)
-      .then(preference => this.updatePreference(omit(preference, serviceName)));
+      .then((preference) => this.updatePreference(omit(preference, serviceName)));
   }
 
   updatePreference(preference) {

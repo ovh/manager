@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: '$ctrl',
     translations: { value: ['.', '../'], format: 'json' },
     resolve: {
-      orders: /* @ngInject */ iceberg => iceberg('/me/order')
+      orders: /* @ngInject */ (iceberg) => iceberg('/me/order')
         .query()
         .expand('CachedObjectList-Pages')
         .sort('date', 'DESC')
@@ -23,8 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .$promise
         .then(({ data }) => data),
       timeNow: /* @ngInject */
-        BillingAuth => BillingAuth.getCurrentTimestamp().then(timestamp => moment(timestamp)),
-      filter: /* @ngInject */ $transition$ => $transition$.params().filter,
+        (BillingAuth) => BillingAuth.getCurrentTimestamp().then((timestamp) => moment(timestamp)),
+      filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       criteria: /* @ngInject */ ($log, filter) => {
         if (filter) {
           try {
@@ -37,18 +37,18 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return undefined;
       },
-      schema: /* @ngInject */ OvhApiMe => OvhApiMe
+      schema: /* @ngInject */ (OvhApiMe) => OvhApiMe
         .v6()
         .schema()
         .$promise,
-      goToOrder: /* @ngInject */ $state => (order, filter) => $state.go('app.account.billing.order', {
+      goToOrder: /* @ngInject */ ($state) => (order, filter) => $state.go('app.account.billing.order', {
         orderId: order.orderId,
         ordersFilter: filter,
       }),
-      goToOrderRetractation: /* @ngInject */ $state => ({ orderId }) => $state.go('app.account.billing.retract', {
+      goToOrderRetractation: /* @ngInject */ ($state) => ({ orderId }) => $state.go('app.account.billing.retract', {
         id: orderId,
       }),
-      updateFilterParam: /* @ngInject */ $state => filter => $state.go('app.account.billing.orders', {
+      updateFilterParam: /* @ngInject */ ($state) => (filter) => $state.go('app.account.billing.orders', {
         filter,
       }, {
         reload: false,

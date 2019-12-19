@@ -40,7 +40,7 @@ export default class OvhOrderTrackingController {
 
     return this.OvhApiMeOrder.v6().get({
       orderId: this.orderId,
-    }).$promise.then(order => this.getOrderStatus(order).then(({ status }) => {
+    }).$promise.then((order) => this.getOrderStatus(order).then(({ status }) => {
       const orderWithStatus = order;
       orderWithStatus.status = status;
       return orderWithStatus;
@@ -80,10 +80,11 @@ export default class OvhOrderTrackingController {
   getOrderDetails() {
     return this.OvhApiMeOrder.v6().getDetails({
       orderId: this.orderId,
-    }).$promise.then(details => this.$q.all(details.map(id => this.OvhApiMeOrder.v6().getDetail({
-      orderId: this.orderId,
-      detailId: id,
-    }).$promise)));
+    }).$promise
+      .then((details) => this.$q.all(details.map((id) => this.OvhApiMeOrder.v6().getDetail({
+        orderId: this.orderId,
+        detailId: id,
+      }).$promise)));
   }
 
   pollOrderFollowUp(interval = ORDER_FOLLOW_UP_POLLING_INTERVAL) {
@@ -91,7 +92,7 @@ export default class OvhOrderTrackingController {
       this.OvhApiMeOrder.v6().resetAllCache();
       this.getOrderFollowUp().then((followUp) => {
         this.orderFollowUp = followUp;
-        this.orderHistory = reverse(flatten(map(followUp, follow => reverse(follow.history))));
+        this.orderHistory = reverse(flatten(map(followUp, (follow) => reverse(follow.history))));
         if (this.order.status === 'notPaid' && this.orderHistory.length === 0) {
           this.orderHistory.push({
             date: this.order.date,
@@ -123,7 +124,7 @@ export default class OvhOrderTrackingController {
       this.OvhApiMeOrder.v6().resetAllCache();
       this.getOrderDetails().then((details) => {
         this.orderDetails = details;
-      }).catch(err => this.$log.error(err)).finally(() => {
+      }).catch((err) => this.$log.error(err)).finally(() => {
         if (this.polling.orderDetails) {
           this.pollOrderDetails();
         }

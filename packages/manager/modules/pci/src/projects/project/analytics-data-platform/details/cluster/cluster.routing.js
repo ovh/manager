@@ -7,7 +7,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/cluster',
     component: 'analyticsDataPlatformDetailsClusterComponent',
     resolve: {
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
 
       platformDetails: /* @ngInject */ (
         analyticsDataPlatformService,
@@ -24,7 +24,7 @@ export default /* @ngInject */($stateProvider) => {
         flavors,
         serviceName,
       ) => analyticsDataPlatformService.getClusterNodesDetails(serviceName)
-        .then(nodes => map(nodes, (node) => {
+        .then((nodes) => map(nodes, (node) => {
           const flavor = find(flavors, { name: node.flavor });
           set(node, 'vcpus', flavor.vcpus);
           set(node, 'ram', flavor.ram);
@@ -37,7 +37,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       ) => analyticsDataPlatformService.getFlavors(projectId, platformDetails.osRegion),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_header_nav_cluster_size'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('analytics_data_platform_header_nav_cluster_size'),
     },
   });
 };

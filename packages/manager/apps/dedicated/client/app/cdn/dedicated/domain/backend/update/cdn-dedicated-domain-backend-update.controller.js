@@ -71,6 +71,6 @@ angular.module('App').controller('CdnModifyBackendCtrl', ($scope, $stateParams, 
     CdnDomain
       .modifyBackend($stateParams.productId, $stateParams.domain, $scope.existingBackend.value)
       .then(() => $scope.setMessage($translate.instant('cdn_domain_configuration_change_backend_success', { t0: $scope.domain.domain }), true))
-      .catch(data => $scope.setMessage($translate.instant('cdn_domain_configuration_change_backend_fail'), angular.extend(data, { type: 'ERROR' })));
+      .catch((data) => $scope.setMessage($translate.instant('cdn_domain_configuration_change_backend_fail'), angular.extend(data, { type: 'ERROR' })));
   };
 });

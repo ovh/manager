@@ -79,19 +79,19 @@ export const stateResolves = ({
     return request.execute(null).$promise;
   },
 
-  paginationNumber: /* @ngInject */ resources => parseInt(
+  paginationNumber: /* @ngInject */ (resources) => parseInt(
     get(resources.headers, 'x-pagination-number'),
     10,
   ),
-  paginationSize: /* @ngInject */ resources => parseInt(
+  paginationSize: /* @ngInject */ (resources) => parseInt(
     get(resources.headers, 'x-pagination-size'),
     10,
   ),
-  paginationTotalCount: /* @ngInject */ resources => parseInt(
+  paginationTotalCount: /* @ngInject */ (resources) => parseInt(
     get(resources.headers, 'x-pagination-elements'),
     10,
   ),
-  onListParamsChange: /* @ngInject */ $state => params => $state.go(
+  onListParamsChange: /* @ngInject */ ($state) => (params) => $state.go(
     '.',
     params,
     {
@@ -99,10 +99,10 @@ export const stateResolves = ({
     },
   ),
 
-  filter: /* @ngInject */ $transition$ => $transition$.params().filter,
+  filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
 
-  sort: /* @ngInject */ resources => get(resources.headers, 'x-pagination-sort'),
-  sortOrder: /* @ngInject */ resources => get(resources.headers, 'x-pagination-sort-order'),
+  sort: /* @ngInject */ (resources) => get(resources.headers, 'x-pagination-sort'),
+  sortOrder: /* @ngInject */ (resources) => get(resources.headers, 'x-pagination-sort-order'),
 });
 
 export const stateParams = {

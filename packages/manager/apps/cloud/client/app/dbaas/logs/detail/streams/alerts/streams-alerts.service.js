@@ -34,8 +34,8 @@ class LogsStreamsAlertsService {
         title: alert.title,
         value: alert.value,
       }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_add_success', { alertName: alert.title }))
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_add_error', err, { alertName: alert.title }));
+      .then((operation) => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_add_success', { alertName: alert.title }))
+      .catch((err) => this.LogsHelperService.handleError('streams_alerts_add_error', err, { alertName: alert.title }));
   }
 
   /**
@@ -49,8 +49,8 @@ class LogsStreamsAlertsService {
    */
   deleteAlert(serviceName, streamId, alert) {
     return this.AlertsApiService.delete({ serviceName, streamId, alertId: alert.alertId }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_delete_success', { alertName: alert.title }))
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_delete_error', err, { alertName: alert.title }));
+      .then((operation) => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_delete_success', { alertName: alert.title }))
+      .catch((err) => this.LogsHelperService.handleError('streams_alerts_delete_error', err, { alertName: alert.title }));
   }
 
   /**
@@ -66,7 +66,7 @@ class LogsStreamsAlertsService {
       serviceName,
       streamId,
     }).$promise
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_ids_loading_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('streams_alerts_ids_loading_error', err, {}));
   }
 
   /**
@@ -80,7 +80,7 @@ class LogsStreamsAlertsService {
    */
   getAlerts(serviceName, streamId, alertIds) {
     return this.getAlertDetails(serviceName, streamId, alertIds)
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_loading_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('streams_alerts_loading_error', err, {}));
   }
 
   /**
@@ -93,7 +93,7 @@ class LogsStreamsAlertsService {
    * @memberof LogsStreamsAlertsService
    */
   getAlertDetails(serviceName, streamId, alertIds) {
-    const promises = alertIds.map(alertId => this.getAlert(serviceName, streamId, alertId));
+    const promises = alertIds.map((alertId) => this.getAlert(serviceName, streamId, alertId));
     return this.$q.all(promises);
   }
 
@@ -108,7 +108,7 @@ class LogsStreamsAlertsService {
    */
   getAlert(serviceName, streamId, alertId) {
     return this.AlertsApiService.get({ serviceName, streamId, alertId })
-      .$promise.then(alert => this.constructor.transformAlert(alert));
+      .$promise.then((alert) => this.constructor.transformAlert(alert));
   }
 
   /**
@@ -165,8 +165,8 @@ class LogsStreamsAlertsService {
           title: alert.title,
           value: alert.value,
         }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_update_success', { alertName: alert.title }))
-      .catch(err => this.LogsHelperService.handleError('streams_alerts_update_error', err, { alertName: alert.title }));
+      .then((operation) => this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'streams_alerts_update_success', { alertName: alert.title }))
+      .catch((err) => this.LogsHelperService.handleError('streams_alerts_update_error', err, { alertName: alert.title }));
   }
 
   /**

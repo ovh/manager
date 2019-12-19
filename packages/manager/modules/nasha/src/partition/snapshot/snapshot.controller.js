@@ -69,7 +69,7 @@ export default class NashaPartitionSnapshotCtrl {
     if (checked) {
       this.snapshots.after.push(snapshot);
     } else {
-      remove(this.snapshots.after, item => item === snapshot);
+      remove(this.snapshots.after, (item) => item === snapshot);
     }
   }
 
@@ -90,7 +90,7 @@ export default class NashaPartitionSnapshotCtrl {
           },
         );
       })
-      .catch(error => this.goToPartitionPage(
+      .catch((error) => this.goToPartitionPage(
         this.$translate.instant('nasha_snapshot_set_success_fail', {
           partitionName: this.data.partition.partitionName,
           message: get(error, 'data.message'),
@@ -109,7 +109,7 @@ export default class NashaPartitionSnapshotCtrl {
         partitionName: this.data.partition.partitionName,
       }, {
         snapshotType: schedule,
-      }).$promise.then(result => result.data.taskId));
+      }).$promise.then((result) => result.data.taskId));
     });
   }
 
@@ -120,7 +120,7 @@ export default class NashaPartitionSnapshotCtrl {
         serviceName: this.data.nashaId,
         partitionName: this.data.partition.partitionName,
         snapshotType: schedule,
-      }).$promise.then(result => result.data.taskId));
+      }).$promise.then((result) => result.data.taskId));
     });
   }
 

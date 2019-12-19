@@ -133,7 +133,7 @@ export default class IpLoadBalancerHomeCtrl {
         callback: () => this.CucControllerHelper.modal.showNameChangeModal({
           serviceName: this.serviceName,
           displayName: this.configuration.data.displayName,
-          onSave: newDisplayName => this.IpLoadBalancerHomeService
+          onSave: (newDisplayName) => this.IpLoadBalancerHomeService
             .updateName(this.serviceName, newDisplayName)
             .then(() => this.configuration.load()),
         }),
@@ -148,7 +148,7 @@ export default class IpLoadBalancerHomeCtrl {
       activateVrack: {
         text: this.$translate.instant('iplb_activate'),
         callback: () => this.VrackService.selectVrack()
-          .then(result => this.IpLoadBalancerVrackHelper.associateVrack(
+          .then((result) => this.IpLoadBalancerVrackHelper.associateVrack(
             this.serviceName,
             result.serviceName,
             this.vrackCreationRules.data,
@@ -179,7 +179,12 @@ export default class IpLoadBalancerHomeCtrl {
       },
       manageContact: {
         text: this.$translate.instant('iplb_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(CONTACTS_URL, { serviceName: this.serviceName }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(
+          CONTACTS_URL,
+          {
+            serviceName: this.serviceName,
+          },
+        ),
         isAvailable: () => this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage') && !this.subscription.loading && !this.subscription.hasErrors,
       },
       addZone: {
@@ -193,7 +198,7 @@ export default class IpLoadBalancerHomeCtrl {
         isAvailable: () => !this.deletableZones.loading
           && filter(
             this.deletableZones.data,
-            zone => zone.selectable.value !== false,
+            (zone) => zone.selectable.value !== false,
           ).length - 1 >= 1,
       },
     };
@@ -278,7 +283,7 @@ export default class IpLoadBalancerHomeCtrl {
     if (regions) {
       this.detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
-        : map(regions, region => this.CucRegionService.getRegion(region));
+        : map(regions, (region) => this.CucRegionService.getRegion(region));
     }
 
     this.regionsGroup = groupBy(this.detailedRegions, 'country');

@@ -45,7 +45,7 @@ export default class {
       this.loading.changePasswordUser = false;
       this.changed = true;
       return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

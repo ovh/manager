@@ -63,7 +63,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
       self.resiliationTerms.typeName = $translate.instant('pack_resiliation_type_name');
       if (self.resiliationTerms.data.resiliationReasons) {
         self.resiliationTerms.data.resiliationReasons = self
-          .resiliationTerms.data.resiliationReasons.map(reason => ({
+          .resiliationTerms.data.resiliationReasons.map((reason) => ({
             value: reason,
             label: $translate.instant(`pack_resiliation_choice_${reason}`),
           }));
@@ -76,7 +76,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
       }
 
       self.updateFeeSummary();
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
 
@@ -102,7 +102,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
    * @return promise with the symbol of the current currency
    */
   this.getCurrentCurrencySymbol = function getCurrentCurrencySymbol() {
-    return OvhApiMe.v6().get().$promise.then(me => (me && me.currency ? me.currency.symbol : ''));
+    return OvhApiMe.v6().get().$promise.then((me) => (me && me.currency ? me.currency.symbol : ''));
   };
 
   /**
@@ -212,7 +212,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
    * false otherwise.
    */
   this.hasKeepableSubServices = function hasKeepableSubServices(serviceType) {
-    return some(self.subServicesTerms[serviceType], service => get(service, 'keepServiceTerms.isAllowed'));
+    return some(self.subServicesTerms[serviceType], (service) => get(service, 'keepServiceTerms.isAllowed'));
   };
 
   /**
@@ -227,7 +227,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
     }, null).$promise.then((data) => {
       self.resiliationTerms.data.due = data.due;
       self.updateFeeSummary();
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.computingPrice = false;
     });
   };
@@ -281,7 +281,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
     }).$promise.then(() => {
       set(resiliationNotification, 'success', true);
       $state.go('telecom.packs.pack', { packName: $stateParams.packName });
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   };
@@ -297,7 +297,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
     }, null).$promise.then(() => {
       set(resiliationNotification, 'cancelSuccess', true);
       $state.go('telecom.packs.pack', { packName: $stateParams.packName });
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   };

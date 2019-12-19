@@ -22,7 +22,7 @@ class CloudProjectOpenstackUsersRcloneService {
   getValidRcloneRegions(projectId) {
     return this.OvhApiCloud.Project().Region().v6().query({ serviceName: projectId })
       .$promise
-      .then(regions => map(regions, region => this.CucRegionService.getRegion(region)))
+      .then((regions) => map(regions, (region) => this.CucRegionService.getRegion(region)))
       .catch(this.CucServiceHelper.errorHandler('cpou_rclone_modal_loading_error'));
   }
 

@@ -73,7 +73,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
           billingAccount: self.billingAccount,
           serviceName: self.serviceName,
           keyNum: self.keyNum,
-        }).$promise.then(availableFunction => availableFunction, (error) => {
+        }).$promise.then((availableFunction) => availableFunction, (error) => {
           const message = error.data && error.data.message;
           return $q.reject(message);
         });
@@ -90,7 +90,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
       }, {
         function: self.function,
         parameter: self.parameter,
-      }).$promise.then(availableFunction => availableFunction, (error) => {
+      }).$promise.then((availableFunction) => availableFunction, (error) => {
         const message = error.data && error.data.message;
         return $q.reject(message);
       });

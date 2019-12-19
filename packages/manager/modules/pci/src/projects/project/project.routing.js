@@ -33,18 +33,18 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       resolve: {
-        projectId: /* @ngInject */  $transition$ => $transition$.params().projectId,
+        projectId: /* @ngInject */  ($transition$) => $transition$.params().projectId,
         project: /* @ngInject */ (OvhApiCloudProject, projectId) => OvhApiCloudProject
           .v6()
           .get({
             serviceName: projectId,
           })
           .$promise,
-        breadcrumb: /* @ngInject */ project => (project.status !== 'creating'
+        breadcrumb: /* @ngInject */ (project) => (project.status !== 'creating'
           ? project.description
           : null),
-        sidebarVisible: /* @ngInject */ project => project.status !== 'creating',
-        user: /* @ngInject */ SessionService => SessionService.getUser(),
+        sidebarVisible: /* @ngInject */ (project) => project.status !== 'creating',
+        user: /* @ngInject */ (SessionService) => SessionService.getUser(),
       },
     });
 };

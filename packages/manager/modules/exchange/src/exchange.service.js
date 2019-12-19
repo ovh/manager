@@ -200,7 +200,7 @@ export default class Exchange {
   currentUserHasConfigurationRights() {
     return some(
       this.value.nicType,
-      nicType => nicType === this.nicAdmin || nicType === this.nicTech,
+      (nicType) => nicType === this.nicAdmin || nicType === this.nicTech,
     );
   }
 
@@ -211,9 +211,9 @@ export default class Exchange {
       .aggregate('displayName')
       .execute({ organizationName: '*' })
       .$promise
-      .then(services => filter(services, service => has(service, 'value.displayName') && has(service, 'value.offer')))
-      .then(services => map(
-        services, service => ({
+      .then((services) => filter(services, (service) => has(service, 'value.displayName') && has(service, 'value.offer')))
+      .then((services) => map(
+        services, (service) => ({
           name: service.key,
           displayName: service.value.displayName,
           organization: get(service.path.split('/'), '[3]'),
@@ -224,7 +224,7 @@ export default class Exchange {
 
   getExchange(organization, exchangeId) {
     return this.getExchangeServices()
-      .then(services => find(services, {
+      .then((services) => find(services, {
         name: exchangeId,
         organization,
       }));
@@ -273,7 +273,7 @@ export default class Exchange {
         return this.services.$q.reject(product);
       })
       .then(() => this.exchangeCache.get('exchange'))
-      .catch(reason => this.services.$q.reject(reason));
+      .catch((reason) => this.services.$q.reject(reason));
   }
 
   updateValue() {
@@ -334,7 +334,7 @@ export default class Exchange {
     ).then((dcvs) => {
       const data = dcvs || dcvs.data;
 
-      return data.map(dcv => ({
+      return data.map((dcv) => ({
         name: dcv,
         displayName: punycode.toUnicode(dcv),
         formattedName: punycode.toUnicode(dcv),
@@ -371,7 +371,7 @@ export default class Exchange {
    *                           and creating/deleting ones
    */
   getAccounts(pageSize, offset, search, configurableOnly, type, timeout) {
-    return this.getSelected().then(exchange => this.getAccountsForExchange(
+    return this.getSelected().then((exchange) => this.getAccountsForExchange(
       exchange,
       pageSize,
       offset,
@@ -549,7 +549,7 @@ export default class Exchange {
           storageQuota: params.storageQuota || '50',
         },
       },
-    ).then(data => data);
+    ).then((data) => data);
   }
 
   /**
@@ -647,7 +647,7 @@ export default class Exchange {
 
       return {
         messages: data,
-        state: data.filter(message => message.type === 'ERROR').length > 0 ? 'ERROR' : 'OK',
+        state: data.filter((message) => message.type === 'ERROR').length > 0 ? 'ERROR' : 'OK',
       };
     });
   }
@@ -903,7 +903,7 @@ export default class Exchange {
                 this.aliasMaxLimit,
                 offset,
               ).then((aliases) => {
-                set(account, 'aliases', aliases.list.results.map(alias => alias.displayName));
+                set(account, 'aliases', aliases.list.results.map((alias) => alias.displayName));
               }),
             );
           } else {
@@ -917,7 +917,7 @@ export default class Exchange {
                 serviceName,
                 account.mailingListAddress,
               ).then((managers) => {
-                set(account, 'managers', managers.list.results.map(manager => manager.displayAddress));
+                set(account, 'managers', managers.list.results.map((manager) => manager.displayAddress));
               }),
             );
           } else {
@@ -931,7 +931,7 @@ export default class Exchange {
                 serviceName,
                 account.mailingListAddress,
               ).then((members) => {
-                set(account, 'members', members.list.results.map(member => member.displayAddress));
+                set(account, 'members', members.list.results.map((member) => member.displayAddress));
               }),
             );
           } else {
@@ -1541,7 +1541,7 @@ export default class Exchange {
   doSharepointBeta(opts) {
     const { primaryEmailAddress, subDomain } = opts;
 
-    return this.getSelected().then(exchange => this.services.$http.post(
+    return this.getSelected().then((exchange) => this.services.$http.post(
       [
         'apiv6/email/exchange',
         exchange.organization,
@@ -1642,7 +1642,7 @@ export default class Exchange {
    * Return information related to sharepoint order
    */
   getSharepointService() {
-    return this.getSelected().then(exchange => this.getSharepointServiceForExchange(exchange));
+    return this.getSelected().then((exchange) => this.getSharepointServiceForExchange(exchange));
   }
 
   getSharepointServiceForExchange(exchange) {

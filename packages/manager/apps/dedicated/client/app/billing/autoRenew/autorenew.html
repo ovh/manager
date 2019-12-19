@@ -241,12 +241,12 @@
                     <div data-ng-if="!$row.hasParticularRenew() && !$row.hasPendingResiliation() && !$row.hasDebt()">
                         <!-- Service in autorenew -->
                         <oui-action-menu-item
-                            data-ng-if="!$row.isOneShot() && !$row.hasForcedRenew() && !$row.hasEngagement() && !$row.isResiliated()"
+                            data-ng-if="!$row.isOneShot() && !$row.hasForcedRenew() && !$row.hasEngagement() && !$row.isResiliated() && $row.canHandleRenew()"
                             data-on-click="$ctrl.updateServices($row)">
                             <span data-translate="billing_autorenew_service_update_button_caption"></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
-                            data-ng-if="!$row.isOneShot() && !$row.hasManualRenew()"
+                            data-ng-if="!$row.isOneShot() && !$row.hasManualRenew() && $row.canHandleRenew()"
                             data-href="{{:: $ctrl.BillingAutoRenew.constructor.getRenewUrl($row.serviceId, $ctrl.currentUser.ovhSubsidiary) }}"
                             data-external="">
                             <span data-translate="billing_autorenew_service_anticipate_renew"></span>
@@ -261,7 +261,7 @@
 
                         <!-- Service in manual renew  -->
                         <oui-action-menu-item
-                            data-ng-if="$row.hasManualRenew() && !$row.isInDebt()"
+                            data-ng-if="$row.hasManualRenew() && !$row.isInDebt() && $row.canHandleRenew()"
                             data-disabled="$row.hasForcedRenew()"
                             data-aria-label="{{:: 'billing_autorenew_service_renew' | translate: { serviceName: $row.serviceId } }}"
                             data-href="{{:: $ctrl.BillingAutoRenew.constructor.getRenewUrl($row.serviceId, $ctrl.currentUser.ovhSubsidiary) }}"

@@ -10,21 +10,21 @@ export default /* @ngInject */ ($stateProvider) => {
         workflow: null,
       },
       resolve: {
-        workflowId: /* @ngInject */ $stateParams => $stateParams.workflowId,
+        workflowId: /* @ngInject */ ($stateParams) => $stateParams.workflowId,
         getWorkflow: /* @ngInject */ ($stateParams, workflows, workflowId) => () => {
           if ($stateParams.workflow) {
             return $stateParams.workflow;
           }
           return head(filter(workflows, ({ id }) => id === workflowId));
         },
-        workflow: /* @ngInject */ getWorkflow => getWorkflow(),
+        workflow: /* @ngInject */ (getWorkflow) => getWorkflow(),
         executions: /* @ngInject */ (workflow) => {
           if (workflow && workflow.executions) {
             return workflow.executions;
           }
           return [];
         },
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_workflow_executions'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_workflow_executions'),
       },
     });
 };

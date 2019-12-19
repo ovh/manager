@@ -31,7 +31,7 @@ export default class CuiMessageContainerCtrl {
   static shouldDisplayGroupedMessages(messageCategory) {
     return filter(
       messageCategory.values,
-      value => !value.dismissed,
+      (value) => !value.dismissed,
     ).length !== 1 && messageCategory.isGroupable;
   }
 
@@ -40,8 +40,8 @@ export default class CuiMessageContainerCtrl {
   }
 
   hasGroupMessageToDisplay(type) {
-    const messageGroup = find(this.groupedMessages, group => group.key === type);
-    return some(messageGroup.values, value => !value.dismissed);
+    const messageGroup = find(this.groupedMessages, (group) => group.key === type);
+    return some(messageGroup.values, (value) => !value.dismissed);
   }
 
   refreshValues() {
@@ -67,7 +67,7 @@ export default class CuiMessageContainerCtrl {
       success: 4,
     };
 
-    return map(keys(groupedMessages), key => ({
+    return map(keys(groupedMessages), (key) => ({
       key,
       values: this.constructor.extractUniqueMessage(groupedMessages[key]),
       isGroupable: this.isGroupable(key),
@@ -85,10 +85,10 @@ export default class CuiMessageContainerCtrl {
   }
 
   static extractUniqueMessage(messageList) {
-    const groupedMessages = groupBy(messageList, message => message.text || message.textHtml);
+    const groupedMessages = groupBy(messageList, (message) => message.text || message.textHtml);
     const groupedMessagesHash = map(
       keys(groupedMessages),
-      key => new UniqueMessageComposite(groupedMessages[key]),
+      (key) => new UniqueMessageComposite(groupedMessages[key]),
     );
     return groupedMessagesHash;
   }
@@ -98,6 +98,6 @@ export default class CuiMessageContainerCtrl {
   }
 
   static onGroupDismiss(groupedMessages) {
-    forEach(groupedMessages.values, message => message.dismiss());
+    forEach(groupedMessages.values, (message) => message.dismiss());
   }
 }

@@ -90,7 +90,7 @@ class LogsStreamsAlertsHomeCtrl {
     });
 
     return this.alerts.load()
-      .then(alerts => ({
+      .then((alerts) => ({
         data: alerts,
         meta: {
           totalCount: this.alertIds.data.length,

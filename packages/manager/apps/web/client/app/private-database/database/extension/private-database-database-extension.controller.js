@@ -39,7 +39,7 @@ angular.module('App').controller(
         .then((extensions) => {
           this.extensions = extensions
             .sort()
-            .map(id => ({ id, extensionName: id }));
+            .map((id) => ({ id, extensionName: id }));
         })
         .catch((err) => {
           this.alerter.error(
@@ -100,7 +100,7 @@ angular.module('App').controller(
 
     transformItem(item, force) {
       if (item.transformed && !force) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.privateDatabaseExtensionService
         .getExtension(this.productId, this.bdd.databaseName, item.id)

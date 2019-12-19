@@ -8,7 +8,7 @@ angular.module('Module.ip.controllers').controller('IplbPortsRedirectionAddCtrl'
   $scope.loading = true;
 
   Ip.getIpModels().then((models) => {
-    $scope.allowedSrcPorts = difference(models['ip.LoadBalancingAdditionalPortEnum'].enum.map(i => +i), $scope.data.portsRedirectionIds);
+    $scope.allowedSrcPorts = difference(models['ip.LoadBalancingAdditionalPortEnum'].enum.map((i) => +i), $scope.data.portsRedirectionIds);
     $scope.loading = false;
   });
 

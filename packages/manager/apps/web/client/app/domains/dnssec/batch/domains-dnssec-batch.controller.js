@@ -36,7 +36,7 @@ angular.module('App').controller(
           this.selected.state,
           this.selected.domainsNames,
         )
-          .then(data => this.Alerter.alertFromSWSBatchResult(
+          .then((data) => this.Alerter.alertFromSWSBatchResult(
             {
               OK: this.$translate.instant('domains_configuration_dnssec_batch_success'),
               PARTIAL: this.$translate.instant('domains_configuration_dnssec_batch_partial'),
@@ -45,7 +45,7 @@ angular.module('App').controller(
             data,
             this.$scope.alerts.main,
           ))
-          .catch(err => this.Alerter.alertFromSWS(
+          .catch((err) => this.Alerter.alertFromSWS(
             this.$translate.instant('domains_configuration_dnssec_batch_fail'),
             err,
             this.$scope.alerts.main,

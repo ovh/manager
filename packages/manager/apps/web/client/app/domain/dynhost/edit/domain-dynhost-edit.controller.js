@@ -44,7 +44,7 @@ angular.module('App').controller(
           this.$translate.instant('domain_tab_DYNHOST_edit_success'),
           this.$scope.alerts.main,
         )))
-        .catch(err => this.Alerter.error(
+        .catch((err) => this.Alerter.error(
           `${this.$translate.instant('domain_tab_DYNHOST_error')} ${err.message}`,
           this.$scope.alerts.main,
         ))

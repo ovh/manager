@@ -34,7 +34,7 @@ export default class {
     if (this.selectedCapability) {
       const requiredField = find(
         this.selectedCapability.requirements,
-        fieldDefinition => fieldName === fieldDefinition.fieldName,
+        (fieldDefinition) => fieldName === fieldDefinition.fieldName,
       );
       return requiredField && requiredField.display;
     }

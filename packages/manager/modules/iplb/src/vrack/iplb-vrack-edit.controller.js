@@ -82,10 +82,10 @@ export default class IpLoadBalancerVrackEditCtrl {
   getAvailableFarm(forceValue) {
     const filteredValue = filter(
       this.farms.data,
-      farm => !includes(map(this.model.farmId.value, value => value.farmId), farm.farmId),
+      (farm) => !includes(map(this.model.farmId.value, (value) => value.farmId), farm.farmId),
     );
     if (forceValue) {
-      filteredValue.push(find(this.farms.data, farm => farm.farmId === forceValue));
+      filteredValue.push(find(this.farms.data, (farm) => farm.farmId === forceValue));
     }
     return filteredValue;
   }
@@ -123,8 +123,8 @@ export default class IpLoadBalancerVrackEditCtrl {
         switch (key) {
           case 'farmId':
             cleanModel[key] = map(
-              filter(this.model[key].value, farm => farm.farmId),
-              farm => farm.farmId,
+              filter(this.model[key].value, (farm) => farm.farmId),
+              (farm) => farm.farmId,
             );
             break;
           default:

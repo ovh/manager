@@ -27,7 +27,7 @@ export default class {
       header: {
         steps: filter(
           this.steps,
-          step => step.header.isVisible,
+          (step) => step.header.isVisible,
         ),
       },
     };

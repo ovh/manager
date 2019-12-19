@@ -46,7 +46,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
       .get({
         serviceName: $stateParams.projectId,
       }).$promise
-      .then(billingInfo => CloudProjectBilling
+      .then((billingInfo) => CloudProjectBilling
         .getConsumptionDetails(billingInfo, billingInfo)
         .then((data) => {
           self.data.estimateTotals = data.totals;
@@ -63,7 +63,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
       .get({
         serviceName: $stateParams.projectId,
       }).$promise
-      .then(billingInfo => CloudProjectBilling.getConsumptionDetails(
+      .then((billingInfo) => CloudProjectBilling.getConsumptionDetails(
         billingInfo,
         billingInfo,
       ))

@@ -43,12 +43,12 @@ class LicenseAgoraOrder {
       params: {
         ovhSubsidiary: this.coreConfig.getRegion(),
       },
-    }).then(data => data.plans);
+    }).then((data) => data.plans);
   }
 
   getLicenseOfferPlan(licenseType, planCode, ip) {
     return this.getLicenseOffers(licenseType).then((plans) => {
-      const plan = assign({}, find(plans, planItem => planItem.planCode === planCode));
+      const plan = assign({}, find(plans, (planItem) => planItem.planCode === planCode));
       plan.getPrice = (
         config = {
           options: [],
@@ -72,13 +72,13 @@ class LicenseAgoraOrder {
         return this.OvhHttp.post('/order/cart/{cartId}/assign', { rootPath: 'apiv6', urlParams: { cartId } });
       })
       .then(() => this.pushAgoraPlan({ cartId, config }))
-      .then(plan => this.configureIpField({
+      .then((plan) => this.configureIpField({
         cartId,
         itemId: plan.itemId,
         ip: config.ip,
       }).then(() => plan))
-      .then(plan => this.$q.all(
-        map(config.options, option => this.pushAgoraPlan({
+      .then((plan) => this.$q.all(
+        map(config.options, (option) => this.pushAgoraPlan({
           cartId,
           config: assign({}, config, { planCode: option, options: [], itemId: plan.itemId }),
           path: `/order/cart/{cartId}/${this.licenseTypeToCatalog[config.licenseType]}/options`,
@@ -131,7 +131,7 @@ class LicenseAgoraOrder {
   getFinalizeOrderUrl(licenseInfo) {
     const productToOrder = this.getExpressOrderData(licenseInfo);
     return this.User.getUrlOf('express_order')
-      .then(url => `${url}review?products=${JSURL.stringify([productToOrder])}`)
+      .then((url) => `${url}review?products=${JSURL.stringify([productToOrder])}`)
       .catch((err) => {
         this.Alerter.error(this.$translate.instant('ip_order_finish_error'));
         return this.$q.reject(err);

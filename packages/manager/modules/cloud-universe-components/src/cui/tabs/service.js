@@ -31,7 +31,7 @@ export default class CuiTabsService {
   registerTab(tab) {
     const existingTab = find(
       this.registeredTabs,
-      existing => tab.state === existing.state && tab.text === existing.text,
+      (existing) => tab.state === existing.state && tab.text === existing.text,
     );
     if (existingTab) {
       this.constructor.expandTab(tab);
@@ -53,7 +53,7 @@ export default class CuiTabsService {
   }
 
   refreshActiveTab() {
-    const previousActiveTab = find(this.registeredTabs, tab => tab.active);
+    const previousActiveTab = find(this.registeredTabs, (tab) => tab.active);
 
     // ActiveTab is determined in this order =>
     //  1- We check if the current state fit with one of the tabs' state.
@@ -63,7 +63,7 @@ export default class CuiTabsService {
     //  3- If, however, no tabs are active, we activate the first tab.
     const newActiveTab = find(
       this.registeredTabs,
-      tab => tab.state && this.$state.includes(tab.state),
+      (tab) => tab.state && this.$state.includes(tab.state),
     ) || previousActiveTab || this.registeredTabs[0];
 
     if (newActiveTab && previousActiveTab !== newActiveTab) {

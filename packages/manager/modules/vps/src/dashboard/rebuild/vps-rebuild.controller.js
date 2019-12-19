@@ -20,7 +20,7 @@ export default class VpsRebuildController {
       .then(() => {
         this.displaySuccess();
       })
-      .catch(error => this.goBackToDashboard().then(() => {
+      .catch((error) => this.goBackToDashboard().then(() => {
         const errorDetail = get(error, 'data.message', error.message);
         this.displayError('vps_configuration_reinstall_fail', errorDetail);
       }));

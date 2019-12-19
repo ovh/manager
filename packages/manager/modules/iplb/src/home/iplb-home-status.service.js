@@ -44,7 +44,7 @@ export default class IpLoadBalancerHomeStatusService {
         return this.$q.all(promises)
           .then(() => {
             if (config.toArray) {
-              return map(keys(transformedResponse), iplbItem => transformedResponse[iplbItem]);
+              return map(keys(transformedResponse), (iplbItem) => transformedResponse[iplbItem]);
             }
             return transformedResponse;
           });
@@ -64,7 +64,7 @@ export default class IpLoadBalancerHomeStatusService {
   buildServiceStatusItem(serviceName, iplbItem) {
     return this.OvhApiIpLoadBalancing.v6().get({ serviceName })
       .$promise
-      .then(response => ({
+      .then((response) => ({
         itemName: iplbItem.itemName,
         displayName: response.displayName || response.serviceName,
         status: {

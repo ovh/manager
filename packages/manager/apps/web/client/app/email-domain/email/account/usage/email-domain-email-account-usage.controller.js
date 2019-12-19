@@ -89,7 +89,7 @@ angular.module('App').controller(
           this.$translate.instant('email_tab_modal_update_usage_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_update_usage_error'),
           err,
           this.$scope.alerts.main,

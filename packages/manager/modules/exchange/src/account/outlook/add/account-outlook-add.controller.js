@@ -80,7 +80,7 @@ export default class ExchangeAddOutlookCtrl {
       // keep the selection of duration, if it exists in the new selectioned license version
       const option = find(
         version.options,
-        opt => opt.duration.duration === this.model.duration,
+        (opt) => opt.duration.duration === this.model.duration,
       );
 
       this.selectDuration(option);

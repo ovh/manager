@@ -188,35 +188,35 @@ angular.module('UserAccount')
       return OvhHttp.get('/me.json', {
         rootPath: 'apiv6',
         cache: cache.me,
-      }).then(schema => schema.models['nichandle.LegalFormEnum'].enum);
+      }).then((schema) => schema.models['nichandle.LegalFormEnum'].enum);
     };
 
     self.getCountryEnum = function getCountryEnum() {
       return OvhHttp.get('/me.json', {
         rootPath: 'apiv6',
         cache: cache.me,
-      }).then(schema => schema.models['nichandle.CountryEnum'].enum);
+      }).then((schema) => schema.models['nichandle.CountryEnum'].enum);
     };
 
     self.getGendersEnum = function getGendersEnum() {
       return OvhHttp.get('/me.json', {
         rootPath: 'apiv6',
         cache: cache.me,
-      }).then(schema => schema.models['nichandle.GenderEnum'].enum);
+      }).then((schema) => schema.models['nichandle.GenderEnum'].enum);
     };
 
     self.getLanguageEnum = function getLanguageEnum() {
       return OvhHttp.get('/me.json', {
         rootPath: 'apiv6',
         cache: cache.me,
-      }).then(schema => schema.models['nichandle.LanguageEnum'].enum);
+      }).then((schema) => schema.models['nichandle.LanguageEnum'].enum);
     };
 
     self.getTaskStateEnum = function getTaskStateEnum() {
       return OvhHttp.get('/me.json', {
         rootPath: 'apiv6',
         cache: cache.me,
-      }).then(schema => schema.models['nichandle.changeContact.TaskStateEnum'].enum);
+      }).then((schema) => schema.models['nichandle.changeContact.TaskStateEnum'].enum);
     };
 
     self.getContactsId = function getContactsId() {
@@ -237,7 +237,7 @@ angular.module('UserAccount')
       });
     };
 
-    self.getOrderServiceOption = domain => OvhHttp.get('/order/cartServiceOption/domain/{serviceName}', {
+    self.getOrderServiceOption = (domain) => OvhHttp.get('/order/cartServiceOption/domain/{serviceName}', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName: window.encodeURIComponent(domain),

@@ -81,7 +81,7 @@ angular
         abstract: true,
         template,
         resolve: {
-          me: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+          me: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
         },
       });
   })

@@ -31,7 +31,7 @@ export default class SharepointAccountAddCtrl {
         this.isProvider = offer === 'provider';
       })
       .then(() => this.sharepointOrder.creatingCart())
-      .then(cartId => this.sharepointOrder.fetchingPrices(
+      .then((cartId) => this.sharepointOrder.fetchingPrices(
         cartId,
         `activedirectory-account-${this.isProvider ? 'provider' : 'hosted'}`,
         `sharepoint-account-${this.isProvider ? 'provider' : 'hosted'}-2016`,

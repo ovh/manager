@@ -16,8 +16,8 @@ export default class IpLoadBalancerSslCertificateDeleteCtrl {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.IpLoadBalancerSslCertificateService
         .delete(this.$stateParams.serviceName, this.sslId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

@@ -63,7 +63,7 @@ export default class ExchangeLicenseHistoryCtrl {
               mode: 'index',
               intersect: false,
               callbacks: {
-                title: data => get(head(data), 'xLabel'),
+                title: (data) => get(head(data), 'xLabel'),
               },
             },
             scales: {

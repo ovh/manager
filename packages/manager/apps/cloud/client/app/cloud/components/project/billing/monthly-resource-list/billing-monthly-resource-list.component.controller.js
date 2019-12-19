@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .controller('BillingMonthlyResourceListComponentCtrl', function BillingMonthlyResourceListComponentCtrl() {
     const self = this;

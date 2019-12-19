@@ -46,7 +46,7 @@ angular.module('services').service('Housing', function Housing($q, constants, $r
   };
 
   this.getRebootPrices = function getRebootPrices(serviceName) {
-    return self.getApcDurations(serviceName).then(duration => OvhHttp.get(`/order/dedicated/housing/{serviceName}/APC/${duration}`, {
+    return self.getApcDurations(serviceName).then((duration) => OvhHttp.get(`/order/dedicated/housing/{serviceName}/APC/${duration}`, {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -55,7 +55,7 @@ angular.module('services').service('Housing', function Housing($q, constants, $r
   };
 
   this.rebootOrder = function rebootOrder(serviceName) {
-    return self.getApcDurations(serviceName).then(duration => OvhHttp.post(`/order/dedicated/housing/{serviceName}/APC/${duration}`, {
+    return self.getApcDurations(serviceName).then((duration) => OvhHttp.post(`/order/dedicated/housing/{serviceName}/APC/${duration}`, {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
@@ -93,7 +93,7 @@ angular.module('services').service('Housing', function Housing($q, constants, $r
 
   this.getTasks = function getTasks(serviceName) {
     return self.getTaskIds(serviceName).then((ids) => {
-      const taskPromises = map(ids, id => self.getTask(serviceName, id));
+      const taskPromises = map(ids, (id) => self.getTask(serviceName, id));
 
       return $q.all(taskPromises);
     });
@@ -111,7 +111,7 @@ angular.module('services').service('Housing', function Housing($q, constants, $r
     }
     return self.getTaskIds(serviceName, params).then(
       (ids) => {
-        const taskPromises = map(ids, id => OvhHttp.get(urlRootHousing.concat(['/task', id].join('/')), {
+        const taskPromises = map(ids, (id) => OvhHttp.get(urlRootHousing.concat(['/task', id].join('/')), {
           rootPath: 'apiv6',
           urlParams: {
             serviceName,
@@ -223,7 +223,7 @@ angular.module('services').service('Housing', function Housing($q, constants, $r
   };
 
   this.postFtpBackupIp = function postFtpBackupIp(serviceName, ipBlock, ftp, nfs, cifs) {
-    const accessPromises = map(ipBlock, ip => OvhHttp.post(urlRootHousing.concat('/features/backupFTP/access'), {
+    const accessPromises = map(ipBlock, (ip) => OvhHttp.post(urlRootHousing.concat('/features/backupFTP/access'), {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,

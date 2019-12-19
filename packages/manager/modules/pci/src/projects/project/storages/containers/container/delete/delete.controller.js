@@ -26,7 +26,7 @@ export default class PciBlockStorageDetailsDeleteController {
           container: this.container.name,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_storages_containers_container_delete_error_delete',
         {
           message: get(err, 'data.message', null),

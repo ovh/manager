@@ -135,7 +135,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
         $stateParams.productId,
         $scope.installation.selectGabarit.id,
       )
-      .then(response => Server.getPartitionSchemeHardwareRaid(
+      .then((response) => Server.getPartitionSchemeHardwareRaid(
         $stateParams.productId,
         $scope.installation.selectGabarit.id,
         response.name,

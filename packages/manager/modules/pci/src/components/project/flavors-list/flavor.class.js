@@ -11,7 +11,7 @@ export default class Flavors {
   }
 
   setDiskType() {
-    this.diskType = SSD_DISK_TYPES.some(diskType => diskType.test(this.type)) ? 'ssd' : 'ceph';
+    this.diskType = SSD_DISK_TYPES.some((diskType) => diskType.test(this.type)) ? 'ssd' : 'ceph';
   }
 
   isLegacy() {

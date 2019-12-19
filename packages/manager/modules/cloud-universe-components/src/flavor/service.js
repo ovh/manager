@@ -137,13 +137,13 @@ export default class CucFlavorService {
     augmentedFlavor.frequency = this.CUC_FLAVOR_INSTANCE_CPU_FREQUENCY[flavor.type];
 
     if (/vps/.test(flavor.type)) {
-      return Object.assign({
+      return {
         vps: true,
         diskType: 'ssd',
         flex: false,
         shortGroupName: flavor.name,
-      },
-      augmentedFlavor);
+        ...augmentedFlavor,
+      };
     }
 
     let shortType;
@@ -168,7 +168,7 @@ export default class CucFlavorService {
     }
 
     augmentedFlavor.flex = /flex$/.test(flavor.name);
-    augmentedFlavor.diskType = [/ssd/, /nvme/].some(regex => regex.test(flavor.type)) ? 'ssd' : 'ceph';
+    augmentedFlavor.diskType = [/ssd/, /nvme/].some((regex) => regex.test(flavor.type)) ? 'ssd' : 'ceph';
 
     const flavorContainsGPUs = includes(['g1', 'g2', 'g3', 't1'], augmentedFlavor.shortType);
     if (flavorContainsGPUs) {
@@ -188,7 +188,7 @@ export default class CucFlavorService {
   getCategory(flavorType) {
     return find(
       this.CUC_FLAVOR_FLAVORTYPE_CATEGORY,
-      currentCategory => includes(currentCategory.types, flavorType),
+      (currentCategory) => includes(currentCategory.types, flavorType),
     );
   }
 }

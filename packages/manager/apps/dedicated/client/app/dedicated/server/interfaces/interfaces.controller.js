@@ -11,7 +11,7 @@ export default class {
   $onInit() {
     this.loading = true;
     this.taskPolling.promise
-      .catch(error => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_task_error', { errorMessage: get(error, 'comment') })))
+      .catch((error) => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_task_error', { errorMessage: get(error, 'comment') })))
       .finally(() => {
         this.loading = false;
       });

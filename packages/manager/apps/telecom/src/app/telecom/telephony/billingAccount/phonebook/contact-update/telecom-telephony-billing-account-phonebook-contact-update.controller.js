@@ -53,7 +53,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
       self.phonecontactForm.isAdding = false;
       self.phonecontactForm.hasBeenAdded = true;
       return $timeout(self.close, 1500);
-    }, error => self.cancel({
+    }, (error) => self.cancel({
       type: 'API',
       msg: error,
     }));

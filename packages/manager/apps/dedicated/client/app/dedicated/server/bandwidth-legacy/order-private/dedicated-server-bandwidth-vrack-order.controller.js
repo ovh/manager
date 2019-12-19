@@ -52,7 +52,7 @@ class ServerOrderLegacyBandwidthVrackCtrl {
           && this.model.duration,
         isLoading: () => this.orderableDurations.loading || this.user.loading,
         load: () => {
-          this.handleAPIGet(() => this.User.getUser().then(user => ({ data: user })), this.user);
+          this.handleAPIGet(() => this.User.getUser().then((user) => ({ data: user })), this.user);
           this.handleAPIGet(() => this.BandwidthVrackOrderService
             .getOrderableBandwidthDurations(
               this.$stateParams.productId,

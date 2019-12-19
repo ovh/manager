@@ -15,7 +15,7 @@ angular.module('managerApp').controller('PackXdslMissingRioCtrl', function PackX
 
     return OvhApiXdsl.v6().get({
       xdslId: $stateParams.serviceName,
-    }).$promise.then(data => data, (err) => {
+    }).$promise.then((data) => data, (err) => {
       TucToast.error([$translate.instant('xdsl_missing-rio_init_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).then(() => {

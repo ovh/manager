@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
               .getPccDrpPlan(serviceName)))
           .then((pccWithDrpPlanList) => {
             const pccsWithoutDrp = flatten(
-              pccWithDrpPlanList.filter(pccPlans => !pccPlans.some(
+              pccWithDrpPlanList.filter((pccPlans) => !pccPlans.some(
                 ({ state }) => state !== DEDICATEDCLOUD_DATACENTER_DRP_STATUS
                   .disabled,
               )),
@@ -54,15 +54,15 @@ export default /* @ngInject */ ($stateProvider) => {
                 serviceName,
               }));
           }),
-        drpInformations: /* @ngInject */ $transition$ => $transition$.params()
+        drpInformations: /* @ngInject */ ($transition$) => $transition$.params()
           .drpInformations,
-        goToPreviousStep: /* @ngInject */ $state => drpInformations => $state.go('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep', { drpInformations }),
+        goToPreviousStep: /* @ngInject */ ($state) => (drpInformations) => $state.go('app.dedicatedClouds.datacenter.drp.ovh.mainPccStep', { drpInformations }),
         pccList: /* @ngInject */ (
           $transition$,
           DedicatedCloud,
         ) => DedicatedCloud.getAllPccs()
-          .then(pccList => pccList.filter(
-            pcc => pcc !== undefined
+          .then((pccList) => pccList.filter(
+            (pcc) => pcc !== undefined
               && pcc.serviceName !== $transition$.params().productId
               && pcc.location !== $transition$.params().drpInformations.primaryPcc
                 .location,

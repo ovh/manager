@@ -87,7 +87,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
     // check if overlap an other condition on the same day
     const dayConditions = filter(
       self.timeCondition.conditions,
-      condition => condition.weekDay === self.condition.weekDay
+      (condition) => condition.weekDay === self.condition.weekDay
         && condition.conditionId !== self.condition.conditionId,
     );
 

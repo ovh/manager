@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/new',
       component: 'pciProjectStorageBlocksAdd',
       resolve: {
-        goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
+        goBack: /* @ngInject */ (goToBlockStorage) => goToBlockStorage,
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.blocks', {
           projectId,
         }),
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => $state.href('pci.projects.project.quota', {
           projectId,
         }),
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_blocks_add_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_storages_blocks_add_title'),
       },
     });
 };

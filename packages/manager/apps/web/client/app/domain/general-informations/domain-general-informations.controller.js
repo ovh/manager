@@ -188,7 +188,7 @@ export default class DomainTabGeneralInformationsCtrl {
           orderServiceOption: this.Domain.getOrderServiceOption(this.domain.name),
         })
         .then(({ domainOrderTradeUrl, orderServiceOption }) => {
-          if (find(orderServiceOption, opt => opt.family === 'trade')) {
+          if (find(orderServiceOption, (opt) => opt.family === 'trade')) {
             this.actions.changeOwner.href = domainOrderTradeUrl.replace(
               '{domain}',
               this.domain.name,
@@ -236,12 +236,12 @@ export default class DomainTabGeneralInformationsCtrl {
             domains: this.Domain.getDomains(),
           })
           .then(({ allDomDomains, domains }) => {
-            this.allDomDomains = map(allDomDomains, domain => ({
+            this.allDomDomains = map(allDomDomains, (domain) => ({
               name: domain,
               isIncluded: domains.indexOf(domain) !== -1,
             }));
           })
-          .catch(err => this.Alerter.alertFromSWS(
+          .catch((err) => this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_GLUE_table_error'),
             err,
             this.$scope.alerts.page,
@@ -286,7 +286,7 @@ export default class DomainTabGeneralInformationsCtrl {
         this.nameServers = nameServers;
         return this.$q.all(map(
           nameServers,
-          nameServer => this.Domain.getNameServerStatus(serviceName, nameServer.id),
+          (nameServer) => this.Domain.getNameServerStatus(serviceName, nameServer.id),
         ));
       })
       .then((nameServersStatus) => {
@@ -298,7 +298,7 @@ export default class DomainTabGeneralInformationsCtrl {
 
           const lastUpdated = maxBy(
             nameServersStatus,
-            nameServer => new Date(nameServer.usedSince).getTime(),
+            (nameServer) => new Date(nameServer.usedSince).getTime(),
           );
           this.dnsStatus.refreshAlert = moment().diff(lastUpdated.usedSince, 'days') <= 2;
         }
@@ -317,11 +317,11 @@ export default class DomainTabGeneralInformationsCtrl {
 
     return this.$q.all(
       this.associatedHostings
-        .map(hosting => this.HostingDomain.getAttachedDomains(hosting, {
+        .map((hosting) => this.HostingDomain.getAttachedDomains(hosting, {
           returnErrorKey: '',
         })),
     )
-      .then(allAssociatedHosting => allAssociatedHosting.flatten())
+      .then((allAssociatedHosting) => allAssociatedHosting.flatten())
       .then((allAssociatedHosting) => {
         if (isArray(allAssociatedHosting) && !isEmpty(allAssociatedHosting)) {
           this.hasSubdomainsOrMultisites = true;
@@ -330,8 +330,8 @@ export default class DomainTabGeneralInformationsCtrl {
           // but the api returns an array, so I assume there can be multiple attached domains.
           this.subdomainsAndMultisites = map(
             Array.from(new Set(allAssociatedHosting
-              .filter(hosting => domainRegExp.test(hosting)))),
-            item => ({
+              .filter((hosting) => domainRegExp.test(hosting)))),
+            (item) => ({
               name: item,
               url: `#/configuration/hosting/${item}`,
             }),
@@ -358,10 +358,12 @@ export default class DomainTabGeneralInformationsCtrl {
   getAllOptionDetails(serviceName) {
     this.loading.options = true;
     return this.Domain.getOptions(serviceName)
-      .then(options => this.$q.all(
-        map(options, option => this.Domain.getOption(serviceName, option)
-          .then(optionDetail => Object.assign({}, optionDetail,
-            { optionActivated: optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE }))),
+      .then((options) => this.$q.all(
+        map(options, (option) => this.Domain.getOption(serviceName, option)
+          .then((optionDetail) => ({
+            ...optionDetail,
+            optionActivated: optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE,
+          }))),
       ))
       .then((options) => {
         this.options = reduce(options, (transformedOptions, option) => ({
@@ -369,7 +371,7 @@ export default class DomainTabGeneralInformationsCtrl {
           [option.option]: option,
         }), {});
       })
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('domain_configuration_web_hosting_fail'),
         get(err, 'data'),
         this.$scope.alerts.page,

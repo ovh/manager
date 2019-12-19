@@ -78,7 +78,7 @@ angular.module('managerApp').service('CloudStorageContainers', [
           return $q.when();
         })
         .then(() => storageContainer.getMetaData(projectId, currentContainerId))
-        .then(metaData => angular.extend(containerData, metaData));
+        .then((metaData) => angular.extend(containerData, metaData));
     };
 
     /**

@@ -30,7 +30,7 @@ export default class Kubernetes {
       serviceName,
     }).$promise
       .then(() => true)
-      .catch(error => (error.status === 404 ? false : Promise.reject(error)));
+      .catch((error) => (error.status === 404 ? false : Promise.reject(error)));
   }
 
 
@@ -60,7 +60,7 @@ export default class Kubernetes {
         content,
         fileName: CONFIG_FILENAME,
       }))
-      .catch(error => (error.status === 400 ? false : Promise.reject(error)));
+      .catch((error) => (error.status === 400 ? false : Promise.reject(error)));
   }
 
   getAvailableFlavors(cluster, flavors, projectId) {
@@ -76,14 +76,14 @@ export default class Kubernetes {
         const detailedFlavors = map(
           kubeFlavors,
           (flavor) => {
-            const pciFlavor = flavors.find(flavorDetails => flavorDetails.name === flavor.name);
+            const pciFlavor = flavors.find((flavorDetails) => flavorDetails.name === flavor.name);
             return new Flavors({
               ...flavor,
               ...pciFlavor,
             });
           },
         );
-        return filter(detailedFlavors, flavor => flavor.isAvailable());
+        return filter(detailedFlavors, (flavor) => flavor.isAvailable());
       });
   }
 

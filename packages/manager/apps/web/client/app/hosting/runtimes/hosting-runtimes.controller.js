@@ -63,9 +63,9 @@ angular.module('App').controller(
             throw this.$translate.instant('hosting_tab_RUNTIMES_list_error');
           }
 
-          this.runtimes = ids.sort().map(id => ({ id }));
+          this.runtimes = ids.sort().map((id) => ({ id }));
         })
-        .then(() => this.$q.all(this.runtimes.map(row => this.HostingRuntimes.get(
+        .then(() => this.$q.all(this.runtimes.map((row) => this.HostingRuntimes.get(
           this.$stateParams.productId,
           row.id,
         ).then((data) => {

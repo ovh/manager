@@ -27,8 +27,8 @@ export default /* @ngInject */ ($stateProvider) => {
         return null;
       },
       resolve: {
-        workflowId: /* @ngInject */ $stateParams => $stateParams.workflowId,
-        workflow: /* @ngInject */ $stateParams => $stateParams.workflow,
+        workflowId: /* @ngInject */ ($stateParams) => $stateParams.workflowId,
+        workflow: /* @ngInject */ ($stateParams) => $stateParams.workflow,
 
         instance: /* @ngInject */ (
           OvhApiCloudProjectInstance,

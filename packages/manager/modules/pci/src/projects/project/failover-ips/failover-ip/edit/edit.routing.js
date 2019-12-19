@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
-        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
         ip: /* @ngInject */ (serviceName, failoverIps) => find(failoverIps, {
           id: serviceName,
         }),

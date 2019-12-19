@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .directive('hterm', $interval => ({
+  .directive('hterm', ($interval) => ({
     restrict: 'EA',
     scope: {
       sendData: '&',
@@ -14,7 +14,7 @@ angular.module('managerApp')
         scope.sendData({ data });
       });
 
-      term.on('resize', size => scope.sendConfig({
+      term.on('resize', (size) => scope.sendConfig({
         config: {
           columns: size.cols,
           rows: size.rows,

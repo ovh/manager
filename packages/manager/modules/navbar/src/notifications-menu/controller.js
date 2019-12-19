@@ -58,8 +58,8 @@ export default class NotificationsCtrl {
       this.TranslateService.getUserLocale(),
       this.REGION,
     )
-      .then(notifications => notifications
-        .map(notification => this.NavbarNotifications.convertToSubLink(notification)))
+      .then((notifications) => notifications
+        .map((notification) => this.NavbarNotifications.convertToSubLink(notification)))
       .catch(() => undefined);
   }
 
@@ -79,9 +79,7 @@ export default class NotificationsCtrl {
         acknowledged: notificationsToAcknowledge.map(({ id }) => id),
       })
         .then(() => {
-          this.sublinks = this.sublinks.map(sublink => Object.assign({}, sublink, {
-            acknowledged: false,
-          }));
+          this.sublinks = this.sublinks.map((sublink) => ({ ...sublink, acknowledged: false }));
           this.iconIsAnimated = false;
         });
     }

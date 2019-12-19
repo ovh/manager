@@ -19,8 +19,8 @@
             this.tokenID,
             this.value,
           )
-            .then(response => this.$uibModalInstance.close(response))
-            .catch(err => this.$uibModalInstance.dismiss(err)),
+            .then((response) => this.$uibModalInstance.close(response))
+            .catch((err) => this.$uibModalInstance.dismiss(err)),
         });
         this.deleteToken.load();
       }

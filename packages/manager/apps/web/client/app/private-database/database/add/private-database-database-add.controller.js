@@ -92,7 +92,7 @@ angular.module('App').controller(
     checkAuthorizedIp() {
       return this.whitelistService
         .getWhitelistIds(this.productId)
-        .then(result => !isEmpty(result));
+        .then((result) => !isEmpty(result));
     }
 
     addBdd() {

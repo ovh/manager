@@ -20,7 +20,7 @@ export default /* @ngInject */ function ($q, $uibModalInstance, data) {
     this.progress = 0;
     return $q.all(map(
       self.abbreviatedNumbers,
-      elt => $q.when(self.removeCallback({ value: elt })).finally(() => {
+      (elt) => $q.when(self.removeCallback({ value: elt })).finally(() => {
         self.progress += 1;
       }),
     )).finally(() => {

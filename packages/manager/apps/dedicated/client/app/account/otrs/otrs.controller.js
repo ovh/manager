@@ -190,7 +190,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       if ($scope.list.services.length > 0) {
         serviceMap = find(
           $scope.list.services,
-          service => service.serviceName === ticket.serviceName,
+          (service) => service.serviceName === ticket.serviceName,
         );
 
         if (serviceMap) {
@@ -242,7 +242,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
             if ($location.search() && $location.search().serviceName) {
               $scope.search.selectedService = find(
                 $scope.list.services,
-                service => service.serviceName === $location.search().serviceName,
+                (service) => service.serviceName === $location.search().serviceName,
               );
             }
           },

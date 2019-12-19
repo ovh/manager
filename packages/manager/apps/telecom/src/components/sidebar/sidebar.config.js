@@ -6,7 +6,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -260,7 +260,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
     // set initialization promise
     return SidebarMenu.setInitializationPromise(
       betaPreferenceService.isBetaActive()
-        .then(beta => $translate.refresh().then(() => beta))
+        .then((beta) => $translate.refresh().then(() => beta))
         .then((beta) => {
           if (beta) {
             return initSidebarMenuItems({}, beta);
@@ -271,7 +271,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
             });
         })
         .then(() => OvhApiMe.v6().get().$promise)
-        .then(user => initSidebarMenuActionsOptions(user)),
+        .then((user) => initSidebarMenuActionsOptions(user)),
     );
   }
 

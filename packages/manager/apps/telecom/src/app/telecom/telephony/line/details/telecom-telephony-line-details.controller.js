@@ -38,14 +38,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineDetailsCtrl', class
           this.lastRegistration = last(
             sortBy(
               this.line.lastRegistrations,
-              reg => new Date(reg.datetime),
+              (reg) => new Date(reg.datetime),
             ),
           );
         }
 
-        if (some(words(this.line.offers), offer => includes(['sipfax', 'priceplan', 'trunk'], offer))) {
+        if (some(words(this.line.offers), (offer) => includes(['sipfax', 'priceplan', 'trunk'], offer))) {
           this.hasSimultaneousCallsOption = true;
-          this.isTrunkRates = some(this.line.offers, offer => startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
+          this.isTrunkRates = some(this.line.offers, (offer) => startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
         }
         if (this.line.phone) {
           this.isYealinkPhone = false;

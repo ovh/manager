@@ -60,7 +60,7 @@ export default class PciProjectStorageBlockService {
         return this.$q.all(
           map(
             instanceIds,
-            instanceId => this.OvhApiCloudProject
+            (instanceId) => this.OvhApiCloudProject
               .Instance()
               .v6()
               .get({
@@ -71,13 +71,13 @@ export default class PciProjectStorageBlockService {
           ),
         );
       })
-      .then(instances => map(
+      .then((instances) => map(
         volumes,
-        volume => new BlockStorage({
+        (volume) => new BlockStorage({
           ...volume,
           attachedTo: map(
             volume.attachedTo,
-            instanceId => find(instances, { id: instanceId }),
+            (instanceId) => find(instances, { id: instanceId }),
           ),
         }),
       ));
@@ -92,11 +92,11 @@ export default class PciProjectStorageBlockService {
         volumeId: storageId,
       })
       .$promise
-      .then(volume => this.$q.all({
+      .then((volume) => this.$q.all({
         volume,
         instances: this.$q.all(map(
           volume.attachedTo,
-          instanceId => this.OvhApiCloudProject
+          (instanceId) => this.OvhApiCloudProject
             .Instance()
             .v6()
             .get({
@@ -110,7 +110,7 @@ export default class PciProjectStorageBlockService {
         volume,
         attachedTo: map(
           volume.attachedTo,
-          instanceId => find(instances, { id: instanceId }),
+          (instanceId) => find(instances, { id: instanceId }),
         ),
         snapshots: this.getVolumeSnapshots(projectId, volume),
       }))
@@ -169,7 +169,7 @@ export default class PciProjectStorageBlockService {
         serviceName: projectId,
       })
       .$promise
-      .then(snapshots => filter(snapshots, snapshot => snapshot.volumeId === id));
+      .then((snapshots) => filter(snapshots, (snapshot) => snapshot.volumeId === id));
   }
 
   getAvailableQuota(projectId, { region }) {
@@ -294,7 +294,7 @@ export default class PciProjectStorageBlockService {
 
     if (relatedCatalog) {
       const pricesEstimation = {
-        hourly: storage.size * relatedCatalog.priceInUcents / 100000000,
+        hourly: (storage.size * relatedCatalog.priceInUcents) / 100000000,
       };
       pricesEstimation.monthly = pricesEstimation.hourly * moment.duration(1, 'months').asHours();
 
@@ -320,7 +320,7 @@ export default class PciProjectStorageBlockService {
 
   getVolumePriceEstimation(projectId, storage) {
     return this.CucPriceHelper.getPrices(projectId)
-      .then(catalog => PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
+      .then((catalog) => PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
         catalog,
         storage,
       ));
@@ -328,7 +328,7 @@ export default class PciProjectStorageBlockService {
 
   getPricesEstimations(projectId, regions, size = VOLUME_MIN_SIZE) {
     return this.CucPriceHelper.getPrices(projectId)
-      .then(catalog => reduce(
+      .then((catalog) => reduce(
         VOLUME_TYPES, (typeResult, type) => ({
           ...typeResult,
           [type]: reduce(
@@ -355,10 +355,10 @@ export default class PciProjectStorageBlockService {
         serviceName: projectId,
       })
       .$promise
-      .then(regions => this.$q.all(
+      .then((regions) => this.$q.all(
         map(
           regions,
-          region => this.OvhApiCloudProject
+          (region) => this.OvhApiCloudProject
             .Region()
             .v6()
             .get({
@@ -368,14 +368,14 @@ export default class PciProjectStorageBlockService {
             .$promise,
         ),
       ))
-      .then(regions => this.$q.all({
+      .then((regions) => this.$q.all({
         quotas: this.getProjectQuota(projectId),
         regions,
       }))
       .then(({ quotas, regions }) => {
         const supportedRegions = filter(regions,
-          region => some(get(region, 'services', []), { name: 'volume', status: 'UP' }));
-        return map(supportedRegions, region => new Region({
+          (region) => some(get(region, 'services', []), { name: 'volume', status: 'UP' }));
+        return map(supportedRegions, (region) => new Region({
           ...region,
           quota: find(quotas, { region: region.name }),
         }));
@@ -395,7 +395,7 @@ export default class PciProjectStorageBlockService {
           get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
         );
         if (price) {
-          const snapshotPrice = price.priceInUcents * moment.duration(1, 'months').asHours() / 100000000;
+          const snapshotPrice = (price.priceInUcents * moment.duration(1, 'months').asHours()) / 100000000;
           return {
             price: snapshotPrice,
             priceText: price.price.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.toString(), 2)),

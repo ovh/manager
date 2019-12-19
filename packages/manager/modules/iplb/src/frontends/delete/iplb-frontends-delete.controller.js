@@ -17,8 +17,8 @@ export default class IpLoadBalancerFrontendDeleteCtrl {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.IpLoadBalancerFrontendsService
         .deleteFrontend(this.type, this.$stateParams.serviceName, this.frontendId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

@@ -15,7 +15,7 @@ angular.module('services').factory('BillingVantiv', ($q, BILLING_VANTIV) => clas
       reportGroup: 'ovh.us',
       timeout: 15000,
       div: 'eProtectIframe',
-      callback: response => this.eProtectClientCallback(response),
+      callback: (response) => this.eProtectClientCallback(response),
 
       // Expiration date
       months: {

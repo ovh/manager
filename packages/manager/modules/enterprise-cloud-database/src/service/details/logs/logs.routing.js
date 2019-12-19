@@ -10,7 +10,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/logs',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('enterprise_cloud_database_service_details_logs'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('enterprise_cloud_database_service_details_logs'),
       goBackToLogs: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS) => {
         const reload = message && type === STATUS.SUCCESS;
@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
           clusterId,
         });
       },
-      ldpHomeUrl: /* @ngInject */ coreConfig => ADP_URL[coreConfig.getRegion()],
+      ldpHomeUrl: /* @ngInject */ (coreConfig) => ADP_URL[coreConfig.getRegion()],
       logs: /* @ngInject */ (
         clusterId,
         enterpriseCloudDatabaseService,

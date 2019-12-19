@@ -341,7 +341,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function PackMoveCtrl(
           self.operationAlreadyPending = true;
         }
       });
-    }, err => new TucToastError(err));
+    }, (err) => new TucToastError(err));
   }
 
   /**
@@ -353,7 +353,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function PackMoveCtrl(
       packId: $stateParams.packName,
     }).$promise.then((data) => {
       self.offer.current.isLegacy = data.capabilities.isLegacyOffer;
-    }, err => new TucToastError(err));
+    }, (err) => new TucToastError(err));
   }
 
   /**
@@ -365,13 +365,13 @@ angular.module('managerApp').controller('PackMoveCtrl', function PackMoveCtrl(
       OvhApiPackXdsl.Aapi().get({ packId: $stateParams.packName }, null).$promise.then((pack) => {
         self.packAdress.current = head(pack.services);
         return self.packAdress.current ? self.packAdress.current.accessName : null;
-      }, err => new TucToastError(err)),
+      }, (err) => new TucToastError(err)),
       OvhApiPackXdsl.Aapi()
         .getLines({ packId: $stateParams.packName }, null).$promise.then((lines) => {
           const currentLine = head(lines);
           self.packAdress.lineNumber = currentLine.number;
           self.packAdress.portability = currentLine.portability;
-        }, err => new TucToastError(err)),
+        }, (err) => new TucToastError(err)),
     ]).finally(() => {
       self.packAdress.loading = false;
     });
@@ -385,10 +385,10 @@ angular.module('managerApp').controller('PackMoveCtrl', function PackMoveCtrl(
     self.slammingCheck = true;
     return OvhApiPackXdsl.v7().access().execute({
       packName: $stateParams.packName,
-    }).$promise.then(ids => $q.all(map(chunk(ids, 200), chunkIds => OvhApiXdsl.v7().query().batch('serviceName', [''].concat(chunkIds), ',').expand()
-      .execute().$promise)).then(chunkResult => flatten(chunkResult))
-      .then(result => flatten(result))).then((xdslLines) => {
-      const slammingLines = filter(xdslLines, xdslLine => xdslLine.value.status === 'slamming');
+    }).$promise.then((ids) => $q.all(map(chunk(ids, 200), (chunkIds) => OvhApiXdsl.v7().query().batch('serviceName', [''].concat(chunkIds), ',').expand()
+      .execute().$promise)).then((chunkResult) => flatten(chunkResult))
+      .then((result) => flatten(result))).then((xdslLines) => {
+      const slammingLines = filter(xdslLines, (xdslLine) => xdslLine.value.status === 'slamming');
       self.hasSlamming = !!slammingLines.length;
       return self.hasSlamming;
     }).catch((err) => {

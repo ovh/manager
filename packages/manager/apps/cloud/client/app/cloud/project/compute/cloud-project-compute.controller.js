@@ -78,7 +78,7 @@ class CloudProjectComputeCtrl {
         this.$stateParams.projectId,
       ),
       hasTooManyIps: this.CloudProjectOrchestrator.hasTooManyIps(this.$stateParams.projectId),
-    }).then(result => result.hasTooManyInstances || result.hasTooManyIps);
+    }).then((result) => result.hasTooManyInstances || result.hasTooManyIps);
 
     return this.CucUserPref.get(`cloud_project_${this.serviceName}_overview`).then((params) => {
       if (params && params.hide) {
@@ -101,12 +101,12 @@ class CloudProjectComputeCtrl {
     this.$q.all(areDismissed).then((areDismissedMessages) => {
       const messages = map(
         areDismissedMessages,
-        announcement => this.augmentMessage(
+        (announcement) => this.augmentMessage(
           announcement,
           ovhSubsidiary,
         ),
       );
-      forEach(messages, message => this.CucCloudMessage.info(message));
+      forEach(messages, (message) => this.CucCloudMessage.info(message));
     });
   }
 

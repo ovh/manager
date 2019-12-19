@@ -19,8 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName: projectId,
           })
           .$promise,
-        goBack: /* @ngInject */ $state => () => $state.go('pci.projects'),
-        projectId: /* @ngInject */  $transition$ => $transition$.params().projectId,
+        goBack: /* @ngInject */ ($state) => () => $state.go('pci.projects'),
+        projectId: /* @ngInject */  ($transition$) => $transition$.params().projectId,
       },
     });
 };

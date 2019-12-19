@@ -127,7 +127,7 @@ export default class {
       this.phonebooks.raw = result.phonebooks;
       this.phonebooks.current = head(this.phonebooks.raw);
       return this.senders.raw;
-    }).then(senders => each(senders, (sender) => {
+    }).then((senders) => each(senders, (sender) => {
       if (sender.type === 'virtual') {
         this.senders.virtual.push(sender);
       } else if (sender.type === 'alpha') {
@@ -175,12 +175,12 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(sendersIds => this.$q
-        .all(map(sendersIds, sender => this.api.sms.senders.get({
+      .then((sendersIds) => this.$q
+        .all(map(sendersIds, (sender) => this.api.sms.senders.get({
           serviceName: this.$stateParams.serviceName,
           sender,
         }).$promise))
-        .then(senders => filter(senders, { status: 'enable' })));
+        .then((senders) => filter(senders, { status: 'enable' })));
   }
 
   /**
@@ -192,8 +192,8 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(receiversIds => this.$q
-        .all(map(receiversIds, slotId => this.api.sms.receivers.get({
+      .then((receiversIds) => this.$q
+        .all(map(receiversIds, (slotId) => this.api.sms.receivers.get({
           serviceName: this.$stateParams.serviceName,
           slotId,
         }).$promise)));
@@ -208,11 +208,11 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(phonebooksIds => this.$q
-        .all(map(phonebooksIds, bookKey => this.api.sms.phonebooks.get({
+      .then((phonebooksIds) => this.$q
+        .all(map(phonebooksIds, (bookKey) => this.api.sms.phonebooks.get({
           serviceName: this.$stateParams.serviceName,
           bookKey,
-        }).$promise)).then(phonebooks => sortBy(phonebooks, 'name')));
+        }).$promise)).then((phonebooks) => sortBy(phonebooks, 'name')));
   }
 
   /**
@@ -293,7 +293,7 @@ export default class {
    */
   createSms(slotId) {
     const phonebookContactNumber = [];
-    each(this.phonebooks.lists, contact => phonebookContactNumber.push(get(contact, contact.type)));
+    each(this.phonebooks.lists, (contact) => phonebookContactNumber.push(get(contact, contact.type)));
     const receivers = union(phonebookContactNumber, this.sms.receivers ? [this.sms.receivers] : null);
     const differedPeriod = this.sms.differedPeriod ? this.getDifferedPeriod() : null;
     const sender = this.sms.sender === SMS_COMPOSE.shortNumber ? null : this.sms.sender;
@@ -363,7 +363,7 @@ export default class {
     }
     this.receivers.records = 0;
     this.receivers.count = 0;
-    return map(this.receivers.raw, receiver => set(receiver, 'isSelected', false));
+    return map(this.receivers.raw, (receiver) => set(receiver, 'isSelected', false));
   }
 
   /**
@@ -405,7 +405,7 @@ export default class {
     });
     modal.result.then((result) => {
       this.phonebooks.lists = [];
-      each(result, contact => this.phonebooks.lists.push(contact));
+      each(result, (contact) => this.phonebooks.lists.push(contact));
     });
   }
 
@@ -443,7 +443,7 @@ export default class {
         ])).$promise);
       }
       if (size(slotIds)) {
-        map(slotIds, slotId => promises.push(this.api.sms.virtualNumbers.jobs.send({
+        map(slotIds, (slotId) => promises.push(this.api.sms.virtualNumbers.jobs.send({
           serviceName: this.$stateParams.serviceName,
           number: this.sms.sender,
         }, omit(this.createSms(slotId), [
@@ -460,7 +460,7 @@ export default class {
         }, this.createSms()).$promise);
       }
       if (size(slotIds)) {
-        map(slotIds, slotId => promises.push(this.api.sms.jobs.send({
+        map(slotIds, (slotId) => promises.push(this.api.sms.jobs.send({
           serviceName: this.$stateParams.serviceName,
         }, omit(this.createSms(slotId), 'receivers')).$promise));
       }

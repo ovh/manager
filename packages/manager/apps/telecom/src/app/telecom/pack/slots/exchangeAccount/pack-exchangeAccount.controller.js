@@ -14,7 +14,7 @@ angular.module('managerApp').controller('PackExchangeAccountCtrl', function Pack
 
     return OvhApiPackXdslExchangeAccount.Services().v6().query({
       packName: $stateParams.packName,
-    }).$promise.then(serviceIds => $http.get('/email/exchange/*/service/*/account?$aggreg=1', {
+    }).$promise.then((serviceIds) => $http.get('/email/exchange/*/service/*/account?$aggreg=1', {
       serviceType: 'apiv7',
     }).then((servicesParam) => {
       let services = servicesParam;
@@ -23,7 +23,7 @@ angular.module('managerApp').controller('PackExchangeAccountCtrl', function Pack
         map(
           filter(
             services,
-            service => service.value !== null,
+            (service) => service.value !== null,
           ),
           (service) => {
             const splittedPath = service.path.split('/');
@@ -34,7 +34,7 @@ angular.module('managerApp').controller('PackExchangeAccountCtrl', function Pack
             });
           },
         ),
-        service => serviceIds.indexOf(`${service.exchangeService}-${service.id}`) > -1,
+        (service) => serviceIds.indexOf(`${service.exchangeService}-${service.id}`) > -1,
       );
     })).finally(() => {
       $scope.loaders.services = false;

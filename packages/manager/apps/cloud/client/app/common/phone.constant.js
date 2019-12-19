@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .constant('PhoneContact', {
     FR: '+33 972 10 10 07',

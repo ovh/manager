@@ -22,9 +22,9 @@ angular.module('services').service(
         if (response && response.models) {
           const promises = map(
             response.models['email.domain.OfferEnum'].enum,
-            offer => this
+            (offer) => this
               .orderDuration(domain, offer)
-              .then(duration => this.orderPrice(domain, offer, duration)),
+              .then((duration) => this.orderPrice(domain, offer, duration)),
           );
           return this.$q.allSettled(promises);
         }
@@ -50,8 +50,8 @@ angular.module('services').service(
           offer,
         },
       })
-        .then(response => assign(response, { duration, offer }))
-        .catch(err => this.$q.reject(err));
+        .then((response) => assign(response, { duration, offer }))
+        .catch((err) => this.$q.reject(err));
     }
 
     orderMxPlan(domain, offer, duration) {

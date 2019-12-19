@@ -48,7 +48,7 @@ angular.module('Billing.constants').constant('IBAN_BIC_RULES', {
 });
 
 // TODO : remove this when ovh-angular-apiv7 npm install is fixed
-angular.module('Billing.services').service('BillingBill', $resource => $resource('/me/bill/:billId', {
+angular.module('Billing.services').service('BillingBill', ($resource) => $resource('/me/bill/:billId', {
   billId: '@billId',
 }, {
   getById: {

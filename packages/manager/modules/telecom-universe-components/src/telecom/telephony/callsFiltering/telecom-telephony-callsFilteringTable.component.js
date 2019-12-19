@@ -71,7 +71,7 @@ export default /* @ngInject */ {
 
     self.refresh = function refresh() {
       self.isLoading = true;
-      return self.updateScreenList().catch(err => new TucToastError(err)).finally(() => {
+      return self.updateScreenList().catch((err) => new TucToastError(err)).finally(() => {
         self.isLoading = false;
       });
     };
@@ -83,11 +83,11 @@ export default /* @ngInject */ {
     };
 
     self.getSelection = function getSelection() {
-      return filter(self.screenLists.raw, screen => screen && screen.status !== 'delete' && self.screenLists.selected && self.screenLists.selected[screen.id]);
+      return filter(self.screenLists.raw, (screen) => screen && screen.status !== 'delete' && self.screenLists.selected && self.screenLists.selected[screen.id]);
     };
 
     self.exportSelection = function exportSelection() {
-      return map(self.getSelection(), selection => pick(selection, ['callNumber', 'nature', 'type']));
+      return map(self.getSelection(), (selection) => pick(selection, ['callNumber', 'nature', 'type']));
     };
 
     self.updateScreenList = function updateScreenList() {
@@ -119,7 +119,7 @@ export default /* @ngInject */ {
       return $q.all(queries).then(() => {
         self.screenLists.selected = [];
         return self.updateScreenList();
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.screenLists.isDeleting = false;
       });
     };

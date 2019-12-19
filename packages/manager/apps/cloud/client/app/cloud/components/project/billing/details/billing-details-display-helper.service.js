@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').service('CloudProjectBillingDetailsDisplayHelper', function CloudProjectBillingDetailsDisplayHelper() {
   let activeDayInfo = null;
 

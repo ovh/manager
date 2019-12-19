@@ -34,7 +34,7 @@ export default class SharepointTabsCtrl {
         if (!isNull(this.$stateParams.tab)
           && some(
             this.$scope.tabs,
-            item => item === this.$stateParams.tab.toUpperCase(),
+            (item) => item === this.$stateParams.tab.toUpperCase(),
           )) {
           this.$scope.setSelectedTab(this.$stateParams.tab.toUpperCase());
         } else {

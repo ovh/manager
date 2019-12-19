@@ -101,7 +101,7 @@ export default class ExchangeExternalContacts {
         main: true,
         state: 'ok',
       },
-    }).then(data => data.map(datum => ({
+    }).then((data) => data.map((datum) => ({
       name: datum,
       displayName: punycode.toUnicode(datum),
       formattedName: punycode.toUnicode(datum),
@@ -110,7 +110,7 @@ export default class ExchangeExternalContacts {
 
   prepareForCsv(organization, serviceName, opts, offset) {
     return this.gettingContacts(organization, serviceName, opts.count, offset, opts.filter)
-      .then(accounts => ({
+      .then((accounts) => ({
         accounts: accounts.list.results,
         headers: keys(accounts.list.results[0]),
       }));

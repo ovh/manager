@@ -8,7 +8,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -37,7 +37,7 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
       $translatePartialLoader.addPart('../components/telecom/telephony/associateDevice');
       return $translate.refresh().then(self.fetchAssociablesPhones).then((phones) => {
         self.phones = phones;
-      }).catch(err => new TucToastError(err))
+      }).catch((err) => new TucToastError(err))
         .finally(() => {
           self.isInitialized = true;
         });
@@ -49,15 +49,15 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
           billingAccount: self.billingAccount,
           serviceName: self.serviceName,
         }).$promise
-        .then(phones => $q.all(map(phones, (phone) => {
+        .then((phones) => $q.all(map(phones, (phone) => {
           const line = head(phone.associatedLines).serviceName;
           return OvhApiTelephony.Line().Phone().v6()
             .get({
               billingAccount: self.billingAccount,
               serviceName: line,
             }).$promise
-            .then(details => assign(phone, details))
-            .then(thePhone => OvhApiTelephony.Line().v6()
+            .then((details) => assign(phone, details))
+            .then((thePhone) => OvhApiTelephony.Line().v6()
               .ips({
                 billingAccount: self.billingAccount,
                 serviceName: line,
@@ -89,7 +89,7 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
         OvhApiTelephony.Line().v6().resetAllCache();
         TelephonyMediator.resetAllCache();
         $state.reload();
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.isAttaching = false;
       });
     };

@@ -76,7 +76,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
          * @param  {Integer} id
          * @return {Promise}
          */
-    this.get = id => OvhHttp.get('/me/accessRestriction/u2f/{id}', {
+    this.get = (id) => OvhHttp.get('/me/accessRestriction/u2f/{id}', {
       rootPath: 'apiv6',
       urlParams: {
         id,
@@ -90,11 +90,11 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
          */
     this.post = () => OvhHttp.post('/me/accessRestriction/u2f', {
       rootPath: 'apiv6',
-    }).then(registerChallenge => register(registerChallenge).then((response) => {
+    }).then((registerChallenge) => register(registerChallenge).then((response) => {
       const u2fId = get(registerChallenge, 'id');
       return this.validate(u2fId, response.clientData, response.registrationData)
         .then(() => this.get(u2fId))
-        .then(key => ({
+        .then((key) => ({
           u2fId,
           response,
           key,
@@ -122,7 +122,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
          * @param  {Integer} id
          * @return {Promise}
          */
-    this.delete = id => OvhHttp.delete('/me/accessRestriction/u2f/{id}', {
+    this.delete = (id) => OvhHttp.delete('/me/accessRestriction/u2f/{id}', {
       rootPath: 'apiv6',
       urlParams: {
         id,
@@ -141,7 +141,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
       urlParams: {
         id,
       },
-    }).then(signChallenge => sign(signChallenge).then((request) => {
+    }).then((signChallenge) => sign(signChallenge).then((request) => {
       if (action === 'enabled') {
         return this.disable(id, request.clientData, request.signatureData);
       }

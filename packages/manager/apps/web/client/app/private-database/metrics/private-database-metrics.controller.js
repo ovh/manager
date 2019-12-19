@@ -63,8 +63,8 @@ angular
                 mode: 'label',
                 intersect: false,
                 callbacks: {
-                  title: items => get(head(items), 'xLabel'),
-                  label: item => `${item.yLabel}%`,
+                  title: (items) => get(head(items), 'xLabel'),
+                  label: (item) => `${item.yLabel}%`,
                 },
               },
               scales: {
@@ -82,7 +82,7 @@ angular
                   ticks: {
                     suggestedMin: 0,
                     suggestedMax: 100,
-                    callback: label => `${label}%`,
+                    callback: (label) => `${label}%`,
                   },
                 }],
                 xAxes: [{
@@ -109,8 +109,8 @@ angular
                 mode: 'label',
                 intersect: false,
                 callbacks: {
-                  title: items => get(head(items), 'xLabel'),
-                  label: item => `${item.yLabel}`,
+                  title: (items) => get(head(items), 'xLabel'),
+                  label: (item) => `${item.yLabel}`,
                 },
               },
               scales: {
@@ -154,8 +154,8 @@ angular
                 mode: 'label',
                 intersect: false,
                 callbacks: {
-                  title: items => get(head(items), 'xLabel'),
-                  label: item => `${item.yLabel}ms`,
+                  title: (items) => get(head(items), 'xLabel'),
+                  label: (item) => `${item.yLabel}ms`,
                 },
               },
               scales: {
@@ -172,7 +172,7 @@ angular
                   },
                   ticks: {
                     suggestedMin: 0,
-                    callback: label => `${label}ms`,
+                    callback: (label) => `${label}ms`,
                   },
                 }],
                 xAxes: [{
@@ -221,7 +221,7 @@ angular
           forEach(
             filter(
               this.PRIVATE_DATABASE_METRICS.specificChartSettings,
-              currentChartSettings => !isArray(chartSettings)
+              (currentChartSettings) => !isArray(chartSettings)
                 || includes(chartSettings, currentChartSettings.chartName),
             ),
             (currentChartSettings) => {
@@ -267,7 +267,7 @@ angular
     }
 
     static getChartSeries(data) {
-      return map(keys(data.dps), key => ({
+      return map(keys(data.dps), (key) => ({
         x: key * 1000,
         y: Math.round(data.dps[key] * 100) / 100,
       }));

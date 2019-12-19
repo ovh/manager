@@ -125,7 +125,7 @@ angular.module('services').service(
       return this.OvhHttp.get(`/hosting/web/${serviceName}/ovhConfig/${id}`, {
         rootPath: 'apiv6',
         cache: this.cache,
-      }).then(data => new OvhConfig(data));
+      }).then((data) => new OvhConfig(data));
     }
 
     /**
@@ -135,7 +135,7 @@ angular.module('services').service(
      * @returns {Promise}
      */
     getDatasFromIds(serviceName, ids) {
-      const queue = map(ids, id => this.getFromId(serviceName, id));
+      const queue = map(ids, (id) => this.getFromId(serviceName, id));
       return this.$q.all(queue);
     }
 
@@ -144,7 +144,7 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getCurrent(serviceName) {
-      return this.getIds(serviceName, false).then(ids => this.getFromId(serviceName, ids.pop()));
+      return this.getIds(serviceName, false).then((ids) => this.getFromId(serviceName, ids.pop()));
     }
 
     /**
@@ -152,7 +152,7 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getAll(serviceName) {
-      return this.getIds(serviceName, false).then(ids => this.getDatasFromIds(serviceName, ids));
+      return this.getIds(serviceName, false).then((ids) => this.getDatasFromIds(serviceName, ids));
     }
 
     /**
@@ -160,7 +160,7 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getHistoric(serviceName) {
-      return this.getIds(serviceName, true).then(ids => this.getDatasFromIds(serviceName, ids));
+      return this.getIds(serviceName, true).then((ids) => this.getDatasFromIds(serviceName, ids));
     }
 
     /**

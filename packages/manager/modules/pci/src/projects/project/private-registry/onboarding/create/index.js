@@ -17,7 +17,7 @@ angular.module(moduleName, [component])
         backdrop: 'static',
         resolve: {
           acceptTermsAndConditions: () => false,
-          goBack: /* @ngInject */  goBackToOnboarding => goBackToOnboarding,
+          goBack: /* @ngInject */  (goBackToOnboarding) => goBackToOnboarding,
         },
       });
   });

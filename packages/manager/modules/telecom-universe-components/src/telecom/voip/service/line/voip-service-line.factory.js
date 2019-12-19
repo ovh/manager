@@ -61,7 +61,7 @@ export default /* @ngInject */ (TucVoipService) => {
      *  @return {Boolean}   `true` if the line service is a sip trunk rates.
      */
     isSipTrunkRates() {
-      return some(this.offers, offer => offer === 'voip.main.offer.fr.trunk.rates');
+      return some(this.offers, (offer) => offer === 'voip.main.offer.fr.trunk.rates');
     }
   }
 

@@ -92,7 +92,7 @@ export default class {
       this.loading.addTrackingOption = false;
       this.added = true;
       return this.$timeout(() => this.close(), 1000);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       message: error.data.message,
     }));

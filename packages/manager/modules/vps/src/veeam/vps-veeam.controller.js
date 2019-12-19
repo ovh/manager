@@ -44,7 +44,7 @@ export default class {
     });
     this.veeamTab = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.VpsService.getTabVeeam(this.serviceName, 'available', true)
-        .then(data => data.map(id => ({
+        .then((data) => data.map((id) => ({
           id,
           creationDate: moment(id).format('LLL'),
         }))),
@@ -89,7 +89,7 @@ export default class {
           this.veeam.data.state = 'MOUNTING';
         }
       })
-      .catch(err => this.CucCloudMessage.error(err))
+      .catch((err) => this.CucCloudMessage.error(err))
       .finally(() => { this.veeamTab.loading = false; });
   }
 

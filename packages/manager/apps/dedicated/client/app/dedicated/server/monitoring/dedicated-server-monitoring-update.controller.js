@@ -108,14 +108,14 @@ angular.module('App').controller('MonitoringUpdateCtrl', function MonitoringUpda
 
     // Remove email notification mark as deleted
     promises = self.emailNotificationsToDelete
-      .map(notification => Server.deleteServiceMonitoringNotifications($stateParams.productId, {
+      .map((notification) => Server.deleteServiceMonitoringNotifications($stateParams.productId, {
         type: 'email',
         monitoringId: self.monitoring.monitoringId,
         alertId: notification.alertId,
       }));
 
     if (self.monitoring.emailNotifications) {
-      const emailNotifications = self.monitoring.emailNotifications.map(notification => omit(notification, '$$hashKey'));
+      const emailNotifications = self.monitoring.emailNotifications.map((notification) => omit(notification, '$$hashKey'));
 
       diff(emailNotifications, self.baseMonitoring.emailNotifications).forEach((notification) => {
         if (!notification.email
@@ -155,14 +155,14 @@ angular.module('App').controller('MonitoringUpdateCtrl', function MonitoringUpda
 
     // Remove sms notification mark as deleted
     promises = self.smsNotificationsToDelete
-      .map(notification => Server.deleteServiceMonitoringNotifications($stateParams.productId, {
+      .map((notification) => Server.deleteServiceMonitoringNotifications($stateParams.productId, {
         type: 'sms',
         monitoringId: self.monitoring.monitoringId,
         alertId: notification.alertId,
       }));
 
     if (self.monitoring.smsNotifications) {
-      const smsNotifications = self.monitoring.smsNotifications.map(notification => omit(notification, '$$hashKey'));
+      const smsNotifications = self.monitoring.smsNotifications.map((notification) => omit(notification, '$$hashKey'));
 
       diff(smsNotifications, self.baseMonitoring.smsNotifications).forEach((notification) => {
         if (!notification.smsAccount
@@ -229,7 +229,7 @@ angular.module('App').controller('MonitoringUpdateCtrl', function MonitoringUpda
         },
         (errors) => {
           const displayErrors = {
-            message: uniq(errors.map(err => err.data.message)).join(', '),
+            message: uniq(errors.map((err) => err.data.message)).join(', '),
           };
 
           Alerter.alertFromSWS($translate.instant('server_tab_MONITORING_update_error'), displayErrors, 'monitoringAlert');

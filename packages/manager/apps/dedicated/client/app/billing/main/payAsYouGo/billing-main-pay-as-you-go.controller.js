@@ -64,7 +64,7 @@ angular.module('App').controller('BillingMainPayAsYouGoCtrl', class BillingMainP
       this.consumptions = flatten(map(consumptions, (consumption) => {
         const consumptionProjectUrl = this.ServicesHelper.getServiceManageUrl(consumption.service);
 
-        return map(consumption.elements, consumptionElement => ({
+        return map(consumption.elements, (consumptionElement) => ({
           project: {
             name: consumption.service.details.description || consumption.service.details.project_id,
             url: consumptionProjectUrl,

@@ -65,7 +65,7 @@ export default class ExchangeTabDiagnosticsCtrl {
     };
 
     $scope.$on(`${this.POLL_NAMESPACE}.done`, () => this.writeDoneMessage());
-    $scope.$on(`${this.POLL_NAMESPACE}.error`, error => this.writeErrorMessage(error));
+    $scope.$on(`${this.POLL_NAMESPACE}.error`, (error) => this.writeErrorMessage(error));
 
     $scope.$on('$destroy', () => {
       diagnostic.killAllPolling({
@@ -133,11 +133,11 @@ export default class ExchangeTabDiagnosticsCtrl {
 
     this.services.diagnostic
       .gettingTasks(email)
-      .then(taskIds => this.services.$q.all(
-        map(taskIds, taskId => this.services.diagnostic.gettingTask(email, taskId)),
+      .then((taskIds) => this.services.$q.all(
+        map(taskIds, (taskId) => this.services.diagnostic.gettingTask(email, taskId)),
       ))
       .then((tasks) => {
-        const currentTask = find(tasks, task => includes(['todo', 'doing'], task.status));
+        const currentTask = find(tasks, (task) => includes(['todo', 'doing'], task.status));
 
         if (currentTask != null) {
           this.pollDiagnosticTask(currentTask);
@@ -160,7 +160,7 @@ export default class ExchangeTabDiagnosticsCtrl {
 
     this.services.diagnostic
       .launchingDiagnostic(this.email, this.password)
-      .then(task => this.pollDiagnosticTask(task))
+      .then((task) => this.pollDiagnosticTask(task))
       .catch((error) => {
         this.services.messaging.writeError(
           this.services.$translate.instant('exchange_DIAGNOSTIC_launch_diagnostic_failure'),

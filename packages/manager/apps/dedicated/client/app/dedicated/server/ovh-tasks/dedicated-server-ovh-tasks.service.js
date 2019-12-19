@@ -17,7 +17,7 @@
             active: true,
           },
         })
-        .then(resp => resp.data);
+        .then((resp) => resp.data);
     }
   }
 

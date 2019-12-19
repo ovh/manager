@@ -28,8 +28,8 @@ class OutgoingTraficComponentCtrl {
       loaderFunction: () => this.OvhApiMe.v6()
         .get()
         .$promise
-        .then(me => me.currency)
-        .catch(error => this.CucServiceHelper.errorHandler('cpb_error_message')(error)),
+        .then((me) => me.currency)
+        .catch((error) => this.CucServiceHelper.errorHandler('cpb_error_message')(error)),
     });
     return this.currency.load();
   }

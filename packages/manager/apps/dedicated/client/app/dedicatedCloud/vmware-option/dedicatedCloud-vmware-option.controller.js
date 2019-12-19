@@ -38,13 +38,13 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
 
   function loadOptionStatus(option) {
     return DedicatedCloud.getSelected($stateParams.productId)
-      .then(pcc => pcc.name)
-      .then(name => DedicatedCloud.getOptionState(option.name, name))
+      .then((pcc) => pcc.name)
+      .then((name) => DedicatedCloud.getOptionState(option.name, name))
       .then((state) => {
         set(option, 'state', state);
         return state;
       })
-      .then(state => DedicatedCloud.isOptionToggable($stateParams.productId, option.name, state))
+      .then((state) => DedicatedCloud.isOptionToggable($stateParams.productId, option.name, state))
       .then((toggable) => {
         set(option, 'toggable', toggable.toggable);
         if (option.toggable === false) {
@@ -101,7 +101,7 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
     const taskPromiseArray = [];
     angular.forEach(tasks, (task) => {
       const polledTaskIds = flatten($scope.polledTasks);
-      if (!find(polledTaskIds, taskId => taskId === task.taskId)) {
+      if (!find(polledTaskIds, (taskId) => taskId === task.taskId)) {
         taskPromiseArray.push(DedicatedCloud.getDedicatedCloudTaskPromise(dedicatedCloud, task));
       }
     });
@@ -110,8 +110,8 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
       angular.forEach(taskObjects, (taskObject) => {
         const taskNamesToPoll = keys($scope.taskNameToOptionMap);
 
-        const isPolledTaskName = find(taskNamesToPoll, name => name === taskObject.name);
-        const isPolledState = find($scope.taskStateToPoll, state => state === taskObject.state);
+        const isPolledTaskName = find(taskNamesToPoll, (name) => name === taskObject.name);
+        const isPolledState = find($scope.taskStateToPoll, (state) => state === taskObject.state);
         if (isPolledTaskName && isPolledState) {
           return pollOptionTask(taskObject).then(() => { // eslint-disable-line
             const taskOption = getTaskOption(taskObject);
@@ -132,8 +132,8 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
 
   function initTasks() {
     return DedicatedCloud.getSelected($stateParams.productId)
-      .then(data => data)
-      .then(dedicatedCloud => $q.all({
+      .then((data) => data)
+      .then((dedicatedCloud) => $q.all({
         dedicatedCloud,
         todo: DedicatedCloud.getDedicatedCloudTasksPromise(dedicatedCloud, 'todo'),
         doing: DedicatedCloud.getDedicatedCloudTasksPromise(dedicatedCloud, 'doing'),
@@ -183,7 +183,7 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
   });
 
   $scope.loadOptionsStatus = function loadOptionsStatus() {
-    const loadOptionsTasks = map($scope.options, option => loadOptionStatus(option));
+    const loadOptionsTasks = map($scope.options, (option) => loadOptionStatus(option));
     return $q.all(loadOptionsTasks);
   };
 

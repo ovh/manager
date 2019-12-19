@@ -78,14 +78,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
   };
 
   self.filterServices = function filterServices(services) {
-    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     // TODO : remove once bulk action is available for fax
     // return some(service.offers, method("includes", "sipfax")) ||
     //     some(service.offers, method("includes", "priceplan")) ||
     //     some(service.offers, method("includes", "voicefax"));
 
-    return filter(filteredServices, service => some(service.offers, method('includes', 'sipfax'))
+    return filter(filteredServices, (service) => some(service.offers, method('includes', 'sipfax'))
       || some(service.offers, method('includes', 'priceplan')));
   };
 

@@ -31,7 +31,7 @@ export default class CloudProjectBillingVoucherAddCtrl {
       })
       .$promise
       .then(() => this.CucCloudMessage.success(this.$translate.instant('cpb_vouchers_add_success'), MESSAGES_CONTAINER_NAME))
-      .catch(err => this.CucCloudMessage.error(this.$translate.instant('cpb_vouchers_add_error') + (err.data && err.data.message ? ` (${err.data.message})` : ''), MESSAGES_CONTAINER_NAME))
+      .catch((err) => this.CucCloudMessage.error(this.$translate.instant('cpb_vouchers_add_error') + (err.data && err.data.message ? ` (${err.data.message})` : ''), MESSAGES_CONTAINER_NAME))
       .finally(() => this.cancel());
   }
 

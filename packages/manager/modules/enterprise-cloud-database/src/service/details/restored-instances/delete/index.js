@@ -21,7 +21,7 @@ angular
       },
       layout: 'modal',
       resolve: {
-        instanceId: /* @ngInject */ $transition$ => $transition$.params().instanceId,
+        instanceId: /* @ngInject */ ($transition$) => $transition$.params().instanceId,
       },
     });
   })

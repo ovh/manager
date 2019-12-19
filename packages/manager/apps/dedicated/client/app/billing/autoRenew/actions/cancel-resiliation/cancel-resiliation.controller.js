@@ -20,7 +20,7 @@ export default class {
       .then(() => this.goBack(
         this.$translate.instant('autorenew_service_cancel_resiliation_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('autorenew_service_cancel_resiliation_error', { message: get(error, 'data.message') }),
         'danger',
       ));

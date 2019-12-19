@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .directive('ngTranscludeReplace', /* @ngInject */ $log => ({
+  .directive('ngTranscludeReplace', /* @ngInject */ ($log) => ({
     terminal: true,
     restrict: 'EA',
     link($scope, $element, $attr, ctrl, transclude) {

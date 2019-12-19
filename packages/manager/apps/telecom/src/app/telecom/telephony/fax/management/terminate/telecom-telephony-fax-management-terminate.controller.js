@@ -26,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
 
   function getAvailableReasons() {
     return TelephonyMediator.getApiModelEnum('telephony.TerminationReasonEnum').then((enumValues) => {
-      self.availableReasons = map(enumValues, reason => ({
+      self.availableReasons = map(enumValues, (reason) => ({
         label: $translate.instant(`telephony_group_fax_management_terminate_reason_label_${reason}`),
         value: reason,
       }));
@@ -110,7 +110,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

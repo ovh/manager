@@ -1,6 +1,8 @@
 import component from './selection.component';
 
-const resolveActivationType = /* @ngInject */ $transition$ => $transition$.params().activationType;
+const resolveActivationType = /* @ngInject */ ($transition$) => $transition$
+  .params()
+  .activationType;
 
 const resolveCurrentService = /* @ngInject */ (
   $transition$,
@@ -40,7 +42,7 @@ const resolveServicePacksWithPrices = /* @ngInject */ (
 ) => ovhManagerPccServicePackService
   .getPrices(currentUser.ovhSubsidiary, hosts, servicePacks);
 
-const resolveServicePackToOrder = /* @ngInject */ $transition$ => $transition$
+const resolveServicePackToOrder = /* @ngInject */ ($transition$) => $transition$
   .params().servicePackToOrder;
 
 const resolveSubHeader = /* @ngInject */ (

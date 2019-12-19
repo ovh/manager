@@ -21,7 +21,7 @@
         '-24': 'y',
       };
 
-      return num => this.format(num);
+      return (num) => this.format(num);
     }
 
     format(num) {

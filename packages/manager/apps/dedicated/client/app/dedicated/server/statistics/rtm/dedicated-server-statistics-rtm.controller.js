@@ -91,7 +91,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootS
       return;
     }
 
-    const index = findIndex($scope.optionsRtm, option => option.type === type);
+    const index = findIndex($scope.optionsRtm, (option) => option.type === type);
 
     if (~index) {
       $scope.rtmOptions.value = $scope.optionsRtm[index];

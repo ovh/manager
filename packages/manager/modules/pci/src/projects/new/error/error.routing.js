@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
-        cancelLink: /* @ngInject */ $state => $state.href('pci'),
+        cancelLink: /* @ngInject */ ($state) => $state.href('pci'),
         error: /* @ngInject */ ($transition$, atInternet) => {
           const page = `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`;
           const stateParams = $transition$.params();

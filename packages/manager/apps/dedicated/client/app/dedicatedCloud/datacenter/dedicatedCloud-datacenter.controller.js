@@ -130,7 +130,7 @@ angular
             : this.DRP_STATUS.disabled;
 
           this.drpStatus = [this.currentDrp.state, storedDrpStatus]
-            .find(status => status !== this.DRP_STATUS.disabled)
+            .find((status) => status !== this.DRP_STATUS.disabled)
             || this.DRP_STATUS.disabled;
 
           this.drpRemotePccStatus = this.currentDrp

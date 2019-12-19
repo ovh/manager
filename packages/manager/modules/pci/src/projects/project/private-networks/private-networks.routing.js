@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       resolve: {
         createNetwork: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork.add', { projectId }),
-        deleteNetwork: ($state, projectId) => networkId => $state.go('pci.projects.project.privateNetwork.delete', { projectId, networkId }),
+        deleteNetwork: ($state, projectId) => (networkId) => $state.go('pci.projects.project.privateNetwork.delete', { projectId, networkId }),
 
         privateNetworks: /* @ngInject */ (
           PciPrivateNetworks,
@@ -29,7 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         ) => PciPrivateNetworks.getVrackCreationOperation(projectId),
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_network_private'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_network_private'),
 
         goToPrivateNetworks: /* @ngInject */ ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
@@ -50,7 +50,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       },
 
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('operation')
         .then((operation) => {
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
 
           return transition.injector().getAsync('vrack')
-            .then(vrack => (isEmpty(vrack) ? { state: 'pci.projects.project.privateNetwork.vrack' } : false));
+            .then((vrack) => (isEmpty(vrack) ? { state: 'pci.projects.project.privateNetwork.vrack' } : false));
         }),
 
       translations: {

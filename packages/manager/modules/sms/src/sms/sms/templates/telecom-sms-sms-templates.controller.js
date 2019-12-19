@@ -57,7 +57,7 @@ export default class {
       this.api.sms.templates.query({
         serviceName: this.$stateParams.serviceName,
       }).$promise.then((templates) => {
-        this.templates.raw = templates.map(name => ({ name }));
+        this.templates.raw = templates.map((name) => ({ name }));
       });
     }).catch((err) => {
       this.TucToastError(err);
@@ -108,7 +108,7 @@ export default class {
     return this.api.sms.templates.query({
       serviceName: this.$stateParams.serviceName,
     }).$promise.then((templates) => {
-      this.templates.raw = templates.map(name => ({ name }));
+      this.templates.raw = templates.map((name) => ({ name }));
     }).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
@@ -129,7 +129,7 @@ export default class {
     modal.result.then(() => this.api.sms.templates.query({
       serviceName: this.$stateParams.serviceName,
     }).$promise.then((templates) => {
-      this.templates.raw = templates.map(name => ({ name }));
+      this.templates.raw = templates.map((name) => ({ name }));
     })).catch((error) => {
       if (error && error.type === 'API') {
         this.TucToast.error(this.$translate.instant('sms_sms_templates_adding_ko', { error: get(error, 'msg.data.message') }));
@@ -190,7 +190,7 @@ export default class {
     modal.result.then(() => this.api.sms.templates.query({
       serviceName: this.$stateParams.serviceName,
     }).$promise.then((templates) => {
-      this.templates.raw = templates.map(name => ({ name }));
+      this.templates.raw = templates.map((name) => ({ name }));
     })).catch((error) => {
       if (error && error.type === 'API') {
         this.TucToast.error(this.$translate.instant('sms_sms_templates_removing_ko', { error: get(error, 'msg.data.message') }));

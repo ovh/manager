@@ -4,7 +4,7 @@ export default /* @ngInject */($stateProvider) => {
       url: '/vnc',
       component: 'pciInstancesInstanceVNC',
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate
+        breadcrumb: /* @ngInject */ ($translate) => $translate
           .instant('pci_projects_project_instances_instance_vnc_title'),
         vncInfos: /* @ngInject */(
           PciProjectsProjectInstanceService,

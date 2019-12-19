@@ -270,7 +270,7 @@ angular
     function getSnapshotEnum() {
       return OvhHttp.get('/dedicated/nasha.json', {
         rootPath: 'apiv6',
-      }).then(shcema => shcema.models['dedicated.storage.SnapshotEnum'].enum);
+      }).then((shcema) => shcema.models['dedicated.storage.SnapshotEnum'].enum);
     }
 
     self.getSnapshots = function getSnapshots(nasId, partitionName) {
@@ -316,19 +316,19 @@ angular
         if (snapshot.active) {
           promiseTab.push(self
             .postSnapshot(nasId, partitionName, snapshot.type)
-            .catch(data => $q.reject({ type: snapshot.type, error: data })));
+            .catch((data) => $q.reject({ type: snapshot.type, error: data })));
         } else {
           promiseTab.push(self
             .deleteSnapshot(nasId, partitionName, snapshot.type)
-            .catch(data => $q.reject({ type: snapshot.type, error: data })));
+            .catch((data) => $q.reject({ type: snapshot.type, error: data })));
         }
       });
 
       return $q
         .allSettled(promiseTab)
-        .catch(data => $q.reject(filter(
+        .catch((data) => $q.reject(filter(
           data,
-          snapshotError => angular.isDefined(snapshotError.error),
+          (snapshotError) => angular.isDefined(snapshotError.error),
         )));
     };
 

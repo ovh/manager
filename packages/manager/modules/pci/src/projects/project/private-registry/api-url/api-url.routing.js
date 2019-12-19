@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_copy_api'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('private_registry_copy_api'),
       },
     });
 };

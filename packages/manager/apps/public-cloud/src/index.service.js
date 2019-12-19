@@ -20,7 +20,7 @@ export default class PublicCloud {
       return this.OvhApiCloudProject
         .v6()
         .queryDetails()
-        .then(projects => sortBy(projects, 'description'));
+        .then((projects) => sortBy(projects, 'description'));
     }
 
     // Use Iceberg

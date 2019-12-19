@@ -98,7 +98,7 @@ export default class PciInstancesAddController {
         map(
           filter(
             this.privateNetworks,
-            network => find(
+            (network) => find(
               network.regions,
               {
                 region: this.instance.region,
@@ -106,7 +106,7 @@ export default class PciInstancesAddController {
               },
             ),
           ),
-          privateNetwork => ({
+          (privateNetwork) => ({
             ...privateNetwork,
             name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${privateNetwork.name}`,
           }),
@@ -190,7 +190,7 @@ export default class PciInstancesAddController {
   }
 
   isLocationAvailable(datacenters) {
-    return some(datacenters, datacenter => this.isRegionAvailable(datacenter));
+    return some(datacenters, (datacenter) => this.isRegionAvailable(datacenter));
   }
 
   isRegionActive(datacenter) {

@@ -32,7 +32,7 @@ angular.module('UserAccount')
          * @param  {String} code
          * @return {Promise}
          */
-      this.enable = code => OvhHttp.post('/me/accessRestriction/backupCode/enable', {
+      this.enable = (code) => OvhHttp.post('/me/accessRestriction/backupCode/enable', {
         rootPath: 'apiv6',
         data: {
           code,
@@ -44,7 +44,7 @@ angular.module('UserAccount')
          * @param  {String} code
          * @return {Promise}
          */
-      this.validate = code => OvhHttp.post('/me/accessRestriction/backupCode/validate', {
+      this.validate = (code) => OvhHttp.post('/me/accessRestriction/backupCode/validate', {
         rootPath: 'apiv6',
         data: {
           code,
@@ -56,7 +56,7 @@ angular.module('UserAccount')
          * @param  {String} code
          * @return {Promise}
          */
-      this.disable = code => OvhHttp.post('/me/accessRestriction/backupCode/disable', {
+      this.disable = (code) => OvhHttp.post('/me/accessRestriction/backupCode/disable', {
         rootPath: 'apiv6',
         data: {
           code,

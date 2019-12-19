@@ -5,15 +5,15 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'pciProjectStreamsStream',
 
       resolve: {
-        breadcrumb: /* @ngInject */ stream => stream.name,
-        streamId: /* @ngInject */ $transition$ => $transition$.params().streamId,
+        breadcrumb: /* @ngInject */ (stream) => stream.name,
+        streamId: /* @ngInject */ ($transition$) => $transition$.params().streamId,
         stream: /* @ngInject */ (
           PciProjectStreamService,
           projectId,
           streamId,
         ) => PciProjectStreamService.get(projectId, streamId)
-          .then(stream => PciProjectStreamService.getRegion(projectId, stream))
-          .then(stream => PciProjectStreamService.getTokens(projectId, stream)),
+          .then((stream) => PciProjectStreamService.getRegion(projectId, stream))
+          .then((stream) => PciProjectStreamService.getTokens(projectId, stream)),
         editBacklogRetention: /* @ngInject */ ($state, projectId, streamId) => () => $state.go('pci.projects.project.streams.stream.backlogRetention', {
           projectId,
           streamId,

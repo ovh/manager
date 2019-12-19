@@ -101,7 +101,7 @@ angular.module('managerApp')
         }
         const priceStruct = angular.copy(price.price);
         // price for all size
-        priceStruct.value = price.priceInUcents * moment.duration(1, 'months').asHours() * size / 100000000;
+        priceStruct.value = (price.priceInUcents * moment.duration(1, 'months').asHours() * size) / 100000000;
 
         priceStruct.text = priceStruct.text.replace(/\d+(?:[.,]\d+)?/, `${priceStruct.value.toFixed(2)}`);
 
@@ -138,7 +138,7 @@ angular.module('managerApp')
       };
 
       $scope.$watch('CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage', (pageSnapshots) => {
-        self.table.snapshotFilterCheckboxPage = filter(pageSnapshots, snapshot => (snapshot.status === 'active' || snapshot.status === 'available') && !snapshot.isInstalledOnVm);
+        self.table.snapshotFilterCheckboxPage = filter(pageSnapshots, (snapshot) => (snapshot.status === 'active' || snapshot.status === 'available') && !snapshot.isInstalledOnVm);
       });
 
       $scope.$watch('CloudProjectComputeSnapshotCtrl.table.selected', () => {
@@ -148,7 +148,7 @@ angular.module('managerApp')
           angular.forEach(self.table.autoSelected, (snapshotId) => {
             const isInSnapshotTable = findIndex(
               self.table.snapshot,
-              snapshot => snapshot.id === snapshotId,
+              (snapshot) => snapshot.id === snapshotId,
             );
             if (isInSnapshotTable >= 0) {
               self.table.selected[snapshotId] = true;
@@ -196,7 +196,7 @@ angular.module('managerApp')
           self.table.snapshotFilter = tab;
           self.table.snapshotFilterCheckbox = filter(
             tab,
-            snapshot => (
+            (snapshot) => (
               snapshot.status === 'active' || snapshot.status === 'available'
             )
             && !snapshot.isInstalledOnVm,
@@ -249,7 +249,7 @@ angular.module('managerApp')
 
       // transform snapshot type > snapshot is an image custom if this present in image as private
       function checkImagesCustom(snapshots) {
-        return map(snapshots, snapshot => assign(snapshot, {
+        return map(snapshots, (snapshot) => assign(snapshot, {
           type: (find(images, { id: snapshot.id, visibility: 'private' }) ? 'image' : '') + snapshot.type,
         }));
       }
@@ -267,7 +267,7 @@ angular.module('managerApp')
           null,
           {
             successRule(snapshots) {
-              return every(snapshots, snapshot => snapshot.status === 'active');
+              return every(snapshots, (snapshot) => snapshot.status === 'active');
             },
             namespace: 'cloud.snapshots',
             notifyOnError: false,
@@ -288,7 +288,7 @@ angular.module('managerApp')
             ].join(' '));
           }
         }, (snapshotList) => {
-          const currentImageSnapshots = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+          const currentImageSnapshots = filter(self.table.snapshot, (snapshot) => snapshot.type !== 'volume');
           if (currentImageSnapshots.length !== snapshotList.length || snapshotStateChange(
             self.table.snapshot,
             snapshotList,
@@ -304,7 +304,7 @@ angular.module('managerApp')
       }
 
       function mapVolumeSnapshots(snapshots) {
-        return map(snapshots, volumeSnapshot => assign(volumeSnapshot, {
+        return map(snapshots, (volumeSnapshot) => assign(volumeSnapshot, {
           visibility: 'private',
           size: volumeSnapshot.size,
           type: 'volume',
@@ -316,21 +316,21 @@ angular.module('managerApp')
           null,
           {
             successRule(snapshots) {
-              return every(snapshots, snapshot => snapshot.status === 'available');
+              return every(snapshots, (snapshot) => snapshot.status === 'available');
             },
             namespace: 'cloud.snapshots',
             notifyOnError: false,
           }).then((snapshotList) => {
           OvhApiCloudProjectVolumeSnapshot.v6().resetAllCache();
           // get instance snapshots and concat new state volume snapshots
-          const imageSnapshots = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+          const imageSnapshots = filter(self.table.snapshot, (snapshot) => snapshot.type !== 'volume');
           const snapshots = checkImagesCustom(snapshotList);
           self.table.snapshot = imageSnapshots.concat(mapVolumeSnapshots(snapshots));
           filterSnapshot(); // orderBy is call by filterSnapshot();
           setPrice();
         }, (err) => {
           if (err && err.status) {
-            self.table.snapshot = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+            self.table.snapshot = filter(self.table.snapshot, (snapshot) => snapshot.type !== 'volume');
             CucCloudMessage.error([$translate.instant('cpc_snapshot_error'), (err.data && err.data.message) || ''].join(' '));
           }
         }, (snapshotList) => {
@@ -340,7 +340,7 @@ angular.module('managerApp')
             || snapshotStateChange(self.table.snapshot, snapshotList)
           ) {
             OvhApiCloudProjectVolumeSnapshot.v6().resetAllCache();
-            const imageSnapshots = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+            const imageSnapshots = filter(self.table.snapshot, (snapshot) => snapshot.type !== 'volume');
             const snapshots = checkImagesCustom(snapshotList);
             self.table.snapshot = imageSnapshots.concat(mapVolumeSnapshots(snapshots));
             filterSnapshot(); // orderBy is call by filterSnapshot();
@@ -380,7 +380,7 @@ angular.module('managerApp')
       function getVolumeSnapshotPromise() {
         return OvhApiCloudProjectVolumeSnapshot.v6().query({
           serviceName,
-        }).$promise.then(result => mapVolumeSnapshots(result)); // transform
+        }).$promise.then((result) => mapVolumeSnapshots(result)); // transform
       }
 
       self.getSnapshot = function getSnapshot(clearCache) {
@@ -411,13 +411,13 @@ angular.module('managerApp')
             filterSnapshot(); // orderBy is call by filterSnapshot();
             const instanceSnapshotsToPoll = filter(
               self.table.snapshot,
-              snapshot => snapshot.type !== 'volume' && snapshot.status !== 'active',
+              (snapshot) => snapshot.type !== 'volume' && snapshot.status !== 'active',
             );
 
 
             const volumeSnapshotsToPoll = filter(
               self.table.snapshot,
-              snapshot => snapshot.type === 'volume' && snapshot.status !== 'available',
+              (snapshot) => snapshot.type === 'volume' && snapshot.status !== 'available',
             );
             if (instanceSnapshotsToPoll) {
               pollSnapshots();
@@ -472,7 +472,7 @@ angular.module('managerApp')
             pollSnapshots();
             pollVolumeSnapshots();
           },
-          errorHandler: err => CucCloudMessage.error([
+          errorHandler: (err) => CucCloudMessage.error([
             $translate.instant('cpc_snapshot_delete_error'),
             (err.data && err.data.message) || '',
           ].join(' ')),

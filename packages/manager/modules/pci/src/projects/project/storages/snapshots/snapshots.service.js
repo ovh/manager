@@ -29,14 +29,14 @@ export default class PciProjectStorageSnapshotsService {
         const volumeIds = uniq(
           map(
             snapshots,
-            snapshot => snapshot.volumeId,
+            (snapshot) => snapshot.volumeId,
           ),
         );
 
         return this.$q.all(
           map(
             volumeIds,
-            volumeId => this.OvhApiCloudProject
+            (volumeId) => this.OvhApiCloudProject
               .Volume()
               .v6()
               .get({
@@ -47,9 +47,9 @@ export default class PciProjectStorageSnapshotsService {
           ),
         );
       })
-      .then(volumes => map(
+      .then((volumes) => map(
         snapshots,
-        snapshot => new VolumeSnapshot({
+        (snapshot) => new VolumeSnapshot({
           ...snapshot,
           volume: find(volumes, { id: snapshot.volumeId }),
         }),
@@ -64,7 +64,7 @@ export default class PciProjectStorageSnapshotsService {
         snapshotId,
       })
       .$promise
-      .then(snapshot => this.$q.all({
+      .then((snapshot) => this.$q.all({
         snapshot,
         volume: this.getVolume(projectId, snapshot.volumeId),
       }))

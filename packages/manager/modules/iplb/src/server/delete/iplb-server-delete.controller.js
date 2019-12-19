@@ -18,8 +18,8 @@ export default class IpLoadBalancerServerDeleteCtrl {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.IpLoadBalancerServerService
         .delete(this.$stateParams.serviceName, this.farmId, this.serverId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

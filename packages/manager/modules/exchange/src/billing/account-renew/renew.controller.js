@@ -49,7 +49,7 @@ export default class ExchangeUpdateRenewCtrl {
         }
       } else {
         this.buffer.changes = this.buffer.changes.filter(
-          change => change.primaryEmailAddress !== currentAccount.primaryEmailAddress,
+          (change) => change.primaryEmailAddress !== currentAccount.primaryEmailAddress,
         );
       }
     });
@@ -94,7 +94,7 @@ export default class ExchangeUpdateRenewCtrl {
 
         const bufferedAccountList = get(this.bufferedAccounts, 'list.results', []);
 
-        this.buffer.ids = bufferedAccountList.map(item => item.primaryEmailAddress);
+        this.buffer.ids = bufferedAccountList.map((item) => item.primaryEmailAddress);
 
         // roll previous buffered changes
         if (this.buffer.hasChanged) {

@@ -15,8 +15,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxConvertToVoic
   function fetchConvertToVoicefaxInformations() {
     return OvhApiOrder.Freefax().v6()
       .query().$promise
-      .then(serviceIds => $q
-        .all(map(serviceIds, service => OvhApiOrder.Freefax().v6().get({
+      .then((serviceIds) => $q
+        .all(map(serviceIds, (service) => OvhApiOrder.Freefax().v6().get({
           serviceName: service,
         }).$promise.then((allowedOptions) => {
           if (indexOf(allowedOptions, 'convertToVoicefax') >= 0) {
@@ -24,13 +24,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxConvertToVoic
           }
           return null;
         }, () => $q.when(false))))
-        .then(services => $q
+        .then((services) => $q
           .all(map(
             compact(services),
-            service => OvhApiOrder.Freefax().v6().getConvertToVoicefax({
+            (service) => OvhApiOrder.Freefax().v6().getConvertToVoicefax({
               serviceName: service,
               billingAccount: $stateParams.billingAccount,
-            }).$promise.then(informations => ({
+            }).$promise.then((informations) => ({
               service,
               informations,
             })),

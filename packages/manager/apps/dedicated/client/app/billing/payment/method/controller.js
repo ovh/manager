@@ -56,7 +56,7 @@ export default class BillingPaymentMethodCtrl {
     // set a warn message if a bankAccount is in pendingValidation state
     this.hasPendingValidationBankAccount = some(
       this.paymentMethods,
-      method => method.paymentType === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
+      (method) => method.paymentType === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
           && method.status === this.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION,
     );
   }

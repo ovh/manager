@@ -25,7 +25,7 @@ export default class ExchangeDisclaimerCtrl {
 
   /* eslint-disable class-methods-use-this */
   hasEmptySlot(list) {
-    return some(list, item => item.emptySlotFlag);
+    return some(list, (item) => item.emptySlotFlag);
   }
   /* eslint-enable class-methods-use-this */
 

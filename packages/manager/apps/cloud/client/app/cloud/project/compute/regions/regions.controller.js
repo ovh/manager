@@ -41,8 +41,8 @@ class RegionsCtrl {
       loaderFunction: () => this.OvhApiCloudProjectRegion.v6()
         .query({ serviceName: this.serviceName })
         .$promise
-        .then(regionIds => map(regionIds, region => this.CucRegionService.getRegion(region)))
-        .catch(error => this.CucServiceHelper.errorHandler('cpci_add_regions_get_regions_error')(error)),
+        .then((regionIds) => map(regionIds, (region) => this.CucRegionService.getRegion(region)))
+        .catch((error) => this.CucServiceHelper.errorHandler('cpci_add_regions_get_regions_error')(error)),
     });
     return this.regions.load();
   }
@@ -51,7 +51,7 @@ class RegionsCtrl {
     this.regionsByDatacenter = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.regions
         .promise
-        .then(regions => this.VirtualMachineAddService.constructor.groupRegionsByDatacenter(
+        .then((regions) => this.VirtualMachineAddService.constructor.groupRegionsByDatacenter(
           regions,
         )),
     });
@@ -62,7 +62,7 @@ class RegionsCtrl {
     this.regionsByContinent = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.regionsByDatacenter
         .promise
-        .then(regions => groupBy(regions, 'continent')),
+        .then((regions) => groupBy(regions, 'continent')),
     });
     return this.regionsByContinent.load();
   }
@@ -72,8 +72,11 @@ class RegionsCtrl {
       loaderFunction: () => this.OvhApiCloudProjectRegion.AvailableRegions().v6()
         .query({ serviceName: this.serviceName })
         .$promise
-        .then(regionIds => map(regionIds, region => this.CucRegionService.getRegion(region.name)))
-        .catch(error => this.CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+        .then((regionIds) => map(
+          regionIds,
+          (region) => this.CucRegionService.getRegion(region.name),
+        ))
+        .catch((error) => this.CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
     });
     return this.availableRegions.load();
   }
@@ -82,7 +85,7 @@ class RegionsCtrl {
     this.availableRegionsByDatacenter = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.availableRegions
         .promise
-        .then(regions => this.VirtualMachineAddService.constructor.groupRegionsByDatacenter(
+        .then((regions) => this.VirtualMachineAddService.constructor.groupRegionsByDatacenter(
           regions,
         )),
     });
@@ -93,7 +96,7 @@ class RegionsCtrl {
     this.availableRegionsByContinent = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.availableRegionsByDatacenter
         .promise
-        .then(regions => groupBy(regions, 'continent')),
+        .then((regions) => groupBy(regions, 'continent')),
     });
     return this.availableRegionsByContinent.load();
   }
@@ -110,7 +113,7 @@ class RegionsCtrl {
         .then(() => this.CucServiceHelper.successHandler('cpci_add_regions_add_region_success')({
           code: this.availableRegionToAdd.microRegion.code,
         }))
-        .catch(error => this.CucServiceHelper.errorHandler('cpci_add_regions_add_region_error')(error))
+        .catch((error) => this.CucServiceHelper.errorHandler('cpci_add_regions_add_region_error')(error))
         .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.addRegion.load();

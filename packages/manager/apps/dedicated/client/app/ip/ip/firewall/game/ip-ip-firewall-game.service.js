@@ -19,23 +19,23 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
     };
 
     this.get = function get(ipBlock, ip) {
-      return $http.get([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip)].join('/')].join('/')).then(result => result.data, http => $q.reject(http.data));
+      return $http.get([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip)].join('/')].join('/')).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getRules = function getRules(ipBlock, ip) {
-      return $http.get([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/')].join('/')).then(result => result.data, http => $q.reject(http.data));
+      return $http.get([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/')].join('/')).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getRule = function getRule(ipBlock, ip, ruleId) {
-      return $http.get([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/'), ruleId].join('/')).then(result => result.data, http => $q.reject(http.data));
+      return $http.get([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/'), ruleId].join('/')).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.postRule = function postRule(ipBlock, ip, rule) {
-      return $http.post([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/')].join('/'), rule).then(result => result.data, http => $q.reject(http.data));
+      return $http.post([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/')].join('/'), rule).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.deleteRule = function deleteRule(ipBlock, ip, ruleId) {
-      return $http.delete([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/'), ruleId].join('/')).then(result => result.data, http => $q.reject(http.data));
+      return $http.delete([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip), 'rule'].join('/'), ruleId].join('/')).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.putFirewall = function putFirewall(ipBlock, ip, enable) {
@@ -43,7 +43,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
         .put([swsProxypassPath, [window.encodeURIComponent(ipBlock), 'game', window.encodeURIComponent(ip)].join('/')].join('/'), {
           firewallModeEnabled: enable,
         })
-        .then(result => result.data, http => $q.reject(http.data));
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
   },
 ]);

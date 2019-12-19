@@ -24,7 +24,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    */
   function generateInternationalClarification(country) {
     const firstForeigns = pull(Object.keys(TELEPHONY_NUMBER_OFFER.prefix), country).slice(0, 3);
-    return `${map(firstForeigns, theCountry => TELEPHONY_NUMBER_OFFER.prefix[theCountry]).join(',&nbsp;')},&nbsp;...`;
+    return `${map(firstForeigns, (theCountry) => TELEPHONY_NUMBER_OFFER.prefix[theCountry]).join(',&nbsp;')},&nbsp;...`;
   }
 
   /**
@@ -39,7 +39,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
         set(user, 'legalform', !user.companyNationalIdentificationNumber ? 'individual' : 'corporation');
         return user;
       })
-      .catch(err => $q.reject(err));
+      .catch((err) => $q.reject(err));
   };
 
   /**
@@ -59,7 +59,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
     }).$promise.then(
 
       // No error from 2API
-      offers => flatten(ids.map((id) => {
+      (offers) => flatten(ids.map((id) => {
         const prices = filter(
           offers,
           assignIn(
@@ -78,7 +78,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
       })),
 
       // Error from 2API, send incomplete data
-      () => ids.map(id => TELEPHONY_NUMBER_OFFER.detail[id]),
+      () => ids.map((id) => TELEPHONY_NUMBER_OFFER.detail[id]),
     );
   };
 
@@ -108,7 +108,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
       zone,
       range,
     }).$promise.then(
-      numbers => ({
+      (numbers) => ({
         premium: map(filter(numbers, { isPremium: true }), 'number'),
         common: map(filter(numbers, { isPremium: false }), 'number'),
       }),
@@ -132,7 +132,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
     ).then((pricesParam) => {
       const prices = map(
         pricesParam,
-        price => ({
+        (price) => ({
           title: ['telephony_order_number_type', price.range, 'label'].join('_'),
           range: price.range,
           withTax: price.withTax,
@@ -152,6 +152,6 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    */
   this.getForeignCountries = function getForeignCountries() {
     return this.getUser()
-      .then(() => OvhApiTelephony.v6().schema().$promise.then(schema => schema.models['telephony.NumberCountryEnum'].enum));
+      .then(() => OvhApiTelephony.v6().schema().$promise.then((schema) => schema.models['telephony.NumberCountryEnum'].enum));
   };
 });

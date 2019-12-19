@@ -24,9 +24,9 @@ angular
 
     function getBankAccounts() {
       return ovhPaymentMethod.getAllPaymentMethods()
-        .then(paymentMethods => filter(
+        .then((paymentMethods) => filter(
           paymentMethods,
-          paymentMethod => paymentMethod.paymentType === 'BANK_ACCOUNT',
+          (paymentMethod) => paymentMethod.paymentType === 'BANK_ACCOUNT',
         ));
     }
 
@@ -63,13 +63,14 @@ angular
         )
         .then((order) => {
           $scope.$emit(OVH_ACCOUNT_EVENT.TRANSFER_TO_BANK_ACCOUNT);
-          $scope.retrieveOrder = Object.assign({}, order, {
+          $scope.retrieveOrder = {
+            ...order,
             prices: {
               withTax: order.priceWithTax,
               withoutTax: order.priceWithoutTax,
               tax: order.tax,
             },
-          });
+          };
         })
         .catch((err) => {
           Alerter.alertFromSWS($translate.instant('ovhAccount_retrieve_error'), err);

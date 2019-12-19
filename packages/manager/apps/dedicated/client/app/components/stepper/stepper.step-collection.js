@@ -77,14 +77,14 @@ export default class {
   setStepsBeforeCurrentStepAsCompleted() {
     forEach(
       slice(this.steps, 0, this.indexOfCurrentStep),
-      step => step.setAsCompleted(),
+      (step) => step.setAsCompleted(),
     );
   }
 
   setStepsAfterCurrentStepAsToBeDone() {
     forEach(
       slice(this.steps, this.indexOfCurrentStep + 1, this.steps.length),
-      step => step.setAsToBeDone(),
+      (step) => step.setAsToBeDone(),
     );
   }
 }

@@ -1,4 +1,5 @@
-/* eslint-disable global-require, import/no-dynamic-require, no-use-before-define */
+/* eslint-disable global-require, import/no-dynamic-require,
+max-classes-per-file, no-use-before-define */
 const concat = require('concat-stream');
 const conventionalCommitsParser = require('conventional-commits-parser');
 const bump = require('conventional-recommended-bump');
@@ -23,7 +24,7 @@ class MonoRepository {
   static getRepositories(includePrivate = false) {
     return execa.command(`npx lerna ls ${includePrivate ? '-a' : ''}  --json`, { shell: true })
       .then(({ stdout }) => JSON.parse(stdout))
-      .then(repos => repos.map(repo => new Repository(repo)));
+      .then((repos) => repos.map((repo) => new Repository(repo)));
   }
 
   static getReleaseVersion(version) {
@@ -44,15 +45,15 @@ class MonoRepository {
   }
 
   static release(version, repos) {
-    const commitMsg = repos.map(r => `* Package ${r.name} ${r.getPackageJson().version}`).join('\n');
+    const commitMsg = repos.map((r) => `* Package ${r.name} ${r.getPackageJson().version}`).join('\n');
     return execa.command(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`, { shell: true })
       .then(() => execa.command(`git tag -a -m 'release: ${version}' '${version}'`, { shell: true }))
-      .then(v => execa.command('git push origin master --tags', { shell: true }).then(() => v));
+      .then((v) => execa.command('git push origin master --tags', { shell: true }).then(() => v));
   }
 
   static writeChangelog(file, repos) {
     return new Promise((resolve, reject) => {
-      fs.writeFileSync(file, repos.map(r => r.changelog).join(''), (err) => {
+      fs.writeFileSync(file, repos.map((r) => r.changelog).join(''), (err) => {
         if (err) {
           return reject(new Error(`update package.json of ${this.repository.name}: ${err}`));
         }
@@ -63,21 +64,22 @@ class MonoRepository {
 
   static releaseGithub(accessToken, organization, version, repos, options = {}) {
     const client = github.client(accessToken);
-    const reposChangelog = repos.map(r => r.changelog).join('');
-    return this.getName().then(repoName => new Promise((resolve, reject) => {
+    const reposChangelog = repos.map((r) => r.changelog).join('');
+    return this.getName().then((repoName) => new Promise((resolve, reject) => {
       client.get('/user', {}, (err) => {
         if (err) {
           reject(err);
         }
         const repository = client.repo(`${organization}/${repoName}`);
-        repository.release(Object.assign({
+        repository.release({
           tag_name: version,
           target_commitish: 'master',
           name: version,
           body: `# Release ${version}\n${reposChangelog}`,
           draft: false,
           prerelease: false,
-        }, options), (releaseErr) => {
+          ...options,
+        }, (releaseErr) => {
           if (releaseErr) {
             return reject(releaseErr);
           }
@@ -253,7 +255,7 @@ class Repository {
       const addDependencies = ({ isPeerDependency }) => {
         const depEntries = isPeerDependency ? peerDependencies : dependencies;
         Object.entries(depEntries).forEach(([name, semanticVersion]) => {
-          const repo = localRepos.find(r => r.name === name);
+          const repo = localRepos.find((r) => r.name === name);
           if (repo) {
             result.push(new Dependency(
               this,
@@ -318,3 +320,5 @@ module.exports = {
   Repository,
   Dependency,
 };
+/* eslint-enable global-require, import/no-dynamic-require,
+max-classes-per-file, no-use-before-define */

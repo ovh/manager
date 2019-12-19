@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeE
     return OvhApiTelephony.v6().schema().$promise.then((result) => {
       const enums = {};
       const tmpPatternEnum = get(result, ['models', 'telephony.EasyMiniPabxHuntingPatternEnum', 'enum']);
-      enums.pattern = filter(tmpPatternEnum, pattern => pattern !== 'all-at-once');
+      enums.pattern = filter(tmpPatternEnum, (pattern) => pattern !== 'all-at-once');
       enums.strategy = get(result, ['models', 'telephony.EasyMiniPabxHuntingStrategyEnum', 'enum']);
       return enums;
     });

@@ -12,7 +12,7 @@ export default class UniqueMessageComposite {
     this.type = messageList[0].type;
     this.link = messageList[0].link;
     this.dismissable = messageList[0].dismissable;
-    this.dismissed = !some(this.messageList, message => !message.dismissed);
+    this.dismissed = !some(this.messageList, (message) => !message.dismissed);
   }
 
   dismiss() {

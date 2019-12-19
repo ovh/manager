@@ -7,11 +7,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', f
     self.isLoading = true;
     TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getLine($stateParams.serviceName).getPhone()).then((phone) => {
+      .then((group) => group.getLine($stateParams.serviceName).getPhone()).then((phone) => {
         self.phone = phone;
         self.isRebootable = /^phone\.(thomson|swissvoice)/.test(self.phone.brand);
       })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.isLoading = false;
       });

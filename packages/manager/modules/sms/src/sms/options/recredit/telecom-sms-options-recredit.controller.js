@@ -33,7 +33,7 @@ export default class {
     return this.TucSmsMediator.initDeferred.promise.then(() => {
       this.service = this.TucSmsMediator.getCurrentSmsService();
       return this.service;
-    }).then(service => this.fetchOfferPrice(service)).catch((err) => {
+    }).then((service) => this.fetchOfferPrice(service)).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
       this.loading.init = false;
@@ -50,7 +50,7 @@ export default class {
       return this.api.orderSms.getCredits({
         serviceName: this.$stateParams.serviceName,
         quantity: service.automaticRecreditAmount,
-      }).$promise.then(credits => result(credits, 'prices.withoutTax')).then(price => assign(service, { price }));
+      }).$promise.then((credits) => result(credits, 'prices.withoutTax')).then((price) => assign(service, { price }));
     }
     set(service, 'price', null);
     return this.$q.when(service);

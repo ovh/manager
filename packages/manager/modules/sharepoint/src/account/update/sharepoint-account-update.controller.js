@@ -41,16 +41,16 @@ export default class SharepointUpdateAccountCtrl {
 
   getAccountDetails() {
     this.sharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
-      .then(accountDetails => assign(this.account, accountDetails));
+      .then((accountDetails) => assign(this.account, accountDetails));
   }
 
   getSharepointUpnSuffixes() {
     this.sharepointService
       .getSharepointUpnSuffixes(this.exchangeId)
-      .then(upnSuffixes => this.$q.all(
-        filter(upnSuffixes, suffix => this.sharepointService
+      .then((upnSuffixes) => this.$q.all(
+        filter(upnSuffixes, (suffix) => this.sharepointService
           .getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
-          .then(suffixDetails => suffixDetails.ownershipValidated)),
+          .then((suffixDetails) => suffixDetails.ownershipValidated)),
       ))
       .then((availableDomains) => {
         this.availableDomains = union([this.account.domain], availableDomains);

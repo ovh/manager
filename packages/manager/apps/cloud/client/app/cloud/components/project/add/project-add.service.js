@@ -100,7 +100,7 @@ import set from 'lodash/set';
     getProjectInfo() {
       return this.Cloud.v6().createProjectInfo()
         .$promise
-        .then(response => this.$q.all({
+        .then((response) => this.$q.all({
           agreementsToAccept: this.getAllAgreementsInfo(response.agreements),
           orderToPay: this.$q.when(response.order),
         }))

@@ -20,7 +20,7 @@ export default /* @ngInject */ function EmailProExternalContacts(EmailPro, OvhHt
 
   this.removeContact = function removeContact(organization, serviceName, contactId) {
     return EmailPro.gettingBaseAPIPath()
-      .then(baseAPIPath => OvhHttp.delete(`/${baseAPIPath}/{exchange}/externalContact/{externalEmailAddress}`, {
+      .then((baseAPIPath) => OvhHttp.delete(`/${baseAPIPath}/{exchange}/externalContact/{externalEmailAddress}`, {
         rootPath: 'apiv6',
         urlParams: {
           organization,
@@ -43,7 +43,7 @@ export default /* @ngInject */ function EmailProExternalContacts(EmailPro, OvhHt
     set(modifiedContact, 'state', camelCase(modifiedContact.state));
 
     return EmailPro.gettingBaseAPIPath()
-      .then(baseAPIPath => OvhHttp.put(`/${baseAPIPath}/{exchange}/externalContact/{externalEmailAddress}`, {
+      .then((baseAPIPath) => OvhHttp.put(`/${baseAPIPath}/{exchange}/externalContact/{externalEmailAddress}`, {
         rootPath: 'apiv6',
         urlParams: {
           organization,
@@ -60,7 +60,7 @@ export default /* @ngInject */ function EmailProExternalContacts(EmailPro, OvhHt
 
   this.addContact = function addContact(organization, serviceName, newContact) {
     return EmailPro.gettingBaseAPIPath()
-      .then(baseAPIPath => OvhHttp.post(`/${baseAPIPath}/{exchange}/externalContact`, {
+      .then((baseAPIPath) => OvhHttp.post(`/${baseAPIPath}/{exchange}/externalContact`, {
         rootPath: 'apiv6',
         urlParams: {
           organization,
@@ -100,7 +100,7 @@ export default /* @ngInject */ function EmailProExternalContacts(EmailPro, OvhHt
 
   this.getContactOptions = function getContactOptions(organization, serviceName) {
     return EmailPro.gettingBaseAPIPath()
-      .then(baseAPIPath => OvhHttp.get(`/${baseAPIPath}/{exchange}/domain`, {
+      .then((baseAPIPath) => OvhHttp.get(`/${baseAPIPath}/{exchange}/domain`, {
         rootPath: 'apiv6',
         urlParams: {
           organization,
@@ -111,7 +111,7 @@ export default /* @ngInject */ function EmailProExternalContacts(EmailPro, OvhHt
           state: 'ok',
         },
       }))
-      .then(data => data.map(d => ({
+      .then((data) => data.map((d) => ({
         name: d,
         displayName: punycode.toUnicode(d),
         formattedName: punycode.toUnicode(d),

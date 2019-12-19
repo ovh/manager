@@ -9,7 +9,7 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        instanceId: /* @ngInject */$transition$ => $transition$.params().instanceId,
+        instanceId: /* @ngInject */($transition$) => $transition$.params().instanceId,
         instance: /* @ngInject */ (
           PciProjectsProjectInstanceService,
           projectId,

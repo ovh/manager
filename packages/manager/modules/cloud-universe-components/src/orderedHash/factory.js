@@ -76,13 +76,13 @@ export default () => {
 
   OrderedHash.prototype.getItems = function getItems() {
     const self = this;
-    return map(this.sortedKeys, itemKey => self.items[itemKey]);
+    return map(this.sortedKeys, (itemKey) => self.items[itemKey]);
   };
 
   OrderedHash.prototype.removeItem = function removeItem(item) {
     const itemKey = typeof item === 'object' ? item[this.accessKey] : item;
     delete this.items[itemKey];
-    remove(this.sortedKeys, key => key === itemKey);
+    remove(this.sortedKeys, (key) => key === itemKey);
   };
 
   OrderedHash.prototype.get = function get(item) {

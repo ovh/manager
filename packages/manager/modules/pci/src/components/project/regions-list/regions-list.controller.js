@@ -36,7 +36,7 @@ export default class RegionsListController {
   updateRegions() {
     const formattedRegions = map(
       this.regions,
-      region => ({
+      (region) => ({
         ...this.CucRegionService.getRegion(region.name),
         name: region.name,
         continentCode: region.continentCode,
@@ -67,7 +67,7 @@ export default class RegionsListController {
     if (this.selectedRegion) {
       this.region = find(
         formattedRegions,
-        region => region.microRegion.code === this.selectedRegion.name,
+        (region) => region.microRegion.code === this.selectedRegion.name,
       );
     }
   }

@@ -43,7 +43,7 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
       if (schema.models && schema.models['telephony.LineOptionForwardNatureTypeEnum'] && schema.models['telephony.LineOptionForwardNatureTypeEnum'].enum) {
         return map(
           schema.models['telephony.LineOptionForwardNatureTypeEnum'].enum,
-          elt => new TelecomTelephonyLineCallsForwardNature(elt),
+          (elt) => new TelecomTelephonyLineCallsForwardNature(elt),
         ).concat(new TelecomTelephonyLineCallsForwardNature('external'));
       }
       return $q.reject();
@@ -64,8 +64,8 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
       }
 
       // look for plug&phone lines
-      return tucVoipLinePhone.fetchAll().then(phones => phones).catch(() => null)
-        .then(phones => orderBy(
+      return tucVoipLinePhone.fetchAll().then((phones) => phones).catch(() => null)
+        .then((phones) => orderBy(
           filter(
             map(
               forEach(
@@ -74,11 +74,11 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
                   set(num, 'hasPhone', !isUndefined(find(phones, { serviceName: num.serviceName })));
                 },
               ),
-              num => new TelecomTelephonyLineCallsForwardPhoneNumber(
+              (num) => new TelecomTelephonyLineCallsForwardPhoneNumber(
                 pick(num, ['billingAccount', 'description', 'serviceName', 'type', 'hasPhone']),
               ),
             ),
-            num => ['fax', 'voicemail', 'line', 'plug&phone', 'number'].indexOf(num.type) > -1,
+            (num) => ['fax', 'voicemail', 'line', 'plug&phone', 'number'].indexOf(num.type) > -1,
           ),
           ['description', 'serviceName'], ['desc', 'asc'],
         ));
@@ -125,7 +125,7 @@ angular.module('managerApp').service('TelecomTelephonyLineCallsForwardService', 
       );
       return map(
         ['Unconditional', 'NoReply', 'Busy', 'Backup'],
-        elt => new TelecomTelephonyLineCallsForward(options, elt),
+        (elt) => new TelecomTelephonyLineCallsForward(options, elt),
       );
     });
   };

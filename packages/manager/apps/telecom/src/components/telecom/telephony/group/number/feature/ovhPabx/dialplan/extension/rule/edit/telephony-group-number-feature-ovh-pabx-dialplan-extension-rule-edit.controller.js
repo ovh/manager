@@ -265,7 +265,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
             return true;
           },
         ),
-        enumVal => ({
+        (enumVal) => ({
           value: enumVal,
           label: $translate.instant(`telephony_number_feature_ovh_pabx_step_rule_${snakeCase(enumVal)}`),
           explain: $translate.instant(`telephony_number_feature_ovh_pabx_step_rule_${snakeCase(enumVal)}_explain`),
@@ -277,9 +277,9 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       self.groups = sortBy(
         filter(
           TelephonyMediator.groups,
-          group => group.getAllServices().length > 0,
+          (group) => group.getAllServices().length > 0,
         ),
-        group => group.getDisplayedName(),
+        (group) => group.getDisplayedName(),
       );
     }).finally(() => {
       self.loading.init = false;

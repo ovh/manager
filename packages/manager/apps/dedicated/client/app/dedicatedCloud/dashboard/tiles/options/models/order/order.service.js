@@ -17,7 +17,7 @@ export const OptionsService = class {
   }
 
   getOrderWithStatus(orderId) {
-    const mergeOrderAndItsStatus = array => reduce(
+    const mergeOrderAndItsStatus = (array) => reduce(
       array,
       (accumulator, current) => ({ ...accumulator, ...current }),
       {},

@@ -24,7 +24,7 @@ angular
         status: 'disabled',
       };
 
-      $scope.formatLanguage = language => HostingCron.formatLanguage(language);
+      $scope.formatLanguage = (language) => HostingCron.formatLanguage(language);
 
       // Object used to communicate with the cronEditor directive.
       // See definition in cronEditor.controller.js.
@@ -137,7 +137,7 @@ angular
         }
       };
 
-      $scope.trEnum = str => HostingCron.trEnum(str);
+      $scope.trEnum = (str) => HostingCron.trEnum(str);
 
       /*= =========  INIT  ========== */
 

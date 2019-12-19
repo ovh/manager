@@ -13,7 +13,7 @@ angular.module(moduleName, [
     lazyLoad: ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
       return import('./logs.module')
-        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+        .then((mod) => $ocLazyLoad.inject(mod.default || mod));
     },
   });
 });

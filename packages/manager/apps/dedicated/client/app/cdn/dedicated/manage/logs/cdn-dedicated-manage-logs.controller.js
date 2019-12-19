@@ -12,7 +12,7 @@ angular.module('App').controller(
       this.logger = new this.TailLogs({
         source: () => this.OvhApiCdn.Dedicated().v6().logs({
           serviceName: this.$stateParams.productId,
-        }, {}).$promise.then(logs => logs.url),
+        }, {}).$promise.then((logs) => logs.url),
         delay: 2000,
       });
 

@@ -123,7 +123,7 @@ angular.module('services').service(
       const formattedProviderName = snakeCase(providerName).toUpperCase();
       const matchingCertificate = find(
         HostingSSLCertificateType.getCertificateTypes(),
-        certificateType => certificateType.providerName === formattedProviderName,
+        (certificateType) => certificateType.providerName === formattedProviderName,
       );
 
       const certificateIsFound = isObject(matchingCertificate);

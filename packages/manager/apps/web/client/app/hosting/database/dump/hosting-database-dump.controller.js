@@ -39,12 +39,12 @@ angular.module('App').controller(
 
       return this.hostingDatabase
         .getDumpIds(this.$stateParams.productId, this.$scope.bdd.name)
-        .then(dumpIds => dumpIds.map(id => ({ id })))
+        .then((dumpIds) => dumpIds.map((id) => ({ id })))
         .then((databaseDumps) => {
           this.databaseDumps = databaseDumps;
           return databaseDumps;
         })
-        .catch(err => this.alerter.alertFromSWS(
+        .catch((err) => this.alerter.alertFromSWS(
           this.$translate.instant('hosting_tab_databases_dumps_error_fetch'),
           err,
           this.$scope.alerts.main,
@@ -53,7 +53,7 @@ angular.module('App').controller(
 
     transformItem(item) {
       if (item.transformed) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.hostingDatabase
         .getDump(this.$stateParams.productId, this.$scope.bdd.name, item.id)
@@ -161,7 +161,7 @@ angular.module('App').controller(
       let unregisterWatch = null;
 
       const todo = () => {
-        const idx = findIndex(this.databaseDumps, dump => dump.id === dumpId);
+        const idx = findIndex(this.databaseDumps, (dump) => dump.id === dumpId);
 
         if (idx >= 0) {
           deferred.resolve(idx);

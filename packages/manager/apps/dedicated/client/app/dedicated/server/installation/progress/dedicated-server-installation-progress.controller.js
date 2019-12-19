@@ -107,8 +107,8 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
     });
     $scope.progress.currentStepNum = $scope.progress.endStep + $scope.progress.errorStep;
     $scope.progress.currentStep += ` ( ${$scope.progress.currentStepNum} / ${$scope.progress.nbStep} )`;
-    $scope.progress.installationValue = ($scope.progress.endStep + $scope.progress.errorStep)
-      * 100 / $scope.progress.nbStep;
+    $scope.progress.installationValue = (($scope.progress.endStep + $scope.progress.errorStep)
+      * 100) / $scope.progress.nbStep;
   };
 
   $scope.cancelInstall = function cancelInstall() {

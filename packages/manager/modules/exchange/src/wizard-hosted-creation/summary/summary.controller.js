@@ -116,7 +116,7 @@ export default class SummaryController {
       .then((accounts) => {
         const copy = clone(accounts);
         copy.list.results = accounts.list.results
-          .filter(currentAccount => currentAccount.domain === this.homepage.domainName);
+          .filter((currentAccount) => currentAccount.domain === this.homepage.domainName);
         copy.count = copy.list.results.length;
         this.homepage.emailAccounts = copy;
         this.hasEmailAddresses = angular.isArray(this.homepage.emailAccounts.list.results)

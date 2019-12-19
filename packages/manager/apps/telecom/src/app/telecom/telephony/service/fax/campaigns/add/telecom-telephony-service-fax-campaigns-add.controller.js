@@ -15,7 +15,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
   function fetchEnums() {
     return OvhApiTelephony.v6().schema({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(schema => ({
+    }).$promise.then((schema) => ({
       faxQuality: schema.models['telephony.FaxQualityEnum'].enum,
       sendType: schema.models['telephony.FaxCampaignSendTypeEnum'].enum,
       recipientsType: schema.models['telephony.FaxCampaignRecipientsTypeEnum'].enum,
@@ -24,8 +24,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
 
   function setCampainDateTime() {
     if (self.campaign.sendDate) {
-      self.campaign.sendDate.setHours(self.picker.time.getHours());
-      self.campaign.sendDate.setMinutes(self.picker.time.getMinutes());
+      self.campaign.sendDate.setHours(new Date(self.picker.time).getHours());
+      self.campaign.sendDate.setMinutes(new Date(self.picker.time).getMinutes());
     }
     return self.campaign.sendDate;
   }
@@ -79,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     return OvhApiTelephony.Fax().Campaigns().v6().create({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
-    }, campaign).$promise.catch(error => self.cancel({
+    }, campaign).$promise.catch((error) => self.cancel({
       type: 'API',
       message: get(error, 'data.message'),
     }));
@@ -105,14 +105,14 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
 
   self.add = function add() {
     self.loading.add = true;
-    return uploadDocuments().then(docs => $q.all([
+    return uploadDocuments().then((docs) => $q.all([
       createCampaign(docs),
       $timeout(angular.noop, 1000),
     ]).then(() => {
       self.loading.add = false;
       self.added = true;
       return $timeout(self.close, 1500);
-    })).catch(error => self.cancel({
+    })).catch((error) => self.cancel({
       type: 'API',
       message: get(error, 'data.message'),
     }));

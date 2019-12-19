@@ -112,7 +112,7 @@ export default /* @ngInject */ function (
       serviceName,
     }).$promise
       .then((rightIds) => {
-        self.data.rights = rightIds.map(id => ({ accountId: id }));
+        self.data.rights = rightIds.map((id) => ({ accountId: id }));
       })
       .catch((err) => {
         self.data.rights = [];

@@ -1,14 +1,14 @@
 import set from 'lodash/set';
 
 angular.module('managerApp').directive('validIpAddress',
-  CloudProjectComputeInfrastructurePrivateNetworkDialogService => ({
+  (CloudProjectComputeInfrastructurePrivateNetworkDialogService) => ({
     require: 'ngModel',
     restrict: 'A',
     link(scope, elm, attrs, ngModel) {
       set(
         ngModel,
         '$validators.validIpAddress',
-        value => CloudProjectComputeInfrastructurePrivateNetworkDialogService
+        (value) => CloudProjectComputeInfrastructurePrivateNetworkDialogService
           .constructor.isIPv4(value),
       );
     },

@@ -31,9 +31,9 @@ export default class UserAccountUsersCtrl {
       .then((data) => {
         this.me = data;
         return this.groupsService.getGroups()
-          .then(groups => this.$q.all(map(
+          .then((groups) => this.$q.all(map(
             groups,
-            groupName => this.groupsService.getGroup(groupName),
+            (groupName) => this.groupsService.getGroup(groupName),
           )))
           .then((groupsArray) => {
             this.groups = groupsArray.reduce((result, item) => {

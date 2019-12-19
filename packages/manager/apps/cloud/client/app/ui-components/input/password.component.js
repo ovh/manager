@@ -1,7 +1,7 @@
 import includes from 'lodash/includes';
 
 angular.module('managerApp')
-  .directive('cuiPassword', $compile => ({
+  .directive('cuiPassword', ($compile) => ({
     restrict: 'A',
     // the input will not work if there are more than 1 cui-password in a given scope / controller.
     // Will fix later.

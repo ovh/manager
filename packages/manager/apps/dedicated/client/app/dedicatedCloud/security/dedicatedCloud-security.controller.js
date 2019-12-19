@@ -211,10 +211,10 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function Dedicate
   };
 
   self.getVMEncryptionKMSList = function getVMEncryptionKMSList({ offset, pageSize }) {
-    return DedicatedCloud.getVMEncryptionKMSList($stateParams.productId).then(kmsIds => ({
+    return DedicatedCloud.getVMEncryptionKMSList($stateParams.productId).then((kmsIds) => ({
       data: kmsIds
         .slice(offset - 1, offset - 1 + pageSize)
-        .map(id => ({ id })),
+        .map((id) => ({ id })),
       meta: {
         totalCount: kmsIds.length,
       },

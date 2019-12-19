@@ -149,7 +149,7 @@ angular.module('App').controller(
             const messages = domain.isExpired
               ? filter(
                 domain.messages,
-                message => !/service(\s\w+\s)?expired/i.test(message.message),
+                (message) => !/service(\s\w+\s)?expired/i.test(message.message),
               )
               : domain.messages;
 

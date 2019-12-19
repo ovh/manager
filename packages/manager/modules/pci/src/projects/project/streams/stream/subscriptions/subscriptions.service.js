@@ -17,9 +17,9 @@ export default class PciProjectStreamStreamSubscriptionsService {
         streamId,
       })
       .$promise
-      .then(subscriptions => this.$q.all(
+      .then((subscriptions) => this.$q.all(
         subscriptions.map(
-          subscriptionId => this.get(projectId, streamId, subscriptionId),
+          (subscriptionId) => this.get(projectId, streamId, subscriptionId),
         ),
       ));
   }
@@ -35,7 +35,7 @@ export default class PciProjectStreamStreamSubscriptionsService {
         subscriptionId,
       })
       .$promise
-      .then(subscription => new Subscription({
+      .then((subscription) => new Subscription({
         ...subscription,
       }));
   }
@@ -51,7 +51,7 @@ export default class PciProjectStreamStreamSubscriptionsService {
         subscriptionId: subscription.id,
       })
       .$promise
-      .then(stats => new Subscription({
+      .then((stats) => new Subscription({
         ...subscription,
         stats,
       }));

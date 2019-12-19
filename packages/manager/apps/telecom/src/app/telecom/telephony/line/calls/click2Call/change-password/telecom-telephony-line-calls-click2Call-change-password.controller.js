@@ -58,7 +58,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallChangePas
 
     return self.user.getUser().then((data) => {
       self.user.login = data.login;
-    }).catch(err => $q.reject(err)).finally(() => {
+    }).catch((err) => $q.reject(err)).finally(() => {
       self.loading.readUser = false;
     });
   }

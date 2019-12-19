@@ -144,7 +144,7 @@ export default class EmailProMXPlanMailingListsCreateCtrl {
         this.$translate.instant('mailing_list_tab_modal_create_list_success'),
         this.$scope.alerts.main,
       ))
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('mailing_list_tab_modal_create_list_error'),
         err,
         this.$scope.alerts.main,

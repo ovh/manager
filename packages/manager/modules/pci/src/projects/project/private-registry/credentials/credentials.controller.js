@@ -37,7 +37,7 @@ export default class PrivateRegistryDeleteCtrl {
         this.isLoading = false;
         this.credentials = credentials;
       })
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('private_registry_generate_credentials_error', {
           message: get(error, 'data.message'),
           registryName: this.registryName,

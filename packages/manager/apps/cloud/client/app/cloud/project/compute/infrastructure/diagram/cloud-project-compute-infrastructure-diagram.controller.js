@@ -381,7 +381,7 @@ import uniq from 'lodash/uniq';
          */
     initRegions(serviceName) {
       return this.OvhApiCloudProjectRegion.v6().query({ serviceName }).$promise
-        .then(regionIds => this.initRegionFromIds(serviceName, regionIds));
+        .then((regionIds) => this.initRegionFromIds(serviceName, regionIds));
     }
 
     /**
@@ -392,7 +392,10 @@ import uniq from 'lodash/uniq';
     initRegionFromIds(serviceName, regionIds) {
       const getRegions = map(
         regionIds,
-        regionId => this.OvhApiCloudProjectRegion.v6().get({ serviceName, id: regionId }).$promise,
+        (regionId) => this.OvhApiCloudProjectRegion.v6().get({
+          serviceName,
+          id: regionId,
+        }).$promise,
       );
       return this.$q.all(getRegions)
         .then((result) => {
@@ -587,7 +590,7 @@ import uniq from 'lodash/uniq';
     updateReverseDns(ips) {
       const reverseQueue = map(
         ips,
-        ip => this.OvhApiIp.Reverse().v6()
+        (ip) => this.OvhApiIp.Reverse().v6()
           .getReverseDns(ip.ip, ip.block)
           .then((dns) => {
             set(ip, 'reverse', dns);
@@ -605,7 +608,7 @@ import uniq from 'lodash/uniq';
         hasTooManyInstances: this.CloudProjectOrchestrator
           .hasTooManyInstances(this.$stateParams.projectId),
         hasTooManyIps: this.CloudProjectOrchestrator.hasTooManyIps(this.$stateParams.projectId),
-      }).then(result => result.hasTooManyInstances || result.hasTooManyIps);
+      }).then((result) => result.hasTooManyInstances || result.hasTooManyIps);
     }
 
     refreshLinks() {
@@ -1031,7 +1034,7 @@ import uniq from 'lodash/uniq';
               // list of compatible(s) vm(s) to attach the ip
               const compatibleVms = filter(
                 this.infra.vrack.publicCloud.items,
-                vm => this.ipEdit.attach.canAttachIpToVm(ip, vm),
+                (vm) => this.ipEdit.attach.canAttachIpToVm(ip, vm),
               );
 
               // do we have at least one compatible vm?
@@ -1249,7 +1252,7 @@ import uniq from 'lodash/uniq';
             // list of compatible(s) vm(s) to attach the volume
             const compatibleVms = filter(
               this.infra.vrack.publicCloud.items,
-              vm => this.volumeEdit.canAttachVolumeToVm(volume, vm),
+              (vm) => this.volumeEdit.canAttachVolumeToVm(volume, vm),
             );
 
             // do we have at least one compatible vm?
@@ -1311,7 +1314,7 @@ import uniq from 'lodash/uniq';
          * @returns {Array}
          */
     getUnlinkedVolumesRegions() {
-      const regions = map(this.volumes.unlinked, volume => volume.region);
+      const regions = map(this.volumes.unlinked, (volume) => volume.region);
 
       // if we are doing a drag & drop, we add the dragged volume region to the list
       // so it will be displayed as a droppable target in the region list
@@ -1356,7 +1359,7 @@ import uniq from 'lodash/uniq';
         unlinked: {
           accept: '.volume-content-linked-items > li',
         },
-        vmUnlinked: vm => `.volume-content-unlinked-items > li.volume-detail-item-${vm.region},
+        vmUnlinked: (vm) => `.volume-content-unlinked-items > li.volume-detail-item-${vm.region},
                     .volume-content-linked-items:not('.volume-content-linked-items-${vm.id}') > li.volume-detail-item-${vm.region}`,
         // , linked: { } // Specific of region
       };
@@ -1374,9 +1377,9 @@ import uniq from 'lodash/uniq';
       return map(
         filter(
           vm.ipAddresses,
-          ip => ip.type === 'private',
+          (ip) => ip.type === 'private',
         ),
-        ip => ip.ip,
+        (ip) => ip.ip,
       );
     }
 
@@ -1451,7 +1454,7 @@ import uniq from 'lodash/uniq';
       // instanceBox is the currently highlighted instance
       const instanceBox = find(
         instancesBox,
-        box => includes(currentInstanceId, $(box).data().instanceId),
+        (box) => includes(currentInstanceId, $(box).data().instanceId),
       );
 
       // ips linked to the currently highlighted instance

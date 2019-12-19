@@ -36,7 +36,7 @@ angular.module('managerApp').controller('PackTaskCtrl', function PackTaskCtrl($s
     let result = self.allTasks;
 
     if (self.filter.status) {
-      result = filter(self.allTasks, elem => elem.status.name === self.filter.status);
+      result = filter(self.allTasks, (elem) => elem.status.name === self.filter.status);
     }
 
     self.statusFilteredTasks = result;

@@ -77,7 +77,7 @@ export default {
         self.abbreviatedNumbers.push(data);
         self.abbreviatedNumbers = sortBy(
           self.abbreviatedNumbers,
-          elt => parseInt(elt.abbreviatedNumber, 10),
+          (elt) => parseInt(elt.abbreviatedNumber, 10),
         );
       });
     };
@@ -103,7 +103,7 @@ export default {
       importModalInstance.result.then((data) => {
         self.abbreviatedNumbers = sortBy(
           self.abbreviatedNumbers.concat(data),
-          elt => parseInt(elt.abbreviatedNumber, 10),
+          (elt) => parseInt(elt.abbreviatedNumber, 10),
         );
       });
       importModalInstance.result.catch(() => {

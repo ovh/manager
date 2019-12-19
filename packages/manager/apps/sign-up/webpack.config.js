@@ -21,9 +21,7 @@ module.exports = (env = {}) => {
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
-    entry: Object.assign({
-      main: './src/index.js',
-    }, extras.length > 0 ? { extras } : {}),
+    entry: { main: './src/index.js', ...(extras.length > 0 ? { extras } : {}) },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',

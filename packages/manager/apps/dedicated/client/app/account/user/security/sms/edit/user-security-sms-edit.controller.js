@@ -50,7 +50,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
           Alerter.success($translate.instant('user_account_security_double_auth_type_sms_edit_success', 'doubleAuthAlertSms'));
           $rootScope.$broadcast('doubleAuthSMS.reload');
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_edit_error'), err, 'doubleAuthAlertSms'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_sms_edit_error'), err, 'doubleAuthAlertSms'))
         .finally(() => {
           $scope.sms.isEditing = false;
           $scope.resetAction();

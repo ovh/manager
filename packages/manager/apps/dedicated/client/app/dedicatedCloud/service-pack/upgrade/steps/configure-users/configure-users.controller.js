@@ -15,7 +15,7 @@ export default class {
         this.usersWhoCanReceiveSMS,
         { isTokenValidator: true },
       ),
-      user => ({
+      (user) => ({
         userName: user.name,
         firstName: user.firstName,
         lastName: user.lastName,

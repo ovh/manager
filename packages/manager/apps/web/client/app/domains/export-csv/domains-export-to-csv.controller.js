@@ -72,7 +72,7 @@ angular.module('App').controller(
         { label: 'nic_tech', modelKey: 'contactTech', checked: true },
         { label: 'nic_admin', modelKey: 'contactAdmin', checked: true },
         {
-          label: 'dns', modelKey: 'dns', checked: true, target: 'dns', transform: dnsList => map(dnsList, 'host').join(', '),
+          label: 'dns', modelKey: 'dns', checked: true, target: 'dns', transform: (dnsList) => map(dnsList, 'host').join(', '),
         },
       ];
 
@@ -102,9 +102,9 @@ angular.module('App').controller(
          * Export Accounts to CSV file
          */
     exportAccountsToCsv() {
-      const choices = filter(this.csvExportOptions, opt => opt.checked);
-      const header = map(choices, opt => this.$translate.instant(`domains_action_export_csv_form_${opt.label}_label`));
-      const requestsNeeded = uniq(map(filter(choices, opt => opt.target), opt => opt.target));
+      const choices = filter(this.csvExportOptions, (opt) => opt.checked);
+      const header = map(choices, (opt) => this.$translate.instant(`domains_action_export_csv_form_${opt.label}_label`));
+      const requestsNeeded = uniq(map(filter(choices, (opt) => opt.target), (opt) => opt.target));
 
       this.Domain
         .getDomains()
@@ -132,7 +132,7 @@ angular.module('App').controller(
                 if (domain) {
                   const data = map(
                     options.choices,
-                    opt => (opt.transform
+                    (opt) => (opt.transform
                       ? opt.transform(domain[opt.modelKey], options.translations)
                       : domain[opt.modelKey]),
                   );
@@ -140,8 +140,8 @@ angular.module('App').controller(
                 }
               });
             },
-            notify: options => this.$scope.$emit('domain.csv.export.doing', { done: options.total - options.zones.length, total: options.total }),
-            keepGoing: options => this.$q.when(!isEmpty(get(options, 'zones')) && !this.canceler),
+            notify: (options) => this.$scope.$emit('domain.csv.export.doing', { done: options.total - options.zones.length, total: options.total }),
+            keepGoing: (options) => this.$q.when(!isEmpty(get(options, 'zones')) && !this.canceler),
             done: (options) => {
               if (this.canceler) {
                 this.$rootScope.$broadcast('domain.csv.export.cancel');
@@ -154,10 +154,10 @@ angular.module('App').controller(
                 this.$rootScope.$broadcast('domain.csv.export.done', data);
               }
             },
-            error: err => this.$rootScope.$broadcast('domain.csv.export.error', err),
+            error: (err) => this.$rootScope.$broadcast('domain.csv.export.error', err),
           });
         })
-        .catch(err => this.$rootScope.$broadcast('domain.csv.export.error', err));
+        .catch((err) => this.$rootScope.$broadcast('domain.csv.export.error', err));
 
       this.$scope.$emit('domain.csv.export.doing');
     }

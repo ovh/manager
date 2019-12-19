@@ -79,7 +79,7 @@ angular.module('App').controller(
           this.nicOperationEnum = models.models['domain.NicOperationFunctionEnum'].enum;
           this.operationStatusEnum = models.models['domain.OperationStatusEnum'].enum;
         })
-        .catch(err => this.Alerter.alertFromSWS('', err, this.$scope.alerts.main));
+        .catch((err) => this.Alerter.alertFromSWS('', err, this.$scope.alerts.main));
     }
 
     resetSearch() {

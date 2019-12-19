@@ -7,7 +7,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -27,7 +27,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
         =============================== */
 
     function fetchEnums() {
-      return TelephonyMediator.getApiModelEnum('telephony.OvhPabxHuntingQueueRecordDisablingLanguageEnum').then(enumValue => enumValue);
+      return TelephonyMediator.getApiModelEnum('telephony.OvhPabxHuntingQueueRecordDisablingLanguageEnum').then((enumValue) => enumValue);
     }
 
     function refreshQueues() {
@@ -58,7 +58,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
     self.getSelection = function getSelection() {
       return filter(
         self.records.raw,
-        record => self.records.selected && self.records.selected[record.id],
+        (record) => self.records.selected && self.records.selected[record.id],
       );
     };
 
@@ -81,7 +81,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       self.queues.isUpdating = true;
       return self.api.updateQueue(self.queueForm).then(() => {
         assign(self.queues.selected, pick(self.queueForm, attrs));
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.queues.isUpdating = false;
       });
     };
@@ -121,7 +121,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       return self.api.deleteSelectedRecords(records).then(() => {
         self.records.selected = {};
         refreshRecords();
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.records.isDeleting = false;
       });
     };
@@ -160,7 +160,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
           records: refreshRecords(),
         }).then((result) => {
           self.enums = result.enums;
-        }).catch(err => new TucToastError(err));
+        }).catch((err) => new TucToastError(err));
       });
     };
 

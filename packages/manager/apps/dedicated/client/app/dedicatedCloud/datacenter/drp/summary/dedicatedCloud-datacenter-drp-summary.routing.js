@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       drpInformations: {},
     },
     resolve: {
-      goToDeleteDrpModal: /* @ngInject */ $state => () => $state.go('app.dedicatedClouds.datacenter.drp.summary.deleteDrp'),
+      goToDeleteDrpModal: /* @ngInject */ ($state) => () => $state.go('app.dedicatedClouds.datacenter.drp.summary.deleteDrp'),
     },
   });
 };

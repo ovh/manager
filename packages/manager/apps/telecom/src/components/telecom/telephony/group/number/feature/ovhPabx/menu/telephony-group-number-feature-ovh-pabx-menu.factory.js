@@ -149,9 +149,9 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
         serviceName: self.serviceName,
         menuId: self.menuId,
       }).$promise
-      .then(menuEntryIds => $q.all(map(
+      .then((menuEntryIds) => $q.all(map(
         chunk(menuEntryIds, 50),
-        chunkIds => OvhApiTelephony.OvhPabx().Menu().Entry().v6()
+        (chunkIds) => OvhApiTelephony.OvhPabx().Menu().Entry().v6()
           .getBatch({
             billingAccount: self.billingAccount,
             serviceName: self.serviceName,

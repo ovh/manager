@@ -132,7 +132,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', c
         const [id] = values
           .map(({ value }) => value)
           .filter(({ action }) => action === 'changeType')
-          .map(value => value.taskId);
+          .map((value) => value.taskId);
 
         // chaining each promises
         chain = chain.then(runPollOnTask(billingAccount, serviceName, id))

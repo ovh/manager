@@ -8,7 +8,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
     self.rmaList = null;
     return self.fetchRma().then((result) => {
       self.rmaList = result;
-    }).catch(err => new TucToastError(err));
+    }).catch((err) => new TucToastError(err));
   }
 
   self.fetchPhone = function fetchPhone() {
@@ -28,7 +28,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
           return [];
         }
         return $q.reject(err);
-      }).then(rmaIds => $q.all(rmaIds.map(id => OvhApiTelephony.Line().Phone().RMA().v6()
+      }).then((rmaIds) => $q.all(rmaIds.map((id) => OvhApiTelephony.Line().Phone().RMA().v6()
         .get({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
         remove(self.rmaList, { id: rma.id });
         TucToast.success($translate.instant('telephony_line_assist_rma_cancel_success'));
       })
-      .catch(err => new TucToastError(err)).finally(() => {
+      .catch((err) => new TucToastError(err)).finally(() => {
         set(rma, 'isCancelling', false);
       });
   };

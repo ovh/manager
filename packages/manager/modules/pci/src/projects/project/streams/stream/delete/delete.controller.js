@@ -24,7 +24,7 @@ export default class PciStreamsStreamDeleteController {
           stream: this.stream.name,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_delete_error_delete',
         {
           message: get(err, 'data.message', null),

@@ -51,7 +51,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   function getConferenceEnums() {
     return TelephonyMediator.getApiModelEnum('telephony.ConferenceLanguageEnum').then((availableLanguages) => {
       // populate language list
-      self.availableLanguages = map(availableLanguages, languageKey => ({
+      self.availableLanguages = map(availableLanguages, (languageKey) => ({
         value: languageKey,
         label: $translate.instant(`language_${languageKey}_${languageKey !== 'en' ? languageKey.toUpperCase() : 'GB'}`),
       }));
@@ -85,7 +85,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     self.loading.webAccess = true;
     return self.numberCtrl.number.feature
       .generateWebAccess()
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.loading.webAccess = false;
       });
@@ -174,7 +174,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   self.onSoundFileChoosed = function onSoundFileChoosed(file) {
     const validExtensions = ['wav', 'mp3', 'ogg'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
 
     if (!found) {
       return new TucToastError($translate.instant('telephony_number_feature_conference_announcement_file_invalid'));

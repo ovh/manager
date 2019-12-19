@@ -41,7 +41,7 @@ export default /* @nInject */ class {
       this.loading.removePending = false;
       this.removed = true;
       return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

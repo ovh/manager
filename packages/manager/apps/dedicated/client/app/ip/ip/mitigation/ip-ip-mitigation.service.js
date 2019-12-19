@@ -26,24 +26,24 @@ angular.module('Module.ip.services').service('IpMitigation', [
 
     this.updateMitigation = function updateMitigation(ipBlock, ip, mitigation) {
       if (mitigation === 'PERMANENT') {
-        return $http.post(['/ip', window.encodeURIComponent(ipBlock), 'mitigation'].join('/'), { ipOnMitigation: ip }, { serviceType: 'apiv6' }).then(data => data.data, http => $q.reject(http.data));
+        return $http.post(['/ip', window.encodeURIComponent(ipBlock), 'mitigation'].join('/'), { ipOnMitigation: ip }, { serviceType: 'apiv6' }).then((data) => data.data, (http) => $q.reject(http.data));
       } if (mitigation === 'DEFAULT') {
         return $http
           .delete(['/ip', window.encodeURIComponent(ipBlock), 'mitigation', ip].join('/'), {
             serviceType: 'apiv6',
           })
-          .then(data => data.data, http => $q.reject(http.data));
+          .then((data) => data.data, (http) => $q.reject(http.data));
       }
       return $q.reject(ipBlock);
     };
 
     this.getMitigationDetails = function getMitigationDetails(ipBlock, ip) {
       const url = [swsProxypassPath, window.encodeURIComponent(`ip/${window.encodeURIComponent(ipBlock)}/mitigation/${ip}`)].join('/');
-      return $http.get(url).then(result => result.data, http => $q.reject(http.data));
+      return $http.get(url).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getMitigationStatisticsScale = function getMitigationStatisticsScale() {
-      return self.getIpModels().then(ipModels => ipModels['ip.MitigationStatsScaleEnum'].enum.map(scale => `_${snakeCase(scale).toUpperCase()}`));
+      return self.getIpModels().then((ipModels) => ipModels['ip.MitigationStatsScaleEnum'].enum.map((scale) => `_${snakeCase(scale).toUpperCase()}`));
     };
 
     this.getIpModels = function getIpModels() {
@@ -76,7 +76,7 @@ angular.module('Module.ip.services').service('IpMitigation', [
             },
             serviceType: 'aapi',
           })
-          .then(data => data.data, http => $q.reject(http.data));
+          .then((data) => data.data, (http) => $q.reject(http.data));
       }
       return $q.reject(ip);
     };

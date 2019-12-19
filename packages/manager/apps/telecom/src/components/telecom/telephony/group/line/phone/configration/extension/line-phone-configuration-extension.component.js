@@ -58,9 +58,9 @@ import take from 'lodash/take';
             sortBy(
               filter(
                 configs,
-                config => config.name !== 'ExtensionKeyModule',
+                (config) => config.name !== 'ExtensionKeyModule',
               ),
-              config => parseInt(config.name.match(/\d+/g)[0], 10),
+              (config) => parseInt(config.name.match(/\d+/g)[0], 10),
             ),
             self.configGroup.keysPerPage,
           ),

@@ -227,10 +227,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
         dialplanId: self.dialplanId,
         extensionId: self.extensionId,
       }).$promise
-      .then(ruleIds => $q
+      .then((ruleIds) => $q
         .all(map(
           chunk(ruleIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Dialplan().Extension().Rule()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Dialplan().Extension().Rule()
             .v6()
             .getBatch({
               billingAccount: self.billingAccount,
@@ -244,7 +244,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
                   map(
                     filter(
                       resources,
-                      resource => resource.value !== null,
+                      (resource) => resource.value !== null,
                     ),
                     'value',
                   ),
@@ -306,7 +306,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
       const self = this;
       const updatePositionPromises = [];
       const ruleList = forNegativeActions ? self.negativeRules : self.rules;
-      const rulesToUpdate = from ? filter(ruleList, rule => rule.position > from) : ruleList;
+      const rulesToUpdate = from ? filter(ruleList, (rule) => rule.position > from) : ruleList;
 
       angular.forEach(rulesToUpdate, (rule) => {
         updatePositionPromises.push(rule.move(from ? rule.position - 1 : rule.position));
@@ -329,10 +329,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
           dialplanId: self.dialplanId,
           extensionId: self.extensionId,
         }).$promise
-        .then(ruleIds => $q
+        .then((ruleIds) => $q
           .all(map(
             chunk(ruleIds, 50),
-            chunkIds => OvhApiTelephony.OvhPabx().Dialplan().Extension().ConditionScreenList()
+            (chunkIds) => OvhApiTelephony.OvhPabx().Dialplan().Extension().ConditionScreenList()
               .v6()
               .getBatch({
                 billingAccount: self.billingAccount,
@@ -346,7 +346,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
                   map(
                     filter(
                       resources,
-                      resource => resource.value !== null,
+                      (resource) => resource.value !== null,
                     ),
                     'value',
                   ),
@@ -437,10 +437,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
           dialplanId: self.dialplanId,
           extensionId: self.extensionId,
         }).$promise
-        .then(ruleIds => $q
+        .then((ruleIds) => $q
           .all(map(
             chunk(ruleIds, 50),
-            chunkIds => OvhApiTelephony.OvhPabx().Dialplan().Extension().ConditionTime()
+            (chunkIds) => OvhApiTelephony.OvhPabx().Dialplan().Extension().ConditionTime()
               .v6()
               .getBatch({
                 billingAccount: self.billingAccount,
@@ -454,7 +454,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
                   map(
                     filter(
                       resources,
-                      resource => resource.value !== null,
+                      (resource) => resource.value !== null,
                     ),
                     'value',
                   ),
@@ -606,11 +606,11 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplanExtensi
         case 'screenListConditions':
           // there is change in screen list conditions if one or more condition
           // is in creation (draft) or to delete state
-          return some(self.screenListConditions, screenListCondition => ['DRAFT', 'TO_DELETE'].indexOf(screenListCondition.state) !== -1);
+          return some(self.screenListConditions, (screenListCondition) => ['DRAFT', 'TO_DELETE'].indexOf(screenListCondition.state) !== -1);
         case 'timeConditions':
           // there is change in screen time conditions if one or more condition
           // is in creation (draft) or to delete state
-          return some(self.timeConditions, timeCondition => ['DRAFT', 'TO_DELETE'].indexOf(timeCondition.state) !== -1);
+          return some(self.timeConditions, (timeCondition) => ['DRAFT', 'TO_DELETE'].indexOf(timeCondition.state) !== -1);
         default:
           return !isEqual(get(self.saveForEdition, attr), get(self, attr));
       }

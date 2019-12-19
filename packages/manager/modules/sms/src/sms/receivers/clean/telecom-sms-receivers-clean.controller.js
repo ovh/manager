@@ -50,7 +50,7 @@ export default class {
       this.$timeout(() => this.close({
         taskId: results[0].taskId,
       }), 1000);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

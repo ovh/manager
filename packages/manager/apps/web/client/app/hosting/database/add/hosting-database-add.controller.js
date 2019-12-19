@@ -67,7 +67,7 @@ angular
         })
         .$promise
         .then((capabilities) => {
-          $scope.capabilities = map(capabilities, capability => ({
+          $scope.capabilities = map(capabilities, (capability) => ({
             ...capability,
             snakeCasedType: snakeCase(capability.type),
           }));

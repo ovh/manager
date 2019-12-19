@@ -3,10 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.private-registry', {
       url: '/private-registry',
       component: 'pciPrivateRegistryComponent',
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('registries')
-        .then(registries => (registries.length ? false : 'pci.projects.project.private-registry.onboarding')),
+        .then((registries) => (registries.length ? false : 'pci.projects.project.private-registry.onboarding')),
       resolve: {
         goBackToList: /* @ngInject */ ($state, CucCloudMessage, projectId) => (message = false, type = 'success', registryId = null) => {
           const reload = message && type === 'success';
@@ -55,7 +55,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('private_registry_title'),
       },
     });
 };

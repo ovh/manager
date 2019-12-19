@@ -36,7 +36,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     =============================== */
 
   self.isLoading = function isLoading() {
-    return self.loading.init || (self.extension && (['OK', 'DELETE_PENDING'].indexOf(self.extension.status) === -1 || some(self.extension.screenListConditions, screenListCondition => ['CREATING', 'DELETING'].indexOf(screenListCondition.state) !== -1) || some(self.extension.timeConditions, timeCondition => ['CREATING', 'DELETING'].indexOf(timeCondition.state) !== -1)));
+    return self.loading.init || (self.extension && (['OK', 'DELETE_PENDING'].indexOf(self.extension.status) === -1 || some(self.extension.screenListConditions, (screenListCondition) => ['CREATING', 'DELETING'].indexOf(screenListCondition.state) !== -1) || some(self.extension.timeConditions, (timeCondition) => ['CREATING', 'DELETING'].indexOf(timeCondition.state) !== -1)));
   };
 
   self.startRedraw = function startRedraw() {

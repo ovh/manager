@@ -112,11 +112,11 @@ import uniq from 'lodash/uniq';
         },
         {
           condition: ({ currentValue, inputParts, currentIndex }) => `${currentValue}`.toUpperCase() === 'FLEX' && inputParts.length - 1 === currentIndex,
-          mapping: value => ` - ${value[0].toUpperCase()}${value.substr(1)}`,
+          mapping: (value) => ` - ${value[0].toUpperCase()}${value.substr(1)}`,
         },
         {
           condition: () => true,
-          mapping: value => `${value.toUpperCase()}`,
+          mapping: (value) => `${value.toUpperCase()}`,
           intermediateHyphen: true,
         },
       ];
@@ -135,7 +135,7 @@ import uniq from 'lodash/uniq';
       const inputParts = flavorName.split('-');
       return [].concat(...inputParts
         .map((currentValue, currentIndex) => {
-          const matchingRule = this.rules.find(rule => rule.condition({
+          const matchingRule = this.rules.find((rule) => rule.condition({
             currentValue,
             currentIndex,
             inputParts,
@@ -201,13 +201,13 @@ import uniq from 'lodash/uniq';
       augmentedFlavor.frequency = this.CLOUD_INSTANCE_CPU_FREQUENCY[flavor.type];
       augmentedFlavor.formattedName = this.formatFlavorName(augmentedFlavor.name);
       if (/vps/.test(flavor.type)) {
-        return Object.assign({
+        return {
           vps: true,
           diskType: 'ssd',
           flex: false,
           shortGroupName: flavor.name,
-        },
-        augmentedFlavor);
+          ...augmentedFlavor,
+        };
       }
 
       let shortType;
@@ -232,7 +232,7 @@ import uniq from 'lodash/uniq';
       }
 
       augmentedFlavor.flex = /flex$/.test(flavor.name);
-      augmentedFlavor.diskType = [/ssd/, /nvme/].some(regex => regex.test(flavor.type)) ? 'ssd' : 'ceph';
+      augmentedFlavor.diskType = [/ssd/, /nvme/].some((regex) => regex.test(flavor.type)) ? 'ssd' : 'ceph';
 
       const flavorContainsGPUs = includes(['g1', 'g2', 'g3', 't1'], augmentedFlavor.shortType);
       if (flavorContainsGPUs) {
@@ -252,7 +252,7 @@ import uniq from 'lodash/uniq';
     getCategory(flavorType) {
       return find(
         this.CLOUD_FLAVORTYPE_CATEGORY,
-        currentCategory => includes(currentCategory.types, flavorType),
+        (currentCategory) => includes(currentCategory.types, flavorType),
       );
     }
   }

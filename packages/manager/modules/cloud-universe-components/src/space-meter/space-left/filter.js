@@ -9,7 +9,7 @@ export default /* @ngInject */ ($translate) => {
       $t: $translate,
       total: usage.size,
       used: usage.used,
-      ratio: parseFloat(usage.used.value * 100 / usage.size.value).toFixed(2),
+      ratio: parseFloat((usage.used.value * 100) / usage.size.value).toFixed(2),
     });
   };
 };

@@ -45,7 +45,7 @@ export default class {
       this.loading.relaunchTemplate = false;
       this.relaunched = true;
       return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

@@ -57,7 +57,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
     self.loading.init = true;
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
       self.fax = group.getFax($stateParams.serviceName);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading.init = false;
     });
   }
@@ -81,7 +81,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

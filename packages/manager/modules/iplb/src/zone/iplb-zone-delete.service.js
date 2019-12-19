@@ -25,11 +25,11 @@ export default class IpLoadBalancerZoneDeleteService {
     return this.OvhApiIpLoadBalancing.v6().get({ serviceName })
       .$promise
       .then((response) => {
-        const promises = map(response.zone, zone => this.OvhApiIpLoadBalancing.Zone().v6()
+        const promises = map(response.zone, (zone) => this.OvhApiIpLoadBalancing.Zone().v6()
           .get({ serviceName, name: zone }).$promise);
         return this.$q.all(promises);
       })
-      .then(zones => map(zones, zone => assignIn({
+      .then((zones) => map(zones, (zone) => assignIn({
         name: zone.name,
         selectable: {
           value: zone.state !== 'released',
@@ -48,7 +48,7 @@ export default class IpLoadBalancerZoneDeleteService {
 
         const deletableZoneCount = filter(
           deletableZones,
-          item => item.selectable.value !== false,
+          (item) => item.selectable.value !== false,
         ).length - 1;
         const messages = {
           tooMany: deletableZoneCount > 1 ? 'iplb_zone_delete_selection_too_many_plural_error' : 'iplb_zone_delete_selection_too_many_single_error',
@@ -64,10 +64,10 @@ export default class IpLoadBalancerZoneDeleteService {
           });
         }
 
-        const deletedZones = sortBy(map(zones, zone => zone.microRegion.text), zone => zone).join(', ');
+        const deletedZones = sortBy(map(zones, (zone) => zone.microRegion.text), (zone) => zone).join(', ');
         const promises = map(
           zones,
-          zone => this.OvhApiIpLoadBalancing.Zone().v6()
+          (zone) => this.OvhApiIpLoadBalancing.Zone().v6()
             .delete({ serviceName, name: zone.name }, {}).$promise,
         );
         return this.$q.all(promises)

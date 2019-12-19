@@ -181,7 +181,7 @@ angular.module('controllers').controller(
     getLastError(table) {
       const record = findLast(
         table,
-        r => !this.constructor.isValidRedirection(r),
+        (r) => !this.constructor.isValidRedirection(r),
       );
       if (record) {
         return this.getDomainNameOf(record.subDomain);

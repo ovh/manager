@@ -2,20 +2,20 @@ export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.details', {
     url: '/:serviceName',
     component: 'analyticsDataPlatformDetailsComponent',
-    redirectTo: transition => transition
+    redirectTo: (transition) => transition
       .injector()
       .getAsync('serviceName')
       .then((serviceName) => {
         const analyticsDataPlatformService = transition.injector().get('analyticsDataPlatformService');
         return analyticsDataPlatformService.getAnalyticsDataPlatformDetails(serviceName)
-          .then(platformDetails => (analyticsDataPlatformService
+          .then((platformDetails) => (analyticsDataPlatformService
             .isDeploymentInProgress(platformDetails)
             ? { state: 'pci.projects.project.analytics-data-platform.details.progress' }
             : { state: 'pci.projects.project.analytics-data-platform.details.service' }));
       }),
 
     resolve: {
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
       platformDetails: /* @ngInject */ (
         analyticsDataPlatformService,
         serviceName,
@@ -50,7 +50,7 @@ export default /* @ngInject */($stateProvider) => {
         return promise;
       },
 
-      breadcrumb: /* @ngInject */ platformDetails => platformDetails.clusterName,
+      breadcrumb: /* @ngInject */ (platformDetails) => platformDetails.clusterName,
     },
   });
 };

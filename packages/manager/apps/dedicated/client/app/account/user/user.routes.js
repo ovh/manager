@@ -21,7 +21,7 @@ angular
       },
       redirectTo: `${name}.method`,
       resolve: {
-        schema: /* @ngInject */ OvhApiMe => OvhApiMe
+        schema: /* @ngInject */ (OvhApiMe) => OvhApiMe
           .v6()
           .schema()
           .$promise,
@@ -31,7 +31,7 @@ angular
         ) => (schema.models[API_MODEL_SUPPORT_LEVEL] ? OvhApiMe
           .v6()
           .supportLevel()
-          .$promise.then(supportLevel => new SupportLevel(supportLevel)) : Promise.resolve(null)),
+          .$promise.then((supportLevel) => new SupportLevel(supportLevel)) : Promise.resolve(null)),
       },
     });
   });

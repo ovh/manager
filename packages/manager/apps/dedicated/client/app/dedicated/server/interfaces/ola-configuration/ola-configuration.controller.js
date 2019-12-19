@@ -40,9 +40,9 @@ export default class {
     this.selectedInterfaces = [];
     this.notAllowedInterfaces = filter(
       this.interfaces,
-      item => item.hasFailoverIps() || item.hasVrack(),
+      (item) => item.hasFailoverIps() || item.hasVrack(),
     );
-    this.allowedInterfaces = this.interfaces.filter(i => !this.notAllowedInterfaces.includes(i));
+    this.allowedInterfaces = this.interfaces.filter((i) => !this.notAllowedInterfaces.includes(i));
   }
 
   isGrouping() {
@@ -106,6 +106,6 @@ export default class {
 
         return this.goBack();
       })
-      .catch(error => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_ola_error', { errorMessage: get(error, 'data.message') })));
+      .catch((error) => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_ola_error', { errorMessage: get(error, 'data.message') })));
   }
 }

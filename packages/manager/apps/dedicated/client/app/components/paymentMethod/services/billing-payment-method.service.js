@@ -8,7 +8,7 @@ import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
 import startsWith from 'lodash/startsWith';
 
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this, no-underscore-dangle */
 angular.module('services').service(
   'BillingPaymentMethodService',
   class BillingPaymentMethod {
@@ -35,17 +35,17 @@ angular.module('services').service(
     }
 
     filterOnlyOneWithId(paymentMethods) {
-      return filter(paymentMethods, paymentMethod => has(paymentMethod, 'id'));
+      return filter(paymentMethods, (paymentMethod) => has(paymentMethod, 'id'));
     }
 
     _pickAvailablePaymentTypes(data) {
-      return keys(pickBy(data, status => status === true));
+      return keys(pickBy(data, (status) => status === true));
     }
 
     _filterNonExcludedPaymentTypes(paymentTypes) {
       return filter(
         paymentTypes,
-        paymentType => !includes(
+        (paymentType) => !includes(
           this.BILLING_PAYMENT_METHOD.EXCLUDED_AUTOMATIC_TYPES_FOR_CREATION,
           paymentType,
         ),
@@ -53,7 +53,7 @@ angular.module('services').service(
     }
 
     _filterNonAngularValues(values) {
-      return filter(values, value => !startsWith(value, '$'));
+      return filter(values, (value) => !startsWith(value, '$'));
     }
 
     getAvailable() {
@@ -168,7 +168,7 @@ angular.module('services').service(
       const paymentMethodId = this.extractPaymentMethodId(submitUrl);
 
       return this.BillingVantivInstance.submit(`payment_mean_${paymentMethodId}`)
-        .then(response => this.submit(submitUrl, response))
+        .then((response) => this.submit(submitUrl, response))
         .then(() => {
           const timeoutDate = moment().add(this.BILLING_PAYMENT_METHOD.UPDATE_POLL.TIMEOUT, 'ms');
           return this.pollStatusChanged(id, timeoutDate);
@@ -183,7 +183,7 @@ angular.module('services').service(
           paymentType: paymentMethod.paymentType,
           id,
         }))
-        .catch(error => this.delete(id).finally(() => this.$q.reject(error)));
+        .catch((error) => this.delete(id).finally(() => this.$q.reject(error)));
     }
 
     // Those rules came from https://en.wikipedia.org/wiki/Payment_card_number
@@ -251,4 +251,4 @@ angular.module('services').service(
     }
   },
 );
-/* eslint-enable class-methods-use-this */
+/* eslint-enable class-methods-use-this, no-underscore-dangle */

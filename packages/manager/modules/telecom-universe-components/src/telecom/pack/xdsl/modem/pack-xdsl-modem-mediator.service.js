@@ -84,7 +84,7 @@ export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
       self.info = omit(data, ['capabilities']);
       pollModem('packXdslModemTasks', serviceName, callbackError);
       return data;
-    }).catch(err => $q.reject(err));
+    }).catch((err) => $q.reject(err));
   };
 
   this.close = function close() {

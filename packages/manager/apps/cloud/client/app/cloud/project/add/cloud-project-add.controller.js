@@ -190,7 +190,7 @@ angular.module('managerApp').controller('CloudProjectAddCtrl',
     function initUserFidelityAccount() {
       return OvhApiMe.FidelityAccount().v6()
         .get().$promise
-        .then(account => $q.when(account), err => (err && err.status === 404
+        .then((account) => $q.when(account), (err) => (err && err.status === 404
           ? $q.when(null)
           : $q.reject(err)));
     }

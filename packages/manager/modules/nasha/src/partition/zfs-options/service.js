@@ -30,7 +30,7 @@ export default class NashaPartitionZFSOptionsService {
             'size',
           );
 
-          enums.sync = map(schema.models['dedicated.storage.SyncEnum'].enum, option => ({
+          enums.sync = map(schema.models['dedicated.storage.SyncEnum'].enum, (option) => ({
             label: option,
             warning: option === 'disabled',
             isDefault: option === 'standard',

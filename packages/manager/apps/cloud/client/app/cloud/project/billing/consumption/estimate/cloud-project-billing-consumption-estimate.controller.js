@@ -36,7 +36,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
         .get({
           serviceName: $stateParams.projectId,
         }).$promise
-        .then(billingInfo => CloudProjectBillingService
+        .then((billingInfo) => CloudProjectBillingService
           .getConsumptionDetails(billingInfo, billingInfo)
           .then((data) => {
             self.data.estimateTotals = data.totals;
@@ -53,7 +53,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionEstimateC
         .get({
           serviceName: $stateParams.projectId,
         }).$promise
-        .then(billingInfo => CloudProjectBillingService.getConsumptionDetails(
+        .then((billingInfo) => CloudProjectBillingService.getConsumptionDetails(
           billingInfo,
           billingInfo,
         ))

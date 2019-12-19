@@ -127,7 +127,7 @@ export default class diagnostic {
     const pollParameters = {
       interval: 2000,
       successRule: {
-        state: task => includes(opts.successSates, task.status),
+        state: (task) => includes(opts.successSates, task.status),
       },
       namespace: opts.namespace,
     };

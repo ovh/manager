@@ -45,7 +45,7 @@ angular.module('managerApp')
         if (year) {
           return filter(
             self.holidaysLists[year],
-            bankHoliday => bankHoliday.active && !bankHoliday.disabled,
+            (bankHoliday) => bankHoliday.active && !bankHoliday.disabled,
           );
         }
         let bankHolidays = [];
@@ -104,7 +104,7 @@ angular.module('managerApp')
         // build country list
         self.countryList = map(
           keys(TucBankHolidays.BANK_HOLIDAYS),
-          country => ({
+          (country) => ({
             value: country,
             label: $translate.instant(`country_${country}`),
           }),

@@ -113,14 +113,14 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
   self.getModifiedConfigs = function getModifiedConfigs() {
     return filter(
       self.line.phone.configurations,
-      config => !isEqual(config.value, config.prevValue),
+      (config) => !isEqual(config.value, config.prevValue),
     );
   };
 
   self.getNonDefaultConfigs = function getNonDefaultConfigs() {
     return filter(
       self.line.phone.configurations,
-      config => !isEqual(config.value, config.default),
+      (config) => !isEqual(config.value, config.default),
     );
   };
 

@@ -16,7 +16,7 @@ export default /* @ngInject */ function (OvhApiMeVipStatus, TucToastError) {
       .then((vipStatus) => {
         self.isVip = vipStatus;
       })
-      .catch(err => new TucToastError(err, 'telecom_dashboard_auth_failed'))
+      .catch((err) => new TucToastError(err, 'telecom_dashboard_auth_failed'))
       .finally(() => {
         self.loading.vip = false;
       });

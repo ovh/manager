@@ -26,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
 
     self.fetchQueues().then((queues) => {
       self.queues = queues;
-    }).catch(err => new TucToastError(err));
+    }).catch((err) => new TucToastError(err));
 
     self.pollGlobalStats();
   }
@@ -37,7 +37,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q.all(map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+      .then((ids) => $q.all(map(ids, (id) => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
         .get({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
@@ -63,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q.all(map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+      .then((ids) => $q.all(map(ids, (id) => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
         .getLiveStatistics({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,

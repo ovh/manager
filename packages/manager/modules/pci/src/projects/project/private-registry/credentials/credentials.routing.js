@@ -10,14 +10,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         confirmationRequired: () => true,
-        goBack: /* @ngInject */  goBackToList => goBackToList,
-        goToList: /* @ngInject */  goBackToList => goBackToList,
+        goBack: /* @ngInject */  (goBackToList) => goBackToList,
+        goToList: /* @ngInject */  (goBackToList) => goBackToList,
         registry: /* @ngInject */ (
           projectId,
           pciPrivateRegistryService,
           $stateParams,
         ) => pciPrivateRegistryService.getRegistry(projectId, $stateParams.registryId),
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_generate_credentials'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('private_registry_generate_credentials'),
       },
     });
 };

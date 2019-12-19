@@ -115,7 +115,7 @@ angular.module('managerApp')
         wifiName: self.wifi.wifiName,
       });
 
-      return some(flatten([wifiFields, ['key', 'key2']]), field => self.hasConfigFieldChanged(field, original));
+      return some(flatten([wifiFields, ['key', 'key2']]), (field) => self.hasConfigFieldChanged(field, original));
     };
 
     /**
@@ -162,7 +162,7 @@ angular.module('managerApp')
         self.wifis = map(response.wifi, (wifi) => {
           set(wifi, 'channelCustom', wifi.channelMode === 'Auto' ? 'Auto' : wifi.channel);
           return wifi;
-        }).sort(wifiA => (wifiA.wifiName === 'defaultWIFI' ? -1 : 1));
+        }).sort((wifiA) => (wifiA.wifiName === 'defaultWIFI' ? -1 : 1));
 
         if (self.wifis.length === 1) {
           self.setSelectedWifi(find(response.wifi, {

@@ -54,12 +54,12 @@ export default class {
         action: 'convertToSip',
         type: 'offer',
       }).$promise
-      .then(offerTaskIds => this.$q
-        .all(map(offerTaskIds, id => this.OvhApiTelephony.Service().OfferTask().v6().get({
+      .then((offerTaskIds) => this.$q
+        .all(map(offerTaskIds, (id) => this.OvhApiTelephony.Service().OfferTask().v6().get({
           billingAccount,
           serviceName,
           taskId: id,
-        }).$promise)).then(tasks => head(filter(tasks, { status: 'todo' }))));
+        }).$promise)).then((tasks) => head(filter(tasks, { status: 'todo' }))));
   }
 
   /**
@@ -83,7 +83,7 @@ export default class {
       }, {
         featureType,
       }).$promise
-      .then(task => this.tucVoipServiceTask
+      .then((task) => this.tucVoipServiceTask
         .startPolling(
           billingAccount,
           serviceName,
@@ -209,7 +209,7 @@ export default class {
     return this.OvhApiTelephony.Rsva().v6().getScheduledRateCode({
       billingAccount,
       serviceName,
-    }).$promise.catch(error => (get(error, 'data.message', error.message) === this.TUC_TELEPHONY_ALIAS_SPECIAL_NUMBER.noScheduledRateCode ? null : this.$q.reject(error)));
+    }).$promise.catch((error) => (get(error, 'data.message', error.message) === this.TUC_TELEPHONY_ALIAS_SPECIAL_NUMBER.noScheduledRateCode ? null : this.$q.reject(error)));
   }
 
   /**
@@ -306,8 +306,8 @@ export default class {
         billingAccount,
         serviceName,
       })
-      .$promise.then(queueIds => this.$q.all(queueIds.map(
-        queueId => this.OvhApiTelephony.EasyHunting().Hunting().Queue().v6()
+      .$promise.then((queueIds) => this.$q.all(queueIds.map(
+        (queueId) => this.OvhApiTelephony.EasyHunting().Hunting().Queue().v6()
           .get({
             billingAccount,
             serviceName,
@@ -403,7 +403,7 @@ export default class {
         if (typeof callsIds !== 'string') {
           return this.$q
             .all(callsIds.reverse().map(
-              id => this.OvhApiTelephony.EasyHunting().Hunting().Queue().LiveCalls()
+              (id) => this.OvhApiTelephony.EasyHunting().Hunting().Queue().LiveCalls()
                 .v6()
                 .get({
                   billingAccount,
@@ -437,7 +437,7 @@ export default class {
       }).$promise.then((agentIds) => {
         if (typeof agentIds !== 'string') {
           return this.$q.all(
-            chunk(agentIds, 50).map(chunkIds => this.OvhApiTelephony.EasyHunting().Hunting()
+            chunk(agentIds, 50).map((chunkIds) => this.OvhApiTelephony.EasyHunting().Hunting()
               .Agent()
               .v6()
               .getBatch({
@@ -445,7 +445,7 @@ export default class {
                 serviceName,
                 agentId: chunkIds,
               }).$promise),
-          ).then(agents => map(flatten(agents), 'value'));
+          ).then((agents) => map(flatten(agents), 'value'));
         }
 
         return this.$q.reject();
@@ -469,7 +469,7 @@ export default class {
     return this.fetchContactCenterSolutionNumberAgents({
       billingAccount,
       serviceName,
-    }).then(agents => this.OvhApiTelephony.EasyHunting().Hunting().Queue().Agent()
+    }).then((agents) => this.OvhApiTelephony.EasyHunting().Hunting().Queue().Agent()
       .v6()
       .getBatch({
         billingAccount,
@@ -488,7 +488,7 @@ export default class {
                   ),
                   'value',
                 ),
-                queue => queue.agentId === agent.agentId,
+                (queue) => queue.agentId === agent.agentId,
               ),
             ),
             'position',
@@ -623,7 +623,7 @@ export default class {
       .then((recordsIds) => {
         if (typeof recordsIds !== 'string') {
           return this.$q.all(chunk(recordsIds, 50)
-            .map(chunkIds => this.OvhApiTelephony.EasyHunting().Records().v6()
+            .map((chunkIds) => this.OvhApiTelephony.EasyHunting().Records().v6()
               .getBatch({
                 billingAccount,
                 serviceName,
@@ -633,7 +633,7 @@ export default class {
 
         return this.$q.reject();
       })
-      .then(records => map(flatten(records), 'value'));
+      .then((records) => map(flatten(records), 'value'));
   }
 
   /**
@@ -679,7 +679,7 @@ export default class {
         if (typeof agentIds !== 'string') {
           return this.$q
             .all(agentIds.map(
-              agentId => this.OvhApiTelephony.EasyHunting().Hunting().Queue().Agent()
+              (agentId) => this.OvhApiTelephony.EasyHunting().Hunting().Queue().Agent()
                 .v6()
                 .getLiveStatus({
                   billingAccount,
@@ -714,8 +714,8 @@ export default class {
       billingAccount,
       serviceName,
     }).$promise
-      .then(ids => this.$q.all(
-        ids.map(id => this.OvhApiTelephony.EasyHunting().Sound().v6().get({
+      .then((ids) => this.$q.all(
+        ids.map((id) => this.OvhApiTelephony.EasyHunting().Sound().v6().get({
           billingAccount,
           serviceName,
           soundId: id,
@@ -792,9 +792,9 @@ export default class {
         billingAccount,
         serviceName,
       }).$promise
-      .then(ids => this.$q
+      .then((ids) => this.$q
         .all(
-          chunk(ids, 50).map(chunkIds => this.OvhApiTelephony.EasyHunting()
+          chunk(ids, 50).map((chunkIds) => this.OvhApiTelephony.EasyHunting()
             .ScreenListConditions().Conditions().v6()
             .getBatch({
               billingAccount,
@@ -802,7 +802,7 @@ export default class {
               conditionId: chunkIds,
             }).$promise),
         )
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+        .then((chunkResult) => map(flatten(chunkResult), 'value')));
   }
 
   /**
@@ -1016,8 +1016,8 @@ export default class {
         billingAccount,
         serviceName,
       }).$promise
-      .then(ids => this.$q.all(
-        ids.map(id => this.OvhApiTelephony.Conference().WebAccess().v6().get({
+      .then((ids) => this.$q.all(
+        ids.map((id) => this.OvhApiTelephony.Conference().WebAccess().v6().get({
           billingAccount,
           serviceName,
           id,

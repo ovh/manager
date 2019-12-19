@@ -66,7 +66,7 @@ angular.module('managerApp').config(($stateProvider) => {
           .get({
             xdslId: $stateParams.serviceName,
           })
-          .$promise.then(data => $translate.instant(
+          .$promise.then((data) => $translate.instant(
             'xdsl_page_title',
             { name: data.description || $stateParams.serviceName },
             null,

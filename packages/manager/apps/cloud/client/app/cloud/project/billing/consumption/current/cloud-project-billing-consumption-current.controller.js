@@ -9,7 +9,7 @@ angular.module('managerApp').controller('CloudProjectBillingConsumptionCurrentCt
 
       return OvhApiCloudProjectUsageCurrent.v6()
         .get({ serviceName: $stateParams.projectId }).$promise
-        .then(billingInfo => CloudProjectBillingService.getConsumptionDetails(
+        .then((billingInfo) => CloudProjectBillingService.getConsumptionDetails(
           billingInfo,
           billingInfo,
         ))

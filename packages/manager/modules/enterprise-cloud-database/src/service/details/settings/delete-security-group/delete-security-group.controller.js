@@ -28,7 +28,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurity
         }),
         STATUS.SUCCESS,
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_security_group_error', {
           message: get(error, 'data.message'),
         }),

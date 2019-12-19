@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */ goToKubernetesDetails => goToKubernetesDetails,
+        goBack: /* @ngInject */ (goToKubernetesDetails) => goToKubernetesDetails,
         isLegacyCluster: /* @ngInject */ (
           kubeId,
           Kubernetes,

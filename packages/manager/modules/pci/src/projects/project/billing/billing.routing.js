@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     template,
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('cpbc_billing_control'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('cpbc_billing_control'),
     },
   });
 };

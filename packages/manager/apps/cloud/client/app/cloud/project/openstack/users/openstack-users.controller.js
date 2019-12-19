@@ -73,7 +73,7 @@ angular.module('managerApp')
           // userId in the user object. User.id is a number and userId a string
           // (it is an object key) so the .ToString is mandatory in order to use === instead of ==.
           forEach(keys(self.table.autoSelected), (userId) => {
-            const isInUserTable = some(self.table.users, user => user.id.toString() === userId);
+            const isInUserTable = some(self.table.users, (user) => user.id.toString() === userId);
             if (isInUserTable) {
               self.table.selected[userId] = true;
             }
@@ -83,7 +83,7 @@ angular.module('managerApp')
       }, true);
 
       function getSelectableUserList(userList) {
-        return filter(userList, user => user.status !== 'disabled');
+        return filter(userList, (user) => user.status !== 'disabled');
       }
 
       $scope.$watch('CloudProjectComputeSnapshotCtrl.table.usersCurrentPage', (users) => {
@@ -168,7 +168,7 @@ angular.module('managerApp')
           }, {}).$promise.then((newUser) => {
             const currentUserFound = find(
               self.table.users,
-              user => user.username === currentUser.username,
+              (user) => user.username === currentUser.username,
             );
             OpenstackUsersPassword.put(self.projectId, currentUserFound.id, newUser.password);
             CucCloudMessage.success($translate.instant('openstackusers_users_regeneratepassword_success', currentUser));
@@ -249,7 +249,7 @@ angular.module('managerApp')
             self.removeFromList(currentUser);
             CucCloudMessage.success($translate.instant('openstackusers_users_delete_success', currentUser));
           },
-          errorHandler: err => CucCloudMessage.error([$translate.instant('openstackusers_users_delete_error'), (err.data && err.data.message) || ''].join(' ')),
+          errorHandler: (err) => CucCloudMessage.error([$translate.instant('openstackusers_users_delete_error'), (err.data && err.data.message) || ''].join(' ')),
         });
       };
 

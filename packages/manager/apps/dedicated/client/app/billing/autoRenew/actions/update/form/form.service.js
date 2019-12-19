@@ -11,7 +11,7 @@ export default class {
   getAvailableRenewPeriods(service) {
     return map(
       service.possibleRenewPeriod,
-      period => ({
+      (period) => ({
         period,
         label: this.$translate.instant('billing_autorenew_service_update_service_period_value', { month: period }),
       }),
@@ -21,7 +21,7 @@ export default class {
   getRenewalTypes() {
     return map(
       values(RENEWAL_TYPES),
-      type => ({ type, label: this.$translate.instant(`billing_autorenew_service_update_service_${type}`) }),
+      (type) => ({ type, label: this.$translate.instant(`billing_autorenew_service_update_service_${type}`) }),
     );
   }
 }

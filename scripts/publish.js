@@ -8,8 +8,8 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
 
     return Promise.all(
       packages.map(
-        pkg => execa('npm', ['info', `${pkg.name}@${pkg.version}`])
-          .then(output => Object.assign(pkg, { publish: output.stdout.length > 0 }))
+        (pkg) => execa('npm', ['info', `${pkg.name}@${pkg.version}`])
+          .then((output) => Object.assign(pkg, { publish: output.stdout.length > 0 }))
           .catch((err) => {
             if (!err.stderr.includes('404')) {
               console.error(err);
@@ -20,7 +20,7 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
       ),
     );
   })
-  .then(packages => pSeries(
+  .then((packages) => pSeries(
     packages.map((pkg) => {
       if (!pkg.publish) {
         return () => {
@@ -33,5 +33,5 @@ execa('lerna', ['ls', '-pl', '--json', '--toposort'])
       }
       console.log(`Package ${pkg.name} has been skipped (already published)`);
       return null;
-    }).filter(p => p !== null),
+    }).filter((p) => p !== null),
   ));

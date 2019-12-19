@@ -1,4 +1,4 @@
-angular.module('Module.ip.filters').filter('availableIpText', $translate => function availableIpTextFilter(ip) {
+angular.module('Module.ip.filters').filter('availableIpText', ($translate) => function availableIpTextFilter(ip) {
   if (!ip.blockSizes.length) {
     return '';
   }

@@ -58,9 +58,9 @@ export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOver
       }),
       OvhApiOverTheBox.Aapi().getServices().$promise.then((services) => {
         self.services = services;
-        self.unlinkedServices = services.filter(service => !service.device);
+        self.unlinkedServices = services.filter((service) => !service.device);
         return self.unlinkedServices;
-      }, err => new TucToastError(err)),
+      }, (err) => new TucToastError(err)),
     ]).then(() => {
       self.orphanDevices = self.devices.filter((device) => {
         let found = false;
@@ -122,7 +122,7 @@ export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOver
       }
 
       return durations;
-    }, error => new TucToastError(error)).finally(() => {
+    }, (error) => new TucToastError(error)).finally(() => {
       self.loaders.durations = false;
     });
   };
@@ -138,7 +138,7 @@ export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOver
       self.orderInformations = informations;
 
       return informations;
-    }, error => new TucToastError(error)).finally(() => {
+    }, (error) => new TucToastError(error)).finally(() => {
       self.loaders.order = false;
     });
   };
@@ -157,7 +157,7 @@ export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOver
       self.states.orderDone = true;
 
       return success;
-    }, error => new TucToastError(error)).finally(() => {
+    }, (error) => new TucToastError(error)).finally(() => {
       self.loaders.create = false;
     });
   };

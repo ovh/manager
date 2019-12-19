@@ -2323,7 +2323,7 @@ export default class ExchangePassword {
 
     if (splittedDisplayName != null) {
       const splittedNameWithoutShortWords = splittedDisplayName.filter(
-        word => word.length >= 3,
+        (word) => word.length >= 3,
       );
 
       forEach(splittedNameWithoutShortWords, (word) => {

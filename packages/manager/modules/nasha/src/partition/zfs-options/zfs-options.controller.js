@@ -63,7 +63,7 @@ export default class NashaPartitionZFSOptionsCtrl {
           tasks: [result.data.taskId],
         },
       );
-    }).catch(error => this.goToPartitionPage(
+    }).catch((error) => this.goToPartitionPage(
       this.$translate.instant('nasha_partitions_zfs_modal_fail', {
         partitionName: this.data.partition.partitionName,
         message: get(error, 'data.message'),

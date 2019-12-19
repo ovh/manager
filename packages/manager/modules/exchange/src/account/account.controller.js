@@ -35,7 +35,7 @@ export default class ExchangeAccountCtlr {
 
   changeState({ stateName, args }) {
     function getDefaultState() {
-      return find(keys(this.STATES), key => this.STATES[key].isDefault);
+      return find(keys(this.STATES), (key) => this.STATES[key].isDefault);
     }
 
     const formattedStateName = `${stateName}`.toUpperCase();

@@ -15,14 +15,14 @@ export default /* @ngInject */ function (
 
   function getCurrentUserNic() {
     return OvhApiMe.v6().get().$promise
-      .then(user => user.nichandle);
+      .then((user) => user.nichandle);
   }
 
   function getProjectAdminNic(projectId) {
     return OvhApiCloudProjectServiceInfos.v6().get({
       serviceName: projectId,
     }).$promise
-      .then(project => project.contactAdmin);
+      .then((project) => project.contactAdmin);
   }
 
   this.userHaveReadWriteRights = function userHaveReadWriteRights(projectId) {
@@ -31,7 +31,7 @@ export default /* @ngInject */ function (
       currentUserNic: getCurrentUserNic(),
       projectAdminNic: getProjectAdminNic(projectId),
     })
-      .then(result => result.projectAdminNic === result.currentUserNic
-        || find(result.readWriteAccounts, nicWrite => nicWrite === result.currentUserNic));
+      .then((result) => result.projectAdminNic === result.currentUserNic
+        || find(result.readWriteAccounts, (nicWrite) => nicWrite === result.currentUserNic));
   };
 }

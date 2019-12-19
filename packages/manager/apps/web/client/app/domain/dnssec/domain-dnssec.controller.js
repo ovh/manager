@@ -89,14 +89,14 @@ angular.module('controllers').controller(
           this.product = product;
           this.keyAlgorithmEnum = map(
             models.models['dnssec.KeyAlgorithmEnum'].enum,
-            algorithm => +algorithm,
+            (algorithm) => +algorithm,
           );
           this.keyFlagEnum = map(
             models.models['dnssec.KeyFlagEnum'].enum,
-            flag => +flag,
+            (flag) => +flag,
           );
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_DNSSEC_loading_error'),
           get(err, 'data', err),
           this.$scope.alerts.main,
@@ -111,18 +111,18 @@ angular.module('controllers').controller(
       this.dnssecList = [];
       return this.Domain
         .getDnssecList(domain)
-        .then(dnssecList => this.$q.all(map(
+        .then((dnssecList) => this.$q.all(map(
           dnssecList,
-          dnsSecName => this.Domain
+          (dnsSecName) => this.Domain
             .getDnssec(domain, dnsSecName)
-            .then(dnssec => this.dnssecList.push(dnssec)),
+            .then((dnssec) => this.dnssecList.push(dnssec)),
         )));
     }
 
     static getLabel(key, options) {
       const option = find(
         options,
-        currentOption => currentOption.value === key,
+        (currentOption) => currentOption.value === key,
       );
       if (!option) {
         return key;
@@ -132,7 +132,7 @@ angular.module('controllers').controller(
 
     getPendingTasks(domain) {
       this.hasActiveTask = 0;
-      forEach(['todo', 'doing', 'error'], status => this.Domain.getDomainPendingTasks(domain, {
+      forEach(['todo', 'doing', 'error'], (status) => this.Domain.getDomainPendingTasks(domain, {
         function: 'DomainDnsUpdate',
         status,
       }).then((tasks) => {
@@ -153,7 +153,7 @@ angular.module('controllers').controller(
     nextAvailableId() {
       return find(
         range(this.const.MAX_AMOUNT_DNSSEC),
-        id => !some(this.dnssecList, { id }),
+        (id) => !some(this.dnssecList, { id }),
       );
     }
 
@@ -175,7 +175,7 @@ angular.module('controllers').controller(
           this.$translate.instant('domain_tab_DNSSEC_action_add_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_DNSSEC_action_add_error'),
           err,
           this.$scope.alerts.main,

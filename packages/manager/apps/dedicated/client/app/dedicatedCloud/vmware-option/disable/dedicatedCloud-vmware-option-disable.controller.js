@@ -15,7 +15,7 @@ angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scop
         pcc: DedicatedCloud.getSelected($stateParams.productId),
         commercialRanges: DedicatedCloud.isOptionToggable($stateParams.productId, $scope.option, 'enabled', false),
       })
-      .then(data => DedicatedCloud.fetchAllHostsPrices(
+      .then((data) => DedicatedCloud.fetchAllHostsPrices(
         $stateParams.productId,
         data.commercialRanges.oldCommercialVersion,
         data.commercialRanges.newCommercialVersion,

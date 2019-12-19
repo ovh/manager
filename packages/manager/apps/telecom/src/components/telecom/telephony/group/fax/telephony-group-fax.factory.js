@@ -52,7 +52,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     this.isFax = true;
 
     // helper
-    this.isSip = some(this.offers, offer => angular.isString(offer) && offer.indexOf('sipfax') >= 0);
+    this.isSip = some(this.offers, (offer) => angular.isString(offer) && offer.indexOf('sipfax') >= 0);
   }
 
   /* -----  End of CONSTRUCTOR  ------*/
@@ -114,16 +114,16 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
         action: 'termination',
         type: 'offer',
       }).$promise
-      .then(offerTaskIds => $q
+      .then((offerTaskIds) => $q
         .all(map(
           offerTaskIds,
-          id => OvhApiTelephony.Service().OfferTask().v6().get({
+          (id) => OvhApiTelephony.Service().OfferTask().v6().get({
             billingAccount: self.billingAccount,
             serviceName: self.serviceName,
             taskId: id,
           }).$promise,
         ))
-        .then(tasks => head(filter(tasks, { status: 'todo' }))));
+        .then((tasks) => head(filter(tasks, { status: 'todo' }))));
   };
 
   /* ----------  EDITION  ----------*/

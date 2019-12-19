@@ -244,7 +244,7 @@ class CloudProjectComputeInfrastructureService {
 
   getPreferredView() {
     return this.CucUserPref.get('CLOUD_PROJECT_INFRA_PREFERRED_VIEW')
-      .then(view => get(view, 'view', 'diagram'));
+      .then((view) => get(view, 'view', 'diagram'));
   }
 }
 

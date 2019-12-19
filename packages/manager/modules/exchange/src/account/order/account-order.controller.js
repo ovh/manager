@@ -178,7 +178,7 @@ export default class ExchangeOrderAccountCtrl {
     if (!isEmpty(this.ordersList)) {
       const selected = $.grep(
         this.ordersList,
-        order => this.accountsToAdd.duration === order.duration,
+        (order) => this.accountsToAdd.duration === order.duration,
       );
 
       return selected ? selected[0] : null;

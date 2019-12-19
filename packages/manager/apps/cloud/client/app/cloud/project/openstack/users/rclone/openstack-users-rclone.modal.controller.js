@@ -56,12 +56,12 @@ class CloudProjectOpenstackUsersRcloneModalCtrl {
     this.regions = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.CloudProjectOpenstackUsersRcloneService
         .getValidRcloneRegions(this.projectId)
-        .catch(error => this.cancel(error)),
+        .catch((error) => this.cancel(error)),
     });
 
     this.rCloneFileGuide = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.CucControllerHelper.navigation.getConstant(get(this.URLS, 'guides.rCloneFile', ''))
-        .catch(error => this.cancel(error)),
+        .catch((error) => this.cancel(error)),
     });
   }
 }

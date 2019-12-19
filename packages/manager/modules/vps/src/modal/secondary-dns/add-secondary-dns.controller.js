@@ -34,7 +34,7 @@ export default class AddSecondaryDnsCtrl {
     this.addDns = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.addSecondaryDnsDomain(this.serviceName, this.model)
         .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_secondarydns_add_success', { domain: this.model })))
-        .catch(err => this.CucCloudMessage.error(err.message))
+        .catch((err) => this.CucCloudMessage.error(err.message))
         .finally(() => this.$uibModalInstance.close()),
     });
     return this.addDns.load();

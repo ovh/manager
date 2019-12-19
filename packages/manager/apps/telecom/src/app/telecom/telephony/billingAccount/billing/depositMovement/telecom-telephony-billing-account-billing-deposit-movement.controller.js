@@ -26,13 +26,13 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
     self.loading.init = true;
 
     self.getEnabledBillingAccounts().then((billingAccountsParam) => {
-      let billingAccounts = map(billingAccountsParam, item => ({
+      let billingAccounts = map(billingAccountsParam, (item) => ({
         label: item.description || item.billingAccount,
         value: item,
       }));
       billingAccounts = sortBy(billingAccounts, 'label');
       self.sources = billingAccounts;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading.init = false;
     });
   }
@@ -50,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       $timeout(() => {
         $state.reload();
       }, 5000);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading.submit = false;
     });
   };
@@ -62,7 +62,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
 
     const targets = filter(
       self.sources,
-      item => item.value.billingAccount !== self.source.billingAccount,
+      (item) => item.value.billingAccount !== self.source.billingAccount,
     );
 
     // disable target if not the same billing contact than source
@@ -76,7 +76,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
             billingAccount: self.source.billingAccount,
           }, {
             billingAccountDestination: billingAccount,
-          }).$promise.then(data => data.value).catch((err) => {
+          }).$promise.then((data) => data.value).catch((err) => {
             if (err.status === 400) { // means that deposit cannot be transfered
               return false;
             }
@@ -98,7 +98,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
   };
 
   self.getEnabledBillingAccounts = function getEnabledBillingAccounts() {
-    return OvhApiTelephony.Aapi().billingAccounts().$promise.then(billingAccounts => filter(billingAccounts, { status: 'enabled' }));
+    return OvhApiTelephony.Aapi().billingAccounts().$promise.then((billingAccounts) => filter(billingAccounts, { status: 'enabled' }));
   };
 
   self.getServiceInfos = function getServiceInfos(billingAccount) {

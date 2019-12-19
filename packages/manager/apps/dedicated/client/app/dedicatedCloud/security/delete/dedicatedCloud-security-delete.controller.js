@@ -14,7 +14,7 @@ angular.module('App').controller('DedicatedCloudSecurityPolicyDeleteCtrl', ($sco
           : $translate.instant('dedicatedCloud_configuration_SECURITY_policy_delete_success_one'),
         'dedicatedCloud',
       ))
-      .catch(err => Alerter.alertFromSWS(
+      .catch((err) => Alerter.alertFromSWS(
         $scope.entriesToDelete.length > 1
           ? $translate.instant('dedicatedCloud_configuration_SECURITY_policy_delete_fail_other')
           : $translate.instant('dedicatedCloud_configuration_SECURITY_policy_delete_fail_one'),

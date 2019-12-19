@@ -28,7 +28,7 @@ angular.module('managerApp').controller('XdslModemTemplateConfigCtrl', class Xds
     return this.fetchTemplates()
       .then((result) => {
         this.templates = result;
-      }).catch(err => this.TucToastError(err));
+      }).catch((err) => this.TucToastError(err));
   }
 
   /* -----  End of INITIALIZATION  ------*/
@@ -38,10 +38,10 @@ angular.module('managerApp').controller('XdslModemTemplateConfigCtrl', class Xds
     this.OvhApiXdsl.TemplateModem().v6().resetAllCache();
     return this.OvhApiXdsl.TemplateModem().v6().query()
       .$promise
-      .then(names => this.$q
+      .then((names) => this.$q
         .all(map(
           chunk(names, 50),
-          chunkNames => this.OvhApiXdsl.TemplateModem().v6().getBatch({
+          (chunkNames) => this.OvhApiXdsl.TemplateModem().v6().getBatch({
             name: chunkNames,
           }).$promise,
         ))
@@ -94,7 +94,7 @@ angular.module('managerApp').controller('XdslModemTemplateConfigCtrl', class Xds
 
     if (this.template.detail.WLAN) {
       // Add ignore column to set parameters to ignore
-      this.template.detail.WLAN = this.template.detail.WLAN.map(row => ({
+      this.template.detail.WLAN = this.template.detail.WLAN.map((row) => ({
         ...row,
         ignore: isArray(this.parametersToIgnore.WLANList)
                 && this.parametersToIgnore.WLANList.includes(row.wifiName),
@@ -102,7 +102,7 @@ angular.module('managerApp').controller('XdslModemTemplateConfigCtrl', class Xds
     }
 
     if (this.template.detail.portMapping) {
-      this.template.detail.portMapping = this.template.detail.portMapping.map(row => ({
+      this.template.detail.portMapping = this.template.detail.portMapping.map((row) => ({
         ...row,
         ignore: isArray(this.parametersToIgnore.portMappingList)
                 && this.parametersToIgnore.portMappingList.includes(row.name),

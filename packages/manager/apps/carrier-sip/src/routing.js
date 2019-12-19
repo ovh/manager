@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/billingAccount/:billingAccount/carrierSip/:serviceName',
     component: 'carrierSipDashboard',
     resolve: {
-      billingAccount: /* @ngInject */ $transition$ => $transition$.params().billingAccount,
+      billingAccount: /* @ngInject */ ($transition$) => $transition$.params().billingAccount,
       carrierSip: /* @ngInject */ (
         billingAccount,
         CarrierSipService,
@@ -30,7 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
         CarrierSipService,
         serviceName,
       ) => CarrierSipService.getServiceInfos(serviceName),
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
       settings: /* @ngInject */ (
         billingAccount,
         CarrierSipService,

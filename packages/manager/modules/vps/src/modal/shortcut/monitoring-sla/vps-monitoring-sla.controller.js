@@ -33,7 +33,7 @@ export default class VpsMonitoringSlaCtrl {
     this.selectedVps = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.getSelectedVps(this.serviceName)
         .then((vps) => { this.vps = vps; })
-        .catch(err => this.CucCloudMessage.error(err)),
+        .catch((err) => this.CucCloudMessage.error(err)),
     });
     return this.selectedVps.load();
   }

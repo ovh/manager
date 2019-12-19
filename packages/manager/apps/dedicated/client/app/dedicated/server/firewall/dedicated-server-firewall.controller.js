@@ -26,7 +26,7 @@ angular.module('App')
           optionList: this.getOptionList(),
           informations: this.getInformations(),
         })
-        .catch(err => this.Alerter.error([this.$translate.instant('server_configuration_firewall_fail'), get(err, 'message', '')].join(' '), 'dedicated_server_firewall'))
+        .catch((err) => this.Alerter.error([this.$translate.instant('server_configuration_firewall_fail'), get(err, 'message', '')].join(' '), 'dedicated_server_firewall'))
         .finally(() => {
           this.isLoading = false;
         });
@@ -43,7 +43,7 @@ angular.module('App')
           this.server = server;
           return server;
         })
-        .catch(err => this.$q.reject(err));
+        .catch((err) => this.$q.reject(err));
     }
 
     /**
@@ -58,7 +58,7 @@ angular.module('App')
             this.canOrderAsaOption = true;
           }
         })
-        .catch(err => this.$q.reject(err));
+        .catch((err) => this.$q.reject(err));
     }
 
     /**
@@ -72,6 +72,6 @@ angular.module('App')
           this.informations = informations;
           return informations;
         })
-        .catch(err => this.$q.reject(err));
+        .catch((err) => this.$q.reject(err));
     }
   });

@@ -48,18 +48,18 @@ angular.module('App').controller('CdnDomainStatisticsCtrl', ($scope, $stateParam
     $scope.series.push($translate.instant(`cdn_stats_legend_${$scope.model.dataType.toLowerCase()}_cdn`));
     $scope.series.push($translate.instant(`cdn_stats_legend_${$scope.model.dataType.toLowerCase()}_backend`));
     if ($scope.model.dataType === 'REQUEST') {
-      $scope.data.push(map(get(data, 'cdn.values'), value => value.y));
-      $scope.data.push(map(get(data, 'backend.values'), value => value.y));
+      $scope.data.push(map(get(data, 'cdn.values'), (value) => value.y));
+      $scope.data.push(map(get(data, 'backend.values'), (value) => value.y));
     } else if ($scope.model.dataType === 'BANDWIDTH' || $scope.model.dataType === 'QUOTA') {
-      $scope.data.push(map(get(data, 'cdn.values'), value => value.y / 1000000000)); // convert B to GB
-      $scope.data.push(map(get(data, 'backend.values'), value => value.y / 1000000000));
+      $scope.data.push(map(get(data, 'cdn.values'), (value) => value.y / 1000000000)); // convert B to GB
+      $scope.data.push(map(get(data, 'backend.values'), (value) => value.y / 1000000000));
     }
   }
 
   $scope.getStatistics = () => {
     $scope.loadingStats = true;
     return Cdn.getStatistics($stateParams.productId, $scope.model)
-      .then(data => createChart(data))
+      .then((data) => createChart(data))
       .finally(() => {
         $scope.loadingStats = false;
       });

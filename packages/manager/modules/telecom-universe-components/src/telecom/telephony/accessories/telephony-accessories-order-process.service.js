@@ -35,7 +35,7 @@ export default /* @ngInject */ function (
     each(
       filter(
         orderProcess.accessoriesList,
-        accessory => accessory.quantity > 0,
+        (accessory) => accessory.quantity > 0,
       ),
       (accessory) => {
         list = list.concat(fill(new Array(accessory.quantity), accessory.name));
@@ -58,7 +58,7 @@ export default /* @ngInject */ function (
       }).$promise.then((accessoriesList) => {
         orderProcess.accessoriesList = map(
           accessoriesList,
-          accessory => angular.extend(accessory, {
+          (accessory) => angular.extend(accessory, {
             url: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]
               ? TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name].url : null,
             img: TUC_TELEPHONY_LINE_PHONE_ACCESSORIES[accessory.name]

@@ -265,7 +265,7 @@ angular.module('controllers').controller(
           ),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.alerter.alertFromSWS(
+        .catch((err) => this.alerter.alertFromSWS(
           this.$translate.instant(
             'domain_tab_REDIRECTION_edit_fail',
             { t0: this.displayName },

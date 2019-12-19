@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToZone => goToZone,
+      goBack: /* @ngInject */ (goToZone) => goToZone,
     },
   });
 
@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToZone => goToZone,
+      goBack: /* @ngInject */ (goToZone) => goToZone,
     },
   });
 };

@@ -33,7 +33,7 @@ angular.module('Module.ip.controllers').controller('IpIpv6ReverseDelegationCtrl'
   };
 
   $scope.deleteReverse = function deleteReverse(reverse) {
-    remove($scope.model.reverses, delegatedReverse => reverse === delegatedReverse);
+    remove($scope.model.reverses, (delegatedReverse) => reverse === delegatedReverse);
   };
 
   // -- Step2
@@ -61,7 +61,7 @@ angular.module('Module.ip.controllers').controller('IpIpv6ReverseDelegationCtrl'
     return (
       ($scope.reversesToAdd.length || $scope.reversesToDelete.length)
         && ($scope.model.reverses.length || $scope.data.ipBlock.reverseDelegations.length)
-        && $scope.model.reverses.filter(reverse => !Validator.isValidDomain(reverse.replace(/\.$/, ''))).length === 0
+        && $scope.model.reverses.filter((reverse) => !Validator.isValidDomain(reverse.replace(/\.$/, ''))).length === 0
     );
   };
 
@@ -69,12 +69,12 @@ angular.module('Module.ip.controllers').controller('IpIpv6ReverseDelegationCtrl'
     $scope.resetAction();
 
     const queueToDelete = $scope.reversesToDelete
-      .map(reverse => IpReverse.deleteDelegation($scope.data.ipBlock.ipBlock, reverse));
+      .map((reverse) => IpReverse.deleteDelegation($scope.data.ipBlock.ipBlock, reverse));
 
     $q.all(queueToDelete).then(
       () => {
         const queueToAdd = $scope.reversesToAdd
-          .map(reverse => IpReverse.setDelegation($scope.data.ipBlock.ipBlock, reverse));
+          .map((reverse) => IpReverse.setDelegation($scope.data.ipBlock.ipBlock, reverse));
         if (queueToAdd.length) {
           $q.all(queueToAdd).then(
             () => {

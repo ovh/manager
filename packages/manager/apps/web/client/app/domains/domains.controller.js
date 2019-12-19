@@ -155,7 +155,7 @@ angular.module('App').controller(
             this.$scope.selectedDomains = map(
               this.$scope.domains.list.results,
               'name',
-            ).filter(result => !some(this.$scope.selectedDomains, result.name));
+            ).filter((result) => !some(this.$scope.selectedDomains, result.name));
             this.atLeastOneSelected = true;
             break;
           case 2:

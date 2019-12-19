@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelephonyNumberOvhPabxCtrl',
       asyncLoader.addTranslations(
       import(`./types/${featureType}/translations/Messages_${$translate.use()}.json`)
         .catch(() => import(`./types/${featureType}/translations/Messages_${$translate.fallbackLanguage()}.json`))
-        .then(x => x.default),
+        .then((x) => x.default),
       );
       $translate.refresh();
     };

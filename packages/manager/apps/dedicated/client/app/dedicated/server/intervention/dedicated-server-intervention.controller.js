@@ -18,7 +18,7 @@ angular.module('App')
 
       return this.Server
         .getInterventions(this.$stateParams.productId, pageSize, offset)
-        .then(interventions => ({
+        .then((interventions) => ({
           data: get(interventions, 'list.results'),
           meta: {
             totalCount: interventions.count,

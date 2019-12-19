@@ -17,7 +17,7 @@ export default class CoreConfig {
   $get() {
     return {
       getRegion: () => this.getRegion(),
-      isRegion: region => this.isRegion(region),
+      isRegion: (region) => this.isRegion(region),
     };
   }
 }

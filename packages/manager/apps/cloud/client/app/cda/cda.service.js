@@ -39,7 +39,7 @@ angular.module('managerApp')
             self.currentService.label ? self.currentService.label : self.currentService.serviceName,
           );
         });
-      }).catch(error => $q.reject(error));
+      }).catch((error) => $q.reject(error));
     };
 
     self.changeMenuTitle = function changeMenuTitle(serviceName, label) {
@@ -54,6 +54,6 @@ angular.module('managerApp')
 
       return OvhApiDedicatedCeph.User().Aapi().users({
         serviceName: params.serviceName,
-      }).$promise.then(users => users);
+      }).$promise.then((users) => users);
     };
   });

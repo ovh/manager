@@ -76,9 +76,9 @@ export default class {
         map(
           TAB_FEATURES, 'title',
         ),
-        feature => this.capabilities.includes(feature),
+        (feature) => this.capabilities.includes(feature),
       ),
-      feature => ({
+      (feature) => ({
         textId: `vps_tab_${snakeCase(feature)}`,
         state: `vps.detail.${feature}`,
       }),
