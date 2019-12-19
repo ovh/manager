@@ -13,14 +13,15 @@
  * ============================================================ */
 .has-switch,
 .has-switch *,
-.has-switch:before,
-.has-switch *:before,
-.has-switch:after,
-.has-switch *:after {
+.has-switch::before,
+.has-switch *::before,
+.has-switch::after,
+.has-switch *::after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .has-switch {
   border-radius: 30px;
   display: inline-block;
@@ -38,20 +39,24 @@
   -o-user-select: none;
   user-select: none;
 }
+
 .has-switch.deactivate {
   opacity: 0.5;
   filter: alpha(opacity=50);
   cursor: default !important;
 }
+
 .has-switch.deactivate label,
 .has-switch.deactivate span {
   cursor: default !important;
 }
+
 .has-switch > div {
   width: 130px;
   position: relative;
   top: 0;
 }
+
 .has-switch > div.switch-animate {
   -webkit-transition: left 0.25s ease-out;
   -moz-transition: left 0.25s ease-out;
@@ -59,35 +64,41 @@
   transition: left 0.25s ease-out;
   -webkit-backface-visibility: hidden;
 }
+
 .has-switch > div.switch-off {
   left: -50px;
 }
+
 .has-switch > div.switch-off label {
   background: #4d4d55;
-  background: -moz-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#4d4d55),color-stop(100%,#37373c));
-  background: -webkit-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: -o-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: -ms-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: linear-gradient(to bottom,#4d4d55 0,#37373c 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d4d55', endColorstr='#37373c', GradientType=0);
+  background: -moz-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4d4d55), color-stop(100%, #37373c));
+  background: -webkit-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: -o-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: -ms-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: linear-gradient(to bottom, #4d4d55 0, #37373c 100%);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4d4d55', endColorstr='#37373c', GradientType=0);
 }
+
 .has-switch > div.switch-on {
   left: 0;
 }
+
 .has-switch > div.switch-on label {
   background: #4d4d55;
-  background: -moz-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#4d4d55),color-stop(100%,#37373c));
-  background: -webkit-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: -o-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: -ms-linear-gradient(top,#4d4d55 0,#37373c 100%);
-  background: linear-gradient(to bottom,#4d4d55 0,#37373c 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d4d55', endColorstr='#37373c', GradientType=0);
+  background: -moz-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4d4d55), color-stop(100%, #37373c));
+  background: -webkit-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: -o-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: -ms-linear-gradient(top, #4d4d55 0, #37373c 100%);
+  background: linear-gradient(to bottom, #4d4d55 0, #37373c 100%);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4d4d55', endColorstr='#37373c', GradientType=0);
 }
+
 .has-switch input[type=checkbox] {
   display: none;
 }
+
 .has-switch span {
   cursor: pointer;
   font-size: 15px;
@@ -108,35 +119,35 @@
   transition: 0.25s ease-out;
   -webkit-backface-visibility: hidden;
 }
+
 .has-switch span.switch-left {
   border-radius: 30px 0 0 30px;
-
-  background-color: #DFDFDF;
-  color: #3D3D3D;
-  text-shadow: 1px 1px 1px #FFF;
-  -moz-box-shadow: inset 0 1px 3px #C1C1C1;
-  -webkit-box-shadow: inset 0 1px 3px #C1C1C1;
-  box-shadow: inset 0 1px 3px #C1C1C1;
-
+  background-color: #dfdfdf;
+  color: #3d3d3d;
+  text-shadow: 1px 1px 1px #fff;
+  -moz-box-shadow: inset 0 1px 3px #c1c1c1;
+  -webkit-box-shadow: inset 0 1px 3px #c1c1c1;
+  box-shadow: inset 0 1px 3px #c1c1c1;
   border-left: 1px solid transparent;
 }
+
 .has-switch span.switch-right {
   border-radius: 0 30px 30px 0;
-
-  background-color: #DFDFDF;
-  color: #3D3D3D;
-  text-shadow: 1px 1px 1px #FFF;
-  -moz-box-shadow: inset 0 1px 3px #C1C1C1;
-  -webkit-box-shadow: inset 0 1px 3px #C1C1C1;
-  box-shadow: inset 0 1px 3px #C1C1C1;
-  
+  background-color: #dfdfdf;
+  color: #3d3d3d;
+  text-shadow: 1px 1px 1px #fff;
+  -moz-box-shadow: inset 0 1px 3px #c1c1c1;
+  -webkit-box-shadow: inset 0 1px 3px #c1c1c1;
+  box-shadow: inset 0 1px 3px #c1c1c1;
   text-indent: 7px;
 }
+
 .has-switch span.switch-right [class*="fui-"] {
   text-indent: 0;
 }
+
 .has-switch label {
-  border: 4px solid #DFDFDF;
+  border: 4px solid #dfdfdf;
   border-radius: 50%;
   float: left;
   height: 29px;
@@ -152,25 +163,32 @@
   transition: 0.25s ease-out;
   -webkit-backface-visibility: hidden;
 }
+
 .switch-square {
   border-radius: 6px;
 }
+
 .switch-square > div.switch-off label {
   border-color: #7f8c9a;
   border-radius: 6px 0 0 6px;
 }
+
 .switch-square span.switch-left {
   border-radius: 6px 0 0 6px;
 }
+
 .switch-square span.switch-left [class*="fui-"] {
   text-indent: -10px;
 }
+
 .switch-square span.switch-right {
   border-radius: 0 6px 6px 0;
 }
+
 .switch-square span.switch-right [class*="fui-"] {
   text-indent: 5px;
 }
+
 .switch-square label {
   border-radius: 0 6px 6px 0;
   border-color: #4d4d55;

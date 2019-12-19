@@ -1,4 +1,5 @@
 $flag-icon-css-path: "flag-icon-css/flags";
+
 @import "~flag-icon-css/sass/flag-icon";
 
 .country-flag {
@@ -6,9 +7,9 @@ $flag-icon-css-path: "flag-icon-css/flags";
   white-space: nowrap;
 
   .flag-icon {
-      width: 30px;
-      height: 23px;
-      border-radius: 3px;
-      margin-right: .5rem;
+    width: 30px;
+    height: 23px;
+    border-radius: 3px;
+    margin-right: 0.5rem;
   }
 }

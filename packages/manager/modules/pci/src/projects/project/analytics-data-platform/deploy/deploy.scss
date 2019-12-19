@@ -19,8 +19,9 @@ analytics-data-platform-deploy-component {
       margin-left: 0;
     }
   }
+
   .ovhstack .oui-input.oui-input_number {
-    border-radius: 0px;
+    border-radius: 0;
     border-bottom: inherit;
   }
 }
@@ -33,6 +34,7 @@ oui-modal {
       &::after {
         width: 6.7rem;
       }
+
       .oui-datagrid__cell-sticky:first-child {
         width: 6.7rem;
       }
