@@ -1,3 +1,35 @@
+# [13.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.2...@ovh-ux/manager-web@13.37.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **hosting:** add missing ng inject ([db22709](https://github.com/ovh/manager/commit/db22709db0ed62b19eb46207f8338ccf9b5f9867))
+* **hosting.database.order.private:** fix transations ([#1985](https://github.com/ovh/manager/issues/1985)) ([3d02708](https://github.com/ovh/manager/commit/3d027087c2830855ec69b2334a6264e59f0d9951))
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 194] ([b6c91ed](https://github.com/ovh/manager/commit/b6c91ed9d2a2dd86f20c31ac8fccdc8c72c40b3f))
+* **i18n:** add missing translations [CDS 195] ([7b63630](https://github.com/ovh/manager/commit/7b63630b213b9da1947fa6ccc36a290efa294a67))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* **clouddb:** rework order cloud db feature ([04f3584](https://github.com/ovh/manager/commit/04f35842cf861f23d6f58045c5c9fc6e5a5c5123))
+* **domain:** add new webhosting order page ([b15723a](https://github.com/ovh/manager/commit/b15723a1473cc58e17acfe40773c4632d98be7b9))
+* **hosting.cdn.order:** update wizard modal to a page ([19e33d0](https://github.com/ovh/manager/commit/19e33d0fb544508bbc70d794d93deaa4b4a25b4f))
+* **hosting.cdn.order:** use orderCart api for ordering cdn ([9c8b1dd](https://github.com/ovh/manager/commit/9c8b1dd1922492415633eefe649b4b2b76b4205e))
+* **hosting.database.order-private:** prepare private database order ([9cbdc42](https://github.com/ovh/manager/commit/9cbdc420af41aac342aa31c6a4421f2b4aa01fa5))
+* **hosting.database.order-private:** use order cart api ([6827369](https://github.com/ovh/manager/commit/68273690a6d6820d19462eb5980346d403827148))
+* **server.sidebar:** add option to order cloud db ([00360b3](https://github.com/ovh/manager/commit/00360b3414382f2807566821b32e431d86aaedce))
+* **web:** add ovh payment method config ([e07ced9](https://github.com/ovh/manager/commit/e07ced985c4711f48be041ff5cf05360b1d41396))
+* **web:** add private sql activation translations ([#1984](https://github.com/ovh/manager/issues/1984)) ([f6cc947](https://github.com/ovh/manager/commit/f6cc94794e76d01003756483bbd89065f2bace19))
+* **web:** create order components ([e800a26](https://github.com/ovh/manager/commit/e800a26813ffd2bd9e84b710159ddcbc1a1ad0ed))
+* **web.email-domain:** add order translations ([#1990](https://github.com/ovh/manager/issues/1990)) ([00c4dc3](https://github.com/ovh/manager/commit/00c4dc30e914a64263023ef6e190d19e2e5f08d4))
+
+
+
 ## [13.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.1...@ovh-ux/manager-web@13.36.2) (2019-12-18)
 
 

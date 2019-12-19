@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.3...@ovh-ux/manager-vps@0.1.4) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@0.1.2...@ovh-ux/manager-vps@0.1.3) (2019-12-18)
 
 

@@ -1,3 +1,14 @@
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.1.0...@ovh-ux/manager-iplb@0.1.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 182] ([de0bbaa](https://github.com/ovh/manager/commit/de0bbaaf4957ef0c73d1c8a8488c04d85dceab51))
+* **i18n:** add missing translations [CDS 183] ([a936e65](https://github.com/ovh/manager/commit/a936e6537c5bd79ffdf8ae22016a6c688c84da32))
+* **i18n:** add missing translations [CDS 194] ([b6c91ed](https://github.com/ovh/manager/commit/b6c91ed9d2a2dd86f20c31ac8fccdc8c72c40b3f))
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@0.0.0...@ovh-ux/manager-iplb@0.1.0) (2019-12-10)
 
 

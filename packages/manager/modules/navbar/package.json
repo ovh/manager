@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-navbar",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "description": "OVH control panel navbar",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/navbar#readme",

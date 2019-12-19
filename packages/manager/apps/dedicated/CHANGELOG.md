@@ -1,3 +1,26 @@
+# [11.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.2...@ovh-ux/manager-dedicated@11.3.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **account.user.security.totp.delete:** add missing warning message ([#1954](https://github.com/ovh/manager/issues/1954)) ([dbffffa](https://github.com/ovh/manager/commit/dbffffab5379c1d209f573c69aa938c407e4c72d)), closes [#1953](https://github.com/ovh/manager/issues/1953)
+* **dedicated.account.user:** remove shortcuts for some region ([34c4e64](https://github.com/ovh/manager/commit/34c4e647d1c968a6a866a3293b6a404df5593699))
+* **i18n:** add missing translations [CDS 182] ([de0bbaa](https://github.com/ovh/manager/commit/de0bbaaf4957ef0c73d1c8a8488c04d85dceab51))
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 195] ([7b63630](https://github.com/ovh/manager/commit/7b63630b213b9da1947fa6ccc36a290efa294a67))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* **dedicated.billing:** prevent VIP renew ([#1943](https://github.com/ovh/manager/issues/1943)) ([9a5755c](https://github.com/ovh/manager/commit/9a5755ce2bdb45cd76484df41afced92e42808ed))
+* display standard and premium support levels for FR customers ([569b19e](https://github.com/ovh/manager/commit/569b19e231123f820cb537cd4c85f2a079fd9c03))
+
+
+
 ## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.1...@ovh-ux/manager-dedicated@11.2.2) (2019-12-11)
 
 

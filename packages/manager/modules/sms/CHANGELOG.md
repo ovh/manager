@@ -1,3 +1,21 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.4.0...@ovh-ux/manager-sms@7.5.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 183] ([a936e65](https://github.com/ovh/manager/commit/a936e6537c5bd79ffdf8ae22016a6c688c84da32))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+
+
+### Features
+
+* **sms:** define feature availabilty for SMS ([f5bf3e2](https://github.com/ovh/manager/commit/f5bf3e2b47a9c831a78d36cf6176eb2eeb3273e7))
+* **sms.compose:** add checkbox for shortcode sender ([#1946](https://github.com/ovh/manager/issues/1946)) ([13efa0b](https://github.com/ovh/manager/commit/13efa0b876bdf1a126a1400f1a5c05453c756dbe))
+* **sms.templates:** translate template examples ([8c697de](https://github.com/ovh/manager/commit/8c697de115eeeed28160ced6646f6a41b6f7c787))
+
+
+
 # [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.2...@ovh-ux/manager-sms@7.4.0) (2019-12-10)
 
 

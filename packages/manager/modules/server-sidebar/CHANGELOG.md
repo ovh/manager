@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.1.0...@ovh-ux/manager-server-sidebar@1.2.0) (2019-12-19)
+
+
+### Features
+
+* **server.sidebar:** add option to order cloud db ([00360b3](https://github.com/ovh/manager/commit/00360b3414382f2807566821b32e431d86aaedce))
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.1...@ovh-ux/manager-server-sidebar@1.1.0) (2019-12-10)
 
 
