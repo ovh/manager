@@ -55,7 +55,7 @@ export default class NashaPartitionAccessAddCtrl {
     }, {
       ip: this.data.accessToAdd.ip,
       type: this.data.type,
-    }).$promise.then(result => this.goToPartitionAccessPage(
+    }).$promise.then((result) => this.goToPartitionAccessPage(
       this.$translate.instant('nasha_access_action_add_success', {
         accessIp: this.data.accessToAdd.ip,
       }),
@@ -69,7 +69,7 @@ export default class NashaPartitionAccessAddCtrl {
         isNew: true,
       },
     ))
-      .catch(error => this.goToPartitionAccessPage(
+      .catch((error) => this.goToPartitionAccessPage(
         this.$translate.instant('nasha_access_action_add_failure', {
           accessIp: this.data.accessToAdd.ip,
           message: get(error, 'data.message'),

@@ -15,7 +15,7 @@ export default /* @ngInject */($stateProvider) => {
           instance,
         ) => PciProjectsProjectInstanceService
           .getBackupPriceEstimation(projectId, instance),
-        goBack: /* @ngInject */ goToInstance => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => goToInstance,
         breadcrumb: () => null,
       },
     });

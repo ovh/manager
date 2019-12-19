@@ -13,20 +13,20 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionOutgoing
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.Service().FaxConsumption().v6()
+          (chunkIds) => OvhApiTelephony.Service().FaxConsumption().v6()
             .getBatch({
               billingAccount: $stateParams.billingAccount,
               serviceName: $stateParams.serviceName,
               consumptionId: chunkIds,
             }).$promise,
         ))
-        .then(chunkResult => flatten(chunkResult)))
+        .then((chunkResult) => flatten(chunkResult)))
       .then((resultParam) => {
         let result = map(resultParam, 'value');
-        result = filter(result, conso => conso.wayType === 'sent');
+        result = filter(result, (conso) => conso.wayType === 'sent');
         return result;
       });
   }
@@ -56,7 +56,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionOutgoing
     fetchOutgoingConsumption().then((result) => {
       self.consumption.raw = angular.copy(result);
       self.applySorting();
-      self.consumption.pagesSum = sumBy(self.consumption.raw, conso => conso.pages);
+      self.consumption.pagesSum = sumBy(self.consumption.raw, (conso) => conso.pages);
       let priceSuffix = '';
       self.consumption.priceSum = sumBy(self.consumption.raw, (conso) => {
         if (conso.priceWithoutTax) {
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionOutgoing
         return 0.0;
       });
       self.consumption.priceSum = `${Math.floor(self.consumption.priceSum * 100.0, 2) / 100.0} ${priceSuffix}`;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.consumption.isLoading = false;
     });
   }

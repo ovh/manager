@@ -24,7 +24,7 @@ export default class PciBlockStorageContainersContainerObjectAddController {
       .then(() => this.goBack(this.$translate.instant(
         `pci_projects_project_storages_containers_container_object_add_${this.archive ? 'archive' : 'object'}_success_message`,
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         `pci_projects_project_storages_containers_container_object_add_${this.archive ? 'archive' : 'object'}_error_delete`,
         {
           message: get(err, 'data.message', null),

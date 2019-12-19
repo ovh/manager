@@ -26,8 +26,8 @@ export default class {
   getServiceTypes() {
     return this
       .getServiceTypesRaw()
-      .then(serviceTypes => [...serviceTypes]
-        .map(serviceType => ({
+      .then((serviceTypes) => [...serviceTypes]
+        .map((serviceType) => ({
           ...serviceType,
           label: this.$translate.instant(`ovhManagerSupport_new_serviceType_${serviceType.name}`),
         }))

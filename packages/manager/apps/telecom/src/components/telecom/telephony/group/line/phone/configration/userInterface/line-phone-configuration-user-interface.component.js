@@ -37,7 +37,7 @@ angular.module('managerApp').component('linePhoneConfigurationUserInterface', {
           ====================================== */
 
     self.$onInit = function $onInit() {
-      const keys = filter(self.configGroup.configs, config => startsWith(config.name, 'KeyLabel')).sort((configA, configB) => {
+      const keys = filter(self.configGroup.configs, (config) => startsWith(config.name, 'KeyLabel')).sort((configA, configB) => {
         const matchA = parseInt(configA.name.match(/\d+/g)[0], 10);
         const matchB = parseInt(configB.name.match(/\d+/g)[0], 10);
 
@@ -54,7 +54,7 @@ angular.module('managerApp').component('linePhoneConfigurationUserInterface', {
       if (keys.length < self.configGroup.configs.length) {
         self.fakeConfigGroup = {
           name: [self.configGroup.name, 'fake'].join('-'),
-          configs: filter(self.configGroup.configs, config => !startsWith(config.name, 'KeyLabel')),
+          configs: filter(self.configGroup.configs, (config) => !startsWith(config.name, 'KeyLabel')),
         };
         self.fakeConfigGroup.isExpertOnly = every(self.fakeConfigGroup.configs, {
           level: 'expert',

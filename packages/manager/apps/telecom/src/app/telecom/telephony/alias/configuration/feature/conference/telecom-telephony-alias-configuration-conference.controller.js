@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
         label: this.$translate.instant(`language_${label}`),
         value,
       }));
-    this.availableReportStatus = this.TELEPHONY_ALIAS_CONFERENCE.reportStatus.map(status => ({
+    this.availableReportStatus = this.TELEPHONY_ALIAS_CONFERENCE.reportStatus.map((status) => ({
       label: this.$translate.instant(`telephony_alias_config_conference_report_status_${status}`),
       value: status,
     }));

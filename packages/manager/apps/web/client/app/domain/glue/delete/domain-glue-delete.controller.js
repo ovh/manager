@@ -26,7 +26,7 @@ angular.module('controllers').controller(
           this.$translate.instant('domain_tab_GLUE_delete_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_GLUE_delete_error'),
           err,
           this.$scope.alerts.main,

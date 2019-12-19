@@ -19,7 +19,7 @@ angular
           goToDrpConfiguration: /* @ngInject */ (
             $state,
             currentDrp,
-          ) => datacenterId => $state.go(
+          ) => (datacenterId) => $state.go(
             'app.dedicatedClouds.datacenter.drp',
             { datacenterId, drpInformations: currentDrp },
           ),

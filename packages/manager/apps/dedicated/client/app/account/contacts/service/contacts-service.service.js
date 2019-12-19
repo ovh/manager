@@ -18,7 +18,7 @@ export default class {
     return this.OvhHttp.get(`${service.path}/${service.serviceName}/serviceInfos`, {
       rootPath: 'apiv6',
     })
-      .then(serviceInfos => new BillingService({
+      .then((serviceInfos) => new BillingService({
         ...service,
         ...serviceInfos,
       }));
@@ -40,9 +40,9 @@ export default class {
       .then((services) => {
         const availableServices = filter(
           services,
-          service => AVAILABLE_SERVICES.includes(service.category),
+          (service) => AVAILABLE_SERVICES.includes(service.category),
         );
-        return availableServices.map(service => new BillingService(service));
+        return availableServices.map((service) => new BillingService(service));
       });
   }
 

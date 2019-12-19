@@ -58,8 +58,8 @@ class LogsIndexAddModalCtrl {
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsIndexService.createIndex(this.serviceName, this.index)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((response) => this.$uibModalInstance.dismiss(response))
         .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
@@ -72,8 +72,8 @@ class LogsIndexAddModalCtrl {
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsIndexService
         .updateIndex(this.serviceName, this.indexInfo, this.index)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((response) => this.$uibModalInstance.dismiss(response))
         .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();

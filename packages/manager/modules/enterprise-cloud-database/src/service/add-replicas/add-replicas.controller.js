@@ -21,7 +21,7 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
       this.availableReplicas]);
     const replicaCost = get(head(this.nodeCatalog.pricings), 'price');
     const tax = get(head(this.nodeCatalog.pricings), 'tax');
-    this.replicaCounts = map(range(1, orderableReplicaCount + 1), replicaNumber => ({
+    this.replicaCounts = map(range(1, orderableReplicaCount + 1), (replicaNumber) => ({
       replicaNumber,
       text: `${replicaNumber} ${(replicaNumber > 1
         ? this.$translate.instant('enterprise_cloud_database_common_replicas')
@@ -50,7 +50,7 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
             replicaCount: data.replicaCount,
           }));
         })
-        .catch(error => this.goBack(this.$translate.instant('enterprise_cloud_database_service_add_replicas_error', {
+        .catch((error) => this.goBack(this.$translate.instant('enterprise_cloud_database_service_add_replicas_error', {
           message: get(error, 'data.message'),
         }), STATUS.ERROR))
         .finally(() => {

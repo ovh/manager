@@ -13,18 +13,18 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['./', '../support-level'],
     },
     resolve: {
-      user: /* @ngInject */ currentUser => currentUser,
-      lastBill: /* @ngInject */ OvhApiMeBillIceberg => OvhApiMeBillIceberg
+      user: /* @ngInject */ (currentUser) => currentUser,
+      lastBill: /* @ngInject */ (OvhApiMeBillIceberg) => OvhApiMeBillIceberg
         .query()
         .expand('CachedObjectList-Pages')
         .sort('date', 'DESC')
         .limit(1)
         .execute(null, true)
         .$promise
-        .then(lastBill => head(lastBill.data)),
+        .then((lastBill) => head(lastBill.data)),
       shortcuts: /* @ngInject */ ($state, coreConfig) => USER_DASHBOARD_SHORTCUTS
         .filter(({ regions }) => !regions || regions.includes(coreConfig.getRegion()))
-        .map(shortcut => ({ ...shortcut, href: $state.href(shortcut.state) })),
+        .map((shortcut) => ({ ...shortcut, href: $state.href(shortcut.state) })),
     },
   });
 };

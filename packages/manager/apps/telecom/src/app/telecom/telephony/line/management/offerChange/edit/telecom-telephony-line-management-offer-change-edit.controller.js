@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
       self.status.saved = true;
 
       return $timeout(self.close, 1000);
-    }, error => self.cancel(angular.extend(error, {
+    }, (error) => self.cancel(angular.extend(error, {
       type: 'API',
     }))).finally(() => {
       self.loading.save = false;
@@ -63,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
         type: self.line.offerInformations.type,
         description: self.line.offerInformations.description,
       });
-    }, error => self.cancel(angular.extend(error, {
+    }, (error) => self.cancel(angular.extend(error, {
       type: 'API',
       init: true,
     }))).finally(() => {

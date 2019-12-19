@@ -89,7 +89,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
 
   function getVoiceEnum() {
     return TelephonyMediator.getApiModelEnum('telephony.OvhPabxTtsVoiceEnum').then((enumValues) => {
-      self.availableVoices = map(enumValues, value => ({
+      self.availableVoices = map(enumValues, (value) => ({
         value,
         label: $translate.instant(`telephony_number_feature_ovh_pabx_tts_voice_${value.toLowerCase()}`),
       }));
@@ -119,7 +119,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
     }).finally(() => {
       self.loading.init = false;
     })
-      .catch(error => new TucToastError(error));
+      .catch((error) => new TucToastError(error));
   };
 
   /* -----  End of INITIALIZATION  ------*/

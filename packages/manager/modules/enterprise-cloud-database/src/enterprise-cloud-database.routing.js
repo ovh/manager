@@ -12,9 +12,9 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/enterprise-cloud-database',
     resolve: {
-      user: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+      user: /* @ngInject */ (enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
         .getMe(),
-      offers: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+      offers: /* @ngInject */ (enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
         .getOffers(),
       catalog: /* @ngInject */ (
         enterpriseCloudDatabaseService,
@@ -33,19 +33,19 @@ export default /* @ngInject */($stateProvider) => {
         getClusterDetails,
       ) => enterpriseCloudDatabaseService
         .getClusters()
-        .then(clusters => $q.all(map(clusters, clusterId => getClusterDetails(clusterId)))),
+        .then((clusters) => $q.all(map(clusters, (clusterId) => getClusterDetails(clusterId)))),
       getClusterDetails: /* @ngInject */ (
         capabilities,
         enterpriseCloudDatabaseService,
-      ) => clusterId => enterpriseCloudDatabaseService
+      ) => (clusterId) => enterpriseCloudDatabaseService
         .getClusterDetails(clusterId)
-        .then(details => ({ offer: find(capabilities, { name: details.offerName }), details })),
-      gettingStarted: /* @ngInject */ $state => clusterId => $state
+        .then((details) => ({ offer: find(capabilities, { name: details.offerName }), details })),
+      gettingStarted: /* @ngInject */ ($state) => (clusterId) => $state
         .go('enterprise-cloud-database.service.get-started', { clusterId }),
-      manageCluster: /* @ngInject */ $state => clusterId => $state
+      manageCluster: /* @ngInject */ ($state) => (clusterId) => $state
         .go('enterprise-cloud-database.service.details.overview', { clusterId }),
-      createCluster: /* @ngInject */ $state => () => $state.go('enterprise-cloud-database.create'),
-      goToMyServices: /* @ngInject */ $window => (
+      createCluster: /* @ngInject */ ($state) => () => $state.go('enterprise-cloud-database.create'),
+      goToMyServices: /* @ngInject */ ($window) => (
         serviceName,
         serviceType,
       ) => {
@@ -53,7 +53,7 @@ export default /* @ngInject */($stateProvider) => {
         $window.location.reload();
       },
       paymentMethodURL: /* @ngInject */ () => '#/billing/payment/method',
-      getOrdersURL: /* @ngInject */ () => orderId => `#/billing/orders?status=all&orderId=${orderId}`,
+      getOrdersURL: /* @ngInject */ () => (orderId) => `#/billing/orders?status=all&orderId=${orderId}`,
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS, clusterId = null) => {
         const reload = message && type === STATUS.SUCCESS;

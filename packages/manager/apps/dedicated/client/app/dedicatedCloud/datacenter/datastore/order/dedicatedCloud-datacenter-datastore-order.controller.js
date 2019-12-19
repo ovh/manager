@@ -32,7 +32,7 @@ angular
       }).then((offers) => {
         const filtered = filter(offers, { family: 'datastore' });
         return filtered;
-      }).then(offers => this.OvhHttp.get('/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/orderableFilerProfiles', {
+      }).then((offers) => this.OvhHttp.get('/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/orderableFilerProfiles', {
         rootPath: 'apiv6',
         urlParams: {
           serviceName: this.serviceName,
@@ -47,14 +47,14 @@ angular
             result.push(offer);
           }
         });
-        const sortedResult = sortBy(result, item => item.prices[0].price.value);
+        const sortedResult = sortBy(result, (item) => item.prices[0].price.value);
         this.selectedOffer = head(sortedResult);
         return sortedResult;
       }));
     }
 
     fetchDatagridOffers() {
-      return this.fetchOffers().then(offers => ({
+      return this.fetchOffers().then((offers) => ({
         data: offers,
         meta: {
           totalCount: size(offers),

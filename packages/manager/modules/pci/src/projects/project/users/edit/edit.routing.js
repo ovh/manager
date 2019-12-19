@@ -11,9 +11,9 @@ export default /* @ngInject */($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
-      goBack: /* @ngInject */ goToUsers => goToUsers,
-      rolesList: /* @ngInject */ roles => roles.roles,
-      userId: /* @ngInject */ $transition$ => $transition$.params().userId,
+      goBack: /* @ngInject */ (goToUsers) => goToUsers,
+      rolesList: /* @ngInject */ (roles) => roles.roles,
+      userId: /* @ngInject */ ($transition$) => $transition$.params().userId,
       userRoles: /* @ngInject */ (
         OvhApiCloudProjectUserRole,
         projectId,
@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
         OvhApiCloudProjectUserRole,
         projectId,
         userId,
-      ) => rolesIds => OvhApiCloudProjectUserRole.v6()
+      ) => (rolesIds) => OvhApiCloudProjectUserRole.v6()
         .put({
           serviceName: projectId,
           userId,
@@ -38,7 +38,7 @@ export default /* @ngInject */($stateProvider) => {
         .then(() => goBack(
           $translate.instant('pci_projects_project_users_roles_edit_success'),
         ))
-        .catch(error => goBack(
+        .catch((error) => goBack(
           $translate.instant('pci_projects_project_users_roles_edit_error', { message: get(error, 'data.message') }),
           'error',
         )),

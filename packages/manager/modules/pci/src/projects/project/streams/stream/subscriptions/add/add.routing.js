@@ -8,7 +8,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToSubscriptions => goToSubscriptions,
+      goBack: /* @ngInject */ (goToSubscriptions) => goToSubscriptions,
       breadcrumb: () => null,
     },
   });

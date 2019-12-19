@@ -140,7 +140,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
     return OvhApiTelephonyEasyPabx.v6().get({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(featureOptions => self.setOptions(featureOptions));
+    }).$promise.then((featureOptions) => self.setOptions(featureOptions));
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

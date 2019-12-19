@@ -63,7 +63,7 @@ export default class ExchangeSharedAccountDelegationCtrl {
     ) {
       forEach(this.accounts.list.results, (account) => {
         const matchingBufferedAccount = this.bufferedAccounts.list.results.find(
-          bufferedAccount => bufferedAccount.id === account.id,
+          (bufferedAccount) => bufferedAccount.id === account.id,
         );
         matchingBufferedAccount.newSendAs = account.newSendAs;
         matchingBufferedAccount.newSendOnBehalfTo = account.newSendOnBehalfTo;
@@ -127,22 +127,22 @@ export default class ExchangeSharedAccountDelegationCtrl {
     const model = {
       primaryEmail: this.primaryEmailAddress,
       sendRights: this.bufferedAccounts.list.results
-        .filter(bufferedAccount => bufferedAccount.sendAs !== bufferedAccount.newSendAs)
-        .map(account => ({
+        .filter((bufferedAccount) => bufferedAccount.sendAs !== bufferedAccount.newSendAs)
+        .map((account) => ({
           id: account.id,
           operation: account.newSendAs ? 'POST' : 'DELETE',
         })),
       sendOnBehalfToRights: this.bufferedAccounts.list.results
         .filter(
-          bufferedAccount => bufferedAccount.sendOnBehalfTo !== bufferedAccount.newSendOnBehalfTo,
+          (bufferedAccount) => bufferedAccount.sendOnBehalfTo !== bufferedAccount.newSendOnBehalfTo,
         )
-        .map(account => ({
+        .map((account) => ({
           id: account.id,
           operation: account.newSendOnBehalfTo ? 'POST' : 'DELETE',
         })),
       fullAccessRights: this.bufferedAccounts.list.results
-        .filter(bufferedAccount => bufferedAccount.fullAccess !== bufferedAccount.newFullAccess)
-        .map(account => ({
+        .filter((bufferedAccount) => bufferedAccount.fullAccess !== bufferedAccount.newFullAccess)
+        .map((account) => ({
           id: account.id,
           operation: account.newFullAccess ? 'POST' : 'DELETE',
         })),

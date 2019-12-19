@@ -99,7 +99,7 @@ export default class TranslateServiceProvider {
     // Not found: Try to find another country with same base language
     const similarLanguage = find(
       this.availableLangsKeys,
-      val => this.localeRegex.test(val) && val.match(this.localeRegex)[1] === language,
+      (val) => this.localeRegex.test(val) && val.match(this.localeRegex)[1] === language,
     );
     if (similarLanguage) {
       return similarLanguage;
@@ -116,9 +116,9 @@ export default class TranslateServiceProvider {
 
   $get() {
     return {
-      getUserLocale: locale => this.getUserLocale(locale),
+      getUserLocale: (locale) => this.getUserLocale(locale),
       getGeneralLanguage: () => this.getGeneralLanguage(),
-      setUserLocale: min => this.setUserLocale(min),
+      setUserLocale: (min) => this.setUserLocale(min),
     };
   }
 }

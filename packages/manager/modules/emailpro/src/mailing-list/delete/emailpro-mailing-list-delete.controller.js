@@ -23,7 +23,7 @@ export default class EmailProMXPlanMailingListsDeleteCtrl {
         this.$translate.instant('mailing_list_tab_modal_list_delete_success'),
         this.$scope.alerts.main,
       ))
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('mailing_list_tab_modal_list_delete_error'),
         err,
         this.$scope.alerts.main,

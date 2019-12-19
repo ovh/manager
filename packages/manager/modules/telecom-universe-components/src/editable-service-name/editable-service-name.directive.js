@@ -1,6 +1,6 @@
 import template from './editable-service-name.html';
 
-export default /* @ngInject */ $timeout => ({
+export default /* @ngInject */ ($timeout) => ({
   restrict: 'E',
   template,
   scope: {

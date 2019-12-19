@@ -118,7 +118,7 @@ export default class {
           this.offers.forEach((offer) => {
             set(offer, 'installationPrice', this.costs.packMove.lineCreation);
             if (offer.meetingSlots) {
-              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map(slot => ({
+              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map((slot) => ({
                 tooltip: `${this.$filter('date')(slot.startDate, 'HH:mm')} - ${this.$filter('date')(slot.endDate, 'HH:mm')}`,
                 title: '',
                 start: slot.startDate,

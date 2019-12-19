@@ -16,10 +16,10 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       backupList: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getBackups(clusterId).then(backups => map(backups, backup => ({ id: backup }))),
-      backupPrice: /* @ngInject */ catalog => get(find(catalog.addons, { planCode: 'backup' }), 'pricings[0]'),
+          .getBackups(clusterId).then((backups) => map(backups, (backup) => ({ id: backup }))),
+      backupPrice: /* @ngInject */ (catalog) => get(find(catalog.addons, { planCode: 'backup' }), 'pricings[0]'),
       getBackupDetails: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => backupId => enterpriseCloudDatabaseService
+        (clusterId, enterpriseCloudDatabaseService) => (backupId) => enterpriseCloudDatabaseService
           .getBackupDetails(clusterId, backupId),
       goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS) => {
@@ -33,19 +33,19 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
-      goToDeleteBackup: /* @ngInject */ $state => backupInstance => $state
+      goToDeleteBackup: /* @ngInject */ ($state) => (backupInstance) => $state
         .go('enterprise-cloud-database.service.details.backups.delete', { backupInstance }),
-      goToManualBackup: /* @ngInject */ $state => () => $state
+      goToManualBackup: /* @ngInject */ ($state) => () => $state
         .go('enterprise-cloud-database.service.details.backups.manual'),
-      goToRecovery: /* @ngInject */ $state => minDate => $state
+      goToRecovery: /* @ngInject */ ($state) => (minDate) => $state
         .go('enterprise-cloud-database.service.details.backups.recovery', { minDate }),
-      goToRestore: /* @ngInject */ $state => backupInstance => $state
+      goToRestore: /* @ngInject */ ($state) => (backupInstance) => $state
         .go('enterprise-cloud-database.service.details.backups.restore', { backupInstance }),
       refreshBackups: /* @ngInject */ ($state, enterpriseCloudDatabaseService) => () => {
         enterpriseCloudDatabaseService.resetBackupsCache();
         return $state.reload();
       },
-      restorePrice: /* @ngInject */ catalog => ({
+      restorePrice: /* @ngInject */ (catalog) => ({
         instance: get(find(catalog.addons, { planCode: 'restored-instance' }), 'pricings[0]'),
         volume: get(find(catalog.addons, { planCode: 'restored-volume' }), 'pricings[0]'),
       }),

@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 class LegacyBankAccountModel {
   constructor(country) {
     this.country = country;
@@ -29,3 +30,4 @@ export default class PaymentMethodAddLegacyBillingAddressCtrl {
     this.model.billingAddress = new LegacyBankAccountModel(this.currentUser.billingCountry);
   }
 }
+/* eslint-enable max-classes-per-file */

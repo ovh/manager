@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return false;
       },
-      goToOrders: /* @ngInject */ $state => () => $state.go('app.account.billing.orders'),
+      goToOrders: /* @ngInject */ ($state) => () => $state.go('app.account.billing.orders'),
     },
   });
 };

@@ -36,7 +36,7 @@ angular.module('managerApp').controller('XdslDeconsolidationContractCtrl', funct
       (vipStatus) => {
         self.isVIP = vipStatus.telecom;
       },
-      err => new TucToastError(err),
+      (err) => new TucToastError(err),
     );
   }
 

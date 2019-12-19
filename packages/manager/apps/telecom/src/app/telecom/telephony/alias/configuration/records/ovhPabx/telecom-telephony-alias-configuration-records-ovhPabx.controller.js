@@ -18,12 +18,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q.all(map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+      .then((ids) => $q.all(map(ids, (id) => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
         .get({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
           queueId: id,
-        }).$promise)).then(queues => sortBy(queues, 'queueId')));
+        }).$promise)).then((queues) => sortBy(queues, 'queueId')));
   };
 
   self.fetchRecords = function fetchRecords() {
@@ -33,16 +33,16 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(recordsIds => $q
+      .then((recordsIds) => $q
         .all(map(
           chunk(recordsIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Records().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.OvhPabx().Records().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
             id: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+        .then((chunkResult) => map(flatten(chunkResult), 'value')));
   };
 
   /* -----  End of HELPERS  ------*/
@@ -62,7 +62,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
   };
 
   self.deleteSelectedRecords = function deleteSelectedRecords(records) {
-    return $q.all(map(records, record => OvhApiTelephony.OvhPabx().Records().v6().remove({
+    return $q.all(map(records, (record) => OvhApiTelephony.OvhPabx().Records().v6().remove({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
       id: record.id,
@@ -89,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
           };
         }
       });
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }

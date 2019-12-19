@@ -23,7 +23,7 @@ export default class PciUsersDeleteController {
           user: this.user.username,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_users_delete_error_delete',
         {
           message: get(err, 'data.message', null),

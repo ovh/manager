@@ -23,7 +23,7 @@ export default class PciSnapshotsSnapshotDeleteController {
           snapshot: this.snapshot.name,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_storages_snapshots_snapshot_delete_error_delete',
         {
           message: get(err, 'data.message', null),

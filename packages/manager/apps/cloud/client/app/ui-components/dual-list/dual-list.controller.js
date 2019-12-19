@@ -151,7 +151,7 @@ class DualListCtrl {
   }
 
   addAll() {
-    const list = this.sourceList.filter(item => !this.isLoading(item));
+    const list = this.sourceList.filter((item) => !this.isLoading(item));
     if (list.length === 0) {
       return;
     }
@@ -167,7 +167,7 @@ class DualListCtrl {
       this.onAdd({ items: list })
         .then(() => {
           // all items successfully moved, remove loading
-          list.forEach(item => this.setLoading(item, false));
+          list.forEach((item) => this.setLoading(item, false));
         }, (failedItems) => {
           // some or all items failed to move
           failedItems.forEach((item) => {
@@ -179,13 +179,13 @@ class DualListCtrl {
             this.targetList.splice(newIndex, 1);
           });
           // remove loading for all successfull items
-          list.forEach(item => this.setLoading(item, false));
+          list.forEach((item) => this.setLoading(item, false));
         });
     }
   }
 
   removeAll() {
-    const list = this.targetList.filter(item => !this.isLoading(item));
+    const list = this.targetList.filter((item) => !this.isLoading(item));
     if (list.length === 0) {
       return;
     }
@@ -201,7 +201,7 @@ class DualListCtrl {
       this.onAdd({ items: list })
         .then(() => {
           // all items successfully moved, remove loading
-          list.forEach(item => this.setLoading(item, false));
+          list.forEach((item) => this.setLoading(item, false));
         }, (failedItems) => {
           // some or all items failed to move
           failedItems.forEach((item) => {
@@ -213,7 +213,7 @@ class DualListCtrl {
             this.sourceList.splice(newIndex, 1);
           });
           // remove loading for all successfull items
-          list.forEach(item => this.setLoading(item, false));
+          list.forEach((item) => this.setLoading(item, false));
         });
     }
   }

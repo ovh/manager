@@ -10,7 +10,7 @@ angular.module('App').controller('HousingTabsCtrl', [
     const defaultTab = 'dashboard';
     $scope.tabs = ['dashboard', 'backup', 'task'];
 
-    $scope.isActive = tab => ($scope.selectedTab === tab ? 'active' : '');
+    $scope.isActive = (tab) => ($scope.selectedTab === tab ? 'active' : '');
 
     $scope.setSelectedTab = (tab) => {
       if (tab !== undefined && tab !== null && tab !== '') {

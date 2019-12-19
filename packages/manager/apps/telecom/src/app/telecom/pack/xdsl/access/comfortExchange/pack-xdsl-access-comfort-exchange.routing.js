@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'accessView@telecom.packs.pack.xdsl': 'xdslAccessComfortExchange',
       },
       resolve: {
-        xdslId: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        xdslId: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
         openedRMAs: /* @ngInject */ (
           XdslAccessComfortExchangeService,
           xdslId,

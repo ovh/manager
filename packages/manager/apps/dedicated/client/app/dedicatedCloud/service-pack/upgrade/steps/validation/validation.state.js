@@ -7,9 +7,9 @@ const resolveUsersWhoCanReceiveSMS = /* @ngInject */ (
 ) => $transition$.params().usersWhoCanReceiveSMS
     || DedicatedCloud
       .getUsers($transition$.params().productId)
-      .then(ids => $q
+      .then((ids) => $q
         .all(ids
-          .map(id => DedicatedCloud
+          .map((id) => DedicatedCloud
             .getUserDetail($transition$.params().productId, id))));
 
 const resolveHasDefaultMeansOfPayment = /* @ngInject */ (

@@ -64,7 +64,7 @@ angular.module('App').controller(
             set(
               find(
                 this.steps,
-                step => step.name === this.progress.currentStep.step,
+                (step) => step.name === this.progress.currentStep.step,
               ),
               'active',
               true,
@@ -77,7 +77,7 @@ angular.module('App').controller(
               : null;
           }
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domains_operations_error'),
           err,
           this.$scope.alerts.main,

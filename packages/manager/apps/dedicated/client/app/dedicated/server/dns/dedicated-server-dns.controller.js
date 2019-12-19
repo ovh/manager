@@ -5,7 +5,7 @@ angular.module('App').controller('SecondaryDnsCtrl', ($scope, $timeout, $statePa
   $scope.loadSecondaryDns = ({ offset, pageSize }) => Server
     .getSecondaryDnsList($stateParams.productId, pageSize, offset - 1)
     .then(
-      result => ({
+      (result) => ({
         data: get(result, 'list.results'),
         meta: {
           totalCount: result.count,

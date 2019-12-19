@@ -20,7 +20,7 @@ export default class OvhManagerPciStreamsAddService {
       .get({
         serviceName,
         regionName,
-      }).$promise.then(region => Object.assign(region, {
+      }).$promise.then((region) => Object.assign(region, {
         // add some properties to be used with pciProjectRegionsList component
         name: region.region,
         hasEnoughQuota: () => true,
@@ -36,7 +36,7 @@ export default class OvhManagerPciStreamsAddService {
       .then((regions) => {
         const promises = map(
           regions,
-          regionName => this.getAvailableRegion(serviceName, regionName),
+          (regionName) => this.getAvailableRegion(serviceName, regionName),
         );
         return this.$q.all(promises);
       });

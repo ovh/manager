@@ -8,9 +8,9 @@ export default /* @ngInject */($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToSubscriptions => goToSubscriptions,
+      goBack: /* @ngInject */ (goToSubscriptions) => goToSubscriptions,
       breadcrumb: () => null,
-      subscriptionId: /* @ngInject */$transition$ => $transition$.params().subscriptionId,
+      subscriptionId: /* @ngInject */($transition$) => $transition$.params().subscriptionId,
       subscription: /* @ngInject */ (
         PciProjectStreamsStreamSubscriptionsService,
         projectId,

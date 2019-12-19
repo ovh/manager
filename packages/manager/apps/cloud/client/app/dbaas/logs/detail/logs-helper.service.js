@@ -33,9 +33,9 @@ class LogsHelperService {
     this.killPoller();
     return this.CucCloudPoll.poll({
       item: operation,
-      pollFunction: opn => this.OperationApiService
+      pollFunction: (opn) => this.OperationApiService
         .get({ serviceName, operationId: opn.operationId }).$promise,
-      stopCondition: opn => opn.state === this.LogsConstants.FAILURE
+      stopCondition: (opn) => opn.state === this.LogsConstants.FAILURE
         || opn.state === this.LogsConstants.SUCCESS || opn.state === this.LogsConstants.REVOKED,
     });
   }

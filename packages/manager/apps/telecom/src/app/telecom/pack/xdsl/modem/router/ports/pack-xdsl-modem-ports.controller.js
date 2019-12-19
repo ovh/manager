@@ -94,7 +94,7 @@ angular.module('managerApp').controller('XdslModemPortsCtrl', function XdslModem
     });
 
     OvhApiXdslModemPort.Aapi().query({ xdslId: $stateParams.serviceName }).$promise.then((data) => {
-      self.ports = map(data, port => new PackXdslModemPortObject(port));
+      self.ports = map(data, (port) => new PackXdslModemPortObject(port));
     }).catch(() => {
       TucToast.error($translate.instant('xdsl_modem_ports_read_error'));
     }).finally(() => {

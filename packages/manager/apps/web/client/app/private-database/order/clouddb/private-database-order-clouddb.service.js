@@ -25,7 +25,7 @@ export default class PrivateDatabaseOrderCloudDb {
     const ramRegExp = new RegExp(ramSize);
     return this.OrderService
       .getProductOffers(cartId, PRODUCT_NAME)
-      .then(offers => offers
+      .then((offers) => offers
         .find(({ planCode }) => ramRegExp.test(planCode))
         .prices
         .map(({ duration, interval, pricingMode }) => ({

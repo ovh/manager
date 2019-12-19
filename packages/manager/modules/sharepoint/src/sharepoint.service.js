@@ -129,7 +129,7 @@ export default class MicrosoftSharepointLicenseService {
       return null;
     }
 
-    const configuration = emails.map(email => ({
+    const configuration = emails.map((email) => ({
       planCode: 'sharepoint_account',
       configuration: [{
         label: 'EXCHANGE_ACCOUNT_ID',
@@ -490,15 +490,15 @@ export default class MicrosoftSharepointLicenseService {
         cache: this.cache.sharepoints,
       })
       .then((msServices) => {
-        const queue = msServices.map(serviceId => this.OvhHttp
+        const queue = msServices.map((serviceId) => this.OvhHttp
           .get(`/msServices/${serviceId}/upnSuffix`, {
             rootPath: 'apiv6',
             cache: this.cache.sharepoints,
           })
-          .then(suffixes => suffixes)
+          .then((suffixes) => suffixes)
           .catch(() => null));
 
-        return this.$q.all(queue).then(data => flatten(compact(data)));
+        return this.$q.all(queue).then((data) => flatten(compact(data)));
       })
       .catch(() => []);
   }
@@ -580,8 +580,8 @@ export default class MicrosoftSharepointLicenseService {
       .aggregate('displayName')
       .execute({ organizationName: '*' })
       .$promise
-      .then(services => filter(services, service => has(service, 'value.displayName') && has(service, 'value.offer')))
-      .then(services => map(services, service => ({
+      .then((services) => filter(services, (service) => has(service, 'value.displayName') && has(service, 'value.offer')))
+      .then((services) => map(services, (service) => ({
         name: service.key,
         displayName: service.value.displayName,
         organization: get(service.path.split('/'), '[3]'),
@@ -591,7 +591,7 @@ export default class MicrosoftSharepointLicenseService {
 
   getAssociatedExchangeService(exchangeId) {
     return this.getExchangeServices()
-      .then(services => find(services, {
+      .then((services) => find(services, {
         name: exchangeId,
       }))
       .then((exchangeService) => {

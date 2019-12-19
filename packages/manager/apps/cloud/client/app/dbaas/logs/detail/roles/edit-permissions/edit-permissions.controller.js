@@ -43,7 +43,7 @@ class LogsRolesPermissionsCtrl {
     this.allAliases = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getAllAliases(this.serviceName)
         .then((result) => {
-          const diff = map(filter(result, alias => alias.info.isShareable && !find(permissionList, permission => permission.aliasId === alias.info.aliasId)), 'info');
+          const diff = map(filter(result, (alias) => alias.info.isShareable && !find(permissionList, (permission) => permission.aliasId === alias.info.aliasId)), 'info');
           this.availableAliases.resolve(diff);
         }),
     });
@@ -54,7 +54,7 @@ class LogsRolesPermissionsCtrl {
     this.allIndices = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getAllIndices(this.serviceName)
         .then((result) => {
-          const diff = map(filter(result, index => index.info.isShareable && !find(permissionList, permission => permission.indexId === index.info.indexId)), 'info');
+          const diff = map(filter(result, (index) => index.info.isShareable && !find(permissionList, (permission) => permission.indexId === index.info.indexId)), 'info');
           this.availableIndices.resolve(diff);
         }),
     });
@@ -65,7 +65,7 @@ class LogsRolesPermissionsCtrl {
     this.allDashboards = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getAllDashboards(this.serviceName)
         .then((result) => {
-          const diff = map(filter(result, dashboard => dashboard.info.isShareable && !find(permissionList, permission => permission.dashboardId === dashboard.info.dashboardId)), 'info');
+          const diff = map(filter(result, (dashboard) => dashboard.info.isShareable && !find(permissionList, (permission) => permission.dashboardId === dashboard.info.dashboardId)), 'info');
           this.availableDashboards.resolve(diff);
         }),
     });
@@ -76,7 +76,7 @@ class LogsRolesPermissionsCtrl {
     this.allStreams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getAllStreams(this.serviceName)
         .then((result) => {
-          const diff = map(filter(result, stream => stream.info.isShareable && !find(permissionList, permission => permission.streamId === stream.info.streamId)), 'info');
+          const diff = map(filter(result, (stream) => stream.info.isShareable && !find(permissionList, (permission) => permission.streamId === stream.info.streamId)), 'info');
           this.availableStreams.resolve(diff);
         }),
     });

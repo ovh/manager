@@ -644,9 +644,9 @@ angular
 
       const otherDisk = find(
         $scope.informations.diskGroups,
-        diskGroup => diskGroup.diskGroupId !== newDiskGroup.diskGroupId,
+        (diskGroup) => diskGroup.diskGroupId !== newDiskGroup.diskGroupId,
       );
-      $scope.informations.otherDisk = map(compact([otherDisk]), disk => ({
+      $scope.informations.otherDisk = map(compact([otherDisk]), (disk) => ({
         typeDisk: disk.diskType,
         nbDisk: disk.numberOfDisks,
         sizeDisk: Math.round(toBytes(disk.diskSize) / 1000 / 1000),
@@ -899,7 +899,7 @@ angular
     function getIndexOfPartition(partition) {
       return findLastIndex(
         $scope.installation.partitionSchemeModels,
-        partitionSchemeModel => get(partitionSchemeModel, 'order') === partition.order,
+        (partitionSchemeModel) => get(partitionSchemeModel, 'order') === partition.order,
       );
     }
 
@@ -1550,10 +1550,10 @@ angular
     });
 
     function getBarWidth(partition) {
-      return parseFloat($scope.getRealDisplaySize({
+      return parseFloat(($scope.getRealDisplaySize({
         partition,
         notDisplay: true,
-      }) * 100 / $scope.informations.totalSize).toFixed(1);
+      }) * 100) / $scope.informations.totalSize).toFixed(1);
     }
 
     function getProgress(partition) {
@@ -1815,7 +1815,7 @@ angular
           ),
           disksPerArray,
         ),
-        elem => `[${elem.toString()}]`,
+        (elem) => `[${elem.toString()}]`,
       );
     }
 
@@ -2154,7 +2154,7 @@ angular
     };
 
     $scope.hasLicencedOs = function hasLicencedOs() {
-      return find($scope.installation.distributionList, distribution => distribution.family === 'WINDOWS');
+      return find($scope.installation.distributionList, (distribution) => distribution.family === 'WINDOWS');
     };
 
     $scope.$on('dedicated.informations.reinstall.form.update', (e, validForm) => {

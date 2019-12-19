@@ -46,7 +46,7 @@ export default class CronValidator {
     const aliasNumber = aliasName.toLowerCase()
       .replace(
         /[a-z]{3}/g,
-        match => (aliasMap[match] === undefined
+        (match) => (aliasMap[match] === undefined
           ? match : aliasMap[match]),
       );
     return aliasNumber;
@@ -63,7 +63,7 @@ export default class CronValidator {
         return this.isWildcard(value)
             || this.constructor.isInRange(parseInt(value, 10), start, stop);
       case 2: {
-        const sidesmap = map(sides, side => parseInt(side, 10));
+        const sidesmap = map(sides, (side) => parseInt(side, 10));
         const small = sidesmap[0];
         const big = sidesmap[1];
         return small <= big

@@ -123,11 +123,11 @@ export default class Instance {
   }
 
   get publicIpV4() {
-    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'public' && ipAddress.version === 4);
+    return filter(this.ipAddresses, (ipAddress) => ipAddress.type === 'public' && ipAddress.version === 4);
   }
 
   get privateIpV4() {
-    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'private' && ipAddress.version === 4);
+    return filter(this.ipAddresses, (ipAddress) => ipAddress.type === 'private' && ipAddress.version === 4);
   }
 
   hasPublicIpV6() {
@@ -135,7 +135,7 @@ export default class Instance {
   }
 
   get publicIpV6() {
-    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'public' && ipAddress.version === 6);
+    return filter(this.ipAddresses, (ipAddress) => ipAddress.type === 'public' && ipAddress.version === 6);
   }
 
   isMonthlyBillingEnabled() {

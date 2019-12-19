@@ -22,7 +22,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
 
     return this.TelephonyMediator
       .getGroup(this.billingAccount)
-      .then(group => group.fetchService(this.serviceName))
+      .then((group) => group.fetchService(this.serviceName))
       .then((number) => {
         this.number = number;
 

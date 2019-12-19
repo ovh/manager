@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
-        cancelLink: /* @ngInject */ $state => $state.href('pci'),
+        cancelLink: /* @ngInject */ ($state) => $state.href('pci'),
         error: /* @ngInject */ ($transition$, atInternet) => {
           const page = `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`;
           const error = $transition$.params();
@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return error;
         },
-        submitAction: /* @ngInject */ $window => () => $window.location.reload(),
+        submitAction: /* @ngInject */ ($window) => () => $window.location.reload(),
       },
     });
 };

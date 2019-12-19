@@ -27,25 +27,21 @@ export default class MicrosoftSharepointOrderService {
   fetchingPrices(cartId, planCode, subPlanCode) {
     return this.OvhApiOrder.Cart().Microsoft().v6()
       .getOptions({ cartId, planCode }).$promise
-      .then(offers => offers
-        .find(offer => offer.planCode === subPlanCode)
+      .then((offers) => offers
+        .find((offer) => offer.planCode === subPlanCode)
         .prices
         // non-zero priceInUcents means the price is usable
-        .filter(price => price.priceInUcents !== 0)
-        .reduce((result, price) => Object.assign(
-          {},
-          result,
-          {
-            // a bug with the API prevents us from using price.duration
-            [price.interval === 1 ? 'P1M' : 'P1Y']: Object.assign(
-              {},
-              price.price,
-              {
-                maximumQuantity: price.maximumQuantity,
-                minimumQuantity: price.minimumQuantity,
-              },
-            ),
+        .filter((price) => price.priceInUcents !== 0)
+        .reduce((result, price) => ({
+
+          ...result,
+          // a bug with the API prevents us from using price.duration
+          [price.interval === 1 ? 'P1M' : 'P1Y']: {
+
+            ...price.price,
+            maximumQuantity: price.maximumQuantity,
+            minimumQuantity: price.minimumQuantity,
           },
-        ), {}));
+        }), {}));
   }
 }

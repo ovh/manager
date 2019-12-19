@@ -55,9 +55,9 @@ angular.module('App').controller(
 
       return this.WucEmails.getResponders(this.productId)
         .then((data) => {
-          this.responders = map(data.sort(), account => ({ account }));
+          this.responders = map(data.sort(), (account) => ({ account }));
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_responders_error'),
           err,
           this.$scope.alerts.main,
@@ -67,7 +67,7 @@ angular.module('App').controller(
 
     transformItem({ account }) {
       return this.WucEmails.getResponder(this.productId, account)
-        .then(responder => this.$q.all([
+        .then((responder) => this.$q.all([
           responder,
           this.WucEmails.getResponderTasks(this.productId, account),
         ]))
@@ -88,7 +88,7 @@ angular.module('App').controller(
           const newResponder = clone(responder);
           const responderIndex = findIndex(
             this.responders,
-            item => item.account === responder.account,
+            (item) => item.account === responder.account,
           );
           newResponder.actionsDisabled = false;
           this.responders.splice(responderIndex, 1, newResponder);

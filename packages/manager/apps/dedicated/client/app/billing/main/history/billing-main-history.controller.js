@@ -94,7 +94,7 @@ angular
           .execute().$promise;
       }
 
-      return billDebtsPromise.then(debts => map(bills, (bill) => {
+      return billDebtsPromise.then((debts) => map(bills, (bill) => {
         const debt = find(debts, {
           path: `/me/bill/${bill.key}/debt`,
         });
@@ -128,7 +128,7 @@ angular
           .execute().$promise,
       }).then(({ count, bills }) => {
         this.totalBills = count.length;
-        return this.applyDebtToBills(bills).then(billList => ({
+        return this.applyDebtToBills(bills).then((billList) => ({
           data: map(billList, 'value'),
           meta: {
             totalCount: count.length,
@@ -176,12 +176,12 @@ angular
           .offset(fetchedBills)
           .limit(limit)
           .execute().$promise
-          .then(bills => this.applyDebtToBills(bills));
+          .then((bills) => this.applyDebtToBills(bills));
         billsPromises.push(billsPromise);
         fetchedBills += limit;
       }
       return this.$q.all(billsPromises)
-        .then(response => flatten(response))
+        .then((response) => flatten(response))
         .then((billList) => {
           const rows = map(billList, 'value').map((bill) => {
             let row = [bill.billId, bill.orderId, moment(bill.date).format('L'), bill.priceWithoutTax.text, bill.priceWithTax.text];
@@ -204,7 +204,7 @@ angular
           });
           return [headers].concat(rows);
         })
-        .then(csvData => this.exportCsv.exportData({
+        .then((csvData) => this.exportCsv.exportData({
           separator: ',',
           datas: csvData,
         }))

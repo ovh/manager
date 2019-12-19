@@ -46,7 +46,7 @@ angular.module('controllers').controller(
       return {
         host: `${this.model.host}.${this.domain.name}`,
         ips: this.model.ips
-          ? uniq(map(this.model.ips.replace(/,\s*$/, '').split(','), ip => trim(ip)))
+          ? uniq(map(this.model.ips.replace(/,\s*$/, '').split(','), (ip) => trim(ip)))
           : [],
       };
     }
@@ -68,7 +68,7 @@ angular.module('controllers').controller(
         valid = !isEmpty(model.ips)
           && every(
             model.ips,
-            ip => this.WucValidator.isValidIpv4(ip)
+            (ip) => this.WucValidator.isValidIpv4(ip)
               || (get(this.domain, 'glueRecordIpv6Supported', false)
                 && this.WucValidator.isValidIpv6(ip)),
           );
@@ -101,7 +101,7 @@ angular.module('controllers').controller(
             : 'domain_tab_GLUE_add_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant(this.editMode
             ? 'domain_tab_GLUE_modify_error'
             : 'domain_tab_GLUE_add_error'),

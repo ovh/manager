@@ -48,7 +48,7 @@ export default class {
       import: this.api.user.document.upload(
         this.phonecontactForm.uploadedFile.name,
         this.phonecontactForm.uploadedFile,
-      ).then(doc => this.api.sms.phonebooks.import({
+      ).then((doc) => this.api.sms.phonebooks.import({
         serviceName: this.$stateParams.serviceName,
         bookKey: get(this.phonebook, 'bookKey'),
       }, {
@@ -60,7 +60,7 @@ export default class {
       return this.$timeout(() => this.close({
         taskId: get(result.import, 'taskId'),
       }), 1000);
-    }).catch(err => this.cancel({
+    }).catch((err) => this.cancel({
       type: 'API',
       msg: err,
     }));
@@ -74,7 +74,7 @@ export default class {
   checkValidTextExtention(file) {
     const validExtensions = ['csv', 'xls', 'xlsx'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       this.TucToastError(this.$translate.instant('sms_phonebooks_phonebook_contact_import_file_invalid'));
     }

@@ -24,9 +24,10 @@ export default class {
 
   dataChange(dailyBackup) {
     this.onDataChange({
-      data: Object.assign({}, this.data, {
+      data: {
+        ...this.data,
         dailyBackup: isUndefined(dailyBackup) ? this.data.dailyBackup : dailyBackup,
-      }),
+      },
     });
   }
 

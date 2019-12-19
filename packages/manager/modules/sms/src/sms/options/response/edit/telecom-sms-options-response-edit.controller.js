@@ -76,7 +76,7 @@ export default class {
         this.loading.editTrackingOption = false;
         this.edited = true;
         return this.$timeout(() => this.close(), 1000);
-      }).catch(error => this.cancel({
+      }).catch((error) => this.cancel({
         type: 'API',
         msg: error,
       }));

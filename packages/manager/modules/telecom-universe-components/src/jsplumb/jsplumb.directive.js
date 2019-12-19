@@ -3,7 +3,7 @@ import $ from 'jquery';
 import debounce from 'lodash/debounce';
 import set from 'lodash/set';
 
-export default /* @ngInject */ TUC_JS_PLUMB => ({
+export default /* @ngInject */ (TUC_JS_PLUMB) => ({
   restrict: 'A',
   controller: 'TucJsplumbCtrl',
   scope: {

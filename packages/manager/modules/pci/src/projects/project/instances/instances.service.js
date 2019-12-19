@@ -59,13 +59,13 @@ export default class PciProjectInstanceService {
         serviceName: projectId,
       })
       .$promise
-      .then(instances => map(instances, instance => new Instance(instance)));
+      .then((instances) => map(instances, (instance) => new Instance(instance)));
   }
 
   getAllInstanceDetails(projectId) {
     return this.getAll(projectId)
-      .then(instances => this.$q.all(
-        map(instances, instance => this.getInstanceDetails(projectId, instance)),
+      .then((instances) => this.$q.all(
+        map(instances, (instance) => this.getInstanceDetails(projectId, instance)),
       ));
   }
 
@@ -87,7 +87,7 @@ export default class PciProjectInstanceService {
             flavorId: instance.flavorId,
           })
           .$promise
-          .then(flavor => ({
+          .then((flavor) => ({
             ...flavor,
             capabilities: this.constructor.transformCapabilities(get(flavor, 'capabilities', [])),
           }))
@@ -104,7 +104,7 @@ export default class PciProjectInstanceService {
         ...instance,
         image,
         flavor,
-        volumes: filter(volumes, volume => includes(volume.attachedTo, instance.id)),
+        volumes: filter(volumes, (volume) => includes(volume.attachedTo, instance.id)),
       }));
   }
 
@@ -116,7 +116,7 @@ export default class PciProjectInstanceService {
         instanceId,
       })
       .$promise
-      .then(instance => this.$q.all({
+      .then((instance) => this.$q.all({
         instance,
         volumes: this.OvhApiCloudProjectVolume
           .v6()
@@ -136,8 +136,8 @@ export default class PciProjectInstanceService {
           ...instance.flavor,
           capabilities: this.constructor.transformCapabilities(get(instance.flavor, 'capabilities', [])),
         },
-        volumes: filter(volumes, volume => includes(volume.attachedTo, instance.id)),
-        privateNetworks: filter(privateNetworks, privateNetwork => includes(
+        volumes: filter(volumes, (volume) => includes(volume.attachedTo, instance.id)),
+        privateNetworks: filter(privateNetworks, (privateNetwork) => includes(
           map(filter(instance.ipAddresses, { type: 'private' }), 'networkId'),
           privateNetwork.id,
         )),
@@ -195,7 +195,7 @@ export default class PciProjectInstanceService {
         region,
       })
       .$promise
-      .then(images => filter(images, {
+      .then((images) => filter(images, {
         visibility: 'public',
         type: image ? image.type : 'linux',
       }));
@@ -244,7 +244,7 @@ export default class PciProjectInstanceService {
         );
 
         if (catalogPrice) {
-          const monthlyPriceValue = catalogPrice.priceInUcents * moment.duration(1, 'months').asHours() / 100000000;
+          const monthlyPriceValue = (catalogPrice.priceInUcents * moment.duration(1, 'months').asHours()) / 100000000;
           const totalPriceValue = monthlyPriceValue * instance.flavor.disk;
 
           return {
@@ -296,7 +296,7 @@ export default class PciProjectInstanceService {
         serviceName: projectId,
       })
       .$promise
-      .then(networks => filter(
+      .then((networks) => filter(
         networks, {
           type: 'private',
         },
@@ -316,15 +316,15 @@ export default class PciProjectInstanceService {
 
   getCompatiblesPrivateNetworks(projectId, instance) {
     return this.getAvailablesPrivateNetworks(projectId, instance.region)
-      .then(networks => filter(
+      .then((networks) => filter(
         networks,
-        network => !includes(map(instance.privateNetworks, 'id'), network.id),
+        (network) => !includes(map(instance.privateNetworks, 'id'), network.id),
       ));
   }
 
   getAvailablesPrivateNetworks(projectId, region) {
     return this.getPrivateNetworks(projectId)
-      .then(networks => filter(networks, network => find(network.regions, { region, status: 'ACTIVE' })));
+      .then((networks) => filter(networks, (network) => find(network.regions, { region, status: 'ACTIVE' })));
   }
 
   getCompatiblesVolumes(projectId, { region }) {
@@ -335,8 +335,8 @@ export default class PciProjectInstanceService {
         region,
       })
       .$promise
-      .then(volumes => map(volumes, volume => new BlockStorage(volume)))
-      .then(storages => filter(storages, storage => storage.isAttachable()));
+      .then((volumes) => map(volumes, (volume) => new BlockStorage(volume)))
+      .then((storages) => filter(storages, (storage) => storage.isAttachable()));
   }
 
   attachVolume(projectId, { id: volumeId }, { id: instanceId }) {
@@ -394,7 +394,7 @@ export default class PciProjectInstanceService {
 
   getInstanceQuota(projectId, region) {
     return this.getProjectQuota(projectId, region)
-      .then(quota => new InstanceQuota(quota.instance));
+      .then((quota) => new InstanceQuota(quota.instance));
   }
 
   getAvailablesRegions(projectId) {
@@ -411,10 +411,10 @@ export default class PciProjectInstanceService {
     })
       .then(({ availableRegions, regions }) => {
         const supportedRegions = filter(regions,
-          region => some(get(region, 'services', []), { name: 'instance', status: 'UP' }));
+          (region) => some(get(region, 'services', []), { name: 'instance', status: 'UP' }));
         return this.PciProjectRegions
           .groupByContinentAndDatacenterLocation(
-            map([...supportedRegions, ...availableRegions], region => new Datacenter({
+            map([...supportedRegions, ...availableRegions], (region) => new Datacenter({
               ...region,
               ...this.CucRegionService.getRegion(region.name),
               available: has(region, 'status'),
@@ -555,7 +555,7 @@ export default class PciProjectInstanceService {
         .then(([ipReverse]) => (ipReverse
           ? this.OvhApiIp.Reverse().v6().get({ ip, ipReverse }).$promise
           : null))
-        .catch(error => (error.status === 404 ? null : Promise.reject(error)));
+        .catch((error) => (error.status === 404 ? null : Promise.reject(error)));
     }
     return null;
   }
@@ -569,7 +569,7 @@ export default class PciProjectInstanceService {
         const projectPlan = find(catalog.plans, { planCode: project.planCode });
         const bandwidthOut = filter(
           map(find(projectPlan.addonFamilies, { name: BANDWIDTH_CONSUMPTION }).addons,
-            planCode => find(catalog.addons, { planCode })),
+            (planCode) => find(catalog.addons, { planCode })),
           { invoiceName: BANDWIDTH_OUT_INVOICE },
         );
 
@@ -578,7 +578,7 @@ export default class PciProjectInstanceService {
             ...prices,
             [addon.planCode]: find(
               addon.pricings,
-              pricing => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
+              (pricing) => get(pricing, 'quantity.min') === BANDWIDTH_LIMIT,
             ),
           }),
           {},

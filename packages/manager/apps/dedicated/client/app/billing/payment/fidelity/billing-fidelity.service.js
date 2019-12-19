@@ -9,7 +9,7 @@ angular.module('Billing.services').service('BillingFidelity', function BillingFi
       .get(fidelityProxyPath, {
         cache: fidelityAccountCache,
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.getMovements = function getMovements(_dateStart, _dateEnd) {
@@ -35,7 +35,7 @@ angular.module('Billing.services').service('BillingFidelity', function BillingFi
           'date.to': dateEnd,
         },
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.getMovementsDetails = function getMovementsDetails(movementId) {
@@ -43,7 +43,7 @@ angular.module('Billing.services').service('BillingFidelity', function BillingFi
       .get([fidelityProxyPath, 'movements', movementId].join('/'), {
         cache: movementsCache,
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.creditOrder = function creditOrder(amount) {
@@ -51,6 +51,6 @@ angular.module('Billing.services').service('BillingFidelity', function BillingFi
       .post([fidelityProxyPath, 'creditOrder'].join('/'), {
         amount,
       })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 });

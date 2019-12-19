@@ -91,7 +91,7 @@ export default class {
     });
     this.plan = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.getServiceInfos(this.serviceName)
-        .then(plan => ({
+        .then((plan) => ({
           ...plan,
           creation: moment(plan.creation).format('LL'),
           expiration: moment(plan.expiration).format('LL'),
@@ -124,7 +124,7 @@ export default class {
     this.hasAdditionalDisk = true;
     this.VpsService.getDisks(this.serviceName)
       .then((data) => {
-        const promises = map(data, elem => this.VpsService.getDiskInfo(this.serviceName, elem));
+        const promises = map(data, (elem) => this.VpsService.getDiskInfo(this.serviceName, elem));
         return this.$q.all(promises)
           .then((diskInfos) => {
             this.additionnalDisks = this.VpsService.showOnlyAdditionalDisk(diskInfos);
@@ -232,7 +232,7 @@ export default class {
           .then(() => this.CucCloudMessage
             .success(this.$translate.instant('vps_setting_name_updated')));
       })
-      .catch(err => this.CucCloudMessage.error(err));
+      .catch((err) => this.CucCloudMessage.error(err));
   }
 
   initActions() {
@@ -245,7 +245,7 @@ export default class {
           callback: () => this.CucControllerHelper.modal.showNameChangeModal({
             serviceName: this.serviceName,
             displayName: this.vps.data.displayName,
-            onSave: newDisplayName => this.updateName(newDisplayName),
+            onSave: (newDisplayName) => this.updateName(newDisplayName),
           }),
           isAvailable: () => !this.vps.loading,
         },
@@ -368,7 +368,7 @@ export default class {
     if (regions) {
       this.detailedRegions = !isArray(regions)
         ? [this.CucRegionService.getRegion(regions)]
-        : map(regions, region => this.CucRegionService.getRegion(region));
+        : map(regions, (region) => this.CucRegionService.getRegion(region));
     }
     this.regionsGroup = groupBy(this.detailedRegions, 'country');
   }

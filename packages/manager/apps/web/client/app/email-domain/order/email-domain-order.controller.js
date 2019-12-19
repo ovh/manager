@@ -87,8 +87,8 @@ angular
           .getOrderModels(this.selectedOrder.config.domain)
           .then((response) => { this.list.offers = response; })
           .catch((err) => {
-            this.list.offers = filter(err, offer => offer.offer);
-            const errors = filter(err, offer => offer.message);
+            this.list.offers = filter(err, (offer) => offer.offer);
+            const errors = filter(err, (offer) => offer.message);
             if (this.list.offers.length <= 0) {
               this.Alerter.error(this.$translate.instant('mxPlan_order_step1_error', { t0: errors[0].message }), this.$scope.alerts.order);
             }
@@ -122,13 +122,13 @@ angular
             this.durations.available = durations;
             return this.loadPrices(durations);
           })
-          .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('mxPlan_order_step2_duration_fail'), err, this.$scope.alerts.durations))
+          .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('mxPlan_order_step2_duration_fail'), err, this.$scope.alerts.durations))
           .finally(() => { this.loading.durations = false; });
       }
 
       loadPrices(durations) {
         this.loading.prices = true;
-        const queue = map(durations, duration => this.MXPlan
+        const queue = map(durations, (duration) => this.MXPlan
           .orderPrice(this.selectedOrder.config.domain, this.selectedOrder.config.offer, duration)
           .then((details) => {
             this.durations.details[duration] = details;
@@ -141,7 +141,7 @@ angular
               [this.selectedOrder.duration] = durations;
             }
           })
-          .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('mxPlan_order_step2_price_fail'), err, this.$scope.alerts.order))
+          .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('mxPlan_order_step2_price_fail'), err, this.$scope.alerts.order))
           .finally(() => {
             this.loading.prices = false;
           });
@@ -156,7 +156,7 @@ angular
             this.selectedOrder.offer.duration,
           )
           .then((details) => { this.order = details; })
-          .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('mxPlan_order_step3_fail'), err, this.$scope.alerts.order))
+          .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('mxPlan_order_step3_fail'), err, this.$scope.alerts.order))
           .catch(() => { this.loading.bc = false; });
       }
 

@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').controller('CloudProjectBillingHistoryCtrl',
   function CloudProjectBillingHistoryCtrl(
     $state,

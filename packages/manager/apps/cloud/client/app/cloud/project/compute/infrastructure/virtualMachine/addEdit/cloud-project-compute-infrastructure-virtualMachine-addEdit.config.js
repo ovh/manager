@@ -15,7 +15,7 @@ angular.module('managerApp')
           const category = find(controller.displayData.categories, { category: parameters[1] });
           const isSomeFlavorsDisabled = some(
             category.flavors,
-            flavor => includes(quotaReasons, flavor.disabled),
+            (flavor) => includes(quotaReasons, flavor.disabled),
           );
 
           if (isSomeFlavorsDisabled) {

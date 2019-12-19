@@ -78,9 +78,9 @@ angular
   })
   .service('SessionService', sessionService)
   // Fix security issue: https://github.com/angular-translate/angular-translate/issues/1418
-  .factory('translateMissingTranslationHandler', $sanitize => translationId => $sanitize(translationId))
+  .factory('translateMissingTranslationHandler', ($sanitize) => (translationId) => $sanitize(translationId))
   .run((tmhDynamicLocaleCache, tmhDynamicLocale, TranslateService) => {
-    const injectAngularLocale = lang => tmhDynamicLocaleCache.put(lang, angular.injector(['ngLocale']).get('$locale'));
+    const injectAngularLocale = (lang) => tmhDynamicLocaleCache.put(lang, angular.injector(['ngLocale']).get('$locale'));
     const defaultLanguage = TranslateService.getUserLocale();
     const angularLocale = kebabCase(defaultLanguage);
 

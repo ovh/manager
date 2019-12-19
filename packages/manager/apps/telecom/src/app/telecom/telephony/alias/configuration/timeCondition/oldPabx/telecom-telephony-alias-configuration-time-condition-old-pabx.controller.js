@@ -194,7 +194,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   ============================ */
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
   };
 
   self.bulkDatas = {
@@ -295,7 +295,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
       }
     });
 
-    return map(conditions, condition => ({
+    return map(conditions, (condition) => ({
       id: condition.conditionId,
       day: condition.weekDay,
       hourBegin: voipTimeCondition.getSipTime(condition.timeFrom),

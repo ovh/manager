@@ -59,7 +59,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
       if (has($scope.totp.qrCode, 'id')) {
         promise = DoubleAuthTotpService.delete($scope.totp.qrCode.id);
       }
-      return promise.catch(err => Alerter.alertFromSWS($translate.instant('user_security_double_auth_totp_enable_error'), err.data, 'doubleAuthAlertTotp'));
+      return promise.catch((err) => Alerter.alertFromSWS($translate.instant('user_security_double_auth_totp_enable_error'), err.data, 'doubleAuthAlertTotp'));
     };
 
     /**
@@ -79,7 +79,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
           $rootScope.$broadcast('doubleAuthTOTP.reload');
           $scope.resetAction();
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_totp_error_validate'), err.data, 'doubleAuthAlertTotpAdd'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_totp_error_validate'), err.data, 'doubleAuthAlertTotpAdd'))
         .finally(() => {
           $scope.totp.isAdding = false;
         });

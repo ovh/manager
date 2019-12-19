@@ -133,7 +133,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
     $scope.$on('user.contacts.receivedRequest.start', (pollObject, id) => {
       const contactChange = find(
         self.contactTasksDetails,
-        _contactChange => _contactChange.id === parseInt(id, 10),
+        (_contactChange) => _contactChange.id === parseInt(id, 10),
       );
 
       if (contactChange) {
@@ -145,7 +145,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       Contacts.removePendingChange({ key: 'Contacts::PendingChangeSent', data: [self.user.nichandle, task.id].join('_') });
       const contactChange = find(
         self.contactTasksDetails,
-        _contactChange => _contactChange.id === task.id,
+        (_contactChange) => _contactChange.id === task.id,
       );
 
       if (contactChange) {

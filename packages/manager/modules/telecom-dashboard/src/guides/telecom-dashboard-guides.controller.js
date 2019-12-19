@@ -15,7 +15,7 @@ export default class TelecomDashboardGuidesCtrl {
   }
 
   trackRedirection(link) {
-    const index = findIndex(this.guides, guide => constant.guides[guide] === link) + 1;
+    const index = findIndex(this.guides, (guide) => constant.guides[guide] === link) + 1;
     return this.atInternet.trackClick({
       name: `TopGuide-Telecom-${index}`,
       type: 'navigation',

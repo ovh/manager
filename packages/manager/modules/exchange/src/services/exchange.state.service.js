@@ -18,7 +18,7 @@ export default class ExchangeStates {
   }
 
   isValidState(value) {
-    return some(this.states, state => state.toUpperCase() === value);
+    return some(this.states, (state) => state.toUpperCase() === value);
   }
 
   static isState(account, state) {

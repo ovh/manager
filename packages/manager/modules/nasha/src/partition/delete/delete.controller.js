@@ -39,7 +39,7 @@ export default class NashaPartitionDeleteCtrl {
         },
       );
     })
-      .catch(error => this.goToPartitionPage(
+      .catch((error) => this.goToPartitionPage(
         this.$translate.instant('nasha_partitions_action_delete_failure', {
           partitionName: this.data.partition.partitionName,
           message: get(error, 'data.message'),

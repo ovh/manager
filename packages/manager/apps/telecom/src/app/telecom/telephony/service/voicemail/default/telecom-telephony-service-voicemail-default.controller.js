@@ -7,11 +7,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
   const self = this;
 
   function fetchLines() {
-    return OvhApiTelephony.Line().Aapi().get().$promise.then(result => filter(flatten(map(result, 'lines')), { serviceType: 'line' }));
+    return OvhApiTelephony.Line().Aapi().get().$promise.then((result) => filter(flatten(map(result, 'lines')), { serviceType: 'line' }));
   }
 
   function fetchFax() {
-    return OvhApiTelephony.Fax().Aapi().getServices().$promise.then(result => filter(result, { type: 'FAX' }));
+    return OvhApiTelephony.Fax().Aapi().getServices().$promise.then((result) => filter(result, { type: 'FAX' }));
   }
 
   function fetchOptions() {
@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
       self.numbers = result.lines.concat(result.fax);
       self.options = result.options;
       self.defaultVoicemail = self.options.defaultVoicemail;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   }
@@ -57,7 +57,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
     ]).then(() => {
       self.defaultVoicemail = self.options.defaultVoicemail;
       self.success = true;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.saving = false;
     });
   };
@@ -99,7 +99,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {

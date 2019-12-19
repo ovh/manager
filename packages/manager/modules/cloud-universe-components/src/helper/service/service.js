@@ -35,7 +35,7 @@ export default class CucServiceHelper {
       const paths = [...firstPaths, ...standardPaths];
 
       return (isArray(error) ? error : [error]).map((currentError) => {
-        const matchingPath = paths.find(path => has(currentError, path));
+        const matchingPath = paths.find((path) => has(currentError, path));
         errorMessageConfig.apiMessage = get(currentError, matchingPath);
 
         if (isString(messageInput)) {
@@ -86,7 +86,7 @@ export default class CucServiceHelper {
   }
 
   successHandler(message, containerName) {
-    return data => (isArray(data) ? data : [data]).map((datum) => {
+    return (data) => (isArray(data) ? data : [data]).map((datum) => {
       let messageToWrite = this.$translate.instant('cuc_helper_global_success');
 
       if (message) {

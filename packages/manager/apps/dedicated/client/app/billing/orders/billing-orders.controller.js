@@ -40,7 +40,7 @@ export default class BillingOrdersCtrl {
     return this.OvhApiMeOrder.v6()
       .getStatus({ orderId: $row.orderId })
       .$promise
-      .then(status => assign($row, status))
+      .then((status) => assign($row, status))
       .then(() => assign(
         $row,
         {
@@ -65,7 +65,7 @@ export default class BillingOrdersCtrl {
   onCriteriaChange(criteria) {
     this.criteria = criteria;
     try {
-      this.filter = encodeURIComponent(JSON.stringify(criteria.map(c => omit(c, 'title'))));
+      this.filter = encodeURIComponent(JSON.stringify(criteria.map((c) => omit(c, 'title'))));
       this.updateFilterParam(this.filter);
     } catch (err) {
       this.$log.error(err);

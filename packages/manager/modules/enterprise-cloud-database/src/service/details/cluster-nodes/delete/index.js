@@ -14,7 +14,7 @@ angular.module(moduleName, [
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
       return import('./delete.module')
-        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+        .then((mod) => $ocLazyLoad.inject(mod.default || mod));
     },
   });
 });

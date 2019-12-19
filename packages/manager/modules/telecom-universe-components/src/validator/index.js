@@ -61,7 +61,7 @@ angular
      * Validate a Standard insee
      * @param {Object} obj          Object containing in
      */
-    customValidator.tucHasInseeCode = obj => isObject(obj) && !!obj.inseeCode;
+    customValidator.tucHasInseeCode = (obj) => isObject(obj) && !!obj.inseeCode;
 
     /**
      * Validate a zipcode
@@ -140,9 +140,9 @@ angular
       return luhnSum % 10 === 0;
     };
 
-    customValidator.tucIsFrenchLandLine = phone => /^0[1-5]([\\s\\-]?([0-9]){2}){4}$/.test(phone);
+    customValidator.tucIsFrenchLandLine = (phone) => /^0[1-5]([\\s\\-]?([0-9]){2}){4}$/.test(phone);
 
-    customValidator.tucIsFrenchPhoneNumber = phone => /^(0033|\+33\s?(\(0\))?|0)[^08](\s*\d{2}){4}$/.test(phone);
+    customValidator.tucIsFrenchPhoneNumber = (phone) => /^(0033|\+33\s?(\(0\))?|0)[^08](\s*\d{2}){4}$/.test(phone);
 
     customValidator.tucIsMacAddress = (val) => {
       const values = val.split(/:/);

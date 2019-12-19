@@ -44,11 +44,11 @@ angular
             .then(this.handleErrorOrServices),
         ])
         .then(([privateClouds, dedicatedServers]) => [
-          ...privateClouds.map(privateCloud => ({
+          ...privateClouds.map((privateCloud) => ({
             ...privateCloud,
             type: PRODUCT_TYPES.privateCloud.typeName,
           })),
-          ...dedicatedServers.map(dedicatedServer => ({
+          ...dedicatedServers.map((dedicatedServer) => ({
             ...dedicatedServer,
             type: PRODUCT_TYPES.dedicatedServer.typeName,
           })),
@@ -67,7 +67,7 @@ angular
     }
 
     fetchPrices(serviceName, blockSize) {
-      this.fetchPricesTries = this.fetchPricesTries + 1;
+      this.fetchPricesTries += 1;
       return this.OvhHttp
         .get(`/order/cartServiceOption/privateCloud/${serviceName}`, {
           rootPath: 'apiv6',
@@ -75,16 +75,16 @@ angular
         .then((offers) => {
           this.fetchPricesTries = 0;
           const matchingOffers = offers
-            .filter(offer => offer.family === 'ip')
-            .filter(offer => offer.planCode.includes(blockSize));
+            .filter((offer) => offer.family === 'ip')
+            .filter((offer) => offer.planCode.includes(blockSize));
 
-          return [].concat(...matchingOffers.map(offer => offer.prices.map(price => ({
+          return [].concat(...matchingOffers.map((offer) => offer.prices.map((price) => ({
             planCode: offer.planCode,
             duration: price.duration,
             price: price.price.text,
           }))));
         })
-        .catch(error => this.retryFetchPrices(error, serviceName, blockSize));
+        .catch((error) => this.retryFetchPrices(error, serviceName, blockSize));
     }
 
     retryFetchPrices(error, ...args) {

@@ -44,8 +44,9 @@ export const ServicePackService = class ServicePack {
   getServicePacksForDashboardOptions(serviceName, subsidiary) {
     return this
       .getServicePacks(serviceName, subsidiary)
-      .then(servicePacks => servicePacks
-        .map(servicePack => ServicePack.turnRawServicePackToServicePackForDashboard(servicePack)));
+      .then((servicePacks) => servicePacks
+        .map((servicePack) => ServicePack
+          .turnRawServicePackToServicePackForDashboard(servicePack)));
   }
 
   static turnRawServicePackToServicePackForDashboard(servicePack) {
@@ -66,14 +67,14 @@ export const ServicePackService = class ServicePack {
   static keepOnlyBasicOptions(options) {
     return filter(
       options,
-      option => isEqual(option.type, OPTION_TYPES.basic),
+      (option) => isEqual(option.type, OPTION_TYPES.basic),
     );
   }
 
   static keepOnlyCertification(options) {
     const matchingCertification = find(
       options,
-      option => isEqual(option.type, OPTION_TYPES.certification),
+      (option) => isEqual(option.type, OPTION_TYPES.certification),
     );
 
     return matchingCertification
@@ -85,19 +86,19 @@ export const ServicePackService = class ServicePack {
   }
 
   getServicePacks(serviceName, subsidiary) {
-    const buildChunkFromName = servicePackName => this
+    const buildChunkFromName = (servicePackName) => this
       .ovhManagerPccServicePackOptionService
       .getOptions({
         serviceName,
         servicePackName,
         subsidiary,
       })
-      .then(options => ({
+      .then((options) => ({
         name: servicePackName,
         options,
       }));
 
-    const buildFromChunk = chunk => ({
+    const buildFromChunk = (chunk) => ({
       ...chunk,
       description: this.$translate.instant(`dedicatedCloudDashboardTilesOptionsServicePack_description_${chunk.name}`),
       displayName: this.$translate.instant(`dedicatedCloudDashboardTilesOptionsServicePack_displayName_${chunk.name}`),
@@ -107,14 +108,14 @@ export const ServicePackService = class ServicePack {
 
     return this
       .getNamesForService(serviceName)
-      .then(names => this.$q.all(names.map(buildChunkFromName)))
-      .then(chunks => chunks.map(buildFromChunk));
+      .then((names) => this.$q.all(names.map(buildChunkFromName)))
+      .then((chunks) => chunks.map(buildFromChunk));
   }
 
   static computeType(servicePack) {
     return find(
       servicePack.options,
-      option => option.type === OPTION_TYPES.certification,
+      (option) => option.type === OPTION_TYPES.certification,
     )
       ? OPTION_TYPES.certification
       : OPTION_TYPES.basicOptions;
@@ -127,9 +128,9 @@ export const ServicePackService = class ServicePack {
   static keepOnlyCertainOptionType(servicePacks, optionTypeToKeep) {
     return filter(
       servicePacks,
-      servicePack => some(
+      (servicePack) => some(
         servicePack.options,
-        option => isEqual(option.type, optionTypeToKeep),
+        (option) => isEqual(option.type, optionTypeToKeep),
       ),
     );
   }
@@ -169,7 +170,7 @@ export const ServicePackService = class ServicePack {
   static getPricingsFromAddonsForPlanCode(addons, planCode) {
     return find(
       addons,
-      addon => head(
+      (addon) => head(
         addon.plan.planCode.split('-consumption'),
       ) === planCode,
     ).plan.details.pricings;
@@ -215,7 +216,7 @@ export const ServicePackService = class ServicePack {
             const price = reduce(
               filter(
                 hosts,
-                host => host.billingType !== 'freeSpare',
+                (host) => host.billingType !== 'freeSpare',
               ),
               (acc, host) => {
                 const pricing = ServicePack.getPricingFromPricingsForServicePackName(
@@ -247,7 +248,7 @@ export const ServicePackService = class ServicePack {
     return this
       .DedicatedCloud
       .getDatacentersInformations(serviceName)
-      .then(datacenters => reduce(
+      .then((datacenters) => reduce(
         map(
           datacenters.list.results,
           'hosts',

@@ -58,20 +58,20 @@ export default class {
   loadSelectValues() {
     return this.ApiPrivateDb.availableOrderCapacities({ offer: 'public' }).$promise
       .then((capacity) => {
-        this.versions = capacity.version.sort().map(version => ({
+        this.versions = capacity.version.sort().map((version) => ({
           value: version,
           name: this.$translate.instant(`vps_database_version_${version.replace('.', '')}`),
         }));
-        this.ramAmounts = capacity.ram.map(ram => ({
+        this.ramAmounts = capacity.ram.map((ram) => ({
           value: ram,
           name: `${ram} ${this.$translate.instant('unit_size_MB')}`,
         }));
-        this.datacenters = capacity.datacenter.map(datacenter => ({
+        this.datacenters = capacity.datacenter.map((datacenter) => ({
           value: datacenter,
           name: this.$translate.instant(`vps_datacenter_${datacenter}`),
         }));
       })
-      .catch(error => this.CucCloudMessage.error([
+      .catch((error) => this.CucCloudMessage.error([
         this.$translate.instant('vps_tab_cloud_database_order_fetch_capacities_failed'),
         get(error, 'data.message', error),
       ].join(' ')));
@@ -93,11 +93,11 @@ export default class {
     this.loading.durations = true;
     return this.ApiOrderDb.getNew({ version, ram, datacenter }).$promise
       .then((durations) => {
-        this.durations = map(durations, duration => ({ value: duration, prices: null }));
+        this.durations = map(durations, (duration) => ({ value: duration, prices: null }));
         // we run this in parallel, so no return
         this.getPricesForEachDuration(this.durations, version, ram, datacenter);
       })
-      .catch(error => this.CucCloudMessage.error([
+      .catch((error) => this.CucCloudMessage.error([
         this.$translate.instant('vps_tab_cloud_database_order_fetch_duration_failed'),
         get(error, 'data.message', error),
       ].join(' ')))
@@ -119,8 +119,8 @@ export default class {
   getPricesForEachDuration(durations, version, ram, datacenter) {
     return this.$q.all(map(
       durations,
-      duration => this.getPrices(duration, version, ram, datacenter),
-    )).catch(error => this.CucCloudMessage.error([
+      (duration) => this.getPrices(duration, version, ram, datacenter),
+    )).catch((error) => this.CucCloudMessage.error([
       this.$translate.instant('vps_tab_cloud_database_order_fetch_prices_failed'),
       get(error, 'data.message', error),
     ].join(' ')));
@@ -165,7 +165,7 @@ export default class {
           this.openPurchaseOrder(false);
         }, 5000);
       })
-      .catch(error => this.CucCloudMessage.error([
+      .catch((error) => this.CucCloudMessage.error([
         this.$translate.instant('vps_tab_cloud_database_order_failed'),
         get(error, 'data.message', error),
       ].join(' ')))

@@ -19,7 +19,7 @@ class LogsListService {
    */
   getServices() {
     return this.getServicesDetails()
-      .catch(err => this.LogsHelperService.handleError('logs_accounts_get_accounts_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_accounts_get_accounts_error', err, {}));
   }
 
   /**
@@ -31,7 +31,7 @@ class LogsListService {
   getServicesDetails() {
     return this.getServicesIds()
       .then((accounts) => {
-        const promises = accounts.map(serviceName => this.getService(serviceName));
+        const promises = accounts.map((serviceName) => this.getService(serviceName));
         return this.$q.all(promises);
       });
   }
@@ -56,14 +56,14 @@ class LogsListService {
   getService(serviceName) {
     return this.LogsListApiService.logDetail({ serviceName })
       .$promise
-      .then(service => this.transformService(service))
-      .catch(err => this.LogsHelperService.handleError('logs_accounts_get_detail_error', err, { accountName: serviceName }));
+      .then((service) => this.transformService(service))
+      .catch((err) => this.LogsHelperService.handleError('logs_accounts_get_detail_error', err, { accountName: serviceName }));
   }
 
   getQuota(service) {
     return this.AccountingAapiService.me({ serviceName: service.serviceName })
       .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_accounts_get_quota_error', err, { accountName: service.displayName || service.serviceName }));
+      .catch((err) => this.LogsHelperService.handleError('logs_accounts_get_quota_error', err, { accountName: service.displayName || service.serviceName }));
   }
 
   /**
@@ -122,10 +122,6 @@ class LogsListService {
         set(service, 'cluster.isLoadingCluster', false);
       });
     return service;
-  }
-
-  _resetAllCache() {
-    this.TokenApiService.resetAllCache();
   }
 }
 

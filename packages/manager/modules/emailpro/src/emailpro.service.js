@@ -180,7 +180,7 @@ export default class EmailPro {
     }
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}', {
           rootPath: '2api',
           urlParams: {
@@ -199,16 +199,16 @@ export default class EmailPro {
 
   getModels() {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}.json`, {
           rootPath: 'apiv6',
         }))
-      .then(data => data.models);
+      .then((data) => data.models);
   }
 
   getEmailProServer(organization, name) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}/{exchangeService}/server`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -232,7 +232,7 @@ export default class EmailPro {
           ]);
         }
         return this.getRegularTasks(serviceName, pageSize, offset)
-          .then(res => res.list.results);
+          .then((res) => res.list.results);
       });
   }
 
@@ -243,7 +243,7 @@ export default class EmailPro {
         domain: domainName,
       },
     }).then((ids) => {
-      const promises = map(ids, id => this.getSubTaskDetails(true, domainName, id));
+      const promises = map(ids, (id) => this.getSubTaskDetails(true, domainName, id));
       return this.$q.all(promises);
     });
   }
@@ -255,7 +255,7 @@ export default class EmailPro {
         domain: domainName,
       },
     }).then((ids) => {
-      const promises = map(ids, id => this.getSubTaskDetails(false, domainName, id));
+      const promises = map(ids, (id) => this.getSubTaskDetails(false, domainName, id));
       return this.$q.all(promises);
     });
   }
@@ -288,7 +288,7 @@ export default class EmailPro {
         params: {
           isMXPlan: true,
         },
-      }).then(res => res.list.results);
+      }).then((res) => res.list.results);
   }
 
   getRegularTasks(serviceName, pageSize, offset) {
@@ -302,7 +302,7 @@ export default class EmailPro {
           count: pageSize || 10,
           offset: offset || 0,
         },
-      }).then(res => res.list.results);
+      }).then((res) => res.list.results);
   }
 
   /**
@@ -310,7 +310,7 @@ export default class EmailPro {
    */
   getCapabilities(serviceName, accountEmailAddress) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}/{exchange}/account/{accountEmailAddress}/capabilities`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -330,7 +330,7 @@ export default class EmailPro {
    */
   getAccounts(pageSize, offset, search, configurableOnly, type, timeout) {
     return this.getSelected()
-      .then(exchange => this.getAccountsForEmailPro(
+      .then((exchange) => this.getAccountsForEmailPro(
         exchange,
         this.accountsCache,
         pageSize,
@@ -363,7 +363,7 @@ export default class EmailPro {
     const type = typeParam || '';
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/accounts', {
           rootPath: '2api',
           urlParams: {
@@ -398,7 +398,7 @@ export default class EmailPro {
     const configurableOnly = configurableOnlyParam || 0;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/accounts/contacts', {
           rootPath: '2api',
           urlParams: {
@@ -419,7 +419,7 @@ export default class EmailPro {
    */
   getNewAccountOptions(serviceName) {
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/accounts/options', {
           rootPath: '2api',
           urlParams: {
@@ -444,7 +444,7 @@ export default class EmailPro {
     data.displayName = data.displayName ? data.displayName.trim() : '';
 
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .post(`/${baseAPIPath}/{exchange}/account`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -461,7 +461,7 @@ export default class EmailPro {
 
   getOrderList(serviceName) {
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/accounts/orders', {
           rootPath: '2api',
           urlParams: {
@@ -542,7 +542,7 @@ export default class EmailPro {
     }
 
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .put(`/${baseAPIPath}/{exchange}/account/{primaryEmailAddress}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -568,7 +568,7 @@ export default class EmailPro {
 
   updateRenew(serviceName, accounts) {
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .put('/sws/emailpro/{exchange}/accounts/renew', {
           rootPath: '2api',
           urlParams: {
@@ -586,7 +586,7 @@ export default class EmailPro {
    */
   removeAccount(serviceName, primaryEmail) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .delete(`/${baseAPIPath}/{exchange}/account/{primaryEmailAddress}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -611,7 +611,7 @@ export default class EmailPro {
     const search = searchParam || undefined;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/accounts/{account}/rights', {
           rootPath: '2api',
           urlParams: {
@@ -632,7 +632,7 @@ export default class EmailPro {
 */
   updateAccountDelegationRights(serviceName, model) {
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .post('/sws/emailpro/{exchange}/accounts/{account}/rights-update', {
           rootPath: '2api',
           urlParams: {
@@ -662,7 +662,7 @@ export default class EmailPro {
     const offset = offsetParam || 0;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/accounts/{account}/alias', {
           rootPath: '2api',
           urlParams: {
@@ -684,7 +684,7 @@ export default class EmailPro {
     const email = emailParam || null;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/aliasOptions', {
           rootPath: '2api',
           urlParams: {
@@ -709,7 +709,7 @@ export default class EmailPro {
     const completeAlias = `${aliasModel.alias}@${aliasModel.domain.name}`;
 
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .post(`/${baseAPIPath}/{exchange}/account/{primaryEmailAddress}/alias`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -733,7 +733,7 @@ export default class EmailPro {
 */
   deleteAlias(serviceName, account, alias) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .delete(`/${baseAPIPath}/{exchange}/account/{primaryEmailAddress}/alias/{alias}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -759,7 +759,7 @@ export default class EmailPro {
     const search = searchParam || undefined;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/groups', {
           rootPath: '2api',
           clearCache: true,
@@ -785,7 +785,7 @@ export default class EmailPro {
     const search = searchParam || undefined;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/groups/{mailinglist}/rights', {
           rootPath: '2api',
           clearCache: true,
@@ -807,7 +807,7 @@ export default class EmailPro {
 */
   updateMailingListDelegationRights(serviceName, model) {
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .put('/sws/emailpro/{exchange}/groups/{mailinglist}/rights-update', {
           rootPath: '2api',
           clearCache: true,
@@ -833,7 +833,7 @@ export default class EmailPro {
 */
   deleteGroup(serviceName, groupName) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .delete(`/${baseAPIPath}/{exchange}/mailingList/{mailingListAddress}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -856,7 +856,7 @@ export default class EmailPro {
       .all({
         models: this.getModels(),
         options: this.gettingBaseAPIPath()
-          .then(baseAPIPath => this.OvhHttp
+          .then((baseAPIPath) => this.OvhHttp
             .get(`/${baseAPIPath}/{exchange}/domain`, {
               rootPath: 'apiv6',
               urlParams: {
@@ -867,14 +867,14 @@ export default class EmailPro {
               },
             })),
       })
-      .then(data => ({
-        availableDepartRestrictions: data.models['email.exchange.MailingListDepartRestrictionEnum'].enum.map(m => snakeCase(m).toUpperCase()),
-        availableDomains: data.options.map(domain => ({
+      .then((data) => ({
+        availableDepartRestrictions: data.models['email.exchange.MailingListDepartRestrictionEnum'].enum.map((m) => snakeCase(m).toUpperCase()),
+        availableDomains: data.options.map((domain) => ({
           name: domain,
           displayName: punycode.toUnicode(domain),
           formattedName: punycode.toUnicode(domain),
         })),
-        availableJoinRestrictions: data.models['email.exchange.MailingListJoinRestrictionEnum'].enum.map(m => snakeCase(m).toUpperCase()),
+        availableJoinRestrictions: data.models['email.exchange.MailingListJoinRestrictionEnum'].enum.map((m) => snakeCase(m).toUpperCase()),
       }));
   }
 
@@ -888,7 +888,7 @@ export default class EmailPro {
     const search = searchParam || undefined;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/groups/{mailinglist}/accounts', {
           rootPath: '2api',
           clearCache: true,
@@ -923,7 +923,7 @@ export default class EmailPro {
     const search = searchParam || undefined;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/groups/{mailinglist}/managers', {
           rootPath: '2api',
           clearCache: true,
@@ -950,7 +950,7 @@ export default class EmailPro {
     const search = searchParam || undefined;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/groups/{mailinglist}/members', {
           rootPath: '2api',
           clearCache: true,
@@ -972,7 +972,7 @@ export default class EmailPro {
 */
   removeManager(serviceName, groupName, accountId) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .delete(`/${baseAPIPath}/{exchange}/mailingList/{mailingListAddress}/manager/account/{managerAccountId}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1031,7 +1031,7 @@ export default class EmailPro {
     const offset = offsetParam || 0;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/group/{group}/alias', {
           rootPath: '2api',
           urlParams: {
@@ -1053,7 +1053,7 @@ export default class EmailPro {
   addGroupAlias(serviceName, groupName, aliasModel) {
     const completeAlias = `${aliasModel.alias}@${aliasModel.domain.name}`;
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .post(`/${baseAPIPath}/{exchange}/mailingList/{mailingListAddress}/alias`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1076,7 +1076,7 @@ export default class EmailPro {
 */
   deleteGroupAlias(serviceName, groupName, alias) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .delete(`/${baseAPIPath}/{exchange}/mailingList/{mailingListAddress}/alias/{alias}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1100,7 +1100,7 @@ export default class EmailPro {
     const offset = offsetParam || 0;
 
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/disclaimers', {
           rootPath: '2api',
           urlParams: {
@@ -1119,7 +1119,7 @@ export default class EmailPro {
 */
   getNewDisclaimerOptions(serviceName) {
     return this.gettingIsServiceMXPlan()
-      .then(isMXPlan => this.OvhHttp
+      .then((isMXPlan) => this.OvhHttp
         .get('/sws/emailpro/{exchange}/disclaimers/new/options', {
           rootPath: '2api',
           urlParams: {
@@ -1162,7 +1162,7 @@ export default class EmailPro {
 */
   saveDisclaimer(serviceName, model) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .post(`/${baseAPIPath}/{exchange}/domain/{domainName}/disclaimer`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1186,7 +1186,7 @@ export default class EmailPro {
 */
   updateDisclaimer(serviceName, model) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .put(`/${baseAPIPath}/{exchange}/domain/{domainName}/disclaimer`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1210,7 +1210,7 @@ export default class EmailPro {
 */
   deleteDisclaimer(serviceName, domain) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .delete(`/${baseAPIPath}/{exchange}/domain/{domainName}/disclaimer`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1247,7 +1247,7 @@ export default class EmailPro {
     }
 
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}/{exchange}/license`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1389,7 +1389,7 @@ export default class EmailPro {
 
   getAccountIds(opts) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}/{exchangeService}/account`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1401,7 +1401,7 @@ export default class EmailPro {
 
   getAccount(opts) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}/{exchangeService}/account/{primaryEmailAddress}`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1413,7 +1413,7 @@ export default class EmailPro {
 
   getAliasIds(opts) {
     return this.gettingBaseAPIPath()
-      .then(baseAPIPath => this.OvhHttp
+      .then((baseAPIPath) => this.OvhHttp
         .get(`/${baseAPIPath}/{exchangeService}/account/{primaryEmailAddress}/alias`, {
           rootPath: 'apiv6',
           urlParams: {
@@ -1444,6 +1444,6 @@ export default class EmailPro {
 
   gettingBaseAPIPath() {
     return this.gettingIsServiceMXPlan()
-      .then(serviceIsMXPlan => `email/${serviceIsMXPlan ? 'mxplan' : 'pro'}`);
+      .then((serviceIsMXPlan) => `email/${serviceIsMXPlan ? 'mxplan' : 'pro'}`);
   }
 }

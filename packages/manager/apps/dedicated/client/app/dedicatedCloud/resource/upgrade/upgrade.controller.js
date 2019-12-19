@@ -120,7 +120,7 @@ export const controller = class {
           catalog.plans[0].addonsFamily,
           { family: this.$stateParams.type },
         ).addons,
-        addon => addon.plan.planCode === target.profileCode
+        (addon) => addon.plan.planCode === target.profileCode
           || addon.plan.planCode === target.profile,
       ),
     ).plan;

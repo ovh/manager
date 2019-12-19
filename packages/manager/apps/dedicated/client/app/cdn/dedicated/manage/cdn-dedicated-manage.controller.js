@@ -50,7 +50,7 @@ angular.module('App').controller('CdnManageCtrl', class CdnManageCtrl {
       }
 
       this.$scope.setMessage(this.$translate.instant('cdn_dashboard_loading_error'), {
-        message: errs.map(data => data.data.message).join(', '),
+        message: errs.map((data) => data.data.message).join(', '),
         type: 'ERROR',
       });
     }).finally(() => {

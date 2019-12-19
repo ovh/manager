@@ -61,13 +61,13 @@ export default class {
     this.api.sms.hlr.resetQueryCache();
     return this.TucSmsMediator.initDeferred.promise.then(() => this.api.sms.hlr.query({
       serviceName: this.$stateParams.serviceName,
-    }).$promise.then(hlrIds => hlrIds.sort((a, b) => b - a)
-      .map(id => ({ id })))
+    }).$promise.then((hlrIds) => hlrIds.sort((a, b) => b - a)
+      .map((id) => ({ id })))
       .then((hlrs) => {
         this.hlr.data = hlrs;
         this.service = this.TucSmsMediator.getCurrentSmsService();
       }))
-      .catch(err => this.TucToastError(err));
+      .catch((err) => this.TucToastError(err));
   }
 
   /**
@@ -77,7 +77,7 @@ export default class {
    */
   getDetails(item) {
     if (item.transformed) {
-      return this.$q(resolve => resolve(item));
+      return this.$q((resolve) => resolve(item));
     }
     return this.api.sms.hlr
       .get({
@@ -88,8 +88,8 @@ export default class {
         set(hlr, 'transformed', true);
         return hlr;
       })
-      .then(hlr => this.fetchPhoneOperator(hlr)
-        .then(operator => assign(hlr, { operatorName: operator.operator }))
+      .then((hlr) => this.fetchPhoneOperator(hlr)
+        .then((operator) => assign(hlr, { operatorName: operator.operator }))
         .catch(() => hlr));
   }
 

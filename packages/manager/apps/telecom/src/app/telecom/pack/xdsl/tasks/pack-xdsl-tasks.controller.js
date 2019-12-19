@@ -18,7 +18,7 @@ angular.module('managerApp')
       self.taskIds = null;
       return OvhApiXdsl.v6().getTasks({ xdslId: $stateParams.serviceName }).$promise.then(
         (taskIds) => {
-          self.taskIds = taskIds.map(taskId => ({ id: taskId }));
+          self.taskIds = taskIds.map((taskId) => ({ id: taskId }));
         },
         (error) => {
           TucToast.error([$translate.instant('an_error_occured'), error.data.message].join(' '));
@@ -31,7 +31,7 @@ angular.module('managerApp')
     self.transformItem = function transformItem(id) {
       return OvhApiXdsl.v6()
         .getTask({ xdslId: $stateParams.serviceName, taskId: id }).$promise.then(
-          task => task,
+          (task) => task,
           (error) => {
             TucToast.error([$translate.instant('an_error_occured'), error.data.message].join(' '));
           },

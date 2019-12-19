@@ -85,7 +85,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     this.availableCodecs = null;
 
     // helper
-    this.isPlugNFax = some(this.offers, offer => angular.isString(offer) && (offer.indexOf('fax') >= 0 || some(VoipLineOldOffers.oldOffers.sipNFax, old => offer.indexOf(old) > -1)));
+    this.isPlugNFax = some(this.offers, (offer) => angular.isString(offer) && (offer.indexOf('fax') >= 0 || some(VoipLineOldOffers.oldOffers.sipNFax, (old) => offer.indexOf(old) > -1)));
   }
 
   /* -----  End of CONSTRUCTOR  ------*/
@@ -119,7 +119,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   TelephonyGroupLine.prototype.isOffer = function isOffer(name) {
     const offerPrefix = `voip.main.offer.${name}`;
-    return some(this.offers, offer => startsWith(offer, offerPrefix));
+    return some(this.offers, (offer) => startsWith(offer, offerPrefix));
   };
 
   TelephonyGroupLine.prototype.isIndividual = function isIndividual() {
@@ -212,7 +212,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   TelephonyGroupLine
     .prototype
     .getAvailableTerminationReasons = function getAvailableTerminationReasons() {
-      return OvhApiTelephony.Line().v6().schema().$promise.then(schema => schema);
+      return OvhApiTelephony.Line().v6().schema().$promise.then((schema) => schema);
     };
 
   TelephonyGroupLine.prototype.hasPendingOfferTasks = function hasPendingOfferTasks() {
@@ -223,11 +223,14 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(taskIds => $q.all(map(taskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
-        billingAccount: self.billingAccount,
-        serviceName: self.serviceName,
-        taskId: id,
-      }).$promise))).then(tasks => filter(tasks, task => task.status === 'todo' || task.status === 'doing' || task.status === 'pause').length > 0);
+      .then((taskIds) => $q.all(map(
+        taskIds,
+        (id) => OvhApiTelephony.Service().OfferTask().v6().get({
+          billingAccount: self.billingAccount,
+          serviceName: self.serviceName,
+          taskId: id,
+        }).$promise,
+      ))).then((tasks) => filter(tasks, (task) => task.status === 'todo' || task.status === 'doing' || task.status === 'pause').length > 0);
   };
 
   TelephonyGroupLine.prototype.getTerminating = function getTerminating() {
@@ -307,7 +310,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   TelephonyGroupLine.prototype.isIncludedInXdslPack = function isIncludedInXdslPack() {
     const self = this;
 
-    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(lines => some(lines, { key: self.serviceName }));
+    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then((lines) => some(lines, { key: self.serviceName }));
   };
 
   /* ----------  OPTIONS  ----------*/
@@ -374,11 +377,11 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
             return null;
           },
         ),
-        codec => (codec && codec.value.length) || -1,
+        (codec) => (codec && codec.value.length) || -1,
       );
 
       // remove null items (codecs that finish with _a)
-      remove(self.availableCodecs, codec => isNull(codec));
+      remove(self.availableCodecs, (codec) => isNull(codec));
 
       return self.availableCodecs;
     });
@@ -449,7 +452,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return OvhApiTelephony.Service().v6().offerChanges({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(offers => map(offers, offer => new TelephonyGroupLineOffer(offer)));
+    }).$promise.then((offers) => map(offers, (offer) => new TelephonyGroupLineOffer(offer)));
   };
 
   /**
@@ -490,7 +493,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return OvhApiTelephony.Service().v6().offerChange({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(offer => self.getAvailableOffers().then((availableOffers) => {
+    }).$promise.then((offer) => self.getAvailableOffers().then((availableOffers) => {
       self.pendingOfferChange = find(availableOffers, {
         name: offer.offer,
       }) || null; // if null is returned, it means there is a problem with API... :-D
@@ -530,7 +533,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return OvhApiTelephony.Line().v6().sipDomains({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(availableDomains => availableDomains);
+    }).$promise.then((availableDomains) => availableDomains);
   };
 
   /* ----------  SCHEDULER  ----------*/

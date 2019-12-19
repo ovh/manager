@@ -52,8 +52,8 @@ export default class DomainEmailObfuscationCtrl {
       }).$promise
       .then((contactTypes) => {
         this.contactTypes = sortBy(
-          contactTypes.filter(contact => !EXCLUDED_CONTACTS.includes(contact)),
-          contact => indexOf(CONTACTS_TYPES, contact),
+          contactTypes.filter((contact) => !EXCLUDED_CONTACTS.includes(contact)),
+          (contact) => indexOf(CONTACTS_TYPES, contact),
         );
         return contactTypes;
       });
@@ -99,7 +99,9 @@ export default class DomainEmailObfuscationCtrl {
       .then(() => this.OvhApiDomain.Configurations().ObfuscatedEmails().v6().refresh({
         serviceName: this.domain,
       }, {
-        contacts: this.contactsToRegenerate.filter(contact => contactToObfuscate.includes(contact)),
+        contacts: this
+          .contactsToRegenerate
+          .filter((contact) => contactToObfuscate.includes(contact)),
       }).$promise)
       .then(() => {
         this.Alerter.success(this.$translate.instant('domain_email_obfuscation_refresh_success'), this.DOMAIN.ALERTS.tabs);

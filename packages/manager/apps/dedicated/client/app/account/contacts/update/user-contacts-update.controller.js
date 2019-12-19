@@ -110,7 +110,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     };
 
     $scope.getLanguageName = (code) => {
-      const idx = findIndex($scope.languages, item => item.value === code);
+      const idx = findIndex($scope.languages, (item) => item.value === code);
 
       if (idx > -1) {
         return $scope.languages[idx].name;
@@ -141,7 +141,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
             $scope.controls.legalforms = legalforms;
           }),
           Contacts.getCountryEnum().then((countries) => {
-            $scope.controls.countries = countries.filter(country => country !== 'UNKNOWN');
+            $scope.controls.countries = countries.filter((country) => country !== 'UNKNOWN');
           }),
           Contacts.getGendersEnum().then((genders) => {
             $scope.controls.genders = genders;
@@ -158,7 +158,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
           }),
           $scope.currentDomain
             ? Contacts.getOrderServiceOption($scope.currentDomain).then((opts) => {
-              $scope.hasTrade = find(opts, opt => opt.family === 'trade');
+              $scope.hasTrade = find(opts, (opt) => opt.family === 'trade');
             })
             : $q.when(true),
         ])

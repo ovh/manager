@@ -30,7 +30,7 @@ export default class kubernetesTerminateCtrl {
       .then(() => this.goBack(
         this.$translate.instant('kube_service_terminate_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('kube_service_terminate_error', {
           message: get(error, 'data.message'),
         }), 'error',

@@ -51,7 +51,7 @@ import indexOf from 'lodash/indexOf';
     }
 
     checkLabels() {
-      this.token.labels = this.token.labels.filter(label => this.constructor.checkLabel(label));
+      this.token.labels = this.token.labels.filter((label) => this.constructor.checkLabel(label));
     }
   }
 

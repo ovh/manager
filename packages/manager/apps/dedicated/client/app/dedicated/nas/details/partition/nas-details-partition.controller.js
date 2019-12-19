@@ -34,7 +34,7 @@ angular.module('App').controller('PartitionCtrl', function PartitionCtrl($stateP
   self.loadDatagridPartitions = ({ offset, pageSize }) => self.getPartitions().then(() => {
     const part = self.table.partitionIds.slice(offset - 1, offset - 1 + pageSize);
     return {
-      data: part.map(id => ({ id })),
+      data: part.map((id) => ({ id })),
       meta: {
         totalCount: self.table.partitionIds.length,
       },

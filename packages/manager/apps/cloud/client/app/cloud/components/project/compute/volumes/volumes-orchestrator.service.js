@@ -287,7 +287,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       }).$promise.then(() => {
         set(volume, 'status', 'snapshotting');
         self.pollVolumes();
-      }, err => $q.reject(err));
+      }, (err) => $q.reject(err));
     };
 
     /* -----  End of VOLUMES  ------*/
@@ -386,7 +386,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
         } else {
           addedVolumes = filter(
             volumesFromApi,
-            vol => !find(self.volumes.volumes[targetId], { id: vol.id }),
+            (vol) => !find(self.volumes.volumes[targetId], { id: vol.id }),
           );
         }
 
@@ -418,7 +418,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
       let haveChanges = false;
 
       // Group by attachedTo
-      volumes = groupBy(volumes, vol => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'));
+      volumes = groupBy(volumes, (vol) => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'));
 
       // Update existing Volumes
       haveChanges = updateVolumesWithVolumesFromApi(volumes, true) || haveChanges;
@@ -535,7 +535,7 @@ angular.module('managerApp').service('CloudProjectComputeVolumesOrchestrator',
             // Group by attachedTo
             volumes = groupBy(
               volumes,
-              vol => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'),
+              (vol) => (vol.attachedTo && vol.attachedTo.length ? vol.attachedTo[0] : 'unlinked'),
             );
 
             // Merge with local datas

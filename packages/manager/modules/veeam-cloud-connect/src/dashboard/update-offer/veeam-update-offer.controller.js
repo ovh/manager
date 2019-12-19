@@ -44,8 +44,8 @@ export default class VeeamCloudConnectUpdateOfferCtrl {
       .getArrayLoader({
         loaderFunction: () => this.VeeamCloudConnectService
           .updateOffer(this.serviceName, this.orderInfo.data.offer, this.orderInfo.data.duration),
-        successHandler: response => this.$uibModalInstance.close(response),
-        errorHandler: response => this.$uibModalInstance.dismiss(response),
+        successHandler: (response) => this.$uibModalInstance.close(response),
+        errorHandler: (response) => this.$uibModalInstance.dismiss(response),
       });
 
     this.orderPost.load().then((result) => {

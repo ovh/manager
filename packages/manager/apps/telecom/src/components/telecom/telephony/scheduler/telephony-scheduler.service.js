@@ -20,7 +20,7 @@ angular.module('managerApp').service('telephonyScheduler', function telephonySch
       return $q.when(timeZones);
     }
     return TelephonyMediator.getApiModelEnum('telephony.timeZone').then((enumValues) => {
-      timeZones = map(enumValues, timeZone => ({
+      timeZones = map(enumValues, (timeZone) => ({
         value: timeZone,
         label: $translate.instant(`telephony_scheduler_options_time_zone_${snakeCase(timeZone)}`),
       }));

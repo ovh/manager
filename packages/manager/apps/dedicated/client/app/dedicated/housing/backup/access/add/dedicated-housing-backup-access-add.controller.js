@@ -6,7 +6,7 @@ import set from 'lodash/set';
 
 angular.module('App').controller('HousingAddAccessFtpBackupCtrl', ($rootScope, $scope, $translate, Housing, $stateParams, Alerter) => {
   const alert = 'housing_tab_ftpbackup_alert';
-  const ips = map($scope.currentActionData, ip => ip.ipBlock);
+  const ips = map($scope.currentActionData, (ip) => ip.ipBlock);
 
   $scope.access = {
     listIp: [],

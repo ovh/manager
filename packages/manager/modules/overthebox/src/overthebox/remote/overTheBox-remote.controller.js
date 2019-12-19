@@ -69,9 +69,9 @@ export default /* @ngInject */ function
    */
   function updateRemote(newRemote, oldRemote) {
     self.remotes = self.remotes
-      .map(remote => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
+      .map((remote) => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
     self.paginatedRemotes = self.paginatedRemotes
-      .map(remote => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
+      .map((remote) => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
   }
 
   this.isIpValid = function isIpValid(ip) {

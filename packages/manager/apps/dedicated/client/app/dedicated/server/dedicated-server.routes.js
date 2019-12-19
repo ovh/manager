@@ -30,7 +30,7 @@ angular.module('App').config(($stateProvider) => {
         serverName,
         DedicatedServerInterfacesService,
       ) => DedicatedServerInterfacesService.getInterfaces(serverName),
-      isOlaAvailable: /* @ngInject */ coreConfig => coreConfig.isRegion(['EU', 'CA']),
+      isOlaAvailable: /* @ngInject */ (coreConfig) => coreConfig.isRegion(['EU', 'CA']),
       ola: /* @ngInject */ (
         interfaces,
         isOlaAvailable,
@@ -67,10 +67,10 @@ angular.module('App').config(($stateProvider) => {
         Server,
         serverName,
       ) => Server.getSelected(serverName),
-      serverName: /* @ngInject */ $transition$ => $transition$.params().productId,
+      serverName: /* @ngInject */ ($transition$) => $transition$.params().productId,
       specifications: /* @ngInject */ (serverName, Server) => Server.getBandwidth(serverName),
-      user: /* @ngInject */ currentUser => currentUser,
-      atTrack: /* @ngInject */ atInternet => name => atInternet.trackClick({
+      user: /* @ngInject */ (currentUser) => currentUser,
+      atTrack: /* @ngInject */ (atInternet) => (name) => atInternet.trackClick({
         name,
         type: 'action',
         chapter1: 'dedicated',

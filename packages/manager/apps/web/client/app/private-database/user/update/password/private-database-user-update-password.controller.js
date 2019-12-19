@@ -58,7 +58,7 @@ angular.module('App').controller(
 
       this.prefix = this.user ? 'root' : 'user';
 
-      this.$scope.hasError = label => label.$invalid && label.$dirty;
+      this.$scope.hasError = (label) => label.$invalid && label.$dirty;
 
       this.$scope.updatePassword = () => {
         this.$scope.resetAction();

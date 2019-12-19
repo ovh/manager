@@ -15,7 +15,7 @@ module.exports = {
         name: 'name',
         message: 'What is the name of the new module',
         default: this.outFolder,
-        filter: val => val.toLowerCase(),
+        filter: (val) => val.toLowerCase(),
       },
       {
         name: 'description',
@@ -42,7 +42,7 @@ module.exports = {
         type: 'modify',
         files: 'package.json',
         // eslint-disable-next-line global-require
-        handler: data => require('./lib/update-pkg')(this.answers, data),
+        handler: (data) => require('./lib/update-pkg')(this.answers, data),
       },
     ];
   },

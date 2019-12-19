@@ -122,7 +122,7 @@ angular.module('App').controller(
             this.hasResult = true;
           }
         })
-        .catch(err => this.displayError(
+        .catch((err) => this.displayError(
           err,
           'domain_tab_DYNHOST_error',
           this.$scope.alerts.main,
@@ -137,7 +137,7 @@ angular.module('App').controller(
     transformItem(item) {
       return this.Domain.getDynHost(this.product.name, item).then(
         this.constructor.subDomainToPunycode,
-        err => err,
+        (err) => err,
       );
     }
 

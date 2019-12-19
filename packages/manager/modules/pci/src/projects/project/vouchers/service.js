@@ -28,7 +28,7 @@ export default class CloudVouchersService {
     return this.OvhApiCloudProjectCredit.v6().get({
       serviceName: projectId,
       creditId: voucherId,
-    }).$promise.then(voucher => (voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher));
+    }).$promise.then((voucher) => (voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher));
   }
 
   getVouchers(projectId) {
@@ -36,7 +36,7 @@ export default class CloudVouchersService {
       serviceName: projectId,
     }).$promise
       .then((voucherIds) => {
-        const promises = map(voucherIds, id => this.transformItem(projectId, id));
+        const promises = map(voucherIds, (id) => this.transformItem(projectId, id));
         return this.$q.all(promises);
       });
   }

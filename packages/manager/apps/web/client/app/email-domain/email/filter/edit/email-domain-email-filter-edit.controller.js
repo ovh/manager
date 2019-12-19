@@ -19,7 +19,7 @@ angular.module('App').controller(
       this.account = angular.copy(this.$scope.currentActionData.account);
       this.accounts = map(
         this.$scope.currentActionData.accounts,
-        account => `${account}@${this.account.domain}`,
+        (account) => `${account}@${this.account.domain}`,
       );
       this.filter = angular.copy(this.$scope.currentActionData.filter);
       this.headers = ['From', 'To', 'Subject', 'other'];
@@ -58,7 +58,7 @@ angular.module('App').controller(
             this.filter.rules = rules.map((originalRule) => {
               const rule = clone(originalRule);
 
-              const matchingHeader = this.headers.find(header => header === rule.header);
+              const matchingHeader = this.headers.find((header) => header === rule.header);
 
               if (matchingHeader == null) {
                 rule.headerSelect = 'other';
@@ -108,7 +108,7 @@ angular.module('App').controller(
     filterRuleCheck() {
       return every(
         this.filter.rules,
-        rule => rule.value
+        (rule) => rule.value
           && rule.operand
           && ((rule.headerSelect && rule.headerSelect !== 'other')
             || (rule.headerSelect === 'other' && rule.header)),
@@ -120,11 +120,11 @@ angular.module('App').controller(
       const rules = map(
         lodashFilter(
           this.filter.rules,
-          rule => (rule.headerSelect !== '' || rule.header !== '')
+          (rule) => (rule.headerSelect !== '' || rule.header !== '')
             && rule.operand !== ''
             && rule.value !== '',
         ),
-        rule => ({
+        (rule) => ({
           operand: rule.operand,
           value: rule.value,
           header:
@@ -162,7 +162,7 @@ angular.module('App').controller(
           this.$translate.instant('email_tab_modal_edit_filter_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_edit_filter_error'),
           get(err, 'data', err),
           this.$scope.alerts.main,

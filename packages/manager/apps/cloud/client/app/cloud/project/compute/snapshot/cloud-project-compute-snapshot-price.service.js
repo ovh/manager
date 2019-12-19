@@ -18,7 +18,7 @@ class CloudProjectComputeSnapshotPriceService {
       snapshotPrice.totalPrice = angular.copy(snapshotPrice.price);
       snapshotPrice.monthlyPrice = angular.copy(snapshotPrice.price);
 
-      snapshotPrice.monthlyPrice.value = snapshotPrice.priceInUcents * moment.duration(1, 'months').asHours() / 100000000;
+      snapshotPrice.monthlyPrice.value = (snapshotPrice.priceInUcents * moment.duration(1, 'months').asHours()) / 100000000;
       snapshotPrice.monthlyPrice.text = snapshotPrice.monthlyPrice.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.monthlyPrice.value.toString(), 2));
 
       snapshotPrice.totalPrice.value = snapshotPrice.monthlyPrice.value * size;

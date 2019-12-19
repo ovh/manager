@@ -34,8 +34,8 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     $scope.chartSeries.push($translate.instant('ip_mitigation_statistics_input'));
     $scope.chartSeries.push($translate.instant('ip_mitigation_statistics_output'));
 
-    $scope.chartData.push(map(get($scope.stats, 'valuesIn'), value => value.y));
-    $scope.chartData.push(map(get($scope.stats, 'valuesOut'), value => value.y));
+    $scope.chartData.push(map(get($scope.stats, 'valuesIn'), (value) => value.y));
+    $scope.chartData.push(map(get($scope.stats, 'valuesOut'), (value) => value.y));
 
     $scope.chartOptions = {
       tooltips: {

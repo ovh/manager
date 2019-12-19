@@ -12,7 +12,7 @@ export default /* @ngInject */($stateProvider) => {
       template,
       abstract: true,
       resolve: {
-        currentUser: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+        currentUser: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
       },
       translations: {
         value: ['../common', '../vps'],
@@ -23,17 +23,17 @@ export default /* @ngInject */($stateProvider) => {
       url: '/{serviceName}',
       redirectTo: 'vps.detail.dashboard',
       resolve: {
-        connectedUser: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+        connectedUser: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
         capabilities: /* @ngInject */ (
           serviceName,
           OvhApiVpsCapabilities,
         ) => OvhApiVpsCapabilities.Aapi().query({ serviceName }).$promise
-          .then(capabilities => capabilities.map(capability => kebabCase(capability))),
-        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+          .then((capabilities) => capabilities.map((capability) => kebabCase(capability))),
+        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
         stateVps: /* @ngInject */ ($q, serviceName, OvhApiVps) => OvhApiVps.v6().get({
           serviceName,
         }).$promise
-          .then(stateVps => OvhApiVps.v6().version({
+          .then((stateVps) => OvhApiVps.v6().version({
             serviceName,
           }).$promise.then((response) => {
             const vpsState = stateVps;

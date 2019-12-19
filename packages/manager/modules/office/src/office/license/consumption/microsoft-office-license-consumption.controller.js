@@ -70,7 +70,7 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
         angular.forEach(this.stats.series, (serie) => {
           this.chart.addSerie(
             serie.name,
-            map(serie.data, point => ({
+            map(serie.data, (point) => ({
               x: point[0],
               y: point[1],
             })),
@@ -106,7 +106,7 @@ export default class MicrosoftOfficeLicenseConsumptionCtrl {
     const expirationDate = this.constructor.calculateExpirationDate(this.renewDate, 0);
     const isRenewDateComingUp = expirationDate.isAfter();
     let startingMonthOffset = this.periods
-      .filter(currentPeriod => currentPeriod.key === period)[0].value;
+      .filter((currentPeriod) => currentPeriod.key === period)[0].value;
     let endingMonthOffset = period === 'last' ? -1 : 0;
 
     if (!isRenewDateComingUp) {

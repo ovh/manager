@@ -91,7 +91,7 @@ class LogsInputsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_add_error', err, { inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_add_error', err, { inputTitle: input.info.title }));
   }
 
   /**
@@ -109,7 +109,7 @@ class LogsInputsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_inputs_delete_success', { inputTitle: input.info.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_delete_error', err, { inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_delete_error', err, { inputTitle: input.info.title }));
   }
 
   /**
@@ -121,8 +121,8 @@ class LogsInputsService {
    */
   getDetails(serviceName) {
     return this.DetailsAapiService.me({ serviceName })
-      .$promise.then(details => this.constructor.transformDetails(details))
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_details_get_error', err, {}));
+      .$promise.then((details) => this.constructor.transformDetails(details))
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_details_get_error', err, {}));
   }
 
   /**
@@ -146,7 +146,7 @@ class LogsInputsService {
    */
   getInput(serviceName, inputId) {
     return this.InputsApiAapiService.get({ serviceName, inputId })
-      .$promise.catch(err => this.LogsHelperService.handleError('logs_inputs_get_error', err, {}));
+      .$promise.catch((err) => this.LogsHelperService.handleError('logs_inputs_get_error', err, {}));
   }
 
   /**
@@ -159,7 +159,7 @@ class LogsInputsService {
    */
   getInputDetail(serviceName, inputId) {
     return this.getInput(serviceName, inputId)
-      .then(input => this.transformInput(input));
+      .then((input) => this.transformInput(input));
   }
 
   /**
@@ -172,7 +172,7 @@ class LogsInputsService {
    */
   getInputLogUrl(serviceName, inputId) {
     return this.InputsApiLexiService.logurl({ serviceName, inputId })
-      .$promise.catch(err => this.LogsHelperService.handleError('logs_inputs_logurl_error', err, {}));
+      .$promise.catch((err) => this.LogsHelperService.handleError('logs_inputs_logurl_error', err, {}));
   }
 
   /**
@@ -185,17 +185,17 @@ class LogsInputsService {
   getInputs(serviceName) {
     return this.getAllInputs(serviceName)
       .then((inputIds) => {
-        const promises = inputIds.map(inputId => this.getInputDetail(serviceName, inputId));
+        const promises = inputIds.map((inputId) => this.getInputDetail(serviceName, inputId));
         return this.$q.all(promises);
       });
   }
 
   getMainOffer(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+      .then((me) => ({
         max: me.offer.maxNbInput,
         current: me.offer.curNbInput,
-      })).catch(err => this.LogsHelperService.handleError('logs_inputs_main_offer_get_error', err, {}));
+      })).catch((err) => this.LogsHelperService.handleError('logs_inputs_main_offer_get_error', err, {}));
   }
 
   getNewInput() {
@@ -222,10 +222,10 @@ class LogsInputsService {
         const quota = {
           max: me.total.maxNbInput,
           configured: me.total.curNbInput,
-          currentUsage: me.total.curNbInput * 100 / me.total.maxNbInput,
+          currentUsage: (me.total.curNbInput * 100) / me.total.maxNbInput,
         };
         return quota;
-      }).catch(err => this.LogsHelperService.handleError('logs_inputs_quota_get_error', err, {}));
+      }).catch((err) => this.LogsHelperService.handleError('logs_inputs_quota_get_error', err, {}));
   }
 
   /**
@@ -348,15 +348,15 @@ class LogsInputsService {
         this.InputsApiAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_network_add_error', err, { network: network.network, inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_network_add_error', err, { network: network.network, inputTitle: input.info.title }));
   }
 
   executeTest(serviceName, input) {
     return this.InputsApiLexiService.test({ serviceName, inputId: input.info.inputId })
       .$promise
-      .then(operation => this.LogsHelperService.handleOperation(serviceName, operation))
+      .then((operation) => this.LogsHelperService.handleOperation(serviceName, operation))
       .then(() => this.getTestResults(serviceName, input))
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_test_error', err, { inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_test_error', err, { inputTitle: input.info.title }));
   }
 
   removeNetwork(serviceName, input, network) {
@@ -371,7 +371,7 @@ class LogsInputsService {
         this.InputsApiAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_network_remove_error', err, { network: network.network, inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_network_remove_error', err, { network: network.network, inputTitle: input.info.title }));
   }
 
   updateFlowgger(serviceName, input, flowgger) {
@@ -386,7 +386,7 @@ class LogsInputsService {
         this.InputsApiAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_flowgger_update_error', err, { inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_flowgger_update_error', err, { inputTitle: input.info.title }));
   }
 
   updateLogstash(serviceName, input, logstash) {
@@ -402,7 +402,7 @@ class LogsInputsService {
         this.InputsApiAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_logstash_update_error', err, { inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_logstash_update_error', err, { inputTitle: input.info.title }));
   }
 
   /**
@@ -424,7 +424,7 @@ class LogsInputsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_inputs_update_error', err, { inputTitle: input.info.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_inputs_update_error', err, { inputTitle: input.info.title }));
   }
 
   getTestResults(serviceName, input) {

@@ -76,7 +76,7 @@ export default class {
       .mapDnsZoneValue(cartOption.dnsConfiguration);
 
     return this.addHostingToCart(cartId, domainName, productOptions, dnsZoneValue)
-      .then(itemId => (moduleOptions ? this.addModuleToCart(
+      .then((itemId) => (moduleOptions ? this.addModuleToCart(
         cartId,
         itemId,
         domainName,

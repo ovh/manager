@@ -35,7 +35,7 @@ angular.module('managerApp').controller('XdslModemLanCtrl', function XdslModemLa
     return OvhApiXdsl.Modem().Lan().Aapi().getLanDetails({
       xdslId: $stateParams.serviceName,
     }).$promise.then((data) => {
-      self.lans = map(data, elt => new PackXdslModemLanObject(elt));
+      self.lans = map(data, (elt) => new PackXdslModemLanObject(elt));
     }).catch((err) => {
       TucToast.error($translate.instant('xdsl_modem_lan_error'));
       return $q.reject(err);

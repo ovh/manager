@@ -4,7 +4,7 @@ angular.module('Billing.services').service('BillingUser', [
     /*
     * get user by SWS
     */
-    this.getUser = () => this.getMe().then(result => ({
+    this.getUser = () => this.getMe().then((result) => ({
       nichandle: result.nichandle,
       email: result.email,
       firstName: result.firstname,
@@ -19,7 +19,7 @@ angular.module('Billing.services').service('BillingUser', [
       cache: 'UNIVERS_BILLING_ME',
     });
 
-    this.isVATNeeded = () => this.getUser().then(user => ['CA', 'QC', 'WE', 'WS'].indexOf(user.ovhSubsidiary) === -1);
+    this.isVATNeeded = () => this.getUser().then((user) => ['CA', 'QC', 'WE', 'WS'].indexOf(user.ovhSubsidiary) === -1);
 
     this.getAvailableMeans = () => OvhHttp.get('/me/availableAutomaticPaymentMeans', {
       rootPath: 'apiv6',
@@ -41,7 +41,7 @@ angular.module('Billing.services').service('BillingUser', [
       return means;
     });
 
-    this.addCreditCode = inputCode => OvhHttp.post('/me/credit/code', {
+    this.addCreditCode = (inputCode) => OvhHttp.post('/me/credit/code', {
       rootPath: 'apiv6',
       data: {
         inputCode,

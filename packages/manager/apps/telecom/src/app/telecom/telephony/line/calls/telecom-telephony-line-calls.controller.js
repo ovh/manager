@@ -101,10 +101,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', functio
   function init() {
     return TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getLine($stateParams.serviceName)).then((line) => {
+      .then((group) => group.getLine($stateParams.serviceName)).then((line) => {
         self.line = line;
 
-        isTrunkRates = some(line.offers, offer => startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
+        isTrunkRates = some(line.offers, (offer) => startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
 
         self.actions = filter(initActions(), (action) => {
           let display = action.display === true;

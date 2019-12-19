@@ -11,8 +11,8 @@
     confirm() {
       this.loading = true;
       return this.MetricService.deleteToken(this.serviceName, this.tokenID)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(err => this.$uibModalInstance.dismiss(err))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((err) => this.$uibModalInstance.dismiss(err))
         .finally(() => {
           this.loading = false;
         });

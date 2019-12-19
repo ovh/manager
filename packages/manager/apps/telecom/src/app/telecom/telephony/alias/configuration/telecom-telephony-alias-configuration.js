@@ -31,7 +31,7 @@ angular.module('managerApp').config(($stateProvider) => {
           aliasCopy.featureType = alias.isContactCenterSolution() ? 'contactCenterSolution' : alias.featureType;
           return aliasCopy;
         }),
-      featureTypeLabel: $translate => $translate.instant('telephony_alias_configuration_configuration_type_contactCenterSolution').toLowerCase(),
+      featureTypeLabel: ($translate) => $translate.instant('telephony_alias_configuration_configuration_type_contactCenterSolution').toLowerCase(),
     },
     translations: { value: ['.', '..'], format: 'json' },
   });

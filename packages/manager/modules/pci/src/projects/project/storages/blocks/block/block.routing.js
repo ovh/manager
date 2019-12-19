@@ -4,13 +4,13 @@ export default /* @ngInject */($stateProvider) => {
       url: '/:storageId',
       abstract: true,
       resolve: {
-        storageId: /* @ngInject */$transition$ => $transition$.params().storageId,
+        storageId: /* @ngInject */($transition$) => $transition$.params().storageId,
         storage: /* @ngInject */ (
           PciProjectStorageBlockService,
           projectId,
           storageId,
         ) => PciProjectStorageBlockService.get(projectId, storageId),
-        breadcrumb: /* @ngInject */ storage => storage.name,
+        breadcrumb: /* @ngInject */ (storage) => storage.name,
       },
     });
 };

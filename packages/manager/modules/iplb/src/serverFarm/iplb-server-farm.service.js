@@ -36,7 +36,7 @@ export default class IpLoadBalancerServerFarmService {
     return this.Farm.all.query({ serviceName, vrackNetworkId: networkId })
       .$promise
       .then((farms) => {
-        const promises = map(farms, farm => this.getServerFarm(serviceName, farm.id, farm.type));
+        const promises = map(farms, (farm) => this.getServerFarm(serviceName, farm.id, farm.type));
         return this.$q.all(promises);
       })
       .catch(this.CucServiceHelper.errorHandler('iplb_farm_list_loading_error'));
@@ -61,7 +61,7 @@ export default class IpLoadBalancerServerFarmService {
     return this.Server[type].query({ serviceName, farmId })
       .$promise
       .then((serverIds) => {
-        const promises = map(serverIds, serverId => this.Server[type]
+        const promises = map(serverIds, (serverId) => this.Server[type]
           .get({ serviceName, farmId, serverId })
           .$promise
           .then((server) => {

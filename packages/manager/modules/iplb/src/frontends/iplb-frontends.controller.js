@@ -35,7 +35,7 @@ export default class IpLoadBalancerFrontendsCtrl {
     }
     return this.IpLoadBalancerFrontendService
       .getFarm(frontend.protocol, this.$stateParams.serviceName, frontend.defaultFarmId)
-      .then(farm => ({ defaultFarm: farm }));
+      .then((farm) => ({ defaultFarm: farm }));
   }
 
   update(frontend) {

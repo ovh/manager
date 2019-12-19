@@ -15,7 +15,7 @@ export default class {
 
   getUrl() {
     const defaultLanguage = Object.keys(ALLOWED_LANGUAGES)
-      .find(key => ALLOWED_LANGUAGES[key].isDefault);
+      .find((key) => ALLOWED_LANGUAGES[key].isDefault);
     const userLanguage = this.TranslateService.getUserLocale(true);
 
     const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])

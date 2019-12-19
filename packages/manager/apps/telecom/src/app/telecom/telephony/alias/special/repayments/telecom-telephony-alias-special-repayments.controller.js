@@ -36,7 +36,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRepaymentsC
 
           newRepayment.isFee = this.TELEPHONY_REPAYMENT_CONSUMPTION.calledFeesPrefix.fr
             .concat(this.TELEPHONY_REPAYMENT_CONSUMPTION.calledFeesPrefix.be)
-            .some(prefix => startsWith(repayment.dialed, prefix));
+            .some((prefix) => startsWith(repayment.dialed, prefix));
 
           return newRepayment;
         });

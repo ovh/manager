@@ -94,7 +94,7 @@ angular.module('App').controller(
       this.loading.prices = true;
 
       this.$q
-        .all(map(durations, duration => this.privateDatabaseService
+        .all(map(durations, (duration) => this.privateDatabaseService
           .orderPrice(
             this.selectedOrder.config.version,
             this.selectedOrder.config.ramSize,
@@ -177,7 +177,7 @@ angular.module('App').controller(
           this.durations.available = durations;
           this.loadPrices(durations);
         })
-        .catch(data => this.alerter.alertFromSWS(
+        .catch((data) => this.alerter.alertFromSWS(
           this.$translate.instant('privateDatabase_order_step2_duration_fail'),
           data,
           this.$scope.alerts.durations,

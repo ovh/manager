@@ -16,7 +16,7 @@ angular
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import('./streams.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
   });

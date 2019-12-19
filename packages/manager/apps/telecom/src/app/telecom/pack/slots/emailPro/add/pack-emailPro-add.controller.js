@@ -26,7 +26,7 @@ angular.module('managerApp').controller('PackEmailProAddCtrl', class PackEmailPr
     this.OvhApiPackXdsl.EmailPro().v6()
       .getDomains({ packName: this.$stateParams.packName }).$promise
       .then((domains) => {
-        this.availablesDomains = map(domains, domain => ({ value: `@${domain}`, label: domain }));
+        this.availablesDomains = map(domains, (domain) => ({ value: `@${domain}`, label: domain }));
       });
 
     this.$scope.$watchGroup(['ctrl.account.name', 'ctrl.account.domain'], ([name, domain]) => {

@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.snapshots', {
           projectId,
         }),
-        breadcrumb: /* @ngInject */ $translate => $translate
+        breadcrumb: /* @ngInject */ ($translate) => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_storages_snapshots_snapshot_create-volume_title')),
       },

@@ -12,10 +12,10 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
       .query({
         billingAccount: $stateParams.billingAccount,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.HistoryConsumption().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.HistoryConsumption().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             date: chunkIds,
           }).$promise,
@@ -38,7 +38,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
   self.refresh = function refresh() {
     fetchConsumption().then((result) => {
       self.consumption.raw = result;
-    }, err => new TucToastError(err));
+    }, (err) => new TucToastError(err));
   };
 
   self.fetchFile = function fetchFile(consumption, type) {
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
     set(consumption, 'downloading', true);
     self.fetchFile(consumption, type).then((info) => {
       $window.location.href = info.url; // eslint-disable-line
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       set(consumption, 'downloading', false);
     });
   };

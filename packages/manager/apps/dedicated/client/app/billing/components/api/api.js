@@ -20,7 +20,7 @@ angular.module('Billing.services').service('BillingApi', [
         url: requestUrl,
         data: requestBody,
         cache: opt.cache || false,
-      }).then(response => response.data, response => $q.reject(response));
+      }).then((response) => response.data, (response) => $q.reject(response));
     };
 
     angular.forEach(['get', 'put', 'post', 'delete'], (operationType) => {

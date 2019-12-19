@@ -17,10 +17,10 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomains
   function fetchCustomDomains() {
     return OvhApiMe.Fax().CustomDomains().v6()
       .query().$promise
-      .then(customDomainsIds => $q
+      .then((customDomainsIds) => $q
         .all(map(
           customDomainsIds,
-          id => OvhApiMe.Fax().CustomDomains().v6()
+          (id) => OvhApiMe.Fax().CustomDomains().v6()
             .get({
               id,
             }).$promise,

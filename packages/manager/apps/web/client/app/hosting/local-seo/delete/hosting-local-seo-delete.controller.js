@@ -20,7 +20,7 @@ angular.module('App').controller(
       return this.HostingLocalSeo
         .deleteLocation(this.productId, this.location.id)
         .then(() => this.Alerter.success(this.$translate.instant('hosting_tab_LOCAL_SEO_delete_success'), this.$scope.alerts.main))
-        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('hosting_tab_LOCAL_SEO_delete_error'), err, this.$scope.alerts.main))
+        .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('hosting_tab_LOCAL_SEO_delete_error'), err, this.$scope.alerts.main))
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

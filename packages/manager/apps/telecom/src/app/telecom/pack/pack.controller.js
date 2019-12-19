@@ -85,7 +85,7 @@ export default class PackCtrl {
         const filteredServices = map(
           filter(
             services,
-            service => this.DASHBOARD.services.indexOf(service.name) > -1,
+            (service) => this.DASHBOARD.services.indexOf(service.name) > -1,
           ),
           (service) => {
             const newService = service;
@@ -131,7 +131,7 @@ export default class PackCtrl {
     return this.OvhApiPackXdsl.Aapi().get({ packId: this.$stateParams.packName })
       .$promise
       .then((packInfo) => {
-        const mainAccess = find(packInfo.services, service => service.role === 'main');
+        const mainAccess = find(packInfo.services, (service) => service.role === 'main');
         this.pack = assign(
           packInfo.general,
           {

@@ -46,7 +46,7 @@ export default /* @ngInject */ function (
     }
 
     self.isLoading = true;
-    return $q.all(map(toAdd, number => param.addScreenList({
+    return $q.all(map(toAdd, (number) => param.addScreenList({
       screen: {
         callNumber: number,
         nature,
@@ -55,7 +55,7 @@ export default /* @ngInject */ function (
     }))).then(() => {
       $uibModalInstance.close();
       TucToast.success($translate.instant('telephony_calls_filtering_add_plural_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   };

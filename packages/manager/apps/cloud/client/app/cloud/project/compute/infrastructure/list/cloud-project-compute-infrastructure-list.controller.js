@@ -94,9 +94,9 @@ class CloudProjectComputeInfrastructureListCtrl {
       return this.$q
         .all(map(
           this.infra.vrack.publicCloud.items,
-          instance => this.OvhApiCloudProjectFlavor.v6()
+          (instance) => this.OvhApiCloudProjectFlavor.v6()
             .get({ serviceName: this.serviceName, flavorId: instance.flavorId }).$promise
-            .then(flavor => this.updateInstance(instance, flavor)),
+            .then((flavor) => this.updateInstance(instance, flavor)),
         ))
         .then((instances) => { this.table.items = instances; });
     }).catch((err) => {
@@ -132,15 +132,15 @@ class CloudProjectComputeInfrastructureListCtrl {
   addOrRemoveInstance(newIds, oldIds) {
     if (oldIds != null) {
       if (newIds.length > oldIds.length) {
-        const foundId = find(newIds, key => indexOf(oldIds, key) === -1);
+        const foundId = find(newIds, (key) => indexOf(oldIds, key) === -1);
         const foundItem = this.infra.vrack.publicCloud.items[foundId];
         if (foundItem) {
           set(foundItem, 'volumes', get(this.volumes, foundItem.id, []));
           this.table.items.push(foundItem);
         }
       } else if (newIds.length < oldIds.length) {
-        const foundId = find(oldIds, key => indexOf(newIds, key) === -1);
-        remove(this.table.items, item => item.id === foundId);
+        const foundId = find(oldIds, (key) => indexOf(newIds, key) === -1);
+        remove(this.table.items, (item) => item.id === foundId);
       }
     }
   }

@@ -45,8 +45,8 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
     this.isIpInOrder = function isIpInOrder(ip1Param, ip2Param) {
       let ip1 = ip1Param;
       let ip2 = ip2Param;
-      ip1 = map(ip1.split(/\./), elt => parseInt(elt, 10));
-      ip2 = map(ip2.split(/\./), elt => parseInt(elt, 10));
+      ip1 = map(ip1.split(/\./), (elt) => parseInt(elt, 10));
+      ip2 = map(ip2.split(/\./), (elt) => parseInt(elt, 10));
       const comp = reduce(ip1, (result, val, index) => result && (val <= ip2[index]));
 
       return comp && last(ip1) < last(ip2);
@@ -59,7 +59,7 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
         .query({
           xdslId: $stateParams.serviceName,
         }).$promise.then((data) => {
-          self.dhcps = map(data, elt => new PackXdslModemDhcpObject(elt));
+          self.dhcps = map(data, (elt) => new PackXdslModemDhcpObject(elt));
         }).catch((err) => {
           TucToast.error($translate.instant('xdsl_modem_dhcp_error'));
           return $q.reject(err);

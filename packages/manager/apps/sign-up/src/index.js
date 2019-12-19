@@ -44,7 +44,7 @@ angular
     detailsState,
     activityState,
     'ovhSignUp',
-  ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
+  ].filter((value) => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .config(/* @ngInject */ ($locationProvider, $urlRouterProvider) => {
     $locationProvider.hashPrefix('');
     $urlRouterProvider.otherwise('/');

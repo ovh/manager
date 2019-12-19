@@ -14,7 +14,7 @@ export default /* @ngInject */($stateProvider) => {
       },
       resolve: {
         rebootType: () => 'hard',
-        goBack: /* @ngInject */ goToInstance => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => goToInstance,
         breadcrumb: () => null,
       },
     });

@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       controllerAs: '$ctrl',
       template,
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_sshKeys_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_sshKeys_title'),
       },
     });
 };

@@ -131,7 +131,7 @@ export default class SignUpFormCtrl {
       Object.defineProperty(this.model, name, {
         enumerable: true,
         get: () => get(this.model, `$${name}.value`),
-        set: newValue => set(this.model, `$${name}.value`, newValue),
+        set: (newValue) => set(this.model, `$${name}.value`, newValue),
       });
     });
   }

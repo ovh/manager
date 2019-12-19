@@ -194,17 +194,17 @@ export default class ExchangeAccountHomeController {
     this.gridParameters.searchValues = map(
       filter(
         parameters.criteria,
-        criterium => isNull(criterium.property) || criterium.property === 'emailAddress',
+        (criterium) => isNull(criterium.property) || criterium.property === 'emailAddress',
       ),
-      criterium => criterium.value,
+      (criterium) => criterium.value,
     );
 
     const accountTypeFilters = map(
       filter(
         parameters.criteria,
-        criterium => criterium.property === 'accountLicense',
+        (criterium) => criterium.property === 'accountLicense',
       ),
-      criterium => criterium.value,
+      (criterium) => criterium.value,
     );
 
     this.gridParameters.accountTypeFilter = accountTypeFilters.length === 2 ? '' : accountTypeFilters[0];
@@ -408,7 +408,7 @@ export default class ExchangeAccountHomeController {
     }
 
     let formattedAccounts = get(accounts, 'list.results', [])
-      .map(account => ({
+      .map((account) => ({
         ...account,
         emailAddress: unpunycodeEmailAddress(account.primaryEmailDisplayName),
         size: transformSizeData.call(this, account),
@@ -454,7 +454,7 @@ export default class ExchangeAccountHomeController {
   openAccountOrderingDialog() {
     const placeholderAccountAmount = sumBy(
       this.accounts,
-      account => this.exchangeAccount.isPlaceholder(account),
+      (account) => this.exchangeAccount.isPlaceholder(account),
     );
     this.navigation.setAction('exchange/account/order/account-order', {
       placeholderAccountAmount,
@@ -464,7 +464,7 @@ export default class ExchangeAccountHomeController {
   computeDefaultCompanyColumnParameter() {
     return {
       name: 'company',
-      hidden: !this.accounts.some(account => !isEmpty(account.company)),
+      hidden: !this.accounts.some((account) => !isEmpty(account.company)),
     };
   }
 

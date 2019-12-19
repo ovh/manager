@@ -42,10 +42,10 @@ angular.module('managerApp')
           billingAccount: $stateParams.billingAccount,
           bookKey,
         }).$promise
-        .then(phonebookContactIds => $q
+        .then((phonebookContactIds) => $q
           .all(map(
             chunk(phonebookContactIds, 50),
-            chunkIds => OvhApiTelephony.Phonebook().PhonebookContact().v6().getBatch({
+            (chunkIds) => OvhApiTelephony.Phonebook().PhonebookContact().v6().getBatch({
               billingAccount: $stateParams.billingAccount,
               bookKey,
               id: chunkIds,
@@ -68,7 +68,7 @@ angular.module('managerApp')
     self.getSelection = function getSelection() {
       return filter(
         self.phonebookContact.raw,
-        contact => contact
+        (contact) => contact
           && self.phonebookContact.selected
           && self.phonebookContact.selected[contact.id],
       );
@@ -91,7 +91,7 @@ angular.module('managerApp')
         form.$setPristine();
         assign(self.phonebook, pick(phonebook, ['bookKey']), name);
         TucToast.success($translate.instant('telephony_phonebook_create_success'));
-      }).catch(error => new TucToastError(error)).finally(() => {
+      }).catch((error) => new TucToastError(error)).finally(() => {
         self.phonebookToAdd.isAdding = false;
       });
     };
@@ -279,14 +279,14 @@ angular.module('managerApp')
       }).$promise.then(() => {
         TucToast.success($translate.instant('telephony_phonebook_contact_remove_success'));
         return self.refresh();
-      }).catch(error => new TucToastError(error)).finally(() => {
+      }).catch((error) => new TucToastError(error)).finally(() => {
         self.phonebookContact.isDeleting = false;
       });
     };
 
     self.deleteSelectedContacts = function deleteSelectedContacts() {
       const contacts = self.getSelection();
-      const queries = contacts.map(contact => OvhApiTelephony.Phonebook().PhonebookContact().v6()
+      const queries = contacts.map((contact) => OvhApiTelephony.Phonebook().PhonebookContact().v6()
         .remove({
           billingAccount: $stateParams.billingAccount,
           bookKey: get(self.phonebook, 'bookKey'),
@@ -298,7 +298,7 @@ angular.module('managerApp')
       return $q.all(queries).then(() => {
         self.phonebookContact.selected = {};
         return self.refresh();
-      }).catch(error => new TucToastError(error)).finally(() => {
+      }).catch((error) => new TucToastError(error)).finally(() => {
         self.phonebookContact.isDeleting = false;
       });
     };
@@ -348,7 +348,7 @@ angular.module('managerApp')
         self.phonebookContact.raw = phonebookContact;
         self.sortPhonebookContact();
         self.updatePhonebookContactGroups();
-      }).catch(error => new TucToastError(error)).finally(() => {
+      }).catch((error) => new TucToastError(error)).finally(() => {
         self.phonebookContact.isLoading = false;
       });
     };
@@ -398,7 +398,7 @@ angular.module('managerApp')
           });
         }
         return null;
-      }).catch(error => new TucToastError(error)).finally(() => {
+      }).catch((error) => new TucToastError(error)).finally(() => {
         self.phonebook.isLoading = false;
       });
     }

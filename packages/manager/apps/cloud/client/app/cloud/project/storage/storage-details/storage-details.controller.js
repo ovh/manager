@@ -127,7 +127,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
       const hours = Math.floor(delay / 3600);
       const minutes = Math.floor((delay - hours * 3600) / 60);
       const seconds = delay - hours * 3600 - minutes * 60;
-      const delayText = map([hours, minutes, seconds], time => padStart(time, 2, '0')).join(':');
+      const delayText = map([hours, minutes, seconds], (time) => padStart(time, 2, '0')).join(':');
       return $translate.instant('storage_availability_unsealing', { delay: delayText });
     }
 
@@ -382,7 +382,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
 
     $scope.select = function selectFn() {
       $scope.model.allSelected = $scope.model.selected.length === $scope.files.length
-        && every($scope.model.selected, select => select);
+        && every($scope.model.selected, (select) => select);
     };
 
     $scope.manySelected = function manySelected() {
@@ -390,7 +390,7 @@ angular.module('managerApp').controller('RA.storageDetailsCtrl', [
     };
 
     $scope.selectionCount = function selectionCount() {
-      return size(filter($scope.model.selected, value => value));
+      return size(filter($scope.model.selected, (value) => value));
     };
 
     $scope.$on('delete_object', (event, data) => {

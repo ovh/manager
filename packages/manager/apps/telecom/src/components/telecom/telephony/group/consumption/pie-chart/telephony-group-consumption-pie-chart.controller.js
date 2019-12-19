@@ -14,7 +14,7 @@ angular.module('managerApp').controller(
     };
 
     this.getTotal = function getTotal() {
-      return sumBy(self.dataset, set => set.count);
+      return sumBy(self.dataset, (set) => set.count);
     };
 
     this.$onInit = function $onInit() {

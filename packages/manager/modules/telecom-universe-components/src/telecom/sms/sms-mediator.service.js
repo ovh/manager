@@ -72,7 +72,7 @@ export default /* @ngInject */ function (
 
   self.getCount = function getCount() {
     // return OvhApiSms.v7().query().execute().$promise.then(function (smsIds) {
-    return OvhApiSms.v6().query().$promise.then(smsIds => smsIds.length);
+    return OvhApiSms.v6().query().$promise.then((smsIds) => smsIds.length);
   };
 
   /* -----  End of COUNT  ------*/
@@ -147,7 +147,7 @@ export default /* @ngInject */ function (
 
     self.initDeferred = $q.defer();
 
-    OvhApiSms.v6().query().$promise.then(smsIds => OvhApiSms.Aapi().detail({
+    OvhApiSms.v6().query().$promise.then((smsIds) => OvhApiSms.Aapi().detail({
       smsIds,
     }).$promise.then((smsDetails) => {
       angular.forEach(smsDetails, (smsDetail) => {

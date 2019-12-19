@@ -31,8 +31,8 @@ export default class IpLoadBalancerTaskCtrl {
 
     this.poller = this.CucCloudPoll.pollArray({
       items: this.tasks.data,
-      pollFunction: task => this.IpLoadBalancerTaskService.getTask(this.serviceName, task.id),
-      stopCondition: task => includes(['done', 'error'], task.status),
+      pollFunction: (task) => this.IpLoadBalancerTaskService.getTask(this.serviceName, task.id),
+      stopCondition: (task) => includes(['done', 'error'], task.status),
     });
   }
 

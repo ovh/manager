@@ -21,8 +21,8 @@ class CloudProjectComputeVolumeDeleteCtrl {
   confirm() {
     this.loaders.delete = true;
     return this.deleteVolume(this.volume.id)
-      .then(response => this.$uibModalInstance.close(response))
-      .catch(err => this.$uibModalInstance.dismiss(err))
+      .then((response) => this.$uibModalInstance.close(response))
+      .catch((err) => this.$uibModalInstance.dismiss(err))
       .finally(() => {
         this.loaders.delete = false;
       });

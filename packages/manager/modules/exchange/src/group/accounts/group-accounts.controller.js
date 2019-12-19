@@ -85,10 +85,11 @@ export default class ExchangeGroupAccountsCtrl {
     const managerValue = accountInManagerList ? get(accountInManagerList, 'operation') === 'POST' : account.manager;
     const memberValue = accountInMemberList ? get(accountInMemberList, 'operation') === 'POST' : account.member;
 
-    return Object.assign({}, account, {
+    return {
+      ...account,
       manager: managerValue,
       member: memberValue,
-    });
+    };
   }
 
   getDefaultDomain() {
@@ -111,7 +112,7 @@ export default class ExchangeGroupAccountsCtrl {
           ...accountCreationOptions.availableDomains,
         ];
         this.selectedDomain = find(accountCreationOptions.availableDomains,
-          domain => domain.name === this.selectedDomain.name);
+          (domain) => domain.name === this.selectedDomain.name);
       })
       .catch((error) => {
         this.services.messaging.writeError(

@@ -18,7 +18,7 @@ angular.module(moduleName, [
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import('./overTheBox.component')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
 
@@ -28,7 +28,7 @@ angular.module(moduleName, [
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import('./details/index')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
   });

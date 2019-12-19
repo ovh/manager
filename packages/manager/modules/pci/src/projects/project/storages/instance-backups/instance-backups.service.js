@@ -22,9 +22,9 @@ export default class PciProjectStorageInstanceBackupService {
         serviceName: projectId,
       })
       .$promise
-      .then(instanceBackups => map(
+      .then((instanceBackups) => map(
         instanceBackups,
-        instanceBackup => new InstanceBackup(instanceBackup),
+        (instanceBackup) => new InstanceBackup(instanceBackup),
       ));
   }
 
@@ -37,7 +37,7 @@ export default class PciProjectStorageInstanceBackupService {
         snapshotId: instanceBackupId,
       })
       .$promise
-      .then(instanceBackup => new InstanceBackup(instanceBackup));
+      .then((instanceBackup) => new InstanceBackup(instanceBackup));
   }
 
   delete(projectId, { id }) {
@@ -58,6 +58,6 @@ export default class PciProjectStorageInstanceBackupService {
         serviceName: projectId,
       })
       .$promise
-      .then(instances => filter(instances, { imageId: id }));
+      .then((instances) => filter(instances, { imageId: id }));
   }
 }

@@ -59,11 +59,11 @@ angular
       this.$scope.orderFormValid = () => this.orderFormValid();
       this.$scope.checkDedicatedBlockSize = () => this.checkDedicatedBlockSize();
       this.$scope.orderOrganisation = () => this.orderOrganisation();
-      this.$scope.loadPrices = durations => this.loadPrices(durations);
+      this.$scope.loadPrices = (durations) => this.loadPrices(durations);
       this.$scope.getDurations = () => this.getDurations();
       this.$scope.loadContracts = () => this.loadContracts();
       this.$scope.backToContracts = () => this.backToContracts();
-      this.$scope.getResumePrice = price => this.getResumePrice(price);
+      this.$scope.getResumePrice = (price) => this.getResumePrice(price);
       this.$scope.confirmOrder = () => this.confirmOrder();
 
       if (this.isOrderingFromDrp()) {
@@ -179,7 +179,7 @@ angular
         this.IpLegacyOrder
           .getAvailableCountries(this.$scope.model.service)
           .then((countries) => {
-            this.$scope.orderableIp.countries = countries.map(countryCode => ({
+            this.$scope.orderableIp.countries = countries.map((countryCode) => ({
               code: countryCode,
               displayValue: this.$translate.instant(`country_${countryCode.toUpperCase()}`),
             }));
@@ -303,7 +303,7 @@ angular
     loadPrices(durations) {
       this.$scope.loading.prices = true;
 
-      const queue = durations.map(duration => this.IpLegacyOrder
+      const queue = durations.map((duration) => this.IpLegacyOrder
         .getOrderForDuration(this.$scope.model.service, this.$scope.model.params, duration)
         .then((details) => {
           this.$scope.durations.details[duration] = details;

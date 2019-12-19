@@ -42,7 +42,7 @@ class LogsAliasesService {
    */
   getAliases(serviceName) {
     return this.getAliasesDetails(serviceName)
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_get_error', err, {}));
   }
 
   /**
@@ -55,8 +55,8 @@ class LogsAliasesService {
    */
   getOwnAliases(serviceName) {
     return this.getAliasesDetails(serviceName)
-      .then(aliases => aliases.filter(alias => alias.info.isEditable))
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_get_error', err, {}));
+      .then((aliases) => aliases.filter((alias) => alias.info.isEditable))
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_get_error', err, {}));
   }
 
   /**
@@ -69,8 +69,8 @@ class LogsAliasesService {
    */
   getShareableAliases(serviceName) {
     return this.getAliasesDetails(serviceName)
-      .then(aliases => aliases.filter(alias => alias.info.isShareable))
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_get_error', err, {}));
+      .then((aliases) => aliases.filter((alias) => alias.info.isShareable))
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_get_error', err, {}));
   }
 
   /**
@@ -83,7 +83,7 @@ class LogsAliasesService {
   getAliasesDetails(serviceName) {
     return this.getAliasesIds(serviceName)
       .then((aliases) => {
-        const promises = aliases.map(aliasId => this.getAapiAlias(serviceName, aliasId));
+        const promises = aliases.map((aliasId) => this.getAapiAlias(serviceName, aliasId));
         return this.$q.all(promises);
       });
   }
@@ -109,7 +109,7 @@ class LogsAliasesService {
    */
   getAlias(serviceName, aliasId) {
     return this.AliasApiService.get({ serviceName, aliasId })
-      .$promise.catch(err => this.LogsHelperService.handleError('logs_alias_get_error', err, {}));
+      .$promise.catch((err) => this.LogsHelperService.handleError('logs_alias_get_error', err, {}));
   }
 
   getAliasWithStreamsAndIndices(serviceName, aliasId) {
@@ -118,14 +118,14 @@ class LogsAliasesService {
       .then((alias) => {
         if (alias.streams.length > 0) {
           const promises = alias.streams
-            .map(streamId => this.LogsStreamsService.getAapiStream(serviceName, streamId));
+            .map((streamId) => this.LogsStreamsService.getAapiStream(serviceName, streamId));
           return this.$q.all(promises).then((streams) => {
             set(alias, 'streams', streams);
             return alias;
           });
         } if (alias.indexes.length > 0) {
           const promises = alias.indexes
-            .map(indexId => this.LogsIndexService.getIndexDetails(serviceName, indexId));
+            .map((indexId) => this.LogsIndexService.getIndexDetails(serviceName, indexId));
           return this.$q.all(promises).then((indices) => {
             set(alias, 'indexes', indices);
             return alias;
@@ -133,7 +133,7 @@ class LogsAliasesService {
         }
         return alias;
       })
-      .catch(err => this.LogsHelperService.handleError('logs_alias_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_alias_get_error', err, {}));
   }
 
   /**
@@ -146,7 +146,7 @@ class LogsAliasesService {
    */
   getAapiAlias(serviceName, aliasId) {
     return this.AliasAapiService.get({ serviceName, aliasId })
-      .$promise.catch(err => this.LogsHelperService.handleError('logs_alias_get_error', err, {}));
+      .$promise.catch((err) => this.LogsHelperService.handleError('logs_alias_get_error', err, {}));
   }
 
   /**
@@ -159,19 +159,19 @@ class LogsAliasesService {
    */
   getQuota(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+      .then((me) => ({
         max: me.total.maxNbAlias,
         configured: me.total.curNbAlias,
-      })).catch(err => this.LogsHelperService.handleError('logs_alias_quota_get_error', err, {}));
+      })).catch((err) => this.LogsHelperService.handleError('logs_alias_quota_get_error', err, {}));
   }
 
   getMainOffer(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+      .then((me) => ({
         max: me.offer.maxNbAlias,
         current: me.offer.curNbAlias,
       }))
-      .catch(err => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
   }
 
   /**
@@ -189,7 +189,7 @@ class LogsAliasesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_aliases_delete_success', { aliasName: alias.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_delete_error', err, { aliasName: alias.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_delete_error', err, { aliasName: alias.name }));
   }
 
   /**
@@ -212,7 +212,7 @@ class LogsAliasesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_aliases_create_success', { aliasName: alias.suffix });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_create_error', err, { aliasName: alias.suffix }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_create_error', err, { aliasName: alias.suffix }));
   }
 
   /**
@@ -234,53 +234,53 @@ class LogsAliasesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_aliases_update_success', { aliasName: alias.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_update_error', err, { aliasName: alias.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_update_error', err, { aliasName: alias.name }));
   }
 
   attachStream(serviceName, alias, stream) {
     return this.AliasApiService.linkStream({ serviceName, aliasId: alias.aliasId },
       { streamId: stream.streamId })
       .$promise
-      .then(operation => this.LogsHelperService.handleOperation(
+      .then((operation) => this.LogsHelperService.handleOperation(
         serviceName,
         operation.data || operation,
         stream.indexingEnabled ? null : 'logs_aliases_attach_stream_not_indexed',
         { streamName: stream.title },
       ))
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_attach_stream_error', err, { streamName: stream.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_attach_stream_error', err, { streamName: stream.title }));
   }
 
   detachStream(serviceName, alias, stream) {
     return this.AliasApiService
       .unlinkStream({ serviceName, aliasId: alias.aliasId, streamId: stream.streamId })
       .$promise
-      .then(operation => this.LogsHelperService.handleOperation(
+      .then((operation) => this.LogsHelperService.handleOperation(
         serviceName,
         operation.data || operation,
       ))
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_detach_stream_error', err, { streamName: stream.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_detach_stream_error', err, { streamName: stream.title }));
   }
 
   attachIndex(serviceName, alias, index) {
     return this.AliasApiService.linkIndex({ serviceName, aliasId: alias.aliasId },
       { indexId: index.indexId })
       .$promise
-      .then(operation => this.LogsHelperService.handleOperation(
+      .then((operation) => this.LogsHelperService.handleOperation(
         serviceName,
         operation.data || operation,
       ))
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_attach_index_error', err, { indexName: index.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_attach_index_error', err, { indexName: index.name }));
   }
 
   detachIndex(serviceName, alias, index) {
     return this.AliasApiService
       .unlinkIndex({ serviceName, aliasId: alias.aliasId, indexId: index.indexId })
       .$promise
-      .then(operation => this.LogsHelperService.handleOperation(
+      .then((operation) => this.LogsHelperService.handleOperation(
         serviceName,
         operation.data || operation,
       ))
-      .catch(err => this.LogsHelperService.handleError('logs_aliases_detach_index_error', err, { indexName: index.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_aliases_detach_index_error', err, { indexName: index.name }));
   }
 
   /**

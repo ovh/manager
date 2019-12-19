@@ -58,11 +58,11 @@ export default class Stream {
   }
 
   get consumerAndPublisherToken() {
-    return find(this.tokens, token => token.isProducerAndConsumer());
+    return find(this.tokens, (token) => token.isProducerAndConsumer());
   }
 
   get consumerOnlyToken() {
-    return find(this.tokens, token => token.isConsumerOnly());
+    return find(this.tokens, (token) => token.isConsumerOnly());
   }
 
   isUnlimitedThrottling() {

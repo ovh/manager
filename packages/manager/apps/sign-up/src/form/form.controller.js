@@ -26,7 +26,7 @@ export default class SignUpFormAppCtrl {
         'nationalIdentificationNumber',
         'companyNationalIdentificationNumber',
         'corporationType',
-      ], fieldName => get(rules, `${fieldName}`) !== undefined);
+      ], (fieldName) => get(rules, `${fieldName}`) !== undefined);
     }
   }
 

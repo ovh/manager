@@ -31,13 +31,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsManualCtrl {
   createBackup() {
     this.isLoading = true;
     return this.service.createBackup(this.clusterId, this.backupName)
-      .then(res => this.goBackToBackups(
+      .then((res) => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_manual_backup_success',
           { name: this.backupName }),
         STATUS.SUCCESS,
         res.id,
       ))
-      .catch(error => this.goBackToBackups(
+      .catch((error) => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_manual_backup_error', {
           message: get(error, 'data.message'),
         }),

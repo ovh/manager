@@ -47,7 +47,7 @@ angular.module('Billing.services').service('BillingmessageParser', [
       }
 
       if (data.messages && data.messages.length > 0) {
-        const messageDetails = data.messages.map(_message => `${_message.id} : ${_message.message}`).join(', ');
+        const messageDetails = data.messages.map((_message) => `${_message.id} : ${_message.message}`).join(', ');
 
         return {
           message: `${message} (${messageDetails})`,

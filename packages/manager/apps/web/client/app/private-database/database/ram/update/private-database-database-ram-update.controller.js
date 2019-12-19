@@ -47,7 +47,7 @@ angular.module('App').controller(
 
       this.database = this.$scope.currentActionData;
 
-      this.$scope.sortRam = ram => +ram;
+      this.$scope.sortRam = (ram) => +ram;
 
       this.userService.getUser().then((user) => {
         this.data.ovhSubsidiary = user.ovhSubsidiary;
@@ -62,12 +62,12 @@ angular.module('App').controller(
         this.loading.availableRam = false;
         this.data.availableRam = availableRam;
         if (this.database.infrastructure === 'legacy') {
-          remove(this.data.availableRam, ram => ram === '2048');
+          remove(this.data.availableRam, (ram) => ram === '2048');
         }
 
         remove(
           this.data.availableRam,
-          ram => +ram === +this.database.ram.value,
+          (ram) => +ram === +this.database.ram.value,
         );
       });
 

@@ -82,7 +82,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
     return OvhApiCloudProjectInstance.v6().get({
       serviceName: this.serviceName,
       instanceId: this.id,
-    }).$promise.then(vmOptions => self.setInfos(vmOptions));
+    }).$promise.then((vmOptions) => self.setInfos(vmOptions));
   };
 
   /**
@@ -194,15 +194,15 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
      *  Get ip flagged with private type
      */
   VirtualMachineFactory.prototype.getPrivateIp = function getPrivateIp() {
-    return find(this.ipAddresses, ip => ip.type === 'private');
+    return find(this.ipAddresses, (ip) => ip.type === 'private');
   };
 
   VirtualMachineFactory.prototype.getPublicIpv4 = function getPublicIpv4() {
-    return get(find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 4), 'ip', '');
+    return get(find(this.ipAddresses, (ip) => ip.type === 'public' && ip.version === 4), 'ip', '');
   };
 
   VirtualMachineFactory.prototype.getPublicIpv6 = function getPublicIpv6() {
-    return get(find(this.ipAddresses, ip => ip.type === 'public' && ip.version === 6), 'ip', get(this.ipAddresses[0], 'ipV6.ip', ''));
+    return get(find(this.ipAddresses, (ip) => ip.type === 'public' && ip.version === 6), 'ip', get(this.ipAddresses[0], 'ipV6.ip', ''));
   };
 
   /**
@@ -261,7 +261,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
         instanceId: self.id,
       }, {
         instanceName: self.name,
-      }).$promise.then(() => self, error => $q.reject({
+      }).$promise.then(() => self, (error) => $q.reject({
         error: error.data,
         requestName: 'put',
       })));
@@ -276,7 +276,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
         self.planCode = self.planCode.replace('consumption', 'monthly');
         $rootScope.$broadcast('compute.infrastructure.vm.monthlyBilling.status-update', self.monthlyBilling.status, 'OK', self);
         return self.updatePrice();
-      }, error => $q.reject({
+      }, (error) => $q.reject({
         error: error.data,
         requestName: 'activeMonthlyBilling',
       })).finally(() => self));
@@ -292,7 +292,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
       }).$promise.then((vmOptions) => {
         self.status = vmOptions.status;
         return self;
-      }, error => $q.reject({
+      }, (error) => $q.reject({
         error: error.data,
         requestName: 'resize',
       })));
@@ -304,7 +304,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
     }
 
     return $q.allSettled(promises).catch((responses) => {
-      const tabError = responses.filter(val => !!val.error);
+      const tabError = responses.filter((val) => !!val.error);
       return $q.reject({
         errors: tabError,
         vm: self,
@@ -421,7 +421,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
       self.status = vmOptions.status;
       $rootScope.$broadcast('compute.infrastructure.vm.status-update', self.status, oldStatus, self);
       return self.getFullInformations();
-    }, error => $q.reject({
+    }, (error) => $q.reject({
       error: error.data,
       requestName: 'reinstall',
     }));
@@ -528,7 +528,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
 
         // ----- CPU -----
         if (rawData['cpu:used'] && !isEmpty(rawData['cpu:used'].values)) {
-          maxPeriod = maxBy(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+          maxPeriod = maxBy(rawData['cpu:used'].values, (v) => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
           this.monitoringData.cpu = {
             now: last(rawData['cpu:used'].values), // current CPU usage
             // does CPU reach alerting threshold over period?
@@ -542,13 +542,13 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackVmFactory', (
           const memTotal = head(rawData['mem:max'].values);
           maxPeriod = null;
           if (memTotal && memTotal.value > 0) {
-            maxPeriod = maxBy(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+            maxPeriod = maxBy(rawData['mem:used'].values, (v) => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
           }
           this.monitoringData.mem = {
             now: last(rawData['mem:used'].values), // current RAM usage
             total: memTotal, // total RAM available
             // does RAM reach alerting threshold over period ?
-            needUpgrade: maxPeriod.value / memTotal.value * 100.0 >= CLOUD_MONITORING.vm
+            needUpgrade: (maxPeriod.value / memTotal.value) * 100.0 >= CLOUD_MONITORING.vm
               .upgradeAlertThreshold,
             maxPeriod, // max RAM usage over given period
             unit: rawData['mem:used'].unit, // RAM units (MB GB ...)

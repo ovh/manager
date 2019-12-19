@@ -21,7 +21,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl 
   $onInit() {
     const additionalReplicaCount = this.hosts.length - (INCLUDED_CLUSTER_SIZE.PRIMARY
       + INCLUDED_CLUSTER_SIZE.REPLICA + INCLUDED_CLUSTER_SIZE.BACKUP);
-    this.replicaCounts = map(range(1, additionalReplicaCount + 1), replicaNumber => ({
+    this.replicaCounts = map(range(1, additionalReplicaCount + 1), (replicaNumber) => ({
       replicaNumber,
       text: `${replicaNumber} ${(replicaNumber > 1
         ? this.$translate.instant('enterprise_cloud_database_common_replicas')
@@ -40,7 +40,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl 
           replicaCount: this.selectedReplicaCount.replicaNumber,
         }));
       })
-      .catch(error => this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_nodes_delete_error', {
+      .catch((error) => this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_nodes_delete_error', {
         message: get(error, 'data.message'),
       }), STATUS.ERROR))
       .finally(() => {

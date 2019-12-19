@@ -24,18 +24,18 @@ export default class IpLoadBalancerVrackService {
       ipLoadbalancing: serviceName,
     })
       .$promise
-      .then(task => task.data)
+      .then((task) => task.data)
       .catch(this.CucServiceHelper.errorHandler('iplb_vrack_associate_vrack_error'));
   }
 
   deAssociateVrack(serviceName) {
     return this.OvhApiIpLoadBalancing.Vrack().v6().getCreationRules({ serviceName }, {})
       .$promise
-      .then(response => this.OvhApiVrack.IpLoadBalancing().v6().delete({
+      .then((response) => this.OvhApiVrack.IpLoadBalancing().v6().delete({
         serviceName: response.vrackName,
         ipLoadbalancing: serviceName,
       }).$promise)
-      .then(task => task.data)
+      .then((task) => task.data)
       .catch(this.CucServiceHelper.errorHandler('iplb_vrack_deassociate_vrack_error'));
   }
 
@@ -55,7 +55,7 @@ export default class IpLoadBalancerVrackService {
         };
         return this.$q.all(promises);
       })
-      .then(response => ({
+      .then((response) => ({
         networkId: response.vrackStatus.vrackName,
         remainingNetworks: response.rules.remainingNetworks,
         minNatIps: response.rules.minNatIps,
@@ -68,12 +68,12 @@ export default class IpLoadBalancerVrackService {
   }
 
   pollNetworkTask(serviceName, tasks) {
-    const tasksObject = map(tasks, task => ({ id: task }));
+    const tasksObject = map(tasks, (task) => ({ id: task }));
     return this.CucCloudPoll.pollArray({
       items: tasksObject,
-      pollFunction: task => this.IpLoadBalancerTaskService.getTask(serviceName, task.id)
+      pollFunction: (task) => this.IpLoadBalancerTaskService.getTask(serviceName, task.id)
         .catch(() => ({ status: 'done' })),
-      stopCondition: item => item.status === 'done' || item.status === 'error',
+      stopCondition: (item) => item.status === 'done' || item.status === 'error',
     });
   }
 
@@ -83,7 +83,7 @@ export default class IpLoadBalancerVrackService {
       .then((response) => {
         const promises = map(
           response,
-          networkId => this.getPrivateNetwork(serviceName, networkId),
+          (networkId) => this.getPrivateNetwork(serviceName, networkId),
         );
         return this.$q.all(promises);
       })
@@ -105,14 +105,14 @@ export default class IpLoadBalancerVrackService {
 
   getPrivateNetworkFarms(serviceName, networkId) {
     return this.getPrivateNetwork(serviceName, networkId)
-      .then(privateNetwork => this.IpLoadBalancerServerFarmService
+      .then((privateNetwork) => this.IpLoadBalancerServerFarmService
         .getServerFarms(serviceName, privateNetwork.vrackNetworkId));
   }
 
   addPrivateNetwork(serviceName, network) {
     return this.OvhApiIpLoadBalancing.Vrack().v6().post({ serviceName }, omit(network, ['vrackNetworkId', 'farmId']))
       .$promise
-      .then(response => this.OvhApiIpLoadBalancing.Vrack().v6()
+      .then((response) => this.OvhApiIpLoadBalancing.Vrack().v6()
         .updateFarmId({
           serviceName,
           vrackNetworkId: response.vrackNetworkId,

@@ -55,7 +55,7 @@ export const DOMAIN_CONFIG = {
         category: 'ALLDOM',
         fn: (items, compareTo) => {
           const allDoms = map(get(compareTo, 'items', []), 'serviceName');
-          return items.filter(item => !item.parentName || !includes(allDoms, item.parentName));
+          return items.filter((item) => !item.parentName || !includes(allDoms, item.parentName));
         },
       },
     },
@@ -68,7 +68,7 @@ export const DOMAIN_CONFIG = {
       app: [WEB],
       filter: {
         category: 'DOMAIN', // eslint-disable-next-line max-len
-        fn: (items, compareTo) => items.filter(it => isEmpty(find(get(compareTo, 'items', []), { serviceName: it.serviceName }))),
+        fn: (items, compareTo) => items.filter((it) => isEmpty(find(get(compareTo, 'items', []), { serviceName: it.serviceName }))),
       },
     },
   ],

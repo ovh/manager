@@ -36,7 +36,7 @@ export default /* @ngInject */ function (
         value: self.voiceMail.audioFormat,
       });
       return self.voiceMail;
-    }, err => new TucToastError(err)).then(() => OvhApiFreeFax.v6().voiceMailGetRouting({
+    }, (err) => new TucToastError(err)).then(() => OvhApiFreeFax.v6().voiceMailGetRouting({
       serviceName: $stateParams.serviceName,
     }).$promise.then((routing) => {
       initialActivateVoiceMail = routing.value;

@@ -19,10 +19,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       /* ----------  ouiModal layout resolves  ---------- */
 
-      heading: /* @ngInject */ $translate => $translate
+      heading: /* @ngInject */ ($translate) => $translate
         .instant('billing_payment_method_delete_title'),
 
-      primaryLabel: /* @ngInject */ $translate => $translate
+      primaryLabel: /* @ngInject */ ($translate) => $translate
         .instant('common_confirm'),
 
       primaryAction: /* @ngInject */ (
@@ -39,7 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
             type: 'success',
             text: $translate.instant('billing_payment_method_delete_success'),
           }))
-          .catch(error => goPaymentList({
+          .catch((error) => goPaymentList({
             type: 'error',
             text: $translate.instant('billing_payment_method_delete_error', {
               errorMessage: get(error, 'data.message'),
@@ -47,12 +47,12 @@ export default /* @ngInject */ ($stateProvider) => {
           }));
       },
 
-      secondaryLabel: /* @ngInject */ $translate => $translate
+      secondaryLabel: /* @ngInject */ ($translate) => $translate
         .instant('common_cancel'),
 
-      secondaryAction: /* @ngInject */ goPaymentList => goPaymentList,
+      secondaryAction: /* @ngInject */ (goPaymentList) => goPaymentList,
 
-      loading: /* @ngInject */ loaders => () => loaders.deleting,
+      loading: /* @ngInject */ (loaders) => () => loaders.deleting,
     },
   });
 };

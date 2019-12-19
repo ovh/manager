@@ -42,7 +42,7 @@ export default class {
     this.statusFilterOptions = {
       values: reduce(
         ['detached', 'restartPending', 'startPending', 'started', 'stopPending', 'stopped'],
-        (result, key) => Object.assign({}, result, { [key]: this.$translate.instant(`vps_database_status_${key}`) }),
+        (result, key) => ({ ...result, [key]: this.$translate.instant(`vps_database_status_${key}`) }),
         {},
       ),
     };
@@ -81,21 +81,21 @@ export default class {
 
   loadDatabases() {
     return this.ApiPrivateDb.query().$promise
-      .then(serviceNames => this.$q.all(
+      .then((serviceNames) => this.$q.all(
         map(
           serviceNames,
-          serviceName => this.ApiPrivateDb.get({ serviceName }).$promise,
+          (serviceName) => this.ApiPrivateDb.get({ serviceName }).$promise,
         ),
       ))
-      .then(databases => filter(databases, { offer: 'public' }))
-      .then(databases => this.$q.all(
+      .then((databases) => filter(databases, { offer: 'public' }))
+      .then((databases) => this.$q.all(
         map(
           databases,
-          database => this.isVpsAuthorized(database.serviceName)
-            .then(vpsAuthorized => defaults({ vpsAuthorized }, database)),
+          (database) => this.isVpsAuthorized(database.serviceName)
+            .then((vpsAuthorized) => defaults({ vpsAuthorized }, database)),
         ),
       ))
-      .then(databases => map(databases, database => defaults(
+      .then((databases) => map(databases, (database) => defaults(
         {
           name: database.displayName || database.serviceName,
         }, database,
@@ -110,7 +110,7 @@ export default class {
 
   isVpsAuthorized(serviceName) {
     return this.ApiWhitelist.query({ serviceName, ip: this.ipv4, service: true }).$promise
-      .then(whitelist => !isEmpty(whitelist));
+      .then((whitelist) => !isEmpty(whitelist));
   }
 
   addAuthorizedIp(database) {

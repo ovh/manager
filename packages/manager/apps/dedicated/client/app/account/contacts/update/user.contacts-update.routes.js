@@ -37,6 +37,6 @@ angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
 
   $urlRouterProvider.when(
     /^\/useraccount\/contact\//,
-    $location => $location.url($location.url().replace('/useraccount', '')),
+    ($location) => $location.url($location.url().replace('/useraccount', '')),
   );
 });

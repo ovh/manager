@@ -20,10 +20,10 @@ export default /* @ngInject */ ($scope, $rootScope, $timeout, WucCronValidator) 
     WucCronValidator.switchToExpertMode($scope.cron, $scope.mode);
   };
 
-  $scope.cronSimpleValueIsValid = field => WucCronValidator
+  $scope.cronSimpleValueIsValid = (field) => WucCronValidator
     .cronSimpleValueIsValid(field, $scope.cron, $scope.mode);
 
-  $scope.cronExpertValueIsValid = field => WucCronValidator
+  $scope.cronExpertValueIsValid = (field) => WucCronValidator
     .cronExpertValueIsValid(field, $scope.cron);
 
   function getCaretPosition(elem) {

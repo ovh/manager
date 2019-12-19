@@ -99,7 +99,7 @@ export default class {
       }
       this.slot.count = receiversIds.length;
       this.slot.isFull = this.slot.count >= this.slot.threshold;
-      return this.$q.all(map(receiversIds, slotId => this.api.sms.receivers.get({
+      return this.$q.all(map(receiversIds, (slotId) => this.api.sms.receivers.get({
         serviceName: this.$stateParams.serviceName,
         slotId,
       }).$promise));
@@ -139,7 +139,7 @@ export default class {
   getSelection() {
     return filter(
       this.receivers.raw,
-      receiver => receiver && this.receivers.selected && this.receivers.selected[receiver.slotId],
+      (receiver) => receiver && this.receivers.selected && this.receivers.selected[receiver.slotId],
     );
   }
 
@@ -316,7 +316,7 @@ export default class {
    */
   deleteSelectedReceivers() {
     const receivers = this.getSelection();
-    const queries = receivers.map(receiver => this.api.sms.receivers.delete({
+    const queries = receivers.map((receiver) => this.api.sms.receivers.delete({
       serviceName: this.$stateParams.serviceName,
       slotId: receiver.slotId,
     }).$promise);

@@ -20,12 +20,12 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           ) => OvhApiCloudProjectRegion.v6().query({
             serviceName: projectId,
           }).$promise
-            .then(regions => Promise.all(map(regions, id => OvhApiCloudProjectRegion.v6().get({
+            .then((regions) => Promise.all(map(regions, (id) => OvhApiCloudProjectRegion.v6().get({
               serviceName: projectId,
               id,
             }).$promise))),
 
-          goBack: /* @ngInject */ goToFailoverIpsOnboarding => goToFailoverIpsOnboarding,
+          goBack: /* @ngInject */ (goToFailoverIpsOnboarding) => goToFailoverIpsOnboarding,
         },
 
       });
@@ -42,13 +42,13 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         resolve: {
           breadcrumb: /* @ngInject */ () => null,
           products: /* @ngInject */
-            OvhApiOrderCatalogFormatted => OvhApiOrderCatalogFormatted.v6().get({
+            (OvhApiOrderCatalogFormatted) => OvhApiOrderCatalogFormatted.v6().get({
               catalogName: 'ip',
               ovhSubsidiary: 'US',
             }).$promise
-              .then(({ plans }) => filter(plans, offer => /failover/.test(offer.planCode) && /USA/.test(offer.invoiceName))),
+              .then(({ plans }) => filter(plans, (offer) => /failover/.test(offer.planCode) && /USA/.test(offer.invoiceName))),
 
-          goBack: /* @ngInject */ goToFailoverIpsOnboarding => goToFailoverIpsOnboarding,
+          goBack: /* @ngInject */ (goToFailoverIpsOnboarding) => goToFailoverIpsOnboarding,
         },
 
       });

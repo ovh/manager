@@ -77,7 +77,7 @@ angular.module('managerApp').directive('voipTimeConditionCalendar', ($compile, $
     }
 
     function getOpenedEvent() {
-      return find(uiCalendarConfig.calendars.conditionsCalendar.fullCalendar('clientEvents'), fcEvent => get(fcEvent, 'scope.isPopoverOpen') === true);
+      return find(uiCalendarConfig.calendars.conditionsCalendar.fullCalendar('clientEvents'), (fcEvent) => get(fcEvent, 'scope.isPopoverOpen') === true);
     }
 
     /* -----  End of HELPERS  ------*/
@@ -114,9 +114,9 @@ angular.module('managerApp').directive('voipTimeConditionCalendar', ($compile, $
           map(
             filter(
               controller.timeCondition.conditions,
-              condition => condition.state !== 'TO_DELETE',
+              (condition) => condition.state !== 'TO_DELETE',
             ),
-            condition => angular.extend(condition.toFullCalendarEvent(), {
+            (condition) => angular.extend(condition.toFullCalendarEvent(), {
               className: condition.policy || 'available',
             }),
           ),
@@ -243,7 +243,7 @@ angular.module('managerApp').directive('voipTimeConditionCalendar', ($compile, $
       const newTimeConditions = daysToRepeat
         .filter(({ name }) => {
           const existingTime = currentController.timeCondition.conditions
-            .find(condition => condition.weekDay === name
+            .find((condition) => condition.weekDay === name
                 && checkTimeOverload(timeConditionToCopy, condition));
           return name !== timeConditionToCopy.weekDay && !existingTime;
         })
@@ -258,7 +258,7 @@ angular.module('managerApp').directive('voipTimeConditionCalendar', ($compile, $
         });
 
       newTimeConditions
-        .forEach(timeCondition => currentController.timeCondition.conditions.push(timeCondition));
+        .forEach((timeCondition) => currentController.timeCondition.conditions.push(timeCondition));
     }
 
     set(controller, 'onPopoverValidate', (fcEvent, daysToRepeat, currentController) => {

@@ -44,7 +44,7 @@ angular.module('managerApp')
         return OvhApiIp.v6().query({
           type: 'failover',
         }).$promise.then((ipsParams) => {
-          const ips = filter(ipsParams, ip => indexOf(pendingImportIps, ip) < 0);
+          const ips = filter(ipsParams, (ip) => indexOf(pendingImportIps, ip) < 0);
           return self.initIps(ips);
         }, (err) => {
           CucCloudMessage.error([$translate.instant('cpciif_import_ips_error'), (err.data && err.data.message) || ''].join(' '));
@@ -144,7 +144,7 @@ angular.module('managerApp')
               ip,
               task,
             });
-          }, error => $q.reject({
+          }, (error) => $q.reject({
             ip,
             error,
           })));
@@ -158,7 +158,7 @@ angular.module('managerApp')
           }
           $uibModalInstance.close(listIpsWithTasks);
         }, (error) => {
-          const tabError = error.filter(val => !!val.error);
+          const tabError = error.filter((val) => !!val.error);
 
           const ipError = map(tabError, 'ip');
 

@@ -15,7 +15,7 @@ export const UpgradeService = class {
   buildSteps(stepModuleNames) {
     return map(
       stepModuleNames,
-      moduleName => this.$injector.get(`${moduleName}Factory`),
+      (moduleName) => this.$injector.get(`${moduleName}Factory`),
     );
   }
 };

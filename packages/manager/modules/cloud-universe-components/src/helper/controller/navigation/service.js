@@ -26,6 +26,6 @@ export default class CucControllerNavigationHelper {
     const fallback = this.CucConfig.getRegion() === 'US' ? 'US' : 'GB';
 
     return this.OvhApiMe.v6().get().$promise
-      .then(me => path[me.ovhSubsidiary] || path[fallback] || path.FR);
+      .then((me) => path[me.ovhSubsidiary] || path[fallback] || path.FR);
   }
 }

@@ -52,7 +52,7 @@ angular.module('App').controller(
       return this.domainOperationService
         .getOperationArguments(operationId)
         .then((argumentIds) => {
-          const promises = map(argumentIds, key => this.domainOperationService
+          const promises = map(argumentIds, (key) => this.domainOperationService
             .getOperationArgument(operationId, key)
             .then((originalArgument) => {
               const argument = clone(originalArgument);
@@ -87,7 +87,7 @@ angular.module('App').controller(
                   this.constraints[argument.key].acceptedFormats = join(
                     map(
                       argument.acceptedFormats,
-                      value => `.${value}`,
+                      (value) => `.${value}`,
                     ),
                     ', ',
                   );
@@ -163,7 +163,7 @@ angular.module('App').controller(
           if (this.files[arg.key]) {
             rtn = this.User
               .uploadFile(arg.key, this.files[arg.key])
-              .then(documentId => this.domainOperationService.updateOperation({
+              .then((documentId) => this.domainOperationService.updateOperation({
                 id: this.operation.id,
                 key: arg.key,
                 data: { value: documentId },
@@ -191,7 +191,7 @@ angular.module('App').controller(
                   this.$translate.instant('domain_tab_OPERATION_update_relaunch_success'),
                   this.$scope.alerts.main,
                 ))
-                .catch(err => this.Alerter.alertFromSWS(
+                .catch((err) => this.Alerter.alertFromSWS(
                   this.$translate.instant('domains_operations_relaunch_error'),
                   err,
                   this.$scope.alerts.main,
@@ -203,7 +203,7 @@ angular.module('App').controller(
                   this.$translate.instant('domains_operations_cancel_success'),
                   this.$scope.alerts.main,
                 ))
-                .catch(err => this.Alerter.alertFromSWS(
+                .catch((err) => this.Alerter.alertFromSWS(
                   this.$translate.instant('domains_operations_cancel_error'),
                   err,
                   this.$scope.alerts.main,
@@ -215,7 +215,7 @@ angular.module('App').controller(
                   this.$translate.instant('domains_operations_accelerate_success'),
                   this.$scope.alerts.main,
                 ))
-                .catch(err => this.Alerter.alertFromSWS(
+                .catch((err) => this.Alerter.alertFromSWS(
                   this.$translate.instant('domains_operations_accelerate_error'),
                   err,
                   this.$scope.alerts.main,
@@ -228,7 +228,7 @@ angular.module('App').controller(
               return null;
           }
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_OPERATION_update_error'),
           err,
           this.$scope.alerts.main,

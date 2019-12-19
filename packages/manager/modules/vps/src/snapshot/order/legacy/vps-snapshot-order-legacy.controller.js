@@ -32,7 +32,7 @@ export default class VpsSnapshotOrderLegacyCtrl {
         this.model.vps = data;
         this.loadOptionDetails();
       })
-      .catch(error => this.CucCloudMessage.error(error.message || this.$translate.instant('vps_configuration_activate_snapshot_fail')))
+      .catch((error) => this.CucCloudMessage.error(error.message || this.$translate.instant('vps_configuration_activate_snapshot_fail')))
       .finally(() => { this.loaders.init = false; });
   }
 
@@ -40,7 +40,7 @@ export default class VpsSnapshotOrderLegacyCtrl {
     this.loaders.options = true;
     this.VpsService.getOptionSnapshotFormated(this.serviceName)
       .then((data) => { this.model.optionDetails = data; })
-      .catch(error => this.CucCloudMessage.error(error.message || this.$translate.instant('vps_configuration_activate_snapshot_fail')))
+      .catch((error) => this.CucCloudMessage.error(error.message || this.$translate.instant('vps_configuration_activate_snapshot_fail')))
       .finally(() => { this.loaders.options = false; });
   }
 

@@ -3,7 +3,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/new',
     component: 'ovhManagerPciInstancesAdd',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_add_title'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_instances_add_title'),
 
       privateNetworks: /* @ngInject */ (
         PciProjectsProjectInstanceService,
@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       }),
 
-      goBack: /* @ngInject */ goToInstances => goToInstances,
+      goBack: /* @ngInject */ (goToInstances) => goToInstances,
 
       prices: /* @ngInject */ (
         me,

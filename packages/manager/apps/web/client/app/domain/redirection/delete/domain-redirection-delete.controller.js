@@ -38,7 +38,7 @@ angular.module('controllers').controller(
       ).then((results) => {
         this.wwwDomainToDelete.data = find(
           get(results, 'list.results'),
-          redirection => redirection.subDomain === `www.${this.entryToDelete.subDomain}`
+          (redirection) => redirection.subDomain === `www.${this.entryToDelete.subDomain}`
             || (redirection.subDomain === 'www'
               && this.entryToDelete.subDomain !== 'www'),
         );
@@ -73,7 +73,7 @@ angular.module('controllers').controller(
           this.$translate.instant('domain_tab_REDIRECTION_delete_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_REDIRECTION_delete_fail'),
           err,
           this.$scope.alerts.main,

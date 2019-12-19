@@ -9,7 +9,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Loadavg', ($s
   }
 
   function convertData(list) {
-    return map(list, value => ({ x: timestampToDate(value[0]), y: value[1] }));
+    return map(list, (value) => ({ x: timestampToDate(value[0]), y: value[1] }));
   }
 
   function buildChart(data) {
@@ -25,7 +25,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Loadavg', ($s
       $scope.series.push(avgName);
       $scope.data.push(convertData(get(avgData, 'points')));
     });
-    $scope.labels = map(sortBy($scope.labels), value => timestampToDate(value));
+    $scope.labels = map(sortBy($scope.labels), (value) => timestampToDate(value));
     $scope.options = {
       legend: {
         display: true,

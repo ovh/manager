@@ -39,8 +39,8 @@ export default class {
     return this.OvhApiDedicatedCloud.Ip().v6().query({
       serviceName,
     }).$promise
-      .then(ipAddresses => ipAddresses
-        .map(ipAddress => this.OvhApiDedicatedCloud.Ip().v6()
+      .then((ipAddresses) => ipAddresses
+        .map((ipAddress) => this.OvhApiDedicatedCloud.Ip().v6()
           .get({
             serviceName,
             network: ipAddress,
@@ -51,12 +51,12 @@ export default class {
     return this.OvhApiDedicatedCloud.Datacenter().v6().query({
       serviceName,
     }).$promise
-      .then(datacenters => this.$q.all(datacenters
-        .map(datacenterId => this.getDrpState({
+      .then((datacenters) => this.$q.all(datacenters
+        .map((datacenterId) => this.getDrpState({
           serviceName,
           datacenterId,
         }))))
-      .catch(error => (DEDICATEDCLOUD_DATACENTER_PCC_UNAVAILABLE_CODES
+      .catch((error) => (DEDICATEDCLOUD_DATACENTER_PCC_UNAVAILABLE_CODES
         .includes(error.status)
         ? Promise.resolve([]) : Promise.reject(error)));
   }
@@ -65,20 +65,20 @@ export default class {
     return this.OvhApiDedicatedCloud.Ip().v6().query({
       serviceName,
     }).$promise
-      .then(ipAddresses => this.$q.all(ipAddresses
-        .map(ipAddress => this.OvhApiDedicatedCloud.Ip().Details()
+      .then((ipAddresses) => this.$q.all(ipAddresses
+        .map((ipAddress) => this.OvhApiDedicatedCloud.Ip().Details()
           .v6()
           .get({
             serviceName,
             network: ipAddress,
           }).$promise))
-        .then(ipAddressesDetails => flatten(ipAddressesDetails)));
+        .then((ipAddressesDetails) => flatten(ipAddressesDetails)));
   }
 
   getDrpState(serviceInformations) {
     return this.OvhApiDedicatedCloud
       .Datacenter().Zerto().v6().state(serviceInformations, null).$promise
-      .then(state => ({ ...state, ...serviceInformations }));
+      .then((state) => ({ ...state, ...serviceInformations }));
   }
 
   getDefaultLocalVraNetwork(serviceInformations) {
@@ -210,7 +210,7 @@ export default class {
         );
         autoPayWithPreferredPaymentMethod = availablePaymentType
           .some(
-            paymentType => get(
+            (paymentType) => get(
               availableAutomaticPaymentsMean, camelCase(paymentType),
             ),
           );
@@ -247,7 +247,7 @@ export default class {
     const parametersToSet = keys(drpInformations);
 
     return this.$q.all(parametersToSet
-      .map(parameter => this.OvhApiOrder.Cart().Item().Configuration().v6()
+      .map((parameter) => this.OvhApiOrder.Cart().Item().Configuration().v6()
         .post({
           cartId,
           itemId,
@@ -277,13 +277,13 @@ export default class {
         const pendingOrderStatus = [
           DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering,
           DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered,
-        ].find(status => status === zertoOrderStatus);
+        ].find((status) => status === zertoOrderStatus);
 
         return pendingOrderStatus != null
           ? { ...storedZertoOption, state: pendingOrderStatus }
           : Promise.resolve(null);
       })
-      .catch(error => (error.status === 404
+      .catch((error) => (error.status === 404
         ? Promise.resolve(null)
         : Promise.reject(error)));
   }

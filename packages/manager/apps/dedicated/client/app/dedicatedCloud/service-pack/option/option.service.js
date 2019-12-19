@@ -19,7 +19,7 @@ export const ServicePackOptionService = class ServicePackOptionService {
   mapServicePackNamesToOptionNames(serviceName, servicePackNames) {
     return this.$q.all(
       servicePackNames
-        .map(servicePackName => this.getOptionNames(serviceName, servicePackName)),
+        .map((servicePackName) => this.getOptionNames(serviceName, servicePackName)),
     );
   }
 
@@ -49,7 +49,7 @@ export const ServicePackOptionService = class ServicePackOptionService {
   getRawOptions({ serviceName, servicePackName, subsidiary }) {
     return this
       .getOptionNames(serviceName, servicePackName)
-      .then(names => this.$q.all(names.map(optionName => ({
+      .then((names) => this.$q.all(names.map((optionName) => ({
         name: optionName,
         presentationUrl: ServicePackOptionService
           .getPresentationUrl(optionName, subsidiary),
@@ -59,7 +59,7 @@ export const ServicePackOptionService = class ServicePackOptionService {
   getOptions({ serviceName, servicePackName, subsidiary }) {
     return this
       .getRawOptions({ serviceName, servicePackName, subsidiary })
-      .then(options => options.map(option => ({
+      .then((options) => options.map((option) => ({
         ...option,
         type: ServicePackOptionService.getType(option.name),
       })));

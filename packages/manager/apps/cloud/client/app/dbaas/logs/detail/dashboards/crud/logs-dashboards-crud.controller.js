@@ -56,7 +56,7 @@ class LogsDashboardsCrudCtrl {
       this.dashboard = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () => this.LogsDashboardsService
           .getAapiDashboard(this.serviceName, this.$stateParams.dashboardId)
-          .then(dashboard => dashboard.info),
+          .then((dashboard) => dashboard.info),
       });
       this.dashboard.load();
     } else {

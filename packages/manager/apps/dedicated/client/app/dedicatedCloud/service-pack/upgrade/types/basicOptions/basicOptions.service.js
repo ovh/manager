@@ -29,9 +29,9 @@ export const UpgradeBasicOptionsService = class {
 
     return filter(
       allServicePacksExceptCurrent,
-      servicePack => every(
+      (servicePack) => every(
         servicePack.options,
-        option => isEqual(option.type, OPTION_TYPES.basic),
+        (option) => isEqual(option.type, OPTION_TYPES.basic),
       ),
     );
   }

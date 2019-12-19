@@ -102,7 +102,7 @@ angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateP
       .then((data) => {
         $scope.ftpBackup.model = data;
         $scope.ftpBackup.use = data.quota.usage;
-        $scope.ftpBackup.usage = data.quota.usage / data.quota.value * 100;
+        $scope.ftpBackup.usage = (data.quota.usage / data.quota.value) * 100;
         $scope.ftpBackup.model.login = serviceName;
       })
       .finally(() => {

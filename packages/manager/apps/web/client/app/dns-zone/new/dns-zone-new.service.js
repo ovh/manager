@@ -27,8 +27,8 @@ class newDnsZone {
           zoneName,
         },
       })
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err));
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   /**
@@ -42,7 +42,7 @@ class newDnsZone {
         zoneName,
         minimized,
       })
-      .then(response => response.data)
-      .catch(err => this.$q.reject(err.data));
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 }

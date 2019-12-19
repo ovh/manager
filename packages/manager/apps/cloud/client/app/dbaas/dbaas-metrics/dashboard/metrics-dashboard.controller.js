@@ -115,7 +115,7 @@ import get from 'lodash/get';
     }
 
     static computeUsage(value, total) {
-      return value / total * 100;
+      return (value / total) * 100;
     }
 
     static displayUsage(value, total) {
@@ -157,7 +157,7 @@ import get from 'lodash/get';
       this.CucControllerHelper.modal.showNameChangeModal({
         serviceName: this.serviceName,
         displayName: name,
-        onSave: newDisplayName => this.updateName(newDisplayName),
+        onSave: (newDisplayName) => this.updateName(newDisplayName),
       });
     }
   }

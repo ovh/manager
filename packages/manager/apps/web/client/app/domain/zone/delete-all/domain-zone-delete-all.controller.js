@@ -43,7 +43,7 @@ angular.module('App').controller(
           this.$translate.instant('domain_configuration_zonedns_delete_all_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.alerter.alertFromSWS(
+        .catch((err) => this.alerter.alertFromSWS(
           this.$translate.instant('domain_configuration_zonedns_delete_all_error'),
           err,
           this.$scope.alerts.main,

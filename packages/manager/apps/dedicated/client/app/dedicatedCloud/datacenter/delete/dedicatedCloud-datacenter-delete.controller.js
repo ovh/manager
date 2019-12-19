@@ -14,9 +14,7 @@ class DedicatedCloudSubDatacentersDeleteCtrl {
           this.$scope.setMessage($translate.instant('dedicatedCloud_datacenter_delete_success', { t0: this.datacenterId }), true);
         })
         .catch((err) => {
-          const data = Object.assign({}, err, {
-            type: 'ERROR',
-          });
+          const data = { ...err, type: 'ERROR' };
           this.$scope.setMessage($translate.instant('dedicatedCloud_datacenter_delete_error', { t0: this.datacenterId }), data);
         })
         .finally(() => {

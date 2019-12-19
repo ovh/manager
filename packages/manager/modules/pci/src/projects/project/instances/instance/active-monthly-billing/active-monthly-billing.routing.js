@@ -13,7 +13,7 @@ export default /* @ngInject */($stateProvider) => {
         format: 'json',
       },
       resolve: {
-        goBack: /* @ngInject */ goToInstance => goToInstance,
+        goBack: /* @ngInject */ (goToInstance) => goToInstance,
         breadcrumb: () => null,
       },
     });

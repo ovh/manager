@@ -26,7 +26,7 @@ angular.module('Billing.services').service('BillingOrdersApiv7', function Billin
         if (status !== 200) {
           return data;
         }
-        return angular.fromJson(data).map(id => id.toString());
+        return angular.fromJson(data).map((id) => id.toString());
       },
     });
   };

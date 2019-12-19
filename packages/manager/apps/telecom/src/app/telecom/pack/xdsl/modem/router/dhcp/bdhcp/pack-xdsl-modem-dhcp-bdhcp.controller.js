@@ -57,7 +57,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function XdslM
   this.delete = function deleteFunction(bdhcp) {
     return bdhcp
       .remove($stateParams.serviceName, self.lanName, self.dhcpName)
-      .then(deletedBdhcp => remove(self.bdhcps, deletedBdhcp));
+      .then((deletedBdhcp) => remove(self.bdhcps, deletedBdhcp));
   };
 
   function getDhcp() {

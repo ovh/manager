@@ -204,7 +204,7 @@ angular.module('App').controller(
 
     checkExistingSubDomain() {
       if (
-        !!find(['A', 'AAAA'], entry => entry === this.model.fieldType)
+        !!find(['A', 'AAAA'], (entry) => entry === this.model.fieldType)
         && isString(this.model.subDomainToDisplay)
       ) {
         return this.Domain.getTabZoneDns(
@@ -219,7 +219,7 @@ angular.module('App').controller(
               .toLowerCase();
             this.existingSubDomain = filter(
               results.paginatedZone.records.results,
-              zone => zone.subDomain.toLowerCase() === subDomain,
+              (zone) => zone.subDomain.toLowerCase() === subDomain,
             );
           })
           .finally(() => {

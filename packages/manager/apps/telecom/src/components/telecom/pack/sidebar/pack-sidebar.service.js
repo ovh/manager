@@ -16,23 +16,23 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
 
   function getPackStatus(pack) {
     const isAllAccessInError = pack.xdsl.length
-      && every(pack.xdsl, xdsl => accessErrorStates.indexOf(xdsl.status) > -1);
+      && every(pack.xdsl, (xdsl) => accessErrorStates.indexOf(xdsl.status) > -1);
     if (isAllAccessInError) {
       return $q.when('error');
     }
 
-    const hasLine = find(pack.xdsl, xdsl => !!xdsl.line);
+    const hasLine = find(pack.xdsl, (xdsl) => !!xdsl.line);
     if (!hasLine) {
-      return TucPackMediator.getPackStatus(pack.packName).then(status => (status === 'inCreation' ? 'inCreation' : 'error'));
+      return TucPackMediator.getPackStatus(pack.packName).then((status) => (status === 'inCreation' ? 'inCreation' : 'error'));
     }
 
-    return $q.when(find(pack.xdsl, xdsl => accessErrorStates.indexOf(xdsl.status) > -1) ? 'warning' : 'ok');
+    return $q.when(find(pack.xdsl, (xdsl) => accessErrorStates.indexOf(xdsl.status) > -1) ? 'warning' : 'ok');
   }
 
   // add pack xdsl to sidebar
   function fillPacks(packList) {
     angular.forEach(packList, (pack) => {
-      const hasLine = find(pack.xdsl, xdsl => xdsl.line);
+      const hasLine = find(pack.xdsl, (xdsl) => xdsl.line);
 
       getPackStatus(pack).then((packStatus) => {
         const packIconClass = ['ovh-font'];
@@ -110,9 +110,9 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
   function fillXdsl(xdslListParam) {
     const xdslList = filter(
       xdslListParam,
-      xdslAccess => !find(
+      (xdslAccess) => !find(
         self.allPacks,
-        xdslPack => find(xdslPack.xdsl, { accessName: xdslAccess.accessName }),
+        (xdslPack) => find(xdslPack.xdsl, { accessName: xdslAccess.accessName }),
       ),
     );
 
@@ -201,7 +201,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
     ====================================== */
 
   self.init = function init(expand) {
-    self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
+    self.mainSectionItem = SidebarMenu.addMenuItem({
       id: 'telecom-pack-section',
       title: $translate.instant('telecom_sidebar_section_pack'),
       error: $translate.instant('telecom_sidebar_load_error'),
@@ -211,7 +211,8 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
       loadOnState: 'telecom.packs',
       allowSearch: !expand,
       infiniteScroll: true,
-    }, expand ? { state: 'telecom.packs.internet-access.packs' } : { onLoad: self.fetchData }));
+      ...(expand ? { state: 'telecom.packs.internet-access.packs' } : { onLoad: self.fetchData }),
+    });
 
     return self.mainSectionItem;
   };

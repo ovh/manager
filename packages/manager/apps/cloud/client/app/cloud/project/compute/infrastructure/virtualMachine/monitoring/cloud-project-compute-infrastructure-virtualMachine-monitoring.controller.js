@@ -92,7 +92,7 @@ angular.module('managerApp')
         const maxValue = max(
           map(
             rawData.values,
-            timeSerie => timeSerie.value,
+            (timeSerie) => timeSerie.value,
           ),
         );
         let divisionScale;
@@ -162,7 +162,7 @@ angular.module('managerApp')
 
         const { divisionScale, unit } = scaledData;
 
-        const data = map(rawData.values, e => ({
+        const data = map(rawData.values, (e) => ({
           timestamp: e.timestamp * 1000, // unix to js timestamp
           value: e.value / divisionScale,
         }));
@@ -196,7 +196,7 @@ angular.module('managerApp')
       function updateMaxCPUPercentageForPeriod(data) {
         self.dataPeriod.cpu.max = maxBy(
           data.values,
-          v => (angular.isNumber(v.value)
+          (v) => (angular.isNumber(v.value)
             ? v.value
             : Number.NEGATIVE_INFINITY),
         ).value;
@@ -209,11 +209,11 @@ angular.module('managerApp')
         const total = last(self.vm.monitoringData.raw['mem:max'].values).value;
         const maxUsed = maxBy(
           data.values,
-          v => (angular.isNumber(v.value)
+          (v) => (angular.isNumber(v.value)
             ? v.value
             : Number.NEGATIVE_INFINITY),
         ).value;
-        self.dataPeriod.mem.max = maxUsed / total * 100;
+        self.dataPeriod.mem.max = (maxUsed / total) * 100;
         self.dataPeriod.mem.needUpgrade = self.dataPeriod.mem.max
           >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
         self.accordions.mem = self.accordions.mem || self.dataPeriod.mem.needUpgrade;
@@ -223,11 +223,11 @@ angular.module('managerApp')
         const total = self.vm.flavor.inboundBandwidth * CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
         const maxUsed = maxBy(
           data.values,
-          v => (angular.isNumber(v.value)
+          (v) => (angular.isNumber(v.value)
             ? v.value
             : Number.NEGATIVE_INFINITY),
         ).value;
-        self.dataPeriod.net.up.max = maxUsed / total * 100;
+        self.dataPeriod.net.up.max = (maxUsed / total) * 100;
         self.dataPeriod.net.up.needUpgrade = self.dataPeriod.net.up.max
           >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
         self.accordions.net = self.accordions.net || self.dataPeriod.net.up.needUpgrade;
@@ -237,11 +237,11 @@ angular.module('managerApp')
         const total = self.vm.flavor.outboundBandwidth * CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
         const maxUsed = maxBy(
           data.values,
-          v => (angular.isNumber(v.value)
+          (v) => (angular.isNumber(v.value)
             ? v.value
             : Number.NEGATIVE_INFINITY),
         ).value;
-        self.dataPeriod.net.down.max = maxUsed / total * 100;
+        self.dataPeriod.net.down.max = (maxUsed / total) * 100;
         self.dataPeriod.net.down.needUpgrade = self.dataPeriod.net.down.max
           >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
         self.accordions.net = self.accordions.net || self.dataPeriod.net.down.needUpgrade;

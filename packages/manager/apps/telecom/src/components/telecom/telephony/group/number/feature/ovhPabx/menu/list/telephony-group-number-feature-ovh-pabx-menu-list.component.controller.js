@@ -30,7 +30,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuListCtrl', fu
   };
 
   function isDisabledMenuUsedInEntry(menu) {
-    return some(menu.entries, entry => entry.action === 'menuSub' && (entry.actionParam === self.disableMenuId || isDisabledMenuUsedInEntry(self.ovhPabx.getMenu(entry.actionParam))));
+    return some(menu.entries, (entry) => entry.action === 'menuSub' && (entry.actionParam === self.disableMenuId || isDisabledMenuUsedInEntry(self.ovhPabx.getMenu(entry.actionParam))));
   }
 
   self.isMenuChoiceDisabled = function isMenuChoiceDisabled(menu) {

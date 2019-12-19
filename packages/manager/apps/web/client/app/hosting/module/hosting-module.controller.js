@@ -59,7 +59,7 @@ angular.module('App').controller(
         forceRefresh,
       })
         .then((moduleIds) => {
-          this.modules = moduleIds.map(id => ({ id }));
+          this.modules = moduleIds.map((id) => ({ id }));
           return this.modules;
         })
         .catch((err) => {

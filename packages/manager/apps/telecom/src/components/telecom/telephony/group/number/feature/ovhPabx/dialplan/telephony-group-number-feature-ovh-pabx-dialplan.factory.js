@@ -195,10 +195,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
         serviceName: self.serviceName,
         dialplanId: self.dialplanId,
       }).$promise
-      .then(extensionIds => $q
+      .then((extensionIds) => $q
         .all(map(
           chunk(extensionIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Dialplan().Extension().v6()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Dialplan().Extension().v6()
             .getBatch({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
@@ -272,7 +272,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
       const self = this;
       const updatePositionPromises = [];
       const extensionsToUpdate = from
-        ? filter(self.extensions, extension => extension.position > from) : self.extensions;
+        ? filter(self.extensions, (extension) => extension.position > from) : self.extensions;
 
       angular.forEach(extensionsToUpdate, (extension) => {
         updatePositionPromises.push(extension.move(from

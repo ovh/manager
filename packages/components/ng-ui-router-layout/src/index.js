@@ -98,7 +98,7 @@ angular
             const resolves = initial(componentProvider);
             const componentGetter = last(componentProvider);
             componentName = componentGetter(
-              ...map(resolves, resolve => transition.injector().get(resolve)),
+              ...map(resolves, (resolve) => transition.injector().get(resolve)),
             );
           }
 
@@ -106,7 +106,7 @@ angular
             const directives = $injector.get(`${componentName}DirectiveProvider`).$get();
             // look for those directives that are components
             const candidateDirectives = directives.filter(
-              directiveInfo => directiveInfo.controller
+              (directiveInfo) => directiveInfo.controller
                 && directiveInfo.controllerAs
                 && directiveInfo.restrict === 'E',
             );
@@ -140,7 +140,7 @@ angular
             // create template
             const div = document.createElement('div');
             const elmt = document.createElement(kebabCase(directiveInfo.name));
-            forEach(resolveKeys, key => elmt.setAttribute(kebabCase(key), `$ctrl.${key}`));
+            forEach(resolveKeys, (key) => elmt.setAttribute(kebabCase(key), `$ctrl.${key}`));
             div.appendChild(elmt);
             const template = div.innerHTML;
 
@@ -180,11 +180,11 @@ angular
       ({ layout }) => get(layout, 'toChilds') === true || size(get(layout, 'toChilds', [])),
     );
 
-    const getChildStates = parentStateName => filter(
+    const getChildStates = (parentStateName) => filter(
       $stateRegistry.states,
       ({ name }) => startsWith(name, `${parentStateName}.`),
     );
-    const getChildStatesNames = parentStateName => map(getChildStates(parentStateName), 'name');
+    const getChildStatesNames = (parentStateName) => map(getChildStates(parentStateName), 'name');
 
     layoutStates.forEach((layoutState) => {
       let childStates;

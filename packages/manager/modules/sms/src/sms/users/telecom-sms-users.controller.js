@@ -78,7 +78,7 @@ export default class {
   fetchUsers() {
     return this.api.smsUsers.query({
       serviceName: this.$stateParams.serviceName,
-    }).$promise.then(loginIds => this.$q.all(map(loginIds, login => this.api.smsUsers.get({
+    }).$promise.then((loginIds) => this.$q.all(map(loginIds, (login) => this.api.smsUsers.get({
       serviceName: this.$stateParams.serviceName,
       login,
     }).$promise)));
@@ -142,7 +142,7 @@ export default class {
       serviceName: this.$stateParams.serviceName,
     }).$promise.then((service) => {
       this.service = service;
-    }).catch(error => this.TucToastError(error))).catch((error) => {
+    }).catch((error) => this.TucToastError(error))).catch((error) => {
       if (error && error.type === 'API') {
         this.TucToast.error(this.$translate.instant('sms_users_templates_update_ko', { error: get(error, 'msg.data.message') }));
       }

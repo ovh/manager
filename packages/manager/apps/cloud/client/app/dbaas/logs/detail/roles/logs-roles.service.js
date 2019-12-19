@@ -68,7 +68,7 @@ class LogsRolesService {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_roles_add_alias_error', err, { tokenName: alias.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_roles_add_alias_error', err, { tokenName: alias.name }));
   }
 
   addDashboard(serviceName, roleId, dashboard) {
@@ -78,7 +78,7 @@ class LogsRolesService {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_roles_add_dashboard_error', err, { tokenName: dashboard.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_roles_add_dashboard_error', err, { tokenName: dashboard.title }));
   }
 
   addIndex(serviceName, roleId, index) {
@@ -88,7 +88,7 @@ class LogsRolesService {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_roles_add_index_error', err, { tokenName: index.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_roles_add_index_error', err, { tokenName: index.name }));
   }
 
   addStream(serviceName, roleId, stream) {
@@ -98,17 +98,17 @@ class LogsRolesService {
         this.RolesAapiService.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_roles_add_stream_error', err, { tokenName: stream.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_roles_add_stream_error', err, { tokenName: stream.title }));
   }
 
   removePermission(serviceName, roleId, permission) {
     return this.PermissionsApiService
       .remove({ serviceName, roleId }, { permissionId: permission[0].permissionId }).$promise
-      .then(operation => this.LogsHelperService.handleOperation(
+      .then((operation) => this.LogsHelperService.handleOperation(
         serviceName,
         operation.data || operation,
       ))
-      .catch(err => this.LogsHelperService.handleError('logs_remove_permission_error', err, { tokenName: permission[0].name || permission[0].title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_remove_permission_error', err, { tokenName: permission[0].name || permission[0].title }));
   }
 
   getNewRole() {
@@ -118,7 +118,7 @@ class LogsRolesService {
   getLogs() {
     return this.LogsApiService.query().$promise
       .then((logs) => {
-        const promises = logs.map(serviceName => this.getLogDetails(serviceName));
+        const promises = logs.map((serviceName) => this.getLogDetails(serviceName));
         return this.$q.all(promises);
       })
       .catch(this.CucServiceHelper.errorHandler('logs_get_error'));
@@ -136,18 +136,18 @@ class LogsRolesService {
           mainOfferMax: me.offer.maxNbRole,
           mainOfferCurrent: me.offer.curNbRole,
           configured: me.total.curNbRole,
-          currentUsage: me.total.curNbRole * 100 / me.total.maxNbRole,
+          currentUsage: (me.total.curNbRole * 100) / me.total.maxNbRole,
         };
         return quota;
-      }).catch(err => this.LogsHelperService.handleError('logs_roles_quota_get_error', err, {}));
+      }).catch((err) => this.LogsHelperService.handleError('logs_roles_quota_get_error', err, {}));
   }
 
   getRoles(serviceName) {
     return this.RolesApiService.query({ serviceName }).$promise
       .then((roles) => {
-        const promises = roles.map(roleId => this.getRoleDetails(serviceName, roleId));
+        const promises = roles.map((roleId) => this.getRoleDetails(serviceName, roleId));
         return this.$q.all(promises);
-      }).catch(err => this.LogsHelperService.handleError('logs_roles_get_error', err, {}));
+      }).catch((err) => this.LogsHelperService.handleError('logs_roles_get_error', err, {}));
   }
 
   getRoleDetails(serviceName, roleId) {
@@ -172,7 +172,7 @@ class LogsRolesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_role_add_success', { name: object.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_role_add_error', err, { name: object.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_role_add_error', err, { name: object.name }));
   }
 
   updateRole(serviceName, roleId, object) {
@@ -186,7 +186,7 @@ class LogsRolesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_role_update_success', { name: object.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_role_update_error', err, { name: object.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_role_update_error', err, { name: object.name }));
   }
 
   deleteRole(serviceName, role) {
@@ -195,7 +195,7 @@ class LogsRolesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_role_delete_success', { name: role.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_role_delete_error', err, { name: role.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_role_delete_error', err, { name: role.name }));
   }
 
   deleteModal(role) {
@@ -215,7 +215,7 @@ class LogsRolesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_role_member_add_success', { name: userDetails.username });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_role_member_add_error', err, { name: userDetails.username }));
+      .catch((err) => this.LogsHelperService.handleError('logs_role_member_add_error', err, { name: userDetails.username }));
   }
 
   removeMember(serviceName, roleId, username) {
@@ -224,7 +224,7 @@ class LogsRolesService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_role_member_remove_success', { name: username });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_role_member_remove_error', err, { name: username }));
+      .catch((err) => this.LogsHelperService.handleError('logs_role_member_remove_error', err, { name: username }));
   }
 
   deleteMemberModal(username) {

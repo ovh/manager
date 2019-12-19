@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').controller('DBaasTsProjectDetailsCtrl', function DBaasTsProjectDetailsCtrl($state) {
   const self = this;
 

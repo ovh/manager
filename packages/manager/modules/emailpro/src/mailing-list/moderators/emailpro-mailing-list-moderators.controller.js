@@ -96,7 +96,7 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
         case 1:
           this.moderators.selected = filter(
             map(this.moderators.details, 'email'),
-            result => !some(this.moderators.selected, result.email),
+            (result) => !some(this.moderators.selected, result.email),
           );
           break;
         case 2:
@@ -136,7 +136,7 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
       .then((data) => {
         this.moderators.ids = this.$filter('orderBy')(data);
       })
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
         err,
         this.$scope.alerts.main,

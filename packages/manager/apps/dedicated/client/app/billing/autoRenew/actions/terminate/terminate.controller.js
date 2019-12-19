@@ -17,6 +17,6 @@ export default class {
     this.isDeleting = true;
     return this.terminateService()
       .then(() => this.onSuccess())
-      .catch(error => this.onError({ error }));
+      .catch((error) => this.onError({ error }));
   }
 }

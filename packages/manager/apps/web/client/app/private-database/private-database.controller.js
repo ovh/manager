@@ -79,11 +79,11 @@ export default class PrivateDatabaseCtrl {
 
     this.$scope.isConfigSet = () => this.privateDatabaseService
       .getConfigurationDetails(this.productId)
-      .then(res => !isEmpty(res.details));
+      .then((res) => !isEmpty(res.details));
 
     this.$scope.isExtensionSet = () => this.privateDatabaseExtensionService
       .getExtensions(this.productId, this.$scope.database.databaseName)
-      .then(res => !isEmpty(res));
+      .then((res) => !isEmpty(res));
 
     this.$scope.isDBaaS = () => this.$scope.database.offer === 'public';
 

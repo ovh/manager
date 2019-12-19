@@ -28,7 +28,7 @@ export default class PciStreamsStreamBacklogRetentionController {
       .then(() => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_backlog_retention_success_message',
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_backlog_retention_error_backlog_retention',
         {
           message: get(err, 'data.message', null),

@@ -121,7 +121,7 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
         case 1:
           this.subscribers.selected = filter(
             map(this.subscribers.details, 'email'),
-            result => !some(this.subscribers.selected, result.email),
+            (result) => !some(this.subscribers.selected, result.email),
           );
           break;
         case 2:
@@ -161,7 +161,7 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
       .then((data) => {
         this.subscribers.ids = this.$filter('orderBy')(data);
       })
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
         err,
         this.$scope.alerts.main,

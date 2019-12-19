@@ -65,7 +65,7 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
   $onInit() {
     // Get loadbalancer pending tasks and define poller
     this.tasks = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then(tasks => filter(tasks, task => includes(['todo', 'doing'], task.status))),
+      loaderFunction: () => this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then((tasks) => filter(tasks, (task) => includes(['todo', 'doing'], task.status))),
       successHandler: () => this.startTaskPolling(),
     });
     this.tasks.load();
@@ -83,7 +83,7 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
           this.$location.search('validate', null);
           this.toggle.updatedMessage = true;
         })
-        .catch(err => this.CucCloudMessage.error([
+        .catch((err) => this.CucCloudMessage.error([
           this.$translate.instant('cpc_loadbalancer_error'),
           (err.data && err.data.message) || '',
         ].join(' ')))
@@ -121,7 +121,7 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
     })
       .then(({ servers, attachedServers }) => {
         this.attachedServers = attachedServers;
-        this.form.servers = mapValues(this.attachedServers, e => !!e);
+        this.form.servers = mapValues(this.attachedServers, (e) => !!e);
         this.table.server = servers;
       }).catch(() => {
         this.table.server = null;
@@ -256,7 +256,7 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
     }
     return configurePromise.then(() => {
       this.toggle.updatedMessage = true;
-    }).catch(err => this.CucCloudMessage.error([
+    }).catch((err) => this.CucCloudMessage.error([
       this.$translate.instant('cpc_loadbalancer_error'),
       (err.data && err.data.message) || '',
     ].join(' '))).finally(() => {
@@ -305,12 +305,12 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
 
     this.poller = this.CucCloudPoll.pollArray({
       items: this.tasks.data,
-      pollFunction: task => this.IpLoadBalancerTaskService.getTask(this.loadbalancerId, task.id),
+      pollFunction: (task) => this.IpLoadBalancerTaskService.getTask(this.loadbalancerId, task.id),
       stopCondition: (task) => {
         const res = includes(['done', 'error'], task.status);
         // Remove terminated tasks
         if (res) {
-          this.tasks.data = filter(this.tasks.data, t => t.id !== task.id);
+          this.tasks.data = filter(this.tasks.data, (t) => t.id !== task.id);
         }
         return res;
       },

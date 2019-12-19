@@ -6,9 +6,9 @@ export default /* @ngInject */($stateProvider) => {
     url: '/deploy',
     component: 'analyticsDataPlatformDeployComponent',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_deploy_breadcrumb'),
+      breadcrumb: /* @ngInject */ ($translate) => $translate.instant('analytics_data_platform_deploy_breadcrumb'),
       capabilities: /* @ngInject */
-      analyticsDataPlatformService => analyticsDataPlatformService
+      (analyticsDataPlatformService) => analyticsDataPlatformService
         .getAnalyticsDataPlatformCapabilities(),
 
       publicCloud: /* @ngInject */ (
@@ -33,9 +33,9 @@ export default /* @ngInject */($stateProvider) => {
         publicCloud,
       ) => analyticsDataPlatformService.getPriceCatalog(publicCloud.planCode),
       hasDefaultPaymentMethod: /* @ngInject */
-      ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+      (ovhPaymentMethod) => ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-      paymentMethodUrl: /* @ngInject */ coreConfig => get(
+      paymentMethodUrl: /* @ngInject */ (coreConfig) => get(
         PCI_REDIRECT_URLS,
         `${coreConfig.getRegion()}.paymentMethods`,
       ),

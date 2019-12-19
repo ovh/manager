@@ -18,7 +18,7 @@ angular
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
         return import('./onboarding.module')
-          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
   });

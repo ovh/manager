@@ -24,13 +24,13 @@ export default class Messaging {
           } else if (isString(currentValue.message)) {
             this.messageDetails.push({ id: currentValue.id, message: currentValue.message });
           } else if (currentValue.messages != null) {
-            this.messageDetails = currentValue.messages.map(currentMessage => ({
+            this.messageDetails = currentValue.messages.map((currentMessage) => ({
               id: currentMessage.code,
               message: currentMessage.message,
             }));
             this.messageDetails = uniqBy(
               this.messageDetails,
-              currentMessage => `${currentMessage.id}${currentMessage.message}`,
+              (currentMessage) => `${currentMessage.id}${currentMessage.message}`,
             );
           }
         }
@@ -125,9 +125,9 @@ export default class Messaging {
 
           messageDetails = failure.messages
             .filter(
-              currentMessage => isString(currentMessage.type) && currentMessage.type.toUpperCase() !== 'INFO',
+              (currentMessage) => isString(currentMessage.type) && currentMessage.type.toUpperCase() !== 'INFO',
             )
-            .map(currentMessage => ({
+            .map((currentMessage) => ({
               id: currentMessage.code,
               message: currentMessage.message,
             }));

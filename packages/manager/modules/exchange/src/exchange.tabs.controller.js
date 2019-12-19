@@ -28,8 +28,8 @@ export default class ExchangeTabsCtrl {
     const $routerParams = Exchange.getParams();
 
     $scope.services = this.services;
-    $scope.kebabCase = text => kebabCase(text);
-    $scope.changeTab = tab => this.changeTab(tab);
+    $scope.kebabCase = (text) => kebabCase(text);
+    $scope.changeTab = (tab) => this.changeTab(tab);
 
     Exchange.updateValue().then(() => {
       if (Exchange.value.serverDiagnostic.individual2010) {
@@ -114,7 +114,7 @@ export default class ExchangeTabsCtrl {
     const tabHasAName = upperCaseSelectedTab != null;
     const tabExists = includes(this.tabs, upperCaseSelectedTab);
     const tabIsMenuItem = this.dropdownMenuItems != null
-      && find(this.dropdownMenuItems.items, item => item.target === upperCaseSelectedTab);
+      && find(this.dropdownMenuItems.items, (item) => item.target === upperCaseSelectedTab);
 
     if (tabHasAName && (tabExists || tabIsMenuItem)) {
       this.selectedTab = upperCaseSelectedTab;

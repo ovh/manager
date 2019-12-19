@@ -9,7 +9,6 @@ export default class DomainDnsAnycastActivateCtrl {
   }
 
   $onInit() {
-    this.domainName = this.domainName;
     this.domainId = this.domainName;
     this.optionName = 'dnsAnycast';
     this.loading = false;

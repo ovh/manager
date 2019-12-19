@@ -37,7 +37,7 @@ export default class IpLoadBalancerZoneDeleteCtrl {
   }
 
   getDeletableZoneCount() {
-    return filter(this.zones.data, zone => zone.selectable.value !== false).length;
+    return filter(this.zones.data, (zone) => zone.selectable.value !== false).length;
   }
 
   isLoading() {

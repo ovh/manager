@@ -34,7 +34,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
   self.hasClientDomainChange = function hasClientDomainChange() {
     return !every(
       self.availableSipDomains.client,
-      domain => isEqual(domain.prevValue, domain.currentDomain),
+      (domain) => isEqual(domain.prevValue, domain.currentDomain),
     );
   };
 
@@ -89,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
     each(
       filter(
         self.availableSipDomains.client,
-        domain => !isEqual(domain.prevValue, domain.currentDomain),
+        (domain) => !isEqual(domain.prevValue, domain.currentDomain),
       ),
       (domain) => {
         tmpPromise = OvhApiTelephony.v6().setDefaultSipDomain({}, {
@@ -168,7 +168,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

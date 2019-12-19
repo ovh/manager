@@ -62,7 +62,7 @@ export default /* @ngInject */ function (
       serviceName: $stateParams.serviceName,
     }, null).$promise.then((password) => {
       self.generatedPassword = password.value;
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.generatingPassword = false;
     });
   };
@@ -86,7 +86,7 @@ export default /* @ngInject */ function (
       serviceName: $stateParams.serviceName,
     }, formData).$promise.then(() => {
       self.editMode = false;
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   };

@@ -9,14 +9,14 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      goBack: /* @ngInject */ goToAutorenew => goToAutorenew,
-      cancelResiliation: /* @ngInject */ BillingAutoRenew => (service) => {
+      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      cancelResiliation: /* @ngInject */ (BillingAutoRenew) => (service) => {
         service.cancelResiliation();
         return BillingAutoRenew.updateService(
           service,
         );
       },
-      serviceId: /* @ngInject */ $transition$ => $transition$.params().serviceId,
+      serviceId: /* @ngInject */ ($transition$) => $transition$.params().serviceId,
       service: /* @ngInject */ (
         BillingAutoRenew,
         serviceId,

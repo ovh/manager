@@ -22,7 +22,7 @@
       this.loaders.delete = true;
       return this.deleteUser(this.user.id)
         .then(() => this.$uibModalInstance.close())
-        .catch(err => this.$uibModalInstance.dismiss(err))
+        .catch((err) => this.$uibModalInstance.dismiss(err))
         .finally(() => {
           this.loaders.delete = false;
         });

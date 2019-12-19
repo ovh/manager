@@ -63,11 +63,11 @@ export const OptionsService = class OptionsService {
 
     return {
       withACertification: reject(
-        filter(orderableServicePacks, servicePack => servicePack.certification.exists),
+        filter(orderableServicePacks, (servicePack) => servicePack.certification.exists),
         { name: orderedServicePackName },
       ),
       withOnlyBasicOptions: reject(
-        filter(orderableServicePacks, servicePack => !servicePack.certification.exists),
+        filter(orderableServicePacks, (servicePack) => !servicePack.certification.exists),
         { name: orderedServicePackName },
       ),
     };
@@ -105,7 +105,7 @@ export const OptionsService = class OptionsService {
   static computeOptionsBasic() {
     return filter(
       OPTIONS,
-      option => option.type === OPTION_TYPES.basic,
+      (option) => option.type === OPTION_TYPES.basic,
     );
   }
 
@@ -138,7 +138,7 @@ export const OptionsService = class OptionsService {
       .$q
       .when(this
         .getPendingOrder(serviceName)
-        .then(pendingOrder => (moment(pendingOrder.expirationDate).isBefore(moment())
+        .then((pendingOrder) => (moment(pendingOrder.expirationDate).isBefore(moment())
           ? this
             .ovhManagerPccDashboardOptionsOrderService
             .deleteServicePackOrder(serviceName)

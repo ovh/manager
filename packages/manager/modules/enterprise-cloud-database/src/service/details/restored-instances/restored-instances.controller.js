@@ -31,6 +31,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
 
   loadDetails(backupId) {
     return this.service.getBackupDetails(this.clusterId, backupId)
-      .then(res => assign({ backupDetails: res }));
+      .then((res) => assign({ backupDetails: res }));
   }
 }

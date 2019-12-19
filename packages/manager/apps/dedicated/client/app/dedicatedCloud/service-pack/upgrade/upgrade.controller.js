@@ -22,7 +22,7 @@ export default class {
   $onInit() {
     this.$transitions.onError(
       { to: `${this.$state.$current.parent.name}.**` },
-      transition => (transition.error().type !== RejectType.ERROR
+      (transition) => (transition.error().type !== RejectType.ERROR
         ? this.$q.when()
         : this.goBack().then(() => this.displayErrorMessage(transition.error()))),
     );

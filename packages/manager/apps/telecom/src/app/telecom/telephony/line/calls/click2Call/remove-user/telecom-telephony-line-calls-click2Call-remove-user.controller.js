@@ -26,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallRemoveUse
       self.removed = true;
 
       return $timeout(self.close, 1500);
-    }, error => self.cancel({
+    }, (error) => self.cancel({
       type: 'API',
       msg: error,
     }));

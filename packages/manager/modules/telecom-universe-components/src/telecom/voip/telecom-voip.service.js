@@ -53,12 +53,12 @@ export default class {
   fetchAll(withError = true) {
     return this.tucVoipBillingAccount
       .fetchAll(withError)
-      .then(billingAccounts => this.tucVoipService.fetchAll(withError)
+      .then((billingAccounts) => this.tucVoipService.fetchAll(withError)
         .then((services) => {
-          const groupedServices = groupBy(services, service => get(service, 'billingAccount'));
+          const groupedServices = groupBy(services, (service) => get(service, 'billingAccount'));
 
           billingAccounts.forEach(
-            billingAccount => billingAccount.addServices(
+            (billingAccount) => billingAccount.addServices(
               get(groupedServices, billingAccount.billingAccount, []),
             ),
           );

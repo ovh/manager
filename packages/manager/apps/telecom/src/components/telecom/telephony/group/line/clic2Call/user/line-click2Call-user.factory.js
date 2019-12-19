@@ -59,7 +59,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
         id: self.id,
-      }).$promise.then(phoneOptions => phoneOptions, error => $q.reject(error));
+      }).$promise.then((phoneOptions) => phoneOptions, (error) => $q.reject(error));
   };
 
   TelephonyGroupLineClick2CallUser.prototype.call = function call(calledNumber) {
@@ -71,7 +71,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
         serviceName: self.serviceName,
       }, {
         calledNumber,
-      }).$promise.then(voidResponse => voidResponse, error => $q.reject(error));
+      }).$promise.then((voidResponse) => voidResponse, (error) => $q.reject(error));
   };
 
   TelephonyGroupLineClick2CallUser.prototype.add = function add(userOptionsParam) {
@@ -89,7 +89,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
       .post({
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
-      }, userOptions).$promise.then(voidResponse => voidResponse, (error) => {
+      }, userOptions).$promise.then((voidResponse) => voidResponse, (error) => {
         const message = error.data && error.data.message;
         return $q.reject(message);
       });
@@ -110,7 +110,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
         id: userOptions.id,
-      }).$promise.then(voidResponse => voidResponse, (error) => {
+      }).$promise.then((voidResponse) => voidResponse, (error) => {
         const message = error.data && error.data.message;
         return $q.reject(message);
       });
@@ -126,7 +126,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
         id: self.id,
       }, {
         password,
-      }).$promise.then(voidResponse => voidResponse, (error) => {
+      }).$promise.then((voidResponse) => voidResponse, (error) => {
         const message = error.data && error.data.message;
         return $q.reject(message);
       });

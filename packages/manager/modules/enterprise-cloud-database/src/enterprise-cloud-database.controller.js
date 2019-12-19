@@ -37,6 +37,6 @@ export default class EnterpriseCloudDatabaseCtrl {
     return this.$q.all([
       this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.details.id),
       this.enterpriseCloudDatabaseService.getUser(cluster.details.id),
-    ]).then(res => assign({ endpoints: res[0], user: res[1] }));
+    ]).then((res) => assign({ endpoints: res[0], user: res[1] }));
   }
 }

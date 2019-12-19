@@ -104,7 +104,7 @@ angular
       },
       returnSuccessKey: '',
     }).then(
-      response => response.data,
+      (response) => response.data,
       (err) => {
         const { data } = err.data;
         data.status = err.status;
@@ -143,13 +143,13 @@ angular
 
       return $q.all(queue).then((results) => {
         const ids = flatten(results);
-        return $q.all(map(ids, id => self.getFromId(serviceName, id)));
+        return $q.all(map(ids, (id) => self.getFromId(serviceName, id)));
       });
     }
 
-    this.getPending = serviceName => getTasksInState(serviceName, false);
+    this.getPending = (serviceName) => getTasksInState(serviceName, false);
 
-    this.getError = serviceName => getTasksInState(serviceName, true);
+    this.getError = (serviceName) => getTasksInState(serviceName, true);
 
     this.poll = (serviceName, task) => {
       if (!task || !task.id) {

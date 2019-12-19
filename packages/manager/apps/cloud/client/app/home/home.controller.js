@@ -23,7 +23,7 @@ class HomeCtrl {
   }
 
   setSections() {
-    const sectionsPromise = map(this.defaultSections, section => this.CucFeatureAvailabilityService.hasFeaturePromise(section, 'guides'));
+    const sectionsPromise = map(this.defaultSections, (section) => this.CucFeatureAvailabilityService.hasFeaturePromise(section, 'guides'));
 
     return this.$q.all(sectionsPromise)
       .then((sections) => {
@@ -32,7 +32,7 @@ class HomeCtrl {
             this.defaultSections,
             (value, index) => sections[index],
           ),
-          section => this.DocsService.getGuidesOfSection(section),
+          (section) => this.DocsService.getGuidesOfSection(section),
         );
 
         return this.guides.sections;

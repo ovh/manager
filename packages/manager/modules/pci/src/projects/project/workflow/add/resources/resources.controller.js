@@ -33,7 +33,7 @@ export default class {
         flavorId: instance.flavorId,
       })
       .$promise
-      .then(flavor => new Instance({
+      .then((flavor) => new Instance({
         ...instance,
         flavor: {
           ...flavor,

@@ -67,10 +67,10 @@ class LogsAliasesLinkCtrl {
       .then((result) => {
         const diff = filter(
           result[1],
-          aapiStream => aapiStream.info.isEditable
+          (aapiStream) => aapiStream.info.isEditable
             && !find(
               result[0].streams,
-              attachedAapiStream => attachedAapiStream.info.streamId === aapiStream.info.streamId,
+              (attachedAapiStream) => attachedAapiStream.info.streamId === aapiStream.info.streamId,
             ),
         );
         this.availableStreams.resolve(diff);
@@ -80,10 +80,10 @@ class LogsAliasesLinkCtrl {
       .then((result) => {
         const diff = filter(
           result[1],
-          aapiIndex => aapiIndex.info.isEditable
+          (aapiIndex) => aapiIndex.info.isEditable
             && !find(
               result[0].indexes,
-              attachedAapiIndex => attachedAapiIndex.info.indexId === aapiIndex.info.indexId,
+              (attachedAapiIndex) => attachedAapiIndex.info.indexId === aapiIndex.info.indexId,
             ),
         );
         this.availableIndices.resolve(diff);

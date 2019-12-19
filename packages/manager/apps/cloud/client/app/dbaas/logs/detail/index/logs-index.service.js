@@ -31,40 +31,40 @@ class LogsIndexService {
         const quota = {
           max: me.total.maxNbIndex,
           configured: me.total.curNbIndex,
-          currentUsage: me.total.curNbIndex * 100 / me.total.maxNbIndex,
+          currentUsage: (me.total.curNbIndex * 100) / me.total.maxNbIndex,
           mainOfferMax: me.offer.maxNbIndex,
           mainOfferCurrent: me.offer.curNbIndex,
         };
         return quota;
       })
-      .catch(err => this.LogsHelperService.handleError('logs_streams_quota_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_streams_quota_get_error', err, {}));
   }
 
   getIndices(serviceName) {
     return this.IndexApiService.query({ serviceName }).$promise
       .then((indices) => {
-        const promises = indices.map(indexId => this.getIndexDetails(serviceName, indexId));
+        const promises = indices.map((indexId) => this.getIndexDetails(serviceName, indexId));
         return this.$q.all(promises);
       })
-      .catch(err => this.LogsHelperService.handleError('logs_index_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_index_get_error', err, {}));
   }
 
   getOwnIndices(serviceName) {
     return this.getIndices(serviceName)
-      .then(indices => indices.filter(index => index.info.isEditable))
-      .catch(err => this.LogsHelperService.handleError('logs_index_get_error', err, {}));
+      .then((indices) => indices.filter((index) => index.info.isEditable))
+      .catch((err) => this.LogsHelperService.handleError('logs_index_get_error', err, {}));
   }
 
   getShareableIndices(serviceName) {
     return this.getIndices(serviceName)
-      .then(indices => indices.filter(index => index.info.isShareable))
-      .catch(err => this.LogsHelperService.handleError('logs_index_get_error', err, {}));
+      .then((indices) => indices.filter((index) => index.info.isShareable))
+      .catch((err) => this.LogsHelperService.handleError('logs_index_get_error', err, {}));
   }
 
   getIndexDetails(serviceName, indexId) {
     return this.IndexAapiService.get({ serviceName, indexId })
       .$promise
-      .then(index => this.constructor.transformAapiIndex(index));
+      .then((index) => this.constructor.transformAapiIndex(index));
   }
 
   static transformAapiIndex(index) {
@@ -103,7 +103,7 @@ class LogsIndexService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_index_create_success', { name: object.suffix });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_index_create_error', err, { name: object.suffix }));
+      .catch((err) => this.LogsHelperService.handleError('logs_index_create_error', err, { name: object.suffix }));
   }
 
   updateIndex(serviceName, index, indexInfo) {
@@ -117,7 +117,7 @@ class LogsIndexService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_index_edit_success', { name: index.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_index_edit_error', err, { name: index.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_index_edit_error', err, { name: index.name }));
   }
 
   deleteIndex(serviceName, index) {
@@ -126,7 +126,7 @@ class LogsIndexService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_index_delete_success', { name: index.name });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_index_delete_error', err, { name: index.name }));
+      .catch((err) => this.LogsHelperService.handleError('logs_index_delete_error', err, { name: index.name }));
   }
 
   resetAllCache() {

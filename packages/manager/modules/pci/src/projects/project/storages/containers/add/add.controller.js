@@ -32,7 +32,7 @@ export default class PciStoragesContainersAddController {
     this.types = OBJECT_CONTAINER_TYPES;
     this.typesList = map(
       this.types,
-      type => ({
+      (type) => ({
         id: type,
         name: this.$translate.instant(`pci_projects_project_storages_containers_add_type_${type}_description`),
       }),

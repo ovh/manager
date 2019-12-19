@@ -12,7 +12,7 @@ export const definition = class SupportNewTicketService {
 
   getCategories() {
     return this.OvhApiSupport.v6().schema().$promise.then(
-      schema => schema.models['support.tickets.CategoryEnum'].enum.map(categoryId => ({
+      (schema) => schema.models['support.tickets.CategoryEnum'].enum.map((categoryId) => ({
         id: categoryId,
         label: this.$translate.instant(`ovhManagerSupport_new_category_${categoryId}`),
       })),
@@ -21,7 +21,7 @@ export const definition = class SupportNewTicketService {
 
   getUrgencies() {
     return this.OvhApiSupport.v6().schema().$promise.then(
-      schema => schema.models['support.tickets.UrgencyEnum'].enum.map(categoryId => ({
+      (schema) => schema.models['support.tickets.UrgencyEnum'].enum.map((categoryId) => ({
         id: categoryId,
         label: this.$translate.instant(`ovhManagerSupport_new_urgency_${categoryId}`),
       })),
@@ -43,7 +43,7 @@ export const definition = class SupportNewTicketService {
   }
 
   static buildFieldText() {
-    return field => SupportNewTicketService.createLine(field.label)
+    return (field) => SupportNewTicketService.createLine(field.label)
       + SupportNewTicketService.createLine(field.default);
   }
 

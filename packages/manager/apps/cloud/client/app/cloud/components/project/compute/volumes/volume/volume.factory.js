@@ -71,7 +71,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
       return OvhApiCloudProjectVolume.v6().get({
         serviceName: this.serviceName,
         volumeId: this.id,
-      }).$promise.then(volOptions => self.setInfos(volOptions));
+      }).$promise.then((volOptions) => self.setInfos(volOptions));
     };
 
     /**
@@ -97,7 +97,9 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
       if (this.volumePricesMap) {
         const volumeByRegionAndTypePrice = this.volumePricesMap[this.planCode] || this.volumePricesMap[`volume.${type}.consumption.${region}`] || this.volumePricesMap[`volume.${type}.consumption`];
         if (volumeByRegionAndTypePrice) {
-          const calculatedPriceValue = size * volumeByRegionAndTypePrice.priceInUcents / 100000000;
+          const calculatedPriceValue = (
+            size * volumeByRegionAndTypePrice.priceInUcents
+          ) / 100000000;
           const calculatedMonthlyPriceValue = calculatedPriceValue * moment.duration(1, 'months').asHours();
           return {
             price: {
@@ -189,7 +191,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
           description: self.description || undefined,
           name: self.name || undefined,
           bootable: self.bootable,
-        }).$promise.then(() => self, error => $q.reject({
+        }).$promise.then(() => self, (error) => $q.reject({
           error: error.data,
           requestName: 'put',
         })));
@@ -202,14 +204,14 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesVolumeFactory',
           volumeId: self.id,
         }, {
           size: parseInt(self.size, 10),
-        }).$promise.then(() => self, error => $q.reject({
+        }).$promise.then(() => self, (error) => $q.reject({
           error: error.data,
           requestName: 'upsize',
         })));
       }
 
       return $q.allSettled(promises).catch((responses) => {
-        const tabError = responses.filter(val => !!val.error);
+        const tabError = responses.filter((val) => !!val.error);
         return $q.reject({
           errors: tabError,
           vm: self,

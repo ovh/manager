@@ -17,7 +17,7 @@
           .then((hosting) => {
             self.hosting = hosting;
           })
-          .catch(err => Alerter.alertFromSWS(
+          .catch((err) => Alerter.alertFromSWS(
             $translate.instant('website_success_text_classic_error'),
             err,
             'website.success.alert',

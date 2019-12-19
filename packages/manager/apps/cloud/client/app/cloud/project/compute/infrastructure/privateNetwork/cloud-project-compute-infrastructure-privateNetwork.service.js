@@ -186,7 +186,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
         } else {
           this.pollPrivateNetworkStatus(options, onSuccess, onFailure);
         }
-      }).catch(error => onFailure(error));
+      }).catch((error) => onFailure(error));
     }, options.delay || 2000);
   }
 
@@ -217,7 +217,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
   static areAllRegionsActive(network) {
     return (network.status === 'ACTIVE')
       && network.regions
-      && every(network.regions, region => region.status === 'ACTIVE');
+      && every(network.regions, (region) => region.status === 'ACTIVE');
   }
 
   deleteProjectNetworkPrivate(serviceName, networkId) {
@@ -227,7 +227,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
         serviceName,
         networkId,
       }).$promise
-      .catch(error => this.$q.reject(error))
+      .catch((error) => this.$q.reject(error))
       .finally(() => {
         this.loaders.delete = false;
       });

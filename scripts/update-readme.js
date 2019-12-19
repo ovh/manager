@@ -6,7 +6,7 @@ const markdownMagic = require('markdown-magic');
 const getPackages = async () => {
   const { stdout: packageList } = await execa('lerna', ['list', '-a', '--json']);
   return JSON.parse(packageList)
-    .map(pkg => ({
+    .map((pkg) => ({
       ...pkg,
       location: path.relative(process.cwd(), pkg.location),
     }));
@@ -18,13 +18,13 @@ const filterPackages = (
 ) => {
   let filteredPackages = [...pkgs];
   if (!publicPackage) {
-    filteredPackages = filteredPackages.filter(pkg => pkg.private);
+    filteredPackages = filteredPackages.filter((pkg) => pkg.private);
   }
   if (!privatePackage) {
-    filteredPackages = filteredPackages.filter(pkg => !pkg.private);
+    filteredPackages = filteredPackages.filter((pkg) => !pkg.private);
   }
   if (packagePath) {
-    filteredPackages = filteredPackages.filter(pkg => pkg.location.startsWith(packagePath));
+    filteredPackages = filteredPackages.filter((pkg) => pkg.location.startsWith(packagePath));
   }
 
   return filteredPackages;
@@ -64,7 +64,7 @@ const buildTableHeader = (showBadges = []) => {
     'changelog',
   ];
 
-  const colTitles = headerIds.map(header => tableHeadersDefinition[header].title);
+  const colTitles = headerIds.map((header) => tableHeadersDefinition[header].title);
 
   const colSeparators = headerIds.map((header) => {
     let separator = '';
@@ -153,7 +153,7 @@ const updateReadme = async () => {
           const header = `${'#'.repeat(options.level)} Availables ${options.name}`;
           const tableaHeader = buildTableHeader(options.showBadges);
 
-          const lines = packageList.map(pkg => buildTableLine(pkg, options.showBadges));
+          const lines = packageList.map((pkg) => buildTableLine(pkg, options.showBadges));
 
           return `${header}
 

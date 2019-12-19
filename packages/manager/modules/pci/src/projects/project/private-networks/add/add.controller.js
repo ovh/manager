@@ -137,10 +137,10 @@ export default class NetworkAddCtrl {
     return this.OvhApiCloudProject.Region().v6().query({
       serviceName: this.projectId,
     }).$promise
-      .then(regions => this.$q.all(
+      .then((regions) => this.$q.all(
         map(
           regions,
-          region => this.OvhApiCloudProject
+          (region) => this.OvhApiCloudProject
             .Region()
             .v6()
             .get({
@@ -152,8 +152,8 @@ export default class NetworkAddCtrl {
       ))
       .then((regions) => {
         const supportedRegions = filter(regions,
-          region => some(get(region, 'services', []), { name: 'network', status: 'UP' }));
-        return supportedRegions.map(region => ({
+          (region) => some(get(region, 'services', []), { name: 'network', status: 'UP' }));
+        return supportedRegions.map((region) => ({
           region: region.name,
           displayedRegion: this.CucRegionService.getTranslatedMicroRegion(region.name),
           selected: true,
@@ -195,7 +195,7 @@ export default class NetworkAddCtrl {
       vlanId: this.configuration.vlanId,
       regions: selectedSubnets.map(({ region }) => region),
     };
-    const subnets = selectedSubnets.map(subnet => ({
+    const subnets = selectedSubnets.map((subnet) => ({
       dhcp: this.configuration.dhcp,
       end: subnet.end,
       network: `${this.configuration.address}/${this.configuration.cidr}`,

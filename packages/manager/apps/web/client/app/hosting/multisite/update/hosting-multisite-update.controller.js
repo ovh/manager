@@ -88,7 +88,7 @@ angular
         if (
           find(
             countryIps,
-            countryIp => countryIp.country === $scope.userInfos.ovhSubsidiary,
+            (countryIp) => countryIp.country === $scope.userInfos.ovhSubsidiary,
           )
         ) {
           target = $scope.userInfos.ovhSubsidiary;
@@ -97,7 +97,7 @@ angular
         forEach(countryIps, (country) => {
           const countryFound = find(
             recordIdsData,
-            record => country.ip === record.target && country.country !== target,
+            (record) => country.ip === record.target && country.country !== target,
           );
 
           if (countryFound) {
@@ -144,7 +144,7 @@ angular
 
                   const promises = map(
                     runtimes,
-                    runtimeId => HostingRuntimes.get(
+                    (runtimeId) => HostingRuntimes.get(
                       $scope.hosting.serviceName,
                       runtimeId,
                     ).then((runtime) => {
@@ -182,7 +182,7 @@ angular
           .then((records) => {
             $scope.selected.domain.ipV6Enabled = some(
               records,
-              record => $scope.hosting.clusterIpv6 === record.target,
+              (record) => $scope.hosting.clusterIpv6 === record.target,
             );
 
             if ($scope.selected.domain.ipV6Enabled) {
@@ -212,7 +212,7 @@ angular
           .then((recordIds) => {
             const recordsPromises = map(
               recordIds,
-              recordId => Domain.getRecord($stateParams.productId, recordId),
+              (recordId) => Domain.getRecord($stateParams.productId, recordId),
             );
 
             return $q.all(recordsPromises);

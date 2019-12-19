@@ -87,7 +87,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     return OvhApiTelephony.Scheduler().v6().get({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(schedulerOptions => self.setOptions(schedulerOptions));
+    }).$promise.then((schedulerOptions) => self.setOptions(schedulerOptions));
   };
 
   /**
@@ -114,7 +114,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     forEach(
       filter(
         self.events,
-        event => event.status === 'TOCREATE' || event.hasChange(null, true),
+        (event) => event.status === 'TOCREATE' || event.hasChange(null, true),
       ),
       (event) => {
         if (event.status === 'TODELETE') {
@@ -171,10 +171,10 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }, filters || {})).$promise
-      .then(eventIds => $q
+      .then((eventIds) => $q
         .all(map(
           chunk(eventIds, 50),
-          chunkIds => OvhApiTelephony.Scheduler().Events().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.Scheduler().Events().v6().getBatch({
             billingAccount: self.billingAccount,
             serviceName: self.serviceName,
             uid: chunkIds,
@@ -189,7 +189,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
                 ),
                 'value',
               ),
-              event => !find(self.events, {
+              (event) => !find(self.events, {
                 uid: event.uid,
               }),
             ),
@@ -276,7 +276,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
 
     return some(
       self.events,
-      schedulerEvent => isEqual(schedulerEvent.categories, event.categories)
+      (schedulerEvent) => isEqual(schedulerEvent.categories, event.categories)
         && (moment(schedulerEvent.dateStart).isBetween(event.dateStart, event.dateEnd, null, '[]')
           || moment(schedulerEvent.dateEnd).isBetween(event.dateStart, event.dateEnd, null, '[]')),
     );
@@ -300,7 +300,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     return $q.all({
       doing: getImportTask('doing'),
       todo: getImportTask('todo'),
-    }).then(responses => responses.doing.concat(responses.todo));
+    }).then((responses) => responses.doing.concat(responses.todo));
   };
 
   /* ----------  ICS EXPORT  ----------*/
@@ -316,7 +316,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
       const icsEvents = [];
       const filteredEvents = filter(
         self.events,
-        event => categoryFilter.indexOf(event.categories) === -1,
+        (event) => categoryFilter.indexOf(event.categories) === -1,
       );
 
       angular.forEach(filteredEvents, (event) => {
@@ -413,7 +413,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
           return !isEqual(self.timeZone, self.saveForEdition.timeZone);
         case 'events':
           // check if one of the event has changed
-          return !!find(self.events, event => event.status === 'TOCREATE' || event.hasChange(null, true));
+          return !!find(self.events, (event) => event.status === 'TOCREATE' || event.hasChange(null, true));
         default:
           return false;
       }

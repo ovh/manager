@@ -97,7 +97,7 @@ angular
         httpMeanResponseTime: false,
         haveDataToDisplay: false,
         typeIsDb() {
-          const condition = v => $scope.selected.type === v;
+          const condition = (v) => $scope.selected.type === v;
           return (
             $scope.model.db
             && !!find($scope.model.constants.dbTypes, condition)
@@ -159,7 +159,7 @@ angular
                     : $translate.instant(
                       `hosting_tab_STATISTICS_series_${serie.serieName}`,
                     ),
-                  map(serie.points, point => ({
+                  map(serie.points, (point) => ({
                     x: parseFloat(point.x.toFixed(2)),
                     y: parseFloat(point.y.toFixed(2)),
                   })),
@@ -238,7 +238,7 @@ angular
             .concat($scope.model.constants.dbTypes);
           remove(
             $scope.model.constants.types,
-            value => value === 'IN_HTTP_MEAN_RESPONSE_TIME',
+            (value) => value === 'IN_HTTP_MEAN_RESPONSE_TIME',
           );
           $scope.selected.type = data.defaultType;
           $scope.selected.period = data.defaultPeriod;

@@ -177,7 +177,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     }
 
     const promises = [];
-    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     forEach(filteredServices, (service) => {
       promises.push(callGetOfferChanges(service.billingAccount, service.serviceName));
@@ -185,8 +185,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
 
     return $q
       .allSettled(promises)
-      .then(listOffers => filterServicesByOffer(filteredServices, listOffers))
-      .catch(listOffers => filterServicesByOffer(filteredServices, listOffers));
+      .then((listOffers) => filterServicesByOffer(filteredServices, listOffers))
+      .catch((listOffers) => filterServicesByOffer(filteredServices, listOffers));
   };
 
   self.getBulkParams = function getBulkParams() {

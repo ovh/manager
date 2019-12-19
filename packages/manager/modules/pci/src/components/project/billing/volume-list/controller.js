@@ -20,7 +20,7 @@ export default /* @ngInject */ function (
   function getVolumesDetails() {
     return OvhApiCloudProjectVolume.v6().query({
       serviceName: $stateParams.projectId,
-    }).$promise.then(volumes => volumes);
+    }).$promise.then((volumes) => volumes);
   }
 
   function updateVolumeConsumptionDetails(allProjectVolumes, volumeConsumptions) {
@@ -34,7 +34,7 @@ export default /* @ngInject */ function (
 
       volumeConsumptionDetail.amount = volumeConsumption.quantity.value;
 
-      const volumeDetail = find(allProjectVolumes, x => x.id === volumeConsumption.volumeId);
+      const volumeDetail = find(allProjectVolumes, (x) => x.id === volumeConsumption.volumeId);
       if (volumeDetail) {
         volumeConsumptionDetail.name = volumeDetail.name;
         volumeConsumptionDetail.size = volumeDetail.size;
@@ -50,7 +50,7 @@ export default /* @ngInject */ function (
 
   function initVolumes() {
     return getVolumesDetails()
-      .then(allProjectVolumes => updateVolumeConsumptionDetails(allProjectVolumes, self.volumes));
+      .then((allProjectVolumes) => updateVolumeConsumptionDetails(allProjectVolumes, self.volumes));
   }
 
   function initUserCurrency() {

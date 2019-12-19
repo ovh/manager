@@ -1,4 +1,3 @@
-/* global setTimeout */
 angular.module('managerApp').controller('PackXdslCtrl',
   function PackXdslCtrl(
     $q,

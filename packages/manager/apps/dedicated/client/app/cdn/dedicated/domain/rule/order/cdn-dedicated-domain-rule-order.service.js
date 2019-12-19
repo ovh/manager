@@ -1,5 +1,5 @@
 angular.module('services').service('cdnDedicatedOrderRule', function cdnDedicatedOrderRule(OvhHttp) {
-  this.getCacherulePrices = serviceName => OvhHttp.get('/sws/dedicated/cdn/{serviceName}/prices/cacherules', {
+  this.getCacherulePrices = (serviceName) => OvhHttp.get('/sws/dedicated/cdn/{serviceName}/prices/cacherules', {
     rootPath: '2api',
     urlParams: {
       serviceName,

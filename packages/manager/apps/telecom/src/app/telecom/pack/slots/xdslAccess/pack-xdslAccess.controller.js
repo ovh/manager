@@ -18,7 +18,7 @@ angular.module('managerApp').controller('PackAccessCtrl', function PackAccessCtr
       (services) => {
         $q
           .all(
-            map(services, service => OvhApiXdslLines.v6().query({
+            map(services, (service) => OvhApiXdslLines.v6().query({
               xdslId: service.accessName,
             }).$promise.then((lines) => {
               set(service, 'lines', lines);

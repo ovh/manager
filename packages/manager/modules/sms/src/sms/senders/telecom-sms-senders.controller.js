@@ -59,7 +59,7 @@ export default class {
   refresh() {
     this.senders.isLoading = true;
     this.resetAllCache();
-    return this.fetchSenders().then(senders => this.$q.all(map(senders, (sender) => {
+    return this.fetchSenders().then((senders) => this.$q.all(map(senders, (sender) => {
       set(sender, 'serviceInfos', null);
       if (sender.type === 'virtual') {
         const number = `00${trimStart(sender.sender, '+')}`;
@@ -99,12 +99,12 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(sendersIds => this.$q
-        .all(map(chunk(sendersIds, 50), chunkIds => this.api.sms.senders.getBatch({
+      .then((sendersIds) => this.$q
+        .all(map(chunk(sendersIds, 50), (chunkIds) => this.api.sms.senders.getBatch({
           serviceName: this.$stateParams.serviceName,
           sender: chunkIds.join('|'),
         }).$promise))
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+        .then((chunkResult) => map(flatten(chunkResult), 'value')));
   }
 
   /**
@@ -138,7 +138,7 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return filter(this.senders.raw, sender => sender && sender.type !== 'virtual' && this.senders.selected && this.senders.selected[sender.sender]);
+    return filter(this.senders.raw, (sender) => sender && sender.type !== 'virtual' && this.senders.selected && this.senders.selected[sender.sender]);
   }
 
   /**
@@ -147,7 +147,7 @@ export default class {
    */
   deleteSelectedSenders() {
     const senders = this.getSelection();
-    const queries = senders.map(sender => this.api.sms.senders.delete({
+    const queries = senders.map((sender) => this.api.sms.senders.delete({
       serviceName: this.$stateParams.serviceName,
       sender: sender.sender,
     }).$promise);

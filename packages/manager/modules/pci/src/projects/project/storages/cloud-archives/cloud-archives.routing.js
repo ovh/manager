@@ -3,10 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.storages.archives', {
       url: '/cloud-archives',
       component: 'pciProjectStorageContainers',
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('containers')
-        .then(containers => (containers.length === 0 ? { state: 'pci.projects.project.storages.archives.onboarding' } : false)),
+        .then((containers) => (containers.length === 0 ? { state: 'pci.projects.project.storages.archives.onboarding' } : false)),
       resolve: {
         archive: () => true,
         containers: /* @ngInject */ (
@@ -17,15 +17,15 @@ export default /* @ngInject */ ($stateProvider) => {
         addContainer: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.archives.add', {
           projectId,
         }),
-        viewContainer: /* @ngInject */($state, projectId) => container => $state.go('pci.projects.project.storages.archives.archive', {
+        viewContainer: /* @ngInject */($state, projectId) => (container) => $state.go('pci.projects.project.storages.archives.archive', {
           projectId,
           containerId: container.id,
         }),
-        deleteContainer: /* @ngInject */($state, projectId) => container => $state.go('pci.projects.project.storages.archives.delete', {
+        deleteContainer: /* @ngInject */($state, projectId) => (container) => $state.go('pci.projects.project.storages.archives.delete', {
           projectId,
           containerId: container.id,
         }),
-        containerLink: /* @ngInject */($state, projectId) => container => $state.href('pci.projects.project.storages.archives.archive', {
+        containerLink: /* @ngInject */($state, projectId) => (container) => $state.href('pci.projects.project.storages.archives.archive', {
           projectId,
           containerId: container.id,
         }),
@@ -47,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_containers_archive_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_storages_containers_archive_title'),
       },
     });
 };

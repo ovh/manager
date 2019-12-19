@@ -16,8 +16,8 @@ angular
 
     $stateProvider.state('app.dedicatedClouds.datacenter.datastores.order', {
       resolve: {
-        datacenterId: /* @ngInject */ $stateParams => $stateParams.datacenterId,
-        serviceName: /* @ngInject */ $stateParams => $stateParams.productId,
+        datacenterId: /* @ngInject */ ($stateParams) => $stateParams.datacenterId,
+        serviceName: /* @ngInject */ ($stateParams) => $stateParams.productId,
       },
       url: '/order',
       views: {

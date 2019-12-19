@@ -30,7 +30,7 @@ class LogsHomeService {
    */
   getAccount(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(account => this.transformAccount(account))
+      .then((account) => this.transformAccount(account))
       .catch(this.CucServiceHelper.errorHandler('logs_home_account_get_error'));
   }
 
@@ -43,7 +43,7 @@ class LogsHomeService {
    */
   getAccountDetails(serviceName) {
     return this.DetailsAapiService.me({ serviceName }).$promise
-      .then(accountDetails => this.transformAccountDetails(accountDetails))
+      .then((accountDetails) => this.transformAccountDetails(accountDetails))
       .catch(this.CucServiceHelper.errorHandler('logs_home_account_details_get_error'));
   }
 
@@ -57,7 +57,7 @@ class LogsHomeService {
   getCurrentOffer(serviceName) {
     return this.LogsOfferService
       .getOffer(serviceName)
-      .then(offer => this.transformOffer(offer));
+      .then((offer) => this.transformOffer(offer));
   }
 
   /**
@@ -102,7 +102,7 @@ class LogsHomeService {
         const timestamps = data.data.length > 0 ? Object.keys(data.data[0].dps) : [];
         data = data.data.map(dat => timestamps.map(timestamp => dat.dps[timestamp])); // eslint-disable-line
         return {
-          timestamps: timestamps.map(timestamp => timestamp * 1000),
+          timestamps: timestamps.map((timestamp) => timestamp * 1000),
           usageData: data,
         };
       })
@@ -128,7 +128,7 @@ class LogsHomeService {
             Authorization: `Basic ${token}`,
           },
           preventLogout: true,
-        }).then(data => ({
+        }).then((data) => ({
           coldStorage: data.data.length > 0
             ? Math.floor(data.data[0].value)
             : undefined,
@@ -146,7 +146,7 @@ class LogsHomeService {
   getOptions(serviceName) {
     return this.LogsOptionsService.getSubscribedOptionsMap(serviceName)
       .then((options) => {
-        options.forEach(option => this.constructor.transformOption(option));
+        options.forEach((option) => this.constructor.transformOption(option));
         return options;
       });
   }
@@ -208,7 +208,7 @@ class LogsHomeService {
             return res;
           });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_home_display_name_update_error', err, { }));
+      .catch((err) => this.LogsHelperService.handleError('logs_home_display_name_update_error', err, { }));
   }
 
   /**
@@ -229,7 +229,7 @@ class LogsHomeService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_home_capped_update_success', { });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_home_capped_update_error', err, { }));
+      .catch((err) => this.LogsHelperService.handleError('logs_home_capped_update_error', err, { }));
   }
 
   /**
@@ -304,7 +304,7 @@ class LogsHomeService {
         portsAndMessages[urlInfo.PORT][urlInfo.MESSAGE] = url.address.split(':')[1]; // eslint-disable-line
       }
     });
-    return Object.keys(portsAndMessages).map(portType => portsAndMessages[portType]);
+    return Object.keys(portsAndMessages).map((portType) => portsAndMessages[portType]);
   }
 
   /**

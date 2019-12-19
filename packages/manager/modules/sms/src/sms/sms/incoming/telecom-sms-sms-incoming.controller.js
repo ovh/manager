@@ -89,12 +89,12 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(incomingIds => this.$q
-        .all(map(chunk(incomingIds, 50), id => this.api.smsIncoming.getBatch({
+      .then((incomingIds) => this.$q
+        .all(map(chunk(incomingIds, 50), (id) => this.api.smsIncoming.getBatch({
           serviceName: this.$stateParams.serviceName,
           id,
         }).$promise))
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+        .then((chunkResult) => map(flatten(chunkResult), 'value')));
   }
 
   /**
@@ -152,7 +152,7 @@ export default class {
   getSelection() {
     return filter(
       this.incoming.raw,
-      incoming => incoming && this.incoming.selected && this.incoming.selected[incoming.id],
+      (incoming) => incoming && this.incoming.selected && this.incoming.selected[incoming.id],
     );
   }
 
@@ -162,7 +162,7 @@ export default class {
    */
   deleteSelectedIncoming() {
     const incomings = this.getSelection();
-    const queries = incomings.map(incoming => this.api.smsIncoming.delete({
+    const queries = incomings.map((incoming) => this.api.smsIncoming.delete({
       serviceName: this.$stateParams.serviceName,
       id: incoming.id,
     }).$promise);

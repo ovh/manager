@@ -17,8 +17,8 @@ export default class VeeamEnterpriseService {
     return this.veeamEnterprise
       .get({ serviceName })
       .$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(
         response,
         this.$translate.instant('veeam_enterprise_infos_configuration_load_error'),
       ));
@@ -28,8 +28,8 @@ export default class VeeamEnterpriseService {
     return this.veeamEnterprise
       .getServiceInfos({ serviceName })
       .$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(
         response.data,
         this.$translate.instant('veeam_enterprise_infos_subscription_load_error'),
       ));
@@ -45,7 +45,7 @@ export default class VeeamEnterpriseService {
           },
         )
         .$promise
-        .then(response => this.acceptResponse(
+        .then((response) => this.acceptResponse(
           response,
           this.$translate.instant('veeam_enterprise_infos_license_register_success'),
         ))
@@ -71,11 +71,11 @@ export default class VeeamEnterpriseService {
         },
       )
       .$promise
-      .then(response => this.acceptResponse(
+      .then((response) => this.acceptResponse(
         response,
         this.$translate.instant('veeam_enterprise_infos_license_update_success'),
       ))
-      .catch(response => this.rejectResponse(
+      .catch((response) => this.rejectResponse(
         response.data,
         this.$translate.instant('veeam_enterprise_infos_license_update_error'),
       ));
@@ -85,11 +85,11 @@ export default class VeeamEnterpriseService {
     return this.veeamEnterprise
       .terminate({ serviceName })
       .$promise
-      .then(response => this.acceptResponse(
+      .then((response) => this.acceptResponse(
         response,
         this.$translate.instant('veeam_enterprise_terminate_success'),
       ))
-      .catch(response => this.rejectResponse(
+      .catch((response) => this.rejectResponse(
         response.data,
         this.$translate.instant('veeam_enterprise_terminate_error'),
       ));

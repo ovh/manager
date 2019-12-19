@@ -8,10 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.kubernetes', {
       url: '/kubernetes',
       component: 'ovhManagerPciProjectKubernetes',
-      redirectTo: transition => transition
+      redirectTo: (transition) => transition
         .injector()
         .getAsync('kubernetes')
-        .then(kubernetes => (kubernetes.length === 0 ? { state: 'pci.projects.project.kubernetes.onboarding' } : false)),
+        .then((kubernetes) => (kubernetes.length === 0 ? { state: 'pci.projects.project.kubernetes.onboarding' } : false)),
       resolve: {
         addCluster: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.kubernetes.add', { projectId }),
         goToKubernetes: ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
@@ -37,14 +37,14 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => OvhApiCloudProjectKube.v6().query({
           serviceName: projectId,
         }).$promise
-          .then(kubernetes => map(kubernetes, id => ({ id, region: REGION }))),
+          .then((kubernetes) => map(kubernetes, (id) => ({ id, region: REGION }))),
 
         versions: /* @ngInject */
-          OvhApiCloud => OvhApiCloud.v6().schema().$promise
-            .then(schema => get(schema, VERSION_ENUM_KEY)),
+          (OvhApiCloud) => OvhApiCloud.v6().schema().$promise
+            .then((schema) => get(schema, VERSION_ENUM_KEY)),
 
         highestVersion: /* @ngInject */
-          versions => max(versions, version => parseFloat(`${version}`)),
+          (versions) => max(versions, (version) => parseFloat(`${version}`)),
 
         regions: /* @ngInject */ (
           OvhApiCloudProjectKube,
@@ -53,12 +53,12 @@ export default /* @ngInject */ ($stateProvider) => {
           .getRegions({
             serviceName: projectId,
           }).$promise
-          .then(regions => map(regions, region => ({
+          .then((regions) => map(regions, (region) => ({
             name: region,
             hasEnoughQuota: () => true,
           }))),
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('kube_list_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('kube_list_title'),
       },
     });
 };

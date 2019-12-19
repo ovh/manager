@@ -11,6 +11,6 @@ angular.module('App').controller('NasPartitionAccessDeleteCtrl', ($scope, $state
         $rootScope.$broadcast('nas_launch_task', task);
         Alerter.success($translate.instant('nas_access_action_delete_success', { t0: $scope.toDelete.access }), alerterId);
       })
-      .catch(data => Alerter.alertFromSWS($translate.instant('nas_access_action_delete_failure', { t0: $scope.toDelete.access }), data, alerterId));
+      .catch((data) => Alerter.alertFromSWS($translate.instant('nas_access_action_delete_failure', { t0: $scope.toDelete.access }), data, alerterId));
   };
 });

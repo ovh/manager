@@ -13,7 +13,7 @@ angular.module('Module.otrs.services').service('Module.otrs.services.NewTicket',
     };
 
     this.getEnumType = function getEnumType() {
-      return WucApi.models('/apiv6/newTicket', 'support.TicketTypeEnum').then(enumDetails => enumDetails.enum);
+      return WucApi.models('/apiv6/newTicket', 'support.TicketTypeEnum').then((enumDetails) => enumDetails.enum);
     };
 
     this.post = function post(data) {

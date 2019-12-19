@@ -17,7 +17,7 @@ export default class CarrierSipService {
       .$promise
       .then(({ data: carrierSipLines }) => (map(
         carrierSipLines,
-        carrierSipLine => new VoipCarrierSipLine({
+        (carrierSipLine) => new VoipCarrierSipLine({
           billingAccount,
           ...carrierSipLine,
         }),
@@ -28,7 +28,7 @@ export default class CarrierSipService {
     return this.OvhApiTelephony.CarrierSip().v6().get({
       billingAccount,
       serviceName,
-    }).$promise.then(carrierSip => new VoipCarrierSipLine({
+    }).$promise.then((carrierSip) => new VoipCarrierSipLine({
       ...carrierSip,
       billingAccount,
     }));
@@ -57,9 +57,9 @@ export default class CarrierSipService {
         serviceName,
       })
       .$promise
-      .then(endpointsIds => this.$q.all(map(
+      .then((endpointsIds) => this.$q.all(map(
         endpointsIds,
-        endpointId => this.OvhApiTelephony
+        (endpointId) => this.OvhApiTelephony
           .CarrierSip()
           .Endpoints()
           .v6()

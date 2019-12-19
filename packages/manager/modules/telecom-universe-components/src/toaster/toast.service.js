@@ -55,11 +55,11 @@ export default /* @ngInject */ function ($timeout) {
   };
 
   self.clearMessage = function clearMessage(message) {
-    messages = filter(messages, msg => msg !== message);
+    messages = filter(messages, (msg) => msg !== message);
   };
 
   self.clearMessagesByType = function clearMessagesByType(type) {
-    messages = filter(messages, msg => msg.type !== type);
+    messages = filter(messages, (msg) => msg.type !== type);
   };
 
   self.getMessages = function getMessages() {

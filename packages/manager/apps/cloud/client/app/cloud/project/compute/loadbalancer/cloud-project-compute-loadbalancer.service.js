@@ -24,7 +24,7 @@ class CloudProjectComputeLoadbalancerService {
         return this.OvhApiIpLoadBalancing.Frontend().Http().v6().query({
           serviceName: id,
           port: 80,
-        }).$promise.then(frontendIds => (frontendIds.length
+        }).$promise.then((frontendIds) => (frontendIds.length
           && this
             .OvhApiIpLoadBalancing
             .Frontend()
@@ -72,8 +72,8 @@ class CloudProjectComputeLoadbalancerService {
   getLoadbalancersImported(serviceName) {
     return this.OvhApiCloudProjectIplb.v6().query({
       serviceName,
-    }).$promise.then(ids => this.$q.all(
-      map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
+    }).$promise.then((ids) => this.$q.all(
+      map(ids, (id) => this.OvhApiCloudProjectIplb.v6().get({
         serviceName,
         id,
       }).$promise),
@@ -97,8 +97,8 @@ class CloudProjectComputeLoadbalancerService {
         serviceName: loadbalancer.serviceName,
         farmId: loadbalancer.farm.farmId,
       }).$promise
-      .then(serverIds => this.$q.all(
-        map(serverIds, serverId => this.OvhApiIpLoadBalancing.Farm().Http().Server().v6()
+      .then((serverIds) => this.$q.all(
+        map(serverIds, (serverId) => this.OvhApiIpLoadBalancing.Farm().Http().Server().v6()
           .get({
             serviceName: loadbalancer.serviceName,
             farmId: loadbalancer.farm.farmId,
@@ -123,8 +123,8 @@ class CloudProjectComputeLoadbalancerService {
       // Concat all public ip of public cloud and of the loadbalancer.
       const servers = uniqBy(
         union(
-          flatten(map(cloudServers, server => map(filter(server.ipAddresses, { type: 'public', version: 4 }), adresse => ({ label: server.name, ip: adresse.ip })))),
-          map(this.attachedServers, server => ({
+          flatten(map(cloudServers, (server) => map(filter(server.ipAddresses, { type: 'public', version: 4 }), (adresse) => ({ label: server.name, ip: adresse.ip })))),
+          map(this.attachedServers, (server) => ({
             label: server.displayName,
             ip: server.address,
           })),

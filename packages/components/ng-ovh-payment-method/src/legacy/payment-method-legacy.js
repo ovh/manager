@@ -167,9 +167,9 @@ export default class OvhPaymentMethodLegacy {
     return this.$q
       .all(map(
         availablePaymentMeans,
-        type => this.getPaymentMeansOfType(type.value, options),
+        (type) => this.getPaymentMeansOfType(type.value, options),
       ))
-      .then(paymentsOfType => flatten(paymentsOfType));
+      .then((paymentsOfType) => flatten(paymentsOfType));
   }
 
   /**
@@ -196,9 +196,9 @@ export default class OvhPaymentMethodLegacy {
       .query(paymentMeanType === 'bankAccount' && options.onlyValid ? {
         state: 'valid',
       } : {}).$promise
-      .then(paymentMeanIds => this.$q.all(map(
+      .then((paymentMeanIds) => this.$q.all(map(
         paymentMeanIds,
-        paymentMeanId => resource.get({
+        (paymentMeanId) => resource.get({
           id: paymentMeanId,
         }).$promise.then((mean) => {
           let paymentMean;

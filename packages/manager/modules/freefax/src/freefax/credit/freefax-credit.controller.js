@@ -11,7 +11,7 @@ export default /* @ngInject */ function (
     self.cost = '';
     self.contracts = [];
 
-    self.creditChoices = FREEFAX_DISCRETE_CREDIT.map(val => ({
+    self.creditChoices = FREEFAX_DISCRETE_CREDIT.map((val) => ({
       label: val,
       value: val,
     }));

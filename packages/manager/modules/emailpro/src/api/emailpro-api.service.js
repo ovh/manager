@@ -21,9 +21,9 @@ export default /* @ngInject */ function ApiEmailPro(
         b.cache.removeAll();
 
         return EmailPro.gettingBaseAPIPath()
-          .then(baseAPIPath => WucApi[operationType](`${constants.swsProxyRootPath}${baseAPIPath}${a}`, b))
-          .then(data => data)
-          .catch(reason => $q.reject(reason));
+          .then((baseAPIPath) => WucApi[operationType](`${constants.swsProxyRootPath}${baseAPIPath}${a}`, b))
+          .then((data) => data)
+          .catch((reason) => $q.reject(reason));
       };
     });
   }

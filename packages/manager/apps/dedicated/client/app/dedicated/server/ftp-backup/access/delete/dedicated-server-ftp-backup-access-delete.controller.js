@@ -26,7 +26,7 @@ angular.module('App')
           this.$rootScope.$broadcast('server.ftpBackup.access.load');
           this.Alerter.success(this.$translate.instant('server_configuration_ftpbackup_access_delete_success', { t0: this.access }), 'server_tab_ftpbackup_alert');
         })
-        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('server_configuration_ftpbackup_access_delete_failure', { t0: this.access }), err, 'server_tab_ftpbackup_alert'))
+        .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('server_configuration_ftpbackup_access_delete_failure', { t0: this.access }), err, 'server_tab_ftpbackup_alert'))
         .finally(() => {
           this.isDeleting = false;
           this.$scope.resetAction();

@@ -22,7 +22,7 @@ angular.module('managerApp')
       let requests = [];
 
       return OvhApiOverTheBox.v6().query().$promise.then((serviceNames) => {
-        requests = map(serviceNames, serviceName => OvhApiOverTheBox.v6().get({
+        requests = map(serviceNames, (serviceName) => OvhApiOverTheBox.v6().get({
           serviceName,
         }).$promise);
 
@@ -48,7 +48,7 @@ angular.module('managerApp')
       ====================================== */
 
     self.init = function init(expand) {
-      self.mainSectionItem = SidebarMenu.addMenuItem(Object.assign({
+      self.mainSectionItem = SidebarMenu.addMenuItem({
         title: $translate.instant('telecom_sidebar_section_otb'),
         error: $translate.instant('telecom_sidebar_load_error'),
         id: 'telecom-otb-section',
@@ -58,7 +58,8 @@ angular.module('managerApp')
         loadOnState: 'overTheBoxes',
         allowSearch: !expand,
         infiniteScroll: true,
-      }, expand ? { state: 'overTheBoxes.index' } : { onLoad: self.loadOtbMainSection }));
+        ...(expand ? { state: 'overTheBoxes.index' } : { onLoad: self.loadOtbMainSection }),
+      });
 
       return self.mainSectionItem;
     };

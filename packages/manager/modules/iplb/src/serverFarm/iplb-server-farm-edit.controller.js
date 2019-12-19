@@ -49,7 +49,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
             this.$stateParams.farmId,
             farm.type,
           );
-        }).then(farm => this.parseFarm(farm)),
+        }).then((farm) => this.parseFarm(farm)),
     });
   }
 
@@ -129,7 +129,7 @@ export default class IpLoadBalancerServerFarmEditCtrl {
 
   updateStickinessList() {
     if (this.type === 'tcp') {
-      this.availableStickinesses = this.stickinesses.filter(stickiness => stickiness !== 'cookie');
+      this.availableStickinesses = this.stickinesses.filter((stickiness) => stickiness !== 'cookie');
     } else {
       this.availableStickinesses = this.stickinesses;
     }

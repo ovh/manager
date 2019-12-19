@@ -24,7 +24,7 @@ angular.module('managerApp').controller('CloudProjectBillingVouchersAddcreditAgo
     this.amount = 10;
     this.loading = true;
     return this.OvhApiMe.v6().get().$promise
-      .then(me => this.OvhApiOrderCatalogPublic.v6()
+      .then((me) => this.OvhApiOrderCatalogPublic.v6()
         .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary }).$promise.then((result) => {
           const pricing = head(
             filter(
@@ -32,12 +32,12 @@ angular.module('managerApp').controller('CloudProjectBillingVouchersAddcreditAgo
                 head(
                   filter(
                     get(result, 'plans'),
-                    p => p.planCode === 'credit' && p.pricingType === 'purchase',
+                    (p) => p.planCode === 'credit' && p.pricingType === 'purchase',
                   ),
                 ),
                 'pricings',
               ),
-              p => p.capacities.includes('installation'),
+              (p) => p.capacities.includes('installation'),
             ),
           );
           this.price = pricing ? {

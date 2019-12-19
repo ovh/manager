@@ -70,7 +70,7 @@ export default class NashaPartitionAccessCtrl {
     }).then((data) => {
       this.data.nasha = data.nasha;
       this.data.partition = data.partition;
-      this.table.accessIps = data.accesses.map(ip => ({
+      this.table.accessIps = data.accesses.map((ip) => ({
         ip,
       }));
       if (resetCache) {
@@ -91,7 +91,7 @@ export default class NashaPartitionAccessCtrl {
 
   getAccessForIp(accessIp) {
     // If the access is being added, return the local data
-    const accessAddInProgress = find(this.data.addAccessInProgress, item => item.ip === accessIp);
+    const accessAddInProgress = find(this.data.addAccessInProgress, (item) => item.ip === accessIp);
     if (accessAddInProgress) {
       return accessAddInProgress;
     }
@@ -101,7 +101,7 @@ export default class NashaPartitionAccessCtrl {
       serviceName: this.serviceName,
       partitionName: this.data.partition.partitionName,
       ip: accessIp,
-    }).$promise.then(data => data);
+    }).$promise.then((data) => data);
   }
 
   transformItem(access) {
@@ -126,10 +126,10 @@ export default class NashaPartitionAccessCtrl {
     this.launchPolling(taskId)
       .finally(() => {
         // Remove from the polling list
-        remove(this.data.taskForAccess, item => item.task === taskId);
+        remove(this.data.taskForAccess, (item) => item.task === taskId);
 
         // If the partition was in creation, remove it from the creation list
-        remove(this.data.addAccessInProgress, item => item.ip === access.ip);
+        remove(this.data.addAccessInProgress, (item) => item.ip === access.ip);
         this.task = null;
         this.updateAccess(access);
       });

@@ -33,7 +33,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleCtrl
           this.securityGroup.id,
         );
       })
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('enterprise_cloud_database_service_details_settings_create_rule_error', {
           message: get(error, 'data.message'),
         }),

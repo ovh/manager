@@ -42,7 +42,7 @@ export default class CucOvhPoll {
 
     const deferred = this.$q.defer();
     poller.pollInterval = this.$interval(() => {
-      const promises = map(items, item => this.$q.when(opts.pollFunction(item))
+      const promises = map(items, (item) => this.$q.when(opts.pollFunction(item))
         .then((newItem) => {
           if (newItem) {
             const newItemKeys = keys(newItem);
@@ -74,7 +74,7 @@ export default class CucOvhPoll {
 
       this.$q.all(promises)
         .then((results) => {
-          items = map(filter(results, result => !result.stopping), result => result.item);
+          items = map(filter(results, (result) => !result.stopping), (result) => result.item);
 
           if (!items.length) {
             poller.kill();

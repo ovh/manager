@@ -41,7 +41,7 @@ angular.module('controllers').controller(
           this.$translate.instant('domain_tab_ZONE_default_ttl_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_ZONE_default_ttl_error'),
           err,
           this.$scope.alerts.main,

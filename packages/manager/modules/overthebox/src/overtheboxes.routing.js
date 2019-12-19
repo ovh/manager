@@ -14,16 +14,16 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       apiPath: () => '/overTheBox',
       ...ListLayoutHelper.stateResolves,
-      schema: /* @ngInject */ OvhApiOverTheBox => OvhApiOverTheBox
+      schema: /* @ngInject */ (OvhApiOverTheBox) => OvhApiOverTheBox
         .v6()
         .schema()
         .$promise,
-      overTheBoxStatusTypes: /* @ngInject */ schema => get(schema.models, 'overTheBox.ServiceStatusEnum').enum,
+      overTheBoxStatusTypes: /* @ngInject */ (schema) => get(schema.models, 'overTheBox.ServiceStatusEnum').enum,
 
-      getOvertheboxLink: /* @ngInject */ $state => ({ serviceName }) => $state.href('overTheBoxes.overTheBox.details', {
+      getOvertheboxLink: /* @ngInject */ ($state) => ({ serviceName }) => $state.href('overTheBoxes.overTheBox.details', {
         serviceName,
       }),
-      viewOverthebox: /* @ngInject */ $state => ({ serviceName }) => $state.go('overTheBoxes.overTheBox.details', {
+      viewOverthebox: /* @ngInject */ ($state) => ({ serviceName }) => $state.go('overTheBoxes.overTheBox.details', {
         serviceName,
       }),
     },

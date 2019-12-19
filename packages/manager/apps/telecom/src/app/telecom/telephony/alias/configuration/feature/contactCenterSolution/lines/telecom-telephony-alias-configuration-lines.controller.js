@@ -62,7 +62,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
           this.queue.queueId,
         );
       })
-      .then(agents => this.handleAgentsPromiseResult(agents))
+      .then((agents) => this.handleAgentsPromiseResult(agents))
       .catch((error) => {
         this.TucToast.error(
           `${this.$translate.instant('telephony_alias_config_contactCenterSolution_lines_get_error')} ${get(error, 'data.message', error.message)}`,
@@ -75,17 +75,17 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
 
   fetchEnums() {
     return this.OvhApiTelephony.v6().schema().$promise.then(({ models }) => ({
-      caller: get(models, 'telephony.OvhPabxDialplanNumberPresentationEnum', { enum: [] }).enum.map(caller => ({
+      caller: get(models, 'telephony.OvhPabxDialplanNumberPresentationEnum', { enum: [] }).enum.map((caller) => ({
         label: this.$translate.instant(`telephony_alias_config_contactCenterSolution_lines_display_number_${caller}`),
         value: caller,
       })).reverse(),
       strategy: this.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION.lines.strategies
-        .filter(strategy => get(models, 'telephony.OvhPabxHuntingQueueStrategyEnum', { enum: [] }).enum.includes(strategy))
-        .map(strategy => ({
+        .filter((strategy) => get(models, 'telephony.OvhPabxHuntingQueueStrategyEnum', { enum: [] }).enum.includes(strategy))
+        .map((strategy) => ({
           label: this.$translate.instant(`telephony_alias_config_contactCenterSolution_lines_strategy_${strategy}`),
           value: strategy,
         })),
-      status: get(models, 'telephony.OvhPabxHuntingAgentStatusEnum', { enum: [] }).enum.map(status => ({
+      status: get(models, 'telephony.OvhPabxHuntingAgentStatusEnum', { enum: [] }).enum.map((status) => ({
         label: this.$translate.instant(`telephony_alias_config_contactCenterSolution_lines_status_${status}`),
         value: status,
       })),
@@ -144,7 +144,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
           this.queue.queueId,
         );
       })
-      .then(agents => this.handleAgentsPromiseResult(agents))
+      .then((agents) => this.handleAgentsPromiseResult(agents))
       .catch((error) => {
         this.TucToast(
           `${this.$translate.instant('telephony_alias_config_contactCenterSolution_lines_delete_line_error')} ${get(error, 'data.message', '')}`,
@@ -178,7 +178,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
     }).then(() => this.tucVoipServiceAlias.fetchContactCenterSolutionNumberAgentsInQueue(
       this.serviceInfos,
       this.queue.queueId,
-    )).then(agents => this.handleAgentsPromiseResult(agents)).catch((error) => {
+    )).then((agents) => this.handleAgentsPromiseResult(agents)).catch((error) => {
       if (isObject(error)) {
         this.TucToast.error(error);
       }
@@ -243,7 +243,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
   }
 
   static formatAgents(agents) {
-    return agents.map(agent => assign(agent,
+    return agents.map((agent) => assign(agent,
       {
         position: agent.position,
         $first: agent.position === 0,

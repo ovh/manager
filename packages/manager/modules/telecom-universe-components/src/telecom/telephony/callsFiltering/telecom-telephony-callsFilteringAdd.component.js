@@ -57,7 +57,7 @@ export default /* @ngInject */ {
         form.$setPristine();
         self.screenListToAdd.callNumber = '';
         TucToast.success($translate.instant('telephony_calls_filtering_add_success'));
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.isAdding = false;
       });
     };
@@ -113,7 +113,7 @@ export default /* @ngInject */ {
         return $q.when(new TucToastError($translate.instant('telephony_calls_filtering_add_csv_parse_error'), err));
       }
       TucToast.info($translate.instant('telephony_calls_filtering_add_csv_import_success'));
-      return $q.all(map(csvArray, line => self.addScreenList({
+      return $q.all(map(csvArray, (line) => self.addScreenList({
         screen: {
           callNumber: line[0],
           nature: line[1],
@@ -123,7 +123,7 @@ export default /* @ngInject */ {
         if (self.onScreenListAdded) {
           self.onScreenListAdded();
         }
-      }).catch(err => new TucToastError(err));
+      }).catch((err) => new TucToastError(err));
     };
 
     self.getNumberValidationPattern = (function getNumberValidationPattern() {

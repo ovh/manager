@@ -82,7 +82,7 @@ angular.module('managerApp').controller('TelephonySchedulerExportCtrl', function
       return $timeout(() => {
         self.close();
       }, 1000);
-    }, error => self.cancel(error)).finally(() => {
+    }, (error) => self.cancel(error)).finally(() => {
       self.loading.export = false;
     });
   };
@@ -104,9 +104,9 @@ angular.module('managerApp').controller('TelephonySchedulerExportCtrl', function
       categories = map(
         filter(
           apiCategories,
-          category => (self.timeCondition ? self.convertCategoryToSlot(category) : true),
+          (category) => (self.timeCondition ? self.convertCategoryToSlot(category) : true),
         ),
-        category => ({
+        (category) => ({
           value: category,
           active: self.filters.indexOf(category) === -1,
         }),

@@ -46,7 +46,7 @@ angular.module('App').controller(
             throw this.$translate.instant('hosting_tab_ENVVARS_list_error_temporary');
           }
 
-          this.envvars = keys.map(key => ({ key }));
+          this.envvars = keys.map((key) => ({ key }));
         })
         .catch((err) => {
           this.Alerter.error(

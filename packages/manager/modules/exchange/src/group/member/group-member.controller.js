@@ -41,7 +41,7 @@ export default class ExchangeTabMembersByGroupsCtrl {
           },
         };
       })
-      .catch(failure => this.services.messaging.writeError(
+      .catch((failure) => this.services.messaging.writeError(
         this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
         failure,
       ));
@@ -64,7 +64,7 @@ export default class ExchangeTabMembersByGroupsCtrl {
           this.membersList.splice(i, 1);
         }
       })
-      .catch(failure => this.services.messaging.writeError(
+      .catch((failure) => this.services.messaging.writeError(
         this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
         failure,
       ));

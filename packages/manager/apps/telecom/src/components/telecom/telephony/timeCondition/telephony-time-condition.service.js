@@ -138,7 +138,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
     }
 
     // set slot values
-    filter(timeCondition.slots, slot => slot.name !== 'available' && !isEmpty(slot.number)).forEach((slot) => {
+    filter(timeCondition.slots, (slot) => slot.name !== 'available' && !isEmpty(slot.number)).forEach((slot) => {
       set(actionParams, `${slot.name}Type`, slot.type);
       set(actionParams, `${slot.name}Number`, slot.number);
     });
@@ -197,7 +197,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
         // get ordered days indexes
         const daysIndex = map(
           this.days,
-          day => VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(day),
+          (day) => VOIP_TIMECONDITION_ORDERED_DAYS.indexOf(day),
         ).sort();
 
         // check if indexes follow each others
@@ -222,7 +222,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
           const lastDay = moment().weekday(lastDayIndex).format('dd');
           groupText = [firstDay, lastDay].join(' - ');
         } else {
-          groupText = map(daysIndex, dayIndex => moment().weekday(dayIndex).format('dd')).join(', ');
+          groupText = map(daysIndex, (dayIndex) => moment().weekday(dayIndex).format('dd')).join(', ');
         }
 
         // then build hours slots
@@ -230,12 +230,12 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
         const sortedSlots = orderBy(
           filter(
             this.slots,
-            slot => slot.condition,
+            (slot) => slot.condition,
           ),
-          slot => slot.condition.getTimeMoment().toDate(),
+          (slot) => slot.condition.getTimeMoment().toDate(),
         );
 
-        groupText += map(sortedSlots, slot => [
+        groupText += map(sortedSlots, (slot) => [
           $translate.instant('telephony_common_time_condition_slot_from'),
           slot.condition.getTimeMoment('from').format('HH:mm'),
           $translate.instant('telephony_common_time_condition_slot_to'),
@@ -256,7 +256,7 @@ angular.module('managerApp').service('voipTimeCondition', function voipTimeCondi
       tmpCdts[group].push(timeCondition);
     });
 
-    return Object.keys(tmpCdts).map(group => tmpCdts[group]);
+    return Object.keys(tmpCdts).map((group) => tmpCdts[group]);
   }
 
   /**

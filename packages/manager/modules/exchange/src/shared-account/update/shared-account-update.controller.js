@@ -114,7 +114,7 @@ export default class ExchangeUpdateSharedAccountCtrl {
     }`.toLowerCase();
     this.errors.emailIsAlreadyTaken = false;
     const matchingEmaiAddress = this.alreadyTakenEmails.find(
-      alreadyTakenEmail => this.accountBeingUpdated.sharedEmailAddress.toUpperCase()
+      (alreadyTakenEmail) => this.accountBeingUpdated.sharedEmailAddress.toUpperCase()
         === alreadyTakenEmail.toUpperCase(),
     );
     this.errors.emailIsAlreadyTaken = matchingEmaiAddress != null;
@@ -170,7 +170,7 @@ export default class ExchangeUpdateSharedAccountCtrl {
         } else {
           this.domain = find(
             this.optionsToUpdateAccount.availableDomains,
-            domain => domain.name === this.domain.name,
+            (domain) => domain.name === this.domain.name,
           );
         }
       })

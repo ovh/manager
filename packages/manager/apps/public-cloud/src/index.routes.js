@@ -4,9 +4,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider
     .state('app', {
       url: '/?onboarding',
-      redirectTo: trans => trans.injector().get('publicCloud')
+      redirectTo: (trans) => trans.injector().get('publicCloud')
         .getDefaultProject()
-        .then(projectId => (projectId ? ({
+        .then((projectId) => (projectId ? ({
           state: 'pci.projects.project',
           params: {
             projectId,
@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         },
       },
       resolve: {
-        from: /* @ngInject */ $transition$ => $transition$.$from().name,
+        from: /* @ngInject */ ($transition$) => $transition$.$from().name,
       },
       translations: { value: ['.'], format: 'json' },
     });

@@ -131,7 +131,7 @@ export default class OfficeAttachDialogCtrl {
       },
     ];
 
-    answer[0].option = map(this.selectedAccounts, account => ({
+    answer[0].option = map(this.selectedAccounts, (account) => ({
       planCode: 'office-business-pp',
       configuration: [
         {
@@ -226,11 +226,11 @@ export default class OfficeAttachDialogCtrl {
 
     if (!isEmpty(accounts)) {
       const alreadyPresentAccounts = this.selectedAccounts.map(
-        account => account.primaryEmailDisplayName,
+        (account) => account.primaryEmailDisplayName,
       );
       this.selectedAccounts = this.selectedAccounts.concat(
         accounts.list.results.filter(
-          account => !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
+          (account) => !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
         ),
       );
     }
@@ -241,37 +241,37 @@ export default class OfficeAttachDialogCtrl {
   countNumberOfCheckedAccounts() {
     if (!isEmpty(this.accounts)) {
       const currentDisplayedAccountEmailAddresses = this.accounts.list.results.map(
-        account => account.primaryEmailDisplayName,
+        (account) => account.primaryEmailDisplayName,
       );
       const selectedAccountsCurrentBeingDisplayed = this.selectedAccounts.filter(
-        currentSelectedAccount => currentDisplayedAccountEmailAddresses.includes(
+        (currentSelectedAccount) => currentDisplayedAccountEmailAddresses.includes(
           currentSelectedAccount.primaryEmailDisplayName,
         ),
       );
 
       const currentlySelectedAccountsEmailAddresses = Object.keys(this.selectedCheckboxes).filter(
-        key => this.selectedCheckboxes[key],
+        (key) => this.selectedCheckboxes[key],
       );
       const currentlyDislayedAccountsThatAreSelected = this.accounts.list.results.filter(
-        account => currentlySelectedAccountsEmailAddresses
+        (account) => currentlySelectedAccountsEmailAddresses
           .includes(account.primaryEmailDisplayName),
       );
 
       const alreadyPresentAccounts = currentlyDislayedAccountsThatAreSelected.map(
-        account => account.primaryEmailDisplayName,
+        (account) => account.primaryEmailDisplayName,
       );
       this.selectedAccounts = currentlyDislayedAccountsThatAreSelected.concat(
         selectedAccountsCurrentBeingDisplayed.filter(
-          account => !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
+          (account) => !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
         ),
       );
 
       const currentlyNotSelectedAccountsEmailAddresses = Object.keys(
         this.selectedCheckboxes,
-      ).filter(key => !this.selectedCheckboxes[key]);
+      ).filter((key) => !this.selectedCheckboxes[key]);
 
       this.selectedAccounts = this.selectedAccounts.filter(
-        account => !currentlyNotSelectedAccountsEmailAddresses
+        (account) => !currentlyNotSelectedAccountsEmailAddresses
           .includes(account.primaryEmailDisplayName),
       );
 
@@ -282,7 +282,7 @@ export default class OfficeAttachDialogCtrl {
 
   loadSelectedAccounts() {
     const keys = Object.keys(this.selectedCheckboxes);
-    const accounts = filter(keys, key => this.selectedCheckboxes[key]);
+    const accounts = filter(keys, (key) => this.selectedCheckboxes[key]);
 
     return accounts;
   }

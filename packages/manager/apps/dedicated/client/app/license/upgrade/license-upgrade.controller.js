@@ -101,7 +101,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
         if ($scope.types[$scope.license.type].options.length > 0) {
           $scope.selected.version = find(
             $scope.types[$scope.license.type].options[0].options,
-            elem => $scope.license.version === elem.value,
+            (elem) => $scope.license.version === elem.value,
           );
 
           $scope.selected.options = getResetedOptions();
@@ -189,7 +189,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
   $scope.getOptionVersions = function getOptionVersions() {
     return filter(
       $scope.types[$scope.license.type].options[0].options,
-      version => $scope.license.version.value !== version.value,
+      (version) => $scope.license.version.value !== version.value,
     );
   };
 

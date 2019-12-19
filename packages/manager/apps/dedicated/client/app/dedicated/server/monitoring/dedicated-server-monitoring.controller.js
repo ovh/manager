@@ -51,7 +51,7 @@ angular.module('App').controller('MonitoringCtrl', function MonitoringCtrl($root
   self.getSms = function getSms() {
     return Server.getSms($stateParams.productId).then(
       (sms) => {
-        self.sms = sms.filter(data => data.status === 'enable' && data.creditsLeft > 0);
+        self.sms = sms.filter((data) => data.status === 'enable' && data.creditsLeft > 0);
       },
       (err) => {
         if (err.status !== 404) {
@@ -130,7 +130,7 @@ angular.module('App').controller('MonitoringCtrl', function MonitoringCtrl($root
 
         $q
           .allSettled(
-            emailIds.map(id => self.getNotificationEmailDetail({
+            emailIds.map((id) => self.getNotificationEmailDetail({
               monitoringId: item.monitoringId,
               alertId: id,
             })),
@@ -141,7 +141,7 @@ angular.module('App').controller('MonitoringCtrl', function MonitoringCtrl($root
 
         $q
           .allSettled(
-            smsIds.map(id => self.getNotificationSMSDetail({
+            smsIds.map((id) => self.getNotificationSMSDetail({
               monitoringId: item.monitoringId,
               alertId: id,
             })),

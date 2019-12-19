@@ -104,7 +104,7 @@ angular.module('managerApp').factory('CloudProjectComputeVolumesFactory',
     VolumesFactory.prototype.prepareToJson = function prepareToJson() {
       const preparedToJson = {};
       angular.forEach(this.volumes, (volumes, targetId) => {
-        preparedToJson[targetId] = map(volumes, volume => volume.prepareToJson());
+        preparedToJson[targetId] = map(volumes, (volume) => volume.prepareToJson());
       });
       return {
         volumes: preparedToJson,

@@ -1,5 +1,4 @@
 
-
 angular.module('UserAccount').service('UseraccountUsersService', class UseraccountUsersService {
   constructor(OvhHttp) {
     this.ovhHttp = OvhHttp;

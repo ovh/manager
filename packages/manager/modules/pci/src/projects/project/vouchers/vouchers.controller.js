@@ -27,7 +27,7 @@ export default class CloudprojectbillingvouchersCtrl {
 
     this.vouchers = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.CloudVouchersService.getVouchers($stateParams.projectId),
-      errorHandler: err => this.CucCloudMessage.error({
+      errorHandler: (err) => this.CucCloudMessage.error({
         text: `${this.$translate.instant('cpb_vouchers_get_error')} ${err.data}`,
       }),
     });

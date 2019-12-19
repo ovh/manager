@@ -29,10 +29,10 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
     }).$promise.then((result) => {
       forEach(result, (phone) => {
         const parts = (phone.name || '').split(/\./);
-        set(phone, 'displayName', `${upperFirst(head(parts))} ${parts.slice(1).map(p => (p || '').toUpperCase()).join(' ')}`);
+        set(phone, 'displayName', `${upperFirst(head(parts))} ${parts.slice(1).map((p) => (p || '').toUpperCase()).join(' ')}`);
       });
-      return filter(result, phone => phone.price && phone.price.value >= 0);
-    }).then(result => fetchOfferPhones(self.line.getPublicOffer.name).then((offers) => {
+      return filter(result, (phone) => phone.price && phone.price.value >= 0);
+    }).then((result) => fetchOfferPhones(self.line.getPublicOffer.name).then((offers) => {
       forEach(offers, (offer) => {
         const found = find(result, { name: offer.brand });
         if (found) {
@@ -81,9 +81,9 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
             return JSON.stringify(contactCopy);
           },
         ),
-        groups => head(groups),
+        (groups) => head(groups),
       ),
-      contact => get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
+      (contact) => get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
     );
   }
 
@@ -147,7 +147,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
             self.isStepLoading = true;
             fetchMerchandiseAvailable().then((result) => {
               self.merchandise = result;
-            }).catch(err => new TucToastError(err)).finally(() => {
+            }).catch((err) => new TucToastError(err)).finally(() => {
               self.isStepLoading = false;
             });
           });
@@ -160,7 +160,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
           }
         });
       })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.isLoading = false;
       });
@@ -172,13 +172,13 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
             self.isStepLoading = true;
             fetchMerchandiseAvailable().then((result) => {
               self.merchandise = result;
-            }).catch(err => new TucToastError(err)).finally(() => {
+            }).catch((err) => new TucToastError(err)).finally(() => {
               self.isStepLoading = false;
             });
           } else if (self.line && self.line.getPublicOffer) {
             fetchOfferPhones(self.line.getPublicOffer.name).then((offers) => {
               self.phoneOffers = offers;
-            }).catch(err => new TucToastError(err)).finally(() => {
+            }).catch((err) => new TucToastError(err)).finally(() => {
               self.isStepLoading = false;
             });
           }
@@ -188,7 +188,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
           self.order.isContractsAccepted = false;
           fetchOrder(self.order).then((result) => {
             self.order.summary = result;
-          }).catch(err => new TucToastError(err)).finally(() => {
+          }).catch((err) => new TucToastError(err)).finally(() => {
             self.isStepLoading = false;
           });
           break;
@@ -210,7 +210,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
         self.rmas = rmas;
         self.returnSuccess = true;
         self.orderStep = 'hardware'; // reset form
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.isSubmiting = false;
       });
   };
@@ -235,7 +235,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       self.order.success = true;
       self.order.orderURL = order.url;
       self.orderStep = 'hardware'; // reset form
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isSubmiting = false;
     });
   };
@@ -261,7 +261,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
         self.rmas = rmas;
         self.order.success = true;
         self.orderStep = 'hardware'; // reset form
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.isSubmiting = false;
       });
   };

@@ -60,7 +60,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
     const securityGroup = find(this.securityGroups, { name });
     return isUndefined(securityGroup)
       ? this.enterpriseCloudDatabaseService.createSecurityGroup(this.clusterDetails.id, name)
-        .then(newSecurityGroup => newSecurityGroup.data)
+        .then((newSecurityGroup) => newSecurityGroup.data)
       : this.$q.when(securityGroup);
   }
 
@@ -114,14 +114,14 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
       this.enterpriseCloudDatabaseService.setUserPassword(this.clusterDetails.id,
         this.data.clusterPassword),
       this.getSecurityGroup(this.data.securityGroupName)
-        .then(securityGroup => this.enterpriseCloudDatabaseService
+        .then((securityGroup) => this.enterpriseCloudDatabaseService
           .createRule(this.clusterDetails.id, securityGroup.id, this.data.rule)),
     ])
       .then(() => {
         this.stepperIndex += 1;
         set(form, '$valid', true);
       })
-      .catch(error => this.handleError(error))
+      .catch((error) => this.handleError(error))
       .finally(() => {
         this.loaders.savingSecuritySettings = false;
       });
@@ -151,7 +151,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
         set(form, '$valid', true);
         this.gotoClusterDetails();
       })
-      .catch(error => this.handleError(error))
+      .catch((error) => this.handleError(error))
       .finally(() => {
         this.loaders.savingSettings = false;
       });

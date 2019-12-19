@@ -50,11 +50,11 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
         .get({
           serviceName: projectId,
         }).$promise
-        .then(response => CloudProjectBillingService.getConsumptionDetails(response, response))
+        .then((response) => CloudProjectBillingService.getConsumptionDetails(response, response))
         .then((data) => {
           self.bill = `${data.totals.hourly.total.toFixed(2)} ${data.totals.currencySymbol}`;
         })
-        .catch(err => $q.reject(err));
+        .catch((err) => $q.reject(err));
     }
 
     function getCredits() {
@@ -69,7 +69,7 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
           serviceName: projectId,
         }).$promise
         .then((credits) => {
-          self.hasCredits = credits.some(credit => isNotExpired(credit)
+          self.hasCredits = credits.some((credit) => isNotExpired(credit)
             && credit.available_credit.value > 0);
         });
     }
@@ -83,7 +83,7 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
         ipFailoverOvh: OvhApiCloudProjectIpFailover.v6().query({ serviceName: projectId }).$promise,
         ipFailoverCloud: OvhApiCloudProjectIpV6.query({ serviceName: projectId }).$promise,
       }).then((result) => {
-        self.resources = mapValues(result, arr => arr.length);
+        self.resources = mapValues(result, (arr) => arr.length);
       });
     }
 

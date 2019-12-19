@@ -28,7 +28,7 @@ program
     return Promise.resolve()
       .then(() => (program.check ? checkChanges() : false))
       .then(() => getChangedRepositories(program.force))
-      .then(repos => bumpRepositories(
+      .then((repos) => bumpRepositories(
         repos,
         program.releaseType || null,
         program.preRelease || false,
@@ -36,8 +36,8 @@ program
         !program.noPreReleaseFileCheck || true,
       ))
       .then(updateChangelogs)
-      .then(repos => getDependenciesToUpdate(repos)
-        .then(deps => (program.dependencyCheck ? checkDependencies(deps) : deps))
+      .then((repos) => getDependenciesToUpdate(repos)
+        .then((deps) => (program.dependencyCheck ? checkDependencies(deps) : deps))
         .then(updateDependencies)
         .then(() => repos))
       .then((repos) => {
@@ -50,7 +50,7 @@ program
       .then((repos) => {
         if (program.release && repos.length) {
           return getReleaseVersion(program.version, program.seed)
-            .then(version => release(version, repos))
+            .then((version) => release(version, repos))
             .then((version) => {
               if (program.token && program.organization) {
                 const options = {

@@ -43,7 +43,7 @@ angular.module('App').controller(
       this.$scope.checkModuleForPreviousStep = () => this.checkModuleForPreviousStep();
       this.$scope.initDnsZone = () => this.initDnsZone();
       this.$scope.loadContracts = () => this.loadContracts();
-      this.$scope.orderByOfferPrice = offer => this.constructor.orderByOfferPrice(offer);
+      this.$scope.orderByOfferPrice = (offer) => this.constructor.orderByOfferPrice(offer);
       this.$scope.orderHosting = () => this.orderHosting();
 
       if (this.hasPreselectedOffer()) {
@@ -85,13 +85,13 @@ angular.module('App').controller(
         rtn = this.HostingOrder
           .getModels()
           .then((models) => {
-            this.dnsZones = map(models['hosting.web.DnsZoneEnum'].enum, item => ({
+            this.dnsZones = map(models['hosting.web.DnsZoneEnum'].enum, (item) => ({
               key: item,
               title: `domain_configuration_web_hosting_dns_${item}`,
               helpMsg: `domain_configuration_web_hosting_dns_info_${item}`,
             }));
           })
-          .catch(err => this.Alerter.error(err));
+          .catch((err) => this.Alerter.error(err));
       }
       return rtn;
     }
@@ -99,16 +99,16 @@ angular.module('App').controller(
     getModulesList() {
       return this.HostingModule
         .getModulesLatestList()
-        .then(moduleTemplates => this.$q.all(map(
+        .then((moduleTemplates) => this.$q.all(map(
           moduleTemplates,
-          id => this.HostingModule.getAvailableModule(id),
+          (id) => this.HostingModule.getAvailableModule(id),
         )));
     }
 
     getOffersList() {
       return this.Hosting
         .getAvailableOffer(this.domain.name)
-        .then(offers => this.$q.all(map(offers, (offer) => {
+        .then((offers) => this.$q.all(map(offers, (offer) => {
           let rtn;
           if ((!this.model.offer
               && offer !== this.constants.HOSTING.OFFERS.START_10_M.LIST_VALUE)
@@ -117,7 +117,7 @@ angular.module('App').controller(
             rtn = this.HostingOrder.get(
               this.domain.name, offer,
               this.model.dnsZone, this.model.duration,
-            ).then(orderInfos => ({
+            ).then((orderInfos) => ({
               offer,
               orderInfos,
             }));
@@ -228,7 +228,7 @@ angular.module('App').controller(
           this.$window.open(order.url, '_blank');
           return true;
         })
-        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('domain_order_hosting_finish_error'), get(err, 'data', err), this.$scope.alerts.main))
+        .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('domain_order_hosting_finish_error'), get(err, 'data', err), this.$scope.alerts.main))
         .finally(() => this.$scope.resetAction());
     }
   },

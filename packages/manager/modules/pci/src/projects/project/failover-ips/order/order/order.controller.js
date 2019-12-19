@@ -32,7 +32,7 @@ export default class FailoverIpController {
 
   static getMaximumQuantity(product) {
     const configuration = get(product, 'details.product.default');
-    const productWithMaxQuantity = filter(configuration, p => isNumber(p), 'maximumQuantity');
+    const productWithMaxQuantity = filter(configuration, (p) => isNumber(p), 'maximumQuantity');
     return get(
       min(productWithMaxQuantity, 'maximumQuantity'),
       'maximumQuantity',

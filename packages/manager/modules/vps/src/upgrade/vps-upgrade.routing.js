@@ -16,9 +16,9 @@ export default /* @ngInject */($stateProvider) => {
         component: vpsHeaderComponent.name,
       },
       'vpsContent@vps.detail': {
-        templateProvider: /* @ngInject */ stateVps => (stateVps
+        templateProvider: /* @ngInject */ (stateVps) => (stateVps
           .isLegacy ? legacyOrderTemplate : orderTemplate),
-        controllerProvider: /* @ngInject */ stateVps => (stateVps
+        controllerProvider: /* @ngInject */ (stateVps) => (stateVps
           .isLegacy ? legacyOrderController : orderController),
         controllerAs: '$ctrl',
       },

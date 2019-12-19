@@ -15,7 +15,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
   function getGroupContacts() {
     return OvhApiTelephony.v6().getServiceInfos({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(result => [{
+    }).$promise.then((result) => [{
       value: pick(result, contactAttributes),
       modified: pick(result, contactAttributes),
       serviceName: $stateParams.billingAccount,
@@ -24,15 +24,15 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
   }
 
   function getPackXdslServiceIds() {
-    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(ids => map(ids, 'key'));
+    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then((ids) => map(ids, 'key'));
   }
 
   function getLinesContacts() {
     return OvhApiTelephony.Line().v6().query({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(ids => $q.all(map(ids, id => OvhApiTelephony.Lines().v6().getServiceInfos({
+    }).$promise.then((ids) => $q.all(map(ids, (id) => OvhApiTelephony.Lines().v6().getServiceInfos({
       serviceName: id,
-    }).$promise.then(infos => ({
+    }).$promise.then((infos) => ({
       value: pick(infos, contactAttributes),
       modified: pick(infos, contactAttributes),
       serviceName: id,
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
       if (err.status === 404) {
         return OvhApiTelephony.Trunks().v6().getServiceInfos({
           serviceName: id,
-        }).$promise.then(infos => ({
+        }).$promise.then((infos) => ({
           value: pick(infos, contactAttributes),
           modified: pick(infos, contactAttributes),
           serviceName: id,
@@ -56,27 +56,28 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
   function getAliasContacts() {
     return OvhApiTelephony.Number().v6().query({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(ids => $q.all(map(ids, id => OvhApiTelephony.Aliases().v6().getServiceInfos({
-      serviceName: id,
-    }).$promise.then(infos => ({
-      value: pick(infos, contactAttributes),
-      modified: pick(infos, contactAttributes),
-      serviceName: id,
-      serviceType: 'alias',
-    })))));
+    }).$promise
+      .then((ids) => $q.all(map(ids, (id) => OvhApiTelephony.Aliases().v6().getServiceInfos({
+        serviceName: id,
+      }).$promise.then((infos) => ({
+        value: pick(infos, contactAttributes),
+        modified: pick(infos, contactAttributes),
+        serviceName: id,
+        serviceType: 'alias',
+      })))));
   }
 
   function getPendingTasks() {
     return OvhApiMe.Task().ContactChange().v6()
       .query().$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiMe.Task().ContactChange().v6().getBatch({
+          (chunkIds) => OvhApiMe.Task().ContactChange().v6().getBatch({
             id: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+        .then((chunkResult) => map(flatten(chunkResult), 'value')));
   }
 
   function associatePendingTasks(tasks) {
@@ -134,7 +135,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
       self.billingAccount = result.billingAccount;
       associatePendingTasks(result.tasks);
       return checkModifiableServices(result.group.concat(result.lines).concat(result.aliases));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -196,7 +197,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
       self.isEditing = false;
       associatePendingTasks(tasks);
       TucToast.success($translate.instant('telephony_group_manage_contacts_change_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       set(contact, 'submiting', false);
     });
   };

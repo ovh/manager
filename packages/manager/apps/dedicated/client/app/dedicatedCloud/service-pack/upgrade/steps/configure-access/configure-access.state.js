@@ -5,9 +5,9 @@ const resolveAllowedIPsAndBlocks = /* @ngInject */ (
   DedicatedCloud,
 ) => DedicatedCloud
   .getSecurityPolicies($transition$.params().productId, null, null, true)
-  .then(allowedIPsAndBlocks => allowedIPsAndBlocks.list.results);
+  .then((allowedIPsAndBlocks) => allowedIPsAndBlocks.list.results);
 
-const resolveHasDefaultMeansOfPayment = /* @ngInject */ ovhPaymentMethod => ovhPaymentMethod
+const resolveHasDefaultMeansOfPayment = /* @ngInject */ (ovhPaymentMethod) => ovhPaymentMethod
   .hasDefaultPaymentMethod();
 
 export default {

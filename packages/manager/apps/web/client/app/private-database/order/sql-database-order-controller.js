@@ -152,12 +152,12 @@ angular.module('App').controller(
             });
         })
         .then(({ domainNames }) => this.$q
-          .all(map(domainNames, domainName => this.Hosting.getHosting(domainName)))
-          .then(hostings => filter(hostings, { state: 'active' }))
+          .all(map(domainNames, (domainName) => this.Hosting.getHosting(domainName)))
+          .then((hostings) => filter(hostings, { state: 'active' }))
           .then((hostings) => {
             this.noHostValue = 'other';
 
-            find(this.data, { key: 'start' }).hostings = map(hostings, hosting => ({
+            find(this.data, { key: 'start' }).hostings = map(hostings, (hosting) => ({
               name: hosting.serviceName,
               displayName: punycode.toUnicode(hosting.serviceName),
               datacenter: hosting.datacenter,
@@ -179,7 +179,7 @@ angular.module('App').controller(
               this.model.datacenter = this.selectedHosting.datacenter || null;
             }
           }))
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step1_error'), err, this.$scope.alerts.durations))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step1_error'), err, this.$scope.alerts.durations))
         .finally(() => {
           this.loading.init = false;
         });
@@ -241,14 +241,14 @@ angular.module('App').controller(
       return this.PrivateDatabase
         .orderDuration(version, ram)
         .then((durations) => {
-          data.durations = map(durations, duration => ({ // eslint-disable-line no-param-reassign
+          data.durations = map(durations, (duration) => ({ // eslint-disable-line no-param-reassign
             duration,
             details: {},
           }));
           this.model.duration = last(durations);
           return durations;
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
         .finally(() => {
           this.loading.durations = false;
         });
@@ -266,14 +266,14 @@ angular.module('App').controller(
       return this.HostingOptionOrder
         .getSqlPersoAllowedDurations(hosting, startDbVersion)
         .then((durations) => {
-          data.durations = map(durations, duration => ({ // eslint-disable-line no-param-reassign
+          data.durations = map(durations, (duration) => ({ // eslint-disable-line no-param-reassign
             duration,
             details: {},
           }));
           this.model.duration = last(durations);
           return durations;
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
         .finally(() => {
           this.loading.durations = false;
         });
@@ -288,7 +288,7 @@ angular.module('App').controller(
       return this.$q
         .all(map(
           durations,
-          duration => this.PrivateDatabase
+          (duration) => this.PrivateDatabase
             .orderPrice(version, ram, duration)
             .then((details) => {
               find(data.durations, { duration }).details = details;
@@ -300,7 +300,7 @@ angular.module('App').controller(
             this.model.duration = head(durations);
           }
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
         .finally(() => { this.loading.prices = false; });
     }
 
@@ -312,7 +312,7 @@ angular.module('App').controller(
       const { hosting, dbPack: startDbVersion } = this.model;
 
       return this.$q
-        .all(map(durations, duration => this.HostingOptionOrder
+        .all(map(durations, (duration) => this.HostingOptionOrder
           .getSqlPersoPrice(hosting, startDbVersion, duration)
           .then((details) => {
             find(data.durations, { duration }).details = details;
@@ -323,7 +323,7 @@ angular.module('App').controller(
             this.model.duration = head(durations);
           }
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
         .finally(() => { this.loading.prices = false; });
     }
 
@@ -355,7 +355,7 @@ angular.module('App').controller(
             this.openBc();
           }, 5000);
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
         .finally(() => {
           this.loading.bc = false;
         });
@@ -373,7 +373,7 @@ angular.module('App').controller(
             this.openBc();
           }, 5000);
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
         .finally(() => { this.loading.bc = false; });
     }
 
@@ -389,7 +389,7 @@ angular.module('App').controller(
             this.openBc();
           }, 5000);
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
         .finally(() => { this.loading.bc = false; });
     }
 

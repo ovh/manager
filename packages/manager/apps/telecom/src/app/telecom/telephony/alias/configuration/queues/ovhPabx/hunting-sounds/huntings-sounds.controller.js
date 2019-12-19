@@ -28,7 +28,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasHuntingSoundsCtrl(
   self.checkValidAudioExtention = function checkValidAudioExtention(file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_alias_hunting_sounds_invalid'));
     }
@@ -44,13 +44,13 @@ export default /* @ngInject */ function TelecomTelephonyAliasHuntingSoundsCtrl(
     return OvhApiMe.Document().v6().upload(
       name,
       self.toUpload,
-    ).then(doc => self.apiEndpoint.v6().soundUpload({
+    ).then((doc) => self.apiEndpoint.v6().soundUpload({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }, {
       name,
       url: doc.getUrl,
-    }).$promise.then(result => tucVoipServiceTask.startPolling(
+    }).$promise.then((result) => tucVoipServiceTask.startPolling(
       $stateParams.billingAccount,
       $stateParams.serviceName,
       result.taskId,
@@ -71,7 +71,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasHuntingSoundsCtrl(
         self.toUpload = null;
         params.refreshSounds();
       })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.isUploading = false;
       });
@@ -91,7 +91,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasHuntingSoundsCtrl(
         soundId: sound.soundId,
       }).$promise.then(() => {
         remove(self.sounds, { soundId: sound.soundId });
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         set(sound, 'isDeleting', false);
       }),
     ]);

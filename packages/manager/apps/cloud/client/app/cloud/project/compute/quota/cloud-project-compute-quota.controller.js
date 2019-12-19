@@ -41,7 +41,7 @@ angular.module('managerApp').controller('CloudProjectComputeQuotaCtrl',
         loaderFunction: () => OvhApiCloudProjectRegion.AvailableRegions().v6()
           .query({ serviceName })
           .$promise
-          .catch(error => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+          .catch((error) => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
       });
       return self.availableRegions.load();
     }
@@ -55,14 +55,14 @@ angular.module('managerApp').controller('CloudProjectComputeQuotaCtrl',
 
       return OvhApiMe.PaymentMethod().v6().query({
         status: 'VALID',
-      }).$promise.then(paymentMethodIds => map(
+      }).$promise.then((paymentMethodIds) => map(
         paymentMethodIds,
-        paymentMethodId => $q.all(
+        (paymentMethodId) => $q.all(
           OvhApiMe.PaymentMethod().v6().get({
             id: paymentMethodId,
           }).$promise,
         ),
-      )).then(paymentMethods => find(paymentMethods, {
+      )).then((paymentMethods) => find(paymentMethods, {
         default: true,
       }));
     }

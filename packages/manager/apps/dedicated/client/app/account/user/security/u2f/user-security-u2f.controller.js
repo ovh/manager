@@ -28,7 +28,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
          * @return {Promise}
          */
     function fetchU2fAccounts() {
-      return DoubleAuthU2fService.query().then(u2fIds => $q.all(map(u2fIds, u2fId => DoubleAuthU2fService.get(u2fId))).then(u2fAccounts => filter(u2fAccounts, u2fAccount => u2fAccount.status !== 'needCodeValidation')));
+      return DoubleAuthU2fService.query().then((u2fIds) => $q.all(map(u2fIds, (u2fId) => DoubleAuthU2fService.get(u2fId))).then((u2fAccounts) => filter(u2fAccounts, (u2fAccount) => u2fAccount.status !== 'needCodeValidation')));
     }
 
     /* -----  End of HELPERS  ------ */
@@ -55,7 +55,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
         .then((u2fAccounts) => {
           $scope.u2f.u2fAccounts = u2fAccounts;
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_totpRestrictions_add_error'), err.data, 'doubleAuthAlert'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_totpRestrictions_add_error'), err.data, 'doubleAuthAlert'))
         .finally(() => {
           $scope.u2f.isLoading = false;
         });

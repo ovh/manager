@@ -10,13 +10,13 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        userId: /* @ngInject */$transition$ => $transition$.params().userId,
+        userId: /* @ngInject */($transition$) => $transition$.params().userId,
         user: /* @ngInject */ (
           PciProjectsProjectUsersService,
           projectId,
           userId,
         ) => PciProjectsProjectUsersService.get(projectId, userId),
-        goBack: /* @ngInject */ goToUsers => goToUsers,
+        goBack: /* @ngInject */ (goToUsers) => goToUsers,
       },
     });
 };

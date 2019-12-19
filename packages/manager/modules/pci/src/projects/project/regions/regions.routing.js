@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => OvhApiCloudProjectRegion.AvailableRegions().v6()
           .query({ serviceName: projectId })
           .$promise
-          .then(regionIds => map(regionIds, region => CucRegionService.getRegion(region.name))),
+          .then((regionIds) => map(regionIds, (region) => CucRegionService.getRegion(region.name))),
 
         regions: /* @ngInject */ (
           CucRegionService,
@@ -22,9 +22,9 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => OvhApiCloudProjectRegion.v6()
           .query({ serviceName: projectId })
           .$promise
-          .then(regionIds => map(regionIds, region => CucRegionService.getRegion(region))),
+          .then((regionIds) => map(regionIds, (region) => CucRegionService.getRegion(region))),
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_regions'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_regions'),
       },
     });
 };

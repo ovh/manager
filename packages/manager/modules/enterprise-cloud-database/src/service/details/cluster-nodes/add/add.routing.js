@@ -12,8 +12,8 @@ export default /* @ngInject */($stateProvider) => {
       availableReplicas: /* @ngInject */
       (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
         .getHostCount(clusterDetails.offerName, clusterDetails.regionName)
-        .then(hostCountDetails => hostCountDetails.hostLeft),
-      createReplicas: /* @ngInject */ $transition$ => $transition$.params().createReplicas,
+        .then((hostCountDetails) => hostCountDetails.hostLeft),
+      createReplicas: /* @ngInject */ ($transition$) => $transition$.params().createReplicas,
       goBack: /* @ngInject */ ($state, clusterId,
         CucCloudMessage, CucControllerHelper) => (message = false, type = STATUS.SUCCESS) => {
         const reload = message && type === STATUS.SUCCESS;
@@ -26,14 +26,14 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
-      hostList: /* @ngInject */ $transition$ => $transition$.params().hostList,
+      hostList: /* @ngInject */ ($transition$) => $transition$.params().hostList,
       maxHostCount: /* @ngInject */
         (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getOfferDetails(clusterDetails.offerName)
-          .then(offer => offer.maxHostCount),
+          .then((offer) => offer.maxHostCount),
       nodeCatalog: /* @ngInject */
-        planCatalog => planCatalog.node,
-      orderUrl: /* @ngInject */ getOrdersURL => getOrdersURL,
+        (planCatalog) => planCatalog.node,
+      orderUrl: /* @ngInject */ (getOrdersURL) => getOrdersURL,
     },
     translations: {
       value: ['../../../add-replicas'],

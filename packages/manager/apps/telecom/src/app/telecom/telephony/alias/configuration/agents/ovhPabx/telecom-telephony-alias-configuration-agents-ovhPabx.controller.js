@@ -110,7 +110,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
       this.agents.isDeleting = true;
       return this.$q
         .all(this.getSelectedAgentIds()
-          .map(id => this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
+          .map((id) => this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
             .remove({
               billingAccount: this.$stateParams.billingAccount,
               serviceName: this.$stateParams.serviceName,

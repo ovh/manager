@@ -9,13 +9,13 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        storageId: /* @ngInject */$transition$ => $transition$.params().storageId,
+        storageId: /* @ngInject */($transition$) => $transition$.params().storageId,
         storage: /* @ngInject */ (
           PciProjectStorageBlockService,
           projectId,
           storageId,
         ) => PciProjectStorageBlockService.get(projectId, storageId),
-        goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
+        goBack: /* @ngInject */ (goToBlockStorage) => goToBlockStorage,
         breadcrumb: () => null,
       },
     });

@@ -88,7 +88,7 @@ export default class {
       serviceName: this.$stateParams.serviceName,
       receiver: this.outgoing.filterBy.receiver || null,
       sender,
-    }).$promise.then(outgoing => sortBy(outgoing).reverse());
+    }).$promise.then((outgoing) => sortBy(outgoing).reverse());
   }
 
   /**
@@ -170,7 +170,7 @@ export default class {
   getSelection() {
     return filter(
       this.outgoing.paginated,
-      outgoing => outgoing && this.outgoing.selected && this.outgoing.selected[outgoing.id],
+      (outgoing) => outgoing && this.outgoing.selected && this.outgoing.selected[outgoing.id],
     );
   }
 
@@ -180,7 +180,7 @@ export default class {
    */
   deleteSelectedOutgoing() {
     const outgoings = this.getSelection();
-    const queries = outgoings.map(outgoing => this.api.smsOutgoing.delete({
+    const queries = outgoings.map((outgoing) => this.api.smsOutgoing.delete({
       serviceName: this.$stateParams.serviceName,
       id: outgoing.id,
     }).$promise);

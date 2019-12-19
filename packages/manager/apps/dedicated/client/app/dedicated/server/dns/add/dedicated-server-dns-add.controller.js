@@ -23,9 +23,9 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
           map(
             filter(
               _data,
-              ip => ipaddr.parseCIDR(ip)[0].kind() === 'ipv4',
+              (ip) => ipaddr.parseCIDR(ip)[0].kind() === 'ipv4',
             ),
-            ip => IpRange.getRangeForIpv4Block(ip),
+            (ip) => IpRange.getRangeForIpv4Block(ip),
           ),
         );
 

@@ -59,7 +59,7 @@ angular.module('App').controller(
     transformItem(userName) {
       return this.privateDatabaseService
         .getUserGrants(this.productId, userName)
-        .then(res => ({
+        .then((res) => ({
           userName,
           grantType: res[this.database.databaseName].value,
           database: res[this.database.databaseName],

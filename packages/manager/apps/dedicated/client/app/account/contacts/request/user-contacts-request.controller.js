@@ -165,7 +165,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       angular.noop(pollObject);
       const contactChange = find(
         self.contactTasksDetails,
-        contact => contact.id === parseInt(id, 10),
+        (contact) => contact.id === parseInt(id, 10),
       );
 
       if (contactChange) {

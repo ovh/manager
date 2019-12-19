@@ -21,7 +21,7 @@ export default class PciStreamsStreamDeleteController {
       .then(() => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_regenerate_tokens_success_message',
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_regenerate_tokens_error_regenerate_tokens',
         {
           message: get(err, 'data.message', null),

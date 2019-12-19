@@ -30,7 +30,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .get({
             packId: $stateParams.packName,
           })
-          .$promise.then(data => $translate.instant(
+          .$promise.then((data) => $translate.instant(
             'pack_xdsl_page_title',
             { name: data.description || $stateParams.packName },
             null,

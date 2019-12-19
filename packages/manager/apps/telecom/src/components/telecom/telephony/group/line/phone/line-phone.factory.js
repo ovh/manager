@@ -82,7 +82,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     return OvhApiTelephony.Line().Phone().v6().get({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(phoneOptions => phoneOptions, () => null);
+    }).$promise.then((phoneOptions) => phoneOptions, () => null);
   };
 
   TelephonyGroupLinePhone.prototype.getSip = function getSip() {
@@ -91,7 +91,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     return OvhApiTelephony.Line().Options().v6().get({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(options => ({
+    }).$promise.then((options) => ({
       user: self.serviceName,
       authorizeUser: self.serviceName,
       domains: options.domain,
@@ -129,7 +129,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
               id: RMAId,
-            }).$promise.then(RMADetails => RMADetails, () => null));
+            }).$promise.then((RMADetails) => RMADetails, () => null));
         });
         return $q.all(RMADetailsRequests);
       }, () => null);
@@ -198,7 +198,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
       if (!configsToSave) {
         configsToSave = filter(
           self.configurations,
-          config => !isEqual(config.value, config.prevValue),
+          (config) => !isEqual(config.value, config.prevValue),
         );
       }
 
@@ -206,7 +206,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
         serviceName: self.serviceName,
         billingAccount: self.billingAccount,
       }, {
-        newConfigurations: map(configsToSave, config => ({
+        newConfigurations: map(configsToSave, (config) => ({
           key: config.name,
           value: config.value.toString(),
         })),
@@ -229,11 +229,11 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
 
     return $q
       .all([
-        self.getSip().then(sip => self.setPhoneInfos({ sip })),
-        self.getIps().then(ip => self.setPhoneInfos({ ip })),
+        self.getSip().then((sip) => self.setPhoneInfos({ sip })),
+        self.getIps().then((ip) => self.setPhoneInfos({ ip })),
       ])
       .then(() => self.getFunctionKeys()
-        .then(functionKey => self.setPhoneInfos({ functionKeys: functionKey }),
+        .then((functionKey) => self.setPhoneInfos({ functionKeys: functionKey }),
           () => self.setPhoneInfos({ functionKeys: [] })).then(() => self));
   };
 

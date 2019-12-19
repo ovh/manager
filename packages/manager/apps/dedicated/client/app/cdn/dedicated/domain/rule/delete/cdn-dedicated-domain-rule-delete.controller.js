@@ -7,6 +7,6 @@ angular.module('App').controller('CacherulesDeleteCtrl', ($scope, $stateParams, 
     CdnDomain
       .deleteCacherule($stateParams.productId, $stateParams.domain, $scope.entryToDelete.id)
       .then(() => Alerter.alertFromSWS($translate.instant('cdn_configuration_delete_cacherule_success'), true, $scope.alert))
-      .catch(data => Alerter.alertFromSWS($translate.instant('cdn_configuration_delete_cacherule_fail'), data));
+      .catch((data) => Alerter.alertFromSWS($translate.instant('cdn_configuration_delete_cacherule_fail'), data));
   };
 });

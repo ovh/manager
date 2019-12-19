@@ -47,17 +47,17 @@ export default /* @ngInject */ ($stateProvider) => {
           return criteria;
         });
       },
-      updateCriteria: $state => (criteria) => {
+      updateCriteria: ($state) => (criteria) => {
         $state.go(stateName, {
           serviceName: get(find(criteria, { property: null }), 'value', null),
           category: get(find(criteria, { property: 'category' }), 'value', null),
         });
       },
-      category: /* @ngInject */ $transition$ => $transition$.params().category,
-      editContacts: /* @ngInject */ $state => service => $state.go(`${stateName}.edit`, { service: service.serviceName, categoryType: service.category }),
+      category: /* @ngInject */ ($transition$) => $transition$.params().category,
+      editContacts: /* @ngInject */ ($state) => (service) => $state.go(`${stateName}.edit`, { service: service.serviceName, categoryType: service.category }),
       getServiceInfos: /* @ngInject */
-        AccountContactsService => service => AccountContactsService.getServiceInfos(service)
-          .then(serviceInfos => ({
+        (AccountContactsService) => (service) => AccountContactsService.getServiceInfos(service)
+          .then((serviceInfos) => ({
             ...service,
             ...serviceInfos,
           })),
@@ -75,7 +75,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      services: /* @ngInject */ AccountContactsService => AccountContactsService.getServices(),
+      services: /* @ngInject */ (AccountContactsService) => AccountContactsService.getServices(),
     },
   });
 };

@@ -27,7 +27,7 @@ export default class VpsPasswordCtrl {
             this.CucCloudMessage.error(this.$translate.instant('vps_configuration_polling_fail'));
           }
         })
-        .catch(err => this.CucCloudMessage.error(err)),
+        .catch((err) => this.CucCloudMessage.error(err)),
     });
     return this.tasks.load();
   }

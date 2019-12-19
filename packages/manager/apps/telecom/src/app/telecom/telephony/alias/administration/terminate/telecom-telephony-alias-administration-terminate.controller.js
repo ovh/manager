@@ -2,17 +2,17 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
   const self = this;
 
   function getTerminationReasons() {
-    return TelephonyMediator.getApiScheme().then(schema => schema.models['telephony.TerminationReasonEnum'].enum);
+    return TelephonyMediator.getApiScheme().then((schema) => schema.models['telephony.TerminationReasonEnum'].enum);
   }
 
   function getNumber() {
     return TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getNumber($stateParams.serviceName));
+      .then((group) => group.getNumber($stateParams.serviceName));
   }
 
   function getTerminationTask() {
-    return getNumber().then(number => number.getTerminationTask());
+    return getNumber().then((number) => number.getTerminationTask());
   }
 
   function init() {
@@ -25,7 +25,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
       self.reasonEnum = result.reason;
       self.task = result.task;
       self.number = result.number;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -47,7 +47,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
     }).$promise.then(() => getTerminationTask()).then((task) => {
       self.task = task;
       TucToast.success($translate.instant('telephony_alias_administration_terminate_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isTerminating = false;
     });
   };
@@ -60,7 +60,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
     }, {}).$promise.then(() => getTerminationTask()).then((task) => {
       self.task = task;
       TucToast.success($translate.instant('telephony_alias_administration_cancel_termination_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isCancelling = false;
     });
   };

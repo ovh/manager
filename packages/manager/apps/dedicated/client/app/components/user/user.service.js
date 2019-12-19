@@ -41,7 +41,7 @@ angular
           }));
         }
 
-        return userPromise.then(() => user, error => $q.reject(error));
+        return userPromise.then(() => user, (error) => $q.reject(error));
       };
 
       this.getUser();
@@ -87,7 +87,7 @@ angular
       };
 
       this.getCreditCard = function getCreditCard(id) {
-        return $http.get(`apiv6/me/paymentMean/creditCard/${id}`).then(response => response.data);
+        return $http.get(`apiv6/me/paymentMean/creditCard/${id}`).then((response) => response.data);
       };
 
       this.uploadFile = function uploadFile(filename, file, tags) {
@@ -121,11 +121,11 @@ angular
       };
 
       this.getDocument = function getDocument(id) {
-        return $http.get(`apiv6/me/document/${id}`).then(response => response.data);
+        return $http.get(`apiv6/me/document/${id}`).then((response) => response.data);
       };
 
       this.getDocumentIds = function getDocumentIds() {
-        return $http.get('apiv6/me/document').then(response => response.data);
+        return $http.get('apiv6/me/document').then((response) => response.data);
       };
 
       this.getDocuments = function getDocuments() {
@@ -159,10 +159,10 @@ angular
               state: 'valid',
             };
           }
-          const promise = $http.get([baseUrl, paymentMethod].join('/'), { params: paramStruct }).then(response => response.data);
+          const promise = $http.get([baseUrl, paymentMethod].join('/'), { params: paramStruct }).then((response) => response.data);
           meanRequests.push(promise);
         });
-        return $q.all(meanRequests).then(response => flatten(response));
+        return $q.all(meanRequests).then((response) => flatten(response));
       };
 
       this.getUserCertificates = function getUserCertificates() {

@@ -62,7 +62,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     const fileName = file ? file.name : '';
     self.formErrors[toneType].format = !some(
       validExtensions,
-      ext => endsWith(fileName.toLowerCase(), ext),
+      (ext) => endsWith(fileName.toLowerCase(), ext),
     );
 
     // check for file size
@@ -71,7 +71,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
   };
 
   self.isFormValid = function isFormValid() {
-    return some(attrs, tone => (hasAttrChange(tone) && self.formOptions[tone] !== 'Custom sound') || (self.formOptions[tone] === 'Custom sound' && hasAttrChange(tone) && self.formOptions[`${tone}Custom`]));
+    return some(attrs, (tone) => (hasAttrChange(tone) && self.formOptions[tone] !== 'Custom sound') || (self.formOptions[tone] === 'Custom sound' && hasAttrChange(tone) && self.formOptions[`${tone}Custom`]));
   };
 
   function uploadFile(toneType) {
@@ -81,7 +81,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     const name = (file.name || '').replace(/\s/g, '_');
 
     // first, upload document to get a file url
-    return OvhApiMe.Document().v6().upload(name, file).then(doc => apiService.v6()
+    return OvhApiMe.Document().v6().upload(name, file).then((doc) => apiService.v6()
       .uploadTones({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
@@ -89,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
         type: toneType,
         documentId: doc.id,
       }).$promise
-      .then(result => tucVoipServiceTask.startPolling(
+      .then((result) => tucVoipServiceTask.startPolling(
         $stateParams.billingAccount,
         $stateParams.serviceName, result.taskId, {
           namespace: `soundUploadTask_${$stateParams.serviceName}`,

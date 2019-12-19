@@ -28,6 +28,6 @@ export default class CucFeatureAvailabilityService {
   }
 
   hasFeaturePromise(product, feature) {
-    return this.localePromise.then(locale => this.hasFeature(product, feature, locale));
+    return this.localePromise.then((locale) => this.hasFeature(product, feature, locale));
   }
 }

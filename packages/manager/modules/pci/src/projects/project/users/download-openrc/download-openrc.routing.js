@@ -13,8 +13,8 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
-        currentRegion: /* @ngInject */ coreConfig => coreConfig.getRegion(),
-        userId: /* @ngInject */$transition$ => $transition$.params().userId,
+        currentRegion: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
+        userId: /* @ngInject */($transition$) => $transition$.params().userId,
         user: /* @ngInject */ (
           PciProjectsProjectUsersService,
           projectId,
@@ -29,7 +29,7 @@ export default /* @ngInject */($stateProvider) => {
             OPENSTACK_GUIDE,
             [coreConfig.getRegion(), ovhSubsidiary],
           )),
-        goBack: /* @ngInject */ goToUsers => goToUsers,
+        goBack: /* @ngInject */ (goToUsers) => goToUsers,
       },
     });
 };

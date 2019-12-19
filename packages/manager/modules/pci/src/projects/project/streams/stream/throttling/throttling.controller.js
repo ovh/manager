@@ -37,7 +37,7 @@ export default class PciStreamsStreamThrottlingController {
       .then(() => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_throttling_success_message',
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_streams_stream_throttling_error_throttling',
         {
           message: get(err, 'data.message', null),
