@@ -1,3 +1,17 @@
+# [13.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.37.0...@ovh-ux/manager-web@13.38.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+### Features
+
+* **web.email-domain.upgrade:** extract translations ([#1999](https://github.com/ovh/manager/issues/1999)) ([9304787](https://github.com/ovh/manager/commit/93047871ca01c1413c42cd6386dd7cb6ae1f8300))
+
+
+
 # [13.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.36.2...@ovh-ux/manager-web@13.37.0) (2019-12-19)
 
 
