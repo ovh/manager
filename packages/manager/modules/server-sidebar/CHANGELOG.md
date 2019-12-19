@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.1...@ovh-ux/manager-server-sidebar@1.2.2) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.0...@ovh-ux/manager-server-sidebar@1.2.1) (2019-12-19)
 
 

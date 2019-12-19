@@ -1,3 +1,12 @@
+## [2.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.5.3...@ovh-ux/manager-public-cloud@2.5.4) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 198] ([1aefea2](https://github.com/ovh/manager/commit/1aefea2e3baf06b45e8187f1e6728d415d880314))
+
+
+
 ## [2.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@2.5.2...@ovh-ux/manager-public-cloud@2.5.3) (2019-12-19)
 
 
