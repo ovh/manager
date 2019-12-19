@@ -60,28 +60,4 @@ angular.module('App').config(($stateProvider) => {
     },
     translations: { value: ['../email'], format: 'json' },
   });
-
-  $stateProvider.state('app.mx-plan', {
-    url: '/configuration/mx_plan?domain',
-    templateUrl: 'email-domain/order/email-domain-order.html',
-    controller: 'MXPlanOrderCtrl',
-    controllerAs: 'ctrlMXPlanOrder',
-    params: {
-      domain: null,
-    },
-    resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'mxPlan'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: { value: ['../mx-plan'], format: 'json' },
-  });
 });
