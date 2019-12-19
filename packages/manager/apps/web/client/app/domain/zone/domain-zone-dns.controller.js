@@ -123,12 +123,12 @@ export default class DomainTabZoneDnsCtrl {
           'paginatedZone.records.results',
           [],
         )
-          .filter(data => data.subDomain === '' && data.subDomainToDisplay === '')
-          .map(value => value.targetToDisplay.slice(0, -1))
+          .filter((data) => data.subDomain === '' && data.subDomainToDisplay === '')
+          .map((value) => value.targetToDisplay.slice(0, -1))
           .sort();
         this.activatedDns = get(activated, 'dns', [])
-          .filter(dns => dns.isUsed)
-          .map(value => value.host)
+          .filter((dns) => dns.isUsed)
+          .map((value) => value.host)
           .sort();
 
         if (
@@ -159,7 +159,7 @@ export default class DomainTabZoneDnsCtrl {
         }
         this.displayActivateZone = false;
         this.applySelection();
-        return this.Domain.getZoneStatus(this.domain.name).catch(err => this.Alerter.alertFromSWS(
+        return this.Domain.getZoneStatus(this.domain.name).catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_dashboard_loading_error'),
           err,
           this.$scope.alerts.main,
@@ -229,7 +229,7 @@ export default class DomainTabZoneDnsCtrl {
           this.selectedRecords = map(
             this.zone.paginatedZone.records.results,
             'id',
-          ).filter(result => !some(this.selectedRecords, result.id));
+          ).filter((result) => !some(this.selectedRecords, result.id));
           this.atLeastOneSelected = true;
           break;
         case 2:

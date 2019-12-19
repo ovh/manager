@@ -69,7 +69,7 @@ angular.module('App')
           const hostings = data[1];
           const models = data[2];
           $scope.availableOffers = difference(domains, hostings);
-          $scope.mxplanEnum = filter(models['hosting.web.order.MxPlanEnum'].enum, mxEnum => mxEnum !== 'delete');
+          $scope.mxplanEnum = filter(models['hosting.web.order.MxPlanEnum'].enum, (mxEnum) => mxEnum !== 'delete');
         })
         .catch(() => {
           $scope.availableOffers = [];
@@ -127,13 +127,13 @@ angular.module('App')
         .then((durations) => {
           const priceAndContractPromises = map(
             durations,
-            duration => hostingChangeDomain.get($stateParams.productId, {
+            (duration) => hostingChangeDomain.get($stateParams.productId, {
               duration,
               domain: $scope.model.domain,
               mxplan,
             })
-              .then(data => assign({ duration }, data))
-              .catch(err => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
+              .then((data) => assign({ duration }, data))
+              .catch((err) => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
               .finally(() => {
                 $scope.loading.validation = false;
               }),
@@ -144,7 +144,7 @@ angular.module('App')
               $scope.durations = data;
               [$scope.model.duration] = $scope.durations;
             })
-            .catch(err => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
+            .catch((err) => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
             .finally(() => { $scope.loading.durations = false; });
         })
         .catch((err) => {
@@ -183,7 +183,7 @@ angular.module('App')
           });
           Alerter.success($translate.instant('hosting_order_upgrade_success', { t0: order.url, t1: order.orderId }), $scope.alerts.main);
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('hosting_order_upgrade_error'), err, $scope.alerts.main))
         .finally(() => {
           $scope.resetAction();
           $scope.loading.validation = false;

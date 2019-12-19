@@ -16,7 +16,7 @@
                 data-ng-repeat="supportLevel in ::$ctrl.supportLevels track by supportLevel.name"
                 data-ng-if="supportLevel.isActive()">
                 <oui-tile class="py-0 h-100"
-                    data-ng-class="{'support-level-selected' : supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable()}"
+                    data-ng-class="{'support-level-selected' : supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)}"
                     loading="$ctrl.loading">
                     <div class="d-flex flex-column justify-content-between h-100">
                         <div>
@@ -24,7 +24,7 @@
                                 data-translate="{{ 'user_account_support_level_section_' + supportLevel.name }}">
                             </h4>
                             <span class="oui-chip support-level-current"
-                                data-ng-if="supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable()"
+                                data-ng-if="supportLevel.name === $ctrl.supportLevel.level && supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)"
                                 data-translate="user_account_support_level_section_enabled">
                             </span>
                             <span class="oui-chip"
@@ -32,7 +32,7 @@
                                 data-translate="user_account_support_level_section_recommended">
                             </span>
                             <p class="oui-chip"
-                                data-ng-if="!supportLevel.isAvailable()">
+                                data-ng-if="!supportLevel.isAvailable($ctrl.currentUser.ovhSubsidiary)">
                                 <span data-translate="user_account_support_level_section_coming_soon"></span>
                                 <sup aria-label="(1)">*</sup>
                             </p>
@@ -60,7 +60,8 @@
 
         <p class="mb-0">
             <sup aria-label="(1)">*</sup>
-            <small data-translate="user_account_support_level_section_title_annex_1"></small>
+            <small data-ng-if="$ctrl.areAllLevelsAvailable()" data-translate="user_account_support_level_section_title_annex_all_available"></small>
+            <small data-ng-if="!$ctrl.areAllLevelsAvailable()" data-translate="user_account_support_level_section_title_annex_1"></small>
         </p>
     </div>
 </div>

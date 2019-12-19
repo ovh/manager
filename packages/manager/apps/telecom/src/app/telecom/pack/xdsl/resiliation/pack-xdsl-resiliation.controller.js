@@ -21,7 +21,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
         description: data.description || data.serviceName,
       });
       return data;
-    }, err => new TucToastError(err)).then(() => OvhApiXdslResiliation.Aapi().terms({
+    }, (err) => new TucToastError(err)).then(() => OvhApiXdslResiliation.Aapi().terms({
       serviceName: $stateParams.serviceName,
     }).$promise.then((data) => {
       self.resiliationTerms = data;
@@ -43,7 +43,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
         };
         return self.resiliationTerms;
       });
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     }));
   };
@@ -65,7 +65,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
       }).$promise.then(() => {
         TucToast.success($translate.instant('xdsl_resiliation_mail'));
         self.init();
-      }, err => new TucToastError(err)).finally(() => {
+      }, (err) => new TucToastError(err)).finally(() => {
         self.loading = false;
       });
     }
@@ -121,7 +121,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
       if (data.due) {
         self.resiliationTerms.data.due = data.due;
       }
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.computingPrice = false;
     });
   };
@@ -136,7 +136,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
       serviceName: service.serviceName,
     }, null).$promise.then(() => {
       self.init();
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   };

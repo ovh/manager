@@ -8,7 +8,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -45,7 +45,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           self.pollStats(queueId);
           return self.refreshStats(queueId);
         }),
-      ]).catch(err => new TucToastError(err)).finally(() => {
+      ]).catch((err) => new TucToastError(err)).finally(() => {
         self.isLoading = false;
       });
     };
@@ -57,7 +57,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       return self.apiEndpoint.Hunting().Queue().v6().query({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
-      }).$promise.then(ids => head(ids));
+      }).$promise.then((ids) => head(ids));
     };
 
     self.refreshStats = function refreshStats(queueId) {
@@ -98,10 +98,10 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           serviceName: $stateParams.serviceName,
           queueId,
         }).$promise
-        .then(callsIds => $q
+        .then((callsIds) => $q
           .all(map(
             (callsIds || []).reverse(),
-            callId => self.apiEndpoint.Hunting().Queue().LiveCalls().v6()
+            (callId) => self.apiEndpoint.Hunting().Queue().LiveCalls().v6()
               .get({
                 billingAccount: $stateParams.billingAccount,
                 serviceName: $stateParams.serviceName,
@@ -120,10 +120,10 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           serviceName: $stateParams.serviceName,
           queueId,
         }).$promise
-        .then(agentIds => $q
+        .then((agentIds) => $q
           .all(map(
             agentIds,
-            agentId => self.apiEndpoint.Hunting().Queue().Agent().v6()
+            (agentId) => self.apiEndpoint.Hunting().Queue().Agent().v6()
               .getLiveStatus({
                 billingAccount: $stateParams.billingAccount,
                 serviceName: $stateParams.serviceName,
@@ -150,11 +150,11 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
     };
 
     self.getOngoingCalls = function getOngoingCalls() {
-      return filter(self.calls, call => call && call.state === 'Answered' && call.answered && !call.end);
+      return filter(self.calls, (call) => call && call.state === 'Answered' && call.answered && !call.end);
     };
 
     self.getPendingCalls = function getPendingCalls() {
-      return filter(self.calls, call => call && call.state === 'Waiting' && !call.answered && !call.end);
+      return filter(self.calls, (call) => call && call.state === 'Waiting' && !call.answered && !call.end);
     };
 
     self.getMaxWaitTime = function getMaxWaitTime() {
@@ -171,11 +171,11 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
     };
 
     self.getOnCallAgentsCount = function getOnCallAgentsCount() {
-      return filter(self.agentsStatus, agent => agent.status === 'inAQueueCall' || agent.status === 'receiving').length;
+      return filter(self.agentsStatus, (agent) => agent.status === 'inAQueueCall' || agent.status === 'receiving').length;
     };
 
     self.getWaitingAgentsCount = function getWaitingAgentsCount() {
-      return filter(self.agentsStatus, agent => agent.status === 'waiting').length;
+      return filter(self.agentsStatus, (agent) => agent.status === 'waiting').length;
     };
 
     self.interceptCall = function interceptCall(call) {

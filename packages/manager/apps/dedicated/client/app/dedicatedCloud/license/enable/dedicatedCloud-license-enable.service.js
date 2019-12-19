@@ -41,6 +41,6 @@ angular
           productName: 'privateCloud',
           serviceName,
         }).$promise
-        .then(offers => filter(offers, { planCode: 'pcc-option-windows' }));
+        .then((offers) => filter(offers, { planCode: 'pcc-option-windows' }));
     }
   });

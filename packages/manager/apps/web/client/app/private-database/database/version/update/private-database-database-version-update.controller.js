@@ -40,7 +40,7 @@ angular.module('App').controller(
 
           remove(
             this.model.versions,
-            version => version.replace(/\./g, '')
+            (version) => version.replace(/\./g, '')
               === this.$scope.currentActionData.version,
           );
 

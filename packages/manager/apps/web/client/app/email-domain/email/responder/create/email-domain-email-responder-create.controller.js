@@ -67,7 +67,7 @@ angular.module('App').controller(
           this.responders = data.sort();
           this.accountsNotUsed = filter(
             this.accounts,
-            account => indexOf(this.responders, account) === -1,
+            (account) => indexOf(this.responders, account) === -1,
           );
         })
         .catch((err) => {
@@ -189,7 +189,7 @@ angular.module('App').controller(
           this.$translate.instant('email_tab_modal_create_responder_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_create_responder_error'),
           err,
           this.$scope.alerts.main,

@@ -22,7 +22,7 @@ export default {
 
     this.updateMessages = (messages) => {
       // update messages timestamp
-      const pendingMessages = filter(messages, m => !m.timestamp);
+      const pendingMessages = filter(messages, (m) => !m.timestamp);
 
       if (pendingMessages.length) {
         this.hasNewMessages = true;
@@ -42,7 +42,7 @@ export default {
       this.updateMessages(messages);
 
       // do not display old messages
-      return filter(messages, m => m.timestamp >= timestamp);
+      return filter(messages, (m) => m.timestamp >= timestamp);
     };
 
     this.getAllMessages = () => {
@@ -51,13 +51,13 @@ export default {
       this.updateMessages(messages);
 
       // do not display old messages
-      return filter(messages, m => m.timestamp >= timestamp);
+      return filter(messages, (m) => m.timestamp >= timestamp);
     };
 
-    this.hasMessagesOfType = type => this.getMessagesByType(type).length > 0;
+    this.hasMessagesOfType = (type) => this.getMessagesByType(type).length > 0;
 
-    this.clearMessage = message => TucToast.clearMessage(message);
+    this.clearMessage = (message) => TucToast.clearMessage(message);
 
-    this.clearMessagesByType = type => TucToast.clearMessagesByType(type);
+    this.clearMessagesByType = (type) => TucToast.clearMessagesByType(type);
   },
 };

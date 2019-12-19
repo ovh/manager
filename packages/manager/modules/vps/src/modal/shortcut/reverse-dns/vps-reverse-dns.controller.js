@@ -51,7 +51,7 @@ export default class VpsReverseDnsCtrl {
           switch (data.state) {
             case 'ERROR':
               this.CucCloudMessage.error(this.$translate.instant('vps_configuration_reversedns_fail'));
-              messages.forEach(message => this.CucCloudMessage.error(message.message || message));
+              messages.forEach((message) => this.CucCloudMessage.error(message.message || message));
               break;
             case 'PARTIAL':
               break;

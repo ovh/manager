@@ -19,12 +19,12 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewUpdatePassword
   changePassword() {
     this.isLoading = true;
     return this.service.setUserPassword(this.clusterId, this.passwordText)
-      .then(res => this.goToOverview(
+      .then((res) => this.goToOverview(
         this.$translate.instant('enterprise_cloud_database_password_change_success'),
         STATUS.SUCCESS,
         res.id,
       ))
-      .catch(error => this.goToOverview(
+      .catch((error) => this.goToOverview(
         this.$translate.instant('enterprise_cloud_database_password_change_error', {
           message: get(error, 'data.message'),
         }),

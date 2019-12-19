@@ -29,14 +29,14 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCr
       self.creditThreshold = data.billingAccount.creditThreshold;
       self.currentOutplan = data.billingAccount.currentOutplan;
       self.allowedOutplan = data.billingAccount.allowedOutplan;
-      self.credits = map(data.credits, credit => ({
+      self.credits = map(data.credits, (credit) => ({
         label: `${credit.text} ${$translate.instant('telephony_group_billing_credit_threshold_without_tax')}`,
         value: credit,
         disable: credit.value === self.creditThreshold.value,
       }));
       self.contracts = data.contracts.contracts;
       self.contractsAccepted = false;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading.init = false;
     });
   }
@@ -59,7 +59,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCr
       $timeout(() => {
         $state.reload();
       }, 5000);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.loading.submit = false;
     });
   };

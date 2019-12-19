@@ -25,7 +25,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       self.securityDepositAmounts = data.securityDepositAmounts;
       self.group = data.billingAccount;
     })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.loading.init = false;
       });
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       self.order = data;
       self.loading.success = true;
     })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.loading.submit = false;
       });
@@ -64,7 +64,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
       self.futureDeposit.value = data.prices.withoutTax.value + self.group.securityDeposit.value;
       self.futureDeposit.text = [$filter('number')(self.futureDeposit.value, 2), self.futureDeposit.currencyCode === 'EUR' ? '€' : self.futureDeposit.currencyCode].join(' ');
     })
-      .catch(err => new TucToastError(err));
+      .catch((err) => new TucToastError(err));
   };
 
   self.getSecurityDepositAmounts = function getSecurityDepositAmounts() {

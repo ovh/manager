@@ -1,5 +1,5 @@
 {
-  "cdn_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni del tuo servizio.",
+  "cdn_dashboard_loading_error": "Si è verificato un errore durante il caricamento delle informazioni relative al tuo servizio.",
   "cdn_configuration_add_domain_title_button": "Aggiungi un dominio alla CDN",
   "cdn_configuration_add_domain_title": "Aggiungi un dominio",
   "cdn_configuration_add_domain_step1_question": "Inserisci un nome a dominio da aggiungere al tuo CDN :",

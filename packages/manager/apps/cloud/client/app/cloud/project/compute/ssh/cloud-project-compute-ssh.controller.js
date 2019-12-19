@@ -44,7 +44,7 @@ class CloudProjectComputeSshCtrl {
         this.serviceName,
         this.sshKey,
       ),
-      errorHandler: err => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_add_submit_error'), (err.data && err.data.message) || ''].join(' ')),
+      errorHandler: (err) => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_add_submit_error'), (err.data && err.data.message) || ''].join(' ')),
       successHandler: () => {
         this.toggleAddSshKey();
         this.getSshKeys(true);
@@ -54,7 +54,7 @@ class CloudProjectComputeSshCtrl {
 
     this.keys = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.CloudProjectSSHKeyService.getSSHKeys(this.serviceName),
-      errorHandler: err => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_error'), (err.data && err.data.message) || ''].join(' ')),
+      errorHandler: (err) => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_error'), (err.data && err.data.message) || ''].join(' ')),
       successHandler: () => this.filterSshKeys(),
     });
   }
@@ -74,7 +74,7 @@ class CloudProjectComputeSshCtrl {
     if (this.createKey.loading) {
       return;
     }
-    const notUnique = find(this.keys.data, sshkey => sshkey.name === this.sshKey.name);
+    const notUnique = find(this.keys.data, (sshkey) => sshkey.name === this.sshKey.name);
     if (notUnique) {
       this.CucCloudMessage.error(this.$translate.instant('cpc_ssh_add_submit_name_error'));
       return;
@@ -97,7 +97,7 @@ class CloudProjectComputeSshCtrl {
         this.getSshKeys(true);
         this.CucCloudMessage.success(this.$translate.instant('cpc_ssh_delete_success'));
       },
-      errorHandler: err => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_delete_error'), (err.data && err.data.message) || ''].join(' ')),
+      errorHandler: (err) => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_delete_error'), (err.data && err.data.message) || ''].join(' ')),
     });
   }
 
@@ -120,7 +120,7 @@ class CloudProjectComputeSshCtrl {
     if (this.searchSshKeysForm && this.searchSshKeysForm.$valid) {
       const filteredKeys = filter(
         this.keys.data,
-        sshKey => this.isSshKeyMatchSearchCriterias(sshKey),
+        (sshKey) => this.isSshKeyMatchSearchCriterias(sshKey),
       );
 
       this.table.sshKeysFilter = filteredKeys;

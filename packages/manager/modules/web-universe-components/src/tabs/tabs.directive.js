@@ -17,7 +17,7 @@ export default /* @ngInject */ (Navigator, $rootScope) => ({
   },
 
   link(scope) {
-    set(scope, 'isActive', tab => (scope.selectedTab === tab ? 'active' : ''));
+    set(scope, 'isActive', (tab) => (scope.selectedTab === tab ? 'active' : ''));
 
     set(scope, 'execMenuAction', (action) => {
       switch (action.type) {

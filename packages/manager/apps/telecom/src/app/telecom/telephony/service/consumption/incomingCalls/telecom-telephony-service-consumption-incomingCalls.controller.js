@@ -8,7 +8,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
     return tucVoipService.getServiceConsumption({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
-    }).then(result => result.filter(conso => conso.wayType !== 'outgoing')
+    }).then((result) => result.filter((conso) => conso.wayType !== 'outgoing')
       .map((conso) => {
         set(conso, 'durationAsDate', new Date(conso.duration * 1000));
         if (conso.wayType === 'incoming' && conso.duration === 0) {
@@ -48,8 +48,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
       self.consumption.raw = angular.copy(result);
       self.consumption.sorted = angular.copy(result);
       self.consumption.durationSum = new Date(sumBy(self.consumption.raw,
-        conso => conso.duration) * 1000);
-    }, err => new TucToastError(err));
+        (conso) => conso.duration) * 1000);
+    }, (err) => new TucToastError(err));
   }
 
   self.refresh = function refresh() {

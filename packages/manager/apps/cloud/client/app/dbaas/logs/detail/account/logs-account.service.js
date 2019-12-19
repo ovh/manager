@@ -20,32 +20,32 @@ class LogsAccountService {
         message: 'logs_password_rule_length',
         isValid: false,
         isValidated: false,
-        validator: password => password && password.length >= 12,
+        validator: (password) => password && password.length >= 12,
       },
       {
         message: 'logs_password_rule_contains_number',
         isValid: false,
         isValidated: false,
-        validator: password => password && password.match('.*[0-9].*'),
+        validator: (password) => password && password.match('.*[0-9].*'),
       },
       {
         message: 'logs_password_rule_contains_uppercase',
         isValid: false,
         isValidated: false,
-        validator: password => password && password.match('.*[A-Z].*'),
+        validator: (password) => password && password.match('.*[A-Z].*'),
       },
       {
         message: 'logs_password_rule_contains_lowercase',
         isValid: false,
         isValidated: false,
-        validator: password => password && password.match('(?=.*[a-z])'),
+        validator: (password) => password && password.match('(?=.*[a-z])'),
       },
       {
         message: 'logs_password_rule_contains_special',
         translateParams: { specialCharacters: this.LogsConstants.PASSWORD_SPECIAL_CHARACTERS },
         isValid: false,
         isValidated: false,
-        validator: password => password && password.match(`.*[${this.constructor.escapeRegExp(this.LogsConstants.PASSWORD_SPECIAL_CHARACTERS)}].*`),
+        validator: (password) => password && password.match(`.*[${this.constructor.escapeRegExp(this.LogsConstants.PASSWORD_SPECIAL_CHARACTERS)}].*`),
       },
     ];
   }
@@ -64,7 +64,7 @@ class LogsAccountService {
           {},
         );
       })
-      .catch(err => this.LogsHelperService.handleError(isSetup ? 'logs_password_setup_error' : 'logs_password_change_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError(isSetup ? 'logs_password_setup_error' : 'logs_password_change_error', err, {}));
   }
 
   static escapeRegExp(msg) {

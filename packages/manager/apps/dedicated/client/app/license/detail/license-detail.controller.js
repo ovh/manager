@@ -60,7 +60,7 @@ angular.module('Module.license').controller('LicenseDetailsCtrl', [
 
     function fetchIsChangeOsTaskPending(licence) {
       return License.tasks(licence, 'changeOs')
-        .then(tasks => tasks && tasks.length > 0)
+        .then((tasks) => tasks && tasks.length > 0)
         .then((isTaskRunning) => {
           // The task just finished so we refresh the licence informations.
           if (!isTaskRunning && $scope.changeOsTaskRunning) {

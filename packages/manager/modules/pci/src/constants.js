@@ -550,7 +550,7 @@ export const PCI_URLS = {
     vrack: {},
     website_order: {
       'cloud-resell-eu': {
-        US: projectName => `https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'project~productId~'cloud~quantity~1~duration~'P1M~configuration~(~(label~'description~values~(~'${encodeURIComponent(projectName)})))))`,
+        US: (projectName) => `https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'project~productId~'cloud~quantity~1~duration~'P1M~configuration~(~(label~'description~values~(~'${encodeURIComponent(projectName)})))))`,
       },
       pcs: {
         US: 'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',

@@ -13,7 +13,7 @@ export default /* @ngInject */($stateProvider) => {
         format: 'json',
       },
       resolve: {
-        instanceBackupId: /* @ngInject */$transition$ => $transition$.params().instanceBackupId,
+        instanceBackupId: /* @ngInject */($transition$) => $transition$.params().instanceBackupId,
         instanceBackup: /* @ngInject */ (
           PciProjectStorageInstanceBackupService,
           projectId,
@@ -21,7 +21,7 @@ export default /* @ngInject */($stateProvider) => {
         ) => PciProjectStorageInstanceBackupService
           .get(projectId, instanceBackupId),
 
-        goBack: /* @ngInject */ goToInstanceBackups => goToInstanceBackups,
+        goBack: /* @ngInject */ (goToInstanceBackups) => goToInstanceBackups,
         breadcrumb: () => null,
       },
     });

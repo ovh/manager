@@ -22,7 +22,7 @@ class LogsDashboardsService {
    */
   getDashboards(serviceName) {
     return this.getDashboardsDetails(serviceName)
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
   }
 
   /**
@@ -35,8 +35,8 @@ class LogsDashboardsService {
    */
   getOwnDashboards(serviceName) {
     return this.getDashboardsDetails(serviceName)
-      .then(dashboards => dashboards.filter(dashboard => dashboard.info.isEditable))
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
+      .then((dashboards) => dashboards.filter((dashboard) => dashboard.info.isEditable))
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
   }
 
   /**
@@ -49,8 +49,8 @@ class LogsDashboardsService {
    */
   getShareableDashboards(serviceName) {
     return this.getDashboardsDetails(serviceName)
-      .then(dashboards => dashboards.filter(dashboard => dashboard.info.isShareable))
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
+      .then((dashboards) => dashboards.filter((dashboard) => dashboard.info.isShareable))
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_get_error', err, {}));
   }
 
   /**
@@ -64,7 +64,7 @@ class LogsDashboardsService {
     return this.getDashboardsIds(serviceName)
       .then((dashboards) => {
         const promises = dashboards
-          .map(dashboardId => this.getAapiDashboard(serviceName, dashboardId));
+          .map((dashboardId) => this.getAapiDashboard(serviceName, dashboardId));
         return this.$q.all(promises);
       });
   }
@@ -91,7 +91,7 @@ class LogsDashboardsService {
   getDashboard(serviceName, dashboardId) {
     return this.DashboardsApiService.get({ serviceName, dashboardId })
       .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_detail_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_get_detail_error', err, {}));
   }
 
   /**
@@ -105,7 +105,7 @@ class LogsDashboardsService {
   getAapiDashboard(serviceName, dashboardId) {
     return this.DashboardsAapiService.get({ serviceName, dashboardId })
       .$promise
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_get_detail_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_get_detail_error', err, {}));
   }
 
   /**
@@ -118,12 +118,12 @@ class LogsDashboardsService {
    */
   getQuota(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+      .then((me) => ({
         max: me.total.maxNbDashboard,
         configured: me.total.curNbDashboard,
         reference: me.total.reference,
       }))
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_quota_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_quota_get_error', err, {}));
   }
 
   /**
@@ -132,11 +132,11 @@ class LogsDashboardsService {
    */
   getMainOffer(serviceName) {
     return this.AccountingAapiService.me({ serviceName }).$promise
-      .then(me => ({
+      .then((me) => ({
         max: me.offer.maxNbDashboard,
         current: me.offer.curNbDashboard,
       }))
-      .catch(err => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
+      .catch((err) => this.LogsHelperService.handleError('logs_main_offer_get_error', err, {}));
   }
 
   /**
@@ -154,7 +154,7 @@ class LogsDashboardsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_delete_success', { dashboardName: dashboard.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_delete_error', err, { dashboardName: dashboard.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_delete_error', err, { dashboardName: dashboard.title }));
   }
 
   /**
@@ -177,7 +177,7 @@ class LogsDashboardsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_create_success', { dashboardName: dashboard.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_create_error', err, { dashboardName: dashboard.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_create_error', err, { dashboardName: dashboard.title }));
   }
 
   /**
@@ -196,7 +196,7 @@ class LogsDashboardsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_create_success', { dashboardName: dashboard.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_create_error', err, { dashboardName: dashboard.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_create_error', err, { dashboardName: dashboard.title }));
   }
 
   /**
@@ -220,7 +220,7 @@ class LogsDashboardsService {
         this.resetAllCache();
         return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_dashboards_update_success', { dashboardName: dashboard.title });
       })
-      .catch(err => this.LogsHelperService.handleError('logs_dashboards_update_error', err, { dashboardName: dashboard.title }));
+      .catch((err) => this.LogsHelperService.handleError('logs_dashboards_update_error', err, { dashboardName: dashboard.title }));
   }
 
   /**

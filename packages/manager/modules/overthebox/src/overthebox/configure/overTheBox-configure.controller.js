@@ -12,7 +12,7 @@ export default /* @ngInject */ function
         $state.go('order-overTheBox');
       }
       return services;
-    }, err => new TucToastError(err)).finally(() => {
+    }, (err) => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   }

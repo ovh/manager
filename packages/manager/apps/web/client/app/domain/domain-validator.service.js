@@ -271,10 +271,10 @@ angular.module('services').service(
 
           return isValid;
         },
-        isValidEXIST: field => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('exists', field),
-        isValidINCLUDE: field => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('include', field),
-        isValidREDIRECT: field => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('redirect', field),
-        isValidEXP: field => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('exp', field),
+        isValidEXIST: (field) => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('exists', field),
+        isValidINCLUDE: (field) => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('include', field),
+        isValidREDIRECT: (field) => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('redirect', field),
+        isValidEXP: (field) => this.SPF.isValidEXISTSorINCLUDEorREDIRECTorEXP('exp', field),
       };
     }
 
@@ -683,8 +683,8 @@ angular.module('services').service(
      * @returns {string}
      */
     static transformDKIMTarget(target) {
-      const hash = keys(pickBy(get(target, 'h'), val => !!val));
-      const flags = keys(pickBy(get(target, 't'), val => !!val));
+      const hash = keys(pickBy(get(target, 'h'), (val) => !!val));
+      const flags = keys(pickBy(get(target, 't'), (val) => !!val));
       const pRevoke = get(target, 'pRevoke', false);
       let value = '';
 

@@ -11,7 +11,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
   function checkIfFeatureEnabled() {
     return TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getLine($stateParams.serviceName)).then((line) => {
+      .then((group) => group.getLine($stateParams.serviceName)).then((line) => {
         if (line.isIndividual()) {
           $state.go('telecom.telephony.billingAccount.line');
           return $q.reject(disabledFeatureError);
@@ -29,13 +29,15 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
 
   function init() {
     self.isLoading = true;
-    return checkIfFeatureEnabled().then(fetchTones().then((tones) => {
-      self.tonesEnum = ['None', 'Predefined 1', 'Predefined 2', 'Custom sound'];
-      self.tones = tones;
-      self.tonesForm = angular.copy(self.tones);
-    })).catch(err => (err === disabledFeatureError ? err : new TucToastError(err))).finally(() => {
-      self.isLoading = false;
-    });
+    return checkIfFeatureEnabled()
+      .then(fetchTones().then((tones) => {
+        self.tonesEnum = ['None', 'Predefined 1', 'Predefined 2', 'Custom sound'];
+        self.tones = tones;
+        self.tonesForm = angular.copy(self.tones);
+      }))
+      .catch((err) => (err === disabledFeatureError ? err : new TucToastError(err))).finally(() => {
+        self.isLoading = false;
+      });
   }
 
   self.getToneTypeLabel = function getToneTypeLabel(toneType) {
@@ -50,7 +52,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
   self.filterValidExtension = function filterValidExtension(file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_line_tones_choose_file_type_error'));
     }
@@ -72,7 +74,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
           // since there are no errors, assume tone is correctly updated
           self.tones[toneType] = self.tonesForm[toneType];
         }),
-      ]).catch(err => new TucToastError(err)).finally(() => {
+      ]).catch((err) => new TucToastError(err)).finally(() => {
         self.tonesForm[`${toneType}Updating`] = false;
       });
     }
@@ -86,7 +88,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
     return OvhApiMe.Document().v6().upload(
       self.tonesForm[`${toneType}File`].name,
       self.tonesForm[`${toneType}File`],
-    ).then(doc => OvhApiTelephony.Line().v6().toneUpload({
+    ).then((doc) => OvhApiTelephony.Line().v6().toneUpload({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }, {
@@ -103,7 +105,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
           self.tonesForm[`${toneType}UploadSuccess`] = false;
         }, 3000);
       })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.tonesForm[`${toneType}Uploading`] = false;
       });

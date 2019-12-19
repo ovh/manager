@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .config(($stateProvider) => {
     $stateProvider

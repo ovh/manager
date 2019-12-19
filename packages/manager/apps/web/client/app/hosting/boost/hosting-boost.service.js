@@ -38,7 +38,7 @@ angular
     /**
      * Obtain hosting boost new price
      */
-    this.getBoostPrice = ovhSubsidiary => OvhApiOrderCatalogPublic.v6().get({
+    this.getBoostPrice = (ovhSubsidiary) => OvhApiOrderCatalogPublic.v6().get({
       ovhSubsidiary,
       productName: 'webHosting',
     }).$promise;
@@ -46,7 +46,7 @@ angular
     /**
      * Obtain hosting boost history
      */
-    this.getHistory = serviceName => OvhHttp.get('/hosting/web/{serviceName}/boostHistory', {
+    this.getHistory = (serviceName) => OvhHttp.get('/hosting/web/{serviceName}/boostHistory', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,

@@ -57,6 +57,6 @@ angular.module('App').controller('CacherulesCreateCtrl', ($scope, $stateParams, 
         $scope.entry.ttl,
       )
       .then(() => Alerter.alertFromSWS($translate.instant('cdn_domain_configuration_cacherule_create_success'), true, $scope.alert))
-      .catch(data => Alerter.alertFromSWS($translate.instant('cdn_domain_configuration_cacherule_create_fail'), data, $scope.alert));
+      .catch((data) => Alerter.alertFromSWS($translate.instant('cdn_domain_configuration_cacherule_create_fail'), data, $scope.alert));
   };
 });

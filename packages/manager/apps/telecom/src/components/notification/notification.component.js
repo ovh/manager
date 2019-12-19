@@ -5,7 +5,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -114,7 +114,7 @@ angular.module('managerApp')
           () => {
             self.removeElement(element);
           },
-          err => self.processError(err),
+          (err) => self.processError(err),
         ).finally(() => {
           set(element, 'frozen', false);
         });
@@ -158,7 +158,7 @@ angular.module('managerApp')
               });
             }
           },
-          err => self.processError(err),
+          (err) => self.processError(err),
         ).finally(() => {
           self.loading = false;
         });
@@ -192,7 +192,7 @@ angular.module('managerApp')
           (data) => {
             self.accounts = data;
           },
-          err => self.processError(err),
+          (err) => self.processError(err),
         );
 
         // Get the Notifications

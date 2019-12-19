@@ -39,7 +39,7 @@ angular
     }
 
     static keepOnlyConsumptionForService(serviceId) {
-      return consumptionForAllServices => find(consumptionForAllServices, { serviceId });
+      return (consumptionForAllServices) => find(consumptionForAllServices, { serviceId });
     }
 
     static keepOnlyElementsWithType(elements, { planFamily }) {
@@ -47,6 +47,6 @@ angular
     }
 
     static keepOnlyElement(id) {
-      return element => element.uniqueId.split('@')[0] === `${id}`;
+      return (element) => element.uniqueId.split('@')[0] === `${id}`;
     }
   });

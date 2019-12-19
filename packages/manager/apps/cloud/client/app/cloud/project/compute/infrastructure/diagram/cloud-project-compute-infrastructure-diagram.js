@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('iaas.pci-project.compute.infrastructure.diagram', {
     url: '/diagram',

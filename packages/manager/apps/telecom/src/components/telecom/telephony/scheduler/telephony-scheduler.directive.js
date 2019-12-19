@@ -6,7 +6,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -156,7 +156,7 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
       events(start, end, timeZone, callback) {
         return telephonySchedulerCtrl
           .fetchEvents(start, end)
-          .then(events => callback(telephonySchedulerCtrl.applyFilters(events)));
+          .then((events) => callback(telephonySchedulerCtrl.applyFilters(events)));
       },
       eventDestroy() {
         destroyTmp();

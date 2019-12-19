@@ -66,7 +66,7 @@ export default /* @ngInject */ function VpsService(
         });
       }
       return $q.reject(vps);
-    }).then(() => result, http => $q.reject(http.data));
+    }).then(() => result, (http) => $q.reject(http.data));
   };
 
   this.getTaskInError = function getTaskInError(serviceName) {
@@ -78,7 +78,7 @@ export default /* @ngInject */ function VpsService(
         });
       }
       return $q.reject(vps);
-    }).then(() => result, http => $q.reject(http.data));
+    }).then(() => result, (http) => $q.reject(http.data));
   };
 
   function resetTabVeeam() {
@@ -173,7 +173,7 @@ export default /* @ngInject */ function VpsService(
     }).then(() => {
       VpsTaskService.initPoller(serviceName, 'vps.detail');
       return result;
-    }, http => $q.reject(http.data));
+    }, (http) => $q.reject(http.data));
   };
 
   /*
@@ -208,7 +208,7 @@ export default /* @ngInject */ function VpsService(
       resetCache();
       VpsTaskService.initPoller(serviceName, 'vps.detail');
       return result;
-    }, http => $q.reject(http.data));
+    }, (http) => $q.reject(http.data));
   };
 
   /*
@@ -216,7 +216,7 @@ export default /* @ngInject */ function VpsService(
         */
   this.getKVMAccess = function getKVMAccess(serviceName) {
     return $http.post([swsVpsProxypass, serviceName, 'openConsoleAccess'].join('/'), { protocol: 'VNCOverWebSocket' })
-      .then(data => data.data)
+      .then((data) => data.data)
       .catch(CucServiceHelper.errorHandler());
   };
 
@@ -225,11 +225,11 @@ export default /* @ngInject */ function VpsService(
     return $http.post([swsVpsProxypass, serviceName, 'getConsoleUrl'].join('/')).then((response) => {
       result = response.data;
     },
-    err => $q.reject(err.data)).then(() => {
+    (err) => $q.reject(err.data)).then(() => {
       resetCache();
       $rootScope.$broadcast('vps.dashboard.refresh');
       return result;
-    }, http => $q.reject(http.data));
+    }, (http) => $q.reject(http.data));
   };
 
   /*
@@ -237,7 +237,7 @@ export default /* @ngInject */ function VpsService(
         */
   this.getTemplates = function getTemplates(serviceName) {
     return $http.get([aapiRootPath, serviceName, 'templates'].join('/'), { serviceType: 'aapi' })
-      .then(response => response.data)
+      .then((response) => response.data)
       .catch(CucServiceHelper.errorHandler('vps_configuration_polling_fail'));
   };
 
@@ -270,7 +270,7 @@ export default /* @ngInject */ function VpsService(
         */
   this.getIps = function getIps(serviceName) {
     return $http.get([aapiRootPath, serviceName, 'ips'].join('/'), { serviceType: 'aapi' })
-      .then(data => data.data)
+      .then((data) => data.data)
       .catch(CucServiceHelper.errorHandler());
   };
 
@@ -309,7 +309,7 @@ export default /* @ngInject */ function VpsService(
       resetCache();
       $rootScope.$broadcast('vps.dashboard.refresh');
       return result;
-    }, http => $q.reject(http.data));
+    }, (http) => $q.reject(http.data));
   };
 
   /*
@@ -664,7 +664,7 @@ export default /* @ngInject */ function VpsService(
   };
 
   this.getOptionSnapshotFormated = function getOptionSnapshotFormated(serviceName) {
-    return this.getOptionDetails(serviceName, 'snapshot').then(optionDetails => head(optionDetails.results));
+    return this.getOptionDetails(serviceName, 'snapshot').then((optionDetails) => head(optionDetails.results));
   };
 
   this.getPriceOptions = function getPriceOptions(vps) {
@@ -672,13 +672,13 @@ export default /* @ngInject */ function VpsService(
   };
 
   this.cancelOption = function cancelOption(serviceName, option) {
-    return this.getSelectedVps(serviceName).then(vps => $http.delete([swsVpsProxypass, vps.name, 'option', option].join('/'))
-      .catch(err => (err && err.data ? $q.reject(err.data) : $q.reject(err))));
+    return this.getSelectedVps(serviceName).then((vps) => $http.delete([swsVpsProxypass, vps.name, 'option', option].join('/'))
+      .catch((err) => (err && err.data ? $q.reject(err.data) : $q.reject(err))));
   };
 
   this.getOptionStatus = function getOptionStatus(serviceName, option) {
-    return this.getSelectedVps(serviceName).then(vps => $http.get([swsVpsProxypass, vps.name, 'option', option].join('/'))
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.get([swsVpsProxypass, vps.name, 'option', option].join('/'))
+      .then((response) => response.data));
   };
 
   /*
@@ -731,12 +731,12 @@ export default /* @ngInject */ function VpsService(
         */
   this.getVeeamInfo = function getVeeamInfo(serviceName) {
     return $http.get([swsVpsProxypass, serviceName, 'automatedBackup'].join('/'))
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.getVeeamAttachedBackup = function getVeeamAttachedBackup(serviceName) {
     return $http.get([swsVpsProxypass, serviceName, 'automatedBackup/attachedBackup'].join('/'))
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.getVeeam = function getVeeam(serviceName) {
@@ -761,11 +761,11 @@ export default /* @ngInject */ function VpsService(
         state,
       },
       cache: vpsTabVeeamCache,
-    }).then(response => response.data);
+    }).then((response) => response.data);
   };
 
   this.veeamRestorePointMount = function veeamRestorePointMount(serviceName, restorePoint) {
-    return this.getSelectedVps(serviceName).then(vps => $http.post([swsVpsProxypass, vps.name, 'automatedBackup/restore'].join('/'), {
+    return this.getSelectedVps(serviceName).then((vps) => $http.post([swsVpsProxypass, vps.name, 'automatedBackup/restore'].join('/'), {
       changePassword: false,
       restorePoint,
       type: 'file',
@@ -781,7 +781,7 @@ export default /* @ngInject */ function VpsService(
     restorePoint,
     changePassword,
   ) {
-    return this.getSelectedVps(serviceName).then(vps => $http.post([swsVpsProxypass, vps.name, 'automatedBackup/restore'].join('/'), {
+    return this.getSelectedVps(serviceName).then((vps) => $http.post([swsVpsProxypass, vps.name, 'automatedBackup/restore'].join('/'), {
       changePassword,
       restorePoint,
       type: 'full',
@@ -796,7 +796,7 @@ export default /* @ngInject */ function VpsService(
     serviceName,
     restorePoint,
   ) {
-    return this.getSelectedVps(serviceName).then(vps => $http.post([swsVpsProxypass, vps.name, 'automatedBackup/detachBackup'].join('/'), {
+    return this.getSelectedVps(serviceName).then((vps) => $http.post([swsVpsProxypass, vps.name, 'automatedBackup/detachBackup'].join('/'), {
       restorePoint,
     }).then((response) => {
       resetTabVeeam();
@@ -809,23 +809,23 @@ export default /* @ngInject */ function VpsService(
        * Get option veeam
        */
   this.getVeeamOption = function getVeeamOption(serviceName) {
-    return this.getSelectedVps(serviceName).then(vps => $http.get([aapiRootPath, vps.name, 'automatedBackup'].join('/'), {
+    return this.getSelectedVps(serviceName).then((vps) => $http.get([aapiRootPath, vps.name, 'automatedBackup'].join('/'), {
       serviceType: 'aapi',
       cache: vpsCache,
-    }).then(response => response.data).catch(error => error.data));
+    }).then((response) => response.data).catch((error) => error.data));
   };
 
   /**
        * Order the option veeam
        */
   this.orderVeeamOption = (serviceName, duration) => this.getSelectedVps(serviceName)
-    .then(vps => $http.post([swsOrderProxypass, vps.name, 'automatedBackup', duration].join('/'), {}))
-    .then(response => response.data);
+    .then((vps) => $http.post([swsOrderProxypass, vps.name, 'automatedBackup', duration].join('/'), {}))
+    .then((response) => response.data);
   /**
        * Update the VPS
        */
   this.update = function update(serviceName, newValue) {
-    return this.getSelectedVps(serviceName).then(vps => $http.put([swsVpsProxypass, vps.name].join('/'), newValue)
+    return this.getSelectedVps(serviceName).then((vps) => $http.put([swsVpsProxypass, vps.name].join('/'), newValue)
       .then((response) => {
         resetCache();
         VpsTaskService.initPoller(serviceName, 'vps.detail');
@@ -877,14 +877,14 @@ export default /* @ngInject */ function VpsService(
         offset,
       },
     })
-      .then(response => response.data);
+      .then((response) => response.data);
   };
 
   this.getBackupStorageAuthorizableBlocks = function getBackupStorageAuthorizableBlocks(
     serviceName,
   ) {
-    return this.getSelectedVps(serviceName).then(vps => $http.get([aapiRootPath, vps.name, 'backupStorage/access/authorizableBlocks'].join('/'), { serviceType: 'aapi' })
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.get([aapiRootPath, vps.name, 'backupStorage/access/authorizableBlocks'].join('/'), { serviceType: 'aapi' })
+      .then((response) => response.data));
   };
 
   this.postBackupStorageAccess = function postBackupStorageAccess(
@@ -894,12 +894,12 @@ export default /* @ngInject */ function VpsService(
     nfs,
     cifs,
   ) {
-    return this.getSelectedVps(serviceName).then(vps => $http.post([aapiRootPath, vps.name, 'backupStorage/access/add'].join('/'), {
+    return this.getSelectedVps(serviceName).then((vps) => $http.post([aapiRootPath, vps.name, 'backupStorage/access/add'].join('/'), {
       ipBlocksList,
       ftp,
       nfs,
       cifs,
-    }, { serviceType: 'aapi' }).then(response => response.data));
+    }, { serviceType: 'aapi' }).then((response) => response.data));
   };
 
   this.putBackupStorageAccess = function putBackupStorageAccess(
@@ -909,40 +909,40 @@ export default /* @ngInject */ function VpsService(
     nfs,
     cifs,
   ) {
-    return this.getSelectedVps(serviceName).then(vps => $http.put([swsVpsProxypass, vps.name, 'backupftp', 'access', encodeURIComponent(ipBlock)].join('/'), {
+    return this.getSelectedVps(serviceName).then((vps) => $http.put([swsVpsProxypass, vps.name, 'backupftp', 'access', encodeURIComponent(ipBlock)].join('/'), {
       ftp,
       nfs,
       cifs,
-    }).then(response => response.data));
+    }).then((response) => response.data));
   };
 
   this.deleteBackupStorageAccess = function deleteBackupStorageAccess(serviceName, ipBlock) {
-    return this.getSelectedVps(serviceName).then(vps => $http.delete([swsVpsProxypass, vps.name, 'backupftp', 'access', encodeURIComponent(ipBlock)].join('/'))
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.delete([swsVpsProxypass, vps.name, 'backupftp', 'access', encodeURIComponent(ipBlock)].join('/'))
+      .then((response) => response.data));
   };
 
   this.requestFtpBackupPassword = function requestFtpBackupPassword(serviceName) {
-    return this.getSelectedVps(serviceName).then(vps => $http.post([swsVpsProxypass, vps.name, 'backupftp/password'].join('/'))
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.post([swsVpsProxypass, vps.name, 'backupftp/password'].join('/'))
+      .then((response) => response.data));
   };
 
   this.getWindowsOptionDurations = function getWindowsOptionDurations(serviceName) {
-    return this.getSelectedVps(serviceName).then(vps => $http.get([swsOrderProxypass, vps.name, 'windows'].join('/'))
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.get([swsOrderProxypass, vps.name, 'windows'].join('/'))
+      .then((response) => response.data));
   };
 
   this.getWindowsOptionOrder = function getWindowsOptionOrder(serviceName, duration) {
-    return this.getSelectedVps(serviceName).then(vps => $http.get([swsOrderProxypass, vps.name, 'windows', duration].join('/'))
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.get([swsOrderProxypass, vps.name, 'windows', duration].join('/'))
+      .then((response) => response.data));
   };
 
   this.postWindowsOptionOrder = function postWindowsOptionOrder(serviceName, duration) {
-    return this.getSelectedVps(serviceName).then(vps => $http.post([swsOrderProxypass, vps.name, 'windows', duration].join('/'))
-      .then(response => response.data));
+    return this.getSelectedVps(serviceName).then((vps) => $http.post([swsOrderProxypass, vps.name, 'windows', duration].join('/'))
+      .then((response) => response.data));
   };
 
   // Additional disks
-  this.hasAdditionalDiskOption = serviceName => this.getSelectedVps(serviceName).then((vps) => {
+  this.hasAdditionalDiskOption = (serviceName) => this.getSelectedVps(serviceName).then((vps) => {
     if (!includes(vps.availableOptions, 'ADDITIONAL_DISK')) {
       return $q.reject(ADDITIONAL_DISK.HAS_NO_OPTION);
     }
@@ -957,7 +957,7 @@ export default /* @ngInject */ function VpsService(
   });
 
   this.getAdditionalDiskPrices = function getAdditionalDiskPrices(serviceName) {
-    return this.getSelectedVps(serviceName).then(vps => $q.all([
+    return this.getSelectedVps(serviceName).then((vps) => $q.all([
       $http.get([swsPriceProxypass, '2015v1', vps.offerType.toLowerCase(), 'option', ADDITIONAL_DISK.CAPACITIES[0].option].join('/')),
       $http.get([swsPriceProxypass, '2015v1', vps.offerType.toLowerCase(), 'option', ADDITIONAL_DISK.CAPACITIES[1].option].join('/')),
       $http.get([swsPriceProxypass, '2015v1', vps.offerType.toLowerCase(), 'option', ADDITIONAL_DISK.CAPACITIES[2].option].join('/')),
@@ -980,7 +980,7 @@ export default /* @ngInject */ function VpsService(
       const url = [swsOrderProxypass, vps.name, 'additionalDisk'].join('/');
       return $http
         .get(url, { params: { additionalDiskSize: capacity } })
-        .then(duration => duration.data[0]);
+        .then((duration) => duration.data[0]);
     });
   };
 
@@ -993,7 +993,7 @@ export default /* @ngInject */ function VpsService(
       const url = [swsOrderProxypass, vps.name, 'additionalDisk', duration].join('/');
       return $http
         .get(url, { params: { additionalDiskSize: capacity } })
-        .then(response => response.data);
+        .then((response) => response.data);
     });
   };
 
@@ -1004,30 +1004,30 @@ export default /* @ngInject */ function VpsService(
   ) {
     return this.getSelectedVps(serviceName).then((vps) => {
       const url = [swsOrderProxypass, vps.name, 'additionalDisk', duration].join('/');
-      return $http.post(url, { additionalDiskSize: capacity }).then(response => response.data);
+      return $http.post(url, { additionalDiskSize: capacity }).then((response) => response.data);
     });
   };
 
   this.getDisks = function getDisks(serviceName) {
     return $http.get([swsVpsProxypass, serviceName, 'disks'].join('/'))
-      .then(response => response.data)
+      .then((response) => response.data)
       .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
   };
 
   this.getDiskInfo = function getDiskInfo(serviceName, id) {
     return $http.get([swsVpsProxypass, serviceName, 'disks', id].join('/'))
-      .then(response => response.data)
+      .then((response) => response.data)
       .catch(CucServiceHelper.errorHandler('vps_dashboard_loading_error'));
   };
 
   this.showOnlyAdditionalDisk = function showOnlyAdditionalDisk(disks) {
-    remove(disks, currentObject => currentObject.type === 'primary');
+    remove(disks, (currentObject) => currentObject.type === 'primary');
     return disks;
   };
 
   // Service info
   this.getServiceInfos = function getServiceInfos(serviceName) {
-    return this.getSelectedVps(serviceName).then(vps => $http.get([swsVpsProxypass, serviceName, 'serviceInfos'].join('/'))
+    return this.getSelectedVps(serviceName).then((vps) => $http.get([swsVpsProxypass, serviceName, 'serviceInfos'].join('/'))
       .then((response) => {
         response.data.offer = vps.model;
         return response.data;
@@ -1036,6 +1036,6 @@ export default /* @ngInject */ function VpsService(
   };
 
   this.isAutoRenewable = function isAutoRenewable(serviceName) {
-    return this.getSelectedVps(serviceName).then(vps => (moment(vps.expiration).diff(moment().date(), 'days') > 0));
+    return this.getSelectedVps(serviceName).then((vps) => (moment(vps.expiration).diff(moment().date(), 'days') > 0));
   };
 }

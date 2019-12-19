@@ -42,7 +42,7 @@ export default class PciInstanceAttachPrivateNetworkController {
         }
         return this.goBack(message);
       })
-      .catch(err => this.goBack(
+      .catch((err) => this.goBack(
         this.$translate.instant(
           'pci_projects_project_instances_instance_attach-private-network_error_attach',
           {

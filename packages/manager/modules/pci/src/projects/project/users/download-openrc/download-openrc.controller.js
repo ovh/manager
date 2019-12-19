@@ -22,7 +22,7 @@ export default class PciUsersDownloadOpenRcController {
     this.isLoading = false;
     this.useVersion3 = false;
 
-    this.regions = map(this.regions, region => ({
+    this.regions = map(this.regions, (region) => ({
       id: region,
       label: this.CucRegionService.getTranslatedMicroRegion(region),
     }));
@@ -43,7 +43,7 @@ export default class PciUsersDownloadOpenRcController {
           reader.onloadend = () => resolve(reader.result);
           reader.readAsDataURL(data);
         })
-          .then(link => this.goBack({
+          .then((link) => this.goBack({
             text: this.$translate.instant(
               'pci_projects_project_users_download-openrc_success_message',
               {
@@ -58,7 +58,7 @@ export default class PciUsersDownloadOpenRcController {
             },
           }));
       })
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_users_download-openrc_error_openrc',
         {
           message: get(err, 'data.message', null),

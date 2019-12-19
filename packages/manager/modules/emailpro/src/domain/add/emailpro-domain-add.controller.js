@@ -110,7 +110,7 @@ export default /* @ngInject */ (
         if ($scope.search.value === search) {
           $scope.availableDomains = filter(
             $scope.availableDomainsBuffer,
-            n => n.displayName.indexOf(search) > -1,
+            (n) => n.displayName.indexOf(search) > -1,
           );
         }
       }, 850);

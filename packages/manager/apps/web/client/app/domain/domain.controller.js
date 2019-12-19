@@ -15,7 +15,10 @@ angular.module('App').controller(
       Alerter,
       constants,
       Domain,
+      associatedHostings,
+      goToWebhostingOrder,
       Hosting,
+      orderedHosting,
       User,
       WucAllDom,
     ) {
@@ -29,7 +32,10 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.Domain = Domain;
+      this.associatedHostings = associatedHostings;
+      this.goToWebhostingOrder = goToWebhostingOrder;
       this.Hosting = Hosting;
+      this.orderedHosting = orderedHosting;
       this.User = User;
       this.WucAllDom = WucAllDom;
     }
@@ -92,8 +98,8 @@ angular.module('App').controller(
         .then(({
           user, domain, allDom, alldomOrder,
         }) => {
-          this.isAdmin = domain.contactAdmin === user.nichandle
-            || domain.contactTech === user.nichandle;
+          this.isAdminOrBilling = domain.contactAdmin === user.nichandle
+            || domain.contactBilling === user.nichandle;
           this.domainInfos = domain;
           if (this.isAllDom) {
             this.allDom = this.$stateParams.allDom;
@@ -104,7 +110,7 @@ angular.module('App').controller(
           this.getGuides(user.ovhSubsidiary);
         })
         .catch(() => {
-          this.isAdmin = false;
+          this.isAdminOrBilling = false;
         })
         .finally(() => this.loadDomain());
     }
@@ -143,7 +149,7 @@ angular.module('App').controller(
             const messages = domain.isExpired
               ? filter(
                 domain.messages,
-                message => !/service(\s\w+\s)?expired/i.test(message.message),
+                (message) => !/service(\s\w+\s)?expired/i.test(message.message),
               )
               : domain.messages;
 
@@ -159,7 +165,8 @@ angular.module('App').controller(
           return this.$q.allSettled([
             this.Hosting.getHosting(domain.name, [404])
               .then((data) => {
-                this.canOrderHosting = data === null;
+                this.canOrderHosting = data === null
+                  && !this.orderedHosting;
               })
               .catch(() => {
                 this.canOrderHosting = false;

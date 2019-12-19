@@ -31,13 +31,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
       serviceName: $stateParams.serviceName,
     }).$promise.then((screenLists) => {
       self.screenListsForm.filteringList = screenLists.filteringList;
-      return map(screenListsTypes, type => map(get(screenLists, type), screen => ({
+      return map(screenListsTypes, (type) => map(get(screenLists, type), (screen) => ({
         callNumber: screenLists.callNumber,
         number: screen,
         type,
         id: random(now()),
       })));
-    }).then(screenLists => flatten(screenLists));
+    }).then((screenLists) => flatten(screenLists));
   }
 
   function fetchSettings() {
@@ -51,7 +51,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   self.getSelection = function getSelection() {
     return filter(
       self.screenLists.raw,
-      screen => screen && self.screenLists.selected && self.screenLists.selected[screen.id],
+      (screen) => screen && self.screenLists.selected && self.screenLists.selected[screen.id],
     );
   };
 
@@ -114,7 +114,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   };
 
   self.exportSelection = function exportSelection() {
-    return map(self.getSelection(), selection => pick(selection, ['callNumber', 'number', 'type']));
+    return map(self.getSelection(), (selection) => pick(selection, ['callNumber', 'number', 'type']));
   };
 
   self.removeSelectedScreenLists = function removeSelectedScreenLists() {
@@ -182,7 +182,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
         faxSettings = settings;
         self.rejectAnonymous = faxSettings.rejectAnonymous;
         return settings;
-      }).catch(err => $q.reject(err));
+      }).catch((err) => $q.reject(err));
     }).catch((err) => {
       TucToast.error([$translate.instant('telephony_service_fax_filtering_fetch_lists_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
@@ -264,7 +264,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams(action) {

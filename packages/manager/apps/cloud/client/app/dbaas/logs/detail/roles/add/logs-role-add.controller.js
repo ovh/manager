@@ -58,8 +58,8 @@ class LogsRoleAddModalCtrl {
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsRolesService.addRole(this.serviceName, this.role)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((response) => this.$uibModalInstance.dismiss(response))
         .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
@@ -72,8 +72,8 @@ class LogsRoleAddModalCtrl {
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsRolesService
         .updateRole(this.serviceName, this.roleInfo.roleId, this.role)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(response => this.$uibModalInstance.dismiss(response))
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((response) => this.$uibModalInstance.dismiss(response))
         .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();

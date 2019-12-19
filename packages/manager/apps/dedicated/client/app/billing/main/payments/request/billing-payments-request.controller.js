@@ -62,7 +62,7 @@ angular.module('Billing').controller('BillingHistoryRequestCtrl', class BillingH
           billId: orderBillIds.join(','),
         }).$promise.then((bills) => {
           this.bills = map(bills, (bill) => {
-            set(bill, 'value.paid', (find(depositRequests, depositRequest => indexOf(depositRequest.orderIds, bill.value.orderId) > -1) || {}).creationDate);
+            set(bill, 'value.paid', (find(depositRequests, (depositRequest) => indexOf(depositRequest.orderIds, bill.value.orderId) > -1) || {}).creationDate);
             return bill;
           });
         }));

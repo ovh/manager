@@ -47,8 +47,8 @@ export default class VeeamCloudConnectService {
         serviceName,
       }).$promise,
     })
-      .then(response => this.acceptResponse(this.transformConfigurationInfos(response)))
-      .catch(response => this.rejectResponse(response, this.$translate.instant('veeam_infos_configuration_load_error')));
+      .then((response) => this.acceptResponse(this.transformConfigurationInfos(response)))
+      .catch((response) => this.rejectResponse(response, this.$translate.instant('veeam_infos_configuration_load_error')));
   }
 
   transformConfigurationInfos(infos) {
@@ -62,11 +62,11 @@ export default class VeeamCloudConnectService {
       serviceName,
     }).$promise.then((storages) => {
       const storagesPromises = storages
-        .map(storage => this.getStorageDetails(serviceName, storage));
+        .map((storage) => this.getStorageDetails(serviceName, storage));
       return this.$q.all(storagesPromises);
     })
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('veeam_storage_list_load_error')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('veeam_storage_list_load_error')));
   }
 
   getStorageDetails(serviceName, inventoryName) {
@@ -81,8 +81,8 @@ export default class VeeamCloudConnectService {
       details: this.veeam.getDetails({ serviceName }).$promise,
       serviceInfo: this.veeam.getServiceInfos({ serviceName }).$promise,
     })
-      .then(response => this.acceptResponse(this.transformSubscriptionInfos(response)))
-      .catch(response => this.rejectResponse(response.data, this.$translate.instant('veeam_infos_subscription_load_error')));
+      .then((response) => this.acceptResponse(this.transformSubscriptionInfos(response)))
+      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('veeam_infos_subscription_load_error')));
   }
 
   transformSubscriptionInfos(data) {
@@ -100,8 +100,8 @@ export default class VeeamCloudConnectService {
     return this.veeam.getOrderableOffers({
       serviceName,
     }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response, this.$translate.instant('veeam_orderable_offer_load_error')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response, this.$translate.instant('veeam_orderable_offer_load_error')));
   }
 
   getOrderableOfferPrices(serviceName) {
@@ -109,15 +109,15 @@ export default class VeeamCloudConnectService {
       serviceName,
     }).$promise
       .then((offers) => {
-        const promises = map(offers, offer => this.getUpgradeOptionDurations(serviceName, offer)
-          .then(durations => map(durations.data, duration => ({ offer, duration }))));
-        return this.$q.all(promises).then(durations => flatten(durations));
+        const promises = map(offers, (offer) => this.getUpgradeOptionDurations(serviceName, offer)
+          .then((durations) => map(durations.data, (duration) => ({ offer, duration }))));
+        return this.$q.all(promises).then((durations) => flatten(durations));
       })
       .then((durations) => {
         const promises = map(
           durations,
-          duration => this.getUpgradeOptionPrices(serviceName, duration.offer, duration.duration)
-            .then(price => ({
+          (duration) => this.getUpgradeOptionPrices(serviceName, duration.offer, duration.duration)
+            .then((price) => ({
               offer: duration.offer,
               duration: duration.duration,
               price: price.data,
@@ -125,8 +125,8 @@ export default class VeeamCloudConnectService {
         );
         return this.$q.all(promises);
       })
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response, this.$translate.instant('veeam_orderable_offer_load_error')));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response, this.$translate.instant('veeam_orderable_offer_load_error')));
   }
 
   getUpgradeOptionDurations(serviceName, offer) {
@@ -134,8 +134,8 @@ export default class VeeamCloudConnectService {
       serviceName,
       offer,
     }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response));
   }
 
   getUpgradeOptionPrices(serviceName, offer, duration) {
@@ -144,8 +144,8 @@ export default class VeeamCloudConnectService {
       duration,
       offer,
     }).$promise
-      .then(response => this.acceptResponse(response))
-      .catch(response => this.rejectResponse(response));
+      .then((response) => this.acceptResponse(response))
+      .catch((response) => this.rejectResponse(response));
   }
 
   updateOffer(serviceName, offer, duration) {
@@ -155,16 +155,16 @@ export default class VeeamCloudConnectService {
     }, {
       offer,
     }).$promise
-      .then(response => this.acceptResponse(response, this.$translate.instant('veeam_update_offer_post_success', { orderId: response.orderId, orderUrl: response.url })))
-      .catch(response => this.rejectResponse(response, this.$translate.instant('veeam_update_offer_post_error')));
+      .then((response) => this.acceptResponse(response, this.$translate.instant('veeam_update_offer_post_success', { orderId: response.orderId, orderUrl: response.url })))
+      .catch((response) => this.rejectResponse(response, this.$translate.instant('veeam_update_offer_post_error')));
   }
 
   addBackupRepository(serviceName) {
     return this.veeam.addInventory({
       serviceName,
     }, {}).$promise
-      .then(response => this.acceptResponse(response, this.$translate.instant('veeam_add_repository_success')))
-      .catch(response => this.rejectResponse(response, this.$translate.instant('veeam_add_repository_error')));
+      .then((response) => this.acceptResponse(response, this.$translate.instant('veeam_add_repository_success')))
+      .catch((response) => this.rejectResponse(response, this.$translate.instant('veeam_add_repository_error')));
   }
 
   updateRepositoryQuota(serviceName, inventoryName, newQuota) {
@@ -174,8 +174,8 @@ export default class VeeamCloudConnectService {
     }, {
       newQuota,
     }).$promise
-      .then(response => this.acceptResponse(response, this.$translate.instant('veeam_storage_update_quota_success')))
-      .catch(response => this.rejectResponse(response, this.$translate.instant('veeam_storage_update_quota_error')));
+      .then((response) => this.acceptResponse(response, this.$translate.instant('veeam_storage_update_quota_success')))
+      .catch((response) => this.rejectResponse(response, this.$translate.instant('veeam_storage_update_quota_error')));
   }
 
   getCapabilities(serviceName) {
@@ -238,19 +238,17 @@ export default class VeeamCloudConnectService {
     const available = sum(
       map(
         storages,
-        storage => this.$filter('cucBytes')(storage.quota.value, 0, false, storage.quota.unit, true),
+        (storage) => this.$filter('cucBytes')(storage.quota.value, 0, false, storage.quota.unit, true),
       ),
     );
 
-    return 100 * usage / available;
+    return (100 * usage) / available;
   }
 
   getTasks(serviceName, options) {
-    return this.veeam.tasks(Object.assign({
-      serviceName,
-    }, options)).$promise
+    return this.veeam.tasks({ serviceName, ...options }).$promise
       .then((tasks) => {
-        const promises = map(tasks, task => this.veeam.task({
+        const promises = map(tasks, (task) => this.veeam.task({
           serviceName,
           taskId: task,
         }).$promise);
@@ -277,7 +275,7 @@ export default class VeeamCloudConnectService {
         this.getTasks(serviceName, { state: 'doing' }),
         this.getTasks(serviceName, { state: 'todo' }),
       ])
-        .then(result => flatten(result))
+        .then((result) => flatten(result))
         .then((tasks) => {
           this.checkTasks(serviceName, tasks);
         })
@@ -337,7 +335,7 @@ export default class VeeamCloudConnectService {
     const completedTasksIds = difference(oldTasksIds, tasksIds);
     if (completedTasksIds.length) {
       const completedTasks = this.unitOfWork.tasks
-        .filter(task => completedTasksIds.indexOf(task.taskId) >= 0);
+        .filter((task) => completedTasksIds.indexOf(task.taskId) >= 0);
       this.$q.all(completedTasks.map((task) => {
         const deferred = this.pollingDeferred[task.taskId];
         return this.getTask(serviceName, task.taskId).then((completedTask) => {
@@ -367,7 +365,7 @@ export default class VeeamCloudConnectService {
       })).then(() => {
         this.unitOfWork.tasks = filter(
           tasks,
-          task => indexOf(keys(taskMessages), task.name) >= 0,
+          (task) => indexOf(keys(taskMessages), task.name) >= 0,
         );
         if (!this.unitOfWork.tasks.length) {
           this.stopPolling();

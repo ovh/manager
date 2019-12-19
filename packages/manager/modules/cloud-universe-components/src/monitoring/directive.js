@@ -124,7 +124,7 @@ export default () => {
       Number.isNaN(+model.xmax) ? d3.max(this.data, timestampOf) : +model.xmax,
     ]);
     this.y.domain([ymin, ymax]);
-    this.yAxis.tickFormat(p => p + (model.unit ? ` ${model.unit}` : ''));
+    this.yAxis.tickFormat((p) => p + (model.unit ? ` ${model.unit}` : ''));
     if (model.timeScale) {
       if (model.timeScale.unit && model.timeScale.amount) {
         this.xAxis.ticks(d3.time[model.timeScale.unit], model.timeScale.amount);

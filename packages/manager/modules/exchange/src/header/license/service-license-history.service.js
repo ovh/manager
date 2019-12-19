@@ -57,39 +57,39 @@ export default class ExchangeHeaderLicence {
         },
       },
     )
-      .then(licenses => ({
+      .then((licenses) => ({
         maxValue: max(
           concat(
             map(licenses, 'outlookQuantity'),
-            map(licenses, license => get(head(filter(license.accountLicense, { license: 'standard' })), 'licenseQuantity')),
-            map(licenses, license => get(head(filter(license.accountLicense, { license: 'basic' })), 'licenseQuantity')),
-            map(licenses, license => get(head(filter(license.accountLicense, { license: 'enterprise' })), 'licenseQuantity')),
+            map(licenses, (license) => get(head(filter(license.accountLicense, { license: 'standard' })), 'licenseQuantity')),
+            map(licenses, (license) => get(head(filter(license.accountLicense, { license: 'basic' })), 'licenseQuantity')),
+            map(licenses, (license) => get(head(filter(license.accountLicense, { license: 'enterprise' })), 'licenseQuantity')),
           ),
         ),
         outlook: map(
           licenses,
-          license => ({
+          (license) => ({
             x: ExchangeHeaderLicence.getDate(license.date),
             y: license.outlookQuantity,
           }),
         ),
         standard: map(
           licenses,
-          license => ({
+          (license) => ({
             x: ExchangeHeaderLicence.getDate(license.date),
             y: get(head(filter(license.accountLicense, { license: 'standard' })), 'licenseQuantity'),
           }),
         ),
         basic: map(
           licenses,
-          license => ({
+          (license) => ({
             x: ExchangeHeaderLicence.getDate(license.date),
             y: get(head(filter(license.accountLicense, { license: 'basic' })), 'licenseQuantity'),
           }),
         ),
         enterprise: map(
           licenses,
-          license => ({
+          (license) => ({
             x: ExchangeHeaderLicence.getDate(license.date),
             y: get(head(filter(license.accountLicense, { license: 'enterprise' })), 'licenseQuantity'),
           }),

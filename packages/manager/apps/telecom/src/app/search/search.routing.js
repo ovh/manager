@@ -9,7 +9,7 @@ import template from './search.html';
 
 const filterResults = (results, query, properties) => filter(
   results,
-  result => some(properties, property => includes(get(result, property), query)),
+  (result) => some(properties, (property) => includes(get(result, property), query)),
 );
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -29,14 +29,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      query: $transition$ => $transition$.params().q,
+      query: ($transition$) => $transition$.params().q,
       services: (apiv7, query) => (query ? apiv7('/telephony/*/service?$aggreg=1')
         .query()
         .execute()
         .$promise
         .then((results) => {
           const filteredResults = filterResults(results, query, ['value.serviceName', 'value.description']);
-          return map(filteredResults, result => ({
+          return map(filteredResults, (result) => ({
             ...result,
             billingAccount: result.path.split('/')[2],
           }));

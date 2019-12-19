@@ -2,7 +2,7 @@ angular.module('Billing.services').service('BillingOrdersStatusFilters', ($q, $t
   let filterConfig;
 
   function initFilterConfig() {
-    return BillingOrderStatusEnum.getEnum().then(statusEnum => [
+    return BillingOrderStatusEnum.getEnum().then((statusEnum) => [
       {
         id: 'all',
         label: $translate.instant('orders_order_status_filter_all'),

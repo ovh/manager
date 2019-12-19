@@ -28,7 +28,7 @@ angular.module('managerApp').controller('TelecomOrdersCtrl', function TelecomOrd
       // sort: first ERROR, then TODO, then DOING, then DONE
       self.orders = orderBy(self.orders, ['priority'], ['desc']);
       self.ordersDetails = self.orders;
-    }, err => new TucToastError(err));
+    }, (err) => new TucToastError(err));
   };
 
   /* -----  End of INITIALIZATION  ------*/

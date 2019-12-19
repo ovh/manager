@@ -10,8 +10,8 @@ export default /* @ngInject */($stateProvider) => {
       networkId: null,
     },
     resolve: {
-      goBack: /* @ngInject */ goToPrivateNetworks => goToPrivateNetworks,
-      networkId: /* @ngInject */ $transition$ => $transition$.params().networkId,
+      goBack: /* @ngInject */ (goToPrivateNetworks) => goToPrivateNetworks,
+      networkId: /* @ngInject */ ($transition$) => $transition$.params().networkId,
       breadcrumb: () => null,
     },
     layout: 'modal',

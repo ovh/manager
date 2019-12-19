@@ -156,13 +156,13 @@ export default /* @ngInject */ function (
     }, {
       serviceType: 'aapi',
     }).then((result) => {
-      const partitionedResult = partition(result.data, res => res.errors.length === 0);
+      const partitionedResult = partition(result.data, (res) => res.errors.length === 0);
 
       return $uibModalInstance.close({
         success: head(partitionedResult),
         error: last(partitionedResult),
       });
-    }).catch(error => self.cancel({
+    }).catch((error) => self.cancel({
       type: 'API',
       msg: error,
     })).finally(() => {
@@ -197,7 +197,7 @@ export default /* @ngInject */ function (
     return tucTelecomVoip.fetchAll(false).then((billingAccounts) => {
       self.billingAccounts = sortBy(
         billingAccounts,
-        billingAccount => billingAccount.getDisplayedName(),
+        (billingAccount) => billingAccount.getDisplayedName(),
       );
 
       // get all services of each billingAccounts and apply a first filter based on serviceType
@@ -208,7 +208,7 @@ export default /* @ngInject */ function (
             'services',
           ),
         ),
-        service => self.bindings.serviceType === 'all' || service.serviceType === self.bindings.serviceType,
+        (service) => self.bindings.serviceType === 'all' || service.serviceType === self.bindings.serviceType,
       );
 
       if (self.bindings.filterServices && isFunction(self.bindings.filterServices())) {

@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .constant('CLOUD_INSTANCE_DEFAULTS', {
     region: 'WAW1',

@@ -52,7 +52,7 @@ export default class {
       sendersAvailableForValidation: this.fetchSendersAvailableForValidation(),
     }).then((results) => {
       this.sendersAvailableForValidation = results.sendersAvailableForValidation;
-      return this.$q.all(map(results.senders, sender => this.api.smsSenders.get({
+      return this.$q.all(map(results.senders, (sender) => this.api.smsSenders.get({
         serviceName: this.$stateParams.serviceName,
         sender,
       }).$promise));
@@ -63,14 +63,14 @@ export default class {
       );
       this.senders.availableForValidation.domains = filter(
         this.senders.availableForValidation.domains,
-        domain => !find(senders, {
+        (domain) => !find(senders, {
           sender: domain.sender,
         }),
       );
       this.senders.availableForValidation.nichandle = uniqBy(filter(this.sendersAvailableForValidation, { referer: 'nichandle' }), 'sender');
       this.senders.availableForValidation.nichandle = filter(
         this.senders.availableForValidation.nichandle,
-        nichandle => !find(senders, {
+        (nichandle) => !find(senders, {
           sender: nichandle.sender,
         }),
       );
@@ -151,7 +151,7 @@ export default class {
       this.senders.availableForValidation.nichandle,
       this.senders.availableForValidation.domains,
     );
-    return filter(allSelectedSenders, sender => this.senders.availableForValidation.selected
+    return filter(allSelectedSenders, (sender) => this.senders.availableForValidation.selected
       && this.senders.availableForValidation.selected[sender.sender]);
   }
 
@@ -161,7 +161,7 @@ export default class {
    */
   addSelectedSendersAvailableForValidaton() {
     const sendersAvailableForValidaton = this.getSelection();
-    const queries = sendersAvailableForValidaton.map(sender => this.api.smsSenders.create({
+    const queries = sendersAvailableForValidaton.map((sender) => this.api.smsSenders.create({
       serviceName: this.$stateParams.serviceName,
     }, {
       sender: sender.sender,

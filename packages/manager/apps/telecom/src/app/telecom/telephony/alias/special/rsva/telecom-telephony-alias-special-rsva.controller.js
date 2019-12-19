@@ -60,8 +60,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
         if (has(schema, 'models[\'telephony.NumberSpecialTypologyEnum\'].enum')) {
           this.regExp = new RegExp(`^${directory.country}_`);
           this.typologies = schema.models['telephony.NumberSpecialTypologyEnum'].enum
-            .filter(element => element.match(this.regExp))
-            .map(typology => ({
+            .filter((element) => element.match(this.regExp))
+            .map((typology) => ({
               value: typology,
               displayValue: `${this.$translate.instant(`telephony_alias_special_rsva_infos_typology_${typology.replace(this.regExp, '')}_label`)}`,
             }));
@@ -163,21 +163,21 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
   ====================================== */
 
   filterServices() {
-    return services => this.$q.allSettled(
+    return (services) => this.$q.allSettled(
       services.map(({ billingAccount, serviceName }) => this.tucVoipServiceAlias
         .getCurrentRateCode({
           billingAccount, serviceName,
         })),
     )
-      .then(result => result)
-      .catch(result => result)
-      .then(promises => promises
+      .then((result) => result)
+      .catch((result) => result)
+      .then((promises) => promises
         .map((promise, index) => (![400, 404].includes(promise.status) ? services[index] : null))
-        .filter(promise => promise));
+        .filter((promise) => promise));
   }
 
   getBulkParams() {
-    return action => (action === 'scheduleRateCode'
+    return (action) => (action === 'scheduleRateCode'
       ? { rateCode: get(this.rateCode, 'code', '') }
       : { typology: this.typology.value.replace(this.regExp, '') });
   }

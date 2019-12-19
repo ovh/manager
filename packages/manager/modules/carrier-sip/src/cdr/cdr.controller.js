@@ -67,7 +67,7 @@ export default class CarrierSipCdrCtrl {
         this.$window.location.href = url;
         return this.TucToast.success(this.$translate.instant('carrier_sip_cdr_action_succeed'));
       })
-      .catch(err => this.TucToast.error(`${this.$translate.instant('carrier_sip_cdr_action_failed')} ${get(err, 'data.message')}`))
+      .catch((err) => this.TucToast.error(`${this.$translate.instant('carrier_sip_cdr_action_failed')} ${get(err, 'data.message')}`))
       .finally(() => {
         this.isExporting = false;
       });

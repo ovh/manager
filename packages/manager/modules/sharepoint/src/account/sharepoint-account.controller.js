@@ -123,7 +123,7 @@ export default class SharepointAccountsCtrl {
   startPoller(userPrincipalName) {
     return this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`, null, {
       interval: 15000,
-      successRule: { state: account => account.taskPendingId === 0 },
+      successRule: { state: (account) => account.taskPendingId === 0 },
       namespace: 'sharepoint.accounts.poll',
     }).then((account) => {
       const index = findIndex(this.accounts, { userPrincipalName });
@@ -206,7 +206,7 @@ export default class SharepointAccountsCtrl {
 
     return this.sharepointService.getAccounts(this.exchangeId, this.search.value)
       .then((ids) => {
-        this.accountIds = ids.map(accountId => ({ accountId }));
+        this.accountIds = ids.map((accountId) => ({ accountId }));
       }).catch((err) => {
         set(err, 'type', err.type || 'ERROR');
         this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);

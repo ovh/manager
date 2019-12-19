@@ -23,7 +23,7 @@ angular.module('controllers').controller(
     }
 
     static getTaskStruct(tasks, isZone) {
-      return map(tasks, task => ({ id: task, zone: isZone }));
+      return map(tasks, (task) => ({ id: task, zone: isZone }));
     }
 
     transformItem(item) {

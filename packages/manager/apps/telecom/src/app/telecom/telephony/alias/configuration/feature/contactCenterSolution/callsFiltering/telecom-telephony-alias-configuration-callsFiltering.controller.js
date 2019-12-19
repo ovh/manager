@@ -28,8 +28,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     };
 
     this.listTypes = this.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION.filtering.listTypes
-      .filter(type => startsWith(type, 'incoming'))
-      .map(type => ({
+      .filter((type) => startsWith(type, 'incoming'))
+      .map((type) => ({
         id: type,
         label: this.$translate.instant(`telephony_alias_configuration_calls_filtering_type_${type}`),
       }));
@@ -140,13 +140,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     }
 
     return conditions
-      .map(condition => this.tucVoipServiceAlias.addContactCenterSolutionNumberScreenListCondition(
-        this.serviceInfos,
-        {
-          callNumber: condition,
-          type: this.listType.id,
-        },
-      ));
+      .map((condition) => this.tucVoipServiceAlias
+        .addContactCenterSolutionNumberScreenListCondition(
+          this.serviceInfos,
+          {
+            callNumber: condition,
+            type: this.listType.id,
+          },
+        ));
   }
 
   updateScreenListConditionsConfiguration() {
@@ -181,13 +182,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
   getScreenListNature(callNumber) {
     const formatedNumber = this.$filter('tucPhoneNumber')(callNumber).replace(' ', '');
     const detectedPrefix = this.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION.filtering.helperPrefixes
-      .find(({ prefixes }) => prefixes.find(prefix => startsWith(formatedNumber, prefix)));
+      .find(({ prefixes }) => prefixes.find((prefix) => startsWith(formatedNumber, prefix)));
 
     return detectedPrefix ? detectedPrefix.label : 'line';
   }
 
   formatScreenLists(screenLists) {
-    return screenLists.map(filter => ({
+    return screenLists.map((filter) => ({
       id: filter.conditionId,
       callNumber: filter.callerIdNumber,
       nature: this.getScreenListNature(filter.callerIdNumber),
@@ -208,7 +209,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
       },
     }).result
       .then(() => this.$q.all(
-        conditions.map(condition => this.deleteScreenListCondition(condition)),
+        conditions.map((condition) => this.deleteScreenListCondition(condition)),
       ))
       .then(() => {
         this.$onInit();
@@ -239,7 +240,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
   }
 
   filterServices() {
-    return services => services
+    return (services) => services
       .filter(({ featureType }) => this.TUC_TELEPHONY_ALIAS_FEATURE_TYPES.contactCenterSolution
         .includes(featureType));
   }

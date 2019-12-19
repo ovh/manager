@@ -82,7 +82,7 @@ export default class NashaPartitionCtrl {
     if (task.operation === 'clusterLeclercPartitionAdd') {
       const partition = find(
         this.data.table.partitionIds,
-        partitionId => task.partitionName === partitionId,
+        (partitionId) => task.partitionName === partitionId,
       );
 
       if (!partition) {
@@ -126,7 +126,7 @@ export default class NashaPartitionCtrl {
     return this.OvhApiDedicatedNasha.Aapi()
       .partitions({ serviceName: this.serviceName }).$promise
       .then((partitions) => {
-        this.data.table.partitions = map(partitions, partition => partition.partitionName);
+        this.data.table.partitions = map(partitions, (partition) => partition.partitionName);
         this.data.table.partitionIds = this.data.table.partitions;
 
         this.data.table.partitions = map(partitions, (partition) => {
@@ -144,7 +144,7 @@ export default class NashaPartitionCtrl {
         this.initPartitions(true).then(() => {
           const taskIndex = findIndex(
             this.data.partitionsTasks[task.partitionName],
-            partitionTask => task.taskId === partitionTask.taskId,
+            (partitionTask) => task.taskId === partitionTask.taskId,
           );
 
           if (taskIndex > -1) {
@@ -160,10 +160,10 @@ export default class NashaPartitionCtrl {
   initTasks() {
     this.OvhApiDedicatedNasha.Task().v6().resetCache();
 
-    const tasksPromises = map(this.trackedTaskStatus, status => this.getTasksPromise(status));
+    const tasksPromises = map(this.trackedTaskStatus, (status) => this.getTasksPromise(status));
 
-    return this.$q.all(tasksPromises).then(data => flatten(data)).then((taskIds) => {
-      const taskPromises = map(taskIds, taskId => this.OvhApiDedicatedNasha.Task().v6()
+    return this.$q.all(tasksPromises).then((data) => flatten(data)).then((taskIds) => {
+      const taskPromises = map(taskIds, (taskId) => this.OvhApiDedicatedNasha.Task().v6()
         .get({ serviceName: this.serviceName, taskId }).$promise);
 
       return this.$q.all(taskPromises);
@@ -219,7 +219,7 @@ export default class NashaPartitionCtrl {
       }).catch((data) => {
         // partition is not found, probably deleted
         if (data.status === 404) {
-          remove(this.data.table.partitionIds, item => item === partition.partitionName);
+          remove(this.data.table.partitionIds, (item) => item === partition.partitionName);
         } else {
           return this.$q.reject(data);
         }

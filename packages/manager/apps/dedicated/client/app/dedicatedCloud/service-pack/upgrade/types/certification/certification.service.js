@@ -29,9 +29,9 @@ export const UpgradeCertificationService = class {
 
     return filter(
       allServicePacksExceptCurrent,
-      servicePack => some(
+      (servicePack) => some(
         servicePack.options,
-        option => isEqual(option.type, OPTION_TYPES.certification),
+        (option) => isEqual(option.type, OPTION_TYPES.certification),
       ),
     );
   }

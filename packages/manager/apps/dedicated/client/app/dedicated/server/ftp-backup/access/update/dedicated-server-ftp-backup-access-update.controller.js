@@ -36,7 +36,7 @@ angular.module('App')
           this.$rootScope.$broadcast('server.ftpBackup.access.reload');
           this.Alerter.success(this.$translate.instant('server_configuration_ftpbackup_set_success', { t0: this.access.ipBlock }), 'server_tab_ftpbackup_alert');
         })
-        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('server_configuration_ftpbackup_set_fail', { t0: this.access.ipBlock }), err, 'server_tab_ftpbackup_alert'))
+        .catch((err) => this.Alerter.alertFromSWS(this.$translate.instant('server_configuration_ftpbackup_set_fail', { t0: this.access.ipBlock }), err, 'server_tab_ftpbackup_alert'))
         .finally(() => {
           this.isUpdating = false;
           this.$scope.resetAction();

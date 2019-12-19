@@ -16,6 +16,6 @@ angular
           productName: 'privateCloud',
           serviceName,
         }).$promise
-        .then(offers => find(offers, { family: 'backup' }));
+        .then((offers) => find(offers, { family: 'backup' }));
     }
   });

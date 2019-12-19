@@ -41,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state,
           kubeId,
           projectId,
-        ) => isMinorVersionUpgrade => $state.go('pci.projects.project.kubernetes.details.service.update', { kubeId, projectId, isMinorVersionUpgrade }),
+        ) => (isMinorVersionUpgrade) => $state.go('pci.projects.project.kubernetes.details.service.update', { kubeId, projectId, isMinorVersionUpgrade }),
 
         updatePolicy: /* @ngInject */ (
           $state,

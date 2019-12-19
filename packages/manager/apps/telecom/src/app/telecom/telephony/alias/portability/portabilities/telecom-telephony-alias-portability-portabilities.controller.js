@@ -40,28 +40,29 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
   fetchPortability() {
     return this.OvhApiTelephony.Portability().v6().query({
       billingAccount: this.$stateParams.billingAccount,
-    }).$promise.then(ids => this.$q.all(map(ids, id => this.OvhApiTelephony.Portability().v6().get({
-      billingAccount: this.$stateParams.billingAccount,
-      id,
-    }).$promise.then(porta => this.$q.all({
-      steps: this.OvhApiTelephony.Portability().v6().getStatus({
+    }).$promise
+      .then((ids) => this.$q.all(map(ids, (id) => this.OvhApiTelephony.Portability().v6().get({
         billingAccount: this.$stateParams.billingAccount,
         id,
-      }).$promise,
-      canBeCancelled: this.OvhApiTelephony.Portability().v6().canBeCancelled({
-        billingAccount: this.$stateParams.billingAccount,
-        id,
-      }).$promise,
-      documentAttached: this.OvhApiTelephony.Portability().PortabilityDocument().v6().query({
-        billingAccount: this.$stateParams.billingAccount,
-        id,
-      }).$promise,
-    }).then((results) => {
-      set(porta, 'steps', results.steps);
-      set(porta, 'canBeCancelled', results.canBeCancelled.value);
-      set(porta, 'documentAttached', results.documentAttached);
-      return porta;
-    })))));
+      }).$promise.then((porta) => this.$q.all({
+        steps: this.OvhApiTelephony.Portability().v6().getStatus({
+          billingAccount: this.$stateParams.billingAccount,
+          id,
+        }).$promise,
+        canBeCancelled: this.OvhApiTelephony.Portability().v6().canBeCancelled({
+          billingAccount: this.$stateParams.billingAccount,
+          id,
+        }).$promise,
+        documentAttached: this.OvhApiTelephony.Portability().PortabilityDocument().v6().query({
+          billingAccount: this.$stateParams.billingAccount,
+          id,
+        }).$promise,
+      }).then((results) => {
+        set(porta, 'steps', results.steps);
+        set(porta, 'canBeCancelled', results.canBeCancelled.value);
+        set(porta, 'documentAttached', results.documentAttached);
+        return porta;
+      })))));
   }
 
   confirmCancelPortability(portability) {

@@ -1,6 +1,6 @@
 angular
   .module('Billing.filters')
-  .filter('renewFrequence', $translate => (period) => {
+  .filter('renewFrequence', ($translate) => (period) => {
     switch (period) {
       case 1:
         return $translate.instant('autorenew_service_renew_month');

@@ -15,19 +15,19 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ () => null,
-      rolesList: /* @ngInject */ roles => map(
+      rolesList: /* @ngInject */ (roles) => map(
         roles.roles,
         ({ name, description }) => ({ id: name, name, description }),
       ),
-      goBack: /* @ngInject */ goToUsers => goToUsers,
-      description: /* @ngInject */ $transition$ => $transition$.params().description,
+      goBack: /* @ngInject */ (goToUsers) => goToUsers,
+      description: /* @ngInject */ ($transition$) => $transition$.params().description,
       confirmRoles: /* @ngInject */ (
         $translate,
         description,
         goBack,
         PciProjectsProjectUsersService,
         projectId,
-      ) => roles => PciProjectsProjectUsersService.add(projectId, { description }, roles)
+      ) => (roles) => PciProjectsProjectUsersService.add(projectId, { description }, roles)
         .then(({ username, password }) => goBack({
           textHtml: $translate.instant(
             'pci_projects_project_users_add_success_message',
@@ -37,7 +37,7 @@ export default /* @ngInject */($stateProvider) => {
             },
           ),
         }))
-        .catch(err => goBack($translate.instant(
+        .catch((err) => goBack($translate.instant(
           'pci_projects_project_users_add_error_save',
           {
             message: get(err, 'data.message', null),

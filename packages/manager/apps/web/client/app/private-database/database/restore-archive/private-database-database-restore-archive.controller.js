@@ -49,7 +49,7 @@ angular.module('App').controller(
           this.$translate.instant('privateDatabase_tabs_dumps_restore_in_progress'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.alerter.alertFromSWS(
+        .catch((err) => this.alerter.alertFromSWS(
           this.$translate.instant('privateDatabase_restore_bdd_fail'),
           err,
           this.$scope.alerts.main,

@@ -95,9 +95,9 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
               'billingAccount',
             ),
           ),
-          id => indexOf(self.hiddenGroups, id) < 0,
+          (id) => indexOf(self.hiddenGroups, id) < 0,
         ),
-        id => find(TelephonyMediator.groups, { billingAccount: id }),
+        (id) => find(TelephonyMediator.groups, { billingAccount: id }),
       );
     }).finally(() => {
       self.loading.init = false;

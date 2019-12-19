@@ -35,7 +35,7 @@ export default class IpLoadBalancerMetricsService {
       serviceName: this.$stateParams.serviceName,
     })
       .$promise
-      .then(details => details.metricsToken);
+      .then((details) => details.metricsToken);
   }
 
   getData(metric, start, end, options) {
@@ -50,7 +50,7 @@ export default class IpLoadBalancerMetricsService {
       assign(query, options);
     });
 
-    return this.getToken().then(token => this.$http({
+    return this.getToken().then((token) => this.$http({
       method: 'POST',
       url: [this.url, this.path].join('/'),
       headers: {
@@ -59,6 +59,6 @@ export default class IpLoadBalancerMetricsService {
       preventLogout: true,
       data: JSON.stringify(apiQuery),
     }))
-      .then(response => response.data);
+      .then((response) => response.data);
   }
 }

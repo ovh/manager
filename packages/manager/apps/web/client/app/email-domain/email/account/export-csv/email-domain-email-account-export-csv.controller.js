@@ -64,7 +64,7 @@ angular.module('App').controller(
         let quit = false;
         const requests = map(
           emails,
-          id => (delegated
+          (id) => (delegated
             ? this.WucEmails.getDelegatedEmail(id)
             : this.WucEmails.getEmail(this.$stateParams.productId, id)),
         );
@@ -89,7 +89,7 @@ angular.module('App').controller(
               const header = `${keys(accounts[0]).join(';')};`;
               const content = map(
                 accounts,
-                account => `${at(account, headerArray).join(';')};`,
+                (account) => `${at(account, headerArray).join(';')};`,
               ).join('\n');
 
               if (content && (emails.length < requestsCount || quit)) {
@@ -107,7 +107,7 @@ angular.module('App').controller(
                 );
               }
             })
-            .catch(err => this.Alerter.alertFromSWS(
+            .catch((err) => this.Alerter.alertFromSWS(
               this.$translate.instant('email_tab_modal_accounts_export_csv_error'),
               err,
               this.$scope.alerts.main,

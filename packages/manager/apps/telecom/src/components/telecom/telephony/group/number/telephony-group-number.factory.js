@@ -131,7 +131,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
       }, {
         featureType: self.feature.featureType,
       }).$promise
-      .then(task => tucVoipServiceTask
+      .then((task) => tucVoipServiceTask
         .startPolling(
           self.billingAccount,
           self.serviceName,
@@ -159,13 +159,13 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
         action: 'termination',
         type: 'offer',
       }).$promise
-      .then(offerTaskIds => $q
-        .all(map(offerTaskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
+      .then((offerTaskIds) => $q
+        .all(map(offerTaskIds, (id) => OvhApiTelephony.Service().OfferTask().v6().get({
           billingAccount: self.billingAccount,
           serviceName: self.serviceName,
           taskId: id,
         }).$promise))
-        .then(tasks => head(filter(tasks, { status: 'todo' }))));
+        .then((tasks) => head(filter(tasks, { status: 'todo' }))));
   };
 
   /* ----------  EDITION  ----------*/

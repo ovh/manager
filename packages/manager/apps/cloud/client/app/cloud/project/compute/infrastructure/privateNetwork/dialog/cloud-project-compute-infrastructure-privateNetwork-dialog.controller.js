@@ -250,7 +250,7 @@ angular.module('managerApp').controller('CloudProjectComputeInfrastructurePrivat
     }
 
     function resetIpRanges() {
-      const regions = sortBy(self.getActiveRegions(), region => region);
+      const regions = sortBy(self.getActiveRegions(), (region) => region);
       const split = CloudProjectComputeInfrastructurePrivateNetworkDialogService.splitSubnetIpAddresses('255.255.255.0', self.models.subnet.address, regions.length);
 
       if (split.isValid) {

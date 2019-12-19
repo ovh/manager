@@ -28,7 +28,7 @@ export default class VeeamEnterpriseDashboardCtrl {
   }
 
   initLoaders() {
-    const errorHandler = response => this.VeeamEnterpriseService.unitOfWork.messages.push({
+    const errorHandler = (response) => this.VeeamEnterpriseService.unitOfWork.messages.push({
       text: response.message,
       type: 'error',
     });
@@ -41,7 +41,7 @@ export default class VeeamEnterpriseDashboardCtrl {
     this.subscriptionInfos = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VeeamEnterpriseService
         .getSubscriptionInfos(this.serviceName)
-        .then(subscriptionInfos => ({
+        .then((subscriptionInfos) => ({
           ...subscriptionInfos,
           data: {
             ...subscriptionInfos.data,

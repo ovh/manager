@@ -25,7 +25,7 @@ angular.module('managerApp')
       }
       const hourlyInstances = flatten(map(
         get(self.data, 'hourlyBilling.hourlyUsage.instance'),
-        instance => map(instance.details, (detail) => {
+        (instance) => map(instance.details, (detail) => {
           const newDetail = clone(detail);
           newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
           return assignIn(newDetail, { reference: instance.reference, region: instance.region });
@@ -46,7 +46,7 @@ angular.module('managerApp')
 
       const monthlyInstances = flatten(map(
         get(self.data, 'monthlyBilling.monthlyUsage.instance'),
-        instance => map(instance.details, (detail) => {
+        (instance) => map(instance.details, (detail) => {
           const newDetail = clone(detail);
           newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
           return assignIn(newDetail, { reference: instance.reference, region: instance.region });
@@ -68,7 +68,7 @@ angular.module('managerApp')
       }
       const additionalServices = flatten(map(
         get(self.data, 'hourlyBilling.hourlyUsage.instanceOption'),
-        instance => map(instance.details, (detail) => {
+        (instance) => map(instance.details, (detail) => {
           const newDetail = clone(detail);
           newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
           return assignIn(newDetail, {
@@ -92,7 +92,7 @@ angular.module('managerApp')
       }
       const additionalServices = flatten(map(
         get(self.data, 'monthlyBilling.monthlyUsage.instanceOption'),
-        instance => map(instance.details, (detail) => {
+        (instance) => map(instance.details, (detail) => {
           const newDetail = clone(detail);
           newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
           return assignIn(newDetail, {
@@ -170,7 +170,7 @@ angular.module('managerApp')
       }
       const volumes = flatten(map(
         self.data.hourlyBilling.hourlyUsage.volume,
-        volume => map(volume.details, (detail) => {
+        (volume) => map(volume.details, (detail) => {
           const newDetail = clone(detail);
           newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
           return assignIn(newDetail, { type: volume.type, region: volume.region });

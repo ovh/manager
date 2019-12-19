@@ -125,7 +125,7 @@ export default /* @ngInject */ function (
     this.imported = [];
     const validData = map(
       filter(this.sample, 'isValid'),
-      elt => ({
+      (elt) => ({
         abbreviatedNumber: elt.abbreviatedNumber.value,
         destinationNumber: elt.destinationNumber.value,
         name: elt.name.value,
@@ -147,12 +147,12 @@ export default /* @ngInject */ function (
       const rest = remaining.slice(chunkSize);
       return $timeout(
         () => $q.all(map(chunk, callback))
-          .then(result => (rest.length ? result.concat(chunkedMap(rest, callback)) : result)),
+          .then((result) => (rest.length ? result.concat(chunkedMap(rest, callback)) : result)),
         chunkDelay,
       );
     };
 
-    const saveElement = elt => $q.when(self.saveCallback({ value: elt }))
+    const saveElement = (elt) => $q.when(self.saveCallback({ value: elt }))
       .then(() => self.imported.push(elt))
       .catch(() => { self.rejected += 1; })
       .finally(() => { self.progress += 1; });

@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      cancel: /* @ngInject */ $state => () => $state.go('^'),
+      cancel: /* @ngInject */ ($state) => () => $state.go('^'),
       confirm: /* @ngInject */ (
         $state,
         $translate,

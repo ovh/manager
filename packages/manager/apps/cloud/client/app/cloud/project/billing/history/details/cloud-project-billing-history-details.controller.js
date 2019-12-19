@@ -28,7 +28,7 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
     };
 
     function getConsumptionDetails(periods) {
-      const detailPromises = map(periods, period => OvhApiCloudProjectUsageHistory.v6().get({
+      const detailPromises = map(periods, (period) => OvhApiCloudProjectUsageHistory.v6().get({
         serviceName: $stateParams.projectId,
         usageId: period.id,
       }).$promise);
@@ -41,12 +41,12 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
             monthlyDetails = OvhApiCloudProjectUsageCurrent.v6()
               .get({ serviceName: $stateParams.projectId }).$promise;
           } else {
-            monthlyDetails = find(periodDetails, detail => moment.utc(detail.period.from).isSame(self.monthBilling, 'month'));
+            monthlyDetails = find(periodDetails, (detail) => moment.utc(detail.period.from).isSame(self.monthBilling, 'month'));
           }
 
           const hourlyDetails = find(
             periodDetails,
-            detail => moment.utc(detail.period.from).isSame(self.previousMonth, 'month'),
+            (detail) => moment.utc(detail.period.from).isSame(self.previousMonth, 'month'),
           );
 
           return {
@@ -54,8 +54,8 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
             monthly: monthlyDetails,
           };
         })
-        .then(details => $q.all(details)
-          .then(allDetails => CloudProjectBillingService.getConsumptionDetails(
+        .then((details) => $q.all(details)
+          .then((allDetails) => CloudProjectBillingService.getConsumptionDetails(
             allDetails.hourly, allDetails.monthly,
           )));
     }
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('CloudProjectBillingHistoryDetailsCtrl',
         from: self.previousMonth.format(),
         to: self.monthBilling.format(),
       }).$promise
-        .then(historyPeriods => getConsumptionDetails(historyPeriods))
+        .then((historyPeriods) => getConsumptionDetails(historyPeriods))
         .then((details) => {
           self.data = details;
         });

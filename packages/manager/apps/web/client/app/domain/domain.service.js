@@ -32,6 +32,7 @@ angular.module('services').service(
       Domains,
       DomainValidator,
       OvhApiDomain,
+      OvhApiHostingWeb,
       OvhHttp,
       Poll,
       Poller,
@@ -41,6 +42,7 @@ angular.module('services').service(
       this.Domains = Domains;
       this.DomainValidator = DomainValidator;
       this.OvhApiDomain = OvhApiDomain;
+      this.OvhApiHostingWeb = OvhApiHostingWeb;
       this.OvhHttp = OvhHttp;
       this.Poll = Poll;
       this.Poller = Poller;
@@ -150,7 +152,7 @@ angular.module('services').service(
     getTasksByStatus(serviceName, fn, status = []) {
       const promisesTasks = map(
         status,
-        st => this.getTasks(serviceName, { status: st, function: fn }),
+        (st) => this.getTasks(serviceName, { status: st, function: fn }),
       );
       return this.$q.all(promisesTasks).then(flatten);
     }
@@ -255,7 +257,7 @@ angular.module('services').service(
         {
           namespace: opts.namespace,
         },
-      ).then(resp => resp);
+      ).then((resp) => resp);
     }
 
     // ---------------------DNS NameServer-------------------------
@@ -274,7 +276,7 @@ angular.module('services').service(
           return deferred.promise;
         }
 
-        return this.$q.all(map(ids, id => this.OvhHttp.get(`/domain/${serviceName}/nameServer/${id}`, {
+        return this.$q.all(map(ids, (id) => this.OvhHttp.get(`/domain/${serviceName}/nameServer/${id}`, {
           rootPath: 'apiv6',
         })));
       });
@@ -518,7 +520,7 @@ angular.module('services').service(
       return this.getRecordsIds(serviceName, {
         fieldType,
         subDomain: subDomain || '',
-      }).then(recordsIds => without(recordsIds, excludeId));
+      }).then((recordsIds) => without(recordsIds, excludeId));
     }
 
     /**
@@ -547,7 +549,7 @@ angular.module('services').service(
         recordsIds = without(recordsIds, excludeId);
 
         let found = false;
-        const queue = map(recordsIds, id => this.OvhHttp.get(`/domain/zone/${serviceName}/record/${id}`, {
+        const queue = map(recordsIds, (id) => this.OvhHttp.get(`/domain/zone/${serviceName}/record/${id}`, {
           rootPath: 'apiv6',
         }).then((record) => {
           if (
@@ -585,7 +587,7 @@ angular.module('services').service(
           ).then((results) => {
             const existingSubDomain = lodashFilter(
               results.paginatedZone.records.results,
-              zone => zone.subDomain.toLowerCase() === subDomain.toLowerCase()
+              (zone) => zone.subDomain.toLowerCase() === subDomain.toLowerCase()
                   && zone.id !== entry.excludeId,
             );
             return {
@@ -601,7 +603,7 @@ angular.module('services').service(
             'CNAME',
             subDomain,
             entry.excludeId,
-          ).then(recordIds => ({ recordCanBeAdded: isEmpty(recordIds) }));
+          ).then((recordIds) => ({ recordCanBeAdded: isEmpty(recordIds) }));
       }
     }
 
@@ -797,7 +799,7 @@ angular.module('services').service(
      * @param {Array} redirectionIds
      */
     overwriteRedirection(serviceName, options, redirectionIds) {
-      const createDeletePromises = ids => map(ids, id => this.deleteDnsEntry(serviceName, id));
+      const createDeletePromises = (ids) => map(ids, (id) => this.deleteDnsEntry(serviceName, id));
 
       if (!isEmpty(redirectionIds)) {
         let deletePromises = [];
@@ -1393,6 +1395,16 @@ angular.module('services').service(
     //----------------------------------------------------
 
     /**
+     * Get attached hosting to domain
+     * @param {string} serviceName
+     */
+    getAssociatedHosting(domain) {
+      return this.OvhApiHostingWeb.v6().getAttachedDomain({
+        domain,
+      }).$promise;
+    }
+
+    /**
      * Get DNSSec status
      * @param serviceName
      */
@@ -1446,11 +1458,11 @@ angular.module('services').service(
                 dataToReturn.contactId = response.whoisOwner;
                 return dataToReturn;
               })
-              .catch(err => this.$q.reject(err));
+              .catch((err) => this.$q.reject(err));
           }
           return null;
         })
-        .catch(err => this.$q.reject(err));
+        .catch((err) => this.$q.reject(err));
     }
 
     /**

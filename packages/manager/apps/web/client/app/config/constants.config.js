@@ -6,6 +6,7 @@ module.exports = {
     },
     BILLING_URL: 'https://www.ovh.com/manager/dedicated/#/billing/history',
     AUTORENEW_URL: 'https://www.ovh.com/manager/dedicated/#/billing/autoRenew',
+    PAYMENT_METHOD_URL: 'https://www.ovh.com/manager/dedicated/#/billing/payment/method',
     RENEW_URL: 'https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
     LOGS_URCHIN: 'https://logs.ovh.net/{serviceName}/urchin6/',
     LOGS_URCHIN_GRA: 'https://logs.{cluster}.hosting.ovh.net/{serviceName}/urchin6/',

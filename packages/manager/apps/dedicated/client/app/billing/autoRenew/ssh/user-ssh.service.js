@@ -32,10 +32,10 @@ angular.module('UserAccount').service('UseraccountSshService', [
       }
 
       return $q.allSettled(promises)
-        .then(sshKeys => [sshKeys])
-        .catch(sshKeys => partition(flatten(sshKeys), ({ message }) => !message))
+        .then((sshKeys) => [sshKeys])
+        .catch((sshKeys) => partition(flatten(sshKeys), ({ message }) => !message))
         .then(([sshKeys, error]) => {
-          const keys = sortBy(flatten(values(sshKeys)), key => key.keyName.toLowerCase());
+          const keys = sortBy(flatten(values(sshKeys)), (key) => key.keyName.toLowerCase());
 
           if (error) {
             return $q.reject([keys, error]);
@@ -49,7 +49,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
       return OvhHttp.get('/me/sshKey', {
         rootPath: 'apiv6',
       }).then((keyNames) => {
-        const promises = map(keyNames, keyName => self.getDedicatedSshKey(keyName));
+        const promises = map(keyNames, (keyName) => self.getDedicatedSshKey(keyName));
         return $q.allSettled(promises);
       });
     };
@@ -72,8 +72,8 @@ angular.module('UserAccount').service('UseraccountSshService', [
         cache: CLOUD_CACHE_KEY,
         clearCache: false,
       })
-        .then(projectIds => $q.all(
-          map(projectIds, projectId => OvhHttp.get('/cloud/project/{serviceName}', {
+        .then((projectIds) => $q.all(
+          map(projectIds, (projectId) => OvhHttp.get('/cloud/project/{serviceName}', {
             rootPath: 'apiv6',
             urlParams: {
               serviceName: projectId,
@@ -82,7 +82,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
             clearCache: false,
           })),
         ))
-        .then(projects => map(filter(projects, { status: 'ok' }), project => ({
+        .then((projects) => map(filter(projects, { status: 'ok' }), (project) => ({
           id: project.project_id,
           description: project.description,
         })));
@@ -92,12 +92,12 @@ angular.module('UserAccount').service('UseraccountSshService', [
       return self
         .getCloudProjects()
         .then((projects) => {
-          const promises = map(projects, project => OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
+          const promises = map(projects, (project) => OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
             rootPath: 'apiv6',
             urlParams: {
               serviceName: project.id,
             },
-          }).then(keys => map(keys, key => ({
+          }).then((keys) => map(keys, (key) => ({
             serviceName: project.id,
             serviceDescription: project.description,
             category: 'cloud',
@@ -108,7 +108,7 @@ angular.module('UserAccount').service('UseraccountSshService', [
           }))));
           return $q.allSettled(promises);
         })
-        .then(keysByProjet => flatten(keysByProjet));
+        .then((keysByProjet) => flatten(keysByProjet));
     };
 
     self.addDedicatedSshKey = function addDedicatedSshKey(sshkeyObj) {

@@ -22,7 +22,7 @@ class UserContractsAcceptModalCtrl {
       loading: false,
       load: () => {
         this.contracts.loading = true;
-        this.DucUserContractService.getAgreementsToValidate(contract => includes(['tos', 'pp'], contract.code))
+        this.DucUserContractService.getAgreementsToValidate((contract) => includes(['tos', 'pp'], contract.code))
           .then((contracts) => {
             this.contracts.data = contracts;
           })

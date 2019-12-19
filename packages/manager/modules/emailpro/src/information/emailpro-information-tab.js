@@ -57,7 +57,7 @@ export default class EmailProTabInformationCtrl {
     this.EmailPro.getAccountIds({
       exchangeService: this.$scope.exchange.domain,
     }).then((accounts) => {
-      const accountsConfigured = filter(accounts, account => !/.*configureme\.me$/.test(account));
+      const accountsConfigured = filter(accounts, (account) => !/.*configureme\.me$/.test(account));
       this.$scope.accountsConfigured = accountsConfigured;
     }).catch((err) => {
       set(err, 'type', err.type || 'ERROR');
@@ -99,9 +99,9 @@ export default class EmailProTabInformationCtrl {
     this.loading.redirections = true;
     return this.WucEmails.getRedirections(get(this.$scope, 'exchange.associatedDomainName'))
       .then((data) => {
-        this.$scope.redirections = data.map(id => ({ id }));
+        this.$scope.redirections = data.map((id) => ({ id }));
       })
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
         set(err, 'type', err.type || 'ERROR'),
         this.$scope.alerts.main,
@@ -117,7 +117,7 @@ export default class EmailProTabInformationCtrl {
       .then((data) => {
         this.$scope.emailDomain = data;
       })
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
         set(err, 'type', err.type || 'ERROR'),
         this.$scope.alerts.main,

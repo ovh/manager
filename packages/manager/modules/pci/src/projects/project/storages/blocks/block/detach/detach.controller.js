@@ -24,7 +24,7 @@ export default class PciBlockStorageDetailsDetachController {
           volume: this.storage.name,
         },
       )))
-      .catch(err => this.goBack(this.$translate.instant(
+      .catch((err) => this.goBack(this.$translate.instant(
         'pci_projects_project_storages_blocks_block_detach_error_detach',
         {
           message: get(err, 'data.message', null),

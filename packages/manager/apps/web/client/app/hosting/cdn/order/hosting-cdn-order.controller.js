@@ -1,140 +1,56 @@
-import get from 'lodash/get';
+export default class {
+  /* @ngInject */
+  constructor($filter, $timeout) {
+    this.$filter = $filter;
+    this.$timeout = $timeout;
+  }
 
-angular
-  .module('App')
-  .controller(
-    'HostingOrderCdnCtrl',
-    ($scope, $q, $translate, $window, HostingOptionOrder, Hosting, Alerter, $rootScope) => {
-      $scope.loading = {
-        init: true,
-        duration: true,
-        model: false,
-        details: false,
-        order: false,
-      };
-      $scope.model = {
-        offer: null,
-        duration: null,
-        contract: null,
-      };
-      const hosting = $scope.currentActionData;
+  $onInit() {
+    // Auto-select duration
+    [this.price] = this.catalogAddon.pricings;
+    this.interval = this.price.interval;
+    this.isEditable = true;
 
-      $scope.isOrderable = false;
-      $scope.availableOffers = [];
-      $scope.durations = [];
-      $scope.details = {};
+    if (this.catalogAddon.pricings.length === 1) {
+      // Go directly to the next step
+      this.currentIndex = 1;
+      this.isEditable = false;
+    }
+  }
 
-      $scope.loadOrder = () => {
-        $scope.loading.init = true;
-        HostingOptionOrder.isOptionOrderable('cdn').then((isOrderable) => {
-          if (isOrderable) {
-            $scope.isOrderable = true;
-          }
-          $scope.loading.model = true;
-          HostingOptionOrder.getOrderEnums('hosting.web.CdnOfferEnum').then((models) => {
-            if (!$scope.isPerfOffer() && !$scope.hosting.isCloudWeb) {
-              $scope.availableOffers = models.filter(offer => offer !== 'CDN_BUSINESS_FREE');
-            } else {
-              $scope.availableOffers = ['CDN_BUSINESS_FREE'];
-            }
+  resetCart() {
+    if (this.cart) {
+      this.cart = undefined;
+      this.cartId = undefined;
+    }
+  }
 
-            [$scope.model.offer] = $scope.availableOffers;
-            $scope.loading.model = false;
-            $scope.loading.init = false;
+  async prepareCheckout() {
+    if (!this.cart && !this.checkoutLoading) {
+      this.checkoutLoading = true;
+      const { cart, cartId } = await this.prepareOrderCart();
 
-            if ($scope.availableOffers.length === 1) {
-              $rootScope.$broadcast('wizard-goToStep', 3);
-              $scope.getDuration();
-            }
-          });
-        });
-      };
+      this.$timeout(() => {
+        this.cart = cart;
+        this.cartId = cartId;
+        this.checkoutLoading = false;
+      });
+    }
+  }
 
-      $scope.isPerfOffer = () => Hosting.constructor.isPerfOffer((hosting
-        || $scope.hostingProxy).offer);
+  checkout() {
+    this.checkoutLoading = true;
 
-      $scope.getDuration = () => {
-        const queue = [];
-        $scope.loading.duration = true;
+    this.checkoutOrderCart(
+      // Autovalidate if the order is free
+      this.isOptionFree
+        ? this.isOptionFree
+        : this.autoPayWithPreferredPaymentMethod,
+      this.cartId,
+    );
+  }
 
-        HostingOptionOrder.getOrderDurations('cdn', {
-          offer: $scope.model.offer,
-        })
-          .then((durations) => {
-            $scope.durations = durations;
-
-            if ($scope.durations.length === 1) {
-              [$scope.model.duration] = $scope.durations;
-            }
-
-            $scope.loading.details = true;
-            angular.forEach($scope.durations, (duration) => {
-              queue.push(HostingOptionOrder.getOrderDetailsForDuration('cdn', duration, {
-                offer: $scope.model.offer,
-              }).then((details) => {
-                $scope.details[duration] = details;
-              }));
-            });
-            $q.all(queue).then(() => {
-              $scope.loading.details = false;
-            });
-            $scope.loading.duration = false;
-          })
-          .catch((err) => {
-            Alerter.alertFromSWS(
-              $translate.instant('hosting_dashboard_cdn_order_error'),
-              get(err, 'data', err),
-              $scope.alerts.main,
-            );
-            $scope.resetAction();
-          });
-      };
-
-      $scope.isStepValid = (step) => {
-        switch (step) {
-          case 1:
-            return (
-              !$scope.loading.init && $scope.isOrderable && $scope.model.offer
-            );
-          case 2:
-            return (
-              $scope.model.offer
-              && $scope.model.duration
-              && !$scope.loading.details
-            );
-          case 3:
-            return (
-              $scope.model.offer
-              && $scope.model.duration
-              && $scope.model.contract
-            );
-          default:
-            return null;
-        }
-      };
-
-      $scope.makeOrder = () => {
-        $scope.loading.order = true;
-        HostingOptionOrder.makeOrder('cdn', $scope.model.duration, {
-          offer: $scope.model.offer,
-        })
-          .then((order) => {
-            Alerter.success(
-              $translate.instant('hosting_dashboard_cdn_order_success', { t0: order.url }),
-              $scope.alerts.main,
-            );
-            $window.open(order.url, '_blank');
-          })
-          .catch((err) => {
-            Alerter.alertFromSWS(
-              $translate.instant('hosting_dashboard_cdn_order_error'),
-              get(err, 'data', err),
-              $scope.alerts.main,
-            );
-          })
-          .finally(() => {
-            $scope.resetAction();
-          });
-      };
-    },
-  );
+  getDuration(interval) {
+    return this.$filter('wucDuration')(interval.toString(), 'longDate');
+  }
+}

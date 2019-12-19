@@ -16,12 +16,12 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
 
     // chunkify to avoids "request too large" error
     return $q
-      .all(map(chunk(ids, 200), chunkIds => OvhApiXdsl.Lines().v7()
+      .all(map(chunk(ids, 200), (chunkIds) => OvhApiXdsl.Lines().v7()
         .query()
         .batch('serviceName', [''].concat(chunkIds), ',')
         .expand()
         .execute().$promise))
-      .then(chunkResult => flatten(chunkResult)).then(result => flatten(result));
+      .then((chunkResult) => flatten(chunkResult)).then((result) => flatten(result));
   };
 
   self.fetchPackAccessByIds = function fetchPackAccessByIds(ids) {
@@ -30,7 +30,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
     }
 
     // chunkify to avoids "request too large" error
-    return $q.all(map(chunk(ids, 200), chunkIds => OvhApiPackXdsl.v7().access().batch('packName', [''].concat(chunkIds), ',').execute().$promise)).then(chunkResult => flatten(chunkResult)).then(result => flatten(result));
+    return $q.all(map(chunk(ids, 200), (chunkIds) => OvhApiPackXdsl.v7().access().batch('packName', [''].concat(chunkIds), ',').execute().$promise)).then((chunkResult) => flatten(chunkResult)).then((result) => flatten(result));
   };
 
   self.fetchXdslByIds = function fetchXdslByIds(ids) {
@@ -40,17 +40,17 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
 
     // chunkify to avoids "request too large" error
     return $q
-      .all(map(chunk(ids, 200), chunkIds => OvhApiXdsl.v7()
+      .all(map(chunk(ids, 200), (chunkIds) => OvhApiXdsl.v7()
         .query()
         .batch('serviceName', [''].concat(chunkIds), ',')
         .expand()
         .execute().$promise))
-      .then(chunkResult => flatten(chunkResult)).then(result => flatten(result));
+      .then((chunkResult) => flatten(chunkResult)).then((result) => flatten(result));
   };
 
   self.fetchXdslByNumber = function fetchXdslByNumber() {
     return OvhApiXdsl.Lines().v7().get().aggregate('serviceName')
-      .execute().$promise.then(result => self.fetchXdslByIds(map(result, (item) => {
+      .execute().$promise.then((result) => self.fetchXdslByIds(map(result, (item) => {
         if (item && item.path) {
           const match = /\/xdsl\/([^/]+)/.exec(item.path);
           return match && match.length >= 2 ? match[1] : null;
@@ -74,7 +74,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
           const packId = match && match.length === 2 ? match[1] : null;
           const pack = find(packList, { packName: packId });
           if (pack) {
-            pack.xdsl = pack.xdsl.concat(map(access.value, id => ({ accessName: id })));
+            pack.xdsl = pack.xdsl.concat(map(access.value, (id) => ({ accessName: id })));
           }
         }
       });
@@ -140,7 +140,7 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
   self.getPackStatus = function getPackStatus(packId) {
     return OvhApiPackXdsl.v6().getServiceInfos({
       packId,
-    }).$promise.then(info => info.status).catch(() => 'error');
+    }).$promise.then((info) => info.status).catch(() => 'error');
   };
 
   /*= ======================================
@@ -151,6 +151,6 @@ export default /* @ngInject */ function TucPackMediator($q, OvhApiPackXdsl, OvhA
     return $q.all({
       pack: OvhApiPackXdsl.v7().query().execute().$promise,
       xdsl: OvhApiXdsl.v7().query().addFilter('status', 'ne', 'deleting').execute().$promise,
-    }).then(result => result.pack.length + result.xdsl.length);
+    }).then((result) => result.pack.length + result.xdsl.length);
   };
 }

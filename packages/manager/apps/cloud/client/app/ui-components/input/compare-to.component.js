@@ -8,7 +8,7 @@ angular.module('managerApp')
       otherModelValue: '=cuiCompareTo',
     },
     link: (scope, element, attributes, ngModel) => {
-      set(ngModel, '$validators.compareTo', modelValue => modelValue === scope.otherModelValue);
+      set(ngModel, '$validators.compareTo', (modelValue) => modelValue === scope.otherModelValue);
       scope.$watch('otherModelValue', () => {
         ngModel.$validate();
       });

@@ -150,10 +150,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(dialplanIds => $q
+      .then((dialplanIds) => $q
         .all(map(
           chunk(dialplanIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Dialplan().v6()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Dialplan().v6()
             .getBatch({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
@@ -216,10 +216,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(soundIds => $q
+      .then((soundIds) => $q
         .all(map(
           chunk(soundIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Sound().v6()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Sound().v6()
             .getBatch({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
@@ -229,7 +229,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
               map(
                 filter(
                   resources,
-                  soundOptions => soundOptions.value !== null,
+                  (soundOptions) => soundOptions.value !== null,
                 ),
                 'value',
               )
@@ -302,10 +302,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(menuIds => $q
+      .then((menuIds) => $q
         .all(map(
           chunk(menuIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Menu().v6()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Menu().v6()
             .getBatch({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
@@ -315,7 +315,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
               map(
                 filter(
                   resources,
-                  menuOptions => menuOptions.value !== null,
+                  (menuOptions) => menuOptions.value !== null,
                 ),
                 'value',
               )
@@ -403,10 +403,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(queueIds => $q
+      .then((queueIds) => $q
         .all(map(
           chunk(queueIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
             .getBatch({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
@@ -416,7 +416,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
               self.queues = map(
                 filter(
                   resources,
-                  queueOptions => queueOptions.value !== null,
+                  (queueOptions) => queueOptions.value !== null,
                 ),
                 (queueOptionsParam) => {
                   const queueOptions = queueOptionsParam.value;
@@ -447,10 +447,10 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(ttsIds => $q
+      .then((ttsIds) => $q
         .all(map(
           chunk(ttsIds, 50),
-          chunkIds => OvhApiTelephony.OvhPabx().Tts().v6()
+          (chunkIds) => OvhApiTelephony.OvhPabx().Tts().v6()
             .getBatch({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
@@ -460,7 +460,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
               map(
                 filter(
                   resources,
-                  ttsOptions => ttsOptions.value !== null,
+                  (ttsOptions) => ttsOptions.value !== null,
                 ),
                 'value',
               )
@@ -528,7 +528,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabx', (
     return OvhApiTelephony.OvhPabx().v6().get({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(featureOptions => self.setOptions(featureOptions));
+    }).$promise.then((featureOptions) => self.setOptions(featureOptions));
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

@@ -19,7 +19,7 @@ angular.module('managerApp').controller('XdslAccessPortResetCtrl', function Xdsl
 
         TucToast.success($translate.instant('xdsl_access_dslam_reset_success'));
       },
-      err => new TucToastError(err, 'xdsl_access_dslam_reset_an_error_ocurred'),
+      (err) => new TucToastError(err, 'xdsl_access_dslam_reset_an_error_ocurred'),
     );
   };
 });

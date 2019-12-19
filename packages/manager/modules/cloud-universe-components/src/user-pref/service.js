@@ -5,7 +5,7 @@ export default /* @ngInject */ function ($q, ovhUserPref) {
     if (isString(key)) {
       return ovhUserPref
         .getValue(key.toUpperCase())
-        .then(data => $q.when(data || {}), () => ({}));
+        .then((data) => $q.when(data || {}), () => ({}));
     }
     return $q.reject('UserPref key must be of type String');
   };

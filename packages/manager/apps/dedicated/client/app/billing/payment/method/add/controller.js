@@ -100,8 +100,8 @@ export default class BillingPaymentMethodAddCtrl {
         ownerName: this.model.billingAddress.ownerName,
         default: this.model.setAsDefault,
       })
-        .then(paymentMethod => this.onPaymentMethodIntegrationSuccess(paymentMethod))
-        .catch(error => this.onPaymentMethodIntegrationSubmitError(error));
+        .then((paymentMethod) => this.onPaymentMethodIntegrationSuccess(paymentMethod))
+        .catch((error) => this.onPaymentMethodIntegrationSubmitError(error));
     }
 
     return true;

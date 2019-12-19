@@ -67,7 +67,7 @@ export default class {
       from: this.data.previousMonth.format(),
       to: this.data.monthBilling.format(),
     }).$promise
-      .then(historyPeriods => this.getConsumptionDetails(historyPeriods))
+      .then((historyPeriods) => this.getConsumptionDetails(historyPeriods))
       .then((details) => {
         this.data.details = details;
       });
@@ -82,7 +82,7 @@ export default class {
   }
 
   getConsumptionDetails(periods) {
-    const detailPromises = map(periods, period => this.OvhApiCloudProjectUsageHistory.v6().get({
+    const detailPromises = map(periods, (period) => this.OvhApiCloudProjectUsageHistory.v6().get({
       serviceName: this.$stateParams.projectId,
       usageId: period.id,
     }).$promise);
@@ -95,12 +95,12 @@ export default class {
           monthlyDetails = this.OvhApiCloudProjectUsageCurrent.v6()
             .get({ serviceName: this.$stateParams.projectId }).$promise;
         } else {
-          monthlyDetails = find(periodDetails, detail => moment.utc(detail.period.from).isSame(this.data.monthBilling, 'month'));
+          monthlyDetails = find(periodDetails, (detail) => moment.utc(detail.period.from).isSame(this.data.monthBilling, 'month'));
         }
 
         const hourlyDetails = find(
           periodDetails,
-          detail => moment.utc(detail.period.from).isSame(this.data.previousMonth, 'month'),
+          (detail) => moment.utc(detail.period.from).isSame(this.data.previousMonth, 'month'),
         );
 
         return {
@@ -108,8 +108,8 @@ export default class {
           monthly: monthlyDetails,
         };
       })
-      .then(details => this.$q.all(details)
-        .then(allDetails => this.CloudProjectBilling.getConsumptionDetails(
+      .then((details) => this.$q.all(details)
+        .then((allDetails) => this.CloudProjectBilling.getConsumptionDetails(
           allDetails.hourly, allDetails.monthly,
         )));
   }

@@ -23,7 +23,7 @@ export default class TicketsService {
     return {
       values: mapValues(
         TICKET_MESSAGE_FROM,
-        from => this.ticketMessageService.translateFrom(from),
+        (from) => this.ticketMessageService.translateFrom(from),
       ),
     };
   }
@@ -32,7 +32,7 @@ export default class TicketsService {
     return {
       values: mapValues(
         TICKET_STATUS,
-        status => this.ticketService.translateState(status),
+        (status) => this.ticketService.translateState(status),
       ),
     };
   }

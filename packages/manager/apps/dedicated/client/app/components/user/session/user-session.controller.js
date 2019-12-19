@@ -21,7 +21,7 @@ angular.module('App')
         }),
         this.$transitions.onSuccess({}, () => {
           this.displayAccountSidebar = ['support', 'app.account']
-            .some(name => this.$state.includes(name));
+            .some((name) => this.$state.includes(name));
         }),
       ];
 
@@ -44,6 +44,6 @@ angular.module('App')
 
     $onDestroy() {
       this.hooksToUnsubscribe
-        .forEach(hook => hook());
+        .forEach((hook) => hook());
     }
   });

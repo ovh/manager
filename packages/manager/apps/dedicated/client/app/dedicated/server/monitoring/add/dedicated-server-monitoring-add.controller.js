@@ -83,12 +83,12 @@ angular.module('App').controller('MonitoringAddCtrl', function MonitoringAddCtrl
 
   function addEMailNotifications(monitoring) {
     const emailNotifications = self.emailNotifications
-      .filter(notification => notification.email !== null
+      .filter((notification) => notification.email !== null
         && validator.isEmail(notification.email) && notification.language !== null);
     let promises = [];
 
     promises = emailNotifications
-      .map(notification => Server.addServiceMonitoringNotificationEmail($stateParams.productId, {
+      .map((notification) => Server.addServiceMonitoringNotificationEmail($stateParams.productId, {
         monitoringId: monitoring.monitoringId,
         data: notification,
       }));
@@ -98,14 +98,14 @@ angular.module('App').controller('MonitoringAddCtrl', function MonitoringAddCtrl
     }
 
     $q.allSettled(promises).catch((errors) => {
-      const displayErrors = uniq(errors.map(err => err.data));
+      const displayErrors = uniq(errors.map((err) => err.data));
       Alerter.alertFromSWS($translate.instant('server_tab_MONITORING_notifications_email_add_error'), displayErrors, 'monitoringAlert');
     });
   }
 
   function addSmsNotifications(monitoring) {
     const smsNotifications = self.smsNotifications.filter(
-      notification => notification.smsAccount !== null
+      (notification) => notification.smsAccount !== null
         && notification.phoneNumberTo !== null
         && notification.fromHour !== null
         && notification.toHour !== null
@@ -113,7 +113,7 @@ angular.module('App').controller('MonitoringAddCtrl', function MonitoringAddCtrl
     );
 
     const promises = smsNotifications
-      .map(notification => Server.addServiceMonitoringNotificationSMS($stateParams.productId, {
+      .map((notification) => Server.addServiceMonitoringNotificationSMS($stateParams.productId, {
         monitoringId: monitoring.monitoringId,
         data: notification,
       }));
@@ -123,7 +123,7 @@ angular.module('App').controller('MonitoringAddCtrl', function MonitoringAddCtrl
     }
 
     $q.allSettled(promises).catch((errors) => {
-      const displayErrors = uniq(errors.map(err => err.data));
+      const displayErrors = uniq(errors.map((err) => err.data));
       Alerter.alertFromSWS($translate.instant('server_tab_MONITORING_notifications_email_add_error'), displayErrors, 'monitoringAlert');
     });
   }

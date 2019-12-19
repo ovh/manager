@@ -7,7 +7,7 @@ angular.module('managerApp').controller('PackHubicActivationCtrl', function Pack
       (data) => {
         self.hubicList = data;
       },
-      err => new TucToastError(err),
+      (err) => new TucToastError(err),
     );
   };
 });

@@ -13,7 +13,7 @@ export default class {
 
   $onInit() {
     this.readWriteEndpoint = find(this.endPoints, { name: ENDPOINT_TYPES.READ_WRITE });
-    this.connectionStrings = map(this.endPoints, endpoint => ({
+    this.connectionStrings = map(this.endPoints, (endpoint) => ({
       name: endpoint.name,
       text: `${this.clusterType}://${this.PARAMETERS.USERNAME}:${this.PARAMETERS.MASKED_PASSWORD}@${endpoint.fqdn}:${endpoint.port}/${this.PARAMETERS.DATABASE}?sslmode=${this.PARAMETERS.SSL_MODE}`,
     }));

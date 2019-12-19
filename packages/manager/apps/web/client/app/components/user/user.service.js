@@ -34,12 +34,12 @@ angular.module('services').service('User', [
         }));
       }
 
-      return userPromise.then(() => user, error => $q.reject(error));
+      return userPromise.then(() => user, (error) => $q.reject(error));
     };
 
     this.getUser();
 
-    this.getUrlOf = link => this.getUser().then((data) => {
+    this.getUrlOf = (link) => this.getUser().then((data) => {
       if (
         has(constants, 'urls')
           && constants.urls[data.ovhSubsidiary] != null
@@ -56,7 +56,7 @@ angular.module('services').service('User', [
     * the possible values for a constant at the same place
     * If constants are structured the old way, use getUrlOf
     */
-    this.getUrlOfEndsWithSubsidiary = link => this.getUser().then((data) => {
+    this.getUrlOfEndsWithSubsidiary = (link) => this.getUser().then((data) => {
       if (
         has(constants, 'urls')
           && constants.urls[link] != null
@@ -74,9 +74,9 @@ angular.module('services').service('User', [
       return $q.all(queries);
     });
 
-    this.getCreditCard = id => $http
+    this.getCreditCard = (id) => $http
       .get(`apiv6/me/paymentMean/creditCard/${id}`)
-      .then(response => response.data);
+      .then((response) => response.data);
 
     this.uploadFile = (filename, file, tags) => {
       if (filename == null || filename === '' || isEmpty(file.name)) {
@@ -124,9 +124,9 @@ angular.module('services').service('User', [
         .then(() => idFile);
     };
 
-    this.getDocument = id => $http.get(`apiv6/me/document/${id}`).then(response => response.data);
+    this.getDocument = (id) => $http.get(`apiv6/me/document/${id}`).then((response) => response.data);
 
-    this.getDocumentIds = () => $http.get('apiv6/me/document').then(response => response.data);
+    this.getDocumentIds = () => $http.get('apiv6/me/document').then((response) => response.data);
 
     this.getDocuments = () => this.getDocumentIds().then((data) => {
       const queries = data.map(this.getDocument);
@@ -134,7 +134,7 @@ angular.module('services').service('User', [
       return $q.all(queries);
     });
 
-    this.payWithRegisteredPaymentMean = opts => OvhHttp.post('/me/order/{orderId}/payWithRegisteredPaymentMean', {
+    this.payWithRegisteredPaymentMean = (opts) => OvhHttp.post('/me/order/{orderId}/payWithRegisteredPaymentMean', {
       rootPath: 'apiv6',
       urlParams: {
         orderId: opts.orderId,

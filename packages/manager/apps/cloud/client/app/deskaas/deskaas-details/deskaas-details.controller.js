@@ -272,7 +272,7 @@ angular.module('managerApp').controller('DeskaasDetailsCtrl',
       };
 
       this.getCleanTasks = function getCleanTasks() {
-        return mapValues(selfTask.tasks, value => value);
+        return mapValues(selfTask.tasks, (value) => value);
       };
 
       // Check if we have a task on error

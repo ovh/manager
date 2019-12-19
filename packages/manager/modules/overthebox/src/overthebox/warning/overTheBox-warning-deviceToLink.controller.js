@@ -35,7 +35,7 @@ export default /* @ngInject */ function ($scope, $translate, $state,
       () => {
         TucToast.success($translate.instant('overTheBox_link_device_success'));
       },
-      error => new TucToastError(error),
+      (error) => new TucToastError(error),
     ).finally(() => {
       self.loader = false;
     });

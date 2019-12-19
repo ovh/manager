@@ -38,7 +38,7 @@ export default class KubernetesNodesAddCtrl {
     this.flavorByFamilies = groupBy(this.availableFlavors, 'category');
     this.flavorFamilies = map(
       uniq(map(this.availableFlavors, 'category')),
-      category => ({
+      (category) => ({
         id: category,
         familyName: this.$translate.instant(`kube_nodes_add_flavor_family_${category}`),
       }),
@@ -55,13 +55,13 @@ export default class KubernetesNodesAddCtrl {
   onFlavorFamilyChange(selectedFamily) {
     this.flavor = null;
     this.flavors = sortBy(
-      map(this.flavorByFamilies[selectedFamily.id], flavor => ({
+      map(this.flavorByFamilies[selectedFamily.id], (flavor) => ({
         ...flavor,
         displayedName: this.Kubernetes.formatFlavor(flavor),
         quotaOverflow: this.getQuotaOverflow(flavor),
         price: get(get(this.prices, flavor.planCodes.hourly), 'price.text'),
       })),
-      flavor => flavor.vcpus,
+      (flavor) => flavor.vcpus,
     );
   }
 
@@ -77,7 +77,7 @@ export default class KubernetesNodesAddCtrl {
       .then(() => this.goBack(
         this.$translate.instant('kube_nodes_add_success'),
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('kube_nodes_add_error', {
           message: get(error, 'data.message'),
         }), 'error',

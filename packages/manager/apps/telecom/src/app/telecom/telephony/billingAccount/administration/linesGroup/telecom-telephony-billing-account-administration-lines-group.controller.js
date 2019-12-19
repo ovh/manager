@@ -38,10 +38,10 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
       lineCount: getLineCount,
     }).then((result) => {
       self.billingAccounts.ids = result.billingAccounts
-        .map(billingAccount => ({ id: billingAccount }));
+        .map((billingAccount) => ({ id: billingAccount }));
       self.numberCount = result.numberCount;
       self.lineCount = result.lineCount;
-    }, err => new TucToastError(err));
+    }, (err) => new TucToastError(err));
   };
 
   self.fetchBillingAccountDetails = function fetchBillingAccountDetails(billingAccount) {
@@ -70,40 +70,40 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
       .query({
         billingAccount: ba.billingAccount,
       }).$promise
-      .then(ids => $q.all(map(chunk(ids, 50), chunkIds => OvhApiTelephony.Line().v6().getBatch({
+      .then((ids) => $q.all(map(chunk(ids, 50), (chunkIds) => OvhApiTelephony.Line().v6().getBatch({
         billingAccount: ba.billingAccount,
         serviceName: chunkIds,
-      }).$promise)).then(chunkResult => map(flatten(chunkResult), 'value')));
+      }).$promise)).then((chunkResult) => map(flatten(chunkResult), 'value')));
 
     // get batch alias details
     const aliases = OvhApiTelephony.Number().v6()
       .query({
         billingAccount: ba.billingAccount,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.Number().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.Number().v6().getBatch({
             billingAccount: ba.billingAccount,
             serviceName: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => map(flatten(chunkResult), 'value')));
+        .then((chunkResult) => map(flatten(chunkResult), 'value')));
 
     // get batch voicefax details
     const voicefax = OvhApiTelephony.Fax().v6()
       .query({
         billingAccount: ba.billingAccount,
       }).$promise
-      .then(ids => $q
+      .then((ids) => $q
         .all(map(
           chunk(ids, 50),
-          chunkIds => OvhApiTelephony.Fax().v6().getBatch({
+          (chunkIds) => OvhApiTelephony.Fax().v6().getBatch({
             billingAccount: ba.billingAccount,
             serviceName: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => map(flatten(chunkResult), 'value').filter(res => res.serviceType.includes('line') && res.offers.toString().includes('voicefax'))));
+        .then((chunkResult) => map(flatten(chunkResult), 'value').filter((res) => res.serviceType.includes('line') && res.offers.toString().includes('voicefax'))));
 
     return $q.all({
       lines,
@@ -138,14 +138,14 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
   };
 
   self.getServicesToAttachList = function getServicesToAttachList() {
-    return values(filter(self.servicesToAttach, val => !!val));
+    return values(filter(self.servicesToAttach, (val) => !!val));
   };
 
   self.attachSelectedServices = function attachSelectedServices() {
     const errorList = [];
     self.isAttaching = true;
 
-    return $q.all(map(self.getServicesToAttachList(), service => OvhApiTelephony.Service().v6()
+    return $q.all(map(self.getServicesToAttachList(), (service) => OvhApiTelephony.Service().v6()
       .changeOfBillingAccount({
         billingAccount: self.billingAccounts.selected.billingAccount,
         serviceName: service.serviceName,

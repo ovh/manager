@@ -81,7 +81,7 @@ class DnsZoneCtrl {
           return this.domain;
         });
       })
-      .catch(err => this.Alerter.alertFromSWS(
+      .catch((err) => this.Alerter.alertFromSWS(
         this.$translate.instant('domain_dashboard_loading_error'),
         err,
         this.$scope.alerts.page,

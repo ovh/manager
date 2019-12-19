@@ -26,7 +26,7 @@ export default class CloudProjectBillingService {
     }
     const hourlyInstances = flatten(map(
       get(this.data, 'hourlyBilling.hourlyUsage.instance'),
-      instance => map(instance.details, (detail) => {
+      (instance) => map(instance.details, (detail) => {
         const newDetail = clone(detail);
         newDetail.totalPrice = this.constructor.roundNumber(newDetail.totalPrice, 2);
         return assignIn(newDetail, { reference: instance.reference, region: instance.region });
@@ -47,7 +47,7 @@ export default class CloudProjectBillingService {
 
     const monthlyInstances = flatten(map(
       get(this.data, 'monthlyBilling.monthlyUsage.instance'),
-      instance => map(instance.details, (detail) => {
+      (instance) => map(instance.details, (detail) => {
         const newDetail = clone(detail);
         newDetail.totalPrice = this.constructor.roundNumber(newDetail.totalPrice, 2);
         return assignIn(newDetail, { reference: instance.reference, region: instance.region });
@@ -132,7 +132,7 @@ export default class CloudProjectBillingService {
     }
     const volumes = flatten(map(
       this.data.hourlyBilling.hourlyUsage.volume,
-      volume => map(volume.details, (detail) => {
+      (volume) => map(volume.details, (detail) => {
         const newDetail = clone(detail);
         newDetail.totalPrice = this.constructor.roundNumber(newDetail.totalPrice, 2);
         return assignIn(newDetail, { type: volume.type, region: volume.region });

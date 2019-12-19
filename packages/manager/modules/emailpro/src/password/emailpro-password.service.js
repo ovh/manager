@@ -190,7 +190,7 @@ export default class EmailPasswordService {
     containsName = false;
     const splittedDisplayName = displayName.split(/[,.\-_£\s\t]/);
 
-    remove(splittedDisplayName, word => word.length < 3);
+    remove(splittedDisplayName, (word) => word.length < 3);
     forEach(splittedDisplayName, (num) => {
       if (password.search(num) !== -1) {
         containsName = true;

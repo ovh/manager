@@ -93,7 +93,7 @@ export default class DarkModeController {
         controllerAs: '$ctrl',
       })
       .result
-      .then(shouldActiveDarkTheme => (shouldActiveDarkTheme
+      .then((shouldActiveDarkTheme) => (shouldActiveDarkTheme
         ? this.activateDarkTheme()
         : angular.noop))
       .catch(angular.noop); // Prevent unhandled rejection.

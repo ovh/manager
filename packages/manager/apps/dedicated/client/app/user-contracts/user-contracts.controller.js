@@ -19,7 +19,7 @@ class UserContractsCtrl {
     this.agreeTosAndPpOnManagerLoad = this.coreConfig.getRegion() === 'US';
 
     if (this.agreeTosAndPpOnManagerLoad) {
-      this.DucUserContractService.getAgreementsToValidate(contract => includes(['tos', 'pp'], contract.code)).then((contracts) => {
+      this.DucUserContractService.getAgreementsToValidate((contract) => includes(['tos', 'pp'], contract.code)).then((contracts) => {
         if (contracts.length) {
           this.$scope.currentAction = 'modal/user-contracts-accept';
           this.$scope.stepPath = 'user-contracts/modal/user-contracts-accept.html';

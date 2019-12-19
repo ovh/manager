@@ -228,8 +228,8 @@
                         <oui-action-menu data-compact data-align="end" data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M' || hosting.hasCdn && flushCdnState === 'ok' || hosting.hasCdn">
                             <oui-action-menu-item
                                 data-ng-if="flushCdnState === 'ok' && !hosting.hasCdn && hosting.offer!== 'START_10_M'"
-                                data-text="{{ ::'hosting_dashboard_service_order_cdn' | translate }}"
-                                data-on-click="setAction('cdn/order/hosting-cdn-order', hostingProxy)"></oui-action-menu-item>
+                                data-text="{{ :: (isCdnFree ? 'hosting_dashboard_service_activate_cdn' : 'hosting_dashboard_service_order_cdn') | translate }}"
+                                data-href="{{:: $ctrl.$state.href('app.hosting.cdn.order') }}"></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="hosting.hasCdn && flushCdnState === 'ok'"
                                 data-text="{{ ::'hosting_dashboard_service_flush_cdn' | translate }}"
@@ -268,7 +268,7 @@
                                 data-on-click="setAction('database/private-activation/database-private-activation', hosting)"></oui-action-menu-item>
                             <oui-action-menu-item
                                 data-text="{{ ::'hosting_dashboard_service_privatesql_order' | translate }}"
-                                data-ui-sref="app.sql-order({orderType: 'private', currentHosting: hosting.serviceName})">
+                                data-ui-sref="app.hosting.database.order-private">
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>

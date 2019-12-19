@@ -55,8 +55,8 @@ export default class {
       .Aapi()
       .detailsAll(this.allTasks.filter)
       .$promise
-      .catch(error => new this.TucToastError(error))
-      .then(data => map(data, task => ({
+      .catch((error) => new this.TucToastError(error))
+      .then((data) => map(data, (task) => ({
         ...task,
         status: {
           icon: this.statusInfo[task.status].icon,

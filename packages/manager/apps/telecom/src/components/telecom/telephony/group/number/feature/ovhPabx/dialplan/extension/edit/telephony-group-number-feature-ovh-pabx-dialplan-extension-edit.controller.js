@@ -90,13 +90,13 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getScreenListConditionList = function getScreenListConditionList() {
-    return filter(self.extension.screenListConditions, screenList => screenList.state !== 'TO_DELETE');
+    return filter(self.extension.screenListConditions, (screenList) => screenList.state !== 'TO_DELETE');
   };
 
   self.isConditionMatch = function isConditionMatch(phoneNumber) {
     self.conditionMatched = find(
       self.getScreenListConditionList(),
-      condition => startsWith(phoneNumber, condition.callNumber),
+      (condition) => startsWith(phoneNumber, condition.callNumber),
     );
 
     return !self.conditionMatched;
@@ -119,7 +119,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getTimeConditionList = function getTimeConditionList() {
-    return filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE');
+    return filter(self.extension.timeConditions, (timeCondition) => timeCondition.state !== 'TO_DELETE');
   };
 
   function manageTimeConditionRemove(timeConditions) {
@@ -182,10 +182,10 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       }
 
       // before check if there is no collision
-      const filteredConditions = filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE' && day.value === timeCondition.weekDay);
+      const filteredConditions = filter(self.extension.timeConditions, (timeCondition) => timeCondition.state !== 'TO_DELETE' && day.value === timeCondition.weekDay);
       const isCollisionDetected = some(
         conditionGroup.slots,
-        slot => hasConditionCollision(
+        (slot) => hasConditionCollision(
           filteredConditions,
           slot.condition.timeFrom,
           slot.condition.timeTo,
@@ -225,7 +225,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       }
     } else {
       // remove day from group list
-      remove(conditionGroup.days, curDay => curDay === day.value);
+      remove(conditionGroup.days, (curDay) => curDay === day.value);
 
       // remove conditions from slots
       // get conditions of given day
@@ -261,7 +261,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     // check for collision
     const isCollisionDetected = some(conditionsGroup.days, (day) => {
       // check if a condition overlap an other condition on the same day
-      const filteredConditions = filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE' && day === timeCondition.weekDay);
+      const filteredConditions = filter(self.extension.timeConditions, (timeCondition) => timeCondition.state !== 'TO_DELETE' && day === timeCondition.weekDay);
 
       return hasConditionCollision(
         filteredConditions, conditionsGroup.slotTimeModel.timeFrom,

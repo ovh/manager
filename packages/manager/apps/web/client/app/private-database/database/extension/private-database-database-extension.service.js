@@ -27,7 +27,7 @@ angular.module('services').service(
             },
           },
         )
-        .then(res => res.data);
+        .then((res) => res.data);
     }
 
     /**
@@ -40,7 +40,7 @@ angular.module('services').service(
     getExtension(serviceName, databaseName, extensionName) {
       return this.$http
         .get(`apiv6/hosting/privateDatabase/${serviceName}/database/${databaseName}/extension/${extensionName}`)
-        .then(res => res.data);
+        .then((res) => res.data);
     }
 
     /**

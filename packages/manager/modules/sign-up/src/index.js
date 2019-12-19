@@ -13,7 +13,7 @@ angular
     signUpComponents,
   ])
   .service('signUp', service)
-  .filter('translateDefault', /* @ngInject */ $translate => (translationKey, fallbackKey) => {
+  .filter('translateDefault', /* @ngInject */ ($translate) => (translationKey, fallbackKey) => {
     const translation = $translate.instant(translationKey);
     return translationKey === translation ? $translate.instant(fallbackKey) : translation;
   });

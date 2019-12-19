@@ -1,12 +1,12 @@
 import round from 'lodash/round';
 
 class CloudProjectComputeSnapshotPriceService {
-  constructor(OvhCloudPriceHelper) {
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
+  constructor(CucPriceHelper) {
+    this.CucPriceHelper = CucPriceHelper;
   }
 
   getSnapshotPrice({ size, serviceName, region }) {
-    return this.OvhCloudPriceHelper.getPrices(serviceName).then((prices) => {
+    return this.CucPriceHelper.getPrices(serviceName).then((prices) => {
       let snapshotPrice = prices[`snapshot.consumption.${region}`] || prices['snapshot.consumption'];
       // if (!snapshotPrice) {
       //   console.warn('price not found for this snapshot');
@@ -18,7 +18,7 @@ class CloudProjectComputeSnapshotPriceService {
       snapshotPrice.totalPrice = angular.copy(snapshotPrice.price);
       snapshotPrice.monthlyPrice = angular.copy(snapshotPrice.price);
 
-      snapshotPrice.monthlyPrice.value = snapshotPrice.priceInUcents * moment.duration(1, 'months').asHours() / 100000000;
+      snapshotPrice.monthlyPrice.value = (snapshotPrice.priceInUcents * moment.duration(1, 'months').asHours()) / 100000000;
       snapshotPrice.monthlyPrice.text = snapshotPrice.monthlyPrice.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.monthlyPrice.value.toString(), 2));
 
       snapshotPrice.totalPrice.value = snapshotPrice.monthlyPrice.value * size;

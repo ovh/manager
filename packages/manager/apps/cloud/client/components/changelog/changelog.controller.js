@@ -21,7 +21,7 @@ angular.module('managerApp')
       self.loading = true;
       return getUser()
         .then(
-          user => getChangelog(user.ovhSubsidiary, coreConfig.getRegion())
+          (user) => getChangelog(user.ovhSubsidiary, coreConfig.getRegion())
             .then((changelog) => {
               self.content = changelog;
             }),

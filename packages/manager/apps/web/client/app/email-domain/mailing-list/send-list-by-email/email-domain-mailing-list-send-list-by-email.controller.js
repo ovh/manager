@@ -47,7 +47,7 @@ angular.module('App').controller(
             namespace: 'mailingLists.subscribers.sendListByEmail.poll',
           });
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('mailing_list_tab_modal_sendListByEmail_error'),
           get(err, 'data', err),
           this.$scope.alerts.main,

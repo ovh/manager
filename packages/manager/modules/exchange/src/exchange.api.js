@@ -14,8 +14,8 @@ export default class APIExchange {
         options.cache.removeAll();
 
         return WucApi[verb](`${constants.swsProxyRootPath}email/exchange${path}`, options).then(
-          data => data,
-          reason => $q.reject(reason),
+          (data) => data,
+          (reason) => $q.reject(reason),
         );
       };
     });

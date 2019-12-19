@@ -58,11 +58,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
         action: 'convertToSip',
         type: 'offer',
       }).$promise
-      .then(taskIds => $q.all(map(taskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
-        billingAccount: $stateParams.billingAccount,
-        serviceName: $stateParams.serviceName,
-        taskId: id,
-      }).$promise)).then(tasks => head(filter(tasks, { status: 'todo' }))));
+      .then((taskIds) => $q.all(map(
+        taskIds,
+        (id) => OvhApiTelephony.Service().OfferTask().v6().get({
+          billingAccount: $stateParams.billingAccount,
+          serviceName: $stateParams.serviceName,
+          taskId: id,
+        }).$promise,
+      )).then((tasks) => head(filter(tasks, { status: 'todo' }))));
   };
 
   self.convertToLine = function convertToLine() {
@@ -74,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       offer: self.offer.name,
     }).$promise.then(() => self.refresh()).then(() => {
       TucToast.success($translate.instant('telephony_alias_administration_convert_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isConverting = false;
     });
   };
@@ -86,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       serviceName: $stateParams.serviceName,
     }, {}).$promise.then(() => self.refresh()).then(() => {
       TucToast.success($translate.instant('telephony_alias_administration_convert_cancel_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isCancelling = false;
     });
   };
@@ -127,8 +130,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     });
 
     return $q.allSettled(promises)
-      .then(listOffers => setServicesWithOffer(services, listOffers))
-      .catch(listOffers => setServicesWithOffer(services, listOffers));
+      .then((listOffers) => setServicesWithOffer(services, listOffers))
+      .catch((listOffers) => setServicesWithOffer(services, listOffers));
   };
 
   self.getBulkParams = function getBulkParams() {

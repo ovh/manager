@@ -28,7 +28,7 @@ export default class PciInstanceDeleteController {
           },
         ),
       ))
-      .catch(err => this.goBack(
+      .catch((err) => this.goBack(
         this.$translate.instant(
           'pci_projects_project_instances_instance_delete_error_delete',
           {

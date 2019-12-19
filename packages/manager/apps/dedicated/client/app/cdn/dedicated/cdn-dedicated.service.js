@@ -67,7 +67,7 @@ angular
       // do poll
       return Poll.poll([swsCdnProxyPath, opts.serviceName, 'ssl/tasks', opts.taskId].join('/'), null, {
         namespace: opts.namespace,
-      }).then(resp => resp);
+      }).then((resp) => resp);
     };
 
     this.killAllPolling = function killAllPolling() {
@@ -108,7 +108,7 @@ angular
           }
           return $q.reject(cdn);
         })
-        .then(() => result, http => $q.reject(http.data));
+        .then(() => result, (http) => $q.reject(http.data));
     };
 
     /*
@@ -151,7 +151,7 @@ angular
           },
         })
         .then(
-          response => ({
+          (response) => ({
             withoutTax: null,
             tax: null,
             withTax: null,
@@ -289,7 +289,7 @@ angular
     /**
      * Get Ssl information for selected service
      */
-    this.getSsl = productId => this.getSelected(productId).then((cdn) => {
+    this.getSsl = (productId) => this.getSelected(productId).then((cdn) => {
       if (!cdn || !cdn.serviceName) {
         return $q.reject(cdn);
       }
@@ -313,7 +313,7 @@ angular
      * Get Ssl information for selected service
      */
     this.getInstallSslTasksIds = function getInstallSslTasksIds(selected) {
-      return $http.get(`${[swsCdnProxyPath, selected, 'ssl/tasks'].join('/')}?function=installSsl`).then(tasksIds => tasksIds.data);
+      return $http.get(`${[swsCdnProxyPath, selected, 'ssl/tasks'].join('/')}?function=installSsl`).then((tasksIds) => tasksIds.data);
     };
 
     function getStatisticsConsts() {
@@ -328,8 +328,8 @@ angular
           let StatsValueEnum = get(content, ['data', 'models', 'cdnanycast.StatsValueEnum', 'enum']);
           let StatsPeriodEnum = get(content, ['data', 'models', 'cdnanycast.StatsPeriodEnum', 'enum']);
 
-          StatsValueEnum = map(StatsValueEnum, t => snakeCase(t).toUpperCase());
-          StatsPeriodEnum = map(StatsPeriodEnum, t => snakeCase(t).toUpperCase());
+          StatsValueEnum = map(StatsValueEnum, (t) => snakeCase(t).toUpperCase());
+          StatsPeriodEnum = map(StatsPeriodEnum, (t) => snakeCase(t).toUpperCase());
 
           const stats = {
             types: StatsValueEnum,
@@ -353,7 +353,7 @@ angular
      * Get the statistics constants for the cdn
      */
     this.getStatisticsConsts = function getStatisticsConstsF(domain) {
-      return getStatisticsConsts().then(stats => ({
+      return getStatisticsConsts().then((stats) => ({
         types: !domain ? ['QUOTA'].concat(stats.types) : stats.types,
         defaultType: 'BANDWIDTH',
         periods: stats.periods,
@@ -436,7 +436,7 @@ angular
           }
           return $q.reject(cdn);
         })
-        .then(() => result, http => $q.reject(http.data));
+        .then(() => result, (http) => $q.reject(http.data));
     };
 
     /*
@@ -452,7 +452,7 @@ angular
     /**
      * Get serviceInfos
      */
-    this.getServiceInfos = serviceName => OvhHttp.get('/cdn/dedicated/{serviceName}/serviceInfos', {
+    this.getServiceInfos = (serviceName) => OvhHttp.get('/cdn/dedicated/{serviceName}/serviceInfos', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,

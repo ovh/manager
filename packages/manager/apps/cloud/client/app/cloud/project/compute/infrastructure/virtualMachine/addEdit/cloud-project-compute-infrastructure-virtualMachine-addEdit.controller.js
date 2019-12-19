@@ -113,9 +113,9 @@ angular.module('managerApp')
       CucCloudMessage,
       CloudProjectComputeInfrastructureOrchestrator,
       CucControllerHelper,
+      CucPriceHelper,
       OvhApiCloudProjectSshKey,
       OvhApiCloudProjectFlavor,
-      OvhCloudPriceHelper,
       OvhApiCloudProjectImage,
       OvhApiCloudProjectNetworkPrivate,
       OvhApiCloudProjectNetworkPrivateSubnet,
@@ -358,7 +358,7 @@ angular.module('managerApp')
         angular.forEach(self.enums.flavorsTypes, (flavorType) => {
           const category = getCategoryFromFlavor(flavorType, true);
 
-          const cleanFlavors = filter(self.panelsData.flavors, flavor => get(flavor, 'price.price.text'));
+          const cleanFlavors = filter(self.panelsData.flavors, (flavor) => get(flavor, 'price.price.text'));
 
           if (category && includes(category.types, flavorType)) {
             const categoryObject = find(self.displayData.categories, { category: category.id });
@@ -474,12 +474,12 @@ angular.module('managerApp')
           if (['g1', 'g2', 'g3', 't1'].includes(flavorType)) {
             self.displayData.images[imageType] = filter(
               self.displayData.images[imageType],
-              image => image.type === 'linux' || (image.flavorType ? includes(image.flavorType, flavorType) : true),
+              (image) => image.type === 'linux' || (image.flavorType ? includes(image.flavorType, flavorType) : true),
             );
           } else {
             self.displayData.images[imageType] = filter(
               self.displayData.images[imageType],
-              image => !image.flavorType,
+              (image) => !image.flavorType,
             );
           }
 
@@ -638,7 +638,8 @@ angular.module('managerApp')
       function recalculateSshKey() {
         const associatedSshKey = find(
           self.panelsData.sshKeys,
-          sshKey => sshKey.id === self.model.sshKeyId && ~sshKey.regions.indexOf(self.model.region),
+          (sshKey) => sshKey.id === self.model.sshKeyId
+            && ~sshKey.regions.indexOf(self.model.region),
         );
 
         if (!associatedSshKey) {
@@ -1116,7 +1117,7 @@ angular.module('managerApp')
 
       $scope.$watchCollection('VmAddEditCtrl.toggle.accordions.flavors', (value, oldValue) => {
         if (value !== oldValue) {
-          const chosen = keys(pickBy(value, key => key));
+          const chosen = keys(pickBy(value, (key) => key));
           if (chosen.length === 1) {
             self.changeCategory(chosen[0]);
           }
@@ -1177,7 +1178,7 @@ angular.module('managerApp')
               OvhApiCloudProjectFlavor.v6().resetCache();
 
               const modifiedFlavorsList = flavorsList
-                .map(flavor => CloudFlavorService.augmentFlavor(flavor));
+                .map((flavor) => CloudFlavorService.augmentFlavor(flavor));
 
               // Flavor types (ovh.ram, ovh.cpu, ...)
               self.enums.flavorsTypes = uniq(map(modifiedFlavorsList, 'type'));
@@ -1220,7 +1221,7 @@ angular.module('managerApp')
               self.cancelVm();
               return $q.reject(err);
             }),
-            OvhCloudPriceHelper.getPrices(serviceName).then((flavorsPrices) => {
+            CucPriceHelper.getPrices(serviceName).then((flavorsPrices) => {
               self.panelsData.prices = flavorsPrices;
             }, (err) => {
               CucCloudMessage.error([$translate.instant('cpcivm_addedit_flavor_price_error'), err.data.message || ''].join(' '));
@@ -1504,7 +1505,7 @@ angular.module('managerApp')
       };
 
       self.hasGuaranteedRessources = function hasGuaranteedRessources(flavorType) {
-        return find(CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES, elem => elem === flavorType);
+        return find(CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES, (elem) => elem === flavorType);
       };
 
       /**
@@ -1544,7 +1545,7 @@ angular.module('managerApp')
           }
           return find(
             flavor.similarFlavors,
-            similarFlavor => similarFlavor.diskType === diskType
+            (similarFlavor) => similarFlavor.diskType === diskType
               && similarFlavor.flex === flex
               && similarFlavor.region === region
               && similarFlavor.osType === osType,
@@ -1561,7 +1562,7 @@ angular.module('managerApp')
         const flavorList = self.panelsData.flavors;
         angular.forEach(self.panelsData.flavors, (flavor) => {
           if (isUndefined(flavor.vps)) {
-            set(flavor, 'similarFlavors', filter(flavorList, flavorToCompare => flavor.shortGroupName === flavorToCompare.shortGroupName));
+            set(flavor, 'similarFlavors', filter(flavorList, (flavorToCompare) => flavor.shortGroupName === flavorToCompare.shortGroupName));
           }
         });
       }
@@ -1703,7 +1704,7 @@ angular.module('managerApp')
           loaderFunction: () => OvhApiCloudProjectRegion.AvailableRegions().v6()
             .query({ serviceName })
             .$promise
-            .catch(error => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+            .catch((error) => CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
         });
         return self.availableRegions.load();
       };
@@ -1740,7 +1741,7 @@ angular.module('managerApp')
         if (!self.loaders.sshKey.add) {
           const uniqKey = find(
             self.panelsData.sshKeys,
-            sshKey => sshKey.name === self.sshKeyAdd.name,
+            (sshKey) => sshKey.name === self.sshKeyAdd.name,
           );
 
           if (uniqKey) {
@@ -1776,7 +1777,7 @@ angular.module('managerApp')
           name: sshKey.name,
           publicKey: sshKey.publicKey,
           region: self.model.region,
-        }).$promise.then(newSshKey => self.getSshKeys(true).then(() => {
+        }).$promise.then((newSshKey) => self.getSshKeys(true).then(() => {
           self.model.sshKeyId = newSshKey.id;
           CucCloudMessage.success($translate.instant('cpcivm_addedit_sshkey_add_submit_success'));
         })).catch((err) => {
@@ -1894,7 +1895,7 @@ angular.module('managerApp')
               ),
               (ids) => { networkIds = ids; },
             ),
-            networkId => OvhApiCloudProjectNetworkPrivateSubnet
+            (networkId) => OvhApiCloudProjectNetworkPrivateSubnet
               .v6()
               .query({
                 serviceName,
@@ -1940,7 +1941,7 @@ angular.module('managerApp')
             ),
             'vlanId',
           ),
-          network => assign(network, {
+          (network) => assign(network, {
             vlanId: pad.substring(0, pad.length - network.vlanId.toString().length)
               + network.vlanId,
           }),
@@ -1970,7 +1971,7 @@ angular.module('managerApp')
       // TODO : Delete this and the code in the .html once we remove the old catalog.
       //        Used to display the proper label text.
       self.catalogVersion = function catalogVersion() {
-        let oldCatalog = some(self.panelsData.regions, region => /GRA1|BHS1|SBG1/.test(region));
+        let oldCatalog = some(self.panelsData.regions, (region) => /GRA1|BHS1|SBG1/.test(region));
         if (/(WAW)|(DE)|(UK)/.test(self.model.region)) {
           oldCatalog = false;
         }

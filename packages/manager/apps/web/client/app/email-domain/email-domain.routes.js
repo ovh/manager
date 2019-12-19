@@ -24,7 +24,7 @@ angular.module('App').config(($stateProvider) => {
         },
       ],
     },
-    redirectTo: trans => trans.injector().getAsync('WucEmails').then(WucEmails => WucEmails.getDomain(trans.params().productId).then((data) => {
+    redirectTo: (trans) => trans.injector().getAsync('WucEmails').then((WucEmails) => WucEmails.getDomain(trans.params().productId).then((data) => {
       if (data.migratedMXPlanServiceName) {
         return {
           state: 'app.email.mxplan',

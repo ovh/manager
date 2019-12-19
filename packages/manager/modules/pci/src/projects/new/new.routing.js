@@ -41,8 +41,8 @@ export default /* @ngInject */ ($stateProvider) => {
         contracts: /* @ngInject */ ($q, newProjectInfo, PciProjectNewService) => {
           const agreementPromises = map(
             newProjectInfo.agreements || [],
-            id => PciProjectNewService.getNewProjectAgreementContract(id)
-              .then(contract => Object.assign(contract, {
+            (id) => PciProjectNewService.getNewProjectAgreementContract(id)
+              .then((contract) => Object.assign(contract, {
                 id,
               })),
           );
@@ -63,7 +63,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return getStepByName('payment');
         },
 
-        getStepByName: /* @ngInject */ steps => stepName => find(steps, {
+        getStepByName: /* @ngInject */ (steps) => (stepName) => find(steps, {
           name: stepName,
         }),
 
@@ -152,7 +152,7 @@ export default /* @ngInject */ ($stateProvider) => {
             return $q.reject(error);
           }),
 
-        paymentMethodUrl: /* @ngInject */ coreConfig => get(
+        paymentMethodUrl: /* @ngInject */ (coreConfig) => get(
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
@@ -217,7 +217,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return $state.go('pci.projects.new.payment');
         },
 
-        onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
+        onProjectCreated: /* @ngInject */ ($state) => (projectId) => $state.go(
           'pci.projects.project', {
             projectId,
           },
@@ -249,7 +249,7 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         }],
 
-        trackingPage: /* @ngInject */ $transition$ => `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`,
+        trackingPage: /* @ngInject */ ($transition$) => `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`,
       },
     });
 };

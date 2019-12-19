@@ -61,7 +61,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
             serviceType: 'apiv6',
           },
         )
-        .then(data => data.data, http => $q.reject(http.data));
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.toggleFirewall = function toggleFirewall(ipBlock, ip, enabled) {
@@ -75,16 +75,16 @@ angular.module('Module.ip.services').service('IpFirewall', [
             serviceType: 'apiv6',
           },
         )
-        .then(data => data.data, http => $q.reject(http.data));
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.getFirewallDetails = function getFirewallDetails(ipBlock, ip) {
       const url = ['/ip', window.encodeURIComponent(ipBlock), 'firewall', ip].join('/');
-      return $http.get(url, { serviceType: 'apiv6' }).then(result => result.data, http => $q.reject(http.data));
+      return $http.get(url, { serviceType: 'apiv6' }).then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getFirewallRuleConstants = function getFirewallRuleConstants() {
-      return self.getIpModels().then(ipModels => ({
+      return self.getIpModels().then((ipModels) => ({
         actions: ipModels['ip.FirewallActionEnum'].enum,
         protocols: ipModels['ip.FirewallProtocolEnum'].enum,
         sequences: ipModels['ip.FirewallSequenceRangeEnum'].enum,
@@ -101,7 +101,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
           },
           serviceType: 'aapi',
         })
-        .then(result => result.data, http => $q.reject(http.data));
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.addFirewallRule = function addFirewallRule(ipBlock, ip, rule) {
@@ -123,11 +123,11 @@ angular.module('Module.ip.services').service('IpFirewall', [
 
       cleanRule.tcpOption = cleanRule.tcpOptions;
       delete cleanRule.tcpOptions;
-      return $http.post(url, cleanRule, { serviceType: 'apiv6' }).then(data => data.data);
+      return $http.post(url, cleanRule, { serviceType: 'apiv6' }).then((data) => data.data);
     };
 
     this.removeFirewallRule = function removeFirewallRule(ipBlock, ip, sequence) {
-      return $http.delete(['/ip', window.encodeURIComponent(ipBlock), 'firewall', ip, 'rule', sequence].join('/'), { serviceType: 'apiv6' }).then(data => data.data, http => $q.reject(http.data));
+      return $http.delete(['/ip', window.encodeURIComponent(ipBlock), 'firewall', ip, 'rule', sequence].join('/'), { serviceType: 'apiv6' }).then((data) => data.data, (http) => $q.reject(http.data));
     };
   },
 ]);

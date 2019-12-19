@@ -1,3 +1,7 @@
+export const PACK_AVAILABILITY = {
+  order: ['FR'],
+};
+
 angular.module('managerApp').constant('PACK', {
   frames: {
     informations: {
@@ -17,3 +21,7 @@ angular.module('managerApp').constant('PACK', {
 
   fiberAccess: ['ftth'],
 });
+
+export default {
+  PACK_AVAILABILITY,
+};

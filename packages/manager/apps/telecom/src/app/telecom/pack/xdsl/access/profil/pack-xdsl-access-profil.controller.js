@@ -25,7 +25,7 @@ angular.module('managerApp').controller('XdslAccessProfileCtrl', function XdslAc
         }
 
         TucToast.success($translate.instant('xdsl_access_profile_doing'));
-      }, err => new TucToastError(err, 'xdsl_access_dslam_an_error_ocurred'),
+      }, (err) => new TucToastError(err, 'xdsl_access_dslam_an_error_ocurred'),
     );
   };
 

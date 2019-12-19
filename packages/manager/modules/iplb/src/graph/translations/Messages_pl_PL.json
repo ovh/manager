@@ -1,15 +1,15 @@
 {
- "iplb_graph_title": "Wykresy",
- "iplb_graph_connections_title": "Jednoczesne połączenia",
- "iplb_graph_rqpersec_title": "Zapytania na sekundę",
- "iplb_graph_bandwidth_title": "Przepustowość",
- "iplb_graph_scape_1h-ago": "1 H",
- "iplb_graph_scape_3h-ago": "3 H",
- "iplb_graph_scape_6h-ago": "6 H",
- "iplb_graph_scape_12h-ago": "12 H",
- "iplb_graph_scape_1d-ago": "1 D",
- "iplb_graph_scape_1w-ago": "7 D",
- "iplb_graph_scape_1n-ago": "1 M",
- "iplb_graph_scape_6n-ago": "6 M",
- "iplb_graph_scape_1y-ago": "1 Y"
+  "iplb_graph_title": "Wykresy",
+  "iplb_graph_connections_title": "Jednoczesne połączenia",
+  "iplb_graph_rqpersec_title": "Zapytania na sekundę",
+  "iplb_graph_bandwidth_title": "Przepustowość",
+  "iplb_graph_scape_1h-ago": "1 H",
+  "iplb_graph_scape_3h-ago": "3 H",
+  "iplb_graph_scape_6h-ago": "6 H",
+  "iplb_graph_scape_12h-ago": "12 H",
+  "iplb_graph_scape_1d-ago": "1 D",
+  "iplb_graph_scape_1w-ago": "7 D",
+  "iplb_graph_scape_1n-ago": "1 M",
+  "iplb_graph_scape_6n-ago": "6 M",
+  "iplb_graph_scape_1y-ago": "1 Y"
 }

@@ -46,9 +46,9 @@ class LogsStreamsAddCtrl {
           this.stream.data.webSocketEnabled = false;
         }
         const selectedCatalog = this.catalog.data.plans
-          .find(plan => plan.planCode === this.mainOffer.data.planCode);
+          .find((plan) => plan.planCode === this.mainOffer.data.planCode);
         const coldstorage = selectedCatalog.addonsFamily
-          .find(addon => addon.family === this.LogsConstants.COLDSTORAGE);
+          .find((addon) => addon.family === this.LogsConstants.COLDSTORAGE);
         this.coldStoragePrice.price = coldstorage.addons[0].plan.details.pricings.default[0]
           .price.text;
       });

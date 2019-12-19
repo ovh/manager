@@ -12,7 +12,7 @@ angular.module('Billing.services').service('BillingOrders', function BillingOrde
   };
 
   this.init = function init() {
-    currentTimePromise = BillingAuth.getCurrentTimestamp().then(timestamp => moment(timestamp));
+    currentTimePromise = BillingAuth.getCurrentTimestamp().then((timestamp) => moment(timestamp));
   };
 
   this.getOrders = function getOrders(opts) {

@@ -22,7 +22,7 @@ export default class MicrosoftOfficeLicenseUserDeleteCtrl {
 
       this.license.deleteUser(this.$scope.currentActionData.license, this.user.activationEmail)
         .then(() => this.alerter.success(this.$translate.instant('microsoft_office_license_detail_user_delete_success'), this.$scope.alerts.main))
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_detail_user_delete_error'), err, this.$scope.alerts.main))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_detail_user_delete_error'), err, this.$scope.alerts.main))
         .finally(() => {
           this.loaders.deleting = false;
           this.$rootScope.$broadcast('microsoft.office.license.user.delete');

@@ -105,8 +105,8 @@ export default class ExchangeTabSharedAccountsCtrl {
     $scope.getLoading = () => this.loading;
 
     $scope.isDisabled = () => this.isDisabled();
-    $scope.deleteAccount = account => this.deleteAccount(account);
-    $scope.delegationSettings = account => this.delegationSettings(account);
+    $scope.deleteAccount = (account) => this.deleteAccount(account);
+    $scope.delegationSettings = (account) => this.delegationSettings(account);
 
     this.debouncedRetrievingAccounts = debounce(this.retrievingAccounts, 300);
   }

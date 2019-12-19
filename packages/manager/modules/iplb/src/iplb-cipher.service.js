@@ -11,7 +11,7 @@ export default class IpLoadBalancerCipherService {
   getCipher(serviceName) {
     return this.IpLoadBalancing.v6().get({ serviceName })
       .$promise
-      .then(response => this.transformCipher(response.sslConfiguration))
+      .then((response) => this.transformCipher(response.sslConfiguration))
       .catch(this.CucServiceHelper.errorHandler('iplb_modal_cipher_change_loading_error'));
   }
 
@@ -20,7 +20,7 @@ export default class IpLoadBalancerCipherService {
       .$promise
       .then((response) => {
         const types = response.models['ipLoadbalancing.SslConfigurationEnum'].enum;
-        const mappedTypes = map(types, type => this.transformCipher(type));
+        const mappedTypes = map(types, (type) => this.transformCipher(type));
 
         return mappedTypes;
       })
@@ -38,7 +38,7 @@ export default class IpLoadBalancerCipherService {
   updateCipher(serviceName, newCipher) {
     return this.IpLoadBalancing.v6().put({ serviceName }, { sslConfiguration: newCipher })
       .$promise
-      .then(response => response)
+      .then((response) => response)
       .catch(this.CucServiceHelper.errorHandler('iplb_modal_cipher_change_updating_error'));
   }
 }

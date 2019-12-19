@@ -12,7 +12,7 @@ angular.module('Module.ip.controllers').controller('IpAddIpv6Ctrl', ($scope, $ro
         $scope.model.reverse,
       )
       .then(() => $rootScope.$broadcast('ips.table.refreshBlock', $scope.data.ipBlock))
-      .catch(reason => Alerter.alertFromSWS($translate.instant('ip_table_manage_add_ipv6block_failure'), reason));
+      .catch((reason) => Alerter.alertFromSWS($translate.instant('ip_table_manage_add_ipv6block_failure'), reason));
 
     $scope.resetAction();
   };

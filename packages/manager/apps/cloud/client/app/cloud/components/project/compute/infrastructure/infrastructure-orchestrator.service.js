@@ -92,7 +92,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         OvhApiCloudProjectSshKey.v6().query({
           serviceName: self.infra.serviceName,
         }).$promise.then((sshKeys) => {
-          set(options, 'sshKeyId', (find(sshKeys, sshKey => sshKey.regions.indexOf(options.region) > -1) || {}).id);
+          set(options, 'sshKeyId', (find(sshKeys, (sshKey) => sshKey.regions.indexOf(options.region) > -1) || {}).id);
         }),
       );
 
@@ -475,7 +475,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
 
       /*= =========  Add new IPs  ========== */
 
-      const addedIps = filter(ipsFromApi, ip => !self.infra.internet.getIpById(ip.id));
+      const addedIps = filter(ipsFromApi, (ip) => !self.infra.internet.getIpById(ip.id));
       angular.forEach(addedIps, (ip) => {
         set(ip, 'type', type);
         ip = self.infra.internet.addIpToList(ip); // eslint-disable-line
@@ -631,7 +631,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
 
       /*= =========  Add new instances  ========== */
 
-      const addedInstances = filter(instancesFromApi, vm => vm.status !== 'DELETED' && !self.infra.vrack.getVmById(vm.id));
+      const addedInstances = filter(instancesFromApi, (vm) => vm.status !== 'DELETED' && !self.infra.vrack.getVmById(vm.id));
       angular.forEach(addedInstances, (vm) => {
         self.infra.vrack.addVmToPublicCloudList(vm);
       });
@@ -697,7 +697,7 @@ angular.module('managerApp').service('CloudProjectComputeInfrastructureOrchestra
         {
           successRule(vm) {
             return (!vm.monthlyBilling || (vm.monthlyBilling && vm.monthlyBilling.status !== 'activationPending'))
-              && (every(continueStatus, continueState => vm.status !== continueState));
+              && (every(continueStatus, (continueState) => vm.status !== continueState));
           },
           namespace: 'cloud.infra.vms',
           notifyOnError: false,

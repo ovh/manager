@@ -17,8 +17,8 @@ export default class IpLoadBalancerServerFarmDeleteCtrl {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.IpLoadBalancerServerFarmService
         .delete(this.type, this.$stateParams.serviceName, this.farmId)
-        .then(response => this.$uibModalInstance.close(response))
-        .catch(error => this.$uibModalInstance.dismiss(error)),
+        .then((response) => this.$uibModalInstance.close(response))
+        .catch((error) => this.$uibModalInstance.dismiss(error)),
     });
     return this.delete.load();
   }

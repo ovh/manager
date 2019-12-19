@@ -21,8 +21,8 @@ angular
       },
       layout: 'modal',
       resolve: {
-        logId: /* @ngInject */ $stateParams => $stateParams.logId,
-        ldpAccount: /* @ngInject */ $stateParams => $stateParams.ldpAccount,
+        logId: /* @ngInject */ ($stateParams) => $stateParams.logId,
+        ldpAccount: /* @ngInject */ ($stateParams) => $stateParams.ldpAccount,
       },
     });
   })

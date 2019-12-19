@@ -306,7 +306,7 @@ AutoCompleteController.prototype.placeHighlightOnModel = function placeHighlight
   // we have to scroll and highlight the selected item.
   if (this.ngModel && !this.ngModel.isNew) {
     const selectedModel = this.ngModel;
-    this.highlightIndex = findIndex(this.options, item => item === selectedModel);
+    this.highlightIndex = findIndex(this.options, (item) => item === selectedModel);
 
     if (this.groupBy) {
       this.highlightedGroupKey = this.getArrangedGroupName(
@@ -316,7 +316,7 @@ AutoCompleteController.prototype.placeHighlightOnModel = function placeHighlight
       const optionToFind = this.options[this.highlightIndex];
       this.highlightedGroupIndex = findIndex(
         this.groupedOptions[this.highlightedGroupKey],
-        item => item === optionToFind,
+        (item) => item === optionToFind,
       );
     }
     this.$timeout(this.scrollDownToHighlightedIndex.bind(this));

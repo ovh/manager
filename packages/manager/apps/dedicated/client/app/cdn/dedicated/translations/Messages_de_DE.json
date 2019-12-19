@@ -1,5 +1,5 @@
 {
-  "cdn_dashboard_loading_error": "Beim Laden der Informationen Ihrer Dienstleistung ist ein Fehler aufgetreten.",
+  "cdn_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
   "cdn_configuration_add_domain_title_button": "Eine Domain zum CDN hinzufügen",
   "cdn_configuration_add_domain_title": "Eine Domain hinzufügen",
   "cdn_configuration_add_domain_step1_question": "Geben Sie einen Domainnamen an, der in Ihr CDN integriert werden soll:",

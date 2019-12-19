@@ -145,7 +145,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return OvhApiTelephony.Conference().v6().informations({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(infos => self.setInfos(infos).getParticipants(), (error) => {
+    }).$promise.then((infos) => self.setInfos(infos).getParticipants(), (error) => {
       if (error.status === 404) {
         // this means there is nobody in the conference
         // reset participant list
@@ -167,7 +167,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return OvhApiTelephony.Conference().Participants().Aapi().query({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(participants => self.updateParticipantList(filter(map(participants, 'value'), null)));
+    }).$promise.then((participants) => self.updateParticipantList(filter(map(participants, 'value'), null)));
   };
 
   TelephonyGroupNumberConference.prototype.save = function save() {
@@ -208,7 +208,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return OvhApiTelephony.Conference().v6().settings({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(settings => self.setSettings(settings));
+    }).$promise.then((settings) => self.setSettings(settings));
   };
 
   TelephonyGroupNumberConference.prototype.getWebAccess = function getWebAccess() {
@@ -219,7 +219,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(ids => $q.all(map(ids, id => OvhApiTelephony.Conference().WebAccess().v6().get({
+      .then((ids) => $q.all(map(ids, (id) => OvhApiTelephony.Conference().WebAccess().v6().get({
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
         id,
@@ -231,7 +231,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
   TelephonyGroupNumberConference.prototype.generateWebAccess = function generateWebAccess() {
     const self = this;
 
-    return TelephonyMediator.getApiModelEnum('telephony.ConferenceWebAccessTypeEnum').then(accessType => $q.all(map(accessType, type => OvhApiTelephony.Conference().WebAccess().v6().create({
+    return TelephonyMediator.getApiModelEnum('telephony.ConferenceWebAccessTypeEnum').then((accessType) => $q.all(map(accessType, (type) => OvhApiTelephony.Conference().WebAccess().v6().create({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
     }, {
@@ -246,7 +246,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     return $q
       .all(map(
         compact(ids),
-        id => OvhApiTelephony.Conference().WebAccess().v6()
+        (id) => OvhApiTelephony.Conference().WebAccess().v6()
           .remove({
             billingAccount: self.billingAccount,
             serviceName: self.serviceName,
@@ -266,14 +266,14 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
 
     return OvhApiMe.Document().v6()
       .upload(file.name, file)
-      .then(doc => OvhApiTelephony.Conference().v6()
+      .then((doc) => OvhApiTelephony.Conference().v6()
         .announceUpload({
           billingAccount: self.billingAccount,
           serviceName: self.serviceName,
         }, {
           documentId: doc.id,
         }).$promise
-        .then(task => tucVoipServiceTask
+        .then((task) => tucVoipServiceTask
           .startPolling(
             self.billingAccount,
             self.serviceName,
@@ -348,7 +348,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
   TelephonyGroupNumberConference.prototype.muteAllParticipants = function muteAllParticipants() {
     const self = this;
 
-    return $q.allSettled(map(self.participants, participant => participant.mute()));
+    return $q.allSettled(map(self.participants, (participant) => participant.mute()));
   };
 
   TelephonyGroupNumberConference
@@ -356,7 +356,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConference', ($q, $tim
     .unmuteAllParticipants = function unmuteAllParticipants() {
       const self = this;
 
-      return $q.allSettled(map(self.participants, participant => participant.unmute()));
+      return $q.allSettled(map(self.participants, (participant) => participant.unmute()));
     };
 
   /* ----------  EDITION  ----------*/

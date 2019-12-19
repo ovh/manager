@@ -49,7 +49,7 @@ class CloudProjectVirtualMachineAddService {
             osType: type,
           },
         ),
-        flavor => this.CloudFlavorService.augmentFlavor(flavor),
+        (flavor) => this.CloudFlavorService.augmentFlavor(flavor),
       ),
       {
         diskType: 'ssd',
@@ -60,13 +60,13 @@ class CloudProjectVirtualMachineAddService {
 
   static getFilteredFlavorsByRegion(flavors, regionCode) {
     const filteredFlavors = uniqBy(remove(flavors, { region: regionCode }), 'name');
-    const usedFlavorNames = uniq(map(filteredFlavors, flavor => flavor.name));
+    const usedFlavorNames = uniq(map(filteredFlavors, (flavor) => flavor.name));
     const notAvailableFlavors = filter(
       flavors,
-      flavor => !includes(usedFlavorNames, flavor.name),
+      (flavor) => !includes(usedFlavorNames, flavor.name),
     );
     const outOfRegionFlavors = map(uniqBy(notAvailableFlavors, 'name'), (flavor) => {
-      set(flavor, 'regions', map(filter(notAvailableFlavors, f => f.name === flavor.name), 'region'));
+      set(flavor, 'regions', map(filter(notAvailableFlavors, (f) => f.name === flavor.name), 'region'));
       set(flavor, 'disabled', 'NOT_AVAILABLE');
       delete flavor.region; // eslint-disable-line
       delete flavor.price; // eslint-disable-line
@@ -92,7 +92,7 @@ class CloudProjectVirtualMachineAddService {
         ),
         'vlanId',
       ),
-      network => assign(network, {
+      (network) => assign(network, {
         vlanId: padStart(network.vlanId, 4, '0'),
       }),
     );
@@ -125,7 +125,7 @@ class CloudProjectVirtualMachineAddService {
           ),
           (ids) => { networkIds = ids; },
         ),
-        networkId => this.OvhApiCloudProjectNetworkPrivateSubnet
+        (networkId) => this.OvhApiCloudProjectNetworkPrivateSubnet
           .v6()
           .query({ serviceName, networkId })
           .$promise,
@@ -138,13 +138,13 @@ class CloudProjectVirtualMachineAddService {
         return this.$q.all(collection);
       },
     )
-      .then(subNets => subNets)
+      .then((subNets) => subNets)
       .catch(() => []);
   }
 
   getRegionsByImageType(regions, allImages, imageType) {
     if (this.CloudImageService.constructor.isSnapshot(imageType)) {
-      return filter(regions, region => get(imageType, 'region', '') === region.microRegion.code);
+      return filter(regions, (region) => get(imageType, 'region', '') === region.microRegion.code);
     }
 
     const filteredImages = filter(cloneDeep(allImages), {
@@ -152,8 +152,8 @@ class CloudProjectVirtualMachineAddService {
       nameGeneric: get(imageType, 'nameGeneric'),
       status: 'active',
     });
-    const filteredRegions = uniq(map(filteredImages, image => image.region));
-    return filter(regions, region => indexOf(filteredRegions, region.microRegion.code) > -1);
+    const filteredRegions = uniq(map(filteredImages, (image) => image.region));
+    return filter(regions, (region) => indexOf(filteredRegions, region.microRegion.code) > -1);
   }
 
   static groupRegionsByDatacenter(regions) {

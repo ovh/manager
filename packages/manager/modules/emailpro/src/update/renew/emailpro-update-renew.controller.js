@@ -24,8 +24,8 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
     if ($scope.buffer.selectedMonthly.indexOf(account.primaryEmailAddress) === -1) {
       $scope.buffer.selectedMonthly.push(account.primaryEmailAddress);
     }
-    remove($scope.buffer.selectedYearly, num => num === account.primaryEmailAddress);
-    remove($scope.buffer.selectedDelete, num => num === account.primaryEmailAddress);
+    remove($scope.buffer.selectedYearly, (num) => num === account.primaryEmailAddress);
+    remove($scope.buffer.selectedDelete, (num) => num === account.primaryEmailAddress);
   };
 
   const setYearly = function setYearly(account) {
@@ -33,8 +33,8 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
     if ($scope.buffer.selectedYearly.indexOf(account.primaryEmailAddress) === -1) {
       $scope.buffer.selectedYearly.push(account.primaryEmailAddress);
     }
-    remove($scope.buffer.selectedMonthly, num => num === account.primaryEmailAddress);
-    remove($scope.buffer.selectedDelete, num => num === account.primaryEmailAddress);
+    remove($scope.buffer.selectedMonthly, (num) => num === account.primaryEmailAddress);
+    remove($scope.buffer.selectedDelete, (num) => num === account.primaryEmailAddress);
   };
 
   const setDeleteAtExpiration = function setDeleteAtExpiration(account) {
@@ -42,8 +42,8 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
     if ($scope.buffer.selectedDelete.indexOf(account.primaryEmailAddress) === -1) {
       $scope.buffer.selectedDelete.push(account.primaryEmailAddress);
     }
-    remove($scope.buffer.selectedMonthly, num => num === account.primaryEmailAddress);
-    remove($scope.buffer.selectedYearly, num => num === account.primaryEmailAddress);
+    remove($scope.buffer.selectedMonthly, (num) => num === account.primaryEmailAddress);
+    remove($scope.buffer.selectedYearly, (num) => num === account.primaryEmailAddress);
   };
 
   const bufferChanges = function bufferChanges(account) {

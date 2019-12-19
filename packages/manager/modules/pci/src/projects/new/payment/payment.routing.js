@@ -84,11 +84,19 @@ export default /* @ngInject */ ($stateProvider) => {
           currentStep.model.mode = get($transition$.params(), 'mode', 'paymentMethod');
           return currentStep.model;
         },
-        creditMinPrice: /* @ngInject */ (me, PciProjectNewService) => PciProjectNewService
+        creditMinPrice: /* @ngInject */ (CucCurrencyService, cucUcentsToCurrencyFilter,
+          me, PciProjectNewService) => PciProjectNewService
           .getFormattedCatalog(me.ovhSubsidiary)
-          .then(catalog => get(find(catalog.plans, {
-            planCode: 'credit.default',
-          }), 'details.pricings.default[0].price')),
+          .then((catalog) => {
+            const price = get(find(catalog.plans, {
+              planCode: 'credit.default',
+            }), 'pricings[0].price');
+            return {
+              currencyCode: catalog.locale.currencyCode,
+              text: cucUcentsToCurrencyFilter(price),
+              value: CucCurrencyService.convertUcentsToCurrency(price),
+            };
+          }),
       },
     });
 };

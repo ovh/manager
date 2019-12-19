@@ -87,7 +87,7 @@ export default class {
       this.updated = true;
       assign(this.service, pick(this.model.service, this.attributs), { price: null });
       return this.$timeout(() => this.close(), 1500);
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));

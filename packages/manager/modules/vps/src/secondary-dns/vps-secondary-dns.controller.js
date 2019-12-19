@@ -31,7 +31,7 @@ export default class {
           ...data,
           list: {
             ...data.list,
-            results: map(data.list.results, secondaryDns => ({
+            results: map(data.list.results, (secondaryDns) => ({
               ...secondaryDns,
               creationDateLabel: moment(secondaryDns.creationDate).format('LL'),
             })),
@@ -39,7 +39,7 @@ export default class {
         };
         return data.list.results;
       })
-      .catch(err => this.CucCloudMessage.error(err));
+      .catch((err) => this.CucCloudMessage.error(err));
   }
 
   add() {

@@ -23,7 +23,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookRemov
       self.isRemoving = false;
       self.removed = true;
       return $timeout(self.close, 1500);
-    }, error => self.cancel({
+    }, (error) => self.cancel({
       type: 'API',
       msg: error,
     }));

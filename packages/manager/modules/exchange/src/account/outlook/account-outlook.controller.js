@@ -166,8 +166,8 @@ export default class ExchangeDisplayOutlookCtrl {
     )
       .then((data) => {
         this.availableLicences = data;
-        this.versionsList = uniq(this.availableLicences.map(item => item.outlookVersion));
-        this.languageList = uniq(this.availableLicences.map(item => item.outlookLanguage));
+        this.versionsList = uniq(this.availableLicences.map((item) => item.outlookVersion));
+        this.languageList = uniq(this.availableLicences.map((item) => item.outlookLanguage));
         this.model.licenceVersion = head(this.versionsList);
       })
       .catch((fail) => {

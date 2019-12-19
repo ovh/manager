@@ -155,7 +155,7 @@ angular.module('UserAccount').service('userAccountServiceInfos', [
           },
           () => ({}),
         )
-        .then(returnResponse => $http
+        .then((returnResponse) => $http
           .get([constants.swsProxyRootPath, 'newAccount/corporationType'].join(''), {
             params: {
               country: params.country,
@@ -171,7 +171,7 @@ angular.module('UserAccount').service('userAccountServiceInfos', [
               return returnResponse;
             },
           ))
-        .then(returnResponse => $http
+        .then((returnResponse) => $http
           .get([constants.swsProxyRootPath, 'newAccount/legalform'].join(''), {
             params: {
               country: params.country,
@@ -187,7 +187,7 @@ angular.module('UserAccount').service('userAccountServiceInfos', [
               return returnResponse;
             },
           ))
-        .then(returnResponse => $http
+        .then((returnResponse) => $http
           .get([constants.swsProxyRootPath, 'newAccount/area'].join(''), {
             params: {
               country: params.country,
@@ -203,7 +203,7 @@ angular.module('UserAccount').service('userAccountServiceInfos', [
               return returnResponse;
             },
           ))
-        .then(returnResponse => $http.get([constants.swsProxyRootPath, 'newAccount.json'].join('')).then(
+        .then((returnResponse) => $http.get([constants.swsProxyRootPath, 'newAccount.json'].join('')).then(
           (response) => {
             set(returnResponse, 'availableGender', response.data.models['nichandle.GenderEnum'].enum);
             return returnResponse;
@@ -216,7 +216,7 @@ angular.module('UserAccount').service('userAccountServiceInfos', [
     };
 
     this.getMeModels = function getMeModels() {
-      return $http.get([constants.swsProxyRootPath, 'me.json'].join(''), { cache: cache.me }).then(response => response.data.models);
+      return $http.get([constants.swsProxyRootPath, 'me.json'].join(''), { cache: cache.me }).then((response) => response.data.models);
     };
 
     this.getDeveloperMode = function getDeveloperMode() {

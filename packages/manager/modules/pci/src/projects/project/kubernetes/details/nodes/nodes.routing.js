@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         deleteNode: /* @ngInject */ (
           $state, kubeId, projectId,
-        ) => nodeId => $state.go('pci.projects.project.kubernetes.details.nodes.delete', {
+        ) => (nodeId) => $state.go('pci.projects.project.kubernetes.details.nodes.delete', {
           kubeId,
           projectId,
           nodeId,
@@ -64,7 +64,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('kube_nodes'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('kube_nodes'),
       },
     });
 };

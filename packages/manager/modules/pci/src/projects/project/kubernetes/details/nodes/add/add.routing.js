@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => Kubernetes.getAvailableFlavors(
           cluster, flavors, projectId,
         ),
-        goBack: /* @ngInject */ goToKubernetesNodes => goToKubernetesNodes,
+        goBack: /* @ngInject */ (goToKubernetesNodes) => goToKubernetesNodes,
         flavors: /* @ngInject */ (
           cluster,
           OvhApiCloudProjectFlavor,

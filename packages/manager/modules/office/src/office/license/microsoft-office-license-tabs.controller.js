@@ -28,7 +28,7 @@ export default class MicrosoftOfficeLicenseTabsCtrl {
     };
 
     if (!isNull(this.$stateParams.tab)
-      && some(this.$scope.tabs, item => item === toUpper(this.$stateParams.tab))) {
+      && some(this.$scope.tabs, (item) => item === toUpper(this.$stateParams.tab))) {
       this.$scope.setSelectedTab(toUpper(this.$stateParams.tab));
     } else {
       this.$scope.setSelectedTab(this.defaultTab);

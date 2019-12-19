@@ -87,7 +87,7 @@ angular.module('managerApp')
     }
 
     function findFunction(func) {
-      return find(self.availableFunctions, f => f.value === func.function);
+      return find(self.availableFunctions, (f) => f.value === func.function);
     }
 
     this.getParameterFunctions = function getParameterFunctions() {

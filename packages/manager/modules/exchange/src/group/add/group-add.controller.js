@@ -84,7 +84,7 @@ export default class ExchangeAddGroupCtrl {
   }
 
   saveManagers(account) {
-    const managerObject = find(this.model.managersList, manager => manager.id === account.id);
+    const managerObject = find(this.model.managersList, (manager) => manager.id === account.id);
 
     if (account.manager && managerObject == null) {
       this.model.managersList.push({
@@ -95,7 +95,7 @@ export default class ExchangeAddGroupCtrl {
   }
 
   saveMembers(account) {
-    const memberObject = find(this.model.membersList, member => member.id === account.id);
+    const memberObject = find(this.model.membersList, (member) => member.id === account.id);
 
     if (account.member && memberObject == null) {
       this.model.membersList.push({
@@ -116,7 +116,7 @@ export default class ExchangeAddGroupCtrl {
       forEach(this.model.managersList, (account) => {
         const toLoad = find(
           this.accountsList.list.results,
-          manager => manager.id === account.id,
+          (manager) => manager.id === account.id,
         );
 
         if (toLoad != null) {
@@ -129,7 +129,7 @@ export default class ExchangeAddGroupCtrl {
   loadMembers() {
     if (this.model.membersList != null) {
       forEach(this.model.membersList, (account) => {
-        const toLoad = find(this.accountsList.list.results, member => member.id === account.id);
+        const toLoad = find(this.accountsList.list.results, (member) => member.id === account.id);
 
         if (toLoad != null) {
           toLoad.member = true;

@@ -1,16 +1,21 @@
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 
 export default class OvhCloudPriceHelper {
   /* @ngInject */
   constructor(
     $q,
+    CucCurrencyService,
+    cucUcentsToCurrencyFilter,
     OvhApiCloudProject,
     OvhApiMe,
-    OvhApiOrderCatalogFormatted,
+    OvhApiOrderCatalogPublic,
   ) {
     this.$q = $q;
-    this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
+    this.CucCurrencyService = CucCurrencyService;
+    this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiMe = OvhApiMe;
   }
@@ -18,9 +23,9 @@ export default class OvhCloudPriceHelper {
   getPrices(serviceName) {
     return this.$q.all({
       catalog: this.OvhApiMe.v6().get().$promise
-        .then(me => this.OvhApiOrderCatalogFormatted
+        .then((me) => this.OvhApiOrderCatalogPublic
           .v6()
-          .get({ catalogName: 'cloud', ovhSubsidiary: me.ovhSubsidiary })
+          .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary })
           .$promise),
       project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
     })
@@ -31,14 +36,28 @@ export default class OvhCloudPriceHelper {
         }
 
         const pricesMap = {};
-        forEach(projectPlan.addonsFamily, (family) => {
-          forEach(family.addons, (price) => {
-            pricesMap[price.plan.planCode] = price.plan.details.pricings.default.length
-              ? price.plan.details.pricings.default[0]
-              : undefined;
+        forEach(projectPlan.addonFamilies, (family) => {
+          forEach(family.addons, (planCode) => {
+            pricesMap[planCode] = this.transformPrice(
+              get(find(catalog.addons, { planCode }), 'pricings[0]'),
+              catalog.locale.currencyCode,
+            );
           });
         });
         return pricesMap;
       });
+  }
+
+  transformPrice(price, currencyCode) {
+    return {
+      ...price,
+      priceInUcents: price.price,
+      intervalUnit: price.interval,
+      price: {
+        currencyCode,
+        text: this.cucUcentsToCurrencyFilter(price.price),
+        value: this.CucCurrencyService.convertUcentsToCurrency(price.price),
+      },
+    };
   }
 }

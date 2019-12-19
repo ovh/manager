@@ -175,6 +175,7 @@ export const MENU = [
           state: 'pci.projects.project.billing',
         },
         regions: ['EU', 'CA'],
+        users: ['admin', 'billing'],
         title: 'Billing Control',
       },
       {
@@ -207,8 +208,15 @@ export const MENU = [
 
 export const UNIVERSE = 'Public Cloud';
 
+export const USER_TYPES_MAP = {
+  admin: 'contactAdmin',
+  billing: 'contactBilling',
+  tech: 'contactTech',
+};
+
 export default {
   HORIZON,
   MENU,
   UNIVERSE,
+  USER_TYPES_MAP,
 };

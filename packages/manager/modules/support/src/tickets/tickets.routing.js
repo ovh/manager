@@ -35,35 +35,35 @@ export const state = {
     },
   },
   resolve: {
-    filters: /* @ngInject */ $transition$ => $transition$
+    filters: /* @ngInject */ ($transition$) => $transition$
       .params().filters,
-    goToTicket: /* @ngInject */ $state => id => $state
+    goToTicket: /* @ngInject */ ($state) => (id) => $state
       .go('support.tickets.ticket', { id }),
-    goToTicketCreation: /* @ngInject */ $state => () => $state
+    goToTicketCreation: /* @ngInject */ ($state) => () => $state
       .go('support.tickets.new'),
-    gridColumnLastMessageFromTypeOptions: /* @ngInject */ ticketsService => ticketsService
+    gridColumnLastMessageFromTypeOptions: /* @ngInject */ (ticketsService) => ticketsService
       .buildGridColumnLastMessageFromTypeOptions(),
-    gridColumnStateTypeOptions: /* @ngInject */ ticketsService => ticketsService
+    gridColumnStateTypeOptions: /* @ngInject */ (ticketsService) => ticketsService
       .buildGridColumnStateTypeOptions(),
-    onGridParamsChange: /* @ngInject */ $state => params => $state
+    onGridParamsChange: /* @ngInject */ ($state) => (params) => $state
       .go(
         '.',
         { ...$state.params, ...params },
         { notify: false },
       ),
-    pageNumber: /* @ngInject */ $transition$ => $transition$
+    pageNumber: /* @ngInject */ ($transition$) => $transition$
       .params().pageNumber,
-    pageSize: /* @ngInject */ $transition$ => $transition$
+    pageSize: /* @ngInject */ ($transition$) => $transition$
       .params().pageSize,
-    reload: /* @ngInject */ $state => params => $state
+    reload: /* @ngInject */ ($state) => (params) => $state
       .transitionTo(
         $state.current,
         { ...$state.params, ...params },
         { reload: true, inherit: false },
       ),
-    sortBy: /* @ngInject */ $transition$ => $transition$
+    sortBy: /* @ngInject */ ($transition$) => $transition$
       .params().sortBy,
-    sortOrder: /* @ngInject */ $transition$ => $transition$
+    sortOrder: /* @ngInject */ ($transition$) => $transition$
       .params().sortOrder,
     tickets: /* @ngInject */ ($transition$, ticketService) => $transition$
       .params().tickets || ticketService.query($transition$.params()),

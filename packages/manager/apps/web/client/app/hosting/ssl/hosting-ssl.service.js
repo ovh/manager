@@ -54,7 +54,7 @@ angular.module('services').service(
         isString(get(certificate, 'status')),
       ];
 
-      if (!every(tests, test => test)) {
+      if (!every(tests, (test) => test)) {
         throw new TypeError('certificate parameter is not a valid certificate object');
       }
     }

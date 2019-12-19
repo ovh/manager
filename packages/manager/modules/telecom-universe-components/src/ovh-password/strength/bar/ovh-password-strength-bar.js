@@ -143,9 +143,9 @@ export default () => ({
           reject(
             countBy(
               p.toLowerCase().split(''),
-              val => val,
+              (val) => val,
             ),
-            val => val === 1,
+            (val) => val === 1,
           ),
           (memo, val) => memo + val,
           0,

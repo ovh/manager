@@ -41,7 +41,7 @@ angular.module('managerApp')
         self.orderUrl = order.url;
         self.prices = order.prices;
         return order;
-      }).catch(err => $translate('telephony_line_actions_line_calls_simultaneous_line_order_error').then((message) => {
+      }).catch((err) => $translate('telephony_line_actions_line_calls_simultaneous_line_order_error').then((message) => {
         TucToast.error(message);
         return $q.reject(err);
       })).finally(() => {
@@ -57,9 +57,9 @@ angular.module('managerApp')
           serviceName: $stateParams.serviceName,
           action: 'removeSimltaneousLines',
         }).$promise
-        .then(offerTasks => $q.all(map(
+        .then((offerTasks) => $q.all(map(
           offerTasks,
-          taskId => OvhApiTelephonyService.OfferTask().v6()
+          (taskId) => OvhApiTelephonyService.OfferTask().v6()
             .get({
               billingAccount: $stateParams.billingAccount,
               serviceName: $stateParams.serviceName,
@@ -68,7 +68,7 @@ angular.module('managerApp')
             .then((taskDetail) => {
               set(taskDetail, 'formatedDate', $filter('date')(taskDetail.executionDate, 'fullDate'));
               return taskDetail;
-            }).catch(err => $translate('telephony_line_actions_line_calls_simultaneous_line_offer_task_error').then((message) => {
+            }).catch((err) => $translate('telephony_line_actions_line_calls_simultaneous_line_offer_task_error').then((message) => {
               TucToast.error(message);
               return $q.reject(err);
             })),
@@ -92,7 +92,7 @@ angular.module('managerApp')
         self.showDoRemoveButtons = false;
         self.saved.simultaneousLines = self.options.simultaneousLines;
         return getOfferTasks();
-      }).catch(err => $translate('telephony_line_actions_line_calls_simultaneous_line_write_error').then((message) => {
+      }).catch((err) => $translate('telephony_line_actions_line_calls_simultaneous_line_write_error').then((message) => {
         TucToast.error([message, get(err, 'data.message')].join(' '));
         self.cancelRemove();
         self.options.minimumAvailableSimultaneousLines = self.saved.simultaneousLines;
@@ -144,7 +144,7 @@ angular.module('managerApp')
         self.contracts = order.contracts;
         unitPrices = order.prices;
         return order;
-      }).catch(err => $translate('telephony_line_actions_line_calls_simultaneous_line_write_error').then((message) => {
+      }).catch((err) => $translate('telephony_line_actions_line_calls_simultaneous_line_write_error').then((message) => {
         TucToast.error([message, get(err, 'data.message')].join(' '));
         return $q.reject(err);
       }));
@@ -180,7 +180,7 @@ angular.module('managerApp')
       self.options.simultaneousLines = currentLine.simultaneousLines;
       self.hundredLines = currentLine.simultaneousLines >= 100;
 
-      self.isTrunk = some(currentLine.offers, offer => startsWith(offer, 'voip.main.offer.trunk'));
+      self.isTrunk = some(currentLine.offers, (offer) => startsWith(offer, 'voip.main.offer.trunk'));
 
       if (self.isTrunk) {
         apiResources.getSimultaneousLines = OvhApiOrderTelephony.v6().getSimultaneousTrunkLines;
@@ -197,7 +197,7 @@ angular.module('managerApp')
 
       ]).finally(() => {
         self.loading.init = false;
-      }).catch(() => $translate('telephony_line_actions_line_calls_simultaneous_line_load_error').then(message => TucToast.error(message)));
+      }).catch(() => $translate('telephony_line_actions_line_calls_simultaneous_line_load_error').then((message) => TucToast.error(message)));
     }
 
     init();
@@ -226,7 +226,7 @@ angular.module('managerApp')
     };
 
     self.filterServices = function filterServices(services) {
-      return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1 && service.hasValidPublicOffer() && !service.isSipTrunkRates());
+      return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1 && service.hasValidPublicOffer() && !service.isSipTrunkRates());
     };
 
     self.getBulkParams = function getBulkParams() {

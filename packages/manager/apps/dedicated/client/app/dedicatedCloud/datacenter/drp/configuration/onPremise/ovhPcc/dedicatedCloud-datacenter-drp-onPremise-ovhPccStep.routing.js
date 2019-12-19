@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        datacenterId: /* @ngInject */ $transition$ => $transition$.params()
+        datacenterId: /* @ngInject */ ($transition$) => $transition$.params()
           .datacenterId,
         defaultLocalVraNetwork: /* @ngInject */ (
           $transition$,
@@ -31,10 +31,10 @@ export default /* @ngInject */ ($stateProvider) => {
             datacenterId: $transition$.params().datacenterId,
             serviceName: currentService.serviceName,
           }) : null),
-        drpInformations: /* @ngInject */ $transition$ => $transition$.params()
+        drpInformations: /* @ngInject */ ($transition$) => $transition$.params()
           .drpInformations,
-        goBackToChoice: /* @ngInject */ $state => selectedDrpType => $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
-        goToNextStep: /* @ngInject */ $state => drpInformations => $state.go('app.dedicatedClouds.datacenter.drp.onPremise.onPremisePccStep', { drpInformations }),
+        goBackToChoice: /* @ngInject */ ($state) => (selectedDrpType) => $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
+        goToNextStep: /* @ngInject */ ($state) => (drpInformations) => $state.go('app.dedicatedClouds.datacenter.drp.onPremise.onPremisePccStep', { drpInformations }),
         ipAddressDetails: /* @ngInject */ (
           currentService,
           dedicatedCloudDrp,

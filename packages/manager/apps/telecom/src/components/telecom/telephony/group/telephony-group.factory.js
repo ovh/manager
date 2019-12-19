@@ -179,7 +179,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
       if (self.getNumber(number.serviceName)) {
         self.numbers
-          .splice(findIndex(self.numbers, n => n.serviceName === number.serviceName), 1, number);
+          .splice(findIndex(self.numbers, (n) => n.serviceName === number.serviceName), 1, number);
       } else {
         self.addNumber(number);
       }
@@ -217,9 +217,9 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
       self.calledFees = flatten(
         map(
           calledFeesPrefix,
-          prefix => filter(
+          (prefix) => filter(
             consumptions,
-            consumption => startsWith(
+            (consumption) => startsWith(
               consumption.dialed,
               prefix,
             ) && consumption.price !== 0 && moment(consumption.creationDatetime).isAfter(moment().subtract(60, 'days').format()),
@@ -232,8 +232,8 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
         raw: flatten(
           map(
             groupRepaymentsPrefix,
-            prefix => filter(consumptions,
-              consumption => startsWith(consumption.dialed, prefix) && consumption.price !== 0),
+            (prefix) => filter(consumptions,
+              (consumption) => startsWith(consumption.dialed, prefix) && consumption.price !== 0),
           ),
         ),
       };

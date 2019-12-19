@@ -9,9 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
-        goBack: /* @ngInject */ goToDetailsPage => goToDetailsPage,
-        goToPublicCloud: /* @ngInject */ goToPublicCloudPage => goToPublicCloudPage,
+        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
+        goBack: /* @ngInject */ (goToDetailsPage) => goToDetailsPage,
+        goToPublicCloud: /* @ngInject */ (goToPublicCloudPage) => goToPublicCloudPage,
       },
     });
 };

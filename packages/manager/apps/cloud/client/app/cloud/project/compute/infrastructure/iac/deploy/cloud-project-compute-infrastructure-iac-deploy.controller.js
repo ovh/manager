@@ -28,11 +28,11 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
       .then((results) => {
         this.stack = results.stack;
         this.guides = results.stack.instructions;
-        this.guide = find(this.guides, guide => guide.language === this.user.language);
+        this.guide = find(this.guides, (guide) => guide.language === this.user.language);
 
         // Default is en_US
         if (!this.guide) {
-          this.guide = find(this.guides, guide => guide.language === 'en_US');
+          this.guide = find(this.guides, (guide) => guide.language === 'en_US');
         }
 
         if (!this.guide) {
@@ -48,7 +48,7 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
             serviceName: this.serviceName,
             stackId: this.stack.uuid,
           }).$promise
-          .then(session => this.$state.go('.', {
+          .then((session) => this.$state.go('.', {
             hTerm: {
               session,
             },

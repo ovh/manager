@@ -56,7 +56,7 @@ export default class NashaPartitionCustomSnapshotAddCtrl {
         },
       );
     })
-      .catch(error => this.goToPartitionPage(
+      .catch((error) => this.goToPartitionPage(
         this.$translate.instant('nasha_custom_snapshot_modal_fail', {
           partitionName: this.data.partition.partitionName,
           message: get(error, 'data.message'),

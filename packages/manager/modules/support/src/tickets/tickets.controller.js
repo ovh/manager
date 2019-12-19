@@ -81,7 +81,7 @@ export default class SupportController {
 
     const result = filter(
       this.currentTickets.data,
-      ticket => every(
+      (ticket) => every(
         this.filters,
         (currentFilter) => {
           const targets = currentFilter.property
@@ -94,7 +94,7 @@ export default class SupportController {
 
           return some(
             targets,
-            target => SupportController.match(
+            (target) => SupportController.match(
               get(ticket, target),
               currentFilter.operator,
               currentFilter.value,

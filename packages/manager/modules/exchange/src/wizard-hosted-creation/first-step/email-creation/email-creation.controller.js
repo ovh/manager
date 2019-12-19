@@ -78,7 +78,7 @@ export default class EmailCreationController {
       .retrievingAvailableAccounts(this.$routerParams.organization, this.$routerParams.productId)
       .then((availableAccounts) => {
         this.homepage.availableAccounts = availableAccounts
-          .filter(account => this.exchangeStates.constructor.isOk(account));
+          .filter((account) => this.exchangeStates.constructor.isOk(account));
         this.homepage.numberOfAvailableAccounts = this.homepage.availableAccounts.length;
       })
       .catch((error) => {
@@ -96,7 +96,7 @@ export default class EmailCreationController {
 
     return this.wizardHostedCreationEmailCreation
       .retrievingAccounts(this.$routerParams.organization, this.$routerParams.productId)
-      .then(accounts => this.wizardHostedCreationEmailCreation.retrievingAccounts(
+      .then((accounts) => this.wizardHostedCreationEmailCreation.retrievingAccounts(
         this.$routerParams.organization,
         this.$routerParams.productId,
         this.homepage.domainName,
@@ -139,7 +139,7 @@ export default class EmailCreationController {
     }
 
     const thereAreAccountsBeingDeleted = !isEmpty(this.homepage.otherAccounts.list.results
-      .filter(account => this.exchangeStates.constructor.isDeleting(account)));
+      .filter((account) => this.exchangeStates.constructor.isDeleting(account)));
     const thereIsNoRoomForMoreAccountCreation = this.homepage.numberOfAvailableAccounts === 0;
 
     return thereIsNoRoomForMoreAccountCreation && thereAreAccountsBeingDeleted;
@@ -151,7 +151,7 @@ export default class EmailCreationController {
     }
 
     const atLeastOneEmailIsCustomized = !isEmpty(this.homepage.otherAccounts.list.results
-      .filter(account => !this.exchangeStates.constructor.isDeleting(account)));
+      .filter((account) => !this.exchangeStates.constructor.isDeleting(account)));
 
     return atLeastOneEmailIsCustomized;
   }

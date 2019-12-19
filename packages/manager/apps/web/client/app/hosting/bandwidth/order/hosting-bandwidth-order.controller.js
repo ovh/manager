@@ -31,7 +31,7 @@ angular
           .then((models) => {
             $scope.trafficEnum = sortBy(
               models.models['hosting.web.BandwidthOfferEnum'].enum,
-              d => parseInt(d, 10),
+              (d) => parseInt(d, 10),
             );
           })
           .catch((err) => {

@@ -19,12 +19,12 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        datacenterId: /* @ngInject */ $transition$ => $transition$.params()
+        datacenterId: /* @ngInject */ ($transition$) => $transition$.params()
           .datacenterId,
-        drpInformations: /* @ngInject */ $transition$ => $transition$.params()
+        drpInformations: /* @ngInject */ ($transition$) => $transition$.params()
           .drpInformations,
-        goBackToChoice: /* @ngInject */ $state => selectedDrpType => $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
-        goToNextStep: /* @ngInject */ $state => drpInformations => $state.go('app.dedicatedClouds.datacenter.drp.ovh.secondPccStep', { drpInformations }),
+        goBackToChoice: /* @ngInject */ ($state) => (selectedDrpType) => $state.go('app.dedicatedClouds.datacenter.drp', { selectedDrpType }),
+        goToNextStep: /* @ngInject */ ($state) => (drpInformations) => $state.go('app.dedicatedClouds.datacenter.drp.ovh.secondPccStep', { drpInformations }),
         ipAddressDetails: /* @ngInject */ (
           currentService,
           dedicatedCloudDrp,

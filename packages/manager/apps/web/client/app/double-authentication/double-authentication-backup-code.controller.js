@@ -67,7 +67,7 @@ angular.module('App').controller(
             );
           }
         })
-        .catch(err => this.$q.reject(err));
+        .catch((err) => this.$q.reject(err));
     }
   },
 );

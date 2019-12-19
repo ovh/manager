@@ -17,7 +17,15 @@ import OvhPaymentMethodLegacy from './legacy/payment-method-legacy';
 
 export default class OvhPaymentMethodService {
   /* @ngInject */
-  constructor($log, $q, $translate, $window, coreConfig, OvhApiMe) {
+  constructor(
+    $log,
+    $q,
+    $translate,
+    $window,
+    coreConfig,
+    OvhApiMe,
+    paymentMethodPageUrl,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
@@ -27,6 +35,8 @@ export default class OvhPaymentMethodService {
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
       $log, $q, $translate, $window, OvhApiMe, coreConfig.getRegion(),
     );
+
+    this.paymentMethodPageUrl = paymentMethodPageUrl;
   }
 
   /**
@@ -35,7 +45,7 @@ export default class OvhPaymentMethodService {
    */
   hasDefaultPaymentMethod() {
     return this.getDefaultPaymentMethod()
-      .then(method => (!!method));
+      .then((method) => (!!method));
   }
 
   /**
@@ -46,7 +56,7 @@ export default class OvhPaymentMethodService {
     return this.getAllPaymentMethods({
       onlyValid: true,
       transform: true,
-    }).then(paymentMethods => find(paymentMethods, {
+    }).then((paymentMethods) => find(paymentMethods, {
       default: true,
     }) || null);
   }
@@ -62,10 +72,10 @@ export default class OvhPaymentMethodService {
 
         return map(
           registerablePaymentTypes,
-          paymentTypeOptions => new OvhPaymentMethodType(paymentTypeOptions),
+          (paymentTypeOptions) => new OvhPaymentMethodType(paymentTypeOptions),
         );
       })
-      .catch(error => (error.status === 404 ? [] : this.$q.reject(error)));
+      .catch((error) => (error.status === 404 ? [] : this.$q.reject(error)));
   }
 
   /**
@@ -180,7 +190,7 @@ export default class OvhPaymentMethodService {
   finalizePaymentMethod(paymentValidation, finalizeData = {}) {
     return this.OvhApiMe.Payment().Method().v6().finalize({
       paymentMethodId: paymentValidation.paymentMethodId,
-    }, finalizeData).$promise.then(paymentMethod => new OvhPaymentMethod(paymentMethod));
+    }, finalizeData).$promise.then((paymentMethod) => new OvhPaymentMethod(paymentMethod));
   }
 
   /**
@@ -209,7 +219,7 @@ export default class OvhPaymentMethodService {
         paymentMethodId,
       })
       .$promise
-      .then(paymentMethodOptions => new OvhPaymentMethod(paymentMethodOptions));
+      .then((paymentMethodOptions) => new OvhPaymentMethod(paymentMethodOptions));
   }
 
   /**
@@ -222,13 +232,13 @@ export default class OvhPaymentMethodService {
       .query(options.onlyValid ? {
         status: 'VALID',
       } : {}).$promise
-      .then(paymentMethodIds => this.$q.all(
+      .then((paymentMethodIds) => this.$q.all(
         map(
           paymentMethodIds,
-          paymentMethodId => this.getPaymentMethod(paymentMethodId),
+          (paymentMethodId) => this.getPaymentMethod(paymentMethodId),
         ),
       ))
-      .catch(error => (error.status === 404 ? [] : this.$q.reject(error)));
+      .catch((error) => (error.status === 404 ? [] : this.$q.reject(error)));
   }
 
   /**

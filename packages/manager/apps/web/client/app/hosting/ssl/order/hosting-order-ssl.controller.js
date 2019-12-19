@@ -75,7 +75,7 @@ angular.module('App').controller(
         this.$stateParams.productId,
         this.$stateParams.productId,
       )
-        .then(attachedDomain => (!attachedDomain.ssl
+        .then((attachedDomain) => (!attachedDomain.ssl
           ? this.HostingDomain.updateAttachedDomain(
             this.$stateParams.productId,
             this.$stateParams.productId,

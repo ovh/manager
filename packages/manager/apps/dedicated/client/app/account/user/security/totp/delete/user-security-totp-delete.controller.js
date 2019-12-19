@@ -55,7 +55,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
           $rootScope.$broadcast('doubleAuthTOTP.reload');
           $scope.resetAction();
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_security_double_auth_totp_delete_error'), err.data, 'doubleAuthAlertTotpDelete'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_totp_delete_error'), err, 'doubleAuthAlertTotpDelete'))
         .finally(() => {
           $scope.totp.isDeleting = false;
         });

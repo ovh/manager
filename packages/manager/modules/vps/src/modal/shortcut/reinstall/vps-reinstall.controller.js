@@ -33,8 +33,8 @@ export default class VpsReinstallCtrl {
   $onInit() {
     this.loaders.init = true;
     this.VpsService.getTaskInError(this.serviceName)
-      .then(tasks => this.loadTemplate(tasks))
-      .catch(err => this.loadTemplate(err))
+      .then((tasks) => this.loadTemplate(tasks))
+      .catch((err) => this.loadTemplate(err))
       .finally(() => { this.loaders.init = false; });
     this.loadSshKeys();
     this.loadSummary();
@@ -46,7 +46,7 @@ export default class VpsReinstallCtrl {
     if (!tasks || !tasks.length) {
       this.VpsService.getTemplates(this.serviceName)
         .then((data) => { this.templates = data.results; })
-        .catch(err => this.$uibModalInstance.dismiss(this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_polling_fail'))))
+        .catch((err) => this.$uibModalInstance.dismiss(this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_polling_fail'))))
         .finally(() => { this.loaders.template = false; });
     }
   }

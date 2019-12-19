@@ -19,6 +19,6 @@ export default class CloudProjectUsersCtrl {
 
   submit() {
     this.isLoading = true;
-    return this.confirmRoles(keys(pickBy(this.model, value => value)));
+    return this.confirmRoles(keys(pickBy(this.model, (value) => value)));
   }
 }

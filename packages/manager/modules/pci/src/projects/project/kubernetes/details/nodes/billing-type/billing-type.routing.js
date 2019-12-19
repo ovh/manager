@@ -14,10 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
         nodeName: null,
       },
       resolve: {
-        goBack: /* @ngInject */ goToKubernetesNodes => goToKubernetesNodes,
-        nodeId: /* @ngInject */ $transition$ => $transition$.params().nodeId,
-        nodeName: /* @ngInject */ $transition$ => $transition$.params().nodeName,
-        instanceId: /* @ngInject */ $transition$ => $transition$.params().instanceId,
+        goBack: /* @ngInject */ (goToKubernetesNodes) => goToKubernetesNodes,
+        nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
+        nodeName: /* @ngInject */ ($transition$) => $transition$.params().nodeName,
+        instanceId: /* @ngInject */ ($transition$) => $transition$.params().instanceId,
       },
     });
 };

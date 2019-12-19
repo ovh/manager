@@ -21,12 +21,12 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewUpdateNameCtrl
   changeName() {
     this.isLoading = true;
     return this.service.setClusterDetails(this.clusterId, { name: this.name })
-      .then(res => this.goToOverview(
+      .then((res) => this.goToOverview(
         this.$translate.instant('enterprise_cloud_database_name_change_success'),
         'success',
         res.id,
       ))
-      .catch(error => this.goToOverview(
+      .catch((error) => this.goToOverview(
         this.$translate.instant('enterprise_cloud_database_name_change_error', {
           message: get(error, 'data.message'),
         }),

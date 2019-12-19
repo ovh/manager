@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('dbaas.dbaasts-project.dbaasts-project-details.dbaasts-project-details-billing', {
     url: '/conso',

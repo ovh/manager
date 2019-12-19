@@ -74,7 +74,7 @@ export default class {
       .query({
         search: serviceId,
       }).$promise
-      .then(services => new BillingService(head(services.list.results)));
+      .then((services) => new BillingService(head(services.list.results)));
   }
 
   getServicesTypes(services) {
@@ -218,7 +218,7 @@ export default class {
     return this.DucUserContractService.getAgreementsToValidate(
       ({ contractId }) => values(CONTRACTS_IDS).includes(contractId),
     )
-      .then(contracts => map(contracts, ({ code: name, pdf: url, id }) => ({ name, url, id })));
+      .then((contracts) => map(contracts, ({ code: name, pdf: url, id }) => ({ name, url, id })));
   }
 
   updateRenew(service, agreements) {
@@ -241,7 +241,7 @@ export default class {
   hasRenewDay() {
     return this.ovhPaymentMethod
       .hasDefaultPaymentMethod()
-      .then(hasDefaultPaymentMethod => hasDefaultPaymentMethod && this.coreConfig.getRegion() === 'EU');
+      .then((hasDefaultPaymentMethod) => hasDefaultPaymentMethod && this.coreConfig.getRegion() === 'EU');
   }
 
   setNicRenew(nicRenew) {

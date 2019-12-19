@@ -62,7 +62,7 @@ export default class {
         return this.$timeout(() => this.close(), 1000);
       }
       return null;
-    }).catch(error => this.cancel({
+    }).catch((error) => this.cancel({
       type: 'API',
       msg: error,
     }));
@@ -88,7 +88,7 @@ export default class {
       promise = this.api.user.document.upload(
         this.receiverForm.uploadedFile.name,
         this.receiverForm.uploadedFile,
-      ).then(doc => this.api.sms.receivers.create({
+      ).then((doc) => this.api.sms.receivers.create({
         serviceName: this.$stateParams.serviceName,
       }, {
         autoUpdate: this.receiverForm.autoUpdate,
@@ -118,7 +118,7 @@ export default class {
   checkValidTextExtention(file) {
     const validExtensions = ['csv', 'txt'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       this.TucToastError(this.$translate.instant('sms_receivers_add_file_invalid'));
     }

@@ -13,11 +13,11 @@ export default class {
   updateRolePermissions(role) {
     this.services = map(
       this.roles.services,
-      service => ({
+      (service) => ({
         name: service.name,
         permissions: map(
           service.permissions,
-          permission => ({
+          (permission) => ({
             name: permission.name,
             role: find(permission.roles, { id: role.id }),
           }),

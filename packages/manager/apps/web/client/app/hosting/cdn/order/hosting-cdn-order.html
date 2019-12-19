@@ -1,87 +1,72 @@
-<div data-ng-controller="HostingOrderCdnCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="makeOrder"
-         data-wizard-title="'hosting_dashboard_service_order_cdn' | translate">
+<oui-back-button
+    data-on-click="$ctrl.goBack()">
+    <span data-translate="hosting_cdn_order_title"></span>
+</oui-back-button>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="loadOrder"
-             data-wizard-step-valid="isStepValid(1)">
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
 
-            <div class="text-center" data-ng-if="loading.init">
-                <oui-spinner></oui-spinner>
-            </div>
+<div data-ng-if="!$ctrl.loading">
+    <p data-translate="hosting_cdn_order_description"></p>
 
-            <div data-ng-if="!loading.init">
-                <div class="alert alert-danger" role="alert"
-                     data-translate="hosting_dashboard_cdn_order_not_available"
-                     data-ng-if="!isOrderable">
-                </div>
+    <oui-stepper
+        data-current-index="$ctrl.currentIndex"
+        data-on-finish="$ctrl.checkout()">
+        <oui-step-form
+            data-header="{{:: 'hosting_cdn_order_step_header_duration' | translate }}"
+            data-editable="$ctrl.isEditable && !$ctrl.checkoutLoading"
+            data-on-focus="$ctrl.resetCart()">
 
-                <div class="form-group" data-ng-if="isOrderable && !loading.model">
-                    <label class="control-label" for="cdnOffer"
-                           data-translate="hosting_dashboard_cdn_order_select_pack_offer"></label>
-                    <div class="oui-select">
-                        <select class="oui-select__input" id="cdnOffer"
-                                data-ng-model="model.offer"
-                                data-ng-options="offer as ((('hosting_dashboard_cdn_order_' + offer | translate) == 'hosting_dashboard_cdn_order_' + offer)? offer: ('hosting_dashboard_cdn_order_' + offer | translate)) for offer in availableOffers track by offer">
-                            <option value="" disabled
-                                    data-translate="select_placeholder"></option>
-                        </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <!-- Durations -->
+            <oui-field>
+                <oui-radio
+                    name="interval"
+                    data-ng-repeat="pricing in ::$ctrl.catalogAddon.pricings track by $index"
+                    data-model="$ctrl.interval"
+                    data-value="pricing.interval"
+                    data-required>
+                    <span
+                        data-translate="hosting_cdn_order_duration_label"
+                        data-translate-values="{
+                            duration: $ctrl.getDuration(pricing.interval)
+                        }">
+                    </span>
+                    <ovh-manager-order-catalog-price
+                        data-price="pricing.price"
+                        data-tax="pricing.tax"
+                        data-user="$ctrl.user">
+                    </ovh-manager-order-catalog-price>
+                </oui-radio>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form
+            name="checkout"
+            data-header="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_header_activation' : 'hosting_cdn_order_step_header_payment') | translate }}"
+            data-submit-text="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_submit_activate' : 'hosting_cdn_order_submit_pay') | translate }}"
+            data-cancel-text="{{:: 'hosting_cdn_order_cancel' | translate }}"
+            data-editable="::false"
+            data-description="{{:: ($ctrl.isOptionFree ? 'hosting_cdn_order_step_description_activation' : '') | translate }}"
+            data-loading="$ctrl.checkoutLoading"
+            data-valid="$ctrl.agreeContracts"
+            data-on-focus="$ctrl.prepareCheckout()"
+            data-on-cancel="$ctrl.goBack()"
+            data-prevent-next>
 
-        <div data-wizard-step
-             data-wizard-step-valid="isStepValid(2)"
-             data-wizard-step-on-load="getDuration">
+            <!-- Payment Means -->
+            <ovh-payment-method-choice
+                data-ng-if="::!$ctrl.isOptionFree"
+                data-model="$ctrl.autoPayWithPreferredPaymentMethod"
+                data-error-callback="$ctrl.goBackWithError()">
+            </ovh-payment-method-choice>
 
-            <div class="text-center" data-ng-if="loading.duration">
-                <oui-spinner></oui-spinner>
-            </div>
-
-            <div data-ng-if="!loading.duration">
-                <p data-translate="hosting_dashboard_cdn_order_choose_duration"></p>
-                <form>
-                    <div class="oui-radio" data-ng-repeat="duration in durations track by $index">
-                        <input type="radio" class="oui-radio__input" id="duration-{{$index}}" name="duration"
-                               data-ng-disabled="loading.duration && !model.duration"
-                               data-ng-model="model.duration"
-                               data-ng-value="duration">
-                        <label class="oui-radio__label-container" for="duration-{{$index}}">
-                            <span class="oui-radio__label">
-                                <span data-ng-bind="duration | wucDuration:'longDate'"></span>&nbsp;:&nbsp;
-                                <span data-ng-bind-html="details[duration].prices | price:user.ovhSubsidiary"></span>
-                                <oui-spinner data-size="s"
-                                            data-ng-if="!details[duration]"></oui-spinner>
-                            </span>
-                        </label>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div data-wizard-step
-             data-wizard-step-valid="isStepValid(3)">
-             <form>
-                 <div data-contracts="details[model.duration].contracts"
-                      data-full-text="false"
-                      data-ng-model="model.contract"></div>
-             </form>
-        </div>
-
-        <div data-wizard-step
-             data-wizard-step-valid="!loading.order">
-
-            <div class="text-center" data-ng-if="loading.order">
-                <oui-spinner></oui-spinner>
-            </div>
-
-            <p data-translate="hosting_dashboard_cdn_order_validation"
-               data-ng-if="!loading.order"></p>
-        </div>
-    </div>
+            <!-- Contracts -->
+            <ovh-manager-order-contracts
+                name="agreeContracts"
+                data-ng-if="$ctrl.cart"
+                data-items="$ctrl.cart.contracts"
+                data-model="$ctrl.agreeContracts">
+            </ovh-manager-order-contracts>
+        </oui-step-form>
+    </oui-stepper>
 </div>

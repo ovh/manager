@@ -30,16 +30,16 @@
     "test": "eslint --quiet src"
   },
   "dependencies": {
-    "@babel/core": "^7.6.4",
+    "@babel/core": "^7.7.5",
     "@babel/generator": "^7.6.4",
-    "@babel/parser": "^7.6.4",
+    "@babel/parser": "^7.7.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-env": "^7.7.6",
     "@ovh-ux/component-rollup-config": "^7.0.0",
     "@ovh-ux/manager-webpack-dev-server": "^2.5.0",
     "acorn": "^6.0.5",
     "acorn-dynamic-import": "^4.0.0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.5",
     "babel-plugin-angularjs-annotate": "^0.10.0",
     "cache-loader": "^4.1.0",
@@ -57,9 +57,9 @@
     "node-sass": "^4.11.0",
     "raw-loader": "^0.5.1",
     "resolve-url-loader": "^3.0.0",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^8.0.0",
     "script-loader": "^0.7.2",
-    "style-loader": "^0.23.0",
+    "style-loader": "^1.0.1",
     "url-loader": "^1.1.1",
     "webpack": "^4.41.2",
     "webpack-bundle-analyzer": "^2.13.1",
@@ -68,11 +68,11 @@
     "webpackbar": "^3.2.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.8.0",
-    "@typescript-eslint/parser": "^2.8.0",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "typescript": "^3.7.2"
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "typescript": "^3.7.3"
   }
 }

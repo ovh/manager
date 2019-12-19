@@ -16,14 +16,14 @@ export default class {
 
     return this.OvhApiMe.PaymentMethod().v6().query({
       status: VALID_PAYMENTMEAN,
-    }).$promise.then(paymentMethodIds => map(
+    }).$promise.then((paymentMethodIds) => map(
       paymentMethodIds,
-      paymentMethodId => Promise.all(
+      (paymentMethodId) => Promise.all(
         this.OvhApiMe.PaymentMethod().v6().get({
           id: paymentMethodId,
         }).$promise,
       ),
-    )).then(paymentMethods => find(paymentMethods, {
+    )).then((paymentMethods) => find(paymentMethods, {
       default: true,
     }));
   }

@@ -44,9 +44,9 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesShi
             return JSON.stringify(contactCopy);
           },
         ),
-        groups => groups[0],
+        (groups) => groups[0],
       ),
-      contact => get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
+      (contact) => get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
     );
   }
 

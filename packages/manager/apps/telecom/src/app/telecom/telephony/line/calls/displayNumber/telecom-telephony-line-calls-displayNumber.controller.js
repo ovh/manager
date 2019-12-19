@@ -33,7 +33,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
       self.form.identificationRestriction = self.identificationRestriction;
       self.displayedService = options.displayNumber;
       self.form.displayedService = angular.copy(self.displayedService);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -96,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

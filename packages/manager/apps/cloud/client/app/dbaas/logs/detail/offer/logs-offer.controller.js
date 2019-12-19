@@ -23,7 +23,7 @@ class LogsOfferCtrl {
   initLoaders() {
     this.getSelectedPlan = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsOfferService.getOffer(this.serviceName)
-        .then(selectedPlan => this.selectOffer(selectedPlan)),
+        .then((selectedPlan) => this.selectOffer(selectedPlan)),
     });
 
     this.offers = this.CucControllerHelper.request.getArrayLoader({
@@ -56,7 +56,7 @@ class LogsOfferCtrl {
   processOrder() {
     this.savingOffer = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsOrderService.saveOrder(this.serviceName, this.offerDetail)
-        .then(response => this.$window.open(response.order.url, '_target'))
+        .then((response) => this.$window.open(response.order.url, '_target'))
         .catch(() => this.CucControllerHelper.scrollPageToTop())
         .finally(() => this.goToHomePage()),
     });

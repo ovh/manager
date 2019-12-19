@@ -87,8 +87,8 @@ angular
         this.$scope.resetAction();
       });
 
-      this.$scope.editDescription = value => this.editDescription(value);
-      this.$scope.getRight = order => this.getRight(order);
+      this.$scope.editDescription = (value) => this.editDescription(value);
+      this.$scope.getRight = (order) => this.getRight(order);
       this.$scope.getUserAccessPolicyLabel = () => this.getUserAccessPolicyLabel();
       this.$scope.loadDedicatedCloud = () => this.loadDedicatedCloud();
       this.$scope.setAction = (action, data) => this.setAction(action, data);
@@ -105,7 +105,7 @@ angular
         .then((newPrices) => {
           this.$scope.newPriceInformation = newPrices.resources;
           this.$scope.hasChangePrices = newPrices.resources
-            .filter(resource => resource.changed === true).length > 0;
+            .filter((resource) => resource.changed === true).length > 0;
         });
     }
 
@@ -234,7 +234,7 @@ angular
       if (data.message) {
         messageToSend += ` (${data.message})`;
       } else if (some(data.messages)) {
-        const messageParts = map(data.messages, _message => `${_message.id} : ${_message.message}`);
+        const messageParts = map(data.messages, (_message) => `${_message.id} : ${_message.message}`);
         messageToSend = ` (${messageParts.join(', ')})`;
       }
 

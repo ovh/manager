@@ -21,10 +21,10 @@ export default class FailoverIpImportsController {
         type: 'failover',
       })
       .$promise
-      .then(ips => this.$q.all(
+      .then((ips) => this.$q.all(
         map(
           ips,
-          ip => this.OvhApiIp
+          (ip) => this.OvhApiIp
             .v6()
             .get({
               ip,
@@ -32,7 +32,7 @@ export default class FailoverIpImportsController {
             .$promise,
         ),
       ))
-      .then(ips => filter(ips, ({ routedTo }) => isEmpty(routedTo)
+      .then((ips) => filter(ips, ({ routedTo }) => isEmpty(routedTo)
         || (isObject(routedTo) && routedTo.serviceName !== this.projectId)))
       .then((ips) => {
         this.ips = ips;

@@ -16,7 +16,7 @@ const getBranchUrl = async (branch) => {
 const getCurrentBranch = () => execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'])
   .then(({ stdout: branchName }) => branchName);
 
-const getPackageInfos = name => execa('lerna', ['list', '-la', '--json'])
+const getPackageInfos = (name) => execa('lerna', ['list', '-la', '--json'])
   .then(({ stdout: packageList }) => {
     const searchPackage = find(JSON.parse(packageList), { name });
     if (!searchPackage) {
@@ -36,7 +36,7 @@ const getSubtreeBranch = (packageName, currentBranch) => {
 
 const subtreeSplit = (prefix, branch) => execa('git', ['subtree', 'split', `--prefix=${prefix}`, `--branch=${branch}`]);
 
-const pushBranch = branch => execa('git', ['push', 'origin', branch]);
+const pushBranch = (branch) => execa('git', ['push', 'origin', branch]);
 
 const subtreePush = (prefix, remote, branch) => execa('git', ['subtree', 'push', `--prefix=${prefix}`, remote, branch]);
 

@@ -68,7 +68,7 @@ export default class PciInstanceRescueController {
         .then(() => this.CucCloudMessage.info({
           textHtml: this.getInfosMessage(adminPassword),
         })))
-      .catch(err => this.goBack(
+      .catch((err) => this.goBack(
         this.$translate.instant(
           'pci_projects_project_instances_instance_rescue_error_rescue',
           {

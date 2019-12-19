@@ -11,8 +11,8 @@ angular.module('Billing').controller('Billing.PaymentDetailsCtrl', function Bill
 
   this.loadBills = ({ offset, pageSize }) => BillingPayments
     .getBillsIds($stateParams.id)
-    .then(ids => ({
-      data: ids.slice(offset - 1, offset - 1 + pageSize).map(id => ({ id })),
+    .then((ids) => ({
+      data: ids.slice(offset - 1, offset - 1 + pageSize).map((id) => ({ id })),
       meta: {
         totalCount: ids.length,
       },

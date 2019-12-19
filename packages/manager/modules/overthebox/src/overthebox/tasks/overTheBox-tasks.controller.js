@@ -22,7 +22,7 @@ export default /* @ngInject */ function ($translate, $q, $stateParams,
   self.getTasks = function getTasks() {
     OvhApiOverTheBox.v6().getTasks({ serviceName: $stateParams.serviceName }).$promise.then(
       (taskIds) => {
-        self.taskIds = taskIds.map(taskId => ({ id: taskId }));
+        self.taskIds = taskIds.map((taskId) => ({ id: taskId }));
       },
       (error) => {
         TucToast.error([$translate.instant('an_error_occured'), error.data.message].join(' '));
@@ -33,7 +33,7 @@ export default /* @ngInject */ function ($translate, $q, $stateParams,
   self.transformItem = function transformItem(row) {
     return OvhApiOverTheBox.v6()
       .getTask({ serviceName: $stateParams.serviceName, taskId: row.id }).$promise.then(
-        task => task,
+        (task) => task,
         (error) => {
           TucToast.error([$translate.instant('an_error_occured'), error.data.message].join(' '));
         },

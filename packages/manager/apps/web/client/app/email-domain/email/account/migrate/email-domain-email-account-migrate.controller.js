@@ -92,14 +92,14 @@ angular.module('App').controller(
         // Merge destinationServices with serviceTypes, and get available services
         angular.forEach(serviceTypes, (serviceType, index) => {
           if (data[index].length) {
-            const services = map(data[index], destinationService => ({
+            const services = map(data[index], (destinationService) => ({
               id: destinationService,
               name: destinationService,
               type: serviceType,
             }));
 
             this.destinationServices[serviceType] = services;
-            this.availableServices = this.availableServices + 1;
+            this.availableServices += 1;
           }
         });
 
@@ -113,7 +113,7 @@ angular.module('App').controller(
         this.email.domain,
         this.email.accountName,
         type,
-      ).catch(err => this.handleError(err));
+      ).catch((err) => this.handleError(err));
     }
 
     // Get Destination email (@configure.me)
@@ -149,7 +149,7 @@ angular.module('App').controller(
             [this.migrate.destinationEmail] = this.destinationEmails;
           }
         })
-        .catch(err => this.handleError(err))
+        .catch((err) => this.handleError(err))
         .finally(() => {
           this.loaders.isWaitingForDestinationEmails = false;
           this.isExchange = get(this, 'migrate.destinationService.type')
@@ -214,7 +214,7 @@ angular.module('App').controller(
 
           this.$scope.ctrlEmailDomainEmail.displayEmailsList();
         })
-        .catch(err => this.handleError(err))
+        .catch((err) => this.handleError(err))
         .finally(() => {
           this.loaders.isWaitingForMigration = false;
         });
@@ -235,7 +235,7 @@ angular.module('App').controller(
     }
 
     displayCheckMigrationErrors(errors) {
-      const checkMigrationErrorCodes = errors.map(error => get(error, 'code'));
+      const checkMigrationErrorCodes = errors.map((error) => get(error, 'code'));
 
       const shouldRetry = isEmpty(intersection(checkMigrationErrorCodes, [
         'ACCOUNT_EMPTY',

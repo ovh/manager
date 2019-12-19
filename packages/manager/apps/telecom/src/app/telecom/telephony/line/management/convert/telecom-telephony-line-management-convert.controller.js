@@ -10,7 +10,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     self.isLoading = true;
     return TelephonyMediator
       .getGroup($stateParams.billingAccount)
-      .then(group => group.getLine($stateParams.serviceName)).then((line) => {
+      .then((group) => group.getLine($stateParams.serviceName)).then((line) => {
         self.line = line;
         return line.getConvertionTask().then((task) => {
           self.task = task;
@@ -18,7 +18,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
       }).then(() => self.line.isIncludedInXdslPack().then((inPack) => {
         self.isInXdslPack = inPack;
       }))
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.isLoading = false;
       });
@@ -32,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     }, {}).$promise.then(() => self.line.getConvertionTask()).then((task) => {
       self.task = task;
       TucToast.success($translate.instant('telephony_line_convert_convert_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isConverting = false;
     });
   };
@@ -45,7 +45,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     }, {}).$promise.then(() => self.line.getConvertionTask()).then((task) => {
       self.task = task;
       TucToast.success($translate.instant('telephony_line_convert_cancel_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isCancelling = false;
     });
   };
@@ -67,14 +67,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
   };
 
   self.filterServices = function filterServices(services) {
-    let filteredServices = filter(services, service => !some(service.offers, method('includes', 'individual')));
+    let filteredServices = filter(services, (service) => !some(service.offers, method('includes', 'individual')));
 
-    filteredServices = filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    filteredServices = filter(filteredServices, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then((lines) => {
       filteredServices = filter(
         filteredServices,
-        service => !some(lines, { key: service.serviceName }),
+        (service) => !some(lines, { key: service.serviceName }),
       );
 
       return $q.when(filteredServices);

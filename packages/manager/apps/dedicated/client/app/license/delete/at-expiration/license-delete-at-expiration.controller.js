@@ -10,7 +10,7 @@ angular.module('Module.license').controller('Module.license.deleteAtExpirationCt
       Alerter.alertFromSWS($translate.instant('license_details_update_success'));
       $rootScope.$broadcast('License.Details.Refresh');
     })
-    .catch(err => Alerter.alertFromSWS($translate.instant('license_details_update_fail'), err))
+    .catch((err) => Alerter.alertFromSWS($translate.instant('license_details_update_fail'), err))
     .finally(() => {
       $scope.resetAction();
     });

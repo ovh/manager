@@ -22,8 +22,8 @@ export default class PciProjectStreamService {
         serviceName: projectId,
       })
       .$promise
-      .then(streams => this.$q.all(
-        streams.map(streamId => this.get(projectId, streamId)),
+      .then((streams) => this.$q.all(
+        streams.map((streamId) => this.get(projectId, streamId)),
       ));
   }
 
@@ -36,7 +36,7 @@ export default class PciProjectStreamService {
         streamId,
       })
       .$promise
-      .then(stream => new Stream({
+      .then((stream) => new Stream({
         ...stream,
       }));
   }
@@ -50,7 +50,7 @@ export default class PciProjectStreamService {
         streamId: stream.id,
       })
       .$promise
-      .then(stats => new Stream({
+      .then((stats) => new Stream({
         ...stream,
         stats,
       }));
@@ -67,7 +67,7 @@ export default class PciProjectStreamService {
         regionName: first(stream.regions),
       })
       .$promise
-      .then(region => new Stream({
+      .then((region) => new Stream({
         ...stream,
         region,
       }));
@@ -112,7 +112,7 @@ export default class PciProjectStreamService {
   getTokens(projectId, stream) {
     return this.PciProjectStreamsTokensService
       .getAll(projectId, stream)
-      .then(tokens => new Stream({
+      .then((tokens) => new Stream({
         ...stream,
         tokens,
       }));

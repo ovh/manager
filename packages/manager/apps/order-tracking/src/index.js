@@ -34,7 +34,7 @@ angular.module('orderTrackingApp', [
       url: '/:orderId',
       component: 'ovhOrderTrackingComponent',
       resolve: {
-        orderId: /* @ngInject */ $transition$ => $transition$.params().orderId,
+        orderId: /* @ngInject */ ($transition$) => $transition$.params().orderId,
         billingUrl: () => '#/billing/history',
       },
     });

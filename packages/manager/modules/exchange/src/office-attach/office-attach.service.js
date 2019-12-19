@@ -17,7 +17,7 @@ export default class OfficeAttach {
     }
 
     return this.OvhHttp.get(`/msServices/${serviceName}`, { rootPath: 'apiv6' }).then(
-      service => service.officeTenantServiceName,
+      (service) => service.officeTenantServiceName,
     );
   }
 
@@ -40,7 +40,7 @@ export default class OfficeAttach {
 
   retrievingIfUserAlreadyHasSubscribed(serviceName) {
     return this.retrievingServiceName(serviceName)
-      .then(officeAttachServiceName => isString(officeAttachServiceName));
+      .then((officeAttachServiceName) => isString(officeAttachServiceName));
   }
 
   savingHidingPreferences() {

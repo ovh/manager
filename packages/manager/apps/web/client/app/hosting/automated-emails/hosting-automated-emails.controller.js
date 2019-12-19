@@ -177,7 +177,7 @@ angular.module('App').controller(
 
           this.stats.chart.addSerie(
             this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_emails_sent'),
-            data.data.reverse().map(d => ({
+            data.data.reverse().map((d) => ({
               x: moment.utc(new Date(d.date)).valueOf(),
               y: d.volume,
             })),

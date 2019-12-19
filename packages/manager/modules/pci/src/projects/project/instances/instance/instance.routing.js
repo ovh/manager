@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:instanceId',
     component: 'pciProjectsProjectInstancesInstance',
     resolve: {
-      instanceId: /* @ngInject */ $transition$ => $transition$.params().instanceId,
+      instanceId: /* @ngInject */ ($transition$) => $transition$.params().instanceId,
       instance: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
@@ -23,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => PciProjectsProjectInstanceService
         .getInstancePrice(projectId, instance),
 
-      reverseDnsLink: /* @ngInject */ coreConfig => DEDICATED_IPS_URL[coreConfig.getRegion()],
+      reverseDnsLink: /* @ngInject */ (coreConfig) => DEDICATED_IPS_URL[coreConfig.getRegion()],
 
       ipMitigationLink: /* @ngInject */ (
         coreConfig,
@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
         instance,
       ) => FIREWALL_URL(get(head(instance.publicIpV4), 'ip'), coreConfig.getRegion()),
 
-      breadcrumb: /* @ngInject */ instance => instance.name,
+      breadcrumb: /* @ngInject */ (instance) => instance.name,
 
       instanceLink: /* @ngInject */ ($state, instance, projectId) => $state.href('pci.projects.project.instances.instance', {
         projectId,

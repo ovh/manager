@@ -26,25 +26,25 @@ export default class ImagesList {
 
   static groupByName(images) {
     const imagesByName = groupBy(images, 'name');
-    return map(imagesByName, image => new Image({
+    return map(imagesByName, (image) => new Image({
       ...omit(image[0], ['id', 'region']),
       regions: ImagesList.getImageRegions(image),
     }));
   }
 
   static getImageRegions(image) {
-    return map(image, imageDetails => pick(imageDetails, ['id', 'region']));
+    return map(image, (imageDetails) => pick(imageDetails, ['id', 'region']));
   }
 
   getImages(serviceName) {
     return this.OvhApiCloudProjectImage
       .v6().query({ serviceName }).$promise
-      .then(images => ImagesList.groupByName(images));
+      .then((images) => ImagesList.groupByName(images));
   }
 
   getSnapshots(serviceName) {
     return this.OvhApiCloudProjectSnapshot.v6().query({ serviceName }).$promise
-      .then(snapshots => map(snapshots, snapshot => new Image({
+      .then((snapshots) => map(snapshots, (snapshot) => new Image({
         ...snapshot,
         regions: ImagesList.getImageRegions(snapshot),
       })));
@@ -53,6 +53,6 @@ export default class ImagesList {
 
   static getCompatibleImages(images, region, flavorType) {
     return filter(images,
-      image => image.isAvailableInRegion(region) && image.isCompatibleWithFlavor(flavorType));
+      (image) => image.isAvailableInRegion(region) && image.isCompatibleWithFlavor(flavorType));
   }
 }

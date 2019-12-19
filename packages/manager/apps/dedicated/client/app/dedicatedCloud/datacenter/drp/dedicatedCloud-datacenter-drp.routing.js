@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $q,
           isDrpAvailable,
         ) => (!isDrpAvailable ? $q.reject() : $q.when()),
-        selectedDrpType: /* @ngInject */ $transition$ => ({
+        selectedDrpType: /* @ngInject */ ($transition$) => ({
           id: get($transition$.params().selectedDrpType, 'id', null),
         }),
         storedDrpInformations: /* @ngInject */ (
@@ -30,24 +30,24 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => dedicatedCloudDrp
           .checkForZertoOptionOrder(currentService.serviceName),
         storeZertoOptionOrderInUserPref: /* @ngInject */
-          dedicatedCloudDrp => (drpInformations, enableDrp) => dedicatedCloudDrp
+          (dedicatedCloudDrp) => (drpInformations, enableDrp) => dedicatedCloudDrp
             .storeZertoOptionOrderInUserPref(drpInformations, enableDrp),
 
         displayErrorMessage: /* @ngInject */
-          Alerter => errorMessage => Alerter
+          (Alerter) => (errorMessage) => Alerter
             .error(errorMessage, 'dedicatedCloudDatacenterDrpAlert'),
         displayInfoMessage: /* @ngInject */
-          Alerter => message => Alerter.set(
+          (Alerter) => (message) => Alerter.set(
             'alert-info',
             message,
             null,
             'dedicatedCloud_alert',
           ),
         displaySuccessMessage: /* @ngInject */
-          Alerter => successMessage => Alerter.success(successMessage, 'dedicatedCloud_alert'),
+          (Alerter) => (successMessage) => Alerter.success(successMessage, 'dedicatedCloud_alert'),
 
-        goToConfiguration: /* @ngInject */ $state => (drpInformations, stateToGo) => $state.go(`app.dedicatedClouds.datacenter.drp.${stateToGo}`, { drpInformations }),
-        goToSummary: /* @ngInject */ $state => drpInformations => $state.go('app.dedicatedClouds.datacenter.drp.summary', { drpInformations }),
+        goToConfiguration: /* @ngInject */ ($state) => (drpInformations, stateToGo) => $state.go(`app.dedicatedClouds.datacenter.drp.${stateToGo}`, { drpInformations }),
+        goToSummary: /* @ngInject */ ($state) => (drpInformations) => $state.go('app.dedicatedClouds.datacenter.drp.summary', { drpInformations }),
       },
     });
 };

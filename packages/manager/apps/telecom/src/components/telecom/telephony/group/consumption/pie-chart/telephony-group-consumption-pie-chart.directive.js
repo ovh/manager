@@ -2,7 +2,7 @@ angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
       .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.json`))
-      .then(x => x.default),
+      .then((x) => x.default),
   );
   $translate.refresh();
 });
@@ -44,7 +44,7 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
 
       // Create Pie
       const pie = d3.pie()
-        .value(d => d.count)
+        .value((d) => d.count)
         .sort(null);
 
       // Create arcs
@@ -53,8 +53,8 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
         .enter()
         .append('path')
         .attr('d', arc)
-        .attr('class', d => d.data.label)
-        .each(d => this._current === d);
+        .attr('class', (d) => d.data.label)
+        .each((d) => this._current === d);
 
       /* var pathAnim = function (arc, dir) {
                 switch (dir) {
@@ -108,11 +108,11 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
           arcs.transition()
             .duration(duration)
             .ease(d3.easeBounce)
-            .attr('class', d => d.data.label)
+            .attr('class', (d) => d.data.label)
             .attrTween('d', function d(a) {
               const i = d3.interpolate(this._current, a);
               this._current = i(0);
-              return t => arc(i(t));
+              return (t) => arc(i(t));
             });
         }
       });

@@ -43,8 +43,9 @@ export default class ExchangeUpdatePublicFolderCtrl {
         this.quotaUnitTranslation = this.services.$translate.instant(
           `unit_size_${this.publicFoldersOptions.maxQuota.unit}`,
         );
-        this.publicFoldersOptions.maxQuota.value = this.publicFoldersOptions.maxQuota.value
-          + this.folderToUpdate.quota.value;
+        /* eslint-disable-next-line operator-assignment */
+        this.publicFoldersOptions.maxQuota.value = this
+          .publicFoldersOptions.maxQuota.value + this.folderToUpdate.quota.value;
       })
       .catch((failure) => {
         this.services.messaging.writeError(

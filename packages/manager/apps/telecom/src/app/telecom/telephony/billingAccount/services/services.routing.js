@@ -12,17 +12,17 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
-      apiPath: /* @ngInject */ billingAccountId => `/telephony/${billingAccountId}/service`,
-      schema: /* @ngInject */ OvhApiTelephony => OvhApiTelephony
+      apiPath: /* @ngInject */ (billingAccountId) => `/telephony/${billingAccountId}/service`,
+      schema: /* @ngInject */ (OvhApiTelephony) => OvhApiTelephony
         .v6()
         .schema()
         .$promise,
-      telephonyFeatureTypes: /* @ngInject */ schema => get(schema.models, 'telephony.TypeEnum').enum,
-      telephonyServiceTypes: /* @ngInject */ schema => get(schema.models, 'telephony.TypeServiceEnum').enum,
+      telephonyFeatureTypes: /* @ngInject */ (schema) => get(schema.models, 'telephony.TypeEnum').enum,
+      telephonyServiceTypes: /* @ngInject */ (schema) => get(schema.models, 'telephony.TypeServiceEnum').enum,
       getServiceLink: /* @ngInject */ (
         billingAccountId,
         telecomBillingAccount,
-      ) => service => telecomBillingAccount
+      ) => (service) => telecomBillingAccount
         .getServiceLink(billingAccountId, service),
 
       viewService: /* @ngInject */ (

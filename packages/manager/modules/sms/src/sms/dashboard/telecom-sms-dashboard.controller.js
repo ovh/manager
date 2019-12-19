@@ -178,15 +178,15 @@ export default class {
         return this.$q
           .all(map(
             chunk(results.outgoing, 50),
-            id => this.api.sms.outgoing.getBatch({
+            (id) => this.api.sms.outgoing.getBatch({
               serviceName: this.$stateParams.serviceName,
               id,
-            }).$promise.catch(err => this.TucToastError(err)),
+            }).$promise.catch((err) => this.TucToastError(err)),
           ))
-          .then(chunkResult => map(flatten(chunkResult), 'value')).then((sms) => {
+          .then((chunkResult) => map(flatten(chunkResult), 'value')).then((sms) => {
             this.stats.data.outgoing = filter(sms, { sender }).length;
             this.stats.data.incoming = 0;
-          }).catch(err => this.TucToastError(err));
+          }).catch((err) => this.TucToastError(err));
       }
       this.stats.data.outgoing = results.outgoing.length;
       this.stats.data.incoming = results.incoming.length;

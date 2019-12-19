@@ -34,7 +34,7 @@ angular.module('App').controller(
             this.$translate.instant('domain_configuration_dns_entry_delete_mass_success'),
             this.$scope.alerts.main,
           ))
-          .catch(err => this.Alerter.alertFromSWS(
+          .catch((err) => this.Alerter.alertFromSWS(
             this.$translate.instant('domain_configuration_dns_entry_delete_mass_fail'),
             err,
             this.$scope.alerts.main,
@@ -49,7 +49,7 @@ angular.module('App').controller(
           this.$translate.instant('domain_configuration_dns_entry_delete_success'),
           this.$scope.alerts.main,
         ))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_configuration_dns_entry_delete_fail', {
             t0: `${this.entryToDelete.subDomain}.${this.entryToDelete.zone}`,
           }),

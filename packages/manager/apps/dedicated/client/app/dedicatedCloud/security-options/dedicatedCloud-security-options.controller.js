@@ -19,15 +19,15 @@ angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stat
   };
 
   $scope.allDisabled = function allDisabled() {
-    return !map($scope.options).some(item => item.state === 'enabled');
+    return !map($scope.options).some((item) => item.state === 'enabled');
   };
 
   $scope.anyEnabling = function anyEnabling() {
-    return map($scope.options).some(item => item.state === 'enabling');
+    return map($scope.options).some((item) => item.state === 'enabling');
   };
 
   $scope.nsxAndVropsCompliantPcc = function nsxAndVropsCompliantPcc() {
-    return !map($scope.pccCompliancies).some(compliant => !compliant);
+    return !map($scope.pccCompliancies).some((compliant) => !compliant);
   };
 
   function getGuide() {
@@ -66,7 +66,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stat
 
     function loadOptionsStates() {
       return $q.all(
-        $scope.optionNames.map(optionName => DedicatedCloud
+        $scope.optionNames.map((optionName) => DedicatedCloud
           .getOptionState(optionName, $stateParams.productId)
           .then((state) => {
             $scope.options[optionName] = {
@@ -103,7 +103,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stat
   init();
 
   function pollTask(taskId) {
-    return DedicatedCloud.getSelected($stateParams.productId).then(pcc => Poller.poll(`apiv6/dedicatedCloud/${pcc.name}/task/${taskId}`, null, {
+    return DedicatedCloud.getSelected($stateParams.productId).then((pcc) => Poller.poll(`apiv6/dedicatedCloud/${pcc.name}/task/${taskId}`, null, {
       successRule(task) {
         return task.state === 'done';
       },

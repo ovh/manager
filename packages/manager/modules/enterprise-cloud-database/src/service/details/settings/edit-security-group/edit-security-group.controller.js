@@ -29,7 +29,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGr
         this.$translate.instant('enterprise_cloud_database_service_details_settings_edit_security_group_success'),
         STATUS.SUCCESS,
       ))
-      .catch(error => this.goBack(
+      .catch((error) => this.goBack(
         this.$translate.instant('enterprise_cloud_database_service_details_settings_edit_security_group_error', {
           message: get(error, 'data.message'),
         }),

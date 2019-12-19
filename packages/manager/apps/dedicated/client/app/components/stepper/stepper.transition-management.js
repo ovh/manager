@@ -46,7 +46,7 @@ export default class {
           // ... unregister all the transitions
           forEach(
             this.transitionUnregistrationHooks,
-            hook => hook(),
+            (hook) => hook(),
           );
         },
       ),

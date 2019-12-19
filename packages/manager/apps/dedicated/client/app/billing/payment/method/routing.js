@@ -10,14 +10,14 @@ export default /* @ngInject */ ($stateProvider, $transitionsProvider, $urlRouter
     url: '/method',
     component: component.name,
     resolve: {
-      getActionHref: /* @ngInject */ $state => (action, params = {}) => {
+      getActionHref: /* @ngInject */ ($state) => (action, params = {}) => {
         if (action !== 'add') {
           return $state.href(`${name}.action.${action}`, params);
         }
         return $state.href(`${name}.${action}`, params);
       },
 
-      guides: /* @ngInject */ User => User.getUrlOf('guides'),
+      guides: /* @ngInject */ (User) => User.getUrlOf('guides'),
 
       paymentMethods: /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,
@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider, $transitionsProvider, $urlRouter
       ) => ovhPaymentMethod.getAllPaymentMethods({
         transform: true,
       })
-        .then(paymentMethods => filter(paymentMethods, ({ paymentType, status }) => {
+        .then((paymentMethods) => filter(paymentMethods, ({ paymentType, status }) => {
           if (paymentType !== OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT) {
             return true;
           }

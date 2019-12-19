@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      goToPreviousStep: /* @ngInject */ $state => drpInformations => $state.go('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep', { drpInformations }),
+      goToPreviousStep: /* @ngInject */ ($state) => (drpInformations) => $state.go('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep', { drpInformations }),
     },
   });
 };

@@ -32,7 +32,7 @@ angular.module('controllers').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_options_delete_error'),
-            Object.assign({}, err, { type: err.type || 'ERROR' }),
+            { ...err, type: err.type || 'ERROR' },
             this.$scope.alerts.main,
           );
         })

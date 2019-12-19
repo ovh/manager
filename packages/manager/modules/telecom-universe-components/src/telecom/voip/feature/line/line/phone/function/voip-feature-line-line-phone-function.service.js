@@ -37,7 +37,7 @@ export default class {
       .aggregate('serviceName')
       .aggregate('keyNum')
       .expand()
-      .execute().$promise.then(phoneResults => phoneResults.map((phone) => {
+      .execute().$promise.then((phoneResults) => phoneResults.map((phone) => {
         const splittedPath = phone.path.split('/');
 
         const functionKeysOptions = angular.extend(phone.value, {

@@ -105,7 +105,7 @@ export default class IpLoadBalancerGraphCtrl {
   }
 
   static humanizeLabels(labels) {
-    return labels.map(label => moment(label, 'X').format('MM/DD/YY - HH:mm:ss'));
+    return labels.map((label) => moment(label, 'X').format('MM/DD/YY - HH:mm:ss'));
   }
 
   onScaleChange() {

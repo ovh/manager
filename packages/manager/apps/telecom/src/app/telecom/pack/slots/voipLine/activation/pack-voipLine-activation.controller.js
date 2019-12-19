@@ -85,7 +85,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function P
       large = 2;
     }
     if (typeof callback === 'undefined') {
-      callback = val => val;
+      callback = (val) => val;
     }
     arrayData.forEach((data, index) => {
       const computedData = callback(data, localIndex, index);

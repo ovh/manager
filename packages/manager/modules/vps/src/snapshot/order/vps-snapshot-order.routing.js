@@ -9,9 +9,9 @@ import orderController from './vps-snapshot-order.controller';
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('vps.detail.snapshot.order', {
     url: '/order',
-    templateProvider: /* @ngInject */ stateVps => (stateVps
+    templateProvider: /* @ngInject */ (stateVps) => (stateVps
       .isLegacy ? legacyOrderTemplate : orderTemplate),
-    controllerProvider: /* @ngInject */ stateVps => (stateVps
+    controllerProvider: /* @ngInject */ (stateVps) => (stateVps
       .isLegacy ? legacyOrderController : orderController),
     controllerAs: '$ctrl',
     translations: {

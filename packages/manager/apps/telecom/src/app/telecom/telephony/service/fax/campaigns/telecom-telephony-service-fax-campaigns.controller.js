@@ -17,16 +17,16 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(campaignsIds => $q
+      .then((campaignsIds) => $q
         .all(map(
           campaignsIds,
-          id => OvhApiTelephony.Fax().Campaigns().v6().get({
+          (id) => OvhApiTelephony.Fax().Campaigns().v6().get({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
             id,
           }).$promise,
         ))
-        .then(campaigns => forEach(campaigns, (campaign) => {
+        .then((campaigns) => forEach(campaigns, (campaign) => {
           set(campaign, 'reference', campaign.reference.slice(1, -1));
           if (isDate(campaign.reference) && (campaign.status === 'error' || campaign.status === 'todo')) {
             set(campaign, 'reference', moment(campaign.reference).format());
@@ -75,7 +75,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     return fetchCampaigns().then((campaigns) => {
       self.campaigns.raw = campaigns;
       self.applySorting();
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.campaigns.isLoading = false;
     });
   };
@@ -207,7 +207,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     return fetchCampaigns().then((campaigns) => {
       self.campaigns.raw = angular.copy(campaigns);
       self.applySorting();
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.campaigns.isLoading = false;
     });
   }

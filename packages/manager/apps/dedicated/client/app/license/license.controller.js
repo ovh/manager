@@ -57,7 +57,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
 
     $scope.loadDatagridLicences = ({ offset, pageSize }) => $scope
       .loadLicenses(pageSize, offset - 1)
-      .then(licenses => ({
+      .then((licenses) => ({
         data: get(licenses, 'list.results'),
         meta: {
           totalCount: licenses.count,

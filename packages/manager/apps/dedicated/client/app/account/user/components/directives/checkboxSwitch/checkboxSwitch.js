@@ -49,7 +49,7 @@ angular.module('UserAccount').directive('checkboxSwitch', [
           elCursor.bind('mousemove touchmove', (e) => {
             const relativeX = (e.pageX || e.originalEvent.targetTouches[0].pageX)
               - el.offset().left;
-            let percent = relativeX / el.width() * 100;
+            let percent = (relativeX / el.width()) * 100;
             const left = 25;
             const right = 75;
 

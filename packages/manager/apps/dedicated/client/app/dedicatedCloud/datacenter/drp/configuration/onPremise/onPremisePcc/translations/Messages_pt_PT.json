@@ -1,5 +1,5 @@
 {
   "dedicatedCloud_datacenter_remote_vra_network": "Rede VRA Datacenter on-premises",
   "dedicatedCloud_datacenter_remote_vra_network_placeholder": "Indique a sub-rede VRA remota",
-  "dedicatedCloud_datacenter_local_vra_network_help": "Pode escolher a sua sub-rede VRA local ou utilizar uma proposta pela OVH acima"
+  "dedicatedCloud_datacenter_local_vra_network_help": "Pode escolher a sua sub-rede VRA ou utilizar outra proposta pela OVHcloud."
 }

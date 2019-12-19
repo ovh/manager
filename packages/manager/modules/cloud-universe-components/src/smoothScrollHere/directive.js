@@ -1,7 +1,7 @@
 import angular from 'angular';
 import isNumber from 'lodash/isNumber';
 
-export default /* @ngInject */ $timeout => ({
+export default /* @ngInject */ ($timeout) => ({
   restrict: 'A',
   link(scope, element, attrs) {
     const opts = scope.$eval(attrs.cucSmoothScrollHere);

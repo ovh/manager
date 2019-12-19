@@ -24,7 +24,7 @@ export default class FailoverIpController {
 
   onInstanceChange(instance) {
     const { ipCountries: countries } = find(this.regions, { name: instance.region });
-    this.REGIONS = countries.map(region => ({
+    this.REGIONS = countries.map((region) => ({
       id: region,
       name: this.$translate.instant(`pci_projects_project_failoverip_order_legacy_country_${region.toUpperCase()}`),
     }));

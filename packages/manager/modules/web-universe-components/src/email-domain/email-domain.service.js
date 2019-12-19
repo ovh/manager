@@ -406,7 +406,7 @@ export default class {
    * @param rules
    */
   createRules(serviceName, accountName, filterName, rules) {
-    return this.$q.all(rules.map(rule => this.createRule(
+    return this.$q.all(rules.map((rule) => this.createRule(
       serviceName,
       accountName,
       filterName,
@@ -429,8 +429,8 @@ export default class {
           rootPath: 'apiv6',
         },
       )
-      .then(rulesId => this.$q.all(
-        rulesId.map(id => this.getRule(serviceName, accountName, filterName, id)),
+      .then((rulesId) => this.$q.all(
+        rulesId.map((id) => this.getRule(serviceName, accountName, filterName, id)),
       ))
       .catch(() => []);
   }
@@ -462,9 +462,9 @@ export default class {
   deleteRules(serviceName, accountName, filterName, rulesId) {
     return this.$q
       .all(
-        rulesId.map(id => this.deleteRule(serviceName, accountName, filterName, id)),
+        rulesId.map((id) => this.deleteRule(serviceName, accountName, filterName, id)),
       )
-      .catch(data => data);
+      .catch((data) => data);
   }
 
   /**
@@ -577,7 +577,7 @@ export default class {
       {
         rootPath: 'apiv6',
       },
-    ).catch(err => ({ account: accountName, err }));
+    ).catch((err) => ({ account: accountName, err }));
   }
 
   /**
@@ -656,7 +656,7 @@ export default class {
       {
         namespace: 'email.domain.email.responder',
         successRule: {
-          state: task => !task,
+          state: (task) => !task,
         },
       },
     );
@@ -739,14 +739,14 @@ export default class {
       'responder',
     ];
 
-    return this.$q.all(actions.map(action => this.OvhHttp.get(`/email/domain/${serviceName}/task/${action}`, {
+    return this.$q.all(actions.map((action) => this.OvhHttp.get(`/email/domain/${serviceName}/task/${action}`, {
       rootPath: 'apiv6',
     })
-      .then(data => ({
+      .then((data) => ({
         action,
         ids: data,
       }))
-      .catch(err => this.$q.reject(err))));
+      .catch((err) => this.$q.reject(err))));
   }
 
   /**
@@ -1047,7 +1047,7 @@ export default class {
    * @returns {Promise}
    */
   createDelegatedRules(accountName, filterName, rules) {
-    return this.$q.all(rules.map(rule => this.OvhHttp
+    return this.$q.all(rules.map((rule) => this.OvhHttp
       .post(
         `/email/domain/delegatedAccount/${accountName}/filter/${encodeURI(filterName)}/rule`,
         {
@@ -1075,8 +1075,8 @@ export default class {
           rootPath: 'apiv6',
         },
       )
-      .then(rulesId => this.$q.all(
-        rulesId.map(id => this.getDelegatedRule(accountName, filterName, id)),
+      .then((rulesId) => this.$q.all(
+        rulesId.map((id) => this.getDelegatedRule(accountName, filterName, id)),
       ))
       .catch(() => []);
   }
@@ -1103,7 +1103,7 @@ export default class {
    * @param {array} rulesId
    */
   deleteDelegatedRules(accountName, filterName, rulesId) {
-    return this.$q.all(rulesId.map(id => this.deleteDelegatedRule(accountName, filterName, id)));
+    return this.$q.all(rulesId.map((id) => this.deleteDelegatedRule(accountName, filterName, id)));
   }
 
   /**

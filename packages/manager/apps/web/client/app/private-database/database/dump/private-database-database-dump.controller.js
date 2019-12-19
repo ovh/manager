@@ -54,7 +54,7 @@ angular.module('App').controller(
       this.privateDatabaseService
         .getDumpsBDD(this.productId, this.database.databaseName)
         .then((dumpsIds) => {
-          this.dumps = dumpsIds.map(id => ({ id }));
+          this.dumps = dumpsIds.map((id) => ({ id }));
         })
         .catch(() => {
           this.alerter.error(
@@ -70,7 +70,7 @@ angular.module('App').controller(
 
     transformItem(item) {
       if (item.transformed) {
-        return this.$q(resolve => resolve(item));
+        return this.$q((resolve) => resolve(item));
       }
       return this.privateDatabaseService
         .getDumpBDD(this.productId, this.database.databaseName, item.id)
@@ -143,7 +143,7 @@ angular.module('App').controller(
       this.database.waitRestore = true;
       this.dumpIdRestoring = opts.dumpId;
 
-      this.dumps.filter(dump => dump.id === opts.id).forEach((dump) => {
+      this.dumps.filter((dump) => dump.id === opts.id).forEach((dump) => {
         dump.waitRestore = true; // eslint-disable-line no-param-reassign
       });
     }
@@ -165,7 +165,7 @@ angular.module('App').controller(
       delete this.database.waitRestore;
       this.dumpIdRestoring = null;
 
-      this.dumps.filter(dump => dump.id === opts.id).forEach((dump) => {
+      this.dumps.filter((dump) => dump.id === opts.id).forEach((dump) => {
         delete dump.waitRestore; // eslint-disable-line no-param-reassign
         this.alerter.error(
           this.$translate.instant('privateDatabase_tabs_dumps_restore_fail'),

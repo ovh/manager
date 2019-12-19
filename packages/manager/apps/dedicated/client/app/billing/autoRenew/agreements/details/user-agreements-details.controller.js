@@ -44,7 +44,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements.det
           this.isCGVContract = this.agreement.contractId === CGV_AGREEMENT_ID;
 
           this.appendicesLink = get(
-            filter(GDPR_AGREEMENTS_INFOS, el => el.subsidiary === user.ovhSubsidiary),
+            filter(GDPR_AGREEMENTS_INFOS, (el) => el.subsidiary === user.ovhSubsidiary),
             '[0].more_informations_url',
             AGREEMENT_GENERIC_MORE_INFORMATIONS_URL,
           );

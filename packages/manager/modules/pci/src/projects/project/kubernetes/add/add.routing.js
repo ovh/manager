@@ -4,14 +4,14 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/new',
       component: 'ovhManagerPciProjectKubernetesAdd',
       redirectTo:
-        transition => transition
+        (transition) => transition
           .injector()
           .getAsync('regions')
-          .then(regions => (regions.length === 0 ? { state: 'pci.projects.project.kubernetes.onboarding' } : false)),
+          .then((regions) => (regions.length === 0 ? { state: 'pci.projects.project.kubernetes.onboarding' } : false)),
       resolve: {
-        goBack: /* @ngInject */ goToKubernetes => goToKubernetes,
+        goBack: /* @ngInject */ (goToKubernetes) => goToKubernetes,
 
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('kubernetes_add'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('kubernetes_add'),
       },
     });
 };

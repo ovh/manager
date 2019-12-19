@@ -17,10 +17,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
   function fetchAccountRestrictions() {
     return OvhApiMe.Telephony().DefaultIpRestriction().v6()
       .query().$promise
-      .then(ids => $q.all(ids.map(id => OvhApiMe.Telephony().DefaultIpRestriction().v6().get({
+      .then((ids) => $q.all(ids.map((id) => OvhApiMe.Telephony().DefaultIpRestriction().v6().get({
         id,
       }).$promise)))
-      .then(ips => sortBy(ips, 'id'));
+      .then((ips) => sortBy(ips, 'id'));
   }
 
   function init() {
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
       self.lineOptionsForm = angular.copy(self.lineOptions);
       self.accountRestrictions = result.accountRestrictions;
       self.accountRestrictionsForm = angular.copy(self.accountRestrictions);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -95,7 +95,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
       $timeout(() => {
         self.changeLineSuccess = false;
       }, 2000);
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isChangingLineOptions = false;
     });
   };
@@ -111,12 +111,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
       }
       return changed;
     });
-    const toAdd = filter(self.accountRestrictionsForm, ip => !ip.id);
+    const toAdd = filter(self.accountRestrictionsForm, (ip) => !ip.id);
     const toDelete = filter(
       self.accountRestrictions,
-      ip => ip.id && !find(self.accountRestrictionsForm, { id: ip.id }),
+      (ip) => ip.id && !find(self.accountRestrictionsForm, { id: ip.id }),
     );
-    const deletePromise = map(changes.concat(toDelete), 'id').map(id => OvhApiMe.Telephony().DefaultIpRestriction().v6().remove({
+    const deletePromise = map(changes.concat(toDelete), 'id').map((id) => OvhApiMe.Telephony().DefaultIpRestriction().v6().remove({
       id,
     }).$promise);
     const addPromise = map(changes.concat(toAdd), 'subnet').map((ip) => {
@@ -138,7 +138,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
           self.changeAccountSuccess = false;
         }, 2000);
       })
-      .catch(err => new TucToastError(err))
+      .catch((err) => new TucToastError(err))
       .finally(() => {
         self.isChangingAccountOptions = false;
       });
@@ -171,7 +171,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

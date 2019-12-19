@@ -87,7 +87,7 @@ angular.module('managerApp')
       }).$promise.then((ids) => {
         self.portabilities = ids.length;
         return self.portabilities;
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.loading.portability = false;
       });
     }
@@ -105,10 +105,10 @@ angular.module('managerApp')
         .query({
           billingAccount: $stateParams.billingAccount,
         }).$promise
-        .then(ids => $q
+        .then((ids) => $q
           .all(map(
             slice(ids, ids.length - 5),
-            chunkIds => OvhApiTelephony.HistoryConsumption().v6().getBatch({
+            (chunkIds) => OvhApiTelephony.HistoryConsumption().v6().getBatch({
               billingAccount: $stateParams.billingAccount,
               date: chunkIds,
             }).$promise,
@@ -119,7 +119,7 @@ angular.module('managerApp')
               set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
             });
             return self.bills;
-          }).catch(err => new TucToastError(err)).finally(() => {
+          }).catch((err) => new TucToastError(err)).finally(() => {
             self.loading.bills = false;
           }));
     }
@@ -161,7 +161,7 @@ angular.module('managerApp')
         }
 
         return self.consumption;
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         self.loading.consumption = false;
         return self.consumption;
       });
@@ -193,7 +193,7 @@ angular.module('managerApp')
       set(consumption, 'downloading', true);
       getFile(consumption, type).then((info) => {
         $window.location.href = info.url; // eslint-disable-line
-      }).catch(err => new TucToastError(err)).finally(() => {
+      }).catch((err) => new TucToastError(err)).finally(() => {
         set(consumption, 'downloading', false);
       });
     }

@@ -20,7 +20,7 @@ export default class IpLoadBalancerServerService {
 
   getServer(serviceName, farmId, serverId) {
     return this.getFarmType(serviceName, farmId)
-      .then(type => this.Server[type].get({
+      .then((type) => this.Server[type].get({
         serviceName,
         farmId,
         serverId,
@@ -52,7 +52,7 @@ export default class IpLoadBalancerServerService {
 
   delete(serviceName, farmId, serverId) {
     return this.getFarmType(serviceName, farmId)
-      .then(type => this.Server[type].delete({
+      .then((type) => this.Server[type].delete({
         serviceName,
         farmId,
         serverId,
@@ -80,7 +80,7 @@ export default class IpLoadBalancerServerService {
   getProxyProtocolVersions() {
     return this.IpLoadBalancing.v6().schema()
       .$promise
-      .then(schema => schema.models['ipLoadbalancing.ProxyProtocolVersionEnum'].enum)
+      .then((schema) => schema.models['ipLoadbalancing.ProxyProtocolVersionEnum'].enum)
       .catch(this.CucServiceHelper.errorHandler('iplb_server_request_error'));
   }
 }

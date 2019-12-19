@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .constant('DESKAAS_ACTIONS', {
     RESTORE: 'refreshVirtualDesktop',

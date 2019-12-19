@@ -60,14 +60,17 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
       .getSecurityPolicies($stateParams.productId, null, null, true)
       .then((policies) => {
         $scope.listIp = policies.list.results;
-        return policies.list.results.some(network => network.status === 'ALLOWED');
+        return policies.list.results.some((network) => network.status === 'ALLOWED');
       });
   }
 
   function loadUsers() {
     return DedicatedCloud
       .getUsers($stateParams.productId)
-      .then(ids => $q.all(ids.map(id => DedicatedCloud.getUserDetail($stateParams.productId, id))));
+      .then((ids) => $q.all(ids.map((id) => DedicatedCloud.getUserDetail(
+        $stateParams.productId,
+        id,
+      ))));
   }
 
   function checkUser() {
@@ -148,7 +151,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
   $scope.loadPrices = function loadPrices() {
     $scope.loaders.loading = true;
     return DedicatedCloud.getSelected($stateParams.productId)
-      .then(pcc => DedicatedCloud.fetchAllHostsPrices(
+      .then((pcc) => DedicatedCloud.fetchAllHostsPrices(
         $stateParams.productId,
         $scope.commercialRanges.oldCommercialVersion,
         $scope.commercialRanges.newCommercialVersion,

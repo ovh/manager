@@ -40,7 +40,7 @@ angular.module('managerApp').controller('PackHubicCtrl', class {
         this.services = map(
           filter(
             services,
-            service => service.path.includes(this.$stateParams.packName),
+            (service) => service.path.includes(this.$stateParams.packName),
           ),
           (service) => {
             const voucherUrl = `${this.URLS.hubicVoucher}?token=${get(service, 'value.voucher')}`;
@@ -55,14 +55,14 @@ angular.module('managerApp').controller('PackHubicCtrl', class {
 
         const servicesCodeUsed = filter(
           this.services,
-          service => service.value.isUsed,
+          (service) => service.value.isUsed,
         );
 
         this.loaders.voucher = !!servicesCodeUsed.length;
 
-        this.$q.allSettled(map(servicesCodeUsed, service => this.getVoucherDetails(get(service, 'value.domain'))))
-          .then(result => result)
-          .catch(result => result)
+        this.$q.allSettled(map(servicesCodeUsed, (service) => this.getVoucherDetails(get(service, 'value.domain'))))
+          .then((result) => result)
+          .catch((result) => result)
           .then((result) => {
             times(result.length, (index) => {
               if (!includes([400, 404], get(result[index], 'status')) && has(result[index].result, 'email')) {

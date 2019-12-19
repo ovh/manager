@@ -41,7 +41,7 @@ export default class VpsOptionTerminateCtrl {
     this.terminate = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.cancelOption(this.serviceName, this.vpsOption)
         .then(() => this.CucCloudMessage.success(this.$translate.instant('vps_configuration_cancel_option_cancel_success')))
-        .catch(err => this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_cancel_option_cancel_error')))
+        .catch((err) => this.CucCloudMessage.error(err.message || this.$translate.instant('vps_configuration_cancel_option_cancel_error')))
         .finally(() => this.$uibModalInstance.close()),
     });
     return this.terminate.load();

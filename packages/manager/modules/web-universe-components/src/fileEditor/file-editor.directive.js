@@ -78,7 +78,7 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
     };
 
     $scope.removeItem = (item) => {
-      remove($scope.ngModel, it => it === item);
+      remove($scope.ngModel, (it) => it === item);
     };
 
     $scope.removeAll = () => {
@@ -92,7 +92,7 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
     $scope.goToNextError = () => {
       const nextError = findIndex(
         $scope.ngModel,
-        item => !$scope.wucFileEditorItemValidator(item),
+        (item) => !$scope.wucFileEditorItemValidator(item),
       );
       if (nextError !== -1) {
         $location.hash(`err-${nextError}`);
@@ -113,10 +113,10 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
 
         if (!$scope.wucFileEditorMatchExistingItems) {
           $scope.ngModel = $scope.ngModel
-            .filter(item => !!item && $scope.wucFileEditorExistingItems.indexOf(item) === -1);
+            .filter((item) => !!item && $scope.wucFileEditorExistingItems.indexOf(item) === -1);
         } else {
           $scope.ngModel = $scope.ngModel
-            .filter(item => $scope.wucFileEditorExistingItems.indexOf(item) !== -1);
+            .filter((item) => $scope.wucFileEditorExistingItems.indexOf(item) !== -1);
         }
       } else {
         $scope.ngModel = [];
@@ -133,7 +133,7 @@ export default /* @ngInject */ ($anchorScroll, $location) => ({
           }
 
           $scope.wucFileEditorErrors = $scope.ngModel
-            .filter(item => !$scope.wucFileEditorItemValidator(item));
+            .filter((item) => !$scope.wucFileEditorItemValidator(item));
         }
       },
       true,

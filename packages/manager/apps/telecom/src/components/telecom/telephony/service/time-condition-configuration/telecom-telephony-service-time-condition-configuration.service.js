@@ -36,12 +36,12 @@ angular.module('managerApp').service('voipTimeConditionConfiguration', class voi
   importConfiguration(file) {
     return this.OvhApiMe.Document().v6()
       .upload(file.name, file)
-      .then(doc => this.OvhApiMe.Document().v6()
+      .then((doc) => this.OvhApiMe.Document().v6()
         .get({
           id: doc.id,
         }).$promise
-        .then(newDoc => this.$http.get(newDoc.getUrl)
-          .then(data => data)
-          .catch(error => this.$q.reject(error))));
+        .then((newDoc) => this.$http.get(newDoc.getUrl)
+          .then((data) => data)
+          .catch((error) => this.$q.reject(error))));
   }
 });

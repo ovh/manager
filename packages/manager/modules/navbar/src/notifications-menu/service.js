@@ -63,14 +63,15 @@ export default class Notifications {
   }
 
   convertToSubLink(notification) {
-    return Object.assign({}, notification, {
-      actionClicked: toUpdate => this.toggleSublinkAction(toUpdate),
+    return {
+      ...notification,
+      actionClicked: (toUpdate) => this.toggleSublinkAction(toUpdate),
       acknowledged: notification.status.includes(ACKNOWLEDGED_STATUS),
       isActive: notification.status.includes(ACTIVE_STATUS),
-      linkClicked: toUpdate => this.toggleSublinkAction(toUpdate, true),
+      linkClicked: (toUpdate) => this.toggleSublinkAction(toUpdate, true),
       time: Notifications.formatTime(notification.date),
       url: notification.urlDetails.href,
-    });
+    };
   }
 
   setRefreshTime(sublinks) {
@@ -87,10 +88,10 @@ export default class Notifications {
   acknowledgeAll() {
     if (this.navbarContent) {
       const toAcknowledge = this.navbarContent.subLinks
-        .filter(subLink => !subLink.acknowledged && subLink.isActive);
+        .filter((subLink) => !subLink.acknowledged && subLink.isActive);
       if (toAcknowledge.length) {
         this.OvhApiNotificationAapi
-          .post({ acknowledged: toAcknowledge.map(x => x.id) }).$promise
+          .post({ acknowledged: toAcknowledge.map((x) => x.id) }).$promise
           .then(() => {
             toAcknowledge.forEach((sublink) => {
               set(sublink, 'acknowledged', true);

@@ -15,11 +15,11 @@ class LogsOrderService {
       serviceName,
     }).$promise
       .then((plans) => {
-        const promises = plans.map(plan => this.LogsOfferService.getOfferDetail(plan.planCode));
+        const promises = plans.map((plan) => this.LogsOfferService.getOfferDetail(plan.planCode));
         return this.$q.all(promises).then((planDetails) => {
           const list = map(
             plans,
-            item => assignIn(item, find(planDetails, { reference: item.planCode }),
+            (item) => assignIn(item, find(planDetails, { reference: item.planCode }),
               { renewalPrice: this.constructor.getRenewalPrice(item) }),
           );
           const sortedList = list.sort((a, b) => a.renewalPrice.value - b.renewalPrice.value);
@@ -29,7 +29,7 @@ class LogsOrderService {
   }
 
   static getRenewalPrice(item) {
-    return item.prices.filter(price => price.capacities.indexOf('renew') > -1)[0].price;
+    return item.prices.filter((price) => price.capacities.indexOf('renew') > -1)[0].price;
   }
 
   saveOrder(serviceName, offerDetail) {

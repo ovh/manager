@@ -93,7 +93,7 @@ class ServerTrafficService {
     // If quota used > quotaSize we have to make sure percent is not greater than 100.
     const percent = quotaSize.value <= upsizedQuotaUsed.value
       ? 100
-      : upsizedQuotaUsed.value / quotaSize.value * 100;
+      : (upsizedQuotaUsed.value / quotaSize.value) * 100;
 
     const overQuota = quotaSize.value <= upsizedQuotaUsed.value;
     const nearQuota = overQuota && percent > 80;

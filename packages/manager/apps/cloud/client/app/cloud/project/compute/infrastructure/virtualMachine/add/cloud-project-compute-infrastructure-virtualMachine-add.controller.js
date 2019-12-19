@@ -15,7 +15,7 @@ import some from 'lodash/some';
 class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   constructor($q, $state, $stateParams, atInternet,
     CloudFlavorService, CloudImageService, CloudProjectVirtualMachineAddService, CloudRegionService,
-    CucControllerHelper, OvhCloudPriceHelper, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
+    CucControllerHelper, CucPriceHelper, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
     OvhApiCloudProjectInstance, OvhApiCloudProjectNetworkPrivate, OvhApiCloudProjectNetworkPublic,
     OvhApiCloudProjectQuota, OvhApiCloudProjectRegion, OvhApiCloudProjectSnapshot,
     OvhApiCloudProjectSshKey, CucCurrencyService, CucRegionService, CucServiceHelper, ovhDocUrl,
@@ -26,9 +26,9 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.atInternet = atInternet;
     this.CloudFlavorService = CloudFlavorService;
     this.CloudImageService = CloudImageService;
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
     this.CloudRegionService = CloudRegionService;
     this.CucControllerHelper = CucControllerHelper;
+    this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
@@ -123,7 +123,7 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       snapshots: this.OvhApiCloudProjectSnapshot.v6()
         .query({ serviceName: this.serviceName }).$promise
         .then((snapshots) => {
-          this.snapshots = map(snapshots, snapshot => set(snapshot, 'distribution', get(snapshot, 'type', 'linux')));
+          this.snapshots = map(snapshots, (snapshot) => set(snapshot, 'distribution', get(snapshot, 'type', 'linux')));
         })
         .catch(this.CucServiceHelper.errorHandler('cpcivm_add_step1_shapshots_ERROR')),
       sshKeys: this.OvhApiCloudProjectSshKey.v6().query({ serviceName: this.serviceName }).$promise,
@@ -211,7 +211,7 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     return this.$q.all({
       regions: this.OvhApiCloudProjectRegion.v6().query({ serviceName: this.serviceName }).$promise
         .then((regions) => {
-          this.regions = map(regions, region => this.CucRegionService.getRegion(region));
+          this.regions = map(regions, (region) => this.CucRegionService.getRegion(region));
           return this.VirtualMachineAddService.getRegionsByImageType(this.regions, this.images, get(this.model, 'imageType'));
         }),
       availableRegions: this.fetchAvailableRegions(),
@@ -249,12 +249,12 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       loaderFunction: () => this.OvhApiCloudProjectRegion.AvailableRegions().v6()
         .query({ serviceName: this.serviceName })
         .$promise
-        .then(regionIds => map(regionIds, (region) => {
+        .then((regionIds) => map(regionIds, (region) => {
           const regionDetails = this.CucRegionService.getRegion(region.name);
           set(regionDetails, 'notAvailable', true);
           return regionDetails;
         }))
-        .catch(error => this.CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
+        .catch((error) => this.CucServiceHelper.errorHandler('cpci_add_regions_get_available_regions_error')(error)),
     });
     return this.availableRegions.load();
   }
@@ -345,7 +345,7 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     return this.$q.all({
       flavors: this.fetchingAugmentedFlavors(),
       hasVRack: this.VirtualMachineAddService.hasVRack(this.serviceName),
-      prices: this.OvhCloudPriceHelper.getPrices(this.serviceName),
+      prices: this.CucPriceHelper.getPrices(this.serviceName),
     })
       .then(({ flavors, hasVRack, prices }) => {
         this.prices = prices;
@@ -363,7 +363,7 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
         });
 
         // Remove flavor without price (not in the catalog)
-        remove(flavors, flavor => isEmpty(get(flavor, 'price.price.text', '')));
+        remove(flavors, (flavor) => isEmpty(get(flavor, 'price.price.text', '')));
 
         let filteredFlavors = this.VirtualMachineAddService.constructor.getFilteredFlavorsByRegion(
           flavors,
@@ -375,14 +375,14 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
         if (restrictedFlavors.length > 0) {
           filteredFlavors = filter(
             filteredFlavors,
-            flavor => indexOf(restrictedFlavors, flavor.shortType) > -1,
+            (flavor) => indexOf(restrictedFlavors, flavor.shortType) > -1,
           );
         }
 
         // Remove incompatible flavors with selected image
         filteredFlavors = filter(filteredFlavors, (flavor) => {
           const restrictedImages = get(flavor, 'imageType', false);
-          return restrictedImages === false || some(restrictedImages, name => (new RegExp(name, 'gi')).test(this.model.imageType.name));
+          return restrictedImages === false || some(restrictedImages, (name) => (new RegExp(name, 'gi')).test(this.model.imageType.name));
         });
 
         this.groupedFlavors = this.VirtualMachineAddService.groupFlavorsByCategory(

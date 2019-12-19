@@ -69,7 +69,7 @@ class ServerConsumptionCtrl {
   }
 
   initTrafficOrder() {
-    this.$q.all([this.initTrafficOption(), this.initTrafficOrderables()]).catch(data => this.Alerter.alertFromSWS(this.$translate.instant('server_traffic_loading_error'), data.data, 'trafficError'));
+    this.$q.all([this.initTrafficOption(), this.initTrafficOrderables()]).catch((data) => this.Alerter.alertFromSWS(this.$translate.instant('server_traffic_loading_error'), data.data, 'trafficError'));
   }
 
   initTrafficOption() {

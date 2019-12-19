@@ -99,7 +99,7 @@ export default class DomainDnsCtrl {
           isUsed: true,
           toDelete: false,
         }).length;
-        return this.$q.all(map(tabDns.dns, nameServer => this.Domain.getNameServerStatus(
+        return this.$q.all(map(tabDns.dns, (nameServer) => this.Domain.getNameServerStatus(
           this.$stateParams.productId,
           nameServer.id,
         )));
@@ -133,7 +133,7 @@ export default class DomainDnsCtrl {
     remove(this.dns.table.dns, item);
     const filtered = filter(
       this.dns.table.dns,
-      currentDNS => !currentDNS.toDelete,
+      (currentDNS) => !currentDNS.toDelete,
     );
     this.atLeastOneToRemove = this.dns.table.dns && filtered.length > 1;
   }
@@ -148,7 +148,7 @@ export default class DomainDnsCtrl {
   checkAtLeastOneDns() {
     const filtered = filter(
       this.dns.table.dns,
-      currentDNS => !currentDNS.toDelete
+      (currentDNS) => !currentDNS.toDelete
         && ((currentDNS.host && currentDNS.editedHost == null)
           || (currentDNS.editedHost && currentDNS.editedHost !== '')),
     );
@@ -185,12 +185,12 @@ export default class DomainDnsCtrl {
   saveDns() {
     let dns = filter(
       this.dns.table.dns,
-      currentDNS => currentDNS.editedHost !== '' || currentDNS.editedIp,
+      (currentDNS) => currentDNS.editedHost !== '' || currentDNS.editedIp,
     );
 
     if (!isEmpty(dns)) {
       this.loading.table = true;
-      dns = map(dns, d => ({
+      dns = map(dns, (d) => ({
         host: d.editedHost || d.host,
         ip: d.editedIp || d.ip || undefined,
       }));
@@ -229,7 +229,7 @@ export default class DomainDnsCtrl {
 
     this.dns.table.dns = filter(
       this.dns.table.dns,
-      currentDNS => currentDNS.host || currentDNS.ip,
+      (currentDNS) => currentDNS.host || currentDNS.ip,
     );
     this.editMode = false;
   }

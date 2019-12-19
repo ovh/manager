@@ -17,14 +17,15 @@ export default class {
       serviceName,
     }, privateNetwork).$promise
       .then(({ id }) => this.checkPrivateNetworkCreationStatus(serviceName, id))
-      .then(network => this.createSubnets(serviceName, network.id, subnets));
+      .then((network) => this.createSubnets(serviceName, network.id, subnets));
   }
 
   createSubnets(serviceName, networkId, subnets) {
-    return Promise.all(subnets.map(subnet => this.OvhApiCloudProjectNetworkPrivateSubnet.v6().save({
-      serviceName,
-      networkId,
-    }, subnet).$promise));
+    return Promise
+      .all(subnets.map((subnet) => this.OvhApiCloudProjectNetworkPrivateSubnet.v6().save({
+        serviceName,
+        networkId,
+      }, subnet).$promise));
   }
 
   checkPrivateNetworkCreationStatus(serviceName, networkId) {

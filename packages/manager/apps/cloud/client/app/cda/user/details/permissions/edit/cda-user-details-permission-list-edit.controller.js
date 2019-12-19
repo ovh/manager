@@ -64,12 +64,12 @@ angular.module('managerApp')
 
       $q
         .allSettled([initUserPermissions(), initPools()])
-        .then(poolsData => computePoolsDisplay(poolsData[0], poolsData[1]))
+        .then((poolsData) => computePoolsDisplay(poolsData[0], poolsData[1]))
         .then((poolsDisplay) => {
           self.datas.poolsDisplay = poolsDisplay;
         })
         .catch((errors) => {
-          displayError(find(errors, error => error));
+          displayError(find(errors, (error) => error));
         })
         .finally(() => {
           self.loading = false;
@@ -77,7 +77,7 @@ angular.module('managerApp')
     }
 
     function hasActivePermissionForPool(permissions) {
-      return findIndex(permissions, value => value === true) !== -1;
+      return findIndex(permissions, (value) => value === true) !== -1;
     }
 
     self.saveUserPermissions = function saveUserPermissions() {

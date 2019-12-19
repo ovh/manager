@@ -20,7 +20,7 @@ angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function XdslOr
           if (elt.status !== 'done') {
             allSuccessTmp = false;
           }
-          const comments = elt.comments.map(thisComment => `<span>${thisComment}</span>`).join('');
+          const comments = elt.comments.map((thisComment) => `<span>${thisComment}</span>`).join('');
           self.events.push({
             badgeClass: ORDER_STATUS[elt.status].class,
             badgeIconClass: ORDER_STATUS[elt.status].icon,

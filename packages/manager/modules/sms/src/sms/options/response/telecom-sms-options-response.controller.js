@@ -107,10 +107,11 @@ export default class {
   fetchSenders() {
     return this.api.smsSenders.query({
       serviceName: this.$stateParams.serviceName,
-    }).$promise.then(sendersIds => this.$q.all(map(sendersIds, sender => this.api.smsSenders.get({
-      serviceName: this.$stateParams.serviceName,
-      sender,
-    }).$promise)).then(senders => filter(senders, { status: 'enable' })));
+    }).$promise
+      .then((sendersIds) => this.$q.all(map(sendersIds, (sender) => this.api.smsSenders.get({
+        serviceName: this.$stateParams.serviceName,
+        sender,
+      }).$promise)).then((senders) => filter(senders, { status: 'enable' })));
   }
 
   /**

@@ -103,7 +103,7 @@ angular.module('managerApp').factory('CloudProjectComputeInfraVrackFactory',
       return {
         publicCloud: map(
           this.publicCloud.sortedKeys,
-          vmId => self.publicCloud.get(vmId).prepareToJson(),
+          (vmId) => self.publicCloud.get(vmId).prepareToJson(),
         ),
       };
     };

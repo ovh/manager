@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/streams',
       component: 'pciProjectStreams',
 
-      redirectTo: transition => Promise.all([
+      redirectTo: (transition) => Promise.all([
         transition.injector().getAsync('lab'),
         transition.injector().getAsync('streams'),
       ]).then(([lab, streams]) => {
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       }),
 
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_streams_title'),
+        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('pci_projects_project_streams_title'),
         lab: /* @ngInject */ (
           PciProjectLabsService,
           projectId,
@@ -28,19 +28,19 @@ export default /* @ngInject */ ($stateProvider) => {
         getStreamDetails: /* @ngInject */ (
           PciProjectStreamService,
           projectId,
-        ) => stream => PciProjectStreamService.getStats(projectId, stream),
-        viewStream: /* @ngInject */ ($state, projectId) => stream => $state.go('pci.projects.project.streams.stream', {
+        ) => (stream) => PciProjectStreamService.getStats(projectId, stream),
+        viewStream: /* @ngInject */ ($state, projectId) => (stream) => $state.go('pci.projects.project.streams.stream', {
           projectId,
           streamId: stream.id,
         }),
-        deleteStream: /* @ngInject */ ($state, projectId) => stream => $state.go('pci.projects.project.streams.delete', {
+        deleteStream: /* @ngInject */ ($state, projectId) => (stream) => $state.go('pci.projects.project.streams.delete', {
           projectId,
           streamId: stream.id,
         }),
         addStreamLink: /* @ngInject */($state, projectId) => $state.href('pci.projects.project.streams.add', {
           projectId,
         }),
-        streamLink: /* @ngInject */ ($state, projectId) => stream => $state.href('pci.projects.project.streams.stream', {
+        streamLink: /* @ngInject */ ($state, projectId) => (stream) => $state.href('pci.projects.project.streams.stream', {
           projectId,
           streamId: stream.id,
         }),

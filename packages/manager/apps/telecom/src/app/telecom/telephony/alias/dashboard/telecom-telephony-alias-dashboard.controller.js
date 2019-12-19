@@ -92,12 +92,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
           .filter(({ serviceName }) => isEqual(serviceName, destination));
         return destinationLine;
       }))
-      .catch(error => error);
+      .catch((error) => error);
   }
 
   fetchServiceConsumption() {
     function transformIncomingCallsData(calls) {
-      return calls.filter(call => call.wayType !== 'outgoing')
+      return calls.filter((call) => call.wayType !== 'outgoing')
         .map((call) => {
           set(call, 'durationAsDate', new Date(call.duration * 1000));
           return call;
@@ -105,7 +105,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     }
 
     function transformOutgoingCallsData(calls) {
-      return calls.filter(call => call.wayType !== 'incoming' && call.duration > 0)
+      return calls.filter((call) => call.wayType !== 'incoming' && call.duration > 0)
         .map((call) => {
           set(call, 'durationAsDate', new Date(call.duration * 1000));
           return call;
@@ -119,15 +119,15 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
 
         this.consumption.incoming = {
           total: incomingCalls.length,
-          duration: new Date(sumBy(incomingCalls, call => call.duration) * 1000),
+          duration: new Date(sumBy(incomingCalls, (call) => call.duration) * 1000),
         };
 
         this.consumption.outgoing = {
           total: outgoingCalls.length,
-          duration: new Date(sumBy(outgoingCalls, call => call.duration) * 1000),
+          duration: new Date(sumBy(outgoingCalls, (call) => call.duration) * 1000),
           outplan: round(sumBy(
-            outgoingCalls.filter(call => call.planType === 'outplan' && call.priceWithoutTax),
-            call => call.priceWithoutTax.value,
+            outgoingCalls.filter((call) => call.planType === 'outplan' && call.priceWithoutTax),
+            (call) => call.priceWithoutTax.value,
           ), 2),
         };
 
@@ -144,11 +144,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
       },
     };
 
-    const _incomingCalls = incomingCalls.map(call => (
+    const _incomingCalls = incomingCalls.map((call) => (
       { callDate: moment(call.creationDatetime).format('YYYY-MM-DD').toString() }
     ));
 
-    const _outgoingCalls = outgoingCalls.map(call => (
+    const _outgoingCalls = outgoingCalls.map((call) => (
       { callDate: moment(call.creationDatetime).format('YYYY-MM-DD').toString() }
     ));
 
@@ -168,7 +168,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     function convertCallsToChartData(calls) {
       const groupedCalls = groupBy(calls, 'callDate');
 
-      return xAxisKeys.map(key => ({
+      return xAxisKeys.map((key) => ({
         x: key,
         y: groupedCalls[key] ? groupedCalls[key].length : 0,
       }));

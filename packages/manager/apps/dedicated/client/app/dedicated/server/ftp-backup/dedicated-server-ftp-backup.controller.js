@@ -86,7 +86,7 @@ angular.module('App')
           if (result.backup.activated === true) {
             this.$scope.ftpBackup.model = result.backup;
             this.$scope.ftpBackup.use = result.backup.usage
-              ? result.backup.usage.value * result.backup.quota.value / 100
+              ? (result.backup.usage.value * result.backup.quota.value) / 100
               : 0;
           }
         })
@@ -136,7 +136,7 @@ angular.module('App')
           }
           angular.forEach(
             results.applyBackupFtpAcls,
-            value => this.startFtpBackupPollRefresh(value),
+            (value) => this.startFtpBackupPollRefresh(value),
           );
         });
     }

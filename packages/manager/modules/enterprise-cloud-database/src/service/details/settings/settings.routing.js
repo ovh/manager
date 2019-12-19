@@ -7,7 +7,7 @@ export default /* @ngInject */($stateProvider) => {
         securityGroupId: null,
       },
       resolve: {
-        addRule: /* @ngInject */ ($state, clusterId) => securityGroup => $state.go(
+        addRule: /* @ngInject */ ($state, clusterId) => (securityGroup) => $state.go(
           'enterprise-cloud-database.service.details.settings.add-rule',
           { clusterId, securityGroup },
         ),
@@ -19,11 +19,11 @@ export default /* @ngInject */($stateProvider) => {
           'enterprise-cloud-database.service.details.settings.delete-rule',
           { clusterId, securityGroup, rule },
         ),
-        deleteSecurityGroup: /* @ngInject */ ($state, clusterId) => securityGroup => $state.go(
+        deleteSecurityGroup: /* @ngInject */ ($state, clusterId) => (securityGroup) => $state.go(
           'enterprise-cloud-database.service.details.settings.delete-security-group',
           { clusterId, securityGroup },
         ),
-        editSecurityGroup: /* @ngInject */ ($state, clusterId) => securityGroup => $state.go(
+        editSecurityGroup: /* @ngInject */ ($state, clusterId) => (securityGroup) => $state.go(
           'enterprise-cloud-database.service.details.settings.edit-security-group',
           { clusterId, securityGroup },
         ),
@@ -33,8 +33,8 @@ export default /* @ngInject */($stateProvider) => {
         regionInfo: /* @ngInject */
           (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
             .getRegionDetails(clusterDetails.regionName),
-        reload: /* @ngInject */ $state => () => $state.reload(),
-        securityGroupId: /* @ngInject */ $transition$ => $transition$.params().securityGroupId,
+        reload: /* @ngInject */ ($state) => () => $state.reload(),
+        securityGroupId: /* @ngInject */ ($transition$) => $transition$.params().securityGroupId,
       },
       translations: {
         value: ['.'],

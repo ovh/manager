@@ -11,8 +11,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl
   =============================== */
 
   function fetchOrders() {
-    return OvhApiTelephony.v6().getCurrentOrderIds().$promise.then(orderIds => OvhApiMeOrder.v7().query().addFilter('orderId', 'in', orderIds).expand()
-      .execute().$promise.then(orders => $q.all(map(map(orders, 'value'), order => OvhApiMeOrder.v6().getStatus({
+    return OvhApiTelephony.v6().getCurrentOrderIds().$promise.then((orderIds) => OvhApiMeOrder.v7().query().addFilter('orderId', 'in', orderIds).expand()
+      .execute().$promise.then((orders) => $q.all(map(map(orders, 'value'), (order) => OvhApiMeOrder.v6().getStatus({
         orderId: order.orderId,
       }).$promise.then((status) => {
         set(order, 'statusText', $translate.instant(`telephony_line_assist_orders_order_status_${snakeCase(status.status)}`));

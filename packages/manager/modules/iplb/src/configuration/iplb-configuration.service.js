@@ -64,7 +64,7 @@ export default class IpLoadBalancerConfigurationService {
 
       return 1;
     });
-    return find(result, task => task.zones && task.zones.indexOf(zone) > -1);
+    return find(result, (task) => task.zones && task.zones.indexOf(zone) > -1);
   }
 
   refresh(serviceName, zone) {
@@ -79,7 +79,7 @@ export default class IpLoadBalancerConfigurationService {
   }
 
   batchRefresh(serviceName, zones) {
-    const promises = zones.map(zone => this.IpLoadBalancing.v6()
+    const promises = zones.map((zone) => this.IpLoadBalancing.v6()
       .refresh({
         serviceName,
       }, {
@@ -98,12 +98,12 @@ export default class IpLoadBalancerConfigurationService {
     let tasksPromise;
 
     if (statuses) {
-      tasksPromise = this.$q.all(statuses.map(status => this.IpLoadBalancing.Task().v6().query({
+      tasksPromise = this.$q.all(statuses.map((status) => this.IpLoadBalancing.Task().v6().query({
         serviceName,
         action: 'refreshIplb',
         status,
       }).$promise))
-        .then(tasksResults => flatten(tasksResults));
+        .then((tasksResults) => flatten(tasksResults));
     } else {
       tasksPromise = this.IpLoadBalancing.Task().v6().query({
         serviceName,
@@ -112,7 +112,7 @@ export default class IpLoadBalancerConfigurationService {
     }
 
     return tasksPromise
-      .then(ids => this.$q.all(ids.map(id => this.IpLoadBalancing.Task().v6().get({
+      .then((ids) => this.$q.all(ids.map((id) => this.IpLoadBalancing.Task().v6().get({
         serviceName,
         taskId: id,
       }).$promise)));

@@ -545,7 +545,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   $scope.getStatePercent = function getStatePercent() {
-    return Math.ceil($scope.state.loaded / $scope.state.total * 100);
+    return Math.ceil(($scope.state.loaded / $scope.state.total) * 100);
   };
 
   /*= =========  Reverse inline  ========== */

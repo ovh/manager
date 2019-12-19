@@ -35,16 +35,16 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
   };
 
   self.filterServices = function filterServices(services) {
-    const filteredServices = filter(services, service => ['sip'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, (service) => ['sip'].indexOf(service.featureType) > -1);
 
-    const promises = map(filteredServices, service => tucVoipLine.fetchLineInfo(service));
+    const promises = map(filteredServices, (service) => tucVoipLine.fetchLineInfo(service));
 
     return $q.allSettled(promises)
-      .then(listLines => listLines)
-      .catch(listLines => listLines)
-      .then(listLines => $q.when(filter(
+      .then((listLines) => listLines)
+      .catch((listLines) => listLines)
+      .then((listLines) => $q.when(filter(
         filteredServices,
-        service => some(listLines, { serviceName: service.serviceName, canChangePassword: true }),
+        (service) => some(listLines, { serviceName: service.serviceName, canChangePassword: true }),
       )));
   };
 

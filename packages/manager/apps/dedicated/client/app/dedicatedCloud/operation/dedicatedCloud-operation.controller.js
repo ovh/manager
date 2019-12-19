@@ -13,7 +13,7 @@ angular.module('App').controller('DedicatedCloudOperationsCtrl', function Dedica
     return DedicatedCloud.getModels().then((data) => {
       self.stateEnum = data.models['dedicatedCloud.TaskStateEnum'].enum;
       self.progressionFilter = null;
-      self.progressionFilterList = map(self.stateEnum, state => ({
+      self.progressionFilterList = map(self.stateEnum, (state) => ({
         value: state,
         label: $translate.instant(`dedicatedCloud_OPERATIONS_state_${state}`),
       }));
@@ -42,7 +42,7 @@ angular.module('App').controller('DedicatedCloudOperationsCtrl', function Dedica
     ).then((result) => {
       result.reverse();
       return {
-        data: result.slice(offset - 1, offset - 1 + pageSize).map(id => ({ id })),
+        data: result.slice(offset - 1, offset - 1 + pageSize).map((id) => ({ id })),
         meta: {
           totalCount: result.length,
         },
@@ -156,7 +156,7 @@ angular.module('App').controller('DedicatedCloudOperationsCtrl', function Dedica
     return $q.when(operation);
   }
 
-  self.loadOperation = item => DedicatedCloud
+  self.loadOperation = (item) => DedicatedCloud
     .getOperation($stateParams.productId, {
       taskId: item.id,
     })
@@ -170,7 +170,7 @@ angular.module('App').controller('DedicatedCloudOperationsCtrl', function Dedica
     })
     .then(setOperationDescription)
     .then(setRelatedServices)
-    .then(res => res);
+    .then((res) => res);
 
   self.onExecutionDateActionClick = ($row) => {
     const executionDateEditModal = $uibModal.open({

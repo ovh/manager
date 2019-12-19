@@ -52,7 +52,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
       .then((rules) => {
         set(this.rules, group.id, rules);
       })
-      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_rules_error', error))
+      .catch((error) => this.handleError('enterprise_cloud_database_service_details_settings_rules_error', error))
       .finally(() => {
         set(group, 'loadingRules', false);
       });
@@ -108,7 +108,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
       autoBackup,
       name: this.data.clusterName,
     }).then(() => this.reload().then(() => this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success')))
-      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
+      .catch((error) => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
       .finally(() => { this.loaders.autoBackup = false; });
   }
 
@@ -124,7 +124,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
         Object.assign(this.maintenanceWindow, maintenanceWindowConfig);
         this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success');
       })
-      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
+      .catch((error) => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
       .finally(() => { this.loaders.maintenanceWindow = false; });
   }
 

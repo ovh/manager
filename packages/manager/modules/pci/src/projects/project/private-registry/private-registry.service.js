@@ -67,9 +67,9 @@ export default class pciPrivateRegistryService {
   getAgreements() {
     return this.OvhApiCloud.agreements({ product: 'registry' })
       .$promise
-      .then(agreements => concat(
-        map(agreements.agreementsToValidate, agreement => ({ id: agreement, validated: false })),
-        map(agreements.agreementsValidated, agreement => ({ id: agreement, validated: true })),
+      .then((agreements) => concat(
+        map(agreements.agreementsToValidate, (agreement) => ({ id: agreement, validated: false })),
+        map(agreements.agreementsValidated, (agreement) => ({ id: agreement, validated: true })),
       ));
   }
 

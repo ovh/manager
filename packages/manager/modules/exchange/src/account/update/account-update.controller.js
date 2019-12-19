@@ -193,7 +193,7 @@ export default class ExchangeUpdateAccountCtrl {
       }`;
       this.takenEmailError = some(
         this.takenEmails,
-        value => currentEmail === value.toLowerCase(),
+        (value) => currentEmail === value.toLowerCase(),
       );
 
       if (this.selectedAccount.primaryEmailAddress === currentEmail) {
@@ -315,7 +315,7 @@ export default class ExchangeUpdateAccountCtrl {
   getCompleteDomain(domainName) {
     const result = find(
       this.newAccountOptions.availableDomains,
-      value => value.name === domainName,
+      (value) => value.name === domainName,
     );
 
     // if the current domain is not in the domain's list (dummy account),

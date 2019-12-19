@@ -121,12 +121,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
       sortBy(
         filter(
           self.allOvhNumbers,
-          num => (searchReg.test(num.serviceName) || searchReg.test(num.description))
+          (num) => (searchReg.test(num.serviceName) || searchReg.test(num.description))
             && (!origin || origin.indexOf(num.type) > -1)
             && filterType(num.type)
             && filterBillingAccount(num.billingAccount),
         ),
-        num => (num.formatedNumber === $stateParams.serviceName ? 0 : 1),
+        (num) => (num.formatedNumber === $stateParams.serviceName ? 0 : 1),
       ),
       'serviceName',
     );
@@ -164,7 +164,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   };
 
   self.resetNumbers = function resetNumbers() {
-    return map(self.forwards, forward => self.resetNumber(forward));
+    return map(self.forwards, (forward) => self.resetNumber(forward));
   };
 
   /**
@@ -199,7 +199,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
         (allOvhNumbers) => {
           const numbers = allOvhNumbers.map((ovhNumber) => {
             const filtered = self.listBillingAccounts
-              .filter(billingAccount => billingAccount.description
+              .filter((billingAccount) => billingAccount.description
                 && billingAccount.billingAccount === ovhNumber.billingAccount);
             const number = ovhNumber;
             if (filtered.length === 1) {
@@ -300,7 +300,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   };
 
   self.filterServices = function filterServices(services) {
-    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function getBulkParams() {

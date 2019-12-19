@@ -12,18 +12,18 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      billLink: /* @ngInject */ $state => $state.href('app.account.billing.main.history.pay-debt', { debtId: DEBT_ALL }),
+      billLink: /* @ngInject */ ($state) => $state.href('app.account.billing.main.history.pay-debt', { debtId: DEBT_ALL }),
       changeContact: /* @ngInject */
-        AccountContactsService => service => AccountContactsService.changeContact(service),
-      goBack: /* @ngInject */ goToContacts => goToContacts,
+        (AccountContactsService) => (service) => AccountContactsService.changeContact(service),
+      goBack: /* @ngInject */ (goToContacts) => goToContacts,
       service: /* @ngInject */ (
         categoryType,
         getServiceInfos,
         serviceName,
         services,
       ) => getServiceInfos(find(services, { serviceName, category: categoryType })),
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().service,
-      categoryType: /* @ngInject */ $transition$ => $transition$.params().categoryType,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().service,
+      categoryType: /* @ngInject */ ($transition$) => $transition$.params().categoryType,
     },
   });
 };

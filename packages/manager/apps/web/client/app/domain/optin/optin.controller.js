@@ -58,7 +58,7 @@ export default class DomainOptinCtrl {
       .then((optinRules) => {
         const contactTypes = optinRules.length === CONTACTS_TYPES.length ? CONTACTS_TYPES : map(optinRules, 'type');
         this.rules = contactTypes
-          .map(contactType => (
+          .map((contactType) => (
             {
               type: contactType,
               fields: DomainOptinCtrl
@@ -86,7 +86,7 @@ export default class DomainOptinCtrl {
     }).$promise
       .then((optinConfigurations) => {
         optinConfigurations.forEach(({ type, fields }) => {
-          const fieldsWithoutEmail = fields.filter(field => field !== 'email');
+          const fieldsWithoutEmail = fields.filter((field) => field !== 'email');
           this.options[type]
             .allFieldsOption = fieldsWithoutEmail.length === this.fields.length;
           this.options[type].areFieldsEditedIndividually = !this.options[type].allFieldsOption
@@ -102,7 +102,7 @@ export default class DomainOptinCtrl {
   getContactFields() {
     return this.Domain.getDomainModels()
       .then(({ models }) => {
-        this.fields = models['domain.OptinFieldsEnum'].enum.filter(field => field !== 'email');
+        this.fields = models['domain.OptinFieldsEnum'].enum.filter((field) => field !== 'email');
       });
   }
 
@@ -110,7 +110,7 @@ export default class DomainOptinCtrl {
     const optin = map(this.configuration, (fields, type) => ({
       type: DomainOptinCtrl.formatContactType(type),
       fields: this.getContactTypeFields(type, fields),
-    })).filter(data => data.fields.length > 0);
+    })).filter((data) => data.fields.length > 0);
     return this.OvhApiDomainConfigurationsOptin.v6().put({
       serviceName: this.domain,
     }, {
@@ -133,7 +133,7 @@ export default class DomainOptinCtrl {
 
   getContactTypeFields(contactType, fields) {
     if (this.options[contactType].areFieldsEditedIndividually) {
-      return Object.keys(pickBy(fields, value => value === true));
+      return Object.keys(pickBy(fields, (value) => value === true));
     }
 
     const optinFields = fields.email ? ['email'] : [];
@@ -144,7 +144,7 @@ export default class DomainOptinCtrl {
   }
 
   static filterIndividualFields(fields) {
-    return fields.filter(field => field !== 'email');
+    return fields.filter((field) => field !== 'email');
   }
 
   static mapFields(fields) {

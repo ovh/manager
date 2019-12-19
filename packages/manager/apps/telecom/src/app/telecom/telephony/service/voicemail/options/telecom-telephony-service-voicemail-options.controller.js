@@ -13,7 +13,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   function fetchEnums() {
     return OvhApiTelephony.v6().schema({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(schema => ({
+    }).$promise.then((schema) => ({
       audioFormat: schema.models['telephony.ServiceVoicemailAudioFormatEnum'].enum,
       mailOption: schema.models['telephony.ServiceVoicemailMailOptionEnum'].enum,
     }));
@@ -153,7 +153,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   self.checkValidAudioExtention = function checkValidAudioExtention(file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_line_answer_voicemail_options_recording_file_invalid'));
     }
@@ -192,7 +192,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
         return OvhApiMe.Document().v6().upload(
           self.recordingForm.uploadedFile.name,
           self.recordingForm.uploadedFile,
-        ).then(doc => OvhApiTelephony.Voicemail().Greetings().v6().create({
+        ).then((doc) => OvhApiTelephony.Voicemail().Greetings().v6().create({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
         }, {
@@ -232,7 +232,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
       $timeout(() => {
         self.recordingForm.isSuccess = false; // reset form
       }, 3000);
-    }).catch(err => new TucToastError(err))
+    }).catch((err) => new TucToastError(err))
       .finally(() => {
         self.recordingForm.isUpdating = false;
       });
@@ -260,7 +260,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
       $timeout(() => {
         self.notificationForm.isSuccess = false; // reset form
       }, 3000);
-    }).catch(err => new TucToastError(err))
+    }).catch((err) => new TucToastError(err))
       .finally(() => {
         self.notificationForm.isUpdating = false;
       });
@@ -286,7 +286,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
     $q.all({
       noop: $timeout(angular.noop, 1000), // avoid clipping
       update,
-    }).then(() => refreshSettings()).catch(err => new TucToastError(err)).finally(() => {
+    }).then(() => refreshSettings()).catch((err) => new TucToastError(err)).finally(() => {
       self.emailForm.isRemoving = false;
     });
   };
@@ -314,7 +314,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
       self.emailForm.email = null;
       self.emailForm.type = null;
       self.emailForm.isShown = false;
-    }).catch(err => new TucToastError(err))
+    }).catch((err) => new TucToastError(err))
       .finally(() => {
         self.emailForm.isAdding = false;
       });

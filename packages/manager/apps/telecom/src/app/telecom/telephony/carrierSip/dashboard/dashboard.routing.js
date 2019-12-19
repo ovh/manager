@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       'telephonyView@telecom.telephony': 'carrierSipDashboard',
     },
     resolve: {
-      billingAccount: /* @ngInject */ $transition$ => $transition$.params().billingAccount,
+      billingAccount: /* @ngInject */ ($transition$) => $transition$.params().billingAccount,
       billingLink: /* @ngInject */ (
         $state,
         billingAccount,
@@ -36,7 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
         CarrierSipService,
         serviceName,
       ) => CarrierSipService.getServiceInfos(serviceName),
-      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
       settings: /* @ngInject */ (
         billingAccount,
         CarrierSipService,

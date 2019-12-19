@@ -63,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsAbbreviatedNum
     return this.$q.all([
       this.OvhApiTelephony.v6().get({ billingAccount: this.billingAccount }).$promise
         .then(
-          detail => detail.description || this.billingAccount,
+          (detail) => detail.description || this.billingAccount,
           () => this.billingAccount,
         ),
       this.OvhApiTelephony.Line().v6().get({
@@ -71,7 +71,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsAbbreviatedNum
         serviceName: this.serviceName,
       }).$promise
         .then(
-          detail => detail.description || this.serviceName,
+          (detail) => detail.description || this.serviceName,
           () => this.serviceName,
         ),
       this.load(),

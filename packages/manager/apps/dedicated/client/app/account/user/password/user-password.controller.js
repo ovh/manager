@@ -29,7 +29,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.pas
         .then((user) => {
           $scope.user = user;
         })
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_changepassword_fail'), err.data, 'useraccount.alerts.dashboardInfos'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_changepassword_fail'), err.data, 'useraccount.alerts.dashboardInfos'))
         .finally(() => {
           $scope.loaders.loading = false;
         });
@@ -43,7 +43,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.pas
       $scope.loaders.loading = true;
       return UseraccountInfos.changePassword()
         .then(() => Alerter.alertFromSWS($translate.instant('user_account_changepassword_success'), 'useraccount.alerts.dashboardInfos'))
-        .catch(err => Alerter.alertFromSWS($translate.instant('user_account_changepassword_fail'), err.data, 'useraccount.alerts.dashboardInfos'))
+        .catch((err) => Alerter.alertFromSWS($translate.instant('user_account_changepassword_fail'), err.data, 'useraccount.alerts.dashboardInfos'))
         .finally(() => {
           $scope.loaders.loading = false;
           $scope.resetAction();

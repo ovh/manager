@@ -24,7 +24,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsLogsGrantAccessCtrl {
     this.isLoading = true;
     this.enterpriseCloudDatabaseService.grantAccessToLdpAccount(this.clusterId, this.log)
       .then(() => this.goBackToLogs(this.$translate.instant('enterprise_cloud_database_service_details_logs_grant_access_success', { ldpName: this.log.username })))
-      .catch(error => this.goBackToLogs(
+      .catch((error) => this.goBackToLogs(
         this.$translate.instant('enterprise_cloud_database_service_details_logs_grant_access_error', {
           message: get(error, 'data.message'),
         }), STATUS.ERROR,

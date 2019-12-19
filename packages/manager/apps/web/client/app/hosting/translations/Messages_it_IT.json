@@ -147,7 +147,7 @@
   "hosting_dashboard_add_or_order_step1_order": "Ordina un nuovo dominio",
   "hosting_dashboard_add_or_order_step1_attach": "Associa un dominio esistente ",
   "hosting_dashboard_service_ssl": "Certificato SSL",
-  "hosting_dashboard_service_cdn": "Opzione CDN + HTTP/2",
+  "hosting_dashboard_service_cdn": "Opzione CDN",
   "hosting_dashboard_service_web": "Siti Web",
   "hosting_dashboard_service_privatesql": "Database privato",
   "hosting_dashboard_service_privatesql_more": "Visualizza la lista",
@@ -1393,5 +1393,7 @@
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_perso": "SQL Personale {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_pro": "SQL Pro {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_extra_sql_perso": "Extra SQL Personale {{t0}} {{t1}}",
-  "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "Archiviata nella tua istanza Cloud Web"
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "Archiviata nella tua istanza Cloud Web",
+  "hosting_dashboard_service_activate_cdn": "Attiva una CDN",
+  "hosting_dashboard_cdn_order_success_activation": "L’attivazione è stata effettuata correttamente. La soluzione scelta sarà attiva entro pochi minuti."
 }

@@ -74,8 +74,8 @@ export default class {
    */
   fetchPendingSmsWithStatus() {
     return this.fetchPendingSms()
-      .then(pending => this.$q
-        .all(map(pending, sms => this.fetchPendingSmsStatus(sms.ptt)
+      .then((pending) => this.$q
+        .all(map(pending, (sms) => this.fetchPendingSmsStatus(sms.ptt)
           .then((status) => {
             set(sms, 'status', status);
           })))
@@ -91,8 +91,8 @@ export default class {
       .query({
         serviceName: this.$stateParams.serviceName,
       }).$promise
-      .then(pendingIds => this.$q
-        .all(map(chunk(pendingIds, 50), id => this.api.sms.jobs.getBatch({
+      .then((pendingIds) => this.$q
+        .all(map(chunk(pendingIds, 50), (id) => this.api.sms.jobs.getBatch({
           serviceName: this.$stateParams.serviceName,
           id,
         }).$promise))
@@ -112,7 +112,7 @@ export default class {
   fetchPendingSmsStatus(pttId) {
     return this.api.sms.jobs.getPtts({
       ptt: pttId,
-    }).$promise.then(ptt => ptt.comment).catch(() => false);
+    }).$promise.then((ptt) => ptt.comment).catch(() => false);
   }
 
   /**
@@ -148,7 +148,7 @@ export default class {
   getSelection() {
     return filter(
       this.pending.paginated,
-      pending => pending && this.pending.selected && this.pending.selected[pending.id],
+      (pending) => pending && this.pending.selected && this.pending.selected[pending.id],
     );
   }
 
@@ -158,7 +158,7 @@ export default class {
    */
   cancelSelectedPending() {
     const pendings = this.getSelection();
-    const queries = pendings.map(pending => this.api.sms.jobs.delete({
+    const queries = pendings.map((pending) => this.api.sms.jobs.delete({
       serviceName: this.$stateParams.serviceName,
       id: pending.id,
     }).$promise);
@@ -220,7 +220,7 @@ export default class {
     this.loading.cancelAll = true;
     return this.$q.all([
       this.$timeout(angular.noop, 1000),
-    ].concat(each(this.pending.raw, sms => this.api.sms.jobs.delete({
+    ].concat(each(this.pending.raw, (sms) => this.api.sms.jobs.delete({
       serviceName: this.$stateParams.serviceName,
       id: sms.id,
     }).$promise))).then(() => this.refresh()).catch((err) => {

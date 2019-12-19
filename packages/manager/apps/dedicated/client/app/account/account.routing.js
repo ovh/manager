@@ -10,5 +10,5 @@ export default /* @ngInject */($stateProvider) => {
       template: '<ui-view/>',
     },
   ]
-    .forEach(state => $stateProvider.state(state.name, state));
+    .forEach((state) => $stateProvider.state(state.name, state));
 };

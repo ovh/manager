@@ -44,10 +44,10 @@ angular.module('App').controller(
 
       return this.WucEmails.getDelegatedEmails(this.$stateParams.productId)
         .then((data) => {
-          this.accounts = map(data, email => email.split('@')[0]);
+          this.accounts = map(data, (email) => email.split('@')[0]);
           this.emailsList = data.sort();
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_accounts_error'),
           err,
           this.$scope.alerts.main,

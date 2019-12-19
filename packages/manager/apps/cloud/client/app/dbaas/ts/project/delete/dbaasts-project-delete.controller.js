@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp').controller('DBaasTsSidebarDeleteCtrl',
   (locals, $state, $uibModal, Toast, $translate, OvhApiDBaasTsProject) => {
     function DeleteModalCtrl($uibModalInstance) {

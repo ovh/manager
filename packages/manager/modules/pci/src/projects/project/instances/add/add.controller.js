@@ -20,12 +20,14 @@ export default class PciInstancesAddController {
     $q,
     $translate,
     CucCloudMessage,
+    cucUcentsToCurrencyFilter,
     OvhApiCloudProjectInstance,
     PciProjectsProjectInstanceService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.cucUcentsToCurrencyFilter = cucUcentsToCurrencyFilter;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
@@ -96,7 +98,7 @@ export default class PciInstancesAddController {
         map(
           filter(
             this.privateNetworks,
-            network => find(
+            (network) => find(
               network.regions,
               {
                 region: this.instance.region,
@@ -104,7 +106,7 @@ export default class PciInstancesAddController {
               },
             ),
           ),
-          privateNetwork => ({
+          (privateNetwork) => ({
             ...privateNetwork,
             name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${privateNetwork.name}`,
           }),
@@ -188,7 +190,7 @@ export default class PciInstancesAddController {
   }
 
   isLocationAvailable(datacenters) {
-    return some(datacenters, datacenter => this.isRegionAvailable(datacenter));
+    return some(datacenters, (datacenter) => this.isRegionAvailable(datacenter));
   }
 
   isRegionActive(datacenter) {
@@ -272,6 +274,6 @@ export default class PciInstancesAddController {
   }
 
   getBandwidthExtraCost(region) {
-    return get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price.text;
+    return this.cucUcentsToCurrencyFilter(get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price);
   }
 }

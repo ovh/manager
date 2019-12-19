@@ -55,7 +55,7 @@ export default class CucProductsService {
     const allProductsMerged = clone(allProducts);
     allProductsMerged.results.push({
       name: 'IP',
-      services: map(ips, ip => ({
+      services: map(ips, (ip) => ({
         displayName: ip,
         serviceName: ip,
       })),
@@ -68,7 +68,7 @@ export default class CucProductsService {
     allProductsMerged.errors.push(...licenses.list.messages);
     allProductsMerged.results.push({
       name: 'LICENSE',
-      services: map(licenses.list.results, license => assignIn(license, {
+      services: map(licenses.list.results, (license) => assignIn(license, {
         displayName: license.id,
         serviceName: license.id,
       })),
@@ -77,11 +77,11 @@ export default class CucProductsService {
   }
 
   getProductsOfType(type) {
-    return result(find(this.products, service => service.name === type), 'services');
+    return result(find(this.products, (service) => service.name === type), 'services');
   }
 
   getDisplayName(type, serviceName) {
     const services = this.getProductsOfType(type);
-    return result(find(services, service => service.serviceName === serviceName), 'displayName');
+    return result(find(services, (service) => service.serviceName === serviceName), 'displayName');
   }
 }

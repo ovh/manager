@@ -73,7 +73,7 @@ export default class AddBackupStorageCtrl {
             this.CucCloudMessage.success(this.$translate.instant('vps_backup_storage_access_add_success'));
           }
         })
-        .catch(err => this.CucCloudMessage.error(err || this.$translate.instant('vps_backup_storage_access_add_failure')))
+        .catch((err) => this.CucCloudMessage.error(err || this.$translate.instant('vps_backup_storage_access_add_failure')))
         .finally(() => this.$uibModalInstance.close()),
     });
     return this.addStorage.load();

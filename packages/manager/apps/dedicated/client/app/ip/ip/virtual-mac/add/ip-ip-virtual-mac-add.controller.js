@@ -55,7 +55,7 @@ angular.module('Module.ip.controllers').controller('IpAddVirtualMacCtrl', ($scop
           $rootScope.$broadcast('ips.table.refreshVmac', $scope.data.ipBlock);
           Alerter.success($translate.instant('ip_virtualmac_add_existing_success', { t0: $scope.data.ip.ip }));
         })
-        .catch(reason => Alerter.alertFromSWS($translate.instant('ip_virtualmac_add_existing_failure', { t0: $scope.data.ip.ip }), reason))
+        .catch((reason) => Alerter.alertFromSWS($translate.instant('ip_virtualmac_add_existing_failure', { t0: $scope.data.ip.ip }), reason))
         .finally(() => $scope.resetAction());
     }
   };

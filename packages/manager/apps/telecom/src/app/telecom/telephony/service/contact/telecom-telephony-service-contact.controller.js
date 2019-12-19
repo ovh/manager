@@ -18,7 +18,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     }
 
     if (!directory.wayNumberExtra.length) {
-      set(directory, 'wayNumberExtra', find(self.wayNumberExtraEnum, extra => some(words(directory.address), word => word === extra)));
+      set(directory, 'wayNumberExtra', find(self.wayNumberExtraEnum, (extra) => some(words(directory.address), (word) => word === extra)));
     }
 
     if (!directory.wayName.length) {
@@ -41,7 +41,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
         serviceName: $stateParams.serviceName,
         apeCode: ape,
       }).$promise
-      .then(result => map(result, (info) => {
+      .then((result) => map(result, (info) => {
         set(info, 'directoryServiceCode', `${info.directoryServiceCode || ''}`);
         return info;
       }));
@@ -78,7 +78,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
 
       self.directoryProperties = get(res.infos, "models['telephony.DirectoryInfo'].properties");
       return null;
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -126,7 +126,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
       self.directory = angular.copy(self.directoryForm);
       self.isEditing = false;
       TucToast.success($translate.instant('telephony_service_contact_success'));
-    }).catch(err => new TucToastError(err)).finally(() => {
+    }).catch((err) => new TucToastError(err)).finally(() => {
       self.isUpdating = false;
     });
   };
@@ -258,7 +258,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
             self.directoryCodes = null;
             model.$setValidity('siret', false);
           }
-        }).catch(err => new TucToastError(err));
+        }).catch((err) => new TucToastError(err));
       }
     };
   }());
@@ -307,7 +307,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   };
 
   self.findDirectoryService = function findDirectoryService() {
-    return find(self.directoryCodes, info => `${info.directoryServiceCode}` === `${self.directory.directoryServiceCode}`);
+    return find(self.directoryCodes, (info) => `${info.directoryServiceCode}` === `${self.directory.directoryServiceCode}`);
   };
 
   self.cancelEdition = function cancelEdition() {

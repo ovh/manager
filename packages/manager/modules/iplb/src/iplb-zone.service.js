@@ -10,7 +10,7 @@ export default class IpLoadBalancerZoneService {
     return this.IpLoadBalancing.Zone().v6().query({
       serviceName,
     }).$promise
-      .then(zones => zones.map(zone => ({
+      .then((zones) => zones.map((zone) => ({
         id: zone,
         name: this.CucRegionService.getRegion(zone).microRegion.text,
       })));

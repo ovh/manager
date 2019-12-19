@@ -158,7 +158,7 @@ angular.module('managerApp', [
     atInternetProvider.setEnabled(trackingEnabled);
     atInternetProvider.setDebug(!trackingEnabled);
     atInternetUiRouterPluginProvider.setTrackStateChange(trackingEnabled);
-    atInternetUiRouterPluginProvider.addStateNameFilter(routeName => (routeName ? routeName.replace(/\./g, '::') : ''));
+    atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => (routeName ? routeName.replace(/\./g, '::') : ''));
   })
   .run((atInternet, TRACKING, OvhApiMe) => {
     const config = TRACKING.atInternetConfiguration;
@@ -221,7 +221,7 @@ angular.module('managerApp', [
 /*= =========  LOAD NAVBAR AND SIDEBAR  ========== */
   .run(/* @ngInject */ ($rootScope, $timeout, TelecomNavbar) => {
     TelecomNavbar.getResponsiveLinks()
-      .then(links => set($rootScope, 'navbar.sidebarLinks', links))
+      .then((links) => set($rootScope, 'navbar.sidebarLinks', links))
       .finally(() => {
         $timeout(() => $rootScope.$broadcast('sidebar:loaded'));
       });

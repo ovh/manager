@@ -62,7 +62,7 @@ export default class ExchangeResourceDelegationCtrl {
     };
 
     if (this.buffer.changes != null) {
-      changesList.delegationRights = this.buffer.changes.map(account => ({
+      changesList.delegationRights = this.buffer.changes.map((account) => ({
         id: account.id,
         operation: account.newDelegationValue ? 'POST' : 'DELETE',
       }));
@@ -75,7 +75,7 @@ export default class ExchangeResourceDelegationCtrl {
     if (account.newDelegationValue) {
       this.buffer.selected.push(account.id);
     } else {
-      remove(this.buffer.selected, item => item === account.id);
+      remove(this.buffer.selected, (item) => item === account.id);
     }
   }
 

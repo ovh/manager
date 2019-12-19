@@ -11,7 +11,7 @@ export default class CucCloudPoll {
     this.pollers = [];
 
     $transitions.onSuccess({}, () => {
-      forEach(this.pollers, poller => poller.kill());
+      forEach(this.pollers, (poller) => poller.kill());
       this.pollers = [];
     });
   }

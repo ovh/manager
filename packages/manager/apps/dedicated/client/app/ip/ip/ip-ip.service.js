@@ -9,7 +9,7 @@ angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http
   const aapiIpPath = '/sws/module/ip';
   const swsProxypassPath = 'apiv6';
 
-  this.getIpDetails = block => $http.get([swsProxypassPath, 'ip', window.encodeURIComponent(block)].join('/'), { cache: true }).then(response => response.data, http => $q.reject(http.data));
+  this.getIpDetails = (block) => $http.get([swsProxypassPath, 'ip', window.encodeURIComponent(block)].join('/'), { cache: true }).then((response) => response.data, (http) => $q.reject(http.data));
 
   this.checkTaskUnique = (ipBlock, fct) => {
     const queue = [];
@@ -68,11 +68,11 @@ angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http
     }
   };
 
-  this.getNichandleCountryEnum = () => self.getMeModels().then(models => models['nichandle.CountryEnum'].enum);
+  this.getNichandleCountryEnum = () => self.getMeModels().then((models) => models['nichandle.CountryEnum'].enum);
 
-  this.getNichandleIpRegistryEnum = () => self.getMeModels().then(models => models['nichandle.IpRegistryEnum'].enum);
+  this.getNichandleIpRegistryEnum = () => self.getMeModels().then((models) => models['nichandle.IpRegistryEnum'].enum);
 
-  this.getPriceForParking = () => $http.get([swsProxypassPath, 'price/dedicated/server/ip/parking'].join('/'), { cache: true }).then(response => response.data.text);
+  this.getPriceForParking = () => $http.get([swsProxypassPath, 'price/dedicated/server/ip/parking'].join('/'), { cache: true }).then((response) => response.data.text);
 
   /**
      * Cloud Failover IPs have a subtype: either "cloud" or "ovh".
@@ -92,7 +92,7 @@ angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http
             .get(`${basePath}/failover/${cloudIp.id}`, {
               cache: true,
             })
-            .then(res => res.data.subType);
+            .then((res) => res.data.subType);
         }
         return null;
       });
@@ -154,8 +154,8 @@ angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http
         serviceType: serviceType || undefined,
       },
     })
-    .then(response => getIpsSanitized(ipBlock, response.data))
-    .then(ips => map(ips, (ip) => {
+    .then((response) => getIpsSanitized(ipBlock, response.data))
+    .then((ips) => map(ips, (ip) => {
       if (ipBlock !== `${ip.ip}/32`) {
         set(ip, 'block', ipBlock);
       }
@@ -287,7 +287,7 @@ angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http
         =            IP DEL            =
         =============================== */
 
-  this.deleteIpBlock = ipBlock => OvhHttp.post('/ip/{block}/terminate', {
+  this.deleteIpBlock = (ipBlock) => OvhHttp.post('/ip/{block}/terminate', {
     rootPath: 'apiv6',
     urlParams: {
       block: ipBlock,
@@ -299,25 +299,25 @@ angular.module('Module.ip.services').service('Ip', function Ip($rootScope, $http
         =============================== */
 
   this.getDedicatedServicesList = function getDedicatedServicesList() {
-    return $http.get([swsProxypassPath, 'dedicated/server'].join('/')).then(data => data.data.sort(), http => $q.reject(http.data));
+    return $http.get([swsProxypassPath, 'dedicated/server'].join('/')).then((data) => data.data.sort(), (http) => $q.reject(http.data));
   };
 
   this.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo(serviceName, ip) {
-    return $http.get(`${swsProxypassPath}/dedicated/server/${serviceName}/ipCanBeMovedTo?ip=${window.encodeURIComponent(ip)}`).then(data => data.data, http => $q.reject(http.data));
+    return $http.get(`${swsProxypassPath}/dedicated/server/${serviceName}/ipCanBeMovedTo?ip=${window.encodeURIComponent(ip)}`).then((data) => data.data, (http) => $q.reject(http.data));
   };
 
   this.moveIpBlock = function moveIpBlock(serviceName, block, nexthop) {
-    return $http.post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`, { to: serviceName, nexthop }).then(data => data.data, http => $q.reject(http.data));
+    return $http.post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`, { to: serviceName, nexthop }).then((data) => data.data, (http) => $q.reject(http.data));
   };
 
-  this.moveIpBlockToPark = block => $http.post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/park`).then(data => data.data, http => $q.reject(http.data));
+  this.moveIpBlockToPark = (block) => $http.post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/park`).then((data) => data.data, (http) => $q.reject(http.data));
 
-  this.getIpMove = block => $http.get(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`).then((data) => {
+  this.getIpMove = (block) => $http.get(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`).then((data) => {
     const destinationIps = reduce(
       data.data,
       (concatList, destination, serviceType) => {
         const obj = destination
-          .map(infos => ({ service: infos.service, nexthop: infos.nexthop, serviceType }));
+          .map((infos) => ({ service: infos.service, nexthop: infos.nexthop, serviceType }));
 
         return [...concatList, ...obj];
       },

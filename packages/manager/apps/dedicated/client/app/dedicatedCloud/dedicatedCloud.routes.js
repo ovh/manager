@@ -59,17 +59,17 @@ angular
         isDrpActionPossible: /* @ngInject */ (
           currentDrp, dedicatedCloudDrp,
         ) => dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
-        isDrpAvailable: /* @ngInject */ coreConfig => coreConfig.getRegion() !== 'US',
+        isDrpAvailable: /* @ngInject */ (coreConfig) => coreConfig.getRegion() !== 'US',
 
         goToDrp: /* @ngInject */ (
           $state,
           currentDrp,
-        ) => datacenterId => $state.go(
+        ) => (datacenterId) => $state.go(
           'app.dedicatedClouds.datacenter.drp',
           { datacenterId, drpInformations: currentDrp },
         ),
-        goToDrpDatacenterSelection: /* @ngInject */ $state => () => $state.go('app.dedicatedClouds.drpDatacenterSelection'),
-        goToPccDashboard: /* @ngInject */ $state => (reload = false) => $state.go('app.dedicatedClouds', {}, { reload }),
+        goToDrpDatacenterSelection: /* @ngInject */ ($state) => () => $state.go('app.dedicatedClouds.drpDatacenterSelection'),
+        goToPccDashboard: /* @ngInject */ ($state) => (reload = false) => $state.go('app.dedicatedClouds', {}, { reload }),
         goToVpnConfiguration: /* @ngInject */ (
           $state, currentDrp,
         ) => () => $state.go('app.dedicatedClouds.datacenter.drp.summary', {

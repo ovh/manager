@@ -24,7 +24,7 @@ angular.module('controllers').controller(
           this.bdd.databaseName,
           this.dump.id,
         )
-        .catch(err => this.alerter.alertFromSWS(
+        .catch((err) => this.alerter.alertFromSWS(
           this.$translate.instant('privateDatabase_tabs_dumps_delete_error'),
           err,
           this.$scope.alerts.main,

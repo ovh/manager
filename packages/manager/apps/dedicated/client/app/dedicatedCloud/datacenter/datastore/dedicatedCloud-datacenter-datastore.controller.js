@@ -40,7 +40,7 @@ angular
 
       this.$scope.loadDatastores = ({ offset, pageSize }) => this
         .loadDatastores({ offset, pageSize });
-      this.$scope.orderDatastore = datacenter => this.orderDatastore(datacenter);
+      this.$scope.orderDatastore = (datacenter) => this.orderDatastore(datacenter);
     }
 
     fetchLegacyConsumption(datastores) {
@@ -74,7 +74,7 @@ angular
     }
 
     fetchConsumptionForDatastores(datastores) {
-      return serviceConsumption => this.$q.all(
+      return (serviceConsumption) => this.$q.all(
         serviceConsumption
           ? datastores.map(
             this.fetchConsumptionForDatastore(serviceConsumption),
@@ -118,9 +118,9 @@ angular
           this.$stateParams.datacenterId,
           pageSize, offset - 1,
         )
-        .then(result => this
+        .then((result) => this
           .chooseConsumptionFetchingMethod(result.list.results)
-          .then(data => ({
+          .then((data) => ({
             data,
             meta: {
               totalCount: result.count,

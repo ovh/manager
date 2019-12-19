@@ -8,7 +8,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ goToStream => goToStream,
+      goBack: /* @ngInject */ (goToStream) => goToStream,
       breadcrumb: () => null,
     },
   });

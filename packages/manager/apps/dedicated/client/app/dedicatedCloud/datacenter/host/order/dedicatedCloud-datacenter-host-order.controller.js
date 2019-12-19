@@ -70,7 +70,7 @@ angular
           const filtered = filter(offers, { family: 'host' });
           return filtered;
         })
-        .then(offers => this.OvhHttp
+        .then((offers) => this.OvhHttp
           .get('/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/orderableHostProfiles', {
             rootPath: 'apiv6',
             urlParams: {
@@ -89,7 +89,7 @@ angular
               }
             });
 
-            const sortedResult = sortBy(result, item => item.prices[0].price.value);
+            const sortedResult = sortBy(result, (item) => item.prices[0].price.value);
             this.selectedOffer = head(sortedResult);
             return sortedResult;
           }));
@@ -97,7 +97,7 @@ angular
 
     fetchDatagridOffers() {
       return this.fetchOffers()
-        .then(offers => ({
+        .then((offers) => ({
           data: offers,
           meta: {
             totalCount: size(offers),

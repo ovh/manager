@@ -146,7 +146,7 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   }
 
   buildBulkActions() {
-    return map(this.functionKeys.raw, key => ({
+    return map(this.functionKeys.raw, (key) => ({
       name: 'functionKey',
       route: '/telephony/{billingAccount}/line/{serviceName}/phone/functionKey/{keyNum}'.replace('{keyNum}', key.keyNum),
       method: 'PUT',
@@ -159,11 +159,11 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
 
   /* eslint-disable class-methods-use-this */
   filterServices(services) {
-    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     return filter(
       filteredServices,
-      service => find(services, {
+      (service) => find(services, {
         serviceName: service.serviceName,
         billingAccount: service.billingAccount,
       }),
@@ -203,7 +203,7 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   }
 
   onBulkError() {
-    return error => this.TucToast.error([this.$translate.instant('telephony_line_phone_programmableKeys_bulk_on_error'), get(error, 'msg.data')].join(' '));
+    return (error) => this.TucToast.error([this.$translate.instant('telephony_line_phone_programmableKeys_bulk_on_error'), get(error, 'msg.data')].join(' '));
   }
 
   /* -----  End of BULK  ------ */

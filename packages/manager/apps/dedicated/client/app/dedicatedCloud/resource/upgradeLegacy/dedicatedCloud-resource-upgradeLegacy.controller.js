@@ -52,7 +52,7 @@ angular
       this.$scope.getDurations = () => this.getDurations();
       this.$scope.loadContracts = () => this.loadContracts();
       this.$scope.backToContracts = () => this.backToContracts();
-      this.$scope.getResumePrice = price => this.getResumePrice(price);
+      this.$scope.getResumePrice = (price) => this.getResumePrice(price);
       this.$scope.upgradedResource = () => this.upgradedResource();
 
       return this.User

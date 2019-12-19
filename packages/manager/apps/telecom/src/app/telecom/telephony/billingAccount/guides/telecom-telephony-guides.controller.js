@@ -29,7 +29,7 @@ angular
      * Count guides.
      */
     countGuides() {
-      this.count = flatten(map(this.guides.sections, section => section.guides)).length;
+      this.count = flatten(map(this.guides.sections, (section) => section.guides)).length;
     }
 
     /**

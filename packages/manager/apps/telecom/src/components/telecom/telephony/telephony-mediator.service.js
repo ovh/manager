@@ -53,11 +53,11 @@ angular.module('managerApp').service('TelephonyMediator', function TelephonyMedi
     ================================== */
 
   self.getApiModels = function getApiModels() {
-    return OvhApiTelephony.v6().schema().$promise.then(schemas => schemas.models);
+    return OvhApiTelephony.v6().schema().$promise.then((schemas) => schemas.models);
   };
 
   self.getApiModelEnum = function getApiModelEnum(modelName) {
-    return self.getApiModels().then(models => models[modelName].enum);
+    return self.getApiModels().then((models) => models[modelName].enum);
   };
 
   /* -----  End of API MODELS  ------*/
@@ -102,7 +102,7 @@ angular.module('managerApp').service('TelephonyMediator', function TelephonyMedi
   /* ----------  ACTIONS  ----------*/
 
   self.getGroup = function getGroup(billingAccount, force) {
-    return self.getAll(force).then(groups => groups[billingAccount]);
+    return self.getAll(force).then((groups) => groups[billingAccount]);
   };
 
   /*
@@ -134,7 +134,7 @@ angular.module('managerApp').service('TelephonyMediator', function TelephonyMedi
   /* ----------  COUNT  ----------*/
 
   self.getCount = function getCount(force) {
-    return self.getAll(force).then(groups => keys(groups).length);
+    return self.getAll(force).then((groups) => keys(groups).length);
   };
 
   /* -----  End of SIDEBAR HELPERS  ------*/

@@ -117,7 +117,7 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
   };
 
   function getFirstAvailableCategory() {
-    return find(self.categories, category => !self.scheduler.isEventInExistingRange({
+    return find(self.categories, (category) => !self.scheduler.isEventInExistingRange({
       categories: category,
       dateStart: self.event.dateStart,
       dateEnd: self.event.dateEnd,
@@ -228,7 +228,7 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
     return telephonyScheduler.getAvailableCategories().then((categories) => {
       self.categories = filter(
         categories,
-        category => (self.timeCondition ? self.convertCategoryToSlot(category) : true),
+        (category) => (self.timeCondition ? self.convertCategoryToSlot(category) : true),
       );
 
       if (self.event.status === 'CREATING' && self.scheduler.isEventInExistingRange(self.event)) {

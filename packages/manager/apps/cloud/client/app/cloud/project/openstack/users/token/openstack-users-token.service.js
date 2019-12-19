@@ -1,5 +1,4 @@
 
-
 angular.module('managerApp')
   .service('OpenstackUsersToken', function OpenstackUsersToken() {
     const tokens = {};
