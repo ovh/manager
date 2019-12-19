@@ -1,0 +1,9 @@
+{
+  "ovh_contract_agree": "Ich habe den Vertrag gelesen und akzeptiere diesen",
+  "ovh_contracts_agree": "Ich habe die Verträge gelesen und akzeptiere diese",
+  "ovh_contract_list_title": "Es ist ein Vertrag zur Einsicht vorhanden.",
+  "ovh_contracts_list_title": "Es sind {{nbr}} Verträge einzusehen.",
+  "ovh_contract_next": "Weiter",
+  "ovh_contract_previous": "Zurück",
+  "ovh_contract_download": "Vertrag \"{{id}}\" im PDF-Format öffnen"
+}
