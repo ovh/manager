@@ -833,5 +833,10 @@
   "domain_tab_options_delete_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
   "domain_tab_options_delete_cancel": "Abbrechen",
   "domain_dashboard_options_dns_anycast_expiry": "Datum des Inkrafttretens: {{date}}",
-  "domain_tab_options_delete_expiry": "Die Kündigung der Option erfolgt zum Verlängerungsdatum, d. h. am {{date}}"
+  "domain_tab_options_delete_expiry": "Die Kündigung der Option erfolgt zum Verlängerungsdatum, d. h. am {{date}}",
+  "domain_dashboard_web_hosting_ordered": "Bestellten Hosting-Pakete",
+  "domain_dashboard_web_hosting_ordered_none": "Keine bestellten Hosting-Pakete",
+  "domain_dashboard_web_hosting_subdomains_and_multisites": "Sub-Domains und Multi-Site",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Alle Anzeigen",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "Kein Subdomain oder Multisite"
 }

@@ -210,7 +210,7 @@
   "hosting_dashboard_cdn_order_not_available": "L'opzione CDN non è disponibile per la tua piattaforma. ",
   "hosting_dashboard_cdn_order_choose_duration": "Scegli la durata:",
   "hosting_dashboard_cdn_order_validation": "Clicca su \"Conferma\" per creare il tuo ordine.",
-  "hosting_dashboard_cdn_order_success": "L'<a href=\"{{t0}}\" traget=\"_blank\">ordine</a> è stato generato correttamente. Una volta confermato, il servizio verrà attivato.",
+  "hosting_dashboard_cdn_order_success": "Il tuo <a href=\"{{t0}}\" target=\"_blank\">ordine</a> è stato generato. Il vostro prodotto sarà attivato una volta convalidato.",
   "hosting_dashboard_cdn_order_error": "Si è verificato un errore nell'ordine della CDN.",
   "hosting_dashboard_cdn_order_select_pack_offer": "Scegli la tua offerta CDN: ",
   "hosting_dashboard_cdn_order_CDN_BUSINESS": "CDN 17 PoP",
@@ -1395,5 +1395,7 @@
   "hosting_tab_DATABASES_configuration_create_step3_type_extra_sql_perso": "Extra SQL Personale {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "Archiviata nella tua istanza Cloud Web",
   "hosting_dashboard_service_activate_cdn": "Attiva una CDN",
-  "hosting_dashboard_cdn_order_success_activation": "L’attivazione è stata effettuata correttamente. La soluzione scelta sarà attiva entro pochi minuti."
+  "hosting_dashboard_cdn_order_success_activation": "La tua attivazione ha avuto successo. La soluzione scelta sarà attiva entro pochi minuti.",
+  "hosting_tab_DATABASES_configuration_order_title_button_private": "Ordinare un database SQL privato",
+  "hosting_tab_DATABASES_configuration_order_title_private": "Ordinare un database SQL privato"
 }

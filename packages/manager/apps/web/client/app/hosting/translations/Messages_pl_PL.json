@@ -147,7 +147,7 @@
   "hosting_dashboard_add_or_order_step1_order": "Zamawiam nową domenę",
   "hosting_dashboard_add_or_order_step1_attach": "Przypisuję istniejącą domenę",
   "hosting_dashboard_service_ssl": "Certyfikat SSL",
-  "hosting_dashboard_service_cdn": "Opcja CDN + HTTP/2",
+  "hosting_dashboard_service_cdn": "Opcja CDN",
   "hosting_dashboard_service_web": "Strony WWW",
   "hosting_dashboard_service_privatesql": "Prywatna baza danych",
   "hosting_dashboard_service_privatesql_more": "Wyświetl listę",
@@ -210,7 +210,7 @@
   "hosting_dashboard_cdn_order_not_available": "Opcja CDN nie jest dostępna w Twoim pakiecie.",
   "hosting_dashboard_cdn_order_choose_duration": "Wybierz czas abonamentu:",
   "hosting_dashboard_cdn_order_validation": "Kliknij na \"Zatwierdź\", aby złożyć zamówienie.",
-  "hosting_dashboard_cdn_order_success": "Twoje <a href=\"{{t0}}\" traget=\"_blank\">zamówienie</a> zostało wygenerowane. Produkt zostanie uruchomiony po zatwierdzeniu zamówienia.",
+  "hosting_dashboard_cdn_order_success": "<a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Zamówienie</a> zostało wygenerowane. Twój produkt zostanie aktywowany po zatwierdzeniu go.",
   "hosting_dashboard_cdn_order_error": "Wystąpił błąd podczas zamawiania usługi CDN.",
   "hosting_dashboard_cdn_order_select_pack_offer": "Wybierz ofertę CDN:",
   "hosting_dashboard_cdn_order_CDN_BUSINESS": "Opcja CDN 17 PoP",
@@ -1393,5 +1393,9 @@
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_perso": "SQL Perso {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_sql_pro": "SQL Pro {{t0}} {{t1}}",
   "hosting_tab_DATABASES_configuration_create_step3_type_extra_sql_perso": "Dodatkowy SQL Perso {{t0}} {{t1}}",
-  "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "Przechowywana na Twojej instancji Cloud Web"
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "Przechowywana na Twojej instancji Cloud Web",
+  "hosting_dashboard_service_activate_cdn": "Dodaj CDN",
+  "hosting_dashboard_cdn_order_success_activation": "Twoja aktywacja była udana. Twój produkt zostanie aktywowany w ciągu kilku chwil.",
+  "hosting_tab_DATABASES_configuration_order_title_button_private": "Zamówienie prywatnej bazy danych SQL",
+  "hosting_tab_DATABASES_configuration_order_title_private": "Zamówienie prywatnej bazy danych SQL"
 }

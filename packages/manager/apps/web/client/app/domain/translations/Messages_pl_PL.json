@@ -833,5 +833,10 @@
   "domain_tab_options_delete_error": "Wystąpił błąd podczas rezygnowania z opcji.",
   "domain_tab_options_delete_cancel": "Anuluj",
   "domain_dashboard_options_dns_anycast_expiry": "Data wejścia w życie: {{date}}",
-  "domain_tab_options_delete_expiry": "Rezygnacja z opcji wejdzie w życie w dniu odnowienia usługi, czyli {{ date }}."
+  "domain_tab_options_delete_expiry": "Rezygnacja z opcji wejdzie w życie w dniu odnowienia usługi, czyli {{ date }}.",
+  "domain_dashboard_web_hosting_ordered": "Zamówiony hosting",
+  "domain_dashboard_web_hosting_ordered_none": "Brak zamówionego hostingu:",
+  "domain_dashboard_web_hosting_subdomains_and_multisites": "Subdomena i MultiSites ",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_more": "Pokaż wszystko",
+  "domain_dashboard_web_hosting_subdomains_and_multisites_none": "Brak subdomeny lub MultiSites"
 }

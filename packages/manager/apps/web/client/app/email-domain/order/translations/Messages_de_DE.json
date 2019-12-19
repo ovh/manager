@@ -1,0 +1,17 @@
+{
+  "mxPlan_order_title": "Bestellung eines MX Plan Pakets",
+  "mxPlan_order_domain": "Wahl des domain",
+  "mxPlan_order_domain_pick": "Eine Domain auswählen",
+  "mxPlan_order_offer": "Wählen Sie ein Angebot aus",
+  "mxPlan_order_offer_description_domain": "Der E-Mail-Dienst wird Ihrem Domain-Namen ohne Verlängerungsantrag zugeordnet.",
+  "mxPlan_order_contracts": "Bestätigung",
+  "mxPlan_order_generated_purchase_success": "Der Bestellschein <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> wurde erfolgreich gelöscht.",
+  "mxPlan_order_generated_success": "Ihre Bestellung wurde erfolgreich durchgeführt.",
+  "mxPlan_order_generated_success_tracking": "Klicken Sie hier und folgen Sie Ihrem Steuerung.",
+  "mxPlan_order_checkout_error": "Es ist ein Fehler aufgetreten: {{message}}",
+  "mxPlan_order_error": "Bei der Bestellung ist ein Fehler aufgetreten:  {{ message }}",
+  "mxPlan_price_without_tax": "Preis zzgl. MwSt.: ",
+  "mxPlan_price_with_tax": "Preis inkl. MwSt.: ",
+  "mxPlan_order_action": "Bestellen",
+  "mxPlan_order_error_payment": "Beim Laden Ihrer Zahlungsmittel ist ein Fehler aufgetreten."
+}
