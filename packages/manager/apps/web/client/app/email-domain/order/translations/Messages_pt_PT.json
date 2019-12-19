@@ -1,0 +1,17 @@
+{
+  "mxPlan_order_title": "Encomenda de um MX Plan",
+  "mxPlan_order_domain": "Preço do domínio",
+  "mxPlan_order_domain_pick": "Selecionar Domínio",
+  "mxPlan_order_offer": "Selecionar uma oferta",
+  "mxPlan_order_offer_description_domain": "O serviço de correio eletrônico será anexado ao seu nome de domínio sem uma solicitação de renovação.",
+  "mxPlan_order_contracts": "Validação",
+  "mxPlan_order_generated_purchase_success": "A nota de encomenda <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> foi criada com sucesso.",
+  "mxPlan_order_generated_success": "A sua encomenda foi realizada com êxito.",
+  "mxPlan_order_generated_success_tracking": "Clique aqui para seguir seu pedido.",
+  "mxPlan_order_checkout_error": "Ocorreu um erro: {{ message }}",
+  "mxPlan_order_error": "Erro durante o comando: {{ message }}",
+  "mxPlan_price_without_tax": "Preço s/ IVA: ",
+  "mxPlan_price_with_tax": "Preço c/ IVA: ",
+  "mxPlan_order_action": "Encomendar",
+  "mxPlan_order_error_payment": "Ocorreu um erro ao carregar os métodos de pagamento disponíveis"
+}

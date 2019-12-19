@@ -19,7 +19,7 @@
   "iplb_server_edit_address": "Dirección IPv4",
   "iplb_server_edit_port": "Puerto",
   "iplb_server_edit_port_tip": "Puerto asociado a su servidor (1 a {{portMax}}). Por defecto, heredado del puerto de la granja.",
-  "iplb_server_edit_advanced_options": "Parámetros avanzados",
+  "iplb_server_edit_advanced_options": "Configuración avanzada",
   "iplb_server_edit_advanced_options_info": "Los valores por defecto más habituales están preestablecidos, pero puede modificarlos en cualquier momento.",
   "iplb_server_edit_advanced_options_show": "Ver",
   "iplb_server_edit_backup": "Servidor de respaldo",

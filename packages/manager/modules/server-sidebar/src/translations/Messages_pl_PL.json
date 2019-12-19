@@ -60,5 +60,6 @@
   "server_sidebar_order_item_zone_title": "Zone DNS",
   "server_sidebar_item_servers_all_title": "Wszystkie moje serwery",
   "server_sidebar_item_enterprise_cloud_database_title": "Enterprise Cloud Databases",
-  "server_sidebar_order_item_enterprise_cloud_database_title": "Enterprise Cloud Databases"
+  "server_sidebar_order_item_enterprise_cloud_database_title": "Enterprise Cloud Databases",
+  "server_sidebar_order_item_cloudDatabase_title": "Cloud DB"
 }

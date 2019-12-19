@@ -210,7 +210,7 @@
   "hosting_dashboard_cdn_order_not_available": "The CDN option is not available on your platform.",
   "hosting_dashboard_cdn_order_choose_duration": "Select a duration:",
   "hosting_dashboard_cdn_order_validation": "Click \"Confirm\" to generate a purchase order.",
-  "hosting_dashboard_cdn_order_success": "Your <a href=\"{{t0}}\" traget=\"_blank\">purchase order</a> has successfully been generated. Your product will be activated when you confirm it.",
+  "hosting_dashboard_cdn_order_success": "Your <a href=\"{{t0}}\" target=\"_blank\">order form</a> has been successfully generated. Your product will be activated once you have validated it.",
   "hosting_dashboard_cdn_order_error": "An error has occurred ordering your CDN.",
   "hosting_dashboard_cdn_order_select_pack_offer": "Select the CDN solution you want:",
   "hosting_dashboard_cdn_order_CDN_BUSINESS": "17 PoP CDN",
@@ -1382,5 +1382,7 @@
   "common_api_hostingWeb-1": "You cannot migrate to this solution, because your current solution has more email capacity than the solution you have selected.",
   "hosting_tab_BOOST_request_description_billing_new": "From 01st November 2019, our pricing will change, and you will be billed per day of usage: {{price}} ex. VAT per day and per solution level.",
   "hosting_dashboard_service_activate_cdn": "Enable a CDN",
-  "hosting_dashboard_cdn_order_success_activation": "You have enabled the CDN successfully. Your product will be enabled shortly."
+  "hosting_dashboard_cdn_order_success_activation": "Your activation has been successfully completed. Your product will be enabled shortly.",
+  "hosting_tab_DATABASES_configuration_order_title_button_private": "Order a Private SQL database",
+  "hosting_tab_DATABASES_configuration_order_title_private": "Order a Private SQL database"
 }

@@ -11,7 +11,7 @@
   "iplb_vrack_box_status_deactivating": "Desactivando...",
   "iplb_vrack_private_network_add": "Añadir una red privada",
   "iplb_vrack_list_col_private_network": "Red privada",
-  "iplb_vrack_list_col_vlan_id": "VLAN ID",
+  "iplb_vrack_list_col_vlan_id": "ID de la VLAN",
   "iplb_vrack_list_col_subnet": "Subred",
   "iplb_vrack_list_col_nat_ip": "NatIP",
   "iplb_vrack_list_col_farms": "Granja de servidores",
