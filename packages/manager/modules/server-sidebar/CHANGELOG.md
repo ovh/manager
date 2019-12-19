@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.0...@ovh-ux/manager-server-sidebar@1.2.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **server-sidebar:** remove private database order ([#1996](https://github.com/ovh/manager/issues/1996)) ([a422965](https://github.com/ovh/manager/commit/a422965181777be314efee418bad9017dc7868c9))
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.1.0...@ovh-ux/manager-server-sidebar@1.2.0) (2019-12-19)
 
 
