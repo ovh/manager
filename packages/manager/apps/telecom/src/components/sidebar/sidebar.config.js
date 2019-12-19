@@ -8,6 +8,8 @@ import { ALIAS_AVAILABILITY } from '../../app/telecom/orders/alias/orders-alias.
 import { PACK_AVAILABILITY } from '../../app/telecom/pack/pack.constant';
 import { TELEPHONY_AVAILABILITY } from '../../app/telecom/telephony/telecom-telephony.constant';
 
+import { URLS } from './sidebar.constants';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -135,7 +137,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
       {
         title: $translate.instant('telecom_sidebar_actions_menu_domain'),
         icon: 'ovh-font ovh-font-domain',
-        href: ORDER_URLS.domain,
+        href: URLS.domain[user.ovhSubsidiary] || URLS.domain.FR,
         target: '_blank',
         external: true,
         onClick: setTracker('DomainsName', 'navigation', 'Telecom', 'telecom'),
@@ -146,32 +148,32 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
         subActions: [
           ...packAvailability.isAvailable('order') ? [{
             title: $translate.instant('telecom_sidebar_actions_menu_internet_xdsl'),
-            href: ORDER_URLS.internet.xdsl,
+            href: URLS.internet.xdsl.FR,
             target: '_blank',
             external: true,
             onClick: setTracker('order-ADSL_VDSL', 'navigation', 'Telecom', 'telecom'),
           }, {
             title: $translate.instant('telecom_sidebar_actions_menu_internet_fiber'),
-            href: ORDER_URLS.internet.fiber,
+            href: URLS.internet.fiber.FR,
             target: '_blank',
             external: true,
             onClick: setTracker('order-FIBER', 'navigation', 'Telecom', 'telecom'),
           }, {
             title: $translate.instant('telecom_sidebar_actions_menu_internet_sdsl'),
-            href: ORDER_URLS.internet.sdsl,
+            href: URLS.internet.sdsl.FR,
             target: '_blank',
             external: true,
             onClick: setTracker('order-SDSL', 'navigation', 'Telecom', 'telecom'),
           }, {
             title: $translate.instant('telecom_sidebar_actions_menu_internet_adsl_creation'),
-            href: ORDER_URLS.internet.adslCreation,
+            href: URLS.internet.adslCreation.FR,
             target: '_blank',
             external: true,
             onClick: setTracker('order-ADSL', 'navigation', 'Telecom', 'telecom'),
           }] : [],
           ...otbAvailability.isAvailable('order') ? [{
             title: $translate.instant('telecom_sidebar_actions_menu_internet_otb'),
-            href: ORDER_URLS.overTheBox,
+            href: URLS.overTheBox.FR,
           }] : [],
         ],
       }] : [],
@@ -180,19 +182,19 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
         icon: 'ovh-font ovh-font-phone',
         subActions: [{
           title: $translate.instant('telecom_sidebar_actions_menu_telephony_voip'),
-          href: ORDER_URLS.telephony.voip,
+          href: URLS.telephony.voip.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-VOIP', 'navigation', 'Telecom', 'telecom'),
         }, {
           title: $translate.instant('telecom_sidebar_actions_menu_telephony_siptrunk'),
-          href: ORDER_URLS.telephony.siptrunk,
+          href: URLS.telephony.siptrunk.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-Pack_SIP_Trunk', 'navigation', 'Telecom', 'telecom'),
         }, {
           title: $translate.instant('telecom_sidebar_actions_menu_telephony_siptrunk_call'),
-          href: ORDER_URLS.telephony.siptrunkCall,
+          href: URLS.telephony.siptrunkCall.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-SIP_Trunk_Abo', 'navigation', 'Telecom', 'telecom'),
@@ -206,13 +208,13 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
         icon: 'ovh-font ovh-font-mail',
         subActions: [{
           title: $translate.instant('telecom_sidebar_actions_menu_email_exchange'),
-          href: ORDER_URLS.email.exchange,
+          href: URLS.email.exchange[user.ovhSubsidiary] || ORDER_URLS.email.exchange.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-Email_ExchangeHosted', 'navigation', 'Telecom', 'telecom'),
         }, {
           title: $translate.instant('telecom_sidebar_actions_menu_email_sharepoint'),
-          href: ORDER_URLS.email.sharepoint,
+          href: URLS.email.sharepoint[user.ovhSubsidiary] || ORDER_URLS.email.sharepoint.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-Email_Sharepoint', 'navigation', 'Telecom', 'telecom'),
@@ -228,13 +230,13 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
                 + '</g></g></g></g></svg>'),
         subActions: [{
           title: $translate.instant('telecom_sidebar_actions_menu_office_business'),
-          href: ORDER_URLS.office.business,
+          href: URLS.office.business[user.ovhSubsidiary] || ORDER_URLS.office.business.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-O365_Business', 'navigation', 'Telecom', 'telecom'),
         }, {
           title: $translate.instant('telecom_sidebar_actions_menu_office_sharepoint'),
-          href: ORDER_URLS.office.sharepoint,
+          href: URLS.office.sharepoint[user.ovhSubsidiary] || ORDER_URLS.office.sharepoint.FR,
           target: '_blank',
           external: true,
           onClick: setTracker('order-O365_Sharepoint', 'navigation', 'Telecom', 'telecom'),
@@ -250,7 +252,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
           },
           {
             title: $translate.instant('telecom_sidebar_actions_menu_sms_hlr'),
-            href: ORDER_URLS.sms.hlr,
+            href: URLS.sms.hlr.FR,
             target: '_blank',
             external: true,
             onClick: setTracker('order-sms-HLR', 'navigation', 'Telecom', 'telecom'),
@@ -262,7 +264,7 @@ angular.module('managerApp').config((SidebarMenuProvider) => {
       ...freefaxAvailability.isAvailable('order') ? [{
         title: $translate.instant('telecom_sidebar_actions_menu_fax'),
         icon: 'ovh-font ovh-font-print',
-        href: ORDER_URLS.fax,
+        href: URLS.fax.FR,
         target: '_blank',
         external: true,
         onClick: setTracker('Fax', 'navigation', 'Telecom', 'telecom'),
