@@ -1,4 +1,5 @@
 $flag-icon-css-path: "flag-icon-css/flags";
+
 @import "~flag-icon-css/sass/flag-icon";
 
 .flag-icon-uk {
@@ -49,11 +50,13 @@ $flag-icon-css-path: "flag-icon-css/flags";
   @extend .flag-icon-de;
 }
 
-.flag-icon-sgp, .flag-icon-sgp1 {
+.flag-icon-sgp,
+.flag-icon-sgp1 {
   @extend .flag-icon-sg;
 }
 
-.flag-icon-syd, .flag-icon-syd1 {
+.flag-icon-syd,
+.flag-icon-syd1 {
   @extend .flag-icon-au;
 }
 
@@ -68,15 +71,15 @@ $flag-icon-css-path: "flag-icon-css/flags";
 
 .flag {
   &__icon {
-      &-md {
+    &-md {
       width: 2.25em;
       height: 1.6875em;
-      }
+    }
 
-      &-sm {
+    &-sm {
       width: 1.4em;
       height: 1.05em;
-      }
+    }
   }
 }
 

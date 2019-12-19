@@ -1,5 +1,6 @@
 .iplb {
   $flag-icon-css-path: '~flag-icon-css/flags';
+
   @import '~flag-icon-css/sass/flag-icon';
   @import 'bootstrap4/scss/_functions.scss';
   @import 'bootstrap4/scss/_variables.scss';
@@ -51,11 +52,13 @@
     @extend .flag-icon-de;
   }
 
-  .flag-icon-sgp, .flag-icon-sgp1 {
+  .flag-icon-sgp,
+  .flag-icon-sgp1 {
     @extend .flag-icon-sg;
   }
 
-  .flag-icon-syd, .flag-icon-syd1 {
+  .flag-icon-syd,
+  .flag-icon-syd1 {
     @extend .flag-icon-au;
   }
 

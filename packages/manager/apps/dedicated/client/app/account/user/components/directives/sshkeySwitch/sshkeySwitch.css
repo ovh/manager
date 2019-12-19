@@ -1,6 +1,6 @@
 .sshkey-switch {
   margin-bottom: 5px;
-  background: #DBDBDB;
+  background: #dbdbdb;
   border-radius: 4px;
 }
 
@@ -13,6 +13,7 @@
   background: #59d2ef;
   font-weight: bold;
 }
+
 .sshkey-switch span:first-child {
   border-radius: 4px 0 0 4px;
 }
