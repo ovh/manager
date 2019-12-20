@@ -22,6 +22,12 @@ export default class {
       this.block = true;
     }
 
+    if (!isUndefined(this.$attrs.convertToUcents) && this.$attrs.convertToUcents === '') {
+      this.convertToUcents = true;
+      this.price *= 100000000;
+      this.tax *= 100000000;
+    }
+
     this.ovhSubsidiary = get(this.user, 'ovhSubsidiary', '');
   }
 
