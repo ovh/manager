@@ -1,185 +1,99 @@
-<div class="page-header mb-5">
-    <h1 data-translate="mxPlan_order_title"></h1>
-</div>
+<oui-page-header data-heading="{{:: 'mxPlan_order_title' | translate }}" class="mb-2"></oui-page-header>
 
-<div data-ovh-alert="{{alerts.order}}"></div>
+<div class="container-fluid">
+    <div data-ovh-alert></div>
+    <oui-message
+        data-type="success"
+        data-ng-if="$ctrl.orderTrackingLink">
+        <span data-translate="mxPlan_order_generated_success"></span>
+        <a data-ng-href="{{ $ctrl.orderTrackingLink }}" data-translate="mxPlan_order_generated_success_tracking"></a>
+    </oui-message>
 
-<div class="text-center" data-ng-if="ctrlMXPlanOrder.loading.init">
-    <oui-spinner data-size="l"></oui-spinner>
-</div>
+    <oui-stepper
+        data-current-index="$ctrl.currentIndex"
+        data-on-finish="$ctrl.validateCheckout(forms)">
+        <oui-step-form
+            data-header="{{:: 'mxPlan_order_domain' | translate }}"
+            data-valid="$ctrl.model.selectedDomain"
+            data-loading="$ctrl.loading.domain"
+            data-editable="!$ctrl.loading.checkout">
+            <oui-select
+                class="oui-select_m"
+                data-items="$ctrl.domains"
+                data-model="$ctrl.model.selectedDomain"
+                data-on-change="$ctrl.onDomainChange()"
+                data-placeholder="{{:: 'mxPlan_order_domain_pick' | translate }}">
+            </oui-select>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'mxPlan_order_offer' | translate }}"
+            data-on-focus="$ctrl.displaySelectedOffer = false"
+            data-on-submit="$ctrl.displaySelectedOffer = true"
+            data-editable="!$ctrl.loading.checkout">
+            <p data-translate="mxPlan_order_offer_description_domain"></p>
+            <div class="row">
+                <oui-select-picker
+                    data-ng-if="$ctrl.displaySelectedOffer"
+                    class="mb-3 col-md-4"
+                    data-label="{{ $ctrl.model.product.displayName }}"
+                    name="{{:: $ctrl.model.product.planCode }}"
+                    data-model="$ctrl.model.product"
+                    data-values="[$ctrl.model.product]"
+                    data-variant="light">
+                    <oui-select-picker-footer>
+                        <ovh-manager-order-catalog-price
+                            data-user="$ctrl.user"
+                            data-price="$ctrl.model.product.getPrice('installation')"
+                            data-tax="$ctrl.getProductTaxAmount($ctrl.model.product)">
+                        </ovh-manager-order-catalog-price>
+                    </oui-select-picker-footer>
+                </oui-select-picker>
 
-<div class="container-fluid px-5" data-ng-if="!ctrlMXPlanOrder.loading.init">
-    <div
-        class="alert alert-info"
-        role="alert"
-        data-translate="mxPlan_order_error_no_domain"
-        data-ng-if="ctrlMXPlanOrder.list.domains.length === 0"
-    ></div>
-
-    <form name="orderMxPlanForm">
-        <!-- step 1 -->
-        <h2 data-translate="mxPlan_order_step1_title"></h2>
-
-        <div class="form-group">
-            <label
-                class="oui-label"
-                for="select-order-domain"
-                data-translate="mxPlan_order_step1_domain"
-            ></label>
-            <div class="oui-select oui-select_inline">
-                <select
-                    class="oui-select__input"
-                    id="select-order-domain"
-                    name="orderDomain"
-                    data-ng-change="ctrlMXPlanOrder.fetchOffers()"
-                    data-ng-model="ctrlMXPlanOrder.selectedOrder.config.domain"
-                    data-ng-options="domain for domain in (ctrlMXPlanOrder.list.domains | orderBy) track by domain"
-                >
-                    <option
-                        value=""
-                        disabled
-                        data-translate="select_option"
-                    ></option>
-                </select>
-                <span
-                    class="oui-icon oui-icon-chevron-down"
-                    aria-hidden="true"
-                ></span>
+                <oui-select-picker
+                    data-ng-if="!$ctrl.displaySelectedOffer"
+                    class="mb-3 col-md-4"
+                    data-ng-repeat="product in $ctrl.products track by product.planCode"
+                    data-label="{{ product.displayName }}"
+                    name="{{:: product.planCode }}"
+                    data-model="$ctrl.model.product"
+                    data-values="[product]"
+                    data-variant="light">
+                    <oui-select-picker-footer>
+                        <ovh-manager-order-catalog-price
+                            data-user="$ctrl.user"
+                            data-price="product.getPrice('installation')"
+                            data-tax="$ctrl.getProductTaxAmount(product)">
+                        </ovh-manager-order-catalog-price>
+                    </oui-select-picker-footer>
+                </oui-select-picker>
             </div>
-        </div>
-
-        <!-- step 2-->
-        <div
-            class="text-center mt-5"
-            data-ng-if="ctrlMXPlanOrder.loading.offers"
-        >
-            <oui-spinner></oui-spinner>
-        </div>
-
-        <div
-            class="mt-5"
-            data-ng-if="!ctrlMXPlanOrder.loading.offers && ctrlMXPlanOrder.selectedOrder.config.domain.length && ctrlMXPlanOrder.list.offers.length"
-        >
-            <h2 data-translate="mxPlan_order_step2_title"></h2>
-
-            <div
-                data-ovh-alert="{{alerts.durations}}"
-                data-ovh-alert-hide-remove-button
-            ></div>
-
-            <div
-                class="oui-radio"
-                data-ng-repeat="offer in (ctrlMXPlanOrder.list.offers | orderBy: 'prices.withTax.value') track by $index"
-            >
-                <input
-                    type="radio"
-                    class="oui-radio__input"
-                    id="offers-{{$index}}"
-                    name="offers"
-                    data-ng-change="ctrlMXPlanOrder.selectOffer()"
-                    data-ng-disabled="ctrlMXPlanOrder.loading.prices || ctrlMXPlanOrder.durations.available.length === 1"
-                    data-ng-model="ctrlMXPlanOrder.selectedOrder.offer"
-                    data-ng-value="offer"
-                />
-                <label
-                    class="oui-radio__label-container"
-                    for="offers-{{$index}}"
-                >
-                    <span
-                        class="oui-radio__label"
-                        data-ng-bind-html="'MX ' + offer.offer + ' : ' + (offer.prices | price:ovhSubsidiary)"
-                    ></span>
-                </label>
-            </div>
-            <p>
-                <span
-                    data-ng-bind-html="'mxPlan_order_step2_product_description' | translate: { t0: ctrlMXPlanOrder.urls.mxPlanProductDescription, t1: '_blank', t2: '<span class=\'fa fa-external-link\'></span>' }"
-                    data-ng-if="ctrlMXPlanOrder.urls.mxPlanProductDescription"
-                ></span
-                ><br />
-                <span data-translate="mxPlan_order_step2_duration"></span>
-            </p>
-        </div>
-
-        <!-- Step 3: Contracts and validation -->
-        <div
-            class="mt-5"
-            data-ng-if="!ctrlMXPlanOrder.loading.offers && ctrlMXPlanOrder.selectedOrder.offer"
-        >
-            <h2 data-translate="mxPlan_order_step3_title"></h2>
-
-            <div data-ng-if="!ctrlMXPlanOrder.order.url">
-                <p
-                    class="font-weight-bold"
-                    data-translate="mxPlan_order_step3_question"
-                    data-ng-if="ctrlMXPlanOrder.selectedOrder.offer.contracts.length === 0"
-                ></p>
-
-                <div
-                    data-ng-if="ctrlMXPlanOrder.selectedOrder.offer.contracts.length > 0"
-                >
-                    <p
-                        class="font-weight-bold text-primary"
-                        data-translate="mxPlan_order_step3_contracts_ask"
-                    ></p>
-                    <ul>
-                        <li
-                            data-ng-repeat="contract in ctrlMXPlanOrder.selectedOrder.offer.contracts track by $index"
-                        >
-                            <a
-                                data-ng-href="{{contract.url}}"
-                                target="_blank"
-                                data-ng-bind="contract.url"
-                            ></a>
-                        </li>
-                    </ul>
-                    <oui-checkbox
-                        data-model="ctrlMXPlanOrder.selectedOrder.contractsValidated"
-                    >
-                        <span
-                            data-translate="mxPlan_order_step3_contracts_check"
-                        ></span>
-                    </oui-checkbox>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'mxPlan_order_contracts' | translate }}"
+            data-on-focus="$ctrl.loadValidation()"
+            data-loading="$ctrl.loading.checkout"
+            data-editable="!$ctrl.loading.checkout"
+            data-valid="($ctrl.checkout.contracts.length === 0 || $ctrl.model.contractsAccepted)"
+            data-submit-text="{{ ($ctrl.checkout.prices.withTax.value === 0 ? 'mxPlan_order_activate' : 'mxPlan_order_action') | translate }}">
+                <div class="row mb-2">
+                    <dl class="oui-description oui-description_horizontal oui-heading_underline col-md-2">
+                        <dt data-translate="mxPlan_price_without_tax"></dt>
+                        <dd data-ng-bind="$ctrl.checkout.prices.withoutTax.text"></dd>
+                        <dt data-translate="mxPlan_price_with_tax"></dt>
+                        <dd data-ng-bind="$ctrl.checkout.prices.withTax.text"></dd>
+                    </dl>
                 </div>
-
-                <div data-ng-if="ctrlMXPlanOrder.loading.bc">
-                    <span data-translate="mxPlan_order_step3_generating"></span>
-                    <oui-spinner data-size="s"></oui-spinner>
-                </div>
-                <div class="my-5">
-                    <button
-                        class="oui-button oui-button_primary oui-button_large-height"
-                        type="button"
-                        data-translate="mxPlan_order_step3_generate"
-                        data-ng-click="ctrlMXPlanOrder.generateBc()"
-                        data-ng-disabled="ctrlMXPlanOrder.selectedOrder.offer.contracts.length !== 0 && !ctrlMXPlanOrder.selectedOrder.contractsValidated"
-                        data-ng-if="!ctrlMXPlanOrder.loading.bc"
-                    ></button>
-                </div>
-            </div>
-
-            <div data-ng-if="ctrlMXPlanOrder.order.url">
-                <p>
-                    <strong
-                        class="text-success"
-                        data-translate="mxPlan_order_step3_generated"
-                    ></strong
-                    ><br />
-                    <span data-translate="mxPlan_order_step3_clic_here"></span
-                    ><br />
-                    <span
-                        data-translate="mxPlan_order_step3_bc_information"
-                    ></span>
-                </p>
-                <div class="my-5">
-                    <button
-                        class="oui-button oui-button_primary oui-button_large-height"
-                        type="button"
-                        data-translate="mxPlan_order_step3_pay_button"
-                        data-ng-click="ctrlMXPlanOrder.openBc()"
-                    ></button>
-                </div>
-            </div>
-        </div>
-    </form>
+                <ovh-payment-method-choice
+                    class="mb-1"
+                    data-model="$ctrl.model.autoPayWithPreferredPaymentMethod"
+                    data-error-callback="$ctrl.onPaymentError()">
+                </ovh-payment-method-choice>
+                <ovh-manager-order-contracts
+                    data-ng-if="$ctrl.checkout.contracts"
+                    data-name="agreeContracts"
+                    data-items="$ctrl.checkout.contracts"
+                    data-model="$ctrl.model.contractsAccepted">
+                </ovh-manager-order-contracts>
+        </oui-step-form>
+    </oui-stepper>
 </div>

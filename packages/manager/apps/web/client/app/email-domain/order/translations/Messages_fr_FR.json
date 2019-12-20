@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Prix HT : ",
   "mxPlan_price_with_tax": "Prix TTC : ",
   "mxPlan_order_action": "Commander",
+  "mxPlan_order_activate": "Activer",
   "mxPlan_order_error_payment": "Une erreur est survenue lors du chargement des moyens de paiement disponibles"
 }
