@@ -11,6 +11,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhContracts from '@ovh-ux/ng-ovh-contracts';
 // import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -80,6 +81,7 @@ angular
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
+    ngOvhContracts,
     // ngOvhChatbot,
     ngOvhExportCsv,
     ngOvhHttp,
