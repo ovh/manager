@@ -23,9 +23,10 @@
                     data-variant="light">
                     <oui-select-picker-footer>
                         <ovh-manager-order-catalog-price
+                            data-convert-to-ucents
                             data-user="$ctrl.user"
-                            data-price="$ctrl.model.offer.duration.prices.withoutTax.value * 100000000"
-                            data-tax="$ctrl.model.offer.duration.prices.tax.value * 100000000">
+                            data-price="$ctrl.model.offer.duration.prices.withoutTax.value"
+                            data-tax="$ctrl.model.offer.duration.prices.tax.value">
                         </ovh-manager-order-catalog-price>
                     </oui-select-picker-footer>
                 </oui-select-picker>
@@ -41,9 +42,10 @@
                     data-variant="light">
                     <oui-select-picker-footer>
                         <ovh-manager-order-catalog-price
+                            data-convert-to-ucents
                             data-user="$ctrl.user"
-                            data-price="product.duration.prices.withoutTax.value * 100000000"
-                            data-tax="product.duration.prices.tax.value * 100000000">
+                            data-price="product.duration.prices.withoutTax.value"
+                            data-tax="product.duration.prices.tax.value">
                         </ovh-manager-order-catalog-price>
                     </oui-select-picker-footer>
                 </oui-select-picker>
