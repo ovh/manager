@@ -41,6 +41,7 @@ import moment from 'moment';
 import config from './config/config';
 import domain from './domain';
 import domainDnsZone from './dns-zone';
+import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
 import orderCatalogPrice from './components/manager-order-catalog-price';
@@ -106,6 +107,7 @@ angular
     'Module.emailpro',
     domain,
     domainDnsZone,
+    emailDomainOrder,
     errorPage,
     hosting,
     orderCatalogPrice,
