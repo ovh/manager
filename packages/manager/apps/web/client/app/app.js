@@ -78,6 +78,7 @@ angular
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
+    ngOvhContracts,
     // ngOvhChatbot,
     ngOvhContracts,
     ngOvhExportCsv,
