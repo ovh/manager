@@ -49,8 +49,6 @@ import hosting from './hosting/hosting.module';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
-import emailDomainUpgradeModule from './email-domain/upgrade';
-
 import './css/source.less';
 import './css/source.scss';
 
@@ -115,7 +113,6 @@ angular
     orderContracts,
     privateDatabase,
     zone,
-    emailDomainUpgradeModule,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -177,7 +174,7 @@ angular
       $qProvider.errorOnUnhandledRejections(false);
     },
   ])
-  .config(/* @ngInject */(ovhPaymentMethodProvider) => {
+  .config(/* @ngInject */ (ovhPaymentMethodProvider) => {
     ovhPaymentMethodProvider.setPaymentMethodPageUrl(
       config.constants.PAYMENT_METHOD_URL,
     );
@@ -491,7 +488,7 @@ angular
     partners: 'https://www.ovh.com/manager/partners/',
     labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
   })
-  .run(/* @ngInject */($state) => {
+  .run(/* @ngInject */ ($state) => {
     $state.defaultErrorHandler((error) => {
       if (error.type === RejectType.ERROR) {
         $state.go('app.error', {

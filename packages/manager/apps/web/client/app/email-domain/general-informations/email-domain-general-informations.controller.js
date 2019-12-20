@@ -42,6 +42,10 @@ angular.module('App').controller(
         );
     }
 
+    gotoMxPlans() {
+      this.$state.go('app.mx-plan', { domain: this.$stateParams.productId });
+    }
+
     loadDomain() {
       this.loading.domain = true;
 
@@ -120,10 +124,6 @@ angular.module('App').controller(
       }).finally(() => {
         this.loading.urls = false;
       });
-    }
-
-    goToUpgrade() {
-      this.$state.go('app.email.domain.upgrade', { productId: this.$stateParams.productId });
     }
   },
 );
