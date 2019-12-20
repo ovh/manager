@@ -1,3 +1,15 @@
+# [13.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.38.0...@ovh-ux/manager-web@13.39.0) (2019-12-20)
+
+
+### Features
+
+* **email:** email domain upgrade ([c4b998a](https://github.com/ovh/manager/commit/c4b998afd84b185de86fc78bb6e797547c9f9646))
+* **web.catalog-price:** use format depending on locale ([5971c74](https://github.com/ovh/manager/commit/5971c744a0fe160d5f0517ceb1aadd83bb3ecbc8))
+* **web.contracts:** add oui-field ([03a8c9e](https://github.com/ovh/manager/commit/03a8c9e8a722b7030709706234dfbf0d20d93589))
+* **web.email-domain:** update order funnel ([ff2a315](https://github.com/ovh/manager/commit/ff2a3159fa21086107a621e91bb61b8cfde5c08a))
+
+
+
 # [13.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.37.0...@ovh-ux/manager-web@13.38.0) (2019-12-19)
 
 
