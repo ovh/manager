@@ -189,13 +189,8 @@
                                        data-ng-model="AgentsOvhPabxCtrl.agents.selected[agent.agentId]" />
                             </td>
                             <td class="align-middle">
-                                <span data-ng-if="!agent.inEdition"
-                                      data-ng-bind="agent.number | tucPhoneNumber">
+                                <span data-ng-bind="agent.number | tucPhoneNumber">
                                 </span>
-                                <input type="text"
-                                       class="form-control no-transition"
-                                       data-ng-if="agent.inEdition"
-                                       data-ng-model="agent.inEdition.number" />
                             </td>
                             <td class="align-middle">
                                 <span data-ng-if="!agent.inEdition"
