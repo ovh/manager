@@ -6,18 +6,18 @@ import {
 
 export default class MXPlan {
   /* @ngInject */
-  constructor($q, OrderService) {
+  constructor($q, WucOrderCartService) {
     this.$q = $q;
-    this.OrderService = OrderService;
+    this.WucOrderCartService = WucOrderCartService;
   }
 
   updateOffer(cart, item, product) {
     const deleteItemPromise = item
-      ? this.OrderService.deleteItem(cart, item.itemId)
+      ? this.WucOrderCartService.deleteItem(cart, item.itemId)
       : this.$q.resolve();
 
     return deleteItemPromise.then(() =>
-      this.OrderService.addProductToCart(cart, PRODUCT_NAME, {
+      this.WucOrderCartService.addProductToCart(cart, PRODUCT_NAME, {
         ...GENERIC_PRODUCT,
         planCode: product.planCode,
       }),
@@ -28,7 +28,7 @@ export default class MXPlan {
     return this.updateOffer(cart, previousItem, product).then((item) =>
       this.$q.all({
         item,
-        configuration: this.OrderService.addConfigurationItem(
+        configuration: this.WucOrderCartService.addConfigurationItem(
           cart,
           item.itemId,
           CONFIGURATION_LABEL,
