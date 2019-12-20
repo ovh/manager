@@ -88,12 +88,11 @@
                     data-model="$ctrl.model.autoPayWithPreferredPaymentMethod"
                     data-error-callback="$ctrl.onPaymentError()">
                 </ovh-payment-method-choice>
-                <ovh-manager-order-contracts
-                    data-ng-if="$ctrl.checkout.contracts"
+                <ovh-contracts-summary
                     data-name="agreeContracts"
                     data-items="$ctrl.checkout.contracts"
                     data-model="$ctrl.model.contractsAccepted">
-                </ovh-manager-order-contracts>
+                </ovh-contracts-summary>
         </oui-step-form>
     </oui-stepper>
 </div>
