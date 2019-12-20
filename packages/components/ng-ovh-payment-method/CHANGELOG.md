@@ -1,3 +1,12 @@
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.1.1...@ovh-ux/ng-ovh-payment-method@5.2.0) (2019-12-20)
+
+
+### Features
+
+* **payment-method:** pre select default payment mean if present ([b16a662](https://github.com/ovh/manager/commit/b16a662c811c5530a7e612fdd458cf3de9d76327))
+
+
+
 ## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@5.1.0...@ovh-ux/ng-ovh-payment-method@5.1.1) (2019-12-19)
 
 

@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.3.0...@ovh-ux/manager-emailpro@1.4.0) (2019-12-20)
+
+
+### Features
+
+* **email:** email domain upgrade ([c4b998a](https://github.com/ovh/manager/commit/c4b998afd84b185de86fc78bb6e797547c9f9646))
+
+
+
 # [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@1.2.6...@ovh-ux/manager-emailpro@1.3.0) (2019-12-10)
 
 
