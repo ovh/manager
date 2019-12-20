@@ -44,7 +44,6 @@ import orderService from './components/manager-order-service/manager-order-servi
 
 import domain from './domain';
 import domainDnsZone from './dns-zone';
-import emailDomainOrder from './email-domain/order';
 import errorPage from './error-page/error-page.module';
 import hosting from './hosting/hosting.module';
 import privateDatabase from './private-database';
@@ -110,7 +109,6 @@ angular
     'Module.emailpro',
     domain,
     domainDnsZone,
-    emailDomainOrder,
     errorPage,
     hosting,
     orderCatalogPrice,
