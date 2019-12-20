@@ -1,4 +1,4 @@
-export default class OvhManagerPciServingNamespaceModelsAddService {
+export default class OvhManagerPciServingNamespaceModelsAddServiceCapabilities {
   /* @ngInject */
   constructor($q, OvhApiCloudProjectAiServing) {
     this.$q = $q;

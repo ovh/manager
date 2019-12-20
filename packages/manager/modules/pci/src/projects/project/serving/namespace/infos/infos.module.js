@@ -5,9 +5,9 @@ import routing from './infos.routing';
 
 import attachRegistry from './attach-registry';
 import detachRegistry from './detach-registry';
+import registry from './registry/registry.module';
 
 import component from './infos.component';
-import service from './registry.service';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceInfos';
 
@@ -17,13 +17,13 @@ angular.module(moduleName, [
   'ovh-api-services',
   'pascalprecht.translate',
   'ui.router',
+  registry,
   attachRegistry,
   detachRegistry,
 ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectServingNamespaceInfosComponent', component)
-  .service('OvhManagerPciServingRegistryService', service);
+  .component('ovhManagerPciProjectServingNamespaceInfosComponent', component);
 
 
 export default moduleName;

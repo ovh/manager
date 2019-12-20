@@ -7,11 +7,11 @@ export default class PciServingNamespaceModelsAddController {
   constructor(
     $translate,
     OvhManagerPciServingModelsService,
-    PciStoragesContainersService,
+    PciProjectStorageContainersService,
   ) {
     this.$translate = $translate;
     this.OvhManagerPciServingModelsService = OvhManagerPciServingModelsService;
-    this.PciStoragesContainersService = PciStoragesContainersService;
+    this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.PRESET_IMAGE = PRESET_IMAGE;
     this.BUILD_IMAGE = BUILD_IMAGE;
   }
@@ -39,7 +39,7 @@ export default class PciServingNamespaceModelsAddController {
   }
 
   getContainerFiles() {
-    this.PciStoragesContainersService.getContainer(
+    this.PciProjectStorageContainersService.getContainer(
       this.projectId, this.namespace.containerId,
     ).then((container) => {
       this.paths = container.objects.map(({ name }) => {

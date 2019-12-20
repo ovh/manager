@@ -8,13 +8,13 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ goToNamespaceModels => goToNamespaceModels,
         flavors: /* @ngInject */ (
-          OvhManagerPciServingNamespaceModelsAddService,
+          OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
           projectId,
-        ) => OvhManagerPciServingNamespaceModelsAddService.getFlavors(projectId),
+        ) => OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getFlavors(projectId),
         presetImages: /* @ngInject */ (
-          OvhManagerPciServingNamespaceModelsAddService,
+          OvhManagerPciServingNamespaceModelsAddServiceCapabilities,
           projectId,
-        ) => OvhManagerPciServingNamespaceModelsAddService.getPresetImages(projectId),
+        ) => OvhManagerPciServingNamespaceModelsAddServiceCapabilities.getPresetImages(projectId),
         goToContainer: /* @ngInject */ (
           $state, projectId, namespace,
         ) => () => $state.go('pci.projects.project.storages.objects.object', {

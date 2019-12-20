@@ -3,7 +3,7 @@ import angular from 'angular';
 import routing from './update.routing';
 
 import component from './update.component';
-import service from '../models.service';
+import service from '../service/models.module';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceModelsUpdate';
 
@@ -13,10 +13,10 @@ angular.module(moduleName, [
   'ovh-api-services',
   'pascalprecht.translate',
   'ui.router',
+  service,
 ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectServingNamespaceModelsUpdateComponent', component)
-  .service('OvhManagerPciServingModelsService', service);
+  .component('ovhManagerPciProjectServingNamespaceModelsUpdateComponent', component);
 
 export default moduleName;

@@ -1,9 +1,9 @@
 import angular from 'angular';
 
-import service from './models.service';
 import component from './models.component';
 import routing from './models.routing';
 
+import service from './service/models.module';
 import add from './add';
 import deleteModule from './delete';
 import update from './update';
@@ -16,13 +16,13 @@ angular.module(moduleName, [
   'ovh-api-services',
   'pascalprecht.translate',
   'ui.router',
+  service,
   add,
   deleteModule,
   update,
 ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .service('OvhManagerPciServingModelsService', service)
   .component('ovhManagerPciProjectServingNamespaceModelsComponent', component);
 
 export default moduleName;

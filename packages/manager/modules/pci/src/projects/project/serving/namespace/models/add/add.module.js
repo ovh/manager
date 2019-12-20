@@ -2,10 +2,10 @@ import angular from 'angular';
 
 import routing from './add.routing';
 import component from './add.component';
-import service from '../models.service';
+import service from '../service/models.module';
 import capabilities from '../../../capabilities.service';
 
-import storageService from '../../../../storages/containers/containers.service';
+import ovhManagerPciStoragesContainers from '../../../../storages/containers';
 
 const moduleName = 'ovhManagerPciProjectServingNamespaceModelsAdd';
 
@@ -15,12 +15,12 @@ angular.module(moduleName, [
   'ovh-api-services',
   'pascalprecht.translate',
   'ui.router',
+  service,
+  ovhManagerPciStoragesContainers,
 ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerPciProjectServingNamespaceModelsAddComponent', component)
-  .service('OvhManagerPciServingModelsService', service)
-  .service('OvhManagerPciServingNamespaceModelsAddService', capabilities)
-  .service('PciStoragesContainersService', storageService);
+  .service('OvhManagerPciServingNamespaceModelsAddServiceCapabilities', capabilities);
 
 export default moduleName;
