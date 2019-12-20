@@ -11,6 +11,16 @@ angular.module('App').config(($stateProvider) => {
     controllerAs: 'ctrlEmailDomain',
     reloadOnSearch: false,
     resolve: {
+      serviceName: /* @ngInject */ $transition$ => $transition$.params().productId,
+      goToEmailDomain: /* @ngInject */ ($state, $timeout, Alerter) => (productId, message = false, type = 'success') => {
+        const promise = $state.go('app.email.domain', { productId });
+
+        if (message) {
+          promise.then(() => $timeout(() => Alerter.set(`alert-${type}`, message, null, 'domain_alert_main')));
+        }
+
+        return promise;
+      },
       currentSection: () => 'email_domain',
       navigationInformations: [
         'Navigator',
@@ -59,29 +69,5 @@ angular.module('App').config(($stateProvider) => {
       ],
     },
     translations: { value: ['../email'], format: 'json' },
-  });
-
-  $stateProvider.state('app.mx-plan', {
-    url: '/configuration/mx_plan?domain',
-    templateUrl: 'email-domain/order/email-domain-order.html',
-    controller: 'MXPlanOrderCtrl',
-    controllerAs: 'ctrlMXPlanOrder',
-    params: {
-      domain: null,
-    },
-    resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'mxPlan'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: { value: ['../mx-plan'], format: 'json' },
   });
 });

@@ -1,19 +1,20 @@
-<oui-checkbox
-    name="{{:: $ctrl.name }}"
-    data-ng-if="$ctrl.items"
-    data-model="$ctrl.model"
-    data-required>
-    <span data-translate="order_contracts_label"></span>
-</oui-checkbox>
-
-<ul>
-    <li data-ng-repeat="contract in $ctrl.items track by $index">
-        <a
-            href="{{:: contract.url }}"
-            rel="noopener"
-            target="_blank"
-            title="{{:: contract.name + '(' + ('common_newtab' | translate) + ')'}}">
-            <span data-ng-bind="contract.name"></span>
-        </a>
-    </li>
-</ul>
+<oui-field>
+    <oui-checkbox
+        name="{{:: $ctrl.name }}"
+        data-ng-if="$ctrl.items"
+        data-model="$ctrl.model"
+        data-required>
+        <span data-translate="order_contracts_label"></span>
+    </oui-checkbox>
+    <ul>
+        <li data-ng-repeat="contract in $ctrl.items track by $index">
+            <a
+                data-ng-href="{{:: contract.url }}"
+                rel="noopener"
+                target="_blank"
+                title="{{:: contract.name + '(' + ('common_newtab' | translate) + ')'}}">
+                <span data-ng-bind="contract.name"></span>
+            </a>
+        </li>
+    </ul>
+</oui-field>
