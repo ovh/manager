@@ -48,6 +48,8 @@ import orderCatalogPrice from './components/manager-order-catalog-price';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
+import emailDomainUpgradeModule from './email-domain/upgrade';
+
 import './css/source.less';
 import './css/source.scss';
 
@@ -113,6 +115,7 @@ angular
     orderCatalogPrice,
     privateDatabase,
     zone,
+    emailDomainUpgradeModule,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
