@@ -1,18 +1,19 @@
 {
-  "email_domain_upgrade_title": "Changer d'offre",
-  "email_domain_upgrade_step_header_offer": "Offre",
+  "email_domain_upgrade_title": "Changer d'offre e-mail",
+  "email_domain_upgrade_step_header_offer": "Sélectionnez une offre",
   "email_domain_upgrade_step_header_offer_description": "Sélectionnez l'offre désirée.",
   "email_domain_upgrade_step_header_offer_select_placeholder": "Sélectionnez…",
   "email_domain_upgrade_step_header_duration": "Durée",
   "email_domain_upgrade_step_header_duration_description": "Sélectionnez la durée désirée.",
-  "email_domain_upgrade_step_header_contracts": "Contrats",
+  "email_domain_upgrade_step_header_validation": "Validation",
   "email_domain_upgrade_next_button_label": "Suivant",
   "email_domain_upgrade_upgrade_button_label": "Changer d'offre",
   "email_domain_upgrade_cancel_button_label": "Annuler",
   "email_domain_upgrade_contracts_accept": "Afin de confirmer votre demande, veuillez accepter les conditions d'utilisation.",
-  "email_domain_upgrade_in_progress": "Modification de l'offre de messagerie électronique en '{{ newOffer }}'",
+  "email_domain_upgrade_in_progress": "Modification de l'offre e-mail en '{{ newOffer }}'",
   "email_domain_upgrade_fetch_duration_error": "Une erreur s'est produite lors de l'obtention des détails de l'offre : {{message}}",
-  "email_domain_upgrade_error": "Impossible de modifier l'offre de messagerie : {{message}}",
-  "email_domain_upgrade_success": "Le changement d'offre par e-mail est en cours.",
-  "email_domain_upgrade_success_follow": "<a href=\"{{ orderTrackURL }}\" target=\"_blank\" rel=\"noopener\"> Cliquez ici pour suivre la progression.</a>"
+  "email_domain_upgrade_error": "Impossible de modifier l'offre e-mail : {{message}}",
+  "email_domain_upgrade_success": "Le bon de commande <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> a été créé avec succès.",
+  "email_domain_upgrade_price_without_tax": "Prix HT : ",
+  "email_domain_upgrade_price_with_tax": "Prix TTC : "
 }
