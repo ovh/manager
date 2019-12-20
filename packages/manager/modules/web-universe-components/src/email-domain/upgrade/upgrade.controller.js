@@ -33,8 +33,7 @@ export default class EmailDomainUpgradeCtrl {
       this.model.offer.duration.name,
     )
       .then((order) => {
-        this.goToEmailDomain(
-          this.serviceName,
+        this.goBack(
           this.$translate.instant('email_domain_upgrade_success', {
             orderUrl: order.url,
             orderId: order.orderId,
@@ -53,9 +52,5 @@ export default class EmailDomainUpgradeCtrl {
       .finally(() => {
         this.loading.upgrading = false;
       });
-  }
-
-  goBack() {
-    return this.goToEmailDomain(this.serviceName);
   }
 }

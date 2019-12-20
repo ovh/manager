@@ -13,12 +13,15 @@ angular.module('App').config(($stateProvider) => {
     resolve: {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
-      goToEmailDomain: /* @ngInject */ ($state, $timeout, Alerter) => (
-        productId,
-        message = false,
-        type = 'success',
-      ) => {
-        const promise = $state.go('app.email.domain', { productId });
+      goToEmailDomain: /* @ngInject */ (
+        $state,
+        $timeout,
+        Alerter,
+        serviceName,
+      ) => (message = false, type = 'success') => {
+        const promise = $state.go('app.email.domain', {
+          productId: serviceName,
+        });
 
         if (message) {
           promise.then(() =>

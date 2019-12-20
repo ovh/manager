@@ -7,6 +7,7 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     $scope,
     $filter,
     $http,
+    $state,
     $stateParams,
     $translate,
     Alerter,
@@ -16,6 +17,7 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     this.$scope = $scope;
     this.$filter = $filter;
     this.$http = $http;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -54,6 +56,11 @@ export default class EmailProMXPlanMailingListsTabModulesCtrl {
     });
 
     this.getQuotas().then(() => this.refreshTableEmailProMXPlanMailingLists());
+
+    this.upgradeLink = this.$state.href('app.email.mxplan.upgrade', {
+      productId: this.$stateParams.productId,
+      domain: this.$scope.exchange.associatedDomainName,
+    });
   }
 
   //---------------------------------------------

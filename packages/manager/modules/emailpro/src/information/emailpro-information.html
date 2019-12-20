@@ -1,6 +1,6 @@
 <div
     class="container-fluid px-0"
-    data-ng-controller="EmailProTabInformationCtrl"
+    data-ng-controller="EmailProTabInformationCtrl as $ctrl"
 >
     <div class="row">
         <div class="col-md-9">
@@ -194,7 +194,7 @@
                                                 data-align="end"
                                             >
                                                 <oui-action-menu-item
-                                                    data-href="#/configuration/email-domain/{{exchange.associatedDomainName}}/upgrade">
+                                                    data-href="{{ $ctrl.upgradeLink }}">
                                                     <span data-translate="emailpro_dashboard_accounts_upgrade_mxPlan"></span>
                                                 </oui-action-menu-item>
                                             </oui-action-menu>
