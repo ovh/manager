@@ -64,9 +64,12 @@
                 </dl>
             </div>
             <p data-translate="email_domain_upgrade_contracts_accept"></p>
-            <ovh-manager-order-contracts data-ng-if="$ctrl.model.offer.duration" name="agreeContracts"
-                data-items="$ctrl.model.offer.duration.contracts" data-model="$ctrl.model.agree">
-            </ovh-manager-order-contracts>
+            <ovh-contracts-summary
+                data-ng-if="$ctrl.model.offer.duration"
+                name="agreeContracts"
+                data-items="$ctrl.model.offer.duration.contracts"
+                data-model="$ctrl.model.agree">
+            </ovh-contracts-summary>
             <div class="ml-2 mb-3 inline-block d-flex align-items-center" data-ng-if="$ctrl.loading.upgrading">
                 <oui-spinner data-size="s"></oui-spinner>
                 <span class="text-success pl-1" data-translate="email_domain_upgrade_in_progress"
