@@ -50,6 +50,8 @@ import hosting from './hosting/hosting.module';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
+import emailDomainUpgradeModule from './email-domain/upgrade';
+
 import './css/source.less';
 import './css/source.scss';
 
@@ -115,6 +117,7 @@ angular
     orderContracts,
     privateDatabase,
     zone,
+    emailDomainUpgradeModule,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
