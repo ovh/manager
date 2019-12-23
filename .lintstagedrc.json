@@ -6,8 +6,8 @@
     "eslint --fix",
     "git add"
   ],
-  "*.less": [
-    "stylelint 'packages/**/*.less' --fix",
+  "*.{css,less,scss}": [
+    "stylelint --fix",
     "git add"
   ],
   "!(*CHANGELOG).md": [
