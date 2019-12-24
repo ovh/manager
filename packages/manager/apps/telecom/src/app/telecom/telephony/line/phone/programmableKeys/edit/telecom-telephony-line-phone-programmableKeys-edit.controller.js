@@ -5,6 +5,7 @@ import get from 'lodash/get';
 import includes from 'lodash/includes';
 import set from 'lodash/set';
 import uniqBy from 'lodash/uniqBy';
+import sortBy from 'lodash/sortBy';
 
 angular.module('managerApp')
   .controller('TelecomTelephonyLinePhoneProgammableKeysEditCtrl', function TelecomTelephonyLinePhoneProgammableKeysEditCtrl(
@@ -83,7 +84,7 @@ angular.module('managerApp')
           }
         });
       });
-      return functionsToReturn;
+      return sortBy(functionsToReturn, ['group', 'functionLabel']);
     }
 
     function findFunction(func) {
