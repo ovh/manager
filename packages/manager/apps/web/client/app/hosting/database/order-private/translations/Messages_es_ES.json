@@ -1,7 +1,7 @@
 {
   "hosting_database_order_private_title": "Solicite un SQL privado",
   "hosting_database_order_private_description": "Debe tener un hosting para pedir las opciones Private SQL y Start SQL.",
-  "hosting_database_order_private_step_header_type": "Nombre de la base de datosTipo de base de datos",
+  "hosting_database_order_private_step_header_type": "Tipo de base de datos",
   "hosting_database_order_private_step_header_customize": "Personalización",
   "hosting_database_order_private_step_header_duration": "Elija la duración",
   "hosting_database_order_private_step_header_activation": "Activación",
