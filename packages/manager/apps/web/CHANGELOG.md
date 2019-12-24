@@ -1,3 +1,18 @@
+## [13.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.0...@ovh-ux/manager-web@13.39.1) (2019-12-24)
+
+
+### Bug Fixes
+
+* **web.private-db.clouddb:** fix translations ([fa6cb22](https://github.com/ovh/manager/commit/fa6cb22593808be314fe0d633228d51284f5c37c))
+
+
+### Reverts
+
+* Revert "feat(email): email domain upgrade" ([b64de72](https://github.com/ovh/manager/commit/b64de72f8c051bc95c018285f74cfdfa67c05812))
+* Revert "feat(web.email-domain): update order funnel" ([b1e3ec1](https://github.com/ovh/manager/commit/b1e3ec1473d41b1a595232088e4b41936af711ae))
+
+
+
 # [13.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.38.0...@ovh-ux/manager-web@13.39.0) (2019-12-20)
 
 
