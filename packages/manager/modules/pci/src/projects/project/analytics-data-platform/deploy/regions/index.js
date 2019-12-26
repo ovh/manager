@@ -6,10 +6,7 @@ import regionsList from '../../../../../components/project/regions-list';
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployRegionsComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    regionsList,
-  ])
+  .module(moduleName, ['ui.router', regionsList])
   .component('analyticsDataPlatformDeployRegionsComponent', regionsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

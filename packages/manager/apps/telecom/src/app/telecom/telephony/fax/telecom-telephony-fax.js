@@ -6,12 +6,14 @@ angular.module('managerApp').config(($stateProvider) => {
         templateUrl: 'app/telecom/telephony/fax/telecom-telephony-fax.html',
       },
       'faxView@telecom.telephony.billingAccount.fax': {
-        templateUrl: 'app/telecom/telephony/fax/telecom-telephony-fax-main-view.html',
+        templateUrl:
+          'app/telecom/telephony/fax/telecom-telephony-fax-main-view.html',
         controller: 'TelecomTelephonyFaxCtrl',
         controllerAs: '$ctrl',
       },
       'faxInnerView@telecom.telephony.billingAccount.fax': {
-        templateUrl: 'app/telecom/telephony/fax/management/telecom-telephony-fax-management.html',
+        templateUrl:
+          'app/telecom/telephony/fax/management/telecom-telephony-fax-management.html',
         controller: 'TelecomTelephonyFaxManagementCtrl',
         controllerAs: '$ctrl',
       },
@@ -19,7 +21,9 @@ angular.module('managerApp').config(($stateProvider) => {
     translations: { value: ['.', './management'], format: 'json' },
     resolve: {
       $title(translations, $translate, $stateParams) {
-        return $translate('telephony_fax_page_title', { name: $stateParams.serviceName });
+        return $translate('telephony_fax_page_title', {
+          name: $stateParams.serviceName,
+        });
       },
     },
   });

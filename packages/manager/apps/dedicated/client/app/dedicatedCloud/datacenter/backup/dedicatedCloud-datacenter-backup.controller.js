@@ -1,6 +1,6 @@
-angular
-  .module('App')
-  .controller('DedicatedCloudSubDatacenterVeeamCtrl', class {
+angular.module('App').controller(
+  'DedicatedCloudSubDatacenterVeeamCtrl',
+  class {
     /* @ngInject */
     constructor(
       $rootScope,
@@ -42,10 +42,13 @@ angular
       return this.loadLicences()
         .then(() => this.loadVeeam())
         .catch((data) => {
-          this.$scope.setMessage(this.$translate.instant('dedicatedCloud_tab_veeam_loading_error'), {
-            ...data,
-            type: 'ERROR',
-          });
+          this.$scope.setMessage(
+            this.$translate.instant('dedicatedCloud_tab_veeam_loading_error'),
+            {
+              ...data,
+              type: 'ERROR',
+            },
+          );
         })
         .finally(() => {
           this.$scope.loading = false;
@@ -53,18 +56,22 @@ angular
     }
 
     loadLicences() {
-      return this.DedicatedCloud
-        .getDatacenterLicence(this.$stateParams.productId, this.currentService.usesLegacyOrder)
-        .then(({ isSplaActive }) => {
-          this.$scope.isSplaActive = isSplaActive;
-        });
+      return this.DedicatedCloud.getDatacenterLicence(
+        this.$stateParams.productId,
+        this.currentService.usesLegacyOrder,
+      ).then(({ isSplaActive }) => {
+        this.$scope.isSplaActive = isSplaActive;
+      });
     }
 
     loadVeeam(forceRefresh) {
-      return this.DedicatedCloud
-        .getVeeam(this.$stateParams.productId, this.$stateParams.datacenterId, forceRefresh)
-        .then((veeam) => {
-          this.$scope.veeam.model = veeam;
-        });
+      return this.DedicatedCloud.getVeeam(
+        this.$stateParams.productId,
+        this.$stateParams.datacenterId,
+        forceRefresh,
+      ).then((veeam) => {
+        this.$scope.veeam.model = veeam;
+      });
     }
-  });
+  },
+);

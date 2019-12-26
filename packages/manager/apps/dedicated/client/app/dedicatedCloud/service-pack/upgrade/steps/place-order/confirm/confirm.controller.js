@@ -17,17 +17,16 @@ export default class {
   }
 
   $onInit() {
-    this.addingOrDeducting = (
-      (this.prices.hourly.exists && this.prices.hourly.value > 0)
-      || (this.prices.monthly.exists && this.prices.monthly.value > 0)
-    )
-      ? 'adding'
-      : 'deducting';
+    this.addingOrDeducting =
+      (this.prices.hourly.exists && this.prices.hourly.value > 0) ||
+      (this.prices.monthly.exists && this.prices.monthly.value > 0)
+        ? 'adding'
+        : 'deducting';
 
-    this.hourly = this.prices.hourly.exists
-      && this.prices.hourly.display.substr(1);
+    this.hourly =
+      this.prices.hourly.exists && this.prices.hourly.display.substr(1);
 
-    this.monthly = this.prices.monthly.exists
-      && this.prices.monthly.display.substr(1);
+    this.monthly =
+      this.prices.monthly.exists && this.prices.monthly.display.substr(1);
   }
 }

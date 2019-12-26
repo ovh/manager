@@ -30,37 +30,51 @@ export default class EmailProMXPlanMailingListsDeleteSubscribersCtrl {
     this.loading = true;
     const subscribersToDelete = uniq(this.selection);
 
-    return this.EmailProMXPlanMailingLists.deleteSubscribers(get(this.$scope, 'exchange.associatedDomainName'), {
-      mailingList: this.mailingList.name,
-      users: subscribersToDelete,
-      type: 'subscriber',
-    })
+    return this.EmailProMXPlanMailingLists.deleteSubscribers(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        mailingList: this.mailingList.name,
+        users: subscribersToDelete,
+        type: 'subscriber',
+      },
+    )
       .then((tasks) => {
         const task = tasks.pop();
 
         this.Alerter.alertFromSWSBatchResult(
           {
-            OK: this.$translate.instant(subscribersToDelete.length === 1
-              ? 'mailing_list_tab_modal_subscriber_delete_success'
-              : 'mailing_list_tab_modal_subscribers_delete_success'),
-            PARTIAL: this.$translate.instant('mailing_list_tab_modal_subscribers_delete_error'),
-            ERROR: this.$translate.instant('mailing_list_tab_modal_subscribers_delete_error'),
+            OK: this.$translate.instant(
+              subscribersToDelete.length === 1
+                ? 'mailing_list_tab_modal_subscriber_delete_success'
+                : 'mailing_list_tab_modal_subscribers_delete_success',
+            ),
+            PARTIAL: this.$translate.instant(
+              'mailing_list_tab_modal_subscribers_delete_error',
+            ),
+            ERROR: this.$translate.instant(
+              'mailing_list_tab_modal_subscribers_delete_error',
+            ),
           },
           task,
           this.$scope.alerts.main,
         );
 
-        this.EmailProMXPlanMailingLists.pollState(this.$scope.exchange.associatedDomainName, {
-          id: task.task,
-          successStates: ['noState'],
-          namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
-        });
+        this.EmailProMXPlanMailingLists.pollState(
+          this.$scope.exchange.associatedDomainName,
+          {
+            id: task.task,
+            successStates: ['noState'],
+            namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
+          },
+        );
       })
       .catch((err) => {
         this.Alerter.alertFromSWS(
-          this.$translate.instant(subscribersToDelete.length === 1
-            ? 'mailing_list_tab_modal_subscriber_delete_error'
-            : 'mailing_list_tab_modal_subscribers_delete_error'),
+          this.$translate.instant(
+            subscribersToDelete.length === 1
+              ? 'mailing_list_tab_modal_subscriber_delete_error'
+              : 'mailing_list_tab_modal_subscribers_delete_error',
+          ),
           err,
           this.$scope.alerts.main,
         );

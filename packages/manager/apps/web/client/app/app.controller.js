@@ -3,7 +3,15 @@ import isEmpty from 'lodash/isEmpty';
 angular.module('App').controller(
   'AppCtrl',
   class AppCtrl {
-    constructor($scope, $rootScope, $timeout, $translate, coreConfig, incident, User) {
+    constructor(
+      $scope,
+      $rootScope,
+      $timeout,
+      $translate,
+      coreConfig,
+      incident,
+      User,
+    ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$timeout = $timeout;
@@ -32,8 +40,9 @@ angular.module('App').controller(
 
       this.incident.getOvhTasks().then((informations) => {
         if (!isEmpty(informations)) {
-          this.incidentMessage = informations.alert[this.$translate.use()]
-            || informations.alert.en_GB;
+          this.incidentMessage =
+            informations.alert[this.$translate.use()] ||
+            informations.alert.en_GB;
         }
       });
 
@@ -43,12 +52,21 @@ angular.module('App').controller(
         $.fn.modal.Constructor.prototype.enforceFocus = function enforceFocus() {
           $(document)
             .off('focusin.bs.modal')
-            .on('focusin.bs.modal', $.proxy((event) => {
-              const $parent = $(event.target.parentNode);
-              if (document !== event.target && this.$element[0] !== event.target && !this.$element.has(event.target).length && !$parent.hasClass('cke_dialog_ui_input_select') && !$parent.hasClass('cke_dialog_ui_input_text')) {
-                this.$element.trigger('focus');
-              }
-            }, this));
+            .on(
+              'focusin.bs.modal',
+              $.proxy((event) => {
+                const $parent = $(event.target.parentNode);
+                if (
+                  document !== event.target &&
+                  this.$element[0] !== event.target &&
+                  !this.$element.has(event.target).length &&
+                  !$parent.hasClass('cke_dialog_ui_input_select') &&
+                  !$parent.hasClass('cke_dialog_ui_input_text')
+                ) {
+                  this.$element.trigger('focus');
+                }
+              }, this),
+            );
         };
       });
     }

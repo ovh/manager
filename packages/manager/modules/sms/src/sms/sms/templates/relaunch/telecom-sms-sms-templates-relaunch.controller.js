@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, template) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    template,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -27,28 +34,36 @@ export default class {
   }
 
   /**
-     * Relaunch templates.
-     * @return {Promise}
-     */
+   * Relaunch templates.
+   * @return {Promise}
+   */
   relaunch() {
     this.loading.removeTemplate = true;
-    return this.$q.all([
-      this.api.sms.templates.relaunchValidation({
-        serviceName: this.$stateParams.serviceName,
-        name: this.model.template.name,
-      }, {
-        description: this.model.template.description,
-        message: this.model.template.message,
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.relaunchTemplate = false;
-      this.relaunched = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.templates.relaunchValidation(
+          {
+            serviceName: this.$stateParams.serviceName,
+            name: this.model.template.name,
+          },
+          {
+            description: this.model.template.description,
+            message: this.model.template.message,
+          },
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.relaunchTemplate = false;
+        this.relaunched = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

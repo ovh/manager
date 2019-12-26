@@ -4,8 +4,15 @@ import has from 'lodash/has';
 (() => {
   class CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl {
     constructor(
-      $uibModalInstance, params, $q, $state, $translate, CucCloudMessage, Poller,
-      OvhApiCloudProjectInstance, CloudImageService,
+      $uibModalInstance,
+      params,
+      $q,
+      $state,
+      $translate,
+      CucCloudMessage,
+      Poller,
+      OvhApiCloudProjectInstance,
+      CloudImageService,
     ) {
       this.$uibModalInstance = $uibModalInstance;
       this.$q = $q;
@@ -33,7 +40,11 @@ import has from 'lodash/has';
       this.loading = true;
       this.getLoginInfo()
         .catch((error) => {
-          this.CucCloudMessage.error(`${this.$translate.instant('login_information_error')} ${error.data.message}`);
+          this.CucCloudMessage.error(
+            `${this.$translate.instant('login_information_error')} ${
+              error.data.message
+            }`,
+          );
         })
         .then(() => {
           this.data.hasApplication = this.data.image.apps;
@@ -61,19 +72,24 @@ import has from 'lodash/has';
     getLoginInfo() {
       if (has(this.data.vm.ipAddresses, 'length') && this.data.vm.image) {
         this.data.ip = this.constructor.getIp(this.data.vm.ipAddresses);
-        this.data.image = this.CloudImageService.constructor.augmentImage(this.data.vm.image);
+        this.data.image = this.CloudImageService.constructor.augmentImage(
+          this.data.vm.image,
+        );
         return this.$q.resolve({});
       }
-      return this.OvhApiCloudProjectInstance.v6().get({
-        serviceName: this.data.vm.serviceName,
-        instanceId: this.data.vm.id,
-      }).$promise
-        .then((instance) => {
+      return this.OvhApiCloudProjectInstance.v6()
+        .get({
+          serviceName: this.data.vm.serviceName,
+          instanceId: this.data.vm.id,
+        })
+        .$promise.then((instance) => {
           if (!instance.image) {
             return this.$q.reject({});
           }
           this.data.ip = this.constructor.getIp(instance.ipAddresses);
-          this.data.image = this.CloudImageService.constructor.augmentImage(instance.image);
+          this.data.image = this.CloudImageService.constructor.augmentImage(
+            instance.image,
+          );
           return null;
         });
     }
@@ -82,10 +98,10 @@ import has from 'lodash/has';
       return find(ipAddresses, { version: 4 }) || ipAddresses[0] || null;
     }
 
-
     pollApplicationInfo(serviceName, instanceId) {
       this.poller = true;
-      this.Poller.poll(`/cloud/project/${serviceName}/instance/${instanceId}/applicationAccess`,
+      this.Poller.poll(
+        `/cloud/project/${serviceName}/instance/${instanceId}/applicationAccess`,
         null,
         {
           method: 'POST',
@@ -93,17 +109,27 @@ import has from 'lodash/has';
             return appInfo.status === 'ok';
           },
           namespace: 'cloud.loginInformation',
-        }).then((appInfo) => {
-        this.data.applicationInfo = appInfo.accesses;
-      }, (error) => {
-        const readonly = error.statusText === 'ReadonlySession';
-        this.readOnlyError = readonly;
-        if (!readonly) {
-          this.CucCloudMessage.error(`${this.$translate.instant('login_information_error')} ${error.data.message}`);
-        }
-      }).finally(() => {
-        this.poller = false;
-      });
+        },
+      )
+        .then(
+          (appInfo) => {
+            this.data.applicationInfo = appInfo.accesses;
+          },
+          (error) => {
+            const readonly = error.statusText === 'ReadonlySession';
+            this.readOnlyError = readonly;
+            if (!readonly) {
+              this.CucCloudMessage.error(
+                `${this.$translate.instant('login_information_error')} ${
+                  error.data.message
+                }`,
+              );
+            }
+          },
+        )
+        .finally(() => {
+          this.poller = false;
+        });
     }
 
     close() {
@@ -117,5 +143,10 @@ import has from 'lodash/has';
     }
   }
 
-  angular.module('managerApp').controller('CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl', CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl);
+  angular
+    .module('managerApp')
+    .controller(
+      'CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl',
+      CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl,
+    );
 })();

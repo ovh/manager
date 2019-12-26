@@ -11,10 +11,13 @@ export default class ExchangeExternalContacts {
 
   isAccountValid(account) {
     const accountIsEmpty = account == null;
-    const emailIsValid = !isEmpty(account.externalEmailAddress)
-      && this.services.Exchange.constructor.isEmailValid(account.externalEmailAddress);
-    const displayNameIsValid = !isEmpty(account.displayName)
-      && account.displayName.length <= 255;
+    const emailIsValid =
+      !isEmpty(account.externalEmailAddress) &&
+      this.services.Exchange.constructor.isEmailValid(
+        account.externalEmailAddress,
+      );
+    const displayNameIsValid =
+      !isEmpty(account.displayName) && account.displayName.length <= 255;
 
     return !accountIsEmpty && emailIsValid && displayNameIsValid;
   }
@@ -80,39 +83,52 @@ export default class ExchangeExternalContacts {
       search: filter != null ? filter : null,
     };
 
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/externalContacts', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/externalContacts',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params,
       },
-      params,
-    });
+    );
   }
 
   gettingContactOptions(organization, serviceName) {
-    return this.services.OvhHttp.get('/email/exchange/{organization}/service/{exchange}/domain', {
-      rootPath: 'apiv6',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+    return this.services.OvhHttp.get(
+      '/email/exchange/{organization}/service/{exchange}/domain',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          main: true,
+          state: 'ok',
+        },
       },
-      params: {
-        main: true,
-        state: 'ok',
-      },
-    }).then((data) => data.map((datum) => ({
-      name: datum,
-      displayName: punycode.toUnicode(datum),
-      formattedName: punycode.toUnicode(datum),
-    })));
+    ).then((data) =>
+      data.map((datum) => ({
+        name: datum,
+        displayName: punycode.toUnicode(datum),
+        formattedName: punycode.toUnicode(datum),
+      })),
+    );
   }
 
   prepareForCsv(organization, serviceName, opts, offset) {
-    return this.gettingContacts(organization, serviceName, opts.count, offset, opts.filter)
-      .then((accounts) => ({
-        accounts: accounts.list.results,
-        headers: keys(accounts.list.results[0]),
-      }));
+    return this.gettingContacts(
+      organization,
+      serviceName,
+      opts.count,
+      offset,
+      opts.filter,
+    ).then((accounts) => ({
+      accounts: accounts.list.results,
+      headers: keys(accounts.list.results[0]),
+    }));
   }
 }

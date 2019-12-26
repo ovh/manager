@@ -33,5 +33,8 @@ export const MANAGER_URLS = {
 };
 
 export default {
-  DEDICATED, CLOUD, WEB, MANAGER_URLS,
+  DEDICATED,
+  CLOUD,
+  WEB,
+  MANAGER_URLS,
 };

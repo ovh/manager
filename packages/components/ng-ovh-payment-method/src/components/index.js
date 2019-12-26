@@ -6,11 +6,6 @@ import register from './register';
 
 const moduleName = 'ngOvhPaymentMethodComponents';
 
-angular
-  .module(moduleName, [
-    choice,
-    integration,
-    register,
-  ]);
+angular.module(moduleName, [choice, integration, register]);
 
 export default moduleName;

@@ -1,36 +1,20 @@
 export const FLAVORTYPE_CATEGORY = [
   {
     id: 'balanced',
-    types: [
-      'ovh.ceph.eg',
-      'ovh.ssd.eg',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
+    types: ['ovh.ceph.eg', 'ovh.ssd.eg'],
+    migrationNotAllowed: ['vps'],
     order: 1,
   },
   {
     id: 'cpu',
-    types: [
-      'ovh.cpu',
-      'ovh.ssd.cpu',
-      'ovh.ceph.hg',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
+    types: ['ovh.cpu', 'ovh.ssd.cpu', 'ovh.ceph.hg'],
+    migrationNotAllowed: ['vps'],
     order: 2,
   },
   {
     id: 'ram',
-    types: [
-      'ovh.ram',
-      'ovh.ssd.ram',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
+    types: ['ovh.ram', 'ovh.ssd.ram'],
+    migrationNotAllowed: ['vps'],
     order: 3,
   },
   {
@@ -42,16 +26,12 @@ export const FLAVORTYPE_CATEGORY = [
       'ovh.ssd.fpga2',
       'ovh.raid-nvme.t1',
     ],
-    migrationNotAllowed: [
-      'vps',
-    ],
+    migrationNotAllowed: ['vps'],
     order: 4,
   },
   {
     id: 'vps',
-    types: [
-      'ovh.vps-ssd',
-    ],
+    types: ['ovh.vps-ssd'],
     migrationNotAllowed: [],
     order: 5,
   },

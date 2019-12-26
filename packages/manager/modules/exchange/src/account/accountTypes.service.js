@@ -18,16 +18,23 @@ export default class ExchangeAccountTypes {
 
     this.CAN_DO = {
       HAVE_ENTREPRISE_FIELD: () => !this.exchangeVersion.is(2010),
-      BASIC: () => this.exchangeServiceInfrastructure.isDedicatedCluster()
-        || (this.exchangeServiceInfrastructure.isProvider() && this.exchangeVersion.is(2010))
-        || (this.exchangeServiceInfrastructure.isDedicated() && this.exchangeVersion.is(2010)),
-      ENTERPRISE: () => this.exchangeServiceInfrastructure.isDedicated()
-        || (this.exchangeServiceInfrastructure.isDedicated() && this.exchangeVersion.is(2010)),
+      BASIC: () =>
+        this.exchangeServiceInfrastructure.isDedicatedCluster() ||
+        (this.exchangeServiceInfrastructure.isProvider() &&
+          this.exchangeVersion.is(2010)) ||
+        (this.exchangeServiceInfrastructure.isDedicated() &&
+          this.exchangeVersion.is(2010)),
+      ENTERPRISE: () =>
+        this.exchangeServiceInfrastructure.isDedicated() ||
+        (this.exchangeServiceInfrastructure.isDedicated() &&
+          this.exchangeVersion.is(2010)),
     };
   }
 
   getDisplayValue(accountType) {
-    const formattedAccountType = camelCase(`${accountType || ''}`).toUpperCase();
+    const formattedAccountType = camelCase(
+      `${accountType || ''}`,
+    ).toUpperCase();
 
     switch (formattedAccountType) {
       case this.TYPES.BASIC:
@@ -36,16 +43,22 @@ export default class ExchangeAccountTypes {
         }
 
         return this.exchangeServiceInfrastructure.isDedicatedCluster()
-          ? this.$translate.instant('exchange_accounts_types_dedicatedCluster_BASIC')
+          ? this.$translate.instant(
+              'exchange_accounts_types_dedicatedCluster_BASIC',
+            )
           : this.$translate.instant('exchange_accounts_types_2010_BASIC');
 
       case this.TYPES.STANDARD:
         return this.exchangeServiceInfrastructure.isDedicatedCluster()
-          ? this.$translate.instant('exchange_accounts_types_dedicatedCluster_STANDARD')
+          ? this.$translate.instant(
+              'exchange_accounts_types_dedicatedCluster_STANDARD',
+            )
           : this.$translate.instant('exchange_accounts_types_2010_STANDARD');
 
       case this.TYPES.ENTERPRISE:
-        return this.$translate.instant('exchange_accounts_types_2010_ENTERPRISE');
+        return this.$translate.instant(
+          'exchange_accounts_types_2010_ENTERPRISE',
+        );
 
       default:
         throw new Error(`Unknown account type ${accountType}`);
@@ -69,6 +82,9 @@ export default class ExchangeAccountTypes {
       throw new Error(`${typeName} is not a valid account type name`);
     }
 
-    return get(account, 'accountLicense', '').toUpperCase() === matchingType.toUpperCase();
+    return (
+      get(account, 'accountLicense', '').toUpperCase() ===
+      matchingType.toUpperCase()
+    );
   }
 }

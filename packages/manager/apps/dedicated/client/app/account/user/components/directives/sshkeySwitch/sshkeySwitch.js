@@ -2,7 +2,8 @@ angular.module('UserAccount').directive('sshkeySwitch', [
   'sshkey-regex',
   function sshkeySwitchDirective(SSHKEY_REGEX) {
     return {
-      template: '<div><span class="label label-default ml-2" data-ng-class="{\'label-primary\': selectedType == keytype.name}" data-ng-repeat="keytype in keytypes" data-ng-bind="keytype.name"></span></div>',
+      template:
+        '<div><span class="label label-default ml-2" data-ng-class="{\'label-primary\': selectedType == keytype.name}" data-ng-repeat="keytype in keytypes" data-ng-bind="keytype.name"></span></div>',
       restrict: 'A',
       require: '?ngModel',
       replace: true,
@@ -22,7 +23,7 @@ angular.module('UserAccount').directive('sshkeySwitch', [
           found = false;
           const valTrimmed = val.trim().replace(/\n/, '');
           /* eslint-disable */
-          for (i = SSHKEY_REGEX.length; i--;) {
+          for (i = SSHKEY_REGEX.length; i--; ) {
             if (SSHKEY_REGEX[i].regex.test(valTrimmed)) {
               found = SSHKEY_REGEX[i].name;
               break;

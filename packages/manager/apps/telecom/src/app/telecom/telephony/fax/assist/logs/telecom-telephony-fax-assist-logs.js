@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/logs',
     views: {
       'faxView@telecom.telephony.billingAccount.fax': {
-        templateUrl: 'app/telecom/telephony/service/assist/logs/telecom-telephony-service-assist-logs.html',
+        templateUrl:
+          'app/telecom/telephony/service/assist/logs/telecom-telephony-service-assist-logs.html',
         controller: 'TelecomTelephonyServiceAssistLogsCtrl',
         controllerAs: 'LogsCtrl',
       },

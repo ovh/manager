@@ -2,13 +2,7 @@ import keyBy from 'lodash/keyBy';
 
 export default class CucSelectVrackCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $window,
-    $uibModalInstance,
-    $stateParams,
-    params,
-  ) {
+  constructor($q, $window, $uibModalInstance, $stateParams, params) {
     this.$q = $q;
     this.projectId = $stateParams.projectId;
     this.orderUrl = params.orderUrl;

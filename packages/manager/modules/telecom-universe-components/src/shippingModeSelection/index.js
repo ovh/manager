@@ -12,11 +12,7 @@ import './shipping-mode-selection.less';
 const moduleName = 'tucShippingModeSelection';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'oui',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'oui', translate])
   .controller('tucShippingModeSelectionCtrl', tucShippingModeSelectionCtrl)
   .component('tucShippingModeSelection', tucShippingModeSelection)
   .run(/* @ngTranslationsInject:json ./translations */);

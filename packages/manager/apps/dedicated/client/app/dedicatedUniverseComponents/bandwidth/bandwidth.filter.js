@@ -46,7 +46,10 @@ export default /* @ngInject */ ($translate) => {
 
     if (toUnit !== $translate.instant('bandwidth_unit_size_bps')) {
       for (i = 0, ii = unitsValues.length; i < ii; i += 1) {
-        if (toUnit === $translate.instant(`bandwidth_unit_size_${unitsValues[i].unit}`)) {
+        if (
+          toUnit ===
+          $translate.instant(`bandwidth_unit_size_${unitsValues[i].unit}`)
+        ) {
           value = (bytes / unitsValues[i].value).toFixed(precision);
           break;
         }
@@ -64,8 +67,12 @@ export default /* @ngInject */ ($translate) => {
     const absBytes = Math.abs(bytes);
 
     for (i = 0, ii = unitsValues.length; i < ii; i += 1) {
-      if (absBytes >= unitsValues[i].value
-        && (angular.isDefined(unitsValues[i + 1]) ? absBytes < unitsValues[i + 1].value : true)) {
+      if (
+        absBytes >= unitsValues[i].value &&
+        (angular.isDefined(unitsValues[i + 1])
+          ? absBytes < unitsValues[i + 1].value
+          : true)
+      ) {
         value = (bytes / unitsValues[i].value).toFixed(precision);
         unit = $translate.instant(`bandwidth_unit_size_${unitsValues[i].unit}`);
         break;

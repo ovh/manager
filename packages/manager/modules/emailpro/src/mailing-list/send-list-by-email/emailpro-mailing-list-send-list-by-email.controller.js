@@ -25,10 +25,13 @@ export default class EmailProMXPlanMailingListsSendListByEmailCtrl {
 
   sendListByEmail() {
     this.loading = true;
-    return this.EmailProMXPlanMailingLists.sendListByEmail(get(this.$scope, 'exchange.associatedDomainName'), {
-      name: this.mailingList.name,
-      email: this.email,
-    })
+    return this.EmailProMXPlanMailingLists.sendListByEmail(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        name: this.mailingList.name,
+        email: this.email,
+      },
+    )
       .then((task) => {
         this.Alerter.success(
           this.$translate.instant(
@@ -39,17 +42,25 @@ export default class EmailProMXPlanMailingListsSendListByEmailCtrl {
         );
 
         // no return here
-        this.EmailProMXPlanMailingLists.pollState(this.$scope.exchange.associatedDomainName, {
-          id: task.id,
-          successStates: ['noState'],
-          namespace: 'EmailProMXPlanMailingLists.subscribers.sendListByEmail.poll',
-        });
+        this.EmailProMXPlanMailingLists.pollState(
+          this.$scope.exchange.associatedDomainName,
+          {
+            id: task.id,
+            successStates: ['noState'],
+            namespace:
+              'EmailProMXPlanMailingLists.subscribers.sendListByEmail.poll',
+          },
+        );
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_sendListByEmail_error'),
-        get(err, 'data', err),
-        this.$scope.alerts.main,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant(
+            'mailing_list_tab_modal_sendListByEmail_error',
+          ),
+          get(err, 'data', err),
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.loading = false;
         this.$scope.resetAction();

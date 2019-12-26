@@ -5,7 +5,10 @@ const moduleName = 'enterpriseCloudDatabasePaymentInfoComponent';
 
 angular
   .module(moduleName, [])
-  .component('enterpriseCloudDatabasePaymentInfoComponent', paymentInfoComponent)
+  .component(
+    'enterpriseCloudDatabasePaymentInfoComponent',
+    paymentInfoComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

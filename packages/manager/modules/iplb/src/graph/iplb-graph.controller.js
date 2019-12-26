@@ -5,8 +5,12 @@ import values from 'lodash/values';
 
 export default class IpLoadBalancerGraphCtrl {
   /* @ngInject */
-  constructor($stateParams, CucControllerHelper, IpLoadBalancerConstant,
-    IpLoadBalancerMetricsService) {
+  constructor(
+    $stateParams,
+    CucControllerHelper,
+    IpLoadBalancerConstant,
+    IpLoadBalancerMetricsService,
+  ) {
     this.$stateParams = $stateParams;
     this.CucControllerHelper = CucControllerHelper;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
@@ -21,8 +25,10 @@ export default class IpLoadBalancerGraphCtrl {
       loaderFunction: () => this.getData('reqm'),
     });
     this.offerLoader = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerMetricsService
-        .getService(this.$stateParams.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerMetricsService.getService(
+          this.$stateParams.serviceName,
+        ),
     });
 
     this.initGraph();
@@ -34,19 +40,23 @@ export default class IpLoadBalancerGraphCtrl {
     this.metricsList = this.IpLoadBalancerConstant.graphs;
     this.options = {
       scales: {
-        xAxes: [{
-          gridLines: {
-            display: false,
+        xAxes: [
+          {
+            gridLines: {
+              display: false,
+            },
           },
-        }],
-        yAxes: [{
-          id: 'y-axe',
-          type: 'linear',
-          ticks: {
-            min: 0,
-            beginAtZero: true,
+        ],
+        yAxes: [
+          {
+            id: 'y-axe',
+            type: 'linear',
+            ticks: {
+              min: 0,
+              beginAtZero: true,
+            },
           },
-        }],
+        ],
       },
       elements: {
         line: {
@@ -68,11 +78,16 @@ export default class IpLoadBalancerGraphCtrl {
       if (!scales) {
         scales = this.IpLoadBalancerConstant.graphScales.lb1;
       }
-      this.scales = reduce(scales, (scalesParam, scale) => {
-        const scales = scalesParam; // eslint-disable-line
-        scales[scale] = this.IpLoadBalancerConstant.graphParams[scale];
-        return scales;
-      }, {});
+      this.scales = reduce(
+        scales,
+        (scalesParam, scale) => {
+          // eslint-disable-next-line no-shadow
+          const scales = scalesParam;
+          scales[scale] = this.IpLoadBalancerConstant.graphParams[scale];
+          return scales;
+        },
+        {},
+      );
       this.scale = head(keys(this.scales));
       this.connLoader.load();
       this.reqmLoader.load();
@@ -90,22 +105,23 @@ export default class IpLoadBalancerGraphCtrl {
 
     return this.IpLoadBalancerMetricsService.getData(metric, this.scale, null, {
       downsample: `${downsample}-${downsampleAggregation}`,
-    })
-      .then((data) => {
-        if (data.length && data[0].dps) {
-          return {
-            data: {
-              data: values(data[0].dps),
-              labels: this.constructor.humanizeLabels(keys(data[0].dps)),
-            },
-          };
-        }
-        return {};
-      });
+    }).then((data) => {
+      if (data.length && data[0].dps) {
+        return {
+          data: {
+            data: values(data[0].dps),
+            labels: this.constructor.humanizeLabels(keys(data[0].dps)),
+          },
+        };
+      }
+      return {};
+    });
   }
 
   static humanizeLabels(labels) {
-    return labels.map((label) => moment(label, 'X').format('MM/DD/YY - HH:mm:ss'));
+    return labels.map((label) =>
+      moment(label, 'X').format('MM/DD/YY - HH:mm:ss'),
+    );
   }
 
   onScaleChange() {

@@ -6,7 +6,6 @@ import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 
-
 import component from './component';
 
 const moduleName = 'ovhManagerPciComponentsProjectBillingSnapshotList';

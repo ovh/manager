@@ -33,7 +33,10 @@ export default () => {
     this.height = 0;
     // default values, can be customized in model parameter
     this.margin = {
-      top: 20, right: 120, bottom: 20, left: 120,
+      top: 20,
+      right: 120,
+      bottom: 20,
+      left: 120,
     };
 
     // d3js elements
@@ -59,11 +62,20 @@ export default () => {
   Chart.prototype.init = function init(el) {
     this.x = d3.time.scale();
     this.y = d3.scale.linear();
-    this.xAxis = d3.svg.axis().scale(this.x).orient('bottom');
-    this.yAxis = d3.svg.axis().scale(this.y).orient('left');
+    this.xAxis = d3.svg
+      .axis()
+      .scale(this.x)
+      .orient('bottom');
+    this.yAxis = d3.svg
+      .axis()
+      .scale(this.y)
+      .orient('left');
     this.line = d3.svg.line();
     this.area = d3.svg.area();
-    this.g.svg = d3.select(el).append('svg').attr('class', 'cloud-monitoring-chart');
+    this.g.svg = d3
+      .select(el)
+      .append('svg')
+      .attr('class', 'cloud-monitoring-chart');
     this.g.bg = this.g.svg.append('rect').attr('class', 'bg');
     this.g.area = this.g.svg.append('path').attr('class', 'area');
     this.g.line = this.g.svg.append('path').attr('class', 'line');
@@ -72,8 +84,10 @@ export default () => {
   };
 
   Chart.prototype.resize = function resize() {
-    if (this.width > this.margin.left + this.margin.right
-      && this.height > this.margin.top + this.margin.bottom) {
+    if (
+      this.width > this.margin.left + this.margin.right &&
+      this.height > this.margin.top + this.margin.bottom
+    ) {
       this.g.svg.attr({ width: this.width, height: this.height });
       this.x.range([this.margin.left, this.width - this.margin.right]);
       this.y.range([this.height - this.margin.bottom, this.margin.top]);
@@ -109,10 +123,18 @@ export default () => {
 
   Chart.prototype.setModel = function setModel(model) {
     const self = this;
-    const fx = function fx(p) { return self.x(timestampOf(p)); };
-    const fy = function fy(p) { return self.y(valueOf(p)); };
-    const ymin = Number.isNaN(+model.ymin) ? d3.min(model.data, valueOf) : +model.ymin;
-    const ymax = Number.isNaN(+model.ymax) ? d3.max(model.data, valueOf) : +model.ymax;
+    const fx = function fx(p) {
+      return self.x(timestampOf(p));
+    };
+    const fy = function fy(p) {
+      return self.y(valueOf(p));
+    };
+    const ymin = Number.isNaN(+model.ymin)
+      ? d3.min(model.data, valueOf)
+      : +model.ymin;
+    const ymax = Number.isNaN(+model.ymax)
+      ? d3.max(model.data, valueOf)
+      : +model.ymax;
     this.data = angular.isArray(model.data) ? model.data : [];
     this.line.x(fx);
     this.area.x(fx);
@@ -153,15 +175,18 @@ export default () => {
       chart.init($element[0]);
 
       // fill parent container on resize
-      $scope.$watch(() => {
-        if ($element.parent().width() > 0 && $element.parent().height() > 0) {
-          chart.width = $element.parent().width();
-          chart.height = $element.parent().height();
-        }
-        return chart.width + chart.height;
-      }, () => {
-        chart.resize();
-      });
+      $scope.$watch(
+        () => {
+          if ($element.parent().width() > 0 && $element.parent().height() > 0) {
+            chart.width = $element.parent().width();
+            chart.height = $element.parent().height();
+          }
+          return chart.width + chart.height;
+        },
+        () => {
+          chart.resize();
+        },
+      );
 
       // update on model change
       $scope.$watch('model', (model) => {

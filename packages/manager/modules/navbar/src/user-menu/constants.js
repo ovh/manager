@@ -29,36 +29,50 @@ const EU = {
   contacts: 'https://www.ovh.com/manager/dedicated/#/contacts/services',
   orders: 'https://www.ovh.com/manager/dedicated/#/billing/orders?status=all',
   ovhAccount: 'https://www.ovh.com/manager/dedicated/#/billing/ovhaccount',
-  paymentMeans: 'https://www.ovh.com/manager/dedicated/#/billing/payment/method',
+  paymentMeans:
+    'https://www.ovh.com/manager/dedicated/#/billing/payment/method',
   services: 'https://www.ovh.com/manager/dedicated/#/billing/autorenew',
-  servicesAgreements: 'https://www.ovh.com/manager/dedicated/#/billing/autorenew/agreements',
+  servicesAgreements:
+    'https://www.ovh.com/manager/dedicated/#/billing/autorenew/agreements',
   userAdvanced: 'https://www.ovh.com/manager/dedicated/#/useraccount/advanced',
   userEmails: 'https://www.ovh.com/manager/dedicated/#/useraccount/emails',
   userInfos: 'https://www.ovh.com/manager/dedicated/#/useraccount/dashboard',
   userSecurity: 'https://www.ovh.com/manager/dedicated/#/useraccount/security',
-  userSubscriptions: 'https://www.ovh.com/manager/dedicated/#/useraccount/subscriptions',
+  userSubscriptions:
+    'https://www.ovh.com/manager/dedicated/#/useraccount/subscriptions',
   userSSH: 'https://www.ovh.com/manager/dedicated/#/billing/autorenew/ssh',
 };
 
 const US = {
   billing: 'https://us.ovhcloud.com/manager/dedicated/#/billing/history',
-  billingCredits: 'https://us.ovhcloud.com/manager/dedicated/#/billing/payment/credits',
+  billingCredits:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/payment/credits',
   billingEnterprise: 'https://billing.us.ovhcloud.com/login',
-  billingFidelity: 'https://us.ovhcloud.com/manager/dedicated/#/billing/fidelity',
-  billingPayments: 'https://us.ovhcloud.com/manager/dedicated/#/billing/payments',
-  billingRefunds: 'https://us.ovhcloud.com/manager/dedicated/#/billing/payment/refunds',
-  billingVouchers: 'https://us.ovhcloud.com/manager/dedicated/#/billing/payment/vouchers',
+  billingFidelity:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/fidelity',
+  billingPayments:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/payments',
+  billingRefunds:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/payment/refunds',
+  billingVouchers:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/payment/vouchers',
   contacts: null, // not yet available to US users
-  orders: 'https://us.ovhcloud.com/manager/dedicated/#/billing/orders?status=all',
+  orders:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/orders?status=all',
   ovhAccount: 'https://us.ovhcloud.com/manager/dedicated/#/billing/ovhaccount',
   paymentMeans: 'https://us.ovhcloud.com/manager/dedicated/#/billing/mean',
   services: 'https://us.ovhcloud.com/manager/dedicated/#/billing/autorenew',
-  servicesAgreements: 'https://us.ovhcloud.com/manager/dedicated/#/billing/autorenew/agreements',
-  userAdvanced: 'https://us.ovhcloud.com/manager/dedicated/#/useraccount/advanced',
+  servicesAgreements:
+    'https://us.ovhcloud.com/manager/dedicated/#/billing/autorenew/agreements',
+  userAdvanced:
+    'https://us.ovhcloud.com/manager/dedicated/#/useraccount/advanced',
   userEmails: 'https://us.ovhcloud.com/manager/dedicated/#/useraccount/emails',
-  userInfos: 'https://us.ovhcloud.com/manager/dedicated/#/useraccount/dashboard',
-  userSecurity: 'https://us.ovhcloud.com/manager/dedicated/#/useraccount/security',
-  userSubscriptions: 'https://us.ovhcloud.com/manager/dedicated/#/useraccount/subscriptions',
+  userInfos:
+    'https://us.ovhcloud.com/manager/dedicated/#/useraccount/dashboard',
+  userSecurity:
+    'https://us.ovhcloud.com/manager/dedicated/#/useraccount/security',
+  userSubscriptions:
+    'https://us.ovhcloud.com/manager/dedicated/#/useraccount/subscriptions',
   userSSH: 'https://us.ovhcloud.com/manager/dedicated/#/billing/autorenew/ssh',
 };
 

@@ -1,7 +1,9 @@
 angular
   .module('Billing.services')
   .service('BillingTerminate', function BillingTerminate($q, OvhHttp) {
-    this.getServiceTypeFromPrefix = function getServiceTypeFromPrefix(serviceApiPrefix) {
+    this.getServiceTypeFromPrefix = function getServiceTypeFromPrefix(
+      serviceApiPrefix,
+    ) {
       return serviceApiPrefix
         .replace(/^\//, '')
         .replace(/\/\{.+$/, '')
@@ -26,9 +28,11 @@ angular
           serviceType = this.getServiceTypeFromPrefix(serviceApi.route.path);
           return serviceApi.route.url;
         })
-        .then((url) => OvhHttp.get(`${url}/serviceInfos`, {
-          rootPath: 'apiv6',
-        }))
+        .then((url) =>
+          OvhHttp.get(`${url}/serviceInfos`, {
+            rootPath: 'apiv6',
+          }),
+        )
         .then((serviceInfos) => ({ ...serviceInfos, serviceType }));
     };
 
@@ -42,13 +46,15 @@ angular
     ) {
       return this.getServiceApi(serviceId)
         .then((serviceApi) => serviceApi.route.url)
-        .then((url) => OvhHttp.post(`${url}/confirmTermination`, {
-          rootPath: 'apiv6',
-          data: {
-            reason,
-            commentary,
-            token,
-          },
-        }));
+        .then((url) =>
+          OvhHttp.post(`${url}/confirmTermination`, {
+            rootPath: 'apiv6',
+            data: {
+              reason,
+              commentary,
+              token,
+            },
+          }),
+        );
     };
   });

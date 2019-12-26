@@ -1,34 +1,45 @@
-angular.module('managerApp').controller('TelecomPackMigrationMigrationCtrl', function TelecomPackMigrationMigrationCtrl($scope, TucPackMigrationProcess) {
-  const self = this;
+angular
+  .module('managerApp')
+  .controller(
+    'TelecomPackMigrationMigrationCtrl',
+    function TelecomPackMigrationMigrationCtrl(
+      $scope,
+      TucPackMigrationProcess,
+    ) {
+      const self = this;
 
-  self.loading = {
-    migrate: false,
-  };
-  self.process = null;
-  self.migrationStatus = null;
+      self.loading = {
+        migrate: false,
+      };
+      self.process = null;
+      self.migrationStatus = null;
 
-  /*= =====================================
+      /*= =====================================
     =            INITIALIZATION            =
     ====================================== */
 
-  function init() {
-    self.loading.migrate = true;
-    self.process = TucPackMigrationProcess.getMigrationProcess();
+      function init() {
+        self.loading.migrate = true;
+        self.process = TucPackMigrationProcess.getMigrationProcess();
 
-    return TucPackMigrationProcess.startTaskPolling().then(() => {
-      self.migrationStatus = 'success';
-      self.loading.migrate = false;
-    }, () => {
-      self.migrationStatus = 'error';
-      self.loading.migrate = false;
-    });
-  }
+        return TucPackMigrationProcess.startTaskPolling().then(
+          () => {
+            self.migrationStatus = 'success';
+            self.loading.migrate = false;
+          },
+          () => {
+            self.migrationStatus = 'error';
+            self.loading.migrate = false;
+          },
+        );
+      }
 
-  $scope.$on('$destroy', () => {
-    TucPackMigrationProcess.stopTaskPolling();
-  });
+      $scope.$on('$destroy', () => {
+        TucPackMigrationProcess.stopTaskPolling();
+      });
 
-  /* -----  End of INITIALIZATION  ------*/
+      /* -----  End of INITIALIZATION  ------*/
 
-  init();
-});
+      init();
+    },
+  );

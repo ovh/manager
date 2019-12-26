@@ -14,10 +14,12 @@ angular.module('managerApp').run((validator) => {
   validator.extend('isIPBlock', (str, version) => {
     if (version === 4 || version === 6) {
       const split = str.split('/');
-      return split.length === 2
-        && validator.isIP(split[0], version)
-        && parseInt(split[1], 10) > 0
-        && parseInt(split[1], 10) <= (version === 4 ? 32 : 128);
+      return (
+        split.length === 2 &&
+        validator.isIP(split[0], version) &&
+        parseInt(split[1], 10) > 0 &&
+        parseInt(split[1], 10) <= (version === 4 ? 32 : 128)
+      );
     }
     return validator.isIPBlock(str, 4) || validator.isIPBlock(str, 6);
   });

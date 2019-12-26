@@ -10,11 +10,7 @@ import create from './create';
 const moduleName = 'ovhManagerSmsPhonebooksComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'ui.validate',
-    create,
-  ])
+  .module(moduleName, ['ui.router', 'ui.validate', create])
   .config(($stateProvider) => {
     $stateProvider.state('sms.service.phonebooks', {
       url: '/phonebooks',
@@ -32,10 +28,13 @@ angular
     });
   })
   .factory('TelecomSmsPhoneBooksNumber', () => ({
-    isValid: (number) => !!(number
-        && number.match(/^\+?(\d|\.| |#|-)+$/)
-        && number.length < 26
-        && number.length > 2),
+    isValid: (number) =>
+      !!(
+        number &&
+        number.match(/^\+?(\d|\.| |#|-)+$/) &&
+        number.length < 26 &&
+        number.length > 2
+      ),
   }));
 
 export default moduleName;

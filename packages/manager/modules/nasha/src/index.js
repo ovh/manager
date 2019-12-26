@@ -47,20 +47,34 @@ angular
     partition,
   ])
   .config(routing)
-  .config(/* @ngInject */($qProvider, ovhDocUrlProvider, TranslateServiceProvider) => {
-    ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
-    $qProvider.errorOnUnhandledRejections(false);
-  })
+  .config(
+    /* @ngInject */ (
+      $qProvider,
+      ovhDocUrlProvider,
+      TranslateServiceProvider,
+    ) => {
+      ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
+      $qProvider.errorOnUnhandledRejections(false);
+    },
+  )
   .controller('NashaCtrl', NashaCtrl)
   .controller('NashaAddCtrl', NashaAddCtrl)
   .controller('NashaOrderCompleteCtrl', NashaOrderCompleteCtrl)
   .controller('NashaUnavailableCtrl', NashaUnavailableCtrl)
   .service('NashaAddService', NashaAddService)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('nasha/information/nasha-information.html', informationTemplate);
-    $templateCache.put('nasha/information/nasha-information-usage-help.html', usageHelpTemplate);
-    $templateCache.put('nasha/order/template.html', orderTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'nasha/information/nasha-information.html',
+        informationTemplate,
+      );
+      $templateCache.put(
+        'nasha/information/nasha-information-usage-help.html',
+        usageHelpTemplate,
+      );
+      $templateCache.put('nasha/order/template.html', orderTemplate);
+    },
+  );
 
 export default moduleName;

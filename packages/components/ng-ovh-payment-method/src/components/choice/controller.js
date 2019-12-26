@@ -19,7 +19,9 @@ export default class {
         this.model = true;
       })
       .catch((error) => {
-        this.$log.error(`An error has occured during initialization of choice component : ${error}`);
+        this.$log.error(
+          `An error has occured during initialization of choice component : ${error}`,
+        );
         this.errorCallback();
       })
       .finally(() => {
@@ -29,7 +31,9 @@ export default class {
 
   getPaymentMethodText() {
     const { label, paymentType } = this.defaultPaymentMethod;
-    const type = this.$translate.instant(`ovh_payment_method_choice_payment_type_${camelCase(paymentType)}`);
+    const type = this.$translate.instant(
+      `ovh_payment_method_choice_payment_type_${camelCase(paymentType)}`,
+    );
     return `[${type} ${label}]`;
   }
 }

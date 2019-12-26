@@ -4,8 +4,6 @@ import directive from './directive';
 
 const moduleName = 'cucClickEnterOnKeypress';
 
-angular
-  .module(moduleName, [])
-  .directive('cucClickEnterOnKeypress', directive);
+angular.module(moduleName, []).directive('cucClickEnterOnKeypress', directive);
 
 export default moduleName;

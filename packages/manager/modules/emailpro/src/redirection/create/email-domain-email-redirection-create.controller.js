@@ -38,20 +38,29 @@ export default class EmailMXPlanCreateRedirectionCtrl {
   }
 
   createRedirection() {
-    return this.WucEmails.createRedirection(this.$scope.exchange.associatedDomainName, {
-      from: `${trim(this.model.redirectionFrom)}@${trim(this.model.redirectionSubdomainFrom)}${this.model.redirectionSubdomainFrom && '.'}${this.domain}`,
-      localCopy: this.model.redirectionKeepCopy === 'local',
-      to: this.model.redirectionTo,
-    })
-      .then(() => this.Alerter.success(
-        this.$translate.instant('email_tab_modal_create_redirection_success'),
-        this.$scope.alerts.main,
-      ))
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('email_tab_modal_create_redirection_error'),
-        err,
-        this.$scope.alerts.main,
-      ))
+    return this.WucEmails.createRedirection(
+      this.$scope.exchange.associatedDomainName,
+      {
+        from: `${trim(this.model.redirectionFrom)}@${trim(
+          this.model.redirectionSubdomainFrom,
+        )}${this.model.redirectionSubdomainFrom && '.'}${this.domain}`,
+        localCopy: this.model.redirectionKeepCopy === 'local',
+        to: this.model.redirectionTo,
+      },
+    )
+      .then(() =>
+        this.Alerter.success(
+          this.$translate.instant('email_tab_modal_create_redirection_success'),
+          this.$scope.alerts.main,
+        ),
+      )
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('email_tab_modal_create_redirection_error'),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => this.$scope.resetAction());
   }
 }

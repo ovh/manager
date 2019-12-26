@@ -1,6 +1,14 @@
 class LogsRoleAddModalCtrl {
-  constructor($q, $stateParams, $uibModalInstance, CucControllerHelper, LogsRolesService, options,
-    quota, roleInfo) {
+  constructor(
+    $q,
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    LogsRolesService,
+    options,
+    quota,
+    roleInfo,
+  ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
     this.CucControllerHelper = CucControllerHelper;
@@ -57,10 +65,11 @@ class LogsRoleAddModalCtrl {
       return this.$q.reject();
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsRolesService.addRole(this.serviceName, this.role)
-        .then((response) => this.$uibModalInstance.close(response))
-        .catch((response) => this.$uibModalInstance.dismiss(response))
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsRolesService.addRole(this.serviceName, this.role)
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((response) => this.$uibModalInstance.dismiss(response))
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
@@ -70,14 +79,20 @@ class LogsRoleAddModalCtrl {
       return this.$q.reject();
     }
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsRolesService
-        .updateRole(this.serviceName, this.roleInfo.roleId, this.role)
-        .then((response) => this.$uibModalInstance.close(response))
-        .catch((response) => this.$uibModalInstance.dismiss(response))
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsRolesService.updateRole(
+          this.serviceName,
+          this.roleInfo.roleId,
+          this.role,
+        )
+          .then((response) => this.$uibModalInstance.close(response))
+          .catch((response) => this.$uibModalInstance.dismiss(response))
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     return this.saving.load();
   }
 }
 
-angular.module('managerApp').controller('LogsRoleAddModalCtrl', LogsRoleAddModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsRoleAddModalCtrl', LogsRoleAddModalCtrl);

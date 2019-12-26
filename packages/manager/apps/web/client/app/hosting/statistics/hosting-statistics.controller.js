@@ -99,8 +99,7 @@ angular
         typeIsDb() {
           const condition = (v) => $scope.selected.type === v;
           return (
-            $scope.model.db
-            && !!find($scope.model.constants.dbTypes, condition)
+            $scope.model.db && !!find($scope.model.constants.dbTypes, condition)
           );
         },
       };
@@ -135,7 +134,9 @@ angular
       $scope.stats = {};
 
       function refreshChart() {
-        $scope.stats.chart = new WucChartjsFactory(angular.copy(HOSTING_STATISTICS));
+        $scope.stats.chart = new WucChartjsFactory(
+          angular.copy(HOSTING_STATISTICS),
+        );
         $scope.stats.chart.setAxisOptions('yAxes', {
           type: 'linear',
         });
@@ -143,10 +144,10 @@ angular
         if ($scope.model.datas && $scope.model.datas.length > 0) {
           angular.forEach($scope.model.datas, (data) => {
             if (
-              data
-              && data.state === 'OK'
-              && data.series
-              && data.series.length > 0
+              data &&
+              data.state === 'OK' &&
+              data.series &&
+              data.series.length > 0
             ) {
               $scope.selected.haveDataToDisplay = true;
               $scope.stats.chart.setYLabel(data.series[0].unit);
@@ -157,8 +158,8 @@ angular
                   ) === `hosting_tab_STATISTICS_series_${serie.serieName}`
                     ? serie.serieName
                     : $translate.instant(
-                      `hosting_tab_STATISTICS_series_${serie.serieName}`,
-                    ),
+                        `hosting_tab_STATISTICS_series_${serie.serieName}`,
+                      ),
                   map(serie.points, (point) => ({
                     x: parseFloat(point.x.toFixed(2)),
                     y: parseFloat(point.y.toFixed(2)),
@@ -182,29 +183,35 @@ angular
         $scope.selected.haveDataToDisplay = false;
 
         if (!$scope.selected.typeIsDb()) {
-          getStatsPromises.push(HostingStatistics.getStatistics(
-            $stateParams.productId,
-            $scope.selected.period,
-            $scope.selected.type,
-            $scope.selected.aggregateMode,
-          ));
-
-          if ($scope.selected.httpMeanResponseTime) {
-            getStatsPromises.push(HostingStatistics.getStatistics(
+          getStatsPromises.push(
+            HostingStatistics.getStatistics(
               $stateParams.productId,
               $scope.selected.period,
-              'IN_HTTP_MEAN_RESPONSE_TIME',
+              $scope.selected.type,
               $scope.selected.aggregateMode,
-            ));
+            ),
+          );
+
+          if ($scope.selected.httpMeanResponseTime) {
+            getStatsPromises.push(
+              HostingStatistics.getStatistics(
+                $stateParams.productId,
+                $scope.selected.period,
+                'IN_HTTP_MEAN_RESPONSE_TIME',
+                $scope.selected.aggregateMode,
+              ),
+            );
           }
         } else if ($scope.selected.db) {
-          getStatsPromises.push(HostingDatabase.databaseStatistics(
-            $stateParams.productId,
-            $scope.selected.db,
-            $scope.selected.period,
-            $scope.selected.type,
-            $scope.selected.aggregateMode,
-          ));
+          getStatsPromises.push(
+            HostingDatabase.databaseStatistics(
+              $stateParams.productId,
+              $scope.selected.db,
+              $scope.selected.period,
+              $scope.selected.type,
+              $scope.selected.aggregateMode,
+            ),
+          );
         }
 
         $q.all(getStatsPromises).then((results) => {
@@ -234,8 +241,9 @@ angular
       function init() {
         HostingStatistics.getStatisticsConstants().then((data) => {
           $scope.model.constants = data;
-          $scope.model.constants.types = $scope.model.constants.types
-            .concat($scope.model.constants.dbTypes);
+          $scope.model.constants.types = $scope.model.constants.types.concat(
+            $scope.model.constants.dbTypes,
+          );
           remove(
             $scope.model.constants.types,
             (value) => value === 'IN_HTTP_MEAN_RESPONSE_TIME',

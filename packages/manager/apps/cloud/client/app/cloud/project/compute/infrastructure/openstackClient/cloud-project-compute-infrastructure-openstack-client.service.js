@@ -1,6 +1,12 @@
 class CloudProjectComputeInfrastructureOpenstackClientService {
-  constructor($q, $stateParams, $interval, OvhApiCloudProjectOpenstackClient,
-    OvhApiCloudProjectRegion, CucServiceHelper) {
+  constructor(
+    $q,
+    $stateParams,
+    $interval,
+    OvhApiCloudProjectOpenstackClient,
+    OvhApiCloudProjectRegion,
+    CucServiceHelper,
+  ) {
     this.$q = $q;
     this.$interval = $interval;
     this.OvhApiCloudProjectOpenstackClient = OvhApiCloudProjectOpenstackClient;
@@ -26,14 +32,26 @@ class CloudProjectComputeInfrastructureOpenstackClientService {
   }
 
   getSession({ serviceName, term }) {
-    return this.OvhApiCloudProjectOpenstackClient.v6().post({ serviceName }, {}).$promise
-      .then((session) => this.setSession(session, term))
-      .catch(this.CucServiceHelper.errorHandler('cpci_openstack_client_session_error', 'iaas.pci-project.compute.openstack-console'));
+    return this.OvhApiCloudProjectOpenstackClient.v6()
+      .post({ serviceName }, {})
+      .$promise.then((session) => this.setSession(session, term))
+      .catch(
+        this.CucServiceHelper.errorHandler(
+          'cpci_openstack_client_session_error',
+          'iaas.pci-project.compute.openstack-console',
+        ),
+      );
   }
 
   getRegions(serviceName) {
-    return this.OvhApiCloudProjectRegion.v6().query({ serviceName }).$promise
-      .catch(this.CucServiceHelper.errorHandler('cpci_openstack_client_regions_error', 'iaas.pci-project.compute.openstack-console'));
+    return this.OvhApiCloudProjectRegion.v6()
+      .query({ serviceName })
+      .$promise.catch(
+        this.CucServiceHelper.errorHandler(
+          'cpci_openstack_client_regions_error',
+          'iaas.pci-project.compute.openstack-console',
+        ),
+      );
   }
 
   sendAction(action) {
@@ -77,7 +95,8 @@ class CloudProjectComputeInfrastructureOpenstackClientService {
         case '0':
           term.write(atob(data));
           break;
-        default: break;
+        default:
+          break;
       }
     };
 
@@ -93,12 +112,18 @@ class CloudProjectComputeInfrastructureOpenstackClientService {
         this.initWebSocket(session, term);
         return;
       }
-      this.CucServiceHelper.errorHandler('cpci_openstack_client_session_closed', 'iaas.pci-project.compute.openstack-console')({ data: 'Expired Session' });
+      this.CucServiceHelper.errorHandler(
+        'cpci_openstack_client_session_closed',
+        'iaas.pci-project.compute.openstack-console',
+      )({ data: 'Expired Session' });
       defer.reject();
     };
 
     this.ws.onerror = (err) => {
-      this.CucServiceHelper.errorHandler('cpci_openstack_client_session_error', 'iaas.pci-project.compute.openstack-console')(err);
+      this.CucServiceHelper.errorHandler(
+        'cpci_openstack_client_session_error',
+        'iaas.pci-project.compute.openstack-console',
+      )(err);
       defer.reject(err);
     };
 
@@ -144,5 +169,9 @@ class CloudProjectComputeInfrastructureOpenstackClientService {
   }
 }
 
-
-angular.module('managerApp').service('CloudProjectComputeInfrastructureOpenstackClientService', CloudProjectComputeInfrastructureOpenstackClientService);
+angular
+  .module('managerApp')
+  .service(
+    'CloudProjectComputeInfrastructureOpenstackClientService',
+    CloudProjectComputeInfrastructureOpenstackClientService,
+  );

@@ -9,9 +9,7 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(
-    ipFeatureAvailability, OvhApiDedicatedCloud,
-  ) {
+  constructor(ipFeatureAvailability, OvhApiDedicatedCloud) {
     this.ipFeatureAvailability = ipFeatureAvailability;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.IP_BLOCK_REG_EXP = DEDICATEDCLOUD_DATACENTER_DRP_IP_BLOCK_REG_EXP;
@@ -21,8 +19,12 @@ export default class {
   }
 
   $onInit() {
-    this.OvhApiDedicatedCloud.Ip().v6().resetQueryCache();
-    this.OvhApiDedicatedCloud.Ip().v6().resetCache();
+    this.OvhApiDedicatedCloud.Ip()
+      .v6()
+      .resetQueryCache();
+    this.OvhApiDedicatedCloud.Ip()
+      .v6()
+      .resetCache();
 
     if (this.defaultLocalVraNetwork) {
       this.drpInformations.localVraNetwork = this.defaultLocalVraNetwork;
@@ -32,31 +34,37 @@ export default class {
     this.availableDatacenters = this.datacenters;
     this.availableIpAddress = this.getAvailableAddresses(this.ipAddressDetails);
 
-    this.drpInformations.primaryDatacenter = this.availableDatacenters
-      .find(({ id }) => parseInt(this.datacenterId, 10) === id);
-    this.selectedIpAddress = this.availableIpAddress
-      .find(({ ip }) => [
+    this.drpInformations.primaryDatacenter = this.availableDatacenters.find(
+      ({ id }) => parseInt(this.datacenterId, 10) === id,
+    );
+    this.selectedIpAddress = this.availableIpAddress.find(({ ip }) =>
+      [
         this.drpInformations.primaryEndpointIp,
         this.drpInformations.ovhEndpointIp,
-      ].includes(ip));
+      ].includes(ip),
+    );
 
     this.orderIpStateRef = {
-      newGeneration: this.drpInformations
-        .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-        ? 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.orderIp'
-        : 'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.orderIp',
-      legacy: this.drpInformations
-        .drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-        ? 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp'
-        : 'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.legacyOrderIp',
+      newGeneration:
+        this.drpInformations.drpType ===
+        DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+          ? 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.orderIp'
+          : 'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.orderIp',
+      legacy:
+        this.drpInformations.drpType ===
+        DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+          ? 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp'
+          : 'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.legacyOrderIp',
     };
   }
 
   getAvailableAddresses(ipAddressDetails) {
-    return ipAddressDetails
-      .filter(({ usageDetails }) => isNull(usageDetails)
-        && !this.UNAVAILABLE_IP_STATUSES.includes(usageDetails)
-        && !this.MAC_ADDRESS_REG_EXP.test(usageDetails));
+    return ipAddressDetails.filter(
+      ({ usageDetails }) =>
+        isNull(usageDetails) &&
+        !this.UNAVAILABLE_IP_STATUSES.includes(usageDetails) &&
+        !this.MAC_ADDRESS_REG_EXP.test(usageDetails),
+    );
   }
 
   setEndpointIp(endpointIp) {

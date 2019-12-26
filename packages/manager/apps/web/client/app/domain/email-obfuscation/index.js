@@ -3,7 +3,8 @@ import controller from './email-obfuscation.controller';
 
 const moduleName = 'domainEmailObfuscation';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .component('domainEmailObfuscation', component)
   .controller('DomainEmailObfuscationCtrl', controller);
 

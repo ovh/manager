@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/click2call',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/line/calls/click2Call/telecom-telephony-line-calls-click2Call.html',
+        templateUrl:
+          'app/telecom/telephony/line/calls/click2Call/telecom-telephony-line-calls-click2Call.html',
         controller: 'TelecomTelephonyLineClick2CallCtrl',
         controllerAs: 'Click2CallCtrl',
       },

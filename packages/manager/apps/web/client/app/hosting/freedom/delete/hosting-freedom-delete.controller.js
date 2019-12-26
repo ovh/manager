@@ -23,9 +23,12 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_dashboard_service_delete_freedom_success', {
-              t0: this.freedom.domain,
-            }),
+            this.$translate.instant(
+              'hosting_dashboard_service_delete_freedom_success',
+              {
+                t0: this.freedom.domain,
+              },
+            ),
             this.$scope.alerts.main,
           );
         })

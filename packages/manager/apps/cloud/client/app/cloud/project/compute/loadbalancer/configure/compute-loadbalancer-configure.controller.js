@@ -8,10 +8,24 @@ import values from 'lodash/values';
 
 class CloudProjectComputeLoadbalancerConfigureCtrl {
   constructor(
-    $anchorScroll, $scope, $state, $stateParams, $q, $location, $window, $translate,
-    CloudProjectComputeLoadbalancerService, OvhApiIpLoadBalancing, OvhApiCloudProjectIplb,
-    OvhApiCloudProject, ovhDocUrl, CucCloudMessage, IpLoadBalancerTaskService,
-    CucControllerHelper, CucCloudPoll, CucServiceHelper,
+    $anchorScroll,
+    $scope,
+    $state,
+    $stateParams,
+    $q,
+    $location,
+    $window,
+    $translate,
+    CloudProjectComputeLoadbalancerService,
+    OvhApiIpLoadBalancing,
+    OvhApiCloudProjectIplb,
+    OvhApiCloudProject,
+    ovhDocUrl,
+    CucCloudMessage,
+    IpLoadBalancerTaskService,
+    CucControllerHelper,
+    CucCloudPoll,
+    CucServiceHelper,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$scope = $scope;
@@ -65,29 +79,42 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
   $onInit() {
     // Get loadbalancer pending tasks and define poller
     this.tasks = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then((tasks) => filter(tasks, (task) => includes(['todo', 'doing'], task.status))),
+      loaderFunction: () =>
+        this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then(
+          (tasks) =>
+            filter(tasks, (task) => includes(['todo', 'doing'], task.status)),
+        ),
       successHandler: () => this.startTaskPolling(),
     });
     this.tasks.load();
-
 
     let validatePromise;
     // Terminate validation if params exists
     if (this.validate) {
       this.loaders.loadbalancer = true;
-      validatePromise = this.OvhApiCloudProjectIplb.v6().validate({
-        serviceName: this.serviceName,
-        id: this.validate,
-      }, {}).$promise
-        .then(() => {
+      validatePromise = this.OvhApiCloudProjectIplb.v6()
+        .validate(
+          {
+            serviceName: this.serviceName,
+            id: this.validate,
+          },
+          {},
+        )
+        .$promise.then(() => {
           this.$location.search('validate', null);
           this.toggle.updatedMessage = true;
         })
-        .catch((err) => this.CucCloudMessage.error([
-          this.$translate.instant('cpc_loadbalancer_error'),
-          (err.data && err.data.message) || '',
-        ].join(' ')))
-        .finally(() => { this.loaders.loadbalancer = false; });
+        .catch((err) =>
+          this.CucCloudMessage.error(
+            [
+              this.$translate.instant('cpc_loadbalancer_error'),
+              (err.data && err.data.message) || '',
+            ].join(' '),
+          ),
+        )
+        .finally(() => {
+          this.loaders.loadbalancer = false;
+        });
       this.validate = '';
     } else {
       validatePromise = Promise.resolve('');
@@ -123,9 +150,13 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
         this.attachedServers = attachedServers;
         this.form.servers = mapValues(this.attachedServers, (e) => !!e);
         this.table.server = servers;
-      }).catch(() => {
+      })
+      .catch(() => {
         this.table.server = null;
-      }).finally(() => { this.loaders.table.server = false; });
+      })
+      .finally(() => {
+        this.loaders.table.server = false;
+      });
   }
 
   configureAndDeployLoadbalancer() {
@@ -136,43 +167,57 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
     let configurePromise = this.$q.resolve();
 
     // Configure the HTTP(80) loadbalancer
-    const configLoadBalancer = (values(this.form.servers).length
-      && reduce(
-        this.form.servers,
-        (res, value) => res && value, true,
-      )) || values(this.attachedServers).length > 0;
-    if (this.loadbalancer.status !== 'custom' && this.loadbalancer.status !== 'unavailable' && configLoadBalancer) {
+    const configLoadBalancer =
+      (values(this.form.servers).length &&
+        reduce(this.form.servers, (res, value) => res && value, true)) ||
+      values(this.attachedServers).length > 0;
+    if (
+      this.loadbalancer.status !== 'custom' &&
+      this.loadbalancer.status !== 'unavailable' &&
+      configLoadBalancer
+    ) {
       if (this.loadbalancer.status === 'available') {
         // Create farm and front
-        configurePromise = configurePromise.then(
-          () => this
-            .OvhApiIpLoadBalancing
-            .Farm()
-            .Http()
-            .v6()
-            .post({
-              serviceName: this.loadbalancerId,
-            }, {
-              displayName: 'PublicCloud',
-              port: 80,
-              zone: 'all',
-            }).$promise,
-        )
-          .then((farm) => { this.loadbalancer.farm = farm; })
-          .then(() => this
-            .OvhApiIpLoadBalancing
-            .Frontend()
-            .Http()
-            .v6()
-            .post({
-              serviceName: this.loadbalancerId,
-            }, {
-              displayName: 'PublicCloud',
-              port: 80,
-              zone: 'all',
-              defaultFarmId: this.loadbalancer.farm.farmId,
-            }).$promise)
-          .then((frontend) => { this.loadbalancer.frontend = frontend; });
+        configurePromise = configurePromise
+          .then(
+            () =>
+              this.OvhApiIpLoadBalancing.Farm()
+                .Http()
+                .v6()
+                .post(
+                  {
+                    serviceName: this.loadbalancerId,
+                  },
+                  {
+                    displayName: 'PublicCloud',
+                    port: 80,
+                    zone: 'all',
+                  },
+                ).$promise,
+          )
+          .then((farm) => {
+            this.loadbalancer.farm = farm;
+          })
+          .then(
+            () =>
+              this.OvhApiIpLoadBalancing.Frontend()
+                .Http()
+                .v6()
+                .post(
+                  {
+                    serviceName: this.loadbalancerId,
+                  },
+                  {
+                    displayName: 'PublicCloud',
+                    port: 80,
+                    zone: 'all',
+                    defaultFarmId: this.loadbalancer.farm.farmId,
+                  },
+                ).$promise,
+          )
+          .then((frontend) => {
+            this.loadbalancer.frontend = frontend;
+          });
       }
 
       // Add or remove servers
@@ -182,88 +227,125 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
         const displayName = server ? server.label : null;
         if (enable && !this.attachedServers[ip]) {
           modified = true;
-          configurePromise = configurePromise.then(() => this
-            .OvhApiIpLoadBalancing
-            .Farm()
-            .Http()
-            .Server()
-            .v6()
-            .post({ serviceName: this.loadbalancerId, farmId: this.loadbalancer.farm.farmId }, {
-              displayName,
-              port: 80,
-              address: ip,
-              status: 'active',
-            }).$promise);
+          configurePromise = configurePromise.then(
+            () =>
+              this.OvhApiIpLoadBalancing.Farm()
+                .Http()
+                .Server()
+                .v6()
+                .post(
+                  {
+                    serviceName: this.loadbalancerId,
+                    farmId: this.loadbalancer.farm.farmId,
+                  },
+                  {
+                    displayName,
+                    port: 80,
+                    address: ip,
+                    status: 'active',
+                  },
+                ).$promise,
+          );
         }
         if (!enable && this.attachedServers[ip]) {
           modified = true;
-          configurePromise = configurePromise.then(() => this
-            .OvhApiIpLoadBalancing
-            .Farm()
-            .Http()
-            .Server()
-            .v6()
-            .delete({
-              serviceName: this.loadbalancerId,
-              serverId: this.attachedServers[ip].serverId,
-              farmId: this.loadbalancer.farm.farmId,
-            }).$promise);
+          configurePromise = configurePromise.then(
+            () =>
+              this.OvhApiIpLoadBalancing.Farm()
+                .Http()
+                .Server()
+                .v6()
+                .delete({
+                  serviceName: this.loadbalancerId,
+                  serverId: this.attachedServers[ip].serverId,
+                  farmId: this.loadbalancer.farm.farmId,
+                }).$promise,
+          );
         }
       });
 
       // Deploy configuration
       if (modified) {
-        configurePromise = configurePromise.then(() => this
-          .OvhApiIpLoadBalancing
-          .v6()
-          .refresh({
-            serviceName: this.loadbalancerId,
-          }, {}).$promise)
+        configurePromise = configurePromise
+          .then(
+            () =>
+              this.OvhApiIpLoadBalancing.v6().refresh(
+                {
+                  serviceName: this.loadbalancerId,
+                },
+                {},
+              ).$promise,
+          )
           .then(() => this.tasks.load())
           .then(() => this.getLoadbalancer(true));
       }
     }
     // Configure the openstack importation
-    if (this.form.openstack && (!this.loadBalancerImported || this.loadBalancerImported.status !== 'validated')) {
+    if (
+      this.form.openstack &&
+      (!this.loadBalancerImported ||
+        this.loadBalancerImported.status !== 'validated')
+    ) {
       // Need to remove old import to recreate it
       if (this.loadBalancerImported) {
-        configurePromise = configurePromise.then(() => this
-          .OvhApiCloudProjectIplb
-          .v6()
-          .delete({ serviceName: this.serviceName, id: this.loadBalancerImported.id }).$promise);
+        configurePromise = configurePromise.then(
+          () =>
+            this.OvhApiCloudProjectIplb.v6().delete({
+              serviceName: this.serviceName,
+              id: this.loadBalancerImported.id,
+            }).$promise,
+        );
       }
-      configurePromise = configurePromise.then(() => this
-        .OvhApiCloudProjectIplb.v6()
-        .post({
-          serviceName: this.serviceName,
-        }, {
-          ipLoadbalancingServiceName: this.loadbalancerId,
-          redirection: `${this.$location.hash('').absUrl().replace(/\?.*$/, '')}?validate=%id`,
-        }).$promise
-        .then((result) => {
-          this.$window.location.href = result.validationUrl;
-          this.loaders.form.redirect = true;
-        }));
+      configurePromise = configurePromise.then(() =>
+        this.OvhApiCloudProjectIplb.v6()
+          .post(
+            {
+              serviceName: this.serviceName,
+            },
+            {
+              ipLoadbalancingServiceName: this.loadbalancerId,
+              redirection: `${this.$location
+                .hash('')
+                .absUrl()
+                .replace(/\?.*$/, '')}?validate=%id`,
+            },
+          )
+          .$promise.then((result) => {
+            this.$window.location.href = result.validationUrl;
+            this.loaders.form.redirect = true;
+          }),
+      );
     } else if (!this.form.openstack && this.loadBalancerImported) {
-      configurePromise = configurePromise.then(() => this
-        .OvhApiCloudProjectIplb
-        .v6()
-        .delete({ serviceName: this.serviceName, id: this.loadBalancerImported.id }).$promise)
+      configurePromise = configurePromise
+        .then(
+          () =>
+            this.OvhApiCloudProjectIplb.v6().delete({
+              serviceName: this.serviceName,
+              id: this.loadBalancerImported.id,
+            }).$promise,
+        )
         .then(() => {
           this.loadBalancerImported = null;
           this.form.openstack = false;
         });
     }
-    return configurePromise.then(() => {
-      this.toggle.updatedMessage = true;
-    }).catch((err) => this.CucCloudMessage.error([
-      this.$translate.instant('cpc_loadbalancer_error'),
-      (err.data && err.data.message) || '',
-    ].join(' '))).finally(() => {
-      this.$location.hash('compute-loadbalancer-configure');
-      this.$anchorScroll();
-      this.loaders.form.loadbalancer = false;
-    });
+    return configurePromise
+      .then(() => {
+        this.toggle.updatedMessage = true;
+      })
+      .catch((err) =>
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpc_loadbalancer_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        ),
+      )
+      .finally(() => {
+        this.$location.hash('compute-loadbalancer-configure');
+        this.$anchorScroll();
+        this.loaders.form.loadbalancer = false;
+      });
   }
 
   getLoadbalancer(clearCache) {
@@ -272,31 +354,39 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
       this.OvhApiCloudProjectIplb.v6().resetQueryCache();
       this.OvhApiIpLoadBalancing.v6().resetQueryCache();
     }
-    return this.$q.all({
-      loadbalancer: this
-        .CloudProjectComputeLoadbalancerService
-        .getLoadbalancer(this.loadbalancerId),
-      loadbalancersImported: this
-        .CloudProjectComputeLoadbalancerService
-        .getLoadbalancersImported(this.serviceName),
-    }).then(({ loadbalancer, loadbalancersImported }) => {
-      this.loadbalancer = loadbalancer;
+    return this.$q
+      .all({
+        loadbalancer: this.CloudProjectComputeLoadbalancerService.getLoadbalancer(
+          this.loadbalancerId,
+        ),
+        loadbalancersImported: this.CloudProjectComputeLoadbalancerService.getLoadbalancersImported(
+          this.serviceName,
+        ),
+      })
+      .then(({ loadbalancer, loadbalancersImported }) => {
+        this.loadbalancer = loadbalancer;
 
-      this.loadBalancerImported = loadbalancersImported[this.loadbalancer.serviceName];
-      if (!this.loadBalancerImported) {
-        return;
-      }
-      if (this.loadBalancerImported.status === 'validated') {
-        this.form.openstack = true;
-      }
-    }).then(() => { this.loaders.loadbalancer = false; })
+        this.loadBalancerImported =
+          loadbalancersImported[this.loadbalancer.serviceName];
+        if (!this.loadBalancerImported) {
+          return;
+        }
+        if (this.loadBalancerImported.status === 'validated') {
+          this.form.openstack = true;
+        }
+      })
+      .then(() => {
+        this.loaders.loadbalancer = false;
+      })
       .then(() => this.getServerList())
       .catch((err) => {
         this.loadbalancer = null;
-        this.CucCloudMessage.error([
-          this.$translate.instant('cpc_loadbalancer_error'),
-          (err.data && err.data.message) || '',
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpc_loadbalancer_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
       });
   }
 
@@ -305,7 +395,8 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
 
     this.poller = this.CucCloudPoll.pollArray({
       items: this.tasks.data,
-      pollFunction: (task) => this.IpLoadBalancerTaskService.getTask(this.loadbalancerId, task.id),
+      pollFunction: (task) =>
+        this.IpLoadBalancerTaskService.getTask(this.loadbalancerId, task.id),
       stopCondition: (task) => {
         const res = includes(['done', 'error'], task.status);
         // Remove terminated tasks
@@ -323,4 +414,9 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
     }
   }
 }
-angular.module('managerApp').controller('CloudProjectComputeLoadbalancerConfigureCtrl', CloudProjectComputeLoadbalancerConfigureCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeLoadbalancerConfigureCtrl',
+    CloudProjectComputeLoadbalancerConfigureCtrl,
+  );

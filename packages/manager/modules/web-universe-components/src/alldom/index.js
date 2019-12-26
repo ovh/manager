@@ -6,10 +6,6 @@ import WucAllDom from './domain-alldom.service';
 
 const moduleName = 'wucAllDom';
 
-angular
-  .module(moduleName, [
-    'ngOvhHttp',
-  ])
-  .service('WucAllDom', WucAllDom);
+angular.module(moduleName, ['ngOvhHttp']).service('WucAllDom', WucAllDom);
 
 export default moduleName;

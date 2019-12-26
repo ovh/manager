@@ -1,9 +1,4 @@
-module.exports = (
-  {
-    name,
-    description,
-  },
-) => ({
+module.exports = ({ name, description }) => ({
   name: `@ovh-ux/manager-${name}`,
   version: '0.0.0',
   private: true,

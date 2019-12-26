@@ -15,7 +15,9 @@ export default /* @ngInject */ (OvhApiSms) => {
 
     // options check
     if (!options.name) {
-      throw new Error('name option must be specified when creating a new TucSmsService');
+      throw new Error(
+        'name option must be specified when creating a new TucSmsService',
+      );
     }
 
     // mandatory
@@ -56,11 +58,14 @@ export default /* @ngInject */ (OvhApiSms) => {
   TucSmsService.prototype.save = function save() {
     const self = this;
 
-    return OvhApiSms.v6().edit({
-      serviceName: self.name,
-    }, {
-      description: self.description,
-    }).$promise;
+    return OvhApiSms.v6().edit(
+      {
+        serviceName: self.name,
+      },
+      {
+        description: self.description,
+      },
+    ).$promise;
   };
 
   /* ----------  EDITION  ----------*/

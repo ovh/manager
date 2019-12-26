@@ -8,10 +8,7 @@ import WucEmails from './email-domain.service';
 const moduleName = 'wucEmailDomain';
 
 angular
-  .module(moduleName, [
-    'ngOvhHttp',
-    'ngOvhSwimmingPoll',
-  ])
+  .module(moduleName, ['ngOvhHttp', 'ngOvhSwimmingPoll'])
   .service('WucEmails', WucEmails);
 
 export default moduleName;

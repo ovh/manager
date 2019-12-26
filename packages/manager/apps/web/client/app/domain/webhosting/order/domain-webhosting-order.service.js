@@ -17,54 +17,61 @@ export default class {
   }
 
   getAvailableModules(cartId) {
-    return this.OrderService
-      .getProductOptions(
-        cartId,
-        WEBHOSTING_ORDER_PRODUCT,
-        { planCode: DEFAULT_PLANCODE },
-      );
+    return this.OrderService.getProductOptions(
+      cartId,
+      WEBHOSTING_ORDER_PRODUCT,
+      { planCode: DEFAULT_PLANCODE },
+    );
   }
 
   getAvailableOffers(cartId, ovhSubsidiary) {
-    return this.$q.all({
-      catalog: this.OvhApiOrder.Catalog().Public().v6()
-        .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
-        .$promise
-        .then(({ plans }) => plans),
-      offers: this.OvhApiOrder.Cart().Product()
-        .v6()
-        .get({
-          cartId,
-        }, {
-          productName: WEBHOSTING_ORDER_PRODUCT,
-        })
-        .$promise,
-    })
+    return this.$q
+      .all({
+        catalog: this.OvhApiOrder.Catalog()
+          .Public()
+          .v6()
+          .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
+          .$promise.then(({ plans }) => plans),
+        offers: this.OvhApiOrder.Cart()
+          .Product()
+          .v6()
+          .get(
+            {
+              cartId,
+            },
+            {
+              productName: WEBHOSTING_ORDER_PRODUCT,
+            },
+          ).$promise,
+      })
       .then(({ catalog, offers }) => {
         const productPlancodes = offers.map(({ planCode }) => planCode);
-        const catalogProducts = catalog
-          .filter(({ planCode }) => productPlancodes.includes(planCode));
+        const catalogProducts = catalog.filter(({ planCode }) =>
+          productPlancodes.includes(planCode),
+        );
 
-        return offers
-          .map(({ description, planCode, prices }) => {
-            const { pricings } = catalogProducts
-              .find(({ planCode: productPlanCode }) => planCode === productPlanCode);
+        return offers.map(({ description, planCode, prices }) => {
+          const { pricings } = catalogProducts.find(
+            ({ planCode: productPlanCode }) => planCode === productPlanCode,
+          );
 
-            const [pricing] = pricings;
-            const [{ duration, pricingMode }] = prices;
-            const durations = prices.map(({ duration: priceDuration }) => priceDuration);
+          const [pricing] = pricings;
+          const [{ duration, pricingMode }] = prices;
+          const durations = prices.map(
+            ({ duration: priceDuration }) => priceDuration,
+          );
 
-            pricing.duration = duration;
-            pricing.pricingMode = pricingMode;
+          pricing.duration = duration;
+          pricing.pricingMode = pricingMode;
 
-            return new WebHostingOffer({
-              ...description,
-              durations,
-              planCode,
-              pricing,
-              pricings,
-            });
+          return new WebHostingOffer({
+            ...description,
+            durations,
+            planCode,
+            pricing,
+            pricings,
           });
+        });
       });
   }
 
@@ -72,54 +79,69 @@ export default class {
     const productOptions = cartOption.offer;
     const moduleOptions = cartOption.module;
 
-    const dnsZoneValue = this.constructor
-      .mapDnsZoneValue(cartOption.dnsConfiguration);
+    const dnsZoneValue = this.constructor.mapDnsZoneValue(
+      cartOption.dnsConfiguration,
+    );
 
-    return this.addHostingToCart(cartId, domainName, productOptions, dnsZoneValue)
-      .then((itemId) => (moduleOptions ? this.addModuleToCart(
-        cartId,
-        itemId,
-        domainName,
-        moduleOptions,
-      ) : null))
+    return this.addHostingToCart(
+      cartId,
+      domainName,
+      productOptions,
+      dnsZoneValue,
+    )
+      .then((itemId) =>
+        moduleOptions
+          ? this.addModuleToCart(cartId, itemId, domainName, moduleOptions)
+          : null,
+      )
       .then(() => this.OrderService.getCheckoutInformations(cartId));
   }
 
   addHostingToCart(cartId, domainName, productOptions, dnsConfiguration) {
     const { label, value } = dnsConfiguration;
-    return this.OrderService
-      .addProductToCart(
-        cartId,
-        WEBHOSTING_ORDER_PRODUCT,
-        {
-          duration: productOptions.pricing.duration,
-          planCode: productOptions.planCode,
-          pricingMode: productOptions.pricing.pricingMode,
-          quantity: PRODUCT_QUANTITY,
-        },
-      )
-      .then(({ itemId }) => this.$q.all([
-        this.OrderService.addConfigurationItem(
-          cartId, itemId, CONFIGURATION_OPTIONS.LEGACY_DOMAIN, domainName,
-        ),
-        this.OrderService.addConfigurationItem(
-          cartId, itemId, label, value,
-        ),
-      ]).then(() => itemId));
+    return this.OrderService.addProductToCart(
+      cartId,
+      WEBHOSTING_ORDER_PRODUCT,
+      {
+        duration: productOptions.pricing.duration,
+        planCode: productOptions.planCode,
+        pricingMode: productOptions.pricing.pricingMode,
+        quantity: PRODUCT_QUANTITY,
+      },
+    ).then(({ itemId }) =>
+      this.$q
+        .all([
+          this.OrderService.addConfigurationItem(
+            cartId,
+            itemId,
+            CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
+            domainName,
+          ),
+          this.OrderService.addConfigurationItem(cartId, itemId, label, value),
+        ])
+        .then(() => itemId),
+    );
   }
 
   addModuleToCart(cartId, itemId, domainName, moduleOptions) {
-    return this.OrderService
-      .addProductOptionToCart(cartId, WEBHOSTING_ORDER_PRODUCT, {
+    return this.OrderService.addProductOptionToCart(
+      cartId,
+      WEBHOSTING_ORDER_PRODUCT,
+      {
         duration: moduleOptions.duration,
         itemId,
         planCode: moduleOptions.planCode,
         pricingMode: moduleOptions.pricingMode,
         quantity: OPTION_QUANTITY,
-      })
-      .then(({ itemId: productId }) => this.OrderService.addConfigurationItem(
-        cartId, productId, CONFIGURATION_OPTIONS.LEGACY_DOMAIN, domainName,
-      ));
+      },
+    ).then(({ itemId: productId }) =>
+      this.OrderService.addConfigurationItem(
+        cartId,
+        productId,
+        CONFIGURATION_OPTIONS.LEGACY_DOMAIN,
+        domainName,
+      ),
+    );
   }
 
   validateCheckout(cartId, checkout) {

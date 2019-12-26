@@ -1,7 +1,15 @@
 export default class IpLoadBalancerZoneAddCtrl {
   /* @ngInject */
-  constructor($q, $state, $translate, $stateParams, CucCloudMessage, CucCloudNavigation,
-    CucControllerHelper, IpLoadBalancerZoneAddService) {
+  constructor(
+    $q,
+    $state,
+    $translate,
+    $stateParams,
+    CucCloudMessage,
+    CucCloudNavigation,
+    CucControllerHelper,
+    IpLoadBalancerZoneAddService,
+  ) {
     this.$state = $state;
     this.$q = $q;
     this.$translate = $translate;
@@ -27,7 +35,10 @@ export default class IpLoadBalancerZoneAddCtrl {
 
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerZoneAddService.addZones(this.serviceName, this.model.zones.value)
+    return this.IpLoadBalancerZoneAddService.addZones(
+      this.serviceName,
+      this.model.zones.value,
+    )
       .then(() => this.$state.go('network.iplb.detail.home'))
       .finally(() => {
         this.saving = false;
@@ -40,7 +51,8 @@ export default class IpLoadBalancerZoneAddCtrl {
 
   initLoaders() {
     this.zones = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerZoneAddService.getOrderableZones(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerZoneAddService.getOrderableZones(this.serviceName),
     });
   }
 

@@ -51,7 +51,8 @@ export const EMAILPRO_CONFIG = {
         EN: '',
         ES: '',
         FI: '',
-        FR: 'https://www.ovh.com/fr/g1325.exchange_20132016_utilisation_des_comptes_de_ressource',
+        FR:
+          'https://www.ovh.com/fr/g1325.exchange_20132016_utilisation_des_comptes_de_ressource',
         GB: '',
         IE: '',
         IT: '',
@@ -89,26 +90,37 @@ export const EMAILPRO_CONFIG = {
         WE: 'https://docs.ovh.com/gb/en/web/emails-pro',
       },
       DIAGNOSTIC: {
-        CA: 'https://www.ovh.com/ca/en/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
+        CA:
+          'https://www.ovh.com/ca/en/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
         CZ: '',
         DE: 'https://www.ovh.de/g2277.exchange_diagnose_was_tun_bei_fehlern',
-        EN: 'https://www.ovh.com/ca/en/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
-        ES: 'https://www.ovh.es/g2277.que_hacer_en_caso_de_error_del_diagnostico_exchange',
-        FI: 'https://www.ovh-hosting.fi/g2277.exchange_diagnostiikka_mita_tehda_virhetilanteessa',
-        FR: 'https://www.ovh.com/fr/g2277.diagnostic_exchange_que_faire_en_cas_derreur',
-        GB: 'https://www.ovh.co.uk/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
+        EN:
+          'https://www.ovh.com/ca/en/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
+        ES:
+          'https://www.ovh.es/g2277.que_hacer_en_caso_de_error_del_diagnostico_exchange',
+        FI:
+          'https://www.ovh-hosting.fi/g2277.exchange_diagnostiikka_mita_tehda_virhetilanteessa',
+        FR:
+          'https://www.ovh.com/fr/g2277.diagnostic_exchange_que_faire_en_cas_derreur',
+        GB:
+          'https://www.ovh.co.uk/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
         IE: '',
         IT: '',
-        LT: 'https://www.ovh.lt/g2277.exchange_diagnostika_ka_daryti_klaidos_atveju',
+        LT:
+          'https://www.ovh.lt/g2277.exchange_diagnostika_ka_daryti_klaidos_atveju',
         MA: '',
         NL: '',
-        PL: 'https://www.ovh.pl/g2277.diagnostyka_exchange_co_zrobic_w_przypadku_bledu',
-        PT: 'https://www.ovh.pt/g2277.diagnostico_exchange_o_que_fazer_em_caso_de_erro',
-        QC: 'https://www.ovh.com/ca/fr/g2277.diagnostic_exchange_que_faire_en_cas_derreur',
+        PL:
+          'https://www.ovh.pl/g2277.diagnostyka_exchange_co_zrobic_w_przypadku_bledu',
+        PT:
+          'https://www.ovh.pt/g2277.diagnostico_exchange_o_que_fazer_em_caso_de_erro',
+        QC:
+          'https://www.ovh.com/ca/fr/g2277.diagnostic_exchange_que_faire_en_cas_derreur',
         RU: '',
         SN: '',
         TN: '',
-        US: 'https://www.ovh.com/us/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
+        US:
+          'https://www.ovh.com/us/g2277.exchange_diagnostic_what_to_do_in_the_event_of_an_error',
         WE: '',
       },
     },

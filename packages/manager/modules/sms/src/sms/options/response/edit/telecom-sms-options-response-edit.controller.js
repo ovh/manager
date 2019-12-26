@@ -5,8 +5,17 @@ import pull from 'lodash/pull';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $uibModalInstance,
-    OvhApiSms, TucSmsMediator, service, senders, index, option, TucToastError,
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    TucSmsMediator,
+    service,
+    senders,
+    index,
+    option,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -42,13 +51,20 @@ export default class {
 
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
-      .then(() => this.TucSmsMediator.getApiScheme().then((schema) => {
-        this.availableTrackingMedia = pull(schema.models['sms.ResponseTrackingMediaEnum'].enum, 'voice');
-        this.trackingOptions.media = this.model.option.media;
-        this.trackingSender.sender = this.model.option.sender;
-      })).catch((err) => {
+      .then(() =>
+        this.TucSmsMediator.getApiScheme().then((schema) => {
+          this.availableTrackingMedia = pull(
+            schema.models['sms.ResponseTrackingMediaEnum'].enum,
+            'voice',
+          );
+          this.trackingOptions.media = this.model.option.media;
+          this.trackingSender.sender = this.model.option.sender;
+        }),
+      )
+      .catch((err) => {
         this.TucToastError(err);
-      }).finally(() => {
+      })
+      .finally(() => {
         this.loading.init = false;
       });
   }
@@ -60,26 +76,36 @@ export default class {
   edit() {
     this.model.service.smsResponse.trackingOptions[this.model.index] = {
       media: this.trackingOptions.media,
-      sender: this.trackingOptions.media === 'sms' ? get(this.trackingSender.sender, 'sender') : this.model.option.sender,
+      sender:
+        this.trackingOptions.media === 'sms'
+          ? get(this.trackingSender.sender, 'sender')
+          : this.model.option.sender,
       target: this.model.option.target,
     };
     this.loading.editTrackingOption = true;
-    return this.api.sms.edit({
-      serviceName: this.$stateParams.serviceName,
-    }, {
-      smsResponse: {
-        trackingOptions: this.model.service.smsResponse.trackingOptions,
-        responseType: this.model.service.smsResponse.responseType,
-      },
-    }).$promise
-      .then(() => {
+    return this.api.sms
+      .edit(
+        {
+          serviceName: this.$stateParams.serviceName,
+        },
+        {
+          smsResponse: {
+            trackingOptions: this.model.service.smsResponse.trackingOptions,
+            responseType: this.model.service.smsResponse.responseType,
+          },
+        },
+      )
+      .$promise.then(() => {
         this.loading.editTrackingOption = false;
         this.edited = true;
         return this.$timeout(() => this.close(), 1000);
-      }).catch((error) => this.cancel({
-        type: 'API',
-        msg: error,
-      }));
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   /**

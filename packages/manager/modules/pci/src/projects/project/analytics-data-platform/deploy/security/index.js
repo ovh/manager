@@ -5,9 +5,7 @@ import securityComponent from './security.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeploySecurityComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('analyticsDataPlatformDeploySecurityComponent', securityComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/resiliation',
     views: {
       'accessView@telecom.packs.pack.xdsl': {
-        templateUrl: 'app/telecom/pack/xdsl/resiliation/pack-xdsl-resiliation.html',
+        templateUrl:
+          'app/telecom/pack/xdsl/resiliation/pack-xdsl-resiliation.html',
         controller: 'PackXdslResiliationCtrl',
         controllerAs: 'PackXdslResiliation',
       },

@@ -20,7 +20,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/setup',
       views: {
         logsContent: {
-          templateUrl: 'app/dbaas/logs/detail/account/setup/logs-account-setup.html',
+          templateUrl:
+            'app/dbaas/logs/detail/account/setup/logs-account-setup.html',
           controller: 'LogsAccountSetupCtrl',
           controllerAs: 'ctrl',
         },

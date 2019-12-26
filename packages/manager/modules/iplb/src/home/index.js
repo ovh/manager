@@ -18,12 +18,10 @@ import './home.less';
 const moduleName = 'ovhManagerIplbHome';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.home', {
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('network.iplb.detail.home', {
         url: '/home',
         views: {
           iplbHeader: {
@@ -42,8 +40,12 @@ angular
           format: 'json',
         },
       });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .service('IpLoadBalancerHomeService', IpLoadBalancerHomeService)
   .controller('IpLoadBalancerHomeCtrl', IpLoadBalancerHomeCtrl)
   .service('IpLoadBalancerHomeStatusService', IpLoadBalancerHomeStatusService)

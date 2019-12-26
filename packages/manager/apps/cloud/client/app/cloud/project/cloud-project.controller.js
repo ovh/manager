@@ -1,7 +1,18 @@
-angular.module('managerApp')
-  .controller('CloudProjectCtrl', function CloudProjectCtrl($scope, $state, $stateParams, $transitions,
-    atInternet, CloudProjectRightService, CucControllerHelper, ovhUserPref, OvhApiCloud,
-    coreConfig, TRACKING_CLOUD) {
+angular
+  .module('managerApp')
+  .controller('CloudProjectCtrl', function CloudProjectCtrl(
+    $scope,
+    $state,
+    $stateParams,
+    $transitions,
+    atInternet,
+    CloudProjectRightService,
+    CucControllerHelper,
+    ovhUserPref,
+    OvhApiCloud,
+    coreConfig,
+    TRACKING_CLOUD,
+  ) {
     const self = this;
     const serviceName = $stateParams.projectId;
     const onboardingKey = 'SHOW_PCI_ONBOARDING';
@@ -45,7 +56,8 @@ angular.module('managerApp')
     function init() {
       self.loaders.project = true;
 
-      ovhUserPref.getValue(onboardingKey)
+      ovhUserPref
+        .getValue(onboardingKey)
         .then(({ value }) => {
           if (value) {
             openOnboarding();
@@ -60,19 +72,25 @@ angular.module('managerApp')
 
       // get current project
       if (serviceName) {
-        OvhApiCloud.Project().v6().get({
-          serviceName,
-        }).$promise
-          .then((project) => {
+        OvhApiCloud.Project()
+          .v6()
+          .get({
+            serviceName,
+          })
+          .$promise.then((project) => {
             self.model.project = project;
             // if project is suspended, redirect to error page
-            if (self.model.project.status === 'suspended' || self.model.project.status === 'creating') {
+            if (
+              self.model.project.status === 'suspended' ||
+              self.model.project.status === 'creating'
+            ) {
               $state.go('iaas.pci-project.details');
             } else {
-              CloudProjectRightService.userHaveReadWriteRights(serviceName)
-                .then((hasWriteRight) => {
-                  self.model.hasWriteRight = hasWriteRight;
-                });
+              CloudProjectRightService.userHaveReadWriteRights(
+                serviceName,
+              ).then((hasWriteRight) => {
+                self.model.hasWriteRight = hasWriteRight;
+              });
             }
           })
           .catch(() => $state.go('iaas.pci-project.details'))
@@ -98,7 +116,10 @@ angular.module('managerApp')
           return;
         }
         // redirection is only for suspended projects
-        if (self.model.project.status !== 'suspended' && self.model.project.status !== 'creating') {
+        if (
+          self.model.project.status !== 'suspended' &&
+          self.model.project.status !== 'creating'
+        ) {
           return;
         }
         if (self.model.project.project_id === toParams.projectId) {

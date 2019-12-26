@@ -39,15 +39,29 @@ angular.module('App').controller(
        * Listners
        */
       forEach(this.statusToWatch, (state) => {
-        this.$scope.$on(`privateDatabase.user.create.${state}`, this[`onUserCreate${state}`].bind(this));
-        this.$scope.$on(`privateDatabase.user.delete.${state}`, this[`onUserDelete${state}`].bind(this));
-        this.$scope.$on(`privateDatabase.user.changePassword.${state}`, this[`onUserChangePassword${state}`].bind(this));
+        this.$scope.$on(
+          `privateDatabase.user.create.${state}`,
+          this[`onUserCreate${state}`].bind(this),
+        );
+        this.$scope.$on(
+          `privateDatabase.user.delete.${state}`,
+          this[`onUserDelete${state}`].bind(this),
+        );
+        this.$scope.$on(
+          `privateDatabase.user.changePassword.${state}`,
+          this[`onUserChangePassword${state}`].bind(this),
+        );
       });
 
       forEach(['done', 'error'], (state) => {
-        this.$scope.$on(`privateDatabase.global.actions.${state}`, (e, taskOpt) => {
-          this.$scope.lockAction = taskOpt.lock ? false : this.$scope.lockAction;
-        });
+        this.$scope.$on(
+          `privateDatabase.global.actions.${state}`,
+          (e, taskOpt) => {
+            this.$scope.lockAction = taskOpt.lock
+              ? false
+              : this.$scope.lockAction;
+          },
+        );
       });
 
       this.$scope.$on('privateDatabase.global.actions.start', (e, taskOpt) => {
@@ -82,7 +96,8 @@ angular.module('App').controller(
     }
 
     transformItem(item) {
-      return this.privateDatabaseService.getUser(this.productId, item.id)
+      return this.privateDatabaseService
+        .getUser(this.productId, item.id)
         .then((originalUser) => {
           const user = clone(originalUser);
           user.id = item.id;
@@ -97,7 +112,11 @@ angular.module('App').controller(
 
     getPromise(promise) {
       promise.finally(() => {
-        this.privateDatabaseService.restartPoll(this.productId, ['user/create', 'user/delete', 'user/changePassword']);
+        this.privateDatabaseService.restartPoll(this.productId, [
+          'user/create',
+          'user/delete',
+          'user/changePassword',
+        ]);
       });
     }
 
@@ -125,7 +144,10 @@ angular.module('App').controller(
         this.currentUsers.add,
         (userName) => userName !== opts.userName,
       );
-      this.alerter.error(this.$translate.instant('privateDatabase_add_user_fail'), this.$scope.alerts.main);
+      this.alerter.error(
+        this.$translate.instant('privateDatabase_add_user_fail'),
+        this.$scope.alerts.main,
+      );
     }
 
     /** EndCreateUserJobs */
@@ -136,7 +158,10 @@ angular.module('App').controller(
     onUserDeletestart(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
+        const idx = findIndex(
+          this.userDetails,
+          (usr) => usr.userName === opts.userName,
+        );
 
         if (idx !== -1) {
           this.userDetails[idx].waitDelete = true;
@@ -150,7 +175,10 @@ angular.module('App').controller(
       if (this.userDetails && this.userDetails.length) {
         todo();
       } else {
-        unregister = this.$scope.$watch(angular.bind(this, () => this.userDetails.length), todo);
+        unregister = this.$scope.$watch(
+          angular.bind(this, () => this.userDetails.length),
+          todo,
+        );
       }
     }
 
@@ -161,12 +189,18 @@ angular.module('App').controller(
     onUserDeleteerror(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
+        const idx = findIndex(
+          this.userDetails,
+          (usr) => usr.userName === opts.userName,
+        );
 
         if (idx !== -1) {
           delete this.userDetails[idx].waiteDelete;
 
-          this.alerter.error(this.$translate.instant('privateDatabase_delete_user_fail'), this.$scope.alerts.main);
+          this.alerter.error(
+            this.$translate.instant('privateDatabase_delete_user_fail'),
+            this.$scope.alerts.main,
+          );
 
           if (unregister) {
             unregister();
@@ -177,7 +211,10 @@ angular.module('App').controller(
       if (!isEmpty(this.userDetails)) {
         todo();
       } else {
-        unregister = this.$scope.$watch(angular.bind(this, () => this.userDetails.length), todo);
+        unregister = this.$scope.$watch(
+          angular.bind(this, () => this.userDetails.length),
+          todo,
+        );
       }
     }
 
@@ -186,7 +223,10 @@ angular.module('App').controller(
     onUserChangePasswordstart(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
+        const idx = findIndex(
+          this.userDetails,
+          (usr) => usr.userName === opts.userName,
+        );
 
         if (idx !== -1) {
           this.userDetails[idx].waitChangePassword = true;
@@ -200,19 +240,28 @@ angular.module('App').controller(
       if (this.userDetails && this.userDetails.length) {
         todo();
       } else {
-        unregister = this.$scope.$watch(angular.bind(this, () => this.userDetails.length), todo);
+        unregister = this.$scope.$watch(
+          angular.bind(this, () => this.userDetails.length),
+          todo,
+        );
       }
     }
 
     onUserChangePassworddone(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
+        const idx = findIndex(
+          this.userDetails,
+          (usr) => usr.userName === opts.userName,
+        );
 
         if (idx !== -1) {
           delete this.userDetails[idx].waitChangePassword;
 
-          this.alerter.success(this.$translate.instant('privateDatabase_change_userPassword_done'), this.$scope.alerts.main);
+          this.alerter.success(
+            this.$translate.instant('privateDatabase_change_userPassword_done'),
+            this.$scope.alerts.main,
+          );
 
           if (unregister) {
             unregister();
@@ -230,12 +279,18 @@ angular.module('App').controller(
     onUserChangePassworderror(evt, opts) {
       let unregister = null;
       const todo = () => {
-        const idx = findIndex(this.userDetails, (usr) => usr.userName === opts.userName);
+        const idx = findIndex(
+          this.userDetails,
+          (usr) => usr.userName === opts.userName,
+        );
 
         if (idx !== -1) {
           delete this.userDetails[idx].waitChangePassword;
 
-          this.alerter.error(this.$translate.instant('privateDatabase_change_userPassword_fail'), this.$scope.alerts.main);
+          this.alerter.error(
+            this.$translate.instant('privateDatabase_change_userPassword_fail'),
+            this.$scope.alerts.main,
+          );
 
           if (unregister) {
             unregister();
@@ -246,12 +301,19 @@ angular.module('App').controller(
       if (this.userDetails && this.userDetails.length) {
         todo();
       } else {
-        unregister = this.$scope.$watch(angular.bind(this, () => this.userDetails.length), todo);
+        unregister = this.$scope.$watch(
+          angular.bind(this, () => this.userDetails.length),
+          todo,
+        );
       }
     }
 
     restardPoll() {
-      this.privateDatabaseService.restartPoll(this.productId, ['user/create', 'user/delete', 'user/changePassword']);
+      this.privateDatabaseService.restartPoll(this.productId, [
+        'user/create',
+        'user/delete',
+        'user/changePassword',
+      ]);
     }
   },
 );

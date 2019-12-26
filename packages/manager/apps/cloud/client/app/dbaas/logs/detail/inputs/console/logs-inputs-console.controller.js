@@ -25,12 +25,16 @@ class LogsInputsConsoleCtrl {
    */
   initLoaders() {
     this.inputLogUrl = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getInputLogUrl(this.serviceName, this.inputId),
+      loaderFunction: () =>
+        this.LogsInputsService.getInputLogUrl(this.serviceName, this.inputId),
     });
     this.input = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getInput(this.serviceName, this.inputId),
+      loaderFunction: () =>
+        this.LogsInputsService.getInput(this.serviceName, this.inputId),
     });
   }
 }
 
-angular.module('managerApp').controller('LogsInputsConsoleCtrl', LogsInputsConsoleCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsInputsConsoleCtrl', LogsInputsConsoleCtrl);

@@ -7,11 +7,12 @@ import activityLogComponent from './activity-log.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformActivityLogComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('analyticsDataPlatformDetailsActivityLogComponent', activityLogComponent)
+  .component(
+    'analyticsDataPlatformDetailsActivityLogComponent',
+    activityLogComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

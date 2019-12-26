@@ -5,18 +5,16 @@ import 'oclazyload';
 const moduleName = 'ovhManagerSmsDashboard';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-  ])
+  .module(moduleName, ['ui.router', 'oc.lazyLoad'])
   .config(($stateProvider) => {
     $stateProvider.state('sms.service.dashboard.**', {
       url: '',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./telecom-sms-dashboard.component')
-          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        return import('./telecom-sms-dashboard.component').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
     });
   });

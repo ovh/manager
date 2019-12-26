@@ -4,11 +4,7 @@ import has from 'lodash/has';
 
 export default class SshKeysController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    OvhApiCloudProjectSshKey,
-  ) {
+  constructor($translate, CucCloudMessage, OvhApiCloudProjectSshKey) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
@@ -54,8 +50,9 @@ export default class SshKeysController {
 
   getSshKeys() {
     this.loaders.keys = true;
-    return this.OvhApiCloudProjectSshKey.v6().query({ serviceName: this.serviceName }).$promise
-      .then((sshKeys) => {
+    return this.OvhApiCloudProjectSshKey.v6()
+      .query({ serviceName: this.serviceName })
+      .$promise.then((sshKeys) => {
         this.sshKeys = sshKeys;
         this.getAvailableKeys(this.region);
       })
@@ -83,9 +80,9 @@ export default class SshKeysController {
 
   addKey() {
     this.messages = [];
-    return this.OvhApiCloudProjectSshKey
-      .v6().save({ serviceName: this.serviceName }, this.model).$promise
-      .then((sshKey) => {
+    return this.OvhApiCloudProjectSshKey.v6()
+      .save({ serviceName: this.serviceName }, this.model)
+      .$promise.then((sshKey) => {
         this.key = sshKey;
         this.selectKey(sshKey);
         this.loaders.keys = true;
@@ -108,7 +105,9 @@ export default class SshKeysController {
   }
 
   getAvailableKeys(region) {
-    this.availableKeys = filter(this.sshKeys, ({ regions }) => regions.includes(region));
+    this.availableKeys = filter(this.sshKeys, ({ regions }) =>
+      regions.includes(region),
+    );
 
     if (this.availableKeys.length === 0) {
       this.selectedKey = null;

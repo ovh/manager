@@ -14,15 +14,33 @@ const moduleName = 'ovhManagerOtbWarning';
 angular
   .module(moduleName, [])
   .controller('OverTheBoxWarningCtrl', overTheBoxWarningController)
-  .controller('OverTheBoxWarningDeviceToLinkCtrl', overTheBoxWarningDeviceToLinkController)
+  .controller(
+    'OverTheBoxWarningDeviceToLinkCtrl',
+    overTheBoxWarningDeviceToLinkController,
+  )
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(($templateCache) => {
     // import templates required by ng-include
-    $templateCache.put('overTheBox/warning/overTheBox-warning-noPaymentMeans.html', overTheBoxWarningNoPaymentMeans);
-    $templateCache.put('overTheBox/warning/overTheBox-warning-notFound.html', overTheBoxWarningNotFound);
-    $templateCache.put('overTheBox/warning/overTheBox-warning-noSubscription.html', overTheBoxWarningNoSubscription);
-    $templateCache.put('overTheBox/warning/overTheBox-warning-notActivated.html', overTheBoxWarningNotActivated);
-    $templateCache.put('overTheBox/warning/overTheBox-warning-deviceToLink.html', overTheBoxWarningDeviceToLink);
+    $templateCache.put(
+      'overTheBox/warning/overTheBox-warning-noPaymentMeans.html',
+      overTheBoxWarningNoPaymentMeans,
+    );
+    $templateCache.put(
+      'overTheBox/warning/overTheBox-warning-notFound.html',
+      overTheBoxWarningNotFound,
+    );
+    $templateCache.put(
+      'overTheBox/warning/overTheBox-warning-noSubscription.html',
+      overTheBoxWarningNoSubscription,
+    );
+    $templateCache.put(
+      'overTheBox/warning/overTheBox-warning-notActivated.html',
+      overTheBoxWarningNotActivated,
+    );
+    $templateCache.put(
+      'overTheBox/warning/overTheBox-warning-deviceToLink.html',
+      overTheBoxWarningDeviceToLink,
+    );
   });
 
 export default moduleName;

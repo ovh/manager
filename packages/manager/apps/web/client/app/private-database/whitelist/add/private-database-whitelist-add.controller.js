@@ -36,13 +36,17 @@ angular.module('App').controller(
           .createWhitelist(this.productId, this.model)
           .then(() => {
             this.alerter.success(
-              this.$translate.instant('privateDatabase_modale_whitelist_add_success'),
+              this.$translate.instant(
+                'privateDatabase_modale_whitelist_add_success',
+              ),
               this.$scope.alerts.main,
             );
           })
           .catch((err) => {
             this.alerter.alertFromSWS(
-              this.$translate.instant('privateDatabase_modale_whitelist_add_fail'),
+              this.$translate.instant(
+                'privateDatabase_modale_whitelist_add_fail',
+              ),
               get(err, 'data', err),
               this.$scope.alerts.main,
             );

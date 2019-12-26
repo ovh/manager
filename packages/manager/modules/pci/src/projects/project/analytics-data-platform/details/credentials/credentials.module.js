@@ -6,11 +6,12 @@ import credentialsComponent from './credentials.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformCredentialsComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
-  .component('analyticsDataPlatformDetailsCredentialsComponent', credentialsComponent)
+  .component(
+    'analyticsDataPlatformDetailsCredentialsComponent',
+    credentialsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

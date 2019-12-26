@@ -30,7 +30,7 @@ export default class {
     this.privateRegistryImage = privateRegistryImage;
     this.guides = reduce(
       this.GUIDES,
-      (list, guide) => ([
+      (list, guide) => [
         ...list,
         {
           ...guide,
@@ -38,7 +38,7 @@ export default class {
             `private_registry_onboarding_guides_${guide.id}_title`,
           ),
         },
-      ]),
+      ],
       [],
     );
   }
@@ -46,14 +46,14 @@ export default class {
   startCreationPolling() {
     return this.Poller.poll(
       `/cloud/project/${this.projectId}/containerRegistry/${this.registryId}`,
-      null, {
+      null,
+      {
         namespace: this.pollingNamespace,
         successRule(details) {
           return details.status === 'READY' || details.status === 'ERROR';
         },
       },
-    )
-      .then(() => this.onProjectCreated());
+    ).then(() => this.onProjectCreated());
   }
 
   stopCreationPolling() {
@@ -67,8 +67,13 @@ export default class {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.private-registry.onboarding');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.private-registry.onboarding', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.private-registry.onboarding',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.private-registry.onboarding',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -76,18 +81,25 @@ export default class {
   }
 
   create() {
-    return this.$state.go('pci.projects.project.private-registry.onboarding.create');
+    return this.$state.go(
+      'pci.projects.project.private-registry.onboarding.create',
+    );
   }
 
   generateCredentials() {
-    return this.$state.go('pci.projects.project.private-registry.onboarding.credentials', {
-      projectId: this.projectId,
-      registryId: this.registryId,
-    });
+    return this.$state.go(
+      'pci.projects.project.private-registry.onboarding.credentials',
+      {
+        projectId: this.projectId,
+        registryId: this.registryId,
+      },
+    );
   }
 
   getCompiledLinks(linkTemplate) {
-    return this.privateRegistryService.constructor
-      .getCompiledLinks(linkTemplate, this.registryContracts);
+    return this.privateRegistryService.constructor.getCompiledLinks(
+      linkTemplate,
+      this.registryContracts,
+    );
   }
 }

@@ -4,15 +4,23 @@ import isArray from 'lodash/isArray';
 
 export default class IpLoadBalancerServerFarmProbeEditCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, IpLoadBalancerConstant, availableProbes, edition, farm) {
+  constructor(
+    $uibModalInstance,
+    IpLoadBalancerConstant,
+    availableProbes,
+    edition,
+    farm,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.IpLoadBalancerConstant = IpLoadBalancerConstant;
     this.availableProbes = availableProbes;
     this.edition = edition;
     this.farm = farm;
-    this.farmProbe = this.farm.probe ? angular.copy(this.farm.probe) : {
-      match: 'default',
-    };
+    this.farmProbe = this.farm.probe
+      ? angular.copy(this.farm.probe)
+      : {
+          match: 'default',
+        };
 
     this.methods = IpLoadBalancerConstant.probeMethods;
     this.matches = IpLoadBalancerConstant.probeMatches;
@@ -33,7 +41,8 @@ export default class IpLoadBalancerServerFarmProbeEditCtrl {
           this.farmProbe.method = 'GET';
           this.farmProbe.url = '/';
           break;
-        default: break;
+        default:
+          break;
       }
 
       this.farmProbe.match = 'default';
@@ -51,13 +60,18 @@ export default class IpLoadBalancerServerFarmProbeEditCtrl {
       return this.farmProbe.match !== 'default';
     }
 
-    if (field === 'match' && isArray(this.rules.matches)
-            && this.rules.matches.length === 1) {
+    if (
+      field === 'match' &&
+      isArray(this.rules.matches) &&
+      this.rules.matches.length === 1
+    ) {
       return false;
     }
 
-    return !Object.prototype.hasOwnProperty.call(this.rules, field)
-            || !!this.rules[field];
+    return (
+      !Object.prototype.hasOwnProperty.call(this.rules, field) ||
+      !!this.rules[field]
+    );
   }
 
   getMatches() {

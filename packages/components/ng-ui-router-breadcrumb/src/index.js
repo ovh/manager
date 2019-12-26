@@ -9,15 +9,15 @@ import './ng-ui-router-breadcrumb.less';
 const moduleName = 'ngUiRouterBreadcrumb';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('uiRouterBreadcrumb', component)
   .service('uiRouterBreadcrumbService', service)
-  .run(/* @ngInject */($transitions, uiRouterBreadcrumbService) => {
-    $transitions.onSuccess({}, (transition) => {
-      uiRouterBreadcrumbService.buildBreadcrumb(transition);
-    });
-  });
+  .run(
+    /* @ngInject */ ($transitions, uiRouterBreadcrumbService) => {
+      $transitions.onSuccess({}, (transition) => {
+        uiRouterBreadcrumbService.buildBreadcrumb(transition);
+      });
+    },
+  );
 
 export default moduleName;

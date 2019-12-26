@@ -3,11 +3,8 @@ import Step from '../../../../../components/stepper/step/step';
 import StepHeader from '../../../../../components/stepper/step/step.header';
 
 /* @ngInject */
-export const factory = () => new Step(
-  'placeOrder',
-  state,
-  new StepHeader(null, null, false),
-);
+export const factory = () =>
+  new Step('placeOrder', state, new StepHeader(null, null, false));
 
 export const name = 'ovhManagerPccServicePackUpgradePlaceOrderFactory';
 

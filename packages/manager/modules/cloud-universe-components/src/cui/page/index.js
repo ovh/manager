@@ -11,9 +11,7 @@ import './index.less';
 const moduleName = 'cuiPage';
 
 angular
-  .module(moduleName, [
-    guideComponent,
-  ])
+  .module(moduleName, [guideComponent])
   .component('cuiPageContentTitle', contentComponent)
   .component('cuiPageHeader', headerComponent)
   .component('cuiPageHeaderTitle', headerTitleComponent);

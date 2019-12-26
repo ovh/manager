@@ -11,7 +11,8 @@ angular.module('managerApp').component('linePhoneConfiguration', {
     editMode: '=linePhoneConfigurationEditMode',
     expertMode: '=linePhoneConfigurationExpertMode',
   },
-  templateUrl: 'components/telecom/telephony/group/line/phone/configration/line-phone-configuration.html',
+  templateUrl:
+    'components/telecom/telephony/group/line/phone/configration/line-phone-configuration.html',
   controller($translate, tucValidator, LINE_PHONE_CONFIGURATION) {
     const self = this;
 
@@ -21,23 +22,45 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       =            HELPERS            =
       =============================== */
 
-    self.isEnumHasToBeTranslated = function isEnumHasToBeTranslated(configName) {
-      return LINE_PHONE_CONFIGURATION.configEnumsToTranslate.indexOf(configName) > -1;
+    self.isEnumHasToBeTranslated = function isEnumHasToBeTranslated(
+      configName,
+    ) {
+      return (
+        LINE_PHONE_CONFIGURATION.configEnumsToTranslate.indexOf(configName) > -1
+      );
     };
 
     self.getConfigValue = function getConfigValue(config) {
       switch (config.type) {
         case 'boolean':
-          return config.value ? $translate.instant('telephony_line_phone_configuration_config_yes') : $translate.instant('telephony_line_phone_configuration_config_no');
+          return config.value
+            ? $translate.instant(
+                'telephony_line_phone_configuration_config_yes',
+              )
+            : $translate.instant(
+                'telephony_line_phone_configuration_config_no',
+              );
         case 'enum':
-          return self.isEnumHasToBeTranslated(config.name) ? $translate.instant(['telephony_line_phone_configuration_config', snakeCase(config.value)].join('_')) : config.value;
+          return self.isEnumHasToBeTranslated(config.name)
+            ? $translate.instant(
+                [
+                  'telephony_line_phone_configuration_config',
+                  snakeCase(config.value),
+                ].join('_'),
+              )
+            : config.value;
         default:
           return config.value;
       }
     };
 
-    self.getPlaceholderTranslation = function getPlaceholderTranslation(configName) {
-      const trKey = ['telephony_line_phone_configuration_config', snakeCase(configName)].join('_');
+    self.getPlaceholderTranslation = function getPlaceholderTranslation(
+      configName,
+    ) {
+      const trKey = [
+        'telephony_line_phone_configuration_config',
+        snakeCase(configName),
+      ].join('_');
       const translated = $translate.instant(trKey);
       return translated !== trKey ? translated : configName;
     };

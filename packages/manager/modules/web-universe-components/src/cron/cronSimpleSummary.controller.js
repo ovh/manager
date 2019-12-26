@@ -7,5 +7,6 @@ export default /* @ngInject */ ($scope, $rootScope, WucCronValidator) => {
   $scope.cron = $scope.crontabObject.getCronValue();
 
   // Returns an array of selected items
-  $scope.getSimpleModeItems = (field) => WucCronValidator.getSimpleModeItems($scope.cron, field);
+  $scope.getSimpleModeItems = (field) =>
+    WucCronValidator.getSimpleModeItems($scope.cron, field);
 };

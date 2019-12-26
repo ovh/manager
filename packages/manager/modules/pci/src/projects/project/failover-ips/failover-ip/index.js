@@ -5,10 +5,6 @@ import edit from './edit';
 
 const moduleName = 'ovhManagerPciProjectFailoverIp';
 
-angular
-  .module(moduleName, [
-    edit,
-    'ui.router',
-  ]);
+angular.module(moduleName, [edit, 'ui.router']);
 
 export default moduleName;

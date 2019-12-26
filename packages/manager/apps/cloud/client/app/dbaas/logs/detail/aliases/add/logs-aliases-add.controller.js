@@ -1,6 +1,12 @@
 class LogsAliasesAddCtrl {
-  constructor($q, $stateParams, $uibModalInstance, LogsAliasesService, CucControllerHelper,
-    CucCloudMessage) {
+  constructor(
+    $q,
+    $stateParams,
+    $uibModalInstance,
+    LogsAliasesService,
+    CucControllerHelper,
+    CucCloudMessage,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
@@ -20,22 +26,25 @@ class LogsAliasesAddCtrl {
    */
   initLoaders() {
     this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsAliasesService.getSubscribedOptions(this.serviceName),
+      loaderFunction: () =>
+        this.LogsAliasesService.getSubscribedOptions(this.serviceName),
     });
     this.options.load();
 
     this.mainOffer = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsAliasesService.getMainOffer(this.serviceName),
+      loaderFunction: () =>
+        this.LogsAliasesService.getMainOffer(this.serviceName),
     });
     this.mainOffer.load();
 
     if (this.$stateParams.aliasId) {
       this.isEdit = true;
       this.alias = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsAliasesService.getAlias(
-          this.serviceName,
-          this.$stateParams.aliasId,
-        ),
+        loaderFunction: () =>
+          this.LogsAliasesService.getAlias(
+            this.serviceName,
+            this.$stateParams.aliasId,
+          ),
       });
       this.alias.load();
     } else {
@@ -64,9 +73,11 @@ class LogsAliasesAddCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsAliasesService
-        .updateAlias(this.$stateParams.serviceName, this.alias.data)
-        .finally(() => {
+      loaderFunction: () =>
+        this.LogsAliasesService.updateAlias(
+          this.$stateParams.serviceName,
+          this.alias.data,
+        ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
         }),
@@ -85,9 +96,11 @@ class LogsAliasesAddCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsAliasesService
-        .createAlias(this.$stateParams.serviceName, this.alias.data)
-        .finally(() => {
+      loaderFunction: () =>
+        this.LogsAliasesService.createAlias(
+          this.$stateParams.serviceName,
+          this.alias.data,
+        ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
         }),
@@ -100,4 +113,6 @@ class LogsAliasesAddCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsAliasesAddCtrl', LogsAliasesAddCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsAliasesAddCtrl', LogsAliasesAddCtrl);

@@ -13,8 +13,11 @@ class DownloadCtrl {
   }
 
   openBillUrl() {
-    return this.DownloadService
-      .getBillUrl(this.$stateParams.id, this.$stateParams.type, this.$stateParams.extension)
+    return this.DownloadService.getBillUrl(
+      this.$stateParams.id,
+      this.$stateParams.type,
+      this.$stateParams.extension,
+    )
       .then((url) => this.$window.open(url, '_self'))
       .catch((err) => {
         this.Alerter.error(this.$translate.instant('download_bill_error'));

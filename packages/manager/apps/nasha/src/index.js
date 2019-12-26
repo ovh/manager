@@ -13,8 +13,4 @@ import './index.scss';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
-angular
-  .module('nashaApp', [
-    'ovhManagerCore',
-    'ovhManagerNasha',
-  ]);
+angular.module('nashaApp', ['ovhManagerCore', 'ovhManagerNasha']);

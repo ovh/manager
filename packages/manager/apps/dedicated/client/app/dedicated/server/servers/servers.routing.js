@@ -32,14 +32,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
-      getServerDashboardLink: /* @ngInject */ ($state) => (server) => $state.href('app.dedicated.server', { productId: server.name }),
+      getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
+        $state.href('app.dedicated.server', { productId: server.name }),
       dedicatedServers: /* @ngInject */ ($transition$, iceberg) => {
-        const {
-          filter,
-          pageSize,
-          sort,
-          sortOrder,
-        } = $transition$.params();
+        const { filter, pageSize, sort, sortOrder } = $transition$.params();
         let { page } = $transition$.params();
         const filtersParsed = JSON.parse(filter);
 
@@ -87,34 +83,27 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return request.execute(null, true).$promise;
       },
-      paginationNumber: /* @ngInject */ (dedicatedServers) => parseInt(
-        get(dedicatedServers.headers, 'x-pagination-number'),
-        10,
-      ),
-      paginationSize: /* @ngInject */ (dedicatedServers) => parseInt(
-        get(dedicatedServers.headers, 'x-pagination-size'),
-        10,
-      ),
-      paginationTotalCount: /* @ngInject */ (dedicatedServers) => parseInt(
-        get(dedicatedServers.headers, 'x-pagination-elements'),
-        10,
-      ),
-      schema: /* @ngInject */ (OvhApiDedicatedServer) => OvhApiDedicatedServer
-        .v6()
-        .schema()
-        .$promise,
-      serverStateEnum: /* @ngInject */ (schema) => get(schema.models, 'dedicated.server.StateEnum').enum,
-      datacenterEnum: /* @ngInject */ (schema) => get(schema.models, 'dedicated.DatacenterEnum').enum,
+      paginationNumber: /* @ngInject */ (dedicatedServers) =>
+        parseInt(get(dedicatedServers.headers, 'x-pagination-number'), 10),
+      paginationSize: /* @ngInject */ (dedicatedServers) =>
+        parseInt(get(dedicatedServers.headers, 'x-pagination-size'), 10),
+      paginationTotalCount: /* @ngInject */ (dedicatedServers) =>
+        parseInt(get(dedicatedServers.headers, 'x-pagination-elements'), 10),
+      schema: /* @ngInject */ (OvhApiDedicatedServer) =>
+        OvhApiDedicatedServer.v6().schema().$promise,
+      serverStateEnum: /* @ngInject */ (schema) =>
+        get(schema.models, 'dedicated.server.StateEnum').enum,
+      datacenterEnum: /* @ngInject */ (schema) =>
+        get(schema.models, 'dedicated.DatacenterEnum').enum,
 
-      onListParamsChange: /* @ngInject */ ($state) => (params) => $state.go(
-        '.',
-        params,
-        {
+      onListParamsChange: /* @ngInject */ ($state) => (params) =>
+        $state.go('.', params, {
           notify: false,
-        },
-      ),
-      sort: /* @ngInject */ (dedicatedServers) => get(dedicatedServers.headers, 'x-pagination-sort'),
-      sortOrder: /* @ngInject */ (dedicatedServers) => get(dedicatedServers.headers, 'x-pagination-sort-order'),
+        }),
+      sort: /* @ngInject */ (dedicatedServers) =>
+        get(dedicatedServers.headers, 'x-pagination-sort'),
+      sortOrder: /* @ngInject */ (dedicatedServers) =>
+        get(dedicatedServers.headers, 'x-pagination-sort-order'),
     },
   });
 };

@@ -22,10 +22,15 @@ angular
     'ui.bootstrap',
   ])
   .config(($provide) => {
-    $provide.decorator('ssoAuthentication', ($delegate, ssoAuthModalPluginFct) => {
-      set($delegate, 'handleSwitchSession', () => ssoAuthModalPluginFct.handleSwitchSession($delegate));
-      return $delegate;
-    });
+    $provide.decorator(
+      'ssoAuthentication',
+      ($delegate, ssoAuthModalPluginFct) => {
+        set($delegate, 'handleSwitchSession', () =>
+          ssoAuthModalPluginFct.handleSwitchSession($delegate),
+        );
+        return $delegate;
+      },
+    );
   })
   .provider('ssoAuthModalPluginFct', provider)
   .run(/* @ngTranslationsInject:json ./translations */);

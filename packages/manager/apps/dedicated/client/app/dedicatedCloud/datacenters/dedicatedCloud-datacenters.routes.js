@@ -4,7 +4,8 @@ angular.module('App').config(($stateProvider) => {
     reloadOnSearch: false,
     views: {
       pccView: {
-        templateUrl: 'dedicatedCloud/datacenters/dedicatedCloud-datacenters.html',
+        templateUrl:
+          'dedicatedCloud/datacenters/dedicatedCloud-datacenters.html',
         controller: 'DedicatedCloudDatacentersCtrl',
         controllerAs: '$ctrl',
       },

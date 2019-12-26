@@ -136,12 +136,14 @@ angular.module('App').controller(
       this.loaders.loading = true;
       this.Alerter.resetMessage(this.$scope.alerts.main);
 
-      return this.HostingAutomatedEmails.getAutomatedEmails(this.$stateParams.productId)
+      return this.HostingAutomatedEmails.getAutomatedEmails(
+        this.$stateParams.productId,
+      )
         .then((data) => {
           if (
-            !isEmpty(this.automatedEmails)
-            && this.automatedEmails.state !== data.state
-            && data.state === 'purging'
+            !isEmpty(this.automatedEmails) &&
+            this.automatedEmails.state !== data.state &&
+            data.state === 'purging'
           ) {
             this.polling();
           }
@@ -166,7 +168,9 @@ angular.module('App').controller(
     retrievingVolumes() {
       this.loaders.volumes = true;
 
-      return this.HostingAutomatedEmails.retrievingVolumes(this.$stateParams.productId)
+      return this.HostingAutomatedEmails.retrievingVolumes(
+        this.$stateParams.productId,
+      )
         .then((data) => {
           this.stats.chart = new this.WucChartjsFactory(
             angular.copy(this.HOSTING_AUTOMATED_EMAILS),
@@ -241,9 +245,9 @@ angular.module('App').controller(
 
     purge() {
       if (
-        this.automatedEmails.state !== 'ko'
-        && this.automatedEmails.state !== 'spam'
-        && this.automatedEmails.state !== 'bounce'
+        this.automatedEmails.state !== 'ko' &&
+        this.automatedEmails.state !== 'spam' &&
+        this.automatedEmails.state !== 'bounce'
       ) {
         return;
       }
@@ -258,19 +262,19 @@ angular.module('App').controller(
     }
 
     polling() {
-      return this.HostingAutomatedEmails
-        .getAutomatedEmails(this.$stateParams.productId)
-        .then((data) => {
-          if (data.state === 'purging') {
-            this.isPurging = true;
-            this.poll = this.$timeout(this.polling, 3000);
-          } else {
-            this.isPurging = false;
-            this.hasBeenPurge = true;
-            this.$timeout.cancel(this.poll);
-            this.retrievingAutomatedEmails();
-          }
-        });
+      return this.HostingAutomatedEmails.getAutomatedEmails(
+        this.$stateParams.productId,
+      ).then((data) => {
+        if (data.state === 'purging') {
+          this.isPurging = true;
+          this.poll = this.$timeout(this.polling, 3000);
+        } else {
+          this.isPurging = false;
+          this.hasBeenPurge = true;
+          this.$timeout.cancel(this.poll);
+          this.retrievingAutomatedEmails();
+        }
+      });
     }
   },
 );

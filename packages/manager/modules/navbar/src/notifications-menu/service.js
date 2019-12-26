@@ -23,7 +23,8 @@ export default class Notifications {
 
   getNotifications(lang, target) {
     return this.OvhApiNotificationAapi.query({
-      lang, target,
+      lang,
+      target,
     }).$promise;
   }
 
@@ -34,9 +35,10 @@ export default class Notifications {
   readNotifications(notification, status) {
     set(notification, 'updating', true);
 
-    return this.updateNotifications.post({
-      [status]: notification.id,
-    })
+    return this.updateNotifications
+      .post({
+        [status]: notification.id,
+      })
       .then(() => {
         set(notification, 'isActive', !notification.isActive);
         set(notification, 'acknowledged', true);
@@ -87,16 +89,17 @@ export default class Notifications {
 
   acknowledgeAll() {
     if (this.navbarContent) {
-      const toAcknowledge = this.navbarContent.subLinks
-        .filter((subLink) => !subLink.acknowledged && subLink.isActive);
+      const toAcknowledge = this.navbarContent.subLinks.filter(
+        (subLink) => !subLink.acknowledged && subLink.isActive,
+      );
       if (toAcknowledge.length) {
-        this.OvhApiNotificationAapi
-          .post({ acknowledged: toAcknowledge.map((x) => x.id) }).$promise
-          .then(() => {
-            toAcknowledge.forEach((sublink) => {
-              set(sublink, 'acknowledged', true);
-            });
+        this.OvhApiNotificationAapi.post({
+          acknowledged: toAcknowledge.map((x) => x.id),
+        }).$promise.then(() => {
+          toAcknowledge.forEach((sublink) => {
+            set(sublink, 'acknowledged', true);
           });
+        });
       }
       this.navbarContent.iconAnimated = false;
     }

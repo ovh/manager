@@ -10,24 +10,31 @@ export default class CucFeatureAvailabilityService {
     this.CucConfig = CucConfig;
 
     this.locale = null;
-    this.localePromise = this.User.v6().get().$promise
-      .then((user) => {
+    this.localePromise = this.User.v6()
+      .get()
+      .$promise.then((user) => {
         this.locale = user.ovhSubsidiary;
         return user.ovhSubsidiary;
       });
   }
 
   hasFeature(product, feature, locale = this.locale) {
-    if (!has(FEATURE_AVAILABILITY, [product, feature, this.CucConfig.getRegion()])) {
+    if (
+      !has(FEATURE_AVAILABILITY, [product, feature, this.CucConfig.getRegion()])
+    ) {
       return false;
     }
-    return indexOf(
-      FEATURE_AVAILABILITY[product][feature][this.CucConfig.getRegion()],
-      locale,
-    ) !== -1;
+    return (
+      indexOf(
+        FEATURE_AVAILABILITY[product][feature][this.CucConfig.getRegion()],
+        locale,
+      ) !== -1
+    );
   }
 
   hasFeaturePromise(product, feature) {
-    return this.localePromise.then((locale) => this.hasFeature(product, feature, locale));
+    return this.localePromise.then((locale) =>
+      this.hasFeature(product, feature, locale),
+    );
   }
 }

@@ -45,10 +45,7 @@ export const DEDICATED_CLOUD_CONFIG = {
         {
           path: '/dedicatedCloud/:productId/datacenter',
           state: 'app.dedicatedClouds.datacenter',
-          stateParams: [
-            'productId',
-            'datacenterId',
-          ],
+          stateParams: ['productId', 'datacenterId'],
           app: [DEDICATED],
         },
       ],
@@ -73,10 +70,7 @@ export const NETWORKS_CONFIG = {
         {
           path: '/cdn/dedicated/:productId/domains',
           state: 'app.networks.cdn.dedicated.domain',
-          stateParams: [
-            'productId',
-            'domain',
-          ],
+          stateParams: ['productId', 'domain'],
           app: [DEDICATED],
           regions: ['EU'],
         },
@@ -107,10 +101,7 @@ export const NETWORKS_CONFIG = {
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
   ],
-  loadOnState: [
-    'nasha.nasha-partitions',
-    'app.networks',
-  ],
+  loadOnState: ['nasha.nasha-partitions', 'app.networks'],
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
   regions: ['EU', 'CA'],

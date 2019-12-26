@@ -6,7 +6,8 @@ import component from './delete.component';
 
 const moduleName = 'ovhManagerPciProjectKubernetesNodesDelete';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('pciProjectKubernetesNodesDeleteComponent', component);

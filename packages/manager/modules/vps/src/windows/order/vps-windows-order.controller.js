@@ -47,12 +47,10 @@ export default class VpsWindowsOrderCtrl {
   ============================== */
 
   onWindowsOrderStepperFinish() {
-    let expressOrderUrl = get(
-      ORDER_EXPRESS_BASE_URL, [
-        this.coreConfig.getRegion(),
-        this.connectedUser.ovhSubsidiary,
-      ],
-    );
+    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
+      this.coreConfig.getRegion(),
+      this.connectedUser.ovhSubsidiary,
+    ]);
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
@@ -61,7 +59,9 @@ export default class VpsWindowsOrderCtrl {
       pricingMode: 'default',
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([expressParams])}`;
+    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+      expressParams,
+    ])}`;
 
     this.$window.open(expressOrderUrl, '_blank');
 
@@ -84,10 +84,13 @@ export default class VpsWindowsOrderCtrl {
     this.loading.init = true;
     this.hasInitError = false;
 
-    return this.OvhApiOrder.CartServiceOption().Vps().v6().get({
-      serviceName: this.stateVps.name,
-    }).$promise
-      .then((response) => {
+    return this.OvhApiOrder.CartServiceOption()
+      .Vps()
+      .v6()
+      .get({
+        serviceName: this.stateVps.name,
+      })
+      .$promise.then((response) => {
         // take the windows option from the list
         this.windowsOption = find(response, {
           family: 'windows',
@@ -97,7 +100,9 @@ export default class VpsWindowsOrderCtrl {
           this.hasInitError = true;
           return this.$q.reject({
             data: {
-              message: this.$translate.instant('vps_order_windows_order_load_error_none'),
+              message: this.$translate.instant(
+                'vps_order_windows_order_load_error_none',
+              ),
             },
           });
         }
@@ -105,10 +110,12 @@ export default class VpsWindowsOrderCtrl {
         return this.windowsOption;
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_order_windows_order_load_error'),
-          get(error, 'data.message'),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vps_order_windows_order_load_error'),
+            get(error, 'data.message'),
+          ].join(' '),
+        );
       })
       .finally(() => {
         this.loading.init = false;

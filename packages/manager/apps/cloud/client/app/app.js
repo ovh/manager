@@ -35,123 +35,127 @@ import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 
-
 import cloudUniverseComponents from '../cloudUniverseComponents';
 
 import errorPage from './error/error.module';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
-angular.module('managerApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngAnimate',
-  'ngMessages',
-  'pascalprecht.translate',
-  'ui.bootstrap',
-  uiRouter,
-  'ui.validate',
-  'ui.sortable',
-  ovhManagerCore,
-  ngAtInternet,
-  ngAtInternetUiRouterPlugin,
-  ngOvhApiWrappers,
-  ngOvhBrowserAlert,
-  ngOvhChatbot,
-  ngOvhCheckboxTable,
-  ngOvhDocUrl,
-  ngOvhFormFlat,
-  ngOvhSsoAuth,
-  ngOvhSsoAuthModalPlugin,
-  ngOvhStopEvent,
-  ngOvhSwimmingPoll,
-  ngOvhActionsMenu,
-  ngOvhCloudUniverseComponents,
-  ngOvhUserPref,
-  ngOvhUiRouterLayout,
-  ngOvhUiRouterLineProgress,
-  'ovh-api-services',
-  'ovh-common-style',
-  ngQAllSettled,
-  'angularMoment',
-  ngOvhToaster,
-  'oui',
-  'oui.list-view',
-  'chart.js',
+angular
+  .module('managerApp', [
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngAnimate',
+    'ngMessages',
+    'pascalprecht.translate',
+    'ui.bootstrap',
+    uiRouter,
+    'ui.validate',
+    'ui.sortable',
+    ovhManagerCore,
+    ngAtInternet,
+    ngAtInternetUiRouterPlugin,
+    ngOvhApiWrappers,
+    ngOvhBrowserAlert,
+    ngOvhChatbot,
+    ngOvhCheckboxTable,
+    ngOvhDocUrl,
+    ngOvhFormFlat,
+    ngOvhSsoAuth,
+    ngOvhSsoAuthModalPlugin,
+    ngOvhStopEvent,
+    ngOvhSwimmingPoll,
+    ngOvhActionsMenu,
+    ngOvhCloudUniverseComponents,
+    ngOvhUserPref,
+    ngOvhUiRouterLayout,
+    ngOvhUiRouterLineProgress,
+    'ovh-api-services',
+    'ovh-common-style',
+    ngQAllSettled,
+    'angularMoment',
+    ngOvhToaster,
+    'oui',
+    'oui.list-view',
+    'chart.js',
 
-  ngPaginationFront,
-  ngOvhResponsiveTabs,
-  'mgcrea.ngStrap.popover',
-  'mgcrea.ngStrap.tooltip',
-  'mgcrea.ngStrap.helpers.dimensions',
-  'mgcrea.ngStrap.core',
-  'ovh-angular-responsive-page-switcher',
+    ngPaginationFront,
+    ngOvhResponsiveTabs,
+    'mgcrea.ngStrap.popover',
+    'mgcrea.ngStrap.tooltip',
+    'mgcrea.ngStrap.helpers.dimensions',
+    'mgcrea.ngStrap.core',
+    'ovh-angular-responsive-page-switcher',
 
-  'ng-slide-down',
-  ngOvhJsplumb,
-  'tmh.dynamicLocale',
+    'ng-slide-down',
+    ngOvhJsplumb,
+    'tmh.dynamicLocale',
 
-  'ovh-jquery-ui-draggable-ng',
-  ngOvhJqueryUiDroppable,
-  ngOvhSlider,
-  ngTailLogs,
-  'matchmedia-ng',
-  'angular-websocket',
-  'angular-translate-loader-pluggable',
+    'ovh-jquery-ui-draggable-ng',
+    ngOvhJqueryUiDroppable,
+    ngOvhSlider,
+    ngTailLogs,
+    'matchmedia-ng',
+    'angular-websocket',
+    'angular-translate-loader-pluggable',
 
-  ngTranslateAsyncLoader,
-  cloudUniverseComponents,
-  ovhManagerBanner,
-  ovhManagerNavbar,
-  ovhManagerServerSidebar,
-  errorPage,
-])
-  .config(/* @ngInject */($urlServiceProvider, $locationProvider, MANAGER_URLS) => {
-    const dedicatedRedirections = [
-      '/paas/veeam-enterprise',
-      '/paas/veeam',
-      '/iaas/vps',
-      '/paas/nasha',
-      '/vrack',
-    ];
+    ngTranslateAsyncLoader,
+    cloudUniverseComponents,
+    ovhManagerBanner,
+    ovhManagerNavbar,
+    ovhManagerServerSidebar,
+    errorPage,
+  ])
+  .config(
+    /* @ngInject */ ($urlServiceProvider, $locationProvider, MANAGER_URLS) => {
+      const dedicatedRedirections = [
+        '/paas/veeam-enterprise',
+        '/paas/veeam',
+        '/iaas/vps',
+        '/paas/nasha',
+        '/vrack',
+      ];
 
-    dedicatedRedirections.forEach((redirectionPrefix) => {
-      $urlServiceProvider.rules.when(new RegExp(`^${redirectionPrefix}`), (match, { path }) => {
-        const { origin, pathname } = new URL(MANAGER_URLS.dedicated);
-        window.location.replace(`${origin}${pathname}#${path}`);
+      dedicatedRedirections.forEach((redirectionPrefix) => {
+        $urlServiceProvider.rules.when(
+          new RegExp(`^${redirectionPrefix}`),
+          (match, { path }) => {
+            const { origin, pathname } = new URL(MANAGER_URLS.dedicated);
+            window.location.replace(`${origin}${pathname}#${path}`);
+          },
+        );
       });
-    });
 
-    $urlServiceProvider.rules.otherwise('/');
-    $locationProvider.html5Mode(false);
-  })
+      $urlServiceProvider.rules.otherwise('/');
+      $locationProvider.html5Mode(false);
+    },
+  )
   .config((responsivePopoverProvider) => {
     // tell to the module that we consider a mobile device with at least 800px width
     responsivePopoverProvider.setMobileMediaQuery('(max-width: 800px)');
   })
   .config((ouiTableConfigurationProvider) => {
-    ouiTableConfigurationProvider.setCssConfig({
-      tablePanel: 'oui-table-panel',
-      table: 'oui-table oui-table_responsive',
-      thead: 'oui-table__headers',
-      tbody: 'oui-table__body',
-      tr: 'oui-table__row',
-      th: 'oui-table__header',
-      td: 'oui-table__cell',
-      sortable: 'oui-table__cell_sortable oui-table__cell_sortable-asc',
-      sorted: 'oui-table__cell_sorted',
-      sortableAsc: 'oui-table__cell_sortable-asc',
-      sortableDesc: 'oui-table__cell_sortable-desc',
-      closed: 'oui-table__row_closed',
-      emptyTable: 'oui-table-empty',
-    })
-      .setPageSize(10)
-      .setExpandButtonTemplate(`
+    ouiTableConfigurationProvider
+      .setCssConfig({
+        tablePanel: 'oui-table-panel',
+        table: 'oui-table oui-table_responsive',
+        thead: 'oui-table__headers',
+        tbody: 'oui-table__body',
+        tr: 'oui-table__row',
+        th: 'oui-table__header',
+        td: 'oui-table__cell',
+        sortable: 'oui-table__cell_sortable oui-table__cell_sortable-asc',
+        sorted: 'oui-table__cell_sorted',
+        sortableAsc: 'oui-table__cell_sortable-asc',
+        sortableDesc: 'oui-table__cell_sortable-desc',
+        closed: 'oui-table__row_closed',
+        emptyTable: 'oui-table-empty',
+      })
+      .setPageSize(10).setExpandButtonTemplate(`
                 <i role="button"
                     class="oui-icon oui-icon-chevron-right oui-table__expand-button"></i>
-            `)
-      .setSelectorTemplate(`<div class="oui-checkbox">
+            `).setSelectorTemplate(`<div class="oui-checkbox">
                 <input class="oui-checkbox__input"
                   id="{{$name}}"
                   type="checkbox"
@@ -169,19 +173,29 @@ angular.module('managerApp', [
               </div>
             `);
   })
-  .config(/* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
-    CucConfigProvider.setRegion(coreConfigProvider.getRegion());
-  })
-  .run(/* @ngInject */ ($state) => {
-    $state.defaultErrorHandler((error) => {
-      if (error.type === RejectType.ERROR) {
-        $state.go('error', {
-          detail: {
-            message: get(error.detail, 'data.message'),
-            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
-          },
-        }, { location: false });
-      }
-    });
-  })
+  .config(
+    /* @ngInject */ (CucConfigProvider, coreConfigProvider) => {
+      CucConfigProvider.setRegion(coreConfigProvider.getRegion());
+    },
+  )
+  .run(
+    /* @ngInject */ ($state) => {
+      $state.defaultErrorHandler((error) => {
+        if (error.type === RejectType.ERROR) {
+          $state.go(
+            'error',
+            {
+              detail: {
+                message: get(error.detail, 'data.message'),
+                code: has(error.detail, 'headers')
+                  ? error.detail.headers('x-ovh-queryId')
+                  : null,
+              },
+            },
+            { location: false },
+          );
+        }
+      });
+    },
+  )
   .run(/* @ngTranslationsInject:json ./common/translations */);

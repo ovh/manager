@@ -1,6 +1,7 @@
-export default /* @ngInject */($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.instances.instance.attachPrivateNetwork', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state(
+    'pci.projects.project.instances.instance.attachPrivateNetwork',
+    {
       url: '/network/private/attach',
       views: {
         modal: {
@@ -14,8 +15,13 @@ export default /* @ngInject */($stateProvider) => {
           PciProjectsProjectInstanceService,
           instance,
           projectId,
-        ) => PciProjectsProjectInstanceService.getCompatiblesPrivateNetworks(projectId, instance),
+        ) =>
+          PciProjectsProjectInstanceService.getCompatiblesPrivateNetworks(
+            projectId,
+            instance,
+          ),
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

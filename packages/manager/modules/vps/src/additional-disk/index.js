@@ -6,9 +6,7 @@ import ovhManagerVpsAdditionnalDiskOrder from './order';
 const moduleName = 'ovhManagerVpsAdditionnalDisk';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsAdditionnalDiskOrder,
-  ])
+  .module(moduleName, [ovhManagerVpsAdditionnalDiskOrder])
   .component(component.name, component)
   .config(routing);
 

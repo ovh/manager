@@ -1,8 +1,6 @@
 export default class BreadcrumbController {
   /* @ngInject */
-  constructor(
-    uiRouterBreadcrumbService,
-  ) {
+  constructor(uiRouterBreadcrumbService) {
     this.uiRouterBreadcrumbService = uiRouterBreadcrumbService;
 
     this.breadcrumb = [];

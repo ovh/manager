@@ -8,14 +8,16 @@ class LogsHomeCappedModalCtrl {
   }
 
   openModal() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/home/capped/logs-home-capped.html',
-        controller: 'LogsHomeCappedCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-      },
-    })
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl:
+            'app/dbaas/logs/detail/home/capped/logs-home-capped.html',
+          controller: 'LogsHomeCappedCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+        },
+      })
       .then(() => {
         this.$scope.$parent.$parent.$parent.$$prevSibling.ctrl.runLoaders();
         this.$scope.$parent.ctrl.runLoaders();
@@ -30,4 +32,6 @@ class LogsHomeCappedModalCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsHomeCappedModalCtrl', LogsHomeCappedModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsHomeCappedModalCtrl', LogsHomeCappedModalCtrl);

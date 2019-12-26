@@ -16,7 +16,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'email_domain'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'email_domain';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -24,18 +25,27 @@ angular.module('App').config(($stateProvider) => {
         },
       ],
     },
-    redirectTo: (trans) => trans.injector().getAsync('WucEmails').then((WucEmails) => WucEmails.getDomain(trans.params().productId).then((data) => {
-      if (data.migratedMXPlanServiceName) {
-        return {
-          state: 'app.email.mxplan',
-          params: {
-            productId: data.migratedMXPlanServiceName,
-          },
-        };
-      }
-      return null;
-    })),
-    translations: { value: ['../email', '../hosting', '../mailing-list'], format: 'json' },
+    redirectTo: (trans) =>
+      trans
+        .injector()
+        .getAsync('WucEmails')
+        .then((WucEmails) =>
+          WucEmails.getDomain(trans.params().productId).then((data) => {
+            if (data.migratedMXPlanServiceName) {
+              return {
+                state: 'app.email.mxplan',
+                params: {
+                  productId: data.migratedMXPlanServiceName,
+                },
+              };
+            }
+            return null;
+          }),
+        ),
+    translations: {
+      value: ['../email', '../hosting', '../mailing-list'],
+      format: 'json',
+    },
   });
 
   $stateProvider.state('app.email.delegate', {
@@ -50,7 +60,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'email_delegate'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'email_delegate';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -74,7 +85,8 @@ angular.module('App').config(($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'mxPlan'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'mxPlan';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,

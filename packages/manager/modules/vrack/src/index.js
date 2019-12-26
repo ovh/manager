@@ -25,22 +25,25 @@ import vrackAdd from './add';
 
 const moduleName = 'ovhManagerVrack';
 
-angular.module(moduleName, [
-  'ui.router',
-  'ui.bootstrap',
-  'ovh-api-services',
-  'ovhManagerCore',
-  'ngOvhCloudUniverseComponents',
-  'ngOvhToaster',
-  'ui.router',
-  vrackAdd,
-])
+angular
+  .module(moduleName, [
+    'ui.router',
+    'ui.bootstrap',
+    'ovh-api-services',
+    'ovhManagerCore',
+    'ngOvhCloudUniverseComponents',
+    'ngOvhToaster',
+    'ui.router',
+    vrackAdd,
+  ])
   .config(routing)
   .controller('VrackCtrl', controller)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('vrack/partials/actions.html', actionsPartials);
-    $templateCache.put('vrack/partials/available.html', availablePartials);
-    $templateCache.put('vrack/partials/mapped.html', mappedPartials);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put('vrack/partials/actions.html', actionsPartials);
+      $templateCache.put('vrack/partials/available.html', availablePartials);
+      $templateCache.put('vrack/partials/mapped.html', mappedPartials);
+    },
+  );
 
 export default moduleName;

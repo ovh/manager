@@ -1,4 +1,5 @@
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .component('cuiAccordionList', {
     transclude: true,
     template: `

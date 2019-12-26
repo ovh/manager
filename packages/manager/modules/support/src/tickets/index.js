@@ -5,21 +5,19 @@ import oclazyload from 'oclazyload';
 
 const moduleName = 'ovhManagerSupportTicketsLazyLoading';
 
-angular
-  .module(moduleName, [
-    oclazyload,
-    uiRouter,
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
+angular.module(moduleName, [oclazyload, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('support.tickets.**', {
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./tickets.module')
-          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+        return import('./tickets.module').then((mod) =>
+          $ocLazyLoad.inject(mod.default || mod),
+        );
       },
       url: '/tickets',
     });
-  });
+  },
+);
 
 export default moduleName;

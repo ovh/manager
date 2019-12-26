@@ -25,18 +25,23 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
       pageSize,
       offset - 1,
       $scope.exchange.associatedDomainName,
-    ).then((tasks) => {
-      $scope.tasksList = flatten(tasks);
-      return {
-        data: $scope.tasksList,
-        meta: {
-          totalCount: $scope.tasksList.length,
-        },
-      };
-    }).catch((failure) => {
-      $scope.setMessage($translate.instant('emailpro_tab_TASKS_error_message'), failure.data);
-      return { data: null, meta: { totalCount: 0 } };
-    });
+    )
+      .then((tasks) => {
+        $scope.tasksList = flatten(tasks);
+        return {
+          data: $scope.tasksList,
+          meta: {
+            totalCount: $scope.tasksList.length,
+          },
+        };
+      })
+      .catch((failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_tab_TASKS_error_message'),
+          failure.data,
+        );
+        return { data: null, meta: { totalCount: 0 } };
+      });
   };
 
   $scope.$on(EmailPro.events.tasksChanged, () => {

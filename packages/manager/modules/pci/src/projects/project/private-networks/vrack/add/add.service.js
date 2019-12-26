@@ -6,12 +6,19 @@ export default class {
   }
 
   associateVrack(vrack, project) {
-    return this.OvhApiVrack.CloudProject().v6().create({
-      serviceName: vrack,
-    }, {
-      project,
-    }).$promise
-      .then(({ data }) => this.pollVrackAssociationTask(vrack, data.id));
+    return this.OvhApiVrack.CloudProject()
+      .v6()
+      .create(
+        {
+          serviceName: vrack,
+        },
+        {
+          project,
+        },
+      )
+      .$promise.then(({ data }) =>
+        this.pollVrackAssociationTask(vrack, data.id),
+      );
   }
 
   pollVrackAssociationTask(vrack, taskId) {
@@ -24,16 +31,15 @@ export default class {
           status: 'done',
         },
       },
-    )
-      .then(
-        () => true,
-        (error) => {
-          if (error.status === 404) {
-            return true;
-          }
+    ).then(
+      () => true,
+      (error) => {
+        if (error.status === 404) {
+          return true;
+        }
 
-          return Promise.reject(error);
-        },
-      );
+        return Promise.reject(error);
+      },
+    );
   }
 }

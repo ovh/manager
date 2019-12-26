@@ -22,10 +22,7 @@ export default {
   template: `<div id="${VANTIV_IFRAME_CONFIGURATION.div}"></div>`,
   link: (scope, iElement, iAttributes, iControllers) => {
     // separate controllers
-    const {
-      iframeVantivCtrl,
-      integrationCtrl,
-    } = iControllers;
+    const { iframeVantivCtrl, integrationCtrl } = iControllers;
 
     /* ----------  Controller method declaration  ---------- */
 
@@ -34,41 +31,51 @@ export default {
      *  Set this method available from controller.
      *  @return {Promise} That is resolved when script AND iframe are loaded.
      */
-    iframeVantivCtrl.insertThreatMetrix = ({
-      formSessionId,
-      organizationId,
-    }) => new Promise((resolve) => {
-      const threatMetricParams = `?org_id=${organizationId}&session_id=${formSessionId}&pageid=${THREAT_METRIX.PAGE_ID}`;
+    iframeVantivCtrl.insertThreatMetrix = ({ formSessionId, organizationId }) =>
+      new Promise((resolve) => {
+        const threatMetricParams = `?org_id=${organizationId}&session_id=${formSessionId}&pageid=${THREAT_METRIX.PAGE_ID}`;
 
-      // insert ThreatMetrix script
-      integrationCtrl.insertElement('script', {
-        src: `${THREAT_METRIX.SCRIPT.src}${threatMetricParams}`,
-        id: THREAT_METRIX.SCRIPT.id,
-        type: 'text/javascript',
-      }, {
-        onload: () => {
-          // when script is loaded - add the invisble iframe of ThreatMetrix into noscript tag
-          const tmNoscriptTag = integrationCtrl.insertElement('noscript', {
-            id: `${THREAT_METRIX.IFRAME.id}_noscript`,
-          });
-          integrationCtrl.insertElement('iframe', {
-            id: THREAT_METRIX.IFRAME.id,
-            src: `${THREAT_METRIX.IFRAME.src}${threatMetricParams}`,
-          }, {
-            onload: () => resolve(),
-          }, THREAT_METRIX.CSS, {
-            tmNoscriptTag,
-          });
-        },
+        // insert ThreatMetrix script
+        integrationCtrl.insertElement(
+          'script',
+          {
+            src: `${THREAT_METRIX.SCRIPT.src}${threatMetricParams}`,
+            id: THREAT_METRIX.SCRIPT.id,
+            type: 'text/javascript',
+          },
+          {
+            onload: () => {
+              // when script is loaded - add the invisble iframe of ThreatMetrix into noscript tag
+              const tmNoscriptTag = integrationCtrl.insertElement('noscript', {
+                id: `${THREAT_METRIX.IFRAME.id}_noscript`,
+              });
+              integrationCtrl.insertElement(
+                'iframe',
+                {
+                  id: THREAT_METRIX.IFRAME.id,
+                  src: `${THREAT_METRIX.IFRAME.src}${threatMetricParams}`,
+                },
+                {
+                  onload: () => resolve(),
+                },
+                THREAT_METRIX.CSS,
+                {
+                  tmNoscriptTag,
+                },
+              );
+            },
+          },
+        );
       });
-    });
 
     /**
      *  Remove ThreatMetrix tags from dom.
      */
     iframeVantivCtrl.removeThreatMetrix = () => {
       const tmScript = document.getElementById(THREAT_METRIX.SCRIPT.id);
-      const tmNoScript = document.getElementById(`${THREAT_METRIX.IFRAME.id}_noscript`);
+      const tmNoScript = document.getElementById(
+        `${THREAT_METRIX.IFRAME.id}_noscript`,
+      );
 
       if (tmScript) {
         document.body.removeChild(tmScript);
@@ -84,11 +91,18 @@ export default {
     // add vantiv script to document body
     // first check if script has already been added
     if (!document.getElementById(VANTIV_SCRIPT.id)) {
-      integrationCtrl.insertElement('script', merge({
-        type: 'text/javascript',
-      }, VANTIV_SCRIPT), {
-        onload: iframeVantivCtrl.init.bind(iframeVantivCtrl),
-      });
+      integrationCtrl.insertElement(
+        'script',
+        merge(
+          {
+            type: 'text/javascript',
+          },
+          VANTIV_SCRIPT,
+        ),
+        {
+          onload: iframeVantivCtrl.init.bind(iframeVantivCtrl),
+        },
+      );
     } else {
       iframeVantivCtrl.init();
     }

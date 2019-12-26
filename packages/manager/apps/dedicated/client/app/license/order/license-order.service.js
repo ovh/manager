@@ -5,12 +5,7 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 
 class LicenseOrder {
-  constructor(
-    $q,
-    License,
-    LicenseAgoraOrder,
-    licenseFeatureAvailability,
-  ) {
+  constructor($q, License, LicenseAgoraOrder, licenseFeatureAvailability) {
     this.$q = $q;
     this.licenseFeatureAvailability = licenseFeatureAvailability;
     this.License = License;
@@ -34,40 +29,42 @@ class LicenseOrder {
       const queue = [];
       forEach(durations, (duration) => {
         queue.push(
-          this.License
-            .getLicenseOrderForDuration(assign({ duration }, licenseInfo))
-            .then((details) => {
-              prices[duration] = details;
-            }),
+          this.License.getLicenseOrderForDuration(
+            assign({ duration }, licenseInfo),
+          ).then((details) => {
+            prices[duration] = details;
+          }),
         );
       });
 
       return this.$q.all(queue).then(() => prices);
     }
-    return this.LicenseAgoraOrder
-      .getLicenseOfferPlan(licenseInfo.licenseType, licenseInfo.version, this.ip).then((plan) => {
-        const activeOptions = [];
-        forEach(keys(licenseInfo.options), (key) => {
-          if (get(licenseInfo.options[key], 'value')) {
-            activeOptions.push(licenseInfo.options[key].value);
-          }
-        });
-
-        const promises = map(
-          durations,
-          (duration) => plan
-            .getPrice({
-              duration: Number(duration),
-              options: activeOptions,
-              licenseType: licenseInfo.licenseType,
-            })
-            .then((price) => {
-              prices[duration] = price;
-            }),
-        );
-
-        return this.$q.all(promises).then(() => prices);
+    return this.LicenseAgoraOrder.getLicenseOfferPlan(
+      licenseInfo.licenseType,
+      licenseInfo.version,
+      this.ip,
+    ).then((plan) => {
+      const activeOptions = [];
+      forEach(keys(licenseInfo.options), (key) => {
+        if (get(licenseInfo.options[key], 'value')) {
+          activeOptions.push(licenseInfo.options[key].value);
+        }
       });
+
+      const promises = map(durations, (duration) =>
+        plan
+          .getPrice({
+            duration: Number(duration),
+            options: activeOptions,
+            licenseType: licenseInfo.licenseType,
+          })
+          .then((price) => {
+            prices[duration] = price;
+          }),
+      );
+
+      return this.$q.all(promises).then(() => prices);
+    });
   }
 
   getFinalizeOrderUrl(licenseInfo) {
@@ -75,8 +72,9 @@ class LicenseOrder {
       // this shouldn't be used.
       return this.$q.when('');
     }
-    return this.LicenseAgoraOrder
-      .getFinalizeOrderUrl(assign({}, licenseInfo, { duration: Number(licenseInfo.duration) }));
+    return this.LicenseAgoraOrder.getFinalizeOrderUrl(
+      assign({}, licenseInfo, { duration: Number(licenseInfo.duration) }),
+    );
   }
 }
 

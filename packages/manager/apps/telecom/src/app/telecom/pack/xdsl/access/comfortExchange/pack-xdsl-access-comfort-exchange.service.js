@@ -9,7 +9,6 @@ export default class XdslAccessComfortExchangeService {
       .v6()
       .query({
         xdslId,
-      })
-      .$promise;
+      }).$promise;
   }
 }

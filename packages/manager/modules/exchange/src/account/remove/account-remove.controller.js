@@ -15,7 +15,9 @@ export default class ExchangeRemoveAccountCtrl {
     this.$routerParams = Exchange.getParams();
 
     this.account = navigation.currentActionData;
-    this.removeAccountInsteadOfReset = Exchange.removeAccountInsteadOfReset(Exchange.value);
+    this.removeAccountInsteadOfReset = Exchange.removeAccountInsteadOfReset(
+      Exchange.value,
+    );
   }
 
   getTitle() {
@@ -33,16 +35,24 @@ export default class ExchangeRemoveAccountCtrl {
       .then((success) => {
         this.services.messaging.writeSuccess(
           this.removeAccountInsteadOfReset
-            ? this.services.$translate.instant('exchange_tab_account_remove_success')
-            : this.services.$translate.instant('exchange_tab_account_reset_success'),
+            ? this.services.$translate.instant(
+                'exchange_tab_account_remove_success',
+              )
+            : this.services.$translate.instant(
+                'exchange_tab_account_reset_success',
+              ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
           this.removeAccountInsteadOfReset
-            ? this.services.$translate.instant('exchange_tab_account_remove_failure')
-            : this.services.$translate.instant('exchange_tab_account_reset_failure'),
+            ? this.services.$translate.instant(
+                'exchange_tab_account_remove_failure',
+              )
+            : this.services.$translate.instant(
+                'exchange_tab_account_reset_failure',
+              ),
           failure,
         );
       })

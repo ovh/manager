@@ -30,8 +30,18 @@ import { SMS_COMPOSE } from './telecom-sms-sms-compose.constant';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $translate, $stateParams, $filter, $uibModal,
-    OvhApiSms, TucSmsMediator, OvhApiMe, atInternet, TucToast, TucToastError, SMS_URL,
+    $q,
+    $translate,
+    $stateParams,
+    $filter,
+    $uibModal,
+    OvhApiSms,
+    TucSmsMediator,
+    OvhApiMe,
+    atInternet,
+    TucToast,
+    TucToastError,
+    SMS_URL,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -46,7 +56,9 @@ export default class {
         receivers: OvhApiSms.Receivers().v6(),
         senders: OvhApiSms.Senders().v6(),
         virtualNumbers: {
-          jobs: OvhApiSms.VirtualNumbers().Jobs().v6(),
+          jobs: OvhApiSms.VirtualNumbers()
+            .Jobs()
+            .v6(),
         },
       },
       user: OvhApiMe.v6(),
@@ -113,36 +125,47 @@ export default class {
     };
 
     this.loading.init = true;
-    return this.TucSmsMediator.initDeferred.promise.then(() => this.$q.all({
-      enums: this.fetchEnums(),
-      user: this.fetchUser(),
-      senders: this.fetchSenders(),
-      receivers: this.fetchReceivers(),
-      phonebooks: this.fetchPhonebooks(),
-    }).then((result) => {
-      this.enums = result.enums;
-      this.user = result.user;
-      this.senders.raw = result.senders;
-      this.receivers.raw = result.receivers;
-      this.phonebooks.raw = result.phonebooks;
-      this.phonebooks.current = head(this.phonebooks.raw);
-      return this.senders.raw;
-    }).then((senders) => each(senders, (sender) => {
-      if (sender.type === 'virtual') {
-        this.senders.virtual.push(sender);
-      } else if (sender.type === 'alpha') {
-        this.senders.alphanumeric.push(sender);
-      } else {
-        this.senders.other.push(sender);
-      }
-    })).then(() => {
-      this.service = this.TucSmsMediator.getCurrentSmsService();
-      this.showAdvice();
-    })).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.loading.init = false;
-    });
+    return this.TucSmsMediator.initDeferred.promise
+      .then(() =>
+        this.$q
+          .all({
+            enums: this.fetchEnums(),
+            user: this.fetchUser(),
+            senders: this.fetchSenders(),
+            receivers: this.fetchReceivers(),
+            phonebooks: this.fetchPhonebooks(),
+          })
+          .then((result) => {
+            this.enums = result.enums;
+            this.user = result.user;
+            this.senders.raw = result.senders;
+            this.receivers.raw = result.receivers;
+            this.phonebooks.raw = result.phonebooks;
+            this.phonebooks.current = head(this.phonebooks.raw);
+            return this.senders.raw;
+          })
+          .then((senders) =>
+            each(senders, (sender) => {
+              if (sender.type === 'virtual') {
+                this.senders.virtual.push(sender);
+              } else if (sender.type === 'alpha') {
+                this.senders.alphanumeric.push(sender);
+              } else {
+                this.senders.other.push(sender);
+              }
+            }),
+          )
+          .then(() => {
+            this.service = this.TucSmsMediator.getCurrentSmsService();
+            this.showAdvice();
+          }),
+      )
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   /**
@@ -174,13 +197,21 @@ export default class {
     return this.api.sms.senders
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then((sendersIds) => this.$q
-        .all(map(sendersIds, (sender) => this.api.sms.senders.get({
-          serviceName: this.$stateParams.serviceName,
-          sender,
-        }).$promise))
-        .then((senders) => filter(senders, { status: 'enable' })));
+      })
+      .$promise.then((sendersIds) =>
+        this.$q
+          .all(
+            map(
+              sendersIds,
+              (sender) =>
+                this.api.sms.senders.get({
+                  serviceName: this.$stateParams.serviceName,
+                  sender,
+                }).$promise,
+            ),
+          )
+          .then((senders) => filter(senders, { status: 'enable' })),
+      );
   }
 
   /**
@@ -191,12 +222,19 @@ export default class {
     return this.api.sms.receivers
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then((receiversIds) => this.$q
-        .all(map(receiversIds, (slotId) => this.api.sms.receivers.get({
-          serviceName: this.$stateParams.serviceName,
-          slotId,
-        }).$promise)));
+      })
+      .$promise.then((receiversIds) =>
+        this.$q.all(
+          map(
+            receiversIds,
+            (slotId) =>
+              this.api.sms.receivers.get({
+                serviceName: this.$stateParams.serviceName,
+                slotId,
+              }).$promise,
+          ),
+        ),
+      );
   }
 
   /**
@@ -207,12 +245,21 @@ export default class {
     return this.api.sms.phonebooks
       .query({
         serviceName: this.$stateParams.serviceName,
-      }).$promise
-      .then((phonebooksIds) => this.$q
-        .all(map(phonebooksIds, (bookKey) => this.api.sms.phonebooks.get({
-          serviceName: this.$stateParams.serviceName,
-          bookKey,
-        }).$promise)).then((phonebooks) => sortBy(phonebooks, 'name')));
+      })
+      .$promise.then((phonebooksIds) =>
+        this.$q
+          .all(
+            map(
+              phonebooksIds,
+              (bookKey) =>
+                this.api.sms.phonebooks.get({
+                  serviceName: this.$stateParams.serviceName,
+                  bookKey,
+                }).$promise,
+            ),
+          )
+          .then((phonebooks) => sortBy(phonebooks, 'name')),
+      );
   }
 
   /**
@@ -223,10 +270,10 @@ export default class {
   computeRemainingChar(checkValue) {
     const isShort = this.isShortNumber() ? true : this.sms.noStopClause;
     const suffix = checkValue !== undefined ? checkValue : isShort;
-    return assign(this.message, this.TucSmsMediator.getSmsInfoText(
-      this.sms.message,
-      !suffix,
-    ));
+    return assign(
+      this.message,
+      this.TucSmsMediator.getSmsInfoText(this.sms.message, !suffix),
+    );
   }
 
   /**
@@ -242,13 +289,13 @@ export default class {
    * @return {Object}
    */
   showAdvice() {
-    const isRealNumber = /^[0-9+]*$/.test(this.sms.sender)
-      && !this.isVirtualNumber();
+    const isRealNumber =
+      /^[0-9+]*$/.test(this.sms.sender) && !this.isVirtualNumber();
 
-    this.displaySenderCustomizationAdvice = isRealNumber
-      || this.sms.sender === SMS_COMPOSE.shortNumber;
-    this.canHaveSTOPAnswer = !isRealNumber
-      && this.sms.sender !== SMS_COMPOSE.shortNumber;
+    this.displaySenderCustomizationAdvice =
+      isRealNumber || this.sms.sender === SMS_COMPOSE.shortNumber;
+    this.canHaveSTOPAnswer =
+      !isRealNumber && this.sms.sender !== SMS_COMPOSE.shortNumber;
     this.sms.noStopClause = isRealNumber;
 
     return this.computeRemainingChar();
@@ -293,11 +340,22 @@ export default class {
    */
   createSms(slotId) {
     const phonebookContactNumber = [];
-    each(this.phonebooks.lists, (contact) => phonebookContactNumber.push(get(contact, contact.type)));
-    const receivers = union(phonebookContactNumber, this.sms.receivers ? [this.sms.receivers] : null);
-    const differedPeriod = this.sms.differedPeriod ? this.getDifferedPeriod() : null;
-    const sender = this.sms.sender === SMS_COMPOSE.shortNumber ? null : this.sms.sender;
-    const senderForResponse = this.sms.sender === SMS_COMPOSE.shortNumber ? true : this.sms.senderForResponse;
+    each(this.phonebooks.lists, (contact) =>
+      phonebookContactNumber.push(get(contact, contact.type)),
+    );
+    const receivers = union(
+      phonebookContactNumber,
+      this.sms.receivers ? [this.sms.receivers] : null,
+    );
+    const differedPeriod = this.sms.differedPeriod
+      ? this.getDifferedPeriod()
+      : null;
+    const sender =
+      this.sms.sender === SMS_COMPOSE.shortNumber ? null : this.sms.sender;
+    const senderForResponse =
+      this.sms.sender === SMS_COMPOSE.shortNumber
+        ? true
+        : this.sms.senderForResponse;
     return {
       charset: 'UTF-8',
       class: this.sms.class,
@@ -345,10 +403,12 @@ export default class {
    * @return {String}
    */
   getEstimationCreditRemaining() {
-    const totalReceivers = this.receivers.records
-      + this.phonebooks.lists.length + (this.sms.receivers ? 1 : 0);
-    const creditRemaining = this.service.creditsLeft
-      - (totalReceivers * this.message.equivalence);
+    const totalReceivers =
+      this.receivers.records +
+      this.phonebooks.lists.length +
+      (this.sms.receivers ? 1 : 0);
+    const creditRemaining =
+      this.service.creditsLeft - totalReceivers * this.message.equivalence;
     return this.$filter('number')(creditRemaining, 2);
   }
 
@@ -363,7 +423,9 @@ export default class {
     }
     this.receivers.records = 0;
     this.receivers.count = 0;
-    return map(this.receivers.raw, (receiver) => set(receiver, 'isSelected', false));
+    return map(this.receivers.raw, (receiver) =>
+      set(receiver, 'isSelected', false),
+    );
   }
 
   /**
@@ -433,79 +495,114 @@ export default class {
     this.loading.send = true;
     if (this.isVirtualNumber()) {
       if (this.sms.receivers || size(this.phonebooks.lists)) {
-        promises.push(this.api.sms.virtualNumbers.jobs.send({
-          serviceName: this.$stateParams.serviceName,
-          number: this.sms.sender,
-        }, omit(this.createSms(), [
-          'sender',
-          'noStopClause',
-          'senderForResponse',
-        ])).$promise);
+        promises.push(
+          this.api.sms.virtualNumbers.jobs.send(
+            {
+              serviceName: this.$stateParams.serviceName,
+              number: this.sms.sender,
+            },
+            omit(this.createSms(), [
+              'sender',
+              'noStopClause',
+              'senderForResponse',
+            ]),
+          ).$promise,
+        );
       }
       if (size(slotIds)) {
-        map(slotIds, (slotId) => promises.push(this.api.sms.virtualNumbers.jobs.send({
-          serviceName: this.$stateParams.serviceName,
-          number: this.sms.sender,
-        }, omit(this.createSms(slotId), [
-          'receivers',
-          'sender',
-          'noStopClause',
-          'senderForResponse',
-        ])).$promise));
+        map(slotIds, (slotId) =>
+          promises.push(
+            this.api.sms.virtualNumbers.jobs.send(
+              {
+                serviceName: this.$stateParams.serviceName,
+                number: this.sms.sender,
+              },
+              omit(this.createSms(slotId), [
+                'receivers',
+                'sender',
+                'noStopClause',
+                'senderForResponse',
+              ]),
+            ).$promise,
+          ),
+        );
       }
     } else {
       if (this.sms.receivers || size(this.phonebooks.lists)) {
-        promises.push(this.api.sms.jobs.send({
-          serviceName: this.$stateParams.serviceName,
-        }, this.createSms()).$promise);
+        promises.push(
+          this.api.sms.jobs.send(
+            {
+              serviceName: this.$stateParams.serviceName,
+            },
+            this.createSms(),
+          ).$promise,
+        );
       }
       if (size(slotIds)) {
-        map(slotIds, (slotId) => promises.push(this.api.sms.jobs.send({
-          serviceName: this.$stateParams.serviceName,
-        }, omit(this.createSms(slotId), 'receivers')).$promise));
+        map(slotIds, (slotId) =>
+          promises.push(
+            this.api.sms.jobs.send(
+              {
+                serviceName: this.$stateParams.serviceName,
+              },
+              omit(this.createSms(slotId), 'receivers'),
+            ).$promise,
+          ),
+        );
       }
     }
 
-    return this.$q.all(promises).then((results) => {
-      const totalCreditsRemoved = sumBy(results, 'totalCreditsRemoved');
-      const invalidReceivers = flatten(map(results, 'invalidReceivers'));
-      const validReceivers = flatten(map(results, 'validReceivers'));
+    return this.$q
+      .all(promises)
+      .then((results) => {
+        const totalCreditsRemoved = sumBy(results, 'totalCreditsRemoved');
+        const invalidReceivers = flatten(map(results, 'invalidReceivers'));
+        const validReceivers = flatten(map(results, 'validReceivers'));
 
-      // update the creditLeft value (displayed on the dashboard)
-      this.service.creditsLeft -= totalCreditsRemoved;
-      this.atInternet.trackClick({
-        name: 'sms-sended',
-        type: 'action',
-        chapter1: 'telecom-sms',
-        chapter2: 'telecom-sms-sms',
-        chapter3: 'telecom-sms-sms-compose',
-        customObject: {
-          nichandle: get(this.user, 'nichandle'),
-          country: get(this.user, 'country'),
-          receiversCount: this.receivers.count,
-          receiversLists: this.receivers.records + (this.sms.receivers ? 1 : 0),
-          phonebookContactCount: this.phonebooks.lists.length,
-          totalCreditsRemoved,
-          invalidReceivers: size(invalidReceivers),
-          validReceivers: size(validReceivers),
-        },
+        // update the creditLeft value (displayed on the dashboard)
+        this.service.creditsLeft -= totalCreditsRemoved;
+        this.atInternet.trackClick({
+          name: 'sms-sended',
+          type: 'action',
+          chapter1: 'telecom-sms',
+          chapter2: 'telecom-sms-sms',
+          chapter3: 'telecom-sms-sms-compose',
+          customObject: {
+            nichandle: get(this.user, 'nichandle'),
+            country: get(this.user, 'country'),
+            receiversCount: this.receivers.count,
+            receiversLists:
+              this.receivers.records + (this.sms.receivers ? 1 : 0),
+            phonebookContactCount: this.phonebooks.lists.length,
+            totalCreditsRemoved,
+            invalidReceivers: size(invalidReceivers),
+            validReceivers: size(validReceivers),
+          },
+        });
+
+        this.resetForm(form);
+        if (!isEmpty(invalidReceivers)) {
+          // error message
+          this.TucToast.error(
+            this.$translate.instant('sms_sms_compose_status_invalid_receiver', {
+              invalidReceivers: invalidReceivers.toString(),
+            }),
+          );
+        } else {
+          this.TucToast.success(
+            this.$translate.instant('sms_sms_compose_status_success'),
+          );
+        }
+      })
+      .catch((err) => {
+        this.TucToast.error(
+          this.$translate.instant('sms_sms_compose_status_failed'),
+        );
+        return this.$q.reject(err);
+      })
+      .finally(() => {
+        this.loading.send = false;
       });
-
-      this.resetForm(form);
-      if (!isEmpty(invalidReceivers)) {
-        // error message
-        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receiver', {
-          invalidReceivers: invalidReceivers.toString(),
-        }));
-      } else {
-        this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
-      }
-    }).catch((err) => {
-      this.TucToast.error(this.$translate.instant('sms_sms_compose_status_failed'));
-      return this.$q.reject(err);
-    }).finally(() => {
-      this.loading.send = false;
-    });
   }
 
   /**

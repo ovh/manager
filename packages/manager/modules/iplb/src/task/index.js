@@ -9,12 +9,10 @@ import IplbTaskTemplate from './iplb-task.html';
 const moduleName = 'ovhManagerIplbTask';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.task', {
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('network.iplb.detail.task', {
         url: '/task',
         views: {
           iplbHeader: {
@@ -33,8 +31,12 @@ angular
           format: 'json',
         },
       });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .controller('IpLoadBalancerTaskCtrl', IpLoadBalancerTaskCtrl)
   .service('IpLoadBalancerTaskService', IpLoadBalancerTaskService)
   .controller('IpLoadBalancerTaskPreviewCtrl', IpLoadBalancerTaskPreviewCtrl)

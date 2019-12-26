@@ -1,7 +1,8 @@
 import mapValues from 'lodash/mapValues';
 
-angular.module('managerApp').controller('CloudProjectDeleteCtrl',
-  function CloudProjectDeleteCtrl(
+angular
+  .module('managerApp')
+  .controller('CloudProjectDeleteCtrl', function CloudProjectDeleteCtrl(
     $scope,
     $uibModalInstance,
     $translate,
@@ -49,10 +50,14 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
       return OvhApiCloudProjectUsageCurrent.v6()
         .get({
           serviceName: projectId,
-        }).$promise
-        .then((response) => CloudProjectBillingService.getConsumptionDetails(response, response))
+        })
+        .$promise.then((response) =>
+          CloudProjectBillingService.getConsumptionDetails(response, response),
+        )
         .then((data) => {
-          self.bill = `${data.totals.hourly.total.toFixed(2)} ${data.totals.currencySymbol}`;
+          self.bill = `${data.totals.hourly.total.toFixed(2)} ${
+            data.totals.currencySymbol
+          }`;
         })
         .catch((err) => $q.reject(err));
     }
@@ -60,31 +65,47 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
     function getCredits() {
       function isNotExpired(credit) {
         const { validity } = credit;
-        return (!validity.from || now.isAfter(validity.from))
-          && (!validity.to || now.isBefore(validity.to));
+        return (
+          (!validity.from || now.isAfter(validity.from)) &&
+          (!validity.to || now.isBefore(validity.to))
+        );
       }
 
       return OvhApiCloudProjectCredit.Aapi()
         .query({
           serviceName: projectId,
-        }).$promise
-        .then((credits) => {
-          self.hasCredits = credits.some((credit) => isNotExpired(credit)
-            && credit.available_credit.value > 0);
+        })
+        .$promise.then((credits) => {
+          self.hasCredits = credits.some(
+            (credit) =>
+              isNotExpired(credit) && credit.available_credit.value > 0,
+          );
         });
     }
 
     function initRemainingResources() {
-      return $q.all({
-        instance: OvhApiCloudProjectInstance.v6().query({ serviceName: projectId }).$promise,
-        volume: OvhApiCloudProjectVolume.v6().query({ serviceName: projectId }).$promise,
-        snapshot: OvhApiCloudProjectSnapshot.v6().query({ serviceName: projectId }).$promise,
-        storage: OvhApiCloudProjectStorage.v6().query({ projectId }).$promise,
-        ipFailoverOvh: OvhApiCloudProjectIpFailover.v6().query({ serviceName: projectId }).$promise,
-        ipFailoverCloud: OvhApiCloudProjectIpV6.query({ serviceName: projectId }).$promise,
-      }).then((result) => {
-        self.resources = mapValues(result, (arr) => arr.length);
-      });
+      return $q
+        .all({
+          instance: OvhApiCloudProjectInstance.v6().query({
+            serviceName: projectId,
+          }).$promise,
+          volume: OvhApiCloudProjectVolume.v6().query({
+            serviceName: projectId,
+          }).$promise,
+          snapshot: OvhApiCloudProjectSnapshot.v6().query({
+            serviceName: projectId,
+          }).$promise,
+          storage: OvhApiCloudProjectStorage.v6().query({ projectId }).$promise,
+          ipFailoverOvh: OvhApiCloudProjectIpFailover.v6().query({
+            serviceName: projectId,
+          }).$promise,
+          ipFailoverCloud: OvhApiCloudProjectIpV6.query({
+            serviceName: projectId,
+          }).$promise,
+        })
+        .then((result) => {
+          self.resources = mapValues(result, (arr) => arr.length);
+        });
     }
 
     this.init = function init() {
@@ -92,17 +113,18 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
 
       if (coreConfig.getRegion() !== 'US') {
         self.loaders.init = true;
-        $q.all([
-          getConsumption(),
-          getCredits(),
-          initRemainingResources(),
-        ]).then(() => {
-          self.error = false;
-        }, () => {
-          self.error = true;
-        }).finally(() => {
-          self.loaders.init = false;
-        });
+        $q.all([getConsumption(), getCredits(), initRemainingResources()])
+          .then(
+            () => {
+              self.error = false;
+            },
+            () => {
+              self.error = true;
+            },
+          )
+          .finally(() => {
+            self.loaders.init = false;
+          });
       }
     };
 
@@ -110,25 +132,41 @@ angular.module('managerApp').controller('CloudProjectDeleteCtrl',
 
     function deleteProject() {
       self.loaders.deleting = true;
-      return OvhApiCloudProject.v6().delete({
-        serviceName: projectId,
-      }, {}).$promise.then(() => {
-        self.errors = false;
-      }, (err) => {
-        self.errors = true;
-        return $q.reject(err);
-      }).finally(() => {
-        self.loaders.deleting = false;
-      });
+      return OvhApiCloudProject.v6()
+        .delete(
+          {
+            serviceName: projectId,
+          },
+          {},
+        )
+        .$promise.then(
+          () => {
+            self.errors = false;
+          },
+          (err) => {
+            self.errors = true;
+            return $q.reject(err);
+          },
+        )
+        .finally(() => {
+          self.loaders.deleting = false;
+        });
     }
 
     self.confirm = function confirm() {
-      return deleteProject().then(() => {
-        CucCloudMessage.success($translate.instant('cloud_project_delete_email_sent'));
-        $uibModalInstance.close();
-      }, () => {
-        CucCloudMessage.error($translate.instant('cloud_project_delete_error'));
-      });
+      return deleteProject().then(
+        () => {
+          CucCloudMessage.success(
+            $translate.instant('cloud_project_delete_email_sent'),
+          );
+          $uibModalInstance.close();
+        },
+        () => {
+          CucCloudMessage.error(
+            $translate.instant('cloud_project_delete_error'),
+          );
+        },
+      );
     };
 
     self.cancel = $uibModalInstance.dismiss;

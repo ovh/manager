@@ -16,18 +16,14 @@ export default class WebHostingOffer {
     Object.assign(this, properties);
 
     const sharedDatabases = this.databases
-      ? getSpecificDatabases(
-        this.databases,
-        DATABASE_ISOLATION_TYPES.SHARED,
-      )
+      ? getSpecificDatabases(this.databases, DATABASE_ISOLATION_TYPES.SHARED)
       : [];
 
-    this.sharedDatabases = sharedDatabases
-      .map((database) => ({
-        available: database.available,
-        ...this.constructor.formatSizeValue(database.quota),
-        type: database.type,
-      }));
+    this.sharedDatabases = sharedDatabases.map((database) => ({
+      available: database.available,
+      ...this.constructor.formatSizeValue(database.quota),
+      type: database.type,
+    }));
   }
 
   get localDatabases() {
@@ -59,8 +55,9 @@ export default class WebHostingOffer {
 
   get formattedLanguages() {
     const languagesKeys = Object.keys(this.languages);
-    const availableLanguages = languagesKeys
-      .filter((language) => this.languages[language].length > 0);
+    const availableLanguages = languagesKeys.filter(
+      (language) => this.languages[language].length > 0,
+    );
 
     return availableLanguages;
   }

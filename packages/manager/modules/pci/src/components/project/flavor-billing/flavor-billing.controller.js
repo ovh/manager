@@ -14,7 +14,10 @@ export default class FlavorBillingController {
   set flavor(flavor) {
     if (flavor) {
       this.prices = flavor.prices;
-      this.PriceFormatter = new Intl.NumberFormat(this.TranslateService.getUserLocale().replace('_', '-'), { style: 'currency', currency: flavor.prices.hourly.currencyCode });
+      this.PriceFormatter = new Intl.NumberFormat(
+        this.TranslateService.getUserLocale().replace('_', '-'),
+        { style: 'currency', currency: flavor.prices.hourly.currencyCode },
+      );
     }
   }
 

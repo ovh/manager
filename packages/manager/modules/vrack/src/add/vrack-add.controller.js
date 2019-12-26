@@ -1,6 +1,6 @@
 import pick from 'lodash/pick';
 
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   $translate,
   $state,
@@ -26,28 +26,54 @@ export default /* @ngInject */ function (
   };
 
   this.getVrackContract = function getVrackContract() {
-    return OvhApiOrder.Vrack().New().v6().get({
-      quantity: 1,
-    }).$promise.then((data) => {
-      self.model.agreements = data.contracts;
-    }).catch((error) => {
-      CucCloudMessage.error($translate.instant('vrack_error_reason', { message: error.data.message }));
-    });
+    return OvhApiOrder.Vrack()
+      .New()
+      .v6()
+      .get({
+        quantity: 1,
+      })
+      .$promise.then((data) => {
+        self.model.agreements = data.contracts;
+      })
+      .catch((error) => {
+        CucCloudMessage.error(
+          $translate.instant('vrack_error_reason', {
+            message: error.data.message,
+          }),
+        );
+      });
   };
 
   this.addVrack = function addVrack() {
     self.loaders.loading = true;
-    return OvhApiOrder.Vrack().New().v6().create({
-      quantity: this.model.quantityToOrder,
-    }, {}).$promise.then((data) => {
-      CucCloudMessage.success($translate.instant('vrack_adding_success', { data: pick(data, ['url', 'orderId']) }));
-      self.model.purchaseOrderUrl = data.url;
-      self.loaders.validationPending = true;
-    }).catch((error) => {
-      CucCloudMessage.error($translate.instant('vrack_error_reason', { message: error.data.message }));
-    }).finally(() => {
-      self.loaders.loading = false;
-    });
+    return OvhApiOrder.Vrack()
+      .New()
+      .v6()
+      .create(
+        {
+          quantity: this.model.quantityToOrder,
+        },
+        {},
+      )
+      .$promise.then((data) => {
+        CucCloudMessage.success(
+          $translate.instant('vrack_adding_success', {
+            data: pick(data, ['url', 'orderId']),
+          }),
+        );
+        self.model.purchaseOrderUrl = data.url;
+        self.loaders.validationPending = true;
+      })
+      .catch((error) => {
+        CucCloudMessage.error(
+          $translate.instant('vrack_error_reason', {
+            message: error.data.message,
+          }),
+        );
+      })
+      .finally(() => {
+        self.loaders.loading = false;
+      });
   };
 
   function init() {

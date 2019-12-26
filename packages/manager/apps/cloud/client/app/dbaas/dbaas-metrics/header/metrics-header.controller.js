@@ -2,7 +2,14 @@ import map from 'lodash/map';
 
 (() => {
   class MetricsHeaderCtrl {
-    constructor($state, $stateParams, $translate, ovhDocUrl, METRICS_ENDPOINTS, URLS) {
+    constructor(
+      $state,
+      $stateParams,
+      $translate,
+      ovhDocUrl,
+      METRICS_ENDPOINTS,
+      URLS,
+    ) {
       this.$state = $state;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -30,11 +37,13 @@ import map from 'lodash/map';
       this.guides.sections = [];
       this.guides.sections.push({
         title: this.$translate.instant('metrics_guides_first-step'),
-        list: [{
-          name: this.$translate.instant('metrics_guides_first-step_begin'),
-          url: this.ovhDocUrl.getDocUrl('cloud/metrics/manager'),
-          external: true,
-        }],
+        list: [
+          {
+            name: this.$translate.instant('metrics_guides_first-step_begin'),
+            url: this.ovhDocUrl.getDocUrl('cloud/metrics/manager'),
+            external: true,
+          },
+        ],
       });
       this.guides.sections.push({
         title: this.$translate.instant('metrics_guides_protocoles'),
@@ -53,11 +62,15 @@ import map from 'lodash/map';
     }
 
     getProtocolDocs() {
-      return map(this.METRICS_ENDPOINTS.protos, (proto) => this.getProtocolDoc(proto));
+      return map(this.METRICS_ENDPOINTS.protos, (proto) =>
+        this.getProtocolDoc(proto),
+      );
     }
 
     getPlatformDocs() {
-      return map(this.METRICS_ENDPOINTS.graphs, (graph) => this.getPlatformDoc(graph.name));
+      return map(this.METRICS_ENDPOINTS.graphs, (graph) =>
+        this.getPlatformDoc(graph.name),
+      );
     }
 
     getPlatformDoc(graph) {
@@ -66,5 +79,7 @@ import map from 'lodash/map';
       return { name: graph, url: `${doc}/#${anchor}`, external: true };
     }
   }
-  angular.module('managerApp').controller('MetricsHeaderCtrl', MetricsHeaderCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsHeaderCtrl', MetricsHeaderCtrl);
 })();

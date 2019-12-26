@@ -3,11 +3,7 @@ import map from 'lodash/map';
 import size from 'lodash/size';
 
 class UserContractsAcceptModalCtrl {
-  constructor(
-    $scope,
-    $translate,
-    DucUserContractService,
-  ) {
+  constructor($scope, $translate, DucUserContractService) {
     this.$scope = $scope;
     this.DucUserContractService = DucUserContractService;
     this.$translate = $translate;
@@ -22,7 +18,9 @@ class UserContractsAcceptModalCtrl {
       loading: false,
       load: () => {
         this.contracts.loading = true;
-        this.DucUserContractService.getAgreementsToValidate((contract) => includes(['tos', 'pp'], contract.code))
+        this.DucUserContractService.getAgreementsToValidate((contract) =>
+          includes(['tos', 'pp'], contract.code),
+        )
           .then((contracts) => {
             this.contracts.data = contracts;
           })
@@ -55,10 +53,16 @@ class UserContractsAcceptModalCtrl {
   getCheckboxLabel() {
     const codes = map(this.contracts.data, 'code');
     if (size(codes) > 1) {
-      return this.$translate.instant('user_contracts_modal_checkbox_label_both');
+      return this.$translate.instant(
+        'user_contracts_modal_checkbox_label_both',
+      );
     }
-    return this.$translate.instant(`user_contracts_modal_checkbox_label_${codes[0]}`);
+    return this.$translate.instant(
+      `user_contracts_modal_checkbox_label_${codes[0]}`,
+    );
   }
 }
 
-angular.module('App').controller('UserContractsAcceptModalCtrl', UserContractsAcceptModalCtrl);
+angular
+  .module('App')
+  .controller('UserContractsAcceptModalCtrl', UserContractsAcceptModalCtrl);

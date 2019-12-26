@@ -35,18 +35,35 @@ export default class PciProjectsNewPaymentChallengeController {
     this.isChallenging = true;
     return this.ovhPaymentMethod
       .challengePaymentMethod(this.defaultPaymentMethod, this.challenge)
-      .then(() => this.$state.go('pci.projects.new.payment', { challengeStatus: 'done' }, { reload: true }))
+      .then(() =>
+        this.$state.go(
+          'pci.projects.new.payment',
+          { challengeStatus: 'done' },
+          { reload: true },
+        ),
+      )
       .catch((error) => {
         if (error.status === 400) {
           this.CucCloudMessage.error(
-            this.$translate.instant('pci_projects_new_payment_challenge_error_retry'),
+            this.$translate.instant(
+              'pci_projects_new_payment_challenge_error_retry',
+            ),
           );
         }
         if (error.status === 404) {
-          this.$state.go('pci.projects.new.payment', { challengeStatus: 'done' }, { reload: true })
-            .then(() => this.CucCloudMessage.error(
-              this.$translate.instant('pci_projects_new_payment_challenge_error_deactivated'),
-            ));
+          this.$state
+            .go(
+              'pci.projects.new.payment',
+              { challengeStatus: 'done' },
+              { reload: true },
+            )
+            .then(() =>
+              this.CucCloudMessage.error(
+                this.$translate.instant(
+                  'pci_projects_new_payment_challenge_error_deactivated',
+                ),
+              ),
+            );
         }
       })
       .finally(() => {

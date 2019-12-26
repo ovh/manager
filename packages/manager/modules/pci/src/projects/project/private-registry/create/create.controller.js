@@ -17,20 +17,29 @@ export default class {
   create() {
     this.isLoading = true;
     this.registry.region = this.REGION;
-    return this.PciProjectNewService
-      .acceptAgreements(this.registryContracts)
-      .then(() => this.privateRegistryService.create(this.projectId, this.registry)
-        .then((res) => this.goBack(
-          this.$translate.instant('private_registry_onboarding_success', { registryName: this.registry.name }),
-          'success',
-          res.id,
-        ))
-        .catch((error) => this.goBack(
-          this.$translate.instant('private_registry_onboarding_error', {
-            message: get(error, 'data.message'),
-          }),
-          'error',
-        )));
+    return this.PciProjectNewService.acceptAgreements(
+      this.registryContracts,
+    ).then(() =>
+      this.privateRegistryService
+        .create(this.projectId, this.registry)
+        .then((res) =>
+          this.goBack(
+            this.$translate.instant('private_registry_onboarding_success', {
+              registryName: this.registry.name,
+            }),
+            'success',
+            res.id,
+          ),
+        )
+        .catch((error) =>
+          this.goBack(
+            this.$translate.instant('private_registry_onboarding_error', {
+              message: get(error, 'data.message'),
+            }),
+            'error',
+          ),
+        ),
+    );
   }
 
   getCompiledLinks(linkTemplate) {

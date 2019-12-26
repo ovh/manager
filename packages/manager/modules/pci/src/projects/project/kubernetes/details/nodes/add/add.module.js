@@ -5,7 +5,8 @@ import component from './add.component';
 
 const moduleName = 'ovhManagerPciProjectKubernetesNodesAdd';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('pciProjectKubernetesNodesAddComponent', component);

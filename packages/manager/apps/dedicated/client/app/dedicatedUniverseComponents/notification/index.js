@@ -7,9 +7,7 @@ import DucNotification from './notification.service';
 const moduleName = 'ducNotification';
 
 angular
-  .module(moduleName, [
-    'ngOvhUserPref',
-  ])
+  .module(moduleName, ['ngOvhUserPref'])
   .service('DucNotification', DucNotification);
 
 export default moduleName;

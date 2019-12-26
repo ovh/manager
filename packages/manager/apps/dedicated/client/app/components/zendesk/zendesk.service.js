@@ -39,7 +39,8 @@ class zendeskService {
   static formatName(user) {
     if (user.firstName && user.lastName) {
       return `${user.firstName} ${user.lastName}`;
-    } if (user.name) {
+    }
+    if (user.name) {
       return user.name;
     }
     return '';
@@ -60,4 +61,6 @@ class zendeskService {
   }
 }
 
-angular.module('services').service('zendesk', ['$translate', 'User', zendeskService]);
+angular
+  .module('services')
+  .service('zendesk', ['$translate', 'User', zendeskService]);

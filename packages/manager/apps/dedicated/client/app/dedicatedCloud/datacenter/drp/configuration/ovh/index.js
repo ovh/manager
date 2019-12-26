@@ -7,10 +7,7 @@ import secondPccStep from './secondPcc';
 const moduleName = 'dedicatedCloudDatacenterDrpOvh';
 
 angular
-  .module(moduleName, [
-    mainPccStep,
-    secondPccStep,
-  ])
+  .module(moduleName, [mainPccStep, secondPccStep])
   .component(component.name, component)
   .config(routing);
 

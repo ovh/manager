@@ -4,8 +4,15 @@ import { RENEW_URL } from './constants';
 
 export default class NashaCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, $translate, CucCloudMessage, OvhApiDedicatedNasha,
-    ovhDocUrl) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    OvhApiDedicatedNasha,
+    ovhDocUrl,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -43,31 +50,43 @@ export default class NashaCtrl {
 
   loadNasha() {
     this.loading = true;
-    this.$q.all({
-      nasha: this.OvhApiDedicatedNasha.Aapi()
-        .get({ serviceName: this.$stateParams.nashaId }).$promise,
-      nashaInfo: this.OvhApiDedicatedNasha.v6()
-        .getServiceInfos({ serviceName: this.$stateParams.nashaId }).$promise,
-    })
+    this.$q
+      .all({
+        nasha: this.OvhApiDedicatedNasha.Aapi().get({
+          serviceName: this.$stateParams.nashaId,
+        }).$promise,
+        nashaInfo: this.OvhApiDedicatedNasha.v6().getServiceInfos({
+          serviceName: this.$stateParams.nashaId,
+        }).$promise,
+      })
       .then((data) => {
         this.data.nasha = data.nasha;
 
         forEach(this.data.nasha.use, (part, key) => {
-          set(part, 'name', this.$translate.instant(`nasha_storage_usage_type_${key}`));
+          set(
+            part,
+            'name',
+            this.$translate.instant(`nasha_storage_usage_type_${key}`),
+          );
           return part;
         });
 
         this.monitoring.enabled = data.nasha.monitored;
         this.data.information = data.nashaInfo;
-        this.urlRenew = this.RENEW_URL
-          .replace('{serviceType}', 'DEDICATED_NASHA')
-          .replace('{serviceName}', this.data.nasha.serviceName);
+        this.urlRenew = this.RENEW_URL.replace(
+          '{serviceType}',
+          'DEDICATED_NASHA',
+        ).replace('{serviceName}', this.data.nasha.serviceName);
 
         if (this.data.information.status === 'expired') {
           this.CucCloudMessage.error(this.$translate.instant('nasha_expired'));
         }
       })
-      .catch(() => this.CucCloudMessage.error(this.$translate.instant('nasha_dashboard_loading_error')))
+      .catch(() =>
+        this.CucCloudMessage.error(
+          this.$translate.instant('nasha_dashboard_loading_error'),
+        ),
+      )
       .finally(() => {
         this.loading = false;
       });
@@ -87,19 +106,30 @@ export default class NashaCtrl {
     if (!this.monitoring.loading) {
       this.monitoring.enabled = state;
       this.monitoring.loading = true;
-      this.OvhApiDedicatedNasha.v6().updateDetail({
-        serviceName: this.data.nasha.serviceName,
-        customName: this.data.nasha.customName,
-        monitored: state,
-      }).$promise
-        .then(() => {
+      this.OvhApiDedicatedNasha.v6()
+        .updateDetail({
+          serviceName: this.data.nasha.serviceName,
+          customName: this.data.nasha.customName,
+          monitored: state,
+        })
+        .$promise.then(() => {
           this.monitoring.loading = false;
-          this.CucCloudMessage.success(this.$translate.instant(`nasha_dashboard_update_success_${state ? 'enabled' : 'disabled'}`));
+          this.CucCloudMessage.success(
+            this.$translate.instant(
+              `nasha_dashboard_update_success_${
+                state ? 'enabled' : 'disabled'
+              }`,
+            ),
+          );
         })
         .catch((error) => {
           this.monitoring.loading = false;
           this.monitoring.enabled = !state;
-          this.CucCloudMessage.error(`${this.$translate.instant('nasha_dashboard_update_error')} ${error.message}`);
+          this.CucCloudMessage.error(
+            `${this.$translate.instant('nasha_dashboard_update_error')} ${
+              error.message
+            }`,
+          );
         });
     }
   }

@@ -2,7 +2,15 @@ import angular from 'angular';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, TucSmsMediator, receiver) {
+  constructor(
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    TucSmsMediator,
+    receiver,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -30,30 +38,42 @@ export default class {
   }
 
   /**
-     * Clean receivers' list.
-     * @return {Promise}
-     */
+   * Clean receivers' list.
+   * @return {Promise}
+   */
   cleanReceivers() {
     this.loading.clean = true;
-    return this.$q.all([
-      this.api.sms.receivers.clean({
-        serviceName: this.$stateParams.serviceName,
-        slotId: this.receiver.slotId,
-      }, {
-        freemium: this.clean.choice === 'freemium',
-        priceOnly: false,
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then((results) => {
-      this.loading.clean = false;
-      this.cleaned = true;
-      this.$timeout(() => this.close({
-        taskId: results[0].taskId,
-      }), 1000);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.receivers.clean(
+          {
+            serviceName: this.$stateParams.serviceName,
+            slotId: this.receiver.slotId,
+          },
+          {
+            freemium: this.clean.choice === 'freemium',
+            priceOnly: false,
+          },
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then((results) => {
+        this.loading.clean = false;
+        this.cleaned = true;
+        this.$timeout(
+          () =>
+            this.close({
+              taskId: results[0].taskId,
+            }),
+          1000,
+        );
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

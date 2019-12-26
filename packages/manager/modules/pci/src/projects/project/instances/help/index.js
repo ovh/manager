@@ -9,13 +9,15 @@ import './backup.less';
 const moduleName = 'ovhManagerPciInstancesHelp';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('pci/projects/project/instances/help/backup.html', backupTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'pci/projects/project/instances/help/backup.html',
+        backupTemplate,
+      );
+    },
+  );
 
 export default moduleName;

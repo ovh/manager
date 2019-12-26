@@ -3,11 +3,20 @@ import map from 'lodash/map';
 import max from 'lodash/max';
 import maxBy from 'lodash/maxBy';
 
-angular.module('managerApp')
-  .controller('CloudProjectComputeInfrastructureVirtualMachineMonitoringCtrl',
-    function CloudProjectComputeInfrastructureVirtualMachineMonitoringCtrl($rootScope, $scope, $q,
-      $timeout, CloudProjectComputeInfrastructureOrchestrator, OvhApiCloudProjectInstance,
-      CLOUD_MONITORING, CLOUD_UNIT_CONVERSION) {
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeInfrastructureVirtualMachineMonitoringCtrl',
+    function CloudProjectComputeInfrastructureVirtualMachineMonitoringCtrl(
+      $rootScope,
+      $scope,
+      $q,
+      $timeout,
+      CloudProjectComputeInfrastructureOrchestrator,
+      OvhApiCloudProjectInstance,
+      CLOUD_MONITORING,
+      CLOUD_UNIT_CONVERSION,
+    ) {
       const self = this;
 
       self.vm = null;
@@ -56,12 +65,7 @@ angular.module('managerApp')
       };
 
       // list of available periods to select for monitoring chart
-      self.chartPeriodEnum = [
-        'lastday',
-        'lastweek',
-        'lastmonth',
-        'lastyear',
-      ];
+      self.chartPeriodEnum = ['lastday', 'lastweek', 'lastmonth', 'lastyear'];
 
       // currently selected period for each monitoring chart
       self.selectedChartPeriod = {
@@ -73,7 +77,10 @@ angular.module('managerApp')
 
       self.close = function close() {
         self.vm.stopMonitoring();
-        $rootScope.$broadcast('cuc-highlighted-element.hide', `compute,${self.vm.id}`);
+        $rootScope.$broadcast(
+          'cuc-highlighted-element.hide',
+          `compute,${self.vm.id}`,
+        );
       };
 
       self.openVmFlavorEditionState = function openVmFlavorEditionState() {
@@ -90,10 +97,7 @@ angular.module('managerApp')
 
       function scaleData(rawData) {
         const maxValue = max(
-          map(
-            rawData.values,
-            (timeSerie) => timeSerie.value,
-          ),
+          map(rawData.values, (timeSerie) => timeSerie.value),
         );
         let divisionScale;
         let unit;
@@ -174,12 +178,19 @@ angular.module('managerApp')
             xmax: new Date().getTime(),
             unit,
             margin: {
-              top: 10, left: 55, bottom: 30, right: 10,
+              top: 10,
+              left: 55,
+              bottom: 30,
+              right: 10,
             },
             timeScale: getPeriodTimeScale(period),
           };
-          if (type === 'mem:used' && self.vm.monitoringData && self.vm.monitoringData.mem
-                    && self.vm.monitoringData.mem.total) {
+          if (
+            type === 'mem:used' &&
+            self.vm.monitoringData &&
+            self.vm.monitoringData.mem &&
+            self.vm.monitoringData.mem.total
+          ) {
             chartData.ymax = self.vm.monitoringData.mem.total.value;
           }
           self.chartData[type] = chartData;
@@ -194,71 +205,85 @@ angular.module('managerApp')
       }
 
       function updateMaxCPUPercentageForPeriod(data) {
-        self.dataPeriod.cpu.max = maxBy(
-          data.values,
-          (v) => (angular.isNumber(v.value)
-            ? v.value
-            : Number.NEGATIVE_INFINITY),
+        self.dataPeriod.cpu.max = maxBy(data.values, (v) =>
+          angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY,
         ).value;
-        self.dataPeriod.cpu.needUpgrade = self.dataPeriod.cpu.max
-          >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
-        self.accordions.cpu = self.accordions.cpu || self.dataPeriod.cpu.needUpgrade;
+        self.dataPeriod.cpu.needUpgrade =
+          self.dataPeriod.cpu.max >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
+        self.accordions.cpu =
+          self.accordions.cpu || self.dataPeriod.cpu.needUpgrade;
       }
 
       function updateMaxRAMPercentageForPeriod(data) {
         const total = last(self.vm.monitoringData.raw['mem:max'].values).value;
-        const maxUsed = maxBy(
-          data.values,
-          (v) => (angular.isNumber(v.value)
-            ? v.value
-            : Number.NEGATIVE_INFINITY),
+        const maxUsed = maxBy(data.values, (v) =>
+          angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY,
         ).value;
         self.dataPeriod.mem.max = (maxUsed / total) * 100;
-        self.dataPeriod.mem.needUpgrade = self.dataPeriod.mem.max
-          >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
-        self.accordions.mem = self.accordions.mem || self.dataPeriod.mem.needUpgrade;
+        self.dataPeriod.mem.needUpgrade =
+          self.dataPeriod.mem.max >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
+        self.accordions.mem =
+          self.accordions.mem || self.dataPeriod.mem.needUpgrade;
       }
 
       function updateMaxNETUpPercentageForPeriod(data) {
-        const total = self.vm.flavor.inboundBandwidth * CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
-        const maxUsed = maxBy(
-          data.values,
-          (v) => (angular.isNumber(v.value)
-            ? v.value
-            : Number.NEGATIVE_INFINITY),
+        const total =
+          self.vm.flavor.inboundBandwidth *
+          CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
+        const maxUsed = maxBy(data.values, (v) =>
+          angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY,
         ).value;
         self.dataPeriod.net.up.max = (maxUsed / total) * 100;
-        self.dataPeriod.net.up.needUpgrade = self.dataPeriod.net.up.max
-          >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
-        self.accordions.net = self.accordions.net || self.dataPeriod.net.up.needUpgrade;
+        self.dataPeriod.net.up.needUpgrade =
+          self.dataPeriod.net.up.max >=
+          CLOUD_MONITORING.vm.upgradeAlertThreshold;
+        self.accordions.net =
+          self.accordions.net || self.dataPeriod.net.up.needUpgrade;
       }
 
       function updateMaxNETDownPercentageForPeriod(data) {
-        const total = self.vm.flavor.outboundBandwidth * CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
-        const maxUsed = maxBy(
-          data.values,
-          (v) => (angular.isNumber(v.value)
-            ? v.value
-            : Number.NEGATIVE_INFINITY),
+        const total =
+          self.vm.flavor.outboundBandwidth *
+          CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
+        const maxUsed = maxBy(data.values, (v) =>
+          angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY,
         ).value;
         self.dataPeriod.net.down.max = (maxUsed / total) * 100;
-        self.dataPeriod.net.down.needUpgrade = self.dataPeriod.net.down.max
-          >= CLOUD_MONITORING.vm.upgradeAlertThreshold;
-        self.accordions.net = self.accordions.net || self.dataPeriod.net.down.needUpgrade;
+        self.dataPeriod.net.down.needUpgrade =
+          self.dataPeriod.net.down.max >=
+          CLOUD_MONITORING.vm.upgradeAlertThreshold;
+        self.accordions.net =
+          self.accordions.net || self.dataPeriod.net.down.needUpgrade;
       }
 
       function updateChartsWithMonitoringData(data) {
         if (data['cpu:used']) {
-          updateChart('cpu:used', self.selectedChartPeriod['cpu:used'], data['cpu:used']);
+          updateChart(
+            'cpu:used',
+            self.selectedChartPeriod['cpu:used'],
+            data['cpu:used'],
+          );
         }
         if (data['mem:used']) {
-          updateChart('mem:used', self.selectedChartPeriod['mem:used'], data['mem:used']);
+          updateChart(
+            'mem:used',
+            self.selectedChartPeriod['mem:used'],
+            data['mem:used'],
+          );
         }
         if (data['net:tx']) {
-          updateChart('net:tx', self.selectedChartPeriod['net:tx'], data['net:tx']);
+          updateChart(
+            'net:tx',
+            self.selectedChartPeriod['net:tx'],
+            data['net:tx'],
+          );
         }
         if (data['net:rx']) {
-          updateChart('net:rx', self.selectedChartPeriod['net:rx'], data['net:rx']);
+          updateChart(
+            'net:rx',
+            self.selectedChartPeriod['net:rx'],
+            data['net:rx'],
+          );
         }
       }
 
@@ -289,24 +314,33 @@ angular.module('managerApp')
         const period = self.selectedChartPeriod[type];
         self.loaders.monitoring[type] = true;
         OvhApiCloudProjectInstance.v6().resetAllCache();
-        OvhApiCloudProjectInstance.v6().monitoring({
-          serviceName: self.vm.serviceName,
-          instanceId: self.vm.id,
-          period,
-          type,
-        }).$promise.then((data) => {
-          updateChart(type, period, data);
-          updateMaxTypePercentageForPeriod(type, data);
-        }, () => {
-          self.chartData[type] = null;
-        }).finally(() => {
-          self.loaders.monitoring[type] = false;
-        });
+        OvhApiCloudProjectInstance.v6()
+          .monitoring({
+            serviceName: self.vm.serviceName,
+            instanceId: self.vm.id,
+            period,
+            type,
+          })
+          .$promise.then(
+            (data) => {
+              updateChart(type, period, data);
+              updateMaxTypePercentageForPeriod(type, data);
+            },
+            () => {
+              self.chartData[type] = null;
+            },
+          )
+          .finally(() => {
+            self.loaders.monitoring[type] = false;
+          });
       };
 
       function init() {
         self.vm = CloudProjectComputeInfrastructureOrchestrator.getMonitoredVm();
-        $rootScope.$broadcast('cuc-highlighted-element.show', `compute,${self.vm.id}`);
+        $rootScope.$broadcast(
+          'cuc-highlighted-element.show',
+          `compute,${self.vm.id}`,
+        );
 
         $(document).on('keyup', closeOnEscapeKey);
         $scope.$on('$destroy', () => {
@@ -325,29 +359,42 @@ angular.module('managerApp')
           });
         }
 
-        $scope.$watch('VmMonitoringCtrl.accordions.cpu', (oldValue) => {
-          if (oldValue) {
-            self.accordions.mem = false;
-            self.accordions.net = false;
-          }
-        }, true);
+        $scope.$watch(
+          'VmMonitoringCtrl.accordions.cpu',
+          (oldValue) => {
+            if (oldValue) {
+              self.accordions.mem = false;
+              self.accordions.net = false;
+            }
+          },
+          true,
+        );
 
-        $scope.$watch('VmMonitoringCtrl.accordions.mem', (oldValue) => {
-          if (oldValue) {
-            self.accordions.cpu = false;
-            self.accordions.net = false;
-          }
-        }, true);
+        $scope.$watch(
+          'VmMonitoringCtrl.accordions.mem',
+          (oldValue) => {
+            if (oldValue) {
+              self.accordions.cpu = false;
+              self.accordions.net = false;
+            }
+          },
+          true,
+        );
 
-        $scope.$watch('VmMonitoringCtrl.accordions.net', (oldValue) => {
-          if (oldValue) {
-            self.accordions.mem = false;
-            self.accordions.cpu = false;
-          }
-        }, true);
+        $scope.$watch(
+          'VmMonitoringCtrl.accordions.net',
+          (oldValue) => {
+            if (oldValue) {
+              self.accordions.mem = false;
+              self.accordions.cpu = false;
+            }
+          },
+          true,
+        );
       }
 
       $timeout(() => {
         init();
       });
-    });
+    },
+  );

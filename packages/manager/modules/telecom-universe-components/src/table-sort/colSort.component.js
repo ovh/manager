@@ -10,15 +10,18 @@ export default {
     'ngInject';
 
     this.getSort = function getSort() {
-      $scope.$parent.sort = $scope.$parent.sort ? $scope.$parent.sort : {
-        fieldName: null,
-        descending: null,
-      };
+      $scope.$parent.sort = $scope.$parent.sort
+        ? $scope.$parent.sort
+        : {
+            fieldName: null,
+            descending: null,
+          };
       return $scope.$parent.sort;
     };
     this.sortElement = function sortElement() {
       const sort = this.getSort();
-      sort.descending = sort.fieldName !== this.fieldName ? false : !sort.descending;
+      sort.descending =
+        sort.fieldName !== this.fieldName ? false : !sort.descending;
       sort.fieldName = this.fieldName;
       if ($scope.$parent.tucTableSort) {
         $scope.$parent.tucTableSort({ SORT: sort });

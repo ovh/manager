@@ -38,7 +38,10 @@ angular
   .controller('VeeamEnterpriseDashboardCtrl', VeeamEnterpriseDashboardCtrl)
   .controller('VeeamEnterpriseCtrl', VeeamEnterpriseCtrl)
   .component('veeamEnterpriseLicense', VeeamEnterpriseLicenseComponent)
-  .component('veeamEnterpriseLicenseTerminate', VeeamEnterpriseLicenseTerminateComponent)
+  .component(
+    'veeamEnterpriseLicenseTerminate',
+    VeeamEnterpriseLicenseTerminateComponent,
+  )
   .service('VeeamEnterpriseService', VeeamEnterpriseService)
   .run(/* @ngTranslationsInject:json ./translations */);
 

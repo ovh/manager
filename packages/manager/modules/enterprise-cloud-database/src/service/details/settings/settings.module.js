@@ -23,7 +23,10 @@ angular
     maintenanceWindow,
   ])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsSettingsComponent', enterpriseCloudDatabaseServiceDetailsSettingsComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsSettingsComponent',
+    enterpriseCloudDatabaseServiceDetailsSettingsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

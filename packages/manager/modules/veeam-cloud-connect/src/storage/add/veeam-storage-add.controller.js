@@ -9,15 +9,19 @@ export default class VeeamCloudConnectStorageAddCtrl {
 
   $onInit() {
     this.actions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getActions(this.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getActions(this.serviceName),
     });
-    this.actions.load().then(() => {
-      if (this.actions.data.addStorage.available) {
-        this.isAvailable = true;
-      }
-    }).finally(() => {
-      this.isLoading = false;
-    });
+    this.actions
+      .load()
+      .then(() => {
+        if (this.actions.data.addStorage.available) {
+          this.isAvailable = true;
+        }
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   onCancel() {

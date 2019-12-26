@@ -32,31 +32,37 @@ export default class BillingOrdersCtrl {
     this.goToOrder = goToOrder;
     this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
-    this.billingGuideUrl = get(constants.urls[currentUser.ovhSubsidiary], 'guides.billing');
+    this.billingGuideUrl = get(
+      constants.urls[currentUser.ovhSubsidiary],
+      'guides.billing',
+    );
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
   }
 
   loadRow($row) {
     return this.OvhApiMeOrder.v6()
       .getStatus({ orderId: $row.orderId })
-      .$promise
-      .then((status) => assign($row, status))
-      .then(() => assign(
-        $row,
-        {
+      .$promise.then((status) => assign($row, status))
+      .then(() =>
+        assign($row, {
           canRetract: moment($row.retractionDate || 0).isAfter(this.timeNow),
-        },
-      ));
+        }),
+      );
   }
 
   getStateEnumFilter() {
-    const states = get(this.schema.models, 'billing.order.OrderStatusEnum').enum;
+    const states = get(this.schema.models, 'billing.order.OrderStatusEnum')
+      .enum;
     const filter = {
       values: {},
     };
 
     states.forEach((state) => {
-      set(filter.values, state, this.$translate.instant(`orders_order_status_${state}`));
+      set(
+        filter.values,
+        state,
+        this.$translate.instant(`orders_order_status_${state}`),
+      );
     });
 
     return filter;
@@ -65,7 +71,9 @@ export default class BillingOrdersCtrl {
   onCriteriaChange(criteria) {
     this.criteria = criteria;
     try {
-      this.filter = encodeURIComponent(JSON.stringify(criteria.map((c) => omit(c, 'title'))));
+      this.filter = encodeURIComponent(
+        JSON.stringify(criteria.map((c) => omit(c, 'title'))),
+      );
       this.updateFilterParam(this.filter);
     } catch (err) {
       this.$log.error(err);

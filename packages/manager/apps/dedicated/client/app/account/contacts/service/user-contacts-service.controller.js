@@ -9,10 +9,15 @@ export default class {
     return {
       values: this.AccountContactsService.constructor
         .getAvailableCategories(this.services)
-        .reduce((categories, category) => ({
-          ...categories,
-          [category]: this.$translate.instant(`account_contacts_service_category_${category}`),
-        }), {}),
+        .reduce(
+          (categories, category) => ({
+            ...categories,
+            [category]: this.$translate.instant(
+              `account_contacts_service_category_${category}`,
+            ),
+          }),
+          {},
+        ),
       hideOperators: true,
     };
   }

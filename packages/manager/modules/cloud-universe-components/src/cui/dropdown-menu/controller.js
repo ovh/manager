@@ -3,8 +3,8 @@ import angular from 'angular';
 let lastDropdownMenuController;
 
 /*
-    * Temporary implementation of dropdown-menu.
-    */
+ * Temporary implementation of dropdown-menu.
+ */
 export default class CuiDropdownMenuController {
   /* @ngInject */
   constructor($element, $scope, $rootScope, $window) {
@@ -42,7 +42,6 @@ export default class CuiDropdownMenuController {
       if (lastDropdownMenuController) {
         lastDropdownMenuController.toggle($event);
       }
-      // eslint-disable-next-line
       lastDropdownMenuController = this;
       this.unregisterListeners = this.$scope.$on('ouiDropdownMenu.hide', () => {
         this.$scope.$apply(() => {

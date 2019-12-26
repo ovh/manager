@@ -12,77 +12,89 @@ import IplbHeaderTemplate from '../header/iplb-dashboard-header.html';
 const moduleName = 'ovhManagerIplbFrontends';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.frontends', {
-        url: '/frontends',
-        redirectTo: 'network.iplb.detail.frontends.home',
-        views: {
-          iplbHeader: {
-            template: IplbHeaderTemplate,
-            controller: 'IpLoadBalancerDashboardHeaderCtrl',
-            controllerAs: 'ctrl',
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider
+        .state('network.iplb.detail.frontends', {
+          url: '/frontends',
+          redirectTo: 'network.iplb.detail.frontends.home',
+          views: {
+            iplbHeader: {
+              template: IplbHeaderTemplate,
+              controller: 'IpLoadBalancerDashboardHeaderCtrl',
+              controllerAs: 'ctrl',
+            },
+            iplbContent: {
+              template: '<div data-ui-view="iplbFrontend"><div>',
+            },
           },
-          iplbContent: {
-            template: '<div data-ui-view="iplbFrontend"><div>',
+          translations: {
+            value: ['.'],
+            format: 'json',
           },
-        },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.frontends.home', {
-        url: '/',
-        views: {
-          iplbFrontend: {
-            template: IplbFrontendsTemplate,
-            controller: 'IpLoadBalancerFrontendsCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.frontends.home', {
+          url: '/',
+          views: {
+            iplbFrontend: {
+              template: IplbFrontendsTemplate,
+              controller: 'IpLoadBalancerFrontendsCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.frontends.add', {
-        url: '/add',
-        views: {
-          iplbFrontend: {
-            template: IplbFrontendsEditTemplate,
-            controller: 'IpLoadBalancerFrontendsEditCtrl',
-            controllerAs: 'ctrl',
+          translations: {
+            value: ['.'],
+            format: 'json',
           },
-        },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.frontends.update', {
-        url: '/:frontendId',
-        views: {
-          iplbFrontend: {
-            template: IplbFrontendsEditTemplate,
-            controller: 'IpLoadBalancerFrontendsEditCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.frontends.add', {
+          url: '/add',
+          views: {
+            iplbFrontend: {
+              template: IplbFrontendsEditTemplate,
+              controller: 'IpLoadBalancerFrontendsEditCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
-      });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+          translations: {
+            value: ['.'],
+            format: 'json',
+          },
+        })
+        .state('network.iplb.detail.frontends.update', {
+          url: '/:frontendId',
+          views: {
+            iplbFrontend: {
+              template: IplbFrontendsEditTemplate,
+              controller: 'IpLoadBalancerFrontendsEditCtrl',
+              controllerAs: 'ctrl',
+            },
+          },
+          translations: {
+            value: ['.'],
+            format: 'json',
+          },
+        });
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .controller('IpLoadBalancerFrontendsCtrl', IpLoadBalancerFrontendsCtrl)
-  .controller('IpLoadBalancerFrontendsEditCtrl', IpLoadBalancerFrontendsEditCtrl)
-  .controller('IpLoadBalancerFrontendPreviewCtrl', IpLoadBalancerFrontendPreviewCtrl)
-  .controller('IpLoadBalancerFrontendDeleteCtrl', IpLoadBalancerFrontendDeleteCtrl)
+  .controller(
+    'IpLoadBalancerFrontendsEditCtrl',
+    IpLoadBalancerFrontendsEditCtrl,
+  )
+  .controller(
+    'IpLoadBalancerFrontendPreviewCtrl',
+    IpLoadBalancerFrontendPreviewCtrl,
+  )
+  .controller(
+    'IpLoadBalancerFrontendDeleteCtrl',
+    IpLoadBalancerFrontendDeleteCtrl,
+  )
   .service('IpLoadBalancerFrontendsService', IpLoadBalancerFrontendsService)
   .run(/* @ngTranslationsInject:json ./translations */);
 

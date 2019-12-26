@@ -25,21 +25,36 @@ export default class {
    */
   getEaster() {
     const constant = Math.floor(this.year / 100);
-    const next = this.year - (19 * Math.floor(this.year / 19));
+    const next = this.year - 19 * Math.floor(this.year / 19);
     const key = Math.floor((constant - 17) / 25);
-    let int = constant - Math.floor(constant / 4)
-      - Math.floor((constant - key) / 3) + (19 * next) + 15;
-    int -= (30 * Math.floor(int / 30));
-    int -= (Math.floor(int / 28) * (1 - (Math.floor(int / 28) * Math.floor(29 / (int + 1))
-      * Math.floor((21 - next) / 11))));
-    let valJ = this.year + Math.floor(this.year / 4) + int + 2 - constant
-      + Math.floor(constant / 4);
-    valJ -= (7 * Math.floor(valJ / 7));
+    let int =
+      constant -
+      Math.floor(constant / 4) -
+      Math.floor((constant - key) / 3) +
+      19 * next +
+      15;
+    int -= 30 * Math.floor(int / 30);
+    int -=
+      Math.floor(int / 28) *
+      (1 -
+        Math.floor(int / 28) *
+          Math.floor(29 / (int + 1)) *
+          Math.floor((21 - next) / 11));
+    let valJ =
+      this.year +
+      Math.floor(this.year / 4) +
+      int +
+      2 -
+      constant +
+      Math.floor(constant / 4);
+    valJ -= 7 * Math.floor(valJ / 7);
     const level = int - valJ;
     const month = 3 + Math.floor((level + 40) / 44);
-    const day = level + 28 - (31 * Math.floor(month / 4));
+    const day = level + 28 - 31 * Math.floor(month / 4);
 
-    return [this.year, padStart(month, 2, '0'), padStart(day, 2, '0')].join('-');
+    return [this.year, padStart(month, 2, '0'), padStart(day, 2, '0')].join(
+      '-',
+    );
   }
 
   /**
@@ -67,15 +82,24 @@ export default class {
         return moment(this.easterDay).subtract(2, 'day');
       case 'may_day':
         // The May Day bank holiday falls on the first Monday in May
-        return moment().year(this.year).month(4).startOf('month')
+        return moment()
+          .year(this.year)
+          .month(4)
+          .startOf('month')
           .startOf('isoWeek');
       case 'spring_bank_holiday':
         // last monday in May
-        return moment().year(this.year).month(4).endOf('month')
+        return moment()
+          .year(this.year)
+          .month(4)
+          .endOf('month')
           .startOf('isoWeek');
       case 'summer_bank_holiday':
         // last monday in August
-        return moment().year(this.year).month(7).endOf('month')
+        return moment()
+          .year(this.year)
+          .month(7)
+          .endOf('month')
           .startOf('isoWeek');
       default:
         return null;
@@ -100,7 +124,8 @@ export default class {
     this.bankDayName = bankDay.name;
 
     this.easterDay = this.getEaster();
-    const bankHolidayDate = bankDay.date ? moment([this.year, bankDay.date].join('-'))
+    const bankHolidayDate = bankDay.date
+      ? moment([this.year, bankDay.date].join('-'))
       : this.getSpecialBankHoliday();
     return bankHolidayDate;
   }
@@ -127,12 +152,20 @@ export default class {
 
     angular.forEach(countryBankHolidays, (bankDay) => {
       const bankHolidayDate = this.getHolidayDate(bankDay, year);
-      if (moment().subtract(1, 'day').isBefore(bankHolidayDate)) {
-        const isBankHolidayInEventRange = modalData.scheduler.isEventInExistingRange({
-          categories: 'holidays',
-          dateStart: bankHolidayDate.toDate(),
-          dateEnd: moment(bankHolidayDate).endOf('day').toDate(),
-        });
+      if (
+        moment()
+          .subtract(1, 'day')
+          .isBefore(bankHolidayDate)
+      ) {
+        const isBankHolidayInEventRange = modalData.scheduler.isEventInExistingRange(
+          {
+            categories: 'holidays',
+            dateStart: bankHolidayDate.toDate(),
+            dateEnd: moment(bankHolidayDate)
+              .endOf('day')
+              .toDate(),
+          },
+        );
         holidaysList.push({
           name: bankDay.name,
           date: bankHolidayDate,
@@ -165,7 +198,10 @@ export default class {
     angular.forEach(countryBankHolidays, (bankDay) => {
       const bankHolidayDate = this.getHolidayDate(bankDay, year);
 
-      if (bankHolidayDate.format('YYYY-MM-DD') === moment(dateToCheck).format('YYYY-MM-DD')) {
+      if (
+        bankHolidayDate.format('YYYY-MM-DD') ===
+        moment(dateToCheck).format('YYYY-MM-DD')
+      ) {
         isBankHoliday = true;
       }
     });

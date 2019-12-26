@@ -14,7 +14,8 @@ export default () => ({
   },
   template,
   link(scope, element, attrs, controller) {
-    if (attrs.hasOwnProperty('ngAcceptFilter')) { // eslint-disable-line
+    // eslint-disable-next-line no-prototype-builtins
+    if (attrs.hasOwnProperty('ngAcceptFilter')) {
       set(controller, 'hasNgAcceptFilter', true);
     }
   },
@@ -41,7 +42,10 @@ export default () => ({
     fileInput.bind('change', () => {
       $timeout(() => {
         const file = fileInput[0].files[0];
-        if (!self.hasNgAcceptFilter || (file && $scope.ngAcceptFilter({ file }))) {
+        if (
+          !self.hasNgAcceptFilter ||
+          (file && $scope.ngAcceptFilter({ file }))
+        ) {
           $scope.selected = true;
           $timeout(() => {
             $scope.ngModel = file;

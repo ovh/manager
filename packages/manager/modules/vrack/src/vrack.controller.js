@@ -28,9 +28,20 @@ import moveDialogTpl from './move-dialog/vrack-move-dialog.html';
 import constant from './vrack.constant';
 import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
 
-export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
-  $rootScope, $state, $timeout, $translate, $uibModal, CucCloudMessage,
-  OvhApiVrack, OvhApiMe, CucVrackService) {
+export default /* @ngInject */ function VrackCtrl(
+  $scope,
+  $q,
+  $stateParams,
+  $rootScope,
+  $state,
+  $timeout,
+  $translate,
+  $uibModal,
+  CucCloudMessage,
+  OvhApiVrack,
+  OvhApiMe,
+  CucVrackService,
+) {
   const self = this;
   const pollingInterval = 5000;
 
@@ -94,7 +105,9 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
 
   self.loadMessage = function loadMessage() {
     CucCloudMessage.unSubscribe('vrack');
-    self.messageHandler = CucCloudMessage.subscribe('vrack', { onMessage: () => self.refreshMessage() });
+    self.messageHandler = CucCloudMessage.subscribe('vrack', {
+      onMessage: () => self.refreshMessage(),
+    });
   };
 
   self.groupedServiceKeys = {
@@ -103,7 +116,9 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   };
 
   self.getDisplayName = function getDisplayName(serviceType) {
-    return $translate.instant(`vrack_service_type_${serviceType.toLowerCase()}`);
+    return $translate.instant(
+      `vrack_service_type_${serviceType.toLowerCase()}`,
+    );
   };
 
   function getDedicatedServerNiceName(service) {
@@ -122,7 +137,9 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   }
 
   function getDedicatedServerInterfaceNiceName(service) {
-    const formattedService = getDedicatedServerNiceName(service.dedicatedServer);
+    const formattedService = getDedicatedServerNiceName(
+      service.dedicatedServer,
+    );
     formattedService.id = service.dedicatedServerInterface;
     formattedService.niceName = `${formattedService.niceName} - ${service.name}`;
     formattedService.trueServiceType = 'dedicatedServerInterface';
@@ -221,26 +238,35 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   }
 
   self.getAllowedServices = function getAllowedServices() {
-    return OvhApiVrack.Aapi().allowedServices({ serviceName: self.serviceName }).$promise
-      .then((allServicesParam) => {
+    return OvhApiVrack.Aapi()
+      .allowedServices({ serviceName: self.serviceName })
+      .$promise.then((allServicesParam) => {
         let allServices = allServicesParam;
         allServices = mapValues(allServices, (services, serviceType) => {
           if (isArray(services)) {
-            return map(services, (service) => fillServiceData(serviceType, service));
+            return map(services, (service) =>
+              fillServiceData(serviceType, service),
+            );
           }
           return services;
         });
 
         // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (has(allServices, 'dedicatedServerInterface') && allServices.dedicatedServerInterface.length > 0) {
+        if (
+          has(allServices, 'dedicatedServerInterface') &&
+          allServices.dedicatedServerInterface.length > 0
+        ) {
           // If dedicatedServers list doesn't exist, we create it first.
           if (!has(allServices, 'dedicatedServer')) {
             allServices.dedicatedServer = [];
           }
 
-          angular.forEach(allServices.dedicatedServerInterface, (serverInterface) => {
-            allServices.dedicatedServer.push(serverInterface);
-          });
+          angular.forEach(
+            allServices.dedicatedServerInterface,
+            (serverInterface) => {
+              allServices.dedicatedServer.push(serverInterface);
+            },
+          );
 
           allServices.dedicatedServerInterface = [];
         }
@@ -250,13 +276,16 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   };
 
   self.getVrackServices = function getVrackServices() {
-    return OvhApiVrack.Aapi().services({ serviceName: self.serviceName }).$promise
-      .then((allServicesParam) => {
+    return OvhApiVrack.Aapi()
+      .services({ serviceName: self.serviceName })
+      .$promise.then((allServicesParam) => {
         let allServices = allServicesParam;
         allServices = mapValues(allServices, (servicesParams, serviceType) => {
           let services = servicesParams;
           if (isArray(services)) {
-            services = map(services, (service) => fillServiceData(serviceType, service));
+            services = map(services, (service) =>
+              fillServiceData(serviceType, service),
+            );
           }
           return services;
         });
@@ -269,15 +298,21 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
         }
 
         // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (has(allServices, 'dedicatedServerInterface') && allServices.dedicatedServerInterface.length > 0) {
+        if (
+          has(allServices, 'dedicatedServerInterface') &&
+          allServices.dedicatedServerInterface.length > 0
+        ) {
           // If dedicatedServers list doesn't exist, we create it first.
           if (!has(allServices, 'dedicatedServer')) {
             allServices.dedicatedServer = [];
           }
 
-          angular.forEach(allServices.dedicatedServerInterface, (serverInterface) => {
-            allServices.dedicatedServer.push(serverInterface);
-          });
+          angular.forEach(
+            allServices.dedicatedServerInterface,
+            (serverInterface) => {
+              allServices.dedicatedServer.push(serverInterface);
+            },
+          );
 
           allServices.dedicatedServerInterface = [];
         }
@@ -290,31 +325,57 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
     return OvhApiVrack.v6()
       .tasks({
         serviceName: self.serviceName,
-      }).$promise
-      .then((taskIds) => $q.all(map(taskIds, (id) => OvhApiVrack.v6()
-        .task({
-          serviceName: self.serviceName,
-          taskId: id,
-        }).$promise
-        .then((task) => task)
-        .catch((err) => (err.status === 404 ? $q.when(null) : $q.reject(err)))))
-        .then((tasks) => without(tasks, null)));
+      })
+      .$promise.then((taskIds) =>
+        $q
+          .all(
+            map(taskIds, (id) =>
+              OvhApiVrack.v6()
+                .task({
+                  serviceName: self.serviceName,
+                  taskId: id,
+                })
+                .$promise.then((task) => task)
+                .catch((err) =>
+                  err.status === 404 ? $q.when(null) : $q.reject(err),
+                ),
+            ),
+          )
+          .then((tasks) => without(tasks, null)),
+      );
   };
 
   self.resetCache = function resetCache() {
     OvhApiVrack.v6().resetCache();
-    OvhApiVrack.CloudProject().v6().resetQueryCache();
-    OvhApiVrack.IpLoadBalancing().v6().resetQueryCache();
-    OvhApiVrack.DedicatedCloud().v6().resetQueryCache();
-    OvhApiVrack.DedicatedServer().v6().resetQueryCache();
-    OvhApiVrack.DedicatedServerInterface().v6().resetQueryCache();
-    OvhApiVrack.Ip().v6().resetQueryCache();
-    OvhApiVrack.LegacyVrack().v6().resetQueryCache();
+    OvhApiVrack.CloudProject()
+      .v6()
+      .resetQueryCache();
+    OvhApiVrack.IpLoadBalancing()
+      .v6()
+      .resetQueryCache();
+    OvhApiVrack.DedicatedCloud()
+      .v6()
+      .resetQueryCache();
+    OvhApiVrack.DedicatedServer()
+      .v6()
+      .resetQueryCache();
+    OvhApiVrack.DedicatedServerInterface()
+      .v6()
+      .resetQueryCache();
+    OvhApiVrack.Ip()
+      .v6()
+      .resetQueryCache();
+    OvhApiVrack.LegacyVrack()
+      .v6()
+      .resetQueryCache();
     OvhApiVrack.Aapi().resetAllCache();
   };
 
-  self.moveDisplayedService = function moveDisplayedService(serviceId,
-    allServicesSource, allServicesDestination) {
+  self.moveDisplayedService = function moveDisplayedService(
+    serviceId,
+    allServicesSource,
+    allServicesDestination,
+  ) {
     let serviceToMove = null;
     let typeToMove = null;
     let isGroupedServicesType = false;
@@ -334,9 +395,14 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
 
       if (!isEmpty(serviceToMove)) {
         if (isGroupedServicesType) {
-          allServicesSource[typeToMove] = groupBy(servicesToSearch, self.groupedServiceKeys[typeToMove]); // eslint-disable-line
+          // eslint-disable-next-line no-param-reassign
+          allServicesSource[typeToMove] = groupBy(
+            servicesToSearch,
+            self.groupedServiceKeys[typeToMove],
+          );
         } else {
-          allServicesSource[typeToMove] = servicesToSearch; // eslint-disable-line
+          // eslint-disable-next-line no-param-reassign
+          allServicesSource[typeToMove] = servicesToSearch;
         }
 
         return false;
@@ -348,7 +414,11 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
       if (isGroupedServicesType) {
         const services = flatten(values(allServicesDestination[typeToMove]));
         services.push(serviceToMove[0]);
-        allServicesDestination[typeToMove] = groupBy(services, self.groupedServiceKeys[typeToMove]); // eslint-disable-line
+        // eslint-disable-next-line no-param-reassign
+        allServicesDestination[typeToMove] = groupBy(
+          services,
+          self.groupedServiceKeys[typeToMove],
+        );
       } else {
         allServicesDestination[typeToMove].push(serviceToMove[0]);
       }
@@ -357,69 +427,95 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
 
   self.refreshData = function refreshData() {
     let poll = true;
-    return self.getPendingTasks().then((tasks) => {
-      /**
-           * First, we check if there is any new pending tasks ...
-           */
-      const currentTasks = map(tasks, 'id');
-      const previousTasks = map(self.data.pendingTasks, 'id');
-      if (difference(currentTasks, previousTasks).length
-        || difference(previousTasks, currentTasks).length) {
-        self.resetCache(); // a task changed, vrack state might have changed too
-      } else if (tasks.length === 0) {
-        poll = false; // no new tasks & no tasks, no need to poll
-      }
-      /**
-           * Secondly, we fetch vrack data ...
-           */
-      return $q.all({
-        allowedServices: self.getAllowedServices(),
-        vrackServices: self.getVrackServices(),
-      }).then((result) => {
-        self.data.pendingTasks = tasks;
-        self.data.allowedServices = result.allowedServices;
-        self.data.vrackServices = result.vrackServices;
-
+    return self
+      .getPendingTasks()
+      .then((tasks) => {
         /**
-               * Finally, check if some tasks are adding or removing services in vrack
-               * and move the service in his "future" column
-               */
-        angular.forEach(self.data.pendingTasks, (task) => {
-          if (task && task.targetDomain) {
-            const id = task.targetDomain;
-            const fn = task.function;
-            if (startsWith(fn, 'add')) {
-              self.moveDisplayedService(id, self.data.allowedServices, self.data.vrackServices);
-            } else if (startsWith(fn, 'remove')) {
-              self.moveDisplayedService(id, self.data.vrackServices, self.data.allowedServices);
-            }
-            self.form.servicesToAdd = reject(self.form.servicesToAdd, { id });
-            self.form.servicesToDelete = reject(self.form.servicesToDelete, { id });
-          }
-        });
+         * First, we check if there is any new pending tasks ...
+         */
+        const currentTasks = map(tasks, 'id');
+        const previousTasks = map(self.data.pendingTasks, 'id');
+        if (
+          difference(currentTasks, previousTasks).length ||
+          difference(previousTasks, currentTasks).length
+        ) {
+          self.resetCache(); // a task changed, vrack state might have changed too
+        } else if (tasks.length === 0) {
+          poll = false; // no new tasks & no tasks, no need to poll
+        }
+        /**
+         * Secondly, we fetch vrack data ...
+         */
+        return $q
+          .all({
+            allowedServices: self.getAllowedServices(),
+            vrackServices: self.getVrackServices(),
+          })
+          .then((result) => {
+            self.data.pendingTasks = tasks;
+            self.data.allowedServices = result.allowedServices;
+            self.data.vrackServices = result.vrackServices;
+
+            /**
+             * Finally, check if some tasks are adding or removing services in vrack
+             * and move the service in his "future" column
+             */
+            angular.forEach(self.data.pendingTasks, (task) => {
+              if (task && task.targetDomain) {
+                const id = task.targetDomain;
+                const fn = task.function;
+                if (startsWith(fn, 'add')) {
+                  self.moveDisplayedService(
+                    id,
+                    self.data.allowedServices,
+                    self.data.vrackServices,
+                  );
+                } else if (startsWith(fn, 'remove')) {
+                  self.moveDisplayedService(
+                    id,
+                    self.data.vrackServices,
+                    self.data.allowedServices,
+                  );
+                }
+                self.form.servicesToAdd = reject(self.form.servicesToAdd, {
+                  id,
+                });
+                self.form.servicesToDelete = reject(
+                  self.form.servicesToDelete,
+                  { id },
+                );
+              }
+            });
+          });
+      })
+      .finally(() => {
+        // if there are some pending tasks, poll
+        if (poll && !self.poller) {
+          self.poller = $timeout(() => {
+            self.poller = null;
+            self.refreshData();
+          }, pollingInterval);
+        }
+        self.loaders.init = false;
       });
-    }).finally(() => {
-      // if there are some pending tasks, poll
-      if (poll && !self.poller) {
-        self.poller = $timeout(() => {
-          self.poller = null;
-          self.refreshData();
-        }, pollingInterval);
-      }
-      self.loaders.init = false;
-    });
   };
 
   self.isSelected = function isSelected(serviceType, serviceId) {
-    return angular.isDefined(find(self.form.servicesToAdd, {
-      type: serviceType,
-      id: serviceId,
-    }))
-     || angular.isDefined(find(self.form.servicesToDelete, {
-       type: serviceType,
-       id: serviceId,
-     }))
-     || isEqual(self.form.serviceToMove, { type: serviceType, id: serviceId });
+    return (
+      angular.isDefined(
+        find(self.form.servicesToAdd, {
+          type: serviceType,
+          id: serviceId,
+        }),
+      ) ||
+      angular.isDefined(
+        find(self.form.servicesToDelete, {
+          type: serviceType,
+          id: serviceId,
+        }),
+      ) ||
+      isEqual(self.form.serviceToMove, { type: serviceType, id: serviceId })
+    );
   };
 
   self.isPending = function isPending(serviceId) {
@@ -428,7 +524,11 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   };
 
   self.toggleAddService = function toggleAddService(serviceType, serviceId) {
-    if (!self.isPending(serviceId) && !self.loaders.adding && !self.loaders.deleting) {
+    if (
+      !self.isPending(serviceId) &&
+      !self.loaders.adding &&
+      !self.loaders.deleting
+    ) {
       const toAdd = { type: serviceType, id: serviceId };
       if (find(self.form.servicesToAdd, toAdd)) {
         self.form.servicesToAdd = reject(self.form.servicesToAdd, toAdd);
@@ -440,11 +540,21 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
     }
   };
 
-  self.toggleDeleteService = function toggleDeleteService(serviceType, serviceId) {
-    if (!self.isPending(serviceId) && !self.loaders.adding && !self.loaders.deleting) {
+  self.toggleDeleteService = function toggleDeleteService(
+    serviceType,
+    serviceId,
+  ) {
+    if (
+      !self.isPending(serviceId) &&
+      !self.loaders.adding &&
+      !self.loaders.deleting
+    ) {
       const toDelete = { type: serviceType, id: serviceId };
       if (find(self.form.servicesToDelete, toDelete)) {
-        self.form.servicesToDelete = reject(self.form.servicesToDelete, toDelete);
+        self.form.servicesToDelete = reject(
+          self.form.servicesToDelete,
+          toDelete,
+        );
       } else {
         self.form.servicesToDelete.push(toDelete);
       }
@@ -480,14 +590,22 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   self.saveName = function saveName() {
     self.nameEditing = false;
 
-    OvhApiVrack.v6().edit({ serviceName: self.serviceName }, { name: self.name }).$promise
-      .then(() => $rootScope.$broadcast('global_display_name_change', {
-        serviceName: self.serviceName,
-        displayName: self.name,
-      }))
+    OvhApiVrack.v6()
+      .edit({ serviceName: self.serviceName }, { name: self.name })
+      .$promise.then(() =>
+        $rootScope.$broadcast('global_display_name_change', {
+          serviceName: self.serviceName,
+          displayName: self.name,
+        }),
+      )
       .catch((err) => {
         self.name = self.nameBackup;
-        CucCloudMessage.error([$translate.instant('vrack_error'), (err.data && err.data.message) || err.message || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('vrack_error'),
+            (err.data && err.data.message) || err.message || '',
+          ].join(' '),
+        );
       })
       .finally(() => {
         self.nameBackup = null;
@@ -507,10 +625,18 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   self.saveDescription = function saveDescription() {
     self.descriptionEditing = false;
     OvhApiVrack.v6()
-      .edit({ serviceName: self.serviceName }, { description: self.description }).$promise
-      .catch((err) => {
+      .edit(
+        { serviceName: self.serviceName },
+        { description: self.description },
+      )
+      .$promise.catch((err) => {
         self.description = self.descriptionBackup;
-        CucCloudMessage.error([$translate.instant('vrack_error'), (err.data && err.data.message) || err.message || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('vrack_error'),
+            (err.data && err.data.message) || err.message || '',
+          ].join(' '),
+        );
       })
       .finally(() => {
         self.descriptionBackup = null;
@@ -519,129 +645,198 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
 
   self.addSelectedServices = function addSelectedServices() {
     self.loaders.adding = true;
-    return $q.all(map(self.form.servicesToAdd, (service) => {
-      let task = $q.reject('Unknown service type');
-      switch (service.type) {
-        case 'dedicatedServer':
-          task = OvhApiVrack.DedicatedServer().v6().create({
-            serviceName: self.serviceName,
-          }, {
-            dedicatedServer: service.id,
-          }).$promise;
-          break;
-        case 'dedicatedServerInterface':
-          task = OvhApiVrack.DedicatedServerInterface().v6().post({
-            serviceName: self.serviceName,
-          }, {
-            dedicatedServerInterface: service.id,
-          }).$promise;
-          break;
-        case 'dedicatedCloud':
-          task = OvhApiVrack.DedicatedCloud().v6().create({
-            serviceName: self.serviceName,
-          }, {
-            dedicatedCloud: service.id,
-          }).$promise;
-          break;
-        case 'legacyVrack':
-          task = OvhApiVrack.LegacyVrack().v6().create({
-            serviceName: self.serviceName,
-          }, {
-            legacyVrack: service.id,
-          }).$promise;
-          break;
-        case 'ip':
-          task = OvhApiVrack.Ip().v6().create({
-            serviceName: self.serviceName,
-          }, {
-            block: service.id,
-          }).$promise;
-          break;
-        case 'cloudProject':
-          task = OvhApiVrack.CloudProject().v6().create({
-            serviceName: self.serviceName,
-          }, {
-            project: service.id,
-          }).$promise;
-          break;
-        case 'ipLoadbalancing':
-          task = OvhApiVrack.IpLoadBalancing().v6().create({
-            serviceName: self.serviceName,
-          }, {
-            ipLoadbalancing: service.id,
-          }).$promise;
-          break;
-        default:
-          break;
-      }
-      return task.catch((err) => {
-        CucCloudMessage.error([$translate.instant('vrack_add_error'), (err.data && err.data.message) || ''].join(' '));
-        return $q.reject(err);
+    return $q
+      .all(
+        map(self.form.servicesToAdd, (service) => {
+          let task = $q.reject('Unknown service type');
+          switch (service.type) {
+            case 'dedicatedServer':
+              task = OvhApiVrack.DedicatedServer()
+                .v6()
+                .create(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    dedicatedServer: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'dedicatedServerInterface':
+              task = OvhApiVrack.DedicatedServerInterface()
+                .v6()
+                .post(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    dedicatedServerInterface: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'dedicatedCloud':
+              task = OvhApiVrack.DedicatedCloud()
+                .v6()
+                .create(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    dedicatedCloud: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'legacyVrack':
+              task = OvhApiVrack.LegacyVrack()
+                .v6()
+                .create(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    legacyVrack: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'ip':
+              task = OvhApiVrack.Ip()
+                .v6()
+                .create(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    block: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'cloudProject':
+              task = OvhApiVrack.CloudProject()
+                .v6()
+                .create(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    project: service.id,
+                  },
+                ).$promise;
+              break;
+            case 'ipLoadbalancing':
+              task = OvhApiVrack.IpLoadBalancing()
+                .v6()
+                .create(
+                  {
+                    serviceName: self.serviceName,
+                  },
+                  {
+                    ipLoadbalancing: service.id,
+                  },
+                ).$promise;
+              break;
+            default:
+              break;
+          }
+          return task.catch((err) => {
+            CucCloudMessage.error(
+              [
+                $translate.instant('vrack_add_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
+            return $q.reject(err);
+          });
+        }),
+      )
+      .then(() => self.refreshData())
+      .finally(() => {
+        self.form.servicesToAdd = [];
+        self.loaders.adding = false;
       });
-    })).then(() => self.refreshData()).finally(() => {
-      self.form.servicesToAdd = [];
-      self.loaders.adding = false;
-    });
   };
 
   self.deleteSelectedServices = function deleteSelectedServices() {
     self.loaders.deleting = true;
-    return $q.all(map(self.form.servicesToDelete, (service) => {
-      let task = $q.reject('Unknown service type');
-      switch (service.type) {
-        case 'dedicatedServer':
-          task = OvhApiVrack.DedicatedServer().v6().delete({
-            serviceName: self.serviceName,
-            dedicatedServer: service.id,
-          }).$promise;
-          break;
-        case 'dedicatedServerInterface':
-          task = OvhApiVrack.DedicatedServerInterface().v6().delete({
-            serviceName: self.serviceName,
-            dedicatedServerInterface: service.id,
-          }).$promise;
-          break;
-        case 'dedicatedCloud':
-          task = OvhApiVrack.DedicatedCloud().v6().delete({
-            serviceName: self.serviceName,
-            dedicatedCloud: service.id,
-          }).$promise;
-          break;
-        case 'legacyVrack':
-          task = OvhApiVrack.LegacyVrack().v6().delete({
-            serviceName: self.serviceName,
-            legacyVrack: service.id,
-          }).$promise;
-          break;
-        case 'ip':
-          task = OvhApiVrack.Ip().v6().delete({
-            serviceName: self.serviceName,
-            ip: service.id,
-          }).$promise;
-          break;
-        case 'cloudProject':
-          task = OvhApiVrack.CloudProject().v6().delete({
-            serviceName: self.serviceName,
-            project: service.id,
-          }).$promise;
-          break;
-        case 'ipLoadbalancing':
-          task = OvhApiVrack.IpLoadBalancing().v6().delete({
-            serviceName: self.serviceName,
-            ipLoadbalancing: service.id,
-          }).$promise;
-          break;
-        default:
-          break;
-      }
-      return task.catch((err) => {
-        CucCloudMessage.error([$translate.instant('vrack_remove_error'), (err.data && err.data.message) || ''].join(' '));
-        return $q.reject(err);
+    return $q
+      .all(
+        map(self.form.servicesToDelete, (service) => {
+          let task = $q.reject('Unknown service type');
+          switch (service.type) {
+            case 'dedicatedServer':
+              task = OvhApiVrack.DedicatedServer()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  dedicatedServer: service.id,
+                }).$promise;
+              break;
+            case 'dedicatedServerInterface':
+              task = OvhApiVrack.DedicatedServerInterface()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  dedicatedServerInterface: service.id,
+                }).$promise;
+              break;
+            case 'dedicatedCloud':
+              task = OvhApiVrack.DedicatedCloud()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  dedicatedCloud: service.id,
+                }).$promise;
+              break;
+            case 'legacyVrack':
+              task = OvhApiVrack.LegacyVrack()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  legacyVrack: service.id,
+                }).$promise;
+              break;
+            case 'ip':
+              task = OvhApiVrack.Ip()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  ip: service.id,
+                }).$promise;
+              break;
+            case 'cloudProject':
+              task = OvhApiVrack.CloudProject()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  project: service.id,
+                }).$promise;
+              break;
+            case 'ipLoadbalancing':
+              task = OvhApiVrack.IpLoadBalancing()
+                .v6()
+                .delete({
+                  serviceName: self.serviceName,
+                  ipLoadbalancing: service.id,
+                }).$promise;
+              break;
+            default:
+              break;
+          }
+          return task.catch((err) => {
+            CucCloudMessage.error(
+              [
+                $translate.instant('vrack_remove_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
+            return $q.reject(err);
+          });
+        }),
+      )
+      .then(() => self.refreshData())
+      .finally(() => {
+        self.form.servicesToDelete = [];
+        self.loaders.deleting = false;
       });
-    })).then(() => self.refreshData()).finally(() => {
-      self.form.servicesToDelete = [];
-      self.loaders.deleting = false;
-    });
   };
 
   self.moveSelectedService = function moveSelectedService() {
@@ -659,14 +854,21 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
       },
     });
 
-    self.modals.move.result.then(() => {
-      self.refreshData();
-    }).finally(() => {
-      self.form.serviceToMove = null;
-    });
+    self.modals.move.result
+      .then(() => {
+        self.refreshData();
+      })
+      .finally(() => {
+        self.form.serviceToMove = null;
+      });
   };
 
-  self.setAccordionState = function setAccordionState(side, kind, offset, value) {
+  self.setAccordionState = function setAccordionState(
+    side,
+    kind,
+    offset,
+    value,
+  ) {
     self.states.accordions[side][kind][offset] = value;
   };
 
@@ -679,7 +881,9 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   };
 
   self.toggleAccordion = function toggleAccordion(side, kind, offset) {
-    self.states.accordions[side][kind][offset] = !self.states.accordions[side][kind][offset];
+    self.states.accordions[side][kind][offset] = !self.states.accordions[side][
+      kind
+    ][offset];
   };
 
   self.isAdding = function isAdding() {
@@ -703,13 +907,15 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   };
 
   function setUserRelatedContent() {
-    OvhApiMe.v6().get().$promise
-      .then((user) => {
+    OvhApiMe.v6()
+      .get()
+      .$promise.then((user) => {
         if (user.ovhSubsidiary === 'FR') {
           // Roadmap is only available in french
           self.vRackCloudRoadmapGuide = constant.VRACK_URLS.guides.vrack.FR;
         }
-        self.changeOwnerUrl = constant.VRACK_URLS.changeOwner[user.ovhSubsidiary];
+        self.changeOwnerUrl =
+          constant.VRACK_URLS.changeOwner[user.ovhSubsidiary];
       });
   }
 
@@ -717,29 +923,39 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
     self.loaders.init = true;
     self.loadMessage();
     if (isEmpty($stateParams.vrackId)) {
-      OvhApiVrack.v6().query().$promise
-        .then((vracks) => {
+      OvhApiVrack.v6()
+        .query()
+        .$promise.then((vracks) => {
           if (isEmpty(vracks)) {
             $state.go('vrack-add');
           } else {
             $state.go('vrack', { vrackId: vracks[0] });
           }
-        }).catch(() => {
+        })
+        .catch(() => {
           $state.go('vrack-add');
         });
     } else {
       // check if the serviceName is valid before loading the services
-      OvhApiVrack.v6().get({
-        serviceName: $stateParams.vrackId,
-      }).$promise.then((resp) => {
-        self.serviceName = $stateParams.vrackId;
-        self.name = resp.name;
-        self.description = resp.description;
-        setUserRelatedContent();
-        self.refreshData();
-      }).catch((err) => {
-        CucCloudMessage.error([$translate.instant('vrack_error'), (err.data && err.data.message) || ''].join(' '));
-      });
+      OvhApiVrack.v6()
+        .get({
+          serviceName: $stateParams.vrackId,
+        })
+        .$promise.then((resp) => {
+          self.serviceName = $stateParams.vrackId;
+          self.name = resp.name;
+          self.description = resp.description;
+          setUserRelatedContent();
+          self.refreshData();
+        })
+        .catch((err) => {
+          CucCloudMessage.error(
+            [
+              $translate.instant('vrack_error'),
+              (err.data && err.data.message) || '',
+            ].join(' '),
+          );
+        });
     }
   }
 

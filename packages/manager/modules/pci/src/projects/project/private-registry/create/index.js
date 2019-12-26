@@ -4,7 +4,8 @@ import routing from './create.routing';
 
 const moduleName = 'pciProjectPrivateRegistryCreateComponent';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('pciProjectPrivateRegistryCreate', component);
 

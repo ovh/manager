@@ -11,11 +11,9 @@ import 'script-loader!moment/min/moment-with-locales.min.js';
 import { state } from './index.routing';
 
 angular
-  .module('supportApp', [
-    managerSupport,
-    navbar,
-    uiRouterAngularJs,
-  ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state(state.name, state);
-  });
+  .module('supportApp', [managerSupport, navbar, uiRouterAngularJs])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state(state.name, state);
+    },
+  );

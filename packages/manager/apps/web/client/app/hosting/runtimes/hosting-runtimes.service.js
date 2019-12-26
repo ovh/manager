@@ -23,15 +23,19 @@ angular.module('services').service(
 
       if (angular.isArray(filters)) {
         filters.forEach((filter) => {
-          promises.push(this.OvhHttp.get(`/hosting/web/${serviceName}/runtime`, {
-            rootPath: 'apiv6',
-            params: filter,
-          }));
+          promises.push(
+            this.OvhHttp.get(`/hosting/web/${serviceName}/runtime`, {
+              rootPath: 'apiv6',
+              params: filter,
+            }),
+          );
         });
       } else {
-        promises.push(this.OvhHttp.get(`/hosting/web/${serviceName}/runtime`, {
-          rootPath: 'apiv6',
-        }));
+        promises.push(
+          this.OvhHttp.get(`/hosting/web/${serviceName}/runtime`, {
+            rootPath: 'apiv6',
+          }),
+        );
       }
 
       return this.$q.allSettled(promises).then(
@@ -65,10 +69,14 @@ angular.module('services').service(
      */
     getDefault(serviceName) {
       return this.list(serviceName)
-        .then((runtimeIds) => this.$q.all(
-          map(runtimeIds, (runtimeId) => this.get(serviceName, runtimeId)),
-        ))
-        .then((runtimes) => head(lodashFilter(runtimes, (runtime) => runtime.isDefault)));
+        .then((runtimeIds) =>
+          this.$q.all(
+            map(runtimeIds, (runtimeId) => this.get(serviceName, runtimeId)),
+          ),
+        )
+        .then((runtimes) =>
+          head(lodashFilter(runtimes, (runtime) => runtime.isDefault)),
+        );
     }
 
     /**
@@ -107,9 +115,7 @@ angular.module('services').service(
      * @param appEnv
      * @param appBootstrap
      */
-    create(serviceName, {
-      name, type, publicDir, appEnv, appBootstrap,
-    }) {
+    create(serviceName, { name, type, publicDir, appEnv, appBootstrap }) {
       return this.OvhHttp.post(`/hosting/web/${serviceName}/runtime`, {
         rootPath: 'apiv6',
         data: {
@@ -140,9 +146,7 @@ angular.module('services').service(
      * @param appEnv
      * @param appBootstrap
      */
-    edit(serviceName, id, {
-      name, type, publicDir, appEnv, appBootstrap,
-    }) {
+    edit(serviceName, id, { name, type, publicDir, appEnv, appBootstrap }) {
       return this.OvhHttp.put(`/hosting/web/${serviceName}/runtime/${id}`, {
         rootPath: 'apiv6',
         data: {

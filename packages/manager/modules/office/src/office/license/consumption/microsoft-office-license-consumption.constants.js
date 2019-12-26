@@ -30,29 +30,33 @@ export default {
         },
       },
       scales: {
-        yAxes: [{
-          display: true,
-          position: 'left',
-          scaleLabel: {
+        yAxes: [
+          {
             display: true,
+            position: 'left',
+            scaleLabel: {
+              display: true,
+            },
+            gridLines: {
+              drawBorder: true,
+              display: true,
+            },
+            ticks: {
+              min: 0,
+              stepSize: 1,
+            },
           },
-          gridLines: {
-            drawBorder: true,
-            display: true,
+        ],
+        xAxes: [
+          {
+            type: 'time',
+            position: 'bottom',
+            gridLines: {
+              drawBorder: true,
+              display: false,
+            },
           },
-          ticks: {
-            min: 0,
-            stepSize: 1,
-          },
-        }],
-        xAxes: [{
-          type: 'time',
-          position: 'bottom',
-          gridLines: {
-            drawBorder: true,
-            display: false,
-          },
-        }],
+        ],
       },
     },
   },

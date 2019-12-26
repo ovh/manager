@@ -10,10 +10,7 @@ import component from './endpoints.component';
 const moduleName = 'ovhManagerCarrierSipEndpoints';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component(component.name, component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

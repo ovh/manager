@@ -3,14 +3,7 @@ angular
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */
-    (
-      $q,
-      $rootScope,
-      $translate,
-      coreConfig,
-      SidebarMenu,
-      User,
-    ) => {
+    ($q, $rootScope, $translate, coreConfig, SidebarMenu, User) => {
       function buildMyAccountMenu() {
         SidebarMenu.addMenuItem({
           name: 'userAccountMenu',
@@ -46,7 +39,9 @@ angular
         SidebarMenu.addMenuItem({
           name: 'servicesMenu',
           title: $translate.instant('menu_services'),
-          state: user.isEnterprise ? 'app.account.billing.autorenew.ssh' : 'app.account.billing.autorenew',
+          state: user.isEnterprise
+            ? 'app.account.billing.autorenew.ssh'
+            : 'app.account.billing.autorenew',
           namespace: 'account',
         });
       }
@@ -61,75 +56,80 @@ angular
       }
 
       function init() {
-        $rootScope.$on('global_display_name_change', (evt, { displayName, serviceName }) => {
-          SidebarMenu.updateItemDisplay(
-            {
-              title: displayName,
-            },
-            {
-              stateParams: {
-                productId: serviceName,
+        $rootScope.$on(
+          'global_display_name_change',
+          (evt, { displayName, serviceName }) => {
+            SidebarMenu.updateItemDisplay(
+              {
+                title: displayName,
               },
-            },
-          );
-        });
+              {
+                stateParams: {
+                  productId: serviceName,
+                },
+              },
+            );
+          },
+        );
 
-        return $q.all({
-          translate: $translate.refresh(),
-          user: User.getUser(),
-        }).then((result) => {
-          SidebarMenu.addMenuItem({
-            name: 'billingBack',
-            title: $translate.instant('menu_back'),
-            state: 'app.configuration',
-            namespace: 'account',
+        return $q
+          .all({
+            translate: $translate.refresh(),
+            user: User.getUser(),
+          })
+          .then((result) => {
+            SidebarMenu.addMenuItem({
+              name: 'billingBack',
+              title: $translate.instant('menu_back'),
+              state: 'app.configuration',
+              namespace: 'account',
+            });
+
+            buildMyAccountMenu();
+
+            // remove billing menu for accounts flagged as enterprise
+            if (!result.user.isEnterprise) {
+              buildBillingMenu();
+            }
+            buildServicesMenu(result.user);
+
+            // remove payment menu and orders menu for accounts flagged as enterprise
+            if (!result.user.isEnterprise) {
+              buildPaymentMenu();
+
+              SidebarMenu.addMenuItem({
+                name: 'billingOrders',
+                title: $translate.instant('menu_orders'),
+                state: 'app.account.billing.orders',
+                namespace: 'account',
+              });
+            }
+
+            if (coreConfig.getRegion() === 'EU') {
+              SidebarMenu.addMenuItem({
+                name: 'billingContacts',
+                title: $translate.instant('menu_contacts'),
+                state: 'app.account.contacts.services',
+                namespace: 'account',
+              });
+            }
+
+            if (coreConfig.getRegion() === 'US') {
+              SidebarMenu.addMenuItem({
+                name: 'support',
+                title: $translate.instant('menu_support'),
+                state: 'app.account.otrs-ticket',
+                namespace: 'account',
+              });
+            } else {
+              SidebarMenu.addMenuItem({
+                name: 'support',
+                title: $translate.instant('menu_support'),
+                state: 'support',
+                namespace: 'account',
+              });
+            }
           });
-
-          buildMyAccountMenu();
-
-          // remove billing menu for accounts flagged as enterprise
-          if (!result.user.isEnterprise) {
-            buildBillingMenu();
-          }
-          buildServicesMenu(result.user);
-
-          // remove payment menu and orders menu for accounts flagged as enterprise
-          if (!result.user.isEnterprise) {
-            buildPaymentMenu();
-
-            SidebarMenu.addMenuItem({
-              name: 'billingOrders',
-              title: $translate.instant('menu_orders'),
-              state: 'app.account.billing.orders',
-              namespace: 'account',
-            });
-          }
-
-          if (coreConfig.getRegion() === 'EU') {
-            SidebarMenu.addMenuItem({
-              name: 'billingContacts',
-              title: $translate.instant('menu_contacts'),
-              state: 'app.account.contacts.services',
-              namespace: 'account',
-            });
-          }
-
-          if (coreConfig.getRegion() === 'US') {
-            SidebarMenu.addMenuItem({
-              name: 'support',
-              title: $translate.instant('menu_support'),
-              state: 'app.account.otrs-ticket',
-              namespace: 'account',
-            });
-          } else {
-            SidebarMenu.addMenuItem({
-              name: 'support',
-              title: $translate.instant('menu_support'),
-              state: 'support',
-              namespace: 'account',
-            });
-          }
-        });
       }
 
       init();

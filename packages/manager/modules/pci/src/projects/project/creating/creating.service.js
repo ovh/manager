@@ -6,29 +6,23 @@ export default class ProjectCreation {
   }
 
   getOrderDetails(orderId) {
-    return this.OvhApiMeOrder
-      .v6()
-      .get({
-        orderId,
-      })
-      .$promise;
+    return this.OvhApiMeOrder.v6().get({
+      orderId,
+    }).$promise;
   }
 
   getOrderStatus(orderId) {
-    return this.OvhApiMeOrder
-      .v6()
-      .getStatus({
-        orderId,
-      })
-      .$promise;
+    return this.OvhApiMeOrder.v6().getStatus({
+      orderId,
+    }).$promise;
   }
 
   cancelProjectCreation(projectId) {
-    return this.OvhApiCloudProject
-      .v6()
-      .cancelCreation({
+    return this.OvhApiCloudProject.v6().cancelCreation(
+      {
         serviceName: projectId,
-      }, {})
-      .$promise;
+      },
+      {},
+    ).$promise;
   }
 }

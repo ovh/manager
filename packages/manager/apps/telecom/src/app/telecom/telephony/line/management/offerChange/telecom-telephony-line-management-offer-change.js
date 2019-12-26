@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/offerChange',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/line/management/offerChange/telecom-telephony-line-management-offer-change.html',
+        templateUrl:
+          'app/telecom/telephony/line/management/offerChange/telecom-telephony-line-management-offer-change.html',
         controller: 'TelecomTelephonyLineManagementOfferChangeCtrl',
         controllerAs: 'OfferChangeCtrl',
       },

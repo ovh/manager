@@ -1,8 +1,7 @@
 import includes from 'lodash/includes';
 
-angular
-  .module('UserAccount')
-  .config(/* @ngInject */($stateProvider, coreConfigProvider) => {
+angular.module('UserAccount').config(
+  /* @ngInject */ ($stateProvider, coreConfigProvider) => {
     const name = 'app.account.user.emails';
     const nameDetails = 'app.account.user.emailsDetails';
 
@@ -20,4 +19,5 @@ angular
         controller: 'UserAccount.controllers.emails.details',
       });
     }
-  });
+  },
+);

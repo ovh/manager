@@ -4,10 +4,7 @@ import { THROTTLING } from '../../streams.constants';
 
 export default class PciStreamsStreamThrottlingController {
   /* @ngInject */
-  constructor(
-    $translate,
-    PciProjectStreamService,
-  ) {
+  constructor($translate, PciProjectStreamService) {
     this.$translate = $translate;
     this.PciProjectStreamService = PciProjectStreamService;
   }
@@ -32,17 +29,25 @@ export default class PciStreamsStreamThrottlingController {
 
   updateStream() {
     this.isLoading = true;
-    return this.PciProjectStreamService
-      .update(this.projectId, this.editStream)
-      .then(() => this.goBack(this.$translate.instant(
-        'pci_projects_project_streams_stream_throttling_success_message',
-      )))
-      .catch((err) => this.goBack(this.$translate.instant(
-        'pci_projects_project_streams_stream_throttling_error_throttling',
-        {
-          message: get(err, 'data.message', null),
-        },
-      ), 'error'))
+    return this.PciProjectStreamService.update(this.projectId, this.editStream)
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_streams_stream_throttling_success_message',
+          ),
+        ),
+      )
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_streams_stream_throttling_error_throttling',
+            {
+              message: get(err, 'data.message', null),
+            },
+          ),
+          'error',
+        ),
+      )
       .finally(() => {
         this.isLoading = false;
       });

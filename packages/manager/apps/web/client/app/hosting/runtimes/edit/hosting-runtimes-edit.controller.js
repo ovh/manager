@@ -3,7 +3,14 @@ import has from 'lodash/has';
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.edit',
   class HostingRuntimesEditCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, HostingRuntimes, HOSTING_RUNTIME) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      HostingRuntimes,
+      HOSTING_RUNTIME,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -46,15 +53,15 @@ angular.module('App').controller(
 
     isValid() {
       if (
-        has(this, 'entryToEdit.type')
-        && !this.entryToEdit.type.includes(this.HOSTING_RUNTIME.PHP)
+        has(this, 'entryToEdit.type') &&
+        !this.entryToEdit.type.includes(this.HOSTING_RUNTIME.PHP)
       ) {
         return (
-          this.entryToEdit
-          && this.entryToEdit.name
-          && this.entryToEdit.publicDir
-          && this.entryToEdit.appEnv
-          && this.entryToEdit.appBootstrap
+          this.entryToEdit &&
+          this.entryToEdit.name &&
+          this.entryToEdit.publicDir &&
+          this.entryToEdit.appEnv &&
+          this.entryToEdit.appBootstrap
         );
       }
 
@@ -75,7 +82,8 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_RUNTIMES_edit_error') + err.message,
+            this.$translate.instant('hosting_tab_RUNTIMES_edit_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })

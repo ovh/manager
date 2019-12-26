@@ -7,7 +7,9 @@ class LogsDetailCtrl {
 
   $onInit() {
     this.CucCloudMessage.unSubscribe('dbaas.logs.detail');
-    this.messageHandler = this.CucCloudMessage.subscribe('dbaas.logs.detail', { onMessage: () => this.refreshMessage() });
+    this.messageHandler = this.CucCloudMessage.subscribe('dbaas.logs.detail', {
+      onMessage: () => this.refreshMessage(),
+    });
   }
 
   refreshMessage() {

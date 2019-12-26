@@ -37,7 +37,9 @@ export default class ExchangeSslRenewCtrl {
       .catch((failure) => {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_renew_ssl_dcv_failure'),
+          this.services.$translate.instant(
+            'exchange_ACTION_renew_ssl_dcv_failure',
+          ),
           failure,
         );
       });
@@ -51,9 +53,12 @@ export default class ExchangeSslRenewCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_renew_ssl_success', {
-            t0: this.model.displayName,
-          }),
+          this.services.$translate.instant(
+            'exchange_ACTION_renew_ssl_success',
+            {
+              t0: this.model.displayName,
+            },
+          ),
           data,
         );
       })

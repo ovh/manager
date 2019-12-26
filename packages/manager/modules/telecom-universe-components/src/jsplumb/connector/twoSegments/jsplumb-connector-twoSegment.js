@@ -37,34 +37,31 @@ export default (jsPlumb, jsPlumbUtil) => {
     const parameters = assignIn({ radius: 10 }, params);
 
     /**
-         * Compute the length of a vector
-         * @param {Array} vect [x, Y] vector
-         * @returns {Number} Length
-         */
+     * Compute the length of a vector
+     * @param {Array} vect [x, Y] vector
+     * @returns {Number} Length
+     */
     function vectLength(vect) {
       return Math.sqrt(Math.pow(vect[0], 2) + Math.pow(vect[1], 2));
     }
 
     /**
-         * Perform a rotation on a vector
-         * @param {Array}  vect  Vector to rotate
-         * @param {Number} angle Rotation angle
-         * @returns {Array}      Rotated vector
-         */
+     * Perform a rotation on a vector
+     * @param {Array}  vect  Vector to rotate
+     * @param {Number} angle Rotation angle
+     * @returns {Array}      Rotated vector
+     */
     function vectorRotation(vect, angle) {
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
-      return [
-        vect[0] * cos - vect[1] * sin,
-        vect[0] * sin + vect[1] * cos,
-      ];
+      return [vect[0] * cos - vect[1] * sin, vect[0] * sin + vect[1] * cos];
     }
 
     /**
-         * Compute the intersection between the 2 lines from the endpoints
-         * @param paintInfo
-         * @returns {Object} (x,y) coordinates
-         */
+     * Compute the intersection between the 2 lines from the endpoints
+     * @param paintInfo
+     * @returns {Object} (x,y) coordinates
+     */
     function getIntersection(paintInfo) {
       // Input parameters
       const x0 = paintInfo.sx;
@@ -83,7 +80,7 @@ export default (jsPlumb, jsPlumbUtil) => {
       let slope1;
 
       // No vertical vector
-      if ((vector0[0] !== 0) && (vector1[0] !== 0)) {
+      if (vector0[0] !== 0 && vector1[0] !== 0) {
         slope0 = vector0[1] / vector0[0];
         slope1 = vector1[1] / vector1[0];
         if (slope1 - slope0) {
@@ -136,12 +133,12 @@ export default (jsPlumb, jsPlumbUtil) => {
     }
 
     /**
-         * Solve the equation Ax² + Bx + C = 0
-         * @param {Number} A Coef second degree
-         * @param {Number} B Coef first degree
-         * @param {Number} C Coef const
-         * @returns {Array} Solutions
-         */
+     * Solve the equation Ax² + Bx + C = 0
+     * @param {Number} A Coef second degree
+     * @param {Number} B Coef first degree
+     * @param {Number} C Coef const
+     * @returns {Array} Solutions
+     */
     function secondDegree(A, B, C) {
       if (A === 0) {
         return [-C / B];
@@ -162,12 +159,12 @@ export default (jsPlumb, jsPlumbUtil) => {
     }
 
     /**
-         * Shift a point inside a segment
-         * @param {Object} a    First point (from which th shift is applyed
-         * @param {Object} b    Second point of the segment
-         * @param {Number} dist Distance to shift
-         * @returns {Object} (x,y) coordinates
-         */
+     * Shift a point inside a segment
+     * @param {Object} a    First point (from which th shift is applyed
+     * @param {Object} b    Second point of the segment
+     * @param {Number} dist Distance to shift
+     * @returns {Object} (x,y) coordinates
+     */
     function shiftInside(a, b, dist) {
       // vertical line
       if (a.x === b.x) {
@@ -195,7 +192,9 @@ export default (jsPlumb, jsPlumbUtil) => {
         Math.pow(a.x, 2) + Math.pow(a.y - shift, 2) - Math.pow(dist, 2),
       );
 
-      const solutionX = head(solve.filter(x => (x >= Math.min(a.x, b.x)) && (x <= Math.max(a.x, b.x))));
+      const solutionX = head(
+        solve.filter((x) => x >= Math.min(a.x, b.x) && x <= Math.max(a.x, b.x)),
+      );
 
       return {
         x: solutionX,
@@ -204,11 +203,11 @@ export default (jsPlumb, jsPlumbUtil) => {
     }
 
     /**
-         * Compute the determinant of 2 vectors
-         * @param vect0
-         * @param vect1
-         * @returns {number}
-         */
+     * Compute the determinant of 2 vectors
+     * @param vect0
+     * @param vect1
+     * @returns {number}
+     */
     function getAngle(vect0, vect1) {
       const scalaire = vect0[0] * vect1[1] + vect0[1] * vect1[0];
       const vectorial = vect0[0] * vect1[1] - vect0[1] * vect1[0];
@@ -217,43 +216,45 @@ export default (jsPlumb, jsPlumbUtil) => {
       const sinus = vectorial / lengths;
       const cosinus = scalaire / lengths;
 
-      if ((sinus > 0) && (cosinus > 0)) {
+      if (sinus > 0 && cosinus > 0) {
         return Math.acos(cosinus);
       }
 
-      if ((sinus < 0) && (cosinus > 0)) {
+      if (sinus < 0 && cosinus > 0) {
         return -Math.acos(cosinus);
       }
 
-      if ((sinus > 0) && (cosinus < 0)) {
+      if (sinus > 0 && cosinus < 0) {
         return Math.acos(cosinus) + Math.PI / 2;
       }
 
-      if ((sinus < 0) && (cosinus < 0)) {
+      if (sinus < 0 && cosinus < 0) {
         return -Math.acos(cosinus) - Math.PI / 2;
       }
     }
 
     /**
-         * Get the cutting length to insert the radius
-         * @param {Object} paintInfo
-         * @param {Number} radius
-         */
+     * Get the cutting length to insert the radius
+     * @param {Object} paintInfo
+     * @param {Number} radius
+     */
     function getShift(paintInfo, radius) {
       const vector0 = paintInfo.so;
       const vector1 = paintInfo.to;
 
       const scalaire = vector0[0] * vector1[0] + vector0[1] * vector1[1];
-      const alpha = Math.acos(scalaire / (vectLength(vector0) * vectLength(vector1)));
+      const alpha = Math.acos(
+        scalaire / (vectLength(vector0) * vectLength(vector1)),
+      );
 
       return radius / Math.tan(alpha / 2);
     }
 
     /**
-         * Get the distances between the two parallels (we assume that origin vector and target vector are parallel)
-         * @param {Object} paintInfo
-         * @returns {Number} Distance
-         */
+     * Get the distances between the two parallels (we assume that origin vector and target vector are parallel)
+     * @param {Object} paintInfo
+     * @returns {Number} Distance
+     */
     function getParallelDistance(paintInfo) {
       const projection = getIntersection({
         sx: paintInfo.sx,
@@ -270,12 +271,12 @@ export default (jsPlumb, jsPlumbUtil) => {
     }
 
     /**
-         * Draw a two-segments connector
-         * @param {Object} paintInfo
-         * @param {Object} instance  Current instance
-         * @returns {Boolean} True if the connector could be drawn. If false, it means that origin vector and target
-         *                    vector are parallel
-         */
+     * Draw a two-segments connector
+     * @param {Object} paintInfo
+     * @param {Object} instance  Current instance
+     * @returns {Boolean} True if the connector could be drawn. If false, it means that origin vector and target
+     *                    vector are parallel
+     */
     function twoSegments(paintInfo, instance) {
       const intersection = getIntersection({
         sx: paintInfo.sx,
@@ -292,22 +293,33 @@ export default (jsPlumb, jsPlumbUtil) => {
       }
 
       // offset to shorten the lines near the intersection
-      const shift = getShift({
-        so: paintInfo.so,
-        to: paintInfo.to,
-      }, 0);
+      const shift = getShift(
+        {
+          so: paintInfo.so,
+          to: paintInfo.to,
+        },
+        0,
+      );
 
       // point to shorten the source line
-      const stopS = shiftInside(intersection, {
-        x: paintInfo.sx,
-        y: paintInfo.sy,
-      }, shift);
+      const stopS = shiftInside(
+        intersection,
+        {
+          x: paintInfo.sx,
+          y: paintInfo.sy,
+        },
+        shift,
+      );
 
       // point to shorten the target line
-      const stopT = shiftInside(intersection, {
-        x: paintInfo.tx,
-        y: paintInfo.ty,
-      }, shift);
+      const stopT = shiftInside(
+        intersection,
+        {
+          x: paintInfo.tx,
+          y: paintInfo.ty,
+        },
+        shift,
+      );
 
       // Draw source line
       _super.addSegment(instance, 'Straight', {
@@ -329,11 +341,11 @@ export default (jsPlumb, jsPlumbUtil) => {
     }
 
     /**
-         * Compute the connector
-         * @param paintInfo
-         * @private
-         */
-    this._compute = function _compute(paintInfo/* , paintParams */) {
+     * Compute the connector
+     * @param paintInfo
+     * @private
+     */
+    this._compute = function _compute(paintInfo /* , paintParams */) {
       const radius = parameters.radius;
 
       // Try to connect
@@ -356,25 +368,31 @@ export default (jsPlumb, jsPlumbUtil) => {
           };
 
           // Rotate vector (Pi / 4)
-          const vect1 = vectorRotation(paintInfo.so, 3 * Math.PI / 4);
-          const vect2 = vectorRotation(paintInfo.to, 3 * Math.PI / 4);
+          const vect1 = vectorRotation(paintInfo.so, (3 * Math.PI) / 4);
+          const vect2 = vectorRotation(paintInfo.to, (3 * Math.PI) / 4);
 
-          twoSegments({
-            sx: paintInfo.sx,
-            sy: paintInfo.sy,
-            tx: center.x,
-            ty: center.y,
-            so: paintInfo.so,
-            to: vect1,
-          }, this);
-          twoSegments({
-            sx: center.x,
-            sy: center.y,
-            tx: paintInfo.tx,
-            ty: paintInfo.ty,
-            so: vect2,
-            to: paintInfo.to,
-          }, this);
+          twoSegments(
+            {
+              sx: paintInfo.sx,
+              sy: paintInfo.sy,
+              tx: center.x,
+              ty: center.y,
+              so: paintInfo.so,
+              to: vect1,
+            },
+            this,
+          );
+          twoSegments(
+            {
+              sx: center.x,
+              sy: center.y,
+              tx: paintInfo.tx,
+              ty: paintInfo.ty,
+              so: vect2,
+              to: paintInfo.to,
+            },
+            this,
+          );
         }
       }
     };
@@ -382,6 +400,5 @@ export default (jsPlumb, jsPlumbUtil) => {
 
   jsPlumbUtil.extend(TucTwoSegments, jsPlumb.Connectors.AbstractConnector);
   jsPlumb.Connectors.TucTwoSegments = TucTwoSegments;
-
-}
+};
 /* eslint-enable */

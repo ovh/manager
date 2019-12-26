@@ -9,16 +9,18 @@ export const state = {
     },
   },
   resolve: {
-    goBack: /* @ngInject */ ($state) => () => $state
-      .go(ticketsState.name),
-    reload: /* @ngInject */ ($state) => (params) => $state
-      .transitionTo(
+    goBack: /* @ngInject */ ($state) => () => $state.go(ticketsState.name),
+    reload: /* @ngInject */ ($state) => (params) =>
+      $state.transitionTo(
         $state.current,
         { ...$state.params, ...params },
         { reload: true, inherit: false },
       ),
-    ticket: /* @ngInject */ ($transition$, ticketMessageService, ticketService) => ticketService
-      .getWithMessages($transition$.params().id),
+    ticket: /* @ngInject */ (
+      $transition$,
+      ticketMessageService,
+      ticketService,
+    ) => ticketService.getWithMessages($transition$.params().id),
   },
   url: '/:id',
   views: {

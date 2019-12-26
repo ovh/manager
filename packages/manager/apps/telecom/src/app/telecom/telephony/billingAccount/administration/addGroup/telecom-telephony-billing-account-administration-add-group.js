@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/addGroup',
     views: {
       'groupView@telecom.telephony.billingAccount': {
-        templateUrl: 'app/telecom/telephony/billingAccount/administration/addGroup/telecom-telephony-billing-account-administration-add-group.html',
+        templateUrl:
+          'app/telecom/telephony/billingAccount/administration/addGroup/telecom-telephony-billing-account-administration-add-group.html',
         controller: 'TelecomTelephonyBillingAccountAdministrationAddGroup',
         controllerAs: 'AddGroupCtrl',
       },

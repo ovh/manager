@@ -5,14 +5,12 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/order-private',
     component: 'hostingDatabaseOrderPrivate',
     resolve: {
-      autoPayWithPreferredPaymentMethod: /* @ngInject */
-        (ovhPaymentMethod) => ovhPaymentMethod.hasDefaultPaymentMethod(),
+      /* @ngInject */
+      autoPayWithPreferredPaymentMethod: (ovhPaymentMethod) =>
+        ovhPaymentMethod.hasDefaultPaymentMethod(),
 
-      cartId: /* @ngInject */ (
-        user,
-        HostingDatabaseOrderPrivateService,
-      ) => HostingDatabaseOrderPrivateService
-        .prepareOrderCart(user.ovhSubsidiary),
+      cartId: /* @ngInject */ (user, HostingDatabaseOrderPrivateService) =>
+        HostingDatabaseOrderPrivateService.prepareOrderCart(user.ovhSubsidiary),
 
       catalogProducts: /* @ngInject */ (
         goBack,
@@ -20,36 +18,42 @@ export default /* @ngInject */ ($stateProvider) => {
         user,
         $translate,
         HostingDatabaseOrderPrivateService,
-      ) => HostingDatabaseOrderPrivateService
-        .getCatalogProducts(
+      ) =>
+        HostingDatabaseOrderPrivateService.getCatalogProducts(
           user.ovhSubsidiary,
           products,
-        )
-        .catch((error) => goBack(
-          $translate.instant('hosting_database_order_private_error', { message: get(error, 'data.message', error) }),
-          'danger',
-        )),
+        ).catch((error) =>
+          goBack(
+            $translate.instant('hosting_database_order_private_error', {
+              message: get(error, 'data.message', error),
+            }),
+            'danger',
+          ),
+        ),
 
       checkoutOrderCart: /* @ngInject */ (
         goBack,
         $translate,
         $window,
         HostingDatabaseOrderPrivateService,
-      ) => async (
-        autoPayWithPreferredPaymentMethod,
-        cartId,
-      ) => {
+      ) => async (autoPayWithPreferredPaymentMethod, cartId) => {
         try {
-          const order = await HostingDatabaseOrderPrivateService
-            .checkoutOrderCart(autoPayWithPreferredPaymentMethod, cartId);
+          const order = await HostingDatabaseOrderPrivateService.checkoutOrderCart(
+            autoPayWithPreferredPaymentMethod,
+            cartId,
+          );
 
           $window.open(order.url, '_blank');
           goBack(
-            $translate.instant('hosting_database_order_private_success', { t0: order.url }),
+            $translate.instant('hosting_database_order_private_success', {
+              t0: order.url,
+            }),
           );
         } catch (error) {
           goBack(
-            $translate.instant('hosting_database_order_private_error', { message: get(error, 'data.message', error) }),
+            $translate.instant('hosting_database_order_private_error', {
+              message: get(error, 'data.message', error),
+            }),
             'danger',
           );
         }
@@ -58,15 +62,15 @@ export default /* @ngInject */ ($stateProvider) => {
       datacenter: /* @ngInject */ (
         serviceName,
         HostingDatabaseOrderPrivateService,
-      ) => HostingDatabaseOrderPrivateService
-        .getDatacenter(serviceName),
+      ) => HostingDatabaseOrderPrivateService.getDatacenter(serviceName),
 
-      defaultPaymentMean: /* @ngInject */
-        (ovhPaymentMethod) => ovhPaymentMethod.getDefaultPaymentMethod(),
+      /* @ngInject */
+      defaultPaymentMean: (ovhPaymentMethod) =>
+        ovhPaymentMethod.getDefaultPaymentMethod(),
 
-      getDatacenter: /* @ngInject */
-        (HostingDatabaseOrderPrivateService) => (serviceName) => HostingDatabaseOrderPrivateService
-          .getDatacenter(serviceName),
+      /* @ngInject */
+      getDatacenter: (HostingDatabaseOrderPrivateService) => (serviceName) =>
+        HostingDatabaseOrderPrivateService.getDatacenter(serviceName),
 
       goBack: /* @ngInject */ (goToHosting) => goToHosting,
 
@@ -75,20 +79,22 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack,
         $translate,
         HostingDatabaseOrderPrivateService,
-      ) => async (
-        datacenter,
-        price,
-        product,
-        version,
-      ) => {
+      ) => async (datacenter, price, product, version) => {
         try {
-          const cart = await HostingDatabaseOrderPrivateService
-            .addItemToCart(cartId, datacenter, price, product, version);
+          const cart = await HostingDatabaseOrderPrivateService.addItemToCart(
+            cartId,
+            datacenter,
+            price,
+            product,
+            version,
+          );
 
           return { cart, cartId };
         } catch (error) {
           goBack(
-            $translate.instant('hosting_database_order_private_error', { message: get(error, 'data.message', error) }),
+            $translate.instant('hosting_database_order_private_error', {
+              message: get(error, 'data.message', error),
+            }),
             'danger',
           );
 
@@ -102,22 +108,30 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
         $translate,
         HostingDatabaseOrderPrivateService,
-      ) => HostingDatabaseOrderPrivateService
-        .getProducts(cartId, serviceName)
-        .catch((error) => goBack(
-          $translate.instant('hosting_database_order_private_error', { message: get(error, 'data.message', error) }),
-          'danger',
-        )),
+      ) =>
+        HostingDatabaseOrderPrivateService.getProducts(
+          cartId,
+          serviceName,
+        ).catch((error) =>
+          goBack(
+            $translate.instant('hosting_database_order_private_error', {
+              message: get(error, 'data.message', error),
+            }),
+            'danger',
+          ),
+        ),
 
       resetOrderCart: /* @ngInject */ (
         cartId,
         HostingDatabaseOrderPrivateService,
       ) => () => HostingDatabaseOrderPrivateService.resetOrderCart(cartId),
 
-      serviceName: /* @ngInject */ ($transition$) => $transition$.params().productId,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
 
-      services: /* @ngInject */
-        (HostingDatabaseOrderPrivateService) => HostingDatabaseOrderPrivateService.getServices(),
+      /* @ngInject */
+      services: (HostingDatabaseOrderPrivateService) =>
+        HostingDatabaseOrderPrivateService.getServices(),
     },
   });
 };

@@ -4,19 +4,20 @@ import template from 'lodash/template';
 
 export default class pciPrivateRegistryService {
   /* @ngInject */
-  constructor(
-    OvhApiCloud,
-    OvhApiCloudProject,
-    OvhApiMe,
-  ) {
+  constructor(OvhApiCloud, OvhApiCloudProject, OvhApiMe) {
     this.OvhApiCloud = OvhApiCloud.v6();
     this.OvhApiPrivateRegistry = OvhApiCloudProject.ContainerRegistry().v6();
-    this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry().Users().v6();
+    this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry()
+      .Users()
+      .v6();
     this.OvhApiAgreements = OvhApiMe.Agreements().v6();
   }
 
   create(projectId, registry) {
-    return this.OvhApiPrivateRegistry.create({ serviceName: projectId }, registry).$promise;
+    return this.OvhApiPrivateRegistry.create(
+      { serviceName: projectId },
+      registry,
+    ).$promise;
   }
 
   delete(projectId, registryID) {
@@ -27,12 +28,15 @@ export default class pciPrivateRegistryService {
   }
 
   update(projectId, registryID, newRegistryName) {
-    return this.OvhApiPrivateRegistry.update({
-      serviceName: projectId,
-      registryID,
-    }, {
-      name: newRegistryName,
-    }).$promise;
+    return this.OvhApiPrivateRegistry.update(
+      {
+        serviceName: projectId,
+        registryID,
+      },
+      {
+        name: newRegistryName,
+      },
+    ).$promise;
   }
 
   getRegistryList(projectId, clearCache = false) {
@@ -47,7 +51,8 @@ export default class pciPrivateRegistryService {
 
   getRegistry(serviceName, registryID) {
     return this.OvhApiPrivateRegistry.get({
-      serviceName, registryID,
+      serviceName,
+      registryID,
     }).$promise;
   }
 
@@ -65,12 +70,19 @@ export default class pciPrivateRegistryService {
   }
 
   getAgreements() {
-    return this.OvhApiCloud.agreements({ product: 'registry' })
-      .$promise
-      .then((agreements) => concat(
-        map(agreements.agreementsToValidate, (agreement) => ({ id: agreement, validated: false })),
-        map(agreements.agreementsValidated, (agreement) => ({ id: agreement, validated: true })),
-      ));
+    return this.OvhApiCloud.agreements({ product: 'registry' }).$promise.then(
+      (agreements) =>
+        concat(
+          map(agreements.agreementsToValidate, (agreement) => ({
+            id: agreement,
+            validated: false,
+          })),
+          map(agreements.agreementsValidated, (agreement) => ({
+            id: agreement,
+            validated: true,
+          })),
+        ),
+    );
   }
 
   static getCompiledLinks(linkTemplate, registryContracts) {

@@ -4,8 +4,6 @@ import filter from './bits/filter';
 
 const moduleName = 'ovhManagerPciComponentsRunaboveUnits';
 
-angular
-  .module(moduleName, [])
-  .filter('RAUnitsBits', filter);
+angular.module(moduleName, []).filter('RAUnitsBits', filter);
 
 export default moduleName;

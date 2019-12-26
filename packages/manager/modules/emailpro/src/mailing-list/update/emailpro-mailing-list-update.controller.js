@@ -3,7 +3,14 @@ import get from 'lodash/get';
 
 export default class EmailProMXPlanMailingListsUpdateCtrl {
   /* @ngInject */
-  constructor($scope, $q, $translate, Alerter, EmailProMXPlanMailingLists, User) {
+  constructor(
+    $scope,
+    $q,
+    $translate,
+    Alerter,
+    EmailProMXPlanMailingLists,
+    User,
+  ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$translate = $translate;
@@ -14,10 +21,11 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
 
   $onInit() {
     this.mailingList = angular.copy(this.$scope.currentActionData);
-    this.mailingList.mlModerationMsg = !this.mailingList.options.moderatorMessage
-      && !this.mailingList.options.usersPostOnly
-      ? null
-      : this.mailingList.options.moderatorMessage;
+    this.mailingList.mlModerationMsg =
+      !this.mailingList.options.moderatorMessage &&
+      !this.mailingList.options.usersPostOnly
+        ? null
+        : this.mailingList.options.moderatorMessage;
 
     this.constants = {
       MAILING_LIST: 'mailinglist',
@@ -37,8 +45,9 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
     return this.$q
       .all({
         models: this.EmailProMXPlanMailingLists.getModels(),
-        limits: this.EmailProMXPlanMailingLists
-          .getMailingListLimits(this.mailingList.mlModerationMsg),
+        limits: this.EmailProMXPlanMailingLists.getMailingListLimits(
+          this.mailingList.mlModerationMsg,
+        ),
       })
       .then(({ models, limits }) => {
         this.languages = models.models['domain.DomainMlLanguageEnum'].enum;
@@ -65,9 +74,10 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
   }
 
   selectReplyTo() {
-    this.mailingList.replyTo = this.replyToSelector === this.constants.REPLY_TO_EMAIL
-      ? ''
-      : this.replyToSelector;
+    this.mailingList.replyTo =
+      this.replyToSelector === this.constants.REPLY_TO_EMAIL
+        ? ''
+        : this.replyToSelector;
   }
 
   selectModerationMsg() {
@@ -101,15 +111,19 @@ export default class EmailProMXPlanMailingListsUpdateCtrl {
         },
       },
     )
-      .then(() => this.Alerter.success(
-        this.$translate.instant('mailing_list_tab_modal_update_list_success'),
-        this.$scope.alerts.main,
-      ))
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_update_list_error'),
-        get(err, 'data', err),
-        this.$scope.alerts.main,
-      ))
+      .then(() =>
+        this.Alerter.success(
+          this.$translate.instant('mailing_list_tab_modal_update_list_success'),
+          this.$scope.alerts.main,
+        ),
+      )
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_update_list_error'),
+          get(err, 'data', err),
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.loading = false;
         this.$scope.resetAction();

@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/voipEcoFax/activation',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom//pack/slots/voipEcoFax/activation/pack-voipEcoFax-activation.html',
+        templateUrl:
+          'app/telecom//pack/slots/voipEcoFax/activation/pack-voipEcoFax-activation.html',
         controller: 'PackFaxActivationCtrl',
         controllerAs: 'PackFaxActivationCtrl',
       },

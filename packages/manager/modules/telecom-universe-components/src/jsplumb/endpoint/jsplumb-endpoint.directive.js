@@ -15,10 +15,12 @@ export default () => ({
       const jsplumbCtrl = $ctrl[0];
       const endpointCtrl = $ctrl[1];
 
-      endpointCtrl.endpoint = jsplumbCtrl.instance
-        .addEndpoint(iElement, angular.extend(endpointCtrl.options || {}, {
+      endpointCtrl.endpoint = jsplumbCtrl.instance.addEndpoint(
+        iElement,
+        angular.extend(endpointCtrl.options || {}, {
           uuid: endpointCtrl.uuid,
-        }));
+        }),
+      );
 
       iScope.$watch('$ctrl.uuid', (newUuid, oldUuid) => {
         if (oldUuid && oldUuid !== newUuid) {
@@ -26,10 +28,12 @@ export default () => ({
           jsplumbCtrl.instance.deleteEndpoint(endpointCtrl.endpoint);
 
           // recreate endpoint
-          endpointCtrl.endpoint = jsplumbCtrl.instance
-            .addEndpoint(iElement, angular.extend(endpointCtrl.options || {}, {
+          endpointCtrl.endpoint = jsplumbCtrl.instance.addEndpoint(
+            iElement,
+            angular.extend(endpointCtrl.options || {}, {
               uuid: newUuid,
-            }));
+            }),
+          );
         }
       });
     },

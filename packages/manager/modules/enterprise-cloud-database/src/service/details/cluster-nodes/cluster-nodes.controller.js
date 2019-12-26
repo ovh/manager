@@ -10,8 +10,10 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeCtrl {
   }
 
   $onInit() {
-    this.includedClusterCount = INCLUDED_CLUSTER_SIZE.PRIMARY
-    + INCLUDED_CLUSTER_SIZE.REPLICA + INCLUDED_CLUSTER_SIZE.BACKUP;
+    this.includedClusterCount =
+      INCLUDED_CLUSTER_SIZE.PRIMARY +
+      INCLUDED_CLUSTER_SIZE.REPLICA +
+      INCLUDED_CLUSTER_SIZE.BACKUP;
     this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
   }
 }

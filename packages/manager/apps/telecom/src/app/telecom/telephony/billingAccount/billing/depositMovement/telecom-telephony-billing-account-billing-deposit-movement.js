@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/depositMovement',
     views: {
       'groupView@telecom.telephony.billingAccount': {
-        templateUrl: 'app/telecom/telephony/billingAccount/billing/depositMovement/telecom-telephony-billing-account-billing-deposit-movement.html',
+        templateUrl:
+          'app/telecom/telephony/billingAccount/billing/depositMovement/telecom-telephony-billing-account-billing-deposit-movement.html',
         controller: 'TelecomTelephonyBillingAccountBillingDepositMovementCtrl',
         controllerAs: 'BillingAccountDepositMovementCtrl',
       },

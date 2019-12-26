@@ -9,21 +9,16 @@ const { stringify } = require('jsurl');
 
 export default class CucOrderHelperService {
   /* @ngInject */
-  constructor(
-    $httpParamSerializerJQLike,
-    $window,
-    OvhApiMe,
-  ) {
+  constructor($httpParamSerializerJQLike, $window, OvhApiMe) {
     this.$httpParamSerializerJQLike = $httpParamSerializerJQLike;
     this.$window = $window;
     this.User = OvhApiMe;
   }
 
   openExpressOrderUrl(config, urlParams = {}) {
-    this.getExpressOrderUrl(config, urlParams)
-      .then((href) => {
-        this.$window.location.href = href;
-      });
+    this.getExpressOrderUrl(config, urlParams).then((href) => {
+      this.$window.location.href = href;
+    });
   }
 
   getUrlConfigPart(config, urlParams = {}) {
@@ -31,15 +26,23 @@ export default class CucOrderHelperService {
     if (!isArray(config)) {
       // Transform configuration and option value if necessary
       formattedConfig = assign({}, config);
-      if (formattedConfig.configuration && !isArray(formattedConfig.configuration)) {
-        formattedConfig.configuration = this.constructor
-          .transformToOrderValues(formattedConfig.configuration);
+      if (
+        formattedConfig.configuration &&
+        !isArray(formattedConfig.configuration)
+      ) {
+        formattedConfig.configuration = this.constructor.transformToOrderValues(
+          formattedConfig.configuration,
+        );
       }
 
       if (formattedConfig.option) {
         const formattedOptions = formattedConfig.option.map((option) => {
           if (option.configuration && !isArray(option.configuration)) {
-            set(option, 'configuration', this.constructor.transformToOrderValues(option.configuration));
+            set(
+              option,
+              'configuration',
+              this.constructor.transformToOrderValues(option.configuration),
+            );
           }
           return option;
         });
@@ -48,9 +51,11 @@ export default class CucOrderHelperService {
       formattedConfig = [formattedConfig];
     }
 
-    return this.$httpParamSerializerJQLike(assign({}, urlParams, {
-      products: stringify(formattedConfig),
-    }));
+    return this.$httpParamSerializerJQLike(
+      assign({}, urlParams, {
+        products: stringify(formattedConfig),
+      }),
+    );
   }
 
   /**
@@ -82,9 +87,9 @@ export default class CucOrderHelperService {
 
   buildUrl(path) {
     // Maybe this could be put in configuration
-    return this.User.v6().get()
-      .$promise
-      .then((user) => {
+    return this.User.v6()
+      .get()
+      .$promise.then((user) => {
         let targetURL;
         switch (user.ovhSubsidiary) {
           case 'FR':

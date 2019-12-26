@@ -9,16 +9,11 @@ export default {
   controller(TucToast, $timeout) {
     'ngInject';
 
-    const timestamp = (new Date()).getTime();
+    const timestamp = new Date().getTime();
 
     this.hasNewMessages = false;
 
-    this.messageTypes = [
-      'error',
-      'warning',
-      'info',
-      'success',
-    ];
+    this.messageTypes = ['error', 'warning', 'info', 'success'];
 
     this.updateMessages = (messages) => {
       // update messages timestamp

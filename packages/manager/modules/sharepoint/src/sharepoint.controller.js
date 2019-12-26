@@ -3,8 +3,14 @@ import set from 'lodash/set';
 export default class SharepointCtrl {
   /* @ngInject */
   constructor(
-    $scope, $rootScope, $stateParams, $timeout, $translate,
-    Alerter, constants, MicrosoftSharepointLicenseService,
+    $scope,
+    $rootScope,
+    $stateParams,
+    $timeout,
+    $translate,
+    Alerter,
+    constants,
+    MicrosoftSharepointLicenseService,
   ) {
     this.$scope = $scope;
     this.$rootScope = $rootScope;
@@ -33,7 +39,8 @@ export default class SharepointCtrl {
       main: 'sharepoint.alerts.main',
     };
 
-    this.sharepointService.getAssociatedExchangeService(this.exchangeId)
+    this.sharepointService
+      .getAssociatedExchangeService(this.exchangeId)
       .catch(() => {
         this.isStandAlone = true;
       });
@@ -78,14 +85,22 @@ export default class SharepointCtrl {
 
   saveDisplayName() {
     const displayName = this.displayName || this.sharepoint.domain;
-    return this.sharepointService.setSharepointDisplayName(this.exchangeId, displayName)
+    return this.sharepointService
+      .setSharepointDisplayName(this.exchangeId, displayName)
       .then(() => {
         this.sharepoint.displayName = displayName;
-        this.$rootScope.$broadcast('change.displayName', [this.sharepointDomain, this.displayName]);
+        this.$rootScope.$broadcast('change.displayName', [
+          this.sharepointDomain,
+          this.displayName,
+        ]);
       })
       .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_display_name_error'), err, this.$scope.alerts.tabs);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_dashboard_display_name_error'),
+          err,
+          this.$scope.alerts.tabs,
+        );
       })
       .finally(() => {
         this.editMode = false;
@@ -97,13 +112,18 @@ export default class SharepointCtrl {
   }
 
   getSharepoint() {
-    return this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
+    return this.sharepointService
+      .getSharepoint(this.$stateParams.exchangeId)
       .then((sharepoint) => {
         this.sharepoint = sharepoint;
       })
       .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.page);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_dashboard_error'),
+          err,
+          this.$scope.alerts.page,
+        );
       })
       .finally(() => {
         this.loaders.init = false;

@@ -26,9 +26,11 @@ angular
     tickets,
     uiRouter,
   ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state(state.name, state);
-  })
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state(state.name, state);
+    },
+  )
   .component(component.name, component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

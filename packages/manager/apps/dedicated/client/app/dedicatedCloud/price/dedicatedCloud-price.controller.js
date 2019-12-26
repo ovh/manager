@@ -5,11 +5,13 @@ angular.module('App').controller('DedicatedCloudNewPricesInformationCtrl', [
 
   function DedicatedCloudNewPricesInformationCtrl($scope) {
     $scope.loader = true;
-    $scope.pricesInformationData = angular.copy($scope.currentActionData)
+    $scope.pricesInformationData = angular
+      .copy($scope.currentActionData)
       .filter((resource) => resource.changed === true);
 
-    $scope.pricesInformationIds = $scope.pricesInformationData
-      .map((pricesInformation) => pricesInformation.name);
+    $scope.pricesInformationIds = $scope.pricesInformationData.map(
+      (pricesInformation) => pricesInformation.name,
+    );
 
     $scope.transformItem = function transformItem(item) {
       $scope.loader = true;

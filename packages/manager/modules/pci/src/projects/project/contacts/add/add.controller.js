@@ -17,27 +17,37 @@ export default class CloudProjectBillingRightsAddCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloud = OvhApiCloud;
 
-    this.availableRights = [{
-      type: 'readOnly',
-      label: $translate.instant('cpb_rights_table_rights_value_readOnly'),
-    }, {
-      type: 'readWrite',
-      label: $translate.instant('cpb_rights_table_rights_value_readWrite'),
-    }];
+    this.availableRights = [
+      {
+        type: 'readOnly',
+        label: $translate.instant('cpb_rights_table_rights_value_readOnly'),
+      },
+      {
+        type: 'readWrite',
+        label: $translate.instant('cpb_rights_table_rights_value_readWrite'),
+      },
+    ];
 
     [this.right] = this.availableRights;
   }
 
   validateAddRight() {
-    return this.OvhApiCloud.Project().Acl().v6().add({
-      serviceName: this.$stateParams.projectId,
-    }, {
-      accountId: this.constructor.normalizedNic(this.right.contact),
-      type: this.right.type,
-    })
-      .$promise
-      .then(() => {
-        this.CucCloudMessage.success(this.$translate.instant('cpb_rights_table_rights_add_success'));
+    return this.OvhApiCloud.Project()
+      .Acl()
+      .v6()
+      .add(
+        {
+          serviceName: this.$stateParams.projectId,
+        },
+        {
+          accountId: this.constructor.normalizedNic(this.right.contact),
+          type: this.right.type,
+        },
+      )
+      .$promise.then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant('cpb_rights_table_rights_add_success'),
+        );
       })
       .catch((err) => {
         this.CucCloudMessage.error(

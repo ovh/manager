@@ -17,15 +17,25 @@ import indexOf from 'lodash/indexOf';
     $onInit() {
       this.token.permission = 'read';
       this.token.serviceName = this.serviceName;
-      this.permissions.push({ value: 'read', text: this.$translate.instant('metrics_token_add_permission_read') });
-      this.permissions.push({ value: 'write', text: this.$translate.instant('metrics_token_add_permission_write') });
+      this.permissions.push({
+        value: 'read',
+        text: this.$translate.instant('metrics_token_add_permission_read'),
+      });
+      this.permissions.push({
+        value: 'write',
+        text: this.$translate.instant('metrics_token_add_permission_write'),
+      });
     }
 
     confirm() {
       this.loading = true;
       this.checkLabels();
       this.MetricService.addToken(this.token)
-        .then(() => this.$state.go('dbaas.metrics.detail.token', { serviceName: this.serviceName }))
+        .then(() =>
+          this.$state.go('dbaas.metrics.detail.token', {
+            serviceName: this.serviceName,
+          }),
+        )
         .finally(() => {
           this.loading = false;
         });
@@ -47,13 +57,17 @@ import indexOf from 'lodash/indexOf';
     }
 
     static checkLabel(label) {
-      return (!!label.key && label.value !== null);
+      return !!label.key && label.value !== null;
     }
 
     checkLabels() {
-      this.token.labels = this.token.labels.filter((label) => this.constructor.checkLabel(label));
+      this.token.labels = this.token.labels.filter((label) =>
+        this.constructor.checkLabel(label),
+      );
     }
   }
 
-  angular.module('managerApp').controller('MetricsTokenAddCtrl', MetricsTokenAddCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsTokenAddCtrl', MetricsTokenAddCtrl);
 })();

@@ -10,11 +10,7 @@ import routing from './onboarding.routing';
 const moduleName = 'ovhManagerPciProjectsOnboarding';
 
 angular
-  .module(moduleName, [
-    'oui',
-    'ovhManagerCore',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['oui', 'ovhManagerCore', 'pascalprecht.translate'])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

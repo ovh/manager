@@ -3,7 +3,13 @@ import isBoolean from 'lodash/isBoolean';
 
 export default class ExchangeAccountOutlook {
   /* @ngInject */
-  constructor(Exchange, exchangeAccount, exchangeAccountTypes, exchangeSelectedService, OvhHttp) {
+  constructor(
+    Exchange,
+    exchangeAccount,
+    exchangeAccountTypes,
+    exchangeSelectedService,
+    OvhHttp,
+  ) {
     this.Exchange = Exchange;
     this.exchangeAccount = exchangeAccount;
     this.exchangeAccountTypes = exchangeAccountTypes;
@@ -26,9 +32,7 @@ export default class ExchangeAccountOutlook {
    */
   generateOutlookUrl(organizationName, serviceName, model) {
     return this.OvhHttp.post(
-      `/email/exchange/${organizationName}/service/${serviceName}/account/${
-        model.primaryEmailAddress
-      }/outlookURL`,
+      `/email/exchange/${organizationName}/service/${serviceName}/account/${model.primaryEmailAddress}/outlookURL`,
       {
         rootPath: 'apiv6',
         data: {
@@ -78,9 +82,7 @@ export default class ExchangeAccountOutlook {
    */
   orderOutlook(organizationName, serviceName, model) {
     return this.OvhHttp.post(
-      `/order/email/exchange/${organizationName}/service/${serviceName}/outlook/${
-        model.duration
-      }`,
+      `/order/email/exchange/${organizationName}/service/${serviceName}/outlook/${model.duration}`,
       {
         rootPath: 'apiv6',
         data: {
@@ -107,9 +109,7 @@ export default class ExchangeAccountOutlook {
     };
 
     return this.OvhHttp.put(
-      `/email/exchange/${organizationName}/service/${serviceName}/account/${
-        model.primaryEmailAddress
-      }`,
+      `/email/exchange/${organizationName}/service/${serviceName}/account/${model.primaryEmailAddress}`,
       {
         rootPath: 'apiv6',
         data,
@@ -171,8 +171,10 @@ export default class ExchangeAccountOutlook {
    */
   canHaveLicense(account) {
     return (
-      !this.exchangeAccountTypes.is(account, this.exchangeAccountTypes.TYPES.BASIC)
-      && !this.exchangeAccount.isPlaceholder(account)
+      !this.exchangeAccountTypes.is(
+        account,
+        this.exchangeAccountTypes.TYPES.BASIC,
+      ) && !this.exchangeAccount.isPlaceholder(account)
     );
   }
 

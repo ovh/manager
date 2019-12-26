@@ -12,17 +12,25 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
-      goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (message = false, type = 'success') => {
+      goToHosting: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
         const promise = $state.go('app.hosting', {});
 
         if (message) {
-          promise.then(() => $timeout(() => Alerter.set(`alert-${type}`, message, null, 'app.alerts.main')));
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(`alert-${type}`, message, null, 'app.alerts.main'),
+            ),
+          );
         }
 
         return promise;
       },
       navigationInformations: /* @ngInject */ (Navigator, $rootScope) => {
-        $rootScope.currentSectionInformation = 'hosting'; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        $rootScope.currentSectionInformation = 'hosting';
         return Navigator.setNavigationInformation({
           leftMenuVisible: true,
           configurationSelected: true,

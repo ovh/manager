@@ -1,6 +1,12 @@
 class LogsAliasesHomeCtrl {
-  constructor($state, $stateParams, $translate, LogsAliasesService, CucControllerHelper,
-    CucCloudMessage) {
+  constructor(
+    $state,
+    $stateParams,
+    $translate,
+    LogsAliasesService,
+    CucControllerHelper,
+    CucCloudMessage,
+  ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
@@ -23,7 +29,8 @@ class LogsAliasesHomeCtrl {
       loaderFunction: () => this.LogsAliasesService.getQuota(this.serviceName),
     });
     this.aliases = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsAliasesService.getAliases(this.serviceName),
+      loaderFunction: () =>
+        this.LogsAliasesService.getAliases(this.serviceName),
     });
     this.quota.load();
     this.aliases.load();
@@ -63,9 +70,10 @@ class LogsAliasesHomeCtrl {
     this.$state.go('dbaas.logs.detail.aliases.link', {
       serviceName: this.serviceName,
       aliasId: aapiAlias.info.aliasId,
-      defaultContent: aapiAlias.indexes.length > 0
-        ? this.LogsAliasesService.contentTypeEnum.INDICES
-        : this.LogsAliasesService.contentTypeEnum.STREAMS,
+      defaultContent:
+        aapiAlias.indexes.length > 0
+          ? this.LogsAliasesService.contentTypeEnum.INDICES
+          : this.LogsAliasesService.contentTypeEnum.STREAMS,
     });
   }
 
@@ -77,10 +85,14 @@ class LogsAliasesHomeCtrl {
    */
   showDeleteConfirm(alias) {
     this.CucCloudMessage.flushChildMessage();
-    return this.CucControllerHelper.modal.showDeleteModal({
-      titleText: this.$translate.instant('logs_aliases_delete_title'),
-      textHtml: this.$translate.instant('logs_alias_delete_message', { alias: alias.name }),
-    }).then(() => this.delete(alias));
+    return this.CucControllerHelper.modal
+      .showDeleteModal({
+        titleText: this.$translate.instant('logs_aliases_delete_title'),
+        textHtml: this.$translate.instant('logs_alias_delete_message', {
+          alias: alias.name,
+        }),
+      })
+      .then(() => this.delete(alias));
   }
 
   /**
@@ -91,9 +103,10 @@ class LogsAliasesHomeCtrl {
    */
   delete(alias) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsAliasesService.deleteAlias(this.serviceName, alias)
-        .then(() => this.initLoaders())
-        .catch(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsAliasesService.deleteAlias(this.serviceName, alias)
+          .then(() => this.initLoaders())
+          .catch(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.delete.load();
   }
@@ -103,4 +116,6 @@ class LogsAliasesHomeCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsAliasesHomeCtrl', LogsAliasesHomeCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsAliasesHomeCtrl', LogsAliasesHomeCtrl);

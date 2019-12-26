@@ -35,33 +35,51 @@ export default /* @ngInject */ (
       if (!isLoading) {
         const from = moment(scope.from).subtract(delta, 'seconds');
         const days = moment().diff(from, 'days');
-        const hours = moment().diff(from, 'hours') - (24 * days);
-        const minutes = moment().diff(from, 'minutes') - (days * 24 * 60) - (hours * 60);
-        const seconds = moment().diff(from, 'seconds')
-          - (days * 24 * 3600)
-          - (hours * 3600)
-          - (minutes * 60);
+        const hours = moment().diff(from, 'hours') - 24 * days;
+        const minutes =
+          moment().diff(from, 'minutes') - days * 24 * 60 - hours * 60;
+        const seconds =
+          moment().diff(from, 'seconds') -
+          days * 24 * 3600 -
+          hours * 3600 -
+          minutes * 60;
 
         if (days > 0) {
-          set(scope, 'value', $translate.instant('elapsed_time_days', {
-            days,
-            hours,
-          }));
+          set(
+            scope,
+            'value',
+            $translate.instant('elapsed_time_days', {
+              days,
+              hours,
+            }),
+          );
         } else if (hours > 0) {
-          set(scope, 'value', $translate.instant('elapsed_time_hours', {
-            hours,
-            minutes,
-            seconds,
-          }));
+          set(
+            scope,
+            'value',
+            $translate.instant('elapsed_time_hours', {
+              hours,
+              minutes,
+              seconds,
+            }),
+          );
         } else if (minutes > 0) {
-          set(scope, 'value', $translate.instant('elapsed_time_minutes', {
-            minutes,
-            seconds,
-          }));
+          set(
+            scope,
+            'value',
+            $translate.instant('elapsed_time_minutes', {
+              minutes,
+              seconds,
+            }),
+          );
         } else {
-          set(scope, 'value', $translate.instant('elapsed_time_seconds', {
-            seconds,
-          }));
+          set(
+            scope,
+            'value',
+            $translate.instant('elapsed_time_seconds', {
+              seconds,
+            }),
+          );
         }
       }
     }

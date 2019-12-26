@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/manageContacts',
     views: {
       'groupInnerView@telecom.telephony.billingAccount': {
-        templateUrl: 'app/telecom/telephony/billingAccount/manageContacts/telecom-telephony-billing-account-manageContacts.html',
+        templateUrl:
+          'app/telecom/telephony/billingAccount/manageContacts/telecom-telephony-billing-account-manageContacts.html',
         controller: 'TelecomTelephonyBillingAccountManageContactsCtrl',
         controllerAs: 'ManageContactsCtrl',
       },

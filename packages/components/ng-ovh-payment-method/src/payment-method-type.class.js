@@ -1,8 +1,6 @@
 import isNull from 'lodash/isNull';
 
-import {
-  TYPE_INTEGRATION_ENUM,
-} from './payment-method.constants';
+import { TYPE_INTEGRATION_ENUM } from './payment-method.constants';
 
 /**
  *  Describe a payment method type object.
@@ -84,9 +82,7 @@ export default class OvhPaymentMethodType {
    *  @return {Boolean} true if type requires a billing contact id false otherwise.
    */
   isRequiringContactId() {
-    return [
-      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
-    ].includes(this.integration);
+    return [TYPE_INTEGRATION_ENUM.IFRAME_VANTIV].includes(this.integration);
   }
 
   /**

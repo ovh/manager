@@ -4,9 +4,7 @@ import routing from './public-order.routing';
 const moduleName = 'ovhManagerDedicatedServerBandwidthPublicOrder';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('dedicatedServerBandwidthPublicOrder', component)
   .config(routing);
 

@@ -9,9 +9,7 @@ import './index.less';
 const moduleName = 'cuiGuideComponents';
 
 angular
-  .module(moduleName, [
-    cuiDropdownMenu,
-  ])
+  .module(moduleName, [cuiDropdownMenu])
   .component('cuiGuideComponent', component);
 
 export default moduleName;

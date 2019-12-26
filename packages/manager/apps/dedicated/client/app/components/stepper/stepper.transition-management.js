@@ -1,10 +1,7 @@
 import forEach from 'lodash/forEach';
 
 export default class {
-  constructor(
-    $state,
-    $transitions,
-  ) {
+  constructor($state, $transitions) {
     this.$state = $state;
     this.$transitions = $transitions;
 
@@ -40,16 +37,10 @@ export default class {
 
     this.transitionUnregistrationHooks.push(
       // on closing the stepper state...
-      this.$transitions.onStart(
-        closeTransitionCriteria,
-        () => {
-          // ... unregister all the transitions
-          forEach(
-            this.transitionUnregistrationHooks,
-            (hook) => hook(),
-          );
-        },
-      ),
+      this.$transitions.onStart(closeTransitionCriteria, () => {
+        // ... unregister all the transitions
+        forEach(this.transitionUnregistrationHooks, (hook) => hook());
+      }),
     );
   }
 }

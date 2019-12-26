@@ -4,7 +4,13 @@ const MESSAGES_CONTAINER_NAME = 'pci.projects.project.failover-ips';
 
 export default class FailoverIpController {
   /* @ngInject */
-  constructor($state, $translate, coreConfig, CucCloudMessage, OvhApiCloudProjectIpFailover) {
+  constructor(
+    $state,
+    $translate,
+    coreConfig,
+    CucCloudMessage,
+    OvhApiCloudProjectIpFailover,
+  ) {
     this.$state = $state;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
@@ -14,9 +20,12 @@ export default class FailoverIpController {
   }
 
   $onInit() {
-    this.messageHandler = this.CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
-      onMessage: () => this.refreshMessage(),
-    });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      MESSAGES_CONTAINER_NAME,
+      {
+        onMessage: () => this.refreshMessage(),
+      },
+    );
   }
 
   refreshMessage() {

@@ -49,9 +49,7 @@ export const X_CONTAINER_READ = 'x-container-read';
 export const X_CONTAINER_META_WEB_LISTINGS = 'x-container-meta-web-listings';
 export const X_CONTAINER_READ_PUBLIC_VALUE = '.r:*,.rlistings';
 
-
 export default {
-
   CONTAINER_DEFAULT_USER,
   CONTAINER_DEFAULT_PASSWORD_TENANTNAME,
   CONTAINER_DEFAULT_PASSWORD_USERNAME,

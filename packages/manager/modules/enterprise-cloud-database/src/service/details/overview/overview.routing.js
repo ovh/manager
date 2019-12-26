@@ -2,7 +2,7 @@ import find from 'lodash/find';
 
 import { STATUS } from '../../../enterprise-cloud-database.constants';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.overview', {
     cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsOverviewComponent',
@@ -12,22 +12,33 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/overview',
     resolve: {
-      endPoints: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getEndpointsWithDetails(clusterId),
-      serviceInfo: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getServiceInfo(clusterId),
-      goBack: /* @ngInject */
-        ($state) => () => $state.go('^'),
-      goToChangeName: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.overview.update-name', { clusterId }),
-      goToClusterNodes: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }),
-      goToOverview: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
-        type = STATUS.SUCCESS) => {
+      /* @ngInject */
+      endPoints: (clusterId, enterpriseCloudDatabaseService) =>
+        enterpriseCloudDatabaseService.getEndpointsWithDetails(clusterId),
+      /* @ngInject */
+      serviceInfo: (clusterId, enterpriseCloudDatabaseService) =>
+        enterpriseCloudDatabaseService.getServiceInfo(clusterId),
+      /* @ngInject */
+      goBack: ($state) => () => $state.go('^'),
+      goToChangeName: /* @ngInject */ ($state, clusterId) => () =>
+        $state.go(
+          'enterprise-cloud-database.service.details.overview.update-name',
+          { clusterId },
+        ),
+      goToClusterNodes: /* @ngInject */ ($state, clusterId) => () =>
+        $state.go('enterprise-cloud-database.service.details.cluster-nodes', {
+          clusterId,
+        }),
+      goToOverview: /* @ngInject */ ($state, CucCloudMessage) => (
+        message = false,
+        type = STATUS.SUCCESS,
+      ) => {
         const state = 'enterprise-cloud-database.service.details.overview';
-        const promise = $state.go(state, {}, { reload: type === STATUS.SUCCESS });
+        const promise = $state.go(
+          state,
+          {},
+          { reload: type === STATUS.SUCCESS },
+        );
         if (message) {
           promise.then(() => {
             CucCloudMessage[type](message, state);
@@ -35,12 +46,18 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
-      goToSettings: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.settings', { clusterId }),
-      goToUpdatePassword: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.overview.update-password', { clusterId }),
-      offerDetails: /* @ngInject */
-        (clusterDetails, capabilities) => find(capabilities, { name: clusterDetails.offerName }),
+      goToSettings: /* @ngInject */ ($state, clusterId) => () =>
+        $state.go('enterprise-cloud-database.service.details.settings', {
+          clusterId,
+        }),
+      goToUpdatePassword: /* @ngInject */ ($state, clusterId) => () =>
+        $state.go(
+          'enterprise-cloud-database.service.details.overview.update-password',
+          { clusterId },
+        ),
+      /* @ngInject */
+      offerDetails: (clusterDetails, capabilities) =>
+        find(capabilities, { name: clusterDetails.offerName }),
     },
   });
 };

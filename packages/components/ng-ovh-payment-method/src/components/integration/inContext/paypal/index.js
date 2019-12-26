@@ -4,8 +4,6 @@ import directive from './directive';
 
 const moduleName = 'ngOvhPaymentMethodIntegrationInContextPaypal';
 
-angular
-  .module(moduleName, [])
-  .directive(directive.name, () => directive);
+angular.module(moduleName, []).directive(directive.name, () => directive);
 
 export default moduleName;

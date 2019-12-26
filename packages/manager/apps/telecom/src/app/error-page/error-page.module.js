@@ -4,9 +4,6 @@ import routing from './error-page.routing';
 
 const moduleName = 'ovhManagerTelecomError';
 
-angular.module(moduleName, [
-  managerErrorPage,
-])
-  .config(routing);
+angular.module(moduleName, [managerErrorPage]).config(routing);
 
 export default moduleName;

@@ -1,6 +1,13 @@
 export default class ExchangeAccountOutlookDelete {
   /* @ngInject */
-  constructor($scope, Exchange, exchangeAccountOutlook, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    exchangeAccountOutlook,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.$scope = $scope;
 
     this.Exchange = Exchange;

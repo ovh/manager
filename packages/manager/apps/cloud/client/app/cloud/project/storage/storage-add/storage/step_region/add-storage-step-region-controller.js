@@ -1,13 +1,14 @@
-angular.module('managerApp').controller('RA.add.storage.stepRegionCtrl',
-  ['$scope', 'CucRegionService',
-    function RAAddStorageStepRegionCtrl($scope, CucRegionService) {
-      $scope.regionService = CucRegionService;
-      $scope.childStep = 'containerType';
+angular.module('managerApp').controller('RA.add.storage.stepRegionCtrl', [
+  '$scope',
+  'CucRegionService',
+  function RAAddStorageStepRegionCtrl($scope, CucRegionService) {
+    $scope.regionService = CucRegionService;
+    $scope.childStep = 'containerType';
 
-      $scope.model.region = null;
+    $scope.model.region = null;
 
-      $scope.clickOnRegion = function clickOnRegion() {
-        $scope.loadStep($scope.childStep);
-      };
-    },
-  ]);
+    $scope.clickOnRegion = function clickOnRegion() {
+      $scope.loadStep($scope.childStep);
+    };
+  },
+]);

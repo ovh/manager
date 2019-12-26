@@ -1,6 +1,1 @@
-
-angular.module('managerApp')
-  .controller('CloudCtrl', () => {
-
-
-  });
+angular.module('managerApp').controller('CloudCtrl', () => {});

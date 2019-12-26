@@ -1,17 +1,23 @@
 import map from 'lodash/map';
 
-export default function () {
+export default function() {
   const self = this;
 
-  self.getTucToastInfos = function getTucToastInfos(bulkResult, messages, noDetails) {
+  self.getTucToastInfos = function getTucToastInfos(
+    bulkResult,
+    messages,
+    noDetails,
+  ) {
     const infos = [];
 
     // manage full success
     if (!bulkResult.error.length) {
-      return [{
-        type: 'success',
-        message: messages.fullSuccess,
-      }];
+      return [
+        {
+          type: 'success',
+          message: messages.fullSuccess,
+        },
+      ];
     }
 
     // manage partial success
@@ -26,7 +32,14 @@ export default function () {
     if (bulkResult.error.length) {
       let errorList = '<ul>';
       bulkResult.error.forEach((error) => {
-        errorList += `<li>${noDetails ? `${error.serviceName}</li>` : `${[error.serviceName, map(error.errors, 'error').join(', ')].join(' - ')}</li>`}`;
+        errorList += `<li>${
+          noDetails
+            ? `${error.serviceName}</li>`
+            : `${[
+                error.serviceName,
+                map(error.errors, 'error').join(', '),
+              ].join(' - ')}</li>`
+        }`;
       });
       errorList += '</ul>';
 

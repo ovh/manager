@@ -11,47 +11,71 @@ import reduce from 'lodash/reduce';
 import reject from 'lodash/reject';
 import set from 'lodash/set';
 
-angular.module('managerApp')
-  .service('CloudProjectBillingService', function CloudProjectBillingService($q, OvhApiMe) {
+angular
+  .module('managerApp')
+  .service('CloudProjectBillingService', function CloudProjectBillingService(
+    $q,
+    OvhApiMe,
+  ) {
     const self = this;
 
     function roundNumber(number, decimals) {
-      return Number((`${Math.round(`${number}e${decimals}`)}e-${decimals}`));
+      return Number(`${Math.round(`${number}e${decimals}`)}e-${decimals}`);
     }
 
     function initHourlyInstanceList() {
-      if (!get(self.data, 'hourlyBilling') || !get(self.data, 'hourlyBilling.hourlyUsage')) {
+      if (
+        !get(self.data, 'hourlyBilling') ||
+        !get(self.data, 'hourlyBilling.hourlyUsage')
+      ) {
         return;
       }
-      const hourlyInstances = flatten(map(
-        get(self.data, 'hourlyBilling.hourlyUsage.instance'),
-        (instance) => map(instance.details, (detail) => {
-          const newDetail = clone(detail);
-          newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-          return assignIn(newDetail, { reference: instance.reference, region: instance.region });
-        }),
-      ));
+      const hourlyInstances = flatten(
+        map(get(self.data, 'hourlyBilling.hourlyUsage.instance'), (instance) =>
+          map(instance.details, (detail) => {
+            const newDetail = clone(detail);
+            newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
+            return assignIn(newDetail, {
+              reference: instance.reference,
+              region: instance.region,
+            });
+          }),
+        ),
+      );
       self.data.hourlyInstances = hourlyInstances;
       self.data.totals.hourly.instance = reduce(
         get(self.data, 'hourlyBilling.hourlyUsage.instance'),
-        (sum, instance) => sum + roundNumber(instance.totalPrice, 2), 0,
+        (sum, instance) => sum + roundNumber(instance.totalPrice, 2),
+        0,
       );
-      self.data.totals.hourly.instance = roundNumber(get(self.data, 'totals.hourly.instance'), 2);
+      self.data.totals.hourly.instance = roundNumber(
+        get(self.data, 'totals.hourly.instance'),
+        2,
+      );
     }
 
     function initMonthlyInstanceList() {
-      if (!get(self.data, 'monthlyBilling') || !get(self.data, 'monthlyBilling.monthlyUsage')) {
+      if (
+        !get(self.data, 'monthlyBilling') ||
+        !get(self.data, 'monthlyBilling.monthlyUsage')
+      ) {
         return;
       }
 
-      const monthlyInstances = flatten(map(
-        get(self.data, 'monthlyBilling.monthlyUsage.instance'),
-        (instance) => map(instance.details, (detail) => {
-          const newDetail = clone(detail);
-          newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-          return assignIn(newDetail, { reference: instance.reference, region: instance.region });
-        }),
-      ));
+      const monthlyInstances = flatten(
+        map(
+          get(self.data, 'monthlyBilling.monthlyUsage.instance'),
+          (instance) =>
+            map(instance.details, (detail) => {
+              const newDetail = clone(detail);
+              newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
+              return assignIn(newDetail, {
+                reference: instance.reference,
+                region: instance.region,
+              });
+            }),
+        ),
+      );
 
       self.data.monthlyInstances = monthlyInstances;
       self.data.totals.monthly.instance = reduce(
@@ -59,86 +83,139 @@ angular.module('managerApp')
         (sum, instance) => sum + roundNumber(instance.totalPrice, 2),
         0,
       );
-      self.data.totals.monthly.instance = roundNumber(self.data.totals.monthly.instance, 2);
+      self.data.totals.monthly.instance = roundNumber(
+        self.data.totals.monthly.instance,
+        2,
+      );
     }
 
     function initHourlyAdditionalServiceList() {
-      if (!get(self.data, 'hourlyBilling') || !get(self.data, 'hourlyBilling.hourlyUsage')) {
+      if (
+        !get(self.data, 'hourlyBilling') ||
+        !get(self.data, 'hourlyBilling.hourlyUsage')
+      ) {
         return;
       }
-      const additionalServices = flatten(map(
-        get(self.data, 'hourlyBilling.hourlyUsage.instanceOption'),
-        (instance) => map(instance.details, (detail) => {
-          const newDetail = clone(detail);
-          newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-          return assignIn(newDetail, {
-            reference: instance.reference,
-            region: instance.region,
-            shortReference: last(instance.reference.split('.')),
-          });
-        }),
-      ));
-      self.data.hourlyAdditionalServices = groupBy(additionalServices, 'shortReference');
+      const additionalServices = flatten(
+        map(
+          get(self.data, 'hourlyBilling.hourlyUsage.instanceOption'),
+          (instance) =>
+            map(instance.details, (detail) => {
+              const newDetail = clone(detail);
+              newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
+              return assignIn(newDetail, {
+                reference: instance.reference,
+                region: instance.region,
+                shortReference: last(instance.reference.split('.')),
+              });
+            }),
+        ),
+      );
+      self.data.hourlyAdditionalServices = groupBy(
+        additionalServices,
+        'shortReference',
+      );
       self.data.totals.hourly.additionalServices = reduce(
         get(self.data, 'hourlyBilling.hourlyUsage.instanceOption'),
-        (sum, instance) => sum + roundNumber(instance.totalPrice, 2), 0,
+        (sum, instance) => sum + roundNumber(instance.totalPrice, 2),
+        0,
       );
-      self.data.totals.hourly.additionalServices = roundNumber(get(self.data, 'totals.hourly.additionalServices'), 2);
+      self.data.totals.hourly.additionalServices = roundNumber(
+        get(self.data, 'totals.hourly.additionalServices'),
+        2,
+      );
     }
 
     function initMonthlyAdditionalServiceList() {
-      if (!get(self.data, 'monthlyBilling') || !get(self.data, 'monthlyBilling.monthlyUsage')) {
+      if (
+        !get(self.data, 'monthlyBilling') ||
+        !get(self.data, 'monthlyBilling.monthlyUsage')
+      ) {
         return;
       }
-      const additionalServices = flatten(map(
-        get(self.data, 'monthlyBilling.monthlyUsage.instanceOption'),
-        (instance) => map(instance.details, (detail) => {
-          const newDetail = clone(detail);
-          newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-          return assignIn(newDetail, {
-            reference: instance.reference,
-            region: instance.region,
-            shortReference: last(instance.reference.split('.')),
-          });
-        }),
-      ));
-      self.data.monthlyAdditionalServices = groupBy(additionalServices, 'shortReference');
+      const additionalServices = flatten(
+        map(
+          get(self.data, 'monthlyBilling.monthlyUsage.instanceOption'),
+          (instance) =>
+            map(instance.details, (detail) => {
+              const newDetail = clone(detail);
+              newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
+              return assignIn(newDetail, {
+                reference: instance.reference,
+                region: instance.region,
+                shortReference: last(instance.reference.split('.')),
+              });
+            }),
+        ),
+      );
+      self.data.monthlyAdditionalServices = groupBy(
+        additionalServices,
+        'shortReference',
+      );
       self.data.totals.monthly.additionalServices = reduce(
         get(self.data, 'monthlyBilling.monthlyUsage.instanceOption'),
-        (sum, instance) => sum + roundNumber(instance.totalPrice, 2), 0,
+        (sum, instance) => sum + roundNumber(instance.totalPrice, 2),
+        0,
       );
-      self.data.totals.monthly.additionalServices = roundNumber(get(self.data, 'totals.monthly.additionalServices'), 2);
+      self.data.totals.monthly.additionalServices = roundNumber(
+        get(self.data, 'totals.monthly.additionalServices'),
+        2,
+      );
     }
 
     function initObjectStorageList() {
       if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
         return;
       }
-      forEach(self.data.hourlyBilling.hourlyUsage.objectStorage, (objectStorage) => {
-        set(objectStorage, 'totalPrice', roundNumber(objectStorage.totalPrice, 2));
-      });
+      forEach(
+        self.data.hourlyBilling.hourlyUsage.objectStorage,
+        (objectStorage) => {
+          set(
+            objectStorage,
+            'totalPrice',
+            roundNumber(objectStorage.totalPrice, 2),
+          );
+        },
+      );
 
-      self.data.objectStorages = reject(self.data.hourlyBilling.hourlyUsage.storage, { type: 'pca' });
+      self.data.objectStorages = reject(
+        self.data.hourlyBilling.hourlyUsage.storage,
+        { type: 'pca' },
+      );
       self.data.totals.hourly.objectStorage = reduce(
         self.data.objectStorages,
         (sum, storage) => sum + roundNumber(storage.totalPrice, 2),
         0,
       );
-      self.data.totals.hourly.objectStorage = roundNumber(self.data.totals.hourly.objectStorage, 2);
+      self.data.totals.hourly.objectStorage = roundNumber(
+        self.data.totals.hourly.objectStorage,
+        2,
+      );
     }
 
     function initArchiveStorageList() {
       if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
         return;
       }
-      forEach(self.data.hourlyBilling.hourlyUsage.archiveStorage, (archiveStorage) => {
-        set(archiveStorage, 'totalPrice', roundNumber(archiveStorage.totalPrice, 2));
-      });
+      forEach(
+        self.data.hourlyBilling.hourlyUsage.archiveStorage,
+        (archiveStorage) => {
+          set(
+            archiveStorage,
+            'totalPrice',
+            roundNumber(archiveStorage.totalPrice, 2),
+          );
+        },
+      );
 
-      self.data.archiveStorages = filter(self.data.hourlyBilling.hourlyUsage.storage, { type: 'pca' });
+      self.data.archiveStorages = filter(
+        self.data.hourlyBilling.hourlyUsage.storage,
+        { type: 'pca' },
+      );
       self.data.totals.hourly.archiveStorage = reduce(
         self.data.archiveStorages,
-        (sum, archiveStorage) => sum + roundNumber(archiveStorage.totalPrice, 2),
+        (sum, archiveStorage) =>
+          sum + roundNumber(archiveStorage.totalPrice, 2),
         0,
       );
       self.data.totals.hourly.archiveStorage = roundNumber(
@@ -161,21 +238,28 @@ angular.module('managerApp')
         (sum, snapshot) => sum + roundNumber(snapshot.totalPrice, 2),
         0,
       );
-      self.data.totals.hourly.snapshot = roundNumber(self.data.totals.hourly.snapshot, 2);
+      self.data.totals.hourly.snapshot = roundNumber(
+        self.data.totals.hourly.snapshot,
+        2,
+      );
     }
 
     function initVolumeList() {
       if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
         return;
       }
-      const volumes = flatten(map(
-        self.data.hourlyBilling.hourlyUsage.volume,
-        (volume) => map(volume.details, (detail) => {
-          const newDetail = clone(detail);
-          newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-          return assignIn(newDetail, { type: volume.type, region: volume.region });
-        }),
-      ));
+      const volumes = flatten(
+        map(self.data.hourlyBilling.hourlyUsage.volume, (volume) =>
+          map(volume.details, (detail) => {
+            const newDetail = clone(detail);
+            newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
+            return assignIn(newDetail, {
+              type: volume.type,
+              region: volume.region,
+            });
+          }),
+        ),
+      );
 
       self.data.volumes = volumes;
       self.data.totals.hourly.volume = reduce(
@@ -183,7 +267,10 @@ angular.module('managerApp')
         (sum, volume) => sum + roundNumber(volume.totalPrice, 2),
         0,
       );
-      self.data.totals.hourly.volume = roundNumber(self.data.totals.hourly.volume, 2);
+      self.data.totals.hourly.volume = roundNumber(
+        self.data.totals.hourly.volume,
+        2,
+      );
     }
 
     function initInstanceBandwidth() {
@@ -213,53 +300,55 @@ angular.module('managerApp')
         (sum, bandwidth) => sum + bandwidth.outgoingBandwidth.totalPrice,
         0,
       );
-      self.data.totals.hourly.bandwidth = roundNumber(self.data.totals.hourly.bandwidth, 2);
+      self.data.totals.hourly.bandwidth = roundNumber(
+        self.data.totals.hourly.bandwidth,
+        2,
+      );
     }
 
     self.getConsumptionDetails = function getConsumptionDetails(
       hourlyBillingInfo,
       monthlyBillingInfo,
     ) {
-      return self.getDataInitialized()
-        .then(() => {
-          self.data.hourlyBilling = hourlyBillingInfo;
-          self.data.monthlyBilling = monthlyBillingInfo;
+      return self.getDataInitialized().then(() => {
+        self.data.hourlyBilling = hourlyBillingInfo;
+        self.data.monthlyBilling = monthlyBillingInfo;
 
-          return $q
-            .allSettled([
-              initHourlyInstanceList(),
-              initMonthlyInstanceList(),
-              initHourlyAdditionalServiceList(),
-              initMonthlyAdditionalServiceList(),
-              initObjectStorageList(),
-              initArchiveStorageList(),
-              initSnapshotList(),
-              initVolumeList(),
-              initInstanceBandwidth(),
-            ])
-            .then(() => {
-              self.data.totals.monthly.total = roundNumber(
-                self.data.totals.monthly.instance
-                + self.data.totals.monthly.additionalServices,
-                2,
-              );
-              self.data.totals.hourly.total = roundNumber(
-                self.data.totals.hourly.instance
-                + self.data.totals.hourly.additionalServices
-                + self.data.totals.hourly.snapshot
-                + self.data.totals.hourly.objectStorage
-                + self.data.totals.hourly.archiveStorage
-                + self.data.totals.hourly.volume
-                + self.data.totals.hourly.bandwidth,
-                2,
-              );
-              self.data.totals.total = roundNumber(
-                self.data.totals.monthly.total + self.data.totals.hourly.total,
-                2,
-              );
-              return self.data;
-            });
-        });
+        return $q
+          .allSettled([
+            initHourlyInstanceList(),
+            initMonthlyInstanceList(),
+            initHourlyAdditionalServiceList(),
+            initMonthlyAdditionalServiceList(),
+            initObjectStorageList(),
+            initArchiveStorageList(),
+            initSnapshotList(),
+            initVolumeList(),
+            initInstanceBandwidth(),
+          ])
+          .then(() => {
+            self.data.totals.monthly.total = roundNumber(
+              self.data.totals.monthly.instance +
+                self.data.totals.monthly.additionalServices,
+              2,
+            );
+            self.data.totals.hourly.total = roundNumber(
+              self.data.totals.hourly.instance +
+                self.data.totals.hourly.additionalServices +
+                self.data.totals.hourly.snapshot +
+                self.data.totals.hourly.objectStorage +
+                self.data.totals.hourly.archiveStorage +
+                self.data.totals.hourly.volume +
+                self.data.totals.hourly.bandwidth,
+              2,
+            );
+            self.data.totals.total = roundNumber(
+              self.data.totals.monthly.total + self.data.totals.hourly.total,
+              2,
+            );
+            return self.data;
+          });
+      });
     };
 
     self.getDataInitialized = function getDataInitialized() {
@@ -294,9 +383,11 @@ angular.module('managerApp')
           },
         },
       };
-      return OvhApiMe.v6().get().$promise.then((me) => {
-        self.data.totals.currencySymbol = me.currency.symbol;
-        return self.data;
-      });
+      return OvhApiMe.v6()
+        .get()
+        .$promise.then((me) => {
+          self.data.totals.currencySymbol = me.currency.symbol;
+          return self.data;
+        });
     };
   });

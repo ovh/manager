@@ -25,12 +25,18 @@ export default class ExchangeAccountDelegationCtrl {
     this.currentAccount = this.services.navigation.currentActionData.primaryEmailAddress;
     this.searchValue = null;
     this.selectedDomain = this.services.navigation.currentActionData.completeDomain;
-    this.allDomainsOption = { displayName: this.services.$translate.instant('exchange_all_domains'), name: '' };
-    this.availableDomains = [this.allDomainsOption]
-      .concat(this.services.navigation.currentActionData.availableDomains);
-    this.services.$scope.updateDelegationRight = () => this.updateDelegationRight();
+    this.allDomainsOption = {
+      displayName: this.services.$translate.instant('exchange_all_domains'),
+      name: '',
+    };
+    this.availableDomains = [this.allDomainsOption].concat(
+      this.services.navigation.currentActionData.availableDomains,
+    );
+    this.services.$scope.updateDelegationRight = () =>
+      this.updateDelegationRight();
     this.services.$scope.hasChanged = () => this.hasChanged();
-    this.services.$scope.getAccounts = (count, offset) => this.getAccounts(count, offset);
+    this.services.$scope.getAccounts = (count, offset) =>
+      this.getAccounts(count, offset);
 
     this.services.$scope.$on(
       this.services.Exchange.events.accountsChanged,
@@ -61,7 +67,9 @@ export default class ExchangeAccountDelegationCtrl {
       }));
 
     changesList.sendOnBehalfToRights = this.bufferAccounts
-      .filter((account) => account.newSendOnBehalfToValue !== account.sendOnBehalfTo)
+      .filter(
+        (account) => account.newSendOnBehalfToValue !== account.sendOnBehalfTo,
+      )
       .map((account) => ({
         id: account.id,
         operation: account.newSendOnBehalfToValue ? 'POST' : 'DELETE',
@@ -80,25 +88,43 @@ export default class ExchangeAccountDelegationCtrl {
   onSearchValueChange() {
     // clear filter by domain name
     this.selectedDomain = this.allDomainsOption;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'delegationsStep1Table');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'delegationsStep1Table',
+    );
   }
 
   onDomainValueChange() {
     // clear filter by free text search
     this.searchValue = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'delegationsStep1Table');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'delegationsStep1Table',
+    );
   }
 
   resetSearch() {
     this.searchValue = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'delegationsStep1Table');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'delegationsStep1Table',
+    );
   }
 
   constructResult(data) {
     const mainMessage = {
-      OK: this.services.$translate.instant('exchange_ACTION_delegation_success_message'),
-      PARTIAL: this.services.$translate.instant('exchange_ACTION_delegation_partial_message'),
-      ERROR: this.services.$translate.instant('exchange_ACTION_delegation_error_message'),
+      OK: this.services.$translate.instant(
+        'exchange_ACTION_delegation_success_message',
+      ),
+      PARTIAL: this.services.$translate.instant(
+        'exchange_ACTION_delegation_partial_message',
+      ),
+      ERROR: this.services.$translate.instant(
+        'exchange_ACTION_delegation_error_message',
+      ),
     };
 
     let state = 'OK';
@@ -111,7 +137,6 @@ export default class ExchangeAccountDelegationCtrl {
 
     let shouldContinue = true;
 
-
     forEach(dataAsArray, (datum) => {
       if (isString(datum)) {
         this.services.messaging.setMessage(mainMessage, {
@@ -123,7 +148,13 @@ export default class ExchangeAccountDelegationCtrl {
         return false;
       }
       if (datum.status === 'ERROR') {
-        set(datum, 'message', this.services.$translate.instant(`exchange_tab_TASKS_${datum.function}`));
+        set(
+          datum,
+          'message',
+          this.services.$translate.instant(
+            `exchange_tab_TASKS_${datum.function}`,
+          ),
+        );
         set(datum, 'type', 'ERROR');
         state = 'PARTIAL';
         numberOfErrors += 1;
@@ -149,7 +180,10 @@ export default class ExchangeAccountDelegationCtrl {
   checkForLocalChanges() {
     if (has(this.accounts, 'list.results')) {
       forEach(this.accounts.list.results, (account) => {
-        const matchBuffer = find(this.bufferAccounts, (buffer) => buffer.id === account.id);
+        const matchBuffer = find(
+          this.bufferAccounts,
+          (buffer) => buffer.id === account.id,
+        );
         if (matchBuffer) {
           matchBuffer.newSendOnBehalfToValue = account.newSendOnBehalfToValue;
           matchBuffer.newSendAsValue = account.newSendAsValue;
@@ -163,7 +197,11 @@ export default class ExchangeAccountDelegationCtrl {
     forEach(this.bufferAccounts, (bufferAccount) => {
       if (bufferAccount.id === account.id) {
         set(account, 'newSendAsValue', bufferAccount.newSendAsValue);
-        set(account, 'newSendOnBehalfToValue', bufferAccount.newSendOnBehalfToValue);
+        set(
+          account,
+          'newSendOnBehalfToValue',
+          bufferAccount.newSendOnBehalfToValue,
+        );
         set(account, 'newFullAccessValue', bufferAccount.newFullAccessValue);
       }
     });
@@ -176,9 +214,9 @@ export default class ExchangeAccountDelegationCtrl {
     const listOfChanges = this.getChanges();
 
     return (
-      !isEmpty(listOfChanges.sendRights)
-      || !isEmpty(listOfChanges.fullAccessRights)
-      || !isEmpty(listOfChanges.sendOnBehalfToRights)
+      !isEmpty(listOfChanges.sendRights) ||
+      !isEmpty(listOfChanges.fullAccessRights) ||
+      !isEmpty(listOfChanges.sendOnBehalfToRights)
     );
   }
 
@@ -204,7 +242,9 @@ export default class ExchangeAccountDelegationCtrl {
           set(account, 'newFullAccessValue', account.fullAccess);
           this.checkForBufferChanges(account);
 
-          if (!find(this.bufferAccounts, (buffer) => buffer.id === account.id)) {
+          if (
+            !find(this.bufferAccounts, (buffer) => buffer.id === account.id)
+          ) {
             // keep the original data as a reference point to compare changes
             this.bufferAccounts.push(account);
           }
@@ -213,7 +253,9 @@ export default class ExchangeAccountDelegationCtrl {
       .catch((failure) => {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           failure,
         );
       })
@@ -232,13 +274,17 @@ export default class ExchangeAccountDelegationCtrl {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_delegation_doing_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_delegation_doing_message',
+          ),
         );
         this.constructResult(data);
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_delegation_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_delegation_error_message',
+          ),
           failure.data,
         );
       })

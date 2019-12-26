@@ -28,13 +28,17 @@ export default class ExchangeRemoveGroupAliasCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_ALIAS_delete_success_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ALIAS_delete_success_message',
+          ),
           success,
         );
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ALIAS_delete_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ALIAS_delete_error_message',
+          ),
           err,
         );
       })

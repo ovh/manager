@@ -27,7 +27,8 @@ export default class VpsBackupStorageOrderCtrl {
 
     // other attributes used in view
     this.ftpBackupOption = null;
-    this.getFtpBackupMonthlyPrice = VpsBackupStorageOrderCtrl.getFtpBackupMonthlyPrice;
+    this.getFtpBackupMonthlyPrice =
+      VpsBackupStorageOrderCtrl.getFtpBackupMonthlyPrice;
     this.hasInitError = false;
 
     this.loading = {
@@ -47,12 +48,10 @@ export default class VpsBackupStorageOrderCtrl {
   ============================== */
 
   onFtpBackupOrderStepperFinish() {
-    let expressOrderUrl = get(
-      ORDER_EXPRESS_BASE_URL, [
-        this.coreConfig.getRegion(),
-        this.connectedUser.ovhSubsidiary,
-      ],
-    );
+    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
+      this.coreConfig.getRegion(),
+      this.connectedUser.ovhSubsidiary,
+    ]);
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
@@ -61,14 +60,19 @@ export default class VpsBackupStorageOrderCtrl {
       pricingMode: 'default',
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([expressParams])}`;
+    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+      expressParams,
+    ])}`;
 
     this.$window.open(expressOrderUrl, '_blank');
 
     this.CucCloudMessage.success({
-      textHtml: this.$translate.instant('vps_configuration_activate_ftpbackup_success', {
-        url: expressOrderUrl,
-      }),
+      textHtml: this.$translate.instant(
+        'vps_configuration_activate_ftpbackup_success',
+        {
+          url: expressOrderUrl,
+        },
+      ),
     });
 
     return this.$onInit();
@@ -84,10 +88,13 @@ export default class VpsBackupStorageOrderCtrl {
     this.loading.init = true;
     this.hasInitError = false;
 
-    return this.OvhApiOrder.CartServiceOption().Vps().v6().get({
-      serviceName: this.stateVps.name,
-    }).$promise
-      .then((response) => {
+    return this.OvhApiOrder.CartServiceOption()
+      .Vps()
+      .v6()
+      .get({
+        serviceName: this.stateVps.name,
+      })
+      .$promise.then((response) => {
         // take the ftpbackup option from the list
         this.ftpBackupOption = find(response, {
           family: 'ftpbackup',
@@ -97,7 +104,9 @@ export default class VpsBackupStorageOrderCtrl {
           this.hasInitError = true;
           return this.$q.reject({
             data: {
-              message: this.$translate.instant('vps_configuration_activate_ftpbackup_load_error_none'),
+              message: this.$translate.instant(
+                'vps_configuration_activate_ftpbackup_load_error_none',
+              ),
             },
           });
         }
@@ -105,10 +114,14 @@ export default class VpsBackupStorageOrderCtrl {
         return this.ftpBackupOption;
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_configuration_activate_ftpbackup_load_error'),
-          get(error, 'data.message'),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant(
+              'vps_configuration_activate_ftpbackup_load_error',
+            ),
+            get(error, 'data.message'),
+          ].join(' '),
+        );
       })
       .finally(() => {
         this.loading.init = false;

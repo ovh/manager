@@ -3,8 +3,14 @@ import set from 'lodash/set';
 export default class MicrosoftOfficeLicenseCtrl {
   /* @ngInject */
   constructor(
-    $rootScope, $stateParams, $scope, $timeout, $translate,
-    Alerter, MicrosoftOfficeLicenseService, User,
+    $rootScope,
+    $stateParams,
+    $scope,
+    $timeout,
+    $translate,
+    Alerter,
+    MicrosoftOfficeLicenseService,
+    User,
   ) {
     this.$rootScope = $rootScope;
     this.$stateParams = $stateParams;
@@ -32,27 +38,32 @@ export default class MicrosoftOfficeLicenseCtrl {
       main: 'microsoft_office_license_alert_main',
     };
 
-    this.user.getUrlOf('guides')
-      .then((guides) => {
-        if (guides && guides.office365) {
-          this.guide = guides.office365;
-        }
-      });
+    this.user.getUrlOf('guides').then((guides) => {
+      if (guides && guides.office365) {
+        this.guide = guides.office365;
+      }
+    });
 
     this.$scope.getDomainsId = () => {
       this.loaders.domains = true;
 
-      return this.licenseService.getDomainsId(this.$scope.currentLicense)
-        .then((domainsId) => { this.$scope.domainsId = domainsId; });
+      return this.licenseService
+        .getDomainsId(this.$scope.currentLicense)
+        .then((domainsId) => {
+          this.$scope.domainsId = domainsId;
+        });
     };
 
     this.$scope.transformItemDomains = (domain) => {
       this.loaders.domains = true;
 
-      return this.licenseService.getDomain(this.$scope.currentLicense, domain)
+      return this.licenseService
+        .getDomain(this.$scope.currentLicense, domain)
         .then((domainDetails) => domainDetails)
         .catch((err) => this.alerter.error(err))
-        .finally(() => { this.loaders.domains = false; });
+        .finally(() => {
+          this.loaders.domains = false;
+        });
     };
 
     this.$scope.setAction = (action, data) => {
@@ -70,7 +81,9 @@ export default class MicrosoftOfficeLicenseCtrl {
       } else {
         $currentAction.modal('hide');
         this.$scope.currentActionData = null;
-        this.$timeout(() => { this.stepPath = ''; }, 300);
+        this.$timeout(() => {
+          this.stepPath = '';
+        }, 300);
       }
     };
 
@@ -82,12 +95,15 @@ export default class MicrosoftOfficeLicenseCtrl {
   getTenant() {
     this.loaders.tenant = true;
 
-    return this.licenseService.get(this.$scope.currentLicense)
+    return this.licenseService
+      .get(this.$scope.currentLicense)
       .then((tenant) => {
         this.license.tenant = tenant;
         return this.license;
       })
-      .finally(() => { this.loaders.tenant = false; });
+      .finally(() => {
+        this.loaders.tenant = false;
+      });
   }
 
   editDisplayName(tenant) {
@@ -103,15 +119,28 @@ export default class MicrosoftOfficeLicenseCtrl {
     const oldDisplayName = tenant.displayName;
 
     set(tenant, 'displayName', this.newDisplayName.value);
-    this.licenseService.edit(license, tenant)
+    this.licenseService
+      .edit(license, tenant)
       .then(() => {
-        this.alerter.success(this.$translate.instant('microsoft_office_license_edit_success'), this.$scope.alerts.tabs);
-        this.$rootScope.$broadcast('change.displayName', [this.$scope.currentLicense, this.newDisplayName.value]);
+        this.alerter.success(
+          this.$translate.instant('microsoft_office_license_edit_success'),
+          this.$scope.alerts.tabs,
+        );
+        this.$rootScope.$broadcast('change.displayName', [
+          this.$scope.currentLicense,
+          this.newDisplayName.value,
+        ]);
       })
       .catch((err) => {
-        this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_edit_error'), err, this.$scope.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('microsoft_office_license_edit_error'),
+          err,
+          this.$scope.alerts.main,
+        );
         this.license.tenant.displayName = oldDisplayName;
       })
-      .finally(() => { this.editMode = false; });
+      .finally(() => {
+        this.editMode = false;
+      });
   }
 }

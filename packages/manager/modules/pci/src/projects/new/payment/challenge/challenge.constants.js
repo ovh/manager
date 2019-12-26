@@ -1,9 +1,11 @@
-export const PAYPAL_LOGIN_URL = 'https://www.paypal.com/signin/authorize?flowEntry=static&client_id={clientId}&scope={scope}&redirect_url={redirectUrl}';
+export const PAYPAL_LOGIN_URL =
+  'https://www.paypal.com/signin/authorize?flowEntry=static&client_id={clientId}&scope={scope}&redirect_url={redirectUrl}';
 
 export const PAYPAL_LOGIN_PARAMS = {
   clientId: '',
   redirectUrl: '',
-  scope: 'openid profile email https://uri.paypal.com/services/paypalattributes',
+  scope:
+    'openid profile email https://uri.paypal.com/services/paypalattributes',
 };
 
 export const BUILD_PAYPAL_URL = (urlTemplate, params) => {

@@ -5,23 +5,33 @@ const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const webpack = require('webpack');
 
 module.exports = (env = {}) => {
-  const { config } = webpackConfig({
-    template: './src/index.html',
-    basePath: './src',
-    root: path.resolve(__dirname, './src'),
-    assets: {
-      files: [
-        { from: path.resolve(__dirname, './src/assets/images'), to: 'assets/images/' },
-      ],
+  const { config } = webpackConfig(
+    {
+      template: './src/index.html',
+      basePath: './src',
+      root: path.resolve(__dirname, './src'),
+      assets: {
+        files: [
+          {
+            from: path.resolve(__dirname, './src/assets/images'),
+            to: 'assets/images/',
+          },
+        ],
+      },
     },
-  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
+    process.env.REGION
+      ? Object.assign(env, { region: process.env.REGION })
+      : env,
+  );
 
   let WEBPACK_REGION;
 
   if (env.region) {
     WEBPACK_REGION = `${env.region}`;
   } else {
-    WEBPACK_REGION = process.env.REGION ? `${process.env.REGION.toUpperCase()}` : 'EU';
+    WEBPACK_REGION = process.env.REGION
+      ? `${process.env.REGION.toUpperCase()}`
+      : 'EU';
   }
 
   // Extra config files
@@ -40,10 +50,18 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __FEEDBACK_URL_EN__: process.env.FEEDBACK_URL_EN ? `'${process.env.FEEDBACK_URL_EN}'` : 'null',
-        __FEEDBACK_URL_FR__: process.env.FEEDBACK_URL_FR ? `'${process.env.FEEDBACK_URL_FR}'` : 'null',
-        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
-        __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
+        __FEEDBACK_URL_EN__: process.env.FEEDBACK_URL_EN
+          ? `'${process.env.FEEDBACK_URL_EN}'`
+          : 'null',
+        __FEEDBACK_URL_FR__: process.env.FEEDBACK_URL_FR
+          ? `'${process.env.FEEDBACK_URL_FR}'`
+          : 'null',
+        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS
+          ? `'${process.env.NG_APP_INJECTIONS}'`
+          : 'null',
+        __NODE_ENV__: process.env.NODE_ENV
+          ? `'${process.env.NODE_ENV}'`
+          : '"development"',
         __WEBPACK_REGION__: `'${WEBPACK_REGION}'`,
       }),
       new webpack.ProvidePlugin({

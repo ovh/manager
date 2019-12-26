@@ -1,5 +1,5 @@
-angular.module('managerApp').filter('showByte',
-  [function showByteFilter() {
+angular.module('managerApp').filter('showByte', [
+  function showByteFilter() {
     const oneEB = 1152921504606846976;
     const onePB = 1125899906842624;
     const oneTB = 1099511627776;
@@ -28,4 +28,5 @@ angular.module('managerApp').filter('showByte',
       }
       return `${bytes}B`;
     };
-  }]);
+  },
+]);

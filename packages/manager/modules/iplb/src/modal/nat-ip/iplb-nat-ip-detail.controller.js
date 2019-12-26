@@ -1,6 +1,11 @@
 export default class IpLoadBalancerNatIpDetailCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, serviceName, CucControllerHelper, IpLoadBalancerNatIpService) {
+  constructor(
+    $uibModalInstance,
+    serviceName,
+    CucControllerHelper,
+    IpLoadBalancerNatIpService,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
 
     this.serviceName = serviceName;
@@ -9,7 +14,8 @@ export default class IpLoadBalancerNatIpDetailCtrl {
     this.IpLoadBalancerNatIpService = IpLoadBalancerNatIpService;
 
     this.ips = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerNatIpService.getNatIps(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerNatIpService.getNatIps(this.serviceName),
     });
   }
 

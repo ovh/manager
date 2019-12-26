@@ -5,9 +5,6 @@ import zfsOptionsModule from './zfs-options.module';
 
 const moduleName = 'nashaPartitionZfsOptions';
 
-angular.module(moduleName, [
-  'ui.router',
-  zfsOptionsModule,
-]);
+angular.module(moduleName, ['ui.router', zfsOptionsModule]);
 
 export default moduleName;

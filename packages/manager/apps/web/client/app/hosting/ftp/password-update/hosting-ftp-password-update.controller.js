@@ -3,7 +3,14 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingFtpUserUpdatePasswordCtrl',
   class HostingFtpUserUpdatePasswordCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting, HostingUser) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      Hosting,
+      HostingUser,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -25,15 +32,17 @@ angular.module('App').controller(
 
     isPasswordValid() {
       return (
-        this.password.value
-        && this.password.confirmation
-        && this.password.value === this.password.confirmation
-        && this.Hosting.constructor.isPasswordValid(this.password.value)
+        this.password.value &&
+        this.password.confirmation &&
+        this.password.value === this.password.confirmation &&
+        this.Hosting.constructor.isPasswordValid(this.password.value)
       );
     }
 
     isPasswordInvalid() {
-      return !this.Hosting.constructor.isPasswordValid(get(this.password, 'value'));
+      return !this.Hosting.constructor.isPasswordValid(
+        get(this.password, 'value'),
+      );
     }
 
     isPasswordConfirmationInvalid() {
@@ -49,7 +58,9 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_FTP_configuration_change_password_success'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_change_password_success',
+            ),
             this.$scope.alerts.main,
           );
         })

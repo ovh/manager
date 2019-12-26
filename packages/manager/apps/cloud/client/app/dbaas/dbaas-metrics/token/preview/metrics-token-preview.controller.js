@@ -1,6 +1,12 @@
 (() => {
   class MetricsTokenPreviewCtrl {
-    constructor($translate, $uibModalInstance, serviceName, tokenID, MetricService) {
+    constructor(
+      $translate,
+      $uibModalInstance,
+      serviceName,
+      tokenID,
+      MetricService,
+    ) {
       this.$translate = $translate;
       this.$uibModalInstance = $uibModalInstance;
       this.serviceName = serviceName;
@@ -41,5 +47,7 @@
     }
   }
 
-  angular.module('managerApp').controller('MetricsTokenPreviewCtrl', MetricsTokenPreviewCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsTokenPreviewCtrl', MetricsTokenPreviewCtrl);
 })();

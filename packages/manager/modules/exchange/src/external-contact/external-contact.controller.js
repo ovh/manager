@@ -24,7 +24,9 @@ export default class ExchangeTabExternalContactsCtrl {
     this.contacts = null;
     this.filter = null;
 
-    $scope.$on(Exchange.events.externalcontactsChanged, () => $scope.$broadcast('paginationServerSide.reload', 'externalContactsTable'));
+    $scope.$on(Exchange.events.externalcontactsChanged, () =>
+      $scope.$broadcast('paginationServerSide.reload', 'externalContactsTable'),
+    );
 
     $scope.getContacts = () => this.contacts;
     $scope.getContactsLoading = () => this.contactsLoading;

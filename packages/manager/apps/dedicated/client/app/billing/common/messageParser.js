@@ -18,10 +18,10 @@ angular.module('Billing.services').service('BillingmessageParser', [
     };
 
     /**
-         * @param {string} message - text
-         * @param {object|string} data - additional data to parse
-         * @return {object}
-         */
+     * @param {string} message - text
+     * @param {object|string} data - additional data to parse
+     * @return {object}
+     */
     return function billingMessageParser(message, data) {
       let alertType = '';
       if (!data) {
@@ -47,7 +47,9 @@ angular.module('Billing.services').service('BillingmessageParser', [
       }
 
       if (data.messages && data.messages.length > 0) {
-        const messageDetails = data.messages.map((_message) => `${_message.id} : ${_message.message}`).join(', ');
+        const messageDetails = data.messages
+          .map((_message) => `${_message.id} : ${_message.message}`)
+          .join(', ');
 
         return {
           message: `${message} (${messageDetails})`,

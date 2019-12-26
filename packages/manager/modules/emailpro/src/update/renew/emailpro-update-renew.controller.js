@@ -6,7 +6,13 @@ import flatten from 'lodash/flatten';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $translate) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  EmailPro,
+  $location,
+  $translate,
+) => {
   $scope.exchange = angular.copy($scope.currentActionData);
   $scope.search = { value: null };
   $scope.buffer = {
@@ -21,29 +27,53 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
 
   const setMonthly = function setMonthly(account) {
     set(account, 'renewPeriod', 'MONTHLY');
-    if ($scope.buffer.selectedMonthly.indexOf(account.primaryEmailAddress) === -1) {
+    if (
+      $scope.buffer.selectedMonthly.indexOf(account.primaryEmailAddress) === -1
+    ) {
       $scope.buffer.selectedMonthly.push(account.primaryEmailAddress);
     }
-    remove($scope.buffer.selectedYearly, (num) => num === account.primaryEmailAddress);
-    remove($scope.buffer.selectedDelete, (num) => num === account.primaryEmailAddress);
+    remove(
+      $scope.buffer.selectedYearly,
+      (num) => num === account.primaryEmailAddress,
+    );
+    remove(
+      $scope.buffer.selectedDelete,
+      (num) => num === account.primaryEmailAddress,
+    );
   };
 
   const setYearly = function setYearly(account) {
     set(account, 'renewPeriod', 'YEARLY');
-    if ($scope.buffer.selectedYearly.indexOf(account.primaryEmailAddress) === -1) {
+    if (
+      $scope.buffer.selectedYearly.indexOf(account.primaryEmailAddress) === -1
+    ) {
       $scope.buffer.selectedYearly.push(account.primaryEmailAddress);
     }
-    remove($scope.buffer.selectedMonthly, (num) => num === account.primaryEmailAddress);
-    remove($scope.buffer.selectedDelete, (num) => num === account.primaryEmailAddress);
+    remove(
+      $scope.buffer.selectedMonthly,
+      (num) => num === account.primaryEmailAddress,
+    );
+    remove(
+      $scope.buffer.selectedDelete,
+      (num) => num === account.primaryEmailAddress,
+    );
   };
 
   const setDeleteAtExpiration = function setDeleteAtExpiration(account) {
     set(account, 'renewPeriod', 'DELETE_AT_EXPIRATION');
-    if ($scope.buffer.selectedDelete.indexOf(account.primaryEmailAddress) === -1) {
+    if (
+      $scope.buffer.selectedDelete.indexOf(account.primaryEmailAddress) === -1
+    ) {
       $scope.buffer.selectedDelete.push(account.primaryEmailAddress);
     }
-    remove($scope.buffer.selectedMonthly, (num) => num === account.primaryEmailAddress);
-    remove($scope.buffer.selectedYearly, (num) => num === account.primaryEmailAddress);
+    remove(
+      $scope.buffer.selectedMonthly,
+      (num) => num === account.primaryEmailAddress,
+    );
+    remove(
+      $scope.buffer.selectedYearly,
+      (num) => num === account.primaryEmailAddress,
+    );
   };
 
   const bufferChanges = function bufferChanges(account) {
@@ -64,25 +94,29 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
 
   const checkForChanges = function checkForChanges() {
     $scope.displayDeleteWarning = false;
-    $scope.bufferedAccounts.list.results
-      .forEach((buffer, index) => {
-        const newValue = $scope.accounts.list.results[index];
-        if (buffer.renewPeriod !== newValue.renewPeriod) {
-          bufferChanges(buffer);
-          if (buffer.renewPeriod === 'DELETE_AT_EXPIRATION' || newValue.renewPeriod === 'DELETE_AT_EXPIRATION') {
-            $scope.displayDeleteWarning = true;
-          }
-          return false;
+    $scope.bufferedAccounts.list.results.forEach((buffer, index) => {
+      const newValue = $scope.accounts.list.results[index];
+      if (buffer.renewPeriod !== newValue.renewPeriod) {
+        bufferChanges(buffer);
+        if (
+          buffer.renewPeriod === 'DELETE_AT_EXPIRATION' ||
+          newValue.renewPeriod === 'DELETE_AT_EXPIRATION'
+        ) {
+          $scope.displayDeleteWarning = true;
         }
-        return remove($scope.buffer.changes, { primaryEmailAddress: buffer.primaryEmailAddress });
+        return false;
+      }
+      return remove($scope.buffer.changes, {
+        primaryEmailAddress: buffer.primaryEmailAddress,
       });
+    });
     $scope.buffer.hasChanged = $scope.buffer.changes.length > 0;
   };
 
   $scope.getAccounts = function getAccounts(count, offset) {
     $scope.loading = true;
-    EmailPro.getAccounts(count, offset, $scope.search.value)
-      .then((accounts) => {
+    EmailPro.getAccounts(count, offset, $scope.search.value).then(
+      (accounts) => {
         $scope.loading = false;
         $scope.accounts = accounts;
 
@@ -106,24 +140,34 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
 
         // needed by selectAll checkbox
         $scope.bufferedAccounts.list.results.forEach((account) => {
-          $scope.trackSelected(account.primaryEmailAddress, account.renewPeriod);
+          $scope.trackSelected(
+            account.primaryEmailAddress,
+            account.renewPeriod,
+          );
         });
 
         $scope.buffer.firstView = false;
-      }, (failure) => {
+      },
+      (failure) => {
         $scope.loading = false;
         if (failure) {
-          $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), failure.data);
+          $scope.setMessage(
+            $translate.instant('emailpro_tab_ACCOUNTS_error_message'),
+            failure.data,
+          );
           $scope.resetAction();
         }
-      });
+      },
+    );
   };
 
   $scope.checkboxStateChange = function checkboxStateChange(state, value) {
-    if ($scope.bufferedAccounts
-      && $scope.bufferedAccounts.list
-      && $scope.buffer.ids
-      && $scope.bufferedAccounts.list.results) {
+    if (
+      $scope.bufferedAccounts &&
+      $scope.bufferedAccounts.list &&
+      $scope.buffer.ids &&
+      $scope.bufferedAccounts.list.results
+    ) {
       $scope.selectOnePage(value);
     }
   };
@@ -133,14 +177,15 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
    * @param value
    */
   $scope.selectOnePage = function selectOnePage(value) {
-    clone($scope.buffer.ids)
-      .forEach((selected) => {
-        $scope.trackSelected(selected.primaryEmailAddress, value);
-      });
+    clone($scope.buffer.ids).forEach((selected) => {
+      $scope.trackSelected(selected.primaryEmailAddress, value);
+    });
   };
 
   $scope.trackSelected = function trackSelected(primaryEmailAddress, value) {
-    const account = find($scope.bufferedAccounts.list.results, { primaryEmailAddress });
+    const account = find($scope.bufferedAccounts.list.results, {
+      primaryEmailAddress,
+    });
     if (account) {
       if (value === 'MONTHLY') {
         setMonthly(account);
@@ -173,18 +218,25 @@ export default /* @ngInject */ ($scope, $stateParams, EmailPro, $location, $tran
       set(c, 'is25g', $scope.is25g());
     });
 
-    EmailPro.updateRenew($stateParams.productId, $scope.buffer.changes)
-      .then((data) => {
+    EmailPro.updateRenew($stateParams.productId, $scope.buffer.changes).then(
+      (data) => {
         const updateRenewMessages = {
           OK: $translate.instant('emailpro_update_billing_periode_success'),
-          PARTIAL: $translate.instant('emailpro_update_billing_periode_partial'),
+          PARTIAL: $translate.instant(
+            'emailpro_update_billing_periode_partial',
+          ),
           ERROR: $translate.instant('emailpro_update_billing_periode_failure'),
         };
         $scope.setMessage(updateRenewMessages, data);
         $scope.resetAction();
-      }, (failure) => {
-        $scope.setMessage($translate.instant('emailpro_update_billing_periode_failure'), failure.data);
+      },
+      (failure) => {
+        $scope.setMessage(
+          $translate.instant('emailpro_update_billing_periode_failure'),
+          failure.data,
+        );
         $scope.resetAction();
-      });
+      },
+    );
   };
 };

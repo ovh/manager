@@ -7,10 +7,7 @@ import routing from './add-replicas.routing';
 const moduleName = 'enterpriseCloudDatabaseServiceGetStartedAddReplicas';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    addComponent,
-  ])
+  .module(moduleName, ['ui.router', addComponent])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

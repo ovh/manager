@@ -13,18 +13,20 @@ angular
         request: false,
       };
 
-      User.getUser()
-        .then((user) => {
-          HostingBoost.getBoostPrice(user.ovhSubsidiary).then((catalog) => {
-            const addon = catalog.addons.find(({ planCode }) => planCode === 'consumption-perf2014');
+      User.getUser().then((user) => {
+        HostingBoost.getBoostPrice(user.ovhSubsidiary).then((catalog) => {
+          const addon = catalog.addons.find(
+            ({ planCode }) => planCode === 'consumption-perf2014',
+          );
 
-            $scope.models.boostDailyPrice = addon.pricings[0].price / 100000000;
-            $scope.models.boostDailyPrice += ` ${catalog.locale.currencyCode}`;
-          });
+          $scope.models.boostDailyPrice = addon.pricings[0].price / 100000000;
+          $scope.models.boostDailyPrice += ` ${catalog.locale.currencyCode}`;
         });
+      });
 
-      $scope.isStepValid = () => $scope.acceptCGV.value === true
-        && angular.isObject($scope.models.boostOffer);
+      $scope.isStepValid = () =>
+        $scope.acceptCGV.value === true &&
+        angular.isObject($scope.models.boostOffer);
 
       $scope.requestBoost = () => {
         $scope.loaders.request = true;

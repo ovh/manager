@@ -19,13 +19,14 @@ export default class DomainDnsAnycastActivateCtrl {
     this.loading = true;
     this.error = null;
 
-    return this.Domain
-      .getOptionDetails(this.domainId, this.optionName)
+    return this.Domain.getOptionDetails(this.domainId, this.optionName)
       .then((data) => {
         this.optionDetails = data;
       })
       .catch(() => {
-        this.error = this.$translate.instant('domain_configuration_dnsanycast_fail');
+        this.error = this.$translate.instant(
+          'domain_configuration_dnsanycast_fail',
+        );
       })
       .finally(() => {
         this.loading = false;
@@ -37,14 +38,19 @@ export default class DomainDnsAnycastActivateCtrl {
     this.error = null;
     this.loading = true;
 
-    return this.Domain
-      .orderOption(this.domainId, this.optionName, this.optionDetails.duration.duration)
+    return this.Domain.orderOption(
+      this.domainId,
+      this.optionName,
+      this.optionDetails.duration.duration,
+    )
       .then((order) => {
         this.order = order;
         this.url = order.url;
       })
       .catch(() => {
-        this.error = this.$translate.instant('domain_configuration_dnsanycast_fail');
+        this.error = this.$translate.instant(
+          'domain_configuration_dnsanycast_fail',
+        );
       })
       .finally(() => {
         this.loading = false;
@@ -61,7 +67,12 @@ export default class DomainDnsAnycastActivateCtrl {
       status: 1,
     });
     this.goToDns().then(() => {
-      this.Alerter.success(this.$translate.instant('domain_order_dns_anycast_success', { t0: this.url }), 'domain_alert_main');
+      this.Alerter.success(
+        this.$translate.instant('domain_order_dns_anycast_success', {
+          t0: this.url,
+        }),
+        'domain_alert_main',
+      );
     });
     this.$window.open(this.url, '_blank');
   }

@@ -1,6 +1,4 @@
-import {
-  ANALYTICS_DATA_PLATFORM_GUIDE_LINKS,
-} from '../analytics-data-platform.constants';
+import { ANALYTICS_DATA_PLATFORM_GUIDE_LINKS } from '../analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */
@@ -19,7 +17,9 @@ export default class {
   }
 
   subscribeToMessages() {
-    this.cucCloudMessage.unSubscribe('pci.projects.project.analytics-data-platform.details');
+    this.cucCloudMessage.unSubscribe(
+      'pci.projects.project.analytics-data-platform.details',
+    );
     this.messageHandler = this.cucCloudMessage.subscribe(
       'pci.projects.project.analytics-data-platform.details',
       { onMessage: () => this.refreshMessage() },

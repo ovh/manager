@@ -6,13 +6,13 @@ import legacyOrderController from './legacy/vps-veeam-order-legacy.controller';
 import orderTemplate from './vps-veeam-order.html';
 import orderController from './vps-veeam-order.controller';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.veeam.order', {
     url: '/order',
-    templateProvider: /* @ngInject */ (stateVps) => (stateVps
-      .isLegacy ? legacyOrderTemplate : orderTemplate),
-    controllerProvider: /* @ngInject */ (stateVps) => (stateVps
-      .isLegacy ? legacyOrderController : orderController),
+    templateProvider: /* @ngInject */ (stateVps) =>
+      stateVps.isLegacy ? legacyOrderTemplate : orderTemplate,
+    controllerProvider: /* @ngInject */ (stateVps) =>
+      stateVps.isLegacy ? legacyOrderController : orderController,
     controllerAs: '$ctrl',
     translations: {
       value: ['./'],

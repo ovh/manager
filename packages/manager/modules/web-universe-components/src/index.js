@@ -26,31 +26,30 @@ import wucValidator from './validator';
 
 const moduleName = 'ngOvhWebUniverseComponents';
 
-angular
-  .module(moduleName, [
-    wucAllDom,
-    wucApi,
-    wucAutorenewInvite,
-    wucChartjs,
-    wucConverter,
-    wucCron,
-    wucCronValidator,
-    wucDuration,
-    wucEmailDomain,
-    wucExpiration,
-    wucFileChange,
-    wucFileEditor,
-    wucGuides,
-    wucIncrementNumber,
-    wucJavaEnum,
-    wucOrderCart,
-    wucOvhFileReader,
-    wucProgressBarElementCounter,
-    wucServiceStatusAction,
-    wucString,
-    wucTabs,
-    wucV6UiSwitch,
-    wucValidator,
-  ]);
+angular.module(moduleName, [
+  wucAllDom,
+  wucApi,
+  wucAutorenewInvite,
+  wucChartjs,
+  wucConverter,
+  wucCron,
+  wucCronValidator,
+  wucDuration,
+  wucEmailDomain,
+  wucExpiration,
+  wucFileChange,
+  wucFileEditor,
+  wucGuides,
+  wucIncrementNumber,
+  wucJavaEnum,
+  wucOrderCart,
+  wucOvhFileReader,
+  wucProgressBarElementCounter,
+  wucServiceStatusAction,
+  wucString,
+  wucTabs,
+  wucV6UiSwitch,
+  wucValidator,
+]);
 
 export default moduleName;

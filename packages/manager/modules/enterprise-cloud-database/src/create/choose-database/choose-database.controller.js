@@ -12,9 +12,11 @@ export default class {
     this.selectedDatabase = database;
     this.enterpriseDb.database = database;
     if (this.onChange) {
-      this.$timeout(() => this.onChange({
-        database: this.selectedDatabase,
-      }));
+      this.$timeout(() =>
+        this.onChange({
+          database: this.selectedDatabase,
+        }),
+      );
     }
   }
 

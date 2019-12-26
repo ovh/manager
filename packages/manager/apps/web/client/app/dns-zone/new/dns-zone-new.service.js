@@ -1,15 +1,11 @@
-export default
-class newDnsZone {
+export default class newDnsZone {
   /**
-     * Constructor
-     * @param $http
-     * @param $q
-     */
+   * Constructor
+   * @param $http
+   * @param $q
+   */
   /* @ngInject */
-  constructor(
-    $http,
-    $q,
-  ) {
+  constructor($http, $q) {
     this.$http = $http;
     this.$q = $q;
 
@@ -17,9 +13,9 @@ class newDnsZone {
   }
 
   /**
-     * Get zoneName Validation Response
-     * @param zoneName
-     */
+   * Get zoneName Validation Response
+   * @param zoneName
+   */
   getZoneNameValidation(zoneName) {
     return this.$http
       .get(`${this.swsProxypassOrderPath}/new`, {
@@ -32,10 +28,10 @@ class newDnsZone {
   }
 
   /**
-     * Order a new ZoneName (DNS)
-     * @param zoneName
-     * @param minimized
-     */
+   * Order a new ZoneName (DNS)
+   * @param zoneName
+   * @param minimized
+   */
   orderZoneName(zoneName, minimized) {
     return this.$http
       .post(`${this.swsProxypassOrderPath}/new`, {

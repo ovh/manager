@@ -31,7 +31,8 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       atInternet,
       NewAccountFormConfig,
     ) {
-      $scope.getTemplateUrl = () => 'account/user/components/newAccountForm/field/new-account-form-field-component.html';
+      $scope.getTemplateUrl = () =>
+        'account/user/components/newAccountForm/field/new-account-form-field-component.html';
 
       this.$onInit = function $onInit() {
         // unique field identifier
@@ -80,15 +81,32 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
                 prefix: NewAccountFormConfig.phonePrefix[country],
                 label: $translate.instant(`signup_enum_country_${country}`),
               }));
-              this.phoneCountryList = $filter('orderBy')(this.phoneCountryList, 'label', false, (a, b) => String(a.value).localeCompare(String(b.value)));
+              this.phoneCountryList = $filter('orderBy')(
+                this.phoneCountryList,
+                'label',
+                false,
+                (a, b) => String(a.value).localeCompare(String(b.value)),
+              );
 
-              const current = find(this.phoneCountryList, { country: get(this.newAccountForm.model, 'phoneCountry') });
-              const orig = find(this.phoneCountryList, { country: get(this.newAccountForm.originalModel, 'phoneCountry') });
-              const country = find(this.phoneCountryList, { country: get(this.newAccountForm.model, 'country') });
-              const subCountry = find(this.phoneCountryList, { country: get(this.newAccountForm.model, 'ovhSubsidiary') });
+              const current = find(this.phoneCountryList, {
+                country: get(this.newAccountForm.model, 'phoneCountry'),
+              });
+              const orig = find(this.phoneCountryList, {
+                country: get(this.newAccountForm.originalModel, 'phoneCountry'),
+              });
+              const country = find(this.phoneCountryList, {
+                country: get(this.newAccountForm.model, 'country'),
+              });
+              const subCountry = find(this.phoneCountryList, {
+                country: get(this.newAccountForm.model, 'ovhSubsidiary'),
+              });
 
-              this.phoneCountry = current || orig || country || subCountry
-                || head(this.phoneCountryList);
+              this.phoneCountry =
+                current ||
+                orig ||
+                country ||
+                subCountry ||
+                head(this.phoneCountryList);
 
               if (current !== get(this.phoneCountry, 'country')) {
                 $timeout(() => {
@@ -114,15 +132,26 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           if (this.getFieldType() === 'select') {
             this.value = {
               key: this.rule.defaultValue,
-              translated: this.rule.fieldName === 'timezone' ? this.rule.defaultValue : $translate.instant(`signup_enum_${this.rule.defaultValue}`),
+              translated:
+                this.rule.fieldName === 'timezone'
+                  ? this.rule.defaultValue
+                  : $translate.instant(`signup_enum_${this.rule.defaultValue}`),
             };
             if (this.newAccountForm.onFieldChange) {
-              this.newAccountForm.onFieldChange(this.rule, this.value.key, this.fieldset);
+              this.newAccountForm.onFieldChange(
+                this.rule,
+                this.value.key,
+                this.fieldset,
+              );
             }
           } else {
             this.value = this.rule.defaultValue;
             if (this.newAccountForm.onFieldChange) {
-              this.newAccountForm.onFieldChange(this.rule, this.value, this.fieldset);
+              this.newAccountForm.onFieldChange(
+                this.rule,
+                this.value,
+                this.fieldset,
+              );
             }
           }
         }
@@ -135,7 +164,10 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           if (this.getFieldType() === 'select') {
             value = {
               key: value,
-              translated: this.rule.fieldName === 'timezone' ? value : $translate.instant(`signup_enum_${value}`),
+              translated:
+                this.rule.fieldName === 'timezone'
+                  ? value
+                  : $translate.instant(`signup_enum_${value}`),
             };
           } else if (this.getFieldType() === 'date') {
             value = moment(this.rule.initialValue, 'YYYY-MM-DD').toDate();
@@ -150,15 +182,22 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       this.getFieldType = () => {
         if (this.rule.fieldType) {
           return this.rule.fieldType;
-        } if (this.rule.in) {
+        }
+        if (this.rule.in) {
           return 'select';
 
           // return this.rule.in.length > 30 ? "typeahead" : "select";
-        } if (/email/.test((this.rule.fieldName || '').toLowerCase())) {
+        }
+        if (/email/.test((this.rule.fieldName || '').toLowerCase())) {
           return 'email';
-        } if ((this.rule.fieldName || '').toLowerCase() === 'birthday') {
+        }
+        if ((this.rule.fieldName || '').toLowerCase() === 'birthday') {
           return 'date';
-        } if (this.rule.fieldName === 'phone' && find(this.newAccountForm.rules, { fieldName: 'phoneCountry' })) {
+        }
+        if (
+          this.rule.fieldName === 'phone' &&
+          find(this.newAccountForm.rules, { fieldName: 'phoneCountry' })
+        ) {
           return 'phone';
         }
         return 'text';
@@ -172,12 +211,19 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
 
         let result = map(this.rule.in || [], (value) => {
           let translated;
-          if (this.rule.fieldName === 'area' && this.newAccountForm.model.country) {
-            translated = $translate.instant(`signup_enum_${this.newAccountForm.model.country}_${this.rule.fieldName}_${value}`);
+          if (
+            this.rule.fieldName === 'area' &&
+            this.newAccountForm.model.country
+          ) {
+            translated = $translate.instant(
+              `signup_enum_${this.newAccountForm.model.country}_${this.rule.fieldName}_${value}`,
+            );
           } else if (this.rule.fieldName === 'timezone') {
             translated = value;
           } else {
-            translated = $translate.instant(`signup_enum_${this.rule.fieldName}_${value}`);
+            translated = $translate.instant(
+              `signup_enum_${this.rule.fieldName}_${value}`,
+            );
           }
           return {
             key: value,
@@ -185,10 +231,16 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           };
         });
 
-        result = $filter('orderBy')(result, 'translated', false, (a, b) => String(a.value).localeCompare(String(b.value)));
+        result = $filter('orderBy')(result, 'translated', false, (a, b) =>
+          String(a.value).localeCompare(String(b.value)),
+        );
 
         // if there is only a single value, auto select it
-        if (result.length === 1 && this.value !== head(result).key && !this.autoSelectPending) {
+        if (
+          result.length === 1 &&
+          this.value !== head(result).key &&
+          !this.autoSelectPending
+        ) {
           this.autoSelectPending = true;
           this.value = head(result);
           $timeout(() => {
@@ -203,7 +255,10 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
 
       // handle special area translation cases
       this.getTranslatedArea = () => {
-        if (this.newAccountForm.model.country === 'US' || this.newAccountForm.model.country === 'WE') {
+        if (
+          this.newAccountForm.model.country === 'US' ||
+          this.newAccountForm.model.country === 'WE'
+        ) {
           return $translate.instant('signup_field_state');
         }
         return $translate.instant('signup_field_area');
@@ -242,10 +297,16 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
       };
 
       // true if field is a generic identifier
-      this.isGenericIdentifierField = () => ['vat', 'nationalIdentificationNumber', 'companyNationalIdentificationNumber'].indexOf(this.rule.fieldName) >= 0;
+      this.isGenericIdentifierField = () =>
+        [
+          'vat',
+          'nationalIdentificationNumber',
+          'companyNationalIdentificationNumber',
+        ].indexOf(this.rule.fieldName) >= 0;
 
       // true if field is a phone number
-      this.isPhoneNumberField = () => ['phone', 'fax'].indexOf(this.rule.fieldName) >= 0;
+      this.isPhoneNumberField = () =>
+        ['phone', 'fax'].indexOf(this.rule.fieldName) >= 0;
 
       // validates input taking care of rule prefix and regularExpression
       this.inputValidator = {
@@ -266,12 +327,15 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
             }
             const regex = this.rule.regularExpression.replace(/\//g, '\\/');
             return new RegExp(regex).test(value);
-          } if (this.rule.fieldName === 'password') {
+          }
+          if (this.rule.fieldName === 'password') {
             return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(value);
-          } if (this.rule.in) {
+          }
+          if (this.rule.in) {
             if (this.rule.mandatory) {
               return value && indexOf(this.rule.in, value.key) >= 0;
-            } if (value) {
+            }
+            if (value) {
               return indexOf(this.rule.in, value.key) >= 0;
             }
           }
@@ -282,7 +346,8 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
 
       // callback for when model changed
       this.onChange = () => {
-        let value = this.value; // eslint-disable-line
+        // eslint-disable-next-line prefer-destructuring
+        let value = this.value;
         const fieldType = this.getFieldType();
 
         // normalize input to make it easier for the user
@@ -298,7 +363,11 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
         } else if (fieldType === 'date') {
           // avoids datepicker setting value to null
           if (!value) {
-            this.newAccountForm.onFieldChange(this.rule, undefined, this.fieldset);
+            this.newAccountForm.onFieldChange(
+              this.rule,
+              undefined,
+              this.fieldset,
+            );
             return;
           }
           value = moment(value).format('YYYY-MM-DD');
@@ -313,7 +382,10 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
         }
 
         // if email or ovhCompany changes, we need to check for email availability
-        if (this.rule.fieldName === 'email' || this.rule.fieldName === 'ovhCompany') {
+        if (
+          this.rule.fieldName === 'email' ||
+          this.rule.fieldName === 'ovhCompany'
+        ) {
           $scope.$emit('account.email.request.validity');
         }
 

@@ -3,11 +3,7 @@ import find from 'lodash/find';
 
 export default class FailoverIpController {
   /* @ngInject */
-  constructor(
-    $translate,
-    $window,
-    OvhApiOrderCloudProjectIp,
-  ) {
+  constructor($translate, $window, OvhApiOrderCloudProjectIp) {
     this.$translate = $translate;
     this.$window = $window;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
@@ -21,12 +17,15 @@ export default class FailoverIpController {
     };
   }
 
-
   onInstanceChange(instance) {
-    const { ipCountries: countries } = find(this.regions, { name: instance.region });
+    const { ipCountries: countries } = find(this.regions, {
+      name: instance.region,
+    });
     this.REGIONS = countries.map((region) => ({
       id: region,
-      name: this.$translate.instant(`pci_projects_project_failoverip_order_legacy_country_${region.toUpperCase()}`),
+      name: this.$translate.instant(
+        `pci_projects_project_failoverip_order_legacy_country_${region.toUpperCase()}`,
+      ),
     }));
 
     if (this.ip.region && countries.includes(this.ip.region.id)) {
@@ -51,14 +50,17 @@ export default class FailoverIpController {
         country: region.id.toLowerCase(),
         instanceId: instance.id,
         quantity: this.ip.quantity,
-      }).$promise
-      .then(({ contracts, prices }) => {
+      })
+      .$promise.then(({ contracts, prices }) => {
         this.contracts = contracts;
         this.prices = prices;
       })
       .catch((error) => {
         this.goBack(
-          this.$translate.instant('pci_projects_project_failoverip_order_legacy_check_error', { message: get(error, 'data.message', '') }),
+          this.$translate.instant(
+            'pci_projects_project_failoverip_order_legacy_check_error',
+            { message: get(error, 'data.message', '') },
+          ),
           'error',
         );
       })
@@ -69,23 +71,32 @@ export default class FailoverIpController {
 
   order() {
     this.isGeneratingOrder = true;
-    return this.OvhApiOrderCloudProjectIp.v6().buy({
-      serviceName: this.projectId,
-    },
-    {
-      country: this.ip.region.id.toLowerCase(),
-      instanceId: this.ip.instance.id,
-      quantity: this.ip.quantity,
-    }).$promise
-      .then(({ url }) => {
+    return this.OvhApiOrderCloudProjectIp.v6()
+      .buy(
+        {
+          serviceName: this.projectId,
+        },
+        {
+          country: this.ip.region.id.toLowerCase(),
+          instanceId: this.ip.instance.id,
+          quantity: this.ip.quantity,
+        },
+      )
+      .$promise.then(({ url }) => {
         this.$window.open(url, '_blank');
         this.goBack({
-          textHtml: this.$translate.instant('pci_projects_project_failoverip_order_legacy_success', { url }),
+          textHtml: this.$translate.instant(
+            'pci_projects_project_failoverip_order_legacy_success',
+            { url },
+          ),
         });
       })
       .catch((error) => {
         this.goBack(
-          this.$translate.instant('pci_projects_project_failoverip_order_legacy_error', { message: get(error, 'data.message', '') }),
+          this.$translate.instant(
+            'pci_projects_project_failoverip_order_legacy_error',
+            { message: get(error, 'data.message', '') },
+          ),
           'error',
         );
       });

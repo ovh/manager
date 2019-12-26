@@ -44,7 +44,9 @@ angular.module('App').controller(
       this.runtimes = [];
       this.maxRuntimes = 0;
 
-      this.$scope.$on(this.Hosting.events.tabRuntimesRefresh, () => this.getIds());
+      this.$scope.$on(this.Hosting.events.tabRuntimesRefresh, () =>
+        this.getIds(),
+      );
 
       return this.getIds()
         .finally(() => this.loadCapabilities())
@@ -65,32 +67,39 @@ angular.module('App').controller(
 
           this.runtimes = ids.sort().map((id) => ({ id }));
         })
-        .then(() => this.$q.all(this.runtimes.map((row) => this.HostingRuntimes.get(
-          this.$stateParams.productId,
-          row.id,
-        ).then((data) => {
-          const runtime = clone(data);
-          runtime.countAttachedDomains = 0;
+        .then(() =>
+          this.$q.all(
+            this.runtimes.map((row) =>
+              this.HostingRuntimes.get(
+                this.$stateParams.productId,
+                row.id,
+              ).then((data) => {
+                const runtime = clone(data);
+                runtime.countAttachedDomains = 0;
 
-          return this.HostingRuntimes.getAttachedDomains(
-            this.$stateParams.productId,
-            runtime.id,
-          ).then((attachedDomains) => {
-            runtime.loaded = true;
+                return this.HostingRuntimes.getAttachedDomains(
+                  this.$stateParams.productId,
+                  runtime.id,
+                ).then((attachedDomains) => {
+                  runtime.loaded = true;
 
-            if (isArray(attachedDomains)) {
-              runtime.countAttachedDomains = attachedDomains.length;
-            }
+                  if (isArray(attachedDomains)) {
+                    runtime.countAttachedDomains = attachedDomains.length;
+                  }
 
-            return runtime;
-          });
-        }))))
+                  return runtime;
+                });
+              }),
+            ),
+          ),
+        )
         .then((runtimes) => {
           this.runtimes = runtimes;
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_RUNTIMES_list_error') + err.message,
+            this.$translate.instant('hosting_tab_RUNTIMES_list_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })
@@ -125,9 +134,7 @@ angular.module('App').controller(
      * @returns {boolean}
      */
     canAddRuntime() {
-      return (
-        isArray(this.runtimes) && this.runtimes.length < this.maxRuntimes
-      );
+      return isArray(this.runtimes) && this.runtimes.length < this.maxRuntimes;
     }
   },
 );

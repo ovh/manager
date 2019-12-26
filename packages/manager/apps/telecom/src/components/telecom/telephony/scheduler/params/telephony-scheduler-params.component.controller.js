@@ -1,31 +1,38 @@
-angular.module('managerApp').controller('TelephonySchedulerParamsCtrl', function TelephonySchedulerParamsCtrl($q, $translate, telephonyScheduler) {
-  const self = this;
+angular
+  .module('managerApp')
+  .controller(
+    'TelephonySchedulerParamsCtrl',
+    function TelephonySchedulerParamsCtrl($q, $translate, telephonyScheduler) {
+      const self = this;
 
-  self.loading = {
-    init: false,
-  };
+      self.loading = {
+        init: false,
+      };
 
-  self.timeZones = null;
+      self.timeZones = null;
 
-  /*= =====================================
+      /*= =====================================
     =            INITIALIZATION            =
     ====================================== */
 
-  function getApiSchemas() {
-    return telephonyScheduler.getAvailableTimeZones().then((availableTimeZones) => {
-      self.timeZones = availableTimeZones;
-    });
-  }
+      function getApiSchemas() {
+        return telephonyScheduler
+          .getAvailableTimeZones()
+          .then((availableTimeZones) => {
+            self.timeZones = availableTimeZones;
+          });
+      }
 
-  self.$onInit = function $onInit() {
-    self.loading.init = true;
-    self.telephonySchedulerCtrl.loading.params = true;
+      self.$onInit = function $onInit() {
+        self.loading.init = true;
+        self.telephonySchedulerCtrl.loading.params = true;
 
-    return getApiSchemas().finally(() => {
-      self.loading.init = false;
-      self.telephonySchedulerCtrl.loading.params = false;
-    });
-  };
+        return getApiSchemas().finally(() => {
+          self.loading.init = false;
+          self.telephonySchedulerCtrl.loading.params = false;
+        });
+      };
 
-  /* -----  End of INITIALIZATION  ------*/
-});
+      /* -----  End of INITIALIZATION  ------*/
+    },
+  );

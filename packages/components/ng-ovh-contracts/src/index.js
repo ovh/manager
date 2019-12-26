@@ -5,10 +5,6 @@ import summary from './summary';
 
 const moduleName = 'ngOvhContracts';
 
-angular
-  .module(moduleName, [
-    full,
-    summary,
-  ]);
+angular.module(moduleName, [full, summary]);
 
 export default moduleName;

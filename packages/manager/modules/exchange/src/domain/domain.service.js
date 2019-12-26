@@ -16,19 +16,28 @@ export default class ExchangeDomains {
     };
   }
 
-  gettingDomains(organization, serviceName, count = 10, offset = 0, search = '') {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/domains', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+  gettingDomains(
+    organization,
+    serviceName,
+    count = 10,
+    offset = 0,
+    search = '',
+  ) {
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/domains',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          count,
+          offset,
+          search,
+        },
       },
-      params: {
-        count,
-        offset,
-        search,
-      },
-    });
+    );
   }
 
   addingDomain(domainToAdd) {
@@ -37,21 +46,26 @@ export default class ExchangeDomains {
       srvParam: 'configureAutodiscover',
     };
 
-    const transformDomain = transform(domainToAdd, (result, valueParam, key) => {
-      let value = valueParam;
+    const transformDomain = transform(
+      domainToAdd,
+      (result, valueParam, key) => {
+        let value = valueParam;
 
-      if (key === 'type') {
-        value = camelCase(value);
-      }
+        if (key === 'type') {
+          value = camelCase(value);
+        }
 
-      if (!isEmpty(pick(keyMapping, key))) {
-        // uses value from the keyMapping object
-        result[keyMapping[key]] = value; // eslint-disable-line
-      } else {
-        // uses value from the domain
-        result[key] = value; // eslint-disable-line
-      }
-    });
+        if (!isEmpty(pick(keyMapping, key))) {
+          // uses value from the keyMapping object
+          // eslint-disable-next-line no-param-reassign
+          result[keyMapping[key]] = value;
+        } else {
+          // uses value from the domain
+          // eslint-disable-next-line no-param-reassign
+          result[key] = value;
+        }
+      },
+    );
 
     if (transformDomain.type === 'authoritative') {
       delete transformDomain.mxRelay;
@@ -77,13 +91,16 @@ export default class ExchangeDomains {
   }
 
   retrievingDataToCreateDomains(organization, productId) {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/domains/options', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: productId,
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/domains/options',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: productId,
+        },
       },
-    });
+    );
   }
 
   updatingDomain(organization, productId, domainName, data) {

@@ -18,7 +18,11 @@ export default class ExchangeRemoveGroupCtrl {
   }
 
   submit() {
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'groupsTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'groupsTable',
+    );
 
     this.services.Exchange.deleteGroup(
       this.$routerParams.organization,
@@ -27,13 +31,17 @@ export default class ExchangeRemoveGroupCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_GROUPS_delete_group_success'),
+          this.services.$translate.instant(
+            'exchange_tab_GROUPS_delete_group_success',
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_GROUPS_delete_group_error'),
+          this.services.$translate.instant(
+            'exchange_tab_GROUPS_delete_group_error',
+          ),
           failure,
         );
       })

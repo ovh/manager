@@ -8,7 +8,15 @@ angular.module('App').controller('NasOrderCtrl', [
   '$translate',
   '$filter',
   'Alerter',
-  function NasOrderCtrl(NASHA_URL, $scope, Nas, $timeout, $translate, $filter, Alerter) {
+  function NasOrderCtrl(
+    NASHA_URL,
+    $scope,
+    Nas,
+    $timeout,
+    $translate,
+    $filter,
+    Alerter,
+  ) {
     $scope.nasOrder = {
       model: null,
       loading: false,
@@ -29,14 +37,23 @@ angular.module('App').controller('NasOrderCtrl', [
         (nasOrder) => {
           $scope.nasOrder.model = nasOrder;
           $scope.nasOrder.datacenterSelected = nasOrder.defaultZone;
-          $scope.nasOrder.model.nasOrderModel = $filter('orderBy')(nasOrder.nasOrderModel, 'priceValue');
-          $scope.nasOrder.model.nashaOrderModel = $filter('orderBy')(nasOrder.nashaOrderModel, 'priceValue');
+          $scope.nasOrder.model.nasOrderModel = $filter('orderBy')(
+            nasOrder.nasOrderModel,
+            'priceValue',
+          );
+          $scope.nasOrder.model.nashaOrderModel = $filter('orderBy')(
+            nasOrder.nashaOrderModel,
+            'priceValue',
+          );
 
           $scope.nasOrder.loading = false;
         },
         (data) => {
           $scope.nasOrder.loading = false;
-          Alerter.alertFromSWS($translate.instant('nas_order_loading_error'), data);
+          Alerter.alertFromSWS(
+            $translate.instant('nas_order_loading_error'),
+            data,
+          );
         },
       );
     };
@@ -90,7 +107,8 @@ angular.module('App').controller('NasOrderCtrl', [
           datacenter: $scope.nasOrder.nashaSelected.datacenter,
           duration: $scope.nasOrder.durationSelected,
         };
-      } if ($scope.nasOrder.nasSelectedIndex != null) {
+      }
+      if ($scope.nasOrder.nasSelectedIndex != null) {
         return {
           nasha: false,
           model: $scope.nasOrder.nasSelected.model,

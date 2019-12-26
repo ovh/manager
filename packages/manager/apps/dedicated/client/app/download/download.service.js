@@ -6,11 +6,14 @@ class DownloadService {
   getBillUrl(billId, type, extension) {
     let realType = type;
 
-    if (type === 'invoice') { // TODO: Bad idea : quickfix for US ... Remove it ASAP !!!
+    if (type === 'invoice') {
+      // TODO: Bad idea : quickfix for US ... Remove it ASAP !!!
       realType = 'bill';
     }
 
-    return this.$http.get(`apiv6/me/${realType}/${billId}/download?extension=${extension}`).then(({ data }) => data);
+    return this.$http
+      .get(`apiv6/me/${realType}/${billId}/download?extension=${extension}`)
+      .then(({ data }) => data);
   }
 }
 

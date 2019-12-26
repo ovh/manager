@@ -1,6 +1,11 @@
 class LogsDashboardHeaderCtrl {
-  constructor($stateParams, CucControllerHelper, LogsDetailService, SidebarMenu,
-    LogsHelperService) {
+  constructor(
+    $stateParams,
+    CucControllerHelper,
+    LogsDetailService,
+    SidebarMenu,
+    LogsHelperService,
+  ) {
     this.$stateParams = $stateParams;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsDetailService = LogsDetailService;
@@ -25,11 +30,15 @@ class LogsDashboardHeaderCtrl {
   initLoaders() {
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsDetailService.getServiceDetails(this.serviceName),
+      loaderFunction: () =>
+        this.LogsDetailService.getServiceDetails(this.serviceName),
       successHandler: () => {
-        this.title = this.configuration.data.displayName || this.configuration.data.serviceName;
-        this.disableTabs = this.LogsHelperService.isAccountDisabled(this.configuration.data)
-          || this.LogsHelperService.accountSetupRequired(this.configuration.data);
+        this.title =
+          this.configuration.data.displayName ||
+          this.configuration.data.serviceName;
+        this.disableTabs =
+          this.LogsHelperService.isAccountDisabled(this.configuration.data) ||
+          this.LogsHelperService.accountSetupRequired(this.configuration.data);
       },
     });
   }
@@ -39,4 +48,6 @@ class LogsDashboardHeaderCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsDashboardHeaderCtrl', LogsDashboardHeaderCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsDashboardHeaderCtrl', LogsDashboardHeaderCtrl);

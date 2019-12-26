@@ -1,14 +1,9 @@
 import startCase from 'lodash/startCase';
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
-export default class TelecomTelephonyBillingAccountServicesController
-  extends ListLayoutHelper.ListLayoutCtrl {
+export default class TelecomTelephonyBillingAccountServicesController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    ouiDatagridService,
-  ) {
+  constructor($q, $translate, ouiDatagridService) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
   }
@@ -22,17 +17,25 @@ export default class TelecomTelephonyBillingAccountServicesController
     this.filtersOptions = {
       serviceType: {
         hideOperators: true,
-        values: this.telephonyServiceTypes.reduce((serviceTypes, serviceType) => ({
-          ...serviceTypes,
-          [serviceType]: this.$translate.instant(`telephony_billing_account_line_service_${serviceType}`),
-        }), {}),
+        values: this.telephonyServiceTypes.reduce(
+          (serviceTypes, serviceType) => ({
+            ...serviceTypes,
+            [serviceType]: this.$translate.instant(
+              `telephony_billing_account_line_service_${serviceType}`,
+            ),
+          }),
+          {},
+        ),
       },
       featureType: {
         hideOperators: true,
-        values: this.telephonyFeatureTypes.reduce((featureTypes, featureType) => ({
-          ...featureTypes,
-          [featureType]: this.formatFeatureType(featureType),
-        }), {}),
+        values: this.telephonyFeatureTypes.reduce(
+          (featureTypes, featureType) => ({
+            ...featureTypes,
+            [featureType]: this.formatFeatureType(featureType),
+          }),
+          {},
+        ),
       },
     };
 
@@ -45,6 +48,10 @@ export default class TelecomTelephonyBillingAccountServicesController
   }
 
   formatFeatureType(featureType) {
-    return ['empty'].includes(featureType) ? this.$translate.instant('telephony_billing_account_line_feature_no_configuration') : startCase(featureType);
+    return ['empty'].includes(featureType)
+      ? this.$translate.instant(
+          'telephony_billing_account_line_feature_no_configuration',
+        )
+      : startCase(featureType);
   }
 }

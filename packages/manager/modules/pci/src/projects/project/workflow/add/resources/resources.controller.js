@@ -26,20 +26,23 @@ export default class {
   }
 
   loadInstanceDetail(instance) {
-    return this.OvhApiCloudProjectFlavor
-      .v6()
+    return this.OvhApiCloudProjectFlavor.v6()
       .get({
         serviceName: this.projectId,
         flavorId: instance.flavorId,
       })
-      .$promise
-      .then((flavor) => new Instance({
-        ...instance,
-        flavor: {
-          ...flavor,
-          capabilities: this.PciProjectsProjectInstanceService.constructor.transformCapabilities(get(flavor, 'capabilities', [])),
-        },
-      }))
+      .$promise.then(
+        (flavor) =>
+          new Instance({
+            ...instance,
+            flavor: {
+              ...flavor,
+              capabilities: this.PciProjectsProjectInstanceService.constructor.transformCapabilities(
+                get(flavor, 'capabilities', []),
+              ),
+            },
+          }),
+      )
       .catch(() => null);
   }
 

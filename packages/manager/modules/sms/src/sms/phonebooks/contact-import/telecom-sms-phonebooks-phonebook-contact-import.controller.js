@@ -6,8 +6,15 @@ import some from 'lodash/some';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $translate, $uibModalInstance,
-    phonebook, OvhApiSms, OvhApiMe, TucToastError,
+    $q,
+    $stateParams,
+    $timeout,
+    $translate,
+    $uibModalInstance,
+    phonebook,
+    OvhApiSms,
+    OvhApiMe,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -43,27 +50,44 @@ export default class {
    */
   importContact() {
     this.phonecontactForm.isImporting = true;
-    return this.$q.all({
-      noop: this.$timeout(angular.noop, 1000),
-      import: this.api.user.document.upload(
-        this.phonecontactForm.uploadedFile.name,
-        this.phonecontactForm.uploadedFile,
-      ).then((doc) => this.api.sms.phonebooks.import({
-        serviceName: this.$stateParams.serviceName,
-        bookKey: get(this.phonebook, 'bookKey'),
-      }, {
-        documentId: doc.id,
-      }).$promise),
-    }).then((result) => {
-      this.phonecontactForm.isImporting = false;
-      this.phonecontactForm.hasBeenImported = true;
-      return this.$timeout(() => this.close({
-        taskId: get(result.import, 'taskId'),
-      }), 1000);
-    }).catch((err) => this.cancel({
-      type: 'API',
-      msg: err,
-    }));
+    return this.$q
+      .all({
+        noop: this.$timeout(angular.noop, 1000),
+        import: this.api.user.document
+          .upload(
+            this.phonecontactForm.uploadedFile.name,
+            this.phonecontactForm.uploadedFile,
+          )
+          .then(
+            (doc) =>
+              this.api.sms.phonebooks.import(
+                {
+                  serviceName: this.$stateParams.serviceName,
+                  bookKey: get(this.phonebook, 'bookKey'),
+                },
+                {
+                  documentId: doc.id,
+                },
+              ).$promise,
+          ),
+      })
+      .then((result) => {
+        this.phonecontactForm.isImporting = false;
+        this.phonecontactForm.hasBeenImported = true;
+        return this.$timeout(
+          () =>
+            this.close({
+              taskId: get(result.import, 'taskId'),
+            }),
+          1000,
+        );
+      })
+      .catch((err) =>
+        this.cancel({
+          type: 'API',
+          msg: err,
+        }),
+      );
   }
 
   /**
@@ -74,9 +98,15 @@ export default class {
   checkValidTextExtention(file) {
     const validExtensions = ['csv', 'xls', 'xlsx'];
     const fileName = file ? file.name : '';
-    const found = some(validExtensions, (ext) => endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, (ext) =>
+      endsWith(fileName.toLowerCase(), ext),
+    );
     if (!found) {
-      this.TucToastError(this.$translate.instant('sms_phonebooks_phonebook_contact_import_file_invalid'));
+      this.TucToastError(
+        this.$translate.instant(
+          'sms_phonebooks_phonebook_contact_import_file_invalid',
+        ),
+      );
     }
     return found;
   }

@@ -9,10 +9,7 @@ import TucPackXdslModemMediator from './xdsl/modem/pack-xdsl-modem-mediator.serv
 const moduleName = 'tucTelecomPack';
 
 angular
-  .module(moduleName, [
-    'ngOvhSwimmingPoll',
-    'ovh-api-services',
-  ])
+  .module(moduleName, ['ngOvhSwimmingPoll', 'ovh-api-services'])
   .service('TucPackMediator', TucPackMediator)
   .service('TucPackMigrationProcess', TucPackMigrationProcess)
   .service('TucPackXdslModemMediator', TucPackXdslModemMediator);

@@ -16,7 +16,8 @@ export default class ProjectListController {
   getTranslations() {
     this.isLoadingTranslations = true;
 
-    return this.$injector.invoke(/* @ngTranslationsInject:json ./translations */)
+    return this.$injector
+      .invoke(/* @ngTranslationsInject:json ./translations */)
       .then(() => this.$translate.refresh())
       .finally(() => {
         this.isLoadingTranslations = false;
@@ -25,13 +26,14 @@ export default class ProjectListController {
 
   getProjects() {
     this.isLoading = true;
-    this
-      .publicCloud
-      .getProjects([{
-        field: 'status',
-        comparator: 'in',
-        reference: ['creating', 'ok'],
-      }])
+    this.publicCloud
+      .getProjects([
+        {
+          field: 'status',
+          comparator: 'in',
+          reference: ['creating', 'ok'],
+        },
+      ])
       .then((projects) => {
         this.projects = projects;
       })

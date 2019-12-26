@@ -2,8 +2,7 @@ import template from './insights.html';
 import controller from './insights.controller';
 
 export default {
-  bindings: {
-  },
+  bindings: {},
   controller,
   template,
 };

@@ -150,9 +150,8 @@ angular.module('services').service(
      * @param {Array} status
      */
     getTasksByStatus(serviceName, fn, status = []) {
-      const promisesTasks = map(
-        status,
-        (st) => this.getTasks(serviceName, { status: st, function: fn }),
+      const promisesTasks = map(status, (st) =>
+        this.getTasks(serviceName, { status: st, function: fn }),
       );
       return this.$q.all(promisesTasks).then(flatten);
     }
@@ -167,7 +166,8 @@ angular.module('services').service(
         rootPath: 'apiv6',
       }).then((originalTasksDetails) => {
         const tasksDetails = clone(originalTasksDetails);
-        tasksDetails.status = isString(tasksDetails.status) && tasksDetails.status.toUpperCase();
+        tasksDetails.status =
+          isString(tasksDetails.status) && tasksDetails.status.toUpperCase();
         return tasksDetails;
       });
     }
@@ -202,20 +202,24 @@ angular.module('services').service(
       };
 
       forEach(['todo', 'doing'], (status) => {
-        r.push(this.OvhHttp.get(`/domain/${serviceName}/task`, {
-          rootPath: 'apiv6',
-          params: { status },
-        }).then((response) => {
-          forEach(response, (taskId) => {
-            requests.push(this.OvhHttp.get(`/domain/${serviceName}/task/${taskId}`, {
-              rootPath: 'apiv6',
-            }).then((resp) => {
-              if (resp) {
-                tasks.push(resp);
-              }
-            }));
-          });
-        }));
+        r.push(
+          this.OvhHttp.get(`/domain/${serviceName}/task`, {
+            rootPath: 'apiv6',
+            params: { status },
+          }).then((response) => {
+            forEach(response, (taskId) => {
+              requests.push(
+                this.OvhHttp.get(`/domain/${serviceName}/task/${taskId}`, {
+                  rootPath: 'apiv6',
+                }).then((resp) => {
+                  if (resp) {
+                    tasks.push(resp);
+                  }
+                }),
+              );
+            });
+          }),
+        );
       });
 
       this.$q.all(r).then(() => {
@@ -276,9 +280,13 @@ angular.module('services').service(
           return deferred.promise;
         }
 
-        return this.$q.all(map(ids, (id) => this.OvhHttp.get(`/domain/${serviceName}/nameServer/${id}`, {
-          rootPath: 'apiv6',
-        })));
+        return this.$q.all(
+          map(ids, (id) =>
+            this.OvhHttp.get(`/domain/${serviceName}/nameServer/${id}`, {
+              rootPath: 'apiv6',
+            }),
+          ),
+        );
       });
     }
 
@@ -303,7 +311,8 @@ angular.module('services').service(
      */
     addDnsNameServer(serviceName, data) {
       if (!data.ip) {
-        delete data.ip; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        delete data.ip;
       }
 
       return this.OvhHttp.post(`/domain/${serviceName}/nameServer`, {
@@ -427,9 +436,9 @@ angular.module('services').service(
         const { data } = _data;
 
         if (
-          data
-          && (!data.messages
-            || (isArray(data.messages) && data.messages.length === 0))
+          data &&
+          (!data.messages ||
+            (isArray(data.messages) && data.messages.length === 0))
         ) {
           // Generates sanitized targets
           if (get(data, 'paginatedZone.records.results', false)) {
@@ -454,7 +463,9 @@ angular.module('services').service(
      * @param {object} entry
      */
     getRecordsIds(zoneName, entry) {
-      return this.OvhApiDomain.Zone().Record().v6()
+      return this.OvhApiDomain.Zone()
+        .Record()
+        .v6()
         .query({
           zoneName,
           fieldType: entry ? entry.fieldType : undefined,
@@ -539,27 +550,26 @@ angular.module('services').service(
       }).then((_recordsIds) => {
         let recordsIds = _recordsIds;
 
-        if (
-          isEmpty(recordsIds)
-          || isEmpty(without(recordsIds, excludeId))
-        ) {
+        if (isEmpty(recordsIds) || isEmpty(without(recordsIds, excludeId))) {
           return true;
         }
 
         recordsIds = without(recordsIds, excludeId);
 
         let found = false;
-        const queue = map(recordsIds, (id) => this.OvhHttp.get(`/domain/zone/${serviceName}/record/${id}`, {
-          rootPath: 'apiv6',
-        }).then((record) => {
-          if (
-            record
-              && record.target === target
-              && record.subDomain === subDomain
-          ) {
-            found = true;
-          }
-        }));
+        const queue = map(recordsIds, (id) =>
+          this.OvhHttp.get(`/domain/zone/${serviceName}/record/${id}`, {
+            rootPath: 'apiv6',
+          }).then((record) => {
+            if (
+              record &&
+              record.target === target &&
+              record.subDomain === subDomain
+            ) {
+              found = true;
+            }
+          }),
+        );
 
         return this.$q.all(queue).then(() => !found);
       });
@@ -579,22 +589,20 @@ angular.module('services').service(
         // Special rule for CNAME:
         // Can not have other CNAME, A, AAAA for this subDomain
         case 'CNAME':
-          return this.getTabZoneDns(
-            serviceName,
-            100,
-            0,
-            subDomain,
-          ).then((results) => {
-            const existingSubDomain = lodashFilter(
-              results.paginatedZone.records.results,
-              (zone) => zone.subDomain.toLowerCase() === subDomain.toLowerCase()
-                  && zone.id !== entry.excludeId,
-            );
-            return {
-              recordCanBeAdded: !existingSubDomain.length,
-              conflictingRecords: existingSubDomain,
-            };
-          });
+          return this.getTabZoneDns(serviceName, 100, 0, subDomain).then(
+            (results) => {
+              const existingSubDomain = lodashFilter(
+                results.paginatedZone.records.results,
+                (zone) =>
+                  zone.subDomain.toLowerCase() === subDomain.toLowerCase() &&
+                  zone.id !== entry.excludeId,
+              );
+              return {
+                recordCanBeAdded: !existingSubDomain.length,
+                conflictingRecords: existingSubDomain,
+              };
+            },
+          );
         // Rule for Other Record types:
         // Can not have a CNAME of this subDomain
         default:
@@ -708,7 +716,8 @@ angular.module('services').service(
      */
     getRedirection(serviceName, params, cacheRefresh) {
       if (params.search === null || params.search === '') {
-        delete params.search; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        delete params.search;
       }
       return this.OvhHttp.get(`/sws/domain/${serviceName}/redirections`, {
         rootPath: '2api',
@@ -755,7 +764,8 @@ angular.module('services').service(
      */
     addRedirection(serviceName, options) {
       if (options.params.visibilityType === null) {
-        options.params.visibilityType = 'INVISIBLE'; // eslint-disable-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
+        options.params.visibilityType = 'INVISIBLE';
       }
       return this.OvhHttp.post(
         `/sws/domain/${serviceName}/redirections/false/${options.considerWww}`,
@@ -799,7 +809,8 @@ angular.module('services').service(
      * @param {Array} redirectionIds
      */
     overwriteRedirection(serviceName, options, redirectionIds) {
-      const createDeletePromises = (ids) => map(ids, (id) => this.deleteDnsEntry(serviceName, id));
+      const createDeletePromises = (ids) =>
+        map(ids, (id) => this.deleteDnsEntry(serviceName, id));
 
       if (!isEmpty(redirectionIds)) {
         let deletePromises = [];
@@ -1188,7 +1199,9 @@ angular.module('services').service(
      * @param {string} option
      */
     deleteOption(serviceName, option) {
-      return this.OvhApiDomain.Options().v6().delete({ serviceName, option }).$promise;
+      return this.OvhApiDomain.Options()
+        .v6()
+        .delete({ serviceName, option }).$promise;
     }
 
     /**
@@ -1196,7 +1209,9 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     getOptions(serviceName) {
-      return this.OvhApiDomain.Options().v6().query({ serviceName }).$promise;
+      return this.OvhApiDomain.Options()
+        .v6()
+        .query({ serviceName }).$promise;
     }
 
     /**
@@ -1205,12 +1220,18 @@ angular.module('services').service(
      * @param {string} option
      */
     getOption(serviceName, option) {
-      return this.OvhApiDomain.Options().v6().get({ serviceName, option }).$promise;
+      return this.OvhApiDomain.Options()
+        .v6()
+        .get({ serviceName, option }).$promise;
     }
 
     resetOptionsCache() {
-      this.OvhApiDomain.Options().v6().resetQueryCache();
-      this.OvhApiDomain.Options().v6().resetCache();
+      this.OvhApiDomain.Options()
+        .v6()
+        .resetQueryCache();
+      this.OvhApiDomain.Options()
+        .v6()
+        .resetCache();
     }
 
     // --------------------- Glue registry ----------------------
@@ -1447,8 +1468,8 @@ angular.module('services').service(
       return this.OvhHttp.get(`/domain/${serviceName}`, { rootPath: 'apiv6' })
         .then((response) => {
           if (
-            response.whoisOwner
-            && isFinite(parseInt(response.whoisOwner, 10))
+            response.whoisOwner &&
+            isFinite(parseInt(response.whoisOwner, 10))
           ) {
             return this.OvhHttp.get(`/me/contact/${response.whoisOwner}`, {
               rootPath: 'apiv6',
@@ -1514,7 +1535,8 @@ angular.module('services').service(
         .all(queue)
         .then((results) => {
           const data = results[0] || {};
-          [,
+          [
+            ,
             data.dnssec,
             data.owo,
             data.owner,

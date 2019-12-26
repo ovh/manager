@@ -8,13 +8,18 @@ export default class {
 
   onSuccess() {
     this.goBack(
-      this.$translate.instant('autorenew_service_EMAIL_DOMAIN_terminate_success'),
+      this.$translate.instant(
+        'autorenew_service_EMAIL_DOMAIN_terminate_success',
+      ),
     );
   }
 
   onError(error) {
     this.goBack(
-      this.$translate.instant('autorenew_service_EMAIL_DOMAIN_terminate_error', { message: get(error, 'message') }),
+      this.$translate.instant(
+        'autorenew_service_EMAIL_DOMAIN_terminate_error',
+        { message: get(error, 'message') },
+      ),
       'danger',
     );
   }

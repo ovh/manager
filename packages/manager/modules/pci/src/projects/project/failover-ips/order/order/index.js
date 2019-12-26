@@ -7,10 +7,7 @@ import component from './order.component';
 const moduleName = 'ovhManagerPciProjectFailoverIpsOrderOrder';
 
 angular
-  .module(moduleName, [
-    'pascalprecht.translate',
-    'ovh-api-services',
-  ])
+  .module(moduleName, ['pascalprecht.translate', 'ovh-api-services'])
   .component('pciProjectFailoverIpsOrderOrder', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

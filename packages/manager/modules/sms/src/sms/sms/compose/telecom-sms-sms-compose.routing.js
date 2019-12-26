@@ -1,6 +1,4 @@
-import {
-  name as componentName,
-} from './telecom-sms-sms-compose.component';
+import { name as componentName } from './telecom-sms-sms-compose.component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('sms.service.sms.compose', {
@@ -9,7 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       'smsView@sms.service': componentName,
     },
     resolve: {
-      sendersLink: /* @ngInject */ ($state) => () => $state.href('sms.service.senders'),
+      sendersLink: /* @ngInject */ ($state) => () =>
+        $state.href('sms.service.senders'),
     },
   });
 };

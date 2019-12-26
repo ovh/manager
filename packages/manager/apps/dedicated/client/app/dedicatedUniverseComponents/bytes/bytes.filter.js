@@ -7,7 +7,17 @@ import map from 'lodash/map';
 export default /* @ngInject */ ($translate) => {
   // TODO: Add this filter in UX components
   const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  const unitsKibi = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+  const unitsKibi = [
+    'B',
+    'KiB',
+    'MiB',
+    'GiB',
+    'TiB',
+    'PiB',
+    'EiB',
+    'ZiB',
+    'YiB',
+  ];
 
   function translateUnit(unit) {
     const key = `unit_size_${unit}`;
@@ -96,20 +106,24 @@ export default /* @ngInject */ ($translate) => {
   }
 
   function setToText(value, toKibi, number) {
-    return `${value} ${toKibi ? translatedUnitsKibi[number] : translatedUnits[number]}`;
+    return `${value} ${
+      toKibi ? translatedUnitsKibi[number] : translatedUnits[number]
+    }`;
   }
 
   function setToFormat(toFormat, value, toKibi, number) {
     if (toFormat === 'value') {
       return value;
-    } if (toFormat === 'object') {
+    }
+    if (toFormat === 'object') {
       return {
         value,
         unit: toKibi ? translatedUnitsKibi[number] : translatedUnits[number],
         nonTranslatedUnit: toKibi ? unitsKibi[number] : units[number],
         text: setToText(value, toKibi, number),
       };
-    } if (toFormat === 'text') {
+    }
+    if (toFormat === 'text') {
       return setToText(value, toKibi, number);
     }
     return null;
@@ -140,7 +154,9 @@ export default /* @ngInject */ ($translate) => {
     }
 
     /* eslint-disable no-restricted-properties */
-    let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(options.precision);
+    let value = (bytes / Math.pow(divider, Math.floor(number))).toFixed(
+      options.precision,
+    );
     /* eslint-enable no-restricted-properties */
 
     if (/\.0+$/.test(value)) {

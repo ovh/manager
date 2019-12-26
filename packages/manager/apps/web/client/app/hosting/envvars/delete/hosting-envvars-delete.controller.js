@@ -29,8 +29,8 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_ENVVARS_delete_error')
-              + err.message,
+            this.$translate.instant('hosting_tab_ENVVARS_delete_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })

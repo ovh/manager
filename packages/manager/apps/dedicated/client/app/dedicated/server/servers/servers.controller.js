@@ -5,11 +5,7 @@ import snakeCase from 'lodash/snakeCase';
 
 export default class ServersCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    ouiDatagridService,
-  ) {
+  constructor($q, $translate, ouiDatagridService) {
     this.$q = $q;
     this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
@@ -22,8 +18,14 @@ export default class ServersCtrl {
       value: criteria.reference[0],
     }));
 
-    this.stateEnumFilter = this.getEnumFilter(this.serverStateEnum, 'server_configuration_state_');
-    this.datacenterEnumFilter = this.getEnumFilter(this.datacenterEnum, 'server_datacenter_');
+    this.stateEnumFilter = this.getEnumFilter(
+      this.serverStateEnum,
+      'server_configuration_state_',
+    );
+    this.datacenterEnumFilter = this.getEnumFilter(
+      this.datacenterEnum,
+      'server_datacenter_',
+    );
 
     this.columnsConfig = [
       { name: 'name', sortable: this.getSorting('name') },
@@ -44,7 +46,9 @@ export default class ServersCtrl {
         list,
         (result, item) => ({
           ...result,
-          [item]: this.$translate.instant(`${translationPrefix}${this.constructor.toUpperSnakeCase(item)}`),
+          [item]: this.$translate.instant(
+            `${translationPrefix}${this.constructor.toUpperSnakeCase(item)}`,
+          ),
         }),
         {},
       ),
@@ -57,7 +61,13 @@ export default class ServersCtrl {
 
   loadServers() {
     const currentOffset = this.paginationNumber * this.paginationSize;
-    set(this.ouiDatagridService, 'datagrids.dg-servers.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
+    set(
+      this.ouiDatagridService,
+      'datagrids.dg-servers.paging.offset',
+      currentOffset < this.paginationTotalCount
+        ? currentOffset
+        : this.paginationTotalCount,
+    );
 
     return this.$q.resolve({
       data: get(this.dedicatedServers, 'data'),

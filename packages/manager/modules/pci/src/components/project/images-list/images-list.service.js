@@ -8,10 +8,7 @@ import Image from './images.class';
 
 export default class ImagesList {
   /* @ngInject */
-  constructor(
-    OvhApiCloudProjectImage,
-    OvhApiCloudProjectSnapshot,
-  ) {
+  constructor(OvhApiCloudProjectImage, OvhApiCloudProjectSnapshot) {
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
   }
@@ -26,10 +23,14 @@ export default class ImagesList {
 
   static groupByName(images) {
     const imagesByName = groupBy(images, 'name');
-    return map(imagesByName, (image) => new Image({
-      ...omit(image[0], ['id', 'region']),
-      regions: ImagesList.getImageRegions(image),
-    }));
+    return map(
+      imagesByName,
+      (image) =>
+        new Image({
+          ...omit(image[0], ['id', 'region']),
+          regions: ImagesList.getImageRegions(image),
+        }),
+    );
   }
 
   static getImageRegions(image) {
@@ -37,22 +38,32 @@ export default class ImagesList {
   }
 
   getImages(serviceName) {
-    return this.OvhApiCloudProjectImage
-      .v6().query({ serviceName }).$promise
-      .then((images) => ImagesList.groupByName(images));
+    return this.OvhApiCloudProjectImage.v6()
+      .query({ serviceName })
+      .$promise.then((images) => ImagesList.groupByName(images));
   }
 
   getSnapshots(serviceName) {
-    return this.OvhApiCloudProjectSnapshot.v6().query({ serviceName }).$promise
-      .then((snapshots) => map(snapshots, (snapshot) => new Image({
-        ...snapshot,
-        regions: ImagesList.getImageRegions(snapshot),
-      })));
+    return this.OvhApiCloudProjectSnapshot.v6()
+      .query({ serviceName })
+      .$promise.then((snapshots) =>
+        map(
+          snapshots,
+          (snapshot) =>
+            new Image({
+              ...snapshot,
+              regions: ImagesList.getImageRegions(snapshot),
+            }),
+        ),
+      );
   }
 
-
   static getCompatibleImages(images, region, flavorType) {
-    return filter(images,
-      (image) => image.isAvailableInRegion(region) && image.isCompatibleWithFlavor(flavorType));
+    return filter(
+      images,
+      (image) =>
+        image.isAvailableInRegion(region) &&
+        image.isCompatibleWithFlavor(flavorType),
+    );
   }
 }

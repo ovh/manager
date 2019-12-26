@@ -128,8 +128,10 @@ angular.module('services').service('Polling', [
 
     // Because if q.all reject, it don't sent fail task id
     function cleanFailTask(eachTask, watchedTasksList) {
-      const idTask = idtask(watchedTasksList[eachTask].task.id
-        || watchedTasksList[eachTask].task.taskId);
+      const idTask = idtask(
+        watchedTasksList[eachTask].task.id ||
+          watchedTasksList[eachTask].task.taskId,
+      );
 
       $http.get(watchedTasksList[eachTask].url).then(
         (task) => {
@@ -170,13 +172,19 @@ angular.module('services').service('Polling', [
         // Delete polling of dead scope
         if (killedScopeList[taskValue.scopeId]) {
           // Delete promise of dead scope
-          forEach(watchedTasksPromise[eachTask], (promiseValue, eachPromise) => {
-            if (killedScopeList[promiseValue.scopeId]) {
-              delete watchedTasksPromise[eachTask][eachPromise];
-            }
-          });
+          forEach(
+            watchedTasksPromise[eachTask],
+            (promiseValue, eachPromise) => {
+              if (killedScopeList[promiseValue.scopeId]) {
+                delete watchedTasksPromise[eachTask][eachPromise];
+              }
+            },
+          );
           // Delete taskid of dead scope if promise = 0
-          if (!watchedTasksPromise[eachTask] || watchedTasksPromise[eachTask].length === 0) {
+          if (
+            !watchedTasksPromise[eachTask] ||
+            watchedTasksPromise[eachTask].length === 0
+          ) {
             delete watchedTasksPromise[eachTask];
             delete watchedTasksList[eachTask];
           } else {
@@ -248,7 +256,12 @@ angular.module('services').service('Polling', [
         scopeId : the scope calling polling
         cancelIfExist : no watch if task id is already in poll
     */
-    this.addTaskFast = function addTaskFast(taskUrl, task, scopeId, cancelIfExist) {
+    this.addTaskFast = function addTaskFast(
+      taskUrl,
+      task,
+      scopeId,
+      cancelIfExist,
+    ) {
       const deferPromise = $q.defer();
       const idTask = idtask(task.id || task.taskId);
       if (cancelIfExist && watchedTasksPromise[idTask]) {
@@ -282,7 +295,10 @@ angular.module('services').service('Polling', [
     */
     this.addTask = function addTask(taskUrl, task, scopeId, cancelIfExist) {
       const deferPromise = $q.defer();
-      if (cancelIfExist && watchedTasksPromise[idtask(task.id || task.taskId)]) {
+      if (
+        cancelIfExist &&
+        watchedTasksPromise[idtask(task.id || task.taskId)]
+      ) {
         deferPromise.resolve({ state: notifyExist });
       } else {
         if (!watchedTasksPromise[idtask(task.id || task.taskId)]) {
@@ -332,7 +348,10 @@ angular.module('services').service('Polling', [
     };
 
     this.isDone = function isDone(state) {
-      return state.task && (state.task.status || state.task.state || '').toUpperCase() === 'DONE';
+      return (
+        state.task &&
+        (state.task.status || state.task.state || '').toUpperCase() === 'DONE'
+      );
     };
   },
 ]);

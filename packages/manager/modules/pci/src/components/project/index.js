@@ -15,19 +15,18 @@ import sshKeys from './instance/ssh-keys';
 
 const moduleName = 'ovhManagerPciComponentsProject';
 
-angular
-  .module(moduleName, [
-    billing,
-    empty,
-    flavorBilling,
-    flavorsList,
-    guidesHeader,
-    imagesList,
-    quotaRegionHeader,
-    'ovh-api-services',
-    regionsList,
-    rights,
-    sshKeys,
-  ]);
+angular.module(moduleName, [
+  billing,
+  empty,
+  flavorBilling,
+  flavorsList,
+  guidesHeader,
+  imagesList,
+  quotaRegionHeader,
+  'ovh-api-services',
+  regionsList,
+  rights,
+  sshKeys,
+]);
 
 export default moduleName;

@@ -3,10 +3,7 @@ import keys from 'lodash/keys';
 
 export default class CucControllerNavigationHelper {
   /* @ngInject */
-  constructor(
-    OvhApiMe,
-    CucConfig,
-  ) {
+  constructor(OvhApiMe, CucConfig) {
     this.OvhApiMe = OvhApiMe;
     this.CucConfig = CucConfig;
   }
@@ -25,7 +22,10 @@ export default class CucControllerNavigationHelper {
   getConstant(path) {
     const fallback = this.CucConfig.getRegion() === 'US' ? 'US' : 'GB';
 
-    return this.OvhApiMe.v6().get().$promise
-      .then((me) => path[me.ovhSubsidiary] || path[fallback] || path.FR);
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then(
+        (me) => path[me.ovhSubsidiary] || path[fallback] || path.FR,
+      );
   }
 }

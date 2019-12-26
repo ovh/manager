@@ -19,8 +19,13 @@ angular
     'ui.router',
   ])
   .controller('FreefaxConfigurationCtrl', controller)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('freefax/faxConfiguration/freefax-faxConfiguration.html', template);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'freefax/faxConfiguration/freefax-faxConfiguration.html',
+        template,
+      );
+    },
+  );
 
 export default moduleName;

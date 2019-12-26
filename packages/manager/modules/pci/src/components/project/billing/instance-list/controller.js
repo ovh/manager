@@ -32,25 +32,31 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   self.instanceToMonthly = null;
 
   function initInstances() {
-    return OvhApiCloudProjectInstance.v6().query({
-      serviceName: $stateParams.projectId,
-    }).$promise.then((instances) => {
-      self.data.instances = instances;
-    });
+    return OvhApiCloudProjectInstance.v6()
+      .query({
+        serviceName: $stateParams.projectId,
+      })
+      .$promise.then((instances) => {
+        self.data.instances = instances;
+      });
   }
 
   function initImages() {
-    return OvhApiCloudProjectImage.v6().query({
-      serviceName: $stateParams.projectId,
-    }).$promise.then((result) => {
-      self.data.images = result;
-    });
+    return OvhApiCloudProjectImage.v6()
+      .query({
+        serviceName: $stateParams.projectId,
+      })
+      .$promise.then((result) => {
+        self.data.images = result;
+      });
   }
 
   function initUserCurrency() {
-    return OvhApiMe.v6().get().$promise.then((me) => {
-      self.currencySymbol = me.currency.symbol;
-    });
+    return OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
+        self.currencySymbol = me.currency.symbol;
+      });
   }
 
   function getImageTypeFromReference(reference) {
@@ -64,13 +70,23 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
     const instanceConsumptionDetail = {};
     instanceConsumptionDetail.instanceId = billingDetail.instanceId;
     instanceConsumptionDetail.instanceName = billingDetail.instanceId;
-    instanceConsumptionDetail.total = `${billingDetail.totalPrice.toFixed(2)} ${self.currencySymbol}`;
+    instanceConsumptionDetail.total = `${billingDetail.totalPrice.toFixed(2)} ${
+      self.currencySymbol
+    }`;
     instanceConsumptionDetail.region = billingDetail.region;
     instanceConsumptionDetail.reference = billingDetail.reference;
-    instanceConsumptionDetail.imageType = getImageTypeFromReference(billingDetail.reference);
-    instanceConsumptionDetail.vmType = billingDetail.reference ? billingDetail.reference.replace(self.windowsStringPattern, '').toUpperCase() : '';
+    instanceConsumptionDetail.imageType = getImageTypeFromReference(
+      billingDetail.reference,
+    );
+    instanceConsumptionDetail.vmType = billingDetail.reference
+      ? billingDetail.reference
+          .replace(self.windowsStringPattern, '')
+          .toUpperCase()
+      : '';
 
-    const instance = find(self.data.instances, { id: billingDetail.instanceId });
+    const instance = find(self.data.instances, {
+      id: billingDetail.instanceId,
+    });
     if (instance) {
       instanceConsumptionDetail.isDeleted = false;
       instanceConsumptionDetail.instanceName = instance.name;
@@ -88,9 +104,8 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   }
 
   function loadConsumptionDetails() {
-    self.instanceConsumptionDetailsInit = map(
-      self.instances,
-      (billingDetail) => getInstanceConsumptionDetails(billingDetail),
+    self.instanceConsumptionDetailsInit = map(self.instances, (billingDetail) =>
+      getInstanceConsumptionDetails(billingDetail),
     );
 
     $q.allSettled(self.instanceConsumptionDetailsInit).then((instances) => {
@@ -101,17 +116,17 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   self.$onInit = () => {
     self.loaders.instanceList = true;
 
-    $q
-      .all([
-        initInstances(),
-        initImages(),
-        initUserCurrency(),
-      ])
+    $q.all([initInstances(), initImages(), initUserCurrency()])
       .then(() => {
         loadConsumptionDetails();
       })
       .catch((err) => {
-        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('cpb_error_message'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
         return $q.reject(err);
       })
       .finally(() => {

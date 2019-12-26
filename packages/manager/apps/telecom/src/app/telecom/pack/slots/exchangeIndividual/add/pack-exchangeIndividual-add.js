@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/exchangeIndividual/add',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom/pack/slots/exchangeIndividual/add/pack-exchangeIndividual-add.html',
+        templateUrl:
+          'app/telecom/pack/slots/exchangeIndividual/add/pack-exchangeIndividual-add.html',
         controller: 'PackExchangeIndividualEmailAddCtrl',
         controllerAs: 'ctrl',
       },

@@ -20,14 +20,18 @@ export default /* @ngInject */ (WUC_CHARTJS) => {
    */
   WucChartjsFactory.prototype.addSerie = function addSerie(name, data, opts) {
     const options = opts || {};
-    this.data.datasets.push(assignIn(
-      {
-        label: name,
-        data,
-      },
-      WUC_CHARTJS.colors[this.data.datasets.length % WUC_CHARTJS.colors.length],
-      options.dataset,
-    ));
+    this.data.datasets.push(
+      assignIn(
+        {
+          label: name,
+          data,
+        },
+        WUC_CHARTJS.colors[
+          this.data.datasets.length % WUC_CHARTJS.colors.length
+        ],
+        options.dataset,
+      ),
+    );
     return last(this.data.datasets);
   };
 
@@ -36,7 +40,10 @@ export default /* @ngInject */ (WUC_CHARTJS) => {
    * @param   {String} name     Name of the callback
    * @param {Function} callback Callback
    */
-  WucChartjsFactory.prototype.setTooltipCallback = function setTooltipCallback(name, callback) {
+  WucChartjsFactory.prototype.setTooltipCallback = function setTooltipCallback(
+    name,
+    callback,
+  ) {
     if (!this.options.tooltips) {
       this.options.tooltips = {};
     }
@@ -52,7 +59,11 @@ export default /* @ngInject */ (WUC_CHARTJS) => {
    * @param           {object} options Options to merge
    * @param {Number|undefined} index Index of axis or all
    */
-  WucChartjsFactory.prototype.setAxisOptions = function setAxisOptions(axis, options, index) {
+  WucChartjsFactory.prototype.setAxisOptions = function setAxisOptions(
+    axis,
+    options,
+    index,
+  ) {
     if (isUndefined(index)) {
       this.options.scales[axis].forEach((data) => {
         merge(data, options);
@@ -68,9 +79,9 @@ export default /* @ngInject */ (WUC_CHARTJS) => {
    */
   WucChartjsFactory.prototype.setYLabel = function setYLabel(label) {
     if (
-      this.options.scales.yAxes.length
-      && head(this.options.scales.yAxes)
-      && head(this.options.scales.yAxes).scaleLabel
+      this.options.scales.yAxes.length &&
+      head(this.options.scales.yAxes) &&
+      head(this.options.scales.yAxes).scaleLabel
     ) {
       this.options.scales.yAxes[0].scaleLabel.labelString = label;
     }

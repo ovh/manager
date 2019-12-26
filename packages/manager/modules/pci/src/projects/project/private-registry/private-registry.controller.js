@@ -1,4 +1,8 @@
-import { PRIVATE_REGISTRY_STATUS, PRIVATE_REGISTRY_STATUS_MAP, GUIDELINK } from './private-registry.constants';
+import {
+  PRIVATE_REGISTRY_STATUS,
+  PRIVATE_REGISTRY_STATUS_MAP,
+  GUIDELINK,
+} from './private-registry.constants';
 
 export default class {
   /* @ngInject */
@@ -26,7 +30,10 @@ export default class {
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('pci.projects.project.private-registry');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.private-registry', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.private-registry',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -38,29 +45,38 @@ export default class {
   }
 
   delete(registryId, registryName) {
-    const promise = this.$state.go('pci.projects.project.private-registry.delete', {
-      projectId: this.$stateParams.projectId,
-      registryId,
-      registryName,
-    });
+    const promise = this.$state.go(
+      'pci.projects.project.private-registry.delete',
+      {
+        projectId: this.$stateParams.projectId,
+        registryId,
+        registryName,
+      },
+    );
     return promise;
   }
 
   update(registryId, registryName) {
-    const promise = this.$state.go('pci.projects.project.private-registry.update', {
-      projectId: this.$stateParams.projectId,
-      registryId,
-      registryName,
-    });
+    const promise = this.$state.go(
+      'pci.projects.project.private-registry.update',
+      {
+        projectId: this.$stateParams.projectId,
+        registryId,
+        registryName,
+      },
+    );
     return promise;
   }
 
   generateCredentials(registryId) {
-    const promise = this.$state.go('pci.projects.project.private-registry.credentials', {
-      projectId: this.$stateParams.projectId,
-      registryId,
-      confirmationRequired: true,
-    });
+    const promise = this.$state.go(
+      'pci.projects.project.private-registry.credentials',
+      {
+        projectId: this.$stateParams.projectId,
+        registryId,
+        confirmationRequired: true,
+      },
+    );
     return promise;
   }
 

@@ -1,5 +1,7 @@
-angular.module('managerApp')
-  .controller('DeskaasConfirmTerminateCtrl',
+angular
+  .module('managerApp')
+  .controller(
+    'DeskaasConfirmTerminateCtrl',
     function DeskaasConfirmTerminateCtrl(
       $scope,
       $location,
@@ -20,10 +22,12 @@ angular.module('managerApp')
 
       function removeConfirmationParams() {
         if ($location.$$search.action) {
-          delete $location.$$search.action; // eslint-disable-line
+          // eslint-disable-next-line no-param-reassign
+          delete $location.$$search.action;
         }
         if ($location.$$search.token) {
-          delete $location.$$search.token; // eslint-disable-line
+          // eslint-disable-next-line no-param-reassign
+          delete $location.$$search.token;
         }
         // Do not reload url
         $location.$$compose();
@@ -52,4 +56,5 @@ angular.module('managerApp')
       }
 
       init();
-    });
+    },
+  );

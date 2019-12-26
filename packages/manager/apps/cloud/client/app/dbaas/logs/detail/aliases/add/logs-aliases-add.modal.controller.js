@@ -7,14 +7,17 @@ class LogsAliasesAddModalCtrl {
   }
 
   openModal() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/aliases/add/logs-aliases-add.html',
-        controller: 'LogsAliasesAddCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-      },
-    }).then(() => this.$scope.$parent.ctrl.initLoaders())
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl:
+            'app/dbaas/logs/detail/aliases/add/logs-aliases-add.html',
+          controller: 'LogsAliasesAddCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+        },
+      })
+      .then(() => this.$scope.$parent.ctrl.initLoaders())
       .finally(() => this.onCloseModal());
   }
 
@@ -23,4 +26,6 @@ class LogsAliasesAddModalCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsAliasesAddModalCtrl', LogsAliasesAddModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsAliasesAddModalCtrl', LogsAliasesAddModalCtrl);

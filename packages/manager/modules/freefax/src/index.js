@@ -13,18 +13,11 @@ import freefax from './freefax';
 const moduleName = 'ovhManagerFreeFaxes';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'ovhManagerCore',
-    'oc.lazyLoad',
-    freefax,
-  ])
+  .module(moduleName, ['ui.router', 'ovhManagerCore', 'oc.lazyLoad', freefax])
   .config(routing)
   .component('ovhManagerFreefaxes', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
-export {
-  FREEFAX_AVAILABILITY,
-};
+export { FREEFAX_AVAILABILITY };
 
 export default moduleName;

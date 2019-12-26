@@ -7,7 +7,12 @@ import union from 'lodash/union';
 import uniqBy from 'lodash/uniqBy';
 
 class CloudProjectComputeLoadbalancerService {
-  constructor($q, OvhApiCloudProjectIplb, OvhApiIpLoadBalancing, OvhApiCloudProject) {
+  constructor(
+    $q,
+    OvhApiCloudProjectIplb,
+    OvhApiIpLoadBalancing,
+    OvhApiCloudProject,
+  ) {
     this.$q = $q;
     this.OvhApiCloudProjectIplb = OvhApiCloudProjectIplb;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
@@ -15,43 +20,59 @@ class CloudProjectComputeLoadbalancerService {
   }
 
   getLoadbalancer(id) {
-    return this.OvhApiIpLoadBalancing.v6().get({ serviceName: id })
+    return this.OvhApiIpLoadBalancing.v6()
+      .get({ serviceName: id })
       .$promise.then((loadbalancer) => {
         if (loadbalancer.state !== 'ok') {
           return loadbalancer;
         }
         // Find the frontend http 80 if exists as this page only display a view for HTTP.
-        return this.OvhApiIpLoadBalancing.Frontend().Http().v6().query({
-          serviceName: id,
-          port: 80,
-        }).$promise.then((frontendIds) => (frontendIds.length
-          && this
-            .OvhApiIpLoadBalancing
-            .Frontend()
-            .Http()
-            .v6()
-            .get({
-              serviceName: id,
-              frontendId: frontendIds[0],
-            }).$promise) || loadbalancer).then((frontend) => {
-          if (frontend.frontendId) {
-            set(loadbalancer, 'frontend', frontend);
-          }
-          return (frontend.frontendId
-            && frontend.defaultFarmId
-            && this.OvhApiIpLoadBalancing.Farm().Http().v6().get({
-              serviceName: id,
-              farmId: frontend.defaultFarmId,
-            }).$promise) || loadbalancer;
-        }).then((farm) => {
-          if (farm.farmId) {
-            set(loadbalancer, 'farm', farm);
-          }
-          return loadbalancer;
-        }).catch(() => {
-          set(loadbalancer, 'state', 'broken');
-          return loadbalancer;
-        });
+        return this.OvhApiIpLoadBalancing.Frontend()
+          .Http()
+          .v6()
+          .query({
+            serviceName: id,
+            port: 80,
+          })
+          .$promise.then(
+            (frontendIds) =>
+              (frontendIds.length &&
+                this.OvhApiIpLoadBalancing.Frontend()
+                  .Http()
+                  .v6()
+                  .get({
+                    serviceName: id,
+                    frontendId: frontendIds[0],
+                  }).$promise) ||
+              loadbalancer,
+          )
+          .then((frontend) => {
+            if (frontend.frontendId) {
+              set(loadbalancer, 'frontend', frontend);
+            }
+            return (
+              (frontend.frontendId &&
+                frontend.defaultFarmId &&
+                this.OvhApiIpLoadBalancing.Farm()
+                  .Http()
+                  .v6()
+                  .get({
+                    serviceName: id,
+                    farmId: frontend.defaultFarmId,
+                  }).$promise) ||
+              loadbalancer
+            );
+          })
+          .then((farm) => {
+            if (farm.farmId) {
+              set(loadbalancer, 'farm', farm);
+            }
+            return loadbalancer;
+          })
+          .catch(() => {
+            set(loadbalancer, 'state', 'broken');
+            return loadbalancer;
+          });
       })
       .then((loadbalancer) => {
         if (loadbalancer.state !== 'ok') {
@@ -70,20 +91,29 @@ class CloudProjectComputeLoadbalancerService {
   }
 
   getLoadbalancersImported(serviceName) {
-    return this.OvhApiCloudProjectIplb.v6().query({
-      serviceName,
-    }).$promise.then((ids) => this.$q.all(
-      map(ids, (id) => this.OvhApiCloudProjectIplb.v6().get({
+    return this.OvhApiCloudProjectIplb.v6()
+      .query({
         serviceName,
-        id,
-      }).$promise),
-    )).then((loadbalancers) => {
-      const result = {};
-      forEach(loadbalancers, (lb) => {
-        result[lb.iplb] = lb;
+      })
+      .$promise.then((ids) =>
+        this.$q.all(
+          map(
+            ids,
+            (id) =>
+              this.OvhApiCloudProjectIplb.v6().get({
+                serviceName,
+                id,
+              }).$promise,
+          ),
+        ),
+      )
+      .then((loadbalancers) => {
+        const result = {};
+        forEach(loadbalancers, (lb) => {
+          result[lb.iplb] = lb;
+        });
+        return result;
       });
-      return result;
-    });
   }
 
   // Get servers of the default farm of the frontend
@@ -92,50 +122,84 @@ class CloudProjectComputeLoadbalancerService {
     if (!loadbalancer.farm) {
       return Promise.resolve([]);
     }
-    return this.OvhApiIpLoadBalancing.Farm().Http().Server().v6()
+    return this.OvhApiIpLoadBalancing.Farm()
+      .Http()
+      .Server()
+      .v6()
       .query({
         serviceName: loadbalancer.serviceName,
         farmId: loadbalancer.farm.farmId,
-      }).$promise
-      .then((serverIds) => this.$q.all(
-        map(serverIds, (serverId) => this.OvhApiIpLoadBalancing.Farm().Http().Server().v6()
-          .get({
-            serviceName: loadbalancer.serviceName,
-            farmId: loadbalancer.farm.farmId,
-            serverId,
-          }).$promise),
-      ));
+      })
+      .$promise.then((serverIds) =>
+        this.$q.all(
+          map(
+            serverIds,
+            (serverId) =>
+              this.OvhApiIpLoadBalancing.Farm()
+                .Http()
+                .Server()
+                .v6()
+                .get({
+                  serviceName: loadbalancer.serviceName,
+                  farmId: loadbalancer.farm.farmId,
+                  serverId,
+                }).$promise,
+          ),
+        ),
+      );
   }
 
   getServerList({ serviceName, loadbalancer }) {
-    return this.$q.all({
-      cloudServers: this.OvhApiCloudProject.Instance().v6().query({ serviceName }).$promise,
-      attachedServers: this.getAttachedServers(loadbalancer),
-    }).then(({ cloudServers, attachedServers }) => {
-      const activeServers = {};
-      forEach(attachedServers, (attachedServer) => {
-        if (attachedServer.status === 'active') {
-          activeServers[attachedServer.address] = attachedServer;
-        }
-      });
+    return this.$q
+      .all({
+        cloudServers: this.OvhApiCloudProject.Instance()
+          .v6()
+          .query({ serviceName }).$promise,
+        attachedServers: this.getAttachedServers(loadbalancer),
+      })
+      .then(({ cloudServers, attachedServers }) => {
+        const activeServers = {};
+        forEach(attachedServers, (attachedServer) => {
+          if (attachedServer.status === 'active') {
+            activeServers[attachedServer.address] = attachedServer;
+          }
+        });
 
-      // Generate array of object type as {ipv4, name}
-      // Concat all public ip of public cloud and of the loadbalancer.
-      const servers = uniqBy(
-        union(
-          flatten(map(cloudServers, (server) => map(filter(server.ipAddresses, { type: 'public', version: 4 }), (adresse) => ({ label: server.name, ip: adresse.ip })))),
-          map(this.attachedServers, (server) => ({
-            label: server.displayName,
-            ip: server.address,
-          })),
-        ),
-        'ip',
-      );
-      return { servers, attachedServers: activeServers };
-    }).catch((err) => {
-      this.CucCloudMessage.error([this.$translate.instant('cpc_server_error'), (err.data && err.data.message) || ''].join(' '));
-    });
+        // Generate array of object type as {ipv4, name}
+        // Concat all public ip of public cloud and of the loadbalancer.
+        const servers = uniqBy(
+          union(
+            flatten(
+              map(cloudServers, (server) =>
+                map(
+                  filter(server.ipAddresses, { type: 'public', version: 4 }),
+                  (adresse) => ({ label: server.name, ip: adresse.ip }),
+                ),
+              ),
+            ),
+            map(this.attachedServers, (server) => ({
+              label: server.displayName,
+              ip: server.address,
+            })),
+          ),
+          'ip',
+        );
+        return { servers, attachedServers: activeServers };
+      })
+      .catch((err) => {
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpc_server_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
+      });
   }
 }
 
-angular.module('managerApp').service('CloudProjectComputeLoadbalancerService', CloudProjectComputeLoadbalancerService);
+angular
+  .module('managerApp')
+  .service(
+    'CloudProjectComputeLoadbalancerService',
+    CloudProjectComputeLoadbalancerService,
+  );

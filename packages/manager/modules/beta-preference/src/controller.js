@@ -14,7 +14,8 @@ export default class BetaPreferenceCtrl {
     };
 
     this.isUpdatingBeta = true;
-    return this.betaPreferenceService.isBetaActive()
+    return this.betaPreferenceService
+      .isBetaActive()
       .then((beta) => {
         this.beta.active = beta;
       })
@@ -35,9 +36,19 @@ export default class BetaPreferenceCtrl {
     return promise
       .then(() => {
         this.beta.active = beta;
-        return this.onSuccess({ message: this.$translate.instant('user_account_advanced_section_beta_success') });
+        return this.onSuccess({
+          message: this.$translate.instant(
+            'user_account_advanced_section_beta_success',
+          ),
+        });
       })
-      .catch(() => this.onError({ message: this.$translate.instant('user_account_advanced_section_beta_error') }))
+      .catch(() =>
+        this.onError({
+          message: this.$translate.instant(
+            'user_account_advanced_section_beta_error',
+          ),
+        }),
+      )
       .finally(() => {
         this.isUpdatingBeta = false;
       });

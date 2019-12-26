@@ -8,11 +8,8 @@ import switchBillingType from './billing-type';
 
 const moduleName = 'ovhManagerPciProjectKubernetesNodes';
 
-angular.module(moduleName, [
-  add,
-  deleteNode,
-  switchBillingType,
-])
+angular
+  .module(moduleName, [add, deleteNode, switchBillingType])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerPciProjectKubernetesNodesComponent', nodeComponents);

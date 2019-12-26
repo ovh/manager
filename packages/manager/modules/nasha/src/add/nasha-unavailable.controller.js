@@ -6,8 +6,10 @@ export default class NashaUnavailableCtrl {
   }
 
   $onInit() {
-    this.OvhApiMe.v6().get().$promise.then((me) => {
-      this.phone = this.PhoneContact[me.ovhSubsidiary];
-    });
+    this.OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
+        this.phone = this.PhoneContact[me.ovhSubsidiary];
+      });
   }
 }

@@ -1,8 +1,15 @@
 import set from 'lodash/set';
 
 class LogsInputsHomeCtrl {
-  constructor($state, $stateParams, $translate, CucCloudMessage, CucControllerHelper, LogsConstants,
-    LogsInputsService) {
+  constructor(
+    $state,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    LogsConstants,
+    LogsInputsService,
+  ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
@@ -26,8 +33,10 @@ class LogsInputsHomeCtrl {
    */
   delete(input) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.deleteInput(this.serviceName, input)
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsInputsService.deleteInput(this.serviceName, input).finally(
+          () => this.CucControllerHelper.scrollPageToTop(),
+        ),
     });
     this.delete.load().then(() => this.runLoaders());
   }
@@ -42,10 +51,14 @@ class LogsInputsHomeCtrl {
   executeAction(input, actionFn) {
     this.setInputToProcessing(input);
     this.processInput = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService[actionFn](this.serviceName, input)
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsInputsService[actionFn](this.serviceName, input).finally(() =>
+          this.CucControllerHelper.scrollPageToTop(),
+        ),
     });
-    this.processInput.load().finally(() => this.reloadInputDetail(input.info.inputId));
+    this.processInput
+      .load()
+      .finally(() => this.reloadInputDetail(input.info.inputId));
   }
 
   /**
@@ -71,18 +84,18 @@ class LogsInputsHomeCtrl {
    */
   reloadInputDetail(inputId) {
     this.inputReload = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getInputDetail(this.serviceName, inputId),
+      loaderFunction: () =>
+        this.LogsInputsService.getInputDetail(this.serviceName, inputId),
     });
 
-    return this.inputReload.load()
-      .then((input) => {
-        this.inputs.data.forEach((inputItem, inputIndex) => {
-          if (inputItem.info.inputId === input.info.inputId) {
-            this.inputs.data[inputIndex] = input;
-          }
-        });
-        return input;
+    return this.inputReload.load().then((input) => {
+      this.inputs.data.forEach((inputItem, inputIndex) => {
+        if (inputItem.info.inputId === input.info.inputId) {
+          this.inputs.data[inputIndex] = input;
+        }
       });
+      return input;
+    });
   }
 
   /**
@@ -142,7 +155,8 @@ class LogsInputsHomeCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/inputs/home/info/logs-inputs-home-info.html',
+        templateUrl:
+          'app/dbaas/logs/detail/inputs/home/info/logs-inputs-home-info.html',
         controller: 'LogsInputsHomeInfoModalCtrl',
         controllerAs: 'ctrl',
         resolve: {
@@ -161,10 +175,14 @@ class LogsInputsHomeCtrl {
    */
   showDeleteConfirm(input) {
     this.CucCloudMessage.flushChildMessage();
-    return this.CucControllerHelper.modal.showDeleteModal({
-      titleText: this.$translate.instant('inputs_delete'),
-      textHtml: this.$translate.instant('inputs_delete_message', { input: input.info.title }),
-    }).then(() => this.delete(input));
+    return this.CucControllerHelper.modal
+      .showDeleteModal({
+        titleText: this.$translate.instant('inputs_delete'),
+        textHtml: this.$translate.instant('inputs_delete_message', {
+          input: input.info.title,
+        }),
+      })
+      .then(() => this.delete(input));
   }
 
   /**
@@ -174,7 +192,11 @@ class LogsInputsHomeCtrl {
    * @memberof LogsInputsCtrl
    */
   restartInput(input) {
-    this.CucCloudMessage.info(this.$translate.instant('inputs_restarting', { inputTitle: input.info.title }));
+    this.CucCloudMessage.info(
+      this.$translate.instant('inputs_restarting', {
+        inputTitle: input.info.title,
+      }),
+    );
     this.executeAction(input, 'restartInput');
   }
 
@@ -199,7 +221,11 @@ class LogsInputsHomeCtrl {
    * @memberof LogsInputsCtrl
    */
   startInput(input) {
-    this.CucCloudMessage.info(this.$translate.instant('inputs_starting', { inputTitle: input.info.title }));
+    this.CucCloudMessage.info(
+      this.$translate.instant('inputs_starting', {
+        inputTitle: input.info.title,
+      }),
+    );
     this.executeAction(input, 'startInput');
   }
 
@@ -210,9 +236,15 @@ class LogsInputsHomeCtrl {
    * @memberof LogsInputsCtrl
    */
   stopInput(input) {
-    this.CucCloudMessage.info(this.$translate.instant('inputs_stopping', { inputTitle: input.info.title }));
+    this.CucCloudMessage.info(
+      this.$translate.instant('inputs_stopping', {
+        inputTitle: input.info.title,
+      }),
+    );
     this.executeAction(input, 'stopInput');
   }
 }
 
-angular.module('managerApp').controller('LogsInputsHomeCtrl', LogsInputsHomeCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsInputsHomeCtrl', LogsInputsHomeCtrl);

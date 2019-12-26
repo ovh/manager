@@ -7,10 +7,7 @@ import ducBandwidthFilter from './bandwidth.filter';
 const moduleName = 'ducBandwidth';
 
 angular
-  .module(moduleName, [
-    ngTranslateAsyncLoader,
-    translate,
-  ])
+  .module(moduleName, [ngTranslateAsyncLoader, translate])
   .filter('ducBandwidth', ducBandwidthFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 

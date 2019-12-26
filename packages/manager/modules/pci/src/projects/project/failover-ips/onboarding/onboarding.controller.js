@@ -3,10 +3,7 @@ import { GUIDES } from './onboarding.constants';
 
 export default class PciFailoverIpsOnboardingController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-  ) {
+  constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
   }
@@ -14,21 +11,27 @@ export default class PciFailoverIpsOnboardingController {
   $onInit() {
     this.guides = reduce(
       GUIDES,
-      (list, guide) => ([
+      (list, guide) => [
         ...list,
         {
           ...guide,
-          title: this.$translate.instant(`pci_projects_project_failoverip_onboarding_guides_${guide.id}_title`),
-          description: this.$translate.instant(`pci_projects_project_failoverip_onboarding_guides_${guide.id}_description`),
+          title: this.$translate.instant(
+            `pci_projects_project_failoverip_onboarding_guides_${guide.id}_title`,
+          ),
+          description: this.$translate.instant(
+            `pci_projects_project_failoverip_onboarding_guides_${guide.id}_description`,
+          ),
         },
-      ]),
+      ],
       [],
     );
     this.loadMessages();
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.failover-ips.onboarding');
+    this.CucCloudMessage.unSubscribe(
+      'pci.projects.project.failover-ips.onboarding',
+    );
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.failover-ips.onboarding',
       {

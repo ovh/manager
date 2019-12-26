@@ -1,4 +1,8 @@
-import { RESTRICTED_CORES, RESTRICTED_RAM, RESTRICTED_INSTANCES } from './quota.constants';
+import {
+  RESTRICTED_CORES,
+  RESTRICTED_RAM,
+  RESTRICTED_INSTANCES,
+} from './quota.constants';
 
 export default class {
   /* @ngInject */
@@ -43,21 +47,34 @@ export default class {
 
   isQuotaRestricted() {
     const [quota] = this.quotas;
-    return quota.maxInstances === RESTRICTED_INSTANCES
-    && quota.maxCores === RESTRICTED_CORES
-    && quota.maxRam === RESTRICTED_RAM;
+    return (
+      quota.maxInstances === RESTRICTED_INSTANCES &&
+      quota.maxCores === RESTRICTED_CORES &&
+      quota.maxRam === RESTRICTED_RAM
+    );
   }
 
   unleashAccount() {
     this.isLoading = true;
-    return this.OvhApiCloudProject.v6().unleash({
-      serviceName: this.projectId,
-    }, {}).$promise.then(() => this.$state.reload())
+    return this.OvhApiCloudProject.v6()
+      .unleash(
+        {
+          serviceName: this.projectId,
+        },
+        {},
+      )
+      .$promise.then(() => this.$state.reload())
       .catch(({ status }) => {
         if (status === 403) {
-          this.CucCloudMessage.error(this.$translate.instant('pci_projects_project_quota_already_unleashed'));
+          this.CucCloudMessage.error(
+            this.$translate.instant(
+              'pci_projects_project_quota_already_unleashed',
+            ),
+          );
         } else {
-          this.CucCloudMessage.error(this.$translate.instant('pci_projects_project_quota_unleash_error'));
+          this.CucCloudMessage.error(
+            this.$translate.instant('pci_projects_project_quota_unleash_error'),
+          );
         }
       });
   }

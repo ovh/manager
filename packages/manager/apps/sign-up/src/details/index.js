@@ -5,10 +5,6 @@ import { registerState } from './routing';
 
 const moduleName = 'ovhSignUpDetailsState';
 
-angular
-  .module(moduleName, [
-    'ovhSignUp',
-  ])
-  .config(registerState);
+angular.module(moduleName, ['ovhSignUp']).config(registerState);
 
 export default moduleName;

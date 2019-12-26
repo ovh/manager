@@ -37,7 +37,8 @@ export default /* @ngInject */ (TucVoipLineFeature) => {
       super.setOptions(featureOptions);
 
       this.infrastructure = featureOptions.infrastructure;
-      this.isAttachedToOtherLinesPhone = featureOptions.isAttachedToOtherLinesPhone;
+      this.isAttachedToOtherLinesPhone =
+        featureOptions.isAttachedToOtherLinesPhone;
       this.simultaneousLines = featureOptions.simultaneousLines;
     }
   }

@@ -6,8 +6,6 @@ import './index.less';
 
 const moduleName = 'cuiDropdownMenu';
 
-angular
-  .module(moduleName, [])
-  .component('cuiDropdownMenu', component);
+angular.module(moduleName, []).component('cuiDropdownMenu', component);
 
 export default moduleName;

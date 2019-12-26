@@ -60,24 +60,25 @@ export default class OptionsDescriptionsService {
     // If the current service pack doesn't have the option, then it will be installed
     const willBeInstalled = !currentServicePackHasOption;
 
-    if ([
-      ORDER_STATUS.documentsRequested,
-      ORDER_STATUS.notPaid,
-    ].includes(pendingOrder.status)) {
+    if (
+      [ORDER_STATUS.documentsRequested, ORDER_STATUS.notPaid].includes(
+        pendingOrder.status,
+      )
+    ) {
       return ACTIVATION_STATUS.awaitingValidation;
     }
 
-    if ([
-      ORDER_STATUS.cancelling,
-    ].includes(pendingOrder.status)) {
+    if ([ORDER_STATUS.cancelling].includes(pendingOrder.status)) {
       return ACTIVATION_STATUS.cancelling;
     }
 
-    if ([
-      ORDER_STATUS.checking,
-      ORDER_STATUS.delivered,
-      ORDER_STATUS.delivering,
-    ].includes(pendingOrder.status)) {
+    if (
+      [
+        ORDER_STATUS.checking,
+        ORDER_STATUS.delivered,
+        ORDER_STATUS.delivering,
+      ].includes(pendingOrder.status)
+    ) {
       return willBeInstalled
         ? ACTIVATION_STATUS.beingActivated
         : ACTIVATION_STATUS.beingDeactivated;

@@ -11,14 +11,17 @@ export const TUC_UI_SORTABLE_HELPERS = {
     container.children().each(function itemFunction() {
       const item = $(this);
 
-      if (!item.hasClass('ui-sortable-helper') && !item.hasClass('ui-sortable-placeholder')) {
+      if (
+        !item.hasClass('ui-sortable-helper') &&
+        !item.hasClass('ui-sortable-placeholder')
+      ) {
         const itemHeight = item.outerHeight();
         const itemTop = item.position().top;
         const itemBottom = itemTop + itemHeight;
         let tolerance;
         let distance;
 
-        if ((helpTop > itemTop) && (helpTop < itemBottom)) {
+        if (helpTop > itemTop && helpTop < itemBottom) {
           tolerance = Math.min(helpHeight, itemHeight) / 2;
           distance = helpTop - itemTop;
 
@@ -27,7 +30,7 @@ export const TUC_UI_SORTABLE_HELPERS = {
             container.sortable('refreshPositions');
             return false;
           }
-        } else if ((helpBottom < itemBottom) && (helpBottom > itemTop)) {
+        } else if (helpBottom < itemBottom && helpBottom > itemTop) {
           tolerance = Math.min(helpHeight, itemHeight) / 2;
           distance = itemBottom - helpBottom;
 

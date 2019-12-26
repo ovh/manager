@@ -20,8 +20,9 @@ export default class {
 
   refreshSecondaryDnsList() {
     this.loaders.init = true;
-    this.loadSecondaryDns()
-      .finally(() => { this.loaders.init = false; });
+    this.loadSecondaryDns().finally(() => {
+      this.loaders.init = false;
+    });
   }
 
   loadSecondaryDns() {
@@ -43,12 +44,14 @@ export default class {
   }
 
   add() {
-    this.VpsActionService.addSecondaryDns(this.serviceName)
-      .finally(() => this.refreshSecondaryDnsList());
+    this.VpsActionService.addSecondaryDns(this.serviceName).finally(() =>
+      this.refreshSecondaryDnsList(),
+    );
   }
 
   deleteOne(domain) {
-    this.VpsActionService.deleteSecondaryDns(this.serviceName, domain)
-      .finally(() => this.refreshSecondaryDnsList());
+    this.VpsActionService.deleteSecondaryDns(this.serviceName, domain).finally(
+      () => this.refreshSecondaryDnsList(),
+    );
   }
 }

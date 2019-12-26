@@ -50,9 +50,7 @@ import './shortcut/reinstall/vps-reinstall.less';
 const moduleName = 'ovhManagerVpsModal';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsKvmNovnc,
-  ])
+  .module(moduleName, [ovhManagerVpsKvmNovnc])
   .controller('VpsAddBackupStorageCtrl', AddBackupStorageCtrl)
   .controller('VpsDeleteBackupStorageCtrl', DeleteBackupStorageCtrl)
   .controller('VpsEditBackupStorageCtrl', EditBackupStorageCtrl)
@@ -73,26 +71,82 @@ angular
   .controller('VpsMountCtrl', VpsMountCtrl)
   .controller('VpsRestoreCtrl', VpsRestoreCtrl)
   .service('VpsReinstallService', VpsReinstallService)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('vps/modal/backup-storage/add-backup-storage.html', AddBackupStorageTemplate);
-    $templateCache.put('vps/modal/backup-storage/delete-backup-storage.html', DeleteBackupStorageTemplate);
-    $templateCache.put('vps/modal/backup-storage/edit-backup-storage.html', EditBackupStorageTemplate);
-    $templateCache.put('vps/modal/backup-storage/password-backup-storage.html', PasswordBackupStorageTemplate);
-    $templateCache.put('vps/modal/option/vps-option-terminate.html', VpsOptionTerminateTemplate);
-    $templateCache.put('vps/modal/secondary-dns/add-secondary-dns.html', AddSecondaryDnsTemplate);
-    $templateCache.put('vps/modal/secondary-dns/delete-secondary-dns.html', DeleteSecondaryDnsTemplate);
-    $templateCache.put('vps/modal/shortcut/display-ips/vps-display-ips.html', VpsDisplayIpsTemplate);
-    $templateCache.put('vps/modal/shortcut/kvm/vps-kvm.html', VpsKvmTemplate);
-    $templateCache.put('vps/modal/shortcut/monitoring-sla/vps-monitoring-sla.html', VpsMonitoringSlaTemplate);
-    $templateCache.put('vps/modal/shortcut/password/vps-password.html', VpsPasswordTemplate);
-    $templateCache.put('vps/modal/shortcut/reboot/vps-reboot.html', VpsRebootTemplate);
-    $templateCache.put('vps/modal/shortcut/reinstall/vps-reinstall.html', VpsReinstallTemplate);
-    $templateCache.put('vps/modal/shortcut/reverse-dns/vps-reverse-dns.html', VpsReverseDnsTemplate);
-    $templateCache.put('vps/modal/snapshot/snapshot-delete.html', VpsDeleteSnapshotTemplate);
-    $templateCache.put('vps/modal/snapshot/snapshot-restore.html', VpsRestoreSnapshotTemplate);
-    $templateCache.put('vps/modal/snapshot/snapshot-take.html', VpsTakeSnapshotTemplate);
-    $templateCache.put('vps/modal/veeam/mount/vps-mount.html', VpsMountTemplate);
-    $templateCache.put('vps/modal/veeam/restore/vps-restore.html', VpsRestoreTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'vps/modal/backup-storage/add-backup-storage.html',
+        AddBackupStorageTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/backup-storage/delete-backup-storage.html',
+        DeleteBackupStorageTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/backup-storage/edit-backup-storage.html',
+        EditBackupStorageTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/backup-storage/password-backup-storage.html',
+        PasswordBackupStorageTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/option/vps-option-terminate.html',
+        VpsOptionTerminateTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/secondary-dns/add-secondary-dns.html',
+        AddSecondaryDnsTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/secondary-dns/delete-secondary-dns.html',
+        DeleteSecondaryDnsTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/shortcut/display-ips/vps-display-ips.html',
+        VpsDisplayIpsTemplate,
+      );
+      $templateCache.put('vps/modal/shortcut/kvm/vps-kvm.html', VpsKvmTemplate);
+      $templateCache.put(
+        'vps/modal/shortcut/monitoring-sla/vps-monitoring-sla.html',
+        VpsMonitoringSlaTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/shortcut/password/vps-password.html',
+        VpsPasswordTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/shortcut/reboot/vps-reboot.html',
+        VpsRebootTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/shortcut/reinstall/vps-reinstall.html',
+        VpsReinstallTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/shortcut/reverse-dns/vps-reverse-dns.html',
+        VpsReverseDnsTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/snapshot/snapshot-delete.html',
+        VpsDeleteSnapshotTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/snapshot/snapshot-restore.html',
+        VpsRestoreSnapshotTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/snapshot/snapshot-take.html',
+        VpsTakeSnapshotTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/veeam/mount/vps-mount.html',
+        VpsMountTemplate,
+      );
+      $templateCache.put(
+        'vps/modal/veeam/restore/vps-restore.html',
+        VpsRestoreTemplate,
+      );
+    },
+  );
 
 export default moduleName;

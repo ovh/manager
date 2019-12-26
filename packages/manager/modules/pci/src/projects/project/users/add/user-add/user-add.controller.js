@@ -1,9 +1,6 @@
 export default class PciUsersAddController {
   /* @ngInject */
-  constructor(
-    $translate,
-    PciProjectsProjectUsersService,
-  ) {
+  constructor($translate, PciProjectsProjectUsersService) {
     this.$translate = $translate;
     this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
   }

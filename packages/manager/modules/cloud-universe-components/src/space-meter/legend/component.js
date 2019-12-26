@@ -1,4 +1,3 @@
-
 import template from './template.html';
 
 export default {
@@ -14,8 +13,10 @@ export default {
 
     this.getIconName = function getIconName(type) {
       switch (type) {
-        case 'usedbysnapshots': return 'serverSave';
-        default: return 'harddisk';
+        case 'usedbysnapshots':
+          return 'serverSave';
+        default:
+          return 'harddisk';
       }
     };
   },

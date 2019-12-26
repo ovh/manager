@@ -7,14 +7,17 @@ class LogsDashboardsCrudModalCtrl {
   }
 
   openModal() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/dashboards/crud/logs-dashboards-crud.html',
-        controller: 'LogsDashboardsCrudCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-      },
-    }).then(() => this.$scope.$parent.ctrl.initLoaders())
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl:
+            'app/dbaas/logs/detail/dashboards/crud/logs-dashboards-crud.html',
+          controller: 'LogsDashboardsCrudCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+        },
+      })
+      .then(() => this.$scope.$parent.ctrl.initLoaders())
       .finally(() => this.onCloseModal());
   }
 
@@ -23,4 +26,6 @@ class LogsDashboardsCrudModalCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsDashboardsCrudModalCtrl', LogsDashboardsCrudModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsDashboardsCrudModalCtrl', LogsDashboardsCrudModalCtrl);

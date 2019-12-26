@@ -6,9 +6,7 @@ import service from './service';
 const moduleName = 'cucProducts';
 
 angular
-  .module(moduleName, [
-    'ovh-api-services',
-  ])
+  .module(moduleName, ['ovh-api-services'])
   .service('CucProductsService', service);
 
 export default moduleName;

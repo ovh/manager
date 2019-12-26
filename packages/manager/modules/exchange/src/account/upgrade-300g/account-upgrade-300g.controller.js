@@ -111,7 +111,9 @@ export default class ExchangeUpgrade300GCtrl {
       })
       .catch((error) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_order_upgrade_300G_error_message'),
+          this.services.$translate.instant(
+            'exchange_ACTION_order_upgrade_300G_error_message',
+          ),
           error,
         );
       })

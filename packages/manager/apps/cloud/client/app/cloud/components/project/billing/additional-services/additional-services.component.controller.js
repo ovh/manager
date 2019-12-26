@@ -10,8 +10,14 @@ import size from 'lodash/size';
 
 export default class AdditionalServicesComponentCtrl {
   /* @ngInject */
-  constructor($stateParams, $translate, CucControllerHelper,
-    OvhApiMe, CucServiceHelper, OvhApiCloudProjectInstance) {
+  constructor(
+    $stateParams,
+    $translate,
+    CucControllerHelper,
+    OvhApiMe,
+    CucServiceHelper,
+    OvhApiCloudProjectInstance,
+  ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
@@ -43,23 +49,24 @@ export default class AdditionalServicesComponentCtrl {
   initInstances() {
     // instances details are required to get instances name
     this.instances = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.OvhApiCloudProjectInstance.v6()
-        .query({
-          serviceName: this.$stateParams.projectId,
-        })
-        .$promise.then((instances) => {
-          forEach(keys(this.services), (key) => {
-            map(this.services[key], (service) => {
-              const instance = find(instances, { id: service.instanceId });
-              if (instance) {
-                set(service, 'name', instance.name || service.instanceId);
-              } else {
-                // instance deleted, name not available, show the id
-                set(service, 'name', service.instanceId);
-              }
+      loaderFunction: () =>
+        this.OvhApiCloudProjectInstance.v6()
+          .query({
+            serviceName: this.$stateParams.projectId,
+          })
+          .$promise.then((instances) => {
+            forEach(keys(this.services), (key) => {
+              map(this.services[key], (service) => {
+                const instance = find(instances, { id: service.instanceId });
+                if (instance) {
+                  set(service, 'name', instance.name || service.instanceId);
+                } else {
+                  // instance deleted, name not available, show the id
+                  set(service, 'name', service.instanceId);
+                }
+              });
             });
-          });
-        }),
+          }),
     });
     return this.instances.load();
   }
@@ -79,7 +86,7 @@ export default class AdditionalServicesComponentCtrl {
     const instances = get(this.services, platform);
     const totalPriceByPlatform = reduce(
       instances,
-      (sum, instance) => (sum + instance.totalPrice),
+      (sum, instance) => sum + instance.totalPrice,
       0,
     );
     return totalPriceByPlatform.toFixed(2);
@@ -95,4 +102,9 @@ export default class AdditionalServicesComponentCtrl {
   }
 }
 
-angular.module('managerApp').controller('AdditionalServicesComponentCtrl', AdditionalServicesComponentCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'AdditionalServicesComponentCtrl',
+    AdditionalServicesComponentCtrl,
+  );

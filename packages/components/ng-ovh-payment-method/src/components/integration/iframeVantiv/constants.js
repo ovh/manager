@@ -43,7 +43,8 @@ export const VANTIV_IFRAME_CONFIGURATION = {
   numYears: 11,
 
   // Helpers
-  tooltipText: 'A CVV is the 3 digit code on the back of your Visa, MasterCard and Discover or a 4 digit code on the front of your American Express',
+  tooltipText:
+    'A CVV is the 3 digit code on the back of your Visa, MasterCard and Discover or a 4 digit code on the front of your American Express',
   placeholderText: {
     cvv: 'CVV',
     accountNumber: 'Account Number',
@@ -80,7 +81,8 @@ export const VANTIV_RESPONSE_CODE = {
 
 export const VANTIV_SCRIPT = {
   id: 'vantiv_script',
-  src: 'https://request.eprotect.vantivcnp.com/eProtect/js/eProtect-iframe-client.min.js',
+  src:
+    'https://request.eprotect.vantivcnp.com/eProtect/js/eProtect-iframe-client.min.js',
 };
 
 export default {

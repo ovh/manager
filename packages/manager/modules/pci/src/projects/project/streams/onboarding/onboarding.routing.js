@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.streams.onboarding', {
-      url: '/onboarding',
-      component: 'pciProjectStreamsOnboarding',
+  $stateProvider.state('pci.projects.project.streams.onboarding', {
+    url: '/onboarding',
+    component: 'pciProjectStreamsOnboarding',
 
-      redirectTo: (transition) => Promise.all([
+    redirectTo: (transition) =>
+      Promise.all([
         transition.injector().getAsync('lab'),
         transition.injector().getAsync('streams'),
       ]).then(([lab, streams]) => {
@@ -14,29 +14,34 @@ export default /* @ngInject */ ($stateProvider) => {
         return false;
       }),
 
-      resolve: {
-        breadcrumb: () => null, // Hide breadcrumb
-        addStream: /* @ngInject */ (
-          $q,
-          $state,
-          lab,
-          PciProjectLabsService,
-          projectId,
-        ) => () => {
-          let labPromise;
-          if (lab.isOpen()) {
-            labPromise = PciProjectLabsService.activateLab(projectId, lab);
-          } else {
-            labPromise = $q.resolve();
-          }
+    resolve: {
+      breadcrumb: () => null, // Hide breadcrumb
+      addStream: /* @ngInject */ (
+        $q,
+        $state,
+        lab,
+        PciProjectLabsService,
+        projectId,
+      ) => () => {
+        let labPromise;
+        if (lab.isOpen()) {
+          labPromise = PciProjectLabsService.activateLab(projectId, lab);
+        } else {
+          labPromise = $q.resolve();
+        }
 
-          labPromise
-            .then(() => $state.go('pci.projects.project.streams.add', {
+        labPromise.then(() =>
+          $state.go(
+            'pci.projects.project.streams.add',
+            {
               projectId,
-            }, {
+            },
+            {
               reload: true,
-            }));
-        },
+            },
+          ),
+        );
       },
-    });
+    },
+  });
 };

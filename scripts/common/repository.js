@@ -12,24 +12,35 @@ const semver = require('semver');
 
 class MonoRepository {
   static getName() {
-    return execa.command('git rev-parse --show-toplevel', { shell: true })
+    return execa
+      .command('git rev-parse --show-toplevel', { shell: true })
       .then(({ stdout }) => path.basename(stdout));
   }
 
   static hasUntrackedChanges() {
-    return execa.command('git status -s', { shell: true })
+    return execa
+      .command('git status -s', { shell: true })
       .then(({ stdout }) => stdout.length > 0);
   }
 
   static getRepositories(includePrivate = false) {
-    return execa.command(`npx lerna ls ${includePrivate ? '-a' : ''}  --json`, { shell: true })
+    return execa
+      .command(`npx lerna ls ${includePrivate ? '-a' : ''}  --json`, {
+        shell: true,
+      })
       .then(({ stdout }) => JSON.parse(stdout))
       .then((repos) => repos.map((repo) => new Repository(repo)));
   }
 
   static getReleaseVersion(version) {
-    const result = version.toLowerCase().trim().replace(' ', '-');
-    return execa.command(`git tag -l '${version}*' --sort=taggerdate | tail -1`, { shell: true })
+    const result = version
+      .toLowerCase()
+      .trim()
+      .replace(' ', '-');
+    return execa
+      .command(`git tag -l '${version}*' --sort=taggerdate | tail -1`, {
+        shell: true,
+      })
       .then(({ stdout }) => stdout)
       .then((v) => {
         if (v) {
@@ -45,48 +56,76 @@ class MonoRepository {
   }
 
   static release(version, repos) {
-    const commitMsg = repos.map((r) => `* Package ${r.name} ${r.getPackageJson().version}`).join('\n');
-    return execa.command(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`, { shell: true })
-      .then(() => execa.command(`git tag -a -m 'release: ${version}' '${version}'`, { shell: true }))
-      .then((v) => execa.command('git push origin master --tags', { shell: true }).then(() => v));
+    const commitMsg = repos
+      .map((r) => `* Package ${r.name} ${r.getPackageJson().version}`)
+      .join('\n');
+    return execa
+      .command(
+        `git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`,
+        { shell: true },
+      )
+      .then(() =>
+        execa.command(`git tag -a -m 'release: ${version}' '${version}'`, {
+          shell: true,
+        }),
+      )
+      .then((v) =>
+        execa
+          .command('git push origin master --tags', { shell: true })
+          .then(() => v),
+      );
   }
 
   static writeChangelog(file, repos) {
     return new Promise((resolve, reject) => {
       fs.writeFileSync(file, repos.map((r) => r.changelog).join(''), (err) => {
         if (err) {
-          return reject(new Error(`update package.json of ${this.repository.name}: ${err}`));
+          return reject(
+            new Error(`update package.json of ${this.repository.name}: ${err}`),
+          );
         }
         return resolve(this);
       });
     });
   }
 
-  static releaseGithub(accessToken, organization, version, repos, options = {}) {
+  static releaseGithub(
+    accessToken,
+    organization,
+    version,
+    repos,
+    options = {},
+  ) {
     const client = github.client(accessToken);
     const reposChangelog = repos.map((r) => r.changelog).join('');
-    return this.getName().then((repoName) => new Promise((resolve, reject) => {
-      client.get('/user', {}, (err) => {
-        if (err) {
-          reject(err);
-        }
-        const repository = client.repo(`${organization}/${repoName}`);
-        repository.release({
-          tag_name: version,
-          target_commitish: 'master',
-          name: version,
-          body: `# Release ${version}\n${reposChangelog}`,
-          draft: false,
-          prerelease: false,
-          ...options,
-        }, (releaseErr) => {
-          if (releaseErr) {
-            return reject(releaseErr);
-          }
-          return resolve();
-        });
-      });
-    }));
+    return this.getName().then(
+      (repoName) =>
+        new Promise((resolve, reject) => {
+          client.get('/user', {}, (err) => {
+            if (err) {
+              reject(err);
+            }
+            const repository = client.repo(`${organization}/${repoName}`);
+            repository.release(
+              {
+                tag_name: version,
+                target_commitish: 'master',
+                name: version,
+                body: `# Release ${version}\n${reposChangelog}`,
+                draft: false,
+                prerelease: false,
+                ...options,
+              },
+              (releaseErr) => {
+                if (releaseErr) {
+                  return reject(releaseErr);
+                }
+                return resolve();
+              },
+            );
+          });
+        }),
+    );
   }
 }
 
@@ -119,7 +158,9 @@ class Repository {
       const updatedJson = JSON.stringify(packageJson, null, 2);
       fs.writeFile(this.getPackageJsonPath(), updatedJson, (err) => {
         if (err) {
-          return reject(new Error(`update package.json of ${this.repository.name}: ${err}`));
+          return reject(
+            new Error(`update package.json of ${this.repository.name}: ${err}`),
+          );
         }
         return resolve(this);
       });
@@ -127,43 +168,71 @@ class Repository {
   }
 
   static fetchTags() {
-    return execa.command('git describe --abbrev=0', { shell: true }).then(({ stdout }) => stdout).catch(() => '');
+    return execa
+      .command('git describe --abbrev=0', { shell: true })
+      .then(({ stdout }) => stdout)
+      .catch(() => '');
   }
 
   createSmokeTag(tag) {
-    return execa.command(`git tag ${this.name}@${this.version} ${tag}`, { shell: true });
+    return execa.command(`git tag ${this.name}@${this.version} ${tag}`, {
+      shell: true,
+    });
   }
 
   deleteSmokeTag() {
-    return execa.command(`git tag -d ${this.name}@${this.version}`, { shell: true });
+    return execa.command(`git tag -d ${this.name}@${this.version}`, {
+      shell: true,
+    });
   }
 
   updateChangelog() {
-    const getChangelog = () => execa.command(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
-      --preset angular --lerna-package ${this.name} --commit-path ${this.location}`, { shell: true });
-    const updateChangelog = () => execa.command(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
-      --preset angular --infile CHANGELOG.md --same-file --lerna-package ${this.name} --commit-path ${this.location}`, { shell: true });
+    const getChangelog = () =>
+      execa.command(
+        `lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
+      --preset angular --lerna-package ${this.name} --commit-path ${this.location}`,
+        { shell: true },
+      );
+    const updateChangelog = () =>
+      execa.command(
+        `lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
+      --preset angular --infile CHANGELOG.md --same-file --lerna-package ${this.name} --commit-path ${this.location}`,
+        { shell: true },
+      );
     return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
-      .then(() => getChangelog()
-        .then(({ stdout }) => {
+      .then(() =>
+        getChangelog().then(({ stdout }) => {
           this.changelog = stdout.replace(/#/, `## ${this.name}`);
-        }))
+        }),
+      )
       .then(updateChangelog)
       .then(() => this.deleteSmokeTag())
       .then(() => this);
   }
 
-  bump(type = null, prerelease = false, preid = null, checkPreReleaseFile = true) {
+  bump(
+    type = null,
+    prerelease = false,
+    preid = null,
+    checkPreReleaseFile = true,
+  ) {
     return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
-      .then(() => new Promise((resolve, reject) => {
-        bump({
-          preset: 'angular',
-          lernaPackage: this.name,
-          path: this.location,
-        }, (err, recommendation) => (err ? reject(err) : resolve(recommendation)));
-      }))
+      .then(
+        () =>
+          new Promise((resolve, reject) => {
+            bump(
+              {
+                preset: 'angular',
+                lernaPackage: this.name,
+                path: this.location,
+              },
+              (err, recommendation) =>
+                err ? reject(err) : resolve(recommendation),
+            );
+          }),
+      )
       .then((recommendation) => {
         const releaseType = type || recommendation.releaseType;
         const regExpSemverPreRelease = /(\d+)\.(\d+)\.(\d+)-(\w+)\.(\d+)/g;
@@ -173,7 +242,10 @@ class Repository {
 
         const preReleaseFilePath = path.join(this.location, '.prerelease');
         if (checkPreReleaseFile && fs.existsSync(preReleaseFilePath)) {
-          preId = fs.readFileSync(preReleaseFilePath).toString().trim();
+          preId = fs
+            .readFileSync(preReleaseFilePath)
+            .toString()
+            .trim();
           preRelease = true;
         }
 
@@ -219,7 +291,11 @@ class Repository {
             newVersion = semver.inc(this.version, 'prerelease', preId);
           }
         } else {
-          newVersion = semver.inc(this.version, preRelease ? `pre${releaseType}` : releaseType, preId);
+          newVersion = semver.inc(
+            this.version,
+            preRelease ? `pre${releaseType}` : releaseType,
+            preId,
+          );
         }
 
         return this.updatePackageJson({ version: newVersion })
@@ -241,9 +317,16 @@ class Repository {
           path: this.location,
         })
           .pipe(conventionalCommitsParser())
-          .pipe(concat((commits) => {
-            resolve(commits.filter(({ type, notes }) => ['feat', 'fix', 'perf'].includes(type) || notes.length > 0).length > 0);
-          }));
+          .pipe(
+            concat((commits) => {
+              resolve(
+                commits.filter(
+                  ({ type, notes }) =>
+                    ['feat', 'fix', 'perf'].includes(type) || notes.length > 0,
+                ).length > 0,
+              );
+            }),
+          );
       });
     });
   }
@@ -257,11 +340,12 @@ class Repository {
         Object.entries(depEntries).forEach(([name, semanticVersion]) => {
           const repo = localRepos.find((r) => r.name === name);
           if (repo) {
-            result.push(new Dependency(
-              this,
-              new Repository(repo),
-              { semanticVersion, isPeerDependency },
-            ));
+            result.push(
+              new Dependency(this, new Repository(repo), {
+                semanticVersion,
+                isPeerDependency,
+              }),
+            );
           }
         });
       };
@@ -285,7 +369,9 @@ class Dependency {
   }
 
   toString() {
-    return `${String(this.repository)} ⇒ ${String(this.dependency)} ${this.semanticVersion}${this.isPeerDependency ? ' (peer)' : ''}`;
+    return `${String(this.repository)} ⇒ ${String(this.dependency)} ${
+      this.semanticVersion
+    }${this.isPeerDependency ? ' (peer)' : ''}`;
   }
 
   isValid() {
@@ -306,12 +392,13 @@ class Dependency {
     } else if (packageJson.dependencies) {
       packageJson.dependencies[name] = `^${this.dependency.version}`;
     }
-    return this.repository
-      .updatePackageJson(packageJson)
-      .then(() => new Dependency(this.repository, this.dependency, {
-        semanticVersion: `^${this.dependency.version}`,
-        isPeerDependency: this.isPeerDependency,
-      }));
+    return this.repository.updatePackageJson(packageJson).then(
+      () =>
+        new Dependency(this.repository, this.dependency, {
+          semanticVersion: `^${this.dependency.version}`,
+          isPeerDependency: this.isPeerDependency,
+        }),
+    );
   }
 }
 

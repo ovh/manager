@@ -5,28 +5,27 @@ import set from 'lodash/set';
 import slice from 'lodash/slice';
 
 export default class {
-  constructor(
-    steps,
-    indexOfCurrentStep = 0,
-  ) {
-    this.steps = map(
-      steps,
-      (step, index) => {
-        set(step, 'index', index);
-        return step;
-      },
-    );
+  constructor(steps, indexOfCurrentStep = 0) {
+    this.steps = map(steps, (step, index) => {
+      set(step, 'index', index);
+      return step;
+    });
 
     this.indexOfCurrentStep = indexOfCurrentStep;
   }
 
   validateStepIndex(index) {
     if (index < 0) {
-      throw new RangeError(`Stepper: minimum allowed index is 0 (input was ${index})`);
+      throw new RangeError(
+        `Stepper: minimum allowed index is 0 (input was ${index})`,
+      );
     }
 
     if (index >= this.steps.length) {
-      throw new RangeError(`Stepper: maximum allowed index is ${this.steps.length - 1} (input was ${index})`);
+      throw new RangeError(
+        `Stepper: maximum allowed index is ${this.steps.length -
+          1} (input was ${index})`,
+      );
     }
   }
 
@@ -39,22 +38,23 @@ export default class {
   }
 
   getStep({ name, index, relativeIndex }) {
-    const matchingStep = this.getStepByName(name)
-      || (Number.isFinite(index) && this.getStepByIndex(index))
-      || (Number.isFinite(relativeIndex) && this.getStepByRelativeIndex(relativeIndex));
+    const matchingStep =
+      this.getStepByName(name) ||
+      (Number.isFinite(index) && this.getStepByIndex(index)) ||
+      (Number.isFinite(relativeIndex) &&
+        this.getStepByRelativeIndex(relativeIndex));
 
     if (matchingStep == null) {
-      throw new RangeError(`Stepper: the step could not be found (input was { name: ${name}, index: ${index} })`);
+      throw new RangeError(
+        `Stepper: the step could not be found (input was { name: ${name}, index: ${index} })`,
+      );
     }
 
     return matchingStep;
   }
 
   getStepByName(name) {
-    return find(
-      this.steps,
-      { name },
-    );
+    return find(this.steps, { name });
   }
 
   getStepByIndex(index) {
@@ -75,9 +75,8 @@ export default class {
   }
 
   setStepsBeforeCurrentStepAsCompleted() {
-    forEach(
-      slice(this.steps, 0, this.indexOfCurrentStep),
-      (step) => step.setAsCompleted(),
+    forEach(slice(this.steps, 0, this.indexOfCurrentStep), (step) =>
+      step.setAsCompleted(),
     );
   }
 

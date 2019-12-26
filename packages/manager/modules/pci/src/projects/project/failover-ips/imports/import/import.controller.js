@@ -21,20 +21,23 @@ export default class FailoverIpImportsImportController {
   import() {
     this.isLoading = true;
 
-    return this.OvhApiIp.v6().move(
-      { ip: this.serviceName },
-      { to: this.projectId },
-    )
-      .$promise
-      .then(() => {
+    return this.OvhApiIp.v6()
+      .move({ ip: this.serviceName }, { to: this.projectId })
+      .$promise.then(() => {
         this.CucCloudMessage.success(
-          this.$translate.instant('pci_projects_project_imports_import_success', { ip: this.serviceName }),
+          this.$translate.instant(
+            'pci_projects_project_imports_import_success',
+            { ip: this.serviceName },
+          ),
           MESSAGES_CONTAINER_NAME,
         );
       })
       .catch(({ data }) => {
         this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_imports_import_error', { ip: this.serviceName, error: data.message }),
+          this.$translate.instant('pci_projects_project_imports_import_error', {
+            ip: this.serviceName,
+            error: data.message,
+          }),
           MESSAGES_CONTAINER_NAME,
         );
       })

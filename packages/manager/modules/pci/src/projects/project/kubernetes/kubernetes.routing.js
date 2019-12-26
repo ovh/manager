@@ -4,61 +4,77 @@ import max from 'lodash/max';
 import { REGION, VERSION_ENUM_KEY } from './kubernetes.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.kubernetes', {
-      url: '/kubernetes',
-      component: 'ovhManagerPciProjectKubernetes',
-      redirectTo: (transition) => transition
+  $stateProvider.state('pci.projects.project.kubernetes', {
+    url: '/kubernetes',
+    component: 'ovhManagerPciProjectKubernetes',
+    redirectTo: (transition) =>
+      transition
         .injector()
         .getAsync('kubernetes')
-        .then((kubernetes) => (kubernetes.length === 0 ? { state: 'pci.projects.project.kubernetes.onboarding' } : false)),
-      resolve: {
-        addCluster: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.kubernetes.add', { projectId }),
-        goToKubernetes: ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
-          const reload = message && type === 'success';
+        .then((kubernetes) =>
+          kubernetes.length === 0
+            ? { state: 'pci.projects.project.kubernetes.onboarding' }
+            : false,
+        ),
+    resolve: {
+      addCluster: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.kubernetes.add', { projectId }),
+      goToKubernetes: ($state, CucCloudMessage, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
 
-          const promise = $state.go('pci.projects.project.kubernetes', {
+        const promise = $state.go(
+          'pci.projects.project.kubernetes',
+          {
             projectId,
           },
           {
             reload,
-          });
+          },
+        );
 
-          if (message) {
-            promise.then(() => CucCloudMessage[type](message, 'kubernetes'));
-          }
+        if (message) {
+          promise.then(() => CucCloudMessage[type](message, 'kubernetes'));
+        }
 
-          return promise;
-        },
+        return promise;
+      },
 
-        kubernetes: /* @ngInject */ (
-          OvhApiCloudProjectKube,
-          projectId,
-        ) => OvhApiCloudProjectKube.v6().query({
-          serviceName: projectId,
-        }).$promise
-          .then((kubernetes) => map(kubernetes, (id) => ({ id, region: REGION }))),
+      kubernetes: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
+        OvhApiCloudProjectKube.v6()
+          .query({
+            serviceName: projectId,
+          })
+          .$promise.then((kubernetes) =>
+            map(kubernetes, (id) => ({ id, region: REGION })),
+          ),
 
-        versions: /* @ngInject */
-          (OvhApiCloud) => OvhApiCloud.v6().schema().$promise
-            .then((schema) => get(schema, VERSION_ENUM_KEY)),
+      /* @ngInject */
+      versions: (OvhApiCloud) =>
+        OvhApiCloud.v6()
+          .schema()
+          .$promise.then((schema) => get(schema, VERSION_ENUM_KEY)),
 
-        highestVersion: /* @ngInject */
-          (versions) => max(versions, (version) => parseFloat(`${version}`)),
+      /* @ngInject */
+      highestVersion: (versions) =>
+        max(versions, (version) => parseFloat(`${version}`)),
 
-        regions: /* @ngInject */ (
-          OvhApiCloudProjectKube,
-          projectId,
-        ) => OvhApiCloudProjectKube.v6()
+      regions: /* @ngInject */ (OvhApiCloudProjectKube, projectId) =>
+        OvhApiCloudProjectKube.v6()
           .getRegions({
             serviceName: projectId,
-          }).$promise
-          .then((regions) => map(regions, (region) => ({
-            name: region,
-            hasEnoughQuota: () => true,
-          }))),
+          })
+          .$promise.then((regions) =>
+            map(regions, (region) => ({
+              name: region,
+              hasEnoughQuota: () => true,
+            })),
+          ),
 
-        breadcrumb: /* @ngInject */ ($translate) => $translate.instant('kube_list_title'),
-      },
-    });
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('kube_list_title'),
+    },
+  });
 };

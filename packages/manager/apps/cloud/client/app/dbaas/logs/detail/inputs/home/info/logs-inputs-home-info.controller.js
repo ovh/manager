@@ -5,13 +5,15 @@ class LogsInputsHomeInfoModalCtrl {
   }
 
   /**
-     * Closes the info pop-up
-     *
-     * @memberof LogsInputsHomeInfoModalCtrl
-     */
+   * Closes the info pop-up
+   *
+   * @memberof LogsInputsHomeInfoModalCtrl
+   */
   cancel() {
     this.$uibModalInstance.dismiss();
   }
 }
 
-angular.module('managerApp').controller('LogsInputsHomeInfoModalCtrl', LogsInputsHomeInfoModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsInputsHomeInfoModalCtrl', LogsInputsHomeInfoModalCtrl);

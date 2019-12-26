@@ -6,9 +6,11 @@ import { PAYMENT_MEAN_TYPE_ENUM } from './payment-mean.constants';
 
 export default class OvhPaymentMeanBankAccount extends OvhPaymentMean {
   constructor(options = {}) {
-    super(merge(options, {
-      meanType: PAYMENT_MEAN_TYPE_ENUM.BANK_ACCOUNT,
-    }));
+    super(
+      merge(options, {
+        meanType: PAYMENT_MEAN_TYPE_ENUM.BANK_ACCOUNT,
+      }),
+    );
 
     this.validationDocumentLink = options.validationDocumentLink;
     this.uniqueReference = options.uniqueReference;
@@ -21,10 +23,12 @@ export default class OvhPaymentMeanBankAccount extends OvhPaymentMean {
   }
 
   toPaymentMethod() {
-    return new OvhPaymentMethod(merge(super.toPaymentMethod(), {
-      label: this.iban,
-      creationDate: this.creationDate,
-      original: this,
-    }));
+    return new OvhPaymentMethod(
+      merge(super.toPaymentMethod(), {
+        label: this.iban,
+        creationDate: this.creationDate,
+        original: this,
+      }),
+    );
   }
 }

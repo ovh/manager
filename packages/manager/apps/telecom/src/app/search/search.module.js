@@ -6,9 +6,8 @@ import telecomSearchResults from './results/results.component';
 
 const moduleName = 'ovhManagerTelecomSearch';
 
-angular.module(moduleName, [
-  ngOvhApiWrappers,
-])
+angular
+  .module(moduleName, [ngOvhApiWrappers])
   .config(routing)
   .component('telecomSearchResults', telecomSearchResults);
 

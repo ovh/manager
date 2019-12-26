@@ -1,10 +1,5 @@
 angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
-  list: [
-    'geographical',
-    'no-geographical',
-    'special',
-    'international',
-  ],
+  list: ['geographical', 'no-geographical', 'special', 'international'],
   detail: {
     geographical: {
       id: 'geographical',

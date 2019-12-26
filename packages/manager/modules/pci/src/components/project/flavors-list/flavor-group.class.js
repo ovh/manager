@@ -11,27 +11,18 @@ export default class FlavorGroup {
   constructor(flavors, image = DEFAULT_OS) {
     Object.assign(
       this,
-      omit(find(flavors, (flavor) => flavor.osType === image && !flavor.isFlex()), [
-        'regions', 'id', 'osType', 'planCodes',
-      ]),
+      omit(
+        find(flavors, (flavor) => flavor.osType === image && !flavor.isFlex()),
+        ['regions', 'id', 'osType', 'planCodes'],
+      ),
     );
 
     this.availableRegions = uniq(
-      map(
-        union(
-          ...map(flavors, 'regions'),
-        ),
-        'region',
-      ),
+      map(union(...map(flavors, 'regions')), 'region'),
     );
     this.flavors = flavors;
 
-    this.osTypes = uniq(
-      map(
-        this.flavors,
-        (flavor) => flavor.osType,
-      ),
-    );
+    this.osTypes = uniq(map(this.flavors, (flavor) => flavor.osType));
   }
 
   isAvailableInRegion(region) {
@@ -39,7 +30,10 @@ export default class FlavorGroup {
   }
 
   getFlavorByOsType(osType, isFlex = false) {
-    return find(this.flavors, (flavor) => flavor.osType === osType && flavor.isFlex() === isFlex);
+    return find(
+      this.flavors,
+      (flavor) => flavor.osType === osType && flavor.isFlex() === isFlex,
+    );
   }
 
   getFlavorId(osType, region, isFlex = false) {

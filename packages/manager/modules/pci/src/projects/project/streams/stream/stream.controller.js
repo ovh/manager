@@ -1,9 +1,6 @@
 export default class PciStreamsStreamController {
   /* @ngInject */
-  constructor(
-    CucCloudMessage,
-    CucRegionService,
-  ) {
+  constructor(CucCloudMessage, CucRegionService) {
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
   }

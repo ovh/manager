@@ -38,37 +38,45 @@ fs.readdirSync(folder).forEach((file) => {
 module.exports = (env = {}) => {
   const REGION = `${_.upperCase(env.region || process.env.REGION || 'EU')}`;
 
-  const { config } = webpackConfig({
-    template: './client/index.html',
-    basePath: './client',
-    lessPath: [
-      './client/app',
-      './client/components',
-      './node_modules',
-    ],
-    lessJavascriptEnabled: true,
-    root: path.resolve(__dirname, './client/app'),
-    assets: {
-      files: [
-        { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
-        { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
-        { from: path.resolve(__dirname, './client/**/*.html'), context: 'client' },
-      ],
+  const { config } = webpackConfig(
+    {
+      template: './client/index.html',
+      basePath: './client',
+      lessPath: ['./client/app', './client/components', './node_modules'],
+      lessJavascriptEnabled: true,
+      root: path.resolve(__dirname, './client/app'),
+      assets: {
+        files: [
+          { from: path.resolve(__dirname, './client/assets'), to: 'assets' },
+          { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
+          {
+            from: path.resolve(__dirname, './client/**/*.html'),
+            context: 'client',
+          },
+        ],
+      },
     },
-  }, REGION ? Object.assign(env, { region: REGION }) : env);
+    REGION ? Object.assign(env, { region: REGION }) : env,
+  );
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
-    entry: _.assign({
-      main: './client/app/index.js',
-      components: glob.sync('./client/components/**/!(*.spec|*.mock).js'),
-      config: [
-        `./client/app/config/all.${REGION.toLowerCase()}.js`,
-        `./client/app/config/${env.production ? 'prod' : 'dev'}.${REGION.toLowerCase()}.js`,
-      ],
-    }, bundles, extras.length > 0 ? { extras } : {}),
+    entry: _.assign(
+      {
+        main: './client/app/index.js',
+        components: glob.sync('./client/components/**/!(*.spec|*.mock).js'),
+        config: [
+          `./client/app/config/all.${REGION.toLowerCase()}.js`,
+          `./client/app/config/${
+            env.production ? 'prod' : 'dev'
+          }.${REGION.toLowerCase()}.js`,
+        ],
+      },
+      bundles,
+      extras.length > 0 ? { extras } : {},
+    ),
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',

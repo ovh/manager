@@ -13,7 +13,8 @@ export default () => ({
       if (!_ids || !ids.length) {
         $elem.addClass('cuc-highlighted-element-active');
       } else {
-        _ids = _ids.split(','); // eslint-disable-line
+        // eslint-disable-next-line no-param-reassign
+        _ids = _ids.split(',');
         angular.forEach(_ids, (item) => {
           if (~ids.indexOf(item.trim())) {
             $elem.addClass('cuc-highlighted-element-active');
@@ -26,7 +27,8 @@ export default () => ({
       if (!_ids || !ids.length) {
         $elem.removeClass('cuc-highlighted-element-active');
       } else {
-        _ids = _ids.split(','); // eslint-disable-line
+        // eslint-disable-next-line no-param-reassign
+        _ids = _ids.split(',');
         angular.forEach(_ids, (item) => {
           if (~ids.indexOf(item.trim())) {
             $elem.removeClass('cuc-highlighted-element-active');

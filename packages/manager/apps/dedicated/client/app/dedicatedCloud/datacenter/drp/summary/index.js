@@ -6,9 +6,7 @@ import deleteDrp from './delete';
 const moduleName = 'dedicatedCloudDatacenterDrpSummary';
 
 angular
-  .module(moduleName, [
-    deleteDrp,
-  ])
+  .module(moduleName, [deleteDrp])
   .config(routing)
   .component(component.name, component)
   .run(/* @ngTranslationsInject:json ./translations */);

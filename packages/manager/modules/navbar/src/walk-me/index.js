@@ -9,10 +9,7 @@ import service from './walkme.service';
 const moduleName = 'publicCloudWalkMe';
 
 angular
-  .module(moduleName, [
-    ngOvhUserPref,
-    translate,
-  ])
+  .module(moduleName, [ngOvhUserPref, translate])
   .service('WalkMe', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

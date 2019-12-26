@@ -13,16 +13,20 @@ import kubernetesServiceComponent from './service.component';
 
 const moduleName = 'ovhManagerPciProjectKubernetesService';
 
-angular.module(moduleName, [
-  'pascalprecht.translate',
-  name,
-  reset,
-  terminate,
-  update,
-  upgradePolicy,
-])
+angular
+  .module(moduleName, [
+    'pascalprecht.translate',
+    name,
+    reset,
+    terminate,
+    update,
+    upgradePolicy,
+  ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectKubernetesServiceComponent', kubernetesServiceComponent);
+  .component(
+    'ovhManagerPciProjectKubernetesServiceComponent',
+    kubernetesServiceComponent,
+  );
 
 export default moduleName;

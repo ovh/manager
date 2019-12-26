@@ -25,9 +25,9 @@ angular.module('App').controller(
 
     isValid() {
       return (
-        isObject(this.addEnvvarForm)
-        && this.addEnvvarForm.$dirty
-        && this.addEnvvarForm.$valid
+        isObject(this.addEnvvarForm) &&
+        this.addEnvvarForm.$dirty &&
+        this.addEnvvarForm.$valid
       );
     }
 
@@ -44,7 +44,8 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_ENVVARS_save_error') + err.message,
+            this.$translate.instant('hosting_tab_ENVVARS_save_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })

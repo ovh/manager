@@ -31,11 +31,16 @@ angular.module('UserAccount').service('UseraccountSshService', [
           promises.push(this.getCloudSshList());
       }
 
-      return $q.allSettled(promises)
+      return $q
+        .allSettled(promises)
         .then((sshKeys) => [sshKeys])
-        .catch((sshKeys) => partition(flatten(sshKeys), ({ message }) => !message))
+        .catch((sshKeys) =>
+          partition(flatten(sshKeys), ({ message }) => !message),
+        )
         .then(([sshKeys, error]) => {
-          const keys = sortBy(flatten(values(sshKeys)), (key) => key.keyName.toLowerCase());
+          const keys = sortBy(flatten(values(sshKeys)), (key) =>
+            key.keyName.toLowerCase(),
+          );
 
           if (error) {
             return $q.reject([keys, error]);
@@ -49,7 +54,9 @@ angular.module('UserAccount').service('UseraccountSshService', [
       return OvhHttp.get('/me/sshKey', {
         rootPath: 'apiv6',
       }).then((keyNames) => {
-        const promises = map(keyNames, (keyName) => self.getDedicatedSshKey(keyName));
+        const promises = map(keyNames, (keyName) =>
+          self.getDedicatedSshKey(keyName),
+        );
         return $q.allSettled(promises);
       });
     };
@@ -72,40 +79,50 @@ angular.module('UserAccount').service('UseraccountSshService', [
         cache: CLOUD_CACHE_KEY,
         clearCache: false,
       })
-        .then((projectIds) => $q.all(
-          map(projectIds, (projectId) => OvhHttp.get('/cloud/project/{serviceName}', {
-            rootPath: 'apiv6',
-            urlParams: {
-              serviceName: projectId,
-            },
-            cache: CLOUD_CACHE_KEY,
-            clearCache: false,
+        .then((projectIds) =>
+          $q.all(
+            map(projectIds, (projectId) =>
+              OvhHttp.get('/cloud/project/{serviceName}', {
+                rootPath: 'apiv6',
+                urlParams: {
+                  serviceName: projectId,
+                },
+                cache: CLOUD_CACHE_KEY,
+                clearCache: false,
+              }),
+            ),
+          ),
+        )
+        .then((projects) =>
+          map(filter(projects, { status: 'ok' }), (project) => ({
+            id: project.project_id,
+            description: project.description,
           })),
-        ))
-        .then((projects) => map(filter(projects, { status: 'ok' }), (project) => ({
-          id: project.project_id,
-          description: project.description,
-        })));
+        );
     };
 
     self.getCloudSshList = function getCloudSshList() {
       return self
         .getCloudProjects()
         .then((projects) => {
-          const promises = map(projects, (project) => OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
-            rootPath: 'apiv6',
-            urlParams: {
-              serviceName: project.id,
-            },
-          }).then((keys) => map(keys, (key) => ({
-            serviceName: project.id,
-            serviceDescription: project.description,
-            category: 'cloud',
-            keyName: key.name,
-            key: key.publicKey,
-            id: key.id,
-            url: self.getSshCloudUrl(project.id),
-          }))));
+          const promises = map(projects, (project) =>
+            OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
+              rootPath: 'apiv6',
+              urlParams: {
+                serviceName: project.id,
+              },
+            }).then((keys) =>
+              map(keys, (key) => ({
+                serviceName: project.id,
+                serviceDescription: project.description,
+                category: 'cloud',
+                keyName: key.name,
+                key: key.publicKey,
+                id: key.id,
+                url: self.getSshCloudUrl(project.id),
+              })),
+            ),
+          );
           return $q.allSettled(promises);
         })
         .then((keysByProjet) => flatten(keysByProjet));
@@ -122,7 +139,9 @@ angular.module('UserAccount').service('UseraccountSshService', [
       });
     };
 
-    self.setDefaultDedicatedSshKey = function setDefaultDedicatedSshKey(sshkeyObj) {
+    self.setDefaultDedicatedSshKey = function setDefaultDedicatedSshKey(
+      sshkeyObj,
+    ) {
       return OvhHttp.put('/me/sshKey/{keyName}', {
         rootPath: 'apiv6',
         urlParams: {

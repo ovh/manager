@@ -85,8 +85,10 @@ export default class PciInstanceEditController {
     if (flavorGroup && this.instance.image) {
       if (!this.defaultFlavor) {
         const flavor = new Flavor(this.instance.flavor);
-        this.defaultFlavor = flavorGroup
-          .getFlavorByOsType(this.instance.image.type, flavor.isFlex());
+        this.defaultFlavor = flavorGroup.getFlavorByOsType(
+          this.instance.image.type,
+          flavor.isFlex(),
+        );
       }
 
       this.editInstance.flavorId = flavorGroup.getFlavorId(
@@ -99,9 +101,18 @@ export default class PciInstanceEditController {
 
   canSwitchToFlex() {
     if (this.model.flavorGroup) {
-      return this.model.flavorGroup.hasFlexOption()
-      && this.defaultFlavor.disk <= get(this.model.flavorGroup
-        .getFlavorByOsType(this.instance.image.type, true), 'disk', 0);
+      return (
+        this.model.flavorGroup.hasFlexOption() &&
+        this.defaultFlavor.disk <=
+          get(
+            this.model.flavorGroup.getFlavorByOsType(
+              this.instance.image.type,
+              true,
+            ),
+            'disk',
+            0,
+          )
+      );
     }
 
     return false;
@@ -117,16 +128,20 @@ export default class PciInstanceEditController {
 
   renameInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .update(this.projectId, this.editInstance)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_edit_name_success_message',
-          {
-            instance: this.editInstance.name,
-          },
+    return this.PciProjectsProjectInstanceService.update(
+      this.projectId,
+      this.editInstance,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_edit_name_success_message',
+            {
+              instance: this.editInstance.name,
+            },
+          ),
         ),
-      ))
+      )
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
@@ -143,16 +158,20 @@ export default class PciInstanceEditController {
 
   reinstallInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .reinstall(this.projectId, this.editInstance)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_edit_image_success_message',
-          {
-            instance: this.editInstance.name,
-          },
+    return this.PciProjectsProjectInstanceService.reinstall(
+      this.projectId,
+      this.editInstance,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_edit_image_success_message',
+            {
+              instance: this.editInstance.name,
+            },
+          ),
         ),
-      ))
+      )
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
@@ -169,16 +188,20 @@ export default class PciInstanceEditController {
 
   resizeInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .resize(this.projectId, this.editInstance)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_edit_flavor_success_message',
-          {
-            instance: this.editInstance.name,
-          },
+    return this.PciProjectsProjectInstanceService.resize(
+      this.projectId,
+      this.editInstance,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_edit_flavor_success_message',
+            {
+              instance: this.editInstance.name,
+            },
+          ),
         ),
-      ))
+      )
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
@@ -195,16 +218,20 @@ export default class PciInstanceEditController {
 
   activateMonthlyBilling() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .activeMonthlyBilling(this.projectId, this.editInstance)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_edit_billing_success_message',
-          {
-            instance: this.editInstance.name,
-          },
+    return this.PciProjectsProjectInstanceService.activeMonthlyBilling(
+      this.projectId,
+      this.editInstance,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_edit_billing_success_message',
+            {
+              instance: this.editInstance.name,
+            },
+          ),
         ),
-      ))
+      )
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(

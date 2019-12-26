@@ -3,11 +3,16 @@ const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 module.exports = (env = {}) => {
-  const { config } = webpackConfig({
-    template: './index.html',
-    basePath: '.',
-    root: path.resolve(process.cwd()),
-  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
+  const { config } = webpackConfig(
+    {
+      template: './index.html',
+      basePath: '.',
+      root: path.resolve(process.cwd()),
+    },
+    process.env.REGION
+      ? Object.assign(env, { region: process.env.REGION })
+      : env,
+  );
 
   return merge(config, {
     entry: path.resolve('./index.js'),

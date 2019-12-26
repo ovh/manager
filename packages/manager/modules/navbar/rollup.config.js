@@ -1,33 +1,40 @@
 import path from 'path';
 import rollupConfig from '@ovh-ux/component-rollup-config';
 
-const config = rollupConfig({
-  input: 'src/index.js',
-}, {
-  lessTildeImporter: {
-    paths: [
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, '../../../../node_modules'),
-    ],
+const config = rollupConfig(
+  {
+    input: 'src/index.js',
   },
-});
-
-const outputs = [config.es({
-  output: {
-    globals: {
-      Tour: 'Tour',
+  {
+    lessTildeImporter: {
+      paths: [
+        path.resolve(__dirname, 'node_modules'),
+        path.resolve(__dirname, '../../../../node_modules'),
+      ],
     },
   },
-})];
+);
 
-if (process.env.BUILD === 'production') {
-  outputs.push(config.cjs({
+const outputs = [
+  config.es({
     output: {
       globals: {
         Tour: 'Tour',
       },
     },
-  }));
+  }),
+];
+
+if (process.env.BUILD === 'production') {
+  outputs.push(
+    config.cjs({
+      output: {
+        globals: {
+          Tour: 'Tour',
+        },
+      },
+    }),
+  );
   outputs.push(
     config.umd({
       output: {

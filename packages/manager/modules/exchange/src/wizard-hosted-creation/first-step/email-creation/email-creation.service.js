@@ -7,7 +7,12 @@ export default class wizardHostedCreationEmailCreation {
     this.$rootScope = $rootScope;
   }
 
-  addingOrUpdatingEmailAccount(organizationName, exchangeService, primaryEmailAddress, data) {
+  addingOrUpdatingEmailAccount(
+    organizationName,
+    exchangeService,
+    primaryEmailAddress,
+    data,
+  ) {
     return this.OvhHttp.put(
       `/email/exchange/${organizationName}/service/${exchangeService}/account/${primaryEmailAddress}`,
       {
@@ -20,12 +25,20 @@ export default class wizardHostedCreationEmailCreation {
   }
 
   retrievingServiceParameters(organizationName, exchangeService) {
-    return this.OvhHttp.get(`/email/exchange/${organizationName}/service/${exchangeService}`, {
-      rootPath: 'apiv6',
-    });
+    return this.OvhHttp.get(
+      `/email/exchange/${organizationName}/service/${exchangeService}`,
+      {
+        rootPath: 'apiv6',
+      },
+    );
   }
 
-  checkingMigration(domainName, accountName, destinationServiceName, destinationEmailAddress) {
+  checkingMigration(
+    domainName,
+    accountName,
+    destinationServiceName,
+    destinationEmailAddress,
+  ) {
     const asciiDomainName = punycode.toASCII(domainName);
 
     return this.OvhHttp.get(
@@ -56,7 +69,12 @@ export default class wizardHostedCreationEmailCreation {
     );
   }
 
-  updatingPassword(organizationName, exchangeService, primaryEmailAddress, password) {
+  updatingPassword(
+    organizationName,
+    exchangeService,
+    primaryEmailAddress,
+    password,
+  ) {
     return this.OvhHttp.post(
       `/email/exchange/${organizationName}/service/${exchangeService}/account/${primaryEmailAddress}/changePassword`,
       {
@@ -78,28 +96,38 @@ export default class wizardHostedCreationEmailCreation {
         },
       },
     ).then((availableAccounts) => {
-      const promises = availableAccounts
-        .map((availableAccount) => this.OvhHttp.get(
+      const promises = availableAccounts.map((availableAccount) =>
+        this.OvhHttp.get(
           `/email/exchange/${organizationName}/service/${exchangeService}/account/${availableAccount}`,
           {
             rootPath: 'apiv6',
           },
-        ));
+        ),
+      );
 
       return this.$q.all(promises);
     });
   }
 
-  retrievingAccounts(organizationName, exchangeService, search = '', count = 10, offset = 0) {
-    return this.OvhHttp.get(`/sws/exchange/${organizationName}/${exchangeService}/accounts`, {
-      rootPath: '2api',
-      params: {
-        count,
-        offset,
-        search,
-        configurableOnly: 1,
-        typeLicence: '',
+  retrievingAccounts(
+    organizationName,
+    exchangeService,
+    search = '',
+    count = 10,
+    offset = 0,
+  ) {
+    return this.OvhHttp.get(
+      `/sws/exchange/${organizationName}/${exchangeService}/accounts`,
+      {
+        rootPath: '2api',
+        params: {
+          count,
+          offset,
+          search,
+          configurableOnly: 1,
+          typeLicence: '',
+        },
       },
-    });
+    );
   }
 }

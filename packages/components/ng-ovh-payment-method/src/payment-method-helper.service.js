@@ -17,13 +17,21 @@ export default class OvhPaymentMethodHelperService {
 
   getPaymentMethodStatusText(statusParam) {
     return this.$translate.instant(
-      `ovh_payment_status_${get(statusParam, 'status', statusParam).toLowerCase()}`,
+      `ovh_payment_status_${get(
+        statusParam,
+        'status',
+        statusParam,
+      ).toLowerCase()}`,
     );
   }
 
   getPaymentMethodTypeText(typeParam) {
     return this.$translate.instant(
-      `ovh_payment_type_${get(typeParam, 'paymentType', typeParam).toLowerCase()}`,
+      `ovh_payment_type_${get(
+        typeParam,
+        'paymentType',
+        typeParam,
+      ).toLowerCase()}`,
     );
   }
 
@@ -56,7 +64,9 @@ export default class OvhPaymentMethodHelperService {
       remaining: ibanTab[3],
     };
 
-    if (!Object.prototype.hasOwnProperty.call(countryBaseRegExp, ibanHash.country)) {
+    if (
+      !Object.prototype.hasOwnProperty.call(countryBaseRegExp, ibanHash.country)
+    ) {
       return false;
     }
 
@@ -65,7 +75,11 @@ export default class OvhPaymentMethodHelperService {
       return false;
     }
 
-    const checkString = [ibanHash.remaining, ibanHash.country, ibanHash.key].join('');
+    const checkString = [
+      ibanHash.remaining,
+      ibanHash.country,
+      ibanHash.key,
+    ].join('');
 
     let numericIbanString = '';
     let currentChar = '';

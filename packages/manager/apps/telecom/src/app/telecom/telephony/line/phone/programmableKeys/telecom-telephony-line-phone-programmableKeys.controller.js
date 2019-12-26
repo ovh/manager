@@ -13,7 +13,14 @@ import {
 
 export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   /* @ngInject */
-  constructor($stateParams, $translate, $uibModal, TelephonyMediator, tucTelephonyBulk, TucToast) {
+  constructor(
+    $stateParams,
+    $translate,
+    $uibModal,
+    TelephonyMediator,
+    tucTelephonyBulk,
+    TucToast,
+  ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$uibModal = $uibModal;
@@ -42,9 +49,11 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
     this.bulkDatas = {
       infos: {
         name: 'functionKeys',
-        actions: [{
-          name: '',
-        }],
+        actions: [
+          {
+            name: '',
+          },
+        ],
       },
     };
 
@@ -52,14 +61,16 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   }
 
   initLines() {
-    return this.TelephonyMediator.getGroup(this.$stateParams.billingAccount).then((group) => {
-      this.group = group;
-      this.line = this.group.getLine(this.$stateParams.serviceName);
+    return this.TelephonyMediator.getGroup(this.$stateParams.billingAccount)
+      .then((group) => {
+        this.group = group;
+        this.line = this.group.getLine(this.$stateParams.serviceName);
 
-      return this.getPhone();
-    }).finally(() => {
-      this.loading.init = false;
-    });
+        return this.getPhone();
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
   }
 
   orderBy(by) {
@@ -73,24 +84,34 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   edit(functionKey) {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/telephony/line/phone/programmableKeys/edit/telecom-telephony-line-phone-programmableKeys-edit.html',
+      templateUrl:
+        'app/telecom/telephony/line/phone/programmableKeys/edit/telecom-telephony-line-phone-programmableKeys-edit.html',
       controller: 'TelecomTelephonyLinePhoneProgammableKeysEditCtrl',
       controllerAs: 'ProgammableKeysEditCtrl',
       resolve: {
-        functionKey() { return functionKey; },
+        functionKey() {
+          return functionKey;
+        },
       },
     });
 
-    modal.result.then(() => this.getPhone(), (error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('telephony_line_phone_programmableKeys_save_error', { error: error.msg }));
-      }
-      return this.getPhone();
-    });
+    modal.result.then(
+      () => this.getPhone(),
+      (error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant(
+              'telephony_line_phone_programmableKeys_save_error',
+              { error: error.msg },
+            ),
+          );
+        }
+        return this.getPhone();
+      },
+    );
 
     return modal;
   }
-
 
   /* -----  End of INITIALIZATION  ------*/
 
@@ -99,20 +120,26 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
       if (this.line.hasPhone) {
         return this.line.phone.initDeffered().then(() => {
           const re = /^SUP[0-9]$/;
-          this.functionKeys.raw = this.line.phone.functionKeys.map((functionKey) => {
-            const key = clone(functionKey);
-            if (isString(key.function) && key.function.match(re)) {
-              const line = find(this.group.lines, { serviceName: key.parameter });
-              if (line) {
-                key.parameterLabel = `${line.description} (${key.parameter})`;
+          this.functionKeys.raw = this.line.phone.functionKeys.map(
+            (functionKey) => {
+              const key = clone(functionKey);
+              if (isString(key.function) && key.function.match(re)) {
+                const line = find(this.group.lines, {
+                  serviceName: key.parameter,
+                });
+                if (line) {
+                  key.parameterLabel = `${line.description} (${key.parameter})`;
+                }
               }
-            }
-            const customLabel = find(this.line.phone.configurations, { name: `KeyLabel${key.keyNum}` });
-            if (customLabel) {
-              key.customLabel = customLabel.value;
-            }
-            return key;
-          });
+              const customLabel = find(this.line.phone.configurations, {
+                name: `KeyLabel${key.keyNum}`,
+              });
+              if (customLabel) {
+                key.customLabel = customLabel.value;
+              }
+              return key;
+            },
+          );
           this.functionKeys.raw.sort(this.constructor.sortFunctionKeys);
         });
       }
@@ -148,7 +175,10 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   buildBulkActions() {
     return map(this.functionKeys.raw, (key) => ({
       name: 'functionKey',
-      route: '/telephony/{billingAccount}/line/{serviceName}/phone/functionKey/{keyNum}'.replace('{keyNum}', key.keyNum),
+      route: '/telephony/{billingAccount}/line/{serviceName}/phone/functionKey/{keyNum}'.replace(
+        '{keyNum}',
+        key.keyNum,
+      ),
       method: 'PUT',
       params: {
         function: key.function,
@@ -159,11 +189,13 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
 
   /* eslint-disable class-methods-use-this */
   filterServices(services) {
-    const filteredServices = filter(services, (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(
+      services,
+      (service) => ['sip', 'mgcp'].indexOf(service.featureType) > -1,
+    );
 
-    return filter(
-      filteredServices,
-      (service) => find(services, {
+    return filter(filteredServices, (service) =>
+      find(services, {
         serviceName: service.serviceName,
         billingAccount: service.billingAccount,
       }),
@@ -174,27 +206,51 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   onBulkSuccess() {
     return (bulkResult) => {
       if (bulkResult.error.length) {
-        set(bulkResult, 'error', map(bulkResult.error, (error) => {
-          const errorDetails = get(error, 'errors[0]');
-          set(error, 'errors[0].error', errorDetails.statusCode === 501
-            ? this.$translate.instant('telephony_line_phone_programmableKeys_bulk_error_details') : errorDetails.error);
+        set(
+          bulkResult,
+          'error',
+          map(bulkResult.error, (error) => {
+            const errorDetails = get(error, 'errors[0]');
+            set(
+              error,
+              'errors[0].error',
+              errorDetails.statusCode === 501
+                ? this.$translate.instant(
+                    'telephony_line_phone_programmableKeys_bulk_error_details',
+                  )
+                : errorDetails.error,
+            );
 
-          return error;
-        }));
+            return error;
+          }),
+        );
       }
 
       // display message of success or error
-      this.tucTelephonyBulk.getTucToastInfos(bulkResult, {
-        fullSuccess: this.$translate.instant('telephony_line_phone_programmableKeys_bulk_all_success'),
-        partialSuccess: this.$translate.instant('telephony_line_phone_programmableKeys_bulk_some_success', {
-          count: bulkResult.success.length,
-        }),
-        error: this.$translate.instant('telephony_line_phone_programmableKeys_bulk_error'),
-      }, true).forEach((toastInfo) => {
-        this.TucToast[toastInfo.type](toastInfo.message, {
-          hideAfter: null,
+      this.tucTelephonyBulk
+        .getTucToastInfos(
+          bulkResult,
+          {
+            fullSuccess: this.$translate.instant(
+              'telephony_line_phone_programmableKeys_bulk_all_success',
+            ),
+            partialSuccess: this.$translate.instant(
+              'telephony_line_phone_programmableKeys_bulk_some_success',
+              {
+                count: bulkResult.success.length,
+              },
+            ),
+            error: this.$translate.instant(
+              'telephony_line_phone_programmableKeys_bulk_error',
+            ),
+          },
+          true,
+        )
+        .forEach((toastInfo) => {
+          this.TucToast[toastInfo.type](toastInfo.message, {
+            hideAfter: null,
+          });
         });
-      });
 
       // reset initial values to be able to modify again the options
       this.TelephonyMediator.resetAllCache();
@@ -203,10 +259,23 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   }
 
   onBulkError() {
-    return (error) => this.TucToast.error([this.$translate.instant('telephony_line_phone_programmableKeys_bulk_on_error'), get(error, 'msg.data')].join(' '));
+    return (error) =>
+      this.TucToast.error(
+        [
+          this.$translate.instant(
+            'telephony_line_phone_programmableKeys_bulk_on_error',
+          ),
+          get(error, 'msg.data'),
+        ].join(' '),
+      );
   }
 
   /* -----  End of BULK  ------ */
 }
 
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneProgammableKeysCtrl', TelecomTelephonyLinePhoneProgammableKeysCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'TelecomTelephonyLinePhoneProgammableKeysCtrl',
+    TelecomTelephonyLinePhoneProgammableKeysCtrl,
+  );

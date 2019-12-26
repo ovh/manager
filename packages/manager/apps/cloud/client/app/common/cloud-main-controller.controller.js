@@ -1,5 +1,12 @@
 class CloudMainController {
-  constructor($document, $interval, $rootScope, $transitions, $translate, CucProductsService) {
+  constructor(
+    $document,
+    $interval,
+    $rootScope,
+    $transitions,
+    $translate,
+    CucProductsService,
+  ) {
     this.$document = $document;
     this.$interval = $interval;
     this.$rootScope = $rootScope;
@@ -11,8 +18,7 @@ class CloudMainController {
   $onInit() {
     this.expiringProject = null;
 
-    this.$transitions.onStart({},
-      () => this.closeSidebar());
+    this.$transitions.onStart({}, () => this.closeSidebar());
   }
 
   openSidebar() {
@@ -25,8 +31,10 @@ class CloudMainController {
 
   updateRemainingTime() {
     const expirationMoment = moment(this.expiringProject.expiration);
-    if (expirationMoment.isBefore(moment().utc())
-      && angular.isDefined(this.expiringProjectInterval)) {
+    if (
+      expirationMoment.isBefore(moment().utc()) &&
+      angular.isDefined(this.expiringProjectInterval)
+    ) {
       this.$interval.cancel(this.expiringProjectInterval);
     }
     this.remainingTime = this.getRemainingTime(this.expiringProject.expiration);
@@ -47,4 +55,6 @@ class CloudMainController {
   }
 }
 
-angular.module('managerApp').controller('CloudMainController', CloudMainController);
+angular
+  .module('managerApp')
+  .controller('CloudMainController', CloudMainController);

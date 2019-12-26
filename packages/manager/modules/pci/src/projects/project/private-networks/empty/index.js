@@ -8,10 +8,7 @@ import component from './empty.component';
 const moduleName = 'ovhManagerPciPrivateNetworksEmpty';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .component('pciProjectPrivateNetworksEmpty', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

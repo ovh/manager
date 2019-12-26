@@ -9,14 +9,7 @@ import { KEY } from './walk-me/walkme.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $scope,
-    $translate,
-    $window,
-    Navbar,
-    ovhUserPref,
-    WalkMe,
-  ) {
+  constructor($scope, $translate, $window, Navbar, ovhUserPref, WalkMe) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.$window = $window;
@@ -54,41 +47,41 @@ export default class {
   }
 
   getUser() {
-    return this.Navbar.getUser()
-      .then((user) => {
-        this.user = user;
-      });
-  }
-
-  buildBrand() {
-    return ({
-      label: this.brandLabel,
-      url: `${this.$window.location.origin}${this.$window.location.pathname}`,
-      ...BRAND,
+    return this.Navbar.getUser().then((user) => {
+      this.user = user;
     });
   }
 
+  buildBrand() {
+    return {
+      label: this.brandLabel,
+      url: `${this.$window.location.origin}${this.$window.location.pathname}`,
+      ...BRAND,
+    };
+  }
+
   buildMainLinks() {
-    return this.Navbar.getUniverses(get(this.navbarOptions, 'version'))
-      .then((universes) => {
+    return this.Navbar.getUniverses(get(this.navbarOptions, 'version')).then(
+      (universes) => {
         this.mainLinks = universes.map(({ universe: name, url }) => ({
           name,
           title: this.$translate.instant(`navbar_universe_${name}`),
           url: url || '#',
           isPrimary: !NON_PRIMARY_ITEMS.includes(name),
         }));
-      });
+      },
+    );
   }
 
   buildResponsiveLinks() {
     if ((this.sidebarLinks || this.universeClick) && !this.responsiveLinks) {
       this.responsiveLinks = this.mainLinks.map((link) => {
         if (link.name === get(this.navbarOptions, 'universe')) {
-          return ({
+          return {
             ...omit(link, 'url'),
             subLinks: this.sidebarLinks,
             click: () => this.universeClick(),
-          });
+          };
         }
 
         return link;
@@ -97,7 +90,8 @@ export default class {
   }
 
   startWalkMe() {
-    return this.ovhUserPref.getValue(KEY)
+    return this.ovhUserPref
+      .getValue(KEY)
       .then(({ value }) => {
         this.shouldShowWalkMe = value;
       })

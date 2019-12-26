@@ -8,22 +8,30 @@ const find = require('lodash/find');
 const kebabCase = require('lodash/kebabCase');
 
 const getBranchUrl = async (branch) => {
-  const { stdout: remoteUrl } = await execa('git', ['config', '--get', 'remote.origin.url']);
+  const { stdout: remoteUrl } = await execa('git', [
+    'config',
+    '--get',
+    'remote.origin.url',
+  ]);
   const gitHttpsUrl = gitUrlParse(remoteUrl).toString('https');
   return `git+${gitHttpsUrl}#${branch}`;
 };
 
-const getCurrentBranch = () => execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'])
-  .then(({ stdout: branchName }) => branchName);
+const getCurrentBranch = () =>
+  execa('git', ['rev-parse', '--abbrev-ref', 'HEAD']).then(
+    ({ stdout: branchName }) => branchName,
+  );
 
-const getPackageInfos = (name) => execa('lerna', ['list', '-la', '--json'])
-  .then(({ stdout: packageList }) => {
+const getPackageInfos = (name) =>
+  execa('lerna', ['list', '-la', '--json']).then(({ stdout: packageList }) => {
     const searchPackage = find(JSON.parse(packageList), { name });
     if (!searchPackage) {
       return Promise.reject(new Error(`"${name}" package not found`));
     }
     if (searchPackage.private) {
-      return Promise.reject(new Error(`"${searchPackage.name}" is a private package`));
+      return Promise.reject(
+        new Error(`"${searchPackage.name}" is a private package`),
+      );
     }
     return searchPackage;
   });
@@ -34,11 +42,18 @@ const getSubtreeBranch = (packageName, currentBranch) => {
   return `split-${leftPart}/${kebabCase(currentBranch)}`;
 };
 
-const subtreeSplit = (prefix, branch) => execa('git', ['subtree', 'split', `--prefix=${prefix}`, `--branch=${branch}`]);
+const subtreeSplit = (prefix, branch) =>
+  execa('git', [
+    'subtree',
+    'split',
+    `--prefix=${prefix}`,
+    `--branch=${branch}`,
+  ]);
 
 const pushBranch = (branch) => execa('git', ['push', 'origin', branch]);
 
-const subtreePush = (prefix, remote, branch) => execa('git', ['subtree', 'push', `--prefix=${prefix}`, remote, branch]);
+const subtreePush = (prefix, remote, branch) =>
+  execa('git', ['subtree', 'push', `--prefix=${prefix}`, remote, branch]);
 
 const split = async (packageName, { branch, remote, push }) => {
   let spinner = ora('Search Package infos').start();
@@ -48,12 +63,17 @@ const split = async (packageName, { branch, remote, push }) => {
     const currentBranch = await getCurrentBranch();
     spinner.succeed();
 
-    const branchName = branch
-      || (remote ? currentBranch : getSubtreeBranch(packageInfos.name, currentBranch));
+    const branchName =
+      branch ||
+      (remote
+        ? currentBranch
+        : getSubtreeBranch(packageInfos.name, currentBranch));
     const prefix = path.relative(process.cwd(), packageInfos.location);
 
     if (!remote) {
-      spinner = ora(`Create subtree branch "${branchName}" from "${packageName}" package (${prefix})`).start();
+      spinner = ora(
+        `Create subtree branch "${branchName}" from "${packageName}" package (${prefix})`,
+      ).start();
       await subtreeSplit(prefix, branchName);
       spinner.succeed();
 
@@ -74,7 +94,9 @@ const split = async (packageName, { branch, remote, push }) => {
   yarn add ${url}
 `);
     } else {
-      spinner = ora(`Create remote subtree branch "${branchName}" from "${packageName}" package (${prefix}) on ${remote}`).start();
+      spinner = ora(
+        `Create remote subtree branch "${branchName}" from "${packageName}" package (${prefix}) on ${remote}`,
+      ).start();
       await subtreePush(prefix, remote, branchName);
       spinner.succeed();
     }
@@ -85,11 +107,19 @@ const split = async (packageName, { branch, remote, push }) => {
 };
 
 program
-  .description('Generate a subtree branch (from the current one) for the specified package')
+  .description(
+    'Generate a subtree branch (from the current one) for the specified package',
+  )
   .usage('[options] <packageName>')
   .option('-b, --branch [branch]', 'set a custom branch name')
-  .option('-p, --push', 'push the splitted branch to origin (useless with "remote" option)')
-  .option('-r, --remote [remote]', 'remote url (like git@github.com:ovh-ux/manager.git)')
+  .option(
+    '-p, --push',
+    'push the splitted branch to origin (useless with "remote" option)',
+  )
+  .option(
+    '-r, --remote [remote]',
+    'remote url (like git@github.com:ovh-ux/manager.git)',
+  )
   .on('--help', () => {
     console.log(`
 Examples:
@@ -110,14 +140,11 @@ Examples:
   .action(() => {
     const [packageName] = program.args;
     if (packageName) {
-      split(
-        packageName,
-        {
-          branch: program.branch || false,
-          push: program.push,
-          remote: program.remote || false,
-        },
-      );
+      split(packageName, {
+        branch: program.branch || false,
+        push: program.push,
+        remote: program.remote || false,
+      });
     } else {
       program.outputHelp();
     }

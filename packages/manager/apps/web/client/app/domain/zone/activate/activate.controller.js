@@ -30,7 +30,12 @@ export default class DomainZoneActivateCtrl {
       ],
     };
 
-    this.$window.open(`${this.constants.ORDER_URL[this.user.ovhSubsidiary]}${JSURL.stringify([order])}`, '_blank');
+    this.$window.open(
+      `${this.constants.ORDER_URL[this.user.ovhSubsidiary]}${JSURL.stringify([
+        order,
+      ])}`,
+      '_blank',
+    );
     return this.goBack(
       this.$translate.instant('web_domain_zone_activation_success'),
     );

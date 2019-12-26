@@ -21,16 +21,18 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('freefaxes.freefax.notifications', {
-      url: '/notifications',
-      controller,
-      controllerAs: 'FreefaxNotifications',
-      template,
-      // noTranslations: true,
-      translations: ['..'],
-    });
-  })
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('freefaxes.freefax.notifications', {
+        url: '/notifications',
+        controller,
+        controllerAs: 'FreefaxNotifications',
+        template,
+        // noTranslations: true,
+        translations: ['..'],
+      });
+    },
+  )
   .constant('FREEFAX_MAX_NOTIFICATIONS', MAX_NOTIFICATIONS)
   .factory('FreefaxNotificationObject', factory);
 

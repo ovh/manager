@@ -47,9 +47,8 @@ angular.module('App').controller(
 
       this.User.getUser()
         .then((user) => {
-          const nicLanguage = find(
-            this.LANGUAGES,
-            (language) => endsWith(language.value, user.ovhSubsidiary),
+          const nicLanguage = find(this.LANGUAGES, (language) =>
+            endsWith(language.value, user.ovhSubsidiary),
           );
           if (nicLanguage) {
             this.createNicUrl.value = this.constants.WEBSITE_URLS.new_nic[
@@ -61,14 +60,19 @@ angular.module('App').controller(
           this.createNicUrl.value = '';
         });
 
-      this.$scope.$on('hosting.tabs.emails.acls.refresh', () => this.refreshTableAcls());
+      this.$scope.$on('hosting.tabs.emails.acls.refresh', () =>
+        this.refreshTableAcls(),
+      );
 
       this.refreshTableAcls();
     }
 
     addAcl() {
       this.loading.acls = true;
-      this.WucEmails.createAcl(this.$stateParams.productId, this.addAclItem.value)
+      this.WucEmails.createAcl(
+        this.$stateParams.productId,
+        this.addAclItem.value,
+      )
         .then(() => {
           this.Alerter.success(
             this.$translate.instant('email_tab_table_acls_add_success'),
@@ -98,11 +102,13 @@ angular.module('App').controller(
         .then((acls) => {
           this.acls = acls;
         })
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_table_acls_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_table_acls_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           if (isEmpty(this.acls)) {
             this.loading.acls = false;

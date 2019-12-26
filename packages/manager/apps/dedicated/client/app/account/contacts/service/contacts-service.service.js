@@ -15,32 +15,40 @@ export default class {
 
   // TODO: Find a way to inject ovh-api-services depending on the service category
   getServiceInfos(service) {
-    return this.OvhHttp.get(`${service.path}/${service.serviceName}/serviceInfos`, {
-      rootPath: 'apiv6',
-    })
-      .then((serviceInfos) => new BillingService({
-        ...service,
-        ...serviceInfos,
-      }));
+    return this.OvhHttp.get(
+      `${service.path}/${service.serviceName}/serviceInfos`,
+      {
+        rootPath: 'apiv6',
+      },
+    ).then(
+      (serviceInfos) =>
+        new BillingService({
+          ...service,
+          ...serviceInfos,
+        }),
+    );
   }
 
   changeContact(service) {
-    return this.OvhHttp.post(`${service.path}/${service.serviceName}/changeContact`, {
-      rootPath: 'apiv6',
-      data: {
-        contactAdmin: service.contactAdmin,
-        contactBilling: service.contactBilling,
-        contactTech: service.contactTech,
+    return this.OvhHttp.post(
+      `${service.path}/${service.serviceName}/changeContact`,
+      {
+        rootPath: 'apiv6',
+        data: {
+          contactAdmin: service.contactAdmin,
+          contactBilling: service.contactBilling,
+          contactTech: service.contactTech,
+        },
       },
-    });
+    );
   }
 
   getServices() {
-    return this.OvhApiOvhProduct.Aapi().query().$promise
-      .then((services) => {
-        const availableServices = filter(
-          services,
-          (service) => AVAILABLE_SERVICES.includes(service.category),
+    return this.OvhApiOvhProduct.Aapi()
+      .query()
+      .$promise.then((services) => {
+        const availableServices = filter(services, (service) =>
+          AVAILABLE_SERVICES.includes(service.category),
         );
         return availableServices.map((service) => new BillingService(service));
       });

@@ -9,10 +9,7 @@ import './notPaid.scss';
 const moduleName = 'ovhManagerPciProjectsNewCreatingNotPaid';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('pciProjectCreatingNotPaid', component);
 

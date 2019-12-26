@@ -9,13 +9,12 @@ import password from './password';
 const moduleName = 'enterpriseCloudDatabaseService';
 
 angular
-  .module(moduleName, [
-    details,
-    getStarted,
-    password,
-  ])
+  .module(moduleName, [details, getStarted, password])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceComponent', enterpriseCloudDatabaseServiceComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceComponent',
+    enterpriseCloudDatabaseServiceComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

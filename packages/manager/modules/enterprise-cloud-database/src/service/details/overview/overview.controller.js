@@ -1,19 +1,20 @@
 import {
-  DATABASE_CONSTANTS, MASKED_PASSWORD, SERVICE_TYPE,
+  DATABASE_CONSTANTS,
+  MASKED_PASSWORD,
+  SERVICE_TYPE,
 } from '../../../enterprise-cloud-database.constants';
 import {
-  AUTO_BACKUP, BACKUP_FREQUENCY, BACKUP_RETENTION, USERNAME,
+  AUTO_BACKUP,
+  BACKUP_FREQUENCY,
+  BACKUP_RETENTION,
+  USERNAME,
 } from './overview.constants';
 import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 import { MESSAGE_CONTAINER } from '../details.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   /* @ngInject */
-  constructor(
-    $state,
-    CucCloudMessage,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor($state, CucCloudMessage, enterpriseCloudDatabaseService) {
     this.$state = $state;
     this.AUTO_BACKUP = AUTO_BACKUP;
     this.BACKUP_RETENTION = BACKUP_RETENTION;
@@ -33,8 +34,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.details.overview');
-    this.messageHandler = this.CucCloudMessage.subscribe('enterprise-cloud-database.service.details.overview', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'enterprise-cloud-database.service.details.overview',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'enterprise-cloud-database.service.details.overview',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {

@@ -10,9 +10,11 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      cancelLink: /* @ngInject */ ($state) => $state.href('app.configuration', { reload: true }),
+      cancelLink: /* @ngInject */ ($state) =>
+        $state.href('app.configuration', { reload: true }),
       error: /* @ngInject */ ($transition$) => $transition$.params(),
-      submitAction: /* @ngInject */ ($window) => () => $window.location.reload(),
+      submitAction: /* @ngInject */ ($window) => () =>
+        $window.location.reload(),
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
     },
   });

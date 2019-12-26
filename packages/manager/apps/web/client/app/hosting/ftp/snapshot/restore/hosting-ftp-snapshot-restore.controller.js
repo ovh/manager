@@ -34,30 +34,34 @@ angular.module('App').controller(
           this.instances = data.models['hosting.web.backup.TypeEnum'].enum;
           [this.model.snapshotInstance] = this.instances;
 
-          this.Hosting.getSelected(this.$stateParams.productId).then((hosting) => {
-            // remove backup snapshots that are not yet available
-            if (
-              moment(hosting.creation).isAfter(moment().subtract(2, 'weeks'))
-            ) {
-              pull(this.instances, 'weekly.2');
-            } else if (
-              moment(hosting.creation).isAfter(moment().subtract(1, 'weeks'))
-            ) {
-              pull(this.instances, 'weekly.1');
-            } else if (
-              moment(hosting.creation).isAfter(moment().subtract(3, 'days'))
-            ) {
-              pull(this.instances, 'daily.3');
-            } else if (
-              moment(hosting.creation).isAfter(moment().subtract(2, 'days'))
-            ) {
-              pull(this.instances, 'daily.2');
-            }
-          });
+          this.Hosting.getSelected(this.$stateParams.productId).then(
+            (hosting) => {
+              // remove backup snapshots that are not yet available
+              if (
+                moment(hosting.creation).isAfter(moment().subtract(2, 'weeks'))
+              ) {
+                pull(this.instances, 'weekly.2');
+              } else if (
+                moment(hosting.creation).isAfter(moment().subtract(1, 'weeks'))
+              ) {
+                pull(this.instances, 'weekly.1');
+              } else if (
+                moment(hosting.creation).isAfter(moment().subtract(3, 'days'))
+              ) {
+                pull(this.instances, 'daily.3');
+              } else if (
+                moment(hosting.creation).isAfter(moment().subtract(2, 'days'))
+              ) {
+                pull(this.instances, 'daily.2');
+              }
+            },
+          );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_restore_snapshot_error'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_restore_snapshot_error',
+            ),
             err,
             this.$scope.alerts.main,
           );
@@ -69,9 +73,9 @@ angular.module('App').controller(
 
     isStep1Valid() {
       return (
-        this.instances
-        && this.model.snapshotInstance
-        && indexOf(this.instances, this.model.snapshotInstance) !== -1
+        this.instances &&
+        this.model.snapshotInstance &&
+        indexOf(this.instances, this.model.snapshotInstance) !== -1
       );
     }
 
@@ -82,14 +86,18 @@ angular.module('App').controller(
       })
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_FTP_configuration_restore_snapshot_success'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_restore_snapshot_success',
+            ),
             this.$scope.alerts.main,
           );
           this.$rootScope.$broadcast('hosting.tabs.tasks.refresh');
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_restore_snapshot_error'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_restore_snapshot_error',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

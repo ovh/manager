@@ -2,7 +2,6 @@ import angular from 'angular';
 
 const moduleName = 'cloudUniverseComponents';
 
-angular
-  .module(moduleName, []);
+angular.module(moduleName, []);
 
 export default moduleName;

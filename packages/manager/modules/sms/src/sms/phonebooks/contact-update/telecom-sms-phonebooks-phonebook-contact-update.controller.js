@@ -8,8 +8,14 @@ import pick from 'lodash/pick';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $uibModalInstance,
-    data, TucPhonebookcontact, OvhApiSms, TelecomSmsPhoneBooksNumber,
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    data,
+    TucPhonebookcontact,
+    OvhApiSms,
+    TelecomSmsPhoneBooksNumber,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -20,7 +26,9 @@ export default class {
     this.api = {
       sms: {
         phonebooks: {
-          phonebookContact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
+          phonebookContact: OvhApiSms.Phonebooks()
+            .PhonebookContact()
+            .v6(),
         },
       },
     };
@@ -61,21 +69,29 @@ export default class {
    */
   update() {
     this.phonecontactForm.isUpdating = true;
-    return this.$q.all([
-      this.api.sms.phonebooks.phonebookContact.update({
-        serviceName: this.$stateParams.serviceName,
-        bookKey: get(this.phonebook, 'bookKey'),
-        id: get(this.contact, 'id'),
-      }, this.TucPhonebookcontact.getContactData(this.phonecontactForm)).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.phonecontactForm.isUpdating = false;
-      this.phonecontactForm.hasBeenUpdated = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.phonebooks.phonebookContact.update(
+          {
+            serviceName: this.$stateParams.serviceName,
+            bookKey: get(this.phonebook, 'bookKey'),
+            id: get(this.contact, 'id'),
+          },
+          this.TucPhonebookcontact.getContactData(this.phonecontactForm),
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.phonecontactForm.isUpdating = false;
+        this.phonecontactForm.hasBeenUpdated = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   /**
@@ -84,7 +100,9 @@ export default class {
    * @return {Boolean}
    */
   isValidNumber(value) {
-    return !isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.isValid(value) : true;
+    return !isEmpty(value)
+      ? this.TelecomSmsPhoneBooksNumber.isValid(value)
+      : true;
   }
 
   /**
@@ -92,7 +110,9 @@ export default class {
    * @return {Boolean}
    */
   handleContactPhoneNumber() {
-    return this.TucPhonebookcontact.hasAtLeastOnePhoneNumber(this.phonecontactForm);
+    return this.TucPhonebookcontact.hasAtLeastOnePhoneNumber(
+      this.phonecontactForm,
+    );
   }
 
   cancel(message) {
@@ -108,7 +128,18 @@ export default class {
    * @return {Boolean}
    */
   hasChanged() {
-    const fields = ['surname', 'name', 'group', 'homePhone', 'homeMobile', 'workPhone', 'workMobile'];
-    return !isEqual(pick(this.phonecontactForm, fields), pick(this.data.contact, fields));
+    const fields = [
+      'surname',
+      'name',
+      'group',
+      'homePhone',
+      'homeMobile',
+      'workPhone',
+      'workMobile',
+    ];
+    return !isEqual(
+      pick(this.phonecontactForm, fields),
+      pick(this.data.contact, fields),
+    );
   }
 }

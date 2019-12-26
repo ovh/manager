@@ -19,7 +19,8 @@ const VRACK_URLS = {
   guides: {
     vrack: {
       FR: {
-        roadmap: 'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
+        roadmap:
+          'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
       },
     },
   },

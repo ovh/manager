@@ -2,7 +2,13 @@ import map from 'lodash/map';
 
 export default class MicrosoftOfficeLicenseUserOrderCtrl {
   /* @ngInject */
-  constructor(Alerter, MicrosoftOfficeLicenseService, $rootScope, $scope, OvhHttp) {
+  constructor(
+    Alerter,
+    MicrosoftOfficeLicenseService,
+    $rootScope,
+    $scope,
+    OvhHttp,
+  ) {
     this.alerter = Alerter;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.$rootScope = $rootScope;
@@ -38,10 +44,12 @@ export default class MicrosoftOfficeLicenseUserOrderCtrl {
   getLicenses(serviceName) {
     this.loaders.licenseEnum = true;
 
-    return this.licenseService.getAvailableOptions(serviceName)
+    return this.licenseService
+      .getAvailableOptions(serviceName)
       .then((licenses) => {
         this.licenseEnum = map(licenses, 'planCode');
-      }).finally(() => {
+      })
+      .finally(() => {
         this.loaders.licenseEnum = false;
       });
   }

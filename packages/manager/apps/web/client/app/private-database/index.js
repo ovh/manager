@@ -8,9 +8,7 @@ import orderCloudDb from './order/clouddb';
 const moduleName = 'ovhManagerWebPrivateDatabaseModule';
 
 angular
-  .module(moduleName, [
-    orderCloudDb,
-  ])
+  .module(moduleName, [orderCloudDb])
   .config(routing)
   .controller('PrivateDatabaseCtrl', controller)
   .controller('PrivateDatabaseTabsCtrl', tabController)

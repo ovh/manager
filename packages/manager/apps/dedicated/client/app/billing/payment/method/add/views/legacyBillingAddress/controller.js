@@ -21,13 +21,17 @@ class LegacyBankAccountModel {
       this.addressStreet || '',
       this.addressZip || '',
       this.addressCity || '',
-    ].join(' ').trim();
+    ]
+      .join(' ')
+      .trim();
   }
 }
 
 export default class PaymentMethodAddLegacyBillingAddressCtrl {
   $onInit() {
-    this.model.billingAddress = new LegacyBankAccountModel(this.currentUser.billingCountry);
+    this.model.billingAddress = new LegacyBankAccountModel(
+      this.currentUser.billingCountry,
+    );
   }
 }
 /* eslint-enable max-classes-per-file */

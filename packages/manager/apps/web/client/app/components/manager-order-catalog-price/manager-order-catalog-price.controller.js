@@ -29,7 +29,10 @@ export default class {
     const locale = this.TranslateService.getUserLocale().replace('_', '-');
     const price = this.getIntervalPrice(priceInCents / 100000000);
 
-    return new Intl.NumberFormat(locale, { style: 'currency', currency: this.user.currency.code }).format(price);
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: this.user.currency.code,
+    }).format(price);
   }
 
   getIntervalPrice(price) {

@@ -1,7 +1,9 @@
 import indexOf from 'lodash/indexOf';
 
-angular.module('managerApp')
-  .controller('CloudProjectBillingRightsCtrl',
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectBillingRightsCtrl',
     function CloudProjectBillingRightsCtrl(
       OvhApiCloud,
       OvhApiCloudProjectServiceInfos,
@@ -56,28 +58,33 @@ angular.module('managerApp')
       self.loader = false;
 
       /* ==================================================
-         * Initialization
-         */
+       * Initialization
+       */
 
       function initContact() {
-        return OvhApiCloudProjectServiceInfos.v6().get({
-          serviceName,
-        }).$promise.then((infos) => {
-          self.model.owner = infos.contactAdmin;
-          self.contactFormData.owner = infos.contactAdmin;
-          self.model.billing = infos.contactBilling;
-          self.contactFormData.billing = infos.contactBilling;
-          return OvhApiMe.v6().get().$promise.then((me) => {
-            if (me.nichandle === infos.contactAdmin) {
-              self.model.isAdmin = true;
-            }
-            if (me.country) {
-              // check if the user country is USA or Canada, in this case we display
-              // email instead of NIC handle
-              self.model.isUSorCA = indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
-            }
+        return OvhApiCloudProjectServiceInfos.v6()
+          .get({
+            serviceName,
+          })
+          .$promise.then((infos) => {
+            self.model.owner = infos.contactAdmin;
+            self.contactFormData.owner = infos.contactAdmin;
+            self.model.billing = infos.contactBilling;
+            self.contactFormData.billing = infos.contactBilling;
+            return OvhApiMe.v6()
+              .get()
+              .$promise.then((me) => {
+                if (me.nichandle === infos.contactAdmin) {
+                  self.model.isAdmin = true;
+                }
+                if (me.country) {
+                  // check if the user country is USA or Canada, in this case we display
+                  // email instead of NIC handle
+                  self.model.isUSorCA =
+                    indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
+                }
+              });
           });
-        });
       }
 
       self.init = function init() {
@@ -86,8 +93,8 @@ angular.module('managerApp')
       };
 
       /* ==================================================
-         * Owner contact form
-         */
+       * Owner contact form
+       */
 
       self.canChangeContacts = function canChangeContacts() {
         return REDIRECT_URLS.contacts;
@@ -111,7 +118,8 @@ angular.module('managerApp')
 
       // watch for escape/enter keys when editing owner contact field
       self.watchOwnerInput = function watchOwnerInput(ev) {
-        if (ev && ev.keyCode === 27) { // escape key
+        if (ev && ev.keyCode === 27) {
+          // escape key
           ev.stopPropagation();
           ev.preventDefault();
           self.toggle.owner = false;
@@ -120,8 +128,8 @@ angular.module('managerApp')
       };
 
       /* ==================================================
-         * Billing contact form
-         */
+       * Billing contact form
+       */
 
       // show or hide (toggle) the billing contact field
       self.toggleEditBilling = function toggleEditBilling() {
@@ -133,7 +141,8 @@ angular.module('managerApp')
 
       // watch for escape/enter keys when editing billing contact field
       self.watchBillingInput = function watchBillingInput(ev) {
-        if (ev && ev.keyCode === 27) { // escape key
+        if (ev && ev.keyCode === 27) {
+          // escape key
           ev.stopPropagation();
           ev.preventDefault();
           self.toggle.billing = false;
@@ -142,26 +151,35 @@ angular.module('managerApp')
       };
 
       /* ==================================================
-         * Rights table
-         */
+       * Rights table
+       */
 
       self.showAddRight = function showAddRight() {
-        CucControllerHelper.modal.showModal({
-          modalConfig: {
-            templateUrl: 'app/cloud/project/billing/rights/addRights/cloud-project-billing-rights-add.html',
-            controller: 'CloudProjectBillingRightsAddCtrl',
-            controllerAs: '$ctrl',
-            resolve: {
-              model: () => self.model,
+        CucControllerHelper.modal
+          .showModal({
+            modalConfig: {
+              templateUrl:
+                'app/cloud/project/billing/rights/addRights/cloud-project-billing-rights-add.html',
+              controller: 'CloudProjectBillingRightsAddCtrl',
+              controllerAs: '$ctrl',
+              resolve: {
+                model: () => self.model,
+              },
             },
-          },
-        })
+          })
           .then(() => {
             self.getRights(true);
-            CucCloudMessage.success($translate.instant('cpb_rights_table_rights_add_success'));
+            CucCloudMessage.success(
+              $translate.instant('cpb_rights_table_rights_add_success'),
+            );
           })
           .catch((err) => {
-            CucCloudMessage.error([$translate.instant('cpb_rights_add_error'), (err.data && err.data.message) || ''].join(' '));
+            CucCloudMessage.error(
+              [
+                $translate.instant('cpb_rights_add_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
           })
           .finally(() => {
             self.loader = false;
@@ -171,17 +189,28 @@ angular.module('managerApp')
       self.getRights = function getRights(clearCache) {
         self.loader = true;
         if (clearCache) {
-          OvhApiCloud.Project().Acl().v6().resetQueryCache();
+          OvhApiCloud.Project()
+            .Acl()
+            .v6()
+            .resetQueryCache();
         }
-        return OvhApiCloud.Project().Acl().v6().query({
-          serviceName,
-        }).$promise
-          .then((rightIds) => {
+        return OvhApiCloud.Project()
+          .Acl()
+          .v6()
+          .query({
+            serviceName,
+          })
+          .$promise.then((rightIds) => {
             self.data.rights = rightIds.map((id) => ({ accountId: id }));
           })
           .catch((err) => {
             self.data.rights = [];
-            CucCloudMessage.error([$translate.instant('cpb_rights_error'), (err.data && err.data.message) || ''].join(' '));
+            CucCloudMessage.error(
+              [
+                $translate.instant('cpb_rights_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
           })
           .finally(() => {
             self.loader = false;
@@ -192,20 +221,36 @@ angular.module('managerApp')
         self.loader = true;
         self.removeRight.accountId = account.accountId;
 
-        return CucControllerHelper.modal.showConfirmationModal({
-          titleText: $translate.instant('cpb_rights_delete_title'),
-          text: $translate.instant('cpb_rights_delete_question', { nickname: account.accountId }),
-        })
-          .then(() => OvhApiCloud.Project().Acl().v6().remove({
-            serviceName,
-            accountId: account.accountId,
-          }).$promise)
+        return CucControllerHelper.modal
+          .showConfirmationModal({
+            titleText: $translate.instant('cpb_rights_delete_title'),
+            text: $translate.instant('cpb_rights_delete_question', {
+              nickname: account.accountId,
+            }),
+          })
+          .then(
+            () =>
+              OvhApiCloud.Project()
+                .Acl()
+                .v6()
+                .remove({
+                  serviceName,
+                  accountId: account.accountId,
+                }).$promise,
+          )
           .then(() => {
             self.getRights(true);
-            CucCloudMessage.success($translate.instant('cpb_rights_table_rights_remove_success'));
+            CucCloudMessage.success(
+              $translate.instant('cpb_rights_table_rights_remove_success'),
+            );
           })
           .catch((err) => {
-            CucCloudMessage.error([$translate.instant('cpb_rights_remove_error'), (err.data && err.data.message) || ''].join(' '));
+            CucCloudMessage.error(
+              [
+                $translate.instant('cpb_rights_remove_error'),
+                (err.data && err.data.message) || '',
+              ].join(' '),
+            );
           })
           .finally(() => {
             self.loader = false;
@@ -214,12 +259,16 @@ angular.module('managerApp')
       };
 
       this.transformItem = function transformItem(account) {
-        return OvhApiCloud.Project().Acl().v6().get({
-          serviceName,
-          accountId: account.accountId,
-        }).$promise;
+        return OvhApiCloud.Project()
+          .Acl()
+          .v6()
+          .get({
+            serviceName,
+            accountId: account.accountId,
+          }).$promise;
       };
 
       // Controller initialization
       self.init();
-    });
+    },
+  );

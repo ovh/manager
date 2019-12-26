@@ -32,9 +32,10 @@ export default class {
     });
 
     this.configuration = {
-      mode: this.ola.getCurrentMode() === OLA_MODES.DEFAULT
-        ? OLA_MODES.VRACK_AGGREGATION
-        : OLA_MODES.DEFAULT,
+      mode:
+        this.ola.getCurrentMode() === OLA_MODES.DEFAULT
+          ? OLA_MODES.VRACK_AGGREGATION
+          : OLA_MODES.DEFAULT,
     };
 
     this.selectedInterfaces = [];
@@ -42,7 +43,9 @@ export default class {
       this.interfaces,
       (item) => item.hasFailoverIps() || item.hasVrack(),
     );
-    this.allowedInterfaces = this.interfaces.filter((i) => !this.notAllowedInterfaces.includes(i));
+    this.allowedInterfaces = this.interfaces.filter(
+      (i) => !this.notAllowedInterfaces.includes(i),
+    );
   }
 
   isGrouping() {
@@ -51,7 +54,10 @@ export default class {
 
   isSelectionValid() {
     const selectableAmount = this.isGrouping() ? 2 : 1;
-    return !!this.selectedInterfaces.length && this.selectedInterfaces.length === selectableAmount;
+    return (
+      !!this.selectedInterfaces.length &&
+      this.selectedInterfaces.length === selectableAmount
+    );
   }
 
   isModeDisabled(mode) {
@@ -66,10 +72,9 @@ export default class {
     this.selectedInterfaces = selectedRows;
 
     if (this.configuration.mode === OLA_MODES.DEFAULT) {
-      this.networkInterfaces = flatten(map(
-        this.selectedInterfaces,
-        ({ mac }) => mac.split(','),
-      ));
+      this.networkInterfaces = flatten(
+        map(this.selectedInterfaces, ({ mac }) => mac.split(',')),
+      );
     }
   }
 
@@ -106,6 +111,12 @@ export default class {
 
         return this.goBack();
       })
-      .catch((error) => this.Alerter.error(this.$translate.instant('dedicated_server_interfaces_ola_error', { errorMessage: get(error, 'data.message') })));
+      .catch((error) =>
+        this.Alerter.error(
+          this.$translate.instant('dedicated_server_interfaces_ola_error', {
+            errorMessage: get(error, 'data.message'),
+          }),
+        ),
+      );
   }
 }

@@ -9,10 +9,7 @@ import './index.less';
 const moduleName = 'ngOvhContractsFull';
 
 angular
-  .module(moduleName, [
-    'pascalprecht.translate',
-    'ui.bootstrap',
-  ])
+  .module(moduleName, ['pascalprecht.translate', 'ui.bootstrap'])
   .directive('ovhContracts', directive)
   .run(/* @ngTranslationsInject ./translations */);
 

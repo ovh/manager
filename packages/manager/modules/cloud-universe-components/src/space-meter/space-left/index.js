@@ -10,13 +10,16 @@ import './index.less';
 const moduleName = 'cucCloudSpaceMeterSpaceLeft';
 
 angular
-  .module(moduleName, [
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['pascalprecht.translate'])
   .component('cucSpaceMeterSpaceLeft', component)
   .filter('cucSpaceMeterSpaceLeft', filter)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('cucCloudSpaceMeterSpaceLeft/tooltip.html', tooltipTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'cucCloudSpaceMeterSpaceLeft/tooltip.html',
+        tooltipTemplate,
+      );
+    },
+  );
 
 export default moduleName;

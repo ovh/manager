@@ -19,15 +19,19 @@ export default class EmailProMXPlanMailingListsDeleteCtrl {
       this.$scope.exchange.associatedDomainName,
       this.mailingList.name,
     )
-      .then(() => this.Alerter.success(
-        this.$translate.instant('mailing_list_tab_modal_list_delete_success'),
-        this.$scope.alerts.main,
-      ))
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_list_delete_error'),
-        err,
-        this.$scope.alerts.main,
-      ))
+      .then(() =>
+        this.Alerter.success(
+          this.$translate.instant('mailing_list_tab_modal_list_delete_success'),
+          this.$scope.alerts.main,
+        ),
+      )
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_list_delete_error'),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         this.loading = false;
         this.$scope.resetAction();

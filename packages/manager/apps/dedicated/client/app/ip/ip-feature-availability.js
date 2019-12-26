@@ -1,6 +1,6 @@
-angular
-  .module('Module.ip.services')
-  .service('ipFeatureAvailability', class {
+angular.module('Module.ip.services').service(
+  'ipFeatureAvailability',
+  class {
     /* @ngInject */
     constructor(coreConfig) {
       this.target = coreConfig.getRegion();
@@ -33,4 +33,5 @@ angular
     deny(...args) {
       return Array.from(args).indexOf(this.target) === -1;
     }
-  });
+  },
+);

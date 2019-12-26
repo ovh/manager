@@ -54,7 +54,9 @@ export default class Stream {
   }
 
   getStreamUrl({ project_id: projectId }) {
-    return `${this.isPersistent() ? 'persistent' : 'non-persistent'}://${projectId}/${this.name}/${this.name}`;
+    return `${
+      this.isPersistent() ? 'persistent' : 'non-persistent'
+    }://${projectId}/${this.name}/${this.name}`;
   }
 
   get consumerAndPublisherToken() {

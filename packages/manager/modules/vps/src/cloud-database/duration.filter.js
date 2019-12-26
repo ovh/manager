@@ -18,9 +18,11 @@ export default /* @ngInject */ ($translate, $filter) => {
     if (simpleDurationReg.test(duration)) {
       d = +duration.match(simpleDurationReg)[1];
       unit = unitHash[duration.match(simpleDurationReg)[2] || 'm'];
-      return d > 1 ? $translate.instant(`vps_duration_${unit}_other`, {
-        duration: d,
-      }) : $translate.instant(`vps_duration_${unit}_1`);
+      return d > 1
+        ? $translate.instant(`vps_duration_${unit}_other`, {
+            duration: d,
+          })
+        : $translate.instant(`vps_duration_${unit}_1`);
     }
     if (upto.test(duration)) {
       if (uptoDuration.test(duration)) {
@@ -35,9 +37,12 @@ export default /* @ngInject */ ($translate, $filter) => {
       d = +duration.match(engage)[2];
       unit = unitHash[duration.match(engage)[3] || 'm'];
       return $translate.instant('vps_duration_engage', {
-        duration: d > 1 ? $translate.instant(`vps_duration_${unit}_other`, {
-          duration: d,
-        }) : $translate.instant(`vps_duration_${unit}_1`),
+        duration:
+          d > 1
+            ? $translate.instant(`vps_duration_${unit}_other`, {
+                duration: d,
+              })
+            : $translate.instant(`vps_duration_${unit}_1`),
       });
     }
     return duration;

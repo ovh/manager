@@ -6,45 +6,49 @@ import forEach from 'lodash/forEach';
 
 export default class FlavorsListController {
   /* @ngInject */
-  constructor(
-    PciProjectFlavors,
-  ) {
+  constructor(PciProjectFlavors) {
     this.PciProjectFlavors = PciProjectFlavors;
   }
 
   $onInit() {
     this.isLoading = true;
 
-    return this.getFlavors()
-      .finally(() => {
-        this.isLoading = false;
-      });
+    return this.getFlavors().finally(() => {
+      this.isLoading = false;
+    });
   }
 
   getFlavors() {
-    return this.PciProjectFlavors.getFlavors(this.serviceName, get(this.region, 'name'))
-      .then((flavors) => {
-        const flavorGroups = this.PciProjectFlavors.constructor.mapByFlavorType(
-          filter(flavors, (flavor) => flavor.isAvailable()
-            && flavor.hasSsdDisk()
-            && (!this.image || flavor.hasOsType(this.image.type))),
-          get(this.image, 'type'),
-        );
+    return this.PciProjectFlavors.getFlavors(
+      this.serviceName,
+      get(this.region, 'name'),
+    ).then((flavors) => {
+      const flavorGroups = this.PciProjectFlavors.constructor.mapByFlavorType(
+        filter(
+          flavors,
+          (flavor) =>
+            flavor.isAvailable() &&
+            flavor.hasSsdDisk() &&
+            (!this.image || flavor.hasOsType(this.image.type)),
+        ),
+        get(this.image, 'type'),
+      );
 
-        this.flavors = this.PciProjectFlavors.constructor.groupByCategory(flavorGroups);
-        this.selectedCategory = get(first(this.flavors), 'category');
-        this.findFlavor();
+      this.flavors = this.PciProjectFlavors.constructor.groupByCategory(
+        flavorGroups,
+      );
+      this.selectedCategory = get(first(this.flavors), 'category');
+      this.findFlavor();
 
-        return flavors;
-      });
+      return flavors;
+    });
   }
 
   findFlavor() {
     if (this.defaultFlavor) {
       forEach(this.flavors, (flavorCategory) => {
-        const flavorGroup = find(
-          flavorCategory.flavors,
-          (group) => group.getFlavor(this.defaultFlavor.id),
+        const flavorGroup = find(flavorCategory.flavors, (group) =>
+          group.getFlavor(this.defaultFlavor.id),
         );
 
         if (flavorGroup) {

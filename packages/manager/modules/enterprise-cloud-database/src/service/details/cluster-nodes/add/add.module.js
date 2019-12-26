@@ -7,10 +7,7 @@ import routing from './add.routing';
 const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSizeAdd';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    addComponent,
-  ])
+  .module(moduleName, ['ui.router', addComponent])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

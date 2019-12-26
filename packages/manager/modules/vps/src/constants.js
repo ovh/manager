@@ -5,7 +5,8 @@ export const CONTACTS_URL = {
 };
 
 export const PRIVATE_DATABASE_URL = {
-  EU: 'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
+  EU:
+    'https://www.ovh.com/manager/web/#/configuration/private_database/{serviceName}',
 };
 
 export const IP_URL = {
@@ -17,7 +18,8 @@ export const IP_URL = {
 export const RENEW_URL = {
   EU: '#/billing/autoRenew?selectedType={serviceType}&searchText={serviceName}',
   CA: 'https://ca.ovh.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
-  US: 'https://us.ovhcloud.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
+  US:
+    'https://us.ovhcloud.com/cgi-bin/order/renew.cgi?domainChooser={serviceName}',
 };
 
 export const ORDER_EXPRESS_BASE_URL = {
@@ -71,7 +73,6 @@ export const CHANGE_OWNER_URL = {
     TN: 'https://www.ovh.com/tn/cgi-bin/procedure/procedureChangeOwner.cgi',
   },
 };
-
 
 export default {
   CONTACTS_URL,

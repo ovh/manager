@@ -1,6 +1,12 @@
 export default class MicrosoftOfficeLicenseUserAddCtrl {
   /* @ngInject */
-  constructor(Alerter, MicrosoftOfficeLicenseService, $rootScope, $scope, $translate) {
+  constructor(
+    Alerter,
+    MicrosoftOfficeLicenseService,
+    $rootScope,
+    $scope,
+    $translate,
+  ) {
     this.alerter = Alerter;
     this.licenseService = MicrosoftOfficeLicenseService;
     this.$rootScope = $rootScope;
@@ -28,13 +34,25 @@ export default class MicrosoftOfficeLicenseUserAddCtrl {
     this.$scope.addUser = () => {
       this.loaders.userAdd = true;
 
-      return this.licenseService.addUser(this.licenseId, this.user)
+      return this.licenseService
+        .addUser(this.licenseId, this.user)
         .then((task) => {
-          this.alerter.success(this.$translate.instant('microsoft_office_license_detail_user_add_success'), this.$scope.alerts.main);
+          this.alerter.success(
+            this.$translate.instant(
+              'microsoft_office_license_detail_user_add_success',
+            ),
+            this.$scope.alerts.main,
+          );
           return task;
         })
         .catch((err) => {
-          this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_detail_user_add_error'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(
+            this.$translate.instant(
+              'microsoft_office_license_detail_user_add_error',
+            ),
+            err,
+            this.$scope.alerts.main,
+          );
           return err;
         })
         .finally(() => {
@@ -50,18 +68,34 @@ export default class MicrosoftOfficeLicenseUserAddCtrl {
   getLicensePrice() {
     this.loaders.licensePrice = true;
     this.licensePrice.errText = '';
-    this.licenseService.getLicensePrice(this.user.licence)
-      .then((licensePrice) => { this.licensePrice.text = licensePrice.text; })
-      .catch(() => { this.licensePrice.errText = this.$translate.instant('microsoft_office_license_add_user_license_price_error'); })
-      .finally(() => { this.loaders.licensePrice = false; });
+    this.licenseService
+      .getLicensePrice(this.user.licence)
+      .then((licensePrice) => {
+        this.licensePrice.text = licensePrice.text;
+      })
+      .catch(() => {
+        this.licensePrice.errText = this.$translate.instant(
+          'microsoft_office_license_add_user_license_price_error',
+        );
+      })
+      .finally(() => {
+        this.loaders.licensePrice = false;
+      });
   }
 
   getLicenses() {
     this.loaders.licenseEnum = true;
 
-    this.licenseService.getLicenses()
-      .then((licenseEnum) => { this.licenseEnum = licenseEnum; })
-      .catch(() => { this.licenseEnum = []; })
-      .finally(() => { this.loaders.licenseEnum = false; });
+    this.licenseService
+      .getLicenses()
+      .then((licenseEnum) => {
+        this.licenseEnum = licenseEnum;
+      })
+      .catch(() => {
+        this.licenseEnum = [];
+      })
+      .finally(() => {
+        this.loaders.licenseEnum = false;
+      });
   }
 }

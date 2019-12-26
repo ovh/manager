@@ -39,7 +39,8 @@ export default class ExchangeAddPublicFolderCtrl {
     };
 
     $scope.isThereAnyValidationError = () => this.isThereAnyValidationError();
-    $scope.retrievingPublicFolderOptions = () => this.retrievingPublicFolderOptions();
+    $scope.retrievingPublicFolderOptions = () =>
+      this.retrievingPublicFolderOptions();
     $scope.submitting = () => this.submitting();
   }
 
@@ -64,14 +65,18 @@ export default class ExchangeAddPublicFolderCtrl {
 
         if (data.maxQuota.value === 0) {
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_tab_SHARED_max_quota_error_message'),
+            this.services.$translate.instant(
+              'exchange_tab_SHARED_max_quota_error_message',
+            ),
           );
           this.services.navigation.resetAction();
         }
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_SHARED_all_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_SHARED_all_error_message',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -118,7 +123,9 @@ export default class ExchangeAddPublicFolderCtrl {
 
     this.errors.pathIsValid = true;
     const invalidCharacters = /[;%/'"?]/; // ; % / ' " ?
-    const pathContainsInvalidCharacters = invalidCharacters.test(this.folderToAdd.path);
+    const pathContainsInvalidCharacters = invalidCharacters.test(
+      this.folderToAdd.path,
+    );
     const pathEndsWithBackslash = endsWith(this.folderToAdd.path, '\\');
 
     if (pathContainsInvalidCharacters || pathEndsWithBackslash) {
@@ -137,8 +144,8 @@ export default class ExchangeAddPublicFolderCtrl {
     this.errors.pathIsReserved = true;
 
     if (
-      has(this.publicFoldersOptions, 'reservedPaths')
-      && includes(this.publicFoldersOptions.reservedPaths, this.folderToAdd.path)
+      has(this.publicFoldersOptions, 'reservedPaths') &&
+      includes(this.publicFoldersOptions.reservedPaths, this.folderToAdd.path)
     ) {
       this.errors.pathIsAvailable = false;
       this.errors.folderIsValid = false;
@@ -147,8 +154,9 @@ export default class ExchangeAddPublicFolderCtrl {
 
   checkQuotaValidity() {
     this.errors.quotaIsValid = true;
-    const quotaIsWithinLimits = this.folderToAdd.quota >= this.publicFoldersOptions.minQuota.value
-      && this.folderToAdd.quota <= this.publicFoldersOptions.maxQuota.value;
+    const quotaIsWithinLimits =
+      this.folderToAdd.quota >= this.publicFoldersOptions.minQuota.value &&
+      this.folderToAdd.quota <= this.publicFoldersOptions.maxQuota.value;
 
     if (!isNumber(this.folderToAdd.quota) || !quotaIsWithinLimits) {
       this.errors.quotaIsValid = false;
@@ -172,13 +180,17 @@ export default class ExchangeAddPublicFolderCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_action_SHARED_add_success_message'),
+          this.services.$translate.instant(
+            'exchange_action_SHARED_add_success_message',
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_action_SHARED_add_fail_message'),
+          this.services.$translate.instant(
+            'exchange_action_SHARED_add_fail_message',
+          ),
           failure,
         );
       })

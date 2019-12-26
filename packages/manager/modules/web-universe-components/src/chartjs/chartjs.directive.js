@@ -16,7 +16,8 @@ export default () => ({
   link(scope, element, attrs, controller) {
     const canvas = element.children().get(0);
     canvas.id = uniqueId('wucChartjs');
-    controller.ctx = canvas.getContext('2d'); // eslint-disable-line no-param-reassign
+    // eslint-disable-next-line no-param-reassign
+    controller.ctx = canvas.getContext('2d');
   },
   controller($scope) {
     'ngInject';

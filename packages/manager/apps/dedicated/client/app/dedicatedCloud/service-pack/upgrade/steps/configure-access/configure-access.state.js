@@ -3,12 +3,16 @@ import component from './configure-access.component';
 const resolveAllowedIPsAndBlocks = /* @ngInject */ (
   $transition$,
   DedicatedCloud,
-) => DedicatedCloud
-  .getSecurityPolicies($transition$.params().productId, null, null, true)
-  .then((allowedIPsAndBlocks) => allowedIPsAndBlocks.list.results);
+) =>
+  DedicatedCloud.getSecurityPolicies(
+    $transition$.params().productId,
+    null,
+    null,
+    true,
+  ).then((allowedIPsAndBlocks) => allowedIPsAndBlocks.list.results);
 
-const resolveHasDefaultMeansOfPayment = /* @ngInject */ (ovhPaymentMethod) => ovhPaymentMethod
-  .hasDefaultPaymentMethod();
+const resolveHasDefaultMeansOfPayment = /* @ngInject */ (ovhPaymentMethod) =>
+  ovhPaymentMethod.hasDefaultPaymentMethod();
 
 export default {
   component: component.name,

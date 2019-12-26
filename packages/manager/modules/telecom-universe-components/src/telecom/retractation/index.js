@@ -8,10 +8,7 @@ import tucTelecomRetractation from './telecom-retractation.component';
 const moduleName = 'tucTelecomRetractation';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate])
   .component('tucTelecomRetractation', tucTelecomRetractation)
   .run(/* @ngTranslationsInject:json ./translations */);
 

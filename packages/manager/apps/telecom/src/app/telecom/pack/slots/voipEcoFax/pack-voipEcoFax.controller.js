@@ -32,20 +32,23 @@ export default class PackVoipEcoFaxCtrl {
     };
 
     // Get service link to this access from current Pack Xdsl
-    return this.$q.all({
-      ecofaxes: this.OvhApiPackXdslVoipEcofax.v6().query({
-        packId: this.packName,
-      }).$promise,
-      billingAccount: this.OvhApiPackXdslVoipBillingAccount.v6().query({
-        packId: this.packName,
-      }).$promise,
-    })
+    return this.$q
+      .all({
+        ecofaxes: this.OvhApiPackXdslVoipEcofax.v6().query({
+          packId: this.packName,
+        }).$promise,
+        billingAccount: this.OvhApiPackXdslVoipBillingAccount.v6().query({
+          packId: this.packName,
+        }).$promise,
+      })
       .then(({ ecofaxes, billingAccount }) => {
         this.services = ecofaxes;
         this.billingAccount = head(billingAccount);
       })
       .catch((error) => {
-        this.TucToast.error(this.$translate.instant('ecofax_pro_loading_error'));
+        this.TucToast.error(
+          this.$translate.instant('ecofax_pro_loading_error'),
+        );
         return this.$q.reject(error);
       })
       .finally(() => {
@@ -53,4 +56,6 @@ export default class PackVoipEcoFaxCtrl {
       });
   }
 }
-angular.module('managerApp').controller('PackVoipEcoFaxCtrl', PackVoipEcoFaxCtrl);
+angular
+  .module('managerApp')
+  .controller('PackVoipEcoFaxCtrl', PackVoipEcoFaxCtrl);

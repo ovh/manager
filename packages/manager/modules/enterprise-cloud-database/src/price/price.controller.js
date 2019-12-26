@@ -1,5 +1,8 @@
 import {
-  ASIATOUCH, GERMANTOUCH, FRENCHTOUCH, USTOUCH,
+  ASIATOUCH,
+  GERMANTOUCH,
+  FRENCHTOUCH,
+  USTOUCH,
 } from './price.constants';
 
 export default class EnterpriseCloudDatabasePriceCtrl {
@@ -16,8 +19,10 @@ export default class EnterpriseCloudDatabasePriceCtrl {
   }
 
   getPriceText(priceInCents) {
-    if (this.FRENCHTOUCH.includes(this.ovhSubsidiary)
-      || this.GERMANTOUCH.includes(this.ovhSubsidiary)) {
+    if (
+      this.FRENCHTOUCH.includes(this.ovhSubsidiary) ||
+      this.GERMANTOUCH.includes(this.ovhSubsidiary)
+    ) {
       return `${priceInCents / 100000000}${this.user.currency.symbol}`;
     }
     return `${this.user.currency.symbol}${priceInCents / 100000000}`;

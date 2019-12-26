@@ -1,13 +1,16 @@
-angular.module('managerApp').controller('telecomTelephonyAliasConfigurationQueuesOvhPabxCtrlModal', class telecomTelephonyAliasConfigurationQueuesOvhPabxCtrlModal {
-  constructor($uibModalInstance) {
-    this.$uibModalInstance = $uibModalInstance;
-  }
+angular.module('managerApp').controller(
+  'telecomTelephonyAliasConfigurationQueuesOvhPabxCtrlModal',
+  class telecomTelephonyAliasConfigurationQueuesOvhPabxCtrlModal {
+    constructor($uibModalInstance) {
+      this.$uibModalInstance = $uibModalInstance;
+    }
 
-  cancel(message) {
-    return this.$uibModalInstance.dismiss(message);
-  }
+    cancel(message) {
+      return this.$uibModalInstance.dismiss(message);
+    }
 
-  close() {
-    return this.$uibModalInstance.close(true);
-  }
-});
+    close() {
+      return this.$uibModalInstance.close(true);
+    }
+  },
+);

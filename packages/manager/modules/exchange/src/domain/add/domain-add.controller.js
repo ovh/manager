@@ -43,7 +43,11 @@ export default class ExchangeAddDomainController {
     this.debouncedResetName = debounce(this.search, 300);
 
     this.$routerParams = Exchange.getParams();
-    this.noDomainAttached = get(navigation.currentActionData, 'noDomainAttached', true);
+    this.noDomainAttached = get(
+      navigation.currentActionData,
+      'noDomainAttached',
+      true,
+    );
     this.loading = false;
     this.model = {
       name: '',
@@ -105,9 +109,9 @@ export default class ExchangeAddDomainController {
     const isProviderAccount = this.services.exchangeServiceInfrastructure.isProvider();
 
     if (
-      this.availableMainDomains != null
-      && isProviderAccount
-      && this.services.exchangeVersion.isVersion(2010)
+      this.availableMainDomains != null &&
+      isProviderAccount &&
+      this.services.exchangeVersion.isVersion(2010)
     ) {
       this.setOrganization2010 = true;
 
@@ -127,7 +131,9 @@ export default class ExchangeAddDomainController {
         shouldOpenWizard: true,
       })
       .finally(() => {
-        this.services.$rootScope.$broadcast('exchange.wizard_hosted_creation.display');
+        this.services.$rootScope.$broadcast(
+          'exchange.wizard_hosted_creation.display',
+        );
         this.services.navigation.resetAction();
       });
   }
@@ -148,7 +154,7 @@ export default class ExchangeAddDomainController {
     delete this.model.displayName;
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   getDefaultLanguage() {
     let defaultLanguage = '';
 
@@ -158,7 +164,6 @@ export default class ExchangeAddDomainController {
 
     return defaultLanguage;
   }
-  /* eslint-enable class-methods-use-this */
 
   isFrenchLanguage() {
     const language = this.getDefaultLanguage();
@@ -249,16 +254,16 @@ export default class ExchangeAddDomainController {
 
   isStep2Valid() {
     return (
-      this.model.type === 'AUTHORITATIVE'
-      || (this.model.mxRelay != null && this.model.type === 'NON_AUTHORITATIVE')
+      this.model.type === 'AUTHORITATIVE' ||
+      (this.model.mxRelay != null && this.model.type === 'NON_AUTHORITATIVE')
     );
   }
 
   isNonOvhDomainValid() {
     return (
-      this.model.name
-      && (this.model.domainType !== this.NON_OVH_DOMAIN
-        || this.services.WucValidator.isValidDomain(this.model.displayName))
+      this.model.name &&
+      (this.model.domainType !== this.NON_OVH_DOMAIN ||
+        this.services.WucValidator.isValidDomain(this.model.displayName))
     );
   }
 }

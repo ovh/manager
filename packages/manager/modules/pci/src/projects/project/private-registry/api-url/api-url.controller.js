@@ -1,9 +1,6 @@
 export default class PrivateRegistryApiUrlCtrl {
   /* @ngInject */
-  constructor(
-    $state,
-    $stateParams,
-  ) {
+  constructor($state, $stateParams) {
     this.$state = $state;
     this.harborApiUrl = $stateParams.url;
   }

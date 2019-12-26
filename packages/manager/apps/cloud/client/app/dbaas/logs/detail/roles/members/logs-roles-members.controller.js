@@ -1,5 +1,10 @@
 class LogsRolesMembersCtrl {
-  constructor($stateParams, CucControllerHelper, CucCloudMessage, LogsRolesService) {
+  constructor(
+    $stateParams,
+    CucControllerHelper,
+    CucCloudMessage,
+    LogsRolesService,
+  ) {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.roleId = this.$stateParams.roleId;
@@ -12,7 +17,8 @@ class LogsRolesMembersCtrl {
 
   initLoaders() {
     this.roleDetails = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsRolesService.getRoleDetails(this.serviceName, this.roleId),
+      loaderFunction: () =>
+        this.LogsRolesService.getRoleDetails(this.serviceName, this.roleId),
     });
 
     this.logs = this.CucControllerHelper.request.getArrayLoader({
@@ -25,31 +31,39 @@ class LogsRolesMembersCtrl {
 
   add() {
     this.CucCloudMessage.flushChildMessage();
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/roles/members/add/add-members.html',
-        controller: 'LogsRolesAddMembersCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-        resolve: {
-          serviceName: () => this.serviceName,
-          logs: () => this.logs,
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl:
+            'app/dbaas/logs/detail/roles/members/add/add-members.html',
+          controller: 'LogsRolesAddMembersCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+          resolve: {
+            serviceName: () => this.serviceName,
+            logs: () => this.logs,
+          },
         },
-      },
-    }).then(() => this.initLoaders());
+      })
+      .then(() => this.initLoaders());
   }
 
   revoke(info) {
     this.CucCloudMessage.flushChildMessage();
     this.LogsRolesService.deleteMemberModal(info.username).then(() => {
       this.delete = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsRolesService
-          .removeMember(this.serviceName, this.roleId, info.username)
-          .then(() => this.initLoaders()),
+        loaderFunction: () =>
+          this.LogsRolesService.removeMember(
+            this.serviceName,
+            this.roleId,
+            info.username,
+          ).then(() => this.initLoaders()),
       });
       this.delete.load();
     });
   }
 }
 
-angular.module('managerApp').controller('LogsRolesMembersCtrl', LogsRolesMembersCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsRolesMembersCtrl', LogsRolesMembersCtrl);

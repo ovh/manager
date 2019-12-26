@@ -1,11 +1,7 @@
 import { ACTIONS } from './tokens.constants';
 
 export default class Stream {
-  constructor({
-    id,
-    token,
-    action,
-  }) {
+  constructor({ id, token, action }) {
     Object.assign(this, {
       id,
       token,

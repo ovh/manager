@@ -6,13 +6,13 @@ import legacyOrderController from './legacy/vps-snapshot-order-legacy.controller
 import orderTemplate from './vps-snapshot-order.html';
 import orderController from './vps-snapshot-order.controller';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.snapshot.order', {
     url: '/order',
-    templateProvider: /* @ngInject */ (stateVps) => (stateVps
-      .isLegacy ? legacyOrderTemplate : orderTemplate),
-    controllerProvider: /* @ngInject */ (stateVps) => (stateVps
-      .isLegacy ? legacyOrderController : orderController),
+    templateProvider: /* @ngInject */ (stateVps) =>
+      stateVps.isLegacy ? legacyOrderTemplate : orderTemplate,
+    controllerProvider: /* @ngInject */ (stateVps) =>
+      stateVps.isLegacy ? legacyOrderController : orderController,
     controllerAs: '$ctrl',
     translations: {
       value: ['./'],
