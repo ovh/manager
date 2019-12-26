@@ -10,7 +10,7 @@
   color: @oui-color-dodger;
   background-color: #fff;
   border: none;
-  border-radius: @btnSize/2;
+  border-radius: @btnSize / 2;
   box-shadow: 0 0 @boxShadowSize #888;
   text-align: center;
   padding: 0;
@@ -31,7 +31,7 @@
     text-decoration: none;
   }
 
-  &[disabled="disabled"] {
+  &[disabled='disabled'] {
     color: @gray-base;
   }
 }
@@ -53,7 +53,7 @@ div.btn-group {
 
 /* Special rule for footer buttons actions */
 .footer-button-container {
-  > button[type="reset"],
+  > button[type='reset'],
   > a.btn-default {
     margin: 0;
   }
@@ -61,11 +61,11 @@ div.btn-group {
 
 @media (min-width: @screen-sm-min) {
   .footer-button-container {
-    > button[type="submit"] {
+    > button[type='submit'] {
       float: right;
     }
 
-    > button[type="reset"],
+    > button[type='reset'],
     > a.btn-default {
       float: left;
     }
@@ -74,12 +74,12 @@ div.btn-group {
 
 @media (max-width: (@screen-sm-min - 1)) {
   .footer-button-container {
-    > button[type="submit"] {
+    > button[type='submit'] {
       width: 100%;
       margin-bottom: 10px;
     }
 
-    > button[type="reset"],
+    > button[type='reset'],
     > a.btn-default {
       width: 100%;
     }

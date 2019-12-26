@@ -1,7 +1,7 @@
-pci-project-new-payment { /* stylelint-disable-line */
+pci-project-new-payment {
   @import '~bootstrap4/scss/_functions';
   @import '~bootstrap4/scss/_variables';
-  @import "~bootstrap4/scss/mixins/_breakpoints";
+  @import '~bootstrap4/scss/mixins/_breakpoints';
 
   .pci-projects-new-payment {
     .add-voucher {

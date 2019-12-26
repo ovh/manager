@@ -1,7 +1,9 @@
 .oui-navbar {
   // Logo
   &__brand {
-    .navbar-logo { height: 1.875rem; }
+    .navbar-logo {
+      height: 1.875rem;
+    }
   }
 
   // Universes
@@ -16,7 +18,9 @@
       .@{universe-selector} > .oui-navbar-link {
         &:hover,
         &:focus,
-        &_active { color: @universe-color; }
+        &_active {
+          color: @universe-color;
+        }
       }
     }
   }
@@ -26,7 +30,9 @@
     &_language &__item_active {
       &,
       &:hover,
-      &:active { background-color: @oui-navbar-menu-background-color_hover; }
+      &:active {
+        background-color: @oui-navbar-menu-background-color_hover;
+      }
 
       .oui-navbar-link::after {
         content: @oui-icon-index-check_line;
@@ -48,11 +54,15 @@
 
   .navbar-icon(@icon-selector) {
     .navbar-@{icon-selector} {
-      background: url('../../../assets/images/navbar/@{icon-selector}.svg') no-repeat center center;
+      background:
+        url('../../../assets/images/navbar/@{icon-selector}.svg')
+        no-repeat center center;
       background-size: contain;
 
       &.oui-icon_shake {
-        background: url('../../../assets/images/navbar/@{icon-selector}_on.svg') no-repeat center center;
+        background:
+          url('../../../assets/images/navbar/@{icon-selector}_on.svg')
+          no-repeat center center;
       }
     }
 
@@ -60,9 +70,11 @@
       &:hover,
       &:focus,
       &_active,
-      &[aria-expanded="true"] {
+      &[aria-expanded='true'] {
         .navbar-@{icon-selector} {
-          background: url('../../../assets/images/navbar/@{icon-selector}_on.svg') no-repeat center center;
+          background:
+            url('../../../assets/images/navbar/@{icon-selector}_on.svg')
+            no-repeat center center;
         }
       }
     }
