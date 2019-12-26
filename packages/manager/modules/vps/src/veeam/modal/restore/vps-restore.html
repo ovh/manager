@@ -1,0 +1,37 @@
+<oui-modal
+    data-title="{{:: 'vps_configuration_veeam_restore_title' | translate}}"
+    data-primary-label="{{ ::'vps_common_confirm' | translate }}"
+    data-primary-action="$ctrl.confirm()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.loader.init || $ctrl.loader.save">
+
+    <p class="oui-modal__text"
+        data-translate="vps_configuration_veeam_restore_step1_question"
+        data-translate-values="{ serviceName: $ctrl.serviceName }"></p>
+    <dl class="oui-modal__text">
+        <dt data-translate="vps_configuration_veeam_restore_step1_creation"></dt>
+        <dd data-ng-bind="$ctrl.RestorePointLabel"></dd>
+    </dl>
+
+    <oui-checkbox
+        data-text="{{ 'vps_configuration_veeam_restore_step1_changepassword' | translate }}"
+        id="rescue"
+        name="rescue"
+        data-model="$ctrl.selected.changePassword">
+    </oui-checkbox>
+
+    <p class="oui-modal__text text-danger">
+        <span
+            data-translate="vps_configuration_veeam_restore_step1_warning"
+        ></span>
+        <span
+            data-translate="vps_configuration_veeam_restore_step1_warning_time"
+        ></span>
+        <span
+            data-ng-if="$ctrl.attachedBackup"
+            data-translate="vps_configuration_veeam_mount_step1_warning_umount"
+        ></span>
+    </p>
+</oui-modal>
