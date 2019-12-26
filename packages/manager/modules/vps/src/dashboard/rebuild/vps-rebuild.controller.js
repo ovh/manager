@@ -16,12 +16,12 @@ export default class VpsRebuildController {
     this.isLoading = true;
     return this.vpsRebuild
       .rebuildVps(this.serviceName, options)
-      .then(() => this.goBackToDashboard())
+      .then(() => this.goBack())
       .then(() => {
         this.displaySuccess();
       })
       .catch((error) =>
-        this.goBackToDashboard().then(() => {
+        this.goBack().then(() => {
           const errorDetail = get(error, 'data.message', error.message);
           this.displayError('vps_configuration_reinstall_fail', errorDetail);
         }),

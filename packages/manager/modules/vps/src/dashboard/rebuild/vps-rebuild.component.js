@@ -6,7 +6,7 @@ export default {
     availableImages: '<',
     displayError: '<',
     displaySuccess: '<',
-    goBackToDashboard: '<',
+    goBack: '<',
     serviceName: '<',
     sshKeys: '<',
   },
