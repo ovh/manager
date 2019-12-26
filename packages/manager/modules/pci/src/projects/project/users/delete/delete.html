@@ -6,9 +6,10 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_users_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
-    <p data-translate="pci_projects_project_users_delete_content"
-        data-translate-values="{ user: $ctrl.user.username }"></p>
-
+    data-loading="$ctrl.isLoading"
+>
+    <p
+        data-translate="pci_projects_project_users_delete_content"
+        data-translate-values="{ user: $ctrl.user.username }"
+    ></p>
 </oui-modal>

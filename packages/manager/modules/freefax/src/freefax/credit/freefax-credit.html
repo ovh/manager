@@ -1,67 +1,81 @@
-<div class="oui-tile"
-     data-ng-controller="FreeFaxCreditCtrl as Credit">
-    <h3 class="oui-header_3 oui-tile__title"
-        data-translate="freefax_general_credit">
-    </h3>
-    <div class="oui-tile__body"
-         data-ng-if="!Credit.orderDone">
+<div class="oui-tile" data-ng-controller="FreeFaxCreditCtrl as Credit">
+    <h3
+        class="oui-header_3 oui-tile__title"
+        data-translate="freefax_general_credit"
+    ></h3>
+    <div class="oui-tile__body" data-ng-if="!Credit.orderDone">
         <div class="oui-tile__item">
             <form class="oui-tile__definition">
                 <div class="form-group">
-                    <label class="control-label"
-                           for="creditAmount"
-                           data-translate="freefax_credit_add_label">
+                    <label
+                        class="control-label"
+                        for="creditAmount"
+                        data-translate="freefax_credit_add_label"
+                    >
                     </label>
-                    <select class="form-control"
-                            id="creditAmount"
-                            data-ng-model="Credit.amount"
-                            data-ng-options="choice as choice.label for choice in Credit.creditChoices track by choice.value"
-                            data-ng-change="Credit.getPrice(Credit.amount.value)">
+                    <select
+                        class="form-control"
+                        id="creditAmount"
+                        data-ng-model="Credit.amount"
+                        data-ng-options="choice as choice.label for choice in Credit.creditChoices track by choice.value"
+                        data-ng-change="Credit.getPrice(Credit.amount.value)"
+                    >
                     </select>
                     <span class="help-block">
                         <span data-ng-if="Credit.cost">
-                            {{ 'freefax_credit_unit' | translate:{ quantity: Credit.quantity, fax:Credit.quantity/2 } }} / {{ Credit.cost.withTax.text }} {{:: 'freefax_credit_ttc' | translate }}
+                            {{ 'freefax_credit_unit' | translate:{ quantity:
+                            Credit.quantity, fax:Credit.quantity/2 } }} / {{
+                            Credit.cost.withTax.text }} {{::
+                            'freefax_credit_ttc' | translate }}
                         </span>
-                        <oui-spinner data-ng-if="Credit.cost === null"
-                                     data-size="s">
+                        <oui-spinner
+                            data-ng-if="Credit.cost === null"
+                            data-size="s"
+                        >
                         </oui-spinner>
                     </span>
                 </div>
-                <div class="mb-3"
-                     data-ng-if="Credit.contracts.length > 0"
-                     data-ovh-contracts="Credit.contracts"
-                     data-full-text="false"
-                     data-ovh-contracts-validated="Credit.contractsAccepted">
-                </div>
-                <button type="button"
-                        class="btn btn-primary"
-                        data-ng-click="Credit.order(Credit.amount.value)"
-                        data-ng-disabled="!Credit.contractsAccepted"
-                        data-translate="freefax_credit_generate_order">
-                </button>
+                <div
+                    class="mb-3"
+                    data-ng-if="Credit.contracts.length > 0"
+                    data-ovh-contracts="Credit.contracts"
+                    data-full-text="false"
+                    data-ovh-contracts-validated="Credit.contractsAccepted"
+                ></div>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-ng-click="Credit.order(Credit.amount.value)"
+                    data-ng-disabled="!Credit.contractsAccepted"
+                    data-translate="freefax_credit_generate_order"
+                ></button>
             </form>
         </div>
     </div>
-    <div class="oui-tile__body"
-         data-ng-if="Credit.orderDone">
+    <div class="oui-tile__body" data-ng-if="Credit.orderDone">
         <div class="oui-tile__item">
             <div class="oui-tile__definition">
-                <oui-spinner data-ng-if="!Credit.bill">
-                </oui-spinner>
+                <oui-spinner data-ng-if="!Credit.bill"> </oui-spinner>
                 <div data-ng-if="Credit.bill">
-                    <p data-translate="freefax_credit_loaded"
-                       data-translate-values="{
+                    <p
+                        data-translate="freefax_credit_loaded"
+                        data-translate-values="{
                            'amount': Credit.amount.value,
                            'total': Credit.bill.total,
                            'quantity': Credit.bill.quantity
-                       }">
-                    </p>
-                    <a class="btn btn-link"
-                       href="{{ Credit.bill.url }}"
-                       target="_blank"
-                       rel="noopener">
+                       }"
+                    ></p>
+                    <a
+                        class="btn btn-link"
+                        href="{{ Credit.bill.url }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
                         <span data-translate="freefax_credit_billing"></span>
-                        <strong class="ovh-font ovh-font-newtab ml-2" aria-hidden="true"></strong>
+                        <strong
+                            class="ovh-font ovh-font-newtab ml-2"
+                            aria-hidden="true"
+                        ></strong>
                     </a>
                 </div>
             </div>

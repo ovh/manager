@@ -1,12 +1,13 @@
 <div data-ng-controller="XdslModemDhcpCtrl as DhcpCtrl">
-
     <div class="table-responsive">
         <h3>
-            <span class="tooltip-label"
+            <span
+                class="tooltip-label"
                 data-uib-tooltip="{{'xdsl_modem_dhcp_description' | translate}}"
                 data-tooltip-placement="right"
                 data-tooltip-append-to-body="true"
-                data-translate="xdsl_modem_dhcp_title">
+                data-translate="xdsl_modem_dhcp_title"
+            >
             </span>
         </h3>
 
@@ -14,184 +15,306 @@
             <oui-spinner></oui-spinner>
         </div>
 
-        <table class="table table-hover table-condensed" data-ng-if="!DhcpCtrl.loader">
+        <table
+            class="table table-hover table-condensed"
+            data-ng-if="!DhcpCtrl.loader"
+        >
             <thead>
                 <tr>
-                    <th scope="col" data-translate="xdsl_modem_dhcp_server_dhcp"></th>
+                    <th
+                        scope="col"
+                        data-translate="xdsl_modem_dhcp_server_dhcp"
+                    ></th>
                     <th scope="col">
-                        <span class="tooltip-label"
-                              data-tooltip-append-to-body="true"
-                              data-uib-tooltip="{{'xdsl_modem_dhcp_gateway_tooltip' | translate}}"
-                              data-translate="xdsl_modem_dhcp_gateway"></span>
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_dhcp_gateway_tooltip' | translate}}"
+                            data-translate="xdsl_modem_dhcp_gateway"
+                        ></span>
                     </th>
                     <th scope="col">
-                        <span class="tooltip-label"
-                              data-tooltip-append-to-body="true"
-                              data-uib-tooltip="{{'xdsl_modem_dhcp_primary_dns_tooltip' | translate}}"
-                              data-translate="xdsl_modem_dhcp_primary_dns"></span>
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_dhcp_primary_dns_tooltip' | translate}}"
+                            data-translate="xdsl_modem_dhcp_primary_dns"
+                        ></span>
                     </th>
                     <th scope="col">
-                        <span class="tooltip-label"
-                              data-tooltip-append-to-body="true"
-                              data-uib-tooltip="{{'xdsl_modem_dhcp_secondary_dns_tooltip' | translate}}"
-                              data-translate="xdsl_modem_dhcp_secondary_dns"></span>
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_dhcp_secondary_dns_tooltip' | translate}}"
+                            data-translate="xdsl_modem_dhcp_secondary_dns"
+                        ></span>
                     </th>
                     <th scope="col">
-                        <span class="tooltip-label"
-                              data-tooltip-append-to-body="true"
-                              data-uib-tooltip="{{'xdsl_modem_dhcp_dns_domain_tooltip' | translate}}"
-                              data-translate="xdsl_modem_dhcp_dns_domain"></span>
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_dhcp_dns_domain_tooltip' | translate}}"
+                            data-translate="xdsl_modem_dhcp_dns_domain"
+                        ></span>
                     </th>
                     <th scope="col">
-                        <span class="tooltip-label"
-                              data-tooltip-append-to-body="true"
-                              data-uib-tooltip="{{'xdsl_modem_dhcp_playa_dhcp_tooltip' | translate}}"
-                              data-translate="xdsl_modem_dhcp_playa_dhcp"></span>
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_dhcp_playa_dhcp_tooltip' | translate}}"
+                            data-translate="xdsl_modem_dhcp_playa_dhcp"
+                        ></span>
                     </th>
                     <th scope="col">
-                        <span class="tooltip-label"
-                              data-tooltip-append-to-body="true"
-                              data-uib-tooltip="{{'xdsl_modem_dhcp_allocation_time_tooltip' | translate}}"
-                              data-translate="xdsl_modem_dhcp_allocation_time"></span>
+                        <span
+                            class="tooltip-label"
+                            data-tooltip-append-to-body="true"
+                            data-uib-tooltip="{{'xdsl_modem_dhcp_allocation_time_tooltip' | translate}}"
+                            data-translate="xdsl_modem_dhcp_allocation_time"
+                        ></span>
                     </th>
                     <th data-translate="common_actions"></th>
                 </tr>
             </thead>
-            <tbody data-ng-repeat="dhcp in DhcpCtrl.dhcps track by dhcp.dhcpName">
+            <tbody
+                data-ng-repeat="dhcp in DhcpCtrl.dhcps track by dhcp.dhcpName"
+            >
                 <tr data-ng-hide="dhcp.editMode">
-                    <td data-title="{{ 'xdsl_modem_dhcp_server_dhcp' | translate }}">{{ dhcp.serverEnabled ? 'active' : 'inactive' | translate}}</td>
-                    <td data-title="{{ 'xdsl_modem_dhcp_gateway' | translate }}" data-ng-bind="dhcp.defaultGateway"></td>
-                    <td data-title="{{ 'xdsl_modem_dhcp_primary_dns' | translate }}" data-ng-bind="dhcp.primaryDNS"></td>
-                    <td data-title="{{ 'xdsl_modem_dhcp_secondary_dns' | translate }}" data-ng-bind="dhcp.secondaryDNS"></td>
-                    <th data-title="{{ 'xdsl_modem_dhcp_dns_domain' | translate }}" scope="row" data-ng-bind="dhcp.domainName"></th>
-                    <td data-title="{{ 'xdsl_modem_dhcp_playa_dhcp' | translate }}">
+                    <td
+                        data-title="{{ 'xdsl_modem_dhcp_server_dhcp' | translate }}"
+                    >
+                        {{ dhcp.serverEnabled ? 'active' : 'inactive' |
+                        translate}}
+                    </td>
+                    <td
+                        data-title="{{ 'xdsl_modem_dhcp_gateway' | translate }}"
+                        data-ng-bind="dhcp.defaultGateway"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_dhcp_primary_dns' | translate }}"
+                        data-ng-bind="dhcp.primaryDNS"
+                    ></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_dhcp_secondary_dns' | translate }}"
+                        data-ng-bind="dhcp.secondaryDNS"
+                    ></td>
+                    <th
+                        data-title="{{ 'xdsl_modem_dhcp_dns_domain' | translate }}"
+                        scope="row"
+                        data-ng-bind="dhcp.domainName"
+                    ></th>
+                    <td
+                        data-title="{{ 'xdsl_modem_dhcp_playa_dhcp' | translate }}"
+                    >
                         <div data-ng-bind="dhcp.startAddress"></div>
                         <div data-ng-bind="dhcp.endAddress"></div>
                     </td>
-                    <td data-title="{{ 'xdsl_modem_dhcp_allocation_time' | translate }}" data-ng-bind="dhcp.leaseTime"></td>
+                    <td
+                        data-title="{{ 'xdsl_modem_dhcp_allocation_time' | translate }}"
+                        data-ng-bind="dhcp.leaseTime"
+                    ></td>
                     <td class="col-mobile-button-big">
-                        <button class="btn btn-default"
+                        <button
+                            class="btn btn-default"
                             type="button"
                             title="{{dhcp.domainName}} : {{ 'common_table_edit' | translate }}"
                             data-ng-click="dhcp.edit()"
-                            data-ng-disabled="!DhcpCtrl.mediator.capabilities.canChangeDHCP">
-                            <span class="ovh-font ovh-font-editer" aria-hidden="true"></span>
+                            data-ng-disabled="!DhcpCtrl.mediator.capabilities.canChangeDHCP"
+                        >
+                            <span
+                                class="ovh-font ovh-font-editer"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </td>
                 </tr>
 
-                <tr data-ng-form
+                <tr
+                    data-ng-form
                     name="localForm"
                     data-ng-show="dhcp.editMode"
-                    data-ng-keydown="DhcpCtrl.watchKey($event, dhcp, localForm.$valid)">
-
-                    <td class="form-group checkbox"
-                        data-title="{{ 'xdsl_modem_dhcp_gateway' | translate }}">
-                        <label for="dhcpServer"
-                               class="font-weight-normal">
-                            <input type="checkbox"
+                    data-ng-keydown="DhcpCtrl.watchKey($event, dhcp, localForm.$valid)"
+                >
+                    <td
+                        class="form-group checkbox"
+                        data-title="{{ 'xdsl_modem_dhcp_gateway' | translate }}"
+                    >
+                        <label for="dhcpServer" class="font-weight-normal">
+                            <input
+                                type="checkbox"
                                 id="dhcpServer"
                                 data-ng-model="dhcp.tempValue.serverEnabled"
-                                name="dhcpServer">
+                                name="dhcpServer"
+                            />
                             <span data-translate="active"></span>
                         </label>
                     </td>
 
-                    <td class="form-group" data-title="{{ 'xdsl_modem_dhcp_gateway' | translate }}">
-                        <label for="dhcpDefaultGateway" data-translate="xdsl_modem_dhcp_gateway" class="sr-only"></label>
-                        <input name="dhcpDefaultGateway"
-                               id="dhcpDefaultGateway"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.defaultGateway"
-                               placeholder="192.168.1.254"
-                               data-ui-validate="'DhcpCtrl.validator.isIP($value)'"
-                               data-maxlength="15">
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_dhcp_gateway' | translate }}"
+                    >
+                        <label
+                            for="dhcpDefaultGateway"
+                            data-translate="xdsl_modem_dhcp_gateway"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            name="dhcpDefaultGateway"
+                            id="dhcpDefaultGateway"
+                            type="text"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.defaultGateway"
+                            placeholder="192.168.1.254"
+                            data-ui-validate="'DhcpCtrl.validator.isIP($value)'"
+                            data-maxlength="15"
+                        />
                     </td>
 
-                    <td class="form-group" data-title="{{ 'xdsl_modem_dhcp_primary_dns' | translate }}">
-                        <label for="dhcpPrimaryDNS" data-translate="xdsl_modem_dhcp_primary_dns" class="sr-only"></label>
-                        <input name="dhcpPrimaryDNS"
-                               id="dhcpPrimaryDNS"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.primaryDNS"
-                               placeholder="x.x.x.x"
-                               data-ui-validate="'DhcpCtrl.validator.isIP($value)'"
-                               data-maxlength="15">
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_dhcp_primary_dns' | translate }}"
+                    >
+                        <label
+                            for="dhcpPrimaryDNS"
+                            data-translate="xdsl_modem_dhcp_primary_dns"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            name="dhcpPrimaryDNS"
+                            id="dhcpPrimaryDNS"
+                            type="text"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.primaryDNS"
+                            placeholder="x.x.x.x"
+                            data-ui-validate="'DhcpCtrl.validator.isIP($value)'"
+                            data-maxlength="15"
+                        />
                     </td>
 
-                    <td class="form-group" data-title="{{ 'xdsl_modem_dhcp_secondary_dns' | translate }}">
-                        <label for="dhcpSecondaryDNS" data-translate="xdsl_modem_dhcp_secondary_dns" class="sr-only"></label>
-                        <input name="dhcpSecondaryDNS"
-                               id="dhcpSecondaryDNS"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.secondaryDNS"
-                               placeholder="x.x.x.x"
-                               data-ui-validate="'DhcpCtrl.validator.isIP($value) || !$value'"
-                               data-maxlength="15">
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_dhcp_secondary_dns' | translate }}"
+                    >
+                        <label
+                            for="dhcpSecondaryDNS"
+                            data-translate="xdsl_modem_dhcp_secondary_dns"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            name="dhcpSecondaryDNS"
+                            id="dhcpSecondaryDNS"
+                            type="text"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.secondaryDNS"
+                            placeholder="x.x.x.x"
+                            data-ui-validate="'DhcpCtrl.validator.isIP($value) || !$value'"
+                            data-maxlength="15"
+                        />
                     </td>
 
-                    <td class="form-group" data-title="{{ 'xdsl_modem_dhcp_dns_domain' | translate }}">
-                        <label for="dhcpDomainName" data-translate="xdsl_modem_dhcp_dns_domain" class="sr-only"></label>
-                        <input name="dhcpDomainName"
-                               id="dhcpDomainName"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.domainName"
-                               placeholder="lan"
-                               required
-                               data-maxlength="30">
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_dhcp_dns_domain' | translate }}"
+                    >
+                        <label
+                            for="dhcpDomainName"
+                            data-translate="xdsl_modem_dhcp_dns_domain"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            name="dhcpDomainName"
+                            id="dhcpDomainName"
+                            type="text"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.domainName"
+                            placeholder="lan"
+                            required
+                            data-maxlength="30"
+                        />
                     </td>
 
-                    <td class="form-group" data-title="{{ 'xdsl_modem_dhcp_playa_dhcp' | translate }}">
-                        <label for="dhcpStartAddress" data-translate="xdsl_modem_dhcp_playa_dhcp_start" class="sr-only"></label>
-                        <label for="dhcpEndAddress" data-translate="xdsl_modem_dhcp_playa_dhcp_end" class="sr-only"></label>
-                        <input name="dhcpStartAddress"
-                               id="dhcpStartAddress"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.startAddress"
-                               placeholder="192.168.1.64"
-                               data-ui-validate="'DhcpCtrl.validator.isIP($value)'"
-                               data-maxlength="15">
-                        <input name="dhcpEndAddress"
-                               id="dhcpEndAddress"
-                               type="text"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.endAddress"
-                               placeholder="192.168.1.253"
-                               data-ui-validate="'DhcpCtrl.validator.isIP($value) && DhcpCtrl.isIpInOrder(dhcp.tempValue.startAddress, $value)'"
-                               data-maxlength="15">
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_dhcp_playa_dhcp' | translate }}"
+                    >
+                        <label
+                            for="dhcpStartAddress"
+                            data-translate="xdsl_modem_dhcp_playa_dhcp_start"
+                            class="sr-only"
+                        ></label>
+                        <label
+                            for="dhcpEndAddress"
+                            data-translate="xdsl_modem_dhcp_playa_dhcp_end"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            name="dhcpStartAddress"
+                            id="dhcpStartAddress"
+                            type="text"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.startAddress"
+                            placeholder="192.168.1.64"
+                            data-ui-validate="'DhcpCtrl.validator.isIP($value)'"
+                            data-maxlength="15"
+                        />
+                        <input
+                            name="dhcpEndAddress"
+                            id="dhcpEndAddress"
+                            type="text"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.endAddress"
+                            placeholder="192.168.1.253"
+                            data-ui-validate="'DhcpCtrl.validator.isIP($value) && DhcpCtrl.isIpInOrder(dhcp.tempValue.startAddress, $value)'"
+                            data-maxlength="15"
+                        />
                     </td>
 
-                    <td class="form-group" data-title="{{ 'xdsl_modem_dhcp_allocation_time' | translate }}">
-                        <label for="dhcpLeaseTime" data-translate="xdsl_modem_dhcp_allocation_time" class="sr-only"></label>
-                        <input name="dhcpLeaseTime"
-                               id="dhcpLeaseTime"
-                               type="number"
-                               class="form-control"
-                               data-ng-model="dhcp.tempValue.leaseTime"
-                               data-maxlength="5"
-                               min="0"
-                               max="86400"
-                               placeholder="86400">
+                    <td
+                        class="form-group"
+                        data-title="{{ 'xdsl_modem_dhcp_allocation_time' | translate }}"
+                    >
+                        <label
+                            for="dhcpLeaseTime"
+                            data-translate="xdsl_modem_dhcp_allocation_time"
+                            class="sr-only"
+                        ></label>
+                        <input
+                            name="dhcpLeaseTime"
+                            id="dhcpLeaseTime"
+                            type="number"
+                            class="form-control"
+                            data-ng-model="dhcp.tempValue.leaseTime"
+                            data-maxlength="5"
+                            min="0"
+                            max="86400"
+                            placeholder="86400"
+                        />
                     </td>
 
                     <td class="form-group col-mobile-button-big">
-                        <button type="submit"
+                        <button
+                            type="submit"
                             class="btn btn-primary"
                             data-ng-click="DhcpCtrl.submit(dhcp)"
                             data-ng-disabled="localForm.$invalid"
-                            title="{{dhcp.domainName}} {{ 'common_table_validate_modifications' | translate }}">
-                            <span class="ovh-font ovh-font-check" aria-hidden="true"></span>
+                            title="{{dhcp.domainName}} {{ 'common_table_validate_modifications' | translate }}"
+                        >
+                            <span
+                                class="ovh-font ovh-font-check"
+                                aria-hidden="true"
+                            ></span>
                         </button>
-                        <button type="reset"
+                        <button
+                            type="reset"
                             class="btn btn-default"
                             data-ng-click="dhcp.cancel()"
-                            title="{{dhcp.domainName}} {{ 'common_table_cancel_modifications' | translate }}">
-                            <span class="ovh-font ovh-font-wrong" aria-hidden="true"></span>
+                            title="{{dhcp.domainName}} {{ 'common_table_cancel_modifications' | translate }}"
+                        >
+                            <span
+                                class="ovh-font ovh-font-wrong"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </td>
                 </tr>
@@ -200,5 +323,4 @@
     </div>
 
     <div data-ui-view="routerBdhcpView"></div>
-
 </div>

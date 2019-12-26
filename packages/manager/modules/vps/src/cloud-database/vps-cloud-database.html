@@ -1,16 +1,23 @@
 <section class="cui-page__content">
-
     <h3 class="h1 mb-2" data-translate="vps_tab_cloud_database"></h3>
 
-    <div class="mb-5" data-ng-if="!$ctrl.loading && (!$ctrl.cloudDatabases || $ctrl.cloudDatabases.length === 0)">
+    <div
+        class="mb-5"
+        data-ng-if="!$ctrl.loading && (!$ctrl.cloudDatabases || $ctrl.cloudDatabases.length === 0)"
+    >
         <p data-translate="vps_tab_cloud_database_description"></p>
-        <oui-button data-variant="primary"
-                    data-ui-sref="vps.detail.cloud-database.order">
+        <oui-button
+            data-variant="primary"
+            data-ui-sref="vps.detail.cloud-database.order"
+        >
             <span data-translate="vps_common_order"></span>
         </oui-button>
     </div>
 
-    <div class="mb-5" data-ng-if="!$ctrl.loading && $ctrl.cloudDatabases && $ctrl.cloudDatabases.length > 0">
+    <div
+        class="mb-5"
+        data-ng-if="!$ctrl.loading && $ctrl.cloudDatabases && $ctrl.cloudDatabases.length > 0"
+    >
         <p data-translate="vps_tab_cloud_database_explanation"></p>
     </div>
 
@@ -18,69 +25,93 @@
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <oui-datagrid data-ng-if="!$ctrl.loading && $ctrl.cloudDatabases && $ctrl.cloudDatabases.length > 0"
-                  data-rows="$ctrl.cloudDatabases"
-                  data-empty-placeholder="{{:: 'vps_tab_cloud_database_table_empty' | translate }}">
-        <oui-column data-title="::'vps_tab_cloud_database_header_name' | translate"
-                    data-property="name"
-                    data-type="string"
-                    data-sortable
-                    data-searchable
-                    data-filterable>
+    <oui-datagrid
+        data-ng-if="!$ctrl.loading && $ctrl.cloudDatabases && $ctrl.cloudDatabases.length > 0"
+        data-rows="$ctrl.cloudDatabases"
+        data-empty-placeholder="{{:: 'vps_tab_cloud_database_table_empty' | translate }}"
+    >
+        <oui-column
+            data-title="::'vps_tab_cloud_database_header_name' | translate"
+            data-property="name"
+            data-type="string"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
             <span data-ng-bind="$row.name"></span>
         </oui-column>
-        <oui-column data-title="::'vps_tab_cloud_database_header_version' | translate"
-                    data-property="version"
-                    data-type="string"
-                    data-sortable
-                    data-searchable
-                    data-filterable>
-            <span data-ng-bind="'vps_database_version_' + $row.version.replace('.', '') | translate"></span>
+        <oui-column
+            data-title="::'vps_tab_cloud_database_header_version' | translate"
+            data-property="version"
+            data-type="string"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
+            <span
+                data-ng-bind="'vps_database_version_' + $row.version.replace('.', '') | translate"
+            ></span>
         </oui-column>
-        <oui-column data-title="::'vps_tab_cloud_database_header_vps_authorized' | translate"
-                    data-property="vpsAuthorized"
-                    data-type="boolean"
-                    data-sortable="desc"
-                    data-searchable
-                    data-filterable>
-            <span class="oui-icon oui-icon-success_circle"
-                  aria-hidden="true"
-                  data-ng-if="$row.vpsAuthorized">
+        <oui-column
+            data-title="::'vps_tab_cloud_database_header_vps_authorized' | translate"
+            data-property="vpsAuthorized"
+            data-type="boolean"
+            data-sortable="desc"
+            data-searchable
+            data-filterable
+        >
+            <span
+                class="oui-icon oui-icon-success_circle"
+                aria-hidden="true"
+                data-ng-if="$row.vpsAuthorized"
+            >
             </span>
         </oui-column>
-        <oui-column data-title="::'vps_tab_cloud_database_header_status' | translate"
-                    data-property="state"
-                    data-sortable
-                    data-searchable
-                    data-filterable
-                    data-type="options"
-                    data-type-options="$ctrl.statusFilterOptions">
-            <span class="oui-status oui-status_info"
-                  data-ng-bind="'vps_database_status_' + $row.state | translate">
+        <oui-column
+            data-title="::'vps_tab_cloud_database_header_status' | translate"
+            data-property="state"
+            data-sortable
+            data-searchable
+            data-filterable
+            data-type="options"
+            data-type-options="$ctrl.statusFilterOptions"
+        >
+            <span
+                class="oui-status oui-status_info"
+                data-ng-bind="'vps_database_status_' + $row.state | translate"
+            >
             </span>
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item
                 data-ng-if="!$row.vpsAuthorized"
                 data-text="{{:: 'vps_tab_cloud_database_add_authorized_ip' | translate }}"
-                data-on-click="$ctrl.addAuthorizedIp($row)">
+                data-on-click="$ctrl.addAuthorizedIp($row)"
+            >
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-if="$row.vpsAuthorized"
                 data-text="{{:: 'vps_tab_cloud_database_remove_authorized_ip' | translate }}"
-                data-on-click="$ctrl.removeAuthorizedIp($row)">
+                data-on-click="$ctrl.removeAuthorizedIp($row)"
+            >
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-text="{{:: 'vps_tab_cloud_database_manage' | translate }}"
-                data-on-click="$ctrl.goToCloudDatabase($row)">
+                data-on-click="$ctrl.goToCloudDatabase($row)"
+            >
             </oui-action-menu-item>
         </oui-action-menu>
         <extra-top>
-            <button class="oui-button oui-button_primary"
-                    type="button"
-                    data-ui-sref="vps.detail.cloud-database.order">
-              <span aria-hidden="true" class="oui-icon oui-icon_circle oui-icon-add"></span>
-              <span data-translate="vps_tab_cloud_database_order"></span>
+            <button
+                class="oui-button oui-button_primary"
+                type="button"
+                data-ui-sref="vps.detail.cloud-database.order"
+            >
+                <span
+                    aria-hidden="true"
+                    class="oui-icon oui-icon_circle oui-icon-add"
+                ></span>
+                <span data-translate="vps_tab_cloud_database_order"></span>
             </button>
         </extra-top>
     </oui-datagrid>

@@ -1,65 +1,109 @@
 <div data-ng-controller="DomainDynHostLoginEditCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateLogin"
-         data-wizard-title="'domain_tab_DYNHOSTLOGIN_edit_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.editDynHostLoginForm.$valid">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateLogin"
+        data-wizard-title="'domain_tab_DYNHOSTLOGIN_edit_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.editDynHostLoginForm.$valid"
+        >
             <p data-translate="domain_tab_DYNHOSTLOGIN_edit_step1"></p>
 
             <form name="ctrl.editDynHostLoginForm">
                 <!-- //Sub domain -->
-                <div class="form-group" data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                     'has-error': ctrl.editDynHostLoginForm.subDomain.$dirty && ctrl.editDynHostLoginForm.subDomain.$invalid,
                     'has-success': ctrl.editDynHostLoginForm.subDomain.$dirty && ctrl.editDynHostLoginForm.subDomain.$valid
-                }">
-                    <label class="control-label required" for="txt-subDomain"
-                           data-translate="domain_tab_DYNHOST_add_subDomain"></label>
+                }"
+                >
+                    <label
+                        class="control-label required"
+                        for="txt-subDomain"
+                        data-translate="domain_tab_DYNHOST_add_subDomain"
+                    ></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="txt-subDomain" name="subDomain" required
-                               data-ng-change="ctrl.subDomainCheck(ctrl.editDynHostLoginForm.subDomain)"
-                               data-ng-model="ctrl.login.subDomain"
-                               data-ng-trim="true">
-                        <span class="input-group-addon"
-                              data-ng-bind="'.' + ctrl.product.displayName"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="txt-subDomain"
+                            name="subDomain"
+                            required
+                            data-ng-change="ctrl.subDomainCheck(ctrl.editDynHostLoginForm.subDomain)"
+                            data-ng-model="ctrl.login.subDomain"
+                            data-ng-trim="true"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-ng-bind="'.' + ctrl.product.displayName"
+                        ></span>
                     </div>
-                    <small class="help-block"
-                           data-translate="domain_tab_REDIRECTION_add_step1_subdomain_error"
-                           data-ng-if="ctrl.editDynHostLoginForm.subDomain.$dirty && ctrl.editDynHostLoginForm.subDomain.$invalid"></small>
+                    <small
+                        class="help-block"
+                        data-translate="domain_tab_REDIRECTION_add_step1_subdomain_error"
+                        data-ng-if="ctrl.editDynHostLoginForm.subDomain.$dirty && ctrl.editDynHostLoginForm.subDomain.$invalid"
+                    ></small>
                 </div>
 
                 <!-- //Password -->
-                <div class="form-group" data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                     'has-error': ctrl.editDynHostLoginForm.password.$dirty && ctrl.editDynHostLoginForm.password.$invalid,
                     'has-success': ctrl.editDynHostLoginForm.password.$dirty && ctrl.editDynHostLoginForm.password.$valid && ctrl.data.password.length
-                }">
-                    <label class="control-label" for="txt-password"
-                           data-translate="domain_tab_DYNHOST_add_login_password"></label>
-                    <input type="password" class="form-control" id="txt-password" name="password"
-                           data-ng-change="ctrl.passwordCheck(ctrl.editDynHostLoginForm.password, ctrl.editDynHostLoginForm.passwordConfirm)"
-                           data-ng-model="ctrl.data.password"
-                           data-ng-trim="true">
-                    <small class="help-block"
-                           data-ng-bind-html="'domain_tab_DYNHOST_add_login_password_error' | translate: { t0: ctrl.const.nbMinPassword, t1: ctrl.const.nbMaxPassword }"
-                           data-ng-if="ctrl.editDynHostLoginForm.password.$dirty && ctrl.editDynHostLoginForm.password.$invalid"></small>
+                }"
+                >
+                    <label
+                        class="control-label"
+                        for="txt-password"
+                        data-translate="domain_tab_DYNHOST_add_login_password"
+                    ></label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="txt-password"
+                        name="password"
+                        data-ng-change="ctrl.passwordCheck(ctrl.editDynHostLoginForm.password, ctrl.editDynHostLoginForm.passwordConfirm)"
+                        data-ng-model="ctrl.data.password"
+                        data-ng-trim="true"
+                    />
+                    <small
+                        class="help-block"
+                        data-ng-bind-html="'domain_tab_DYNHOST_add_login_password_error' | translate: { t0: ctrl.const.nbMinPassword, t1: ctrl.const.nbMaxPassword }"
+                        data-ng-if="ctrl.editDynHostLoginForm.password.$dirty && ctrl.editDynHostLoginForm.password.$invalid"
+                    ></small>
                 </div>
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                          'has-error': ctrl.editDynHostLoginForm.passwordConfirm.$dirty && ctrl.editDynHostLoginForm.passwordConfirm.$invalid,
                          'has-success': ctrl.editDynHostLoginForm.passwordConfirm.$dirty && ctrl.editDynHostLoginForm.passwordConfirm.$valid
                      }"
-                     data-ng-if="ctrl.data.password && ctrl.data.password.length">
-                    <label class="control-label required" for="txt-password-confirm"
-                           data-translate="domain_tab_DYNHOST_add_login_password_check"></label>
-                    <input type="password" class="form-control" id="txt-password-confirm" name="passwordConfirm" required
-                           data-ng-change="ctrl.isPasswordMatches(ctrl.editDynHostLoginForm.passwordConfirm)"
-                           data-ng-model="ctrl.validation.password"
-                           data-ng-trim="true">
-                    <small class="help-block"
-                           data-translate="domain_tab_DYNHOST_add_login_password_check_error"
-                           data-ng-if="ctrl.editDynHostLoginForm.passwordConfirm.$dirty && ctrl.editDynHostLoginForm.passwordConfirm.$invalid"></small>
+                    data-ng-if="ctrl.data.password && ctrl.data.password.length"
+                >
+                    <label
+                        class="control-label required"
+                        for="txt-password-confirm"
+                        data-translate="domain_tab_DYNHOST_add_login_password_check"
+                    ></label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="txt-password-confirm"
+                        name="passwordConfirm"
+                        required
+                        data-ng-change="ctrl.isPasswordMatches(ctrl.editDynHostLoginForm.passwordConfirm)"
+                        data-ng-model="ctrl.validation.password"
+                        data-ng-trim="true"
+                    />
+                    <small
+                        class="help-block"
+                        data-translate="domain_tab_DYNHOST_add_login_password_check_error"
+                        data-ng-if="ctrl.editDynHostLoginForm.passwordConfirm.$dirty && ctrl.editDynHostLoginForm.passwordConfirm.$invalid"
+                    ></small>
                 </div>
             </form>
         </div>

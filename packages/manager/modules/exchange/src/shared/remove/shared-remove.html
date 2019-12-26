@@ -1,19 +1,24 @@
 <div data-ng-controller="ExchangeRemoveSharedCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submitting"
-         data-wizard-title="'exchange_action_SHARED_delete_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submitting"
+        data-wizard-title="'exchange_action_SHARED_delete_title' | translate"
+    >
         <div data-wizard-step>
             <p data-translate="exchange_action_SHARED_delete_question"></p>
             <dl class="dl-horizontal dl-lg">
                 <dt data-translate="exchange_tab_SHARED_header_path"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.shared.path | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.shared.path | wucSliceContent: 150"
+                ></dd>
 
                 <dt data-translate="exchange_tab_SHARED_header_type"></dt>
-                <dd data-ng-bind="('exchange_tab_SHARED_header_access_' + ctrl.shared.type) | translate"></dd>
+                <dd
+                    data-ng-bind="('exchange_tab_SHARED_header_access_' + ctrl.shared.type) | translate"
+                ></dd>
 
                 <dt data-translate="exchange_tab_SHARED_header_access"></dt>
                 <dd data-ng-bind="ctrl.shared.permissions"></dd>

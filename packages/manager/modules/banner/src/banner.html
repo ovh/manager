@@ -5,17 +5,20 @@
     rel="noopener"
     data-track-on="click"
     data-track-name="{{ $ctrl.banner.tracker }}"
-    data-track-click="action">
+    data-track-click="action"
+>
     <img
         class="d-md-none w-100 h-100"
         data-ng-src="{{ $ctrl.banner.images.responsive.src }}"
         alt="{{ $ctrl.banner.alt }}"
         width="{{ $ctrl.banner.images.responsive.width }}"
-        height="{{ $ctrl.banner.images.responsive.height }}">
+        height="{{ $ctrl.banner.images.responsive.height }}"
+    />
     <img
         class="d-none d-md-block w-100 h-100"
         data-ng-src="{{ $ctrl.banner.images.default.src }}"
         alt="{{ $ctrl.banner.alt }}"
         width="{{ $ctrl.banner.images.default.width }}"
-        height="{{ $ctrl.banner.images.default.height }}">
+        height="{{ $ctrl.banner.images.default.height }}"
+    />
 </a>

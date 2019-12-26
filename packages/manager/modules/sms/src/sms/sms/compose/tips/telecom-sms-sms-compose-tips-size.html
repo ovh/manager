@@ -4,15 +4,17 @@
             type="button"
             class="close float-right"
             aria-label="{{ 'sms_cancel' | translate }}"
-            data-ng-click="ComposeTipsCtrl.close()">
+            data-ng-click="ComposeTipsCtrl.close()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body">
-        <h3 class="modal-title"
-            data-translate="sms_sms_compose_tip_size_title">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="sms_sms_compose_tip_size_title"
+        ></h3>
         <p data-translate="sms_sms_compose_tip_compose_paragraphe_1"></p>
         <p data-translate="sms_sms_compose_tip_compose_paragraphe_2"></p>
         <ol>
@@ -28,7 +30,7 @@
             type="button"
             class="btn btn-primary"
             data-ng-click="ComposeTipsCtrl.close()"
-            data-ng-bind="'sms_ok' | translate">
-        </button>
+            data-ng-bind="'sms_ok' | translate"
+        ></button>
     </div>
 </div>

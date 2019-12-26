@@ -1,33 +1,36 @@
 <div data-ui-view>
     <h1 data-translate="pci_projects_project_failoverip_imports_title"></h1>
     <div>
-        <oui-datagrid
-            data-rows="$ctrl.ips">
+        <oui-datagrid data-rows="$ctrl.ips">
             <oui-column
                 data-title=":: 'pci_projects_project_failoverip_imports_block' | translate"
                 data-property="ip"
                 data-type="string"
-                data-searchable>
+                data-searchable
+            >
             </oui-column>
             <oui-column
                 data-title=":: 'pci_projects_project_failoverip_imports_geoloc' | translate"
                 data-property="country"
                 data-type="string"
-                data-searchable>
+                data-searchable
+            >
                 <span class="text-uppercase" data-ng-bind="$value"></span>
             </oui-column>
             <oui-column
                 data-title=":: 'pci_projects_project_failoverip_imports_id' | translate"
                 data-property="routedTo.serviceName"
                 data-type="string"
-                data-searchable>
+                data-searchable
+            >
             </oui-column>
-            <oui-action-menu
-                data-align="end"
-                data-compact>
+            <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item
-                    data-ui-sref="pci.projects.project.failover-ips.imports.import({ projectId: $ctrl.projectId, serviceName: $row.ip })">
-                    <span data-translate="pci_projects_project_failoverip_imports_importIp"></span>
+                    data-ui-sref="pci.projects.project.failover-ips.imports.import({ projectId: $ctrl.projectId, serviceName: $row.ip })"
+                >
+                    <span
+                        data-translate="pci_projects_project_failoverip_imports_importIp"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>

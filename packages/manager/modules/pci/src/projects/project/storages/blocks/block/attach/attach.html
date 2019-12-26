@@ -6,11 +6,13 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_blocks_block_attach_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
+    data-loading="$ctrl.isLoading"
+>
     <div data-ng-if="$ctrl.instancesList.length === 0">
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance"></span>
+            <span
+                data-translate="pci_projects_project_storages_blocks_block_attach_error_no_compatible_instance"
+            ></span>
         </oui-message>
     </div>
     <div data-ng-if="$ctrl.instancesList.length > 0">
@@ -21,7 +23,8 @@
             data-items="$ctrl.instancesList"
             data-match="name"
             data-searchable
-            data-disabled="$ctrl.isLoading">
+            data-disabled="$ctrl.isLoading"
+        >
         </oui-select>
     </div>
 </oui-modal>

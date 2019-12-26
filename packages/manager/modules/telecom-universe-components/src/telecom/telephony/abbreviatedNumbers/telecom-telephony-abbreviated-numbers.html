@@ -1,84 +1,115 @@
 <div class="widget-presentation">
-
     <tuc-toast-message></tuc-toast-message>
 
     <oui-datagrid data-rows="$ctrl.abbreviatedNumbers">
-        <oui-column data-title="'telephony_abbreviated_numbers_id' | translate"
-                    data-property="abbreviatedNumber"
-                    data-sortable="asc"
-                    data-type="string"
-                    data-searchable
-                    data-filterable>
-            <span class="word-break" data-ng-bind="$row.abbreviatedNumber"></span>
+        <oui-column
+            data-title="'telephony_abbreviated_numbers_id' | translate"
+            data-property="abbreviatedNumber"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span
+                class="word-break"
+                data-ng-bind="$row.abbreviatedNumber"
+            ></span>
         </oui-column>
 
-        <oui-column data-title="'telephony_abbreviated_numbers_number' | translate"
-                    data-property="destinationNumber"
-                    data-sortable
-                    data-type="string"
-                    data-searchable
-                    data-filterable>
-            <span class="word-break" data-ng-bind="$row.destinationNumber"></span>
+        <oui-column
+            data-title="'telephony_abbreviated_numbers_number' | translate"
+            data-property="destinationNumber"
+            data-sortable
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
+            <span
+                class="word-break"
+                data-ng-bind="$row.destinationNumber"
+            ></span>
         </oui-column>
 
-        <oui-column data-title="'telephony_abbreviated_numbers_surname' | translate"
-                    data-property="surname"
-                    data-sortable
-                    data-type="string"
-                    data-searchable
-                    data-filterable>
+        <oui-column
+            data-title="'telephony_abbreviated_numbers_surname' | translate"
+            data-property="surname"
+            data-sortable
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
             <span class="word-break" data-ng-bind="$row.surname"></span>
         </oui-column>
 
-        <oui-column data-title="'telephony_abbreviated_numbers_name' | translate"
-                    data-property="name"
-                    data-sortable
-                    data-type="string"
-                    data-searchable
-                    data-filterable>
+        <oui-column
+            data-title="'telephony_abbreviated_numbers_name' | translate"
+            data-property="name"
+            data-sortable
+            data-type="string"
+            data-searchable
+            data-filterable
+        >
             <span class="word-break" data-ng-bind="$row.name"></span>
         </oui-column>
 
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item data-on-click="$ctrl.update($row)">
-                <span data-translate="telephony_abbreviated_numbers_edit"></span>
+                <span
+                    data-translate="telephony_abbreviated_numbers_edit"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item data-on-click="$ctrl.remove($row)">
-                <span data-translate="telephony_abbreviated_numbers_delete"></span>
+                <span
+                    data-translate="telephony_abbreviated_numbers_delete"
+                ></span>
             </oui-action-menu-item>
         </oui-action-menu>
 
         <extra-top>
-            <oui-action-menu data-text="{{::('telephony_abbreviated_numbers_common_actions' | translate)}}"
-                             data-align="start">
+            <oui-action-menu
+                data-text="{{::('telephony_abbreviated_numbers_common_actions' | translate)}}"
+                data-align="start"
+            >
                 <oui-action-menu-item
                     data-on-click="$ctrl.add()"
-                    data-disabled="$ctrl.loading.init">
-                    <span data-translate="telephony_abbreviated_numbers_common_add"></span>
+                    data-disabled="$ctrl.loading.init"
+                >
+                    <span
+                        data-translate="telephony_abbreviated_numbers_common_add"
+                    ></span>
                 </oui-action-menu-item>
                 <div role="menuitem" class="oui-action-menu__item">
-                    <button type="button"
-                            class="oui-button oui-button_action-menu"
-                            data-ng-csv="$ctrl.abbreviatedNumbers"
-                            data-csv-header="$ctrl.getCsvHeader()"
-                            data-csv-column-order="$ctrl.getCsvOrder()"
-                            data-ng-disabled="$ctrl.loading.init || !$ctrl.abbreviatedNumbers.length"
-                            data-filename="{{ $ctrl.exportFilename || 'abbreviated-numbers.csv' }}">
-                        <span data-translate="telephony_abbreviated_numbers_download_label"></span>
+                    <button
+                        type="button"
+                        class="oui-button oui-button_action-menu"
+                        data-ng-csv="$ctrl.abbreviatedNumbers"
+                        data-csv-header="$ctrl.getCsvHeader()"
+                        data-csv-column-order="$ctrl.getCsvOrder()"
+                        data-ng-disabled="$ctrl.loading.init || !$ctrl.abbreviatedNumbers.length"
+                        data-filename="{{ $ctrl.exportFilename || 'abbreviated-numbers.csv' }}"
+                    >
+                        <span
+                            data-translate="telephony_abbreviated_numbers_download_label"
+                        ></span>
                     </button>
                 </div>
                 <oui-action-menu-item
                     data-on-click="$ctrl.openImport()"
-                    data-disabled="$ctrl.loading.init">
-                    <span data-translate="telephony_abbreviated_numbers_import_label"></span>
+                    data-disabled="$ctrl.loading.init"
+                >
+                    <span
+                        data-translate="telephony_abbreviated_numbers_import_label"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.trashAll()"
-                    data-disabled="$ctrl.loading.init || !$ctrl.abbreviatedNumbers.length">
-                    <span data-translate="telephony_abbreviated_numbers_trash_all_label"></span>
+                    data-disabled="$ctrl.loading.init || !$ctrl.abbreviatedNumbers.length"
+                >
+                    <span
+                        data-translate="telephony_abbreviated_numbers_trash_all_label"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
         </extra-top>
-
     </oui-datagrid>
 </div>

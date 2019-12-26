@@ -4,18 +4,23 @@
     data-primary-label="{{:: 'web_domain_zone_activation_confirm' | translate }}"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'web_domain_zone_activation_cancel' | translate }}"
-    data-on-dismiss="$ctrl.goBack()">
+    data-on-dismiss="$ctrl.goBack()"
+>
     <p data-translate="web_domain_zone_activation_question"></p>
     <oui-radio
         data-name="zoneTemplate"
         data-model="$ctrl.template"
-        data-value="$ctrl.TEMPLATES.MINIMIZED">
-        <span data-translate="web_domain_zone_activation_template_minimized"></span>
+        data-value="$ctrl.TEMPLATES.MINIMIZED"
+    >
+        <span
+            data-translate="web_domain_zone_activation_template_minimized"
+        ></span>
     </oui-radio>
     <oui-radio
         data-name="zoneTemplate"
         data-model="$ctrl.template"
-        data-value="$ctrl.TEMPLATES.BASIC">
+        data-value="$ctrl.TEMPLATES.BASIC"
+    >
         <span data-translate="web_domain_zone_activation_template_basic"></span>
     </oui-radio>
 </oui-modal>

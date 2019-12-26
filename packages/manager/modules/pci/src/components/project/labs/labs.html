@@ -3,22 +3,25 @@
 <oui-checkbox
     data-name="lab-agreements-accepted"
     on-change="$ctrl.onAccept({ accepted: modelValue })"
-    data-required>
+    data-required
+>
     <span data-translate="pci_project_labs_contracts_label"></span>
 
-    <span
-        data-ng-repeat="contract in $ctrl.lab.contracts track by id">
+    <span data-ng-repeat="contract in $ctrl.lab.contracts track by id">
         <a
             data-ng-href="{{ contract.pdf }}"
             href=""
             target="_blank"
             class="oui-link_icon"
-            rel="noopener">
+            rel="noopener"
+        >
             <span data-ng-bind="contract.name"></span>
-            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+            <span
+                class="oui-icon oui-icon-external_link"
+                aria-hidden="true"
+            ></span>
         </a>
         <span data-ng-if="!$last">, </span>
         <span data-ng-if="$last">.</span>
     </span>
-
 </oui-checkbox>

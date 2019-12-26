@@ -1,20 +1,35 @@
 <div data-ng-controller="exchangeWizardHostedCreationManualController as $ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-hide-cancel-button="hideCancelButton()"
-         data-wizard-on-finish="resetAction"
-         data-wizard-confirm-button-text="'exchange_wizardHostedCreation_lastDialog_closeButton' | translate"
-         data-wizard-title="'exchange_wizardHostedCreation_ending_dialog' | translate">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-hide-cancel-button="hideCancelButton()"
+        data-wizard-on-finish="resetAction"
+        data-wizard-confirm-button-text="'exchange_wizardHostedCreation_lastDialog_closeButton' | translate"
+        data-wizard-title="'exchange_wizardHostedCreation_ending_dialog' | translate"
+    >
         <div data-wizard-step>
             <div class="row">
                 <div class="col-md-2 oui-modal__body pt-0 text-center">
-                    <i class="oui-icon oui-icon-warning_circle oui-icon_bicolor oui-icon-dialog oui-icon-dialog-relatively-centered" aria-hidden="true"></i>
-                    <span class="sr-only" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_warning' | translate"></span>
+                    <i
+                        class="oui-icon oui-icon-warning_circle oui-icon_bicolor oui-icon-dialog oui-icon-dialog-relatively-centered"
+                        aria-hidden="true"
+                    ></i>
+                    <span
+                        class="sr-only"
+                        data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_warning' | translate"
+                    ></span>
                 </div>
                 <div class="col-md-10">
-                    <p data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_explanation1' | translate:{ t0: $ctrl.domainName }"></p>
-                    <blockquote class="small-blockquote" data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_explanation2' | translate"></blockquote>
-                    <p data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_explanation3' | translate"></p>
+                    <p
+                        data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_explanation1' | translate:{ t0: $ctrl.domainName }"
+                    ></p>
+                    <blockquote
+                        class="small-blockquote"
+                        data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_explanation2' | translate"
+                    ></blockquote>
+                    <p
+                        data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_manual_dialog_explanation3' | translate"
+                    ></p>
                 </div>
             </div>
         </div>

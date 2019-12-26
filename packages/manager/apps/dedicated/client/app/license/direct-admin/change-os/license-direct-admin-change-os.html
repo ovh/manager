@@ -1,45 +1,45 @@
 <div data-ng-controller="LicenseDirectAdminChangeOsCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="exit"
-         data-wizard-on-finish="changeOs"
-         data-wizard-title=":: 'license_directadmin_changeOs_title' | translate"
-         data-wizard-title-icon="'icon-migrate'"
-         data-wizard-bread-crumb>
-
-        <div data-wizard-step
-             data-wizard-step-valid="isValid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="exit"
+        data-wizard-on-finish="changeOs"
+        data-wizard-title=":: 'license_directadmin_changeOs_title' | translate"
+        data-wizard-title-icon="'icon-migrate'"
+        data-wizard-bread-crumb
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid()">
             <oui-spinner data-ng-if="model.loading"></oui-spinner>
 
             <div data-ng-if="!model.operationIsPending && !model.loading">
-                <div class="form-group"
-                     data-ng-if="!model.modifying">
-                    <label for="directAdminOsSelection"
-                           class="control-label"
-                           data-translate="license_directadmin_changeOs_chooseOs">
+                <div class="form-group" data-ng-if="!model.modifying">
+                    <label
+                        for="directAdminOsSelection"
+                        class="control-label"
+                        data-translate="license_directadmin_changeOs_chooseOs"
+                    >
                     </label>
-                    <select class="form-control"
-                            id="directAdminOsSelection"
-                            name="directAdminOsSelection"
-                            data-ng-options="os for os in model.availableOs"
-                            data-ng-model="model.selectedOs">
+                    <select
+                        class="form-control"
+                        id="directAdminOsSelection"
+                        name="directAdminOsSelection"
+                        data-ng-options="os for os in model.availableOs"
+                        data-ng-model="model.selectedOs"
+                    >
                     </select>
                 </div>
-                <div class="text-center"
-                     data-ng-show="model.modifying">
+                <div class="text-center" data-ng-show="model.modifying">
                     <oui-spinner></oui-spinner>
-                    <span data-translate="license_directadmin_changingOs"></span>
+                    <span
+                        data-translate="license_directadmin_changingOs"
+                    ></span>
                 </div>
             </div>
 
-            <div class="text-center text-warning"
-                 data-ng-if="model.operationIsPending"
-                 data-translate="license_directadmin_changeOs_taskExists">
-            </div>
-
+            <div
+                class="text-center text-warning"
+                data-ng-if="model.operationIsPending"
+                data-translate="license_directadmin_changeOs_taskExists"
+            ></div>
         </div>
-
     </div>
-
 </div>

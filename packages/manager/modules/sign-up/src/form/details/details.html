@@ -2,158 +2,217 @@
     <div class="row">
         <div class="col-lg-6">
             <!-- legalform -->
-            <oui-field data-label="{{ 'sign_up_details_field_legalform' | translate }}"
-                       data-label-popover="{{ '' | translate }}">
+            <oui-field
+                data-label="{{ 'sign_up_details_field_legalform' | translate }}"
+                data-label-popover="{{ '' | translate }}"
+            >
                 <label class="oui-select">
-                    <select id="legalform"
-                            name="legalform"
-                            class="oui-select__input"
-                            data-ng-options="legalform.value as legalform.label for legalform in $ctrl.signUpFormCtrl.rules.legalform.in"
-                            data-ng-model="$ctrl.signUpFormCtrl.model.legalform"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.legalform.mandatory">
+                    <select
+                        id="legalform"
+                        name="legalform"
+                        class="oui-select__input"
+                        data-ng-options="legalform.value as legalform.label for legalform in $ctrl.signUpFormCtrl.rules.legalform.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.legalform"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.legalform.mandatory"
+                    >
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down bg-transparent"
-                          aria-hidden="true">
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
                     </span>
                 </label>
-            </oui-field> <!-- /select[name="legalform"] -->
+            </oui-field>
+            <!-- /select[name="legalform"] -->
         </div>
 
         <div class="col-lg-6">
             <!-- country -->
-            <oui-field data-label="{{ 'sign_up_details_field_country' | translate }}">
+            <oui-field
+                data-label="{{ 'sign_up_details_field_country' | translate }}"
+            >
                 <label class="oui-select">
-                    <select id="country"
-                            name="country"
-                            class="oui-select__input"
-                            data-ng-options="country.value as country.label for country in $ctrl.signUpFormCtrl.rules.country.in"
-                            data-ng-model="$ctrl.signUpFormCtrl.model.country"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
-                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1">
+                    <select
+                        id="country"
+                        name="country"
+                        class="oui-select__input"
+                        data-ng-options="country.value as country.label for country in $ctrl.signUpFormCtrl.rules.country.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.country"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
+                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1"
+                    >
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down bg-transparent"
-                          aria-hidden="true">
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
                     </span>
                 </label>
-            </oui-field> <!-- /select[name="country"] -->
+            </oui-field>
+            <!-- /select[name="country"] -->
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6">
             <!-- phone -->
-            <oui-field data-label="{{ 'sign_up_details_field_phone' | translate }}">
+            <oui-field
+                data-label="{{ 'sign_up_details_field_phone' | translate }}"
+            >
                 <div class="oui-input-group phone-number-field">
-                    <ui-select data-ng-model="$ctrl.signUpFormCtrl.model.phoneCountry"
-                               data-on-select="$ctrl.onPhoneCountrySelect()"
-                               theme="ui-select-oui-kit">
+                    <ui-select
+                        data-ng-model="$ctrl.signUpFormCtrl.model.phoneCountry"
+                        data-on-select="$ctrl.onPhoneCountrySelect()"
+                        theme="ui-select-oui-kit"
+                    >
                         <ui-select-match>
-                            <country-flag data-country="$select.selected.value"></country-flag>
+                            <country-flag
+                                data-country="$select.selected.value"
+                            ></country-flag>
                         </ui-select-match>
-                        <ui-select-choices data-repeat="phoneCountry.value as phoneCountry in ($ctrl.signUpFormCtrl.rules.phoneCountry.in | filter: $select.search) track by $index">
-                            <country-flag data-country="phoneCountry.value"
-                                          data-label="{{ phoneCountry.label }}">
+                        <ui-select-choices
+                            data-repeat="phoneCountry.value as phoneCountry in ($ctrl.signUpFormCtrl.rules.phoneCountry.in | filter: $select.search) track by $index"
+                        >
+                            <country-flag
+                                data-country="phoneCountry.value"
+                                data-label="{{ phoneCountry.label }}"
+                            >
                             </country-flag>
                         </ui-select-choices>
                     </ui-select>
-                    <input type="text"
-                           class="oui-input oui-input_phone m-0"
-                           name="phone"
-                           id="phone"
-                           data-ng-model="$ctrl.phoneModel.model"
-                           data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
-                           data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
-                           data-ng-pattern="$ctrl.phoneModel.validator"
-                           data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"/>
+                    <input
+                        type="text"
+                        class="oui-input oui-input_phone m-0"
+                        name="phone"
+                        id="phone"
+                        data-ng-model="$ctrl.phoneModel.model"
+                        data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
+                        data-ng-pattern="$ctrl.phoneModel.validator"
+                        data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"
+                    />
                 </div>
-            </oui-field> <!-- /input[name="phone"] -->
+            </oui-field>
+            <!-- /input[name="phone"] -->
         </div>
 
         <div class="col-lg-6">
             <!-- language -->
-            <oui-field data-label="{{ 'sign_up_details_field_language' | translate }}">
+            <oui-field
+                data-label="{{ 'sign_up_details_field_language' | translate }}"
+            >
                 <label class="oui-select">
-                    <select id="language"
-                            name="language"
-                            class="oui-select__input"
-                            data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
-                            data-ng-model="$ctrl.signUpFormCtrl.model.language"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
-                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 1">
+                    <select
+                        id="language"
+                        name="language"
+                        class="oui-select__input"
+                        data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.language"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
+                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 1"
+                    >
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down bg-transparent"
-                          aria-hidden="true">
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
                     </span>
                 </label>
-            </oui-field> <!-- /select[name="language"] -->
+            </oui-field>
+            <!-- /select[name="language"] -->
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6">
             <!-- zip -->
-            <oui-field data-label="{{ 'sign_up_details_field_zip' | translate }}">
-                <div data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }">
-                    <span data-ng-if="$ctrl.signUpFormCtrl.rules.zip.prefix"
-                          data-ng-bind="$ctrl.signUpFormCtrl.rules.zip.prefix">
+            <oui-field
+                data-label="{{ 'sign_up_details_field_zip' | translate }}"
+            >
+                <div
+                    data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }"
+                >
+                    <span
+                        data-ng-if="$ctrl.signUpFormCtrl.rules.zip.prefix"
+                        data-ng-bind="$ctrl.signUpFormCtrl.rules.zip.prefix"
+                    >
                     </span>
-                    <input type="text"
-                           class="oui-input"
-                           name="zip"
-                           id="zip"
-                           data-ng-model="$ctrl.zipModel.model"
-                           data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
-                           data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
-                           data-ng-pattern="$ctrl.zipModel.validator" />
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="zip"
+                        id="zip"
+                        data-ng-model="$ctrl.zipModel.model"
+                        data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
+                        data-ng-pattern="$ctrl.zipModel.validator"
+                    />
                 </div>
-            </oui-field> <!-- /input[name="zip"] -->
+            </oui-field>
+            <!-- /input[name="zip"] -->
         </div>
 
         <div class="col-lg-6">
             <!-- city -->
-            <oui-field data-label="{{ 'sign_up_details_field_city' | translate }}">
-                <input type="text"
-                       class="oui-input"
-                       name="city"
-                       id="city"
-                       data-ng-model="$ctrl.signUpFormCtrl.model.city"
-                       data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression" />
-            </oui-field> <!-- /input[name="city"] -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_city' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="city"
+                    id="city"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.city"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression"
+                />
+            </oui-field>
+            <!-- /input[name="city"] -->
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg">
             <!-- address -->
-            <oui-field data-label="{{ 'sign_up_details_field_address' | translate }}">
-                <input type="text"
-                       class="oui-input"
-                       name="address"
-                       id="address"
-                       data-ng-model="$ctrl.signUpFormCtrl.model.address"
-                       data-ng-required="$ctrl.signUpFormCtrl.rules.address.mandatory"
-                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression" />
-            </oui-field> <!-- /input[name="address"] -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_address' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="address"
+                    id="address"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.address"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.address.mandatory"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.address.regularExpression"
+                />
+            </oui-field>
+            <!-- /input[name="address"] -->
         </div>
 
-        <div class="col-lg"
-             data-ng-if="$ctrl.signUpFormCtrl.rules.area">
+        <div class="col-lg" data-ng-if="$ctrl.signUpFormCtrl.rules.area">
             <!-- area -->
-            <oui-field data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('US', 'WE') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}">
+            <oui-field
+                data-label="{{ 'sign_up_details_field_' + ($ctrl.signUpFormCtrl.model.country.includes('US', 'WE') ? 'state' : $ctrl.signUpFormCtrl.model.country === 'CA' ? 'province' : 'area') | translate }}"
+            >
                 <label class="oui-select">
-                    <select id="area"
-                            name="area"
-                            class="oui-select__input"
-                            data-ng-options="area.value as area.label for area in $ctrl.signUpFormCtrl.rules.area.in"
-                            data-ng-model="$ctrl.signUpFormCtrl.model.area"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory">
+                    <select
+                        id="area"
+                        name="area"
+                        class="oui-select__input"
+                        data-ng-options="area.value as area.label for area in $ctrl.signUpFormCtrl.rules.area.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.area"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.area.mandatory"
+                    >
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down bg-transparent"
-                          aria-hidden="true">
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
                     </span>
                 </label>
-            </oui-field> <!-- /select[name="area"] -->
+            </oui-field>
+            <!-- /select[name="area"] -->
         </div>
     </div>
 </div>

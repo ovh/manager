@@ -4,31 +4,45 @@
     <strong data-translate="private_registry_onboarding_content2"></strong>
     <p data-translate="private_registry_onboarding_content3"></p>
 
-    <cui-message-container data-messages="$ctrl.messages" class="mb-2 mt-2"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+        class="mb-2 mt-2"
+    ></cui-message-container>
 
     <div data-ng-if="!$ctrl.registryId">
         <p data-translate="private_registry_beta_warning"></p>
         <oui-checkbox
             data-model="$ctrl.agreementsAccepted"
             data-name="agreements-accepted"
-            data-required>
-            <span data-translate="private_registry_new_project_contracts"
+            data-required
+        >
+            <span
+                data-translate="private_registry_new_project_contracts"
                 data-translate-values="{
                     contractsLinks: $ctrl.getCompiledLinks('<a href=\'<%= pdf %>\' target=\'_blank\' class=\'oui-link_icon\' rel=\'noopener\'><%= name %><span class=\'oui-icon oui-icon-external_link\' aria-hidden=\'true\'></span></a>')
-                }">
+                }"
+            >
             </span>
         </oui-checkbox>
-        <oui-button data-variant="primary"
+        <oui-button
+            data-variant="primary"
             data-disabled="!$ctrl.agreementsAccepted"
-            data-on-click="$ctrl.create()">
-            <span data-translate="private_registry_onboarding_action_label"></span>
+            data-on-click="$ctrl.create()"
+        >
+            <span
+                data-translate="private_registry_onboarding_action_label"
+            ></span>
         </oui-button>
     </div>
 
-    <oui-spinner data-ng-if="!$ctrl.registryCreated && $ctrl.registryId"></oui-spinner>
-    <oui-button data-variant="primary"
-                data-on-click="$ctrl.generateCredentials()"
-                data-ng-if="$ctrl.registryCreated">
+    <oui-spinner
+        data-ng-if="!$ctrl.registryCreated && $ctrl.registryId"
+    ></oui-spinner>
+    <oui-button
+        data-variant="primary"
+        data-on-click="$ctrl.generateCredentials()"
+        data-ng-if="$ctrl.registryCreated"
+    >
         <span data-translate="private_registry_onboarding_generate"></span>
     </oui-button>
 </pci-project-empty>

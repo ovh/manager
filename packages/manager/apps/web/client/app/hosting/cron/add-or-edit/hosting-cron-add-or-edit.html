@@ -1,75 +1,133 @@
 <div data-ng-controller="HostingCronCreateCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="saveCron"
-         data-wizard-title="title">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="init"
-             data-wizard-step-valid="isValid(1)">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="saveCron"
+        data-wizard-title="title"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="init"
+            data-wizard-step-valid="isValid(1)"
+        >
             <div class="text-center" data-ng-if="loading.init">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <form class="form-horizontal" name="addCronForm" data-ng-if="!loading.init">
+            <form
+                class="form-horizontal"
+                name="addCronForm"
+                data-ng-if="!loading.init"
+            >
                 <p>
                     <small class="text-danger">*</small>
                     <small data-translate="required_fields"></small>
                 </p>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': !isPathValid() || getSelectedCommand().length > 100}">
-                    <label class="control-label col-md-4 required" for="cronCommand"
-                           data-translate="hosting_tab_CRON_label_command"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !isPathValid() || getSelectedCommand().length > 100}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="cronCommand"
+                        data-translate="hosting_tab_CRON_label_command"
+                    ></label>
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon">./</span>
-                            <input type="text" class="form-control" id="cronCommand" name="cronCommand" placeholder="{{:: 'hosting_tab_CRON_command_placeholder' | translate }}" required
-                                   data-ng-model="selected.command">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="cronCommand"
+                                name="cronCommand"
+                                placeholder="{{:: 'hosting_tab_CRON_command_placeholder' | translate }}"
+                                required
+                                data-ng-model="selected.command"
+                            />
                         </div>
-                        <small class="help-block"
-                               data-translate="hosting_common_path_help_inline"
-                               data-ng-if="!isPathValid()"></small>
-                        <small class="help-block"
-                               data-translate="hosting_tab_CRON_command_maxlength_help_inline"
-                               data-ng-if="getSelectedCommand().length > 100"></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_common_path_help_inline"
+                            data-ng-if="!isPathValid()"
+                        ></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_tab_CRON_command_maxlength_help_inline"
+                            data-ng-if="getSelectedCommand().length > 100"
+                        ></small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4 required" for="cronlanguage"
-                           data-translate="hosting_tab_CRON_label_language"></label>
+                    <label
+                        class="control-label col-md-4 required"
+                        for="cronlanguage"
+                        data-translate="hosting_tab_CRON_label_language"
+                    ></label>
                     <div class="col-md-8">
                         <div class="oui-select oui-select_inline mb-0">
-                            <select class="oui-select__input" id="cronlanguage" required
-                                    data-ng-model="model.language"
-                                    data-ng-options="language as formatLanguage(language) for language in languageEnum track by language" >
-                                <option value="" disabled
-                                        data-translate="select_placeholder"></option>
+                            <select
+                                class="oui-select__input"
+                                id="cronlanguage"
+                                required
+                                data-ng-model="model.language"
+                                data-ng-options="language as formatLanguage(language) for language in languageEnum track by language"
+                            >
+                                <option
+                                    value=""
+                                    disabled
+                                    data-translate="select_placeholder"
+                                ></option>
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="cronStatus"
-                           data-translate="hosting_tab_CRON_label_activate"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="cronStatus"
+                        data-translate="hosting_tab_CRON_label_activate"
+                    ></label>
                     <div class="col-md-8">
                         <div class="oui-checkbox oui-checkbox_inline mb-0 mt-2">
-                            <input type="checkbox" class="oui-checkbox__input" id="cronStatus" name="cronStatus"
-                                   data-ng-model="model.status"
-                                   data-ng-false-value="'disabled'"
-                                   data-ng-true-value="'enabled'">
-                            <label class="oui-checkbox__label-container" for="cronStatus">
+                            <input
+                                type="checkbox"
+                                class="oui-checkbox__input"
+                                id="cronStatus"
+                                name="cronStatus"
+                                data-ng-model="model.status"
+                                data-ng-false-value="'disabled'"
+                                data-ng-true-value="'enabled'"
+                            />
+                            <label
+                                class="oui-checkbox__label-container"
+                                for="cronStatus"
+                            >
                                 <span class="oui-checkbox__label">
                                     <span class="oui-checkbox__icon">
-                                        <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-unchecked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checkmark"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-indeterminate"
+                                            aria-hidden="true"
+                                        ></span>
                                     </span>
                                 </span>
                             </label>
@@ -77,56 +135,101 @@
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': model.emailSelect === 'other' && addCronForm.email.$dirty && addCronForm.email.$invalid}">
-                    <label class="control-label col-md-4 required" for="cronEmail">
-                        <span id="emailLabel" data-translate="hosting_tab_CRON_label_email"></span>
-                        <span class="fa fa-info-circle" aria-hidden="true"
-                              data-oui-tooltip="{{:: 'hosting_tab_CRON_label_email_info' | translate }}"></span>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': model.emailSelect === 'other' && addCronForm.email.$dirty && addCronForm.email.$invalid}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="cronEmail"
+                    >
+                        <span
+                            id="emailLabel"
+                            data-translate="hosting_tab_CRON_label_email"
+                        ></span>
+                        <span
+                            class="fa fa-info-circle"
+                            aria-hidden="true"
+                            data-oui-tooltip="{{:: 'hosting_tab_CRON_label_email_info' | translate }}"
+                        ></span>
                     </label>
                     <div class="col-md-8">
                         <div class="oui-select oui-select_inline mb-0">
-                            <select class="oui-select__input" id="cronEmail" required
-                                    data-ng-model="model.emailSelect">
-                                <option value="no" data-translate="common_no"></option>
-                                <option value="nic-admin" data-translate="hosting_tab_CRON_email_nic-admin"></option>
-                                <option value="nic-tech" data-translate="hosting_tab_CRON_email_nic-tech"></option>
-                                <option value="other" data-translate="hosting_tab_CRON_email_other"></option>
+                            <select
+                                class="oui-select__input"
+                                id="cronEmail"
+                                required
+                                data-ng-model="model.emailSelect"
+                            >
+                                <option
+                                    value="no"
+                                    data-translate="common_no"
+                                ></option>
+                                <option
+                                    value="nic-admin"
+                                    data-translate="hosting_tab_CRON_email_nic-admin"
+                                ></option>
+                                <option
+                                    value="nic-tech"
+                                    data-translate="hosting_tab_CRON_email_nic-tech"
+                                ></option>
+                                <option
+                                    value="other"
+                                    data-translate="hosting_tab_CRON_email_other"
+                                ></option>
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
-                        <div class="mt-3" data-ng-show="model.emailSelect === 'other'">
-                            <input type="email" class="form-control" name="email" aria-labelledby="emailLabel" placeholder="{{:: 'hosting_tab_CRON_email_other_specify' | translate }}"
-                                   data-ng-model="model.email"
-                                   data-ng-required="model.emailSelect === 'other'">
+                        <div
+                            class="mt-3"
+                            data-ng-show="model.emailSelect === 'other'"
+                        >
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="email"
+                                aria-labelledby="emailLabel"
+                                placeholder="{{:: 'hosting_tab_CRON_email_other_specify' | translate }}"
+                                data-ng-model="model.email"
+                                data-ng-required="model.emailSelect === 'other'"
+                            />
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="cronDesc"
-                           data-translate="hosting_tab_CRON_label_description"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="cronDesc"
+                        data-translate="hosting_tab_CRON_label_description"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="cronDesc"
-                               data-ng-model="model.description">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="cronDesc"
+                            data-ng-model="model.description"
+                        />
                     </div>
                 </div>
             </form>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="isValid(2)">
-
+        <div data-wizard-step data-wizard-step-valid="isValid(2)">
             <wuc-cron-editor crontab-object="crontabObject"></wuc-cron-editor>
             <div data-wizard-step-help>
                 <wuc-cron-expert-help></wuc-cron-expert-help>
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="!loading.validation"
-             data-wizard-step-on-load="generateCron">
-
+        <div
+            data-wizard-step
+            data-wizard-step-valid="!loading.validation"
+            data-wizard-step-on-load="generateCron"
+        >
             <div class="text-center" data-ng-if="loading.validation">
                 <oui-spinner></oui-spinner>
             </div>
@@ -140,17 +243,28 @@
                     <dt data-translate="hosting_tab_CRON_label_language"></dt>
                     <dd data-ng-bind="formatLanguage(model.language)"></dd>
                     <dt data-translate="hosting_tab_CRON_label_status"></dt>
-                    <dd data-ng-bind="(('hosting_tab_CRON_table_status_' + model.status | translate) == 'hosting_tab_CRON_table_status_' + model.status)? model.status: ('hosting_tab_CRON_table_status_' + model.status | translate)"></dd>
+                    <dd
+                        data-ng-bind="(('hosting_tab_CRON_table_status_' + model.status | translate) == 'hosting_tab_CRON_table_status_' + model.status)? model.status: ('hosting_tab_CRON_table_status_' + model.status | translate)"
+                    ></dd>
                     <dt data-translate="hosting_tab_CRON_label_email"></dt>
-                    <dd data-ng-bind="(('hosting_tab_CRON_email_' + getEmailResume() | translate) == 'hosting_tab_CRON_email_' + getEmailResume())? getEmailResume(): ('hosting_tab_CRON_email_' + getEmailResume() | translate)" class="word-break"></dd>
-                    <dt data-translate="hosting_tab_CRON_label_description"
-                        data-ng-if="model.description"></dt>
-                    <dd data-ng-bind="model.description"
+                    <dd
+                        data-ng-bind="(('hosting_tab_CRON_email_' + getEmailResume() | translate) == 'hosting_tab_CRON_email_' + getEmailResume())? getEmailResume(): ('hosting_tab_CRON_email_' + getEmailResume() | translate)"
+                        class="word-break"
+                    ></dd>
+                    <dt
+                        data-translate="hosting_tab_CRON_label_description"
                         data-ng-if="model.description"
-                        class="word-break"></dd>
+                    ></dt>
+                    <dd
+                        data-ng-bind="model.description"
+                        data-ng-if="model.description"
+                        class="word-break"
+                    ></dd>
                 </dl>
 
-                <wuc-cron-simple-summary crontab-object="crontabObject"></wuc-cron-simple-summary>
+                <wuc-cron-simple-summary
+                    crontab-object="crontabObject"
+                ></wuc-cron-simple-summary>
 
                 <dl class="dl-horizontal dl-lg">
                     <dt data-translate="hosting_tab_CRON_label_crontab"></dt>

@@ -1,15 +1,19 @@
 <div data-ng-controller="ExchangeAddExternalContactCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addContact"
-         data-wizard-title="'exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="getData()"
-             data-wizard-step-valid="accountIsValid()">
-
-            <p data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_question"></p>
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addContact"
+        data-wizard-title="'exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="getData()"
+            data-wizard-step-valid="accountIsValid()"
+        >
+            <p
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_question"
+            ></p>
 
             <form name="addExternalContactForm">
                 <p>
@@ -17,94 +21,178 @@
                     <small data-translate="required_fields"></small>
                 </p>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': !ctrl.isEmailValid() && ctrl.model.newAccount.externalEmailAddress}">
-                    <label class="control-label required" for="externalEmail"
-                           data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label"></label>
-                    <input type="text" class="form-control" id="externalEmail" maxlength="256" name="externalEmail" required
-                           data-ng-model="ctrl.model.newAccount.externalEmailAddress">
-                    <small class="help-block"
-                           data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_invalid"
-                           data-ng-if="!ctrl.isEmailValid() && ctrl.model.newAccount.externalEmailAddress"></small>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !ctrl.isEmailValid() && ctrl.model.newAccount.externalEmailAddress}"
+                >
+                    <label
+                        class="control-label required"
+                        for="externalEmail"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="externalEmail"
+                        maxlength="256"
+                        name="externalEmail"
+                        required
+                        data-ng-model="ctrl.model.newAccount.externalEmailAddress"
+                    />
+                    <small
+                        class="help-block"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_invalid"
+                        data-ng-if="!ctrl.isEmailValid() && ctrl.model.newAccount.externalEmailAddress"
+                    ></small>
                 </div>
 
                 <div class="form-group" data-ng-if="ctrl.availableMainDomains">
-                    <label class="control-label required" for="domainDisplayName"
-                           data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_organization2010_label"></label>
+                    <label
+                        class="control-label required"
+                        for="domainDisplayName"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_organization2010_label"
+                    ></label>
                     <div class="oui-select">
-                        <select class="oui-select__input" id="domainDisplayName" required
-                                data-ng-model="ctrl.model.attachOrganization2010"
-                                data-ng-options="domain.displayName for domain in ctrl.availableMainDomains">
-                            <option value="" disabled
-                                    data-translate="select_placeholder"></option>
+                        <select
+                            class="oui-select__input"
+                            id="domainDisplayName"
+                            required
+                            data-ng-model="ctrl.model.attachOrganization2010"
+                            data-ng-options="domain.displayName for domain in ctrl.availableMainDomains"
+                        >
+                            <option
+                                value=""
+                                disabled
+                                data-translate="select_placeholder"
+                            ></option>
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label required" for="accountDisplayName"
-                           data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_display_name_label"></label>
-                    <input type="text" class="form-control" id="accountDisplayName" maxlength="256" name="accountDisplayName" required
-                           data-ng-change="ctrl.updateDisplayNameFlag()"
-                           data-ng-model="ctrl.model.newAccount.displayName">
+                    <label
+                        class="control-label required"
+                        for="accountDisplayName"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_display_name_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="accountDisplayName"
+                        maxlength="256"
+                        name="accountDisplayName"
+                        required
+                        data-ng-change="ctrl.updateDisplayNameFlag()"
+                        data-ng-model="ctrl.model.newAccount.displayName"
+                    />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="firstName"
-                           data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_first_name_label"></label>
-                    <input type="text" class="form-control" id="firstName" maxlength="256" name="firstName"
-                           data-ng-change="ctrl.updateDisplayName()"
-                           data-ng-model="ctrl.model.newAccount.firstName">
+                    <label
+                        class="control-label"
+                        for="firstName"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_first_name_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        maxlength="256"
+                        name="firstName"
+                        data-ng-change="ctrl.updateDisplayName()"
+                        data-ng-model="ctrl.model.newAccount.firstName"
+                    />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="lastName"
-                           data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_last_name_label"></label>
-                    <input type="text" class="form-control" id="lastName" maxlength="256" name="lastName"
-                           data-ng-change="ctrl.updateDisplayName()"
-                           data-ng-model="ctrl.model.newAccount.lastName">
+                    <label
+                        class="control-label"
+                        for="lastName"
+                        data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_last_name_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        maxlength="256"
+                        name="lastName"
+                        data-ng-change="ctrl.updateDisplayName()"
+                        data-ng-model="ctrl.model.newAccount.lastName"
+                    />
                 </div>
 
-                <oui-checkbox id="hiddenFromGAL"
+                <oui-checkbox
+                    id="hiddenFromGAL"
                     data-model="ctrl.model.newAccount.hiddenFromGAL"
-                    data-text="{{::'exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_GAL_label' | translate}}">
+                    data-text="{{::'exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_GAL_label' | translate}}"
+                >
                 </oui-checkbox>
             </form>
 
             <div data-wizard-step-help>
-                <h3 data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_title"></h3>
-                <p data-ng-bind-html="'exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_content' | translate"></p>
+                <h3
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_title"
+                ></h3>
+                <p
+                    data-ng-bind-html="'exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_content' | translate"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_question"></p>
+            <p
+                data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_question"
+            ></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.model.newAccount.externalEmailAddress | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.model.newAccount.externalEmailAddress | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-ng-if="ctrl.model.newAccount.displayName"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_display_name_label"></dt>
-                <dd class="word-break"
+                <dt
                     data-ng-if="ctrl.model.newAccount.displayName"
-                    data-ng-bind="ctrl.model.newAccount.displayName | wucSliceContent: 150"></dd>
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_display_name_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-if="ctrl.model.newAccount.displayName"
+                    data-ng-bind="ctrl.model.newAccount.displayName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-ng-if="ctrl.model.newAccount.firstName"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_first_name_label"></dt>
-                <dd class="word-break"
+                <dt
                     data-ng-if="ctrl.model.newAccount.firstName"
-                    data-ng-bind="ctrl.model.newAccount.firstName | wucSliceContent: 150"></dd>
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_first_name_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-if="ctrl.model.newAccount.firstName"
+                    data-ng-bind="ctrl.model.newAccount.firstName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-ng-if="ctrl.model.newAccount.lastName"
-                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_last_name_label"></dt>
-                <dd class="word-break"
-                    data-ng-if="ctrl.model.newAccount.lastName" data-ng-bind="ctrl.model.newAccount.lastName | wucSliceContent: 150"></dd>
+                <dt
+                    data-ng-if="ctrl.model.newAccount.lastName"
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_last_name_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-if="ctrl.model.newAccount.lastName"
+                    data-ng-bind="ctrl.model.newAccount.lastName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_GAL_label"></dt>
-                <dd data-ng-bind="('exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_GAL_' + ctrl.model.newAccount.hiddenFromGAL) | translate"></dd>
+                <dt
+                    data-translate="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_GAL_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_GAL_' + ctrl.model.newAccount.hiddenFromGAL) | translate"
+                ></dd>
             </dl>
         </div>
     </div>

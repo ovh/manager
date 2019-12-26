@@ -7,21 +7,40 @@
 </div>
 
 <div class="row" data-ng-if="!$ctrl.loading">
-    <div class="col-md-4" data-ng-repeat="rule in $ctrl.rules track by rule.type">
-        <p class="font-weight-bold" data-translate="{{:: 'domain_optin_contact_' + rule.type }}"></p>
+    <div
+        class="col-md-4"
+        data-ng-repeat="rule in $ctrl.rules track by rule.type"
+    >
+        <p
+            class="font-weight-bold"
+            data-translate="{{:: 'domain_optin_contact_' + rule.type }}"
+        ></p>
 
         <div class="d-flex flex-row">
             <label for="{:: rule.type + '-email' }}" class="oui-select">
                 <select
                     class="oui-select__input"
                     data-ng-model="$ctrl.configuration[rule.type].email"
-                    name="{{:: rule.type + '-email' }}">
-                    <option data-ng-value="true" data-translate="domain_optin_display_true"></option>
-                    <option data-ng-value="false" data-translate="domain_optin_display_false"></option>
+                    name="{{:: rule.type + '-email' }}"
+                >
+                    <option
+                        data-ng-value="true"
+                        data-translate="domain_optin_display_true"
+                    ></option>
+                    <option
+                        data-ng-value="false"
+                        data-translate="domain_optin_display_false"
+                    ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </label>
-            <span class="ml-2 pt-1" data-translate="domain_optin_field_mail"></span>
+            <span
+                class="ml-2 pt-1"
+                data-translate="domain_optin_field_mail"
+            ></span>
         </div>
 
         <div class="d-flex flex-row">
@@ -29,28 +48,53 @@
                 <select
                     class="oui-select__input"
                     data-ng-model="$ctrl.options[rule.type].allFieldsOption"
-                    name="{{:: rule.type + '-fields' }}">
-                    <option data-ng-value="true" data-translate="domain_optin_display_true"></option>
-                    <option data-ng-value="false" data-translate="domain_optin_display_false"></option>
+                    name="{{:: rule.type + '-fields' }}"
+                >
+                    <option
+                        data-ng-value="true"
+                        data-translate="domain_optin_display_true"
+                    ></option>
+                    <option
+                        data-ng-value="false"
+                        data-translate="domain_optin_display_false"
+                    ></option>
                 </select>
-                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
             </label>
-            <span class="ml-2 pt-1" data-translate="domain_optin_field_others"></span>
+            <span
+                class="ml-2 pt-1"
+                data-translate="domain_optin_field_others"
+            ></span>
         </div>
 
         <div data-ng-if="$ctrl.options[rule.type].canEditIndividually">
-
-            <oui-checkbox data-model="$ctrl.options[rule.type].areFieldsEditedIndividually">
+            <oui-checkbox
+                data-model="$ctrl.options[rule.type].areFieldsEditedIndividually"
+            >
                 <span data-translate="domain_optin_edit_individually"></span>
             </oui-checkbox>
 
-            <div class="d-flex flex-row flex-wrap"
+            <div
+                class="d-flex flex-row flex-wrap"
                 data-ng-repeat="field in rule.fields track by $index"
-                data-ng-if="$ctrl.options[rule.type].areFieldsEditedIndividually">
-                <label for="{{:: rule.type_field }}" class="oui-label w-25" data-ng-bind=":: field"></label>
-                <oui-radio-toggle-group name="{{:: rule.type_field }}" data-model="$ctrl.configuration[rule.type][field]">
+                data-ng-if="$ctrl.options[rule.type].areFieldsEditedIndividually"
+            >
+                <label
+                    for="{{:: rule.type_field }}"
+                    class="oui-label w-25"
+                    data-ng-bind=":: field"
+                ></label>
+                <oui-radio-toggle-group
+                    name="{{:: rule.type_field }}"
+                    data-model="$ctrl.configuration[rule.type][field]"
+                >
                     <oui-radio data-value="false">
-                        <span data-translate="domain_optin_display_false"></span>
+                        <span
+                            data-translate="domain_optin_display_false"
+                        ></span>
                     </oui-radio>
                     <oui-radio data-value="true">
                         <span data-translate="domain_optin_display_true"></span>
@@ -61,6 +105,9 @@
     </div>
 </div>
 
-<oui-button data-variant="primary" data-on-click="$ctrl.saveOptinConfiguration()">
+<oui-button
+    data-variant="primary"
+    data-on-click="$ctrl.saveOptinConfiguration()"
+>
     <span data-translate="domain_optin_save"></span>
 </oui-button>

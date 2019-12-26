@@ -1,23 +1,31 @@
-<h2 class="oui-heading_underline"
-    data-translate="pci_projects_new_payment_challenge_title"></h2>
+<h2
+    class="oui-heading_underline"
+    data-translate="pci_projects_new_payment_challenge_title"
+></h2>
 <p data-translate="pci_projects_new_payment_challenge_intro"></p>
 
-<form novalidate
+<form
+    novalidate
     name="challengeForm"
-    data-ng-submit="$ctrl.challenge && $ctrl.processChallenge()">
-
+    data-ng-submit="$ctrl.challenge && $ctrl.processChallenge()"
+>
     <oui-spinner
         class="ml-3 align-middle"
         data-size="s"
-        data-ng-if="$ctrl.isChallenging">
+        data-ng-if="$ctrl.isChallenging"
+    >
     </oui-spinner>
 
-    <div data-ng-switch="$ctrl.defaultPaymentMethod.paymentType"
-        data-ng-if="!$ctrl.isChallenging">
+    <div
+        data-ng-switch="$ctrl.defaultPaymentMethod.paymentType"
+        data-ng-if="!$ctrl.isChallenging"
+    >
         <div data-ng-switch-when="PAYPAL">
             <div class="oui-field">
-                <label class="oui-field__label oui-label"
-                    data-translate="pci_projects_new_payment_challenge_paypal_label"></label>
+                <label
+                    class="oui-field__label oui-label"
+                    data-translate="pci_projects_new_payment_challenge_paypal_label"
+                ></label>
                 <div class="oui-field__control">
                     <a data-ng-href="{{$ctrl.paypalUrl}}">Login with Paypal</a>
                 </div>
@@ -27,8 +35,10 @@
         <div data-ng-switch-when="CREDIT_CARD">
             <oui-field
                 data-label="{{ :: 'pci_projects_new_payment_challenge_credit_card_label' | translate }}"
-                class="creditCardChallenge">
-                <input class="oui-input d-inline"
+                class="creditCardChallenge"
+            >
+                <input
+                    class="oui-input d-inline"
                     type="text"
                     id="creditcard"
                     name="creditcard"
@@ -36,34 +46,53 @@
                     minlength="6"
                     maxlength="6"
                     data-ng-pattern="/^[0-9]{6}$/"
-                    required>
-                <span data-ng-bind=":: $ctrl.creditCardSuffix"
-                    class="d-inline-block my-2"></span>
+                    required
+                />
+                <span
+                    data-ng-bind=":: $ctrl.creditCardSuffix"
+                    class="d-inline-block my-2"
+                ></span>
             </oui-field>
         </div>
 
         <div data-ng-switch-when="BANK_ACCOUNT">
             <oui-field
                 data-label="{{ :: 'pci_projects_new_payment_challenge_bank_account_label' | translate }}"
-                data-error-messages="{ iban: ('pci_projects_new_payment_challenge_bank_account_error' | translate) }">
-                <input type="text" class="oui-input"
-                        id="iban" name="iban"
-                        data-ng-model="$ctrl.challenge"
-                        required
-                        data-ui-validate="{ iban: '$ctrl.isValidIban($value)' }" />
+                data-error-messages="{ iban: ('pci_projects_new_payment_challenge_bank_account_error' | translate) }"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="iban"
+                    name="iban"
+                    data-ng-model="$ctrl.challenge"
+                    required
+                    data-ui-validate="{ iban: '$ctrl.isValidIban($value)' }"
+                />
             </oui-field>
         </div>
     </div>
 
-    <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
-        <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
+    <div
+        class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
+    >
+        <button
+            class="oui-button oui-button_primary oui-button_icon-right no-transition"
             data-ng-disabled="!challengeForm.$valid"
-            type="submit">
-            <span data-translate="pci_projects_new_payment_challenge_submit_label"></span>
-            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
-                    aria-hidden="true">
+            type="submit"
+        >
+            <span
+                data-translate="pci_projects_new_payment_challenge_submit_label"
+            ></span>
+            <span
+                class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                aria-hidden="true"
+            >
             </span>
         </button>
-        <a data-ng-href="{{ :: $ctrl.getStateLink('cancel') }}" data-translate="pci_projects_new_payment_challenge_cancel_label"></a>
+        <a
+            data-ng-href="{{ :: $ctrl.getStateLink('cancel') }}"
+            data-translate="pci_projects_new_payment_challenge_cancel_label"
+        ></a>
     </div>
 </form>

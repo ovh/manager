@@ -1,32 +1,32 @@
-<form name="templatesUserForm"
-      id="templatesUserForm"
-      data-ng-submit="UsersTemplatesCtrl.templates()">
-
+<form
+    name="templatesUserForm"
+    id="templatesUserForm"
+    data-ng-submit="UsersTemplatesCtrl.templates()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="UsersTemplatesCtrl.cancel()">
+            data-ng-click="UsersTemplatesCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!UsersTemplatesCtrl.loading.updateTemplates && !UsersTemplatesCtrl.updated">
-        <h3 class="modal-title"
-            data-translate="sms_users_templates_title">
-        </h3>
-        <div class="alert alert-info"
-             role="alert">
+    <div
+        class="modal-body"
+        data-ng-if="!UsersTemplatesCtrl.loading.updateTemplates && !UsersTemplatesCtrl.updated"
+    >
+        <h3 class="modal-title" data-translate="sms_users_templates_title"></h3>
+        <div class="alert alert-info" role="alert">
             <p data-translate="sms_users_templates_variable_info"></p>
             <dl class="dl-horizontal">
-                <dt data-ng-repeat-start="(key, variable) in UsersTemplatesCtrl.variables"
-                    data-translate="{{:: 'sms_users_templates_variable_' + key }}">
-                </dt>
-                <dd data-ng-repeat-end
-                    data-ng-bind="variable">
-                </dd>
+                <dt
+                    data-ng-repeat-start="(key, variable) in UsersTemplatesCtrl.variables"
+                    data-translate="{{:: 'sms_users_templates_variable_' + key }}"
+                ></dt>
+                <dd data-ng-repeat-end data-ng-bind="variable"></dd>
             </dl>
         </div>
 
@@ -37,25 +37,34 @@
                     type="checkbox"
                     name="customizedEmailMode"
                     id="customizedEmailMode"
-                    data-ng-model="UsersTemplatesCtrl.model.service.templates.customizedEmailMode" />
+                    data-ng-model="UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
+                />
                 <span>
-                    <span data-translate="sms_users_templates_customized_email_mode_label"></span>
-                    <i class="ovh-font ovh-font-info text-info line-height-normal"
-                       aria-hidden="true"
-                       data-oui-tooltip="{{:: 'sms_users_templates_labels_tooltip' | translate }}">
+                    <span
+                        data-translate="sms_users_templates_customized_email_mode_label"
+                    ></span>
+                    <i
+                        class="ovh-font ovh-font-info text-info line-height-normal"
+                        aria-hidden="true"
+                        data-oui-tooltip="{{:: 'sms_users_templates_labels_tooltip' | translate }}"
+                    >
                     </i>
                 </span>
             </label>
         </div>
 
         <!-- EMAIL FROM -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': templatesUserForm.emailFrom.$touched && templatesUserForm.emailFrom.$invalid
-             }">
-            <label for="emailFrom"
-                   class="control-label"
-                   data-translate="sms_users_templates_email_from_label">
+             }"
+        >
+            <label
+                for="emailFrom"
+                class="control-label"
+                data-translate="sms_users_templates_email_from_label"
+            >
             </label>
             <input
                 type="email"
@@ -66,28 +75,39 @@
                 data-ng-model="UsersTemplatesCtrl.model.service.templates.emailFrom"
                 data-ng-required="UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
                 data-ng-disabled="!UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
-                data-translate-attr="{ placeholder: 'sms_users_templates_email_from_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="templatesUserForm.emailFrom.$touched"
-                  data-ng-messages="templatesUserForm.emailFrom.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_templates_email_from_error_required">
+                data-translate-attr="{ placeholder: 'sms_users_templates_email_from_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="templatesUserForm.emailFrom.$touched"
+                data-ng-messages="templatesUserForm.emailFrom.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_templates_email_from_error_required"
+                >
                 </span>
-                <span data-ng-message="email"
-                      data-translate="sms_users_templates_email_from_error_email">
+                <span
+                    data-ng-message="email"
+                    data-translate="sms_users_templates_email_from_error_email"
+                >
                 </span>
             </span>
         </div>
 
         <!-- EMAIL SUBJECT -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': templatesUserForm.emailSubject.$touched && templatesUserForm.emailSubject.$invalid
-             }">
-            <label for="emailSubject"
-                   class="control-label"
-                   data-translate="sms_users_templates_email_subject_label">
+             }"
+        >
+            <label
+                for="emailSubject"
+                class="control-label"
+                data-translate="sms_users_templates_email_subject_label"
+            >
             </label>
             <input
                 type="text"
@@ -97,25 +117,34 @@
                 data-ng-model="UsersTemplatesCtrl.model.service.templates.emailSubject"
                 data-ng-required="UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
                 data-ng-disabled="!UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
-                data-translate-attr="{ placeholder: 'sms_users_templates_email_subject_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="templatesUserForm.emailSubject.$touched"
-                  data-ng-messages="templatesUserForm.emailSubject.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_templates_email_subject_error_required">
+                data-translate-attr="{ placeholder: 'sms_users_templates_email_subject_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="templatesUserForm.emailSubject.$touched"
+                data-ng-messages="templatesUserForm.emailSubject.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_templates_email_subject_error_required"
+                >
                 </span>
             </span>
         </div>
 
         <!-- EMAIL BODY -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': templatesUserForm.emailBody.$touched && templatesUserForm.emailBody.$invalid
-             }">
-            <label for="emailBody"
-                   class="control-label"
-                   data-translate="sms_users_templates_email_body_label">
+             }"
+        >
+            <label
+                for="emailBody"
+                class="control-label"
+                data-translate="sms_users_templates_email_body_label"
+            >
             </label>
             <textarea
                 name="emailBody"
@@ -125,14 +154,19 @@
                 data-ng-required="UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
                 data-ng-disabled="!UsersTemplatesCtrl.model.service.templates.customizedEmailMode"
                 data-translate-attr="{ placeholder: 'sms_users_templates_email_body_placeholder' }"
-                data-ng-trim="false">
+                data-ng-trim="false"
+            >
             </textarea>
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="templatesUserForm.emailBody.$touched"
-                  data-ng-messages="templatesUserForm.emailBody.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_templates_email_body_error_required">
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="templatesUserForm.emailBody.$touched"
+                data-ng-messages="templatesUserForm.emailBody.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_templates_email_body_error_required"
+                >
                 </span>
             </span>
         </div>
@@ -144,25 +178,34 @@
                     type="checkbox"
                     name="customizedSmsMode"
                     id="customizedSmsMode"
-                    data-ng-model="UsersTemplatesCtrl.model.service.templates.customizedSmsMode" />
+                    data-ng-model="UsersTemplatesCtrl.model.service.templates.customizedSmsMode"
+                />
                 <span>
-                    <span data-translate="sms_users_templates_customized_sms_mode_label"></span>
-                    <i class="ovh-font ovh-font-info text-info line-height-normal"
-                       aria-hidden="true"
-                       data-oui-tooltip="{{:: 'sms_users_templates_labels_tooltip' | translate }}">
+                    <span
+                        data-translate="sms_users_templates_customized_sms_mode_label"
+                    ></span>
+                    <i
+                        class="ovh-font ovh-font-info text-info line-height-normal"
+                        aria-hidden="true"
+                        data-oui-tooltip="{{:: 'sms_users_templates_labels_tooltip' | translate }}"
+                    >
                     </i>
                 </span>
             </label>
         </div>
 
         <!-- SMS BODY -->
-        <div class="form-group"
-              data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                   'has-error': templatesUserForm.smsBody.$touched && templatesUserForm.smsBody.$invalid
-              }">
-            <label for="smsBody"
-                   class="control-label"
-                   data-translate="sms_users_templates_sms_body_label">
+              }"
+        >
+            <label
+                for="smsBody"
+                class="control-label"
+                data-translate="sms_users_templates_sms_body_label"
+            >
             </label>
             <textarea
                 name="smsBody"
@@ -172,40 +215,57 @@
                 data-ng-required="UsersTemplatesCtrl.model.service.templates.customizedSmsMode"
                 data-ng-disabled="!UsersTemplatesCtrl.model.service.templates.customizedSmsMode"
                 data-ng-maxlength="UsersTemplatesCtrl.smsBodyMaxLength"
-                data-translate-attr="{ placeholder: 'sms_users_templates_sms_body_placeholder' }">
+                data-translate-attr="{ placeholder: 'sms_users_templates_sms_body_placeholder' }"
+            >
             </textarea>
             <div class="text-right">
                 <small class="service-item">
-                    <span data-translate="sms_users_templates_sms_body_characters_left"></span>
-                    <b data-ng-bind="UsersTemplatesCtrl.smsBodyMaxLength - UsersTemplatesCtrl.model.service.templates.smsBody.length"></b>&nbsp;/&nbsp;<span data-ng-bind="UsersTemplatesCtrl.smsBodyMaxLength"></span>
+                    <span
+                        data-translate="sms_users_templates_sms_body_characters_left"
+                    ></span>
+                    <b
+                        data-ng-bind="UsersTemplatesCtrl.smsBodyMaxLength - UsersTemplatesCtrl.model.service.templates.smsBody.length"
+                    ></b
+                    >&nbsp;/&nbsp;<span
+                        data-ng-bind="UsersTemplatesCtrl.smsBodyMaxLength"
+                    ></span>
                 </small>
             </div>
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="templatesUserForm.smsBody.$touched"
-                  data-ng-messages="templatesUserForm.smsBody.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_templates_sms_body_error_required">
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="templatesUserForm.smsBody.$touched"
+                data-ng-messages="templatesUserForm.smsBody.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_templates_sms_body_error_required"
+                >
                 </span>
-                <span data-ng-message="maxlength"
-                      data-translate="sms_users_templates_sms_body_error_maxlength"
-                      data-translate-values="{
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_users_templates_sms_body_error_maxlength"
+                    data-translate-values="{
                           maxlenght: UsersTemplatesCtrl.smsBodyMaxLength
-                      }">
+                      }"
+                >
                 </span>
             </span>
         </div>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="UsersTemplatesCtrl.loading.updateTemplates && !UsersTemplatesCtrl.updated">
+    <div
+        class="modal-body text-center"
+        data-ng-if="UsersTemplatesCtrl.loading.updateTemplates && !UsersTemplatesCtrl.updated"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_users_templates_adding"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="UsersTemplatesCtrl.updated">
-        <tuc-success-drawing-check data-draw-success-check="UsersTemplatesCtrl.updated">
+    <div class="modal-body" data-ng-if="UsersTemplatesCtrl.updated">
+        <tuc-success-drawing-check
+            data-draw-success-check="UsersTemplatesCtrl.updated"
+        >
             <h4 data-translate="sms_users_templates_added"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -217,8 +277,8 @@
             data-ng-click="UsersTemplatesCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="UsersTemplatesCtrl.loading.updateTemplates ||
-                              UsersTemplatesCtrl.updated">
-        </button>
+                              UsersTemplatesCtrl.updated"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -226,7 +286,7 @@
                               !UsersTemplatesCtrl.hasChanged() ||
                               UsersTemplatesCtrl.loading.updateTemplates ||
                               UsersTemplatesCtrl.updated"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

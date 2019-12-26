@@ -1,20 +1,26 @@
-<div class="popover-menu" data-ng-controller="ExchangeToolboxSharedCtrl as ctrl">
-    <button class="btn btn-link"
-            type="button"
-            data-translate="exchange_tab_SHARED_popover_settings"
-            data-ng-click="ctrl.updateShared(folder)"
-            data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(folder)">
-    </button>
-    <button class="btn btn-link"
-            type="button"
-            data-translate="exchange_tab_SHARED_popover_permissions"
-            data-ng-click="ctrl.sharedPermissions(folder)"
-            data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(folder)">
-    </button>
-    <button class="btn btn-link"
-            type="button"
-            data-translate="exchange_tab_SHARED_popover_delete"
-            data-ng-click="ctrl.removeShared(folder)"
-            data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(folder) || folder.hasChildren">
-    </button>
+<div
+    class="popover-menu"
+    data-ng-controller="ExchangeToolboxSharedCtrl as ctrl"
+>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="exchange_tab_SHARED_popover_settings"
+        data-ng-click="ctrl.updateShared(folder)"
+        data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(folder)"
+    ></button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="exchange_tab_SHARED_popover_permissions"
+        data-ng-click="ctrl.sharedPermissions(folder)"
+        data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(folder)"
+    ></button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="exchange_tab_SHARED_popover_delete"
+        data-ng-click="ctrl.removeShared(folder)"
+        data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(folder) || folder.hasChildren"
+    ></button>
 </div>

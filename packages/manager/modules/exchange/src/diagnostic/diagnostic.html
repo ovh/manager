@@ -1,4 +1,7 @@
-<div class="container-fluid px-0" data-ng-controller="ExchangeTabDiagnosticsCtrl as ctrl">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="ExchangeTabDiagnosticsCtrl as ctrl"
+>
     <div class="text-center" data-ng-if="ctrl.loaders.accounts">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -8,98 +11,172 @@
             <p data-translate="exchange_DIAGNOSTICS_description"></p>
 
             <!-- REQUESTING_NEW_DIAGNOSTIC -->
-            <form class="form-horizontal mt-5" name="ctrl.diagnosticForm"
-                  data-ng-if="ctrl.state === ctrl.states.REQUESTING_NEW_DIAGNOSTIC"
-                  data-ng-submit="ctrl.launchDiagnostic()">
+            <form
+                class="form-horizontal mt-5"
+                name="ctrl.diagnosticForm"
+                data-ng-if="ctrl.state === ctrl.states.REQUESTING_NEW_DIAGNOSTIC"
+                data-ng-submit="ctrl.launchDiagnostic()"
+            >
                 <div class="form-group">
-                    <label class="control-label col-md-4 required" for="exchange_DIAGNOSTICS_input_email"
-                           data-translate="exchange_DIAGNOSTICS_input_email"></label>
+                    <label
+                        class="control-label col-md-4 required"
+                        for="exchange_DIAGNOSTICS_input_email"
+                        data-translate="exchange_DIAGNOSTICS_input_email"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="email" class="form-control" data-ng-attr-id="{{ :: 'exchange_DIAGNOSTICS_input_email' }}" name="exchangeDiagnosticEmail" required
-                               data-ng-disabled="ctrl.loaders.diagnosticInProgress"
-                               data-ng-if="!ctrl.accountIds.length || ctrl.accountIds.length > 100"
-                               data-ng-model="ctrl.email">
-                        <div class="oui-select"
-                             data-ng-if="ctrl.accountIds.length > 0 && ctrl.accountIds.length <= 100">
-                            <select class="oui-select__input" data-ng-attr-id="{{ :: 'exchange_DIAGNOSTICS_input_email' }}" name="exchangeDiagnosticEmail"
-                                    data-ng-disabled="ctrl.loaders.diagnosticInProgress"
-                                    data-ng-model="ctrl.email"
-                                    data-ng-options="account for account in ctrl.accountIds track by account">
-                                <option value="" disabled
-                                        data-translate="select_placeholder"></option>
+                        <input
+                            type="email"
+                            class="form-control"
+                            data-ng-attr-id="{{ :: 'exchange_DIAGNOSTICS_input_email' }}"
+                            name="exchangeDiagnosticEmail"
+                            required
+                            data-ng-disabled="ctrl.loaders.diagnosticInProgress"
+                            data-ng-if="!ctrl.accountIds.length || ctrl.accountIds.length > 100"
+                            data-ng-model="ctrl.email"
+                        />
+                        <div
+                            class="oui-select"
+                            data-ng-if="ctrl.accountIds.length > 0 && ctrl.accountIds.length <= 100"
+                        >
+                            <select
+                                class="oui-select__input"
+                                data-ng-attr-id="{{ :: 'exchange_DIAGNOSTICS_input_email' }}"
+                                name="exchangeDiagnosticEmail"
+                                data-ng-disabled="ctrl.loaders.diagnosticInProgress"
+                                data-ng-model="ctrl.email"
+                                data-ng-options="account for account in ctrl.accountIds track by account"
+                            >
+                                <option
+                                    value=""
+                                    disabled
+                                    data-translate="select_placeholder"
+                                ></option>
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4 required" for="exchange_DIAGNOSTICS_input_password"
-                           data-translate="exchange_DIAGNOSTICS_input_password"></label>
+                    <label
+                        class="control-label col-md-4 required"
+                        for="exchange_DIAGNOSTICS_input_password"
+                        data-translate="exchange_DIAGNOSTICS_input_password"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" class="form-control" id="exchange_DIAGNOSTICS_input_password" name="exchangeDiagnosticPassword" required
-                               data-ng-disabled="ctrl.loaders.diagnosticInProgress"
-                               data-ng-model="ctrl.password">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="exchange_DIAGNOSTICS_input_password"
+                            name="exchangeDiagnosticPassword"
+                            required
+                            data-ng-disabled="ctrl.loaders.diagnosticInProgress"
+                            data-ng-model="ctrl.password"
+                        />
                     </div>
                 </div>
 
                 <div class="row mt-5">
                     <div class="col-md-8 col-md-offset-4">
-                        <button class="oui-button oui-button_primary oui-button_large-height" type="submit"
-                                data-ng-disabled="ctrl.diagnosticForm.$invalid || ctrl.loaders.diagnosticInProgress">
-                            <span data-translate="exchange_DIAGNOSTICS_button_launch_diagnostic"
-                                  data-ng-if="!ctrl.loaders.diagnosticInProgress"></span>
-                            <span data-ng-if="ctrl.loaders.diagnosticInProgress">
+                        <button
+                            class="oui-button oui-button_primary oui-button_large-height"
+                            type="submit"
+                            data-ng-disabled="ctrl.diagnosticForm.$invalid || ctrl.loaders.diagnosticInProgress"
+                        >
+                            <span
+                                data-translate="exchange_DIAGNOSTICS_button_launch_diagnostic"
+                                data-ng-if="!ctrl.loaders.diagnosticInProgress"
+                            ></span>
+                            <span
+                                data-ng-if="ctrl.loaders.diagnosticInProgress"
+                            >
                                 <oui-spinner data-size="s"></oui-spinner>
-                                <span data-translate="exchange_DIAGNOSTICS_button_diagnostic_in_progress"></span>
+                                <span
+                                    data-translate="exchange_DIAGNOSTICS_button_diagnostic_in_progress"
+                                ></span>
                             </span>
                         </button>
                     </div>
                 </div>
 
-                <div class="alert alert-warning mt-5" role="alert"
-                     data-translate="exchange_DIAGNOSTICS_stay_on_page_while_diagnostic_is_running"
-                     data-ng-if="ctrl.loaders.diagnosticInProgress">
-                </div>
+                <div
+                    class="alert alert-warning mt-5"
+                    role="alert"
+                    data-translate="exchange_DIAGNOSTICS_stay_on_page_while_diagnostic_is_running"
+                    data-ng-if="ctrl.loaders.diagnosticInProgress"
+                ></div>
             </form>
 
             <!-- DISPLAYING_DIAGNOSTIC_RESULT -->
-            <div data-ng-if="ctrl.state === ctrl.states.DISPLAYING_DIAGNOSTIC_RESULT">
-                <button class="oui-button oui-button_primary oui-button_icon-left oui-button_large-height mt-4" type="button"
-                        data-ng-click="ctrl.requestNewDiagnostic()">
-                    <span class="oui-icon oui-icon-add oui-icon_circle" aria-hidden="true"></span>
-                    <span data-translate="exchange_DIAGNOSTICS_button_new_diagnostic"></span>
+            <div
+                data-ng-if="ctrl.state === ctrl.states.DISPLAYING_DIAGNOSTIC_RESULT"
+            >
+                <button
+                    class="oui-button oui-button_primary oui-button_icon-left oui-button_large-height mt-4"
+                    type="button"
+                    data-ng-click="ctrl.requestNewDiagnostic()"
+                >
+                    <span
+                        class="oui-icon oui-icon-add oui-icon_circle"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-translate="exchange_DIAGNOSTICS_button_new_diagnostic"
+                    ></span>
                 </button>
 
                 <p>
-                    <span data-translate="exchange_DIAGNOSTICS_label_analyzed_email"></span>
+                    <span
+                        data-translate="exchange_DIAGNOSTICS_label_analyzed_email"
+                    ></span>
                     <strong data-ng-bind="ctrl.email"></strong>
                 </p>
 
                 <p data-ng-if="ctrl.diagnosticGuideUrl && !ctrl.isAllOK()">
                     <span data-translate="exchange_diagnostic_guide"></span>
-                    <a target="_blank" title="{{'exchange_diagnostic_guides_url' | translate}} ({{'exchange_dashboard_new_window' | translate}})"
-                       data-ng-href="{{ctrl.diagnosticGuideUrl}}">
-                        <span data-translate="exchange_diagnostic_guides_url"></span>
-                        <span class="fa fa-external-link" aria-hidden="true"></span>
+                    <a
+                        target="_blank"
+                        title="{{'exchange_diagnostic_guides_url' | translate}} ({{'exchange_dashboard_new_window' | translate}})"
+                        data-ng-href="{{ctrl.diagnosticGuideUrl}}"
+                    >
+                        <span
+                            data-translate="exchange_diagnostic_guides_url"
+                        ></span>
+                        <span
+                            class="fa fa-external-link"
+                            aria-hidden="true"
+                        ></span>
                     </a>
                 </p>
 
                 <ul class="my-5 list-unstyled">
-                    <li class="exchange-diagnostic-result-item"
+                    <li
+                        class="exchange-diagnostic-result-item"
                         data-ng-repeat="(key, value) in ctrl.diagnostic track by key"
                         data-ng-class="{'exchange-diagnostic-result-item-error': !ctrl.isOK(key)}"
-                        data-ng-if="ctrl.diagnosticStatuses[key] != null">
-                        <div class="d-flex"
-                             data-ng-class="{'align-items-center': ctrl.isOK(key), 'align-items-start': !ctrl.isOK(key)}">
-                            <span class="fa fa-3x" aria-hidden="true"
-                                  data-ng-class="{'fa-check-circle-o text-success': ctrl.isOK(key), 'fa-exclamation-triangle text-warning': !ctrl.isOK(key) }"></span>
+                        data-ng-if="ctrl.diagnosticStatuses[key] != null"
+                    >
+                        <div
+                            class="d-flex"
+                            data-ng-class="{'align-items-center': ctrl.isOK(key), 'align-items-start': !ctrl.isOK(key)}"
+                        >
+                            <span
+                                class="fa fa-3x"
+                                aria-hidden="true"
+                                data-ng-class="{'fa-check-circle-o text-success': ctrl.isOK(key), 'fa-exclamation-triangle text-warning': !ctrl.isOK(key) }"
+                            ></span>
                             <div class="pl-5">
-                                <strong data-ng-bind="ctrl.statusMessage(key)"></strong>
-                                <div class="mt-2"
-                                     data-ng-include="ctrl.detailedMessageTemplateUrl(key)"
-                                     data-ng-show="!ctrl.isOK(key)">
-                                </div>
+                                <strong
+                                    data-ng-bind="ctrl.statusMessage(key)"
+                                ></strong>
+                                <div
+                                    class="mt-2"
+                                    data-ng-include="ctrl.detailedMessageTemplateUrl(key)"
+                                    data-ng-show="!ctrl.isOK(key)"
+                                ></div>
                             </div>
                         </div>
                     </li>
@@ -109,9 +186,15 @@
                     class="oui-button oui-button_primary oui-link_icon"
                     target="_blank"
                     data-ng-href="{{:: ctrl.newTicketUrl }}"
-                    rel="noopener">
-                    <span data-translate="exchange_DIAGNOSTICS_create_ticket"></span>
-                    <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                    rel="noopener"
+                >
+                    <span
+                        data-translate="exchange_DIAGNOSTICS_create_ticket"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-external_link"
+                        aria-hidden="true"
+                    ></span>
                     <span class="sr-only" data-translate="common_newtab"></span>
                 </a>
             </div>

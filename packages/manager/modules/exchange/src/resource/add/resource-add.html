@@ -1,78 +1,140 @@
 <div data-ng-controller="ExchangeAddResourceController as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-confirm-button-text="'exchange_tab_RESOURCES_add_resource_confirm' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addResource"
-         data-wizard-title="'exchange_tab_RESOURCES_add_resource' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="loadResourceData"
-             data-wizard-step-valid="isValid()">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text="'exchange_tab_RESOURCES_add_resource_confirm' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addResource"
+        data-wizard-title="'exchange_tab_RESOURCES_add_resource' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadResourceData"
+            data-wizard-step-valid="isValid()"
+        >
             <oui-spinner data-ng-if="!ctrl.availableTypes"></oui-spinner>
 
-            <form name="ctrl.addResourceForm"
-                  data-ng-if="ctrl.availableTypes">
-                <div class="form-group"
-                     data-ng-class="{'has-error': ctrl.addResourceForm.resourceEmail.$dirty && (ctrl.takenEmailError || ctrl.addResourceForm.resourceEmail.$invalid)}">
-                    <label class="control-label required" for="resourceEmail"
-                           data-translate="exchange_tab_RESOURCES_add_resource_email"></label>
+            <form name="ctrl.addResourceForm" data-ng-if="ctrl.availableTypes">
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.addResourceForm.resourceEmail.$dirty && (ctrl.takenEmailError || ctrl.addResourceForm.resourceEmail.$invalid)}"
+                >
+                    <label
+                        class="control-label required"
+                        for="resourceEmail"
+                        data-translate="exchange_tab_RESOURCES_add_resource_email"
+                    ></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="resourceEmail" maxlength="256" name="resourceEmail" required
-                               data-ng-change="ctrl.checkTakenEmails()"
-                               data-ng-model="ctrl.model.resourceEmailAddress"
-                               data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="resourceEmail"
+                            maxlength="256"
+                            name="resourceEmail"
+                            required
+                            data-ng-change="ctrl.checkTakenEmails()"
+                            data-ng-model="ctrl.model.resourceEmailAddress"
+                            data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/"
+                        />
                         <span class="input-group-addon">@</span>
-                        <select class="form-control" required
-                                data-ng-change="ctrl.checkTakenEmails()"
-                                data-ng-disabled="ctrl.availableDomains == null || ctrl.availableDomains.length === 0"
-                                data-ng-model="ctrl.model.resourceEmailDomain"
-                                data-ng-options="domain.displayName for domain in ctrl.availableDomains | orderBy:'formattedName'">
+                        <select
+                            class="form-control"
+                            required
+                            data-ng-change="ctrl.checkTakenEmails()"
+                            data-ng-disabled="ctrl.availableDomains == null || ctrl.availableDomains.length === 0"
+                            data-ng-model="ctrl.model.resourceEmailDomain"
+                            data-ng-options="domain.displayName for domain in ctrl.availableDomains | orderBy:'formattedName'"
+                        >
                         </select>
                     </div>
-                    <small class="help-block"
-                           data-translate="exchange_tab_RESOURCES_add_resource_taken_email_warning"
-                           data-ng-if="ctrl.takenEmailError"></small>
+                    <small
+                        class="help-block"
+                        data-translate="exchange_tab_RESOURCES_add_resource_taken_email_warning"
+                        data-ng-if="ctrl.takenEmailError"
+                    ></small>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': ctrl.addResourceForm.displayName.$dirty && (ctrl.takenEmailError || ctrl.addResourceForm.displayName.$invalid)}">
-                    <label class="control-label required" for="displayName"
-                           data-translate="exchange_tab_RESOURCES_add_resource_name"></label>
-                    <input type="text" class="form-control" id="displayName" maxlength="256" name="displayName" required
-                           data-ng-model="ctrl.model.displayName">
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.addResourceForm.displayName.$dirty && (ctrl.takenEmailError || ctrl.addResourceForm.displayName.$invalid)}"
+                >
+                    <label
+                        class="control-label required"
+                        for="displayName"
+                        data-translate="exchange_tab_RESOURCES_add_resource_name"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="displayName"
+                        maxlength="256"
+                        name="displayName"
+                        required
+                        data-ng-model="ctrl.model.displayName"
+                    />
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': ctrl.addResourceForm.resourceCapacity.$dirty && ctrl.addResourceForm.resourceCapacity.$invalid}">
-                    <label class="control-label required" for="resourceCapacity"
-                           data-translate="exchange_tab_RESOURCES_add_resource_capacity"></label>
-                    <input type="number" class="form-control" id="resourceCapacity" name="resourceCapacity" required
-                           data-ng-min="0" min="0"
-                           data-ng-max="1024" max="1024"
-                           data-ng-model="ctrl.model.capacity"
-                           data-oui-tooltip="{{'exchange_tab_RESOURCES_add_resource_capacity_tooltip' | translate}}">
-                    <small class="help-block"
-                           data-translate="exchange_tab_RESOURCES_add_resource_capacity_warning"
-                           data-ng-if="ctrl.addResourceForm.resourceCapacity.$dirty && ctrl.addResourceForm.resourceCapacity.$invalid"></small>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.addResourceForm.resourceCapacity.$dirty && ctrl.addResourceForm.resourceCapacity.$invalid}"
+                >
+                    <label
+                        class="control-label required"
+                        for="resourceCapacity"
+                        data-translate="exchange_tab_RESOURCES_add_resource_capacity"
+                    ></label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="resourceCapacity"
+                        name="resourceCapacity"
+                        required
+                        data-ng-min="0"
+                        min="0"
+                        data-ng-max="1024"
+                        max="1024"
+                        data-ng-model="ctrl.model.capacity"
+                        data-oui-tooltip="{{'exchange_tab_RESOURCES_add_resource_capacity_tooltip' | translate}}"
+                    />
+                    <small
+                        class="help-block"
+                        data-translate="exchange_tab_RESOURCES_add_resource_capacity_warning"
+                        data-ng-if="ctrl.addResourceForm.resourceCapacity.$dirty && ctrl.addResourceForm.resourceCapacity.$invalid"
+                    ></small>
                 </div>
 
-                <oui-checkbox id="allowConflict"
+                <oui-checkbox
+                    id="allowConflict"
                     data-model="ctrl.model.allowConflict"
-                    data-text="{{::'exchange_tab_RESOURCES_add_resource_allow_conflict' | translate}}">
+                    data-text="{{::'exchange_tab_RESOURCES_add_resource_allow_conflict' | translate}}"
+                >
                 </oui-checkbox>
 
                 <div class="form-group">
-                    <label class="control-label"
-                           data-translate="exchange_tab_RESOURCES_add_resource_type"></label>
-                    <div class="oui-radio" data-ng-repeat="type in ctrl.availableTypes track by $index">
-                        <input type="radio" class="oui-radio__input" id="resourceType-{{$index}}" name="resourceType"
-                               data-ng-model="ctrl.model.resourceType"
-                               data-ng-value="type">
-                        <label class="oui-radio__label-container" for="resourceType-{{$index}}">
-                            <span class="oui-radio__label"
-                                  data-ng-bind="('exchange_tab_RESOURCES_add_resource_type_' + type) | translate"></span>
+                    <label
+                        class="control-label"
+                        data-translate="exchange_tab_RESOURCES_add_resource_type"
+                    ></label>
+                    <div
+                        class="oui-radio"
+                        data-ng-repeat="type in ctrl.availableTypes track by $index"
+                    >
+                        <input
+                            type="radio"
+                            class="oui-radio__input"
+                            id="resourceType-{{$index}}"
+                            name="resourceType"
+                            data-ng-model="ctrl.model.resourceType"
+                            data-ng-value="type"
+                        />
+                        <label
+                            class="oui-radio__label-container"
+                            for="resourceType-{{$index}}"
+                        >
+                            <span
+                                class="oui-radio__label"
+                                data-ng-bind="('exchange_tab_RESOURCES_add_resource_type_' + type) | translate"
+                            ></span>
                         </label>
                     </div>
                 </div>
@@ -80,36 +142,62 @@
 
             <div data-wizard-step-help>
                 <h3 data-translate="exchange_tab_RESOURCES_add_resource"></h3>
-                <p data-ng-bind-html="'exchange_tab_RESOURCES_wizard_intro' | translate"></p>
-                <p data-ng-bind-html="'exchange_tab_RESOURCES_wizard_type' | translate"></p>
-                <p data-ng-bind-html="'exchange_tab_RESOURCES_wizard_example' | translate"></p>
+                <p
+                    data-ng-bind-html="'exchange_tab_RESOURCES_wizard_intro' | translate"
+                ></p>
+                <p
+                    data-ng-bind-html="'exchange_tab_RESOURCES_wizard_type' | translate"
+                ></p>
+                <p
+                    data-ng-bind-html="'exchange_tab_RESOURCES_wizard_example' | translate"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="exchange_tab_RESOURCES_add_resource_step2_title"></p>
+            <p
+                data-translate="exchange_tab_RESOURCES_add_resource_step2_title"
+            ></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="exchange_tab_RESOURCES_add_resource_email"></dt>
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_email"
+                ></dt>
                 <dd data-ng-bind="ctrl.buildEmailAddress()"></dd>
 
-                <dt data-translate="exchange_tab_RESOURCES_add_resource_name"
-                    data-ng-if="ctrl.model.displayName"></dt>
-                <dd class="word-break"
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_name"
+                    data-ng-if="ctrl.model.displayName"
+                ></dt>
+                <dd
+                    class="word-break"
                     data-ng-bind-html="ctrl.model.displayName | wucSliceContent: 150"
-                    data-ng-if="ctrl.model.displayName"></dd>
+                    data-ng-if="ctrl.model.displayName"
+                ></dd>
 
-                <dt data-translate="exchange_tab_RESOURCES_add_resource_capacity"></dt>
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_capacity"
+                ></dt>
                 <dd data-ng-bind="ctrl.model.capacity"></dd>
 
-                <dt data-translate="exchange_tab_RESOURCES_add_resource_allow_conflict"></dt>
-                <dd data-translate="exchange_tab_RESOURCES_allow_conflicts_true"
-                    data-ng-if="ctrl.model.allowConflict"></dd>
-                <dd data-translate="exchange_tab_RESOURCES_allow_conflicts_false"
-                    data-ng-if="!ctrl.model.allowConflict"></dd>
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_allow_conflict"
+                ></dt>
+                <dd
+                    data-translate="exchange_tab_RESOURCES_allow_conflicts_true"
+                    data-ng-if="ctrl.model.allowConflict"
+                ></dd>
+                <dd
+                    data-translate="exchange_tab_RESOURCES_allow_conflicts_false"
+                    data-ng-if="!ctrl.model.allowConflict"
+                ></dd>
 
-                <dt data-translate="exchange_tab_RESOURCES_add_resource_type"></dt>
-                <dd data-ng-bind="('exchange_tab_RESOURCES_add_resource_type_' + ctrl.model.resourceType) | translate"></dd>
+                <dt
+                    data-translate="exchange_tab_RESOURCES_add_resource_type"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_tab_RESOURCES_add_resource_type_' + ctrl.model.resourceType) | translate"
+                ></dd>
             </dl>
         </div>
     </div>

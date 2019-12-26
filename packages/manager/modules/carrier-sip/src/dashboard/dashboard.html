@@ -1,22 +1,26 @@
 <oui-page-header
-  class="mb-3"
-  data-heading="{{:: $ctrl.carrierSip.description || $ctrl.carrierSip.serviceName }}"
-  data-description="{{:: $ctrl.carrierSip.description ? $ctrl.carrierSip.serviceName : null }}">
+    class="mb-3"
+    data-heading="{{:: $ctrl.carrierSip.description || $ctrl.carrierSip.serviceName }}"
+    data-description="{{:: $ctrl.carrierSip.description ? $ctrl.carrierSip.serviceName : null }}"
+>
     <oui-header-tabs>
         <oui-header-tabs-item
             data-text="{{:: 'carrier_sip_dashboard_header_dashboard' | translate }}"
             data-href="{{:: $ctrl.dashboardLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink">
+            data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+        >
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-text="{{:: 'carrier_sip_dashboard_header_endpoints' | translate }}"
             data-href="{{:: $ctrl.endpointsLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.endpointsLink">
+            data-active="$ctrl.currentActiveLink() === $ctrl.endpointsLink"
+        >
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-text="{{:: 'carrier_sip_dashboard_header_cdr' | translate }}"
             data-href="{{:: $ctrl.cdrsLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.cdrsLink">
+            data-active="$ctrl.currentActiveLink() === $ctrl.cdrsLink"
+        >
         </oui-header-tabs-item>
     </oui-header-tabs>
 </oui-page-header>
@@ -25,51 +29,82 @@
         <div class="row">
             <div class="col-md-4">
                 <oui-tile
-                    data-heading="{{:: 'carrier_sip_dashboard_general_information' | translate }}">
+                    data-heading="{{:: 'carrier_sip_dashboard_general_information' | translate }}"
+                >
                     <oui-tile-definition
                         data-term="{{:: 'carrier_sip_dashboard_general_information_name' | translate }}"
-                        data-description="{{:: $ctrl.carrierSip.serviceName }}">
+                        data-description="{{:: $ctrl.carrierSip.serviceName }}"
+                    >
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{:: 'carrier_sip_dashboard_general_information_description' | translate }}"
-                        data-description="{{:: $ctrl.carrierSip.description }}">
+                        data-description="{{:: $ctrl.carrierSip.description }}"
+                    >
                     </oui-tile-definition>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">
-                            <dt class="oui-tile__term" data-translate="carrier_sip_dashboard_general_information_max_calls_second"></dt>
-                            <dd class="oui-tile__description" data-ng-bind="$ctrl.settings.maxCallsPerSecond"></dd>
-                            <dt class="oui-tile__term" data-translate="carrier_sip_dashboard_general_information_max_concurrent_calls"></dt>
-                            <dd class="oui-tile__description" data-ng-bind="$ctrl.settings.maxConcurrentCalls"></dd>
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="carrier_sip_dashboard_general_information_max_calls_second"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.settings.maxCallsPerSecond"
+                            ></dd>
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="carrier_sip_dashboard_general_information_max_concurrent_calls"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.settings.maxConcurrentCalls"
+                            ></dd>
                         </dl>
                     </div>
                 </oui-tile>
             </div>
             <div class="col-md-4">
                 <oui-tile
-                    data-heading="{{:: 'carrier_sip_dashboard_renewal' | translate }}">
+                    data-heading="{{:: 'carrier_sip_dashboard_renewal' | translate }}"
+                >
                     <oui-tile-definition
                         data-term="{{:: 'carrier_sip_dashboard_renewal_date' | translate }}"
-                        data-description="{{:: $ctrl.serviceInfos.expiration }}">
+                        data-description="{{:: $ctrl.serviceInfos.expiration }}"
+                    >
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{:: 'carrier_sip_dashboard_renewal_creation_date' | translate }}"
-                        data-description="{{:: $ctrl.serviceInfos.creation }}">
+                        data-description="{{:: $ctrl.serviceInfos.creation }}"
+                    >
                     </oui-tile-definition>
                     <oui-tile-definition
-                        data-term="{{:: 'carrier_sip_dashboard_renewal_contacts' | translate }}">
+                        data-term="{{:: 'carrier_sip_dashboard_renewal_contacts' | translate }}"
+                    >
                         <oui-tile-description>
                             <ul class="list-unstyled">
                                 <li>
-                                    <span data-ng-bind="$ctrl.serviceInfos.contactAdmin"></span>
-                                    <span data-translate="carrier_sip_dashboard_renewal_contacts_admin"></span>
+                                    <span
+                                        data-ng-bind="$ctrl.serviceInfos.contactAdmin"
+                                    ></span>
+                                    <span
+                                        data-translate="carrier_sip_dashboard_renewal_contacts_admin"
+                                    ></span>
                                 </li>
                                 <li>
-                                    <span data-ng-bind="$ctrl.serviceInfos.contactTech"></span>
-                                    <span data-translate="carrier_sip_dashboard_renewal_contacts_tech"></span>
+                                    <span
+                                        data-ng-bind="$ctrl.serviceInfos.contactTech"
+                                    ></span>
+                                    <span
+                                        data-translate="carrier_sip_dashboard_renewal_contacts_tech"
+                                    ></span>
                                 </li>
                                 <li>
-                                    <span data-ng-bind="$ctrl.serviceInfos.contactBilling"></span>
-                                    <span data-translate="carrier_sip_dashboard_renewal_contacts_billing"></span>
+                                    <span
+                                        data-ng-bind="$ctrl.serviceInfos.contactBilling"
+                                    ></span>
+                                    <span
+                                        data-translate="carrier_sip_dashboard_renewal_contacts_billing"
+                                    ></span>
                                 </li>
                             </ul>
                         </oui-tile-description>
@@ -78,12 +113,17 @@
             </div>
             <div class="col-md-4">
                 <oui-tile
-                    data-heading="{{:: 'carrier_sip_dashboard_shortcuts' | translate }}">
+                    data-heading="{{:: 'carrier_sip_dashboard_shortcuts' | translate }}"
+                >
                     <oui-tile-button data-href="{{:: $ctrl.billingLink }}">
-                        <span data-translate="carrier_sip_dashboard_shortcuts_bills"></span>
+                        <span
+                            data-translate="carrier_sip_dashboard_shortcuts_bills"
+                        ></span>
                     </oui-tile-button>
                     <oui-tile-button data-href="{{:: $ctrl.cdrsLink }}">
-                        <span data-translate="carrier_sip_dashboard_shortcuts_cdrs"></span>
+                        <span
+                            data-translate="carrier_sip_dashboard_shortcuts_cdrs"
+                        ></span>
                     </oui-tile-button>
                 </oui-tile>
             </div>

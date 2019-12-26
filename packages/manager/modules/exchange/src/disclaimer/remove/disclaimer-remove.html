@@ -1,20 +1,29 @@
 <div data-ng-controller="ExchangeRemoveDisclaimerCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'exchange_ACTION_delete_disclaimer_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'exchange_ACTION_delete_disclaimer_title' | translate"
+    >
         <div data-wizard-step>
             <p data-translate="exchange_ACTION_delete_disclaimer_question"></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="exchange_ACTION_disclaimer_associated_domains"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.disclaimer.domain.displayName | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_ACTION_disclaimer_associated_domains"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.disclaimer.domain.displayName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-translate="exchange_ACTION_add_disclaimer_content"></dt>
-                <dd class="word-break"
-                    data-ng-bind-html="ctrl.disclaimer.content | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_ACTION_add_disclaimer_content"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind-html="ctrl.disclaimer.content | wucSliceContent: 150"
+                ></dd>
             </dl>
         </div>
     </div>

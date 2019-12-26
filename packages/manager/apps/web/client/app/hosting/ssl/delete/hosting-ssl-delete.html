@@ -1,12 +1,19 @@
 <div data-ng-controller="hostingDeleteSslCtrl as $ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deletingCertificate"
-         data-wizard-title="'hosting_dashboard_service_delete_ssl_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deletingCertificate"
+        data-wizard-title="'hosting_dashboard_service_delete_ssl_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="hosting_dashboard_service_delete_ssl_warning" data-ng-if="$ctrl.wasCertificateFree"></p>
-            <p data-translate="hosting_dashboard_service_delete_ssl_warning_payable" data-ng-if="!$ctrl.wasCertificateFree"></p>
+            <p
+                data-translate="hosting_dashboard_service_delete_ssl_warning"
+                data-ng-if="$ctrl.wasCertificateFree"
+            ></p>
+            <p
+                data-translate="hosting_dashboard_service_delete_ssl_warning_payable"
+                data-ng-if="!$ctrl.wasCertificateFree"
+            ></p>
         </div>
     </div>
 </div>

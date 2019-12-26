@@ -1,122 +1,170 @@
 <div data-ng-controller="CdnDomainTabCacheRuleCtrl">
-
-    <h2 class="oui-header_3"
-        data-translate="cdn_domain_tab_rule"></h2>
+    <h2 class="oui-header_3" data-translate="cdn_domain_tab_rule"></h2>
 
     <div data-ovh-alert="cdn_domain_tab_rules_alert"></div>
-    <div class="text-center"
-         data-ng-show="loading">
+    <div class="text-center" data-ng-show="loading">
         <oui-spinner></oui-spinner>
     </div>
-    <div class="row"
-         data-ng-show="cacheRules">
+    <div class="row" data-ng-show="cacheRules">
         <div class="col-sm-9">
-            <div class="alert alert-info"
-                 role="alert"
-                 data-ng-if="cacheRules.count === 0 && !cacheRulesEntrySearchSelected"
-                 data-translate="cdn_cacherule_table_empty">
-            </div>
-            <div data-ng-show="cacheRules.count > 0 || cacheRulesEntrySearchSelected">
-                <form class="form-inline d-md-flex justify-content-md-end mb-3"
-                      name="cacheRulesEntrySearchForm">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="cacheRules.count === 0 && !cacheRulesEntrySearchSelected"
+                data-translate="cdn_cacherule_table_empty"
+            ></div>
+            <div
+                data-ng-show="cacheRules.count > 0 || cacheRulesEntrySearchSelected"
+            >
+                <form
+                    class="form-inline d-md-flex justify-content-md-end mb-3"
+                    name="cacheRulesEntrySearchForm"
+                >
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text"
-                                   class="form-control"
-                                   id="cacheRulesEntry"
-                                   name="cacheRulesEntry"
-                                   placeholder="{{ 'cdn_cacherule_search_placeholder' | translate }}"
-                                   data-ng-disabled="searchLoading"
-                                   data-ng-model="cacheRulesEntrySearchSelected"
-                                   data-ng-model-options="{ debounce: 800 }">
-                            <div class="input-group-btn"
-                                 data-ng-show="cacheRulesEntrySearchSelected">
-                                <button class="btn btn-default"
-                                        type="button"
-                                        aria-label="{{ 'common_cancel' | translate }}"
-                                        data-ng-click="cacheRulesEntrySearchSelected = ''"
-                                        data-ng-disabled="searchLoading">
-                                    <span class="fa fa-times" aria-hidden="true"></span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="cacheRulesEntry"
+                                name="cacheRulesEntry"
+                                placeholder="{{ 'cdn_cacherule_search_placeholder' | translate }}"
+                                data-ng-disabled="searchLoading"
+                                data-ng-model="cacheRulesEntrySearchSelected"
+                                data-ng-model-options="{ debounce: 800 }"
+                            />
+                            <div
+                                class="input-group-btn"
+                                data-ng-show="cacheRulesEntrySearchSelected"
+                            >
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="cacheRulesEntrySearchSelected = ''"
+                                    data-ng-disabled="searchLoading"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </div>
-                            <span class="input-group-addon"
-                                  data-ng-show="!cacheRulesEntrySearchSelected">
-                                <span class="fa fa-search" aria-hidden="true"></span>
+                            <span
+                                class="input-group-addon"
+                                data-ng-show="!cacheRulesEntrySearchSelected"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
                             </span>
                         </div>
                     </div>
                 </form>
-                <oui-datagrid data-ng-init="loadCacheRules()"
-                              data-rows="cacheRules.list.results">
-                    <oui-column data-title="'cdn_cacherule_table_header_filetype' | translate">
-                        <span data-translate="{{ 'cdn_cacherule_'+ $row.fileType }}"></span>
+                <oui-datagrid
+                    data-ng-init="loadCacheRules()"
+                    data-rows="cacheRules.list.results"
+                >
+                    <oui-column
+                        data-title="'cdn_cacherule_table_header_filetype' | translate"
+                    >
+                        <span
+                            data-translate="{{ 'cdn_cacherule_'+ $row.fileType }}"
+                        ></span>
                     </oui-column>
-                    <oui-column data-title="'cdn_cacherule_table_header_rule' | translate"
-                                data-property="fileMatch">
+                    <oui-column
+                        data-title="'cdn_cacherule_table_header_rule' | translate"
+                        data-property="fileMatch"
+                    >
                     </oui-column>
-                    <oui-column data-title="'cdn_cacherule_table_header_cachetype' | translate">
-                        <span data-translate="{{ 'cdn_cacherule_'+ $row.cacheType }}"></span>
+                    <oui-column
+                        data-title="'cdn_cacherule_table_header_cachetype' | translate"
+                    >
+                        <span
+                            data-translate="{{ 'cdn_cacherule_'+ $row.cacheType }}"
+                        ></span>
                     </oui-column>
-                    <oui-column data-title="'cdn_cacherule_table_header_ttl' | translate">
-                        <span data-ng-bind="$row.cacheType === 'FORCE_CACHE' ? $row.ttl : '-'"></span>
+                    <oui-column
+                        data-title="'cdn_cacherule_table_header_ttl' | translate"
+                    >
+                        <span
+                            data-ng-bind="$row.cacheType === 'FORCE_CACHE' ? $row.ttl : '-'"
+                        ></span>
                     </oui-column>
-                    <oui-column data-title="'cdn_cacherule_table_header_state' | translate">
-                        <span class="label label-default"
-                              data-ng-class="{
+                    <oui-column
+                        data-title="'cdn_cacherule_table_header_state' | translate"
+                    >
+                        <span
+                            class="label label-default"
+                            data-ng-class="{
                                   'label-success': $row.status === 'ON',
                                   'label-info': $row.status === 'UPDATING' || $row.status === 'CREATING'
                               }"
-                              data-translate="{{ 'cdn_cacherule_status_' + $row.status }}">
+                            data-translate="{{ 'cdn_cacherule_status_' + $row.status }}"
+                        >
                         </span>
                     </oui-column>
-                    <oui-action-menu data-align="end"
-                                     data-compact>
-                        <oui-action-menu-item data-text="{{ :: 'cdn_configuration_cacherule_flush_title_button' | translate }}"
-                                              data-on-click="setAction('domain/rule/flush/cdn-dedicated-domain-rule-flush', $row)">
+                    <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu-item
+                            data-text="{{ :: 'cdn_configuration_cacherule_flush_title_button' | translate }}"
+                            data-on-click="setAction('domain/rule/flush/cdn-dedicated-domain-rule-flush', $row)"
+                        >
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{ :: 'cdn_configuration_cacherule_update_title_button' | translate }}"
-                                              data-ng-if="$row.status !== 'UPDATING' && $row.cacheType === 'FORCE_CACHE'"
-                                              data-on-click="setAction('domain/rule/update/cdn-dedicated-domain-rule-update', $row)">
+                        <oui-action-menu-item
+                            data-text="{{ :: 'cdn_configuration_cacherule_update_title_button' | translate }}"
+                            data-ng-if="$row.status !== 'UPDATING' && $row.cacheType === 'FORCE_CACHE'"
+                            data-on-click="setAction('domain/rule/update/cdn-dedicated-domain-rule-update', $row)"
+                        >
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{ :: 'cdn_configuration_cacherule_deactivate_title_button' | translate }}"
-                                              data-ng-if="$row && $row.status === 'ON'"
-                                              data-on-click="setAction('domain/rule/deactivate/cdn-dedicated-domain-rule-deactivate', $row)">
+                        <oui-action-menu-item
+                            data-text="{{ :: 'cdn_configuration_cacherule_deactivate_title_button' | translate }}"
+                            data-ng-if="$row && $row.status === 'ON'"
+                            data-on-click="setAction('domain/rule/deactivate/cdn-dedicated-domain-rule-deactivate', $row)"
+                        >
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{ :: 'cdn_configuration_cacherule_activate_title_button' | translate }}"
-                                              data-ng-if="$row && $row.status === 'OFF'"
-                                              data-on-click="setAction('domain/rule/activate/cdn-dedicated-domain-rule-activate', $row)">
+                        <oui-action-menu-item
+                            data-text="{{ :: 'cdn_configuration_cacherule_activate_title_button' | translate }}"
+                            data-ng-if="$row && $row.status === 'OFF'"
+                            data-on-click="setAction('domain/rule/activate/cdn-dedicated-domain-rule-activate', $row)"
+                        >
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{ :: 'cdn_configuration_delete_cacherule_title_button' | translate }}"
-                                              data-ng-if="$row.status !== 'DELETING'"
-                                              data-on-click="setAction('domain/rule/delete/cdn-dedicated-domain-rule-delete', $row)">
+                        <oui-action-menu-item
+                            data-text="{{ :: 'cdn_configuration_delete_cacherule_title_button' | translate }}"
+                            data-ng-if="$row.status !== 'DELETING'"
+                            data-on-click="setAction('domain/rule/delete/cdn-dedicated-domain-rule-delete', $row)"
+                        >
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-datagrid>
             </div>
         </div>
         <div class="col-sm-3">
-            <button type="button"
-                    class="btn btn-block btn-default"
-                    data-ng-click="setAction('domain/rule/add/cdn-dedicated-domain-rule-add')"
-                    data-translate="cdn_domain_configuration_cacherule_create_title_button">
-            </button>
-            <button type="button"
-                    class="btn btn-block btn-default"
-                    data-ng-if="cacheRules.count > 0 || cacheRulesEntrySearchSelected"
-                    data-ng-click="setAction('domain/rule/deactivate/all/cdn-dedicated-domain-rule-deactivate-all')"
-                    data-translate="cdn_configuration_allcacherule_deactivate_title_button">
-            </button>
-            <button type="button"
-                    class="btn btn-block btn-default"
-                    data-ng-if="cacheRules.count > 0 || cacheRulesEntrySearchSelected"
-                    data-ng-click="setAction('domain/rule/activate/all/cdn-dedicated-domain-rule-activate-all')"
-                    data-translate="cdn_configuration_allcacherule_activate_title_button">
-            </button>
-            <button type="button"
-                    class="btn btn-block btn-default"
-                    data-ng-click="setAction('domain/flush/cdn-dedicated-domain-flush', $ctrl.domain)"
-                    data-translate="cdn_domain_configuration_purge_title_button">
-            </button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="setAction('domain/rule/add/cdn-dedicated-domain-rule-add')"
+                data-translate="cdn_domain_configuration_cacherule_create_title_button"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-if="cacheRules.count > 0 || cacheRulesEntrySearchSelected"
+                data-ng-click="setAction('domain/rule/deactivate/all/cdn-dedicated-domain-rule-deactivate-all')"
+                data-translate="cdn_configuration_allcacherule_deactivate_title_button"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-if="cacheRules.count > 0 || cacheRulesEntrySearchSelected"
+                data-ng-click="setAction('domain/rule/activate/all/cdn-dedicated-domain-rule-activate-all')"
+                data-translate="cdn_configuration_allcacherule_activate_title_button"
+            ></button>
+            <button
+                type="button"
+                class="btn btn-block btn-default"
+                data-ng-click="setAction('domain/flush/cdn-dedicated-domain-flush', $ctrl.domain)"
+                data-translate="cdn_domain_configuration_purge_title_button"
+            ></button>
         </div>
     </div>
 </div>

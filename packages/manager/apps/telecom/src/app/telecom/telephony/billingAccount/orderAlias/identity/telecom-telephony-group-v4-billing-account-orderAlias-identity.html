@@ -1,154 +1,196 @@
-<div class="alias-order-identity"
-     data-ng-form="aliasOrderIdentity">
+<div class="alias-order-identity" data-ng-form="aliasOrderIdentity">
     <!-- Name -->
-    <div class="form-group"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-class="{
              'has-error': aliasOrderIdentity.name.$touched && aliasOrderIdentity.name.$invalid
-         }">
-        <label class="control-label"
-               for="nameElem"
-               data-translate="telephony_order_identity_name">
+         }"
+    >
+        <label
+            class="control-label"
+            for="nameElem"
+            data-translate="telephony_order_identity_name"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="nameElem"
-               name="name"
-               required
-               data-ng-model="$ctrl.ngModel.name"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_name' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="nameElem"
+            name="name"
+            required
+            data-ng-model="$ctrl.ngModel.name"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_name' }"
+        />
     </div>
 
     <!-- First name -->
-    <div class="form-group"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-class="{
              'has-error': aliasOrderIdentity.firstName.$touched && aliasOrderIdentity.firstName.$invalid
-         }">
-        <label class="control-label"
-               for="firstNameElem"
-               data-translate="telephony_order_identity_first_name">
+         }"
+    >
+        <label
+            class="control-label"
+            for="firstNameElem"
+            data-translate="telephony_order_identity_first_name"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="firstNameElem"
-               name="firstName"
-               required
-               data-ng-model="$ctrl.ngModel.firstname"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_first_name' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="firstNameElem"
+            name="firstName"
+            required
+            data-ng-model="$ctrl.ngModel.firstname"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_first_name' }"
+        />
     </div>
 
     <!-- email -->
     <div class="form-control">
-        <label class="control-label"
-               for="emailElem"
-               data-translate="telephony_order_identity_email">
+        <label
+            class="control-label"
+            for="emailElem"
+            data-translate="telephony_order_identity_email"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="emailElem"
-               name="email"
-               data-ng-model="$ctrl.ngModel.email"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-ui-validate="'$ctrl.validator.isEmail($value)'"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_email' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="emailElem"
+            name="email"
+            data-ng-model="$ctrl.ngModel.email"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-ui-validate="'$ctrl.validator.isEmail($value)'"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_email' }"
+        />
     </div>
 
     <!-- phone -->
     <div class="form-group">
-        <label class="control-label"
-               for="phoneElem"
-               data-translate="telephony_order_identity_phone">
+        <label
+            class="control-label"
+            for="phoneElem"
+            data-translate="telephony_order_identity_phone"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="phoneElem"
-               name="phone"
-               data-ng-model="$ctrl.ngModel.phone"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-ui-validate="'$ctrl.validator.tucIsFrenchLandLine($value)'"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_phone' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="phoneElem"
+            name="phone"
+            data-ng-model="$ctrl.ngModel.phone"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-ui-validate="'$ctrl.validator.tucIsFrenchLandLine($value)'"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_phone' }"
+        />
     </div>
 
     <!-- organisation -->
-    <div class="form-group"
-         data-ng-show="$ctrl.organisation === 'true'"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-show="$ctrl.organisation === 'true'"
+        data-ng-class="{
              'has-error': aliasOrderIdentity.organisation.$touched && aliasOrderIdentity.organisation.$invalid
-         }">
-        <label class="control-label"
-                for="organisationElem"
-               data-translate="telephony_order_identity_organisation">
+         }"
+    >
+        <label
+            class="control-label"
+            for="organisationElem"
+            data-translate="telephony_order_identity_organisation"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="organisationElem"
-               name="organisation"
-               data-ng-model="$ctrl.ngModel.organisation"
-               data-ng-required="$ctrl.organisation === 'true'"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_organisation' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="organisationElem"
+            name="organisation"
+            data-ng-model="$ctrl.ngModel.organisation"
+            data-ng-required="$ctrl.organisation === 'true'"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_organisation' }"
+        />
     </div>
 
     <!-- Social nomonation -->
-    <div class="form-group"
-         data-ng-show="$ctrl.organisation === 'true'"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-show="$ctrl.organisation === 'true'"
+        data-ng-class="{
              'has-error': aliasOrderIdentity.socialNomination.$touched && aliasOrderIdentity.socialNomination.$invalid
-         }">
-        <label class="control-label"
-               for="socialNominationElem"
-               data-translate="telephony_order_identity_nomination">
+         }"
+    >
+        <label
+            class="control-label"
+            for="socialNominationElem"
+            data-translate="telephony_order_identity_nomination"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="socialNominationElem"
-               name="socialNomination"
-               data-ng-model="$ctrl.ngModel.socialNomination"
-               data-ng-required="$ctrl.organisation === 'true'"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_nomination' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="socialNominationElem"
+            name="socialNomination"
+            data-ng-model="$ctrl.ngModel.socialNomination"
+            data-ng-required="$ctrl.organisation === 'true'"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_nomination' }"
+        />
     </div>
 
     <!-- Siret -->
-    <div class="form-group"
-         data-ng-show="$ctrl.organisation === 'true'"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-show="$ctrl.organisation === 'true'"
+        data-ng-class="{
              'has-error': aliasOrderIdentity.siret.$touched && aliasOrderIdentity.siret.$invalid
-         }">
-        <label class="control-label"
-               for="siretElem"
-               data-translate="telephony_order_identity_siret">
+         }"
+    >
+        <label
+            class="control-label"
+            for="siretElem"
+            data-translate="telephony_order_identity_siret"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="siretElem"
-               name="siret"
-               data-ng-model="$ctrl.ngModel.siret"
-               data-ng-required="$ctrl.organisation === 'true'"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-ui-validate="'$ctrl.validator.tucIsSiret($value)'"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_siret' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="siretElem"
+            name="siret"
+            data-ng-model="$ctrl.ngModel.siret"
+            data-ng-required="$ctrl.organisation === 'true'"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-ui-validate="'$ctrl.validator.tucIsSiret($value)'"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_siret' }"
+        />
     </div>
 
     <!-- APE -->
-    <div class="form-group"
-         data-ng-show="$ctrl.organisation === 'true'"
-         data-ng-class="{
+    <div
+        class="form-group"
+        data-ng-show="$ctrl.organisation === 'true'"
+        data-ng-class="{
              'has-error': aliasOrderIdentity.ape.$touched && aliasOrderIdentity.ape.$invalid
-         }">
-        <label class="control-label"
-               for="apeElem"
-               data-translate="telephony_order_identity_ape">
+         }"
+    >
+        <label
+            class="control-label"
+            for="apeElem"
+            data-translate="telephony_order_identity_ape"
+        >
         </label>
-        <input type="text"
-               class="form-control"
-               id="apeElem"
-               name="ape"
-               data-ng-model="$ctrl.ngModel.ape"
-               data-ng-required="$ctrl.organisation === 'true'"
-               data-ng-disabled="$ctrl.ngDisabled"
-               data-translate-attr="{ 'placeholder': 'telephony_order_identity_ape' }" />
+        <input
+            type="text"
+            class="form-control"
+            id="apeElem"
+            name="ape"
+            data-ng-model="$ctrl.ngModel.ape"
+            data-ng-required="$ctrl.organisation === 'true'"
+            data-ng-disabled="$ctrl.ngDisabled"
+            data-translate-attr="{ 'placeholder': 'telephony_order_identity_ape' }"
+        />
     </div>
-
 </div>

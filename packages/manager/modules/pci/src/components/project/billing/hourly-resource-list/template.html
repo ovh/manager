@@ -1,23 +1,49 @@
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_hourly_instance_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.instance.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
-    <instance-list instances="$ctrl.resources.hourlyInstances"
-                instance-col-name="'cpbc_hourly_instance_col_name'"
-                instance-col-total="'cpbc_hourly_instance_col_consumption'"
-                instance-col-total-tooltip="'cpbc_hourly_instance_col_consumption_tooltip'"
-                switch-to-monthly-billing="$ctrl.switchToMonthlyBilling({ instance: instance })"
-                show-additional-instance-details="$ctrl.showAdditionalInstanceDetails"></instance-list>
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_hourly_instance_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.instance.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <instance-list
+        instances="$ctrl.resources.hourlyInstances"
+        instance-col-name="'cpbc_hourly_instance_col_name'"
+        instance-col-total="'cpbc_hourly_instance_col_consumption'"
+        instance-col-total-tooltip="'cpbc_hourly_instance_col_consumption_tooltip'"
+        switch-to-monthly-billing="$ctrl.switchToMonthlyBilling({ instance: instance })"
+        show-additional-instance-details="$ctrl.showAdditionalInstanceDetails"
+    ></instance-list>
 </oui-collapsible>
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_snapshot_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.snapshot.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_snapshot_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.snapshot.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
     <snapshot-list snapshots="$ctrl.resources.snapshots"></snapshot-list>
 </oui-collapsible>
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_volume_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.volume.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_volume_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.volume.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
     <volume-list volumes="$ctrl.resources.volumes"></volume-list>
 </oui-collapsible>
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_object_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.objectStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
-    <object-storage-list storages="$ctrl.resources.objectStorages"></object-storage-list>
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_object_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.objectStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <object-storage-list
+        storages="$ctrl.resources.objectStorages"
+    ></object-storage-list>
 </oui-collapsible>
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_archive_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.archiveStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
-    <archive-storage-list storages="$ctrl.resources.archiveStorages"></archive-storage-list>
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_archive_storage_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.archiveStorage.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <archive-storage-list
+        storages="$ctrl.resources.archiveStorages"
+    ></archive-storage-list>
 </oui-collapsible>
-<oui-collapsible class="mx-0" heading="{{ ::'cpbc_hourly_instance_trafic_title' | translate }} ({{ $ctrl.resources.totals.hourly.bandwidth.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">
-    <outgoing-trafic data-regions="$ctrl.resources.bandwidthByRegions"></outgoing-trafic>
+<oui-collapsible
+    class="mx-0"
+    heading="{{ ::'cpbc_hourly_instance_trafic_title' | translate }} ({{ $ctrl.resources.totals.hourly.bandwidth.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})"
+>
+    <outgoing-trafic
+        data-regions="$ctrl.resources.bandwidthByRegions"
+    ></outgoing-trafic>
 </oui-collapsible>

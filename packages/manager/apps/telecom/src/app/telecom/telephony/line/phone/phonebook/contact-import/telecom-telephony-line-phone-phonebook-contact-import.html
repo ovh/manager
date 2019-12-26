@@ -1,60 +1,80 @@
-<form name="importPhonebookContactForm"
-      id="importPhonebookContactForm"
-      data-ng-submit="ContactImportCtrl.importContact()">
-
+<form
+    name="importPhonebookContactForm"
+    id="importPhonebookContactForm"
+    data-ng-submit="ContactImportCtrl.importContact()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="ContactImportCtrl.cancel()">
+            data-ng-click="ContactImportCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <!-- /.modal-header -->
 
-    <div class="modal-body"
-         data-ng-if="!ContactImportCtrl.phonecontactForm.isImporting && !ContactImportCtrl.phonecontactForm.hasBeenImported">
-        <h3 class="modal-title"
-            data-translate="telephony_phonebook_contact_action_import_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!ContactImportCtrl.phonecontactForm.isImporting && !ContactImportCtrl.phonecontactForm.hasBeenImported"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_phonebook_contact_action_import_title"
+        ></h3>
         <!-- FILE -->
         <div class="form-group clearfix mb-3">
-            <p class="alert alert-info"
-               role="alert"
-               data-translate="telephony_phonebook_contact_action_import_info">
-            </p>
+            <p
+                class="alert alert-info"
+                role="alert"
+                data-translate="telephony_phonebook_contact_action_import_info"
+            ></p>
             <tuc-input-file
                 data-ng-model="ContactImportCtrl.phonecontactForm.uploadedFile"
                 data-ng-accept="text/*"
-                data-ng-accept-filter="ContactImportCtrl.checkValidTextExtention(file)">
-                <i class="fa fa-upload mr-1"
-                   aria-hidden="true"></i>
-                <span data-translate="telephony_phonebook_contact_action_import_file_label"></span>
+                data-ng-accept-filter="ContactImportCtrl.checkValidTextExtention(file)"
+            >
+                <i class="fa fa-upload mr-1" aria-hidden="true"></i>
+                <span
+                    data-translate="telephony_phonebook_contact_action_import_file_label"
+                ></span>
             </tuc-input-file>
         </div>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body"
-         data-ng-if="ContactImportCtrl.phonecontactForm.isImporting">
-        <h3 class="modal-title"
-            data-translate="telephony_phonebook_contact_action_import_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="ContactImportCtrl.phonecontactForm.isImporting"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_phonebook_contact_action_import_title"
+        ></h3>
         <div class="text-center">
             <oui-spinner></oui-spinner>
-            <h4 data-translate="telephony_phonebook_contact_action_importing"></h4>
+            <h4
+                data-translate="telephony_phonebook_contact_action_importing"
+            ></h4>
         </div>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body"
-         data-ng-if="ContactImportCtrl.phonecontactForm.hasBeenImported">
-        <h3 class="modal-title"
-            data-translate="telephony_phonebook_contact_action_import_title">
-        </h3>
-        <tuc-success-drawing-check data-draw-success-check="ContactImportCtrl.phonecontactForm.hasBeenImported">
-            <h4 data-translate="telephony_phonebook_contact_action_imported"></h4>
+    <div
+        class="modal-body"
+        data-ng-if="ContactImportCtrl.phonecontactForm.hasBeenImported"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_phonebook_contact_action_import_title"
+        ></h3>
+        <tuc-success-drawing-check
+            data-draw-success-check="ContactImportCtrl.phonecontactForm.hasBeenImported"
+        >
+            <h4
+                data-translate="telephony_phonebook_contact_action_imported"
+            ></h4>
         </tuc-success-drawing-check>
     </div>
     <!-- /.modal-body -->
@@ -65,16 +85,16 @@
             class="btn btn-default"
             data-ng-click="ContactImportCtrl.cancel()"
             data-translate="cancel"
-            data-ng-disabled="ContactImportCtrl.phonecontactForm.isImporting || ContactImportCtrl.phonecontactForm.hasBeenImported">
-        </button>
+            data-ng-disabled="ContactImportCtrl.phonecontactForm.isImporting || ContactImportCtrl.phonecontactForm.hasBeenImported"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="importPhonebookContactForm.$invalid ||
                               ContactImportCtrl.phonecontactForm.isImporting ||
                               ContactImportCtrl.phonecontactForm.hasBeenImported"
-            data-translate="submit">
-        </button>
+            data-translate="submit"
+        ></button>
     </div>
     <!-- /.modal-footer -->
 </form>

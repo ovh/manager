@@ -4,14 +4,19 @@
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="$ctrl.cancel()">
+            data-ng-click="$ctrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body">
-        <p data-translate="telephony_alias_configuration_queues_modal-warning"></p>
-        <p data-translate="telephony_alias_configuration_queues_modal-question"></p>
+        <p
+            data-translate="telephony_alias_configuration_queues_modal-warning"
+        ></p>
+        <p
+            data-translate="telephony_alias_configuration_queues_modal-question"
+        ></p>
     </div>
 
     <div class="modal-footer">
@@ -19,12 +24,12 @@
             type="button"
             class="btn btn-default"
             data-ng-click="$ctrl.cancel()"
-            data-translate="cancel">
-        </button>
+            data-translate="cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
-            data-translate="submit">
-        </button>
+            data-translate="submit"
+        ></button>
     </div>
 </form>

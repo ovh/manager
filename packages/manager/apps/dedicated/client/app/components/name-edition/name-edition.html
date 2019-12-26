@@ -1,27 +1,27 @@
 <div class="oui-modal oui-modal_shadow">
-
-    <form name="updateNameForm"
-          novalidate
-          data-ng-submit="$ctrl.updateDescription()">
-
-        <oui-modal data-title="{{ $ctrl.modalContextTitle + '_modify_title' | translate }}"
-                   data-primary-label="{{ :: 'common_change' | translate }}"
-                   data-secondary-label="{{ :: 'common_cancel' | translate }}"
-                   data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
-                   data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
-                   data-loading="$ctrl.updating">
-
-                   <oui-field data-label="{{ $ctrl.modalContextTitle | translate }}">
-                       <input class="oui-input"
-                              type="text"
-                              name="name"
-                              id="change-name"
-                              data-ng-model="$ctrl.newValue"
-                              data-required/>
-                   </oui-field>
-
+    <form
+        name="updateNameForm"
+        novalidate
+        data-ng-submit="$ctrl.updateDescription()"
+    >
+        <oui-modal
+            data-title="{{ $ctrl.modalContextTitle + '_modify_title' | translate }}"
+            data-primary-label="{{ :: 'common_change' | translate }}"
+            data-secondary-label="{{ :: 'common_cancel' | translate }}"
+            data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
+            data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
+            data-loading="$ctrl.updating"
+        >
+            <oui-field data-label="{{ $ctrl.modalContextTitle | translate }}">
+                <input
+                    class="oui-input"
+                    type="text"
+                    name="name"
+                    id="change-name"
+                    data-ng-model="$ctrl.newValue"
+                    data-required
+                />
+            </oui-field>
         </oui-modal>
-
     </form>
-
 </div>

@@ -1,16 +1,19 @@
 <div data-ng-controller="EmailProRemoveDomainCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'emailpro_tab_domain_remove_domain' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'emailpro_tab_domain_remove_domain' | translate"
+    >
         <div data-wizard-step>
             <p data-translate="emailpro_tab_domain_remove_title"></p>
             <dl class="dl-horizontal mt-3">
                 <dt data-translate="emailpro_tab_domain_domain"></dt>
                 <dd data-ng-bind="domain.displayName"></dd>
                 <dt data-translate="emailpro_tab_domain_type"></dt>
-                <dd data-ng-bind="'emailpro_tab_domain_' + domain.type | translate"></dd>
+                <dd
+                    data-ng-bind="'emailpro_tab_domain_' + domain.type | translate"
+                ></dd>
             </dl>
         </div>
     </div>

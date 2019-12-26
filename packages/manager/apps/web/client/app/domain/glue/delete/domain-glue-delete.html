@@ -1,12 +1,11 @@
 <div data-ng-controller="controllers.Domain.Glue.Delete as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteGlueRecord"
-         data-wizard-title="'domain_tab_GLUE_delete_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteGlueRecord"
+        data-wizard-title="'domain_tab_GLUE_delete_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <p data-translate="domain_tab_GLUE_delete_confirm"></p>
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
         </div>

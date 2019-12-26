@@ -1,213 +1,351 @@
 <div data-ng-controller="HostingEditOvhConfig as ctrl">
-
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="saveConfig"
-         data-wizard-title="'hosting_action_edit_ovhconfig_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="saveConfig"
+        data-wizard-title="'hosting_action_edit_ovhconfig_title' | translate"
+    >
         <!-- Step 1: Select action -->
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.toggle.process">
-
+        <div data-wizard-step data-wizard-step-valid="ctrl.toggle.process">
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
-            <form name="needFirstChoiceForm"
-                  data-ng-if="!ctrl.loading">
-
-                <label class="oui-label"
-                       data-translate="hosting_action_edit_need_to_choice"></label>
+            <form name="needFirstChoiceForm" data-ng-if="!ctrl.loading">
+                <label
+                    class="oui-label"
+                    data-translate="hosting_action_edit_need_to_choice"
+                ></label>
                 <div class="oui-radio">
-                    <input type="radio" class="oui-radio__input" id="process-rollback" name="process" value="rollback"
-                           data-ng-disabled="!ctrl.toggle.areOldConfigsExist"
-                           data-ng-model="ctrl.toggle.process">
-                    <label class="oui-radio__label-container" for="process-rollback">
-                        <span class="oui-radio__label"
-                              data-translate="hosting_action_edit_choose_rollback"></span>
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="process-rollback"
+                        name="process"
+                        value="rollback"
+                        data-ng-disabled="!ctrl.toggle.areOldConfigsExist"
+                        data-ng-model="ctrl.toggle.process"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="process-rollback"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="hosting_action_edit_choose_rollback"
+                        ></span>
                     </label>
                 </div>
                 <div class="oui-radio">
-                    <input type="radio" class="oui-radio__input" id="process-update" name="process" value="update"
-                           data-ng-model="ctrl.toggle.process">
-                    <label class="oui-radio__label-container" for="process-update">
-                        <span class="oui-radio__label"
-                              data-translate="hosting_action_edit_choose_update"></span>
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="process-update"
+                        name="process"
+                        value="update"
+                        data-ng-model="ctrl.toggle.process"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="process-update"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="hosting_action_edit_choose_update"
+                        ></span>
                     </label>
                 </div>
             </form>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="setProcess"
-             data-wizard-step-valid="ctrl.toggle.isConfigCanBeSaved">
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="setProcess"
+            data-wizard-step-valid="ctrl.toggle.isConfigCanBeSaved"
+        >
             <p>
-                <span data-translate="hosting_action_config_edit_common_info"></span>
-                <a target="_blank" title="{{ 'hosting_action_config_edit_common_url' | translate }} ({{ 'core_new_window' | translate }})"
-                   data-translate="hosting_action_config_edit_common_url"
-                   data-ng-href="{{ctrl.hostingPhpGuide}}"
-                   data-ng-if="ctrl.hostingPhpGuide"></a>
+                <span
+                    data-translate="hosting_action_config_edit_common_info"
+                ></span>
+                <a
+                    target="_blank"
+                    title="{{ 'hosting_action_config_edit_common_url' | translate }} ({{ 'core_new_window' | translate }})"
+                    data-translate="hosting_action_config_edit_common_url"
+                    data-ng-href="{{ctrl.hostingPhpGuide}}"
+                    data-ng-if="ctrl.hostingPhpGuide"
+                ></a>
             </p>
 
-            <div class="alert alert-danger" role="alert"
-                 data-translate="hosting_action_config_edit_init_error"
-                 data-ng-if="ctrl.toggle.areInitializationErrors">
-            </div>
+            <div
+                class="alert alert-danger"
+                role="alert"
+                data-translate="hosting_action_config_edit_init_error"
+                data-ng-if="ctrl.toggle.areInitializationErrors"
+            ></div>
 
-            <div class="alert alert-info" role="alert"
-                 data-translate="hosting_action_config_edit_no_choice"
-                 data-ng-if="ctrl.toggle.isRollbackProcess && ctrl.oldConfigs.length < 2">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="hosting_action_config_edit_no_choice"
+                data-ng-if="ctrl.toggle.isRollbackProcess && ctrl.oldConfigs.length < 2"
+            ></div>
 
-            <form class="form-horizontal" name="orderUpgradeForm"
-                  data-ng-if="!ctrl.toggle.areInitializationErrors">
-
-                <div class="form-group"
-                     data-ng-if="ctrl.toggle.isRollbackProcess">
-
-                    <label class="control-label col-md-4" for="flavour"
-                           data-translate="hosting_action_config_edit_choose_config"></label>
+            <form
+                class="form-horizontal"
+                name="orderUpgradeForm"
+                data-ng-if="!ctrl.toggle.areInitializationErrors"
+            >
+                <div
+                    class="form-group"
+                    data-ng-if="ctrl.toggle.isRollbackProcess"
+                >
+                    <label
+                        class="control-label col-md-4"
+                        for="flavour"
+                        data-translate="hosting_action_config_edit_choose_config"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="flavour" name="flavour"
-                                    data-ng-change="ctrl.updateConfig()"
-                                    data-ng-disabled="ctrl.oldConfigs.length < 2"
-                                    data-ng-model="ctrl.selectedConfig"
-                                    data-ng-options="config.label for config in ctrl.oldConfigs track by config.label">
+                            <select
+                                class="oui-select__input"
+                                id="flavour"
+                                name="flavour"
+                                data-ng-change="ctrl.updateConfig()"
+                                data-ng-disabled="ctrl.oldConfigs.length < 2"
+                                data-ng-model="ctrl.selectedConfig"
+                                data-ng-options="config.label for config in ctrl.oldConfigs track by config.label"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="container"
-                           data-translate="hosting_action_config_edit_container_version"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="container"
+                        data-translate="hosting_action_config_edit_container_version"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="container" name="container"
-                                    data-ng-change="ctrl.updateSelectedConfig()"
-                                    data-ng-model="ctrl.model.container"
-                                    data-ng-options="('hosting_action_config_edit_container_version_enum_'  + ctrl.constructor.parseLabel(name) | translate) for name in ctrl.apiStruct.models['hosting.web.ovhconfig.ContainerEnum'].enum track by name">
+                            <select
+                                class="oui-select__input"
+                                id="container"
+                                name="container"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-model="ctrl.model.container"
+                                data-ng-options="('hosting_action_config_edit_container_version_enum_'  + ctrl.constructor.parseLabel(name) | translate) for name in ctrl.apiStruct.models['hosting.web.ovhconfig.ContainerEnum'].enum track by name"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="engineVersion"
-                           data-translate="hosting_action_config_edit_engine_version"></label>
-                    <div class="col-md-6" data-ng-if="!ctrl.toggle.isRollbackProcess">
+                    <label
+                        class="control-label col-md-4"
+                        for="engineVersion"
+                        data-translate="hosting_action_config_edit_engine_version"
+                    ></label>
+                    <div
+                        class="col-md-6"
+                        data-ng-if="!ctrl.toggle.isRollbackProcess"
+                    >
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" data-ng-attr-id="{{ :: 'engineVersion' }}" name="engineVersion"
-                                    data-ng-change="ctrl.updateSelectedConfig()"
-                                    data-ng-model="ctrl.model.engineVersion"
-                                    data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.AvailableEngineVersionEnum'].enum track by name">
+                            <select
+                                class="oui-select__input"
+                                data-ng-attr-id="{{ :: 'engineVersion' }}"
+                                name="engineVersion"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-model="ctrl.model.engineVersion"
+                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.AvailableEngineVersionEnum'].enum track by name"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
-                        <p class="text-danger"
-                           data-translate="hosting_action_config_edit_unavailable_version"
-                           data-ng-if="!ctrl.toggle.isPhpVersionAvailable"></p>
+                        <p
+                            class="text-danger"
+                            data-translate="hosting_action_config_edit_unavailable_version"
+                            data-ng-if="!ctrl.toggle.isPhpVersionAvailable"
+                        ></p>
                     </div>
-                    <div class="col-md-6" data-ng-if="ctrl.toggle.isRollbackProcess">
+                    <div
+                        class="col-md-6"
+                        data-ng-if="ctrl.toggle.isRollbackProcess"
+                    >
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" data-ng-attr-id="{{ :: 'engineVersion' }}" name="engineVersion" disabled
-                                    data-ng-model="ctrl.model.engineVersion"
-                                    data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineVersionEnum'].enum track by name">
+                            <select
+                                class="oui-select__input"
+                                data-ng-attr-id="{{ :: 'engineVersion' }}"
+                                name="engineVersion"
+                                disabled
+                                data-ng-model="ctrl.model.engineVersion"
+                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineVersionEnum'].enum track by name"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="alert alert-info mt-4" role="alert">
                     <div>
-                        <span data-translate="hosting_action_config_edit_warning"></span>
+                        <span
+                            data-translate="hosting_action_config_edit_warning"
+                        ></span>
                         <span data-ng-if="ctrl.phpAppendicesGuide">
-                            (<a target="_blank" title="{{ 'core_new_window' | translate }}"
-                                data-ng-href="{{ctrl.phpAppendicesGuide}}" >
-                                <span data-ng-bind="ctrl.phpAppendicesGuide"></span>
-                                <span class="fa fa-external-link" aria-hidden="true"></span>
-                            </a>)
+                            (<a
+                                target="_blank"
+                                title="{{ 'core_new_window' | translate }}"
+                                data-ng-href="{{ctrl.phpAppendicesGuide}}"
+                            >
+                                <span
+                                    data-ng-bind="ctrl.phpAppendicesGuide"
+                                ></span>
+                                <span
+                                    class="fa fa-external-link"
+                                    aria-hidden="true"
+                                ></span> </a
+                            >)
                         </span>
                     </div>
                 </div>
 
-                <div class="mt-5"
-                     data-translate="hosting_action_config_edit_advanced_options"></div>
+                <div
+                    class="mt-5"
+                    data-translate="hosting_action_config_edit_advanced_options"
+                ></div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4" for="engineName">
-                        <span data-translate="hosting_action_config_edit_engine_name"></span>
-                        <span class="fa fa-info-circle ml-2" aria-hidden="true"
-                              data-oui-tooltip="{{:: 'hosting_action_config_edit_engine_name_help' | translate }}"></span>
+                        <span
+                            data-translate="hosting_action_config_edit_engine_name"
+                        ></span>
+                        <span
+                            class="fa fa-info-circle ml-2"
+                            aria-hidden="true"
+                            data-oui-tooltip="{{:: 'hosting_action_config_edit_engine_name_help' | translate }}"
+                        ></span>
                     </label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="engineName" name="engineName"
-                                    data-ng-change="ctrl.updateSelectedConfig()"
-                                    data-ng-disabled="ctrl.toggle.isRollbackProcess"
-                                    data-ng-model="ctrl.model.engineName"
-                                    data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineNameEnum'].enum track by name">
+                            <select
+                                class="oui-select__input"
+                                id="engineName"
+                                name="engineName"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-disabled="ctrl.toggle.isRollbackProcess"
+                                data-ng-model="ctrl.model.engineName"
+                                data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineNameEnum'].enum track by name"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4" for="environment">
-                        <span data-translate="hosting_action_config_edit_environment"></span>
-                        <span class="fa fa-info-circle ml-2" aria-hidden="true"
-                              data-oui-tooltip="{{:: 'hosting_action_config_edit_environment_help' | translate }}"></span>
+                        <span
+                            data-translate="hosting_action_config_edit_environment"
+                        ></span>
+                        <span
+                            class="fa fa-info-circle ml-2"
+                            aria-hidden="true"
+                            data-oui-tooltip="{{:: 'hosting_action_config_edit_environment_help' | translate }}"
+                        ></span>
                     </label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" name="environment" id="environment"
-                                    data-ng-change="ctrl.updateSelectedConfig()"
-                                    data-ng-disabled="ctrl.toggle.isRollbackProcess"
-                                    data-ng-model="ctrl.model.environment"
-                                    data-ng-options="('hosting_action_config_edit_environment_' + name | translate) for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EnvironmentEnum'].enum track by name">
+                            <select
+                                class="oui-select__input"
+                                name="environment"
+                                id="environment"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-disabled="ctrl.toggle.isRollbackProcess"
+                                data-ng-model="ctrl.model.environment"
+                                data-ng-options="('hosting_action_config_edit_environment_' + name | translate) for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EnvironmentEnum'].enum track by name"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4" for="httpFirewall">
-                        <span data-translate="hosting_action_config_edit_http_firewall"></span>
-                        <span class="fa fa-info-circle ml-2" aria-hidden="true"
-                              data-oui-tooltip="{{:: 'hosting_action_config_edit_http_firewall_help' | translate }}"></span>
+                        <span
+                            data-translate="hosting_action_config_edit_http_firewall"
+                        ></span>
+                        <span
+                            class="fa fa-info-circle ml-2"
+                            aria-hidden="true"
+                            data-oui-tooltip="{{:: 'hosting_action_config_edit_http_firewall_help' | translate }}"
+                        ></span>
                     </label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" name="httpFirewall" id="httpFirewall"
-                                    data-ng-change="ctrl.updateSelectedConfig()"
-                                    data-ng-disabled="ctrl.toggle.isRollbackProcess"
-                                    data-ng-model="ctrl.model.httpFirewall"
-                                    data-ng-options="('hosting_action_config_edit_http_firewall_'  + name | translate) for name in ctrl.apiStruct.models['hosting.web.ovhConfig.HttpFirewallEnum'].enum track by name">
+                            <select
+                                class="oui-select__input"
+                                name="httpFirewall"
+                                id="httpFirewall"
+                                data-ng-change="ctrl.updateSelectedConfig()"
+                                data-ng-disabled="ctrl.toggle.isRollbackProcess"
+                                data-ng-model="ctrl.model.httpFirewall"
+                                data-ng-options="('hosting_action_config_edit_http_firewall_'  + name | translate) for name in ctrl.apiStruct.models['hosting.web.ovhConfig.HttpFirewallEnum'].enum track by name"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="alert alert-danger" role="alert"
-                     data-ng-bind="ctrl.errorMsg"
-                     data-ng-if="ctrl.errorMsg">
-                </div>
-                <div class="alert alert-danger" role="alert"
-                     data-translate="hosting_action_config_edit_not_defined_error"
-                     data-ng-if="ctrl.toggle.isErrorNotDefined">
-                </div>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    data-ng-bind="ctrl.errorMsg"
+                    data-ng-if="ctrl.errorMsg"
+                ></div>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    data-translate="hosting_action_config_edit_not_defined_error"
+                    data-ng-if="ctrl.toggle.isErrorNotDefined"
+                ></div>
             </form>
 
             <div data-wizard-step-help>
-                <h3 data-translate="hosting_action_config_edit_container_help_main_title"></h3>
-                <h4 data-translate="hosting_action_config_edit_container_help_values_title"></h4>
-                <p data-ng-bind-html="'hosting_action_config_edit_container_help_values_text' | translate"></p>
+                <h3
+                    data-translate="hosting_action_config_edit_container_help_main_title"
+                ></h3>
+                <h4
+                    data-translate="hosting_action_config_edit_container_help_values_title"
+                ></h4>
+                <p
+                    data-ng-bind-html="'hosting_action_config_edit_container_help_values_text' | translate"
+                ></p>
             </div>
         </div>
     </div>

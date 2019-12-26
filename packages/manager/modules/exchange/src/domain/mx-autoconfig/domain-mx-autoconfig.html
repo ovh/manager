@@ -1,58 +1,94 @@
 <div data-ng-controller="ExchangeDomainMxAutoconfigCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="configMX"
-         data-wizard-title="'exchange_tab_domain_diagnostic_mx_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.domainDiag.isOvhDomain">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="configMX"
+        data-wizard-title="'exchange_tab_domain_diagnostic_mx_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.domainDiag.isOvhDomain"
+        >
             <oui-spinner data-ng-if="!ctrl.domainDiag"></oui-spinner>
 
             <div data-ng-if="ctrl.domainDiag">
-                <p data-translate="exchange_tab_domain_diagnostic_mx_intro_ovh" data-translate-values="{ t0: ctrl.domain.displayName}"
-                   data-ng-if="ctrl.domainDiag.isOvhDomain"></p>
-                <p data-ng-bind="'exchange_tab_domain_diagnostic_mx_no_ovh' | translate"
-                   data-ng-if="!ctrl.domainDiag.isOvhDomain"></p>
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_mx_intro_ovh"
+                    data-translate-values="{ t0: ctrl.domain.displayName}"
+                    data-ng-if="ctrl.domainDiag.isOvhDomain"
+                ></p>
+                <p
+                    data-ng-bind="'exchange_tab_domain_diagnostic_mx_no_ovh' | translate"
+                    data-ng-if="!ctrl.domainDiag.isOvhDomain"
+                ></p>
 
                 <div class="oui-radio" data-ng-if="ctrl.domainDiag.isOvhDomain">
-                    <input type="radio" class="oui-radio__input" id="antiSpam-no" name="addOption" checked
-                           data-ng-model="ctrl.model.antiSpam"
-                           data-ng-value="false">
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="antiSpam-no"
+                        name="addOption"
+                        checked
+                        data-ng-model="ctrl.model.antiSpam"
+                        data-ng-value="false"
+                    />
                     <label class="oui-radio__label-container" for="antiSpam-no">
-                        <span class="oui-radio__label"
-                              data-translate="exchange_tab_domain_diagnostic_mx_no_antispam"></span>
+                        <span
+                            class="oui-radio__label"
+                            data-translate="exchange_tab_domain_diagnostic_mx_no_antispam"
+                        ></span>
                     </label>
                 </div>
 
-                <p data-translate="exchange_tab_domain_diagnostic_mx_no_antispam"
-                   data-ng-if="ctrl.domainDiag.isOvhDomain === false"></p>
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_mx_no_antispam"
+                    data-ng-if="ctrl.domainDiag.isOvhDomain === false"
+                ></p>
 
                 <dl class="dl-horizontal">
-                    <dt data-translate="exchange_tab_domain_diagnostic_mx_label_champ"></dt>
-                    <dd data-ng-bind-html="'exchange_tab_domain_diagnostic_mx_no_antispam_config' | translate:{
+                    <dt
+                        data-translate="exchange_tab_domain_diagnostic_mx_label_champ"
+                    ></dt>
+                    <dd
+                        data-ng-bind-html="'exchange_tab_domain_diagnostic_mx_no_antispam_config' | translate:{
                         t0: ctrl.domainDiag.mx.noSpam[0].priority,
                         t1: ctrl.domainDiag.mx.noSpam[0].target
-                    }"></dd>
+                    }"
+                    ></dd>
                 </dl>
 
                 <div class="oui-radio" data-ng-if="ctrl.domainDiag.isOvhDomain">
-                    <input type="radio" class="oui-radio__input" id="antiSpam-yes" name="addOption"
-                           data-ng-model="ctrl.model.antiSpam"
-                           data-ng-value="true">
-                    <label class="oui-radio__label-container" for="antiSpam-yes">
-                        <span class="oui-radio__label"
-                              data-translate="exchange_tab_domain_diagnostic_mx_antispam"></span>
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="antiSpam-yes"
+                        name="addOption"
+                        data-ng-model="ctrl.model.antiSpam"
+                        data-ng-value="true"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="antiSpam-yes"
+                    >
+                        <span
+                            class="oui-radio__label"
+                            data-translate="exchange_tab_domain_diagnostic_mx_antispam"
+                        ></span>
                     </label>
                 </div>
 
-                <p data-translate="exchange_tab_domain_diagnostic_mx_antispam"
-                   data-ng-if="ctrl.domainDiag.isOvhDomain === false"></p>
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_mx_antispam"
+                    data-ng-if="ctrl.domainDiag.isOvhDomain === false"
+                ></p>
 
                 <dl class="dl-horizontal">
-                    <dt data-translate="exchange_tab_domain_diagnostic_mx_label_champs"></dt>
-                    <dd data-ng-bind-html="'exchange_tab_domain_diagnostic_mx_antispam_config' | translate:{
+                    <dt
+                        data-translate="exchange_tab_domain_diagnostic_mx_label_champs"
+                    ></dt>
+                    <dd
+                        data-ng-bind-html="'exchange_tab_domain_diagnostic_mx_antispam_config' | translate:{
                         t0: ctrl.domainDiag.mx.spam[0].priority,
                         t1: ctrl.domainDiag.mx.spam[0].target,
                         t2: ctrl.domainDiag.mx.spam[1].priority,
@@ -61,7 +97,8 @@
                         t5: ctrl.domainDiag.mx.spam[2].target,
                         t6: ctrl.domainDiag.mx.spam[3].priority,
                         t7: ctrl.domainDiag.mx.spam[3].target
-                    }"></dd>
+                    }"
+                    ></dd>
                 </dl>
             </div>
         </div>
@@ -71,20 +108,29 @@
 
             <dl class="dl-horizontal">
                 <dt data-translate="exchange_tab_domain_domain"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.domain.displayName | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.domain.displayName | wucSliceContent: 150"
+                ></dd>
 
-                <dt data-ng-if="!ctrl.model.antiSpam"
-                    data-translate="exchange_tab_domain_diagnostic_mx_label_champs"></dt>
-                <dd data-ng-if="!ctrl.model.antiSpam"
+                <dt
+                    data-ng-if="!ctrl.model.antiSpam"
+                    data-translate="exchange_tab_domain_diagnostic_mx_label_champs"
+                ></dt>
+                <dd
+                    data-ng-if="!ctrl.model.antiSpam"
                     data-ng-bind-html="'exchange_tab_domain_diagnostic_mx_no_antispam_config' | translate:{
                         t0: ctrl.domainDiag.mx.noSpam[0].priority,
                         t1: ctrl.domainDiag.mx.noSpam[0].target
-                    }"></dd>
+                    }"
+                ></dd>
 
-                <dt data-ng-if="ctrl.model.antiSpam"
-                    data-translate="exchange_tab_domain_diagnostic_mx_label_champs"></dt>
-                <dd data-ng-if="ctrl.model.antiSpam"
+                <dt
+                    data-ng-if="ctrl.model.antiSpam"
+                    data-translate="exchange_tab_domain_diagnostic_mx_label_champs"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.model.antiSpam"
                     data-ng-bind-html="'exchange_tab_domain_diagnostic_mx_antispam_config' | translate:{
                         t0: ctrl.domainDiag.mx.spam[0].priority,
                         t1: ctrl.domainDiag.mx.spam[0].target,
@@ -94,7 +140,8 @@
                         t5: ctrl.domainDiag.mx.spam[2].target,
                         t6: ctrl.domainDiag.mx.spam[3].priority,
                         t7: ctrl.domainDiag.mx.spam[3].target
-                    }"></dd>
+                    }"
+                ></dd>
             </dl>
         </div>
     </div>

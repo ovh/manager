@@ -1,31 +1,40 @@
-<form name="updateRecreditOptionsForm"
-      id="updateRecreditOptionsForm"
-      data-ng-submit="OptionsRecreditUpdateCtrl.setAutomaticRecredit()">
-
+<form
+    name="updateRecreditOptionsForm"
+    id="updateRecreditOptionsForm"
+    data-ng-submit="OptionsRecreditUpdateCtrl.setAutomaticRecredit()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="OptionsRecreditUpdateCtrl.cancel()">
+            data-ng-click="OptionsRecreditUpdateCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!OptionsRecreditUpdateCtrl.loading.init && !OptionsRecreditUpdateCtrl.loading.updateOptions && !OptionsRecreditUpdateCtrl.updated">
-        <h3 class="modal-title"
-            data-translate="sms_options_recredit_update_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!OptionsRecreditUpdateCtrl.loading.init && !OptionsRecreditUpdateCtrl.loading.updateOptions && !OptionsRecreditUpdateCtrl.updated"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_options_recredit_update_title"
+        ></h3>
 
         <!-- CREDIT THRESHOLD FOR AUTOMATIC RECREDIT -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': updateRecreditOptionsForm.threshold.$touched && updateRecreditOptionsForm.threshold.$invalid
-             }">
-            <label for="threshold"
-                   class="control-label"
-                   data-translate="sms_options_recredit_update_threshold_label">
+             }"
+        >
+            <label
+                for="threshold"
+                class="control-label"
+                data-translate="sms_options_recredit_update_threshold_label"
+            >
             </label>
             <input
                 type="number"
@@ -36,28 +45,39 @@
                 step="any"
                 required
                 data-ng-model="OptionsRecreditUpdateCtrl.model.service.creditThresholdForAutomaticRecredit"
-                data-translate-attr="{ placeholder: 'sms_options_recredit_update_threshold_label' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="updateRecreditOptionsForm.threshold.$touched"
-                  data-ng-messages="updateRecreditOptionsForm.threshold.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_options_recredit_update_threshold_error_required">
+                data-translate-attr="{ placeholder: 'sms_options_recredit_update_threshold_label' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="updateRecreditOptionsForm.threshold.$touched"
+                data-ng-messages="updateRecreditOptionsForm.threshold.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_options_recredit_update_threshold_error_required"
+                >
                 </span>
-                <span data-ng-message="min"
-                      data-translate="sms_options_recredit_update_threshold_error_min">
+                <span
+                    data-ng-message="min"
+                    data-translate="sms_options_recredit_update_threshold_error_min"
+                >
                 </span>
-                <span data-ng-message="number"
-                      data-translate="sms_options_recredit_update_threshold_error_number">
+                <span
+                    data-ng-message="number"
+                    data-translate="sms_options_recredit_update_threshold_error_number"
+                >
                 </span>
             </span>
         </div>
 
         <!-- AUTOMATIC RECREDIT AMOUNT -->
         <div class="form-group">
-            <label for="amount"
-                   class="control-label"
-                   data-translate="sms_options_recredit_update_quantity_label">
+            <label
+                for="amount"
+                class="control-label"
+                data-translate="sms_options_recredit_update_quantity_label"
+            >
             </label>
             <div class="input-group">
                 <select
@@ -66,40 +86,51 @@
                     class="form-control"
                     data-ng-model="OptionsRecreditUpdateCtrl.model.service.automaticRecreditAmount"
                     data-ng-options="amount as ('sms_options_recredit_update_quantity_option' | translate:{ amount: amount }) for amount in OptionsRecreditUpdateCtrl.availablePackQuantity"
-                    data-ng-change="OptionsRecreditUpdateCtrl.getAmount()">
-                    <option value=""
-                            data-translate="sms_options_recredit_manage_quantity_empty_text">
+                    data-ng-change="OptionsRecreditUpdateCtrl.getAmount()"
+                >
+                    <option
+                        value=""
+                        data-translate="sms_options_recredit_manage_quantity_empty_text"
+                    >
                     </option>
                 </select>
-                <span class="input-group-addon"
-                      data-ng-if="OptionsRecreditUpdateCtrl.loading.price">
+                <span
+                    class="input-group-addon"
+                    data-ng-if="OptionsRecreditUpdateCtrl.loading.price"
+                >
                     …
                 </span>
-                <span class="input-group-addon"
-                      data-ng-if="!OptionsRecreditUpdateCtrl.loading.price && OptionsRecreditUpdateCtrl.price"
-                      data-translate="sms_options_recredit_manage_quantity_price_text"
-                      data-translate-values="{ price: OptionsRecreditUpdateCtrl.price.text }">
+                <span
+                    class="input-group-addon"
+                    data-ng-if="!OptionsRecreditUpdateCtrl.loading.price && OptionsRecreditUpdateCtrl.price"
+                    data-translate="sms_options_recredit_manage_quantity_price_text"
+                    data-translate-values="{ price: OptionsRecreditUpdateCtrl.price.text }"
+                >
                 </span>
             </div>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="OptionsRecreditUpdateCtrl.loading.init">
+    <div
+        class="modal-body text-center"
+        data-ng-if="OptionsRecreditUpdateCtrl.loading.init"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_loading"></h4>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="OptionsRecreditUpdateCtrl.loading.updateOptions">
+    <div
+        class="modal-body text-center"
+        data-ng-if="OptionsRecreditUpdateCtrl.loading.updateOptions"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_options_recredit_updating"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="OptionsRecreditUpdateCtrl.updated">
-        <tuc-success-drawing-check data-draw-success-check="OptionsRecreditUpdateCtrl.updated">
+    <div class="modal-body" data-ng-if="OptionsRecreditUpdateCtrl.updated">
+        <tuc-success-drawing-check
+            data-draw-success-check="OptionsRecreditUpdateCtrl.updated"
+        >
             <h4 data-translate="sms_options_recredit_updated"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -111,8 +142,8 @@
             data-ng-click="OptionsRecreditUpdateCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="OptionsRecreditUpdateCtrl.loading.updateOptions ||
-                              OptionsRecreditUpdateCtrl.updated">
-        </button>
+                              OptionsRecreditUpdateCtrl.updated"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -120,8 +151,7 @@
             data-ng-disabled="updateRecreditOptionsForm.$invalid ||
                               !OptionsRecreditUpdateCtrl.hasChanged() ||
                               OptionsRecreditUpdateCtrl.loading.updateOptions ||
-                              OptionsRecreditUpdateCtrl.updated">
-        </button>
+                              OptionsRecreditUpdateCtrl.updated"
+        ></button>
     </div>
-
 </form>

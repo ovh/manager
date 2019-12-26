@@ -1,17 +1,17 @@
 <div data-ng-controller="LicenseDeleteCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteLicense"
-         data-wizard-title=":: 'license_delete_title' | translate"
-         data-wizard-title-icon="'icon-add-licenses'">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteLicense"
+        data-wizard-title=":: 'license_delete_title' | translate"
+        data-wizard-title-icon="'icon-add-licenses'"
+    >
         <div data-wizard-step>
-
             <div data-ng-show="!model.deleting && !model.deleted">
-                <p class="font-weigth-bold"
-                   data-translate="license_delete_step1_question">
-                </p>
+                <p
+                    class="font-weigth-bold"
+                    data-translate="license_delete_step1_question"
+                ></p>
                 <dl>
                     <dt data-translate="license_delete_server"></dt>
                     <dd data-ng-bind="::model.license.serviceName"></dd>
@@ -20,18 +20,16 @@
                 </dl>
             </div>
 
-            <div class="text-center"
-                  data-ng-show="model.deleting">
+            <div class="text-center" data-ng-show="model.deleting">
                 <oui-spinner></oui-spinner>
                 <strong data-translate="license_delete_step1_deleting"></strong>
             </div>
 
-            <span data-ng-show="model.deleted"
-                  data-translate="license_delete_success">
+            <span
+                data-ng-show="model.deleted"
+                data-translate="license_delete_success"
+            >
             </span>
-
         </div>
-
     </div>
-
 </div>

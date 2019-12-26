@@ -1,31 +1,37 @@
-<form name="editSmsTemplateForm"
-      id="editSmsTemplateForm"
-      data-ng-submit="TemplateEditCtrl.edit()">
-
+<form
+    name="editSmsTemplateForm"
+    id="editSmsTemplateForm"
+    data-ng-submit="TemplateEditCtrl.edit()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="TemplateEditCtrl.cancel()">
+            data-ng-click="TemplateEditCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!TemplateEditCtrl.loading.edit && !TemplateEditCtrl.edited && !TemplateEditCtrl.loading.init">
-        <h3 class="modal-title"
-            data-translate="sms_sms_templates_add">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!TemplateEditCtrl.loading.edit && !TemplateEditCtrl.edited && !TemplateEditCtrl.loading.init"
+    >
+        <h3 class="modal-title" data-translate="sms_sms_templates_add"></h3>
 
         <!-- NAME -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': editSmsTemplateForm.name.$touched && editSmsTemplateForm.name.$invalid
-             }">
-            <label for="name"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_name_label">
+             }"
+        >
+            <label
+                for="name"
+                class="control-label"
+                data-translate="sms_sms_templates_add_name_label"
+            >
             </label>
             <input
                 type="text"
@@ -36,22 +42,29 @@
                 readonly
                 data-ng-model="TemplateEditCtrl.model.template.name"
                 data-ng-maxlength="249"
-                data-translate-attr="{ placeholder: 'sms_sms_templates_add_name_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="editSmsTemplateForm.name.$touched"
-                  data-ng-messages="editSmsTemplateForm.name.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_sms_templates_add_name_error_maxlength">
+                data-translate-attr="{ placeholder: 'sms_sms_templates_add_name_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="editSmsTemplateForm.name.$touched"
+                data-ng-messages="editSmsTemplateForm.name.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_sms_templates_add_name_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- ACTIVITY -->
         <div class="form-group">
-            <label for="activity"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_activity_placeholder">
+            <label
+                for="activity"
+                class="control-label"
+                data-translate="sms_sms_templates_add_activity_placeholder"
+            >
             </label>
             <select
                 name="activity"
@@ -59,18 +72,23 @@
                 class="form-control"
                 required
                 data-ng-model="TemplateEditCtrl.model.template.activity"
-                data-ng-options="activity as ('sms_sms_templates_add_activity_type_' + activity | translate) for activity in TemplateEditCtrl.availableActivities">
+                data-ng-options="activity as ('sms_sms_templates_add_activity_type_' + activity | translate) for activity in TemplateEditCtrl.availableActivities"
+            >
             </select>
         </div>
 
         <!-- DESCRIPTION -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': editSmsTemplateForm.description.$touched && editSmsTemplateForm.description.$invalid
-             }">
-            <label for="description"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_description_label">
+             }"
+        >
+            <label
+                for="description"
+                class="control-label"
+                data-translate="sms_sms_templates_add_description_label"
+            >
             </label>
             <input
                 type="text"
@@ -81,28 +99,39 @@
                 data-ng-maxlength="249"
                 data-ng-minlength="31"
                 data-ng-model="TemplateEditCtrl.model.template.description"
-                data-translate-attr="{ placeholder: 'sms_sms_templates_add_description_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="editSmsTemplateForm.description.$touched"
-                  data-ng-messages="editSmsTemplateForm.description.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_sms_templates_add_description_error_maxlength">
+                data-translate-attr="{ placeholder: 'sms_sms_templates_add_description_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="editSmsTemplateForm.description.$touched"
+                data-ng-messages="editSmsTemplateForm.description.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_sms_templates_add_description_error_maxlength"
+                >
                 </span>
-                <span data-ng-message="minlength"
-                      data-translate="sms_sms_templates_add_description_error_minlength">
+                <span
+                    data-ng-message="minlength"
+                    data-translate="sms_sms_templates_add_description_error_minlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- MESSAGE -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': editSmsTemplateForm.message.$touched && editSmsTemplateForm.message.$invalid
-             }">
-            <label for="message"
-                   class="control-label"
-                   data-translate="sms_sms_templates_add_message_label">
+             }"
+        >
+            <label
+                for="message"
+                class="control-label"
+                data-translate="sms_sms_templates_add_message_label"
+            >
             </label>
             <textarea
                 name="message"
@@ -113,17 +142,24 @@
                 data-ng-model="TemplateEditCtrl.model.template.message"
                 data-ng-maxlength="249"
                 data-ng-minlength="31"
-                data-translate-attr="{ placeholder: 'sms_sms_templates_add_message_placeholder' }">
+                data-translate-attr="{ placeholder: 'sms_sms_templates_add_message_placeholder' }"
+            >
             </textarea>
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="editSmsTemplateForm.message.$touched"
-                  data-ng-messages="editSmsTemplateForm.message.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_sms_templates_add_message_error_maxlength">
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="editSmsTemplateForm.message.$touched"
+                data-ng-messages="editSmsTemplateForm.message.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_sms_templates_add_message_error_maxlength"
+                >
                 </span>
-                <span data-ng-message="minlength"
-                      data-translate="sms_sms_templates_add_message_error_minlength">
+                <span
+                    data-ng-message="minlength"
+                    data-translate="sms_sms_templates_add_message_error_minlength"
+                >
                 </span>
             </span>
         </div>
@@ -140,28 +176,35 @@
                     data-ng-true-value="'enable'"
                     data-ng-false-value="'disable'"
                     data-ng-disabled="TemplateEditCtrl.model.template.status === 'waitingValidation' ||
-                                      TemplateEditCtrl.model.template.status === 'refused'" />
-                <span data-translate="sms_sms_templates_edit_status_label"></span>
+                                      TemplateEditCtrl.model.template.status === 'refused'"
+                />
+                <span
+                    data-translate="sms_sms_templates_edit_status_label"
+                ></span>
             </label>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="TemplateEditCtrl.loading.edit && !TemplateEditCtrl.edited">
+    <div
+        class="modal-body text-center"
+        data-ng-if="TemplateEditCtrl.loading.edit && !TemplateEditCtrl.edited"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_sms_templates_editing"></h4>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="TemplateEditCtrl.loading.init">
+    <div
+        class="modal-body text-center"
+        data-ng-if="TemplateEditCtrl.loading.init"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_sms_templates_init"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="TemplateEditCtrl.edited">
-        <tuc-success-drawing-check data-draw-success-check="TemplateEditCtrl.edited">
+    <div class="modal-body" data-ng-if="TemplateEditCtrl.edited">
+        <tuc-success-drawing-check
+            data-draw-success-check="TemplateEditCtrl.edited"
+        >
             <h4 data-translate="sms_sms_templates_edited"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -172,8 +215,8 @@
             class="btn btn-default"
             data-ng-click="TemplateEditCtrl.cancel()"
             data-ng-disabled="TemplateEditCtrl.loading.edit || TemplateEditCtrl.edited"
-            data-translate="sms_cancel">
-        </button>
+            data-translate="sms_cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -181,7 +224,7 @@
                               TemplateEditCtrl.loading.edit ||
                               TemplateEditCtrl.edited ||
                               !TemplateEditCtrl.hasChanged()"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

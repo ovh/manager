@@ -1,28 +1,34 @@
-<form name="abbreviatedNumberForm"
-      id="abbreviatedNumberForm"
-      data-ng-submit="AbbreviatedNumberModal.send()">
-
+<form
+    name="abbreviatedNumberForm"
+    id="abbreviatedNumberForm"
+    data-ng-submit="AbbreviatedNumberModal.send()"
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                aria-label="{{:: 'telephony_abbreviated_numbers_cancel' | translate }}"
-                data-ng-click="AbbreviatedNumberModal.cancel()">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{:: 'telephony_abbreviated_numbers_cancel' | translate }}"
+            data-ng-click="AbbreviatedNumberModal.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!AbbreviatedNumberModal.removing">
-        <h3 class="modal-title"
-            data-translate="telephony_abbreviated_numbers_empty_modal_tile">
-        </h3>
+    <div class="modal-body" data-ng-if="!AbbreviatedNumberModal.removing">
+        <h3
+            class="modal-title"
+            data-translate="telephony_abbreviated_numbers_empty_modal_tile"
+        ></h3>
         <p data-translate="telephony_abbreviated_numbers_empty_modal_text"></p>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="AbbreviatedNumberModal.removing">
+    <div class="modal-body" data-ng-if="AbbreviatedNumberModal.removing">
         <oui-progress data-max-value="{{AbbreviatedNumberModal.total}}">
-            <oui-progress-bar data-type="info" data-value="AbbreviatedNumberModal.progress">{{AbbreviatedNumberModal.progress}}</oui-progress-bar>
+            <oui-progress-bar
+                data-type="info"
+                data-value="AbbreviatedNumberModal.progress"
+                >{{AbbreviatedNumberModal.progress}}</oui-progress-bar
+            >
         </oui-progress>
     </div>
 
@@ -32,15 +38,14 @@
             class="btn btn-default"
             data-ng-disabled="AbbreviatedNumberModal.removing"
             data-ng-click="AbbreviatedNumberModal.cancel()"
-            data-translate="telephony_abbreviated_numbers_cancel">
-        </button>
+            data-translate="telephony_abbreviated_numbers_cancel"
+        ></button>
         <button
             data-ng-show="AbbreviatedNumberModal.abbreviatedNumbers.length"
             type="telephony_abbreviated_numbers_submit"
             class="btn btn-primary"
             data-ng-disabled="AbbreviatedNumberModal.removing || abbreviatedNumberForm.$invalid"
-            data-translate="telephony_abbreviated_numbers_submit">
-        </button>
+            data-translate="telephony_abbreviated_numbers_submit"
+        ></button>
     </div>
-
 </form>

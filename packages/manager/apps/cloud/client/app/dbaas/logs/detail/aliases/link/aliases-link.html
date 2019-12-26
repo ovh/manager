@@ -1,22 +1,32 @@
 <div class="cui-page__content">
-    <oui-back-button data-state="dbaas.logs.detail.aliases"
-                     data-heading="{{ ::'logs_aliases_link_title' | translate }}"
-                     data-state-params="{ serviceName: ctrl.serviceName}">
+    <oui-back-button
+        data-state="dbaas.logs.detail.aliases"
+        data-heading="{{ ::'logs_aliases_link_title' | translate }}"
+        data-state-params="{ serviceName: ctrl.serviceName}"
+    >
     </oui-back-button>
 
     <h6 data-ng-if="!ctrl.alias.loading" class="oui-header_6">
         {{ctrl.alias.data.info.name}}
     </h6>
-    <p class="oui-paragraph mb-5" data-translate="logs_aliases_link_description"></p>
+    <p
+        class="oui-paragraph mb-5"
+        data-translate="logs_aliases_link_description"
+    ></p>
     <form novalidate name="ctrl.form" class="ml-1">
         <oui-radio-toggle-group data-model="ctrl.selectedContent">
-            <oui-radio data-ng-repeat="content in ctrl.contents track by $index"
+            <oui-radio
+                data-ng-repeat="content in ctrl.contents track by $index"
                 data-text="{{ ::content.name | translate }}"
-                data-value="content.value">
+                data-value="content.value"
+            >
             </oui-radio>
         </oui-radio-toggle-group>
-        <div data-ng-if="ctrl.selectedContent === ctrl.LogsAliasesService.contentTypeEnum.STREAMS">
-            <cui-dual-list data-ng-if="!ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.STREAMS)"
+        <div
+            data-ng-if="ctrl.selectedContent === ctrl.LogsAliasesService.contentTypeEnum.STREAMS"
+        >
+            <cui-dual-list
+                data-ng-if="!ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.STREAMS)"
                 source-list-label="{{::'logs_aliases_link_available_streams' | translate}}"
                 target-list-label="{{::'logs_aliases_link_attached_streams' | translate}}"
                 source-list-empty-label="{{::'logs_aliases_link_all_streams_attached' | translate}}"
@@ -27,15 +37,21 @@
                 on-add="ctrl.attachStream(items)"
                 on-remove="ctrl.detachStream(items)"
                 bulk-action-enabled="false"
-                height="300px">
+                height="300px"
+            >
             </cui-dual-list>
-            <div data-ng-if="ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.STREAMS)">
+            <div
+                data-ng-if="ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.STREAMS)"
+            >
                 <p>{{::'logs_aliases_remove_indexes_message' | translate}}</p>
             </div>
         </div>
 
-        <div data-ng-if="ctrl.selectedContent === ctrl.LogsAliasesService.contentTypeEnum.INDICES">
-            <cui-dual-list data-ng-if="!ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.INDICES)"
+        <div
+            data-ng-if="ctrl.selectedContent === ctrl.LogsAliasesService.contentTypeEnum.INDICES"
+        >
+            <cui-dual-list
+                data-ng-if="!ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.INDICES)"
                 source-list-label="{{::'logs_aliases_link_available_indexes' | translate}}"
                 target-list-label="{{::'logs_aliases_link_attached_indexes' | translate}}"
                 source-list-empty-label="{{::'logs_aliases_link_all_indexes_attached' | translate}}"
@@ -46,9 +62,12 @@
                 on-add="ctrl.attachIndex(items)"
                 on-remove="ctrl.detachIndex(items)"
                 bulk-action-enabled="false"
-                height="360px">
+                height="360px"
+            >
             </cui-dual-list>
-            <div data-ng-if="ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.INDICES)">
+            <div
+                data-ng-if="ctrl.isContentDisabled(ctrl.LogsAliasesService.contentTypeEnum.INDICES)"
+            >
                 <p>{{::'logs_aliases_remove_streams_message' | translate}}</p>
             </div>
         </div>

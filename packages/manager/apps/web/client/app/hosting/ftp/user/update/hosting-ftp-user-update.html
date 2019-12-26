@@ -1,63 +1,111 @@
 <div data-ng-controller="HostingFtpUserUpdateCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateUser"
-         data-wizard-title="'hosting_tab_FTP_configuration_user_modify_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.isStep1Valid()">
-
-            <p data-translate="hosting_tab_FTP_configuration_user_modify_step1_question"></p>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateUser"
+        data-wizard-title="'hosting_tab_FTP_configuration_user_modify_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.isStep1Valid()">
+            <p
+                data-translate="hosting_tab_FTP_configuration_user_modify_step1_question"
+            ></p>
 
             <div class="text-center" data-ng-if="!ctrl.model.capabilities">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <form class="form-horizontal" name="hostingUserUpdateForm"
-                  data-ng-if="ctrl.model.capabilities">
+            <form
+                class="form-horizontal"
+                name="hostingUserUpdateForm"
+                data-ng-if="ctrl.model.capabilities"
+            >
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="hostingUserUpdateLogin"
-                           data-translate="hosting_tab_FTP_configuration_user_modify_step1_user"></label>
+                    <label
+                        class="control-label col-md-4"
+                        for="hostingUserUpdateLogin"
+                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_user"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="hostingUserUpdateLogin" name="hostingUserUpdateLogin"
-                               data-ng-model="ctrl.model.user.login" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="hostingUserUpdateLogin"
+                            name="hostingUserUpdateLogin"
+                            data-ng-model="ctrl.model.user.login"
+                            disabled
+                        />
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserUpdateForm.hostingUserUpdateHome.$dirty && !ctrl.isPathValid()}">
-                    <label class="control-label col-md-4" for="hostingUserUpdateHome"
-                           data-translate="hosting_tab_FTP_configuration_user_modify_step1_home_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserUpdateForm.hostingUserUpdateHome.$dirty && !ctrl.isPathValid()}"
+                >
+                    <label
+                        class="control-label col-md-4"
+                        for="hostingUserUpdateHome"
+                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_home_label"
+                    ></label>
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon">./</span>
-                            <input type="text" class="form-control" id="hostingUserUpdateHome" name="hostingUserUpdateHome"
-                                   data-ng-disabled="ctrl.model.user.isPrimaryAccount"
-                                   data-ng-model="ctrl.model.user.home">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="hostingUserUpdateHome"
+                                name="hostingUserUpdateHome"
+                                data-ng-disabled="ctrl.model.user.isPrimaryAccount"
+                                data-ng-model="ctrl.model.user.home"
+                            />
                         </div>
-                        <small class="help-block"
-                               data-translate="hosting_common_path_help_inline"
-                               data-ng-if="!ctrl.isPathValid()"></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_common_path_help_inline"
+                            data-ng-if="!ctrl.isPathValid()"
+                        ></small>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <span class="control-label col-md-4 oui-label"
-                            data-translate="hosting_tab_FTP_configuration_user_modify_step1_state_label"></span>
+                    <span
+                        class="control-label col-md-4 oui-label"
+                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_state_label"
+                    ></span>
                     <div class="col-md-8">
                         <div class="oui-checkbox mt-3">
-                            <input type="checkbox" class="oui-checkbox__input" id="userState"
-                                   data-ng-model="ctrl.model.user.state"
-                                   data-ng-true-value="'off'"
-                                   data-ng-false-value="'rw'">
-                            <label class="oui-checkbox__label-container" for="userState">
+                            <input
+                                type="checkbox"
+                                class="oui-checkbox__input"
+                                id="userState"
+                                data-ng-model="ctrl.model.user.state"
+                                data-ng-true-value="'off'"
+                                data-ng-false-value="'rw'"
+                            />
+                            <label
+                                class="oui-checkbox__label-container"
+                                for="userState"
+                            >
                                 <span class="oui-checkbox__label">
-                                    <span data-translate="hosting_tab_FTP_configuration_user_modify_step1_state_explanations"></span>
+                                    <span
+                                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_state_explanations"
+                                    ></span>
                                     <span class="oui-checkbox__icon">
-                                        <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                                        <span class="oui-icon oui-icon-checkbox-indeterminate" aria-hidden="true"></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-unchecked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checked"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-checkmark"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <span
+                                            class="oui-icon oui-icon-checkbox-indeterminate"
+                                            aria-hidden="true"
+                                        ></span>
                                     </span>
                                 </span>
                             </label>
@@ -65,39 +113,76 @@
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-if="ctrl.model.operatingSystem === 'linux'">
-                    <span class="control-label col-md-4 oui-label"
-                          data-translate="hosting_tab_FTP_configuration_user_modify_step1_ssh_state_label"></span>
+                <div
+                    class="form-group"
+                    data-ng-if="ctrl.model.operatingSystem === 'linux'"
+                >
+                    <span
+                        class="control-label col-md-4 oui-label"
+                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_ssh_state_label"
+                    ></span>
                     <div class="col-md-8">
                         <div class="oui-radio">
-                            <input type="radio" class="oui-radio__input" id="sshState-off" name="sshState" value="none"
-                                   data-ng-change="ctrl.sshStateChange()"
-                                   data-ng-disabled="ctrl.model.user.state === 'off'"
-                                   data-ng-model="ctrl.model.user.sshState">
-                            <label class="oui-radio__label-container" for="sshState-off">
-                                <span class="oui-radio__label"
-                                      data-translate="hosting_tab_FTP_multiftp_table_ssh_state_none"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="sshState-off"
+                                name="sshState"
+                                value="none"
+                                data-ng-change="ctrl.sshStateChange()"
+                                data-ng-disabled="ctrl.model.user.state === 'off'"
+                                data-ng-model="ctrl.model.user.sshState"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="sshState-off"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-translate="hosting_tab_FTP_multiftp_table_ssh_state_none"
+                                ></span>
                             </label>
                         </div>
                         <div class="oui-radio">
-                            <input type="radio" class="oui-radio__input" id="sshState-sftpOnly" name="sshState" value="sftponly"
-                                   data-ng-change="ctrl.sshStateChange()"
-                                   data-ng-disabled="ctrl.model.user.state === 'off'"
-                                   data-ng-model="ctrl.model.user.sshState">
-                            <label class="oui-radio__label-container" for="sshState-sftpOnly">
-                                <span class="oui-radio__label"
-                                      data-translate="hosting_tab_FTP_multiftp_table_ssh_state_sftponly"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="sshState-sftpOnly"
+                                name="sshState"
+                                value="sftponly"
+                                data-ng-change="ctrl.sshStateChange()"
+                                data-ng-disabled="ctrl.model.user.state === 'off'"
+                                data-ng-model="ctrl.model.user.sshState"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="sshState-sftpOnly"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-translate="hosting_tab_FTP_multiftp_table_ssh_state_sftponly"
+                                ></span>
                             </label>
                         </div>
                         <div class="oui-radio">
-                            <input type="radio" class="oui-radio__input" id="sshState-active" name="sshState" value="active"
-                                   data-ng-change="ctrl.sshStateChange()"
-                                   data-ng-disabled="ctrl.model.user.state === 'off'"
-                                   data-ng-model="ctrl.model.user.sshState">
-                            <label class="oui-radio__label-container" for="sshState-active">
-                                <span class="oui-radio__label"
-                                      data-translate="hosting_tab_FTP_multiftp_table_ssh_state_active"></span>
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="sshState-active"
+                                name="sshState"
+                                value="active"
+                                data-ng-change="ctrl.sshStateChange()"
+                                data-ng-disabled="ctrl.model.user.state === 'off'"
+                                data-ng-model="ctrl.model.user.sshState"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="sshState-active"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-translate="hosting_tab_FTP_multiftp_table_ssh_state_active"
+                                ></span>
                             </label>
                         </div>
                     </div>
@@ -106,16 +191,26 @@
         </div>
 
         <div data-wizard-step>
-            <p data-translate="hosting_tab_FTP_configuration_user_modify_step2_question"></p>
+            <p
+                data-translate="hosting_tab_FTP_configuration_user_modify_step2_question"
+            ></p>
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="hosting_tab_FTP_configuration_user_modify_step2_user"></dt>
+                <dt
+                    data-translate="hosting_tab_FTP_configuration_user_modify_step2_user"
+                ></dt>
                 <dd data-ng-bind="ctrl.model.userLogin"></dd>
 
-                <dt data-translate="hosting_tab_FTP_configuration_user_modify_step2_home_label"></dt>
+                <dt
+                    data-translate="hosting_tab_FTP_configuration_user_modify_step2_home_label"
+                ></dt>
                 <dd data-ng-bind="ctrl.getSelectedHome()"></dd>
 
-                <dt data-translate="hosting_tab_FTP_configuration_user_modify_step2_state_label"></dt>
-                <dd data-ng-bind="'hosting_tab_FTP_configuration_user_modify_state_' + ctrl.model.user.state | translate"></dd>
+                <dt
+                    data-translate="hosting_tab_FTP_configuration_user_modify_step2_state_label"
+                ></dt>
+                <dd
+                    data-ng-bind="'hosting_tab_FTP_configuration_user_modify_state_' + ctrl.model.user.state | translate"
+                ></dd>
             </dl>
         </div>
     </div>

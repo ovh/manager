@@ -1,56 +1,70 @@
 <section class="telecom-pack-xdsl">
-
     <div class="text-center" data-ng-if="PackXdslCtrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
     <div class="telecom-section-header">
-
-        <header class="page-header"
-                role="banner"
-                data-ng-if="!PackXdslCtrl.loading.init">
-            <tuc-section-back-link data-ng-if="PackXdslCtrl.content.back.state && PackXdslCtrl.content.status === 'active'"
-                               data-ng-click="PackXdslCtrl.backState()"
-                               data-tuc-section-back-link-title="{{ PackXdslCtrl.pack.general.description || PackXdslCtrl.pack.general.packName || PackXdslCtrl.access.description || PackXdslCtrl.access.accessName }}"></tuc-section-back-link>
+        <header
+            class="page-header"
+            role="banner"
+            data-ng-if="!PackXdslCtrl.loading.init"
+        >
+            <tuc-section-back-link
+                data-ng-if="PackXdslCtrl.content.back.state && PackXdslCtrl.content.status === 'active'"
+                data-ng-click="PackXdslCtrl.backState()"
+                data-tuc-section-back-link-title="{{ PackXdslCtrl.pack.general.description || PackXdslCtrl.pack.general.packName || PackXdslCtrl.access.description || PackXdslCtrl.access.accessName }}"
+            ></tuc-section-back-link>
             <!-- ACCESS TITLE -->
-            <tuc-editable-service-name data-tuc-editable-service-name-title="PackXdslCtrl.access.description || PackXdslCtrl.access.accessName"
-                                   data-tuc-editable-service-name-service-name="PackXdslCtrl.access.accessName"
-                                   data-tuc-editable-service-name-title-on-save="PackXdslCtrl.accessDescriptionSave">
+            <tuc-editable-service-name
+                data-tuc-editable-service-name-title="PackXdslCtrl.access.description || PackXdslCtrl.access.accessName"
+                data-tuc-editable-service-name-service-name="PackXdslCtrl.access.accessName"
+                data-tuc-editable-service-name-title-on-save="PackXdslCtrl.accessDescriptionSave"
+            >
             </tuc-editable-service-name>
         </header>
 
         <nav role="navigation">
             <responsive-tabs>
-                <responsive-tab data-state="telecom.packs.pack.xdsl"
-                                data-dropdown-title="{{ 'xdsl_tabs_line' | translate }}">
+                <responsive-tab
+                    data-state="telecom.packs.pack.xdsl"
+                    data-dropdown-title="{{ 'xdsl_tabs_line' | translate }}"
+                >
                     <span data-translate="xdsl_tabs_line"></span>
                 </responsive-tab>
-                <responsive-tab data-state="telecom.packs.pack.xdsl.modem"
-                                disabled="PackXdslCtrl.disabledModem"
-                                data-ng-if="PackXdslCtrl.isModemTabAvailable()"
-                                data-dropdown-title="{{ 'xdsl_tabs_modem' | translate }}">
+                <responsive-tab
+                    data-state="telecom.packs.pack.xdsl.modem"
+                    disabled="PackXdslCtrl.disabledModem"
+                    data-ng-if="PackXdslCtrl.isModemTabAvailable()"
+                    data-dropdown-title="{{ 'xdsl_tabs_modem' | translate }}"
+                >
                     <span data-translate="xdsl_tabs_modem"></span>
                 </responsive-tab>
                 <responsive-tab-more>
-                    <span data-translate-attr="{title: 'common_tabs_more'}"
-                          class="fa fa-plus"
-                          aria-hidden="true"></span>
+                    <span
+                        data-translate-attr="{title: 'common_tabs_more'}"
+                        class="fa fa-plus"
+                        aria-hidden="true"
+                    ></span>
                 </responsive-tab-more>
-                <responsive-tab data-state="telecom.packs.pack.xdsl.tasks"
-                                data-dropdown-title="{{ 'xdsl_tabs_tasks' | translate }}">
+                <responsive-tab
+                    data-state="telecom.packs.pack.xdsl.tasks"
+                    data-dropdown-title="{{ 'xdsl_tabs_tasks' | translate }}"
+                >
                     <span data-translate="xdsl_tabs_tasks"></span>
                 </responsive-tab>
             </responsive-tabs>
         </nav>
-
-    </div><!-- .telecom-section-header -->
+    </div>
+    <!-- .telecom-section-header -->
 
     <tuc-toast-message></tuc-toast-message>
 
-    <div class="telecom-section-content ui-view-container"
-         data-ng-class="PackXdslCtrl.content.back.class"
-         data-ng-if="!PackXdslCtrl.loading.init"
-         data-ui-view="xdslView">
-    </div><!-- .telecom-section-content -->
-
-</section><!-- .telecom-pack-xdsl -->
+    <div
+        class="telecom-section-content ui-view-container"
+        data-ng-class="PackXdslCtrl.content.back.class"
+        data-ng-if="!PackXdslCtrl.loading.init"
+        data-ui-view="xdslView"
+    ></div>
+    <!-- .telecom-section-content -->
+</section>
+<!-- .telecom-pack-xdsl -->

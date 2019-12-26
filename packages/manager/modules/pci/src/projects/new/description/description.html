@@ -1,35 +1,39 @@
-<form class="pci-projects-new-description"
-      name="projectDescriptionForm"
-      id="projectDescriptionForm"
-      data-ng-submit="$ctrl.onDescriptionStepFormSubmit($ctrl.navigateToUrl, $ctrl.url)">
-
-    <div class="text-center"
-         data-ng-if="$ctrl.step.loading.init">
+<form
+    class="pci-projects-new-description"
+    name="projectDescriptionForm"
+    id="projectDescriptionForm"
+    data-ng-submit="$ctrl.onDescriptionStepFormSubmit($ctrl.navigateToUrl, $ctrl.url)"
+>
+    <div class="text-center" data-ng-if="$ctrl.step.loading.init">
         <oui-spinner data-size="m"></oui-spinner>
     </div>
 
     <div data-ng-if="!$ctrl.step.loading.init">
         <oui-field
             data-label="{{ :: 'pci_project_new_description_project_name' | translate }}"
-            data-size="l">
+            data-size="l"
+        >
             <input
                 class="oui-input"
                 type="text"
                 id="newProjectName"
                 name="newProjectName"
                 data-ng-model="$ctrl.descriptionModel.name"
-                maxlength="255">
+                maxlength="255"
+            />
         </oui-field>
 
         <oui-checkbox
             data-model="$ctrl.descriptionModel.agreements"
             data-name="agreements"
             data-required
-            data-ng-if="$ctrl.newProjectInfo.agreements">
-            <span data-translate="pci_project_new_description_project_contracts"
-                  data-translate-values="{ contractsLinks: $ctrl.getCompiledLinks('<a href=\'<%= pdf %>\' target=\'_blank\' rel=\'noopener\'><%= name %></a>') }">
+            data-ng-if="$ctrl.newProjectInfo.agreements"
+        >
+            <span
+                data-translate="pci_project_new_description_project_contracts"
+                data-translate-values="{ contractsLinks: $ctrl.getCompiledLinks('<a href=\'<%= pdf %>\' target=\'_blank\' rel=\'noopener\'><%= name %></a>') }"
+            >
             </span>
         </oui-checkbox>
     </div>
-
 </form>

@@ -1,4 +1,5 @@
-<button type="button"
+<button
+    type="button"
     name="modemReboot"
     id="modemReboot"
     class="btn btn-primary mb-3"
@@ -7,12 +8,14 @@
     data-ng-really-confirm="{{ 'ok' | translate }}"
     data-ng-really-cancel="{{ 'cancel' | translate }}"
     data-ng-really-window-class="revert-really-buttons"
-    data-ng-disabled="!RebootCtrl.mediator.capabilities.canReboot">
+    data-ng-disabled="!RebootCtrl.mediator.capabilities.canReboot"
+>
     <span data-ng-if="RebootCtrl.mediator.tasks.rebootModem">
-        <oui-spinner class="mr-2"
-                     data-size="s">
-        </oui-spinner>
+        <oui-spinner class="mr-2" data-size="s"> </oui-spinner>
         <span data-translate="xdsl_modem_reboot_success"></span>
     </span>
-    <span data-ng-if="!RebootCtrl.mediator.tasks.rebootModem" data-translate="xdsl_modem_reboot"></span>
+    <span
+        data-ng-if="!RebootCtrl.mediator.tasks.rebootModem"
+        data-translate="xdsl_modem_reboot"
+    ></span>
 </button>

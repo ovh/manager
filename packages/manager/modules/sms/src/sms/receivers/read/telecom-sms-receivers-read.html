@@ -1,54 +1,69 @@
 <div class="telecom-sms-receivers-read">
-
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="ReceiversReadCtrl.close()">
+            data-ng-click="ReceiversReadCtrl.close()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body">
-        <h3 class="modal-title"
-            data-translate="sms_receivers_read_receiver_title">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="sms_receivers_read_receiver_title"
+        ></h3>
 
         <div class="mb-3">
-            <span data-translate="sms_receivers_read_receiver_title_list"></span>
-            <strong data-ng-bind="ReceiversReadCtrl.receiver.description"></strong>
+            <span
+                data-translate="sms_receivers_read_receiver_title_list"
+            ></span>
+            <strong
+                data-ng-bind="ReceiversReadCtrl.receiver.description"
+            ></strong>
         </div>
 
         <div class="mb-3" data-ng-if="ReceiversReadCtrl.csv.length > 10">
-            <p data-translate="sms_receivers_read_receiver_truncate_text"
-               data-translate-values="{ receivers: ReceiversReadCtrl.csv.length }">
-            </p>
+            <p
+                data-translate="sms_receivers_read_receiver_truncate_text"
+                data-translate-values="{ receivers: ReceiversReadCtrl.csv.length }"
+            ></p>
         </div>
 
-        <div class="alert alert-danger mb-3"
-             role="alert"
-             data-ng-if="!ReceiversReadCtrl.csv.length"
-             data-translate="sms_receivers_read_receiver_parse_error">
-        </div>
+        <div
+            class="alert alert-danger mb-3"
+            role="alert"
+            data-ng-if="!ReceiversReadCtrl.csv.length"
+            data-translate="sms_receivers_read_receiver_parse_error"
+        ></div>
 
-        <div class="table-responsive mb-4"
-             data-ng-if="ReceiversReadCtrl.csv.length">
+        <div
+            class="table-responsive mb-4"
+            data-ng-if="ReceiversReadCtrl.csv.length"
+        >
             <table class="table table-hovered table-striped">
                 <thead>
-                    <tr data-ng-repeat="row in ReceiversReadCtrl.csv | limitTo : 1">
-                        <th scope="row"
+                    <tr
+                        data-ng-repeat="row in ReceiversReadCtrl.csv | limitTo : 1"
+                    >
+                        <th
+                            scope="row"
                             data-ng-repeat="data in row"
-                            data-ng-bind="data">
-                        </th>
+                            data-ng-bind="data"
+                        ></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="row in ReceiversReadCtrl.csv | limitTo : 11"
-                        data-ng-show="$index > 0">
-                        <td data-ng-repeat="data in row"
-                            data-ng-bind="data">
-                        </td>
+                    <tr
+                        data-ng-repeat="row in ReceiversReadCtrl.csv | limitTo : 11"
+                        data-ng-show="$index > 0"
+                    >
+                        <td
+                            data-ng-repeat="data in row"
+                            data-ng-bind="data"
+                        ></td>
                     </tr>
                 </tbody>
             </table>
@@ -61,15 +76,15 @@
             class="btn btn-default"
             data-ng-csv="ReceiversReadCtrl.csv"
             data-filename="{{ ReceiversReadCtrl.setFilename() }}"
-            data-ng-disabled="!ReceiversReadCtrl.csv.length">
+            data-ng-disabled="!ReceiversReadCtrl.csv.length"
+        >
             <span data-translate="sms_receivers_read_receiver_export"></span>
         </button>
         <button
             type="button"
             class="btn btn-primary"
             data-translate="sms_ok"
-            data-ng-click="ReceiversReadCtrl.close()">
-        </button>
+            data-ng-click="ReceiversReadCtrl.close()"
+        ></button>
     </div>
-
 </div>

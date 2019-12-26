@@ -1,8 +1,9 @@
-<form id="createbackup"
+<form
+    id="createbackup"
     name="createbackup"
     data-ng-submit="createbackup.$valid && $ctrl.createBackup()"
-    novalidate>
-
+    novalidate
+>
     <oui-modal
         data-heading="{{:: 'pci_projects_project_instances_instance_backup_title' | translate }}"
         data-primary-label="{{:: 'pci_projects_project_instances_instance_backup_submit_label' | translate }}"
@@ -10,11 +11,12 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_instances_instance_backup_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-
+        data-loading="$ctrl.isLoading"
+    >
         <oui-field
             data-label="{{:: 'pci_projects_project_instances_instance_backup_name_label' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <input
                 class="oui-input"
                 type="text"
@@ -22,22 +24,31 @@
                 name="name"
                 data-ng-model="$ctrl.backup.name"
                 required
-                data-ng-maxlength="255">
+                data-ng-maxlength="255"
+            />
 
-            <span data-translate="pci_projects_project_instances_instance_backup_price"
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_price"
                 data-translate-values="{
                     size: (($ctrl.instance.flavor.disk * 1000000000 || 0) | cucBytes:2:'true'),
                     price: $ctrl.priceEstimation.totalPrice.text || '?'
-                }"></span>
+                }"
+            ></span>
         </oui-field>
 
         <oui-message type="warning" data-ng-if="!$ctrl.storage.isAttachable()">
-            <span data-translate="pci_projects_project_instances_instance_backup_warning_message"></span>
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_warning_message"
+            ></span>
         </oui-message>
 
-        <oui-message type="warning" data-ng-if="$ctrl.instance.flavor.type === 'ovh.iops'">
-            <span data-translate="pci_projects_project_instances_instance_backup_warning_iops_message"></span>
+        <oui-message
+            type="warning"
+            data-ng-if="$ctrl.instance.flavor.type === 'ovh.iops'"
+        >
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_warning_iops_message"
+            ></span>
         </oui-message>
-
     </oui-modal>
 </form>

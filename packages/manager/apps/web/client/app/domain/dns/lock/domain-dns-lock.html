@@ -1,19 +1,20 @@
 <div data-ng-controller="controllers.Domain.Dns.Lock as ctrl">
-    <div data-wizard
-         data-wizard-hide-cancel-button="loading"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateDomainLock"
-         data-wizard-title="'domain_tab_DNS_lock_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-hide-cancel-button="loading"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateDomainLock"
+        data-wizard-title="'domain_tab_DNS_lock_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <p data-translate="domain_tab_DNS_lock_confirm"
-               data-ng-if="!ctrl.loading"></p>
+            <p
+                data-translate="domain_tab_DNS_lock_confirm"
+                data-ng-if="!ctrl.loading"
+            ></p>
         </div>
     </div>
 </div>

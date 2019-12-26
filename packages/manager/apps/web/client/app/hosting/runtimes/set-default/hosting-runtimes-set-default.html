@@ -1,33 +1,50 @@
 <div data-ng-controller="controllers.Hosting.Runtimes.setDefault as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="setDefault"
-         data-wizard-title="'hosting_tab_RUNTIMES_set_default_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="setDefault"
+        data-wizard-title="'hosting_tab_RUNTIMES_set_default_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="hosting_tab_RUNTIMES_set_default_step1_question"></p>
+            <p
+                data-translate="hosting_tab_RUNTIMES_set_default_step1_question"
+            ></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="hosting_tab_RUNTIMES_table_header_name"></dt>
+                <dt
+                    data-translate="hosting_tab_RUNTIMES_table_header_name"
+                ></dt>
                 <dd data-ng-bind="ctrl.entryToSetup.name"></dd>
 
-                <dt data-translate="hosting_tab_RUNTIMES_table_header_language"></dt>
+                <dt
+                    data-translate="hosting_tab_RUNTIMES_table_header_language"
+                ></dt>
                 <dd data-ng-bind="ctrl.entryToSetup.type"></dd>
 
-                <div data-ng-if="!ctrl.entryToSetup.type.includes(ctrl.HOSTING_RUNTIME.PHP)">
-                    <dt data-translate="hosting_tab_RUNTIMES_table_header_publicDir"></dt>
+                <div
+                    data-ng-if="!ctrl.entryToSetup.type.includes(ctrl.HOSTING_RUNTIME.PHP)"
+                >
+                    <dt
+                        data-translate="hosting_tab_RUNTIMES_table_header_publicDir"
+                    ></dt>
                     <dd data-ng-bind="ctrl.entryToSetup.publicDir"></dd>
 
-                    <dt data-translate="hosting_tab_RUNTIMES_table_header_appEnv"></dt>
+                    <dt
+                        data-translate="hosting_tab_RUNTIMES_table_header_appEnv"
+                    ></dt>
                     <dd data-ng-bind="ctrl.entryToSetup.appEnv"></dd>
 
-                    <dt data-translate="hosting_tab_RUNTIMES_table_header_appBootstrap"></dt>
+                    <dt
+                        data-translate="hosting_tab_RUNTIMES_table_header_appBootstrap"
+                    ></dt>
                     <dd data-ng-bind="ctrl.entryToSetup.appBootstrap"></dd>
                 </div>
             </dl>
 
             <oui-message type="warning">
-                <span data-translate="hosting_tab_RUNTIMES_set_default_information"></span>
+                <span
+                    data-translate="hosting_tab_RUNTIMES_set_default_information"
+                ></span>
             </oui-message>
         </div>
     </div>

@@ -1,50 +1,58 @@
 <div class="user-account">
-    <oui-page-header data-heading="{{ :: 'user_account_title_infos' | translate }}">
+    <oui-page-header
+        data-heading="{{ :: 'user_account_title_infos' | translate }}"
+    >
         <oui-header-tabs>
-            <oui-header-tabs-item data-text="{{ 'user_account_title_dashboard' | translate }}"
-                                  data-href="{{ $ctrl.$state.href('app.account.user.dashboard') }}"
-                                  data-active="$ctrl.$state.includes('app.account.user.dashboard')">
+            <oui-header-tabs-item
+                data-text="{{ 'user_account_title_dashboard' | translate }}"
+                data-href="{{ $ctrl.$state.href('app.account.user.dashboard') }}"
+                data-active="$ctrl.$state.includes('app.account.user.dashboard')"
+            >
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{ 'user_account_security_title' | translate }}"
-                                  data-href="{{ $ctrl.$state.href('app.account.user.security') }}"
-                                  data-active="$ctrl.$state.includes('app.account.user.security')">
+            <oui-header-tabs-item
+                data-text="{{ 'user_account_security_title' | translate }}"
+                data-href="{{ $ctrl.$state.href('app.account.user.security') }}"
+                data-active="$ctrl.$state.includes('app.account.user.security')"
+            >
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{ 'user_account_emails_title' | translate }}"
-                                  data-href="{{ $ctrl.$state.href('app.account.user.emails') }}"
-                                  data-active="$ctrl.$state.includes('app.account.user.emails')">
+            <oui-header-tabs-item
+                data-text="{{ 'user_account_emails_title' | translate }}"
+                data-href="{{ $ctrl.$state.href('app.account.user.emails') }}"
+                data-active="$ctrl.$state.includes('app.account.user.emails')"
+            >
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{ 'user_account_support_level_title' | translate }}"
-                                  data-href="{{ $ctrl.$state.href('app.account.user.support-level') }}"
-                                  data-active="$ctrl.$state.includes('app.account.user.support-level')"
-                                  data-ng-if="$ctrl.supportLevel">
+            <oui-header-tabs-item
+                data-text="{{ 'user_account_support_level_title' | translate }}"
+                data-href="{{ $ctrl.$state.href('app.account.user.support-level') }}"
+                data-active="$ctrl.$state.includes('app.account.user.support-level')"
+                data-ng-if="$ctrl.supportLevel"
+            >
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{ 'user_account_users_management_title' | translate }}"
-                                  data-href="{{ $ctrl.$state.href('app.account.user.users') }}"
-                                  data-active="$ctrl.$state.includes('app.account.user.users')">
+            <oui-header-tabs-item
+                data-text="{{ 'user_account_users_management_title' | translate }}"
+                data-href="{{ $ctrl.$state.href('app.account.user.users') }}"
+                data-active="$ctrl.$state.includes('app.account.user.users')"
+            >
             </oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{ 'user_account_advanced_title' | translate }}"
-                                  data-href="{{ $ctrl.$state.href('app.account.user.advanced') }}"
-                                  data-active="$ctrl.$state.includes('app.account.user.advanced')">
+            <oui-header-tabs-item
+                data-text="{{ 'user_account_advanced_title' | translate }}"
+                data-href="{{ $ctrl.$state.href('app.account.user.advanced') }}"
+                data-active="$ctrl.$state.includes('app.account.user.advanced')"
+            >
             </oui-header-tabs-item>
-
         </oui-header-tabs>
     </oui-page-header>
 
-    <div class="tab-content"
-         data-ui-view>
-    </div>
+    <div class="tab-content" data-ui-view></div>
 
-    <div id="currentAction"
-         class="modal fade currentAction"
-         role="dialog">
+    <div id="currentAction" class="modal fade currentAction" role="dialog">
         <div class="modal-dialog">
-            <div id="modal-container"
-                 class="modal-content"
-                 data-ng-include="stepPath">
-            </div>
-            <div id="modal-help"
-                 class="help4wizards">
-            </div>
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
         </div>
     </div>
 </div>

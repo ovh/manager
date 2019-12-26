@@ -1,130 +1,238 @@
-<div class="container-fluid px-0" data-ng-controller="DomainDnssecTabCtrl as ctrlDomainDnssec">
-
+<div
+    class="container-fluid px-0"
+    data-ng-controller="DomainDnssecTabCtrl as ctrlDomainDnssec"
+>
     <div class="text-center" data-ng-if="ctrlDomainDnssec.loading">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="alert alert-warning" role="alert"
-         data-ng-if="!ctrlDomainDnssec.loading && !ctrlDomainDnssec.product.dnssecSupported">
-        <div data-ng-bind-html="'domain_tab_DNSSEC_not_supported_warning' | translate"></div>
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-ng-if="!ctrlDomainDnssec.loading && !ctrlDomainDnssec.product.dnssecSupported"
+    >
+        <div
+            data-ng-bind-html="'domain_tab_DNSSEC_not_supported_warning' | translate"
+        ></div>
     </div>
 
-    <div class="row" data-ng-if="!ctrlDomainDnssec.loading && ctrlDomainDnssec.product.dnssecSupported">
+    <div
+        class="row"
+        data-ng-if="!ctrlDomainDnssec.loading && ctrlDomainDnssec.product.dnssecSupported"
+    >
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
-            <div class="alert alert-warning" role="alert"
-                 data-translate="domain_tab_DNSSEC_notModifiable"
-                 data-ng-if="!ctrlDomainDnssec.isModifiable() && !ctrlDomainDnssec.hasActiveTask">
-            </div>
-            <div class="alert alert-warning" role="alert"
-                 data-translate="domain_tab_DNSSEC_hasActiveTasks"
-                 data-ng-if="ctrlDomainDnssec.isNotModifiableByActiveTask()">
-            </div>
-            <div class="alert alert-info" role="alert"
-                 data-translate="domain_tab_DNSSEC_list_modified"
-                 data-ng-if="ctrlDomainDnssec.editMode">
-            </div>
-            <div class="alert alert-info" role="alert"
-                 data-translate="domain_tab_DNSSEC_table_empty"
-                 data-ng-if="!ctrlDomainDnssec.dnssecList.length && !ctrlDomainDnssec.editMode">
-            </div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="domain_tab_DNSSEC_notModifiable"
+                data-ng-if="!ctrlDomainDnssec.isModifiable() && !ctrlDomainDnssec.hasActiveTask"
+            ></div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="domain_tab_DNSSEC_hasActiveTasks"
+                data-ng-if="ctrlDomainDnssec.isNotModifiableByActiveTask()"
+            ></div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="domain_tab_DNSSEC_list_modified"
+                data-ng-if="ctrlDomainDnssec.editMode"
+            ></div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="domain_tab_DNSSEC_table_empty"
+                data-ng-if="!ctrlDomainDnssec.dnssecList.length && !ctrlDomainDnssec.editMode"
+            ></div>
 
-            <div class="table-responsive" data-ng-if="ctrlDomainDnssec.dnssecList.length || ctrlDomainDnssec.editMode">
+            <div
+                class="table-responsive"
+                data-ng-if="ctrlDomainDnssec.dnssecList.length || ctrlDomainDnssec.editMode"
+            >
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" data-translate="domain_tab_DNSSEC_tag"></th>
-                            <th scope="col" data-translate="domain_tab_DNSSEC_flag"></th>
-                            <th scope="col" data-translate="domain_tab_DNSSEC_algorithm"></th>
-                            <th scope="col" data-translate="domain_tab_DNSSEC_public_key"></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DNSSEC_tag"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DNSSEC_flag"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DNSSEC_algorithm"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DNSSEC_public_key"
+                            ></th>
                             <th class="min-width text-right" scope="col">
-                                <button class="btn btn-icon" type="button" title="{{ 'refresh' | translate }}"
-                                        data-ng-click="ctrlDomainDnssec.loadDnssec()">
-                                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{ 'refresh' | translate }}"
+                                    data-ng-click="ctrlDomainDnssec.loadDnssec()"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </th>
                         </tr>
                     </thead>
 
                     <tbody data-ng-if="!ctrlDomainDnssec.editMode">
-                        <tr data-ng-repeat="myDnssec in ctrlDomainDnssec.dnssecList track by myDnssec.id">
+                        <tr
+                            data-ng-repeat="myDnssec in ctrlDomainDnssec.dnssecList track by myDnssec.id"
+                        >
                             <th scope="row" data-ng-bind="myDnssec.tag"></th>
-                            <td data-ng-bind="ctrlDomainDnssec.constructor.getLabel(myDnssec.flags, ctrlDomainDnssec.const.FLAGS_OPTIONS)"></td>
-                            <td data-ng-bind="ctrlDomainDnssec.constructor.getLabel(myDnssec.algorithm, ctrlDomainDnssec.const.ALGORITHM_OPTIONS)"></td>
-                            <td class="word-break" colspan="2" data-ng-bind="myDnssec.publicKey"></td>
+                            <td
+                                data-ng-bind="ctrlDomainDnssec.constructor.getLabel(myDnssec.flags, ctrlDomainDnssec.const.FLAGS_OPTIONS)"
+                            ></td>
+                            <td
+                                data-ng-bind="ctrlDomainDnssec.constructor.getLabel(myDnssec.algorithm, ctrlDomainDnssec.const.ALGORITHM_OPTIONS)"
+                            ></td>
+                            <td
+                                class="word-break"
+                                colspan="2"
+                                data-ng-bind="myDnssec.publicKey"
+                            ></td>
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="ctrlDomainDnssec.editMode"
-                           data-ng-form
-                           data-name="ctrlDomainDnssec.addDnssecForm">
+                    <tbody
+                        data-ng-if="ctrlDomainDnssec.editMode"
+                        data-ng-form
+                        data-name="ctrlDomainDnssec.addDnssecForm"
+                    >
                         <tr>
-                            <td class="align-middle font-italic text-center" colspan="4"
-                                data-translate="domain_tab_DNSSEC_new_inline_zone"></td>
+                            <td
+                                class="align-middle font-italic text-center"
+                                colspan="4"
+                                data-translate="domain_tab_DNSSEC_new_inline_zone"
+                            ></td>
                             <td class="text-center">
-                                <button class="btn btn-default" type="button" title="{{ 'table_add_entry' | translate }}"
-                                        data-ng-disabled="ctrlDomainDnssec.dnssecList.length >= ctrlDomainDnssec.const.MAX_AMOUNT_DNSSEC"
-                                        data-ng-click="ctrlDomainDnssec.addRecord()">
-                                    <span class="fa fa-plus" aria-hidden="true"></span>
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    title="{{ 'table_add_entry' | translate }}"
+                                    data-ng-disabled="ctrlDomainDnssec.dnssecList.length >= ctrlDomainDnssec.const.MAX_AMOUNT_DNSSEC"
+                                    data-ng-click="ctrlDomainDnssec.addRecord()"
+                                >
+                                    <span
+                                        class="fa fa-plus"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </td>
                         </tr>
-                        <tr data-ng-repeat="myDnssec in ctrlDomainDnssec.dnssecList track by myDnssec.id">
-                            <td class="form-group"
-                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.tag_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.tag_{{$index}}.$invalid}">
-                                <label class="control-label required" for="tag-{{$index}}"
-                                       data-translate="domain_tab_DNSSEC_tag">
+                        <tr
+                            data-ng-repeat="myDnssec in ctrlDomainDnssec.dnssecList track by myDnssec.id"
+                        >
+                            <td
+                                class="form-group"
+                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.tag_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.tag_{{$index}}.$invalid}"
+                            >
+                                <label
+                                    class="control-label required"
+                                    for="tag-{{$index}}"
+                                    data-translate="domain_tab_DNSSEC_tag"
+                                >
                                 </label>
-                                <input type="number" class="form-control input-sm" id="tag-{{$index}}" name="tag_{{$index}}" required
-                                       data-ng-min="ctrlDomainDnssec.const.TAG_MIN"
-                                       data-ng-max="ctrlDomainDnssec.const.TAG_MAX"
-                                       min="{{::ctrlDomainDnssec.const.TAG_MIN}}"
-                                       max="{{::ctrlDomainDnssec.const.TAG_MAX}}"
-                                       data-ng-model="myDnssec.tag"
-                                       data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_tag' | translate }}"
-                                       data-oui-tooltip-placement="bottom">
+                                <input
+                                    type="number"
+                                    class="form-control input-sm"
+                                    id="tag-{{$index}}"
+                                    name="tag_{{$index}}"
+                                    required
+                                    data-ng-min="ctrlDomainDnssec.const.TAG_MIN"
+                                    data-ng-max="ctrlDomainDnssec.const.TAG_MAX"
+                                    min="{{::ctrlDomainDnssec.const.TAG_MIN}}"
+                                    max="{{::ctrlDomainDnssec.const.TAG_MAX}}"
+                                    data-ng-model="myDnssec.tag"
+                                    data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_tag' | translate }}"
+                                    data-oui-tooltip-placement="bottom"
+                                />
                             </td>
-                            <td class="form-group"
-                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.flags_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.flags_{{$index}}.$invalid}">
-                                <label class="control-label required" for="flags-{{$index}}"
-                                       data-translate="domain_tab_DNSSEC_flag">
+                            <td
+                                class="form-group"
+                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.flags_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.flags_{{$index}}.$invalid}"
+                            >
+                                <label
+                                    class="control-label required"
+                                    for="flags-{{$index}}"
+                                    data-translate="domain_tab_DNSSEC_flag"
+                                >
                                 </label>
-                                <select class="form-control input-sm" id="flags-{{$index}}" name="flags_{{$index}}" required
-                                        data-ng-model="myDnssec.flags"
-                                        data-ng-options="flag as ctrlDomainDnssec.constructor.getLabel(flag, ctrlDomainDnssec.const.FLAGS_OPTIONS) for flag in ctrlDomainDnssec.keyFlagEnum track by flag"
-                                        data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_flags' | translate }}"
-                                        data-oui-tooltip-placement="bottom">
+                                <select
+                                    class="form-control input-sm"
+                                    id="flags-{{$index}}"
+                                    name="flags_{{$index}}"
+                                    required
+                                    data-ng-model="myDnssec.flags"
+                                    data-ng-options="flag as ctrlDomainDnssec.constructor.getLabel(flag, ctrlDomainDnssec.const.FLAGS_OPTIONS) for flag in ctrlDomainDnssec.keyFlagEnum track by flag"
+                                    data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_flags' | translate }}"
+                                    data-oui-tooltip-placement="bottom"
+                                >
                                 </select>
                             </td>
-                            <td class="form-group"
-                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.algorithm_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.algorithm_{{$index}}.$invalid}">
-                                <label class="control-label required" for="algorithm-{{$index}}"
-                                       data-translate="domain_tab_DNSSEC_action_algorithm_label">
+                            <td
+                                class="form-group"
+                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.algorithm_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.algorithm_{{$index}}.$invalid}"
+                            >
+                                <label
+                                    class="control-label required"
+                                    for="algorithm-{{$index}}"
+                                    data-translate="domain_tab_DNSSEC_action_algorithm_label"
+                                >
                                 </label>
-                                <select class="form-control input-sm" id="algorithm-{{$index}}" name="algorithm_{{$index}}" required
-                                        data-ng-model="myDnssec.algorithm"
-                                        data-ng-options="algorithm as ctrlDomainDnssec.constructor.getLabel(algorithm, ctrlDomainDnssec.const.ALGORITHM_OPTIONS) for algorithm in ctrlDomainDnssec.keyAlgorithmEnum track by algorithm"
-                                        data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_algorithm' | translate }}"
-                                        data-oui-tooltip-placement="bottom">
+                                <select
+                                    class="form-control input-sm"
+                                    id="algorithm-{{$index}}"
+                                    name="algorithm_{{$index}}"
+                                    required
+                                    data-ng-model="myDnssec.algorithm"
+                                    data-ng-options="algorithm as ctrlDomainDnssec.constructor.getLabel(algorithm, ctrlDomainDnssec.const.ALGORITHM_OPTIONS) for algorithm in ctrlDomainDnssec.keyAlgorithmEnum track by algorithm"
+                                    data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_algorithm' | translate }}"
+                                    data-oui-tooltip-placement="bottom"
+                                >
                                 </select>
                             </td>
-                            <td class="form-group"
-                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.publicKey_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.publicKey_{{$index}}.$invalid}">
-                                <label class="control-label required" for="publicKey-{{$index}}"
-                                       data-translate="domain_tab_DNSSEC_action_publicKey_label">
+                            <td
+                                class="form-group"
+                                data-ng-class="{'has-error': ctrlDomainDnssec.addDnssecForm.publicKey_{{$index}}.$dirty && ctrlDomainDnssec.addDnssecForm.publicKey_{{$index}}.$invalid}"
+                            >
+                                <label
+                                    class="control-label required"
+                                    for="publicKey-{{$index}}"
+                                    data-translate="domain_tab_DNSSEC_action_publicKey_label"
+                                >
                                 </label>
-                                <textarea class="form-control" id="publicKey-{{$index}}" name="publicKey_{{$index}}" required
-                                          data-ng-model="myDnssec.publicKey"
-                                          data-ng-pattern="ctrlDomainDnssec.const.PUBLIC_KEY_REGEX"
-                                          data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_publickey' | translate }}"
-                                          data-oui-tooltip-placement="bottom">
+                                <textarea
+                                    class="form-control"
+                                    id="publicKey-{{$index}}"
+                                    name="publicKey_{{$index}}"
+                                    required
+                                    data-ng-model="myDnssec.publicKey"
+                                    data-ng-pattern="ctrlDomainDnssec.const.PUBLIC_KEY_REGEX"
+                                    data-oui-tooltip="{{:: 'domain_tab_DNSSEC_tooltip_publickey' | translate }}"
+                                    data-oui-tooltip-placement="bottom"
+                                >
                                 </textarea>
                             </td>
                             <td class="align-middle text-center">
-                                <oui-action-menu data-compact 
-                                                 data-align="end">
-                                    <oui-action-menu-item data-on-click="ctrlDomainDnssec.deleteRecord(myDnssec)">
-                                        <span data-translate="common_delete"></span>
+                                <oui-action-menu data-compact data-align="end">
+                                    <oui-action-menu-item
+                                        data-on-click="ctrlDomainDnssec.deleteRecord(myDnssec)"
+                                    >
+                                        <span
+                                            data-translate="common_delete"
+                                        ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
                             </td>
@@ -135,30 +243,36 @@
         </div>
         <div class="col-md-3 mt-5 mt-lg-0">
             <div class="mb-5">
-                <button class="btn btn-block btn-default" type="button"
-                        data-translate="domain_tab_DNSSEC_action_add_title"
-                        data-ng-click="ctrlDomainDnssec.editMode = true"
-                        data-ng-disabled="!ctrlDomainDnssec.isModifiable()"
-                        data-ng-if="!ctrlDomainDnssec.editMode">
-                </button>
-                <button class="btn btn-block btn-primary" type="button"
-                        data-translate="wizard_confirm"
-                        data-ng-click="setAction('dnssec/save/domain-dnssec-save', {})"
-                        data-ng-disabled="!ctrlDomainDnssec.addDnssecForm.$dirty || ctrlDomainDnssec.addDnssecForm.$invalid"
-                        data-ng-if="ctrlDomainDnssec.editMode">
-                </button>
-                <button class="btn btn-block btn-default" type="button"
-                        data-translate="domain_tab_DNSSEC_reset"
-                        data-ng-click="ctrlDomainDnssec.reset()"
-                        data-ng-if="ctrlDomainDnssec.editMode">
-                </button>
-
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="domain_tab_DNSSEC_action_add_title"
+                    data-ng-click="ctrlDomainDnssec.editMode = true"
+                    data-ng-disabled="!ctrlDomainDnssec.isModifiable()"
+                    data-ng-if="!ctrlDomainDnssec.editMode"
+                ></button>
+                <button
+                    class="btn btn-block btn-primary"
+                    type="button"
+                    data-translate="wizard_confirm"
+                    data-ng-click="setAction('dnssec/save/domain-dnssec-save', {})"
+                    data-ng-disabled="!ctrlDomainDnssec.addDnssecForm.$dirty || ctrlDomainDnssec.addDnssecForm.$invalid"
+                    data-ng-if="ctrlDomainDnssec.editMode"
+                ></button>
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="domain_tab_DNSSEC_reset"
+                    data-ng-click="ctrlDomainDnssec.reset()"
+                    data-ng-if="ctrlDomainDnssec.editMode"
+                ></button>
             </div>
-            <div data-wuc-guides
-                 data-wuc-guides-title="'guide_domain_subtitle' | translate"
-                 data-wuc-guides-list="'dsRecord'"
-                 data-tr="tr">
-            </div>
+            <div
+                data-wuc-guides
+                data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                data-wuc-guides-list="'dsRecord'"
+                data-tr="tr"
+            ></div>
         </div>
     </div>
 </div>

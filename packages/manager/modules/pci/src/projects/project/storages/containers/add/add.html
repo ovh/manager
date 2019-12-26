@@ -1,23 +1,28 @@
-<h1 data-translate="pci_projects_project_storages_containers_add_title"
-    data-ng-if="!$ctrl.archive"></h1>
-<h1 data-translate="pci_projects_project_storages_containers_add_archive_title"
-    data-ng-if="$ctrl.archive"></h1>
+<h1
+    data-translate="pci_projects_project_storages_containers_add_title"
+    data-ng-if="!$ctrl.archive"
+></h1>
+<h1
+    data-translate="pci_projects_project_storages_containers_add_archive_title"
+    data-ng-if="$ctrl.archive"
+></h1>
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-<oui-stepper
-    data-on-finish="$ctrl.add()">
+<oui-stepper data-on-finish="$ctrl.add()">
     <oui-step-form
         data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
         data-navigation="$ctrl.container.region"
         data-on-focus="$ctrl.onRegionsFocus()"
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.isLoading"
-        name="storage_container_add_region">
+        name="storage_container_add_region"
+    >
         <pci-project-regions-list
             data-regions="$ctrl.regions"
             data-selected-region="$ctrl.container.region"
-            data-display-selected-region="$ctrl.displaySelectedRegion"></pci-project-regions-list>
+            data-display-selected-region="$ctrl.displaySelectedRegion"
+        ></pci-project-regions-list>
     </oui-step-form>
 
     <oui-step-form
@@ -28,7 +33,8 @@
         data-on-submit="$ctrl.onTypeChange()"
         data-navigation="$ctrl.selectedType"
         data-editable="!$ctrl.isLoading"
-        name="storage_container_add_type">
+        name="storage_container_add_type"
+    >
         <div class="container-fluid px-0">
             <div class="row">
                 <oui-select-picker
@@ -41,27 +47,36 @@
                     data-label="{{ 'pci_projects_project_storages_containers_add_type_' + type.id + '_label' | translate }}"
                     data-values="[type]"
                     data-variant="light"
-                    data-required>
+                    data-required
+                >
                 </oui-select-picker>
             </div>
         </div>
     </oui-step-form>
 
-    <oui-step-form data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
+    <oui-step-form
+        data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
         data-editable="!$ctrl.isLoading"
         data-cancel-href="{{$ctrl.cancelLink}}"
         data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
         data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
-        name="storage_container_add_name">
+        name="storage_container_add_name"
+    >
         <oui-field data-size="xl">
-            <input class="oui-input" type="text" name="name"
+            <input
+                class="oui-input"
+                type="text"
+                name="name"
                 data-ng-model="$ctrl.container.name"
-                data-ng-required="true">
+                data-ng-required="true"
+            />
         </oui-field>
     </oui-step-form>
 </oui-stepper>
 
 <div data-ng-if="$ctrl.isLoading">
     <oui-spinner></oui-spinner>
-    <p data-translate="pci_projects_project_storages_containers_add_save_form"></p>
+    <p
+        data-translate="pci_projects_project_storages_containers_add_save_form"
+    ></p>
 </div>

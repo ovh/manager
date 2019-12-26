@@ -1,64 +1,85 @@
-<div
-    data-ui-view>
+<div data-ui-view>
     <div>
-        <oui-page-header data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}" class="mb-3">
-            <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-                <oui-guide-menu-item
-                    href="{{ $ctrl.guideUrl }}"
-                    data-external>
-                    <span data-translate="pci_project_guides_header_all_guides"></span>
+        <oui-page-header
+            data-heading="{{:: 'pci_projects_project_storages_containers_' + ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
+            class="mb-3"
+        >
+            <oui-guide-menu
+                data-text="{{:: 'pci_project_guides_header' | translate }}"
+            >
+                <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+                    <span
+                        data-translate="pci_project_guides_header_all_guides"
+                    ></span>
                 </oui-guide-menu-item>
             </oui-guide-menu>
         </oui-page-header>
 
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
 
-        <oui-datagrid
-            data-rows="$ctrl.containers">
+        <oui-datagrid data-rows="$ctrl.containers">
             <oui-column
                 data-title="'pci_projects_project_storages_containers_name_label' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
                 data-sortable="asc"
-                data-filterable>
-                <a data-ng-href="{{:: $ctrl.containerLink($row) }}" data-ng-bind="::$value" class="text-truncate"></a>
+                data-filterable
+            >
+                <a
+                    data-ng-href="{{:: $ctrl.containerLink($row) }}"
+                    data-ng-bind="::$value"
+                    class="text-truncate"
+                ></a>
             </oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_containers_region_label' | translate"
                 data-property="region"
                 data-type="string"
                 data-sortable
-                data-filterable></oui-column>
+                data-filterable
+            ></oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_containers_containerType_label' | translate"
                 data-property="containerType"
                 data-sortable
-                data-type="string">
-                <span data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"></span>
+                data-type="string"
+            >
+                <span
+                    data-ng-bind="'pci_projects_project_storages_containers_containerType_' + $row.containerType | translate"
+                ></span>
             </oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_containers_storedObjects_label' | translate"
                 data-property="storedObjects"
                 data-type="number"
                 data-sortable
-                data-filterable>
+                data-filterable
+            >
             </oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_containers_storedBytes_label' | translate"
                 data-property="storedBytes"
                 data-type="number"
-                data-sortable>
+                data-sortable
+            >
                 <span data-ng-bind="$value | RAUnitsBits"></span>
             </oui-column>
 
             <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item data-on-click="$ctrl.viewContainer($row)">
-                    <span data-ng-bind="'pci_projects_project_storages_containers_view_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"></span>
+                    <span
+                        data-ng-bind="'pci_projects_project_storages_containers_view_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
+                    ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-on-click="$ctrl.deleteContainer($row)">
-                    <span data-translate="pci_projects_project_storages_containers_delete_label"></span>
+                    data-on-click="$ctrl.deleteContainer($row)"
+                >
+                    <span
+                        data-translate="pci_projects_project_storages_containers_delete_label"
+                    ></span>
                 </oui-action-menu-item>
             </oui-action-menu>
 
@@ -68,9 +89,15 @@
                     data-ng-click="$ctrl.addContainer()"
                     data-track-on="click"
                     data-track-name="PCI_PROJECTS_CONTAINERS_ADD"
-                    data-track-type="navigation">
-                    <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
-                    <span data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"></span>
+                    data-track-type="navigation"
+                >
+                    <i
+                        class="oui-icon oui-icon-add pr-1"
+                        aria-hidden="true"
+                    ></i>
+                    <span
+                        data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"
+                    ></span>
                 </button>
             </extra-top>
         </oui-datagrid>

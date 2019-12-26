@@ -5,10 +5,12 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_users_roles_cancel' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
+    data-loading="$ctrl.isLoading"
+>
     <oui-checkbox
         data-ng-repeat="role in $ctrl.rolesList track by role.id"
-        data-model="$ctrl.model[role.id]">
+        data-model="$ctrl.model[role.id]"
+    >
         <span data-ng-bind="::role.description"></span>
     </oui-checkbox>
 </oui-modal>

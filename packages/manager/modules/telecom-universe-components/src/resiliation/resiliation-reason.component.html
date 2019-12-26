@@ -3,25 +3,58 @@
         class="float-left telecom-link btn-link"
         data-ng-if="!ResiliationReasonCtrl.panel"
         data-ng-click="ResiliationReasonCtrl.panel=true"
-        title="{{ 'resiliation_resiliate' | translate:ResiliationReasonCtrl.resiliationReason }}">
-        <strong class="text-underline ng-binding" data-translate="resiliation_resiliation"></strong>
+        title="{{
+            'resiliation_resiliate'
+                | translate: ResiliationReasonCtrl.resiliationReason
+        }}"
+    >
+        <strong
+            class="text-underline ng-binding"
+            data-translate="resiliation_resiliation"
+        ></strong>
     </button>
-    <form name="reasonForm" data-ng-show="ResiliationReasonCtrl.panel" data-ng-submit="ResiliationReasonCtrl.openConfirmation()">
+    <form
+        name="reasonForm"
+        data-ng-show="ResiliationReasonCtrl.panel"
+        data-ng-submit="ResiliationReasonCtrl.openConfirmation()"
+    >
         <div class="form-group">
-            <div class="radio" data-ng-repeat="choice in ResiliationReasonCtrl.resiliationChoices">
+            <div
+                class="radio"
+                data-ng-repeat="choice in ResiliationReasonCtrl.resiliationChoices"
+            >
                 <label class="mr-3">
-                    <input type="radio" value="{{choice.name}}" data-ng-model="ResiliationReasonCtrl.resiliationReasonModel.type">
-                    {{ choice.caption | translate}}
+                    <input
+                        type="radio"
+                        value="{{ choice.name }}"
+                        data-ng-model="ResiliationReasonCtrl.resiliationReasonModel.type"
+                    />
+                    {{ choice.caption | translate }}
                 </label>
-                <input type="text" data-ng-model="ResiliationReasonCtrl.resiliationReasonModel.comment" data-ng-show="choice.needComment && (ResiliationReasonCtrl.resiliationReasonModel.type === choice.name)"/>
+                <input
+                    type="text"
+                    data-ng-model="ResiliationReasonCtrl.resiliationReasonModel.comment"
+                    data-ng-show="choice.needComment && (ResiliationReasonCtrl.resiliationReasonModel.type === choice.name)"
+                />
             </div>
         </div>
         <button
             class="float-left telecom-link btn-link"
             type="submit"
             data-ng-disabled="!ResiliationReasonCtrl.canResiliate()"
-            title="{{ 'resiliation_resiliate' | translate:{name:resiliationReason.name, type:resiliationReason.typeName} }}">
-            <strong class="text-underline ng-binding" data-translate="resiliation_resiliation"></strong>
+            title="{{
+                'resiliation_resiliate'
+                    | translate
+                        : {
+                              name: resiliationReason.name,
+                              type: resiliationReason.typeName
+                          }
+            }}"
+        >
+            <strong
+                class="text-underline ng-binding"
+                data-translate="resiliation_resiliation"
+            ></strong>
         </button>
     </form>
 </div>

@@ -1,59 +1,94 @@
 <div class="cui-page__content">
     <h1 data-ng-hide="ctrl.edition" data-translate="iplb_server_add_title"></h1>
-    <h1 data-ng-show="ctrl.edition" data-translate="iplb_server_update_title"
-        data-translate-values="{ serverId: ctrl.server.serverId }"></h1>
+    <h1
+        data-ng-show="ctrl.edition"
+        data-translate="iplb_server_update_title"
+        data-translate-values="{ serverId: ctrl.server.serverId }"
+    ></h1>
     <form novalidate name="ctrl.form">
         <div class="oui-field">
-            <label for="displayName" class="oui-label" data-translate="iplb_server_edit_name"></label>
+            <label
+                for="displayName"
+                class="oui-label"
+                data-translate="iplb_server_edit_name"
+            ></label>
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
-                    <input type="text" id="displayName" name="displayName" class="oui-input" data-ng-model="ctrl.server.displayName" />
+                    <input
+                        type="text"
+                        id="displayName"
+                        name="displayName"
+                        class="oui-input"
+                        data-ng-model="ctrl.server.displayName"
+                    />
                 </div>
             </div>
         </div>
 
         <div class="oui-field">
-            <label for="address" class="oui-label" data-translate="iplb_server_edit_address"></label>
+            <label
+                for="address"
+                class="oui-label"
+                data-translate="iplb_server_edit_address"
+            ></label>
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_4">
-                    <input type="text" id="address" name="address" class="oui-input" data-ng-model="ctrl.server.address" />
+                    <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        class="oui-input"
+                        data-ng-model="ctrl.server.address"
+                    />
                 </div>
             </div>
         </div>
 
-        <div class="oui-field"
-            data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.port.$invalid}">
-            <label for="port" class="oui-label" data-translate="iplb_server_edit_port"></label>
+        <div
+            class="oui-field"
+            data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.port.$invalid}"
+        >
+            <label
+                for="port"
+                class="oui-label"
+                data-translate="iplb_server_edit_port"
+            ></label>
             <div class="oui-field__content">
                 <div class="oui-field-control oui-field-control_1">
-                    <input type="number"
+                    <input
+                        type="number"
                         min="1"
                         data-ng-max="ctrl.portLimit"
                         id="port"
                         name="port"
                         class="oui-input"
                         data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.port.$invalid}"
-                        data-ng-model="ctrl.server.port"/>
+                        data-ng-model="ctrl.server.port"
+                    />
                 </div>
-                <div class="oui-field-helper"
+                <div
+                    class="oui-field-helper"
                     data-translate="iplb_server_edit_port_tip"
-                    data-translate-values="{ portMax: ctrl.portLimit }"></div>
+                    data-translate-values="{ portMax: ctrl.portLimit }"
+                ></div>
             </div>
         </div>
 
-        <cui-advanced-options data-ng-if="ctrl.farmType !== 'udp'"
+        <cui-advanced-options
+            data-ng-if="ctrl.farmType !== 'udp'"
             data-title="'iplb_server_edit_advanced_options' | translate"
             data-text="'iplb_server_edit_advanced_options_info' | translate"
             data-button-text="'iplb_server_edit_advanced_options_show' | translate"
-            data-expanded="ctrl.edition">
-
+            data-expanded="ctrl.edition"
+        >
             <div class="oui-field">
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
                         <oui-checkbox
                             text="{{ 'iplb_server_edit_backup' | translate }}"
                             name="backup"
-                            model="ctrl.server.backup">
+                            model="ctrl.server.backup"
+                        >
                         </oui-checkbox>
                     </div>
                 </div>
@@ -65,7 +100,8 @@
                         <oui-checkbox
                             text="{{ 'iplb_server_edit_probe' | translate }}"
                             name="probe"
-                            model="ctrl.server.probe">
+                            model="ctrl.server.probe"
+                        >
                         </oui-checkbox>
                     </div>
                 </div>
@@ -77,71 +113,118 @@
                         <oui-checkbox
                             text="{{ 'iplb_server_edit_ssl' | translate }}"
                             name="ssl"
-                            model="ctrl.server.ssl">
+                            model="ctrl.server.ssl"
+                        >
                         </oui-checkbox>
                     </div>
                 </div>
             </div>
 
             <div class="oui-field">
-                <label for="cookie" class="oui-label" data-translate="iplb_server_edit_cookie"></label>
+                <label
+                    for="cookie"
+                    class="oui-label"
+                    data-translate="iplb_server_edit_cookie"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <input type="text" id="cookie" name="cookie" class="oui-input" data-ng-model="ctrl.server.cookie" />
+                        <input
+                            type="text"
+                            id="cookie"
+                            name="cookie"
+                            class="oui-input"
+                            data-ng-model="ctrl.server.cookie"
+                        />
                     </div>
-                    <div class="oui-field-helper"
-                        data-translate="iplb_server_edit_cookie_tip"></div>
+                    <div
+                        class="oui-field-helper"
+                        data-translate="iplb_server_edit_cookie_tip"
+                    ></div>
                 </div>
             </div>
 
             <div class="oui-field">
-                <label for="chain" class="oui-label" data-translate="iplb_server_edit_chain"></label>
+                <label
+                    for="chain"
+                    class="oui-label"
+                    data-translate="iplb_server_edit_chain"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <textarea class="oui-textarea"
-                data-ng-model="ctrl.server.chain"
-                id="chain"
-                name="chain"></textarea>
+                        <textarea
+                            class="oui-textarea"
+                            data-ng-model="ctrl.server.chain"
+                            id="chain"
+                            name="chain"
+                        ></textarea>
                     </div>
-                    <div class="oui-field-helper"
-                        data-translate="iplb_server_edit_chain_tip"></div>
+                    <div
+                        class="oui-field-helper"
+                        data-translate="iplb_server_edit_chain_tip"
+                    ></div>
                 </div>
             </div>
 
             <div class="oui-field">
-                <label for="weight" class="oui-label" data-translate="iplb_server_edit_weight"></label>
+                <label
+                    for="weight"
+                    class="oui-label"
+                    data-translate="iplb_server_edit_weight"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_1">
-                        <input type="number"
+                        <input
+                            type="number"
                             min="1"
                             max="{{ctrl.lbWeightMax}}"
                             id="weight"
                             name="weight"
                             class="oui-input"
-                            data-ng-model="ctrl.server.weight" />
+                            data-ng-model="ctrl.server.weight"
+                        />
                     </div>
-                    <div class="oui-field-helper"
+                    <div
+                        class="oui-field-helper"
                         data-translate="iplb_server_edit_weight_tip"
-                        data-translate-values="{ lbWeightMax: ctrl.lbWeightMax }"></div>
+                        data-translate-values="{ lbWeightMax: ctrl.lbWeightMax }"
+                    ></div>
                 </div>
             </div>
 
-            <div class="oui-field" data-ng-class="{ 'oui-field_error': ctrl.proxyProtocolVersion.$submitted && ctrl.form.proxyProtocolVersion.$invalid }">
-                <label for="proxyProtocolVersion" class="oui-label" data-translate="iplb_server_preview_proxyProtocolVersion"></label>
+            <div
+                class="oui-field"
+                data-ng-class="{ 'oui-field_error': ctrl.proxyProtocolVersion.$submitted && ctrl.form.proxyProtocolVersion.$invalid }"
+            >
+                <label
+                    for="proxyProtocolVersion"
+                    class="oui-label"
+                    data-translate="iplb_server_preview_proxyProtocolVersion"
+                ></label>
                 <div class="oui-field__content">
                     <div class="oui-field-control oui-field-control_4">
-                        <oui-spinner data-ng-show="ctrl.proxyProtocolVersions.loading"></oui-spinner>
-                        <div class="oui-select"
+                        <oui-spinner
+                            data-ng-show="ctrl.proxyProtocolVersions.loading"
+                        ></oui-spinner>
+                        <div
+                            class="oui-select"
                             data-ng-class="{ 'oui-select_error': ctrl.form.$submitted && ctrl.form.proxyProtocolVersion.$invalid }"
-                            data-ng-hide="ctrl.proxyProtocolVersions.loading">
-                            <select class="oui-select__input"
+                            data-ng-hide="ctrl.proxyProtocolVersions.loading"
+                        >
+                            <select
+                                class="oui-select__input"
                                 name="proxyProtocolVersion"
                                 id="proxyProtocolVersion"
                                 data-ng-model="ctrl.server.proxyProtocolVersion"
-                                data-ng-options="proxyProtocolVersion as proxyProtocolVersion for proxyProtocolVersion in ctrl.proxyProtocolVersions.data">
-                                <option data-translate="iplb_server_preview_proxyProtocolVersion_placeholder"></option>
+                                data-ng-options="proxyProtocolVersion as proxyProtocolVersion for proxyProtocolVersion in ctrl.proxyProtocolVersions.data"
+                            >
+                                <option
+                                    data-translate="iplb_server_preview_proxyProtocolVersion_placeholder"
+                                ></option>
                             </select>
-                            <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+                            <i
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></i>
                         </div>
                     </div>
                 </div>
@@ -151,21 +234,26 @@
         <div class="cui-form-actions">
             <oui-spinner data-ng-show="ctrl.saving"></oui-spinner>
             <div data-ng-hide="ctrl.saving">
-                <button type="submit"
+                <button
+                    type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_server_update_confirm"
                     data-ng-click="ctrl.update()"
-                    data-ng-show="ctrl.edition"></button>
-                <button type="submit"
+                    data-ng-show="ctrl.edition"
+                ></button>
+                <button
+                    type="submit"
                     class="oui-button oui-button_primary"
                     data-translate="iplb_server_add_confirm"
                     data-ng-click="ctrl.create()"
-                    data-ng-hide="ctrl.edition"></button>
-                <a class="oui-button oui-button_link"
+                    data-ng-hide="ctrl.edition"
+                ></button>
+                <a
+                    class="oui-button oui-button_link"
                     data-translate="iplb_server_edit_cancel"
-                    data-ui-sref="network.iplb.detail.server-farm"></a>
+                    data-ui-sref="network.iplb.detail.server-farm"
+                ></a>
             </div>
-
         </div>
     </form>
 </div>

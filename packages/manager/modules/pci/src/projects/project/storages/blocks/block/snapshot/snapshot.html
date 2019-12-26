@@ -1,8 +1,9 @@
-<form id="blockSnapshot"
+<form
+    id="blockSnapshot"
     name="blockSnapshot"
     data-ng-submit="blockSnapshot.$valid && $ctrl.createSnapshot()"
-    novalidate>
-
+    novalidate
+>
     <oui-modal
         data-heading="{{:: 'pci_projects_project_storages_blocks_block_snapshot_title' | translate }}"
         data-primary-label="{{:: 'pci_projects_project_storages_blocks_block_snapshot_submit_label' | translate }}"
@@ -10,17 +11,23 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_storages_blocks_block_snapshot_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-
+        data-loading="$ctrl.isLoading"
+    >
         <div data-ng-if="!$ctrl.isLoading">
-            <oui-message type="warning" data-ng-if="!$ctrl.storage.isAttachable()">
-                <span data-translate="pci_projects_project_storages_blocks_block_snapshot_warning_attached"></span>
+            <oui-message
+                type="warning"
+                data-ng-if="!$ctrl.storage.isAttachable()"
+            >
+                <span
+                    data-translate="pci_projects_project_storages_blocks_block_snapshot_warning_attached"
+                ></span>
             </oui-message>
         </div>
 
         <oui-field
             data-label="{{:: 'pci_projects_project_storages_blocks_block_snapshot_name_label' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <input
                 class="oui-input"
                 type="text"
@@ -29,13 +36,16 @@
                 data-ng-model="$ctrl.snapshot.name"
                 required
                 data-ng-maxlength="255"
-                data-ng-disabled="$ctrl.isLoading">
+                data-ng-disabled="$ctrl.isLoading"
+            />
 
-            <span data-translate="pci_projects_project_storages_blocks_block_snapshot_monthly_price"
+            <span
+                data-translate="pci_projects_project_storages_blocks_block_snapshot_monthly_price"
                 data-translate-values="{
                     size: (($ctrl.storage.size * 1000000000 || 0) | cucBytes:2:'true'),
                     price: $ctrl.priceEstimation.priceText || '?'
-                }"></span>
+                }"
+            ></span>
         </oui-field>
     </oui-modal>
 </form>

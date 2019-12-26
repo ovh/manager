@@ -1,13 +1,13 @@
 <div class="telephony-group-line-assist">
-
     <div class="text-center" data-ng-if="LineAssistCtrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
     <tuc-toast-message></tuc-toast-message>
 
-    <tuc-telecom-v4-links data-ng-if="!LineAssistCtrl.loading.init"
-                      data-telecom-v4-links="LineAssistCtrl.actions">
+    <tuc-telecom-v4-links
+        data-ng-if="!LineAssistCtrl.loading.init"
+        data-telecom-v4-links="LineAssistCtrl.actions"
+    >
     </tuc-telecom-v4-links>
-
 </div>

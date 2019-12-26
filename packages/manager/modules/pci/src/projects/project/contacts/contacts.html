@@ -1,45 +1,65 @@
-<oui-page-header data-heading="{{:: 'pci_projects_project_contacts_title' | translate }}" class="mb-3">
+<oui-page-header
+    data-heading="{{:: 'pci_projects_project_contacts_title' | translate }}"
+    class="mb-3"
+>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item
-            href="{{ $ctrl.guideUrl }}"
-            data-external>
+        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-page-header>
 <div class="container-fluid p-4 bg-light border mb-4">
     <div class="row">
-        <div class="col-sm-4 text-right" data-translate="cpb_rights_owner"></div>
+        <div
+            class="col-sm-4 text-right"
+            data-translate="cpb_rights_owner"
+        ></div>
         <div class="col-sm-4" data-ng-bind="$ctrl.model.owner"></div>
         <div class="col-sm-4">
             <button
                 class="oui-button oui-button_link oui-button_icon-right"
                 data-ng-if="$ctrl.canChangeContacts()"
-                data-ng-click="$ctrl.openContacts()">
+                data-ng-click="$ctrl.openContacts()"
+            >
                 <span data-translate="cpb_rights_modify"></span>
-                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
             </button>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4 text-right" data-translate="cpb_rights_billing_contact"></div>
+        <div
+            class="col-sm-4 text-right"
+            data-translate="cpb_rights_billing_contact"
+        ></div>
         <div class="col-sm-4" data-ng-bind="$ctrl.model.billing"></div>
         <div class="col-sm-4">
             <button
                 class="oui-button oui-button_link oui-button_icon-right"
                 data-ng-if="$ctrl.canChangeContacts()"
-                data-ng-click="$ctrl.openContacts()">
+                data-ng-click="$ctrl.openContacts()"
+            >
                 <span data-translate="cpb_rights_modify"></span>
-                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
             </button>
         </div>
     </div>
 </div>
 <p data-translate="cpb_rights_expl2"></p>
-<p data-ng-if="!$ctrl.loader.rights" data-translate="cpb_rights_note" class="mb-4"></p>
+<p
+    data-ng-if="!$ctrl.loader.rights"
+    data-translate="cpb_rights_note"
+    class="mb-4"
+></p>
 <oui-datagrid
     data-rows="$ctrl.data.rights"
-    data-row-loader="$ctrl.transformItem($row)">
+    data-row-loader="$ctrl.transformItem($row)"
+>
     <extra-top>
         <a
             data-ui-sref="pci.projects.project.contacts.add"
@@ -48,17 +68,25 @@
             data-ng-if="$ctrl.model.isAdmin"
             data-translate="common_add"
         >
-    </a>
+        </a>
     </extra-top>
-    <oui-column data-property="accountId"
-        data-title="'cpb_rights_table_nichandle' | translate"></oui-column>
-    <oui-column data-property="type"
-        data-title="'cpb_rights_table_rights' | translate">
-        <span data-ng-bind="('cpb_rights_table_rights_value_' + $row.type) | translate"></span>
+    <oui-column
+        data-property="accountId"
+        data-title="'cpb_rights_table_nichandle' | translate"
+    ></oui-column>
+    <oui-column
+        data-property="type"
+        data-title="'cpb_rights_table_rights' | translate"
+    >
+        <span
+            data-ng-bind="('cpb_rights_table_rights_value_' + $row.type) | translate"
+        ></span>
     </oui-column>
     <oui-action-menu data-align="end" data-compact>
-        <oui-action-menu-item text="{{'delete' | translate}}"
-            data-on-click="$ctrl.removeRight($row)">
+        <oui-action-menu-item
+            text="{{'delete' | translate}}"
+            data-on-click="$ctrl.removeRight($row)"
+        >
         </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>

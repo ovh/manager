@@ -1,12 +1,15 @@
 <div data-ng-controller="HostingUserLogsDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteUser"
-         data-wizard-title="'hosting_tab_USER_LOGS_configuration_user_delete_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteUser"
+        data-wizard-title="'hosting_tab_USER_LOGS_configuration_user_delete_title' | translate"
+    >
         <div data-wizard-step>
-            <p class="word-break"
-               data-ng-bind-html="'hosting_tab_USER_LOGS_configuration_user_delete_question' | translate: { t0: '<strong>' + ctrl.entryToDelete + '</strong>' }"></p>
+            <p
+                class="word-break"
+                data-ng-bind-html="'hosting_tab_USER_LOGS_configuration_user_delete_question' | translate: { t0: '<strong>' + ctrl.entryToDelete + '</strong>' }"
+            ></p>
         </div>
     </div>
 </div>

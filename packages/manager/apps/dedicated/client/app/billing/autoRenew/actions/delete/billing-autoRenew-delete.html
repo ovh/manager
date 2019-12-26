@@ -3,20 +3,24 @@
     data-primary-action="$ctrl.deleteRenew()"
     data-primary-label="{{:: 'autorenew_service_delete_validate' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isDeleting">
-
-    <p data-ng-if="$ctrl.engagement"
+    data-loading="$ctrl.isDeleting"
+>
+    <p
+        data-ng-if="$ctrl.engagement"
         data-translate="autorenew_service_delete_support"
         data-translate-values="{
             phoneNumber: $ctrl.supportPhoneNumber
-        }"></p>
+        }"
+    ></p>
 
     <div data-ng-if="!$ctrl.engagement">
-        <p data-translate="autorenew_service_delete_confirm"
+        <p
+            data-translate="autorenew_service_delete_confirm"
             data-translate-values="{
                 service: $ctrl.service.domain,
                 date: $ctrl.service.getExpirationDate()
-        }"></p>
+        }"
+        ></p>
         <p data-translate="autorenew_service_delete_warn"></p>
     </div>
 </oui-modal>

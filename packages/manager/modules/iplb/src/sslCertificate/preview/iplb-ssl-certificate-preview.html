@@ -1,31 +1,56 @@
 <oui-modal
     data-title="{{ ::'iplb_ssl_preview_title' | translate }}"
-    data-on-dismiss="IpLoadBalancerSslCertificatePreviewCtrl.dismiss()">
+    data-on-dismiss="IpLoadBalancerSslCertificatePreviewCtrl.dismiss()"
+>
     <dl class="preview-list">
-        <dt class="preview-list__term"
-            data-translate="iplb_ssl_preview_name"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.displayName || '-'"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_ssl_preview_serial"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.serial"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_ssl_preview_subject"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.subject"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_ssl_preview_fingerprint"></dt>
-        <dd class="preview-list__definition"
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_ssl_preview_name"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.displayName || '-'"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_ssl_preview_serial"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.serial"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_ssl_preview_subject"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.subject"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_ssl_preview_fingerprint"
+        ></dt>
+        <dd
+            class="preview-list__definition"
             title="{{ IpLoadBalancerSslCertificatePreviewCtrl.ssl.fingerprint }}"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.fingerprint"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_ssl_preview_type"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.type"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_ssl_preview_id"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.id"></dd>
+            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.fingerprint"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_ssl_preview_type"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.type"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_ssl_preview_id"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="IpLoadBalancerSslCertificatePreviewCtrl.ssl.id"
+        ></dd>
     </dl>
 </oui-modal>

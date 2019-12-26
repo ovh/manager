@@ -1,17 +1,19 @@
 <div data-ng-controller="IpMitigationUpdateCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="cancelAction"
-         data-wizard-on-finish="updateMitigation"
-         data-wizard-hide-cancel-button="loading"
-         data-wizard-title="translations.wizardTitle"
-         data-wizard-title-icon="'hidden'"
-         class="module-ip-modal">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancelAction"
+        data-wizard-on-finish="updateMitigation"
+        data-wizard-hide-cancel-button="loading"
+        data-wizard-title="translations.wizardTitle"
+        data-wizard-title-icon="'hidden'"
+        class="module-ip-modal"
+    >
+        <div data-wizard-step data-wizard-step-valid="!loading">
             <div data-ng-show="!loading">
-                <p class="blue bold" data-ng-bind="translations.wizardQuestion"></p>
+                <p
+                    class="blue bold"
+                    data-ng-bind="translations.wizardQuestion"
+                ></p>
             </div>
 
             <div class="row-fluid" data-ng-show="loading">

@@ -1,16 +1,17 @@
 <div data-ng-controller="PrivateDatabaseBDDsDumpsDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteDump"
-         data-wizard-title="'privateDatabase_tabs_dumps_delete_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteDump"
+        data-wizard-title="'privateDatabase_tabs_dumps_delete_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
-            <p data-ng-bind-html="'privateDatabase_tabs_dumps_delete_confirm' | translate: { t0: ctrl.dump.creationDate, t1: ctrl.bdd.databaseName }"
-               data-ng-if="!ctrl.loading"></p>
+            <p
+                data-ng-bind-html="'privateDatabase_tabs_dumps_delete_confirm' | translate: { t0: ctrl.dump.creationDate, t1: ctrl.bdd.databaseName }"
+                data-ng-if="!ctrl.loading"
+            ></p>
         </div>
     </div>
 </div>

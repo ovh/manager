@@ -7,20 +7,24 @@
         data-label="{{:: ('pci_project_versions_list_version' | translate:{ version: version }) }}"
         data-variant="light"
         data-values="[version]"
-        data-required>
-        <span class="oui-status oui-status_success"
-              data-ng-if="version === $ctrl.highestVersion"
-              data-translate="pci_project_versions_recommended_version"></span>
+        data-required
+    >
+        <span
+            class="oui-status oui-status_success"
+            data-ng-if="version === $ctrl.highestVersion"
+            data-translate="pci_project_versions_recommended_version"
+        ></span>
     </oui-select-picker>
 </div>
 
 <div data-ng-if="$ctrl.displaySelectedVersion" class="row">
-     <oui-select-picker
+    <oui-select-picker
         class="d-inline-block col-md-6 col-lg-4 my-3"
         data-name="selected"
         data-model="$ctrl.selectedVersion"
         data-label="{{:: ('pci_project_versions_list_version' | translate:{ version: $ctrl.selectedVersion }) }}"
         data-variant="light"
-        data-required>
+        data-required
+    >
     </oui-select-picker>
 </div>

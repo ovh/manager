@@ -1,15 +1,14 @@
 <div class="voip-time-condition-calendar">
-
     <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
     <div data-ng-if="!$ctrl.loading.init">
-        <div class="voip-time-condition-ui-calendar"
-             data-ui-calendar="$ctrl.options"
-             data-ng-model="$ctrl.eventSources"
-             data-calendar="conditionsCalendar">
-        </div>
+        <div
+            class="voip-time-condition-ui-calendar"
+            data-ui-calendar="$ctrl.options"
+            data-ng-model="$ctrl.eventSources"
+            data-calendar="conditionsCalendar"
+        ></div>
     </div>
-
 </div>

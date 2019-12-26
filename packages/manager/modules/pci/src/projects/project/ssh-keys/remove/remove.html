@@ -7,7 +7,11 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_sshKeys_remove_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-        <p data-translate="pci_projects_project_sshKeys_remove_description" data-translate-values="{ name: $ctrl.key.name }"></p>
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="pci_projects_project_sshKeys_remove_description"
+            data-translate-values="{ name: $ctrl.key.name }"
+        ></p>
     </oui-modal>
 </form>

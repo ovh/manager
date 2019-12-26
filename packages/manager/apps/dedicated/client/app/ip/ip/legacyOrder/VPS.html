@@ -1,33 +1,45 @@
 <form>
     <div class="form-group">
-        <label class="control-label"
-               for="numberSelect"
-               data-translate="ip_order_ipnbr">
+        <label
+            class="control-label"
+            for="numberSelect"
+            data-translate="ip_order_ipnbr"
+        >
         </label>
-        <select id="numberSelect"
-                class="form-control"
-                name="numberSelect"
-                data-ng-model="model.params.number"
-                data-ng-options="r for r in orderableIp.ipRange">
-            <option value=""
-                    data-ng-disabled="true"
-                    data-translate="global_select">
+        <select
+            id="numberSelect"
+            class="form-control"
+            name="numberSelect"
+            data-ng-model="model.params.number"
+            data-ng-options="r for r in orderableIp.ipRange"
+        >
+            <option
+                value=""
+                data-ng-disabled="true"
+                data-translate="global_select"
+            >
             </option>
         </select>
     </div>
     <div class="form-group">
-        <label class="control-label"
-               for="country"
-               data-translate="ip_order_country">
+        <label
+            class="control-label"
+            for="country"
+            data-translate="ip_order_country"
+        >
         </label>
-        <select id="country"
-                class="form-control"
-                name="country"
-                data-ng-model="model.params.country"
-                data-ng-options="c.code as c.displayValue for c in orderableIp.countries">
-            <option value=""
-                    data-ng-disabled="true"
-                    data-translate="global_select">
+        <select
+            id="country"
+            class="form-control"
+            name="country"
+            data-ng-model="model.params.country"
+            data-ng-options="c.code as c.displayValue for c in orderableIp.countries"
+        >
+            <option
+                value=""
+                data-ng-disabled="true"
+                data-translate="global_select"
+            >
             </option>
         </select>
     </div>

@@ -1,34 +1,60 @@
 <div class="container-fluid px-0" data-ng-controller="EmailProTabDomainsCtrl">
     <div class="row">
-        <div data-ng-class="{
+        <div
+            data-ng-class="{
             'col-md-12': !canAddDomain,
             'col-md-9': canAddDomain
-        }">
-            <div class="alert alert-warning" role="alert"
-                 data-translate="emailpro_tab_domain_partial"
-                 data-ng-if="containPartial()"></div>
+        }"
+        >
             <div
-                class="text-right mb-3"
-                data-ng-if="!exchange.isMXPlan">
+                class="alert alert-warning"
+                role="alert"
+                data-translate="emailpro_tab_domain_partial"
+                data-ng-if="containPartial()"
+            ></div>
+            <div class="text-right mb-3" data-ng-if="!exchange.isMXPlan">
                 <form class="form-inline" name="searchDomainForm">
                     <div class="form-group">
-                        <label class="sr-only" for="searchDomain"
-                               data-translate="common_search"></label>
+                        <label
+                            class="sr-only"
+                            for="searchDomain"
+                            data-translate="common_search"
+                        ></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="searchDomain" name="searchDomain" placeholder="{{:: 'emailpro_tab_domain_search' | translate }}"
-                                   data-ng-disabled="loading || paginated.domains.length === 0"
-                                   data-ng-model="search.value"
-                                   data-ng-model-options="{debounce: 800}">
-                            <div class="input-group-btn"
-                                 data-ng-if="search.value">
-                                <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                        data-ng-click="search.value = null">
-                                    <span class="fa fa-times" aria-hidden="true"></span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="searchDomain"
+                                name="searchDomain"
+                                placeholder="{{:: 'emailpro_tab_domain_search' | translate }}"
+                                data-ng-disabled="loading || paginated.domains.length === 0"
+                                data-ng-model="search.value"
+                                data-ng-model-options="{debounce: 800}"
+                            />
+                            <div
+                                class="input-group-btn"
+                                data-ng-if="search.value"
+                            >
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="search.value = null"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </div>
-                            <span class="input-group-addon"
-                                  data-ng-if="!search.value">
-                                <span class="fa fa-search" aria-hidden="true"></span>
+                            <span
+                                class="input-group-addon"
+                                data-ng-if="!search.value"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
                             </span>
                         </div>
                     </div>
@@ -39,11 +65,29 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" data-translate="emailpro_tab_domain_domain"></th>
-                            <th scope="col" data-translate="emailpro_tab_domain_type"></th>
-                            <th class="text-center" scope="col" data-translate="emailpro_tab_domain_accounts_count"></th>
-                            <th class="text-center" scope="col" data-translate="emailpro_tab_domain_diagnostic"></th>
-                            <th class="text-center" scope="col" data-translate="emailpro_tab_domain_status"></th>
+                            <th
+                                scope="col"
+                                data-translate="emailpro_tab_domain_domain"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="emailpro_tab_domain_type"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="emailpro_tab_domain_accounts_count"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="emailpro_tab_domain_diagnostic"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="emailpro_tab_domain_status"
+                            ></th>
                             <th class="min-width" scope="col"></th>
                         </tr>
                     </thead>
@@ -56,136 +100,213 @@
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="!loading && paginated.domains.length === 0">
+                    <tbody
+                        data-ng-if="!loading && paginated.domains.length === 0"
+                    >
                         <tr>
                             <td class="text-center" colspan="6">
                                 <div data-ng-if="!search.value">
-                                    <span data-translate="{{:: exchange.isMXPlan
+                                    <span
+                                        data-translate="{{:: exchange.isMXPlan
                                         ? 'mxplan_tab_domain_no_domains_1'
                                         : 'emailpro_tab_domain_no_domains_1'
-                                    }}"></span>
-                                    <button class="btn btn-link p-0"
-                                            type="button"
-                                            style="font-size:inherit"
-                                            data-translate="emailpro_tab_domain_no_domains_2"
-                                            data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add')"></button>
-                                    <span data-translate="emailpro_tab_domain_no_domains_3"></span>
+                                    }}"
+                                    ></span>
+                                    <button
+                                        class="btn btn-link p-0"
+                                        type="button"
+                                        style="font-size:inherit"
+                                        data-translate="emailpro_tab_domain_no_domains_2"
+                                        data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add')"
+                                    ></button>
+                                    <span
+                                        data-translate="emailpro_tab_domain_no_domains_3"
+                                    ></span>
                                 </div>
-                                <span data-translate="emailpro_tab_domain_table_empty_search" data-ng-if="search.value"></span>
+                                <span
+                                    data-translate="emailpro_tab_domain_table_empty_search"
+                                    data-ng-if="search.value"
+                                ></span>
                             </td>
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="!loading && paginated.domains.length > 0">
-                        <tr data-ng-repeat="domain in (paginated.domains | orderBy:'formattedName':false) track by $index">
+                    <tbody
+                        data-ng-if="!loading && paginated.domains.length > 0"
+                    >
+                        <tr
+                            data-ng-repeat="domain in (paginated.domains | orderBy:'formattedName':false) track by $index"
+                        >
                             <td colspan="6" data-ng-if="domain.partial">
-                                <span class="fa fa-warning mr-2" aria-hidden="true"></span>
+                                <span
+                                    class="fa fa-warning mr-2"
+                                    aria-hidden="true"
+                                ></span>
                                 <span data-ng-bind="domain.displayName"></span>
                             </td>
-                            <th class="word-break"
+                            <th
+                                class="word-break"
                                 scope="row"
                                 data-ng-bind="domain.displayName"
-                                data-ng-if="!domain.partial"></th>
+                                data-ng-if="!domain.partial"
+                            ></th>
 
-                            <td data-ng-if="!domain.partial && domain.domainValidated">
-                                <span data-ng-if="domain.taskInProgress && !domain.partial && domain.state === stateOk && domain.type === domainTypeAuthoritative"
-                                      data-translate="emailpro_tab_domain_modify_in_progress"
-                                      data-translate-values="{ t0: ('emailpro_tab_domain_inverse_NON_AUTHORITATIVE' | translate) }"></span>
-                                <span data-ng-if="domain.taskInProgress && !domain.partial && domain.state === stateOk && domain.type === domainTypeNonAuthoritative"
-                                      data-translate="emailpro_tab_domain_modify_in_progress"
-                                      data-translate-values="{ t0: ('emailpro_tab_domain_inverse_AUTHORITATIVE' | translate) }"></span>
-                                <span data-ng-if="!domain.partial && (domain.state === 'DELETING' || domain.state === 'CREATING')"
-                                      data-ng-bind="'emailpro_tab_domain_' + domain.type | translate"></span>
-                                <span data-ng-if="!domain.taskInProgress && !domain.partial && domain.state === stateOk"
-                                      data-ng-bind="'emailpro_tab_domain_' + domain.type | translate"></span>
+                            <td
+                                data-ng-if="!domain.partial && domain.domainValidated"
+                            >
+                                <span
+                                    data-ng-if="domain.taskInProgress && !domain.partial && domain.state === stateOk && domain.type === domainTypeAuthoritative"
+                                    data-translate="emailpro_tab_domain_modify_in_progress"
+                                    data-translate-values="{ t0: ('emailpro_tab_domain_inverse_NON_AUTHORITATIVE' | translate) }"
+                                ></span>
+                                <span
+                                    data-ng-if="domain.taskInProgress && !domain.partial && domain.state === stateOk && domain.type === domainTypeNonAuthoritative"
+                                    data-translate="emailpro_tab_domain_modify_in_progress"
+                                    data-translate-values="{ t0: ('emailpro_tab_domain_inverse_AUTHORITATIVE' | translate) }"
+                                ></span>
+                                <span
+                                    data-ng-if="!domain.partial && (domain.state === 'DELETING' || domain.state === 'CREATING')"
+                                    data-ng-bind="'emailpro_tab_domain_' + domain.type | translate"
+                                ></span>
+                                <span
+                                    data-ng-if="!domain.taskInProgress && !domain.partial && domain.state === stateOk"
+                                    data-ng-bind="'emailpro_tab_domain_' + domain.type | translate"
+                                ></span>
                             </td>
-                            <td colspan="2"
-                                data-ng-if="!domain.partial && !domain.domainValidated">
-                                <span data-translate="emailpro_tab_domain_validation_doing"></span>
-                                <span class="d-block"
-                                      data-translate="emailpro_tab_domain_validation_cname"
-                                      data-ng-if="domain.cname"></span>
+                            <td
+                                colspan="2"
+                                data-ng-if="!domain.partial && !domain.domainValidated"
+                            >
+                                <span
+                                    data-translate="emailpro_tab_domain_validation_doing"
+                                ></span>
+                                <span
+                                    class="d-block"
+                                    data-translate="emailpro_tab_domain_validation_cname"
+                                    data-ng-if="domain.cname"
+                                ></span>
                             </td>
-                            <td class="text-center"
+                            <td
+                                class="text-center"
                                 data-ng-bind="domain.accountsCount"
-                                data-ng-if="!domain.partial && domain.domainValidated"></td>
-                            <td class="text-center"
-                                data-ng-if="!domain.partial">
+                                data-ng-if="!domain.partial && domain.domainValidated"
+                            ></td>
+                            <td
+                                class="text-center"
+                                data-ng-if="!domain.partial"
+                            >
                                 <div data-ng-if="domain.domainValidated">
-                                    <button class="oui-status oui-status_error" type="button"
-                                            data-translate="emailpro_tab_domain_diagnostic_mx"
-                                            data-ng-click="setAction('emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig', domain)"
-                                            data-ng-if="!domain.mxValid">
-                                    </button>
-                                    <button class="oui-status oui-status_success" type="button"
-                                            data-translate="emailpro_tab_domain_diagnostic_mx"
-                                            data-ng-if="domain.mxValid"
-                                            data-simplepopover="{{domain.mxTooltip}}"
-                                            data-simplepopover-title="{{ 'emailpro_tab_domain_diagnostic_mx_title' | translate }}"
-                                            data-simplepopover-placement="top"
-                                            data-simplepopover-single="true">
-                                    </button>
-                                    <button class="oui-status oui-status_error" type="button"
-                                            data-translate="emailpro_tab_domain_diagnostic_srv"
-                                            data-ng-click="setAction('emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig', domain)"
-                                            data-ng-if="!domain.srvValid && !exchange.isMXPlan">
-                                    </button>
-                                    <button class="oui-status oui-status_success" type="button"
-                                            data-translate="emailpro_tab_domain_diagnostic_srv"
-                                            data-ng-if="domain.srvValid && !exchange.isMXPlan"
-                                            data-simplepopover="{{domain.srvTooltip}}"
-                                            data-simplepopover-title="{{ 'emailpro_tab_domain_diagnostic_srv_title' | translate }}"
-                                            data-simplepopover-placement="top"
-                                            data-simplepopover-single="true">
-                                    </button>
-                                </div>
-                                <button class="oui-status oui-status_error" type="button"
-                                        data-translate="emailpro_tab_domain_diagnostic_cname"
-                                        data-ng-if="!domain.domainValidated && domain.cname"
-                                        data-simplepopover="{{ 'emailpro_tab_domain_validation_cname_details' | translate: { t0: domain.cname, t1: domain.name, t2: cnameRedirection } }}"
+                                    <button
+                                        class="oui-status oui-status_error"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_mx"
+                                        data-ng-click="setAction('emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig', domain)"
+                                        data-ng-if="!domain.mxValid"
+                                    ></button>
+                                    <button
+                                        class="oui-status oui-status_success"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_mx"
+                                        data-ng-if="domain.mxValid"
+                                        data-simplepopover="{{domain.mxTooltip}}"
+                                        data-simplepopover-title="{{ 'emailpro_tab_domain_diagnostic_mx_title' | translate }}"
                                         data-simplepopover-placement="top"
                                         data-simplepopover-single="true"
-                                        data-simplepopover-title="{{ 'emailpro_tab_domain_validation_cname_title' | translate }}">
-                                </button>
+                                    ></button>
+                                    <button
+                                        class="oui-status oui-status_error"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_srv"
+                                        data-ng-click="setAction('emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig', domain)"
+                                        data-ng-if="!domain.srvValid && !exchange.isMXPlan"
+                                    ></button>
+                                    <button
+                                        class="oui-status oui-status_success"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_srv"
+                                        data-ng-if="domain.srvValid && !exchange.isMXPlan"
+                                        data-simplepopover="{{domain.srvTooltip}}"
+                                        data-simplepopover-title="{{ 'emailpro_tab_domain_diagnostic_srv_title' | translate }}"
+                                        data-simplepopover-placement="top"
+                                        data-simplepopover-single="true"
+                                    ></button>
+                                </div>
+                                <button
+                                    class="oui-status oui-status_error"
+                                    type="button"
+                                    data-translate="emailpro_tab_domain_diagnostic_cname"
+                                    data-ng-if="!domain.domainValidated && domain.cname"
+                                    data-simplepopover="{{ 'emailpro_tab_domain_validation_cname_details' | translate: { t0: domain.cname, t1: domain.name, t2: cnameRedirection } }}"
+                                    data-simplepopover-placement="top"
+                                    data-simplepopover-single="true"
+                                    data-simplepopover-title="{{ 'emailpro_tab_domain_validation_cname_title' | translate }}"
+                                ></button>
                             </td>
-                            <td class="text-center"
-                                data-ng-if="!domain.partial">
+                            <td
+                                class="text-center"
+                                data-ng-if="!domain.partial"
+                            >
                                 <div data-ng-if="domain.state === stateOk">
-                                    <span class="oui-status oui-status_success"
-                                          data-translate="global_OK"
-                                          data-ng-if="!domain.taskInProgress"></span>
-                                    <span class="oui-status oui-status_info"
-                                          data-translate="emailpro_tab_domain_task_in_progress"
-                                          data-ng-if="domain.taskInProgress"></span>
+                                    <span
+                                        class="oui-status oui-status_success"
+                                        data-translate="global_OK"
+                                        data-ng-if="!domain.taskInProgress"
+                                    ></span>
+                                    <span
+                                        class="oui-status oui-status_info"
+                                        data-translate="emailpro_tab_domain_task_in_progress"
+                                        data-ng-if="domain.taskInProgress"
+                                    ></span>
                                 </div>
-                                <div data-ng-if="domain.state === stateCreating || domain.state === stateDeleting">
-                                    <span class="oui-status oui-status_info"
-                                          data-ng-if="!domain.domainValidated && domain.cname"
-                                          data-translate="emailpro_tab_domain_validation"></span>
-                                    <span class="oui-status oui-status_info"
-                                          data-ng-if="domain.state === stateCreating && domain.cname == null"
-                                          data-translate="emailpro_tab_ACCOUNTS_state_CREATING"></span>
-                                    <span class="oui-status oui-status_error"
-                                          data-ng-if="domain.state === stateDeleting"
-                                          data-translate="emailpro_tab_ACCOUNTS_state_DELETING"></span>
+                                <div
+                                    data-ng-if="domain.state === stateCreating || domain.state === stateDeleting"
+                                >
+                                    <span
+                                        class="oui-status oui-status_info"
+                                        data-ng-if="!domain.domainValidated && domain.cname"
+                                        data-translate="emailpro_tab_domain_validation"
+                                    ></span>
+                                    <span
+                                        class="oui-status oui-status_info"
+                                        data-ng-if="domain.state === stateCreating && domain.cname == null"
+                                        data-translate="emailpro_tab_ACCOUNTS_state_CREATING"
+                                    ></span>
+                                    <span
+                                        class="oui-status oui-status_error"
+                                        data-ng-if="domain.state === stateDeleting"
+                                        data-translate="emailpro_tab_ACCOUNTS_state_DELETING"
+                                    ></span>
                                 </div>
                             </td>
-                            <td class="text-center text-nowrap"
-                                data-ng-if="!domain.partial">
-                                <oui-action-menu data-compact
-                                                 data-align="end">
-                                    <oui-action-menu-item data-on-click="updateDomain(domain)"
-                                                          data-disabled="isEditDisabled(domain)">
-                                        <span data-translate="emailpro_tab_domain_popover_update"></span>
+                            <td
+                                class="text-center text-nowrap"
+                                data-ng-if="!domain.partial"
+                            >
+                                <oui-action-menu data-compact data-align="end">
+                                    <oui-action-menu-item
+                                        data-on-click="updateDomain(domain)"
+                                        data-disabled="isEditDisabled(domain)"
+                                    >
+                                        <span
+                                            data-translate="emailpro_tab_domain_popover_update"
+                                        ></span>
                                     </oui-action-menu-item>
-                                    <oui-action-menu-item data-ng-if="!exchange.isMXPlan && !isDeleteDisabled(domain)"
-                                                          data-on-click="deleteDomain(domain)">
-                                        <span data-translate="emailpro_tab_domain_popover_delete"></span>
+                                    <oui-action-menu-item
+                                        data-ng-if="!exchange.isMXPlan && !isDeleteDisabled(domain)"
+                                        data-on-click="deleteDomain(domain)"
+                                    >
+                                        <span
+                                            data-translate="emailpro_tab_domain_popover_delete"
+                                        ></span>
                                     </oui-action-menu-item>
-                                    <oui-action-menu-item data-ng-if="!exchange.isMXPlan && isDeleteDisabled(domain)"
-                                                          data-disabled="true">
-                                        <span data-translate="emailpro_tab_domain_popover_delete"
-                                              data-oui-tooltip="{{:: exchange.billingPlan + '_tab_domain_delete_domain_accounts_warning' | translate }}"></span>
+                                    <oui-action-menu-item
+                                        data-ng-if="!exchange.isMXPlan && isDeleteDisabled(domain)"
+                                        data-disabled="true"
+                                    >
+                                        <span
+                                            data-translate="emailpro_tab_domain_popover_delete"
+                                            data-oui-tooltip="{{:: exchange.billingPlan + '_tab_domain_delete_domain_accounts_warning' | translate }}"
+                                        ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
                             </td>
@@ -194,21 +315,23 @@
                 </table>
             </div>
 
-            <div class="clearfix"
-                 data-ng-show="!exchange.isMXPlan && !loading && paginated.domains.length > 0"
-                 data-pagination-server-side="domainsTable"
-                 data-pagination-server-side-function="getDomains"
-                 data-pagination-server-side-paginated-stuff="paginated"
-                 data-pagination-server-side-table-loading="loading">
-            </div>
+            <div
+                class="clearfix"
+                data-ng-show="!exchange.isMXPlan && !loading && paginated.domains.length > 0"
+                data-pagination-server-side="domainsTable"
+                data-pagination-server-side-function="getDomains"
+                data-pagination-server-side-paginated-stuff="paginated"
+                data-pagination-server-side-table-loading="loading"
+            ></div>
         </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0"
-             data-ng-if="canAddDomain">
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="emailpro_tab_domain_add_domain"
-                    data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add', {})">
-            </button>
+        <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="canAddDomain">
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="emailpro_tab_domain_add_domain"
+                data-ng-click="setAction('emailpro/domain/add/emailpro-domain-add', {})"
+            ></button>
         </div>
     </div>
 </div>

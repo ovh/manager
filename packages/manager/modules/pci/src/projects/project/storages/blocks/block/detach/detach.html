@@ -6,14 +6,13 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_blocks_block_detach_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
+    data-loading="$ctrl.isLoading"
+>
     <div
         data-translate="pci_projects_project_storages_blocks_block_detach_detachvolume"
         data-translate-values="{
             volume: $ctrl.storage.name,
             instance: $ctrl.storage.attachedTo[0].name
-        }">
-    </div>
-
+        }"
+    ></div>
 </oui-modal>

@@ -5,26 +5,32 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-loading="$ctrl.loader.loading">
-
-        <p class="oui-modal__text" data-translate="vps_backup_storage_access_add_authorization"></p>
+        data-loading="$ctrl.loader.loading"
+    >
+        <p
+            class="oui-modal__text"
+            data-translate="vps_backup_storage_access_add_authorization"
+        ></p>
         <oui-checkbox
             data-text="{{ ::'vps_tab_backup_storage_table_cifs' | translate }}"
             id="acces-cifs"
             name="acces-cifs"
-            data-model="$ctrl.model.cifs">
+            data-model="$ctrl.model.cifs"
+        >
         </oui-checkbox>
         <oui-checkbox
             data-text="{{ ::'vps_tab_backup_storage_table_ftp' | translate }}"
             id="acces-ftp"
             name="acces-ftp"
-            data-model="$ctrl.model.ftp">
+            data-model="$ctrl.model.ftp"
+        >
         </oui-checkbox>
         <oui-checkbox
             data-text="{{ ::'vps_tab_backup_storage_table_nfs' | translate }}"
             id="acces-nfs"
             name="acces-nfs"
-            data-model="$ctrl.model.nfs">
+            data-model="$ctrl.model.nfs"
+        >
         </oui-checkbox>
     </oui-modal>
 </form>

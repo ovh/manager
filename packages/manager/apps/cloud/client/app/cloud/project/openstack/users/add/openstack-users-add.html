@@ -5,10 +5,13 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-loading="$ctrl.saving">
-
-        <oui-field data-label="{{ ::'openstackusers_users_userlist_add_description' | translate }}">
-            <input type="text"
+        data-loading="$ctrl.saving"
+    >
+        <oui-field
+            data-label="{{ ::'openstackusers_users_userlist_add_description' | translate }}"
+        >
+            <input
+                type="text"
                 class="oui-input"
                 id="useradddescription"
                 name="useradddescription"
@@ -16,7 +19,8 @@
                 required
                 cuc-autofocus
                 data-ng-maxlength="255"
-                data-ng-class="{'oui-input_error': form.$submitted && form.useradddescription.$invalid}">
+                data-ng-class="{'oui-input_error': form.$submitted && form.useradddescription.$invalid}"
+            />
         </oui-field>
     </oui-modal>
 </form>

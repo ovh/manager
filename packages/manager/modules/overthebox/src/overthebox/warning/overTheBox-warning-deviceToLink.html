@@ -1,41 +1,51 @@
-<div class="alert alert-info"
-     role="alert"
-     data-ng-controller="OverTheBoxWarningDeviceToLinkCtrl as DeviceToLink">
-    <h3 data-ng-if="DeviceToLink.deviceCount === 1"
-        data-translate="order_overTheBox_device_detected_title">
-    </h3>
-    <h3 data-ng-if="DeviceToLink.deviceCount > 1"
+<div
+    class="alert alert-info"
+    role="alert"
+    data-ng-controller="OverTheBoxWarningDeviceToLinkCtrl as DeviceToLink"
+>
+    <h3
+        data-ng-if="DeviceToLink.deviceCount === 1"
+        data-translate="order_overTheBox_device_detected_title"
+    ></h3>
+    <h3
+        data-ng-if="DeviceToLink.deviceCount > 1"
         data-translate="order_overTheBox_many_device_detected_title"
-        data-translate-values="{count: DeviceToLink.deviceCount}">
-    </h3>
+        data-translate-values="{count: DeviceToLink.deviceCount}"
+    ></h3>
     <p data-translate="order_overTheBox_device_detected_link_needed"></p>
-    <button type="button"
-            class="btn btn-primary mt-2"
-            data-ng-if="DeviceToLink.link"
-            data-ng-click="DeviceToLink.autoLink()"
-            data-ng-disabled="DeviceToLink.loader">
-        <span class="fa fa-link"
-              aria-hidden="true"
-              data-ng-if="!DeviceToLink.loader">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        data-ng-if="DeviceToLink.link"
+        data-ng-click="DeviceToLink.autoLink()"
+        data-ng-disabled="DeviceToLink.loader"
+    >
+        <span
+            class="fa fa-link"
+            aria-hidden="true"
+            data-ng-if="!DeviceToLink.loader"
+        >
         </span>
-        <oui-spinner data-ng-if="DeviceToLink.loader"
-                     data-size="s">
+        <oui-spinner data-ng-if="DeviceToLink.loader" data-size="s">
         </oui-spinner>
         <span data-translate="order_overTheBox_device_to_link_link"></span>
     </button>
-    <p data-ng-if="DeviceToLink.configService"
-       data-translate="order_overTheBox_device_detected_service_config_needed"
-       data-translate-values="DeviceToLink.configService">
-    </p>
-    <p data-ng-if="DeviceToLink.unknown"
-       data-translate="order_overTheBox_device_detected_something_needed">
-    </p>
-    <ul class="list-unstyled"
-        data-ng-if="DeviceToLink.unknown" >
+    <p
+        data-ng-if="DeviceToLink.configService"
+        data-translate="order_overTheBox_device_detected_service_config_needed"
+        data-translate-values="DeviceToLink.configService"
+    ></p>
+    <p
+        data-ng-if="DeviceToLink.unknown"
+        data-translate="order_overTheBox_device_detected_something_needed"
+    ></p>
+    <ul class="list-unstyled" data-ng-if="DeviceToLink.unknown">
         <li data-ng-repeat="service in DeviceToLink.unknown">
-            <a class="service-button"
-               data-ui-sref="overTheBoxes.overTheBox.details({serviceName:service.service})"
-               data-ng-bind="service.service">
+            <a
+                class="service-button"
+                data-ui-sref="overTheBoxes.overTheBox.details({serviceName:service.service})"
+                data-ng-bind="service.service"
+            >
             </a>
         </li>
     </ul>

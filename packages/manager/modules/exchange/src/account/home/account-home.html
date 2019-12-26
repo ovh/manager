@@ -7,9 +7,13 @@
                 class="oui-link_icon"
                 target="_blank"
                 data-ng-href="https://{{:: $ctrl.webUrl }}"
-                rel="noopener">
+                rel="noopener"
+            >
                 https://<span data-ng-bind=":: $ctrl.webUrl"></span>
-                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
                 <span class="sr-only" data-translate="common_newtab"></span>
             </a>
         </p>
@@ -17,7 +21,8 @@
         <div
             class="alert alert-warning"
             role="alert"
-            data-ng-if="!$ctrl.loading && $ctrl.accounts && $ctrl.accounts.list.messages.length > 0">
+            data-ng-if="!$ctrl.loading && $ctrl.accounts && $ctrl.accounts.list.messages.length > 0"
+        >
             <div>
                 <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
                 <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
@@ -29,7 +34,8 @@
             data-rows-loader="$ctrl.fetchAccounts($config)"
             data-customizable
             data-columns-parameters="$ctrl.getColumnParameters()"
-            data-on-columns-parameters-change="$ctrl.onColumnsParametersChange(id, columns)">
+            data-on-columns-parameters-change="$ctrl.onColumnsParametersChange(id, columns)"
+        >
             <oui-column
                 data-title=":: 'exchange_tab_ACCOUNTS_table_email' | translate"
                 data-property="emailAddress"
@@ -42,32 +48,39 @@
                 data-searchable
                 data-filterable
                 data-sortable="asc"
-                data-prevent-customization></oui-column>
+                data-prevent-customization
+            ></oui-column>
             <oui-column
                 data-title=":: 'exchange_tab_ACCOUNTS_table_type' | translate"
                 data-property="accountLicense"
                 data-type="options"
                 data-type-options="$ctrl.accountTypeColumnOptions"
                 data-filterable
-                data-sortable>
-                <span data-ng-bind=":: $ctrl.exchangeAccountTypes.getDisplayValue($value)"></span>
+                data-sortable
+            >
+                <span
+                    data-ng-bind=":: $ctrl.exchangeAccountTypes.getDisplayValue($value)"
+                ></span>
             </oui-column>
             <oui-column
                 data-title=":: 'exchange_tab_ACCOUNTS_table_company' | translate"
                 data-property="company"
                 data-type="string"
                 data-sortable
-                data-filterable></oui-column>
+                data-filterable
+            ></oui-column>
             <oui-column
                 data-title=":: 'exchange_tab_ACCOUNTS_table_size' | translate"
-                data-property="size">
+                data-property="size"
+            >
                 <div
                     class="oui-progress m-0"
                     data-ng-class=":: {
                        'oui-progress_success': $value.usage < 51,
                        'oui-progress_warning': $value.usage > 50 && $value.usage < 81,
                        'oui-progress_error': $value.usage > 80
-                   }">
+                   }"
+                >
                     <div
                         class="oui-progress__bar oui-progress__bar_text-left"
                         role="progressbar"
@@ -79,10 +92,12 @@
                             'oui-progress__bar_warning': $value.usage > 50 && $value.usage < 81,
                             'oui-progress__bar_error': $value.usage > 80
                         }"
-                        data-ng-style=":: {'width': $value.usage + '%'}">
+                        data-ng-style=":: {'width': $value.usage + '%'}"
+                    >
                         <span
                             class="oui-progress__label"
-                            data-ng-bind=":: $value.progressionText"></span>
+                            data-ng-bind=":: $value.progressionText"
+                        ></span>
                     </div>
                 </div>
             </oui-column>
@@ -90,82 +105,100 @@
                 data-title=":: 'exchange_tab_ACCOUNTS_table_alias' | translate"
                 data-property="numberOfAliases"
                 data-type="number"
-                data-sortable></oui-column>
+                data-sortable
+            ></oui-column>
             <oui-column
                 data-title=":: 'exchange_tab_ACCOUNTS_table_outlook' | translate"
                 data-property="outlookStatus"
-                data-type="string">
+                data-type="string"
+            >
                 <span data-ng-bind="$value.displayValue"></span>
             </oui-column>
             <oui-column
                 data-title=":: 'exchange_tab_ACCOUNTS_table_status' | translate"
                 data-property="status"
-                data-type="string">
+                data-type="string"
+            >
             </oui-column>
             <oui-action-menu data-compact>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_edit' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/update/account-update', $row)"
-                    data-disabled="!$ctrl.exchangeAccount.isEditable($row) || !$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeAccount.isEditable($row) || !$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_alias' | translate }}"
                     data-on-click="$ctrl.displayAliasManagementView($row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_delegations' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/delegation/account-delegation', $row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_exportToPST' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/export-as-pst/account-export-as-pst', $row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_upgradeTo300Gb' | translate:{ t0: ('unit_size_GiB'|translate) } }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/upgrade-300g/account-upgrade-300g', $row)"
                     data-ng-if="$ctrl.exchangeSelectedService.canUpgradeTo300Gb()"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $ctrl.exchangeAccount.isPlaceholder($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_contactSupportForSpam' | translate }}"
                     data-ng-if="$row.spamDetected"
                     data-external
-                    data-href="{{:: $ctrl.linkToSpamTicket }}"></oui-action-menu-item>
-                <oui-action-menu-divider data-ng-if="$ctrl.exchangeAccountOutlook.canHaveLicense($row)"></oui-action-menu-divider>
+                    data-href="{{:: $ctrl.linkToSpamTicket }}"
+                ></oui-action-menu-item>
+                <oui-action-menu-divider
+                    data-ng-if="$ctrl.exchangeAccountOutlook.canHaveLicense($row)"
+                ></oui-action-menu-divider>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_outlook_activate' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/outlook/activate/account-outlook-activate', $row)"
                     data-ng-if="$ctrl.exchangeAccountOutlook.hasStatus($row, $ctrl.exchangeAccountOutlook.STATES.TO_ACTIVATE) && $ctrl.exchangeAccountOutlook.canHaveLicense($row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_outlook_order' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/outlook/add/account-outlook-add', $row)"
                     data-ng-if="$ctrl.exchangeAccountOutlook.hasStatus($row, $ctrl.exchangeAccountOutlook.STATES.TO_ORDER) && $ctrl.exchangeAccountOutlook.canHaveLicense($row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_outlook_access' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/outlook/account-outlook', $row)"
                     data-ng-if="($ctrl.exchangeAccountOutlook.hasStatus($row, $ctrl.exchangeAccountOutlook.STATES.ALREADY_ACTIVATED) || $ctrl.exchangeAccountOutlook.hasStatus($row, $ctrl.exchangeAccountOutlook.STATES.ALREADY_ORDERED)) && $ctrl.exchangeAccountOutlook.canHaveLicense($row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_outlook_deactivate' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/outlook/deactivate/account-outlook-deactivate', $row)"
                     data-ng-if="$ctrl.exchangeAccountOutlook.hasStatus($row, $ctrl.exchangeAccountOutlook.STATES.ALREADY_ACTIVATED) && $ctrl.exchangeAccountOutlook.canHaveLicense($row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_outlook_delete' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/outlook/delete/account-outlook-delete', $row)"
                     data-ng-if="$ctrl.exchangeAccountOutlook.hasStatus($row, $ctrl.exchangeAccountOutlook.STATES.ALREADY_ORDERED) && $ctrl.exchangeAccountOutlook.canHaveLicense($row)"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"
+                ></oui-action-menu-item>
                 <oui-action-menu-divider></oui-action-menu-divider>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_reset' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/remove/account-remove', $row)"
                     data-ng-if="$ctrl.exchangeAccount.CAN_DO.DESTRUCTION_METHOD.RESETTING()"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $row.domain === 'configureme.me'"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row) || $row.domain === 'configureme.me'"
+                ></oui-action-menu-item>
                 <oui-action-menu-item
                     data-text="{{:: 'exchange_tab_ACCOUNTS_menu_delete' | translate }}"
                     data-on-click="$ctrl.displayDialog('exchange/account/remove/account-remove', $row)"
                     data-ng-if="$ctrl.exchangeAccount.CAN_DO.DESTRUCTION_METHOD.DELETING()"
-                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"></oui-action-menu-item>
+                    data-disabled="!$ctrl.exchangeStates.constructor.isOk($row)"
+                ></oui-action-menu-item>
             </oui-action-menu>
         </oui-datagrid>
     </div>
@@ -174,32 +207,37 @@
     <fieldset
         class="col-md-3"
         data-ng-if="!$ctrl.initialLoading"
-        data-ng-disabled="$ctrl.initialAccountRetrieval">
+        data-ng-disabled="$ctrl.initialAccountRetrieval"
+    >
         <button
             class="oui-button oui-button_secondary w-100"
             type="button"
             data-translate="exchange_ACTION_export_accounts_office_attached_button"
             data-ng-click="$ctrl.navigation.setAction('exchange/office-attach/dialog/office-attach-dialog')"
-            data-ng-if="$ctrl.userCanSubscribeToOfficeAttach"></button>
+            data-ng-if="$ctrl.userCanSubscribeToOfficeAttach"
+        ></button>
         <button
             class="oui-button oui-button_secondary w-100 mt-2"
             type="button"
             data-ng-click="$ctrl.displayAccountAddingView()"
             data-translate="exchange_ACTION_add_account_button"
             data-ng-if="$ctrl.exchangeAccount.CAN_DO.CREATION_METHOD.ADDING()"
-            data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"></button>
+            data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
+        ></button>
         <button
             class="oui-button oui-button_secondary w-100 mt-2"
             type="button"
             data-ng-click="$ctrl.openAccountOrderingDialog()"
             data-translate="exchange_ACTION_order_accounts_button"
             data-ng-if="$ctrl.exchangeAccount.CAN_DO.CREATION_METHOD.ORDERING()"
-            data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"></button>
+            data-ng-disabled="!$ctrl.atLeastOneDomainIsAssociatedToCurrentExchangeService"
+        ></button>
         <button
             class="oui-button oui-button_secondary w-100 mt-2"
             type="button"
             data-ng-click="$ctrl.navigation.setAction('exchange/account/export-as-csv/account-export-as-csv', { filterType : $ctrl.filterType, search : $ctrl.search.value, total : $ctrl.accounts.length, exchange : $ctrl.exchange, csvExportType: 'accounts'})"
             data-ng-disabled="$ctrl.accounts.count === 0 || $ctrl.accounts.list.messages.length > 0"
-            data-translate="exchange_ACTION_export_accounts_button"></button>
+            data-translate="exchange_ACTION_export_accounts_button"
+        ></button>
     </fieldset>
 </div>

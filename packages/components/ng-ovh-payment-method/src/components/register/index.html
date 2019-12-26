@@ -3,29 +3,37 @@
     <div data-ng-transclude="introductionText"></div>
 
     <!-- Payment method type choice -->
-    <div class="text-center"
-         data-ng-if="$ctrl.loading.init">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="row"
-         data-ng-if="!$ctrl.loading.init"
-         data-ng-repeat="paymentTypeChunk in $ctrl.availablePaymentMethodTypes.chunks track by $index">
-        <div class="mb-3"
-             data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentMethodTypesPerLine)"
-             data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index">
+    <div
+        class="row"
+        data-ng-if="!$ctrl.loading.init"
+        data-ng-repeat="paymentTypeChunk in $ctrl.availablePaymentMethodTypes.chunks track by $index"
+    >
+        <div
+            class="mb-3"
+            data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentMethodTypesPerLine)"
+            data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index"
+        >
             <oui-radio
                 class="h-100"
                 data-thumbnail
                 data-value="paymentMethodType"
                 data-model="$ctrl.model.selectedPaymentMethodType"
-                data-variant="light">
-                <div data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"></div>
-                <img class="payment-method-type-icon"
-                     data-ng-if="paymentMethodType.icon.data"
-                     data-ng-src="{{ paymentMethodType.icon.data }}"
-                     data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
-                     alt="" />
+                data-variant="light"
+            >
+                <div
+                    data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"
+                ></div>
+                <img
+                    class="payment-method-type-icon"
+                    data-ng-if="paymentMethodType.icon.data"
+                    data-ng-src="{{ paymentMethodType.icon.data }}"
+                    data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
+                    alt=""
+                />
             </oui-radio>
         </div>
     </div>
@@ -35,13 +43,18 @@
 
     <!-- set as default -->
     <div data-ng-if="$ctrl.showSetAsDefaultChoice">
-        <p data-ng-if="$ctrl.registeredPaymentMethods.length === 0"
-           data-translate="ovh_payment_method_register_force_as_default">
-        </p>
+        <p
+            data-ng-if="$ctrl.registeredPaymentMethods.length === 0"
+            data-translate="ovh_payment_method_register_force_as_default"
+        ></p>
 
-        <oui-checkbox data-model="$ctrl.model.setAsDefault"
-                      data-ng-if="$ctrl.registeredPaymentMethods.length > 0">
-            <span data-translate="ovh_payment_method_register_set_as_default_choice"></span>
+        <oui-checkbox
+            data-model="$ctrl.model.setAsDefault"
+            data-ng-if="$ctrl.registeredPaymentMethods.length > 0"
+        >
+            <span
+                data-translate="ovh_payment_method_register_set_as_default_choice"
+            ></span>
         </oui-checkbox>
     </div>
 </div>

@@ -1,8 +1,9 @@
 <section class="telecom-sms-senders-add">
-
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="sms.service.senders"
-                           data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}">
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.senders"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
         </tuc-section-back-link>
         <h1 data-translate="sms_senders_add_sender_title"></h1>
     </header>
@@ -12,13 +13,14 @@
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-content" data-ng-if="!SmsSendersAddCtrl.loading.init">
-
+    <div
+        class="telecom-section-content"
+        data-ng-if="!SmsSendersAddCtrl.loading.init"
+    >
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
             <div class="col-md-8">
-
                 <div class="radio">
                     <label>
                         <input
@@ -26,8 +28,11 @@
                             name="choice"
                             id="manual"
                             value="manual"
-                            data-ng-model="SmsSendersAddCtrl.choice" />
-                        <span data-translate="sms_senders_add_sender_choice_manual"></span>
+                            data-ng-model="SmsSendersAddCtrl.choice"
+                        />
+                        <span
+                            data-translate="sms_senders_add_sender_choice_manual"
+                        ></span>
                     </label>
                 </div>
 
@@ -38,8 +43,11 @@
                             name="choice"
                             id="personal"
                             value="personal"
-                            data-ng-model="SmsSendersAddCtrl.choice" />
-                        <span data-translate="sms_senders_add_sender_choice_personal"></span>
+                            data-ng-model="SmsSendersAddCtrl.choice"
+                        />
+                        <span
+                            data-translate="sms_senders_add_sender_choice_personal"
+                        ></span>
                     </label>
                 </div>
 
@@ -50,42 +58,63 @@
                             name="choice"
                             id="domain"
                             value="domain"
-                            data-ng-model="SmsSendersAddCtrl.choice" />
-                        <span data-translate="sms_senders_add_sender_choice_domain"></span>
+                            data-ng-model="SmsSendersAddCtrl.choice"
+                        />
+                        <span
+                            data-translate="sms_senders_add_sender_choice_domain"
+                        ></span>
                     </label>
                 </div>
-
             </div>
-        </div><!-- .row -->
+        </div>
+        <!-- .row -->
 
         <div class="row">
             <div class="col-md-8 col-lg-6">
+                <form
+                    name="addSenderForm"
+                    id="addSenderForm"
+                    data-ng-if="SmsSendersAddCtrl.choice === 'manual'"
+                    data-ng-submit="SmsSendersAddCtrl.add()"
+                >
+                    <h4
+                        data-translate="sms_senders_add_sender_info_pricing"
+                    ></h4>
+                    <p
+                        data-translate="sms_senders_add_sender_info_pricing_text"
+                    ></p>
+                    <h4
+                        data-translate="sms_senders_add_sender_info_timetable_validation"
+                    ></h4>
+                    <p
+                        data-translate="sms_senders_add_sender_info_timetable_validation_text"
+                    ></p>
 
-                <form name="addSenderForm"
-                      id="addSenderForm"
-                      data-ng-if="SmsSendersAddCtrl.choice === 'manual'"
-                      data-ng-submit="SmsSendersAddCtrl.add()">
-
-                    <h4 data-translate="sms_senders_add_sender_info_pricing"></h4>
-                    <p data-translate="sms_senders_add_sender_info_pricing_text"></p>
-                    <h4 data-translate="sms_senders_add_sender_info_timetable_validation"></h4>
-                    <p data-translate="sms_senders_add_sender_info_timetable_validation_text"></p>
-
-                    <div class="alert alert-info"
-                         role="alert">
-                        <strong class="text-uppercase" data-translate="sms_senders_add_sender_warning_title"></strong>
-                        <p data-translate="sms_senders_add_sender_warning_text"></p>
-                        <p data-translate="sms_senders_add_sender_warning_text_nichandle"></p>
+                    <div class="alert alert-info" role="alert">
+                        <strong
+                            class="text-uppercase"
+                            data-translate="sms_senders_add_sender_warning_title"
+                        ></strong>
+                        <p
+                            data-translate="sms_senders_add_sender_warning_text"
+                        ></p>
+                        <p
+                            data-translate="sms_senders_add_sender_warning_text_nichandle"
+                        ></p>
                     </div>
 
                     <!-- Sender -->
-                    <div class="form-group"
-                         data-ng-class="{
+                    <div
+                        class="form-group"
+                        data-ng-class="{
                              'has-error': addSenderForm.sender.$touched && addSenderForm.sender.$invalid
-                         }">
-                        <label for="sender"
-                               class="control-label"
-                               data-translate="sms_senders_add_sender_label">
+                         }"
+                    >
+                        <label
+                            for="sender"
+                            class="control-label"
+                            data-translate="sms_senders_add_sender_label"
+                        >
                         </label>
                         <input
                             type="text"
@@ -97,31 +126,44 @@
                             data-ng-model="SmsSendersAddCtrl.sender.sender"
                             data-ng-maxlength="11"
                             data-ng-pattern="SmsSendersAddCtrl.senders.pattern"
-                            data-translate-attr="{ placeholder: 'sms_senders_add_sender_placeholder' }" />
-                        <span class="help-block"
-                              role="alert"
-                              data-ng-if="addSenderForm.sender.$touched"
-                              data-ng-messages="addSenderForm.sender.$error">
-                            <span data-ng-message="required"
-                                  data-translate="sms_senders_add_sender_error_required">
+                            data-translate-attr="{ placeholder: 'sms_senders_add_sender_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="addSenderForm.sender.$touched"
+                            data-ng-messages="addSenderForm.sender.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_add_sender_error_required"
+                            >
                             </span>
-                            <span data-ng-message="pattern"
-                                  data-translate="sms_senders_add_sender_error_pattern">
+                            <span
+                                data-ng-message="pattern"
+                                data-translate="sms_senders_add_sender_error_pattern"
+                            >
                             </span>
-                            <span data-ng-message="maxlength"
-                                  data-translate="sms_senders_add_sender_error_maxlength">
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_add_sender_error_maxlength"
+                            >
                             </span>
                         </span>
                     </div>
 
                     <!-- Description -->
-                    <div class="form-group"
-                         data-ng-class="{
+                    <div
+                        class="form-group"
+                        data-ng-class="{
                              'has-error': addSenderForm.description.$touched && addSenderForm.description.$invalid
-                         }">
-                        <label for="description"
-                               class="control-label"
-                               data-translate="sms_senders_add_sender_description_label">
+                         }"
+                    >
+                        <label
+                            for="description"
+                            class="control-label"
+                            data-translate="sms_senders_add_sender_description_label"
+                        >
                         </label>
                         <input
                             type="text"
@@ -130,25 +172,34 @@
                             class="form-control"
                             data-ng-model="SmsSendersAddCtrl.sender.description"
                             data-ng-maxlength="40"
-                            data-translate-attr="{ placeholder: 'sms_senders_add_sender_description_placeholder' }" />
-                        <span class="help-block"
-                              role="alert"
-                              data-ng-if="addSenderForm.description.$touched"
-                              data-ng-messages="addSenderForm.description.$error">
-                            <span data-ng-message="maxlength"
-                                  data-translate="sms_senders_add_sender_description_error_maxlength">
+                            data-translate-attr="{ placeholder: 'sms_senders_add_sender_description_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="addSenderForm.description.$touched"
+                            data-ng-messages="addSenderForm.description.$error"
+                        >
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_add_sender_description_error_maxlength"
+                            >
                             </span>
                         </span>
                     </div>
 
                     <!-- Reason -->
-                    <div class="form-group"
-                         data-ng-class="{
+                    <div
+                        class="form-group"
+                        data-ng-class="{
                              'has-error': addSenderForm.reason.$touched && addSenderForm.reason.$invalid
-                         }">
-                        <label for="reason"
-                               class="control-label"
-                               data-translate="sms_senders_add_sender_reason_label">
+                         }"
+                    >
+                        <label
+                            for="reason"
+                            class="control-label"
+                            data-translate="sms_senders_add_sender_reason_label"
+                        >
                         </label>
                         <textarea
                             name="reason"
@@ -157,17 +208,24 @@
                             required
                             data-ng-model="SmsSendersAddCtrl.sender.reason"
                             data-ng-maxlength="250"
-                            data-translate-attr="{ placeholder: 'sms_senders_add_sender_reason_placeholder' }">
+                            data-translate-attr="{ placeholder: 'sms_senders_add_sender_reason_placeholder' }"
+                        >
                         </textarea>
-                        <span class="help-block"
-                              role="alert"
-                              data-ng-if="addSenderForm.reason.$touched"
-                              data-ng-messages="addSenderForm.reason.$error">
-                            <span data-ng-message="required"
-                                  data-translate="sms_senders_add_sender_reason_error_required">
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="addSenderForm.reason.$touched"
+                            data-ng-messages="addSenderForm.reason.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_add_sender_reason_error_required"
+                            >
                             </span>
-                            <span data-ng-message="maxlength"
-                                  data-translate="sms_senders_add_sender_reason_error_maxlength">
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_add_sender_reason_error_maxlength"
+                            >
                             </span>
                         </span>
                     </div>
@@ -177,22 +235,23 @@
                             type="submit"
                             class="btn btn-primary"
                             data-ng-disabled="addSenderForm.$invalid || SmsSendersAddCtrl.loading.adding"
-                            data-translate="sms_submit">
-                        </button>
-                        <oui-spinner class="ml-2"
-                                     data-ng-if="SmsSendersAddCtrl.loading.adding"
-                                     data-size="s">
+                            data-translate="sms_submit"
+                        ></button>
+                        <oui-spinner
+                            class="ml-2"
+                            data-ng-if="SmsSendersAddCtrl.loading.adding"
+                            data-size="s"
+                        >
                         </oui-spinner>
                     </div>
-
                 </form>
 
                 <div data-ng-if="SmsSendersAddCtrl.choice === 'personal'">
-
-                    <div class="alert alert-info"
-                         role="alert"
-                         data-translate="sms_senders_add_sender_warning_text_nichandle">
-                    </div>
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-translate="sms_senders_add_sender_warning_text_nichandle"
+                    ></div>
 
                     <button
                         type="button"
@@ -200,26 +259,33 @@
                         data-ng-disabled="SmsSendersAddCtrl.getSelection().length === 0 ||
                                           SmsSendersAddCtrl.senders.availableForValidation.nichandle.isDeleting ||
                                           SmsSendersAddCtrl.loading.adding"
-                        data-ng-click="SmsSendersAddCtrl.addSelectedSendersAvailableForValidaton()">
-                        <span data-ng-pluralize
-                              data-count="SmsSendersAddCtrl.getSelection().length"
-                              data-when="{
+                        data-ng-click="SmsSendersAddCtrl.addSelectedSendersAvailableForValidaton()"
+                    >
+                        <span
+                            data-ng-pluralize
+                            data-count="SmsSendersAddCtrl.getSelection().length"
+                            data-when="{
                                   '0': ('sms_senders_add_sender' | translate),
                                   'one': ('sms_senders_add_sender' | translate),
                                   'other': ('sms_senders_add_senders' | translate:{ count: {} })
-                              }">
+                              }"
+                        >
                         </span>
                     </button>
-                    <oui-spinner class="ml-2"
-                                 data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.nichandle.isDeleting"
-                                 data-size="s">
+                    <oui-spinner
+                        class="ml-2"
+                        data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.nichandle.isDeleting"
+                        data-size="s"
+                    >
                     </oui-spinner>
 
                     <div class="table-responsive">
-                        <table class="table table-hover"
-                               data-ng-class="{
+                        <table
+                            class="table table-hover"
+                            data-ng-class="{
                                    'table-striped': SmsSendersAddCtrl.senders.availableForValidation.nichandle.length
-                               }">
+                               }"
+                        >
                             <thead>
                                 <tr>
                                     <th scope="col" width="40px">
@@ -230,48 +296,69 @@
                                             data-ovh-checkbox-table
                                             data-ovh-checkbox-table-ids-all="SmsSendersAddCtrl.senders.availableForValidation.nichandle"
                                             data-ovh-checkbox-table-ids-selected="SmsSendersAddCtrl.senders.availableForValidation.selected"
-                                            data-ovh-checkbox-table-id="sender" />
+                                            data-ovh-checkbox-table-id="sender"
+                                        />
                                     </th>
-                                    <th scope="col" data-translate="sms_senders_add_sender_placeholder"></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="sms_senders_add_sender_placeholder"
+                                    ></th>
                                     <th class="text-right" scope="col">
-                                        <oui-spinner class="mr-3"
-                                                     data-ng-if="SmsSendersAddCtrl.loading.adding"
-                                                     data-size="s">
+                                        <oui-spinner
+                                            class="mr-3"
+                                            data-ng-if="SmsSendersAddCtrl.loading.adding"
+                                            data-size="s"
+                                        >
                                         </oui-spinner>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.nichandle.length">
-                                <tr data-ng-repeat="nichandle in SmsSendersAddCtrl.senders.availableForValidation.nichandle">
+                            <tbody
+                                data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.nichandle.length"
+                            >
+                                <tr
+                                    data-ng-repeat="nichandle in SmsSendersAddCtrl.senders.availableForValidation.nichandle"
+                                >
                                     <td>
                                         <input
                                             type="checkbox"
                                             data-ng-disabled="SmsSendersAddCtrl.senders.availableForValidation.nichandle.isDeleting"
-                                            data-ng-model="SmsSendersAddCtrl.senders.availableForValidation.selected[nichandle.sender]" />
+                                            data-ng-model="SmsSendersAddCtrl.senders.availableForValidation.selected[nichandle.sender]"
+                                        />
                                     </td>
-                                    <td data-title="{{:: 'sms_senders_add_sender_placeholder' | translate }}"
-                                        data-ng-bind="nichandle.sender">
-                                    </td>
+                                    <td
+                                        data-title="{{:: 'sms_senders_add_sender_placeholder' | translate }}"
+                                        data-ng-bind="nichandle.sender"
+                                    ></td>
                                     <td class="text-right">
                                         <button
                                             type="button"
                                             class="btn btn-default"
-                                            data-ng-click="SmsSendersAddCtrl.addSenderAvailable(nichandle)">
-                                            <i class="ovh-font ovh-font-ajouter" aria-hidden="true"></i>
-                                            <span class="sr-only"
-                                                  data-translate="sms_senders_add_sender_sr_only"
-                                                  data-translate-values="{ sender: nichandle.sender }">
+                                            data-ng-click="SmsSendersAddCtrl.addSenderAvailable(nichandle)"
+                                        >
+                                            <i
+                                                class="ovh-font ovh-font-ajouter"
+                                                aria-hidden="true"
+                                            ></i>
+                                            <span
+                                                class="sr-only"
+                                                data-translate="sms_senders_add_sender_sr_only"
+                                                data-translate-values="{ sender: nichandle.sender }"
+                                            >
                                             </span>
                                         </button>
                                     </td>
                                 </tr>
                             </tbody>
-                            <tbody data-ng-if="!SmsSendersAddCtrl.senders.availableForValidation.nichandle.length">
+                            <tbody
+                                data-ng-if="!SmsSendersAddCtrl.senders.availableForValidation.nichandle.length"
+                            >
                                 <tr>
-                                    <td class="text-center py-3"
+                                    <td
+                                        class="text-center py-3"
                                         colspan="3"
-                                        data-translate="sms_senders_add_sender_personal_empty">
-                                    </td>
+                                        data-translate="sms_senders_add_sender_personal_empty"
+                                    ></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -279,11 +366,13 @@
                 </div>
 
                 <div data-ng-if="SmsSendersAddCtrl.choice === 'domain'">
-
-                    <div class="alert alert-info"
-                         role="alert">
-                        <p data-translate="sms_senders_add_sender_warning_text_domains"></p>
-                        <p data-translate="sms_senders_add_sender_warning_text_nichandle"></p>
+                    <div class="alert alert-info" role="alert">
+                        <p
+                            data-translate="sms_senders_add_sender_warning_text_domains"
+                        ></p>
+                        <p
+                            data-translate="sms_senders_add_sender_warning_text_nichandle"
+                        ></p>
                     </div>
 
                     <button
@@ -292,25 +381,32 @@
                         data-ng-disabled="SmsSendersAddCtrl.getSelection().length === 0 ||
                                           SmsSendersAddCtrl.senders.availableForValidation.domains.isDeleting ||
                                           SmsSendersAddCtrl.loading.adding"
-                        data-ng-click="SmsSendersAddCtrl.addSelectedSendersAvailableForValidaton()">
-                        <span data-ng-pluralize
-                              data-count="SmsSendersAddCtrl.getSelection().length"
-                              data-when="{
+                        data-ng-click="SmsSendersAddCtrl.addSelectedSendersAvailableForValidaton()"
+                    >
+                        <span
+                            data-ng-pluralize
+                            data-count="SmsSendersAddCtrl.getSelection().length"
+                            data-when="{
                                   '0': ('sms_senders_add_sender' | translate),
                                   'one': ('sms_senders_add_sender' | translate),
                                   'other': ('sms_senders_add_senders' | translate:{ count: {} })
-                              }">
+                              }"
+                        >
                         </span>
                     </button>
-                    <oui-spinner class="ml-2"
-                                 data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.domains.isDeleting"
-                                 data-size="s">
+                    <oui-spinner
+                        class="ml-2"
+                        data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.domains.isDeleting"
+                        data-size="s"
+                    >
                     </oui-spinner>
 
-                    <table class="table table-hover"
-                           data-ng-class="{
+                    <table
+                        class="table table-hover"
+                        data-ng-class="{
                                'table-striped': SmsSendersAddCtrl.senders.availableForValidation.domains.length
-                           }">
+                           }"
+                    >
                         <thead>
                             <tr>
                                 <th scope="col" width="40px">
@@ -321,59 +417,76 @@
                                         data-ovh-checkbox-table
                                         data-ovh-checkbox-table-ids-all="SmsSendersAddCtrl.senders.availableForValidation.domains"
                                         data-ovh-checkbox-table-ids-selected="SmsSendersAddCtrl.senders.availableForValidation.selected"
-                                        data-ovh-checkbox-table-id="sender" />
+                                        data-ovh-checkbox-table-id="sender"
+                                    />
                                 </th>
-                                <th scope="col"
-                                    data-translate="sms_senders_add_sender_placeholder"></th>
+                                <th
+                                    scope="col"
+                                    data-translate="sms_senders_add_sender_placeholder"
+                                ></th>
                                 <th class="text-right" scope="col">
-                                    <oui-spinner class="mr-3"
-                                                 data-ng-if="SmsSendersAddCtrl.loading.adding"
-                                                 data-size="s">
+                                    <oui-spinner
+                                        class="mr-3"
+                                        data-ng-if="SmsSendersAddCtrl.loading.adding"
+                                        data-size="s"
+                                    >
                                     </oui-spinner>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.domains.length">
-                            <tr data-ng-repeat="domain in SmsSendersAddCtrl.senders.availableForValidation.domains">
+                        <tbody
+                            data-ng-if="SmsSendersAddCtrl.senders.availableForValidation.domains.length"
+                        >
+                            <tr
+                                data-ng-repeat="domain in SmsSendersAddCtrl.senders.availableForValidation.domains"
+                            >
                                 <td>
                                     <input
                                         type="checkbox"
                                         data-ng-disabled="SmsSendersAddCtrl.senders.availableForValidation.domains.isDeleting"
-                                        data-ng-model="SmsSendersAddCtrl.senders.availableForValidation.selected[domain.sender]">
+                                        data-ng-model="SmsSendersAddCtrl.senders.availableForValidation.selected[domain.sender]"
+                                    />
                                 </td>
-                                <td data-title="{{:: 'sms_senders_add_sender_placeholder' | translate }}"
-                                    data-ng-bind="domain.sender">
-                                </td>
+                                <td
+                                    data-title="{{:: 'sms_senders_add_sender_placeholder' | translate }}"
+                                    data-ng-bind="domain.sender"
+                                ></td>
                                 <td class="text-right">
                                     <button
                                         type="button"
                                         class="btn btn-default"
-                                        data-ng-click="SmsSendersAddCtrl.addSenderAvailable(domain)">
-                                        <i class="ovh-font ovh-font-ajouter" aria-hidden="true"></i>
-                                        <span class="sr-only"
-                                              data-translate="sms_senders_add_sender_sr_only"
-                                              data-translate-values="{ sender: domain.sender }">
+                                        data-ng-click="SmsSendersAddCtrl.addSenderAvailable(domain)"
+                                    >
+                                        <i
+                                            class="ovh-font ovh-font-ajouter"
+                                            aria-hidden="true"
+                                        ></i>
+                                        <span
+                                            class="sr-only"
+                                            data-translate="sms_senders_add_sender_sr_only"
+                                            data-translate-values="{ sender: domain.sender }"
+                                        >
                                         </span>
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
-                        <tbody data-ng-if="!SmsSendersAddCtrl.senders.availableForValidation.domains.length">
+                        <tbody
+                            data-ng-if="!SmsSendersAddCtrl.senders.availableForValidation.domains.length"
+                        >
                             <tr>
-                                <td class="text-center py-3"
+                                <td
+                                    class="text-center py-3"
                                     colspan="3"
-                                    data-translate="sms_senders_add_sender_domain_empty">
-                                </td>
+                                    data-translate="sms_senders_add_sender_domain_empty"
+                                ></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
-
     </div>
     <!-- /.telecom-section-content -->
-
 </section>
 <!-- /.telecom-sms-senders-add -->

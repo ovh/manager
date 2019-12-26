@@ -6,13 +6,17 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_instances_instance_attach-volume_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    data-loading="$ctrl.isLoading"
+>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
     <div data-ng-if="$ctrl.volumes.length === 0">
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume"></span>
+            <span
+                data-translate="pci_projects_project_instances_instance_attach-volume_error_no_compatible_volume"
+            ></span>
         </oui-message>
     </div>
     <div data-ng-if="$ctrl.volumes.length > 0">
@@ -22,7 +26,8 @@
             data-placeholder="{{ :: 'pci_projects_project_instances_instance_attach-volume_volume_placeholder' | translate }}"
             data-items="$ctrl.volumes"
             data-match="name"
-            data-searchable>
+            data-searchable
+        >
         </oui-select>
     </div>
 </oui-modal>

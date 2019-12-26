@@ -1,35 +1,46 @@
 <div class="cdn-dedicated-manage">
     <!-- Loader -->
-    <div class="text-center m-5"
-         data-ng-if="$ctrl.loading">
+    <div class="text-center m-5" data-ng-if="$ctrl.loading">
         <oui-spinner></oui-spinner>
-    </div> <!-- End of Loader -->
+    </div>
+    <!-- End of Loader -->
 
     <!-- Section Content -->
     <div data-ng-if="!$ctrl.loading">
         <!-- Header -->
         <div class="page-header">
-            <h1 class="word-break mb-0 oui-header-2"
-                data-ng-bind="$ctrl.cdn.serviceName">
-            </h1>
-        </div> <!-- End of Header -->
+            <h1
+                class="word-break mb-0 oui-header-2"
+                data-ng-bind="$ctrl.cdn.serviceName"
+            ></h1>
+        </div>
+        <!-- End of Header -->
 
         <!-- Tabs -->
         <responsive-tabs>
-            <responsive-tab data-state="app.networks.cdn.dedicated">{{ 'cdn_tab_statistics' | translate }}</responsive-tab>
-            <responsive-tab data-state="app.networks.cdn.dedicated.ssl">{{ 'cdn_tab_ssl' | translate }}</responsive-tab>
-            <responsive-tab data-state="app.networks.cdn.dedicated.logs">{{ 'cdn_tab_logs' | translate }}</responsive-tab>
+            <responsive-tab data-state="app.networks.cdn.dedicated"
+                >{{ 'cdn_tab_statistics' | translate }}</responsive-tab
+            >
+            <responsive-tab data-state="app.networks.cdn.dedicated.ssl"
+                >{{ 'cdn_tab_ssl' | translate }}</responsive-tab
+            >
+            <responsive-tab data-state="app.networks.cdn.dedicated.logs"
+                >{{ 'cdn_tab_logs' | translate }}</responsive-tab
+            >
             <responsive-tab-more>
                 <i class="fa fa-plus"></i>
             </responsive-tab-more>
-        </responsive-tabs> <!-- End of Tabs -->
+        </responsive-tabs>
+        <!-- End of Tabs -->
 
         <!-- Tab Content -->
         <div class="tab-content">
-            <div class="alert"
-                 role="alert"
-                 data-ng-class="alertType"
-                 data-ng-if="message">
+            <div
+                class="alert"
+                role="alert"
+                data-ng-class="alertType"
+                data-ng-if="message"
+            >
                 <i class="close icon-remove" data-ng-click="message = null"></i>
                 <span data-ng-bind="message"></span>
             </div>
@@ -37,7 +48,7 @@
             <div data-ovh-alert="cdnDedicatedManage"></div>
 
             <div data-ui-view="cdnView"></div>
-        </div> <!-- End of Tab Content -->
+        </div>
+        <!-- End of Tab Content -->
     </div>
-
 </div>

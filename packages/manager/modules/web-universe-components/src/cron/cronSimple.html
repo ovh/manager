@@ -1,57 +1,122 @@
 <form class="form-horizontal mt-5" name="cronSimpleForm">
-
     <!-- HOURS -->
-    <div class="form-group" data-ng-class="{'has-error': !cronSimpleValueIsValid('h')}">
-        <label class="control-label col-md-4" for="cronSimpleHour"
-               data-translate="cron_label_hours"></label>
+    <div
+        class="form-group"
+        data-ng-class="{'has-error': !cronSimpleValueIsValid('h')}"
+    >
+        <label
+            class="control-label col-md-4"
+            for="cronSimpleHour"
+            data-translate="cron_label_hours"
+        ></label>
         <div class="col-md-6">
-            <select class="form-control" id="cronSimpleHour" name="cronSimpleHour"
-                    data-ng-model="mode.simple.h">
+            <select
+                class="form-control"
+                id="cronSimpleHour"
+                name="cronSimpleHour"
+                data-ng-model="mode.simple.h"
+            >
                 <option value="all" data-translate="cron_hours_all"></option>
-                <option value="items" data-translate="cron_hours_items"></option>
-                <option value="interval" data-translate="cron_hours_interval"></option>
-                <option value="range" data-translate="cron_hours_range"></option>
+                <option
+                    value="items"
+                    data-translate="cron_hours_items"
+                ></option>
+                <option
+                    value="interval"
+                    data-translate="cron_hours_interval"
+                ></option>
+                <option
+                    value="range"
+                    data-translate="cron_hours_range"
+                ></option>
             </select>
         </div>
     </div>
     <div data-ng-switch="mode.simple.h">
         <div class="col-md-8 col-md-offset-4 mb-4" data-ng-switch-when="items">
-            <label class="checkbox-inline ml-2 mr-5" data-ng-repeat="h in ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23']">
-                <input type="checkbox" data-ng-model="cron.simple.items.h[h]">
-                <span data-translate="cron_hours_value" data-translate-values="{ t0: h }"></span>
+            <label
+                class="checkbox-inline ml-2 mr-5"
+                data-ng-repeat="h in ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23']"
+            >
+                <input type="checkbox" data-ng-model="cron.simple.items.h[h]" />
+                <span
+                    data-translate="cron_hours_value"
+                    data-translate-values="{ t0: h }"
+                ></span>
             </label>
         </div>
         <div data-ng-switch-when="interval">
-            <div class="form-group" data-ng-class="{'has-error': cronSimpleForm.cronSimpleHourInterval.$dirty && cronSimpleForm.cronSimpleHourInterval.$invalid}">
-                <label class="control-label col-md-4" for="cronSimpleHourInterval"
-                       data-translate="cron_interval_pre_f"></label>
+            <div
+                class="form-group"
+                data-ng-class="{'has-error': cronSimpleForm.cronSimpleHourInterval.$dirty && cronSimpleForm.cronSimpleHourInterval.$invalid}"
+            >
+                <label
+                    class="control-label col-md-4"
+                    for="cronSimpleHourInterval"
+                    data-translate="cron_interval_pre_f"
+                ></label>
                 <div class="col-md-4">
                     <div class="input-group">
-                        <input type="number" class="form-control" id="cronSimpleHourInterval" name="cronSimpleHourInterval" min="2" max="23" step="1"
-                               data-ng-model="cron.simple.interval.h"
-                               data-ng-required="mode.simple.h === 'interval'">
-                        <span class="input-group-addon"
-                              data-translate="cron_label_hours_min"></span>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleHourInterval"
+                            name="cronSimpleHourInterval"
+                            min="2"
+                            max="23"
+                            step="1"
+                            data-ng-model="cron.simple.interval.h"
+                            data-ng-required="mode.simple.h === 'interval'"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="cron_label_hours_min"
+                        ></span>
                     </div>
                 </div>
             </div>
         </div>
         <div data-ng-switch-when="range">
-            <div class="form-group" data-ng-class="{'has-error': (cronSimpleForm.cronSimpleHourRangeFrom.$dirty && cronSimpleForm.cronSimpleHourRangeFrom.$invalid) ||
+            <div
+                class="form-group"
+                data-ng-class="{'has-error': (cronSimpleForm.cronSimpleHourRangeFrom.$dirty && cronSimpleForm.cronSimpleHourRangeFrom.$invalid) ||
                                                                  (cronSimpleForm.cronSimpleHourRangeTo.$dirty && cronSimpleForm.cronSimpleHourRangeTo.$invalid) ||
-                                                                 (cron.simple.range.h.from >= cron.simple.range.h.to)}">
+                                                                 (cron.simple.range.h.from >= cron.simple.range.h.to)}"
+            >
                 <div class="col-md-6 col-md-offset-4">
                     <div class="input-group">
-                        <label class="input-group-addon" for="cronSimpleHourRangeFrom"
-                               data-translate="cron_hours_range_from"></label>
-                        <input type="number" class="form-control" id="cronSimpleHourRangeFrom" name="cronSimpleHourRangeFrom" min="0" max="23" step="1"
-                               data-ng-model="cron.simple.range.h.from"
-                               data-ng-required="mode.simple.h === 'range'">
-                        <label class="input-group-addon" for="cronSimpleHourRangeTo"
-                               data-translate="cron_hours_range_to"></label>
-                        <input type="number" class="form-control" id="cronSimpleHourRangeTo" name="cronSimpleHourRangeTo" min="0" max="23" step="1"
-                               data-ng-model="cron.simple.range.h.to"
-                               data-ng-required="mode.simple.h === 'range'">
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleHourRangeFrom"
+                            data-translate="cron_hours_range_from"
+                        ></label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleHourRangeFrom"
+                            name="cronSimpleHourRangeFrom"
+                            min="0"
+                            max="23"
+                            step="1"
+                            data-ng-model="cron.simple.range.h.from"
+                            data-ng-required="mode.simple.h === 'range'"
+                        />
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleHourRangeTo"
+                            data-translate="cron_hours_range_to"
+                        ></label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleHourRangeTo"
+                            name="cronSimpleHourRangeTo"
+                            min="0"
+                            max="23"
+                            step="1"
+                            data-ng-model="cron.simple.range.h.to"
+                            data-ng-required="mode.simple.h === 'range'"
+                        />
                     </div>
                 </div>
             </div>
@@ -59,57 +124,117 @@
     </div>
 
     <!-- DAYS -->
-    <div class="form-group" data-ng-class="{'has-error': !cronSimpleValueIsValid('dom')}">
-        <label class="control-label col-md-4" for="cronSimpleDay"
-               data-translate="cron_label_days"></label>
+    <div
+        class="form-group"
+        data-ng-class="{'has-error': !cronSimpleValueIsValid('dom')}"
+    >
+        <label
+            class="control-label col-md-4"
+            for="cronSimpleDay"
+            data-translate="cron_label_days"
+        ></label>
         <div class="col-md-6">
-            <select class="form-control" id="cronSimpleDay" name="cronSimpleDay"
-                    data-ng-model="mode.simple.dom">
+            <select
+                class="form-control"
+                id="cronSimpleDay"
+                name="cronSimpleDay"
+                data-ng-model="mode.simple.dom"
+            >
                 <option value="all" data-translate="cron_dom_all"></option>
                 <option value="items" data-translate="cron_dom_items"></option>
-                <option value="interval" data-translate="cron_dom_interval"></option>
+                <option
+                    value="interval"
+                    data-translate="cron_dom_interval"
+                ></option>
                 <option value="range" data-translate="cron_dom_range"></option>
             </select>
         </div>
     </div>
     <div data-ng-switch="mode.simple.dom">
         <div class="col-md-8 col-md-offset-4 mb-4" data-ng-switch-when="items">
-            <label class="checkbox-inline ml-2 mr-5" data-ng-repeat="dom in ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']">
-                <input type="checkbox" data-ng-model="cron.simple.items.dom[dom]">
+            <label
+                class="checkbox-inline ml-2 mr-5"
+                data-ng-repeat="dom in ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']"
+            >
+                <input
+                    type="checkbox"
+                    data-ng-model="cron.simple.items.dom[dom]"
+                />
                 <span data-ng-bind="dom"></span>
             </label>
         </div>
-        <div data-ng-switch-when="interval" data-ng-class="{'has-error': cronSimpleForm.cronSimpleDayInterval.$dirty && cronSimpleForm.cronSimpleDayInterval.$invalid}">
+        <div
+            data-ng-switch-when="interval"
+            data-ng-class="{'has-error': cronSimpleForm.cronSimpleDayInterval.$dirty && cronSimpleForm.cronSimpleDayInterval.$invalid}"
+        >
             <div class="form-group">
-                <label class="control-label col-md-4" for="cronSimpleDayInterval"
-                       data-translate="cron_interval_pre_m"></label>
+                <label
+                    class="control-label col-md-4"
+                    for="cronSimpleDayInterval"
+                    data-translate="cron_interval_pre_m"
+                ></label>
                 <div class="col-md-4">
                     <div class="input-group">
-                        <input type="number" class="form-control" id="cronSimpleDayInterval" name="cronSimpleDayInterval" min="2" max="31" step="1"
-                               data-ng-model="cron.simple.interval.dom"
-                               data-ng-required="mode.simple.dom === 'interval'">
-                        <span class="input-group-addon"
-                              data-translate="cron_label_days_min"></span>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleDayInterval"
+                            name="cronSimpleDayInterval"
+                            min="2"
+                            max="31"
+                            step="1"
+                            data-ng-model="cron.simple.interval.dom"
+                            data-ng-required="mode.simple.dom === 'interval'"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="cron_label_days_min"
+                        ></span>
                     </div>
                 </div>
             </div>
         </div>
         <div data-ng-switch-when="range">
-            <div class="form-group" data-ng-class="{'has-error': (cronSimpleForm.cronSimpleDomRangeFrom.$dirty && cronSimpleForm.cronSimpleDomRangeFrom.$invalid) ||
+            <div
+                class="form-group"
+                data-ng-class="{'has-error': (cronSimpleForm.cronSimpleDomRangeFrom.$dirty && cronSimpleForm.cronSimpleDomRangeFrom.$invalid) ||
                                                                  (cronSimpleForm.cronSimpleDomRangeTo.$dirty && cronSimpleForm.cronSimpleDomRangeTo.$invalid) ||
-                                                                 (cron.simple.range.dom.from >= cron.simple.range.dom.to)}">
+                                                                 (cron.simple.range.dom.from >= cron.simple.range.dom.to)}"
+            >
                 <div class="col-md-6 col-md-offset-4">
                     <div class="input-group">
-                        <label class="input-group-addon" for="cronSimpleDomRangeFrom"
-                               data-translate="cron_dom_range_from"></label>
-                        <input type="number" class="form-control" id="cronSimpleDomRangeFrom" name="cronSimpleDomRangeFrom" min="1" max="31" step="1"
-                               data-ng-model="cron.simple.range.dom.from"
-                               data-ng-required="mode.simple.dom === 'range'">
-                        <label class="input-group-addon" for="cronSimpleDomRangeTo"
-                               data-translate="cron_dom_range_to"></label>
-                        <input type="number" class="form-control" id="cronSimpleDomRangeTo" name="cronSimpleDomRangeTo" min="1" max="31" step="1"
-                               data-ng-model="cron.simple.range.dom.to"
-                               data-ng-required="mode.simple.dom === 'range'">
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleDomRangeFrom"
+                            data-translate="cron_dom_range_from"
+                        ></label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleDomRangeFrom"
+                            name="cronSimpleDomRangeFrom"
+                            min="1"
+                            max="31"
+                            step="1"
+                            data-ng-model="cron.simple.range.dom.from"
+                            data-ng-required="mode.simple.dom === 'range'"
+                        />
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleDomRangeTo"
+                            data-translate="cron_dom_range_to"
+                        ></label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleDomRangeTo"
+                            name="cronSimpleDomRangeTo"
+                            min="1"
+                            max="31"
+                            step="1"
+                            data-ng-model="cron.simple.range.dom.to"
+                            data-ng-required="mode.simple.dom === 'range'"
+                        />
                     </div>
                 </div>
             </div>
@@ -117,15 +242,28 @@
     </div>
 
     <!-- DOW -->
-    <div class="form-group" data-ng-class="{'has-error': !cronSimpleValueIsValid('dow')}">
-        <label class="control-label col-md-4" for="cronSimpleDow"
-               data-translate="cron_label_dow"></label>
+    <div
+        class="form-group"
+        data-ng-class="{'has-error': !cronSimpleValueIsValid('dow')}"
+    >
+        <label
+            class="control-label col-md-4"
+            for="cronSimpleDow"
+            data-translate="cron_label_dow"
+        ></label>
         <div class="col-md-6">
-            <select class="form-control" id="cronSimpleDow" name="cronSimpleDow"
-                    data-ng-model="mode.simple.dow">
+            <select
+                class="form-control"
+                id="cronSimpleDow"
+                name="cronSimpleDow"
+                data-ng-model="mode.simple.dow"
+            >
                 <option value="all" data-translate="cron_dow_all"></option>
                 <option value="items" data-translate="cron_dow_items"></option>
-                <option value="interval" data-translate="cron_dow_interval"></option>
+                <option
+                    value="interval"
+                    data-translate="cron_dow_interval"
+                ></option>
                 <option value="range" data-translate="cron_dow_range"></option>
             </select>
         </div>
@@ -134,99 +272,188 @@
         <div class="col-md-8 col-md-offset-4 mb-4" data-ng-switch-when="items">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['1']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['1']"
+                    />
                     <span data-translate="cron_monday"></span>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['2']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['2']"
+                    />
                     <span data-translate="cron_tuesday"></span>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['3']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['3']"
+                    />
                     <span data-translate="cron_wednesday"></span>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['4']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['4']"
+                    />
                     <span data-translate="cron_thursday"></span>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['5']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['5']"
+                    />
                     <span data-translate="cron_friday"></span>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['6']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['6']"
+                    />
                     <span data-translate="cron_saturday"></span>
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"
-                           data-ng-model="cron.simple.items.dow['0']">
+                    <input
+                        type="checkbox"
+                        data-ng-model="cron.simple.items.dow['0']"
+                    />
                     <span data-translate="cron_sunday"></span>
                 </label>
             </div>
         </div>
-        <div data-ng-switch-when="interval" data-ng-class="{'has-error': cronSimpleForm.cronSimpleDowInterval.$dirty && cronSimpleForm.cronSimpleDowInterval.$invalid}">
+        <div
+            data-ng-switch-when="interval"
+            data-ng-class="{'has-error': cronSimpleForm.cronSimpleDowInterval.$dirty && cronSimpleForm.cronSimpleDowInterval.$invalid}"
+        >
             <div class="form-group">
-                <label class="control-label col-md-4" for="cronSimpleDowInterval"
-                       data-translate="cron_interval_pre_m"></label>
+                <label
+                    class="control-label col-md-4"
+                    for="cronSimpleDowInterval"
+                    data-translate="cron_interval_pre_m"
+                ></label>
                 <div class="col-md-6">
                     <div class="input-group">
-                        <input type="number" class="form-control" id="cronSimpleDowInterval" name="cronSimpleDowInterval" min="2" max="7" step="1"
-                               data-ng-model="cron.simple.interval.dow"
-                               data-ng-required="mode.simple.dow === 'interval'">
-                        <span class="input-group-addon"
-                              data-translate="cron_label_dow_min"></span>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleDowInterval"
+                            name="cronSimpleDowInterval"
+                            min="2"
+                            max="7"
+                            step="1"
+                            data-ng-model="cron.simple.interval.dow"
+                            data-ng-required="mode.simple.dow === 'interval'"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="cron_label_dow_min"
+                        ></span>
                     </div>
                 </div>
             </div>
         </div>
         <div data-ng-switch-when="range">
-            <div class="form-group" data-ng-class="{'has-error': (cronSimpleForm.cronSimpleDowRangeFrom.$dirty && cronSimpleForm.cronSimpleDowRangeFrom.$invalid) ||
-                                                                 (cronSimpleForm.cronSimpleDowRangeTo.$dirty && cronSimpleForm.cronSimpleDowRangeTo.$invalid)}">
+            <div
+                class="form-group"
+                data-ng-class="{'has-error': (cronSimpleForm.cronSimpleDowRangeFrom.$dirty && cronSimpleForm.cronSimpleDowRangeFrom.$invalid) ||
+                                                                 (cronSimpleForm.cronSimpleDowRangeTo.$dirty && cronSimpleForm.cronSimpleDowRangeTo.$invalid)}"
+            >
                 <div class="col-md-6 col-md-offset-4">
                     <div class="input-group">
-                        <label class="input-group-addon" for="cronSimpleDowRangeFrom"
-                               data-translate="cron_dow_range_from"></label>
-                        <select class="form-control" id="cronSimpleDowRangeFrom" name="cronSimpleDowRangeFrom"
-                                data-ng-model="cron.simple.range.dow.from"
-                                data-ng-required="mode.simple.dow === 'range'">
-                            <option value="0" data-translate="cron_sunday"></option>
-                            <option value="1" data-translate="cron_monday"></option>
-                            <option value="2" data-translate="cron_tuesday"></option>
-                            <option value="3" data-translate="cron_wednesday"></option>
-                            <option value="4" data-translate="cron_thursday"></option>
-                            <option value="5" data-translate="cron_friday"></option>
-                            <option value="6" data-translate="cron_saturday"></option>
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleDowRangeFrom"
+                            data-translate="cron_dow_range_from"
+                        ></label>
+                        <select
+                            class="form-control"
+                            id="cronSimpleDowRangeFrom"
+                            name="cronSimpleDowRangeFrom"
+                            data-ng-model="cron.simple.range.dow.from"
+                            data-ng-required="mode.simple.dow === 'range'"
+                        >
+                            <option
+                                value="0"
+                                data-translate="cron_sunday"
+                            ></option>
+                            <option
+                                value="1"
+                                data-translate="cron_monday"
+                            ></option>
+                            <option
+                                value="2"
+                                data-translate="cron_tuesday"
+                            ></option>
+                            <option
+                                value="3"
+                                data-translate="cron_wednesday"
+                            ></option>
+                            <option
+                                value="4"
+                                data-translate="cron_thursday"
+                            ></option>
+                            <option
+                                value="5"
+                                data-translate="cron_friday"
+                            ></option>
+                            <option
+                                value="6"
+                                data-translate="cron_saturday"
+                            ></option>
                         </select>
-                        <label class="input-group-addon" for="cronSimpleDowRangeTo"
-                               data-translate="cron_dow_range_to"></label>
-                        <select class="form-control" id="cronSimpleDowRangeTo" name="cronSimpleDowRangeTo"
-                                data-ng-model="cron.simple.range.dow.to"
-                                data-ng-required="mode.simple.dow === 'range'">
-                            <option value="1" data-translate="cron_monday"></option>
-                            <option value="2" data-translate="cron_tuesday"></option>
-                            <option value="3" data-translate="cron_wednesday"></option>
-                            <option value="4" data-translate="cron_thursday"></option>
-                            <option value="5" data-translate="cron_friday"></option>
-                            <option value="6" data-translate="cron_saturday"></option>
-                            <option value="7" data-translate="cron_sunday"></option>
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleDowRangeTo"
+                            data-translate="cron_dow_range_to"
+                        ></label>
+                        <select
+                            class="form-control"
+                            id="cronSimpleDowRangeTo"
+                            name="cronSimpleDowRangeTo"
+                            data-ng-model="cron.simple.range.dow.to"
+                            data-ng-required="mode.simple.dow === 'range'"
+                        >
+                            <option
+                                value="1"
+                                data-translate="cron_monday"
+                            ></option>
+                            <option
+                                value="2"
+                                data-translate="cron_tuesday"
+                            ></option>
+                            <option
+                                value="3"
+                                data-translate="cron_wednesday"
+                            ></option>
+                            <option
+                                value="4"
+                                data-translate="cron_thursday"
+                            ></option>
+                            <option
+                                value="5"
+                                data-translate="cron_friday"
+                            ></option>
+                            <option
+                                value="6"
+                                data-translate="cron_saturday"
+                            ></option>
+                            <option
+                                value="7"
+                                data-translate="cron_sunday"
+                            ></option>
                         </select>
                     </div>
                 </div>
@@ -235,15 +462,28 @@
     </div>
 
     <!-- MONTHS -->
-    <div class="form-group" data-ng-class="{'has-error': !cronSimpleValueIsValid('mon')}">
-        <label class="control-label col-md-4" for="cronSimpleMon"
-               data-translate="cron_label_months"></label>
+    <div
+        class="form-group"
+        data-ng-class="{'has-error': !cronSimpleValueIsValid('mon')}"
+    >
+        <label
+            class="control-label col-md-4"
+            for="cronSimpleMon"
+            data-translate="cron_label_months"
+        ></label>
         <div class="col-md-6">
-            <select class="form-control" id="cronSimpleMon" name="cronSimpleMon"
-                    data-ng-model="mode.simple.mon">
+            <select
+                class="form-control"
+                id="cronSimpleMon"
+                name="cronSimpleMon"
+                data-ng-model="mode.simple.mon"
+            >
                 <option value="all" data-translate="cron_mon_all"></option>
                 <option value="items" data-translate="cron_mon_items"></option>
-                <option value="interval" data-translate="cron_mon_interval"></option>
+                <option
+                    value="interval"
+                    data-translate="cron_mon_interval"
+                ></option>
                 <option value="range" data-translate="cron_mon_range"></option>
             </select>
         </div>
@@ -253,15 +493,19 @@
             <div class="row">
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['1']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['1']"
+                        />
                         <span data-translate="cron_januar"></span>
                     </label>
                 </div>
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['2']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['2']"
+                        />
                         <span data-translate="cron_februar"></span>
                     </label>
                 </div>
@@ -269,15 +513,19 @@
             <div class="row">
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['3']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['3']"
+                        />
                         <span data-translate="cron_march"></span>
                     </label>
                 </div>
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['4']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['4']"
+                        />
                         <span data-translate="cron_april"></span>
                     </label>
                 </div>
@@ -285,15 +533,19 @@
             <div class="row">
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['5']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['5']"
+                        />
                         <span data-translate="cron_may"></span>
                     </label>
                 </div>
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['6']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['6']"
+                        />
                         <span data-translate="cron_june"></span>
                     </label>
                 </div>
@@ -301,15 +553,19 @@
             <div class="row">
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['7']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['7']"
+                        />
                         <span data-translate="cron_jully"></span>
                     </label>
                 </div>
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['8']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['8']"
+                        />
                         <span data-translate="cron_august"></span>
                     </label>
                 </div>
@@ -317,15 +573,19 @@
             <div class="row">
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['9']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['9']"
+                        />
                         <span data-translate="cron_september"></span>
                     </label>
                 </div>
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['10']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['10']"
+                        />
                         <span data-translate="cron_october"></span>
                     </label>
                 </div>
@@ -333,75 +593,184 @@
             <div class="row">
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['11']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['11']"
+                        />
                         <span data-translate="cron_november"></span>
                     </label>
                 </div>
                 <div class="checkbox col-md-6">
                     <label>
-                        <input type="checkbox"
-                               data-ng-model="cron.simple.items.mon['12']">
+                        <input
+                            type="checkbox"
+                            data-ng-model="cron.simple.items.mon['12']"
+                        />
                         <span data-translate="cron_december"></span>
                     </label>
                 </div>
             </div>
         </div>
-        <div data-ng-switch-when="interval" data-ng-class="{'has-error': cronSimpleForm.cronSimpleMonthInterval.$dirty && cronSimpleForm.cronSimpleMonthInterval.$invalid}">
+        <div
+            data-ng-switch-when="interval"
+            data-ng-class="{'has-error': cronSimpleForm.cronSimpleMonthInterval.$dirty && cronSimpleForm.cronSimpleMonthInterval.$invalid}"
+        >
             <div class="form-group">
-                <label class="control-label col-md-4" for="cronSimpleMonthInterval"
-                       data-translate="cron_interval_pre_m"></label>
+                <label
+                    class="control-label col-md-4"
+                    for="cronSimpleMonthInterval"
+                    data-translate="cron_interval_pre_m"
+                ></label>
                 <div class="col-md-4">
                     <div class="input-group">
-                        <input type="number" class="form-control" id="cronSimpleMonthInterval" name="cronSimpleMonthInterval" min="2" max="12" step="1"
-                               data-ng-model="cron.simple.interval.mon"
-                               data-ng-required="mode.simple.mon === 'interval'">
-                        <span class="input-group-addon"
-                              data-translate="cron_label_months_min"></span>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="cronSimpleMonthInterval"
+                            name="cronSimpleMonthInterval"
+                            min="2"
+                            max="12"
+                            step="1"
+                            data-ng-model="cron.simple.interval.mon"
+                            data-ng-required="mode.simple.mon === 'interval'"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="cron_label_months_min"
+                        ></span>
                     </div>
                 </div>
             </div>
         </div>
         <div data-ng-switch-when="range">
-            <div class="form-group" data-ng-class="{'has-error': (cronSimpleForm.cronSimpleMonthRangeFrom.$dirty && cronSimpleForm.cronSimpleMonthRangeFrom.$invalid) ||
-                                                                 (cronSimpleForm.cronSimpleMonthRangeTo.$dirty && cronSimpleForm.cronSimpleMonthRangeTo.$invalid)}">
+            <div
+                class="form-group"
+                data-ng-class="{'has-error': (cronSimpleForm.cronSimpleMonthRangeFrom.$dirty && cronSimpleForm.cronSimpleMonthRangeFrom.$invalid) ||
+                                                                 (cronSimpleForm.cronSimpleMonthRangeTo.$dirty && cronSimpleForm.cronSimpleMonthRangeTo.$invalid)}"
+            >
                 <div class="col-md-6 col-md-offset-4">
                     <div class="input-group">
-                        <label class="input-group-addon" for="cronSimpleMonthRangeFrom"
-                               data-translate="cron_mon_range_from"></label>
-                        <select class="form-control" id="cronSimpleMonthRangeFrom" name="cronSimpleMonthRangeFrom"
-                                data-ng-model="cron.simple.range.mon.from"
-                                data-ng-required="mode.simple.mon === 'range'">
-                            <option value="1" data-translate="cron_januar"></option>
-                            <option value="2" data-translate="cron_februar"></option>
-                            <option value="3" data-translate="cron_march"></option>
-                            <option value="4" data-translate="cron_april"></option>
-                            <option value="5" data-translate="cron_may"></option>
-                            <option value="6" data-translate="cron_june"></option>
-                            <option value="7" data-translate="cron_jully"></option>
-                            <option value="8" data-translate="cron_august"></option>
-                            <option value="9" data-translate="cron_september"></option>
-                            <option value="10" data-translate="cron_october"></option>
-                            <option value="11" data-translate="cron_november"></option>
-                            <option value="12" data-translate="cron_december"></option>
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleMonthRangeFrom"
+                            data-translate="cron_mon_range_from"
+                        ></label>
+                        <select
+                            class="form-control"
+                            id="cronSimpleMonthRangeFrom"
+                            name="cronSimpleMonthRangeFrom"
+                            data-ng-model="cron.simple.range.mon.from"
+                            data-ng-required="mode.simple.mon === 'range'"
+                        >
+                            <option
+                                value="1"
+                                data-translate="cron_januar"
+                            ></option>
+                            <option
+                                value="2"
+                                data-translate="cron_februar"
+                            ></option>
+                            <option
+                                value="3"
+                                data-translate="cron_march"
+                            ></option>
+                            <option
+                                value="4"
+                                data-translate="cron_april"
+                            ></option>
+                            <option
+                                value="5"
+                                data-translate="cron_may"
+                            ></option>
+                            <option
+                                value="6"
+                                data-translate="cron_june"
+                            ></option>
+                            <option
+                                value="7"
+                                data-translate="cron_jully"
+                            ></option>
+                            <option
+                                value="8"
+                                data-translate="cron_august"
+                            ></option>
+                            <option
+                                value="9"
+                                data-translate="cron_september"
+                            ></option>
+                            <option
+                                value="10"
+                                data-translate="cron_october"
+                            ></option>
+                            <option
+                                value="11"
+                                data-translate="cron_november"
+                            ></option>
+                            <option
+                                value="12"
+                                data-translate="cron_december"
+                            ></option>
                         </select>
-                        <label class="input-group-addon" for="cronSimpleMonthRangeTo"
-                               data-translate="cron_mon_range_to"></label>
-                        <select class="form-control" id="cronSimpleMonthRangeTo" name="cronSimpleMonthRangeTo"
-                                data-ng-model="cron.simple.range.mon.to"
-                                data-ng-required="mode.simple.dow === 'range'">
-                            <option value="1" data-translate="cron_januar"></option>
-                            <option value="2" data-translate="cron_februar"></option>
-                            <option value="3" data-translate="cron_march"></option>
-                            <option value="4" data-translate="cron_april"></option>
-                            <option value="5" data-translate="cron_may"></option>
-                            <option value="6" data-translate="cron_june"></option>
-                            <option value="7" data-translate="cron_jully"></option>
-                            <option value="8" data-translate="cron_august"></option>
-                            <option value="9" data-translate="cron_september"></option>
-                            <option value="10" data-translate="cron_october"></option>
-                            <option value="11" data-translate="cron_november"></option>
-                            <option value="12" data-translate="cron_december"></option>
+                        <label
+                            class="input-group-addon"
+                            for="cronSimpleMonthRangeTo"
+                            data-translate="cron_mon_range_to"
+                        ></label>
+                        <select
+                            class="form-control"
+                            id="cronSimpleMonthRangeTo"
+                            name="cronSimpleMonthRangeTo"
+                            data-ng-model="cron.simple.range.mon.to"
+                            data-ng-required="mode.simple.dow === 'range'"
+                        >
+                            <option
+                                value="1"
+                                data-translate="cron_januar"
+                            ></option>
+                            <option
+                                value="2"
+                                data-translate="cron_februar"
+                            ></option>
+                            <option
+                                value="3"
+                                data-translate="cron_march"
+                            ></option>
+                            <option
+                                value="4"
+                                data-translate="cron_april"
+                            ></option>
+                            <option
+                                value="5"
+                                data-translate="cron_may"
+                            ></option>
+                            <option
+                                value="6"
+                                data-translate="cron_june"
+                            ></option>
+                            <option
+                                value="7"
+                                data-translate="cron_jully"
+                            ></option>
+                            <option
+                                value="8"
+                                data-translate="cron_august"
+                            ></option>
+                            <option
+                                value="9"
+                                data-translate="cron_september"
+                            ></option>
+                            <option
+                                value="10"
+                                data-translate="cron_october"
+                            ></option>
+                            <option
+                                value="11"
+                                data-translate="cron_november"
+                            ></option>
+                            <option
+                                value="12"
+                                data-translate="cron_december"
+                            ></option>
                         </select>
                     </div>
                 </div>

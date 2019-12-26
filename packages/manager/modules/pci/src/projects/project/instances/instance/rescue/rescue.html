@@ -7,21 +7,28 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_instances_instance_rescue_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-
-        <p class="font-weight-bold" data-translate="pci_projects_project_instances_instance_rescue_image_content"></p>
-        <p class="oui-modal__text" data-translate="pci_projects_project_instances_instance_rescue_image_explanations"></p>
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            class="font-weight-bold"
+            data-translate="pci_projects_project_instances_instance_rescue_image_content"
+        ></p>
+        <p
+            class="oui-modal__text"
+            data-translate="pci_projects_project_instances_instance_rescue_image_explanations"
+        ></p>
 
         <oui-field
-            data-label="{{:: 'pci_projects_project_instances_instance_rescue_image_label' | translate}}" >
+            data-label="{{:: 'pci_projects_project_instances_instance_rescue_image_label' | translate}}"
+        >
             <oui-select
                 data-name="image"
                 data-model="$ctrl.selectedImage"
                 data-items="$ctrl.imageList"
                 data-match="name"
-                data-required>
+                data-required
+            >
             </oui-select>
         </oui-field>
-
     </oui-modal>
 </form>

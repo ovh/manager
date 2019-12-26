@@ -1,12 +1,14 @@
 <div data-ng-controller="HostingDatabaseRestoreCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="restoreBDD"
-         data-wizard-title="'database_tabs_dumps_restore_dump' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-            <p data-ng-bind-html="'database_restore_bdd_confirm' | translate: { t0: ctrl.dump.creationDate, t1: ctrl.bdd.name }"></p>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="restoreBDD"
+        data-wizard-title="'database_tabs_dumps_restore_dump' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
+            <p
+                data-ng-bind-html="'database_restore_bdd_confirm' | translate: { t0: ctrl.dump.creationDate, t1: ctrl.bdd.name }"
+            ></p>
         </div>
     </div>
 </div>

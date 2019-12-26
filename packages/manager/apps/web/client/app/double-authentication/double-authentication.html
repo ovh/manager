@@ -1,17 +1,21 @@
 <div data-ng-controller="DoubleAuthAlertCtrl as ctrlDoubleAuthAlert">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="goToDoubleAuth"
-         data-wizard-title="'doubleauth_modal_alert_title' | translate">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="goToDoubleAuth"
+        data-wizard-title="'doubleauth_modal_alert_title' | translate"
+    >
         <div data-wizard-step>
-            <div class="alert alert-warning" role="alert"
-                 data-ng-bind-html="(ctrlDoubleAuthAlert.backupCodeStatus.remaining
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-bind-html="(ctrlDoubleAuthAlert.backupCodeStatus.remaining
                                         ? (ctrlDoubleAuthAlert.backupCodeStatus.remaining > 1
                                             ? 'doubleauth_modal_alert_message_other'
                                             : 'doubleauth_modal_alert_message_1')
                                         : 'doubleauth_modal_alert_message')
-                                    | translate: { t0: ctrlDoubleAuthAlert.backupCodeStatus.remaining }">
-            </div>
+                                    | translate: { t0: ctrlDoubleAuthAlert.backupCodeStatus.remaining }"
+            ></div>
             <p data-translate="doubleauth_modal_alert_message_regenerate"></p>
         </div>
     </div>

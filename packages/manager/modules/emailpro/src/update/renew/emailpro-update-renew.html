@@ -1,77 +1,118 @@
 <div data-ng-controller="EmailProUpdateRenewCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="reset"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'emailpro_update_billing_action_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="buffer.hasChanged">
-
-            <p data-ng-bind-html="'emailpro_update_billing_periode_intro' | translate"></p>
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="reset"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'emailpro_update_billing_action_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="buffer.hasChanged">
+            <p
+                data-ng-bind-html="'emailpro_update_billing_periode_intro' | translate"
+            ></p>
 
             <form class="my-3">
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control"
-                               placeholder="{{ 'emailpro_tab_ACCOUNTS_table_email' | translate }}"
-                               data-ng-disabled="loading"
-                               data-ng-model-options="{debounce: 1000}"
-                               data-ng-model="search.value">
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="{{ 'emailpro_tab_ACCOUNTS_table_email' | translate }}"
+                            data-ng-disabled="loading"
+                            data-ng-model-options="{debounce: 1000}"
+                            data-ng-model="search.value"
+                        />
                         <div class="input-group-btn" data-ng-if="search.value">
-                            <button type="button" class="btn btn-default" title="{{ 'table_delete_search' | translate }}"
-                                    data-ng-click="search.value = null">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                title="{{ 'table_delete_search' | translate }}"
+                                data-ng-click="search.value = null"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon disabled"
-                              data-ng-if="!search.value">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon disabled"
+                            data-ng-if="!search.value"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
             </form>
 
-            <div class="alert alert-warning" role="alert"
-                 data-ng-if="bufferedAccounts && bufferedAccounts.list.messages.length > 0 && !loading"
-                 data-translate="emailpro_tab_ACCOUNTS_partial">
-            </div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="bufferedAccounts && bufferedAccounts.list.messages.length > 0 && !loading"
+                data-translate="emailpro_tab_ACCOUNTS_partial"
+            ></div>
 
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="emailpro_tab_ACCOUNTS_table_email"></th>
-                        <th scope="col" data-translate="emailpro_update_billing_expiration_date_label"></th>
-                        <th scope="col" id="monthlyStateHeader"
-                            data-ng-hide="account.partial || exchange.offer === 'PROVIDER' && !is25g()">
+                        <th
+                            scope="col"
+                            data-translate="emailpro_tab_ACCOUNTS_table_email"
+                        ></th>
+                        <th
+                            scope="col"
+                            data-translate="emailpro_update_billing_expiration_date_label"
+                        ></th>
+                        <th
+                            scope="col"
+                            id="monthlyStateHeader"
+                            data-ng-hide="account.partial || exchange.offer === 'PROVIDER' && !is25g()"
+                        >
                             <label class="m-0">
-                                <input class="m-0"
-                                       type="checkbox"
-                                       data-tri-state-checkbox="monthlySelectAll"
-                                       data-tsc-ids-all="buffer.ids"
-                                       data-tsc-ids-selected="buffer.selectedMonthly"
-                                       data-tsc-on-click="checkboxStateChange(state, 'MONTHLY')">
-                                <span data-translate="emailpro_update_billing_header_1M"></span>
+                                <input
+                                    class="m-0"
+                                    type="checkbox"
+                                    data-tri-state-checkbox="monthlySelectAll"
+                                    data-tsc-ids-all="buffer.ids"
+                                    data-tsc-ids-selected="buffer.selectedMonthly"
+                                    data-tsc-on-click="checkboxStateChange(state, 'MONTHLY')"
+                                />
+                                <span
+                                    data-translate="emailpro_update_billing_header_1M"
+                                ></span>
                             </label>
                         </th>
                         <th scope="col" id="yearlyStateHeader">
                             <label class="m-0">
-                                <input class="m-0" type="checkbox"
-                                       data-tri-state-checkbox="yearlySelectAll"
-                                       data-tsc-ids-all="buffer.ids"
-                                       data-tsc-ids-selected="buffer.selectedYearly"
-                                       data-tsc-on-click="checkboxStateChange(state, 'YEARLY')">
-                                <span data-translate="emailpro_update_billing_header_1Y"></span>
+                                <input
+                                    class="m-0"
+                                    type="checkbox"
+                                    data-tri-state-checkbox="yearlySelectAll"
+                                    data-tsc-ids-all="buffer.ids"
+                                    data-tsc-ids-selected="buffer.selectedYearly"
+                                    data-tsc-on-click="checkboxStateChange(state, 'YEARLY')"
+                                />
+                                <span
+                                    data-translate="emailpro_update_billing_header_1Y"
+                                ></span>
                             </label>
                         </th>
                         <th scope="col" id="noneStateHeader">
                             <label class="m-0">
-                                <input class="m-0" type="checkbox"
-                                       data-tri-state-checkbox="deleteSelectAll"
-                                       data-tsc-ids-all="buffer.ids"
-                                       data-tsc-ids-selected="buffer.selectedDelete"
-                                       data-tsc-on-click="checkboxStateChange(state, 'DELETE_AT_EXPIRATION')">
-                                <span data-translate="emailpro_update_billing_header_terminate"></span>
+                                <input
+                                    class="m-0"
+                                    type="checkbox"
+                                    data-tri-state-checkbox="deleteSelectAll"
+                                    data-tsc-ids-all="buffer.ids"
+                                    data-tsc-ids-selected="buffer.selectedDelete"
+                                    data-tsc-on-click="checkboxStateChange(state, 'DELETE_AT_EXPIRATION')"
+                                />
+                                <span
+                                    data-translate="emailpro_update_billing_header_terminate"
+                                ></span>
                             </label>
                         </th>
                     </tr>
@@ -85,95 +126,151 @@
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="bufferedAccounts.list.results.length === 0 && bufferedAccounts.list.messages.length === 0 && !loading">
+                <tbody
+                    data-ng-if="bufferedAccounts.list.results.length === 0 && bufferedAccounts.list.messages.length === 0 && !loading"
+                >
                     <tr>
                         <td colspan="5">
-                            <span data-translate="emailpro_tab_ACCOUNTS_table_empty" data-ng-if="!search.value"></span>
-                            <span data-translate="emailpro_tab_ACCOUNTS_table_empty_search" data-ng-if="search.value"></span>
+                            <span
+                                data-translate="emailpro_tab_ACCOUNTS_table_empty"
+                                data-ng-if="!search.value"
+                            ></span>
+                            <span
+                                data-translate="emailpro_tab_ACCOUNTS_table_empty_search"
+                                data-ng-if="search.value"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
 
                 <tbody data-ng-if="!loading">
-                    <tr data-ng-repeat="account in (bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index">
+                    <tr
+                        data-ng-repeat="account in (bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index"
+                    >
+                        <th
+                            class="word-break"
+                            id="primaryEmailDisplayName{{$index}}"
+                            scope="row"
+                            data-ng-bind="account.primaryEmailDisplayName | wucSliceContent:60"
+                        ></th>
 
-                        <th class="word-break" id="primaryEmailDisplayName{{$index}}" scope="row"
-                            data-ng-bind="account.primaryEmailDisplayName | wucSliceContent:60"></th>
+                        <td
+                            class="text-nowrap"
+                            data-ng-bind="account.expirationDate | date:'mediumDate'"
+                        ></td>
 
-                        <td class="text-nowrap" data-ng-bind="account.expirationDate | date:'mediumDate'"></td>
-
-                        <td class="text-center"
-                            data-ng-hide="account.partial || exchange.offer === 'PROVIDER' && !is25g()">
-                            <input type="radio" title="{{ 'emailpro_update_billing_header_1M' | translate }}" aria-labelledby="monthlyStateHeader primaryEmailDisplayName{{$index}}"
-                                   data-ng-change="trackSelected(account.primaryEmailAddress, account.renewPeriod);"
-                                   data-ng-model="account.renewPeriod"
-                                   data-ng-value="'MONTHLY'">
+                        <td
+                            class="text-center"
+                            data-ng-hide="account.partial || exchange.offer === 'PROVIDER' && !is25g()"
+                        >
+                            <input
+                                type="radio"
+                                title="{{ 'emailpro_update_billing_header_1M' | translate }}"
+                                aria-labelledby="monthlyStateHeader primaryEmailDisplayName{{$index}}"
+                                data-ng-change="trackSelected(account.primaryEmailAddress, account.renewPeriod);"
+                                data-ng-model="account.renewPeriod"
+                                data-ng-value="'MONTHLY'"
+                            />
                         </td>
-                        <td class="text-center"
-                            data-ng-hide="account.partial">
-                            <input type="radio" title="{{ 'emailpro_update_billing_header_1Y' | translate }}" aria-labelledby="yearlyStateHeader primaryEmailDisplayName{{$index}}"
-                                   data-ng-change="trackSelected(account.primaryEmailAddress, account.renewPeriod);"
-                                   data-ng-model="account.renewPeriod"
-                                   data-ng-value="'YEARLY'">
+                        <td class="text-center" data-ng-hide="account.partial">
+                            <input
+                                type="radio"
+                                title="{{ 'emailpro_update_billing_header_1Y' | translate }}"
+                                aria-labelledby="yearlyStateHeader primaryEmailDisplayName{{$index}}"
+                                data-ng-change="trackSelected(account.primaryEmailAddress, account.renewPeriod);"
+                                data-ng-model="account.renewPeriod"
+                                data-ng-value="'YEARLY'"
+                            />
                         </td>
                         <td class="text-center">
-                            <input type="radio" title="{{ 'emailpro_update_billing_header_terminate' | translate }}" aria-labelledby="noneStateHeader primaryEmailDisplayName{{$index}}"
-                                   data-ng-change="trackSelected(account.primaryEmailAddress, account.renewPeriod);"
-                                   data-ng-model="account.renewPeriod"
-                                   data-ng-value="'DELETE_AT_EXPIRATION'">
+                            <input
+                                type="radio"
+                                title="{{ 'emailpro_update_billing_header_terminate' | translate }}"
+                                aria-labelledby="noneStateHeader primaryEmailDisplayName{{$index}}"
+                                data-ng-change="trackSelected(account.primaryEmailAddress, account.renewPeriod);"
+                                data-ng-model="account.renewPeriod"
+                                data-ng-value="'DELETE_AT_EXPIRATION'"
+                            />
                         </td>
                     </tr>
 
-                    <tr data-ng-repeat="account in (bufferedAccounts.list.messages | orderBy:'id':false) track by $index">
+                    <tr
+                        data-ng-repeat="account in (bufferedAccounts.list.messages | orderBy:'id':false) track by $index"
+                    >
                         <td colspan="5">
-                            <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-                            <span data-ng-bind="account.id"
-                                  data-oui-tooltip="{{ 'emailpro_tab_ACCOUNTS_partial_account' | translate }}"></span>
+                            <span
+                                class="fa fa-exclamation-triangle mr-2"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-ng-bind="account.id"
+                                data-oui-tooltip="{{ 'emailpro_tab_ACCOUNTS_partial_account' | translate }}"
+                            ></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="clearfix"
-                 data-pagination-server-side="accountsTable"
-                 data-pagination-server-side-function="getAccounts"
-                 data-pagination-server-side-paginated-stuff="bufferedAccounts"
-                 data-pagination-server-side-table-loading="loading"></div>
+            <div
+                class="clearfix"
+                data-pagination-server-side="accountsTable"
+                data-pagination-server-side-function="getAccounts"
+                data-pagination-server-side-paginated-stuff="bufferedAccounts"
+                data-pagination-server-side-table-loading="loading"
+            ></div>
 
-            <div class="alert alert-warning"
-                 role="alert"
-                 data-ng-if="(exchange.offer === 'HOSTED' || exchange.offer === 'PROVIDER') && exchange.serverDiagnostic.version === 15 && !account.partial"
-                 data-translate="emailpro_update_billing_periode_delete_warning">
-            </div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="(exchange.offer === 'HOSTED' || exchange.offer === 'PROVIDER') && exchange.serverDiagnostic.version === 15 && !account.partial"
+                data-translate="emailpro_update_billing_periode_delete_warning"
+            ></div>
         </div>
 
         <div data-wizard-step>
-            <strong data-translate="emailpro_update_billing_periode_resume"></strong>
+            <strong
+                data-translate="emailpro_update_billing_periode_resume"
+            ></strong>
 
             <table class="table table-bordered my-3">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="emailpro_tab_ACCOUNTS_table_email"></th>
-                        <th scope="col" class="text-center" data-translate="emailpro_update_billing_header_new_periode" style="width: 150px;"></th>
+                        <th
+                            scope="col"
+                            data-translate="emailpro_tab_ACCOUNTS_table_email"
+                        ></th>
+                        <th
+                            scope="col"
+                            class="text-center"
+                            data-translate="emailpro_update_billing_header_new_periode"
+                            style="width: 150px;"
+                        ></th>
                     </tr>
                 </thead>
 
                 <tbody data-ng-if="!loading">
-                    <tr data-ng-repeat="account in (bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index">
+                    <tr
+                        data-ng-repeat="account in (bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index"
+                    >
+                        <th
+                            scope="row"
+                            data-ng-bind="account.primaryEmailDisplayName"
+                        ></th>
 
-                        <th scope="row" data-ng-bind="account.primaryEmailDisplayName"></th>
-
-                        <td class="text-center"
-                            data-ng-bind="'emailpro_update_billing_periode_value_'+ account.renewPeriod | translate"></td>
+                        <td
+                            class="text-center"
+                            data-ng-bind="'emailpro_update_billing_periode_value_'+ account.renewPeriod | translate"
+                        ></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="alert alert-warning"
-                 role="alert"
-                 data-ng-if="displayDeleteWarning"
-                 data-translate="emailpro_update_billing_periode_delete_warning">
-            </div>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-ng-if="displayDeleteWarning"
+                data-translate="emailpro_update_billing_periode_delete_warning"
+            ></div>
         </div>
     </div>
 </div>

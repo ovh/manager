@@ -1,100 +1,189 @@
 <form class="form-horizontal" name="ctrl.zoneRecordForm">
-
     <div data-ng-include="'domain/zone/record/header.html'"></div>
 
     <div class="form-group">
-        <label class="control-label col-md-3 required" for="order"
-               data-translate="domain_configuration_dns_entry_add_order"></label>
+        <label
+            class="control-label col-md-3 required"
+            for="order"
+            data-translate="domain_configuration_dns_entry_add_order"
+        ></label>
         <div class="col-md-4">
-            <input type="number" class="form-control" id="order" name="order" step="1" required
-                   data-ng-change="ctrl.setTargetValue('NAPTR')"
-                   data-ng-min="0" min="0"
-                   data-ng-max="65535" max="65535"
-                   data-ng-model="ctrl.model.target.order">
+            <input
+                type="number"
+                class="form-control"
+                id="order"
+                name="order"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('NAPTR')"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="65535"
+                max="65535"
+                data-ng-model="ctrl.model.target.order"
+            />
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-3 required" for="pref"
-               data-translate="domain_configuration_dns_entry_add_pref"></label>
+        <label
+            class="control-label col-md-3 required"
+            for="pref"
+            data-translate="domain_configuration_dns_entry_add_pref"
+        ></label>
         <div class="col-md-4">
-            <input type="number" class="form-control" id="pref" name="pref" step="1" required
-                   data-ng-change="ctrl.setTargetValue('NAPTR')"
-                   data-ng-min="0" min="0"
-                   data-ng-max="65535" max="65535"
-                   data-ng-model="ctrl.model.target.pref">
+            <input
+                type="number"
+                class="form-control"
+                id="pref"
+                name="pref"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('NAPTR')"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="65535"
+                max="65535"
+                data-ng-model="ctrl.model.target.pref"
+            />
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.flag.$dirty && ctrl.zoneRecordForm.flag.$invalid }">
-         <label class="control-label col-md-3" for="flag"
-                data-translate="domain_configuration_dns_entry_add_flag"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.flag.$dirty && ctrl.zoneRecordForm.flag.$invalid }"
+    >
+        <label
+            class="control-label col-md-3"
+            for="flag"
+            data-translate="domain_configuration_dns_entry_add_flag"
+        ></label>
         <div class="col-md-3">
             <div class="input-group">
-                <input type="text" class="form-control" id="flag" name="flag" maxlength="1"
-                       data-ng-change="ctrl.setTargetValue('NAPTR')"
-                       data-ng-maxlength="1"
-                       data-ng-model="ctrl.model.target.flag"
-                       data-ng-pattern="ctrl.DomainValidator.regex.NAPTR_flag">
-                <span class="input-group-addon"
-                      data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_flag_help' | translate }}"
-                      data-oui-tooltip-placement="left">
-                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="flag"
+                    name="flag"
+                    maxlength="1"
+                    data-ng-change="ctrl.setTargetValue('NAPTR')"
+                    data-ng-maxlength="1"
+                    data-ng-model="ctrl.model.target.flag"
+                    data-ng-pattern="ctrl.DomainValidator.regex.NAPTR_flag"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_flag_help' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
                 </span>
             </div>
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.service.$dirty && ctrl.zoneRecordForm.service.$invalid }">
-         <label class="control-label col-md-3 required" for="service"
-                data-translate="domain_configuration_dns_entry_add_service"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.service.$dirty && ctrl.zoneRecordForm.service.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="service"
+            data-translate="domain_configuration_dns_entry_add_service"
+        ></label>
         <div class="col-md-9">
             <div class="input-group">
-                <input type="text" class="form-control" id="service" name="service" required
-                       data-ng-change="ctrl.setTargetValue('NAPTR')"
-                       data-ng-model="ctrl.model.target.service"
-                       data-ng-pattern="ctrl.DomainValidator.regex.NAPTR_service">
-                <span class="input-group-addon"
-                      data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_service_help' | translate }}"
-                      data-oui-tooltip-placement="left">
-                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="service"
+                    name="service"
+                    required
+                    data-ng-change="ctrl.setTargetValue('NAPTR')"
+                    data-ng-model="ctrl.model.target.service"
+                    data-ng-pattern="ctrl.DomainValidator.regex.NAPTR_service"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_service_help' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
                 </span>
             </div>
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.regex.$dirty && ctrl.zoneRecordForm.regex.$invalid }">
-        <label class="control-label col-md-3" for="regex"
-               data-translate="domain_configuration_dns_entry_add_regex"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.regex.$dirty && ctrl.zoneRecordForm.regex.$invalid }"
+    >
+        <label
+            class="control-label col-md-3"
+            for="regex"
+            data-translate="domain_configuration_dns_entry_add_regex"
+        ></label>
         <div class="col-md-9">
             <div class="input-group">
-                <input type="text" class="form-control" id="regex" name="regex"
-                       data-ng-change="ctrl.setTargetValue('NAPTR')"
-                       data-ng-disabled="ctrl.model.target.replace"
-                       data-ng-model="ctrl.model.target.regex"
-                       data-ng-pattern="ctrl.DomainValidator.regex.NAPTR_regex">
-                <span class="input-group-addon"
-                      data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_regex_help' | translate }}"
-                      data-oui-tooltip-placement="left">
-                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="regex"
+                    name="regex"
+                    data-ng-change="ctrl.setTargetValue('NAPTR')"
+                    data-ng-disabled="ctrl.model.target.replace"
+                    data-ng-model="ctrl.model.target.regex"
+                    data-ng-pattern="ctrl.DomainValidator.regex.NAPTR_regex"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_regex_help' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
                 </span>
             </div>
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.replace.$dirty && ctrl.zoneRecordForm.replace.$invalid }">
-        <label class="control-label col-md-3" for="replace"
-               data-translate="domain_configuration_dns_entry_add_replace"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.replace.$dirty && ctrl.zoneRecordForm.replace.$invalid }"
+    >
+        <label
+            class="control-label col-md-3"
+            for="replace"
+            data-translate="domain_configuration_dns_entry_add_replace"
+        ></label>
         <div class="col-md-9">
             <div class="input-group">
-                <input type="text" class="form-control" id="replace" name="replace"
-                       data-ng-change="ctrl.checkNaptrReplaceField(ctrl.zoneRecordForm.replace); ctrl.setTargetValue('NAPTR')"
-                       data-ng-disabled="ctrl.model.target.regex"
-                       data-ng-model="ctrl.model.target.replace">
-                <span class="input-group-addon"
-                      data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_replace_help' | translate }}"
-                      data-oui-tooltip-placement="left">
-                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="replace"
+                    name="replace"
+                    data-ng-change="ctrl.checkNaptrReplaceField(ctrl.zoneRecordForm.replace); ctrl.setTargetValue('NAPTR')"
+                    data-ng-disabled="ctrl.model.target.regex"
+                    data-ng-model="ctrl.model.target.replace"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_replace_help' | translate }}"
+                    data-oui-tooltip-placement="left"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
                 </span>
             </div>
         </div>

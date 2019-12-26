@@ -1,36 +1,45 @@
-<form name="editSenderForm"
-      id="editSenderForm"
-      data-ng-submit="SendersEditCtrl.edit()">
-
+<form
+    name="editSenderForm"
+    id="editSenderForm"
+    data-ng-submit="SendersEditCtrl.edit()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="SendersEditCtrl.cancel()">
+            data-ng-click="SendersEditCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!SendersEditCtrl.loading.editSender && !SendersEditCtrl.edited">
+    <div
+        class="modal-body"
+        data-ng-if="!SendersEditCtrl.loading.editSender && !SendersEditCtrl.edited"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_senders_edit_sender_title"
+        ></h3>
 
-        <h3 class="modal-title"
-            data-translate="sms_senders_edit_sender_title">
-        </h3>
-
-        <p data-translate="sms_senders_edit_sender_information"
-           data-translate-values="{ sender: SendersEditCtrl.sender.number || SendersEditCtrl.sender.sender }">
-        </p>
+        <p
+            data-translate="sms_senders_edit_sender_information"
+            data-translate-values="{ sender: SendersEditCtrl.sender.number || SendersEditCtrl.sender.sender }"
+        ></p>
 
         <!-- Description -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': editSenderForm.description.$touched && editSenderForm.description.$invalid
-             }">
-            <label for="description"
-                   class="control-label"
-                   data-translate="sms_senders_edit_sender_description_label">
+             }"
+        >
+            <label
+                for="description"
+                class="control-label"
+                data-translate="sms_senders_edit_sender_description_label"
+            >
             </label>
             <input
                 type="text"
@@ -40,20 +49,27 @@
                 autofocus
                 data-ng-model="SendersEditCtrl.model.sender.description"
                 data-ng-maxlength="40"
-                data-translate-attr="{ placeholder: 'sms_senders_edit_sender_description_placeholder' }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="editSenderForm.description.$touched"
-                  data-ng-messages="editSenderForm.description.$error">
-                <span data-ng-message="maxlength"
-                      data-translate="sms_senders_add_sender_description_error_maxlength">
+                data-translate-attr="{ placeholder: 'sms_senders_edit_sender_description_placeholder' }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="editSenderForm.description.$touched"
+                data-ng-messages="editSenderForm.description.$error"
+            >
+                <span
+                    data-ng-message="maxlength"
+                    data-translate="sms_senders_add_sender_description_error_maxlength"
+                >
                 </span>
             </span>
         </div>
 
         <!-- Activate -->
-        <div class="checkbox"
-             data-ng-hide="SendersEditCtrl.sender.status === 'waitingValidation'">
+        <div
+            class="checkbox"
+            data-ng-hide="SendersEditCtrl.sender.status === 'waitingValidation'"
+        >
             <label>
                 <input
                     type="checkbox"
@@ -62,22 +78,27 @@
                     data-ng-model="SendersEditCtrl.model.sender.status"
                     data-ng-checked="SendersEditCtrl.model.sender.status === 'enable'"
                     data-ng-true-value="'enable'"
-                    data-ng-false-value="'disable'" />
-                <span data-translate="sms_senders_edit_sender_status_label"></span>
+                    data-ng-false-value="'disable'"
+                />
+                <span
+                    data-translate="sms_senders_edit_sender_status_label"
+                ></span>
             </label>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="SendersEditCtrl.loading.editSender && !SendersEditCtrl.edited">
+    <div
+        class="modal-body text-center"
+        data-ng-if="SendersEditCtrl.loading.editSender && !SendersEditCtrl.edited"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_senders_edit_sender_editing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="SendersEditCtrl.edited">
-        <tuc-success-drawing-check data-draw-success-check="SendersEditCtrl.edited">
+    <div class="modal-body" data-ng-if="SendersEditCtrl.edited">
+        <tuc-success-drawing-check
+            data-draw-success-check="SendersEditCtrl.edited"
+        >
             <h4 data-translate="sms_senders_edit_sender_edited"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -88,8 +109,8 @@
             class="btn btn-default"
             data-ng-click="SendersEditCtrl.cancel()"
             data-ng-disabled="SendersEditCtrl.loading.editSender || SendersEditCtrl.edited"
-            data-translate="sms_cancel">
-        </button>
+            data-translate="sms_cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -97,7 +118,7 @@
                               !SendersEditCtrl.hasChanged() ||
                               SendersEditCtrl.loading.editSender ||
                               SendersEditCtrl.edited"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

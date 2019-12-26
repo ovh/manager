@@ -1,7 +1,12 @@
-<div class="oui-modal__body" data-ng-class="{ 'oui-modal__body_no-icon': !$ctrl.icon }">
-    <i class="oui-icon oui-icon-{{ $ctrl.icon }}_circle oui-icon_bicolor"
+<div
+    class="oui-modal__body"
+    data-ng-class="{ 'oui-modal__body_no-icon': !$ctrl.icon }"
+>
+    <i
+        class="oui-icon oui-icon-{{ $ctrl.icon }}_circle oui-icon_bicolor"
         aria-hidden="true"
-        data-ng-if="$ctrl.icon"></i>
+        data-ng-if="$ctrl.icon"
+    ></i>
     <h2 class="oui-modal__title" data-ng-bind="$ctrl.title"></h2>
     <div class="oui-modal__text" data-ng-transclude></div>
 </div>

@@ -3,7 +3,8 @@
         name="{{:: $ctrl.name }}"
         data-ng-if="$ctrl.items"
         data-model="$ctrl.model"
-        data-required>
+        data-required
+    >
         <span data-translate="order_contracts_label"></span>
     </oui-checkbox>
     <ul>
@@ -12,7 +13,8 @@
                 data-ng-href="{{:: contract.url }}"
                 rel="noopener"
                 target="_blank"
-                title="{{:: contract.name + '(' + ('common_newtab' | translate) + ')'}}">
+                title="{{:: contract.name + '(' + ('common_newtab' | translate) + ')'}}"
+            >
                 <span data-ng-bind="contract.name"></span>
             </a>
         </li>

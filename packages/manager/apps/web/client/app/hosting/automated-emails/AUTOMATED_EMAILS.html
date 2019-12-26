@@ -1,5 +1,7 @@
-<div class="container-fluid px-0" data-ng-controller="HostingTabAutomatedEmailsCtrl as ctrl">
-
+<div
+    class="container-fluid px-0"
+    data-ng-controller="HostingTabAutomatedEmailsCtrl as ctrl"
+>
     <div class="text-center" data-ng-if="ctrl.loaders.loading">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
@@ -13,60 +15,98 @@
 
             <p data-ng-if="ctrl.guide">
                 <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
-                <span data-translate="hosting_tab_AUTOMATED_EMAILS_guide_help"></span>
-                <a data-ng-href="{{ctrl.guide}}" target="_blank" title="{{:: 'hosting_guide_help' | translate }} {{:: 'common_newtab' | translate }}">
+                <span
+                    data-translate="hosting_tab_AUTOMATED_EMAILS_guide_help"
+                ></span>
+                <a
+                    data-ng-href="{{ctrl.guide}}"
+                    target="_blank"
+                    title="{{:: 'hosting_guide_help' | translate }} {{:: 'common_newtab' | translate }}"
+                >
                     <span data-translate="hosting_guide_help"></span>
                     <span class="fa fa-external-link" aria-hidden="true"></span>
                 </a>
             </p>
 
-            <div data-ng-show="ctrl.currentView === 'INFORMATIONS_VIEW' && ctrl.automatedEmails != null">
-
-                <div class="alert alert-info" role="alert"
-                     data-translate="hosting_tab_AUTOMATED_EMAILS_info">
-                </div>
+            <div
+                data-ng-show="ctrl.currentView === 'INFORMATIONS_VIEW' && ctrl.automatedEmails != null"
+            >
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="hosting_tab_AUTOMATED_EMAILS_info"
+                ></div>
 
                 <dl class="dl-horizontal dl-lg mt-5">
-                    <dt data-translate="hosting_tab_AUTOMATED_EMAILS_status"></dt>
+                    <dt
+                        data-translate="hosting_tab_AUTOMATED_EMAILS_status"
+                    ></dt>
                     <dd>
-                        <span class="oui-status"
-                              data-ng-bind="'hosting_tab_AUTOMATED_EMAILS_status_' + ctrl.automatedEmails.state | translate"
-                              data-ng-class="{
+                        <span
+                            class="oui-status"
+                            data-ng-bind="'hosting_tab_AUTOMATED_EMAILS_status_' + ctrl.automatedEmails.state | translate"
+                            data-ng-class="{
                                 'oui-status_success': ctrl.automatedEmails.state === 'ok' || ctrl.automatedEmails.state === 'force',
-                                'oui-status_error': ctrl.automatedEmails.state !== 'ok' && ctrl.automatedEmails.state !== 'force'}">
+                                'oui-status_error': ctrl.automatedEmails.state !== 'ok' && ctrl.automatedEmails.state !== 'force'}"
+                        >
                         </span>
-                        <oui-spinner data-size="s"
-                                    data-ng-if="ctrl.isPurging"></oui-spinner>
+                        <oui-spinner
+                            data-size="s"
+                            data-ng-if="ctrl.isPurging"
+                        ></oui-spinner>
                     </dd>
-                    <dt data-translate="hosting_tab_AUTOMATED_EMAILS_report_email"></dt>
+                    <dt
+                        data-translate="hosting_tab_AUTOMATED_EMAILS_report_email"
+                    ></dt>
                     <dd>
-                        <span class="d-block word-break"
-                              data-ng-bind="ctrl.automatedEmails.email"></span>
-                        <oui-button data-on-click="setAction('automated-emails/error-report/hosting-automated-emails-error-report', {automatedEmails: ctrl.automatedEmails})"
-                                    data-variant="secondary">
-                                    <span data-translate="hosting_tab_AUTOMATED_EMAILS_report_email_change"></span>
+                        <span
+                            class="d-block word-break"
+                            data-ng-bind="ctrl.automatedEmails.email"
+                        ></span>
+                        <oui-button
+                            data-on-click="setAction('automated-emails/error-report/hosting-automated-emails-error-report', {automatedEmails: ctrl.automatedEmails})"
+                            data-variant="secondary"
+                        >
+                            <span
+                                data-translate="hosting_tab_AUTOMATED_EMAILS_report_email_change"
+                            ></span>
                         </oui-button>
                     </dd>
-                    <dt data-translate="hosting_tab_AUTOMATED_EMAILS_total_sent"></dt>
+                    <dt
+                        data-translate="hosting_tab_AUTOMATED_EMAILS_total_sent"
+                    ></dt>
                     <dd data-ng-bind="ctrl.automatedEmails.sent"></dd>
-                    <dt data-translate="hosting_tab_AUTOMATED_EMAILS_today_sent"></dt>
+                    <dt
+                        data-translate="hosting_tab_AUTOMATED_EMAILS_today_sent"
+                    ></dt>
                     <dd>
-                        <span data-ng-bind="ctrl.automatedEmails.sentToday"></span>
-                        <span data-ng-if="ctrl.automatedEmails.maxPerDay > 0"> / {{ctrl.automatedEmails.maxPerDay}}</span>
+                        <span
+                            data-ng-bind="ctrl.automatedEmails.sentToday"
+                        ></span>
+                        <span data-ng-if="ctrl.automatedEmails.maxPerDay > 0">
+                            / {{ctrl.automatedEmails.maxPerDay}}</span
+                        >
                     </dd>
-                    <dt data-translate="hosting_tab_AUTOMATED_EMAILS_total_bounce"></dt>
+                    <dt
+                        data-translate="hosting_tab_AUTOMATED_EMAILS_total_bounce"
+                    ></dt>
                     <dd data-ng-bind="ctrl.automatedEmails.bounce"></dd>
                 </dl>
 
                 <div data-ng-if="ctrl.stats.chart != null">
-                    <h3 class="text-center mt-5" data-translate="hosting_tab_AUTOMATED_EMAILS_volume"></h3>
+                    <h3
+                        class="text-center mt-5"
+                        data-translate="hosting_tab_AUTOMATED_EMAILS_volume"
+                    ></h3>
 
                     <oui-spinner data-ng-if="ctrl.loader.loading"></oui-spinner>
 
-                    <div class="chart-container" style="height: 320px;"
-                         data-ng-if="!ctrl.loading.loading"
-                         data-wuc-chartjs="ctrl.stats.chart">
-                    </div>
+                    <div
+                        class="chart-container"
+                        style="height: 320px;"
+                        data-ng-if="!ctrl.loading.loading"
+                        data-wuc-chartjs="ctrl.stats.chart"
+                    ></div>
                 </div>
             </div>
 
@@ -74,23 +114,43 @@
             <div data-ng-show="ctrl.currentView === 'BOUNCES_VIEW'">
                 <div class="row mb-3">
                     <div class="col-xs-3">
-                        <button class="oui-button oui-button_link oui-button_icon-left mb-0" type="button"
-                                data-ng-click="ctrl.currentView = 'INFORMATIONS_VIEW'">
-                            <span class="oui-icon oui-icon-chevron-left" aria-hidden="true"></span>
+                        <button
+                            class="oui-button oui-button_link oui-button_icon-left mb-0"
+                            type="button"
+                            data-ng-click="ctrl.currentView = 'INFORMATIONS_VIEW'"
+                        >
+                            <span
+                                class="oui-icon oui-icon-chevron-left"
+                                aria-hidden="true"
+                            ></span>
                             <span data-translate="common_back"></span>
                         </button>
                     </div>
                     <div class="col-xs-9">
-                        <form class="form-inline text-right" name="ctrl.bounceLimitForm"
-                              data-ng-class="{'has-error': ctrl.bounceLimitForm.$dirty && ctrl.bounceLimitForm.$invalid}">
+                        <form
+                            class="form-inline text-right"
+                            name="ctrl.bounceLimitForm"
+                            data-ng-class="{'has-error': ctrl.bounceLimitForm.$dirty && ctrl.bounceLimitForm.$invalid}"
+                        >
                             <div class="form-group">
-                                <label class="control-label" for="bouncesLimit"
-                                       data-translate="hosting_tab_AUTOMATED_EMAILS_volume_limit"></label>
-                                <input type="number" class="form-control" id="bouncesLimit" name="bouncesLimit" required
-                                       data-ng-change="ctrl.retrievingBounces()"
-                                       data-ng-min="0" min="0"
-                                       data-ng-max="100" max="100"
-                                       data-ng-model="ctrl.limits.bounces">
+                                <label
+                                    class="control-label"
+                                    for="bouncesLimit"
+                                    data-translate="hosting_tab_AUTOMATED_EMAILS_volume_limit"
+                                ></label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="bouncesLimit"
+                                    name="bouncesLimit"
+                                    required
+                                    data-ng-change="ctrl.retrievingBounces()"
+                                    data-ng-min="0"
+                                    min="0"
+                                    data-ng-max="100"
+                                    max="100"
+                                    data-ng-model="ctrl.limits.bounces"
+                                />
                             </div>
                         </form>
                     </div>
@@ -99,9 +159,18 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col" data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_date"></th>
-                                <th scope="col" data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_to"></th>
-                                <th scope="col" data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_message"></th>
+                                <th
+                                    scope="col"
+                                    data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_date"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_to"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_message"
+                                ></th>
                             </tr>
                         </thead>
 
@@ -113,16 +182,27 @@
                             </tr>
                         </tbody>
 
-                        <tbody data-ng-if="!ctrl.loaders.bounces && !ctrl.bounces.length">
+                        <tbody
+                            data-ng-if="!ctrl.loaders.bounces && !ctrl.bounces.length"
+                        >
                             <tr>
-                                <td class="text-center" colspan="3"
-                                    data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_empty"></td>
+                                <td
+                                    class="text-center"
+                                    colspan="3"
+                                    data-translate="hosting_tab_AUTOMATED_EMAILS_bounces_empty"
+                                ></td>
                             </tr>
                         </tbody>
 
-                        <tbody data-ng-if="!ctrl.loaders.bounces && ctrl.bounces.length > 0">
-                            <tr data-ng-repeat="bounce in ctrl.bounces track by $index">
-                                <td data-ng-bind="::bounce.date | date:'medium'"></td>
+                        <tbody
+                            data-ng-if="!ctrl.loaders.bounces && ctrl.bounces.length > 0"
+                        >
+                            <tr
+                                data-ng-repeat="bounce in ctrl.bounces track by $index"
+                            >
+                                <td
+                                    data-ng-bind="::bounce.date | date:'medium'"
+                                ></td>
                                 <td data-ng-bind="::bounce.to"></td>
                                 <td>
                                     <pre data-ng-bind="::bounce.message"></pre>
@@ -135,30 +215,41 @@
         </div>
 
         <!-- ACTIONS  -->
-        <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="ctrl.currentView === 'INFORMATIONS_VIEW' && ctrl.automatedEmails != null">
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_AUTOMATED_EMAILS_purge"
-                    data-ng-click="ctrl.purge()"
-                    data-ng-disabled="(ctrl.automatedEmails.state !== 'ko' && ctrl.automatedEmails.state !== 'spam' && ctrl.automatedEmails.state !== 'bounce') || ctrl.isPurging"
-                    data-oui-tooltip="{{:: 'hosting_tab_AUTOMATED_EMAILS_purge_info' | translate }}"
-                    data-oui-tooltip-placement="bottom">
-            </button>
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_AUTOMATED_EMAILS_volume_history"
-                    data-ng-click="ctrl.changeViewToBounces()"
-                    data-ng-disabled="ctrl.loaders.bounces || !ctrl.thereAreEmailsInError">
-            </button>
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_AUTOMATED_EMAILS_block"
-                    data-ng-click="setAction('automated-emails/request/hosting-automated-emails-request', {automatedEmails: ctrl.automatedEmails, action: 'BLOCK'})"
-                    data-ng-if="ctrl.automatedEmails.state === 'ok' || ctrl.automatedEmails.state === 'force'">
-            </button>
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="hosting_tab_AUTOMATED_EMAILS_unblock"
-                    data-ng-click="setAction('automated-emails/request/hosting-automated-emails-request', {automatedEmails: ctrl.automatedEmails, action: 'UNBLOCK'})"
-                    data-ng-disabled="((ctrl.automatedEmails.state === 'spam' || ctrl.automatedEmails.state === 'bounce') && ctrl.automatedEmails.sent > 0 && !ctrl.hasBeenPurge) || ctrl.isPurging"
-                    data-ng-if="ctrl.automatedEmails.state !== 'ok' && ctrl.automatedEmails.state !== 'force'">
-            </button>
+        <div
+            class="col-md-3 mt-5 mt-lg-0"
+            data-ng-if="ctrl.currentView === 'INFORMATIONS_VIEW' && ctrl.automatedEmails != null"
+        >
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_AUTOMATED_EMAILS_purge"
+                data-ng-click="ctrl.purge()"
+                data-ng-disabled="(ctrl.automatedEmails.state !== 'ko' && ctrl.automatedEmails.state !== 'spam' && ctrl.automatedEmails.state !== 'bounce') || ctrl.isPurging"
+                data-oui-tooltip="{{:: 'hosting_tab_AUTOMATED_EMAILS_purge_info' | translate }}"
+                data-oui-tooltip-placement="bottom"
+            ></button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_AUTOMATED_EMAILS_volume_history"
+                data-ng-click="ctrl.changeViewToBounces()"
+                data-ng-disabled="ctrl.loaders.bounces || !ctrl.thereAreEmailsInError"
+            ></button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_AUTOMATED_EMAILS_block"
+                data-ng-click="setAction('automated-emails/request/hosting-automated-emails-request', {automatedEmails: ctrl.automatedEmails, action: 'BLOCK'})"
+                data-ng-if="ctrl.automatedEmails.state === 'ok' || ctrl.automatedEmails.state === 'force'"
+            ></button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="hosting_tab_AUTOMATED_EMAILS_unblock"
+                data-ng-click="setAction('automated-emails/request/hosting-automated-emails-request', {automatedEmails: ctrl.automatedEmails, action: 'UNBLOCK'})"
+                data-ng-disabled="((ctrl.automatedEmails.state === 'spam' || ctrl.automatedEmails.state === 'bounce') && ctrl.automatedEmails.sent > 0 && !ctrl.hasBeenPurge) || ctrl.isPurging"
+                data-ng-if="ctrl.automatedEmails.state !== 'ok' && ctrl.automatedEmails.state !== 'force'"
+            ></button>
         </div>
     </div>
 </div>

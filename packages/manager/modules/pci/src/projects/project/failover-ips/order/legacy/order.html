@@ -1,5 +1,4 @@
-<form name="ipfailoverorder"
-    novalidate>
+<form name="ipfailoverorder" novalidate>
     <oui-modal
         data-heading="{{:: 'pci_projects_project_failoverip_order_legacy' | translate }}"
         data-primary-action="$ctrl.order()"
@@ -8,15 +7,23 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_failoverip_order_legacy_cancel' | translate }}"
         data-loading="$ctrl.isGeneratingOrder"
-        data-on-dismiss="$ctrl.goBack()">
-        <p data-translate="pci_projects_project_failoverip_order_legacy_description"></p>
-        <label for="quantity" class="oui-label" data-translate="pci_projects_project_failoverip_order_legacy_quantity"></label>
-        <oui-numeric
-            name="quantity"
-            min="1"
-            data-model="$ctrl.ip.quantity">
+        data-on-dismiss="$ctrl.goBack()"
+    >
+        <p
+            data-translate="pci_projects_project_failoverip_order_legacy_description"
+        ></p>
+        <label
+            for="quantity"
+            class="oui-label"
+            data-translate="pci_projects_project_failoverip_order_legacy_quantity"
+        ></label>
+        <oui-numeric name="quantity" min="1" data-model="$ctrl.ip.quantity">
         </oui-numeric>
-        <label for="instance" class="oui-label" data-translate="pci_projects_project_failoverip_order_legacy_instance"></label>
+        <label
+            for="instance"
+            class="oui-label"
+            data-translate="pci_projects_project_failoverip_order_legacy_instance"
+        ></label>
         <oui-select
             name="instance"
             data-model="$ctrl.ip.instance"
@@ -24,46 +31,62 @@
             data-disable-items="!$item.canAttachIPFO()"
             data-match="name"
             data-on-change="$ctrl.onInstanceChange(modelValue)"
-            required>
+            required
+        >
             <span data-ng-bind="$item.name"></span>
         </oui-select>
         <div data-ng-if="$ctrl.ip.instance">
-            <label for="region" class="oui-label" data-translate="pci_projects_project_failoverip_order_legacy_region"></label>
+            <label
+                for="region"
+                class="oui-label"
+                data-translate="pci_projects_project_failoverip_order_legacy_region"
+            ></label>
             <oui-select
                 name="region"
                 data-model="$ctrl.ip.region"
                 data-items="$ctrl.REGIONS"
                 data-match="name"
                 required
-                data-on-change="$ctrl.onRegionChange(modelValue)">
+                data-on-change="$ctrl.onRegionChange(modelValue)"
+            >
                 <span data-ng-bind="$item.name"></span>
             </oui-select>
         </div>
 
-        <oui-spinner data-size="m" data-ng-if="$ctrl.isContractLoading"></oui-spinner>
+        <oui-spinner
+            data-size="m"
+            data-ng-if="$ctrl.isContractLoading"
+        ></oui-spinner>
 
         <div data-ng-if="$ctrl.contracts && !$ctrl.isContractLoading">
-            <a data-ng-repeat="contract in $ctrl.contracts track by contract.name"
-            data-ng-href="{{ contract.url }}"
-            class="oui-link_icon d-block">
+            <a
+                data-ng-repeat="contract in $ctrl.contracts track by contract.name"
+                data-ng-href="{{ contract.url }}"
+                class="oui-link_icon d-block"
+            >
                 <span data-ng-bind="contract.name"></span>
                 <span class="oui-icon oui-icon-external_link"></span>
             </a>
 
             <oui-checkbox data-model="$ctrl.contractsAccepted">
-                <span data-translate="pci_projects_project_failoverip_order_legacy_contracts_agree"></span>
+                <span
+                    data-translate="pci_projects_project_failoverip_order_legacy_contracts_agree"
+                ></span>
             </oui-checkbox>
 
             <p class="font-weight-light">
                 <span
                     data-translate="pci_projects_project_failoverip_order_legacy_price"
-                    data-translate-values="{ price : $ctrl.prices.withoutTax.text }">
+                    data-translate-values="{ price : $ctrl.prices.withoutTax.text }"
+                >
                 </span>
                 *
             </p>
             <small class="font-weight-lighter">
                 *
-                <span data-translate="pci_projects_project_failoverip_order_legacy_fees"></span>
+                <span
+                    data-translate="pci_projects_project_failoverip_order_legacy_fees"
+                ></span>
             </small>
         </div>
     </oui-modal>

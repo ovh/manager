@@ -1,37 +1,53 @@
 <div class="pci-projects w-100 h-100 overflow-auto" data-ui-view>
     <div class="container px-3 py-5">
         <h1 data-translate="pci_projects"></h1>
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
         <oui-datagrid rows="$ctrl.projects" row-loader="$ctrl.getProject($row)">
-            <oui-column title=":: 'pci_projects_description' | translate" property="description" type="string">
+            <oui-column
+                title=":: 'pci_projects_description' | translate"
+                property="description"
+                type="string"
+            >
                 <oui-button
                     data-variant="link"
-                    data-on-click="$ctrl.goToProject($row)">
+                    data-on-click="$ctrl.goToProject($row)"
+                >
                     <span data-ng-bind="::$value"></span>
                 </oui-button>
             </oui-column>
-            <oui-column title=":: 'pci_projects_status' | translate" property="status" type="string">
-                <span class="oui-status" data-ng-class="{
+            <oui-column
+                title=":: 'pci_projects_status' | translate"
+                property="status"
+                type="string"
+            >
+                <span
+                    class="oui-status"
+                    data-ng-class="{
                     'oui-status_info': $row.isCreating(),
                     'oui-status_error': $row.isDeleted() || $row.isSuspended(),
                     'oui-status_success': $row.isActive(),
                     'oui-status_warning': $row.isDeleting(),
-                }" data-ng-bind=":: ('pci_projects_status_' + $row.status) | translate">
+                }"
+                    data-ng-bind=":: ('pci_projects_status_' + $row.status) | translate"
+                >
                 </span>
             </oui-column>
             <oui-action-menu data-align="end" data-compact>
-                <oui-action-menu-item
-                    data-on-click="$ctrl.goToProject($row)">
+                <oui-action-menu-item data-on-click="$ctrl.goToProject($row)">
                     <span data-translate="pci_projects_project_show"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.isCreating()"
-                    data-on-click="$ctrl.deleteProject($row)">
+                    data-on-click="$ctrl.deleteProject($row)"
+                >
                     <span data-translate="pci_projects_project_delete"></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$row.isActive()"
-                    data-on-click="$ctrl.confirmDeletion($row)">
+                    data-on-click="$ctrl.confirmDeletion($row)"
+                >
                     <span data-translate="pci_projects_project_delete"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
