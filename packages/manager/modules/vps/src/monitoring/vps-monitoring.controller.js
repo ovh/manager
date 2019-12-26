@@ -15,14 +15,12 @@ export default class {
     $stateParams,
     $translate,
     CucCloudMessage,
-    VpsActionService,
     VpsService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.serviceName = $stateParams.serviceName;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
 
     this.loaders = {
