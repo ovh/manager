@@ -2,7 +2,13 @@ import map from 'lodash/map';
 
 (() => {
   class MetricsPlatformCtrl {
-    constructor($stateParams, $translate, METRICS_ENDPOINTS, MetricService, ovhDocUrl) {
+    constructor(
+      $stateParams,
+      $translate,
+      METRICS_ENDPOINTS,
+      MetricService,
+      ovhDocUrl,
+    ) {
       this.$stateParams = $stateParams;
       this.serviceName = $stateParams.serviceName;
       this.$translate = $translate;
@@ -22,18 +28,15 @@ import map from 'lodash/map';
     }
 
     initPlatforms() {
-      this.MetricService.getService(this.serviceName)
-        .then((service) => {
-          this.regionName = service.data.region.name;
-          this.platforms = map(this.METRICS_ENDPOINTS.protos, (proto) => (
-            {
-              proto,
-              address: `https://${proto}.${this.regionName}.${this.METRICS_ENDPOINTS.suffix}`,
-              doc: this.getDoc(proto),
-            }
-          ));
-          this.loading = false;
-        });
+      this.MetricService.getService(this.serviceName).then((service) => {
+        this.regionName = service.data.region.name;
+        this.platforms = map(this.METRICS_ENDPOINTS.protos, (proto) => ({
+          proto,
+          address: `https://${proto}.${this.regionName}.${this.METRICS_ENDPOINTS.suffix}`,
+          doc: this.getDoc(proto),
+        }));
+        this.loading = false;
+      });
     }
 
     getDoc(proto) {
@@ -42,5 +45,7 @@ import map from 'lodash/map';
     }
   }
 
-  angular.module('managerApp').controller('MetricsPlatformCtrl', MetricsPlatformCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsPlatformCtrl', MetricsPlatformCtrl);
 })();

@@ -5,10 +5,12 @@ export const OPENRC_VERSION = {
 
 export const OPENSTACK_GUIDE = {
   EU: {
-    FR: 'https://docs.ovh.com/fr/public-cloud/charger-les-variables-denvironnement-openstack/',
+    FR:
+      'https://docs.ovh.com/fr/public-cloud/charger-les-variables-denvironnement-openstack/',
   },
   CA: {
-    FR: 'https://docs.ovh.com/fr/public-cloud/charger-les-variables-denvironnement-openstack/',
+    FR:
+      'https://docs.ovh.com/fr/public-cloud/charger-les-variables-denvironnement-openstack/',
   },
   US: {},
 };

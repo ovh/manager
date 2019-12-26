@@ -20,25 +20,31 @@ export default () => ({
       return value.length >= 8;
     };
 
-    $scope.$watch(() => ngModel.$modelValue, (value) => {
-      let result;
+    $scope.$watch(
+      () => ngModel.$modelValue,
+      (value) => {
+        let result;
 
-      /* eslint-disable */
-      for (const test in tests) {
-        if (tests.hasOwnProperty(test)) {
-          result = false;
-          if (value) {
-            result = tests[test](value);
-          }
-          if (!result) {
-            ngModel.$error[test] = true;
-          } else {
-            delete ngModel.$error[test];
+        // eslint-disable-next-line no-restricted-syntax
+        for (const test in tests) {
+          // eslint-disable-next-line no-prototype-builtins
+          if (tests.hasOwnProperty(test)) {
+            result = false;
+            if (value) {
+              result = tests[test](value);
+            }
+            if (!result) {
+              // eslint-disable-next-line no-param-reassign
+              ngModel.$error[test] = true;
+            } else {
+              // eslint-disable-next-line no-param-reassign
+              delete ngModel.$error[test];
+            }
           }
         }
-      }
-      /* eslint-enable */
-      ngModel.$validate();
-    });
+        /* eslint-enable */
+        ngModel.$validate();
+      },
+    );
   },
 });

@@ -6,7 +6,7 @@ angular.module('managerApp').filter('RAUnitsBits', () => {
     let idx = 0;
 
     if (angular.isNumber(rest)) {
-      while (((rest / 1024) >= 1) && idx !== 4) {
+      while (rest / 1024 >= 1 && idx !== 4) {
         rest /= 1024;
         idx += 1;
       }

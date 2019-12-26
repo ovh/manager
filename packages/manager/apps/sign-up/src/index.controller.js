@@ -1,9 +1,6 @@
 import get from 'lodash/get';
 
-import {
-  HOME_PAGE,
-  OVH_LOGO,
-} from './constants';
+import { HOME_PAGE, OVH_LOGO } from './constants';
 
 export default class SignUpCtrl {
   /* @ngInject */
@@ -21,15 +18,13 @@ export default class SignUpCtrl {
   ============================= */
 
   $onInit() {
-    return this.ssoAuthentication
-      .getSsoAuthPendingPromise()
-      .then(() => {
-        this.logoUrl = get(
-          HOME_PAGE,
-          this.ssoAuthentication.user.ovhSubsidiary,
-          HOME_PAGE.default,
-        );
-      });
+    return this.ssoAuthentication.getSsoAuthPendingPromise().then(() => {
+      this.logoUrl = get(
+        HOME_PAGE,
+        this.ssoAuthentication.user.ovhSubsidiary,
+        HOME_PAGE.default,
+      );
+    });
   }
 
   /* -----  End of Hooks  ------ */

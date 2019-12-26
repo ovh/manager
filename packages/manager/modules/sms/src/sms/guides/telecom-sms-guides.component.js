@@ -6,22 +6,18 @@ import template from './telecom-sms-guides.html';
 
 const moduleName = 'ovhManagerSmsGuidesComponent';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(($stateProvider) => {
-    $stateProvider.state('sms.service.guides', {
-      url: '/guides',
-      views: {
-        smsInnerView: {
-          template,
-          controller,
-          controllerAs: 'SmsGuidesCtrl',
-        },
+angular.module(moduleName, ['ui.router']).config(($stateProvider) => {
+  $stateProvider.state('sms.service.guides', {
+    url: '/guides',
+    views: {
+      smsInnerView: {
+        template,
+        controller,
+        controllerAs: 'SmsGuidesCtrl',
       },
-      translations: { value: ['.'], format: 'json' },
-    });
+    },
+    translations: { value: ['.'], format: 'json' },
   });
+});
 
 export default moduleName;

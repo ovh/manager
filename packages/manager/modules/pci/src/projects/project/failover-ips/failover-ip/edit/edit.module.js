@@ -8,10 +8,7 @@ import routing from './edit.routing';
 const moduleName = 'ovhManagerPciProjectFailoverIpEdit';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ui.router', 'pascalprecht.translate'])
   .config(routing)
   .component('pciProjectFailoverIpsEdit', component);
 

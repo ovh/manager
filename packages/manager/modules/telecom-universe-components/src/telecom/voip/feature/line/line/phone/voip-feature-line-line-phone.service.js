@@ -30,15 +30,19 @@ export default class {
    *  @return {Promise}   That return an array of TucVoipLinePhone instances.
    */
   fetchAll() {
-    return this.OvhApiTelephony.Line().Phone().v7().query()
+    return this.OvhApiTelephony.Line()
+      .Phone()
+      .v7()
+      .query()
       .aggregate('billingAccount')
       .aggregate('serviceName')
       .expand()
-      .execute().$promise.then((results) => {
+      .execute()
+      .$promise.then((results) => {
         const phoneList = [];
 
         results.forEach((result) => {
-        // first retrieve billingAccount and serviceName from path
+          // first retrieve billingAccount and serviceName from path
           const splittedPath = result.path.split('/');
 
           // extend phone options

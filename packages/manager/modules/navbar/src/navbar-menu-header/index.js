@@ -6,7 +6,8 @@ import './index.less';
 
 const moduleName = 'ovhManagerNavbarMenuHeader';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .service('ovhManagerNavbarMenuHeaderBuilder', builder);
 
 export default moduleName;

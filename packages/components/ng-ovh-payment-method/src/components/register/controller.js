@@ -65,7 +65,6 @@ export default class OvhPaymentMethodRegisterCtrl {
 
   /* -----  End of Initialization  ------ */
 
-
   /* ============================
   =            Hooks            =
   ============================= */
@@ -75,14 +74,21 @@ export default class OvhPaymentMethodRegisterCtrl {
 
     this.loading.init = true;
 
-    return this.ovhPaymentMethod.getAllAvailablePaymentMethodTypes()
+    return this.ovhPaymentMethod
+      .getAllAvailablePaymentMethodTypes()
       .then((paymentMethodsTypes) => {
         // sort available payment method types with the paymentMethodTypesOrder binding
-        this.availablePaymentMethodTypes.list = paymentMethodsTypes.sort((typeA, typeB) => {
-          const typeAIndex = this.paymentMethodTypesOrder.indexOf(typeA.paymentType);
-          const typeBIndex = this.paymentMethodTypesOrder.indexOf(typeB.paymentType);
-          return typeAIndex > typeBIndex;
-        });
+        this.availablePaymentMethodTypes.list = paymentMethodsTypes.sort(
+          (typeA, typeB) => {
+            const typeAIndex = this.paymentMethodTypesOrder.indexOf(
+              typeA.paymentType,
+            );
+            const typeBIndex = this.paymentMethodTypesOrder.indexOf(
+              typeB.paymentType,
+            );
+            return typeAIndex > typeBIndex;
+          },
+        );
 
         // add a fallback image in case of no image provided by API (for legacies payment methods)
         this.availablePaymentMethodTypes.list = map(
@@ -106,20 +112,31 @@ export default class OvhPaymentMethodRegisterCtrl {
           this.paymentMethodTypesPerLine,
         );
 
-        const defaultPaymentMethodType = find(this.availablePaymentMethodTypes.list, {
-          paymentType: this.defaultPaymentMethodType,
-        });
+        const defaultPaymentMethodType = find(
+          this.availablePaymentMethodTypes.list,
+          {
+            paymentType: this.defaultPaymentMethodType,
+          },
+        );
 
         // set selected payment method type model
-        if (!has(this.model, 'selectedPaymentMethodType')
-          || isNil(this.model.selectedPaymentMethodType)) {
+        if (
+          !has(this.model, 'selectedPaymentMethodType') ||
+          isNil(this.model.selectedPaymentMethodType)
+        ) {
           this.model.selectedPaymentMethodType = defaultPaymentMethodType;
         } else if (this.model.selectedPaymentMethodType) {
           // if the selected payment method type does not exist
           // set the default one
-          const isModelTypeExists = some(this.availablePaymentMethodTypes.list, {
-            paymentType: get(this.model.selectedPaymentMethodType, 'paymentType'),
-          });
+          const isModelTypeExists = some(
+            this.availablePaymentMethodTypes.list,
+            {
+              paymentType: get(
+                this.model.selectedPaymentMethodType,
+                'paymentType',
+              ),
+            },
+          );
 
           if (!isModelTypeExists) {
             this.model.selectedPaymentMethodType = defaultPaymentMethodType;
@@ -127,7 +144,10 @@ export default class OvhPaymentMethodRegisterCtrl {
         }
 
         // set default model
-        if (!has(this.model, 'setAsDefault') || isNil(this.model.setAsDefault)) {
+        if (
+          !has(this.model, 'setAsDefault') ||
+          isNil(this.model.setAsDefault)
+        ) {
           this.model.setAsDefault = this.registeredPaymentMethods.length === 0;
         }
 
@@ -135,9 +155,15 @@ export default class OvhPaymentMethodRegisterCtrl {
         // if it's a function reference ...
         // otherwise the call will be made passing an Object Literal
         // when testing if the callback function is a function ref or not
-        if (this.onInitialized && isFunction(this.onInitialized({
-          availablePaymentMethodTypes: this.availablePaymentMethodTypes.list,
-        }))) {
+        if (
+          this.onInitialized &&
+          isFunction(
+            this.onInitialized({
+              availablePaymentMethodTypes: this.availablePaymentMethodTypes
+                .list,
+            }),
+          )
+        ) {
           // ... invoke it
           this.onInitialized()(this.availablePaymentMethodTypes.list);
         }
@@ -147,9 +173,14 @@ export default class OvhPaymentMethodRegisterCtrl {
         // if it's a function reference ...
         // otherwise the call will be made passing an Object Literal
         // when testing if the callback function is a function ref or not
-        if (this.onInitializationError && isFunction(this.onInitializationError({
-          error,
-        }))) {
+        if (
+          this.onInitializationError &&
+          isFunction(
+            this.onInitializationError({
+              error,
+            }),
+          )
+        ) {
           // ... invoke it
           this.onInitializationError()(error);
         }

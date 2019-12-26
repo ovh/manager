@@ -1,9 +1,6 @@
 import angular from 'angular';
 
-import {
-  VOLUME_MAX_SIZE,
-  VOLUME_MIN_SIZE,
-} from '../../../block.constants';
+import { VOLUME_MAX_SIZE, VOLUME_MIN_SIZE } from '../../../block.constants';
 
 export default class PciProjectStorageVolumeEditController {
   /* @ngInject */
@@ -39,7 +36,8 @@ export default class PciProjectStorageVolumeEditController {
     }
 
     this.loading = true;
-    return this.$translate.refresh()
+    return this.$translate
+      .refresh()
       .then(() => this.getAvailableQuota())
       .then(() => this.estimatePrice())
       .finally(() => {
@@ -48,19 +46,24 @@ export default class PciProjectStorageVolumeEditController {
   }
 
   getAvailableQuota() {
-    return this.PciProjectStorageBlockService
-      .getAvailableQuota(this.projectId, this.storage)
-      .then((availableQuota) => {
-        this.size.min = this.storage.size;
-        this.size.max = availableQuota;
-      });
+    return this.PciProjectStorageBlockService.getAvailableQuota(
+      this.projectId,
+      this.storage,
+    ).then((availableQuota) => {
+      this.size.min = this.storage.size;
+      this.size.max = availableQuota;
+    });
   }
 
   estimatePrice() {
     // Wait the next digest because oui-numeric use the viewValue whens calling on-change callback
     return this.$timeout(angular.noop, 0)
-      .then(() => this.PciProjectStorageBlockService
-        .getVolumePriceEstimation(this.projectId, this.storage))
+      .then(() =>
+        this.PciProjectStorageBlockService.getVolumePriceEstimation(
+          this.projectId,
+          this.storage,
+        ),
+      )
       .then((estimatedPrice) => {
         this.estimatedPrice = estimatedPrice;
       });

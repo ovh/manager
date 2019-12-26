@@ -15,7 +15,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/home',
       views: {
         logsInputs: {
-          templateUrl: 'app/dbaas/logs/detail/inputs/home/logs-inputs-home.html',
+          templateUrl:
+            'app/dbaas/logs/detail/inputs/home/logs-inputs-home.html',
           controller: 'LogsInputsHomeCtrl',
           controllerAs: 'ctrl',
         },
@@ -25,7 +26,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/:inputId/console',
       views: {
         logsInputs: {
-          templateUrl: 'app/dbaas/logs/detail/inputs/console/logs-inputs-console.html',
+          templateUrl:
+            'app/dbaas/logs/detail/inputs/console/logs-inputs-console.html',
           controller: 'LogsInputsConsoleCtrl',
           controllerAs: 'ctrl',
         },
@@ -57,7 +59,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/add',
       views: {
         logsInputsAdd: {
-          templateUrl: 'app/dbaas/logs/detail/inputs/add/edit/logs-inputs-add-edit.html',
+          templateUrl:
+            'app/dbaas/logs/detail/inputs/add/edit/logs-inputs-add-edit.html',
           controller: 'LogsInputsAddEditCtrl',
           controllerAs: 'ctrl',
         },
@@ -67,7 +70,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/details',
       views: {
         logsInputsAdd: {
-          templateUrl: 'app/dbaas/logs/detail/inputs/add/edit/logs-inputs-add-edit.html',
+          templateUrl:
+            'app/dbaas/logs/detail/inputs/add/edit/logs-inputs-add-edit.html',
           controller: 'LogsInputsAddEditCtrl',
           controllerAs: 'ctrl',
         },
@@ -77,7 +81,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/configure',
       views: {
         logsInputsAdd: {
-          templateUrl: 'app/dbaas/logs/detail/inputs/add/configure/logs-inputs-add-configure.html',
+          templateUrl:
+            'app/dbaas/logs/detail/inputs/add/configure/logs-inputs-add-configure.html',
           controller: 'LogsInputsAddConfigureCtrl',
           controllerAs: 'ctrl',
         },
@@ -87,7 +92,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/networks',
       views: {
         logsInputsAdd: {
-          templateUrl: 'app/dbaas/logs/detail/inputs/add/networks/logs-inputs-add-networks.html',
+          templateUrl:
+            'app/dbaas/logs/detail/inputs/add/networks/logs-inputs-add-networks.html',
           controller: 'LogsInputsAddNetworksCtrl',
           controllerAs: 'ctrl',
         },

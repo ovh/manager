@@ -5,56 +5,67 @@ import pick from 'lodash/pick';
  *  This factory manages the conference feature of a number.
  *  This manages the conference of /telephony/{billingAccount}/number API.
  */
-angular.module('managerApp').factory('TelephonyGroupNumberConferenceParticipant', (OvhApiTelephony) => {
-  /*= ==================================
+angular
+  .module('managerApp')
+  .factory('TelephonyGroupNumberConferenceParticipant', (OvhApiTelephony) => {
+    /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
 
-  function TelephonyGroupNumberConferenceParticipant(participantOptionsParam) {
-    let participantOptions = participantOptionsParam;
+    function TelephonyGroupNumberConferenceParticipant(
+      participantOptionsParam,
+    ) {
+      let participantOptions = participantOptionsParam;
 
-    // check for mandatory options
-    if (!participantOptions) {
-      participantOptions = {};
+      // check for mandatory options
+      if (!participantOptions) {
+        participantOptions = {};
+      }
+
+      // check mandatory fields
+      if (!participantOptions.billingAccount) {
+        throw new Error(
+          'billingAccount option must be specified when creating a new TelephonyGroupNumberConferenceParticipant',
+        );
+      }
+
+      if (!participantOptions.serviceName) {
+        throw new Error(
+          'serviceName option must be specified when creating a new TelephonyGroupNumberConferenceParticipant',
+        );
+      }
+
+      if (!participantOptions.id) {
+        throw new Error(
+          'id option must be specified when creating a new TelephonyGroupNumberConferenceParticipant',
+        );
+      }
+
+      // set mandatory attributes
+      this.billingAccount = participantOptions.billingAccount;
+      this.serviceName = participantOptions.serviceName;
+      this.id = participantOptions.id;
+
+      // custom attributes
+      this.inEdition = false;
+      this.saveForEdition = null;
+      this.energyEquivalence = null;
+
+      // set feature options
+      this.setInfos(participantOptions).setEnergyEquivalent();
     }
 
-    // check mandatory fields
-    if (!participantOptions.billingAccount) {
-      throw new Error('billingAccount option must be specified when creating a new TelephonyGroupNumberConferenceParticipant');
-    }
+    /* -----  End of CONSTRUCTOR  ------*/
 
-    if (!participantOptions.serviceName) {
-      throw new Error('serviceName option must be specified when creating a new TelephonyGroupNumberConferenceParticipant');
-    }
-
-    if (!participantOptions.id) {
-      throw new Error('id option must be specified when creating a new TelephonyGroupNumberConferenceParticipant');
-    }
-
-    // set mandatory attributes
-    this.billingAccount = participantOptions.billingAccount;
-    this.serviceName = participantOptions.serviceName;
-    this.id = participantOptions.id;
-
-    // custom attributes
-    this.inEdition = false;
-    this.saveForEdition = null;
-    this.energyEquivalence = null;
-
-    // set feature options
-    this.setInfos(participantOptions).setEnergyEquivalent();
-  }
-
-  /* -----  End of CONSTRUCTOR  ------*/
-
-  /*= ========================================
+    /*= ========================================
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  /* ----------  FEATURE OPTIONS  ----------*/
+    /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupNumberConferenceParticipant.prototype
-    .setInfos = function setInfos(participantOptionsParam) {
+    TelephonyGroupNumberConferenceParticipant.prototype.setInfos = function setInfos(
+      participantOptionsParam,
+    ) {
       const self = this;
       let participantOptions = participantOptionsParam;
 
@@ -62,8 +73,15 @@ angular.module('managerApp').factory('TelephonyGroupNumberConferenceParticipant'
         participantOptions = {};
       }
 
-      const optionsAttributes = ['energy', 'talking', 'speak', 'callerNumber',
-        'floor', 'hear', 'callerName', 'arrivalDateTime',
+      const optionsAttributes = [
+        'energy',
+        'talking',
+        'speak',
+        'callerNumber',
+        'floor',
+        'hear',
+        'callerName',
+        'arrivalDateTime',
       ];
 
       assign(self, pick(participantOptions, optionsAttributes));
@@ -71,9 +89,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberConferenceParticipant'
       return self;
     };
 
-  TelephonyGroupNumberConferenceParticipant
-    .prototype
-    .setEnergyEquivalent = function setEnergyEquivalent() {
+    TelephonyGroupNumberConferenceParticipant.prototype.setEnergyEquivalent = function setEnergyEquivalent() {
       const self = this;
 
       switch (self.energy) {
@@ -93,101 +109,139 @@ angular.module('managerApp').factory('TelephonyGroupNumberConferenceParticipant'
       return self;
     };
 
-  /* ----------  API CALLS  ----------*/
+    /* ----------  API CALLS  ----------*/
 
-  /**
+    /**
      *  Mute a participant of a conference
      *
      *  @return {Promise} That return a Telephony Task
      */
-  TelephonyGroupNumberConferenceParticipant.prototype.mute = function mute() {
-    const self = this;
+    TelephonyGroupNumberConferenceParticipant.prototype.mute = function mute() {
+      const self = this;
 
-    return OvhApiTelephony.Conference().Participants().v6().mute({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-      id: self.id,
-    }, {}).$promise;
-  };
+      return OvhApiTelephony.Conference()
+        .Participants()
+        .v6()
+        .mute(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            id: self.id,
+          },
+          {},
+        ).$promise;
+    };
 
-  /**
+    /**
      *  Unmute a participant of a conference
      *
      *  @return {Promise} That return a Telephony Task
      */
-  TelephonyGroupNumberConferenceParticipant.prototype.unmute = function unmute() {
-    const self = this;
+    TelephonyGroupNumberConferenceParticipant.prototype.unmute = function unmute() {
+      const self = this;
 
-    return OvhApiTelephony.Conference().Participants().v6().unmute({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-      id: self.id,
-    }, {}).$promise;
-  };
+      return OvhApiTelephony.Conference()
+        .Participants()
+        .v6()
+        .unmute(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            id: self.id,
+          },
+          {},
+        ).$promise;
+    };
 
-  /**
+    /**
      *  Kick a participant of a conference
      *
      *  @return {Promise} That return a Telephony Task
      */
-  TelephonyGroupNumberConferenceParticipant.prototype.kick = function kick() {
-    const self = this;
+    TelephonyGroupNumberConferenceParticipant.prototype.kick = function kick() {
+      const self = this;
 
-    return OvhApiTelephony.Conference().Participants().v6().kick({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-      id: self.id,
-    }, {}).$promise;
-  };
+      return OvhApiTelephony.Conference()
+        .Participants()
+        .v6()
+        .kick(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            id: self.id,
+          },
+          {},
+        ).$promise;
+    };
 
-  /**
+    /**
      *  Deaf a participant of a conference
      *
      *  @return {Promise} That return a Telephony Task
      */
-  TelephonyGroupNumberConferenceParticipant.prototype.deaf = function deaf() {
-    const self = this;
+    TelephonyGroupNumberConferenceParticipant.prototype.deaf = function deaf() {
+      const self = this;
 
-    return OvhApiTelephony.Conference().Participants().v6().deaf({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-      id: self.id,
-    }, {}).$promise;
-  };
+      return OvhApiTelephony.Conference()
+        .Participants()
+        .v6()
+        .deaf(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            id: self.id,
+          },
+          {},
+        ).$promise;
+    };
 
-  /**
+    /**
      *  Undeaf a participant of a conference
      *
      *  @return {Promise} That return a Telephony Task
      */
-  TelephonyGroupNumberConferenceParticipant.prototype.undeaf = function undeaf() {
-    const self = this;
+    TelephonyGroupNumberConferenceParticipant.prototype.undeaf = function undeaf() {
+      const self = this;
 
-    return OvhApiTelephony.Conference().Participants().v6().undeaf({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-      id: self.id,
-    }, {}).$promise;
-  };
+      return OvhApiTelephony.Conference()
+        .Participants()
+        .v6()
+        .undeaf(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            id: self.id,
+          },
+          {},
+        ).$promise;
+    };
 
-  /**
+    /**
      *  Change energy from a participant of a conference
      *
      *  @return {Promise} That return a Telephony Task
      */
-  TelephonyGroupNumberConferenceParticipant.prototype.updateEnergy = function updateEnergy(value) {
-    const self = this;
-
-    return OvhApiTelephony.Conference().Participants().v6().energy({
-      billingAccount: self.billingAccount,
-      serviceName: self.serviceName,
-      id: self.id,
-    }, {
+    TelephonyGroupNumberConferenceParticipant.prototype.updateEnergy = function updateEnergy(
       value,
-    }).$promise;
-  };
+    ) {
+      const self = this;
 
-  /* -----  End of PROTOTYPE METHODS  ------*/
+      return OvhApiTelephony.Conference()
+        .Participants()
+        .v6()
+        .energy(
+          {
+            billingAccount: self.billingAccount,
+            serviceName: self.serviceName,
+            id: self.id,
+          },
+          {
+            value,
+          },
+        ).$promise;
+    };
 
-  return TelephonyGroupNumberConferenceParticipant;
-});
+    /* -----  End of PROTOTYPE METHODS  ------*/
+
+    return TelephonyGroupNumberConferenceParticipant;
+  });

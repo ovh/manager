@@ -7,7 +7,10 @@ export default class IpLoadBalancerNatIpService {
   }
 
   getNatIps(serviceName) {
-    return this.IpLoadBalancing.v6().natIp({ serviceName }).$promise
-      .catch(this.CucServiceHelper.errorHandler('iplb_nat_ip_detail_loading_error'));
+    return this.IpLoadBalancing.v6()
+      .natIp({ serviceName })
+      .$promise.catch(
+        this.CucServiceHelper.errorHandler('iplb_nat_ip_detail_loading_error'),
+      );
   }
 }

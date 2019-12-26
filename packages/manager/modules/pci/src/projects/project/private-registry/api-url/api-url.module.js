@@ -6,9 +6,7 @@ import component from './api-url.component';
 const moduleName = 'ovhManagerPciProjectPrivateRegistryApiUrl';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('pciPrivateRegistryApiUrl', component);
 

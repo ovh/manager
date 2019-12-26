@@ -6,10 +6,6 @@ import dashboard from './dashboard';
 
 const moduleName = 'ovhManagerTelecomCarrierSip';
 
-angular
-  .module(moduleName, [
-    dashboard,
-    ovhManagerCarrierSip,
-  ]);
+angular.module(moduleName, [dashboard, ovhManagerCarrierSip]);
 
 export default moduleName;

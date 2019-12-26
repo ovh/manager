@@ -1,15 +1,26 @@
 import get from 'lodash/get';
 
 class LogsHelperService {
-  constructor($translate, $state, OvhApiDbaas, CucServiceHelper,
-    CucCloudPoll, CucControllerModalHelper, LogsConstants, ovhDocUrl, URLS) {
+  constructor(
+    $translate,
+    $state,
+    OvhApiDbaas,
+    CucServiceHelper,
+    CucCloudPoll,
+    CucControllerModalHelper,
+    LogsConstants,
+    ovhDocUrl,
+    URLS,
+  ) {
     this.$translate = $translate;
     this.$state = $state;
     this.CucServiceHelper = CucServiceHelper;
     this.CucCloudPoll = CucCloudPoll;
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.LogsConstants = LogsConstants;
-    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
+    this.OperationApiService = OvhApiDbaas.Logs()
+      .Operation()
+      .v6();
     this.ovhDocUrl = ovhDocUrl;
     this.URLS = URLS;
     this.initGuides();
@@ -33,10 +44,15 @@ class LogsHelperService {
     this.killPoller();
     return this.CucCloudPoll.poll({
       item: operation,
-      pollFunction: (opn) => this.OperationApiService
-        .get({ serviceName, operationId: opn.operationId }).$promise,
-      stopCondition: (opn) => opn.state === this.LogsConstants.FAILURE
-        || opn.state === this.LogsConstants.SUCCESS || opn.state === this.LogsConstants.REVOKED,
+      pollFunction: (opn) =>
+        this.OperationApiService.get({
+          serviceName,
+          operationId: opn.operationId,
+        }).$promise,
+      stopCondition: (opn) =>
+        opn.state === this.LogsConstants.FAILURE ||
+        opn.state === this.LogsConstants.SUCCESS ||
+        opn.state === this.LogsConstants.REVOKED,
     });
   }
 
@@ -67,9 +83,8 @@ class LogsHelperService {
    * @memberof LogsHelperService
    */
   handleOperation(serviceName, operation, successMessage, messageData) {
-    return this.pollOperation(serviceName, operation)
-      .$promise
-      .then((pollResult) => {
+    return this.pollOperation(serviceName, operation).$promise.then(
+      (pollResult) => {
         if (get(pollResult, '[0].item.state') !== this.LogsConstants.SUCCESS) {
           const error = { data: { message: 'Operation failed' } };
           return Promise.reject(error);
@@ -78,7 +93,8 @@ class LogsHelperService {
           this.CucServiceHelper.successHandler(successMessage)(messageData);
         }
         return pollResult;
-      });
+      },
+    );
   }
 
   /**
@@ -87,11 +103,16 @@ class LogsHelperService {
    */
   showOfferUpgradeModal(serviceName) {
     return this.CucControllerModalHelper.showInfoModal({
-      titleText: this.$translate.instant('options_upgradequotalink_increase_quota_title'),
-      text: this.$translate.instant('options_upgradequotalink_increase_quota_message'),
-      okButtonText: this.$translate.instant('options_upgradequotalink_increase_quota_upgrade'),
-    })
-      .then(() => this.$state.go('dbaas.logs.detail.offer', { serviceName }));
+      titleText: this.$translate.instant(
+        'options_upgradequotalink_increase_quota_title',
+      ),
+      text: this.$translate.instant(
+        'options_upgradequotalink_increase_quota_message',
+      ),
+      okButtonText: this.$translate.instant(
+        'options_upgradequotalink_increase_quota_upgrade',
+      ),
+    }).then(() => this.$state.go('dbaas.logs.detail.offer', { serviceName }));
   }
 
   /**
@@ -100,11 +121,13 @@ class LogsHelperService {
   initGuides() {
     this.guides = {};
     this.guides.title = this.$translate.instant('logs_guides');
-    this.guides.list = [{
-      name: this.$translate.instant('logs_guides_title'),
-      url: this.ovhDocUrl.getDocUrl(this.LogsConstants.LOGS_DOCS_NAME),
-      external: true,
-    }];
+    this.guides.list = [
+      {
+        name: this.$translate.instant('logs_guides_title'),
+        url: this.ovhDocUrl.getDocUrl(this.LogsConstants.LOGS_DOCS_NAME),
+        external: true,
+      },
+    ];
     this.guides.footer = {
       name: this.$translate.instant('logs_guides_footer'),
       url: this.URLS.guides.home.FR,

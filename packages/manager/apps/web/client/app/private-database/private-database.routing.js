@@ -9,7 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'private_database'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'private_database';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -17,7 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       ],
     },
-    translations: { value: ['../private-database', '../hosting'], format: 'json' },
+    translations: {
+      value: ['../private-database', '../hosting'],
+      format: 'json',
+    },
   });
 
   $stateProvider.state('app.private-database-order', {
@@ -29,7 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'private_database'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'private_database';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -53,7 +58,8 @@ export default /* @ngInject */ ($stateProvider) => {
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'private_database'; // eslint-disable-line no-param-reassign
+          // eslint-disable-next-line no-param-reassign
+          $rootScope.currentSectionInformation = 'private_database';
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,

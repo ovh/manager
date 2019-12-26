@@ -23,11 +23,10 @@ export default class ExchangeDisclaimerCtrl {
     );
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   hasEmptySlot(list) {
     return some(list, (item) => item.emptySlotFlag);
   }
-  /* eslint-enable class-methods-use-this */
 
   getDisclaimers({ pageSize, offset }) {
     return this.services.Exchange.getDisclaimers(
@@ -48,14 +47,20 @@ export default class ExchangeDisclaimerCtrl {
         for (let i = 0; i < disclaimers.list.results.length; i += 1) {
           this.disclaimersList.splice(i, 1, disclaimers.list.results[i]);
         }
-        for (let i = disclaimers.list.results.length; i < this.disclaimersList.length; i += 1) {
+        for (
+          let i = disclaimers.list.results.length;
+          i < this.disclaimersList.length;
+          i += 1
+        ) {
           this.disclaimersList.splice(i, 1);
         }
         this.setMessagesFlags(this.disclaimers);
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_DISCLAIMER_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_DISCLAIMER_error_message',
+          ),
           err,
         );
       });
@@ -78,7 +83,9 @@ export default class ExchangeDisclaimerCtrl {
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_DISCLAIMER_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_DISCLAIMER_error_message',
+          ),
           err,
         );
       });
@@ -94,7 +101,10 @@ export default class ExchangeDisclaimerCtrl {
 
   addDisclaimer(disclaimer) {
     if (!this.newDisclaimersDisabled()) {
-      this.services.navigation.setAction('exchange/disclaimer/add/disclaimer-add', disclaimer);
+      this.services.navigation.setAction(
+        'exchange/disclaimer/add/disclaimer-add',
+        disclaimer,
+      );
     }
   }
 

@@ -30,25 +30,29 @@ angular.module('managerApp').constant('PACK_XDSL_STATISTICS', {
         },
       },
       scales: {
-        yAxes: [{
-          display: true,
-          position: 'left',
-          scaleLabel: {
+        yAxes: [
+          {
             display: true,
+            position: 'left',
+            scaleLabel: {
+              display: true,
+            },
+            gridLines: {
+              drawBorder: true,
+              display: false,
+            },
           },
-          gridLines: {
-            drawBorder: true,
-            display: false,
+        ],
+        xAxes: [
+          {
+            type: 'time',
+            position: 'bottom',
+            gridLines: {
+              drawBorder: true,
+              display: false,
+            },
           },
-        }],
-        xAxes: [{
-          type: 'time',
-          position: 'bottom',
-          gridLines: {
-            drawBorder: true,
-            display: false,
-          },
-        }],
+        ],
       },
     },
   },

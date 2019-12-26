@@ -7,7 +7,11 @@ import { ALERTER_ID } from './constants';
 
 export default class BillingPaymentMethodCtrl {
   /* @ngInject */
-  constructor(OVH_PAYMENT_MEAN_STATUS, OVH_PAYMENT_METHOD_TYPE, ovhPaymentMethodHelper) {
+  constructor(
+    OVH_PAYMENT_MEAN_STATUS,
+    OVH_PAYMENT_METHOD_TYPE,
+    ovhPaymentMethodHelper,
+  ) {
     this.OVH_PAYMENT_MEAN_STATUS = OVH_PAYMENT_MEAN_STATUS;
     this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
@@ -38,7 +42,9 @@ export default class BillingPaymentMethodCtrl {
       set(
         this.tableFilterOptions.status.values,
         paymentMethod.status,
-        this.ovhPaymentMethodHelper.getPaymentMethodStatusText(paymentMethod.status),
+        this.ovhPaymentMethodHelper.getPaymentMethodStatusText(
+          paymentMethod.status,
+        ),
       );
     });
 
@@ -46,7 +52,9 @@ export default class BillingPaymentMethodCtrl {
       set(
         this.tableFilterOptions.type.values,
         paymentMethod.paymentType,
-        this.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethod.paymentType),
+        this.ovhPaymentMethodHelper.getPaymentMethodTypeText(
+          paymentMethod.paymentType,
+        ),
       );
     });
 
@@ -56,8 +64,9 @@ export default class BillingPaymentMethodCtrl {
     // set a warn message if a bankAccount is in pendingValidation state
     this.hasPendingValidationBankAccount = some(
       this.paymentMethods,
-      (method) => method.paymentType === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
-          && method.status === this.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION,
+      (method) =>
+        method.paymentType === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT &&
+        method.status === this.OVH_PAYMENT_MEAN_STATUS.PENDING_VALIDATION,
     );
   }
 

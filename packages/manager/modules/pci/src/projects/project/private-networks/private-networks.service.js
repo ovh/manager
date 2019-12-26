@@ -1,6 +1,9 @@
 import sortBy from 'lodash/sortBy';
 
-import { DELETING_STATUS, VRACK_CREATION_ACTION } from './private-networks.constants';
+import {
+  DELETING_STATUS,
+  VRACK_CREATION_ACTION,
+} from './private-networks.constants';
 
 export default class {
   /* @ngInject */
@@ -11,24 +14,34 @@ export default class {
 
   getPrivateNetworks(serviceName) {
     this.OvhApiCloudProjectNetworkPrivate.v6().resetQueryCache();
-    return this.OvhApiCloudProjectNetworkPrivate.v6().query({
-      serviceName,
-    }).$promise
-      .then((privateNetworks) => sortBy(privateNetworks, 'vlanId')
-        .filter(({ status }) => !DELETING_STATUS.includes(status)));
+    return this.OvhApiCloudProjectNetworkPrivate.v6()
+      .query({
+        serviceName,
+      })
+      .$promise.then((privateNetworks) =>
+        sortBy(privateNetworks, 'vlanId').filter(
+          ({ status }) => !DELETING_STATUS.includes(status),
+        ),
+      );
   }
 
   getVrack(serviceName) {
-    return this.OvhApiCloudProject.v6().vrack({
-      serviceName,
-    }).$promise
-      .catch((error) => (error.status === 404 ? {} : Promise.reject(error)));
+    return this.OvhApiCloudProject.v6()
+      .vrack({
+        serviceName,
+      })
+      .$promise.catch((error) =>
+        error.status === 404 ? {} : Promise.reject(error),
+      );
   }
 
   getVrackCreationOperation(serviceName) {
-    return this.OvhApiCloudProject.v6().operations({
-      serviceName,
-    }).$promise
-      .then((operations) => operations.find(({ action }) => action === VRACK_CREATION_ACTION));
+    return this.OvhApiCloudProject.v6()
+      .operations({
+        serviceName,
+      })
+      .$promise.then((operations) =>
+        operations.find(({ action }) => action === VRACK_CREATION_ACTION),
+      );
   }
 }

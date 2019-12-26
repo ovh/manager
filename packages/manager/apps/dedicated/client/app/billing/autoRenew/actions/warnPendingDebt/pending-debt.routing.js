@@ -13,7 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
       payDebt: /* @ngInject */ ($state) => () => {
         $state.go('app.account.billing.main.history');
       },
-      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
     },
   });
 };

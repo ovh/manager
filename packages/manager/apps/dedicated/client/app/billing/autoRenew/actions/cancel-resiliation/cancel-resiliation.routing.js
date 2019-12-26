@@ -12,15 +12,12 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       cancelResiliation: /* @ngInject */ (BillingAutoRenew) => (service) => {
         service.cancelResiliation();
-        return BillingAutoRenew.updateService(
-          service,
-        );
+        return BillingAutoRenew.updateService(service);
       },
-      serviceId: /* @ngInject */ ($transition$) => $transition$.params().serviceId,
-      service: /* @ngInject */ (
-        BillingAutoRenew,
-        serviceId,
-      ) => BillingAutoRenew.getService(serviceId),
+      serviceId: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceId,
+      service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
+        BillingAutoRenew.getService(serviceId),
     },
   });
 };

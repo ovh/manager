@@ -32,7 +32,9 @@ export default class ExchangeMigration2016Ctrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_upgrade_get_contracts_error'),
+          this.services.$translate.instant(
+            'exchange_ACTION_upgrade_get_contracts_error',
+          ),
           failure,
         );
         this.services.navigation.resetAction();
@@ -43,16 +45,21 @@ export default class ExchangeMigration2016Ctrl {
     return this.services.Exchange.upgradeExchange(this.curExchange)
       .then((order) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_order_upgrade_success', {
-            t0: order.url,
-            t1: order.orderId,
-          }),
+          this.services.$translate.instant(
+            'exchange_ACTION_order_upgrade_success',
+            {
+              t0: order.url,
+              t1: order.orderId,
+            },
+          ),
         );
         this.services.$window.open(order.url, '_blank');
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_order_upgrade_error'),
+          this.services.$translate.instant(
+            'exchange_ACTION_order_upgrade_error',
+          ),
           failure,
         );
       })

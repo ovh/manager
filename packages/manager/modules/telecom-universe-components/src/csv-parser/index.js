@@ -4,8 +4,6 @@ import TucCsvParser from './csv-parser.service';
 
 const moduleName = 'tucCsvParser';
 
-angular
-  .module(moduleName, [])
-  .service('TucCsvParser', TucCsvParser);
+angular.module(moduleName, []).service('TucCsvParser', TucCsvParser);
 
 export default moduleName;

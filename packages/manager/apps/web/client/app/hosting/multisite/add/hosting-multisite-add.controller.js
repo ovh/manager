@@ -43,14 +43,17 @@ angular
       $scope.isStep1Valid = () => {
         if (!$scope.model.options) {
           return false;
-        } if (
-          $scope.model.capabilities
-          && $scope.model.domainsCount >= $scope.model.capabilities.attachedDomains
+        }
+        if (
+          $scope.model.capabilities &&
+          $scope.model.domainsCount >= $scope.model.capabilities.attachedDomains
         ) {
           return false;
-        } if (!$scope.selected.mode) {
+        }
+        if (!$scope.selected.mode) {
           return false;
-        } if ($scope.selected.mode === $scope.model.mode.OVH) {
+        }
+        if ($scope.selected.mode === $scope.model.mode.OVH) {
           return $scope.selected.baseDomain !== null;
         }
         return true;
@@ -95,18 +98,22 @@ angular
         domainWithoutSubdomain: /^([^.]+\.[^.]+)$/,
       };
 
-      $scope.getHostingIp = (hosting, activeCDN, ipv6) => hosting[
-        (activeCDN === 'ACTIVE' ? 'hostingIp' : 'clusterIp')
-            + (ipv6 ? 'v6' : '')
-      ];
+      $scope.getHostingIp = (hosting, activeCDN, ipv6) =>
+        hosting[
+          (activeCDN === 'ACTIVE' ? 'hostingIp' : 'clusterIp') +
+            (ipv6 ? 'v6' : '')
+        ];
 
-      $scope.isPathValid = () => Hosting.constructor.isPathValid($scope.selected.path);
+      $scope.isPathValid = () =>
+        Hosting.constructor.isPathValid($scope.selected.path);
 
       $scope.getTokenDomain = () => {
         let result;
         if ($scope.model.tokenSubdomain && $scope.selected.domain) {
           result = $scope.model.tokenSubdomain;
-          const subDomainPattern = $scope.selected.domain.match(pattern.domainWithSubdomain);
+          const subDomainPattern = $scope.selected.domain.match(
+            pattern.domainWithSubdomain,
+          );
           if (subDomainPattern !== null) {
             result += `.${
               includes(COMPOSED_TLD, subDomainPattern[2])
@@ -114,8 +121,8 @@ angular
                 : subDomainPattern[2]
             }`;
           } else if (
-            $scope.selected.domain.match(pattern.domainWithoutSubdomain)
-            !== null
+            $scope.selected.domain.match(pattern.domainWithoutSubdomain) !==
+            null
           ) {
             result += `.${$scope.selected.domain}`;
           }
@@ -125,8 +132,8 @@ angular
 
       $scope.$watch('selected.domain', () => {
         if (
-          $scope.selected.domain !== undefined
-          && $scope.selected.domain !== null
+          $scope.selected.domain !== undefined &&
+          $scope.selected.domain !== null
         ) {
           if ($scope.getSelectedDomainToDisplay().match(/^www\..*/)) {
             $scope.selected.domainWww = $scope.selected.domain;
@@ -144,14 +151,18 @@ angular
           $scope.selected.baseDomain = $scope.currentActionData.domain;
           $scope.model.domains = [];
 
-          futuresOptions = HostingDomain.getAddDomainOptions($scope.currentActionData.hosting)
+          futuresOptions = HostingDomain.getAddDomainOptions(
+            $scope.currentActionData.hosting,
+          )
             .then((options) => {
               $scope.model.options = options;
             })
             .catch((err) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );
@@ -165,7 +176,9 @@ angular
             .catch((err) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );
@@ -178,7 +191,9 @@ angular
             .catch((err) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );
@@ -191,7 +206,9 @@ angular
             .catch((err) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );
@@ -205,7 +222,9 @@ angular
             ];
 
             if ($scope.model.domainsCount === -1) {
-              promises.push(HostingDomain.getAttachedDomains($scope.hosting.serviceName));
+              promises.push(
+                HostingDomain.getAttachedDomains($scope.hosting.serviceName),
+              );
             }
             return $q.all(promises);
           })
@@ -218,24 +237,29 @@ angular
 
             if ($scope.currentActionData && $scope.currentActionData.hosting) {
               if (
-                $scope.model.domainsCount
-                < $scope.model.capabilities.attachedDomains
+                $scope.model.domainsCount <
+                $scope.model.capabilities.attachedDomains
               ) {
                 $scope.loadStep2();
                 $rootScope.$broadcast('wizard-goToStep', 3);
               }
             } else {
-              angular.forEach($scope.model.options.availableDomains, (domain) => {
-                if (domain.name === $scope.model.hosting.serviceName) {
-                  $scope.selected.baseDomain = domain;
-                }
-              });
+              angular.forEach(
+                $scope.model.options.availableDomains,
+                (domain) => {
+                  if (domain.name === $scope.model.hosting.serviceName) {
+                    $scope.selected.baseDomain = domain;
+                  }
+                },
+              );
             }
           })
           .catch((err) => {
             $scope.resetAction();
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+              $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_loading_error',
+              ),
               err,
               $scope.alerts.main,
             );
@@ -251,8 +275,12 @@ angular
 
       const resultMessages = {
         OK: $translate.instant('hosting_tab_DOMAINS_configuration_add_success'),
-        PARTIAL: $translate.instant('hosting_tab_DOMAINS_configuration_add_partial'),
-        ERROR: $translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
+        PARTIAL: $translate.instant(
+          'hosting_tab_DOMAINS_configuration_add_partial',
+        ),
+        ERROR: $translate.instant(
+          'hosting_tab_DOMAINS_configuration_add_failure',
+        ),
       };
 
       $scope.submit = () => {
@@ -268,8 +296,8 @@ angular
           $scope.selected.pathFinal,
           $scope.needWwwDomain(),
           $scope.selected.ipv6Needed,
-          $scope.selected.autoconfigure
-            && $scope.selected.mode === $scope.model.mode.OVH,
+          $scope.selected.autoconfigure &&
+            $scope.selected.mode === $scope.model.mode.OVH,
           $scope.selected.activeCDN,
           $scope.selected.countryIp ? $scope.selected.countryIp : null,
           $scope.selected.firewall,
@@ -289,7 +317,9 @@ angular
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
+              $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_failure',
+              ),
               { message: get(err, 'data', err), type: 'ERROR' },
               $scope.alerts.main,
             );
@@ -301,8 +331,8 @@ angular
 
       $scope.$watch('selected.mode', () => {
         if (
-          !$scope.currentActionData
-          || $scope.currentActionData.subdomain !== $scope.selected.domain
+          !$scope.currentActionData ||
+          $scope.currentActionData.subdomain !== $scope.selected.domain
         ) {
           $scope.selected.domain = '';
         }
@@ -322,7 +352,9 @@ angular
           .catch((err) => {
             $scope.resetAction();
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+              $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
@@ -340,17 +372,19 @@ angular
 
                   const promises = [];
                   forEach(runtimes, (runtimeId) => {
-                    promises.push(HostingRuntimes.get(
-                      $scope.hosting.serviceName,
-                      runtimeId,
-                    ).then((runtime) => {
-                      $scope.model.runtimes.push(runtime);
-                      if (runtime.isDefault) {
-                        $scope.selected.runtime = runtime;
-                      }
+                    promises.push(
+                      HostingRuntimes.get(
+                        $scope.hosting.serviceName,
+                        runtimeId,
+                      ).then((runtime) => {
+                        $scope.model.runtimes.push(runtime);
+                        if (runtime.isDefault) {
+                          $scope.selected.runtime = runtime;
+                        }
 
-                      return runtime;
-                    }));
+                        return runtime;
+                      }),
+                    );
                   });
 
                   $q.all(promises).then(() => {
@@ -359,7 +393,9 @@ angular
                 })
                 .catch((err) => {
                   Alerter.alertFromSWS(
-                    $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                    $translate.instant(
+                      'hosting_tab_DOMAINS_configuration_add_loading_error',
+                    ),
                     get(err, 'data', err),
                     $scope.alerts.main,
                   );
@@ -370,7 +406,9 @@ angular
           })
           .catch((err) => {
             Alerter.alertFromSWS(
-              $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+              $translate.instant(
+                'hosting_tab_DOMAINS_configuration_add_loading_error',
+              ),
               get(err, 'data', err),
               $scope.alerts.main,
             );
@@ -381,9 +419,9 @@ angular
 
       $scope.domainsAlreadyExists = (wwwNeeded) => {
         if (
-          $scope.model.domains
-          && $scope.model.domains.indexOf($scope.getSelectedDomain(wwwNeeded))
-            !== -1
+          $scope.model.domains &&
+          $scope.model.domains.indexOf($scope.getSelectedDomain(wwwNeeded)) !==
+            -1
         ) {
           return true;
         }
@@ -394,23 +432,24 @@ angular
         if ($scope.selected.ssl) {
           return $scope.getSelectedDomain()
             ? !WucValidator.isValidDomain($scope.getSelectedDomain(), {
-              canBeginWithWildcard: true,
-            })
+                canBeginWithWildcard: true,
+              })
             : false;
         }
         return false;
       };
 
-      $scope.domainContainsWildcard = () => ($scope.getSelectedDomain()
-        ? $scope.getSelectedDomain().indexOf('*') !== -1
-        : false);
+      $scope.domainContainsWildcard = () =>
+        $scope.getSelectedDomain()
+          ? $scope.getSelectedDomain().indexOf('*') !== -1
+          : false;
 
       $scope.getSelectedPath = () => {
         let home;
         if ($scope.selected.path !== null) {
           if (
-            /^\/.*/.test($scope.selected.path)
-            || /^\.\/.*/.test($scope.selected.path)
+            /^\/.*/.test($scope.selected.path) ||
+            /^\.\/.*/.test($scope.selected.path)
           ) {
             home = $scope.selected.path;
           } else {
@@ -439,7 +478,9 @@ angular
             .catch((err) => {
               $scope.resetAction();
               Alerter.alertFromSWS(
-                $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
+                $translate.instant(
+                  'hosting_tab_DOMAINS_configuration_add_loading_error',
+                ),
                 get(err, 'data', err),
                 $scope.alerts.main,
               );
@@ -459,8 +500,8 @@ angular
         }
 
         if (
-          $scope.selected.mode === $scope.model.mode.OVH
-          && $scope.selected.baseDomain
+          $scope.selected.mode === $scope.model.mode.OVH &&
+          $scope.selected.baseDomain
         ) {
           if ($scope.selected.domain && $scope.selected.domain.length > 0) {
             result += '.';
@@ -479,8 +520,8 @@ angular
         }
 
         if (
-          $scope.selected.mode === $scope.model.mode.OVH
-          && $scope.selected.baseDomain
+          $scope.selected.mode === $scope.model.mode.OVH &&
+          $scope.selected.baseDomain
         ) {
           if ($scope.selected.domain && $scope.selected.domain.length > 0) {
             result += '.';
@@ -490,18 +531,20 @@ angular
         return result && result.toLowerCase();
       };
 
-      $scope.needWwwDomain = () => !$scope.domainContainsWildcard()
-        && $scope.selected.domainWwwNeeded
-        && $scope.selected.domain !== $scope.selected.domainWww
-        && !$scope.domainsAlreadyExists(true);
+      $scope.needWwwDomain = () =>
+        !$scope.domainContainsWildcard() &&
+        $scope.selected.domainWwwNeeded &&
+        $scope.selected.domain !== $scope.selected.domainWww &&
+        !$scope.domainsAlreadyExists(true);
 
-      $scope.hasConflicts = () => $scope.model.conflicts && $scope.model.conflicts.length;
+      $scope.hasConflicts = () =>
+        $scope.model.conflicts && $scope.model.conflicts.length;
 
       $scope.previousButtonHidden = () => {
         if (
-          $scope.currentActionData
-          && $scope.currentActionData.hosting
-          && $scope.currentStep === 2
+          $scope.currentActionData &&
+          $scope.currentActionData.hosting &&
+          $scope.currentStep === 2
         ) {
           return true;
         }

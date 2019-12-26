@@ -6,13 +6,12 @@ import privateCancel from './private-cancel/private-cancel.module';
 
 const moduleName = 'dedicatedServerBandwidth';
 
-angular
-  .module(moduleName, [
-    dashboard,
-    publicOrder,
-    publicCancel,
-    privateOrder,
-    privateCancel,
-  ]);
+angular.module(moduleName, [
+  dashboard,
+  publicOrder,
+  publicCancel,
+  privateOrder,
+  privateCancel,
+]);
 
 export default moduleName;

@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.nasha-partition-access.add', {
     url: '/add',
     views: {

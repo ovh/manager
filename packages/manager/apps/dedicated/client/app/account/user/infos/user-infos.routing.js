@@ -1,6 +1,5 @@
-angular
-  .module('UserAccount')
-  .config(/* @ngInject */($stateProvider) => {
+angular.module('UserAccount').config(
+  /* @ngInject */ ($stateProvider) => {
     const name = 'app.account.user.infos';
 
     $stateProvider.state(name, {
@@ -12,4 +11,5 @@ angular
         value: ['../newAccountForm'],
       },
     });
-  });
+  },
+);

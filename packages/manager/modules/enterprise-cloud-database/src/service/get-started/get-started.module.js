@@ -19,7 +19,10 @@ angular
     secureCluster,
   ])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceGetStartedComponent', enterpriseCloudDatabaseServiceGetStartedComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceGetStartedComponent',
+    enterpriseCloudDatabaseServiceGetStartedComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

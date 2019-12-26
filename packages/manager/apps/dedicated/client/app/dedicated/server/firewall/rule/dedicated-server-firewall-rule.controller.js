@@ -74,15 +74,20 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
     /* Conditions */
 
     $scope.isIpv4IcmpOrUdpFrag = function isIpv4IcmpOrUdpFrag() {
-      return $scope.rule.protocol === firewallRuleProtocols.IPV_4
-        || $scope.rule.protocol === firewallRuleProtocols.ICMP
-        || ($scope.rule.protocol === firewallRuleProtocols.UDP && $scope.rule.udpOptions.fragments);
+      return (
+        $scope.rule.protocol === firewallRuleProtocols.IPV_4 ||
+        $scope.rule.protocol === firewallRuleProtocols.ICMP ||
+        ($scope.rule.protocol === firewallRuleProtocols.UDP &&
+          $scope.rule.udpOptions.fragments)
+      );
     };
 
     $scope.isDestinationPortToDisabled = function isDestinationPortToDisabled() {
-      return $scope.rule.protocol !== firewallRuleProtocols.TCP
-        && $scope.rule.protocol !== firewallRuleProtocols.UDP
-        && $scope.rule.protocol !== firewallRuleProtocols.ICMP;
+      return (
+        $scope.rule.protocol !== firewallRuleProtocols.TCP &&
+        $scope.rule.protocol !== firewallRuleProtocols.UDP &&
+        $scope.rule.protocol !== firewallRuleProtocols.ICMP
+      );
     };
 
     /* Validator */
@@ -99,13 +104,18 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
     };
 
     $scope.isValid = function isValid() {
-      return ($scope.rule.sequence !== null
-        && $scope.rule.action !== null
-        && $scope.rule.protocol !== null
-        && ($scope.rule.source === null || $scope.rule.source === '' || $scope.rule.source.match(regex.ROUTABLE_BLOCK_OR_IP))
-        && !($scope.rule.protocol === firewallRuleProtocols.TCP
-          && $scope.rule.tcpOptions.established
-          && ($scope.rule.tcpOptions.ack || $scope.rule.tcpOptions.rst))
+      return (
+        $scope.rule.sequence !== null &&
+        $scope.rule.action !== null &&
+        $scope.rule.protocol !== null &&
+        ($scope.rule.source === null ||
+          $scope.rule.source === '' ||
+          $scope.rule.source.match(regex.ROUTABLE_BLOCK_OR_IP)) &&
+        !(
+          $scope.rule.protocol === firewallRuleProtocols.TCP &&
+          $scope.rule.tcpOptions.established &&
+          ($scope.rule.tcpOptions.ack || $scope.rule.tcpOptions.rst)
+        )
       );
     };
 
@@ -179,45 +189,75 @@ angular.module('App').controller('ServerFirewallAddRuleCtrl', [
         delete $scope.rule.protocol.udpOptions;
       }
 
-      if (protocol !== firewallRuleProtocols.TCP && protocol !== firewallRuleProtocols.UDP) {
+      if (
+        protocol !== firewallRuleProtocols.TCP &&
+        protocol !== firewallRuleProtocols.UDP
+      ) {
         delete $scope.rule.sourcePort;
         delete $scope.rule.destinationPort;
       }
 
-      Server.addFirewallRule($scope.data.block.value.ip, $scope.data.ip.ip, $scope.rule).then(
+      Server.addFirewallRule(
+        $scope.data.block.value.ip,
+        $scope.data.ip.ip,
+        $scope.rule,
+      ).then(
         (data) => {
           set(data, 'type', 'INFO');
-          $scope.setMessage($translate.instant('server_configuration_firewall_add_rule_success', { t0: $scope.server.name }), data);
+          $scope.setMessage(
+            $translate.instant(
+              'server_configuration_firewall_add_rule_success',
+              { t0: $scope.server.name },
+            ),
+            data,
+          );
         },
         (data) => {
           set(data, 'type', 'ERROR');
-          $scope.setMessage($translate.instant('server_configuration_firewall_add_rule_fail'), data.data);
+          $scope.setMessage(
+            $translate.instant('server_configuration_firewall_add_rule_fail'),
+            data.data,
+          );
         },
       );
     };
   },
 ]);
 
-angular.module('App').controller('FirewallRemoveRuleCtrl', ($scope, $translate, Server) => {
-  $scope.data = $scope.currentActionData;
+angular
+  .module('App')
+  .controller('FirewallRemoveRuleCtrl', ($scope, $translate, Server) => {
+    $scope.data = $scope.currentActionData;
 
-  $scope.removeRule = function removeRule() {
-    $scope.resetAction();
+    $scope.removeRule = function removeRule() {
+      $scope.resetAction();
 
-    Server
-      .removeFirewallRule($scope.data.block.value.ip, $scope.data.ip.ip, $scope.data.rule.sequence)
-      .then(
+      Server.removeFirewallRule(
+        $scope.data.block.value.ip,
+        $scope.data.ip.ip,
+        $scope.data.rule.sequence,
+      ).then(
         (data) => {
           set(data, 'type', 'INFO');
-          $scope.setMessage($translate.instant('server_configuration_firewall_remove_rule_success'), data);
+          $scope.setMessage(
+            $translate.instant(
+              'server_configuration_firewall_remove_rule_success',
+            ),
+            data,
+          );
         },
         (data) => {
           set(data, 'type', 'ERROR');
-          $scope.setMessage($translate.instant('server_configuration_firewall_remove_rule_fail'), data);
+          $scope.setMessage(
+            $translate.instant(
+              'server_configuration_firewall_remove_rule_fail',
+            ),
+            data,
+          );
         },
       );
-  };
-});
+    };
+  });
 
 angular.module('App').controller('ServerIpToggleFirewallCtrl', [
   '$scope',
@@ -225,7 +265,12 @@ angular.module('App').controller('ServerIpToggleFirewallCtrl', [
   'Server',
   'FIREWALL_STATUSES',
 
-  function ServerIpToggleFirewallCtrl($scope, $translate, Server, firewallStatuses) {
+  function ServerIpToggleFirewallCtrl(
+    $scope,
+    $translate,
+    Server,
+    firewallStatuses,
+  ) {
     $scope.data = $scope.currentActionData;
 
     $scope.firewallStatuses = firewallStatuses;
@@ -233,14 +278,31 @@ angular.module('App').controller('ServerIpToggleFirewallCtrl', [
     // Hack because the condition in the template wouldn't change depending on the mitigation status
     $scope.translations = {};
     if ($scope.data.ip.firewallStatus === $scope.firewallStatuses.ACTIVATED) {
-      $scope.translations.wizardTitle = $translate.instant('server_configuration_firewall_disable_title');
-      $scope.translations.wizardQuestion = $translate.instant('server_configuration_firewall_disable_question', { t0: $scope.data.ip.ip });
-    } else if ($scope.data.ip.firewallStatus === $scope.firewallStatuses.DEACTIVATED) {
-      $scope.translations.wizardTitle = $translate.instant('server_configuration_firewall_enable_title');
-      $scope.translations.wizardQuestion = $translate.instant('server_configuration_firewall_enable_question', { t0: $scope.data.ip.ip });
+      $scope.translations.wizardTitle = $translate.instant(
+        'server_configuration_firewall_disable_title',
+      );
+      $scope.translations.wizardQuestion = $translate.instant(
+        'server_configuration_firewall_disable_question',
+        { t0: $scope.data.ip.ip },
+      );
+    } else if (
+      $scope.data.ip.firewallStatus === $scope.firewallStatuses.DEACTIVATED
+    ) {
+      $scope.translations.wizardTitle = $translate.instant(
+        'server_configuration_firewall_enable_title',
+      );
+      $scope.translations.wizardQuestion = $translate.instant(
+        'server_configuration_firewall_enable_question',
+        { t0: $scope.data.ip.ip },
+      );
     } else {
-      $scope.translations.wizardTitle = $translate.instant('server_configuration_firewall_new_title');
-      $scope.translations.wizardQuestion = $translate.instant('server_configuration_firewall_new_question', { t0: $scope.data.ip.ip });
+      $scope.translations.wizardTitle = $translate.instant(
+        'server_configuration_firewall_new_title',
+      );
+      $scope.translations.wizardQuestion = $translate.instant(
+        'server_configuration_firewall_new_question',
+        { t0: $scope.data.ip.ip },
+      );
     }
 
     $scope.toggleFirewall = function toggleFirewall() {
@@ -250,7 +312,9 @@ angular.module('App').controller('ServerIpToggleFirewallCtrl', [
 
       if ($scope.data.ip.firewallStatus === $scope.firewallStatuses.ACTIVATED) {
         newStatus = $scope.firewallStatuses.DEACTIVATED;
-      } else if ($scope.data.ip.firewallStatus === $scope.firewallStatuses.DEACTIVATED) {
+      } else if (
+        $scope.data.ip.firewallStatus === $scope.firewallStatuses.DEACTIVATED
+      ) {
         newStatus = $scope.firewallStatuses.ACTIVATED;
       }
 
@@ -258,33 +322,82 @@ angular.module('App').controller('ServerIpToggleFirewallCtrl', [
         Server.createFirewall($scope.data.block.ip, $scope.data.ip.ip).then(
           (data) => {
             set(data, 'type', 'INFO');
-            $scope.setMessage($translate.instant('server_configuration_firewall_new_success', { t0: $scope.data.ip.ip }), data);
+            $scope.setMessage(
+              $translate.instant('server_configuration_firewall_new_success', {
+                t0: $scope.data.ip.ip,
+              }),
+              data,
+            );
           },
           (data) => {
             set(data, 'type', 'ERROR');
-            $scope.setMessage($translate.instant('server_configuration_firewall_new_failed', { t0: $scope.data.ip.ip }), data);
+            $scope.setMessage(
+              $translate.instant('server_configuration_firewall_new_failed', {
+                t0: $scope.data.ip.ip,
+              }),
+              data,
+            );
           },
         );
       } else {
-        Server.toggleFirewall($scope.data.block.ip, $scope.data.ip.ip, newStatus).then(
+        Server.toggleFirewall(
+          $scope.data.block.ip,
+          $scope.data.ip.ip,
+          newStatus,
+        ).then(
           (data) => {
             set(data, 'type', 'INFO');
             if (newStatus === $scope.firewallStatuses.DEACTIVATED) {
-              $scope.setMessage($translate.instant('server_configuration_firewall_disable_success', { t0: $scope.data.ip.ip }), data);
+              $scope.setMessage(
+                $translate.instant(
+                  'server_configuration_firewall_disable_success',
+                  { t0: $scope.data.ip.ip },
+                ),
+                data,
+              );
             } else if (newStatus === $scope.firewallStatuses.ACTIVATED) {
-              $scope.setMessage($translate.instant('server_configuration_firewall_enable_success', { t0: $scope.data.ip.ip }), data);
+              $scope.setMessage(
+                $translate.instant(
+                  'server_configuration_firewall_enable_success',
+                  { t0: $scope.data.ip.ip },
+                ),
+                data,
+              );
             } else {
-              $scope.setMessage($translate.instant('server_configuration_firewall_new_success', { t0: $scope.data.ip.ip }), data);
+              $scope.setMessage(
+                $translate.instant(
+                  'server_configuration_firewall_new_success',
+                  { t0: $scope.data.ip.ip },
+                ),
+                data,
+              );
             }
           },
           (data) => {
             set(data, 'type', 'ERROR');
             if (newStatus === $scope.firewallStatuses.DEACTIVATED) {
-              $scope.setMessage($translate.instant('server_configuration_firewall_disable_failed', { t0: $scope.data.ip.ip }), data);
+              $scope.setMessage(
+                $translate.instant(
+                  'server_configuration_firewall_disable_failed',
+                  { t0: $scope.data.ip.ip },
+                ),
+                data,
+              );
             } else if (newStatus === $scope.firewallStatuses.ACTIVATED) {
-              $scope.setMessage($translate.instant('server_configuration_firewall_enable_failed', { t0: $scope.data.ip.ip }), data);
+              $scope.setMessage(
+                $translate.instant(
+                  'server_configuration_firewall_enable_failed',
+                  { t0: $scope.data.ip.ip },
+                ),
+                data,
+              );
             } else {
-              $scope.setMessage($translate.instant('server_configuration_firewall_new_failed', { t0: $scope.data.ip.ip }), data);
+              $scope.setMessage(
+                $translate.instant('server_configuration_firewall_new_failed', {
+                  t0: $scope.data.ip.ip,
+                }),
+                data,
+              );
             }
           },
         );

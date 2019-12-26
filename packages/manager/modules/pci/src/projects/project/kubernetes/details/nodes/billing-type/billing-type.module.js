@@ -5,9 +5,13 @@ import routing from './billing-type.routing';
 
 const moduleName = 'ovhManagerPciProjectsProjectKubernetesNodesBillingType';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectsProjectKubernetesNodesBillingTypeComponent', component);
+  .component(
+    'pciProjectsProjectKubernetesNodesBillingTypeComponent',
+    component,
+  );
 
 export default moduleName;

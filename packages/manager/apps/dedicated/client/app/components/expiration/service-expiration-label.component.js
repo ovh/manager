@@ -1,6 +1,7 @@
 (() => {
   angular.module('directives').component('serviceExpirationLabel', {
-    templateUrl: 'components/expiration/service-expiration-label.component.html',
+    templateUrl:
+      'components/expiration/service-expiration-label.component.html',
     bindings: {
       serviceInfos: '<',
     },

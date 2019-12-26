@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.users.edit', {
     url: '/edit?userId',
     views: {
@@ -18,30 +18,44 @@ export default /* @ngInject */($stateProvider) => {
         OvhApiCloudProjectUserRole,
         projectId,
         userId,
-      ) => OvhApiCloudProjectUserRole.v6().query({
-        serviceName: projectId,
-        userId,
-      }).$promise,
+      ) =>
+        OvhApiCloudProjectUserRole.v6().query({
+          serviceName: projectId,
+          userId,
+        }).$promise,
       confirmRoles: /* @ngInject */ (
         $translate,
         goBack,
         OvhApiCloudProjectUserRole,
         projectId,
         userId,
-      ) => (rolesIds) => OvhApiCloudProjectUserRole.v6()
-        .put({
-          serviceName: projectId,
-          userId,
-        }, {
-          rolesIds,
-        }).$promise
-        .then(() => goBack(
-          $translate.instant('pci_projects_project_users_roles_edit_success'),
-        ))
-        .catch((error) => goBack(
-          $translate.instant('pci_projects_project_users_roles_edit_error', { message: get(error, 'data.message') }),
-          'error',
-        )),
+      ) => (rolesIds) =>
+        OvhApiCloudProjectUserRole.v6()
+          .put(
+            {
+              serviceName: projectId,
+              userId,
+            },
+            {
+              rolesIds,
+            },
+          )
+          .$promise.then(() =>
+            goBack(
+              $translate.instant(
+                'pci_projects_project_users_roles_edit_success',
+              ),
+            ),
+          )
+          .catch((error) =>
+            goBack(
+              $translate.instant(
+                'pci_projects_project_users_roles_edit_error',
+                { message: get(error, 'data.message') },
+              ),
+              'error',
+            ),
+          ),
     },
   });
 };

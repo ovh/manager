@@ -1,6 +1,7 @@
-export default /* @ngInject */($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.instances.instance.application-access', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state(
+    'pci.projects.project.instances.instance.application-access',
+    {
       url: '/application/access',
       views: {
         modal: {
@@ -14,8 +15,13 @@ export default /* @ngInject */($stateProvider) => {
           PciProjectsProjectInstanceService,
           projectId,
           instance,
-        ) => PciProjectsProjectInstanceService.getApplicationAccess(projectId, instance),
+        ) =>
+          PciProjectsProjectInstanceService.getApplicationAccess(
+            projectId,
+            instance,
+          ),
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

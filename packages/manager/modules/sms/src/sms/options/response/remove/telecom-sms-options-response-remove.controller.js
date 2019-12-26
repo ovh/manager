@@ -4,8 +4,15 @@ import remove from 'lodash/remove';
 export default class {
   /* @ngInject */
   constructor(
-    $q, $stateParams, $timeout, $uibModalInstance,
-    OvhApiSms, TucSmsMediator, service, index, option,
+    $q,
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    OvhApiSms,
+    TucSmsMediator,
+    service,
+    index,
+    option,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -33,33 +40,41 @@ export default class {
   }
 
   /**
-     * Remove sms response tracking options.
-     * @return {Promise}
-     */
+   * Remove sms response tracking options.
+   * @return {Promise}
+   */
   remove() {
     this.loading.removeTrackingOption = true;
     remove(
       this.model.service.smsResponse.trackingOptions,
       this.model.service.smsResponse.trackingOptions[this.model.index],
     );
-    return this.$q.all([
-      this.api.sms.edit({
-        serviceName: this.$stateParams.serviceName,
-      }, {
-        smsResponse: {
-          trackingOptions: this.model.service.smsResponse.trackingOptions,
-          responseType: this.model.service.smsResponse.responseType,
-        },
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.removeTrackingOption = false;
-      this.removed = true;
-      return this.$timeout(() => this.close(), 1000);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.edit(
+          {
+            serviceName: this.$stateParams.serviceName,
+          },
+          {
+            smsResponse: {
+              trackingOptions: this.model.service.smsResponse.trackingOptions,
+              responseType: this.model.service.smsResponse.responseType,
+            },
+          },
+        ).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.removeTrackingOption = false;
+        this.removed = true;
+        return this.$timeout(() => this.close(), 1000);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

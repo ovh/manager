@@ -6,8 +6,14 @@ import { CREDITCARD_FOOTPRINT_AMOUNT } from './constants';
 
 export default class BillingPaymentMethodAddCtrl {
   /* @ngInject */
-  constructor($translate, Alerter, ovhContacts, ovhPaymentMethod,
-    OVH_PAYMENT_METHOD_TYPE, OVH_PAYMENT_METHOD_INTEGRATION_TYPE) {
+  constructor(
+    $translate,
+    Alerter,
+    ovhContacts,
+    ovhPaymentMethod,
+    OVH_PAYMENT_METHOD_TYPE,
+    OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
+  ) {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.ovhContacts = ovhContacts;
@@ -60,7 +66,8 @@ export default class BillingPaymentMethodAddCtrl {
         }
 
         // create a new contact
-        return this.ovhContacts.createContact(billingContact)
+        return this.ovhContacts
+          .createContact(billingContact)
           .then((contact) => {
             set(postParams, 'billingContactId', contact.id);
             return postParams;
@@ -74,9 +81,12 @@ export default class BillingPaymentMethodAddCtrl {
   }
 
   onPaymentMethodIntegrationSubmitError(error) {
-    this.Alerter.error(this.$translate.instant('billing_payment_method_add_error', {
-      errorMessage: get(error, 'data.message'),
-    }), 'billing_payment_method_add_alert');
+    this.Alerter.error(
+      this.$translate.instant('billing_payment_method_add_error', {
+        errorMessage: get(error, 'data.message'),
+      }),
+      'billing_payment_method_add_alert',
+    );
   }
 
   onPaymentMethodIntegrationSuccess(paymentMethod) {
@@ -93,14 +103,17 @@ export default class BillingPaymentMethodAddCtrl {
     }
 
     if (this.addSteps.legacyBankAccount.isVisible()) {
-      return this.ovhPaymentMethod.addPaymentMethod(this.model.selectedPaymentMethodType, {
-        bic: this.model.bankAccount.bic,
-        iban: this.model.bankAccount.iban,
-        ownerAddress: this.model.billingAddress.ownerAddress,
-        ownerName: this.model.billingAddress.ownerName,
-        default: this.model.setAsDefault,
-      })
-        .then((paymentMethod) => this.onPaymentMethodIntegrationSuccess(paymentMethod))
+      return this.ovhPaymentMethod
+        .addPaymentMethod(this.model.selectedPaymentMethodType, {
+          bic: this.model.bankAccount.bic,
+          iban: this.model.bankAccount.iban,
+          ownerAddress: this.model.billingAddress.ownerAddress,
+          ownerName: this.model.billingAddress.ownerName,
+          default: this.model.setAsDefault,
+        })
+        .then((paymentMethod) =>
+          this.onPaymentMethodIntegrationSuccess(paymentMethod),
+        )
         .catch((error) => this.onPaymentMethodIntegrationSubmitError(error));
     }
 

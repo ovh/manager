@@ -61,7 +61,8 @@ export default class VpsActionService {
   monitoringSla(serviceName, state, preview) {
     return this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'vps/modal/shortcut/monitoring-sla/vps-monitoring-sla.html',
+        templateUrl:
+          'vps/modal/shortcut/monitoring-sla/vps-monitoring-sla.html',
         controller: 'VpsMonitoringSlaCtrl',
         controllerAs: '$ctrl',
         resolve: {

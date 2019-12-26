@@ -11,24 +11,20 @@ import blacklist from './blacklist';
 
 const moduleName = 'ovhManagerSmsOptionsComponent';
 
-angular.module(moduleName, [
-  'ui.router',
-  blacklist,
-  manage,
-  recredit,
-  response,
-]).config(($stateProvider) => {
-  $stateProvider.state('sms.service.options', {
-    url: '/options',
-    views: {
-      smsInnerView: {
-        template,
-        controller,
-        controllerAs: 'TelecomSmsOptionsCtrl',
+angular
+  .module(moduleName, ['ui.router', blacklist, manage, recredit, response])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.service.options', {
+      url: '/options',
+      views: {
+        smsInnerView: {
+          template,
+          controller,
+          controllerAs: 'TelecomSmsOptionsCtrl',
+        },
       },
-    },
-    translations: { value: ['.'], format: 'json' },
+      translations: { value: ['.'], format: 'json' },
+    });
   });
-});
 
 export default moduleName;

@@ -37,10 +37,15 @@ export default angular
     controller,
     controllerAs: 'FreeFax',
   })
-  .run(/* @ngInject */ ($templateCache) => {
-    // import templates required by ng-include
-    $templateCache.put('freefax/information/freefax-information.html', freeFaxInformations);
-  })
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      // import templates required by ng-include
+      $templateCache.put(
+        'freefax/information/freefax-information.html',
+        freeFaxInformations,
+      );
+    },
+  )
   .config(($stateProvider) => {
     $stateProvider.state('freefaxes.freefax', {
       url: '/:serviceName',
@@ -50,7 +55,13 @@ export default angular
       },
       resolve: {
         $title(translations, $translate, $stateParams) {
-          return $translate.instant('freefax_page_title', { name: $stateParams.serviceName }, null, null, 'escape');
+          return $translate.instant(
+            'freefax_page_title',
+            { name: $stateParams.serviceName },
+            null,
+            null,
+            'escape',
+          );
         },
       },
       component: 'ovhManagerFreefaxComponent',

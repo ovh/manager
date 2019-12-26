@@ -1,13 +1,8 @@
-
 import { ListLayoutHelper } from '@ovh-ux/ng-ovh-telecom-universe-components';
 
 export default class TelecomPacksController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    ouiDatagridService,
-  ) {
+  constructor($q, $translate, ouiDatagridService) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
   }

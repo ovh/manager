@@ -11,16 +11,15 @@ import tucTelecomTelephonyService from './service';
 
 const moduleName = 'tucTelecomTelephony';
 
-angular
-  .module(moduleName, [
-    tucTelecomTelephonyAbbreviatedNumbers,
-    tucTelecomTelephonyAccessories,
-    tucTelecomTelephonyBulkAction,
-    tucTelecomTelephonyCallsFiltering,
-    tucTelecomTelephonyNumberPlans,
-    tucTelecomTelephonyPhonebookcontact,
-    tucTelecomTelephonyScreen,
-    tucTelecomTelephonyService,
-  ]);
+angular.module(moduleName, [
+  tucTelecomTelephonyAbbreviatedNumbers,
+  tucTelecomTelephonyAccessories,
+  tucTelecomTelephonyBulkAction,
+  tucTelecomTelephonyCallsFiltering,
+  tucTelecomTelephonyNumberPlans,
+  tucTelecomTelephonyPhonebookcontact,
+  tucTelecomTelephonyScreen,
+  tucTelecomTelephonyService,
+]);
 
 export default moduleName;

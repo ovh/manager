@@ -6,19 +6,23 @@ import { PAYMENT_MEAN_TYPE_ENUM } from './payment-mean.constants';
 
 export default class OvhPaymentMeanDeferredPaymentAccount extends OvhPaymentMean {
   constructor(options = {}) {
-    super(merge(options, {
-      meanType: PAYMENT_MEAN_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT,
-    }));
+    super(
+      merge(options, {
+        meanType: PAYMENT_MEAN_TYPE_ENUM.DEFERRED_PAYMENT_ACCOUNT,
+      }),
+    );
 
     this.creationDate = options.creationDate;
     this.label = options.label;
   }
 
   toPaymentMethod() {
-    return new OvhPaymentMethod(merge(super.toPaymentMethod(), {
-      label: this.label,
-      creationDate: this.creationDate,
-      original: this,
-    }));
+    return new OvhPaymentMethod(
+      merge(super.toPaymentMethod(), {
+        label: this.label,
+        creationDate: this.creationDate,
+        original: this,
+      }),
+    );
   }
 }

@@ -1,6 +1,13 @@
 export default class ExchangeRemoveResourceCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangeResources, navigation, messaging, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangeResources,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -28,13 +35,17 @@ export default class ExchangeRemoveResourceCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_RESOURCES_remove_resource_success'),
+          this.services.$translate.instant(
+            'exchange_tab_RESOURCES_remove_resource_success',
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_RESOURCES_remove_resource_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_RESOURCES_remove_resource_failure',
+          ),
           failure,
         );
       })

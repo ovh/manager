@@ -1,12 +1,7 @@
 {
   class DedicatedCloudSecurityPolicyLogoutCtrl {
     /* @ngInject */
-    constructor(
-      $scope,
-      $stateParams,
-      $translate,
-      DedicatedCloud,
-    ) {
+    constructor($scope, $stateParams, $translate, DedicatedCloud) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -24,24 +19,39 @@
     modifyPolicyLogout() {
       this.$scope.resetAction();
 
-      return this.DedicatedCloud
-        .modifyPolicyLogout(this.$stateParams.productId, this.selectedLogoutPolicy.value)
+      return this.DedicatedCloud.modifyPolicyLogout(
+        this.$stateParams.productId,
+        this.selectedLogoutPolicy.value,
+      )
         .then((data) => {
-          this.$scope.setMessage(this.$translate.instant('dedicatedCloud_configuration_SECURITY_policy_logout_success'), {
-            ...data,
-            type: 'success',
-          });
+          this.$scope.setMessage(
+            this.$translate.instant(
+              'dedicatedCloud_configuration_SECURITY_policy_logout_success',
+            ),
+            {
+              ...data,
+              type: 'success',
+            },
+          );
         })
         .catch((err) => {
-          this.$scope.setMessage(this.$translate.instant('dedicatedCloud_configuration_SECURITY_policy_logout_fail'), {
-            ...err,
-            type: 'error',
-          });
+          this.$scope.setMessage(
+            this.$translate.instant(
+              'dedicatedCloud_configuration_SECURITY_policy_logout_fail',
+            ),
+            {
+              ...err,
+              type: 'error',
+            },
+          );
         });
     }
   }
 
   angular
     .module('App')
-    .controller('DedicatedCloudSecurityPolicyLogoutCtrl', DedicatedCloudSecurityPolicyLogoutCtrl);
+    .controller(
+      'DedicatedCloudSecurityPolicyLogoutCtrl',
+      DedicatedCloudSecurityPolicyLogoutCtrl,
+    );
 }

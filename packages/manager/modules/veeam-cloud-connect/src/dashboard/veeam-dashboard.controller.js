@@ -3,8 +3,15 @@ import { REDIRECT_URLS } from '../constants';
 
 export default class VeeamCloudConnectDashboardCtrl {
   /* @ngInject */
-  constructor($stateParams, $translate, coreConfig, CucControllerHelper,
-    CucFeatureAvailabilityService, CucRegionService, VeeamCloudConnectService) {
+  constructor(
+    $stateParams,
+    $translate,
+    coreConfig,
+    CucControllerHelper,
+    CucFeatureAvailabilityService,
+    CucRegionService,
+    VeeamCloudConnectService,
+  ) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
@@ -20,33 +27,47 @@ export default class VeeamCloudConnectDashboardCtrl {
   }
 
   initLoaders() {
-    const errorHandler = (response) => this.VeeamCloudConnectService.unitOfWork.messages.push({
-      text: response.message,
-      type: 'error',
-    });
+    const errorHandler = (response) =>
+      this.VeeamCloudConnectService.unitOfWork.messages.push({
+        text: response.message,
+        type: 'error',
+      });
 
     this.configurationInfos = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getConfigurationInfos(this.serviceName),
-      successHandler: () => this.getRegion(this.configurationInfos.data.location
-        .macroRegion.code),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getConfigurationInfos(this.serviceName),
+      successHandler: () =>
+        this.getRegion(this.configurationInfos.data.location.macroRegion.code),
       errorHandler,
     });
 
     this.subscriptionInfos = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getSubscriptionInfos(this.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getSubscriptionInfos(this.serviceName),
       successHandler: () => {
         if (this.subscriptionInfos.data.isOnTrial) {
-          let message = this.$translate.instant('veeam_tiles_subscription_label_renewal_warning', { remainingDays: this.subscriptionInfos.data.subscriptionTimeRemaining });
+          let message = this.$translate.instant(
+            'veeam_tiles_subscription_label_renewal_warning',
+            {
+              remainingDays: this.subscriptionInfos.data
+                .subscriptionTimeRemaining,
+            },
+          );
           if (this.subscriptionInfos.data.subscriptionTimeRemaining < 0) {
             message = this.$translate.instant('veeam_message_product_disabled');
           }
 
           this.VeeamCloudConnectService.unitOfWork.messages.push({
             text: message,
-            type: this.subscriptionInfos.data.subscriptionTimeRemaining < 0 ? 'error' : 'warning',
+            type:
+              this.subscriptionInfos.data.subscriptionTimeRemaining < 0
+                ? 'error'
+                : 'warning',
             link: {
               type: 'action',
-              text: this.$translate.instant('veeam_tiles_subscription_label_renewal_warning_link'),
+              text: this.$translate.instant(
+                'veeam_tiles_subscription_label_renewal_warning_link',
+              ),
               action: () => this.changeOffer(),
             },
           });
@@ -56,11 +77,13 @@ export default class VeeamCloudConnectDashboardCtrl {
     });
 
     this.actions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getActions(this.$stateParams.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getActions(this.$stateParams.serviceName),
     });
 
     this.orderableOffers = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getOrderableOffers(this.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getOrderableOffers(this.serviceName),
       errorHandler,
     });
   }
@@ -70,17 +93,25 @@ export default class VeeamCloudConnectDashboardCtrl {
       changeOffer: {
         text: this.$translate.instant('veeam_common_edit'),
         callback: () => this.changeOffer(),
-        isAvailable: () => !this.actions.loading && this.actions.data.upgradeOffer.available,
+        isAvailable: () =>
+          !this.actions.loading && this.actions.data.upgradeOffer.available,
       },
       manageAutorenew: {
         text: this.$translate.instant('veeam_common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(get(REDIRECT_URLS[this.coreConfig.getRegion()], 'renew'), { serviceName: this.serviceName, serviceType: 'VEEAM_CLOUD_CONNECT' }),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(
+          get(REDIRECT_URLS[this.coreConfig.getRegion()], 'renew'),
+          { serviceName: this.serviceName, serviceType: 'VEEAM_CLOUD_CONNECT' },
+        ),
         isAvailable: () => true,
       },
       manageContact: {
         text: this.$translate.instant('veeam_common_manage'),
-        href: this.CucControllerHelper.navigation.constructor.getUrl(get(REDIRECT_URLS[this.coreConfig.getRegion()], 'contacts'), { serviceName: this.serviceName }),
-        isAvailable: () => this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
+        href: this.CucControllerHelper.navigation.constructor.getUrl(
+          get(REDIRECT_URLS[this.coreConfig.getRegion()], 'contacts'),
+          { serviceName: this.serviceName },
+        ),
+        isAvailable: () =>
+          this.CucFeatureAvailabilityService.hasFeature('CONTACTS', 'manage'),
       },
     };
   }

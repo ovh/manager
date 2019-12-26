@@ -1,6 +1,6 @@
 import defaults from 'lodash/defaults';
 
-export default function () {
+export default function() {
   const self = this;
   const allowedModes = ['mondialRelay', 'transporter'];
 
@@ -25,13 +25,19 @@ export default function () {
     });
 
     if (self.options.disableMondialRelay && self.options.disableTransporter) {
-      throw new Error('shippingModeSelection component : you cannot disable mondialRelay AND transporter modes !');
+      throw new Error(
+        'shippingModeSelection component : you cannot disable mondialRelay AND transporter modes !',
+      );
     }
 
     if (!self.selectedMode) {
-      self.selectedMode = self.options.disableMondialRelay ? 'transporter' : 'mondialRelay';
+      self.selectedMode = self.options.disableMondialRelay
+        ? 'transporter'
+        : 'mondialRelay';
     } else if (allowedModes.indexOf(self.selectedMode) === -1) {
-      throw new Error(`shippingModeSelection component : ${self.selectedMode} is not an allowed value for shippingModeSelectionMode parameter.`);
+      throw new Error(
+        `shippingModeSelection component : ${self.selectedMode} is not an allowed value for shippingModeSelectionMode parameter.`,
+      );
     }
   }
 
@@ -42,7 +48,10 @@ export default function () {
     =============================== */
 
   self.resetValues = function resetValues() {
-    if (self.selectedMode === 'mondialRelay' && !self.options.forceContactSelect) {
+    if (
+      self.selectedMode === 'mondialRelay' &&
+      !self.options.forceContactSelect
+    ) {
       self.shippingContact = null;
     } else if (self.selectedMode === 'transporter') {
       self.selectedRelay = null;
@@ -61,10 +70,9 @@ export default function () {
     checkOptions();
 
     if (self.onInitialized) {
-      self.onInitialized()
-        .finally(() => {
-          self.loading.init = false;
-        });
+      self.onInitialized().finally(() => {
+        self.loading.init = false;
+      });
     } else {
       self.loading.init = false;
     }

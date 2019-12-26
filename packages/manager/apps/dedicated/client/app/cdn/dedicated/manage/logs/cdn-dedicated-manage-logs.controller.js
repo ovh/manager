@@ -10,9 +10,16 @@ angular.module('App').controller(
 
     $onInit() {
       this.logger = new this.TailLogs({
-        source: () => this.OvhApiCdn.Dedicated().v6().logs({
-          serviceName: this.$stateParams.productId,
-        }, {}).$promise.then((logs) => logs.url),
+        source: () =>
+          this.OvhApiCdn.Dedicated()
+            .v6()
+            .logs(
+              {
+                serviceName: this.$stateParams.productId,
+              },
+              {},
+            )
+            .$promise.then((logs) => logs.url),
         delay: 2000,
       });
 

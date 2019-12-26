@@ -13,38 +13,54 @@ export default /* @ngInject */ ($sanitize) => {
   const { isObject } = angular;
   const { isString } = angular;
 
-  return function (text, target, attributes) { // eslint-disable-line func-names
+  return function htmlStringLinky(text, target, attributes) {
     const formattedText = unescape(text); // CHANGES unescape input text
     if (formattedText == null || formattedText === '') return formattedText;
-    if (!isString(formattedText)) throw linkyMinErr('notstring', 'Expected string but received: {0}', formattedText);
+    if (!isString(formattedText))
+      throw linkyMinErr(
+        'notstring',
+        'Expected string but received: {0}',
+        formattedText,
+      );
 
-    const attributesFn = isFunction(attributes) // eslint-disable-line no-nested-ternary
+    // eslint-disable-next-line no-nested-ternary
+    const attributesFn = isFunction(attributes)
       ? attributes
       : isObject(attributes)
-        ? function getAttributesObject() { return attributes; }
-        : function getEmptyAttributesObject() { return {}; };
+      ? function getAttributesObject() {
+          return attributes;
+        }
+      : function getEmptyAttributesObject() {
+          return {};
+        };
 
     let match;
     let raw = formattedText;
     const html = [];
     let url;
     let i;
-    while ((match = raw.match(LINKY_URL_REGEXP))) { // eslint-disable-line no-cond-assign
+    // eslint-disable-next-line no-cond-assign
+    while ((match = raw.match(LINKY_URL_REGEXP))) {
       // We can not end in these as they are sometimes found at the end of the sentence
-      url = match[0]; // eslint-disable-line prefer-destructuring
+      // eslint-disable-next-line prefer-destructuring
+      url = match[0];
       // if we did not match ftp/http/www/mailto then assume mailto
       if (!match[2] && !match[4]) {
         url = (match[3] ? 'http://' : 'mailto:') + url;
       }
       i = match.index;
-      addText(raw.substr(0, i)); // eslint-disable-line no-use-before-define
-      addLink(url, match[0].replace(MAILTO_REGEXP, '')); // eslint-disable-line no-use-before-define
+      // eslint-disable-next-line no-use-before-define
+      addText(raw.substr(0, i));
+      // eslint-disable-next-line no-use-before-define
+      addLink(url, match[0].replace(MAILTO_REGEXP, ''));
       raw = raw.substring(i + match[0].length);
     }
-    addText(raw); // eslint-disable-line no-use-before-define
+    // eslint-disable-next-line no-use-before-define
+    addText(raw);
     return $sanitize(html.join(''));
 
-    function addText(text) { // eslint-disable-line no-shadow
+    // eslint-disable-next-line no-shadow
+    function addText(text) {
       if (!text) {
         return;
       }
@@ -52,32 +68,26 @@ export default /* @ngInject */ ($sanitize) => {
       // CHANGES use $sanitize instead of sanitizeText
       try {
         html.push($sanitize(text));
-      } catch (error) { // eslint-disable-line no-unused-vars
+      } catch (error) {
         html.push(escape(text));
       }
     }
 
-    function addLink(url, text) { // eslint-disable-line no-shadow
+    // eslint-disable-next-line no-shadow
+    function addLink(url, text) {
       let key;
       const linkAttributes = attributesFn(url);
       html.push('<a ');
 
-      for (key in linkAttributes) { // eslint-disable-line guard-for-in,no-restricted-syntax
+      // eslint-disable-next-line guard-for-in,no-restricted-syntax
+      for (key in linkAttributes) {
         html.push(`${key}="${linkAttributes[key]}" `);
       }
 
       if (isDefined(target) && !('target' in linkAttributes)) {
-        html.push(
-          'target="',
-          target,
-          '" ',
-        );
+        html.push('target="', target, '" ');
       }
-      html.push(
-        'href="',
-        url.replace(/"/g, '&quot;'),
-        '">',
-      );
+      html.push('href="', url.replace(/"/g, '&quot;'), '">');
       addText(text);
       html.push('</a>');
     }

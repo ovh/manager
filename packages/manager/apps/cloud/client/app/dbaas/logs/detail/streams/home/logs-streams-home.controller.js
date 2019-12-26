@@ -29,7 +29,8 @@ class LogsStreamsHomeCtrl {
       loaderFunction: () => this.LogsStreamsService.getQuota(this.serviceName),
     });
     this.streams = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsService.getStreams(this.serviceName),
+      loaderFunction: () =>
+        this.LogsStreamsService.getStreams(this.serviceName),
     });
     this.quota.load();
     this.streams.load();
@@ -52,8 +53,9 @@ class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   create() {
-    this.LogsStreamsService.createStream(this.serviceName)
-      .then(() => this.initLoaders());
+    this.LogsStreamsService.createStream(this.serviceName).then(() =>
+      this.initLoaders(),
+    );
   }
 
   /**
@@ -77,10 +79,14 @@ class LogsStreamsHomeCtrl {
    */
   showDeleteConfirm(stream) {
     this.CucCloudMessage.flushChildMessage();
-    this.CucControllerHelper.modal.showDeleteModal({
-      titleText: this.$translate.instant('logs_stream_delete_title'),
-      textHtml: this.$translate.instant('logs_stream_delete_message', { stream: stream.info.title }),
-    }).then(() => this.remove(stream));
+    this.CucControllerHelper.modal
+      .showDeleteModal({
+        titleText: this.$translate.instant('logs_stream_delete_title'),
+        textHtml: this.$translate.instant('logs_stream_delete_message', {
+          stream: stream.info.title,
+        }),
+      })
+      .then(() => this.remove(stream));
   }
 
   /**
@@ -91,9 +97,10 @@ class LogsStreamsHomeCtrl {
    */
   remove(stream) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.deleteStream(this.serviceName, stream.info)
-        .then(() => this.initLoaders())
-        .finally(() => this.CucControllerHelper.scrollPageToTop()),
+      loaderFunction: () =>
+        this.LogsStreamsService.deleteStream(this.serviceName, stream.info)
+          .then(() => this.initLoaders())
+          .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.delete.load();
   }
@@ -157,4 +164,6 @@ class LogsStreamsHomeCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsHomeCtrl', LogsStreamsHomeCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsHomeCtrl', LogsStreamsHomeCtrl);

@@ -1,6 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.analytics-data-platform.details.service.terminate', {
+  $stateProvider.state(
+    'pci.projects.project.analytics-data-platform.details.service.terminate',
+    {
       url: '/terminate',
       views: {
         modal: {
@@ -9,9 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
+        serviceName: /* @ngInject */ ($transition$) =>
+          $transition$.params().serviceName,
         goBack: /* @ngInject */ (goToDetailsPage) => goToDetailsPage,
-        goToPublicCloud: /* @ngInject */ (goToPublicCloudPage) => goToPublicCloudPage,
+        goToPublicCloud: /* @ngInject */ (goToPublicCloudPage) =>
+          goToPublicCloudPage,
       },
-    });
+    },
+  );
 };

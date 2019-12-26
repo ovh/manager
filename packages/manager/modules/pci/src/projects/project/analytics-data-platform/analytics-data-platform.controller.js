@@ -5,7 +5,12 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($state, CucCloudMessage, analyticsDataPlatformService, CucRegionService) {
+  constructor(
+    $state,
+    CucCloudMessage,
+    analyticsDataPlatformService,
+    CucRegionService,
+  ) {
     this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
@@ -23,7 +28,9 @@ export default class {
   }
 
   subscribeToMessages() {
-    this.cucCloudMessage.unSubscribe('pci.projects.project.analytics-data-platform');
+    this.cucCloudMessage.unSubscribe(
+      'pci.projects.project.analytics-data-platform',
+    );
     this.messageHandler = this.cucCloudMessage.subscribe(
       'pci.projects.project.analytics-data-platform',
       { onMessage: () => this.refreshMessage() },

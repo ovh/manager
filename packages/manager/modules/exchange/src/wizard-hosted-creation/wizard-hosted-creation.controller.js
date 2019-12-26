@@ -37,24 +37,32 @@ export default class WizardHostedCreationController {
     this.$routerParams = this.Exchange.getParams();
     this.navigationState = '';
 
-    return this.fetchingIfShouldDisplayWizard()
-      .then((shouldDisplayWizard) => {
-        if (shouldDisplayWizard) {
-          this.shouldDisplayFirstStep = true;
-          this.shouldDisplaySummary = false;
-          return this.restoringCheckpoint();
-        }
+    return this.fetchingIfShouldDisplayWizard().then((shouldDisplayWizard) => {
+      if (shouldDisplayWizard) {
+        this.shouldDisplayFirstStep = true;
+        this.shouldDisplaySummary = false;
+        return this.restoringCheckpoint();
+      }
 
-        this.$rootScope.$broadcast('exchange.wizard_hosted_creation.hide');
-        return this.deletingCheckpoint();
-      });
+      this.$rootScope.$broadcast('exchange.wizard_hosted_creation.hide');
+      return this.deletingCheckpoint();
+    });
   }
 
   fetchingIfShouldDisplayWizard() {
     return this.wizardHostedCreationEmailCreation
-      .retrievingAvailableAccounts(this.$routerParams.organization, this.$routerParams.productId)
-      .then((availableAccounts) => !isEmpty(availableAccounts
-        .filter((account) => this.exchangeStates.constructor.isOk(account))))
+      .retrievingAvailableAccounts(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+      )
+      .then(
+        (availableAccounts) =>
+          !isEmpty(
+            availableAccounts.filter((account) =>
+              this.exchangeStates.constructor.isOk(account),
+            ),
+          ),
+      )
       .catch(() => false);
   }
 
@@ -70,7 +78,9 @@ export default class WizardHostedCreationController {
   }
 
   createPreferencesForCurrentServiceIfNeeded(preferences) {
-    const currentServiceHasPreferences = !isEmpty(preferences[this.$routerParams.organization]);
+    const currentServiceHasPreferences = !isEmpty(
+      preferences[this.$routerParams.organization],
+    );
 
     if (!currentServiceHasPreferences) {
       set(preferences, this.$routerParams.organization, {});
@@ -80,13 +90,16 @@ export default class WizardHostedCreationController {
   }
 
   createPreferencesForCurrentDomain(previousPreferences) {
-    const preferencesToUse = WizardHostedCreationController
-      .createOrUsePreviousPreferences(previousPreferences);
+    const preferencesToUse = WizardHostedCreationController.createOrUsePreviousPreferences(
+      previousPreferences,
+    );
     const preferencesWithCurrentService = this.createPreferencesForCurrentServiceIfNeeded(
       preferencesToUse,
     );
 
-    preferencesWithCurrentService[this.$routerParams.organization][this.domainName] = {
+    preferencesWithCurrentService[this.$routerParams.organization][
+      this.domainName
+    ] = {
       cnameToCheck: this.cnameToCheck,
       domainIsAssociatedToEmailService: this.domainIsAssociatedToEmailService,
       isAutoConfigurationMode: this.isAutoConfigurationMode,
@@ -111,7 +124,9 @@ export default class WizardHostedCreationController {
 
   scrollToBottom() {
     this.$timeout(() => {
-      document.getElementById('email-creation-main-container').scrollIntoView(false);
+      document
+        .getElementById('email-creation-main-container')
+        .scrollIntoView(false);
     });
   }
 
@@ -123,7 +138,9 @@ export default class WizardHostedCreationController {
 
   savingCheckpoint() {
     return this.retrievingCheckpoint().then((retrievedPreferences) => {
-      const preferencesToSave = this.createPreferencesForCurrentDomain(retrievedPreferences);
+      const preferencesToSave = this.createPreferencesForCurrentDomain(
+        retrievedPreferences,
+      );
 
       return this.ovhUserPref.create(PREFERENCE_CHECKPOINT, preferencesToSave);
     });
@@ -133,13 +150,15 @@ export default class WizardHostedCreationController {
     return this.retrievingCheckpoint()
       .then((preferences) => {
         if (
-          !isObject(preferences)
-          || isEmpty(preferences[this.$routerParams.organization])
+          !isObject(preferences) ||
+          isEmpty(preferences[this.$routerParams.organization])
         ) {
           return null;
         }
 
-        const firstDomainName = Object.keys(preferences[this.$routerParams.organization])[0];
+        const firstDomainName = Object.keys(
+          preferences[this.$routerParams.organization],
+        )[0];
         this.domainName = firstDomainName;
 
         return this.wizardHostedCreationDomainConfiguration
@@ -149,20 +168,29 @@ export default class WizardHostedCreationController {
             this.domainName,
           )
           .then(() => {
-            const preferenceToUse = preferences[this.$routerParams.organization][this.domainName];
+            const preferenceToUse =
+              preferences[this.$routerParams.organization][this.domainName];
 
             this.cnameToCheck = preferenceToUse.cnameToCheck;
-            this.domainIsAssociatedToEmailService = preferenceToUse.domainIsAssociatedToEmailService; // eslint-disable-line
-            this.isAutoConfigurationMode = preferenceToUse.isAutoConfigurationMode;
+            this.domainIsAssociatedToEmailService =
+              preferenceToUse.domainIsAssociatedToEmailService;
+            this.isAutoConfigurationMode =
+              preferenceToUse.isAutoConfigurationMode;
             this.mxRelay = preferenceToUse.mxRelay;
-            this.domainIsNotManagedByCurrentNIC = preferenceToUse.domainIsNotManagedByCurrentNIC;
-            this.domainIsOnlyForExchange = preferenceToUse.domainIsOnlyForExchange;
-            this.shouldDisplayFirstStep = preferenceToUse.shouldDisplayFirstStep;
+            this.domainIsNotManagedByCurrentNIC =
+              preferenceToUse.domainIsNotManagedByCurrentNIC;
+            this.domainIsOnlyForExchange =
+              preferenceToUse.domainIsOnlyForExchange;
+            this.shouldDisplayFirstStep =
+              preferenceToUse.shouldDisplayFirstStep;
             this.shouldDisplaySummary = preferenceToUse.shouldDisplaySummary;
             this.navigationState = preferenceToUse.navigationState;
-            this.domainHasBeenAssociated = preferenceToUse.domainHasBeenAssociated;
-            this.shouldDisabledDomainSelection = preferenceToUse.shouldDisabledDomainSelection;
-            this.isShowingEmailCustomization = preferenceToUse.isShowingEmailCustomization;
+            this.domainHasBeenAssociated =
+              preferenceToUse.domainHasBeenAssociated;
+            this.shouldDisabledDomainSelection =
+              preferenceToUse.shouldDisabledDomainSelection;
+            this.isShowingEmailCustomization =
+              preferenceToUse.isShowingEmailCustomization;
 
             return preferenceToUse;
           })
@@ -173,20 +201,24 @@ export default class WizardHostedCreationController {
 
   deletingCheckpoint() {
     return this.retrievingCheckpoint()
-      .then((preferences) => this.ovhUserPref.remove(PREFERENCE_CHECKPOINT).then(() => preferences))
+      .then((preferences) =>
+        this.ovhUserPref.remove(PREFERENCE_CHECKPOINT).then(() => preferences),
+      )
       .then((preferences) => {
         if (
-          !isObject(preferences)
-          || isEmpty(preferences)
-          || isEmpty(preferences[this.$routerParams.organization])
+          !isObject(preferences) ||
+          isEmpty(preferences) ||
+          isEmpty(preferences[this.$routerParams.organization])
         ) {
           return null;
         }
 
-        delete preferences[this.$routerParams.organization][this.domainName]; // eslint-disable-line
+        // eslint-disable-next-line no-param-reassign
+        delete preferences[this.$routerParams.organization][this.domainName];
 
         if (isEmpty(preferences[this.$routerParams.organization])) {
-          delete preferences[this.$routerParams.organization]; // eslint-disable-line
+          // eslint-disable-next-line no-param-reassign
+          delete preferences[this.$routerParams.organization];
         }
 
         this.domainName = null;

@@ -5,7 +5,8 @@ import routing from './terminate.routing';
 
 const moduleName = 'adpServiceTerminate';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('analyticsDataPlatformDetailsServiceTerminate', component)
   .run(/* @ngTranslationsInject:json ./translations */);

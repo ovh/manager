@@ -49,7 +49,9 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       .catch((failure) => {
         navigation.resetAction();
         messaging.writeError(
-          $translate.instant('exchange_tab_domain_diagnostic_add_field_failure'),
+          $translate.instant(
+            'exchange_tab_domain_diagnostic_add_field_failure',
+          ),
           failure,
         );
       });
@@ -79,18 +81,24 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       .then((data) => {
         if (this.services.exchangeStates.constructor.isOk(data)) {
           this.services.messaging.writeSuccess(
-            this.services.$translate.instant('exchange_tab_domain_diagnostic_add_field_success'),
+            this.services.$translate.instant(
+              'exchange_tab_domain_diagnostic_add_field_success',
+            ),
           );
         } else {
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_tab_domain_diagnostic_add_field_failure'),
+            this.services.$translate.instant(
+              'exchange_tab_domain_diagnostic_add_field_failure',
+            ),
             data,
           );
         }
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_domain_diagnostic_add_field_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_domain_diagnostic_add_field_failure',
+          ),
           {
             code: this.domain.name,
             message: failure.message,

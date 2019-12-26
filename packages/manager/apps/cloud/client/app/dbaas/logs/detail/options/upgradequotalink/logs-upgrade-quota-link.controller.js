@@ -1,6 +1,14 @@
 class logsUpgradeQuotaLinkCtrl {
-  constructor($state, $stateParams, $translate, CucControllerHelper, CucControllerModalHelper,
-    LogsConstants, LogsOfferService, LogsHelperService) {
+  constructor(
+    $state,
+    $stateParams,
+    $translate,
+    CucControllerHelper,
+    CucControllerModalHelper,
+    LogsConstants,
+    LogsOfferService,
+    LogsHelperService,
+  ) {
     this.$state = $state;
     this.$translate = $translate;
     this.serviceName = $stateParams.serviceName;
@@ -13,7 +21,9 @@ class logsUpgradeQuotaLinkCtrl {
   }
 
   $onInit() {
-    this.text = this.text || this.$translate.instant('options_upgradequotalink_increase_quota');
+    this.text =
+      this.text ||
+      this.$translate.instant('options_upgradequotalink_increase_quota');
     this.selectedOffer.load();
   }
 
@@ -49,8 +59,12 @@ class logsUpgradeQuotaLinkCtrl {
     if (this.isBasicOffer(this.selectedOffer.data)) {
       return this.LogsHelperService.showOfferUpgradeModal(this.serviceName);
     }
-    return this.$state.go('dbaas.logs.detail.options', { serviceName: this.serviceName });
+    return this.$state.go('dbaas.logs.detail.options', {
+      serviceName: this.serviceName,
+    });
   }
 }
 
-angular.module('managerApp').controller('logsUpgradeQuotaLinkCtrl', logsUpgradeQuotaLinkCtrl);
+angular
+  .module('managerApp')
+  .controller('logsUpgradeQuotaLinkCtrl', logsUpgradeQuotaLinkCtrl);

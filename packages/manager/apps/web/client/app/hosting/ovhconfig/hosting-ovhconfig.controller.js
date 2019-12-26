@@ -66,23 +66,29 @@ angular.module('App').controller(
         this.hostingPhpGuide = guides.hostingPhpConfiguration;
       });
 
-      queue.push(this.hostingService.getModels().then((apiStruct) => {
-        this.apiStruct = {
-          models: apiStruct.models,
-        };
-      }));
+      queue.push(
+        this.hostingService.getModels().then((apiStruct) => {
+          this.apiStruct = {
+            models: apiStruct.models,
+          };
+        }),
+      );
 
-      queue.push(this.hostingOvhConfigService
-        .getHistoric(this.$stateParams.productId)
-        .then((configs) => {
-          this.oldConfigs = configs;
-        }));
+      queue.push(
+        this.hostingOvhConfigService
+          .getHistoric(this.$stateParams.productId)
+          .then((configs) => {
+            this.oldConfigs = configs;
+          }),
+      );
 
-      queue.push(this.hostingOvhConfigService
-        .getCurrent(this.$stateParams.productId)
-        .then((conf) => {
-          this.currentConfig = conf;
-        }));
+      queue.push(
+        this.hostingOvhConfigService
+          .getCurrent(this.$stateParams.productId)
+          .then((conf) => {
+            this.currentConfig = conf;
+          }),
+      );
 
       return this.$q
         .all(queue)
@@ -163,7 +169,9 @@ angular.module('App').controller(
               this.$translate.instant('hosting_action_config_edit_success'),
               this.$scope.alerts.main,
             );
-            this.$scope.$emit(this.hostingOvhConfigService.events.ovhConfigNeedRefresh);
+            this.$scope.$emit(
+              this.hostingOvhConfigService.events.ovhConfigNeedRefresh,
+            );
             this.$scope.resetAction();
           })
           .catch((err) => {
@@ -181,7 +189,9 @@ angular.module('App').controller(
             this.$translate.instant('hosting_action_config_rollback_success'),
             this.$scope.alerts.main,
           );
-          this.$scope.$emit(this.hostingOvhConfigService.events.ovhConfigNeedRefresh);
+          this.$scope.$emit(
+            this.hostingOvhConfigService.events.ovhConfigNeedRefresh,
+          );
           this.$scope.resetAction();
         })
         .catch((err) => {

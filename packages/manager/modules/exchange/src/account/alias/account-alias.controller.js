@@ -26,7 +26,9 @@ export default class ExchangeAccountAliasController {
     this.aliasesParams = {};
     this.aliasMaxLimit = this.Exchange.aliasMaxLimit;
 
-    this.$scope.$on(this.Exchange.events.accountsChanged, () => this.refreshList());
+    this.$scope.$on(this.Exchange.events.accountsChanged, () =>
+      this.refreshList(),
+    );
   }
 
   getAliases({ pageSize, offset }) {
@@ -72,7 +74,11 @@ export default class ExchangeAccountAliasController {
           this.aliases.splice(i, 1, aliases.list.results[i]);
         }
 
-        for (let i = aliases.list.results.length; i < this.aliases.length; i += 1) {
+        for (
+          let i = aliases.list.results.length;
+          i < this.aliases.length;
+          i += 1
+        ) {
           this.aliases.splice(i, 1);
         }
       })
@@ -86,25 +92,36 @@ export default class ExchangeAccountAliasController {
   }
 
   hide() {
-    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, { stateName: 'hide' });
-  }
-
-  openDeletingDialog(alias) {
-    this.navigation.setAction('exchange/account/alias/remove/account-alias-remove', {
-      account: this.account,
-      alias,
+    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, {
+      stateName: 'hide',
     });
   }
 
+  openDeletingDialog(alias) {
+    this.navigation.setAction(
+      'exchange/account/alias/remove/account-alias-remove',
+      {
+        account: this.account,
+        alias,
+      },
+    );
+  }
+
   openAddingDialog() {
-    this.navigation.setAction('exchange/account/alias/add/account-alias-add', this.account);
+    this.navigation.setAction(
+      'exchange/account/alias/add/account-alias-add',
+      this.account,
+    );
   }
 
   getAddAliasTooltip() {
     if (get(this.aliases, 'length', 0) >= this.aliasMaxLimit) {
-      return this.$translate.instant('exchange_tab_ALIAS_add_alias_limit_tooltip', {
-        t0: this.aliasMaxLimit,
-      });
+      return this.$translate.instant(
+        'exchange_tab_ALIAS_add_alias_limit_tooltip',
+        {
+          t0: this.aliasMaxLimit,
+        },
+      );
     }
 
     return null;

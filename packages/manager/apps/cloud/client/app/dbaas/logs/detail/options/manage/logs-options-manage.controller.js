@@ -1,6 +1,15 @@
 class LogsOptionsManageCtrl {
-  constructor($state, $stateParams, $window, CucCloudMessage, CucControllerHelper,
-    LogsOptionsService, LogsOptionsManageService, CucCurrencyService, CucOrderHelperService) {
+  constructor(
+    $state,
+    $stateParams,
+    $window,
+    CucCloudMessage,
+    CucControllerHelper,
+    LogsOptionsService,
+    LogsOptionsManageService,
+    CucCurrencyService,
+    CucOrderHelperService,
+  ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$window = $window;
@@ -17,31 +26,38 @@ class LogsOptionsManageCtrl {
 
   initLoaders() {
     this.getManagedOptions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsService.getManagedOptions(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsService.getManagedOptions(this.serviceName),
     });
 
     this.getAllDashboards = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsManageService.getAllDashboards(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsManageService.getAllDashboards(this.serviceName),
     });
 
     this.getAllStreams = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsManageService.getAllStreams(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsManageService.getAllStreams(this.serviceName),
     });
 
     this.getAllIndices = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsManageService.getAllIndices(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsManageService.getAllIndices(this.serviceName),
     });
 
     this.getAllAliases = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsManageService.getAllAliases(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsManageService.getAllAliases(this.serviceName),
     });
 
     this.getAllRoles = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsManageService.getAllRoles(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsManageService.getAllRoles(this.serviceName),
     });
 
     this.getAllInputs = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsManageService.getAllInputs(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsManageService.getAllInputs(this.serviceName),
     });
 
     this.getManagedOptions.load();
@@ -55,14 +71,16 @@ class LogsOptionsManageCtrl {
 
   terminateOption(option) {
     this.removeOption = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsService.terminateOption(this.serviceName, option),
+      loaderFunction: () =>
+        this.LogsOptionsService.terminateOption(this.serviceName, option),
     });
   }
 
   overview(info) {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/options/manage/overview/logs-options-overview.html',
+        templateUrl:
+          'app/dbaas/logs/detail/options/manage/overview/logs-options-overview.html',
         controller: 'LogsOptionsManageOverviewCtrl',
         controllerAs: 'ctrl',
         resolve: {
@@ -80,13 +98,12 @@ class LogsOptionsManageCtrl {
 
   deactivate(option) {
     this.CucCloudMessage.flushChildMessage();
-    this.LogsOptionsService.terminateModal(
-      option,
-    ).then(() => {
+    this.LogsOptionsService.terminateModal(option).then(() => {
       this.delete = this.CucControllerHelper.request.getHashLoader({
-        loaderFunction: () => this.LogsOptionsService.terminateOption(this.serviceName, option)
-          .then(() => this.initLoaders())
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+        loaderFunction: () =>
+          this.LogsOptionsService.terminateOption(this.serviceName, option)
+            .then(() => this.initLoaders())
+            .finally(() => this.CucControllerHelper.scrollPageToTop()),
       });
       this.delete.load();
     });
@@ -103,4 +120,6 @@ class LogsOptionsManageCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsOptionsManageCtrl', LogsOptionsManageCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsOptionsManageCtrl', LogsOptionsManageCtrl);

@@ -8,8 +8,13 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(analyticsDataPlatformService, CucControllerHelper,
-    CucCloudMessage, CucServiceHelper, CucCloudPoll) {
+  constructor(
+    analyticsDataPlatformService,
+    CucControllerHelper,
+    CucCloudMessage,
+    CucServiceHelper,
+    CucCloudPoll,
+  ) {
     this.CucCloudPoll = CucCloudPoll;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.ANALYTICS_DATA_PLATFORM_STATUS_MAP = ANALYTICS_DATA_PLATFORM_STATUS_MAP;
@@ -31,7 +36,9 @@ export default class {
   }
 
   subscribeToMessages() {
-    this.cucCloudMessage.unSubscribe('pci.projects.project.analytics-data-platform.details.progress');
+    this.cucCloudMessage.unSubscribe(
+      'pci.projects.project.analytics-data-platform.details.progress',
+    );
     this.messageHandler = this.cucCloudMessage.subscribe(
       'pci.projects.project.analytics-data-platform.details.progress',
       { onMessage: () => this.refreshMessage() },
@@ -59,21 +66,27 @@ export default class {
    * @returns promise which will be resolved to operation object
    */
   handleOperation(serviceName) {
-    return this.analyticsDataPlatformService.getDeploymentStatus(serviceName)
+    return this.analyticsDataPlatformService
+      .getDeploymentStatus(serviceName)
       .then(
         (tasks) => {
           const deploymentSuccessful = reduce(
             tasks,
-            (deploySuccessful, task) => deploySuccessful
-              && (task.status === ANALYTICS_DATA_PLATFORM_STATUS.SUCCEEDED),
+            (deploySuccessful, task) =>
+              deploySuccessful &&
+              task.status === ANALYTICS_DATA_PLATFORM_STATUS.SUCCEEDED,
             true,
           );
-          return (deploymentSuccessful
+          return deploymentSuccessful
             ? this.goToServicePage(serviceName)
-            : this.cucServiceHelper.errorHandler('analytics_data_platform_tracking_progress_deploy_error')()
-          );
+            : this.cucServiceHelper.errorHandler(
+                'analytics_data_platform_tracking_progress_deploy_error',
+              )();
         },
-        () => this.cucServiceHelper.errorHandler('analytics_data_platform_tracking_progress_deploy_error')(),
+        () =>
+          this.cucServiceHelper.errorHandler(
+            'analytics_data_platform_tracking_progress_deploy_error',
+          )(),
         (tasks) => {
           this.calculateGlobalProgress(tasks);
           this.progress = tasks;

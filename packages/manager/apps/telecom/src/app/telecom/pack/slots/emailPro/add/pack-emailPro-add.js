@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/xdsl-email/add',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom/pack/slots/emailPro/add/pack-emailPro-add.html',
+        templateUrl:
+          'app/telecom/pack/slots/emailPro/add/pack-emailPro-add.html',
         controller: 'PackEmailProAddCtrl',
         controllerAs: '$ctrl',
       },

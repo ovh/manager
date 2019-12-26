@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/statistics',
     views: {
       'aliasInnerView@telecom.telephony.billingAccount.alias': {
-        templateUrl: 'app/telecom/telephony/alias/statistics/telecom-telephony-alias-statistics.html',
+        templateUrl:
+          'app/telecom/telephony/alias/statistics/telecom-telephony-alias-statistics.html',
         controller: 'TelecomTelephonyAliasStatisticsCtrl',
         controllerAs: '$ctrl',
       },

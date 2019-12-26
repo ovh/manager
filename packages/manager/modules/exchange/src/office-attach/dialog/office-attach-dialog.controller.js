@@ -59,7 +59,8 @@ export default class OfficeAttachDialogCtrl {
     this.$scope.loadSelectedAccounts = () => this.loadSelectedAccounts();
 
     this.$scope.loading = this.loading;
-    this.$scope.retrieveAccounts = (count, offset) => this.retrieveAccounts(count, offset);
+    this.$scope.retrieveAccounts = (count, offset) =>
+      this.retrieveAccounts(count, offset);
     this.$scope.isStep1Valid = this.isStep1Valid;
     this.$scope.isStep2Valid = () => this.isStep2Valid();
 
@@ -82,9 +83,9 @@ export default class OfficeAttachDialogCtrl {
 
     let displayName = `${this.exchange.displayName} Office`;
     if (
-      this.exchange.displayName.match(/.*hosted.*/i)
-      || this.exchange.displayName.match(/.*exchange.*/i)
-      || this.exchange.displayName.match(/.*private.*/i)
+      this.exchange.displayName.match(/.*hosted.*/i) ||
+      this.exchange.displayName.match(/.*exchange.*/i) ||
+      this.exchange.displayName.match(/.*private.*/i)
     ) {
       displayName = this.exchange.displayName
         .replace(/hosted/i, 'Office')
@@ -96,7 +97,11 @@ export default class OfficeAttachDialogCtrl {
     const accountsToSave = [];
 
     forEach(this.selectedAccounts, (alreadyKnownAccount) => {
-      if (!alreadyKnownAccounts.includes(alreadyKnownAccount.primaryEmailDisplayName)) {
+      if (
+        !alreadyKnownAccounts.includes(
+          alreadyKnownAccount.primaryEmailDisplayName,
+        )
+      ) {
         alreadyKnownAccounts.push(alreadyKnownAccount.primaryEmailDisplayName);
         accountsToSave.push(alreadyKnownAccount);
       }
@@ -151,12 +156,16 @@ export default class OfficeAttachDialogCtrl {
       quantity: 1,
     }));
 
-    this.User.getUrlOfEndsWithSubsidiary('express_order').then((expressOrderUrl) => {
-      this.$window.open(
-        `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(answer)}`,
-        '_blank',
-      );
-    });
+    this.User.getUrlOfEndsWithSubsidiary('express_order').then(
+      (expressOrderUrl) => {
+        this.$window.open(
+          `${expressOrderUrl}#/new/express/resume?products=${JSURL.stringify(
+            answer,
+          )}`,
+          '_blank',
+        );
+      },
+    );
   }
 
   onSearchValueChange() {
@@ -164,16 +173,27 @@ export default class OfficeAttachDialogCtrl {
   }
 
   setFilter() {
-    this.$scope.$broadcast('paginationServerSide.loadPage', 1, 'officeAttachTable');
+    this.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'officeAttachTable',
+    );
   }
 
   step1IsValid() {
-    this.$scope.isStep1Valid = this.numberOfSelectedCheckboxes <= this.maxNumberOfAccounts
-      && this.numberOfSelectedCheckboxes > 0;
+    this.$scope.isStep1Valid =
+      this.numberOfSelectedCheckboxes <= this.maxNumberOfAccounts &&
+      this.numberOfSelectedCheckboxes > 0;
   }
 
   onWizardLoad() {
-    return this.Exchange.getAccounts(this.maxNumberOfAccounts, 0, this.searchValue, false, null)
+    return this.Exchange.getAccounts(
+      this.maxNumberOfAccounts,
+      0,
+      this.searchValue,
+      false,
+      null,
+    )
       .then((accounts) => {
         let i = 0;
 
@@ -205,7 +225,13 @@ export default class OfficeAttachDialogCtrl {
 
     this.updateAccounts(null);
 
-    return this.Exchange.getAccounts(count, offset, this.searchValue, false, filterType)
+    return this.Exchange.getAccounts(
+      count,
+      offset,
+      this.searchValue,
+      false,
+      filterType,
+    )
       .then((accounts) => {
         this.updateAccounts(accounts);
       })
@@ -230,7 +256,8 @@ export default class OfficeAttachDialogCtrl {
       );
       this.selectedAccounts = this.selectedAccounts.concat(
         accounts.list.results.filter(
-          (account) => !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
+          (account) =>
+            !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
         ),
       );
     }
@@ -244,17 +271,20 @@ export default class OfficeAttachDialogCtrl {
         (account) => account.primaryEmailDisplayName,
       );
       const selectedAccountsCurrentBeingDisplayed = this.selectedAccounts.filter(
-        (currentSelectedAccount) => currentDisplayedAccountEmailAddresses.includes(
-          currentSelectedAccount.primaryEmailDisplayName,
-        ),
+        (currentSelectedAccount) =>
+          currentDisplayedAccountEmailAddresses.includes(
+            currentSelectedAccount.primaryEmailDisplayName,
+          ),
       );
 
-      const currentlySelectedAccountsEmailAddresses = Object.keys(this.selectedCheckboxes).filter(
-        (key) => this.selectedCheckboxes[key],
-      );
+      const currentlySelectedAccountsEmailAddresses = Object.keys(
+        this.selectedCheckboxes,
+      ).filter((key) => this.selectedCheckboxes[key]);
       const currentlyDislayedAccountsThatAreSelected = this.accounts.list.results.filter(
-        (account) => currentlySelectedAccountsEmailAddresses
-          .includes(account.primaryEmailDisplayName),
+        (account) =>
+          currentlySelectedAccountsEmailAddresses.includes(
+            account.primaryEmailDisplayName,
+          ),
       );
 
       const alreadyPresentAccounts = currentlyDislayedAccountsThatAreSelected.map(
@@ -262,7 +292,8 @@ export default class OfficeAttachDialogCtrl {
       );
       this.selectedAccounts = currentlyDislayedAccountsThatAreSelected.concat(
         selectedAccountsCurrentBeingDisplayed.filter(
-          (account) => !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
+          (account) =>
+            !alreadyPresentAccounts.includes(account.primaryEmailDisplayName),
         ),
       );
 
@@ -271,11 +302,14 @@ export default class OfficeAttachDialogCtrl {
       ).filter((key) => !this.selectedCheckboxes[key]);
 
       this.selectedAccounts = this.selectedAccounts.filter(
-        (account) => !currentlyNotSelectedAccountsEmailAddresses
-          .includes(account.primaryEmailDisplayName),
+        (account) =>
+          !currentlyNotSelectedAccountsEmailAddresses.includes(
+            account.primaryEmailDisplayName,
+          ),
       );
 
-      this.numberOfSelectedCheckboxes = currentlySelectedAccountsEmailAddresses.length;
+      this.numberOfSelectedCheckboxes =
+        currentlySelectedAccountsEmailAddresses.length;
       this.step1IsValid();
     }
   }

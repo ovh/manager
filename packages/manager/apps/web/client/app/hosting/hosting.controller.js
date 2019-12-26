@@ -125,40 +125,47 @@ export default class {
 
     this.$scope.userInfos = {};
 
-    this.$scope.getUserInfos = () => this.User.getUser()
-      .then((user) => {
-        this.$scope.userInfos = user;
-      })
-      .catch((err) => this.$q.reject(err));
+    this.$scope.getUserInfos = () =>
+      this.User.getUser()
+        .then((user) => {
+          this.$scope.userInfos = user;
+        })
+        .catch((err) => this.$q.reject(err));
 
-    this.$scope.isAdminPrivateDb = (privateDb) => this.$scope
-      .getUserInfos()
-      .then(() => this.PrivateDatabase.getServiceInfos(privateDb))
-      .then((privateDbInfo) => some(
-        [
-          privateDbInfo.contactBilling,
-          privateDbInfo.contactTech,
-          privateDbInfo.contactAdmin,
-        ],
-        (contactName) => this.$scope.userInfos.nichandle === contactName,
-      ))
-      .catch((err) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('common_serviceinfos_error', { t0: privateDb }),
-          err,
-          this.$scope.alerts.main,
-        );
-        return false;
-      });
+    this.$scope.isAdminPrivateDb = (privateDb) =>
+      this.$scope
+        .getUserInfos()
+        .then(() => this.PrivateDatabase.getServiceInfos(privateDb))
+        .then((privateDbInfo) =>
+          some(
+            [
+              privateDbInfo.contactBilling,
+              privateDbInfo.contactTech,
+              privateDbInfo.contactAdmin,
+            ],
+            (contactName) => this.$scope.userInfos.nichandle === contactName,
+          ),
+        )
+        .catch((err) => {
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('common_serviceinfos_error', {
+              t0: privateDb,
+            }),
+            err,
+            this.$scope.alerts.main,
+          );
+          return false;
+        });
 
     this.$scope.editDisplayName = () => {
-      this.$scope.newDisplayName.value = this.$scope.hosting.displayName
-        || this.$scope.hosting.serviceName;
+      this.$scope.newDisplayName.value =
+        this.$scope.hosting.displayName || this.$scope.hosting.serviceName;
       this.$scope.edit.active = true;
     };
 
     this.$scope.saveDisplayName = () => {
-      const displayName = this.$scope.newDisplayName.value || this.$scope.hosting.serviceName;
+      const displayName =
+        this.$scope.newDisplayName.value || this.$scope.hosting.serviceName;
       this.Hosting.updateHosting(this.$stateParams.productId, {
         body: {
           displayName,
@@ -252,13 +259,14 @@ export default class {
         databaseCreationCapabilitiesPDB: null,
       };
 
-      this.HostingDatabase.getPrivateDatabaseCapabilities(this.$stateParams.productId)
-        .then((privateDbCapabilities) => {
-          this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude = this.$scope.hosting
-            .offerCapabilities.privateDatabases.length;
-          this.$scope.hosting.sqlPriveInfo.nbDataBaseActive = this.$scope.hosting
-            .sqlPriveInfo.nbDataBaseInclude - privateDbCapabilities.length;
-        });
+      this.HostingDatabase.getPrivateDatabaseCapabilities(
+        this.$stateParams.productId,
+      ).then((privateDbCapabilities) => {
+        this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude = this.$scope.hosting.offerCapabilities.privateDatabases.length;
+        this.$scope.hosting.sqlPriveInfo.nbDataBaseActive =
+          this.$scope.hosting.sqlPriveInfo.nbDataBaseInclude -
+          privateDbCapabilities.length;
+      });
     };
 
     //---------------------------------------------
@@ -267,21 +275,27 @@ export default class {
     // Add domain
     this.$scope.$on('hostingDomain.attachDomain.start', () => {
       this.Alerter.success(
-        this.$translate.instant('hosting_tab_DOMAINS_configuration_add_success_progress'),
+        this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_add_success_progress',
+        ),
         this.$scope.alerts.main,
       );
     });
 
     this.$scope.$on('hostingDomain.attachDomain.done', () => {
       this.Alerter.success(
-        this.$translate.instant('hosting_tab_DOMAINS_configuration_add_success_finish'),
+        this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_add_success_finish',
+        ),
         this.$scope.alerts.main,
       );
     });
 
     this.$scope.$on('hostingDomain.attachDomain.error', (event, err) => {
       this.Alerter.alertFromSWS(
-        this.$translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
+        this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_add_failure',
+        ),
         get(err, 'data', err),
         this.$scope.alerts.main,
       );
@@ -290,7 +304,9 @@ export default class {
     // Modify domain
     this.$scope.$on('hostingDomain.modifyDomain.start', () => {
       this.Alerter.success(
-        this.$translate.instant('hosting_tab_DOMAINS_configuration_modify_success_progress'),
+        this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_modify_success_progress',
+        ),
         this.$scope.alerts.main,
       );
     });
@@ -298,7 +314,9 @@ export default class {
     this.$scope.$on('hostingDomain.modifyDomain.done', () => {
       this.$scope.$broadcast('paginationServerSide.reload');
       this.Alerter.success(
-        this.$translate.instant('hosting_tab_DOMAINS_configuration_modify_success_finish'),
+        this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_modify_success_finish',
+        ),
         this.$scope.alerts.main,
       );
     });
@@ -306,7 +324,9 @@ export default class {
     this.$scope.$on('hostingDomain.modifyDomain.error', (err) => {
       this.$scope.$broadcast('paginationServerSide.reload');
       this.Alerter.alertFromSWS(
-        this.$translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
+        this.$translate.instant(
+          'hosting_tab_DOMAINS_configuration_modify_failure',
+        ),
         get(err, 'data', err),
         this.$scope.alerts.main,
       );
@@ -316,52 +336,66 @@ export default class {
       this.HostingDomain.killAllPolling();
     });
 
-    this.$scope.$on(this.Hosting.events.dashboardRefresh, () => this.loadHosting());
+    this.$scope.$on(this.Hosting.events.dashboardRefresh, () =>
+      this.loadHosting(),
+    );
 
     this.loadHosting();
 
     // Tabs
     this.defaultTab = 'GENERAL_INFORMATIONS';
-    this.tabs = ['GENERAL_INFORMATIONS', 'MULTISITE', 'MODULE', 'FTP', 'DATABASE', 'TASK'];
+    this.tabs = [
+      'GENERAL_INFORMATIONS',
+      'MULTISITE',
+      'MODULE',
+      'FTP',
+      'DATABASE',
+      'TASK',
+    ];
     this.$scope.displayTabs = { cron: true, databases: true, modules: true };
 
     this.setSelectedTab = this.setSelectedTab.bind(this);
 
-    if (this.$stateParams.tab
-      && this.tabs.indexOf(
-        isString(this.$stateParams.tab)
-        && this.$stateParams.tab.toUpperCase(),
-      ) !== -1) {
-      this.setSelectedTab(isString(this.$stateParams.tab)
-        && this.$stateParams.tab.toUpperCase());
+    if (
+      this.$stateParams.tab &&
+      this.tabs.indexOf(
+        isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase(),
+      ) !== -1
+    ) {
+      this.setSelectedTab(
+        isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase(),
+      );
     } else {
       this.setSelectedTab(this.defaultTab);
     }
 
-    return this.$q.all({
-      hosting: this.Hosting.getSelected(this.$stateParams.productId),
-      user: this.User.getUser(),
-    })
-      .then(({ hosting, user }) => (isEmpty(hosting.offer)
-        ? this.$q.when({ hosting, user })
-        : this.$q.all({
-          indys: this.HostingIndy.getIndys(this.$stateParams.productId),
-          freedoms: this.HostingFreedom.getFreedoms(
-            this.$stateParams.productId,
-            { forceRefresh: false },
-          ),
-          hosting,
-          user,
-        })))
-      .then(({
-        indys, freedoms, hosting, user,
-      }) => {
+    return this.$q
+      .all({
+        hosting: this.Hosting.getSelected(this.$stateParams.productId),
+        user: this.User.getUser(),
+      })
+      .then(({ hosting, user }) =>
+        isEmpty(hosting.offer)
+          ? this.$q.when({ hosting, user })
+          : this.$q.all({
+              indys: this.HostingIndy.getIndys(this.$stateParams.productId),
+              freedoms: this.HostingFreedom.getFreedoms(
+                this.$stateParams.productId,
+                { forceRefresh: false },
+              ),
+              hosting,
+              user,
+            }),
+      )
+      .then(({ indys, freedoms, hosting, user }) => {
         this.tabMenu = {
           title: this.$translate.instant('navigation_more'),
           items: [
             {
               label: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS'),
-              text: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_desc'),
+              text: this.$translate.instant(
+                'hosting_tab_AUTOMATED_EMAILS_desc',
+              ),
               target: 'AUTOMATED_EMAILS',
               type: 'SWITCH_TABS',
             },
@@ -393,7 +427,8 @@ export default class {
             label: this.$translate.instant('hosting_tab_USER_LOGS'),
             target: 'USER_LOGS',
             type: 'SWITCH_TABS',
-          }]);
+          },
+        ]);
 
         if (!hosting.isCloudWeb) {
           this.tabMenu.items.push({
@@ -442,98 +477,119 @@ export default class {
   }
 
   loadOvhConfig() {
-    this.HostingOvhConfig.getCurrent(this.$stateParams.productId).then((ovhConfig) => {
-      this.$scope.ovhConfig = merge(ovhConfig, {
-        taskPending: get(this.$scope.ovhConfig, 'taskPending', false),
-        taskPendingError: get(this.$scope.ovhConfig, 'taskPendingError', false),
-      });
-
-      this.$scope.phpVersionSupport = find(
-        this.$scope.hosting.phpVersions,
-        (version) => {
-          if (version.version.indexOf('.') === -1) {
-            version.version = `${version.version}.0`; // eslint-disable-line no-param-reassign
-          }
-
-          return version.version === this.$scope.ovhConfig.engineVersion;
-        },
-      );
-
-      this.HostingTask.getPending(this.$stateParams.productId)
-        .then((tasks) => {
-          let queue;
-          if (tasks && tasks.length > 0) {
-            const taskPendingMessage = this.$translate.instant(`hosting_global_php_version_pending_task_${tasks[0].function.replace(
-              /ovhConfig\//,
-              '',
-            )}`);
-            set(
-              this.$scope.ovhConfig,
-              'taskPending',
-              taskPendingMessage
-                || this.$translate.instant('hosting_global_php_version_pending_task_common'),
-            );
-
-            queue = map(
-              tasks,
-              (task) => this.HostingTask
-                .poll(this.$stateParams.productId, task)
-                .catch(() => {
-                  set(this.$scope.ovhConfig, 'taskPendingError', false);
-                }),
-            );
-
-            this.$q.all(queue).then(() => {
-              this.loadOvhConfig();
-            });
-          } else {
-            set(this.$scope.ovhConfig, 'taskPending', false);
-          }
-        })
-        .catch(() => {
-          set(this.$scope.ovhConfig, 'taskPending', false);
+    this.HostingOvhConfig.getCurrent(this.$stateParams.productId).then(
+      (ovhConfig) => {
+        this.$scope.ovhConfig = merge(ovhConfig, {
+          taskPending: get(this.$scope.ovhConfig, 'taskPending', false),
+          taskPendingError: get(
+            this.$scope.ovhConfig,
+            'taskPendingError',
+            false,
+          ),
         });
 
-      this.HostingTask.getError(this.$stateParams.productId)
-        .then((tasks) => {
-          if (this.$scope.ovhConfig) {
+        this.$scope.phpVersionSupport = find(
+          this.$scope.hosting.phpVersions,
+          (version) => {
+            if (version.version.indexOf('.') === -1) {
+              // eslint-disable-next-line no-param-reassign
+              version.version = `${version.version}.0`;
+            }
+
+            return version.version === this.$scope.ovhConfig.engineVersion;
+          },
+        );
+
+        this.HostingTask.getPending(this.$stateParams.productId)
+          .then((tasks) => {
+            let queue;
             if (tasks && tasks.length > 0) {
-              const taskErrorMessage = this.$translate.instant(`hosting_global_php_version_pending_task_error_${tasks[0].function.replace(
-                /ovhConfig\//,
-                '',
-              )}`);
+              const taskPendingMessage = this.$translate.instant(
+                `hosting_global_php_version_pending_task_${tasks[0].function.replace(
+                  /ovhConfig\//,
+                  '',
+                )}`,
+              );
               set(
                 this.$scope.ovhConfig,
-                'taskPendingError',
-                taskErrorMessage
-                  || this.$translate.instant('hosting_global_php_version_pending_task_error_common'),
+                'taskPending',
+                taskPendingMessage ||
+                  this.$translate.instant(
+                    'hosting_global_php_version_pending_task_common',
+                  ),
               );
+
+              queue = map(tasks, (task) =>
+                this.HostingTask.poll(this.$stateParams.productId, task).catch(
+                  () => {
+                    set(this.$scope.ovhConfig, 'taskPendingError', false);
+                  },
+                ),
+              );
+
+              this.$q.all(queue).then(() => {
+                this.loadOvhConfig();
+              });
             } else {
-              set(this.$scope.ovhConfig, 'taskPendingError', false);
+              set(this.$scope.ovhConfig, 'taskPending', false);
             }
-          }
-        })
-        .catch(() => {
-          set(this.$scope.ovhConfig, 'taskPendingError', false);
-        });
-    });
+          })
+          .catch(() => {
+            set(this.$scope.ovhConfig, 'taskPending', false);
+          });
+
+        this.HostingTask.getError(this.$stateParams.productId)
+          .then((tasks) => {
+            if (this.$scope.ovhConfig) {
+              if (tasks && tasks.length > 0) {
+                const taskErrorMessage = this.$translate.instant(
+                  `hosting_global_php_version_pending_task_error_${tasks[0].function.replace(
+                    /ovhConfig\//,
+                    '',
+                  )}`,
+                );
+                set(
+                  this.$scope.ovhConfig,
+                  'taskPendingError',
+                  taskErrorMessage ||
+                    this.$translate.instant(
+                      'hosting_global_php_version_pending_task_error_common',
+                    ),
+                );
+              } else {
+                set(this.$scope.ovhConfig, 'taskPendingError', false);
+              }
+            }
+          })
+          .catch(() => {
+            set(this.$scope.ovhConfig, 'taskPendingError', false);
+          });
+      },
+    );
   }
 
   // FLUSH CDN
   checkFlushCdnState() {
     this.$scope.flushCdnState = 'check';
-    this.Hosting.checkTaskUnique(this.$stateParams.productId, 'web/flushCache').then((taskIds) => {
+    this.Hosting.checkTaskUnique(
+      this.$stateParams.productId,
+      'web/flushCache',
+    ).then((taskIds) => {
       if (taskIds && taskIds.length) {
         this.$scope.flushCdnState = 'doing';
         this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
-        this.Hosting.pollFlushCdn(this.$stateParams.productId, taskIds).then(() => {
-          this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
-          this.$scope.flushCdnState = 'ok';
-          this.Alerter.success(
-            this.$translate.instant('hosting_dashboard_cdn_flush_done_success'),
-            this.$scope.alerts.main,
-          );
-        });
+        this.Hosting.pollFlushCdn(this.$stateParams.productId, taskIds).then(
+          () => {
+            this.$rootScope.$broadcast(this.Hosting.events.tasksChanged);
+            this.$scope.flushCdnState = 'ok';
+            this.Alerter.success(
+              this.$translate.instant(
+                'hosting_dashboard_cdn_flush_done_success',
+              ),
+              this.$scope.alerts.main,
+            );
+          },
+        );
       } else {
         this.$scope.flushCdnState = 'ok';
       }
@@ -548,10 +604,16 @@ export default class {
     ).then((taskIds) => {
       if (taskIds && taskIds.length) {
         this.$scope.sqlPriveState = 'doing';
-        this.Hosting.pollSqlPrive(this.$stateParams.productId, taskIds).then(() => {
-          this.$scope.sqlPriveState = 'ok';
-          this.Alerter.success(this.$translate.instant('hosting_dashboard_database_active_success_done'));
-        });
+        this.Hosting.pollSqlPrive(this.$stateParams.productId, taskIds).then(
+          () => {
+            this.$scope.sqlPriveState = 'ok';
+            this.Alerter.success(
+              this.$translate.instant(
+                'hosting_dashboard_database_active_success_done',
+              ),
+            );
+          },
+        );
       } else {
         this.$scope.sqlPriveState = 'ok';
       }
@@ -559,9 +621,7 @@ export default class {
   }
 
   setUrchin() {
-    if (
-      ['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)
-    ) {
+    if (['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)) {
       // FOR GRAVELINE
       this.$scope.urchin = URI.expand(this.constants.urchin_gra, {
         serviceName: this.$scope.hosting.serviceName,
@@ -576,38 +636,46 @@ export default class {
   }
 
   getLinkedPrivateDatabases() {
-    return this.Hosting.getPrivateDatabasesLinked(this.$stateParams.productId)
-      .then((databases) => this.$q.all(
-        databases.map((databaseName) => this.$scope.isAdminPrivateDb(databaseName)
-          .then((isAdmin) => ({
+    return this.Hosting.getPrivateDatabasesLinked(
+      this.$stateParams.productId,
+    ).then((databases) =>
+      this.$q.all(
+        databases.map((databaseName) =>
+          this.$scope.isAdminPrivateDb(databaseName).then((isAdmin) => ({
             name: databaseName,
             isAdmin,
-          }))),
-      ));
+          })),
+        ),
+      ),
+    );
   }
 
   startPolling() {
-    this.$q.all([
-      this.HostingDomain.getTaskIds(
-        { fn: 'attachedDomain/create' },
-        this.$stateParams.productId,
-      ),
-      this.HostingDomain.getTaskIds(
-        { fn: 'attachedDomain/update' },
-        this.$stateParams.productId,
-      ),
-    ]).then((tasks) => {
-      const taskIds = union(tasks[0], tasks[1]);
-      ['attachedDomain/create', 'attachedDomain/update'].forEach((name, key) => {
-        if (tasks[key].length > 0) {
-          this.HostingDomain.pollRequest({
-            taskIds,
-            namespace: name,
-            serviceName: this.$scope.hosting.serviceName,
-          });
-        }
+    this.$q
+      .all([
+        this.HostingDomain.getTaskIds(
+          { fn: 'attachedDomain/create' },
+          this.$stateParams.productId,
+        ),
+        this.HostingDomain.getTaskIds(
+          { fn: 'attachedDomain/update' },
+          this.$stateParams.productId,
+        ),
+      ])
+      .then((tasks) => {
+        const taskIds = union(tasks[0], tasks[1]);
+        ['attachedDomain/create', 'attachedDomain/update'].forEach(
+          (name, key) => {
+            if (tasks[key].length > 0) {
+              this.HostingDomain.pollRequest({
+                taskIds,
+                namespace: name,
+                serviceName: this.$scope.hosting.serviceName,
+              });
+            }
+          },
+        );
       });
-    });
   }
 
   getAutorenewUrl(guides) {
@@ -619,67 +687,80 @@ export default class {
 
   loadHosting() {
     return this.Hosting.getSelected(this.$stateParams.productId, true)
+      .then((hosting) => {
+        this.$scope.hosting = hosting;
+        this.$scope.hosting.displayName =
+          hosting.displayName || hosting.serviceDisplayName;
+        this.$scope.isAdminPvtDb = false;
+
+        if (!hosting.isExpired && hosting.messages.length > 0) {
+          this.Alerter.error(
+            this.$translate.instant('hosting_dashboard_loading_error'),
+            this.$scope.alerts.page,
+          );
+          if (!hosting.name) {
+            return this.$q.reject();
+          }
+        }
+
+        if (!hosting.isExpired) {
+          this.checkFlushCdnState();
+          this.checkSqlPriveState();
+          this.$scope.getOfferPrivateSQLInfo();
+        }
+
+        return this.$q.all({
+          serviceInfos: this.Hosting.getServiceInfos(
+            this.$stateParams.productId,
+          ),
+          hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
+          hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
+          linkedDatabases: this.getLinkedPrivateDatabases,
+          domainOrderUrl: this.User.getUrlOf('domainOrder'),
+        });
+      })
       .then(
-        (hosting) => {
-          this.$scope.hosting = hosting;
-          this.$scope.hosting.displayName = hosting.displayName || hosting.serviceDisplayName;
-          this.$scope.isAdminPvtDb = false;
+        ({
+          serviceInfos,
+          hostingProxy,
+          hostingUrl,
+          databases,
+          domainOrderUrl,
+        }) => {
+          this.$scope.hosting.serviceInfos = serviceInfos;
+          this.$scope.hostingProxy = hostingProxy;
+          this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
+          this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
+          this.$scope.http = hostingProxy.serviceManagementAccess.http;
+          this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
+          this.$scope.isCdnFree =
+            this.Hosting.constructor.isPerfOffer(hostingProxy.offer) ||
+            this.$scope.hosting.isCloudWeb;
+          this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
+          this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
+          this.$scope.urls.hosting = hostingUrl;
+          this.$scope.privateDatabasesLinked = databases;
+          this.$scope.urlDomainOrder = domainOrderUrl;
+          this.setUrchin();
 
-          if (!hosting.isExpired && hosting.messages.length > 0) {
-            this.Alerter.error(
-              this.$translate.instant('hosting_dashboard_loading_error'),
-              this.$scope.alerts.page,
-            );
-            if (!hosting.name) {
-              return this.$q.reject();
-            }
-          }
-
-          if (!hosting.isExpired) {
-            this.checkFlushCdnState();
-            this.checkSqlPriveState();
-            this.$scope.getOfferPrivateSQLInfo();
-          }
-
-          return this.$q.all({
-            serviceInfos: this.Hosting.getServiceInfos(this.$stateParams.productId),
-            hostingProxy: this.Hosting.getHosting(this.$stateParams.productId),
-            hostingUrl: this.User.getUrlOfEndsWithSubsidiary('hosting'),
-            linkedDatabases: this.getLinkedPrivateDatabases,
-            domainOrderUrl: this.User.getUrlOf('domainOrder'),
-          });
+          return this.User.getUrlOf('guides');
         },
       )
-      .then(({
-        serviceInfos, hostingProxy, hostingUrl, databases, domainOrderUrl,
-      }) => {
-        this.$scope.hosting.serviceInfos = serviceInfos;
-        this.$scope.hostingProxy = hostingProxy;
-        this.$scope.ftp = hostingProxy.serviceManagementAccess.ftp;
-        this.$scope.ftpUrl = `ftp://${hostingProxy.serviceManagementAccess.ftp.url}:${hostingProxy.serviceManagementAccess.ftp.port}/`;
-        this.$scope.http = hostingProxy.serviceManagementAccess.http;
-        this.$scope.httpUrl = `http://${hostingProxy.serviceManagementAccess.http.url}:${hostingProxy.serviceManagementAccess.http.port}/`;
-        this.$scope.isCdnFree = this.Hosting.constructor.isPerfOffer(hostingProxy.offer)
-          || this.$scope.hosting.isCloudWeb;
-        this.$scope.ssh = hostingProxy.serviceManagementAccess.ssh;
-        this.$scope.sshUrl = `ssh://${hostingProxy.serviceManagementAccess.ssh.url}:${hostingProxy.serviceManagementAccess.ssh.port}/`;
-        this.$scope.urls.hosting = hostingUrl;
-        this.$scope.privateDatabasesLinked = databases;
-        this.$scope.urlDomainOrder = domainOrderUrl;
-        this.setUrchin();
-
-        return this.User.getUrlOf('guides');
-      })
       .then((guides) => {
         if (guides) {
-        // GLOBAL ALERT TO UPGRADE APACHE
+          // GLOBAL ALERT TO UPGRADE APACHE
           if (indexOf(this.$scope.hosting.updates, 'APACHE24') >= 0) {
             this.$timeout(() => {
               this.Alerter.alertFromSWS(
-                this.$translate.instant('hosting_global_php_version_pending_update_apache', {
-                  t0: guides.works.apache,
-                  t1: 'http://travaux.ovh.net/?do=details&id=25601',
-                }), null, this.$scope.alerts.tabs,
+                this.$translate.instant(
+                  'hosting_global_php_version_pending_update_apache',
+                  {
+                    t0: guides.works.apache,
+                    t1: 'http://travaux.ovh.net/?do=details&id=25601',
+                  },
+                ),
+                null,
+                this.$scope.alerts.tabs,
               );
             }, 100);
           }
@@ -703,14 +784,23 @@ export default class {
         }
       })
       .then(() => {
-        if (moment().isAfter(moment(this.$scope.hostingProxy.lastOvhConfigScan).add(12, 'hours'))) {
-          return this.HostingOvhConfig.ovhConfigRefresh(this.$stateParams.productId, { returnErrorKey: '' }).then((data) => data).catch((err) => {
-            if (get(err, 'status') === 403) {
-              return null;
-            }
+        if (
+          moment().isAfter(
+            moment(this.$scope.hostingProxy.lastOvhConfigScan).add(12, 'hours'),
+          )
+        ) {
+          return this.HostingOvhConfig.ovhConfigRefresh(
+            this.$stateParams.productId,
+            { returnErrorKey: '' },
+          )
+            .then((data) => data)
+            .catch((err) => {
+              if (get(err, 'status') === 403) {
+                return null;
+              }
 
-            return get(err, 'data');
-          });
+              return get(err, 'data');
+            });
         }
         return null;
       })
@@ -729,7 +819,15 @@ export default class {
   setSelectedTab(tab) {
     if (includes(this.tabs, tab)) {
       this.selectedTab = tab;
-    } else if (includes(map(this.tabMenu.items, (item) => item.type === 'SWITCH_TABS' && item.target), tab)) {
+    } else if (
+      includes(
+        map(
+          this.tabMenu.items,
+          (item) => item.type === 'SWITCH_TABS' && item.target,
+        ),
+        tab,
+      )
+    ) {
       this.selectedTab = tab;
     } else {
       this.selectedTab = this.defaultTab;

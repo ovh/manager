@@ -47,12 +47,10 @@ export default class VpsSnapshotOrderCtrl {
   ============================== */
 
   onSnapshotOrderStepperFinish() {
-    let expressOrderUrl = get(
-      ORDER_EXPRESS_BASE_URL, [
-        this.coreConfig.getRegion(),
-        this.connectedUser.ovhSubsidiary,
-      ],
-    );
+    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
+      this.coreConfig.getRegion(),
+      this.connectedUser.ovhSubsidiary,
+    ]);
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
@@ -61,14 +59,19 @@ export default class VpsSnapshotOrderCtrl {
       pricingMode: 'default',
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([expressParams])}`;
+    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+      expressParams,
+    ])}`;
 
     this.$window.open(expressOrderUrl, '_blank');
 
     this.CucCloudMessage.success({
-      textHtml: this.$translate.instant('vps_configuration_activate_snapshot_success', {
-        url: expressOrderUrl,
-      }),
+      textHtml: this.$translate.instant(
+        'vps_configuration_activate_snapshot_success',
+        {
+          url: expressOrderUrl,
+        },
+      ),
     });
 
     return this.$onInit();
@@ -84,10 +87,13 @@ export default class VpsSnapshotOrderCtrl {
     this.loading.init = true;
     this.hasInitError = false;
 
-    return this.OvhApiOrder.CartServiceOption().Vps().v6().get({
-      serviceName: this.stateVps.name,
-    }).$promise
-      .then((response) => {
+    return this.OvhApiOrder.CartServiceOption()
+      .Vps()
+      .v6()
+      .get({
+        serviceName: this.stateVps.name,
+      })
+      .$promise.then((response) => {
         // take the snapshot option from the list
         this.snapshotOption = find(response, {
           family: 'snapshot',
@@ -97,7 +103,9 @@ export default class VpsSnapshotOrderCtrl {
           this.hasInitError = true;
           return this.$q.reject({
             data: {
-              message: this.$translate.instant('vps_configuration_activate_snapshot_load_error_none'),
+              message: this.$translate.instant(
+                'vps_configuration_activate_snapshot_load_error_none',
+              ),
             },
           });
         }
@@ -105,10 +113,14 @@ export default class VpsSnapshotOrderCtrl {
         return this.snapshotOption;
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_configuration_activate_snapshot_load_error'),
-          get(error, 'data.message'),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant(
+              'vps_configuration_activate_snapshot_load_error',
+            ),
+            get(error, 'data.message'),
+          ].join(' '),
+        );
       })
       .finally(() => {
         this.loading.init = false;

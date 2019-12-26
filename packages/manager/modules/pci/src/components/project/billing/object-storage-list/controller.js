@@ -1,4 +1,4 @@
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   $q,
   $translate,
   CucCloudMessage,
@@ -13,9 +13,11 @@ export default /* @ngInject */ function (
   self.loading = false;
 
   function initUserCurrency() {
-    return OvhApiMe.v6().get().$promise.then((me) => {
-      self.currencySymbol = me.currency.symbol;
-    });
+    return OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
+        self.currencySymbol = me.currency.symbol;
+      });
   }
 
   self.$onInit = () => {
@@ -23,7 +25,12 @@ export default /* @ngInject */ function (
 
     $q.all([initUserCurrency()])
       .catch((err) => {
-        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error(
+          [
+            $translate.instant('cpb_error_message'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        );
         return $q.reject(err);
       })
       .finally(() => {
@@ -31,17 +38,27 @@ export default /* @ngInject */ function (
       });
   };
 
-  self.getStorageVolumeInfoTooltip = function getStorageVolumeInfoTooltip(storage) {
-    return $translate.instant('cpbc_object_storage_consumption_info_part1')
-      .concat($translate.instant('cpbc_object_storage_consumption_info_part2', {
-        amount: (storage.stored ? storage.stored.quantity.value : 0),
-      }));
+  self.getStorageVolumeInfoTooltip = function getStorageVolumeInfoTooltip(
+    storage,
+  ) {
+    return $translate
+      .instant('cpbc_object_storage_consumption_info_part1')
+      .concat(
+        $translate.instant('cpbc_object_storage_consumption_info_part2', {
+          amount: storage.stored ? storage.stored.quantity.value : 0,
+        }),
+      );
   };
 
-  self.getStorageBandwidthInfoTooltip = function getStorageBandwidthInfoTooltip(storage) {
-    return $translate.instant('cpbc_object_storage_output_traffic_info_part1')
-      .concat($translate.instant('cpbc_object_storage_output_traffic_info_part2', {
-        amount: storage.outgoingBandwidth.quantity.value,
-      }));
+  self.getStorageBandwidthInfoTooltip = function getStorageBandwidthInfoTooltip(
+    storage,
+  ) {
+    return $translate
+      .instant('cpbc_object_storage_output_traffic_info_part1')
+      .concat(
+        $translate.instant('cpbc_object_storage_output_traffic_info_part2', {
+          amount: storage.outgoingBandwidth.quantity.value,
+        }),
+      );
   };
 }

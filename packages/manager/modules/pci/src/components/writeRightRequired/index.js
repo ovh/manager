@@ -8,10 +8,7 @@ import directive from './directive';
 const moduleName = 'ovhManagerPciComponentsWriteRightRequired';
 
 angular
-  .module(moduleName, [
-    projectRights,
-    'ui.router',
-  ])
+  .module(moduleName, [projectRights, 'ui.router'])
   .directive('writeRightRequired', directive);
 
 export default moduleName;

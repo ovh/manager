@@ -15,7 +15,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/home',
       views: {
         logsAliases: {
-          templateUrl: 'app/dbaas/logs/detail/aliases/home/logs-aliases-home.html',
+          templateUrl:
+            'app/dbaas/logs/detail/aliases/home/logs-aliases-home.html',
           controller: 'LogsAliasesHomeCtrl',
           controllerAs: 'ctrl',
         },

@@ -10,8 +10,10 @@ import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
 import uniq from 'lodash/uniq';
 
-angular.module('managerApp')
-  .controller('TelecomTelephonyAliasPortabilityOrderCtrl',
+angular
+  .module('managerApp')
+  .controller(
+    'TelecomTelephonyAliasPortabilityOrderCtrl',
     function TelecomTelephonyAliasPortabilityOrderCtrl(
       $q,
       $scope,
@@ -29,11 +31,32 @@ angular.module('managerApp')
 
       // attributes shared by 'individual' and 'company' social reason
       const sharedAttributes = [
-        'billingAccount', 'building', 'callNumber', 'city', 'comment', 'contactName',
-        'contactNumber', 'country', 'desireDate', 'displayUniversalDirectory', 'door',
-        'executeAsSoonAsPossible', 'firstName', 'floor', 'groupNumber', 'lineToRedirectAliasTo',
-        'name', 'offer', 'socialReason', 'stair', 'streetName', 'streetNumber', 'streetNumberExtra',
-        'streetType', 'type', 'zip',
+        'billingAccount',
+        'building',
+        'callNumber',
+        'city',
+        'comment',
+        'contactName',
+        'contactNumber',
+        'country',
+        'desireDate',
+        'displayUniversalDirectory',
+        'door',
+        'executeAsSoonAsPossible',
+        'firstName',
+        'floor',
+        'groupNumber',
+        'lineToRedirectAliasTo',
+        'name',
+        'offer',
+        'socialReason',
+        'stair',
+        'streetName',
+        'streetNumber',
+        'streetNumberExtra',
+        'streetType',
+        'type',
+        'zip',
       ];
 
       function init() {
@@ -45,7 +68,9 @@ angular.module('managerApp')
           socialReason: 'individual',
           country: 'france',
           contactNumber: '',
-          translatedCountry: $translate.instant('telephony_alias_portability_order_contact_country_france'),
+          translatedCountry: $translate.instant(
+            'telephony_alias_portability_order_contact_country_france',
+          ),
           displayUniversalDirectory: false,
           numbersList: [],
           success: false,
@@ -55,7 +80,9 @@ angular.module('managerApp')
 
         self.stepsList = ['number', 'contact', 'config', 'summary'];
         self.step = 'number';
-        self.minDate = moment().add(15, 'days').toDate();
+        self.minDate = moment()
+          .add(15, 'days')
+          .toDate();
         self.order.desireDate = moment(self.minDate).toDate();
         self.desireDatePickerOpened = false;
         self.isSDA = false;
@@ -65,13 +92,21 @@ angular.module('managerApp')
           self.order.isContractsAccepted = false;
         });
 
-        $scope.$watch('PortabilityOrderCtrl.order', () => {
-          self.order.contactName = self.order.name;
-        }, true);
+        $scope.$watch(
+          'PortabilityOrderCtrl.order',
+          () => {
+            self.order.contactName = self.order.name;
+          },
+          true,
+        );
 
-        $scope.$watch('PortabilityOrderCtrl.isSDA', () => {
-          self.order.offer = self.isSDA ? 'company' : 'individual';
-        }, true);
+        $scope.$watch(
+          'PortabilityOrderCtrl.isSDA',
+          () => {
+            self.order.offer = self.isSDA ? 'company' : 'individual';
+          },
+          true,
+        );
 
         self.isSpecialNumber = false;
         self.typologies = { france: [], belgium: [] };
@@ -79,38 +114,72 @@ angular.module('managerApp')
         self.datePickerOptions = {
           minDate: self.minDate,
           dateDisabled(dateAndMode) {
-            const isBankHoliday = TucBankHolidays.checkIsBankHoliday('FR', dateAndMode.date);
-            return ((dateAndMode.mode === 'day' && (dateAndMode.date.getDay() === 0
-                  || dateAndMode.date.getDay() === 6))
-                || (isBankHoliday));
+            const isBankHoliday = TucBankHolidays.checkIsBankHoliday(
+              'FR',
+              dateAndMode.date,
+            );
+            return (
+              (dateAndMode.mode === 'day' &&
+                (dateAndMode.date.getDay() === 0 ||
+                  dateAndMode.date.getDay() === 6)) ||
+              isBankHoliday
+            );
           },
         };
 
         // fetch list of billing accounts
-        return TelephonyMediator.getAll().then((groups) => {
-          self.billingAccounts = groups;
-          self.order.billingAccount = $stateParams.billingAccount;
-        }).catch((err) => {
-          TucToast.error(get(err, 'data.message'));
-          return $q.reject(err);
-        }).then(() => OvhApiOrder.v6().schema().$promise.then((schema) => {
-          if (schema && schema.models['telephony.NumberSpecialTypologyEnum'] && schema.models['telephony.NumberSpecialTypologyEnum'].enum) {
-            const typologies = map(schema.models['telephony.NumberSpecialTypologyEnum'].enum, (typo) => ({
-              value: typo,
-              label: $translate.instant(`telephony_order_specific_typology_${typo.replace(new RegExp('^be_|fr_'), '')}_label`),
-            }));
+        return TelephonyMediator.getAll()
+          .then((groups) => {
+            self.billingAccounts = groups;
+            self.order.billingAccount = $stateParams.billingAccount;
+          })
+          .catch((err) => {
+            TucToast.error(get(err, 'data.message'));
+            return $q.reject(err);
+          })
+          .then(() =>
+            OvhApiOrder.v6()
+              .schema()
+              .$promise.then((schema) => {
+                if (
+                  schema &&
+                  schema.models['telephony.NumberSpecialTypologyEnum'] &&
+                  schema.models['telephony.NumberSpecialTypologyEnum'].enum
+                ) {
+                  const typologies = map(
+                    schema.models['telephony.NumberSpecialTypologyEnum'].enum,
+                    (typo) => ({
+                      value: typo,
+                      label: $translate.instant(
+                        `telephony_order_specific_typology_${typo.replace(
+                          new RegExp('^be_|fr_'),
+                          '',
+                        )}_label`,
+                      ),
+                    }),
+                  );
 
-            self.typologies.france = filter(typologies, (typo) => startsWith(typo.value, 'fr_'));
-            self.typologies.belgium = filter(typologies, (typo) => startsWith(typo.value, 'be_'));
-            return self.typologies;
-          }
+                  self.typologies.france = filter(typologies, (typo) =>
+                    startsWith(typo.value, 'fr_'),
+                  );
+                  self.typologies.belgium = filter(typologies, (typo) =>
+                    startsWith(typo.value, 'be_'),
+                  );
+                  return self.typologies;
+                }
 
-          TucToast.error($translate.instant('telephony_order_specific_typology_error'));
-          return $q.reject();
-        }).catch((error) => {
-          TucToast.error($translate.instant('telephony_order_specific_typology_error'));
-          return $q.reject(error);
-        }));
+                TucToast.error(
+                  $translate.instant('telephony_order_specific_typology_error'),
+                );
+                return $q.reject();
+              })
+              .catch((error) => {
+                TucToast.error(
+                  $translate.instant('telephony_order_specific_typology_error'),
+                );
+                return $q.reject(error);
+              }),
+          );
       }
 
       self.onSDATypeChange = function onSDATypeChange() {
@@ -138,14 +207,19 @@ angular.module('managerApp')
 
         // handle special number
         self.isSpecialNumber = some(
-          TELEPHONY_REPAYMENT_CONSUMPTION.specialNumberPrefix[self.order.country],
+          TELEPHONY_REPAYMENT_CONSUMPTION.specialNumberPrefix[
+            self.order.country
+          ],
           (prefix) => startsWith(number, prefix),
         );
         self.order.specialNumberCategory = self.isSpecialNumber
-          ? head(self.typologies[self.order.country]).value : null;
+          ? head(self.typologies[self.order.country]).value
+          : null;
         self.order.type = self.isSpecialNumber ? 'special' : 'landline';
 
-        self.order.translatedCountry = $translate.instant(`telephony_alias_portability_order_contact_country_${self.order.country}`);
+        self.order.translatedCountry = $translate.instant(
+          `telephony_alias_portability_order_contact_country_${self.order.country}`,
+        );
       };
 
       self.onChooseRedirectToLine = function onChooseRedirectToLine(result) {
@@ -177,7 +251,17 @@ angular.module('managerApp')
       self.goToConfigStep = function goToConfigStep() {
         self.order.addressTooLong = false;
 
-        if (`${get(self.order, 'streetName', '')}${get(self.order, 'streetNumber', '')}${get(self.order, 'streetNumberExtra', '')}${get(self.order, 'streetType', '')}`.length >= 35) {
+        if (
+          `${get(self.order, 'streetName', '')}${get(
+            self.order,
+            'streetNumber',
+            '',
+          )}${get(self.order, 'streetNumberExtra', '')}${get(
+            self.order,
+            'streetType',
+            '',
+          )}`.length >= 35
+        ) {
           self.order.addressTooLong = true;
           return false;
         }
@@ -196,12 +280,22 @@ angular.module('managerApp')
         }
         params.firstName = params.firstName || '';
 
-        if (self.isSDA && self.order.sdatype === 'select' && self.order.numbersList.length) {
-          params.listNumbers = map(self.order.numbersList, self.normalizeNumber).join(',');
+        if (
+          self.isSDA &&
+          self.order.sdatype === 'select' &&
+          self.order.numbersList.length
+        ) {
+          params.listNumbers = map(
+            self.order.numbersList,
+            self.normalizeNumber,
+          ).join(',');
         }
 
         if (self.isSpecialNumber) {
-          params.specialNumberCategory = self.order.specialNumberCategory.replace('fr_', '');
+          params.specialNumberCategory = self.order.specialNumberCategory.replace(
+            'fr_',
+            '',
+          );
         }
 
         if (params.country === 'france') {
@@ -217,9 +311,10 @@ angular.module('managerApp')
 
       self.fetchPriceAndContracts = function fetchPriceAndContracts() {
         self.step = 'summary';
-        return OvhApiOrder.Telephony().v6()
-          .getPortability(self.getOrderParams()).$promise
-          .then(({ details, contracts, prices }) => {
+        return OvhApiOrder.Telephony()
+          .v6()
+          .getPortability(self.getOrderParams())
+          .$promise.then(({ details, contracts, prices }) => {
             self.details = details;
             self.contracts = contracts;
             self.prices = prices;
@@ -233,40 +328,66 @@ angular.module('managerApp')
 
       self.submitOrder = function submitOrder() {
         self.order.isOrdering = true;
-        return OvhApiOrder.Telephony().v6().orderPortability({
-          billingAccount: self.order.billingAccount,
-        }, omit(self.getOrderParams(), 'billingAccount')).$promise.then(({ orderId, url }) => {
-          self.order.success = true;
-          self.order.url = url;
-          return OvhApiMe.Order().v6().get({
-            orderId,
-          }).$promise.then(
-            () => OvhApiMe.Order().v6().payRegisteredPaymentMean({
-              orderId,
-            }, {
-              paymentMean: 'ovhAccount',
-            }).$promise.then(() => {
-              self.order.autoPay = true;
-            }, () => {
-            // if it fails no need to reject because portablity order is a success
-            // and validation can always be done by clicking
-              self.order.autoPay = false;
-            }),
-            () => {
-              // in this case it means that nic bill and connected are not the same
-              // so display a message telling that order must be validated by clicking
-              // no need to reject because portablity order is a success
-              // and validation can always be done by clicking
-              self.order.autoPay = false;
+        return OvhApiOrder.Telephony()
+          .v6()
+          .orderPortability(
+            {
+              billingAccount: self.order.billingAccount,
             },
-          );
-        }).catch((err) => {
-          TucToast.error(`${$translate.instant('telephony_alias_portability_order_error')} ${get(err, 'data.message')}`);
-          return $q.reject(err);
-        }).finally(() => {
-          self.order.isOrdering = false;
-        });
+            omit(self.getOrderParams(), 'billingAccount'),
+          )
+          .$promise.then(({ orderId, url }) => {
+            self.order.success = true;
+            self.order.url = url;
+            return OvhApiMe.Order()
+              .v6()
+              .get({
+                orderId,
+              })
+              .$promise.then(
+                () =>
+                  OvhApiMe.Order()
+                    .v6()
+                    .payRegisteredPaymentMean(
+                      {
+                        orderId,
+                      },
+                      {
+                        paymentMean: 'ovhAccount',
+                      },
+                    )
+                    .$promise.then(
+                      () => {
+                        self.order.autoPay = true;
+                      },
+                      () => {
+                        // if it fails no need to reject because portablity order is a success
+                        // and validation can always be done by clicking
+                        self.order.autoPay = false;
+                      },
+                    ),
+                () => {
+                  // in this case it means that nic bill and connected are not the same
+                  // so display a message telling that order must be validated by clicking
+                  // no need to reject because portablity order is a success
+                  // and validation can always be done by clicking
+                  self.order.autoPay = false;
+                },
+              );
+          })
+          .catch((err) => {
+            TucToast.error(
+              `${$translate.instant(
+                'telephony_alias_portability_order_error',
+              )} ${get(err, 'data.message')}`,
+            );
+            return $q.reject(err);
+          })
+          .finally(() => {
+            self.order.isOrdering = false;
+          });
       };
 
       init();
-    });
+    },
+  );

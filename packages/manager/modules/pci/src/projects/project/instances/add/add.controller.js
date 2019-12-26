@@ -62,14 +62,19 @@ export default class PciInstancesAddController {
 
     this.defaultPrivateNetwork = {
       id: '',
-      name: this.$translate.instant('pci_projects_project_instances_add_privateNetwork_none'),
+      name: this.$translate.instant(
+        'pci_projects_project_instances_add_privateNetwork_none',
+      ),
     };
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     this.availablePrivateNetworks = [this.defaultPrivateNetwork];
   }
 
   loadMessages() {
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.instances.add', { onMessage: () => this.refreshMessages() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.instances.add',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -96,19 +101,17 @@ export default class PciInstancesAddController {
       this.defaultPrivateNetwork,
       ...sortBy(
         map(
-          filter(
-            this.privateNetworks,
-            (network) => find(
-              network.regions,
-              {
-                region: this.instance.region,
-                status: 'ACTIVE',
-              },
-            ),
+          filter(this.privateNetworks, (network) =>
+            find(network.regions, {
+              region: this.instance.region,
+              status: 'ACTIVE',
+            }),
           ),
           (privateNetwork) => ({
             ...privateNetwork,
-            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${privateNetwork.name}`,
+            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${
+              privateNetwork.name
+            }`,
           }),
         ),
         ['name'],
@@ -129,7 +132,9 @@ export default class PciInstancesAddController {
     if (this.model.image.isBackup()) {
       this.instance.imageId = this.model.image.id;
     } else {
-      this.instance.imageId = this.model.image.getIdByRegion(this.instance.region);
+      this.instance.imageId = this.model.image.getIdByRegion(
+        this.instance.region,
+      );
     }
 
     this.onFlexChange(false);
@@ -143,7 +148,10 @@ export default class PciInstancesAddController {
   }
 
   showImageNavigation() {
-    return this.model.image && (this.model.image.type !== 'linux' || this.model.sshKey);
+    return (
+      this.model.image &&
+      (this.model.image.type !== 'linux' || this.model.sshKey)
+    );
   }
 
   onInstanceFocus() {
@@ -155,25 +163,34 @@ export default class PciInstancesAddController {
 
   onInstanceChange() {
     if (get(this.selectedPrivateNetwork, 'id')) {
-      this.instance.networks = [{
-        networkId: get(this.selectedPrivateNetwork, 'id'),
-      }, {
-        networkId: get(this.publicNetwork, 'id'),
-      }];
+      this.instance.networks = [
+        {
+          networkId: get(this.selectedPrivateNetwork, 'id'),
+        },
+        {
+          networkId: get(this.publicNetwork, 'id'),
+        },
+      ];
     } else {
       this.instance.networks = [];
     }
   }
 
   generateInstanceName() {
-    if (!has(this.instance, 'name') || get(this.instance, 'name') === this.defaultInstanceName) {
+    if (
+      !has(this.instance, 'name') ||
+      get(this.instance, 'name') === this.defaultInstanceName
+    ) {
       this.defaultInstanceName = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
       this.instance.name = this.defaultInstanceName;
     }
   }
 
   onFlexChange(isFlex) {
-    this.flavor = this.model.flavorGroup.getFlavorByOsType(this.model.image.type, isFlex);
+    this.flavor = this.model.flavorGroup.getFlavorByOsType(
+      this.model.image.type,
+      isFlex,
+    );
 
     this.instance.flavorId = this.model.flavorGroup.getFlavorId(
       this.model.image.type,
@@ -184,13 +201,17 @@ export default class PciInstancesAddController {
   }
 
   isRegionAvailable(datacenter) {
-    return this.model.flavorGroup.isAvailableInRegion(datacenter.name)
-      && datacenter.isAvailable()
-      && datacenter.hasEnoughQuotaForFlavor(this.model.flavorGroup);
+    return (
+      this.model.flavorGroup.isAvailableInRegion(datacenter.name) &&
+      datacenter.isAvailable() &&
+      datacenter.hasEnoughQuotaForFlavor(this.model.flavorGroup)
+    );
   }
 
   isLocationAvailable(datacenters) {
-    return some(datacenters, (datacenter) => this.isRegionAvailable(datacenter));
+    return some(datacenters, (datacenter) =>
+      this.isRegionAvailable(datacenter),
+    );
   }
 
   isRegionActive(datacenter) {
@@ -236,15 +257,23 @@ export default class PciInstancesAddController {
       this.instance.userData = null;
     }
 
-    return this.PciProjectsProjectInstanceService
-      .save(this.projectId, this.instance, this.model.number)
+    return this.PciProjectsProjectInstanceService.save(
+      this.projectId,
+      this.instance,
+      this.model.number,
+    )
       .then(() => {
-        const message = (this.model.number === 1)
-          ? this.$translate.instant('pci_projects_project_instances_add_success_message',
-            {
-              instance: this.instance.name,
-            })
-          : this.$translate.instant('pci_projects_project_instances_add_success_multiple_message');
+        const message =
+          this.model.number === 1
+            ? this.$translate.instant(
+                'pci_projects_project_instances_add_success_message',
+                {
+                  instance: this.instance.name,
+                },
+              )
+            : this.$translate.instant(
+                'pci_projects_project_instances_add_success_multiple_message',
+              );
         return this.goBack(message);
       })
       .catch((error) => {
@@ -266,7 +295,10 @@ export default class PciInstancesAddController {
           );
         }
 
-        this.CucCloudMessage.error(message, 'pci.projects.project.instances.add');
+        this.CucCloudMessage.error(
+          message,
+          'pci.projects.project.instances.add',
+        );
       })
       .finally(() => {
         this.isLoading = false;
@@ -274,6 +306,8 @@ export default class PciInstancesAddController {
   }
 
   getBandwidthExtraCost(region) {
-    return this.cucUcentsToCurrencyFilter(get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price);
+    return this.cucUcentsToCurrencyFilter(
+      get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price,
+    );
   }
 }

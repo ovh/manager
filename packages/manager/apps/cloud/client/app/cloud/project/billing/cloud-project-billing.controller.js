@@ -13,7 +13,10 @@
 
     loadMessage() {
       this.CucCloudMessage.unSubscribe('iaas.pci-project.billing');
-      this.messageHandler = this.CucCloudMessage.subscribe('iaas.pci-project.billing', { onMessage: () => this.refreshMessage() });
+      this.messageHandler = this.CucCloudMessage.subscribe(
+        'iaas.pci-project.billing',
+        { onMessage: () => this.refreshMessage() },
+      );
     }
 
     refreshMessage() {
@@ -21,5 +24,7 @@
     }
   }
 
-  angular.module('managerApp').controller('CloudProjectBillingCtrl', CloudProjectBillingCtrl);
+  angular
+    .module('managerApp')
+    .controller('CloudProjectBillingCtrl', CloudProjectBillingCtrl);
 })();

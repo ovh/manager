@@ -6,9 +6,7 @@ import ovhManagerVpsSnapshotOrder from './order';
 const moduleName = 'ovhManagerVpsSnapshot';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsSnapshotOrder,
-  ])
+  .module(moduleName, [ovhManagerVpsSnapshotOrder])
   .component(component.name, component)
   .config(routing);
 

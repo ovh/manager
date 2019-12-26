@@ -8,10 +8,6 @@ import routing from './routing';
 
 const moduleName = 'carrierSipAppCdr';
 
-angular
-  .module(moduleName, [
-    uiRouter,
-  ])
-  .config(routing);
+angular.module(moduleName, [uiRouter]).config(routing);
 
 export default moduleName;

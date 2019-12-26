@@ -40,7 +40,9 @@ angular.module('App').controller(
 
       let getUsagePromise;
       if (this.isDelegate) {
-        getUsagePromise = this.WucEmails.getEmailDelegatedUsage(this.account.email);
+        getUsagePromise = this.WucEmails.getEmailDelegatedUsage(
+          this.account.email,
+        );
       } else {
         getUsagePromise = this.WucEmails.getEmailUsage(
           this.$stateParams.productId,
@@ -76,7 +78,9 @@ angular.module('App').controller(
 
       let updateUsagePromise;
       if (this.isDelegate) {
-        updateUsagePromise = this.WucEmails.updateDelegatedUsage(this.account.email);
+        updateUsagePromise = this.WucEmails.updateDelegatedUsage(
+          this.account.email,
+        );
       } else {
         updateUsagePromise = this.WucEmails.updateUsage(
           this.$stateParams.productId,
@@ -85,15 +89,19 @@ angular.module('App').controller(
       }
 
       return updateUsagePromise
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_update_usage_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_update_usage_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('email_tab_modal_update_usage_success'),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_modal_update_usage_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

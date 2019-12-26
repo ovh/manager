@@ -9,19 +9,21 @@ export default class {
   }
 
   getAvailableRenewPeriods(service) {
-    return map(
-      service.possibleRenewPeriod,
-      (period) => ({
-        period,
-        label: this.$translate.instant('billing_autorenew_service_update_service_period_value', { month: period }),
-      }),
-    );
+    return map(service.possibleRenewPeriod, (period) => ({
+      period,
+      label: this.$translate.instant(
+        'billing_autorenew_service_update_service_period_value',
+        { month: period },
+      ),
+    }));
   }
 
   getRenewalTypes() {
-    return map(
-      values(RENEWAL_TYPES),
-      (type) => ({ type, label: this.$translate.instant(`billing_autorenew_service_update_service_${type}`) }),
-    );
+    return map(values(RENEWAL_TYPES), (type) => ({
+      type,
+      label: this.$translate.instant(
+        `billing_autorenew_service_update_service_${type}`,
+      ),
+    }));
   }
 }

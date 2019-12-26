@@ -39,22 +39,31 @@ export default class NashaPartitionSnapshotCtrl {
     this.loading = true;
     this.schedule = {};
 
-    this.OvhApiDedicatedNasha.v6().schema()
+    this.OvhApiDedicatedNasha.v6()
+      .schema()
       .$promise.then((data) => {
         this.snapshotEnum = data.models['dedicated.storage.SnapshotEnum'].enum;
       });
 
-    this.OvhApiDedicatedNasha.Partition().Snapshot().v6().query({
-      serviceName: this.data.nashaId,
-      partitionName: this.data.partition.partitionName,
-    }).$promise.then((data) => {
-      angular.copy(data, this.snapshots.before);
-      angular.copy(data, this.snapshots.after);
-    }).catch(() => {
-      this.CucCloudMessage.error(this.$translate.instant('nasha_snapshot_loading_error'));
-    }).finally(() => {
-      this.loading = false;
-    });
+    this.OvhApiDedicatedNasha.Partition()
+      .Snapshot()
+      .v6()
+      .query({
+        serviceName: this.data.nashaId,
+        partitionName: this.data.partition.partitionName,
+      })
+      .$promise.then((data) => {
+        angular.copy(data, this.snapshots.before);
+        angular.copy(data, this.snapshots.after);
+      })
+      .catch(() => {
+        this.CucCloudMessage.error(
+          this.$translate.instant('nasha_snapshot_loading_error'),
+        );
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   isSelectionChanged() {
@@ -78,7 +87,8 @@ export default class NashaPartitionSnapshotCtrl {
     const promises = [];
     this.getAddSchedulesPromises(promises);
     this.getDeleteSchedulesPromises(promises);
-    this.$q.all(promises)
+    this.$q
+      .all(promises)
       .then((tasks) => {
         this.goToPartitionPage(
           this.$translate.instant('nasha_snapshot_set_success', {
@@ -90,37 +100,61 @@ export default class NashaPartitionSnapshotCtrl {
           },
         );
       })
-      .catch((error) => this.goToPartitionPage(
-        this.$translate.instant('nasha_snapshot_set_success_fail', {
-          partitionName: this.data.partition.partitionName,
-          message: get(error, 'data.message'),
-        }),
-        'error',
-      )).finally(() => {
+      .catch((error) =>
+        this.goToPartitionPage(
+          this.$translate.instant('nasha_snapshot_set_success_fail', {
+            partitionName: this.data.partition.partitionName,
+            message: get(error, 'data.message'),
+          }),
+          'error',
+        ),
+      )
+      .finally(() => {
         this.loading = false;
       });
   }
 
   getAddSchedulesPromises(promises) {
-    const addToSchedule = difference(this.snapshots.after, this.snapshots.before);
+    const addToSchedule = difference(
+      this.snapshots.after,
+      this.snapshots.before,
+    );
     forEach(addToSchedule, (schedule) => {
-      promises.push(this.OvhApiDedicatedNasha.Partition().Snapshot().v6().add({
-        serviceName: this.data.nashaId,
-        partitionName: this.data.partition.partitionName,
-      }, {
-        snapshotType: schedule,
-      }).$promise.then((result) => result.data.taskId));
+      promises.push(
+        this.OvhApiDedicatedNasha.Partition()
+          .Snapshot()
+          .v6()
+          .add(
+            {
+              serviceName: this.data.nashaId,
+              partitionName: this.data.partition.partitionName,
+            },
+            {
+              snapshotType: schedule,
+            },
+          )
+          .$promise.then((result) => result.data.taskId),
+      );
     });
   }
 
   getDeleteSchedulesPromises(promises) {
-    const deleteFromSchedule = difference(this.snapshots.before, this.snapshots.after);
+    const deleteFromSchedule = difference(
+      this.snapshots.before,
+      this.snapshots.after,
+    );
     forEach(deleteFromSchedule, (schedule) => {
-      promises.push(this.OvhApiDedicatedNasha.Partition().Snapshot().v6().remove({
-        serviceName: this.data.nashaId,
-        partitionName: this.data.partition.partitionName,
-        snapshotType: schedule,
-      }).$promise.then((result) => result.data.taskId));
+      promises.push(
+        this.OvhApiDedicatedNasha.Partition()
+          .Snapshot()
+          .v6()
+          .remove({
+            serviceName: this.data.nashaId,
+            partitionName: this.data.partition.partitionName,
+            snapshotType: schedule,
+          })
+          .$promise.then((result) => result.data.taskId),
+      );
     });
   }
 

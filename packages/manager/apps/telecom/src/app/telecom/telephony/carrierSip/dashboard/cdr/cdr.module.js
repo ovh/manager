@@ -9,11 +9,6 @@ import routing from './cdr.routing';
 
 const moduleName = 'ovhManagerTelecomCarrierSipDashboardCdr';
 
-angular
-  .module(moduleName, [
-    ovhManagerCarrierSip,
-    uiRouter,
-  ])
-  .config(routing);
+angular.module(moduleName, [ovhManagerCarrierSip, uiRouter]).config(routing);
 
 export default moduleName;

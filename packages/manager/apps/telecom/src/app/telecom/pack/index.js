@@ -10,9 +10,7 @@ import routing from './pack.routing';
 const moduleName = 'ovhManagerTelecomPack';
 
 angular
-  .module(moduleName, [
-    internetAccess,
-  ])
+  .module(moduleName, [internetAccess])
   .controller('PackCtrl', controller)
   .config(routing)
   .run(templates)

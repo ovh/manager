@@ -19,18 +19,20 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('freefaxes.freefax.voicemail-configuration', {
-      url: '/voicemail',
-      template,
-      controller,
-      controllerAs: 'VoicemailConf',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-    });
-  })
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('freefaxes.freefax.voicemail-configuration', {
+        url: '/voicemail',
+        template,
+        controller,
+        controllerAs: 'VoicemailConf',
+        translations: {
+          value: ['.'],
+          format: 'json',
+        },
+      });
+    },
+  )
   .constant('FREEFAX_AUDIO_FORMAT', AUDIO_FORMAT);
 
 export default moduleName;

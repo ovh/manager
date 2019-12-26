@@ -35,11 +35,13 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
       } else {
         $scope.selectedTab = defaultTab;
       }
-      $location.search('tab',
-        $scope.selectedTab);
+      $location.search('tab', $scope.selectedTab);
     };
 
-    if ($stateParams.tab && ~$scope.tabs.indexOf(angular.uppercase($stateParams.tab))) {
+    if (
+      $stateParams.tab &&
+      ~$scope.tabs.indexOf(angular.uppercase($stateParams.tab))
+    ) {
       $scope.setSelectedTab(angular.uppercase($stateParams.tab));
     } else {
       $scope.setSelectedTab(defaultTab);
@@ -73,7 +75,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
     };
 
     /* here, because if the user switch the tab after an action requesting a polling,
-         * when the polling is done, the message still displayed */
+     * when the polling is done, the message still displayed */
     $scope.$on('iplb.backends.needUpdate', () => {
       Alerter.resetMessage('polling_action');
     });
@@ -83,7 +85,10 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
         type = reason.action;
       }
 
-      Alerter.error($translate.instant(`iplb_backend_${type}_failure`), 'polling_action');
+      Alerter.error(
+        $translate.instant(`iplb_backend_${type}_failure`),
+        'polling_action',
+      );
     });
   },
 ]);

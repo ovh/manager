@@ -8,10 +8,7 @@ import wucDurationFilter from './durationFilter';
 const moduleName = 'wucDuration';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', translate])
   .filter('wucDuration', wucDurationFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 

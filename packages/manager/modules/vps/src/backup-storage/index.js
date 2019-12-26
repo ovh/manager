@@ -6,9 +6,7 @@ import ovhManagerVpsBackupStorageOrder from './order';
 const moduleName = 'ovhManagerVpsBackupStorage';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsBackupStorageOrder,
-  ])
+  .module(moduleName, [ovhManagerVpsBackupStorageOrder])
   .component(component.name, component)
   .config(routing);
 

@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/domain/activation',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom/pack/slots/domain/activation/pack-domain-activation.html',
+        templateUrl:
+          'app/telecom/pack/slots/domain/activation/pack-domain-activation.html',
         controller: 'PackDomainActivationController',
         controllerAs: 'PackDomainActivation',
       },

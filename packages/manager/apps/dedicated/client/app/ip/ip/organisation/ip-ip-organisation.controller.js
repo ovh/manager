@@ -1,5 +1,6 @@
-angular.module('Module.ip.controllers')
-  .controller('IpOrganisationCtrl', class IpOrganisationController {
+angular.module('Module.ip.controllers').controller(
+  'IpOrganisationCtrl',
+  class IpOrganisationController {
     constructor($scope, $translate, Ip, IpOrganisation, Alerter) {
       this.$scope = $scope;
       this.$translate = $translate;
@@ -27,7 +28,11 @@ angular.module('Module.ip.controllers')
           this.$scope.organisations = organisations;
         })
         .catch((data) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('ip_organisation_load_error'), data.data, this.$scope.alert);
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('ip_organisation_load_error'),
+            data.data,
+            this.$scope.alert,
+          );
         })
         .finally(() => {
           this.$scope.loadingOrganisation = false;
@@ -37,4 +42,5 @@ angular.module('Module.ip.controllers')
     hideOrganisation() {
       return this.$scope.$emit('ips.display', 'table');
     }
-  });
+  },
+);

@@ -4,13 +4,7 @@ import filter from 'lodash/filter';
 import { STATUS } from './labs.constants';
 
 export default class Lab {
-  constructor({
-    id,
-    name,
-    status,
-    agreements,
-    contracts,
-  }) {
+  constructor({ id, name, status, agreements, contracts }) {
     Object.assign(this, {
       id,
       name,
@@ -37,10 +31,14 @@ export default class Lab {
   }
 
   get toAcceptContracts() {
-    return filter(this.contracts, ({ id }) => includes(this.agreements.toAccept, id));
+    return filter(this.contracts, ({ id }) =>
+      includes(this.agreements.toAccept, id),
+    );
   }
 
   get acceptedContracts() {
-    return filter(this.contracts, ({ id }) => includes(this.agreements.accepted, id));
+    return filter(this.contracts, ({ id }) =>
+      includes(this.agreements.accepted, id),
+    );
   }
 }

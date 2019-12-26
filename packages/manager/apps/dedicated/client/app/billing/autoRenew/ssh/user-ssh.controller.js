@@ -87,7 +87,9 @@ export default class UserAccountSshCtrl {
         if (!sshObj.default) {
           // Switch to true
           this.Alerter.success(
-            this.$translate.instant('user_ssh_default_on_success_message', { t0: sshObj.keyName }),
+            this.$translate.instant('user_ssh_default_on_success_message', {
+              t0: sshObj.keyName,
+            }),
             'userSsh',
           );
         } else {
@@ -100,7 +102,10 @@ export default class UserAccountSshCtrl {
       },
       (err) => {
         this.Alerter.error(
-          `${this.$translate.instant('user_ssh_default_error_message')} ${get(err, 'message') || err}`,
+          `${this.$translate.instant('user_ssh_default_error_message')} ${get(
+            err,
+            'message',
+          ) || err}`,
           'userSsh',
         );
       },
@@ -112,8 +117,10 @@ export default class UserAccountSshCtrl {
   }
 
   getGuideUrl(language, guideName) {
-    return this.constants.urls[language].guides[guideName]
-        || this.constants.URLS.GB.guides[guideName];
+    return (
+      this.constants.urls[language].guides[guideName] ||
+      this.constants.URLS.GB.guides[guideName]
+    );
   }
 
   initGuides() {

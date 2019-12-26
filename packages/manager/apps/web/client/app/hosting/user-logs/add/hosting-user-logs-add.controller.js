@@ -30,41 +30,45 @@ angular.module('App').controller(
     }
 
     isPasswordInvalid() {
-      return !this.Hosting.constructor.isPasswordValid(get(this.model, 'selected.password.value', ''));
+      return !this.Hosting.constructor.isPasswordValid(
+        get(this.model, 'selected.password.value', ''),
+      );
     }
 
     isPasswordConfirmationInvalid() {
       return (
-        this.model.selected.password.value
-        !== this.model.selected.password.confirmation
+        this.model.selected.password.value !==
+        this.model.selected.password.confirmation
       );
     }
 
     isPasswordValid() {
       return (
-        this.model.selected.password.value
-        && this.model.selected.password.confirmation
-        && this.model.selected.password.value
-          === this.model.selected.password.confirmation
-        && this.Hosting.constructor.isPasswordValid(this.model.selected.password.value)
+        this.model.selected.password.value &&
+        this.model.selected.password.confirmation &&
+        this.model.selected.password.value ===
+          this.model.selected.password.confirmation &&
+        this.Hosting.constructor.isPasswordValid(
+          this.model.selected.password.value,
+        )
       );
     }
 
     isUserValid() {
       return (
-        this.model.selected.login
-        && this.model.selected.login.length >= this.model.minUserLength
-        && this.model.selected.login.length <= this.model.maxUserLength
-        && this.model.selected.login.match(/^[a-z-]+$/)
+        this.model.selected.login &&
+        this.model.selected.login.length >= this.model.minUserLength &&
+        this.model.selected.login.length <= this.model.maxUserLength &&
+        this.model.selected.login.match(/^[a-z-]+$/)
       );
     }
 
     shouldDisplayDifferentPasswordMessage() {
       return (
-        this.model.selected.password.value
-        && this.model.selected.password.confirmation
-        && this.model.selected.password.value
-          !== this.model.selected.password.confirmation
+        this.model.selected.password.value &&
+        this.model.selected.password.confirmation &&
+        this.model.selected.password.value !==
+          this.model.selected.password.confirmation
       );
     }
 
@@ -78,13 +82,17 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_USER_LOGS_configuration_user_create_success'),
+            this.$translate.instant(
+              'hosting_tab_USER_LOGS_configuration_user_create_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_USER_LOGS_configuration_user_create_fail'),
+            this.$translate.instant(
+              'hosting_tab_USER_LOGS_configuration_user_create_fail',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );

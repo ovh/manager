@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/codec',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/line/phone/codec/telecom-telephony-line-phone-codec.html',
+        templateUrl:
+          'app/telecom/telephony/line/phone/codec/telecom-telephony-line-phone-codec.html',
         controller: 'TelecomTelephonyLinePhoneCodecCtrl',
         controllerAs: 'CodecCtrl',
       },

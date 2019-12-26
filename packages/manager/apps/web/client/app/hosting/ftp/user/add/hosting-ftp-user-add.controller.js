@@ -3,7 +3,14 @@ import get from 'lodash/get';
 angular.module('App').controller(
   'HostingFtpUserCreateCtrl',
   class HostingFtpUserCreateCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting, HostingUser) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      Hosting,
+      HostingUser,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -43,7 +50,9 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_create_step1_loading_error'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_create_step1_loading_error',
+            ),
             get(err, 'data', err),
             this.$scope.alerts.main,
           );
@@ -52,31 +61,35 @@ angular.module('App').controller(
 
     isUserValid() {
       return (
-        this.model.selected.login != null
-        && this.model.selected.login.length >= this.model.minUserLength
-        && this.model.selected.login.length <= this.model.maxUserLength
-        && this.model.selected.login.match(/^[\w]+$/)
+        this.model.selected.login != null &&
+        this.model.selected.login.length >= this.model.minUserLength &&
+        this.model.selected.login.length <= this.model.maxUserLength &&
+        this.model.selected.login.match(/^[\w]+$/)
       );
     }
 
     isPasswordValid() {
       return (
-        this.model.selected.password.value
-        && this.model.selected.password.confirmation
-        && this.model.selected.password.value
-          === this.model.selected.password.confirmation
-        && this.Hosting.constructor.isPasswordValid(this.model.selected.password.value)
+        this.model.selected.password.value &&
+        this.model.selected.password.confirmation &&
+        this.model.selected.password.value ===
+          this.model.selected.password.confirmation &&
+        this.Hosting.constructor.isPasswordValid(
+          this.model.selected.password.value,
+        )
       );
     }
 
     isPasswordInvalid() {
-      return !this.Hosting.constructor.isPasswordValid(get(this.model, 'selected.password.value'));
+      return !this.Hosting.constructor.isPasswordValid(
+        get(this.model, 'selected.password.value'),
+      );
     }
 
     isPasswordConfirmationInvalid() {
       return (
-        this.model.selected.password.value
-        !== this.model.selected.password.confirmation
+        this.model.selected.password.value !==
+        this.model.selected.password.confirmation
       );
     }
 
@@ -92,8 +105,8 @@ angular.module('App').controller(
       const home = '/';
       if (this.model.selected.home !== null) {
         if (
-          /^\/.*/.test(this.model.selected.home || '')
-          || /^\.\/.*/.test(this.model.selected.home || '')
+          /^\/.*/.test(this.model.selected.home || '') ||
+          /^\.\/.*/.test(this.model.selected.home || '')
         ) {
           return this.model.selected.home;
         }
@@ -112,13 +125,17 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_create_success'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_create_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_FTP_configuration_user_create_fail'),
+            this.$translate.instant(
+              'hosting_tab_FTP_configuration_user_create_fail',
+            ),
             err,
             this.$scope.alerts.main,
           );

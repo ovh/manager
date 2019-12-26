@@ -1,6 +1,7 @@
-export default /* @ngInject */($stateProvider) => {
-  $stateProvider
-    .state('pci.projects.project.storages.instance-backups.delete', {
+export default /* @ngInject */ ($stateProvider) => {
+  $stateProvider.state(
+    'pci.projects.project.storages.instance-backups.delete',
+    {
       url: '/delete?instanceBackupId',
       views: {
         modal: {
@@ -13,16 +14,21 @@ export default /* @ngInject */($stateProvider) => {
         format: 'json',
       },
       resolve: {
-        instanceBackupId: /* @ngInject */($transition$) => $transition$.params().instanceBackupId,
+        instanceBackupId: /* @ngInject */ ($transition$) =>
+          $transition$.params().instanceBackupId,
         instanceBackup: /* @ngInject */ (
           PciProjectStorageInstanceBackupService,
           projectId,
           instanceBackupId,
-        ) => PciProjectStorageInstanceBackupService
-          .get(projectId, instanceBackupId),
+        ) =>
+          PciProjectStorageInstanceBackupService.get(
+            projectId,
+            instanceBackupId,
+          ),
 
         goBack: /* @ngInject */ (goToInstanceBackups) => goToInstanceBackups,
         breadcrumb: () => null,
       },
-    });
+    },
+  );
 };

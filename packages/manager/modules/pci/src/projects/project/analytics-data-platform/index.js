@@ -6,23 +6,25 @@ import 'oclazyload';
 
 const moduleName = 'ovhManagerAnalyticsDataPlatform';
 
-
-angular.module(moduleName, [
-  'ui.router',
-  'oc.lazyLoad',
-  ovhManagerCore,
-  ngOvhCloudUniverseComponents,
-])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('pci.projects.project.analytics-data-platform.**', {
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+    ovhManagerCore,
+    ngOvhCloudUniverseComponents,
+  ])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider.state('pci.projects.project.analytics-data-platform.**', {
         url: '/analytics-data-platform',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-          return import('./analytics-data-platform.module')
-            .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+          return import('./analytics-data-platform.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
         },
       });
-  });
+    },
+  );
 
 export default moduleName;

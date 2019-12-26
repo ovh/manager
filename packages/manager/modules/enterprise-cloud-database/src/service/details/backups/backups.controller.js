@@ -7,10 +7,7 @@ import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   /* @ngInject */
-  constructor(
-    CucCloudMessage,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor(CucCloudMessage, enterpriseCloudDatabaseService) {
     this.CucCloudMessage = CucCloudMessage;
     this.service = enterpriseCloudDatabaseService;
     this.STATUS = STATUS;
@@ -29,8 +26,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.details.restored-instances');
-    this.messageHandler = this.CucCloudMessage.subscribe('enterprise-cloud-database', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe(
+      'enterprise-cloud-database.service.details.restored-instances',
+    );
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'enterprise-cloud-database',
+      { onMessage: () => this.refreshMessages() },
+    );
   }
 
   refreshMessages() {
@@ -38,7 +40,14 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   }
 
   loadBackupDetails(backupId) {
-    return this.service.getBackupDetails(this.clusterDetails.id, backupId)
-      .then((backup) => assign(backup, { expirationDate: moment(backup.creationDate).add(90, 'days').format() }));
+    return this.service
+      .getBackupDetails(this.clusterDetails.id, backupId)
+      .then((backup) =>
+        assign(backup, {
+          expirationDate: moment(backup.creationDate)
+            .add(90, 'days')
+            .format(),
+        }),
+      );
   }
 }

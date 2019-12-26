@@ -10,12 +10,7 @@ export const CLOUD_INSTANCE_DEFAULT_FALLBACK = {
   flavor: 's1-2',
 };
 
-export const CLOUD_FLAVOR_SPECIFIC_IMAGE = [
-  'g1',
-  'g2',
-  'g3',
-  't1',
-];
+export const CLOUD_FLAVOR_SPECIFIC_IMAGE = ['g1', 'g2', 'g3', 't1'];
 
 export const CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES = [
   'balanced',
@@ -24,10 +19,7 @@ export const CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES = [
   'accelerated',
 ];
 
-export const CLOUD_VOLUME_TYPES = [
-  'classic',
-  'high-speed',
-];
+export const CLOUD_VOLUME_TYPES = ['classic', 'high-speed'];
 
 export const CLOUD_IPFO_ORDER_LIMIT = {
   'ovh.vps-ssd': 16,
@@ -44,25 +36,9 @@ export const CLOUD_IPFO_ORDER_LIMIT = {
 
 export const CLOUD_GEOLOCALISATION = {
   instance: {
-    EU: [
-      'SBG1',
-      'GRA1',
-      'GRA3',
-      'GRA5',
-      'SBG3',
-      'SBG5',
-      'WAW1',
-      'DE1',
-      'UK1',
-    ],
-    CA: [
-      'BHS1',
-      'BHS3',
-    ],
-    APAC: [
-      'SYD1',
-      'SGP1',
-    ],
+    EU: ['SBG1', 'GRA1', 'GRA3', 'GRA5', 'SBG3', 'SBG5', 'WAW1', 'DE1', 'UK1'],
+    CA: ['BHS1', 'BHS3'],
+    APAC: ['SYD1', 'SGP1'],
   },
   user: {
     EU: [
@@ -83,15 +59,7 @@ export const CLOUD_GEOLOCALISATION = {
       'SN',
       'TN',
     ],
-    CA: [
-      'ASIA',
-      'AU',
-      'CA',
-      'QC',
-      'SG',
-      'WE',
-      'WS',
-    ],
+    CA: ['ASIA', 'AU', 'CA', 'QC', 'SG', 'WE', 'WS'],
   },
   ipfo: {
     EU: [
@@ -109,10 +77,7 @@ export const CLOUD_GEOLOCALISATION = {
       'PT',
       'UK',
     ],
-    CA: [
-      'CA',
-      'US',
-    ],
+    CA: ['CA', 'US'],
   },
 };
 
@@ -133,16 +98,8 @@ export const CLOUD_VM_STATE = {
     'SNAPSHOTTING',
     'RESUMING',
   ],
-  openstack: [
-    'PAUSED',
-    'STOPPED',
-    'SUSPENDED',
-    'SHUTOFF',
-    'RESCUE',
-  ],
-  error: [
-    'ERROR',
-  ],
+  openstack: ['PAUSED', 'STOPPED', 'SUSPENDED', 'SHUTOFF', 'RESCUE'],
+  error: ['ERROR'],
 };
 
 export const CLOUD_UNIT_CONVERSION = {
@@ -157,14 +114,7 @@ export const CLOUD_MONITORING = {
   vm: {
     upgradeAlertThreshold: 90,
     period: 'lastweek',
-    type: [
-      'mem:used',
-      'mem:max',
-      'cpu:used',
-      'cpu:max',
-      'net:tx',
-      'net:rx',
-    ],
+    type: ['mem:used', 'mem:max', 'cpu:used', 'cpu:max', 'net:tx', 'net:rx'],
   },
 };
 
@@ -189,37 +139,57 @@ export const CLOUD_PCA_FILE_STATE = {
 
 export const PCI_REDIRECT_URLS = {
   EU: {
-    addCreditCard: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    billing: 'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
-    contacts: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
-    horizon: 'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-    ipAction: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
-    paymentMethods: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method',
+    addCreditCard:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
+    billing:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/history',
+    contacts:
+      'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
+    horizon:
+      'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
+    ipAction:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
+    paymentMeans:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
+    paymentMethods:
+      'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method',
     support: 'https://www.ovh.com/manager/dedicated/index.html#/support',
-    vRack: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
+    vRack:
+      'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
   },
   CA: {
-    addCreditCard: 'https://ca.ovh.com/manager/index.html#/billing/mean/add?meanType=creditCard',
+    addCreditCard:
+      'https://ca.ovh.com/manager/index.html#/billing/mean/add?meanType=creditCard',
     billing: 'https://ca.ovh.com/manager/index.html#/billing/history',
     contacts: null, // not yet available to CA users
-    horizon: 'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
-    ipAction: 'https://ca.ovh.com/manager/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
+    horizon:
+      'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
+    ipAction:
+      'https://ca.ovh.com/manager/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
     paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean', // should not be used anymore
-    paymentMethods: 'https://ca.ovh.com/manager/index.html#/billing/payment/method',
+    paymentMethods:
+      'https://ca.ovh.com/manager/index.html#/billing/payment/method',
     support: 'https://ca.ovh.com/manager/index.html#/support',
-    vRack: 'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
+    vRack:
+      'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
   },
   US: {
-    addCreditCard: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
-    billing: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history',
+    addCreditCard:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean/add?meanType=creditCard',
+    billing:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history',
     contacts: null, // not yet available to US users
-    horizon: 'https://horizon.cloud.ovh.us/openstackdashboard?username={username}',
-    ipAction: 'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
-    paymentMethods: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method',
+    horizon:
+      'https://horizon.cloud.ovh.us/openstackdashboard?username={username}',
+    ipAction:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
+    paymentMeans:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
+    paymentMethods:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method',
     support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/support',
-    vRack: 'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
+    vRack:
+      'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
   },
 };
 
@@ -256,11 +226,16 @@ export const PCI_URLS = {
           windows: 'https://www.ovh-hosting.fi/g2046.ip_fail_over_windows',
         },
         FR: {
-          debian: 'https://www.ovh.com/fr/g2042.configurer_une_ip_fail_over_sur_debian',
-          ubuntu: 'https://www.ovh.com/fr/g2043.configurer_une_ip_fail_over_sur_ubuntu',
-          centos: 'https://www.ovh.com/fr/g2044.configurer_une_ip_fail_over_sur_centos',
-          fedora: 'https://www.ovh.com/fr/g2045.configurer_une_ip_fail_over_sur_fedora',
-          windows: 'https://www.ovh.com/fr/g2046.configurer_une_ip_fail_over_sur_windows',
+          debian:
+            'https://www.ovh.com/fr/g2042.configurer_une_ip_fail_over_sur_debian',
+          ubuntu:
+            'https://www.ovh.com/fr/g2043.configurer_une_ip_fail_over_sur_ubuntu',
+          centos:
+            'https://www.ovh.com/fr/g2044.configurer_une_ip_fail_over_sur_centos',
+          fedora:
+            'https://www.ovh.com/fr/g2045.configurer_une_ip_fail_over_sur_fedora',
+          windows:
+            'https://www.ovh.com/fr/g2046.configurer_une_ip_fail_over_sur_windows',
         },
         GB: {
           debian: 'https://www.ovh.co.uk/g2042.ip_fail_over_debian',
@@ -326,61 +301,100 @@ export const PCI_URLS = {
           windows: 'https://www.ovh.sn/g2046.ip_fail_over_windows',
         },
         TN: {
-          debian: 'https://www.ovh.com/tn/g2042.configurer_une_ip_fail_over_sur_debian',
-          ubuntu: 'https://www.ovh.com/tn/g2043.configurer_une_ip_fail_over_sur_ubuntu',
-          centos: 'https://www.ovh.com/tn/g2044.configurer_une_ip_fail_over_sur_centos',
-          fedora: 'https://www.ovh.com/tn/g2045.configurer_une_ip_fail_over_sur_fedora',
-          windows: 'https://www.ovh.com/tn/g2046.configurer_une_ip_fail_over_sur_windows',
+          debian:
+            'https://www.ovh.com/tn/g2042.configurer_une_ip_fail_over_sur_debian',
+          ubuntu:
+            'https://www.ovh.com/tn/g2043.configurer_une_ip_fail_over_sur_ubuntu',
+          centos:
+            'https://www.ovh.com/tn/g2044.configurer_une_ip_fail_over_sur_centos',
+          fedora:
+            'https://www.ovh.com/tn/g2045.configurer_une_ip_fail_over_sur_fedora',
+          windows:
+            'https://www.ovh.com/tn/g2046.configurer_une_ip_fail_over_sur_windows',
         },
         defaultDistribution: 'debian',
       },
       openstack: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
       },
       xauthtoken: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
       },
       vlans: {
         FR: {
-          roadmap: 'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
-          api: 'https://www.ovh.com/fr/publiccloud/guides/g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud',
+          roadmap:
+            'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
+          api:
+            'https://www.ovh.com/fr/publiccloud/guides/g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud',
         },
       },
     },
     vrack: {
-      CZ: "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      DE: "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      ES: "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      FI: "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      FR: "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      GB: "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      IE: "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      IT: "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      LT: "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      MA: "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      NL: "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      PL: "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      PT: "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      SN: "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      TN: "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      CZ:
+        "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      DE:
+        "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      ES:
+        "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      FI:
+        "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      FR:
+        "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      GB:
+        "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IE:
+        "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IT:
+        "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      LT:
+        "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      MA:
+        "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      NL:
+        "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      PL:
+        "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      PT:
+        "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      SN:
+        "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      TN:
+        "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
     website_order: {
       vrack: {
-        CZ: "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        DE: "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        ES: "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        FI: "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        FR: "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        GB: "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        IE: "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        IT: "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        LT: "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        MA: "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        NL: "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        PL: "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        PT: "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        SN: "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        TN: "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        CZ:
+          "https://www.ovh.cz/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        DE:
+          "https://www.ovh.de/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        ES:
+          "https://www.ovh.es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        FI:
+          "https://www.ovh-hosting.fi/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        FR:
+          "https://www.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        GB:
+          "https://www.ovh.co.uk/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        IE:
+          "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        IT:
+          "https://www.ovh.it/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        LT:
+          "https://www.ovh.lt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        MA:
+          "https://www.ovh.ma/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        NL:
+          "https://www.ovh.nl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        PL:
+          "https://www.ovh.pl/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        PT:
+          "https://www.ovh.pt/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        SN:
+          "https://www.ovh.sn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        TN:
+          "https://www.ovh.com/tn/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       },
       pcs: {
         CZ: 'https://www.ovh.cz/public-cloud/storage/object-storage/',
@@ -443,11 +457,16 @@ export const PCI_URLS = {
           windows: 'https://www.ovh.com/ca/en/g2046.ip_fail_over_windows',
         },
         QC: {
-          debian: 'https://www.ovh.com/ca/fr/g2042.configurer_une_ip_fail_over_sur_debian',
-          ubuntu: 'https://www.ovh.com/ca/fr/g2043.configurer_une_ip_fail_over_sur_ubuntu',
-          centos: 'https://www.ovh.com/ca/fr/g2044.configurer_une_ip_fail_over_sur_centos',
-          fedora: 'https://www.ovh.com/ca/fr/g2045.configurer_une_ip_fail_over_sur_fedora',
-          windows: 'https://www.ovh.com/ca/fr/g2046.configurer_une_ip_fail_over_sur_windows',
+          debian:
+            'https://www.ovh.com/ca/fr/g2042.configurer_une_ip_fail_over_sur_debian',
+          ubuntu:
+            'https://www.ovh.com/ca/fr/g2043.configurer_une_ip_fail_over_sur_ubuntu',
+          centos:
+            'https://www.ovh.com/ca/fr/g2044.configurer_une_ip_fail_over_sur_centos',
+          fedora:
+            'https://www.ovh.com/ca/fr/g2045.configurer_une_ip_fail_over_sur_fedora',
+          windows:
+            'https://www.ovh.com/ca/fr/g2046.configurer_une_ip_fail_over_sur_windows',
         },
         SG: {
           debian: 'https://www.ovh.com/ca/en/g2042.ip_fail_over_debian',
@@ -473,35 +492,52 @@ export const PCI_URLS = {
         defaultDistribution: 'debian',
       },
       openstack: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1852.charger_les_variables_denvironnement_openstack',
       },
       xauthtoken: {
-        FR: 'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
+        FR:
+          'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',
       },
       vlans: {
         FR: {
-          roadmap: 'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
+          roadmap:
+            'https://www.ovh.com/fr/g2148.public_cloud_et_vrack_-_explications_et_roadmap',
         },
       },
     },
     vrack: {
-      ASIA: "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      AU: "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      CA: "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      QC: "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      SG: "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      WE: "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      WS: "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      ASIA:
+        "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      AU:
+        "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      CA:
+        "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      QC:
+        "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      SG:
+        "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      WE:
+        "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      WS:
+        "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
     },
     website_order: {
       vrack: {
-        ASIA: "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        AU: "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        CA: "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        QC: "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        SG: "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        WE: "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-        WS: "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        ASIA:
+          "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        AU:
+          "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        CA:
+          "https://ca.ovh.com/en/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        QC:
+          "https://ca.ovh.com/fr/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        SG:
+          "https://ca.ovh.com/sg/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        WE:
+          "https://us.ovh.com/us/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        WS:
+          "https://us.ovh.com/es/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       },
       pcs: {
         ASIA: 'https://www.ovh.com/asia/public-cloud/storage/object-storage/',
@@ -535,12 +571,9 @@ export const PCI_URLS = {
         },
         defaultDistribution: 'debian',
       },
-      openstack: {
-      },
-      xauthtoken: {
-      },
-      vlans: {
-      },
+      openstack: {},
+      xauthtoken: {},
+      vlans: {},
       ssh: {
         create: {
           US: 'https://support.us.ovhcloud.com/hc/en-us/articles/115001588250',
@@ -550,16 +583,20 @@ export const PCI_URLS = {
     vrack: {},
     website_order: {
       'cloud-resell-eu': {
-        US: (projectName) => `https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'project~productId~'cloud~quantity~1~duration~'P1M~configuration~(~(label~'description~values~(~'${encodeURIComponent(projectName)})))))`,
+        US: (projectName) =>
+          `https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'project~productId~'cloud~quantity~1~duration~'P1M~configuration~(~(label~'description~values~(~'${encodeURIComponent(
+            projectName,
+          )})))))`,
       },
       pcs: {
-        US: 'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',
+        US:
+          'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',
       },
       pca: {
-        US: 'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',
+        US:
+          'https://support.us.ovhcloud.com/hc/en-us/sections/115000624590-Storage',
       },
-      vlans: {
-      },
+      vlans: {},
     },
   },
 };

@@ -1,7 +1,7 @@
 import controller from './add.controller';
 import template from './add.html';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.contacts.add', {
     url: '/add',
     layout: 'modal',

@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/hostedEmail/:serviceName/detail',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom/pack/slots/hostedEmail/detail/pack-hostedEmail-detail.html',
+        templateUrl:
+          'app/telecom/pack/slots/hostedEmail/detail/pack-hostedEmail-detail.html',
         controller: 'PackHostedEmailDetailCtrl',
         controllerAs: 'DetailCtrl',
       },

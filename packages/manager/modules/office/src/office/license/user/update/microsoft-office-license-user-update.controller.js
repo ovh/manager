@@ -3,7 +3,13 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class MicrosoftOfficeLicenseUserUpdateCtrl {
   /* @ngInject */
-  constructor(Alerter, MicrosoftOfficeLicenseService, $rootScope, $scope, $translate) {
+  constructor(
+    Alerter,
+    MicrosoftOfficeLicenseService,
+    $rootScope,
+    $scope,
+    $translate,
+  ) {
     this.alerter = Alerter;
     this.microsoftOfficeLicenseService = MicrosoftOfficeLicenseService;
     this.$scope = $scope;
@@ -31,16 +37,33 @@ export default class MicrosoftOfficeLicenseUserUpdateCtrl {
       this.loaders.userEdit = true;
 
       this.microsoftOfficeLicenseService
-        .updateUser(this.user.service, this.$scope.currentActionData.user.activationEmail, {
-          firstName: this.user.firstName,
-          lastName: this.user.lastName,
-          activationEmail: `${this.user.login}@${this.user.service}`,
-        })
+        .updateUser(
+          this.user.service,
+          this.$scope.currentActionData.user.activationEmail,
+          {
+            firstName: this.user.firstName,
+            lastName: this.user.lastName,
+            activationEmail: `${this.user.login}@${this.user.service}`,
+          },
+        )
         .then((task) => {
-          this.alerter.success(this.$translate.instant('microsoft_office_license_detail_user_edit_success'), this.$scope.alerts.main);
+          this.alerter.success(
+            this.$translate.instant(
+              'microsoft_office_license_detail_user_edit_success',
+            ),
+            this.$scope.alerts.main,
+          );
           return task;
         })
-        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('microsoft_office_license_detail_user_edit_error'), err, this.$scope.alerts.main))
+        .catch((err) =>
+          this.alerter.alertFromSWS(
+            this.$translate.instant(
+              'microsoft_office_license_detail_user_edit_error',
+            ),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loaders.userEdit = false;
           this.$rootScope.$broadcast('microsoft.office.license.user.edit');

@@ -7,10 +7,7 @@ import ovhPccStep from './ovhPcc';
 const moduleName = 'dedicatedCloudDatacenterDrpOnPremise';
 
 angular
-  .module(moduleName, [
-    onPremisePccStep,
-    ovhPccStep,
-  ])
+  .module(moduleName, [onPremisePccStep, ovhPccStep])
   .component(component.name, component)
   .config(routing);
 

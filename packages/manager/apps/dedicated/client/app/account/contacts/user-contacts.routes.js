@@ -13,8 +13,7 @@ angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
     },
   });
 
-  $urlRouterProvider.when(
-    /^\/useraccount\/contacts/,
-    ($location, $state) => $state.go(`${name}.services`, $location.search()),
+  $urlRouterProvider.when(/^\/useraccount\/contacts/, ($location, $state) =>
+    $state.go(`${name}.services`, $location.search()),
   );
 });

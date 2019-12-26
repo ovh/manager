@@ -3,8 +3,12 @@ import set from 'lodash/set';
 export default class SharepointInformationsCtrl {
   /* @ngInject */
   constructor(
-    $scope, $location, $stateParams, $translate,
-    Alerter, MicrosoftSharepointLicenseService,
+    $scope,
+    $location,
+    $stateParams,
+    $translate,
+    Alerter,
+    MicrosoftSharepointLicenseService,
   ) {
     this.$scope = $scope;
     this.$location = $location;
@@ -26,7 +30,8 @@ export default class SharepointInformationsCtrl {
   }
 
   getAssociatedExchange() {
-    return this.sharepointService.getAssociatedExchangeService(this.exchangeId)
+    return this.sharepointService
+      .getAssociatedExchangeService(this.exchangeId)
       .then(({ exchangeService, exchangeLink }) => {
         this.associatedExchange = exchangeService;
         this.associatedExchangeLink = exchangeLink;
@@ -35,18 +40,25 @@ export default class SharepointInformationsCtrl {
 
   getSharepoint() {
     this.loaders.init = true;
-    return this.sharepointService.getSharepoint(this.exchangeId)
+    return this.sharepointService
+      .getSharepoint(this.exchangeId)
       .then((sharepoint) => {
         this.sharepoint = sharepoint;
         if (!this.sharepoint.url) {
-          this.$location.path(`/configuration/sharepoint/${this.exchangeId}/${this.sharepoint.domain}/setUrl`);
+          this.$location.path(
+            `/configuration/sharepoint/${this.exchangeId}/${this.sharepoint.domain}/setUrl`,
+          );
         } else {
           this.calculateQuotas(sharepoint);
         }
       })
       .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_dashboard_error'),
+          err,
+          this.$scope.alerts.main,
+        );
       })
       .finally(() => {
         this.loaders.init = false;
@@ -61,6 +73,6 @@ export default class SharepointInformationsCtrl {
   }
 
   currentusageInGb() {
-    return this.sharepoint.currentUsage / (1024 ** 3);
+    return this.sharepoint.currentUsage / 1024 ** 3;
   }
 }

@@ -8,7 +8,9 @@ export default class ContainerObject {
 
   updateRetrievalDate() {
     if (this.retrievalDelay) {
-      this.retrievalDate = moment().add(this.retrievalDelay, 'seconds').toISOString();
+      this.retrievalDate = moment()
+        .add(this.retrievalDelay, 'seconds')
+        .toISOString();
     }
   }
 }

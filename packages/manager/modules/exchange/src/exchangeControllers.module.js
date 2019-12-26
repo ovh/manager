@@ -92,17 +92,32 @@ angular
   // .controller('ExchangeToolboxDisclaimerCtrl', ExchangeToolboxDisclaimerCtrl)
   // .controller('ExchangeToolboxSharedCtrl', ExchangeToolboxSharedCtrl)
   .controller('ExchangeAddExternalContactCtrl', ExchangeAddExternalContactCtrl)
-  .controller('ExchangeTabExternalContactsCtrl', ExchangeTabExternalContactsCtrl)
-  .controller('ExchangeExternalContactsDeleteCtrl', ExchangeExternalContactsDeleteCtrl)
-  .controller('ExchangeExternalContactsModifyCtrl', ExchangeExternalContactsModifyCtrl)
+  .controller(
+    'ExchangeTabExternalContactsCtrl',
+    ExchangeTabExternalContactsCtrl,
+  )
+  .controller(
+    'ExchangeExternalContactsDeleteCtrl',
+    ExchangeExternalContactsDeleteCtrl,
+  )
+  .controller(
+    'ExchangeExternalContactsModifyCtrl',
+    ExchangeExternalContactsModifyCtrl,
+  )
   .controller('ExchangeGroupAccountsCtrl', ExchangeGroupAccountsCtrl)
   .controller('ExchangeAddGroupCtrl', ExchangeAddGroupCtrl)
   .controller('ExchangeAddGroupAliasCtrl', ExchangeAddGroupAliasCtrl)
   .controller('ExchangeTabGroupAliasCtrl', ExchangeTabGroupAliasCtrl)
   .controller('ExchangeRemoveGroupAliasCtrl', ExchangeRemoveGroupAliasCtrl)
-  .controller('ExchangeMailingListDelegationCtrl', ExchangeMailingListDelegationCtrl)
+  .controller(
+    'ExchangeMailingListDelegationCtrl',
+    ExchangeMailingListDelegationCtrl,
+  )
   .controller('ExchangeTabGroupsCtrl', ExchangeTabGroupsCtrl)
-  .controller('ExchangeTabManagersByGroupsCtrl', ExchangeTabManagersByGroupsCtrl)
+  .controller(
+    'ExchangeTabManagersByGroupsCtrl',
+    ExchangeTabManagersByGroupsCtrl,
+  )
   .controller('ExchangeRemoveManagerCtrl', ExchangeRemoveManagerCtrl)
   .controller('ExchangeTabMembersByGroupsCtrl', ExchangeTabMembersByGroupsCtrl)
   .controller('ExchangeRemoveMemberCtrl', ExchangeRemoveMemberCtrl)
@@ -120,20 +135,32 @@ angular
   .controller('ExchangeResourceDelegationCtrl', ExchangeResourceDelegationCtrl)
   .controller('ExchangeRemoveResourceCtrl', ExchangeRemoveResourceCtrl)
   .controller('ExchangeTabResourcesCtrl', ExchangeTabResourcesCtrl)
-  .controller('ExchangeUpdateResourceController', ExchangeUpdateResourceController)
+  .controller(
+    'ExchangeUpdateResourceController',
+    ExchangeUpdateResourceController,
+  )
   .controller('ExchangeAddSharedAccountCtrl', ExchangeAddSharedAccountCtrl)
-  .controller('ExchangeSharedAccountDelegationCtrl', ExchangeSharedAccountDelegationCtrl)
+  .controller(
+    'ExchangeSharedAccountDelegationCtrl',
+    ExchangeSharedAccountDelegationCtrl,
+  )
   .controller('exchangeAccountCtlr', exchangeAccountCtlr)
   .controller('ExchangeAddAccountAliasCtrl', ExchangeAddAccountAliasCtrl)
   .controller('ExchangeRemoveAliasCtrl', ExchangeRemoveAliasCtrl)
   .controller('ExchangeAccountDelegationCtrl', ExchangeAccountDelegationCtrl)
-  .controller('ExchangeExportToCsvAccountsCtrl', ExchangeExportToCsvAccountsCtrl)
+  .controller(
+    'ExchangeExportToCsvAccountsCtrl',
+    ExchangeExportToCsvAccountsCtrl,
+  )
   .controller('ExchangeExportAsPstCtrl', ExchangeExportAsPstCtrl)
   .controller('ExchangeOrderAccountCtrl', ExchangeOrderAccountCtrl)
   .controller('ExchangeDisplayOutlookCtrl', ExchangeDisplayOutlookCtrl)
   .controller('ExchangeActivateOutlookCtrl', ExchangeActivateOutlookCtrl)
   .controller('ExchangeAddOutlookCtrl', ExchangeAddOutlookCtrl)
-  .controller('exchangeAccountOutlookDeactivate', exchangeAccountOutlookDeactivate)
+  .controller(
+    'exchangeAccountOutlookDeactivate',
+    exchangeAccountOutlookDeactivate,
+  )
   .controller('exchangeAccountOutlookDelete', exchangeAccountOutlookDelete)
   .controller('ExchangeRemoveAccountCtrl', ExchangeRemoveAccountCtrl)
   .controller('ExchangeUpdateAccountCtrl', ExchangeUpdateAccountCtrl)
@@ -148,24 +175,57 @@ angular
   .controller('ExchangeTabDomainsCtrl', ExchangeTabDomainsCtrl)
   .controller('ExchangeDomainMxAutoconfigCtrl', ExchangeDomainMxAutoconfigCtrl)
   .controller('ExchangeRemoveDomainCtrl', ExchangeRemoveDomainCtrl)
-  .controller('ExchangeDomainSrvAutoconfigCtrl', ExchangeDomainSrvAutoconfigCtrl)
+  .controller(
+    'ExchangeDomainSrvAutoconfigCtrl',
+    ExchangeDomainSrvAutoconfigCtrl,
+  )
   .controller('ExchangeUpdateDomainCtrl', ExchangeUpdateDomainCtrl)
-  .controller('ExchangeDeleteSharedAccountCtrl', ExchangeDeleteSharedAccountCtrl)
+  .controller(
+    'ExchangeDeleteSharedAccountCtrl',
+    ExchangeDeleteSharedAccountCtrl,
+  )
   .controller('ExchangeTabSharedAccountsCtrl', ExchangeTabSharedAccountsCtrl)
-  .controller('ExchangeUpdateSharedAccountCtrl', ExchangeUpdateSharedAccountCtrl)
+  .controller(
+    'ExchangeUpdateSharedAccountCtrl',
+    ExchangeUpdateSharedAccountCtrl,
+  )
   .controller('ExchangeAddPublicFolderCtrl', ExchangeAddPublicFolderCtrl)
-  .controller('ExchangeRemovePublicFolderPermissionCtrl', ExchangeRemovePublicFolderPermissionCtrl)
-  .controller('ExchangeTabPublicFolderPermissionsCtrl', ExchangeTabPublicFolderPermissionsCtrl)
-  .controller('ExchangeUpdatePublicFolderPermissionCtrl', ExchangeUpdatePublicFolderPermissionCtrl)
+  .controller(
+    'ExchangeRemovePublicFolderPermissionCtrl',
+    ExchangeRemovePublicFolderPermissionCtrl,
+  )
+  .controller(
+    'ExchangeTabPublicFolderPermissionsCtrl',
+    ExchangeTabPublicFolderPermissionsCtrl,
+  )
+  .controller(
+    'ExchangeUpdatePublicFolderPermissionCtrl',
+    ExchangeUpdatePublicFolderPermissionCtrl,
+  )
   .controller('ExchangeToolboxSharedCtrl', ExchangeToolboxSharedCtrl)
   .controller('ExchangeRemoveSharedCtrl', ExchangeRemoveSharedCtrl)
   .controller('ExchangeTabPublicFolderCtrl', ExchangeTabPublicFolderCtrl)
   .controller('ExchangeUpdatePublicFolderCtrl', ExchangeUpdatePublicFolderCtrl)
   .controller('ExchangeTabTasksCtrl', ExchangeTabTasksCtrl)
-  .controller('exchangeWizardHostedCreationEmailCreationAddController', exchangeWizardHostedCreationEmailCreationAddController)
-  .controller('exchangeWizardHostedCreationEmailCreationDeleteController', exchangeWizardHostedCreationEmailCreationDeleteController)
-  .controller('exchangeWizardHostedCreationEmailCreationUpdateController', exchangeWizardHostedCreationEmailCreationUpdateController)
-  .controller('exchangeWizardHostedCreationAutoController', exchangeWizardHostedCreationAutoController)
-  .controller('exchangeWizardHostedCreationManualController', exchangeWizardHostedCreationManualController);
+  .controller(
+    'exchangeWizardHostedCreationEmailCreationAddController',
+    exchangeWizardHostedCreationEmailCreationAddController,
+  )
+  .controller(
+    'exchangeWizardHostedCreationEmailCreationDeleteController',
+    exchangeWizardHostedCreationEmailCreationDeleteController,
+  )
+  .controller(
+    'exchangeWizardHostedCreationEmailCreationUpdateController',
+    exchangeWizardHostedCreationEmailCreationUpdateController,
+  )
+  .controller(
+    'exchangeWizardHostedCreationAutoController',
+    exchangeWizardHostedCreationAutoController,
+  )
+  .controller(
+    'exchangeWizardHostedCreationManualController',
+    exchangeWizardHostedCreationManualController,
+  );
 
 export default moduleName;

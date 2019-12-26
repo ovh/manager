@@ -6,7 +6,7 @@ import legacyOrderController from './legacy/vps-windows-order-legacy.controller'
 import orderTemplate from './vps-windows-order.html';
 import orderController from './vps-windows-order.controller';
 
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('vps.detail.windows.order', {
     url: '/order',
     templateProvider: /* @ngInject */ (stateVps) => {

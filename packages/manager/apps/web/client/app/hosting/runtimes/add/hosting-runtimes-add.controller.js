@@ -4,7 +4,14 @@ import includes from 'lodash/includes';
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.create',
   class HostingRuntimesCreateCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, HostingRuntimes, HOSTING_RUNTIME) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      HostingRuntimes,
+      HOSTING_RUNTIME,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -50,15 +57,15 @@ angular.module('App').controller(
 
     isValid() {
       if (
-        has(this, 'entryToCreate.type')
-        && !includes(this.entryToCreate.type, this.HOSTING_RUNTIME.PHP)
+        has(this, 'entryToCreate.type') &&
+        !includes(this.entryToCreate.type, this.HOSTING_RUNTIME.PHP)
       ) {
         return (
-          this.entryToCreate
-          && this.entryToCreate.name
-          && this.entryToCreate.publicDir
-          && this.entryToCreate.appEnv
-          && this.entryToCreate.appBootstrap
+          this.entryToCreate &&
+          this.entryToCreate.name &&
+          this.entryToCreate.publicDir &&
+          this.entryToCreate.appEnv &&
+          this.entryToCreate.appBootstrap
         );
       }
 
@@ -82,7 +89,8 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.error(
-            this.$translate.instant('hosting_tab_RUNTIMES_save_error') + err.message,
+            this.$translate.instant('hosting_tab_RUNTIMES_save_error') +
+              err.message,
             this.$scope.alerts.main,
           );
         })

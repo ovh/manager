@@ -1,8 +1,9 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 
-angular.module('UserAccount')
-  .controller('UserAccount.controllers.contactCtrl', class AccountUserContactsController {
+angular.module('UserAccount').controller(
+  'UserAccount.controllers.contactCtrl',
+  class AccountUserContactsController {
     constructor(
       $location,
       $q,
@@ -32,7 +33,6 @@ angular.module('UserAccount')
       this.user = null;
       this.loaders.init = true;
 
-
       this.$scope.resetAction = () => {
         this.$scope.setAction(false);
       };
@@ -57,12 +57,17 @@ angular.module('UserAccount')
         }
       };
 
-      return this.OvhApiMe.v6().get().$promise
-        .then((user) => {
+      return this.OvhApiMe.v6()
+        .get()
+        .$promise.then((user) => {
           this.user = user;
         })
         .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('user_account_contacts_error'), err, 'useraccount.alerts.dashboardContacts');
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('user_account_contacts_error'),
+            err,
+            'useraccount.alerts.dashboardContacts',
+          );
           return this.$q.reject(err);
         })
         .finally(() => {
@@ -73,13 +78,16 @@ angular.module('UserAccount')
     getAccountCreationUrl() {
       const subs = get(this.user, 'ovhSubsidiary', 'default');
       const languageSpecificSubs = '{$language}_{$subs}';
-      const newNicUrl = this.AccountCreationURLS[languageSpecificSubs]
-                              || this.AccountCreationURLS[subs];
+      const newNicUrl =
+        this.AccountCreationURLS[languageSpecificSubs] ||
+        this.AccountCreationURLS[subs];
       return newNicUrl;
     }
 
     trackAccountCreation() {
-      const chapter2 = includes(this.$state.current.name, 'services') ? 'services' : 'requests';
+      const chapter2 = includes(this.$state.current.name, 'services')
+        ? 'services'
+        : 'requests';
       this.atInternet.trackClick({
         name: 'create_new_account',
         type: 'action',
@@ -87,4 +95,5 @@ angular.module('UserAccount')
         chapter2,
       });
     }
-  });
+  },
+);

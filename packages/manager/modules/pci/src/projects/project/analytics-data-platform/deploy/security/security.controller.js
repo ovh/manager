@@ -1,8 +1,6 @@
 import find from 'lodash/find';
 
-import {
-  ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO,
-} from '../../analytics-data-platform.constants';
+import { ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO } from '../../analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */
@@ -41,15 +39,18 @@ export default class {
     return false;
   }
 
-
   /**
    * Checks if the master password and the confirm password matches
    *
    * @returns a boolean indicating whether the passwords match
    */
   checkPasswordLength(password) {
-    return password
-      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength)
-      && (password.length <= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.maxMasterPasswordLength);
+    return (
+      password &&
+      password.length >=
+        this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength &&
+      password.length <=
+        this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.maxMasterPasswordLength
+    );
   }
 }

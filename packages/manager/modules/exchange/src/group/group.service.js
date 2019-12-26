@@ -77,7 +77,13 @@ export default class Group {
   /**
    * Get managers by group
    */
-  retrievingManagersByGroup(organization, serviceName, groupName, count = 10, offset = 0) {
+  retrievingManagersByGroup(
+    organization,
+    serviceName,
+    groupName,
+    count = 10,
+    offset = 0,
+  ) {
     return this.services.OvhHttp.get(
       '/sws/exchange/{organization}/{exchange}/groups/{mailinglist}/managers',
       {

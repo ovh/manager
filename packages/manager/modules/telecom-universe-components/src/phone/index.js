@@ -7,9 +7,7 @@ import tucPhoneNumberFilter from './number/phone-number.filter';
 const moduleName = 'tucPhone';
 
 angular
-  .module(moduleName, [
-    'ovh-api-services',
-  ])
+  .module(moduleName, ['ovh-api-services'])
   .directive('tucPhoneNumber', tucPhoneNumberDirective)
   .filter('tucPhoneNumber', tucPhoneNumberFilter);
 

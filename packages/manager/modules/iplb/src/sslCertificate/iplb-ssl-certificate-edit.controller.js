@@ -1,6 +1,12 @@
 export default class IpLoadBalancerSslCertificateEditCtrl {
   /* @ngInject */
-  constructor($q, $state, $stateParams, CucCloudMessage, IpLoadBalancerSslCertificateService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CucCloudMessage,
+    IpLoadBalancerSslCertificateService,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -14,7 +20,10 @@ export default class IpLoadBalancerSslCertificateEditCtrl {
     }
     this.saving = true;
     this.CucCloudMessage.flushChildMessage();
-    return this.IpLoadBalancerSslCertificateService.create(this.$stateParams.serviceName, this.ssl)
+    return this.IpLoadBalancerSslCertificateService.create(
+      this.$stateParams.serviceName,
+      this.ssl,
+    )
       .then(() => {
         this.$state.go('network.iplb.detail.ssl-certificate');
       })

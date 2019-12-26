@@ -20,15 +20,17 @@ export default class {
   }
 
   /**
-     * Set filename base on service name and description.
-     * @return {String}
-     */
+   * Set filename base on service name and description.
+   * @return {String}
+   */
   setFilename() {
-    return `${kebabCase([
-      this.$stateParams.serviceName,
-      this.$translate.instant('sms_tabs_contacts'),
-      get(this.model.receiver, 'description', ''),
-    ].join())}.csv`;
+    return `${kebabCase(
+      [
+        this.$stateParams.serviceName,
+        this.$translate.instant('sms_tabs_contacts'),
+        get(this.model.receiver, 'description', ''),
+      ].join(),
+    )}.csv`;
   }
 
   close() {

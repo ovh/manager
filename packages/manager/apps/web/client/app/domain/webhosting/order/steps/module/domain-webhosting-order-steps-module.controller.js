@@ -8,12 +8,13 @@ export default class {
     this.availableModules = chunk(
       sortBy(
         this.availableModules
-          .filter(({ planCode }) => LATEST_MODULES
-            .map(({ label }) => label)
-            .includes(planCode))
+          .filter(({ planCode }) =>
+            LATEST_MODULES.map(({ label }) => label).includes(planCode),
+          )
           .map((module) => {
-            const { id, recommendedOffer } = LATEST_MODULES
-              .find(({ label }) => label === module.planCode);
+            const { id, recommendedOffer } = LATEST_MODULES.find(
+              ({ label }) => label === module.planCode,
+            );
 
             const [{ duration, pricingMode }] = module.prices;
 

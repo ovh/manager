@@ -3,11 +3,15 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/support',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/service/assist/support/telecom-telephony-service-assist-support.html',
+        templateUrl:
+          'app/telecom/telephony/service/assist/support/telecom-telephony-service-assist-support.html',
         controller: 'TelecomTelephonyServiceAssistSupportCtrl',
         controllerAs: 'SupportCtrl',
       },
     },
-    translations: { value: ['../../../service/assist/support'], format: 'json' },
+    translations: {
+      value: ['../../../service/assist/support'],
+      format: 'json',
+    },
   });
 });

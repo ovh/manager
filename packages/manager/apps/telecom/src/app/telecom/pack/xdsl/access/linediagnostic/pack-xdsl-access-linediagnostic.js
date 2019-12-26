@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/lineDiagnostic?type',
     views: {
       'accessView@telecom.packs.pack.xdsl': {
-        templateUrl: 'app/telecom/pack/xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.html',
+        templateUrl:
+          'app/telecom/pack/xdsl/access/linediagnostic/pack-xdsl-access-linediagnostic.html',
         controller: 'PackxdslaccesslinediagnosticCtrl',
         controllerAs: 'PackxdslaccesslinediagnosticCtrl',
       },

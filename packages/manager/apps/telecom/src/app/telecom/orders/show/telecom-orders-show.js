@@ -9,7 +9,8 @@ angular.module('managerApp').config(($stateProvider) => {
         noTranslations: true,
       },
       'followUp@telecom.orders.show': {
-        templateUrl: 'app/telecom/pack/xdsl/orderFollowUp/pack-xdsl-orderFollowUp-main.view.html',
+        templateUrl:
+          'app/telecom/pack/xdsl/orderFollowUp/pack-xdsl-orderFollowUp-main.view.html',
         controller: 'XdslOrderFollowUpCtrl',
         controllerAs: 'OrderFollowUpCtrl',
       },

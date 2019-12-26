@@ -13,13 +13,12 @@ import './service-expiration-date.component.less';
 const moduleName = 'wucExpiration';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'ovh-api-services',
-    translate,
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'ovh-api-services', translate])
   .component('wucServiceExpirationDate', wucServiceExpirationDate)
-  .controller('WucServiceExpirationDateComponentCtrl', WucServiceExpirationDateComponentCtrl)
+  .controller(
+    'WucServiceExpirationDateComponentCtrl',
+    WucServiceExpirationDateComponentCtrl,
+  )
   .constant('WUC_SERVICE_EXPIRATION_DATE', SERVICE_EXPIRATION_DATE)
   .run(/* @ngTranslationsInject:json ./translations */);
 

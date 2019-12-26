@@ -3,7 +3,14 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseDumpDeleteCtrl',
   class HostingDatabaseDumpDeleteCtrl {
-    constructor($scope, $filter, $stateParams, $translate, HostingDatabase, Alerter) {
+    constructor(
+      $scope,
+      $filter,
+      $stateParams,
+      $translate,
+      HostingDatabase,
+      Alerter,
+    ) {
       this.$scope = $scope;
       this.$filter = $filter;
       this.$stateParams = $stateParams;

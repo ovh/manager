@@ -2,8 +2,15 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 
 class CloudProjectComputeSshCtrl {
-  constructor(OvhApiCloudProjectSshKey, CloudProjectSSHKeyService, $translate,
-    CucControllerHelper, CucCloudMessage, $stateParams, ovhDocUrl) {
+  constructor(
+    OvhApiCloudProjectSshKey,
+    CloudProjectSSHKeyService,
+    $translate,
+    CucControllerHelper,
+    CucCloudMessage,
+    $stateParams,
+    ovhDocUrl,
+  ) {
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
     this.CloudProjectSSHKeyService = CloudProjectSSHKeyService;
     this.$translate = $translate;
@@ -40,21 +47,37 @@ class CloudProjectComputeSshCtrl {
 
   initLoaders() {
     this.createKey = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.CloudProjectSSHKeyService.createSSHKey(
-        this.serviceName,
-        this.sshKey,
-      ),
-      errorHandler: (err) => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_add_submit_error'), (err.data && err.data.message) || ''].join(' ')),
+      loaderFunction: () =>
+        this.CloudProjectSSHKeyService.createSSHKey(
+          this.serviceName,
+          this.sshKey,
+        ),
+      errorHandler: (err) =>
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpc_ssh_add_submit_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        ),
       successHandler: () => {
         this.toggleAddSshKey();
         this.getSshKeys(true);
-        this.CucCloudMessage.success(this.$translate.instant('cpc_ssh_add_submit_success'));
+        this.CucCloudMessage.success(
+          this.$translate.instant('cpc_ssh_add_submit_success'),
+        );
       },
     });
 
     this.keys = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.CloudProjectSSHKeyService.getSSHKeys(this.serviceName),
-      errorHandler: (err) => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_error'), (err.data && err.data.message) || ''].join(' ')),
+      loaderFunction: () =>
+        this.CloudProjectSSHKeyService.getSSHKeys(this.serviceName),
+      errorHandler: (err) =>
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpc_ssh_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        ),
       successHandler: () => this.filterSshKeys(),
     });
   }
@@ -74,9 +97,14 @@ class CloudProjectComputeSshCtrl {
     if (this.createKey.loading) {
       return;
     }
-    const notUnique = find(this.keys.data, (sshkey) => sshkey.name === this.sshKey.name);
+    const notUnique = find(
+      this.keys.data,
+      (sshkey) => sshkey.name === this.sshKey.name,
+    );
     if (notUnique) {
-      this.CucCloudMessage.error(this.$translate.instant('cpc_ssh_add_submit_name_error'));
+      this.CucCloudMessage.error(
+        this.$translate.instant('cpc_ssh_add_submit_name_error'),
+      );
       return;
     }
     this.createKey.load();
@@ -85,7 +113,8 @@ class CloudProjectComputeSshCtrl {
   openDeleteSshKey(sshKey) {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/cloud/project/compute/ssh/delete/compute-ssh-delete.html',
+        templateUrl:
+          'app/cloud/project/compute/ssh/delete/compute-ssh-delete.html',
         controller: 'CloudProjectComputeSshDeleteCtrl',
         controllerAs: '$ctrl',
         resolve: {
@@ -95,9 +124,17 @@ class CloudProjectComputeSshCtrl {
       },
       successHandler: () => {
         this.getSshKeys(true);
-        this.CucCloudMessage.success(this.$translate.instant('cpc_ssh_delete_success'));
+        this.CucCloudMessage.success(
+          this.$translate.instant('cpc_ssh_delete_success'),
+        );
       },
-      errorHandler: (err) => this.CucCloudMessage.error([this.$translate.instant('cpc_ssh_delete_error'), (err.data && err.data.message) || ''].join(' ')),
+      errorHandler: (err) =>
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('cpc_ssh_delete_error'),
+            (err.data && err.data.message) || '',
+          ].join(' '),
+        ),
     });
   }
 
@@ -112,15 +149,16 @@ class CloudProjectComputeSshCtrl {
     this.guides = {
       create: this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys'),
       add: this.ovhDocUrl.getDocUrl('g1924.configuring_additionnal_ssh_key'),
-      change: this.ovhDocUrl.getDocUrl('g2069.replacing_your_lost_ssh_key_pair'),
+      change: this.ovhDocUrl.getDocUrl(
+        'g2069.replacing_your_lost_ssh_key_pair',
+      ),
     };
   }
 
   filterSshKeys() {
     if (this.searchSshKeysForm && this.searchSshKeysForm.$valid) {
-      const filteredKeys = filter(
-        this.keys.data,
-        (sshKey) => this.isSshKeyMatchSearchCriterias(sshKey),
+      const filteredKeys = filter(this.keys.data, (sshKey) =>
+        this.isSshKeyMatchSearchCriterias(sshKey),
       );
 
       this.table.sshKeysFilter = filteredKeys;
@@ -133,7 +171,9 @@ class CloudProjectComputeSshCtrl {
 
   isSshKeyMatchSearchCriterias(sshKey) {
     if (this.search && sshKey.name) {
-      return sshKey.name.toLowerCase().indexOf(this.search.toLowerCase()) !== -1;
+      return (
+        sshKey.name.toLowerCase().indexOf(this.search.toLowerCase()) !== -1
+      );
     }
 
     return true;
@@ -167,4 +207,6 @@ class CloudProjectComputeSshCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectComputeSshCtrl', CloudProjectComputeSshCtrl);
+angular
+  .module('managerApp')
+  .controller('CloudProjectComputeSshCtrl', CloudProjectComputeSshCtrl);

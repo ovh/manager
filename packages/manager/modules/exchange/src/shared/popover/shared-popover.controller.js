@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class ExchangeToolboxSharedCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, messaging, navigation, $translate, exchangeStates) {
+  constructor(
+    $scope,
+    Exchange,
+    messaging,
+    navigation,
+    $translate,
+    exchangeStates,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -23,7 +30,10 @@ export default class ExchangeToolboxSharedCtrl {
   }
 
   removeShared(shared) {
-    if (this.services.exchangeStates.constructor.isOk(shared) && !shared.hasChildren) {
+    if (
+      this.services.exchangeStates.constructor.isOk(shared) &&
+      !shared.hasChildren
+    ) {
       this.services.navigation.setAction(
         'exchange/shared/remove/shared-remove',
         angular.copy(shared),

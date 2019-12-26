@@ -8,12 +8,8 @@ import routing from './update.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewUpdate';
 
-angular.module(moduleName, [
-  automatic,
-  form,
-  manualPayment,
-  noPaymentMean,
-])
+angular
+  .module(moduleName, [automatic, form, manualPayment, noPaymentMean])
   .config(routing)
   .component('billingAutorenewUpdate', component);
 

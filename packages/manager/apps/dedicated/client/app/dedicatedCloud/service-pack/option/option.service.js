@@ -8,37 +8,31 @@ export const name = 'ovhManagerPccServicePackOptionService';
 
 export const ServicePackOptionService = class ServicePackOptionService {
   /* @ngInject */
-  constructor(
-    $q,
-    OvhApiDedicatedCloud,
-  ) {
+  constructor($q, OvhApiDedicatedCloud) {
     this.$q = $q;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
   }
 
   mapServicePackNamesToOptionNames(serviceName, servicePackNames) {
     return this.$q.all(
-      servicePackNames
-        .map((servicePackName) => this.getOptionNames(serviceName, servicePackName)),
+      servicePackNames.map((servicePackName) =>
+        this.getOptionNames(serviceName, servicePackName),
+      ),
     );
   }
 
   getOptionNames(serviceName, servicePackName) {
-    return this
-      .OvhApiDedicatedCloud
-      .ServicePacks()
+    return this.OvhApiDedicatedCloud.ServicePacks()
       .v6()
       .get({
         name: servicePackName,
         serviceName,
-      }).$promise
-      .then(({ options: names }) => names);
+      })
+      .$promise.then(({ options: names }) => names);
   }
 
   static getType(optionName) {
-    return find(
-      OPTIONS, { name: optionName },
-    ).type;
+    return find(OPTIONS, { name: optionName }).type;
   }
 
   static getPresentationUrl(optionName, subsidiary) {
@@ -47,22 +41,30 @@ export const ServicePackOptionService = class ServicePackOptionService {
   }
 
   getRawOptions({ serviceName, servicePackName, subsidiary }) {
-    return this
-      .getOptionNames(serviceName, servicePackName)
-      .then((names) => this.$q.all(names.map((optionName) => ({
-        name: optionName,
-        presentationUrl: ServicePackOptionService
-          .getPresentationUrl(optionName, subsidiary),
-      }))));
+    return this.getOptionNames(serviceName, servicePackName).then((names) =>
+      this.$q.all(
+        names.map((optionName) => ({
+          name: optionName,
+          presentationUrl: ServicePackOptionService.getPresentationUrl(
+            optionName,
+            subsidiary,
+          ),
+        })),
+      ),
+    );
   }
 
   getOptions({ serviceName, servicePackName, subsidiary }) {
-    return this
-      .getRawOptions({ serviceName, servicePackName, subsidiary })
-      .then((options) => options.map((option) => ({
+    return this.getRawOptions({
+      serviceName,
+      servicePackName,
+      subsidiary,
+    }).then((options) =>
+      options.map((option) => ({
         ...option,
         type: ServicePackOptionService.getType(option.name),
-      })));
+      })),
+    );
   }
 };
 

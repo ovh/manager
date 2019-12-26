@@ -7,10 +7,7 @@ import routing from './import.routing';
 const moduleName = 'ovhManagerPciProjectFailoverIpsImportsImport';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ui.router', 'pascalprecht.translate'])
   .config(routing);
 
 export default moduleName;

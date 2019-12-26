@@ -1,5 +1,4 @@
-
-export default /* @ngInject */ function (
+export default /* @ngInject */ function(
   CucRegionService,
   DetailsPopoverService,
 ) {

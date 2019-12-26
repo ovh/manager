@@ -57,7 +57,7 @@ export default () => {
       this.sortedKeys = [];
       this.items = {};
     };
-  }());
+  })();
 
   // /////////////////////
   //      METHODS      //
@@ -98,14 +98,13 @@ export default () => {
   };
 
   OrderedHash.prototype.replaceItem = function replaceItem(oldItem, newItem) {
-    const oldItemKey = typeof oldItem === 'object' ? oldItem[this.accessKey] : oldItem;
-
+    const oldItemKey =
+      typeof oldItem === 'object' ? oldItem[this.accessKey] : oldItem;
 
     const oldKeyIndex = indexOf(this.sortedKeys, oldItemKey);
 
-
-    const newItemKey = typeof newItem === 'object' ? newItem[this.accessKey] : newItem;
-
+    const newItemKey =
+      typeof newItem === 'object' ? newItem[this.accessKey] : newItem;
 
     const newItemKeyIndex = indexOf(this.sortedKeys, newItemKey);
 

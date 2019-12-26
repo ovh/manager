@@ -25,7 +25,9 @@ export default /* @ngInject */ (TucVoipService, tucVoipService) => {
       // check for mandatory options
       mandatoryOptions.forEach((option) => {
         if (!options[option]) {
-          throw new Error(`${option} option must be specified when creating a new TucVoipBillingAccount`);
+          throw new Error(
+            `${option} option must be specified when creating a new TucVoipBillingAccount`,
+          );
         }
       });
 
@@ -100,7 +102,10 @@ export default /* @ngInject */ (TucVoipService, tucVoipService) => {
      *  to the services list.
      */
     addService(service) {
-      const addedService = service.constructor.name !== 'TucVoipService' ? service : new TucVoipService(service);
+      const addedService =
+        service.constructor.name !== 'TucVoipService'
+          ? service
+          : new TucVoipService(service);
 
       // check if service is already added
       const serviceIndex = findIndex(this.services, {

@@ -3,7 +3,13 @@ import some from 'lodash/some';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, $timeout, $uibModalInstance, TucSmsMediator, receivers) {
+  constructor(
+    $stateParams,
+    $timeout,
+    $uibModalInstance,
+    TucSmsMediator,
+    receivers,
+  ) {
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$uibModalInstance = $uibModalInstance;
@@ -22,9 +28,9 @@ export default class {
   }
 
   /**
-     * Add receivers' lists.
-     * @return {Promise}
-     */
+   * Add receivers' lists.
+   * @return {Promise}
+   */
   add() {
     this.loading.addReceiversLists = true;
     return this.$timeout(angular.noop, 1000).then(() => {
@@ -43,9 +49,9 @@ export default class {
   }
 
   /**
-     * Has selected helper.
-     * @return {Boolean}
-     */
+   * Has selected helper.
+   * @return {Boolean}
+   */
   hasSelected() {
     return some(this.receivers, { isSelected: true });
   }

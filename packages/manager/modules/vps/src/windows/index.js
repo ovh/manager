@@ -6,9 +6,7 @@ import ovhManagerVpsWindowsOrder from './order';
 const moduleName = 'ovhManagerVpsWindows';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsWindowsOrder,
-  ])
+  .module(moduleName, [ovhManagerVpsWindowsOrder])
   .component(component.name, component)
   .config(routing);
 

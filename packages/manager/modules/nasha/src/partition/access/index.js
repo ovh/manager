@@ -10,10 +10,7 @@ import './styles.less';
 const moduleName = 'ovhManagerNashaPartitionAccess';
 
 angular
-  .module(moduleName, [
-    NashaPartitionAccessAdd,
-    NashaPartitionAccessDelete,
-  ])
+  .module(moduleName, [NashaPartitionAccessAdd, NashaPartitionAccessDelete])
   .config(routing)
   .component('nashaPartitionAccessComponent', NashaPartitionAccessComponent)
 

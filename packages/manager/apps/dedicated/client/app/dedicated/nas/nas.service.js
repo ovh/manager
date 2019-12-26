@@ -15,11 +15,19 @@ angular
       partitionsDetails: 'UNIVERS_DEDICATED_NAS_PARTITIONS_DETAILS',
 
       partitionsAccessIds: 'UNIVERS_DEDICATED_NAS_PARTITIONS_ACCESS_IDS',
-      partitionsAccessDetails: 'UNIVERS_DEDICATED_NAS_PARTITIONS_ACCESS_DETAILS',
+      partitionsAccessDetails:
+        'UNIVERS_DEDICATED_NAS_PARTITIONS_ACCESS_DETAILS',
     };
 
     self.operations = {
-      partition: ['clusterLeclercPartitionAdd', 'clusterLeclercPartitionDelete', 'nasPartitionAdd', 'nasPartitionDelete', 'clusterLeclercPartitionUpdate', 'nasPartitionUpdate'],
+      partition: [
+        'clusterLeclercPartitionAdd',
+        'clusterLeclercPartitionDelete',
+        'nasPartitionAdd',
+        'nasPartitionDelete',
+        'clusterLeclercPartitionUpdate',
+        'nasPartitionUpdate',
+      ],
       access: ['clusterLeclercAclUpdate', 'nasAclUpdate'],
       snapshot: ['clusterLeclercSnapshotUpdate'],
     };
@@ -50,17 +58,23 @@ angular
       const nasType = self.getNasType(nasId);
 
       if (nasType) {
-        return URI.expand('apiv6/dedicated/{nasType}/{serviceName}/task/{taskId}', {
-          nasType,
-          serviceName: self.getNasId(nasId),
-          taskId,
-        }).toString();
+        return URI.expand(
+          'apiv6/dedicated/{nasType}/{serviceName}/task/{taskId}',
+          {
+            nasType,
+            serviceName: self.getNasId(nasId),
+            taskId,
+          },
+        ).toString();
       }
       return null;
     };
 
     self.poll = function poll(nasId, taskId) {
-      return Poll.poll(self.getTasknewPath(nasId, taskId), null, { successRule: { status: 'done' }, namespace: 'nas.polling' });
+      return Poll.poll(self.getTasknewPath(nasId, taskId), null, {
+        successRule: { status: 'done' },
+        namespace: 'nas.polling',
+      });
     };
 
     self.killPoll = function killPoll() {
@@ -79,15 +93,21 @@ angular
     }
 
     self.getTaskInProgressOf = function getTaskInProgressOf(nasId, operation) {
-      return $q.allSettled([getTaskNotDone(nasId, 'todo', operation), getTaskNotDone(nasId, 'init', operation), getTaskNotDone(nasId, 'doing', operation)]).then((tasks) => {
-        let tabTasks = [];
-        angular.forEach(tasks, (taskOperation) => {
-          if (taskOperation !== null) {
-            tabTasks = union(tabTasks, taskOperation);
-          }
+      return $q
+        .allSettled([
+          getTaskNotDone(nasId, 'todo', operation),
+          getTaskNotDone(nasId, 'init', operation),
+          getTaskNotDone(nasId, 'doing', operation),
+        ])
+        .then((tasks) => {
+          let tabTasks = [];
+          angular.forEach(tasks, (taskOperation) => {
+            if (taskOperation !== null) {
+              tabTasks = union(tabTasks, taskOperation);
+            }
+          });
+          return tabTasks;
         });
-        return tabTasks;
-      });
     };
 
     // ---------------INFO-------------------
@@ -108,8 +128,7 @@ angular
     self.getConstant = function getConstant(nasId) {
       return OvhHttp.get(`/dedicated/${self.getNasType(nasId)}.json`, {
         rootPath: 'apiv6',
-      })
-        .then(({ models }) => models['dedicated.storage.ProtocolEnum'].enum);
+      }).then(({ models }) => models['dedicated.storage.ProtocolEnum'].enum);
     };
 
     self.getSelected = function getSelected(nasId, forceRefresh) {
@@ -130,7 +149,11 @@ angular
       });
     };
 
-    self.updateNasDetails = function updateNasDetails(nasId, customName, monitored) {
+    self.updateNasDetails = function updateNasDetails(
+      nasId,
+      customName,
+      monitored,
+    ) {
       return OvhHttp.put('/dedicated/{nasType}/{serviceName}', {
         rootPath: 'apiv6',
         urlParams: getNasIds(nasId),
@@ -150,11 +173,18 @@ angular
         rootPath: 'apiv6',
         urlParams: getNasIds(nasId),
         cache: cacheNas.partitionsIds,
-        clearAllCache: forceRefresh ? [cacheNas.partitionsIds, cacheNas.partitionsDetails] : false,
+        clearAllCache: forceRefresh
+          ? [cacheNas.partitionsIds, cacheNas.partitionsDetails]
+          : false,
       });
     };
 
-    self.addPartition = function addPartition(nasId, partitionName, protocol, size) {
+    self.addPartition = function addPartition(
+      nasId,
+      partitionName,
+      protocol,
+      size,
+    ) {
       return OvhHttp.post('/dedicated/{nasType}/{serviceName}/partition', {
         rootPath: 'apiv6',
         urlParams: getNasIds(nasId),
@@ -167,102 +197,134 @@ angular
     };
 
     self.getPartition = function getPartition(nasId, partitionName) {
-      return OvhHttp.get('/dedicated/{nasType}/{serviceName}/partition/{partitionName}', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+      return OvhHttp.get(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
+          cache: cacheNas.partitionsDetails,
         },
-        cache: cacheNas.partitionsDetails,
-      });
+      );
     };
 
     self.deletePartition = function deletePartition(nasId, partitionName) {
-      return OvhHttp.delete('/dedicated/{nasType}/{serviceName}/partition/{partitionName}', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+      return OvhHttp.delete(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
         },
-      });
+      );
     };
 
-    self.updatePartitionSize = function updatePartitionSize(nasId, partitionName, size) {
-      return OvhHttp.put('/dedicated/{nasType}/{serviceName}/partition/{partitionName}', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+    self.updatePartitionSize = function updatePartitionSize(
+      nasId,
+      partitionName,
+      size,
+    ) {
+      return OvhHttp.put(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
+          data: {
+            size,
+          },
+          cache: cacheNas.partitionsDetails,
+          clearCache: cacheNas.partitionsDetails,
         },
-        data: {
-          size,
-        },
-        cache: cacheNas.partitionsDetails,
-        clearCache: cacheNas.partitionsDetails,
-      });
+      );
     };
 
     // ---------------ACCESS-------------------
 
-    self.getAccessIds = function getAccessIds(nasId, partitionName, forceRefresh) {
-      return OvhHttp.get('/dedicated/{nasType}/{serviceName}/partition/{partitionName}/access', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+    self.getAccessIds = function getAccessIds(
+      nasId,
+      partitionName,
+      forceRefresh,
+    ) {
+      return OvhHttp.get(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}/access',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
+          cache: cacheNas.partitionsAccessIds,
+          clearAllCache: forceRefresh
+            ? [cacheNas.partitionsAccessIds, cacheNas.partitionsAccessDetails]
+            : false,
         },
-        cache: cacheNas.partitionsAccessIds,
-        clearAllCache: forceRefresh
-          ? [cacheNas.partitionsAccessIds, cacheNas.partitionsAccessDetails]
-          : false,
-      });
+      );
     };
 
     self.addAccess = function addAccess(nasId, partitionName, ip) {
-      return OvhHttp.post('/dedicated/{nasType}/{serviceName}/partition/{partitionName}/access', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+      return OvhHttp.post(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}/access',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
+          data: {
+            ip,
+          },
+          cache: cacheNas.partitionsAccessIds,
+          clearCache: cacheNas.partitionsAccessIds,
         },
-        data: {
-          ip,
-        },
-        cache: cacheNas.partitionsAccessIds,
-        clearCache: cacheNas.partitionsAccessIds,
-      });
+      );
     };
 
     self.deleteAccess = function deleteAccess(nasId, partitionName, ip) {
-      return OvhHttp.delete('/dedicated/{nasType}/{serviceName}/partition/{partitionName}/access/{ip}', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
-          ip,
+      return OvhHttp.delete(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}/access/{ip}',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+            ip,
+          },
+          cache: cacheNas.partitionsAccessDetails,
+          clearAllCache: cacheNas.partitionsAccessIds,
+          clearCache: cacheNas.partitionsAccessDetails,
         },
-        cache: cacheNas.partitionsAccessDetails,
-        clearAllCache: cacheNas.partitionsAccessIds,
-        clearCache: cacheNas.partitionsAccessDetails,
-      });
+      );
     };
 
     // SWS
-    self.getAuthorizableIps = function getAuthorizableIps(nasId, partitionName) {
-      return OvhHttp.get('/sws/dedicated/{nasType}/{serviceName}/partitions/{partitionName}/authorizableIps', {
-        rootPath: '2api',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+    self.getAuthorizableIps = function getAuthorizableIps(
+      nasId,
+      partitionName,
+    ) {
+      return OvhHttp.get(
+        '/sws/dedicated/{nasType}/{serviceName}/partitions/{partitionName}/authorizableIps',
+        {
+          rootPath: '2api',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
         },
-      });
+      );
     };
 
     // ---------------SNAPSHOTS-------------------
@@ -279,14 +341,17 @@ angular
       promiseTab.push(getSnapshotEnum());
 
       promiseTab.push(
-        OvhHttp.get('/dedicated/{nasType}/{serviceName}/partition/{partitionName}/snapshot', {
-          rootPath: 'apiv6',
-          urlParams: {
-            nasType: self.getNasType(nasId),
-            serviceName: self.getNasId(nasId),
-            partitionName,
+        OvhHttp.get(
+          '/dedicated/{nasType}/{serviceName}/partition/{partitionName}/snapshot',
+          {
+            rootPath: 'apiv6',
+            urlParams: {
+              nasType: self.getNasType(nasId),
+              serviceName: self.getNasId(nasId),
+              partitionName,
+            },
           },
-        }),
+        ),
       );
 
       return $q.all(promiseTab).then((data) => {
@@ -309,53 +374,78 @@ angular
       });
     };
 
-    self.postSnapshots = function postSnapshots(nasId, partitionName, snapshots) {
+    self.postSnapshots = function postSnapshots(
+      nasId,
+      partitionName,
+      snapshots,
+    ) {
       const promiseTab = [];
 
       angular.forEach(snapshots, (snapshot) => {
         if (snapshot.active) {
-          promiseTab.push(self
-            .postSnapshot(nasId, partitionName, snapshot.type)
-            .catch((data) => $q.reject({ type: snapshot.type, error: data })));
+          promiseTab.push(
+            self
+              .postSnapshot(nasId, partitionName, snapshot.type)
+              .catch((data) => $q.reject({ type: snapshot.type, error: data })),
+          );
         } else {
-          promiseTab.push(self
-            .deleteSnapshot(nasId, partitionName, snapshot.type)
-            .catch((data) => $q.reject({ type: snapshot.type, error: data })));
+          promiseTab.push(
+            self
+              .deleteSnapshot(nasId, partitionName, snapshot.type)
+              .catch((data) => $q.reject({ type: snapshot.type, error: data })),
+          );
         }
       });
 
       return $q
         .allSettled(promiseTab)
-        .catch((data) => $q.reject(filter(
-          data,
-          (snapshotError) => angular.isDefined(snapshotError.error),
-        )));
+        .catch((data) =>
+          $q.reject(
+            filter(data, (snapshotError) =>
+              angular.isDefined(snapshotError.error),
+            ),
+          ),
+        );
     };
 
-    self.postSnapshot = function postSnapshot(nasId, partitionName, snapshotType) {
-      return OvhHttp.post('/dedicated/{nasType}/{serviceName}/partition/{partitionName}/snapshot', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
+    self.postSnapshot = function postSnapshot(
+      nasId,
+      partitionName,
+      snapshotType,
+    ) {
+      return OvhHttp.post(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}/snapshot',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+          },
+          data: {
+            snapshotType,
+          },
         },
-        data: {
-          snapshotType,
-        },
-      });
+      );
     };
 
-    self.deleteSnapshot = function deleteSnapshot(nasId, partitionName, snapshotType) {
-      return OvhHttp.delete('/dedicated/{nasType}/{serviceName}/partition/{partitionName}/snapshot/{snapshotType}', {
-        rootPath: 'apiv6',
-        urlParams: {
-          nasType: self.getNasType(nasId),
-          serviceName: self.getNasId(nasId),
-          partitionName,
-          snapshotType,
+    self.deleteSnapshot = function deleteSnapshot(
+      nasId,
+      partitionName,
+      snapshotType,
+    ) {
+      return OvhHttp.delete(
+        '/dedicated/{nasType}/{serviceName}/partition/{partitionName}/snapshot/{snapshotType}',
+        {
+          rootPath: 'apiv6',
+          urlParams: {
+            nasType: self.getNasType(nasId),
+            serviceName: self.getNasId(nasId),
+            partitionName,
+            snapshotType,
+          },
         },
-      });
+      );
     };
 
     // ---------------ORDER SWS-------------------

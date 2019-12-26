@@ -2,7 +2,14 @@ import angular from 'angular';
 
 export default class ExchangeTabGroupsCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, navigation, messaging, $translate, exchangeStates) {
+  constructor(
+    $scope,
+    Exchange,
+    navigation,
+    messaging,
+    $translate,
+    exchangeStates,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -22,14 +29,17 @@ export default class ExchangeTabGroupsCtrl {
 
     this.displayGroups();
 
-    $scope.$on(Exchange.events.groupsChanged, () => $scope.$broadcast('paginationServerSide.reload', 'groupsTable'));
+    $scope.$on(Exchange.events.groupsChanged, () =>
+      $scope.$broadcast('paginationServerSide.reload', 'groupsTable'),
+    );
     $scope.$on('showGroups', () => this.displayGroups());
     $scope.$on('showManagers', () => this.displayManagersByGroup());
     $scope.$on('showMembers', () => this.displayMembersByGroup());
 
     $scope.getLoading = () => this.getLoading();
     $scope.getMailingListObjects = () => this.getMailingListObjects();
-    $scope.getMailingLists = (count, offset) => this.getMailingLists(count, offset);
+    $scope.getMailingLists = (count, offset) =>
+      this.getMailingLists(count, offset);
   }
 
   onSearchValueChange() {
@@ -52,7 +62,11 @@ export default class ExchangeTabGroupsCtrl {
     this.showMembers = false;
     this.showAliases = false;
     this.services.navigation.selectedGroup = ml;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'managersTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'managersTable',
+    );
   }
 
   displayMembersByGroup(ml) {
@@ -62,7 +76,11 @@ export default class ExchangeTabGroupsCtrl {
     this.showMembers = true;
     this.showAliases = false;
     this.services.navigation.selectedGroup = ml;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'membersTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'membersTable',
+    );
   }
 
   displayAliasesByGroup(ml) {
@@ -72,7 +90,11 @@ export default class ExchangeTabGroupsCtrl {
     this.showMembers = false;
     this.showAliases = true;
     this.services.navigation.selectedGroup = ml;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'groupAliasTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'groupAliasTable',
+    );
   }
 
   getLoading() {
@@ -81,7 +103,11 @@ export default class ExchangeTabGroupsCtrl {
 
   resetSearch() {
     this.search.value = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'groupsTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'groupsTable',
+    );
   }
 
   getMailingListObjects() {
@@ -104,12 +130,18 @@ export default class ExchangeTabGroupsCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_GROUPS_all_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_GROUPS_all_error_message',
+          ),
           failure,
         );
       })
       .finally(() => {
-        this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'groupsTable');
+        this.services.$scope.$broadcast(
+          'paginationServerSide.loadPage',
+          1,
+          'groupsTable',
+        );
         this.loading = false;
       });
   }
@@ -120,7 +152,10 @@ export default class ExchangeTabGroupsCtrl {
 
   updateGroup(ml) {
     if (this.services.exchangeStates.constructor.isOk(ml)) {
-      this.services.navigation.setAction('exchange/group/update/group-update', angular.copy(ml));
+      this.services.navigation.setAction(
+        'exchange/group/update/group-update',
+        angular.copy(ml),
+      );
     }
   }
 
@@ -135,7 +170,10 @@ export default class ExchangeTabGroupsCtrl {
 
   deleteGroup(ml) {
     if (this.services.exchangeStates.constructor.isOk(ml)) {
-      this.services.navigation.setAction('exchange/group/remove/group-remove', angular.copy(ml));
+      this.services.navigation.setAction(
+        'exchange/group/remove/group-remove',
+        angular.copy(ml),
+      );
     }
   }
 

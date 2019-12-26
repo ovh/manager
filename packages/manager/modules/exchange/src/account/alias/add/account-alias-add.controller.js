@@ -36,7 +36,9 @@ export default class ExchangeAddAccountAliasCtrl {
       .then((data) => {
         if (isEmpty(data.availableDomains)) {
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_tab_ALIAS_add_no_domains'),
+            this.services.$translate.instant(
+              'exchange_tab_ALIAS_add_no_domains',
+            ),
           );
           this.services.navigation.resetAction();
         } else {
@@ -47,7 +49,9 @@ export default class ExchangeAddAccountAliasCtrl {
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ALIAS_domain_loading_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_ALIAS_domain_loading_failure',
+          ),
           err,
         );
         this.services.navigation.resetAction();
@@ -56,11 +60,15 @@ export default class ExchangeAddAccountAliasCtrl {
 
   checkTakenEmails() {
     this.takenEmailError = false;
-    const modelIsWellFormed = !isEmpty(this.model) && isString(this.model.alias) && has(this.model, 'domain.name');
+    const modelIsWellFormed =
+      !isEmpty(this.model) &&
+      isString(this.model.alias) &&
+      has(this.model, 'domain.name');
 
     if (modelIsWellFormed) {
-      const emailIsAlreadyUsed = !isEmpty(this.takenEmails)
-        && includes(
+      const emailIsAlreadyUsed =
+        !isEmpty(this.takenEmails) &&
+        includes(
           this.takenEmails,
           `${this.model.alias.toLowerCase()}@${this.model.domain.name}`,
         );
@@ -80,12 +88,16 @@ export default class ExchangeAddAccountAliasCtrl {
     )
       .then(() => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_ALIAS_add_alias_success_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ALIAS_add_alias_success_message',
+          ),
         );
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ALIAS_add_alias_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ALIAS_add_alias_error_message',
+          ),
           err,
         );
       })
@@ -99,9 +111,10 @@ export default class ExchangeAddAccountAliasCtrl {
       return false;
     }
 
-    const aliasIsValid = !isEmpty(this.model.alias)
-      && isString(this.model.alias)
-      && this.model.alias.length <= 64;
+    const aliasIsValid =
+      !isEmpty(this.model.alias) &&
+      isString(this.model.alias) &&
+      this.model.alias.length <= 64;
     const hasDomain = !isEmpty(this.model.domain);
 
     return aliasIsValid && hasDomain && !this.takenEmailError;

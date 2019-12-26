@@ -52,7 +52,7 @@ export default class ExchangeUpdateDomainCtrl {
     ];
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   removeTrailingDot(mxRelay) {
     if (mxRelay == null) {
       return mxRelay;
@@ -60,21 +60,28 @@ export default class ExchangeUpdateDomainCtrl {
 
     return mxRelay.replace(/\.$/, '');
   }
-  /* eslint-enable class-methods-use-this */
 
   cancel() {
     // Make sure the type in the select widget is reset to its initial value
-    this.services.$rootScope.$broadcast(this.services.Exchange.events.domainsChanged);
+    this.services.$rootScope.$broadcast(
+      this.services.Exchange.events.domainsChanged,
+    );
     this.services.navigation.resetAction();
   }
 
   checkMxRelay() {
-    if (this.selectedDomain.type === 'AUTHORITATIVE' && this.selectedDomain.mxRelay != null) {
+    if (
+      this.selectedDomain.type === 'AUTHORITATIVE' &&
+      this.selectedDomain.mxRelay != null
+    ) {
       this.mxRelayBuffer = this.selectedDomain.mxRelay;
       this.selectedDomain.mxRelay = null;
     }
 
-    if (this.selectedDomain.type === 'NON_AUTHORITATIVE' && this.mxRelayBuffer != null) {
+    if (
+      this.selectedDomain.type === 'NON_AUTHORITATIVE' &&
+      this.mxRelayBuffer != null
+    ) {
       this.selectedDomain.mxRelay = this.mxRelayBuffer;
       this.mxRelayBuffer = null;
     }
@@ -86,8 +93,8 @@ export default class ExchangeUpdateDomainCtrl {
    */
   isMxRelayVisible() {
     return (
-      !this.services.exchangeServiceInfrastructure.isProvider()
-      || !this.services.exchangeVersion.isVersion(2010)
+      !this.services.exchangeServiceInfrastructure.isProvider() ||
+      !this.services.exchangeVersion.isVersion(2010)
     );
   }
 
@@ -98,7 +105,8 @@ export default class ExchangeUpdateDomainCtrl {
   checkLoopWarning() {
     const hostName = this.exchange.hostname;
     return (
-      hostName === this.selectedDomain.mxRelay || `${hostName}.` === this.selectedDomain.mxRelay
+      hostName === this.selectedDomain.mxRelay ||
+      `${hostName}.` === this.selectedDomain.mxRelay
     );
   }
 
@@ -107,7 +115,9 @@ export default class ExchangeUpdateDomainCtrl {
    * @returns {boolean} True if more than 255 characters
    */
   checkLengthWarning() {
-    return this.selectedDomain.mxRelay && this.selectedDomain.mxRelay.length > 255;
+    return (
+      this.selectedDomain.mxRelay && this.selectedDomain.mxRelay.length > 255
+    );
   }
 
   isValid() {
@@ -117,8 +127,9 @@ export default class ExchangeUpdateDomainCtrl {
       return true;
     }
 
-    const valueHasntChanged = this.originalValue.type === this.selectedDomain.type
-      && this.originalValue.mxRelay === this.selectedDomain.mxRelay;
+    const valueHasntChanged =
+      this.originalValue.type === this.selectedDomain.type &&
+      this.originalValue.mxRelay === this.selectedDomain.mxRelay;
 
     if (valueHasntChanged) {
       return false;
@@ -126,10 +137,10 @@ export default class ExchangeUpdateDomainCtrl {
 
     if (this.isMxRelayVisible()) {
       return (
-        this.selectedDomain.mxRelay
-        && !this.checkLengthWarning()
-        && !this.checkLoopWarning()
-        && this.isValidMxRelay(this.selectedDomain.mxRelay)
+        this.selectedDomain.mxRelay &&
+        !this.checkLengthWarning() &&
+        !this.checkLoopWarning() &&
+        this.isValidMxRelay(this.selectedDomain.mxRelay)
       );
     }
 
@@ -146,7 +157,9 @@ export default class ExchangeUpdateDomainCtrl {
     if (this.selectedDomain.type === 'AUTHORITATIVE') {
       this.selectedDomain.mxRelay = null;
     } else {
-      this.selectedDomain.mxRelay = this.removeTrailingDot(this.selectedDomain.mxRelay);
+      this.selectedDomain.mxRelay = this.removeTrailingDot(
+        this.selectedDomain.mxRelay,
+      );
     }
 
     const data = {
@@ -162,19 +175,25 @@ export default class ExchangeUpdateDomainCtrl {
     )
       .then(() => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_domain_modify_success'),
+          this.services.$translate.instant(
+            'exchange_tab_domain_modify_success',
+          ),
           'true',
         );
       })
       .catch((failure) => {
         // Make sure the type in the select widget is reset to its initial value
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_domain_modify_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_domain_modify_failure',
+          ),
           failure,
         );
       })
       .finally(() => {
-        this.services.$rootScope.$broadcast(this.services.Exchange.events.domainsChanged);
+        this.services.$rootScope.$broadcast(
+          this.services.Exchange.events.domainsChanged,
+        );
         this.services.navigation.resetAction();
       });
   }

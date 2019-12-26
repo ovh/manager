@@ -9,9 +9,7 @@ import {
 const moduleName = 'ovhManagerPccServicePackUpgradeCertification';
 
 angular
-  .module(moduleName, [
-    ...steps,
-  ])
+  .module(moduleName, [...steps])
   .config(registerState)
   .run(/* @ngTranslationsInject:json ./translations */)
   .service(serviceName, UpgradeCertificationService);

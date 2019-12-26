@@ -21,10 +21,12 @@ export default class PciStoragesContainersContainerController {
   }
 
   $onInit() {
-    this.columnsParameters = [{
-      name: 'retrievalState',
-      hidden: !this.archive,
-    }];
+    this.columnsParameters = [
+      {
+        name: 'retrievalState',
+        hidden: !this.archive,
+      },
+    ];
 
     this.loadMessages();
   }
@@ -43,34 +45,53 @@ export default class PciStoragesContainersContainerController {
   }
 
   downloadObject(object) {
-    return this.PciProjectStorageContainersService
-      .downloadObject(this.projectId, this.containerId, object)
+    return this.PciProjectStorageContainersService.downloadObject(
+      this.projectId,
+      this.containerId,
+      object,
+    )
       .then((url) => {
         this.$window.location = url;
       })
-      .catch((err) => this.CucCloudMessage.error(
-        this.$translate.instant(
-          `pci_projects_project_storages_containers_container_${this.archive ? 'archive' : 'object'}_error_download`,
-          { message: get(err, 'data.message', '') },
+      .catch((err) =>
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            `pci_projects_project_storages_containers_container_${
+              this.archive ? 'archive' : 'object'
+            }_error_download`,
+            { message: get(err, 'data.message', '') },
+          ),
+          'pci.projects.project.storages.containers.container',
         ),
-        'pci.projects.project.storages.containers.container',
-      ));
+      );
   }
 
   unsealObject(object) {
-    return this.PciProjectStorageContainersService
-      .unsealObject(this.projectId, this.container, object)
-      .then(() => this.refresh(this.$translate.instant(
-        'pci_projects_project_storages_containers_container_archive_success_unseal',
-        {
-          archive: object.name,
-        },
-      )))
-      .catch((err) => this.refresh(this.$translate.instant(
-        'pci_projects_project_storages_containers_container_archive_error_unseal',
-        {
-          message: get(err, 'data.message', ''),
-        },
-      ), 'error'));
+    return this.PciProjectStorageContainersService.unsealObject(
+      this.projectId,
+      this.container,
+      object,
+    )
+      .then(() =>
+        this.refresh(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_container_archive_success_unseal',
+            {
+              archive: object.name,
+            },
+          ),
+        ),
+      )
+      .catch((err) =>
+        this.refresh(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_container_archive_error_unseal',
+            {
+              message: get(err, 'data.message', ''),
+            },
+          ),
+          'error',
+        ),
+      );
   }
 }

@@ -7,8 +7,12 @@ export default class CucInfoModalController {
   }
 
   $onInit() {
-    this.okButtonText = this.params.okButtonText || this.$translate.instant('cuc_helper_modal_ok');
-    this.cancelButtonText = this.params.cancelButtonText || this.$translate.instant('cuc_helper_cancel');
+    this.okButtonText =
+      this.params.okButtonText ||
+      this.$translate.instant('cuc_helper_modal_ok');
+    this.cancelButtonText =
+      this.params.cancelButtonText ||
+      this.$translate.instant('cuc_helper_cancel');
   }
 
   dismissModal() {

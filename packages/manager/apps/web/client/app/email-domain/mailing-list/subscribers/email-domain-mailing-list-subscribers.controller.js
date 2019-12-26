@@ -51,7 +51,9 @@ angular.module('App').controller(
       };
       this.search = { subscribers: '' };
 
-      this.$scope.$on('hosting.tabs.mailingLists.subscribers.refresh', () => this.refreshTableSubscribers());
+      this.$scope.$on('hosting.tabs.mailingLists.subscribers.refresh', () =>
+        this.refreshTableSubscribers(),
+      );
       this.$scope.$on(
         'mailingLists.subscribers.poll.start',
         (pollObject, task) => {
@@ -84,7 +86,9 @@ angular.module('App').controller(
         'mailingLists.subscribers.sendListByEmail.poll.done',
         () => {
           this.Alerter.success(
-            this.$translate.instant('mailing_list_tab_modal_sendListByEmail_sent_success'),
+            this.$translate.instant(
+              'mailing_list_tab_modal_sendListByEmail_sent_success',
+            ),
             this.$scope.alerts.main,
           );
         },
@@ -98,11 +102,11 @@ angular.module('App').controller(
         });
       });
 
-      this.MailingLists
-        .getMailingListLimits(this.mailingList.options.moderatorMessage)
-        .then((limits) => {
-          this.mailingList.limits = limits;
-        });
+      this.MailingLists.getMailingListLimits(
+        this.mailingList.options.moderatorMessage,
+      ).then((limits) => {
+        this.mailingList.limits = limits;
+      });
       this.refreshTableSubscribers();
       this.runPolling();
     }
@@ -152,7 +156,11 @@ angular.module('App').controller(
 
     applySelection(subscribers) {
       forEach(subscribers, (subscriber) => {
-        set(subscriber, 'selected', indexOf(this.subscribers.selected, subscriber.email) !== -1);
+        set(
+          subscriber,
+          'selected',
+          indexOf(this.subscribers.selected, subscriber.email) !== -1,
+        );
       });
     }
 
@@ -173,11 +181,13 @@ angular.module('App').controller(
         .then((data) => {
           this.subscribers.ids = this.$filter('orderBy')(data);
         })
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           if (isEmpty(this.subscribers.ids)) {
             this.loading.subscribers = false;
@@ -225,10 +235,14 @@ angular.module('App').controller(
       const data = this.exportCsv.exportData({
         separator: ';',
         fileName: `export_${this.mailingList.name}`,
-        datas: `${this.$translate.instant('mailing_list_tab_table_header_subscriber_email')}\n${this.subscribers.ids.join('\n')}`,
+        datas: `${this.$translate.instant(
+          'mailing_list_tab_table_header_subscriber_email',
+        )}\n${this.subscribers.ids.join('\n')}`,
       });
       this.Alerter.success(
-        this.$translate.instant('mailing_list_tab_export_csv_success', { t0: data }),
+        this.$translate.instant('mailing_list_tab_export_csv_success', {
+          t0: data,
+        }),
         this.$scope.alerts.main,
       );
     }

@@ -2,21 +2,42 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
 class LogsHomeService {
-  constructor($http, $q, $translate, LogsHelperService, LogsConstants, LogsOptionsService,
-    OvhApiDbaas, CucServiceHelper, SidebarMenu) {
+  constructor(
+    $http,
+    $q,
+    $translate,
+    LogsHelperService,
+    LogsConstants,
+    LogsOptionsService,
+    OvhApiDbaas,
+    CucServiceHelper,
+    SidebarMenu,
+  ) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
-    this.AccountingAapiService = OvhApiDbaas.Logs().Accounting().Aapi();
-    this.ContactsApiLexiService = OvhApiDbaas.Logs().Contacts().v6();
-    this.DetailsAapiService = OvhApiDbaas.Logs().Details().Aapi();
-    this.InputsApiAapiService = OvhApiDbaas.Logs().Input().Aapi();
-    this.InputsApiLexiService = OvhApiDbaas.Logs().Input().v6();
+    this.AccountingAapiService = OvhApiDbaas.Logs()
+      .Accounting()
+      .Aapi();
+    this.ContactsApiLexiService = OvhApiDbaas.Logs()
+      .Contacts()
+      .v6();
+    this.DetailsAapiService = OvhApiDbaas.Logs()
+      .Details()
+      .Aapi();
+    this.InputsApiAapiService = OvhApiDbaas.Logs()
+      .Input()
+      .Aapi();
+    this.InputsApiLexiService = OvhApiDbaas.Logs()
+      .Input()
+      .v6();
     this.LogsLexiService = OvhApiDbaas.Logs().v6();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.LogsOptionsService = LogsOptionsService;
-    this.OperationApiService = OvhApiDbaas.Logs().Operation().v6();
+    this.OperationApiService = OvhApiDbaas.Logs()
+      .Operation()
+      .v6();
     this.CucServiceHelper = CucServiceHelper;
     this.SidebarMenu = SidebarMenu;
   }
@@ -29,8 +50,8 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getAccount(serviceName) {
-    return this.AccountingAapiService.me({ serviceName }).$promise
-      .then((account) => this.transformAccount(account))
+    return this.AccountingAapiService.me({ serviceName })
+      .$promise.then((account) => this.transformAccount(account))
       .catch(this.CucServiceHelper.errorHandler('logs_home_account_get_error'));
   }
 
@@ -42,9 +63,15 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getAccountDetails(serviceName) {
-    return this.DetailsAapiService.me({ serviceName }).$promise
-      .then((accountDetails) => this.transformAccountDetails(accountDetails))
-      .catch(this.CucServiceHelper.errorHandler('logs_home_account_details_get_error'));
+    return this.DetailsAapiService.me({ serviceName })
+      .$promise.then((accountDetails) =>
+        this.transformAccountDetails(accountDetails),
+      )
+      .catch(
+        this.CucServiceHelper.errorHandler(
+          'logs_home_account_details_get_error',
+        ),
+      );
   }
 
   /**
@@ -55,9 +82,9 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getCurrentOffer(serviceName) {
-    return this.LogsOfferService
-      .getOffer(serviceName)
-      .then((offer) => this.transformOffer(offer));
+    return this.LogsOfferService.getOffer(serviceName).then((offer) =>
+      this.transformOffer(offer),
+    );
   }
 
   /**
@@ -76,17 +103,31 @@ class LogsHomeService {
       .then((account) => {
         const token = btoa(account.metrics.token);
         const query = {
-          start: Math.max(moment().subtract(this.LogsConstants.DATA_STORAGE.TIME_PERIOD_MONTHS, 'month').unix() * 1000, moment(this.createdAt).unix() * 1000),
-          queries: [{
-            metric: this.LogsConstants.DATA_STORAGE.METRICS.SUM,
-            aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
-            downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE['24H_MAX'],
-          },
-          {
-            metric: this.LogsConstants.DATA_STORAGE.METRICS.COUNT,
-            aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
-            downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE['24H_MAX'],
-          }],
+          start: Math.max(
+            moment()
+              .subtract(
+                this.LogsConstants.DATA_STORAGE.TIME_PERIOD_MONTHS,
+                'month',
+              )
+              .unix() * 1000,
+            moment(this.createdAt).unix() * 1000,
+          ),
+          queries: [
+            {
+              metric: this.LogsConstants.DATA_STORAGE.METRICS.SUM,
+              aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
+              downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
+                '24H_MAX'
+              ],
+            },
+            {
+              metric: this.LogsConstants.DATA_STORAGE.METRICS.COUNT,
+              aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
+              downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
+                '24H_MAX'
+              ],
+            },
+          ],
         };
         return this.$http({
           method: 'POST',
@@ -99,8 +140,12 @@ class LogsHomeService {
         });
       })
       .then((data) => {
-        const timestamps = data.data.length > 0 ? Object.keys(data.data[0].dps) : [];
-        data = data.data.map(dat => timestamps.map(timestamp => dat.dps[timestamp])); // eslint-disable-line
+        const timestamps =
+          data.data.length > 0 ? Object.keys(data.data[0].dps) : [];
+        // eslint-disable-next-line no-param-reassign
+        data = data.data.map((dat) =>
+          timestamps.map((timestamp) => dat.dps[timestamp]),
+        );
         return {
           timestamps: timestamps.map((timestamp) => timestamp * 1000),
           usageData: data,
@@ -117,23 +162,24 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getColdstorage(serviceName) {
-    return this.getAccount(serviceName)
-      .then((account) => {
-        const token = btoa(account.metrics.token);
-        return this.$http({
-          method: 'GET',
-          url: `${account.metrics.host}/api/query/last`,
-          params: { timeseries: this.LogsConstants.DATA_STORAGE.METRICS.COLD_STORAGE_TOTAL },
-          headers: {
-            Authorization: `Basic ${token}`,
-          },
-          preventLogout: true,
-        }).then((data) => ({
-          coldStorage: data.data.length > 0
-            ? Math.floor(data.data[0].value)
-            : undefined,
-        }));
-      });
+    return this.getAccount(serviceName).then((account) => {
+      const token = btoa(account.metrics.token);
+      return this.$http({
+        method: 'GET',
+        url: `${account.metrics.host}/api/query/last`,
+        params: {
+          timeseries: this.LogsConstants.DATA_STORAGE.METRICS
+            .COLD_STORAGE_TOTAL,
+        },
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+        preventLogout: true,
+      }).then((data) => ({
+        coldStorage:
+          data.data.length > 0 ? Math.floor(data.data[0].value) : undefined,
+      }));
+    });
   }
 
   /**
@@ -144,11 +190,12 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getOptions(serviceName) {
-    return this.LogsOptionsService.getSubscribedOptionsMap(serviceName)
-      .then((options) => {
+    return this.LogsOptionsService.getSubscribedOptionsMap(serviceName).then(
+      (options) => {
         options.forEach((option) => this.constructor.transformOption(option));
         return options;
-      });
+      },
+    );
   }
 
   /**
@@ -159,8 +206,9 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getServiceInfos(serviceName) {
-    return this.LogsLexiService.serviceInfos({ serviceName }).$promise
-      .catch(this.CucServiceHelper.errorHandler('logs_home_service_info_get_error'));
+    return this.LogsLexiService.serviceInfos({ serviceName }).$promise.catch(
+      this.CucServiceHelper.errorHandler('logs_home_service_info_get_error'),
+    );
   }
 
   /**
@@ -178,9 +226,10 @@ class LogsHomeService {
     const si = ['K', 'M', 'G', 'T', 'P', 'H'];
     const exp = Math.floor(Math.log(number) / Math.log(1000));
     let result = number / Math.pow(1000, exp);
-    result = result % 1 > (1 / Math.pow(1000, exp - 1))
-      ? Math.round(result.toFixed(2) * 100) / 100
-      : result.toFixed(0);
+    result =
+      result % 1 > 1 / Math.pow(1000, exp - 1)
+        ? Math.round(result.toFixed(2) * 100) / 100
+        : result.toFixed(0);
     const unit = si[exp - 1];
     return `${result} ${unit}`;
   }
@@ -195,20 +244,32 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   updateDisplayName(serviceName, service) {
-    return this.LogsLexiService.update({ serviceName },
+    return this.LogsLexiService.update(
+      { serviceName },
       {
         displayName: service.displayName,
         isCapped: service.isCapped,
-      })
+      },
+    )
       .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_home_display_name_update_success', { })
-          .then((res) => {
-            this.changeMenuTitle(serviceName, service.displayName || serviceName);
-            return res;
-          });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_home_display_name_update_success',
+          {},
+        ).then((res) => {
+          this.changeMenuTitle(serviceName, service.displayName || serviceName);
+          return res;
+        });
       })
-      .catch((err) => this.LogsHelperService.handleError('logs_home_display_name_update_error', err, { }));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_home_display_name_update_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -220,16 +281,29 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   updateCappedPlan(serviceName, service) {
-    return this.LogsLexiService.update({ serviceName },
+    return this.LogsLexiService.update(
+      { serviceName },
       {
         displayName: service.displayName,
         isCapped: service.isCapped,
-      })
+      },
+    )
       .$promise.then((operation) => {
         this.resetAllCache();
-        return this.LogsHelperService.handleOperation(serviceName, operation.data || operation, 'logs_home_capped_update_success', { });
+        return this.LogsHelperService.handleOperation(
+          serviceName,
+          operation.data || operation,
+          'logs_home_capped_update_success',
+          {},
+        );
       })
-      .catch((err) => this.LogsHelperService.handleError('logs_home_capped_update_error', err, { }));
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_home_capped_update_error',
+          err,
+          {},
+        ),
+      );
   }
 
   /**
@@ -241,7 +315,10 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   static findUrl(urls, type) {
-    return urls.reduce((foundUrl, url) => (url.type === type ? url.address : foundUrl), '');
+    return urls.reduce(
+      (foundUrl, url) => (url.type === type ? url.address : foundUrl),
+      '',
+    );
   }
 
   /**
@@ -256,7 +333,11 @@ class LogsHomeService {
       object.urls,
       this.LogsConstants.URLS.ELASTICSEARCH_API,
     );
-    set(object, 'elasticSearchApiUrl', `${elasticSearchApiUrl}/_cluster/health?pretty=true`);
+    set(
+      object,
+      'elasticSearchApiUrl',
+      `${elasticSearchApiUrl}/_cluster/health?pretty=true`,
+    );
     return object;
   }
 
@@ -268,7 +349,14 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getGrayLogApiUrl(object) {
-    set(object, 'graylogApiUrl', this.constructor.findUrl(object.urls, this.LogsConstants.URLS.GRAYLOG_API));
+    set(
+      object,
+      'graylogApiUrl',
+      this.constructor.findUrl(
+        object.urls,
+        this.LogsConstants.URLS.GRAYLOG_API,
+      ),
+    );
     return object;
   }
 
@@ -280,10 +368,14 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   getGrayLogUrl(object) {
-    set(object, 'graylogWebuiUrl', this.constructor.findUrl(
-      object.urls,
-      this.LogsConstants.URLS.GRAYLOG_WEBUI,
-    ));
+    set(
+      object,
+      'graylogWebuiUrl',
+      this.constructor.findUrl(
+        object.urls,
+        this.LogsConstants.URLS.GRAYLOG_WEBUI,
+      ),
+    );
     return object;
   }
 
@@ -299,12 +391,18 @@ class LogsHomeService {
     accountDetails.urls.forEach((url) => {
       const urlInfo = this.LogsConstants.URL_TYPES[url.type];
       if (urlInfo) {
-        portsAndMessages[urlInfo.PORT] = portsAndMessages[urlInfo.PORT]
-          || { name: this.LogsConstants.PORT_TYPES[urlInfo.PORT] };
-        portsAndMessages[urlInfo.PORT][urlInfo.MESSAGE] = url.address.split(':')[1]; // eslint-disable-line
+        portsAndMessages[urlInfo.PORT] = portsAndMessages[urlInfo.PORT] || {
+          name: this.LogsConstants.PORT_TYPES[urlInfo.PORT],
+        };
+        // eslint-disable-next-line prefer-destructuring
+        portsAndMessages[urlInfo.PORT][urlInfo.MESSAGE] = url.address.split(
+          ':',
+        )[1];
       }
     });
-    return Object.keys(portsAndMessages).map((portType) => portsAndMessages[portType]);
+    return Object.keys(portsAndMessages).map(
+      (portType) => portsAndMessages[portType],
+    );
   }
 
   /**
@@ -332,7 +430,11 @@ class LogsHomeService {
     } else {
       const dataVolume = this.$translate.instant('logs_home_data_volume');
       const dataVolumeValue = this.$translate.instant(account.offer.reference);
-      set(account, 'offer.description', `${this.LogsConstants.offertypes.PRO} - ${dataVolume}: ${dataVolumeValue}`);
+      set(
+        account,
+        'offer.description',
+        `${this.LogsConstants.offertypes.PRO} - ${dataVolume}: ${dataVolumeValue}`,
+      );
     }
     return account;
   }
@@ -345,19 +447,39 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   transformAccountDetails(accountDetails) {
-    set(accountDetails, 'email', accountDetails.service.contact
-      ? accountDetails.service.contact.email
-      : accountDetails.me.email);
+    set(
+      accountDetails,
+      'email',
+      accountDetails.service.contact
+        ? accountDetails.service.contact.email
+        : accountDetails.me.email,
+    );
     this.getGrayLogUrl(accountDetails);
     this.getGrayLogApiUrl(accountDetails);
-    set(accountDetails, 'graylogApiUrl', `${accountDetails.graylogApiUrl}/api-browser`);
-    set(accountDetails, 'graylogEntryPoint', accountDetails.graylogWebuiUrl
-      .replace('https://', '')
-      .replace('/api', ''));
+    set(
+      accountDetails,
+      'graylogApiUrl',
+      `${accountDetails.graylogApiUrl}/api-browser`,
+    );
+    set(
+      accountDetails,
+      'graylogEntryPoint',
+      accountDetails.graylogWebuiUrl
+        .replace('https://', '')
+        .replace('/api', ''),
+    );
     this.getElasticSearchApiUrl(accountDetails);
-    if (accountDetails.last_stream) { this.getGrayLogUrl(accountDetails.last_stream); }
-    if (accountDetails.last_dashboard) { this.getGrayLogUrl(accountDetails.last_dashboard); }
-    set(accountDetails, 'portsAndMessages', this.getPortsAndMessages(accountDetails));
+    if (accountDetails.last_stream) {
+      this.getGrayLogUrl(accountDetails.last_stream);
+    }
+    if (accountDetails.last_dashboard) {
+      this.getGrayLogUrl(accountDetails.last_dashboard);
+    }
+    set(
+      accountDetails,
+      'portsAndMessages',
+      this.getPortsAndMessages(accountDetails),
+    );
     return accountDetails;
   }
 
@@ -369,7 +491,11 @@ class LogsHomeService {
    * @memberof LogsHomeService
    */
   static transformOption(option) {
-    set(option, 'description', `${option.quantity} ${option.type}: ${option.detail}`);
+    set(
+      option,
+      'description',
+      `${option.quantity} ${option.type}: ${option.detail}`,
+    );
     return option;
   }
 

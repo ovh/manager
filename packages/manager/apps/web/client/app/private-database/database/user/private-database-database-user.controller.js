@@ -5,7 +5,14 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'PrivateDatabaseUserDatabaseCtrl',
   class PrivateDatabaseUserDatabaseController {
-    constructor($q, $scope, $stateParams, $translate, Alerter, PrivateDatabase) {
+    constructor(
+      $q,
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      PrivateDatabase,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;

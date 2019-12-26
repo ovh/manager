@@ -15,7 +15,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/home',
       views: {
         logsStreams: {
-          templateUrl: 'app/dbaas/logs/detail/streams/home/logs-streams-home.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/home/logs-streams-home.html',
           controller: 'LogsStreamsHomeCtrl',
           controllerAs: 'ctrl',
         },
@@ -25,7 +26,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/add',
       views: {
         logsStreams: {
-          templateUrl: 'app/dbaas/logs/detail/streams/add/logs-streams-add.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/add/logs-streams-add.html',
           controller: 'LogsStreamsAddCtrl',
           controllerAs: 'ctrl',
         },
@@ -35,7 +37,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/:streamId',
       views: {
         logsStreams: {
-          templateUrl: 'app/dbaas/logs/detail/streams/add/logs-streams-add.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/add/logs-streams-add.html',
           controller: 'LogsStreamsAddCtrl',
           controllerAs: 'ctrl',
         },
@@ -45,7 +48,8 @@ angular.module('managerApp').config(($stateProvider) => {
       url: '/:streamId/follow',
       views: {
         logsStreams: {
-          templateUrl: 'app/dbaas/logs/detail/streams/follow/streams-follow.html',
+          templateUrl:
+            'app/dbaas/logs/detail/streams/follow/streams-follow.html',
           controller: 'LogsStreamsFollowCtrl',
           controllerAs: 'ctrl',
         },

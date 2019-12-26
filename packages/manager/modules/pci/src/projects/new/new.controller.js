@@ -4,8 +4,18 @@ import { PCI_URLS } from '../../constants';
 
 export default class PciProjectNewCtrl {
   /* @ngInject */
-  constructor($q, $state, $translate, $window, atInternet, coreConfig, CucCloudMessage,
-    OVH_PAYMENT_METHOD_TYPE, ovhPaymentMethod, PciProjectNewService) {
+  constructor(
+    $q,
+    $state,
+    $translate,
+    $window,
+    atInternet,
+    coreConfig,
+    CucCloudMessage,
+    OVH_PAYMENT_METHOD_TYPE,
+    ovhPaymentMethod,
+    PciProjectNewService,
+  ) {
     // dependencies injections
     this.$q = $q;
     this.$state = $state;
@@ -45,13 +55,21 @@ export default class PciProjectNewCtrl {
 
     if (currentStep.name === 'description' && this.region !== 'US') {
       translationKey = 'pci_projects_new_continue';
-    } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()
-      || (this.paymentStatus() && currentStep.model.projectId && this.newProjectInfo.order)) {
+    } else if (
+      currentStep.model.mode === 'credits' ||
+      this.hasCreditToOrder() ||
+      (this.paymentStatus() &&
+        currentStep.model.projectId &&
+        this.newProjectInfo.order)
+    ) {
       translationKey = 'pci_projects_new_credit_and_create';
     } else {
-      const isBankAccount = get(currentStep.model.selectedPaymentMethodType, 'paymentType')
-        === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT;
-      translationKey = isBankAccount ? 'pci_projects_new_add' : 'pci_projects_new_create';
+      const isBankAccount =
+        get(currentStep.model.selectedPaymentMethodType, 'paymentType') ===
+        this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT;
+      translationKey = isBankAccount
+        ? 'pci_projects_new_add'
+        : 'pci_projects_new_create';
     }
 
     return this.$translate.instant(translationKey);
@@ -63,7 +81,9 @@ export default class PciProjectNewCtrl {
     if (currentStep.name === 'description') {
       return this.region !== 'US'
         ? this.getStateLink('next')
-        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(currentStep.model.name || '');
+        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(
+            currentStep.model.name || '',
+          );
     }
 
     return this.paymentMethodUrl;
@@ -81,12 +101,15 @@ export default class PciProjectNewCtrl {
       return !currentStep.model.agreements;
     }
 
-    return this.loading.creating
-      || currentStep.loading.init
-      || currentStep.loading.availableSteps
-      || currentStep.loading.voucher
-      || (currentStep.model.voucher.value && !currentStep.model.voucher.submitted)
-      || (currentStep.model.mode === 'credits' && !currentStep.model.credit.value);
+    return (
+      this.loading.creating ||
+      currentStep.loading.init ||
+      currentStep.loading.availableSteps ||
+      currentStep.loading.voucher ||
+      (currentStep.model.voucher.value &&
+        !currentStep.model.voucher.submitted) ||
+      (currentStep.model.mode === 'credits' && !currentStep.model.credit.value)
+    );
   }
 
   isNextButtonVisible() {
@@ -96,8 +119,9 @@ export default class PciProjectNewCtrl {
       return this.region !== 'US';
     }
 
-    const isBankAccount = get(currentStep.model.selectedPaymentMethodType, 'paymentType')
-      === this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT;
+    const isBankAccount =
+      get(currentStep.model.selectedPaymentMethodType, 'paymentType') ===
+      this.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT;
 
     return !isBankAccount && !this.shouldProcessChallenge();
   }
@@ -105,15 +129,20 @@ export default class PciProjectNewCtrl {
   isPaymentMethodIntegrationVisible() {
     const currentStep = this.getCurrentStep();
 
-    return currentStep.name !== 'description'
-      && !this.paymentStatus()
-      && !get(currentStep, 'model.defaultPaymentMethod');
+    return (
+      currentStep.name !== 'description' &&
+      !this.paymentStatus() &&
+      !get(currentStep, 'model.defaultPaymentMethod')
+    );
   }
 
   isStepComplete(step) {
     const stepNames = this.steps.map(({ name }) => name);
 
-    return stepNames.indexOf(step.name) < stepNames.indexOf(this.getCurrentStep().name);
+    return (
+      stepNames.indexOf(step.name) <
+      stepNames.indexOf(this.getCurrentStep().name)
+    );
   }
 
   isCreditAsteriskVisible() {
@@ -123,7 +152,9 @@ export default class PciProjectNewCtrl {
       return false;
     }
 
-    return currentStep.model.mode === 'paymentMethod' && this.hasCreditToOrder();
+    return (
+      currentStep.model.mode === 'paymentMethod' && this.hasCreditToOrder()
+    );
   }
 
   /* ----------  Some payment helpers  ---------- */
@@ -133,7 +164,9 @@ export default class PciProjectNewCtrl {
     // build from scratch to be sure that old query parameters
     // are reset (in case of previous payment error)
     const { location } = this.$window;
-    let callbackUrlBase = `${location.protocol}//${location.host}${location.pathname}${this.getStateLink('payment', false)}?`;
+    let callbackUrlBase = `${location.protocol}//${location.host}${
+      location.pathname
+    }${this.getStateLink('payment', false)}?`;
     const callbackParams = [];
 
     if (this.descriptionModel.name) {
@@ -142,7 +175,10 @@ export default class PciProjectNewCtrl {
     if (projectId) {
       callbackParams.push(`projectId=${projectId}`);
     }
-    if (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value) {
+    if (
+      this.paymentModel.mode === 'credits' &&
+      this.paymentModel.credit.value
+    ) {
       callbackParams.push(
         `credit=${this.paymentModel.credit.value}`,
         `mode=${this.paymentModel.mode}`,
@@ -195,11 +231,17 @@ export default class PciProjectNewCtrl {
 
     if (!this.paymentModel.projectId) {
       // just explain that payment has failed
-      this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_add_payment_error_message'));
+      this.CucCloudMessage.error(
+        this.$translate.instant('pci_projects_new_add_payment_error_message'),
+      );
     } else {
       // explain that project has been created
       // but that credit needs to be paid before using it
-      this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_add_credit_payment_error_message'));
+      this.CucCloudMessage.error(
+        this.$translate.instant(
+          'pci_projects_new_add_credit_payment_error_message',
+        ),
+      );
     }
   }
 
@@ -234,7 +276,6 @@ export default class PciProjectNewCtrl {
 
   /* -----  End of Callbacks  ------ */
 
-
   /* ==============================
   =            Actions            =
   =============================== */
@@ -242,12 +283,17 @@ export default class PciProjectNewCtrl {
   createProject() {
     this.loading.creating = true;
 
-    const hasCredit = this.paymentModel.mode === 'credits' && this.paymentModel.credit.value;
-    const hasOrderCredit = this.newProjectInfo.order
-        && (!this.paymentStatus()
-          || ['success', 'accepted'].includes(this.paymentStatus())
-          || (this.paymentStatus() && this.paymentModel.projectId && this.newProjectInfo.order));
-    const hasVoucher = this.paymentModel.voucher.valid && this.paymentModel.voucher.value;
+    const hasCredit =
+      this.paymentModel.mode === 'credits' && this.paymentModel.credit.value;
+    const hasOrderCredit =
+      this.newProjectInfo.order &&
+      (!this.paymentStatus() ||
+        ['success', 'accepted'].includes(this.paymentStatus()) ||
+        (this.paymentStatus() &&
+          this.paymentModel.projectId &&
+          this.newProjectInfo.order));
+    const hasVoucher =
+      this.paymentModel.voucher.valid && this.paymentModel.voucher.value;
     const createParams = {
       description: this.descriptionModel.name,
     };
@@ -260,8 +306,7 @@ export default class PciProjectNewCtrl {
       createParams.credit = this.newProjectInfo.order.value;
     }
 
-    return this.PciProjectNewService
-      .acceptAgreements(this.contracts)
+    return this.PciProjectNewService.acceptAgreements(this.contracts)
       .then(() => this.PciProjectNewService.createNewProject(createParams))
       .then(({ orderId, project }) => {
         if (!hasVoucher && (hasCredit || hasOrderCredit)) {
@@ -272,7 +317,9 @@ export default class PciProjectNewCtrl {
       })
       .catch(() => {
         this.loading.creating = false;
-        this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_create_error_message'));
+        this.CucCloudMessage.error(
+          this.$translate.instant('pci_projects_new_create_error_message'),
+        );
       });
   }
 
@@ -312,7 +359,10 @@ export default class PciProjectNewCtrl {
   onNextBtnClick() {
     const currentStep = this.getCurrentStep();
 
-    if (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value) {
+    if (
+      this.paymentModel.mode === 'credits' &&
+      this.paymentModel.credit.value
+    ) {
       this.atInternet.trackEvent({
         page: this.trackingPage,
         event: 'PCI_PAYMENT_MODE_CREDIT',
@@ -324,12 +374,17 @@ export default class PciProjectNewCtrl {
     }
 
     // if default payment or credit amount - create project
-    if (this.paymentModel.defaultPaymentMethod
-      || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)
-      || (this.newProjectInfo.order && ['success', 'accepted'].includes(this.paymentStatus()))
-      || (this.paymentStatus() && currentStep.model.projectId && this.newProjectInfo.order)
-      || (this.paymentModel.voucher.valid
-        && this.paymentModel.voucher.paymentMethodRequired === false)
+    if (
+      this.paymentModel.defaultPaymentMethod ||
+      (this.paymentModel.mode === 'credits' &&
+        this.paymentModel.credit.value) ||
+      (this.newProjectInfo.order &&
+        ['success', 'accepted'].includes(this.paymentStatus())) ||
+      (this.paymentStatus() &&
+        currentStep.model.projectId &&
+        this.newProjectInfo.order) ||
+      (this.paymentModel.voucher.valid &&
+        this.paymentModel.voucher.paymentMethodRequired === false)
     ) {
       return this.createProject();
     }

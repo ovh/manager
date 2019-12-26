@@ -5,7 +5,10 @@ const moduleName = 'enterpriseCloudDatabaseServicePassword';
 
 angular
   .module(moduleName, [])
-  .component('enterpriseCloudDatabaseServicePasswordComponent', passwordComponent)
+  .component(
+    'enterpriseCloudDatabaseServicePasswordComponent',
+    passwordComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

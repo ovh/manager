@@ -22,8 +22,15 @@ import removeTemplate from './remove/telecom-sms-users-remove.html';
 export default class {
   /* @ngInject */
   constructor(
-    $stateParams, $q, $filter, $uibModal, $translate,
-    OvhApiSms, TucSmsMediator, TucToast, TucToastError,
+    $stateParams,
+    $q,
+    $filter,
+    $uibModal,
+    $translate,
+    OvhApiSms,
+    TucSmsMediator,
+    TucToast,
+    TucToastError,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -61,14 +68,17 @@ export default class {
   refresh() {
     this.api.smsUsers.resetAllCache();
     this.users.isLoading = true;
-    return this.fetchUsers().then((users) => {
-      this.users.raw = angular.copy(users);
-      this.sortUsers();
-    }).catch((err) => {
-      this.TucToastError(err);
-    }).finally(() => {
-      this.users.isLoading = false;
-    });
+    return this.fetchUsers()
+      .then((users) => {
+        this.users.raw = angular.copy(users);
+        this.sortUsers();
+      })
+      .catch((err) => {
+        this.TucToastError(err);
+      })
+      .finally(() => {
+        this.users.isLoading = false;
+      });
   }
 
   /**
@@ -76,12 +86,22 @@ export default class {
    * @return {Promise}
    */
   fetchUsers() {
-    return this.api.smsUsers.query({
-      serviceName: this.$stateParams.serviceName,
-    }).$promise.then((loginIds) => this.$q.all(map(loginIds, (login) => this.api.smsUsers.get({
-      serviceName: this.$stateParams.serviceName,
-      login,
-    }).$promise)));
+    return this.api.smsUsers
+      .query({
+        serviceName: this.$stateParams.serviceName,
+      })
+      .$promise.then((loginIds) =>
+        this.$q.all(
+          map(
+            loginIds,
+            (login) =>
+              this.api.smsUsers.get({
+                serviceName: this.$stateParams.serviceName,
+                login,
+              }).$promise,
+          ),
+        ),
+      );
   }
 
   /**
@@ -120,11 +140,17 @@ export default class {
       controller: addController,
       controllerAs: 'UsersAddCtrl',
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_add_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_add_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -138,15 +164,26 @@ export default class {
       controllerAs: 'UsersTemplatesCtrl',
       resolve: { service: () => this.service },
     });
-    modal.result.then(() => this.api.sms.get({
-      serviceName: this.$stateParams.serviceName,
-    }).$promise.then((service) => {
-      this.service = service;
-    }).catch((error) => this.TucToastError(error))).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_templates_update_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() =>
+        this.api.sms
+          .get({
+            serviceName: this.$stateParams.serviceName,
+          })
+          .$promise.then((service) => {
+            this.service = service;
+          })
+          .catch((error) => this.TucToastError(error)),
+      )
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_templates_update_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -161,11 +198,17 @@ export default class {
       controllerAs: '$ctrl',
       resolve: { user: () => user },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_change_password_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_change_password_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -188,11 +231,17 @@ export default class {
         },
       },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_quota_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_quota_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -207,11 +256,17 @@ export default class {
       controllerAs: 'UsersLimitCtrl',
       resolve: { user: () => user },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_limit_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_limit_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -226,11 +281,17 @@ export default class {
       controllerAs: 'UsersRestrictByIpCtrl',
       resolve: { user: () => user },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_restrict_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_restrict_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -245,11 +306,17 @@ export default class {
       controllerAs: 'UsersCallbackCtrl',
       resolve: { user: () => user },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_callback_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_callback_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 
   /**
@@ -264,10 +331,16 @@ export default class {
       controllerAs: 'UsersRemoveCtrl',
       resolve: { user: () => user },
     });
-    modal.result.then(() => this.refresh()).catch((error) => {
-      if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_remove_user_ko', { error: get(error, 'msg.data.message') }));
-      }
-    });
+    modal.result
+      .then(() => this.refresh())
+      .catch((error) => {
+        if (error && error.type === 'API') {
+          this.TucToast.error(
+            this.$translate.instant('sms_users_remove_user_ko', {
+              error: get(error, 'msg.data.message'),
+            }),
+          );
+        }
+      });
   }
 }

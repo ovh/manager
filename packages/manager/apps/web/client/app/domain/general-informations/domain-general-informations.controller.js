@@ -130,7 +130,9 @@ export default class DomainTabGeneralInformationsCtrl {
     this.$scope.$on('domain.dnssec.lock.unlock.cancel', () => {
       this.vm.dnssec.uiSwitch.checked = !this.vm.dnssec.uiSwitch.checked;
     });
-    this.$scope.$on('Domain.Options.Delete', () => this.getAllOptionDetails(this.domain.name));
+    this.$scope.$on('Domain.Options.Delete', () =>
+      this.getAllOptionDetails(this.domain.name),
+    );
 
     if (!this.domain.isExpired) {
       this.getScreenshoot(this.domain.name);
@@ -157,9 +159,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.actions = {
       manageContact: {
         text: this.$translate.instant('common_manage_contacts'),
-        href: `#/useraccount/contacts?tab=SERVICES&serviceName=${
-          this.domain.name
-        }&category=DOMAIN`,
+        href: `#/useraccount/contacts?tab=SERVICES&serviceName=${this.domain.name}&category=DOMAIN`,
         isAvailable: () => true,
       },
       changeOwner: {
@@ -169,15 +169,11 @@ export default class DomainTabGeneralInformationsCtrl {
       },
       manageAutorenew: {
         text: this.$translate.instant('common_manage'),
-        href: `#/billing/autoRenew?searchText=${
-          this.domain.name
-        }&selectedType=DOMAIN`,
+        href: `#/billing/autoRenew?searchText=${this.domain.name}&selectedType=DOMAIN`,
         isAvailable: () => true,
       },
       manageAlldom: {
-        href: `#/billing/autoRenew?searchText=${
-          this.allDom
-        }&selectedType=ALL_DOM`,
+        href: `#/billing/autoRenew?searchText=${this.allDom}&selectedType=ALL_DOM`,
       },
     };
     this.loading.changeOwner = true;
@@ -185,7 +181,9 @@ export default class DomainTabGeneralInformationsCtrl {
       return this.$q
         .all({
           domainOrderTradeUrl: this.User.getUrlOf('domainOrderTrade'),
-          orderServiceOption: this.Domain.getOrderServiceOption(this.domain.name),
+          orderServiceOption: this.Domain.getOrderServiceOption(
+            this.domain.name,
+          ),
         })
         .then(({ domainOrderTradeUrl, orderServiceOption }) => {
           if (find(orderServiceOption, (opt) => opt.family === 'trade')) {
@@ -194,13 +192,16 @@ export default class DomainTabGeneralInformationsCtrl {
               this.domain.name,
             );
           }
-        }).catch(() => {
+        })
+        .catch(() => {
           this.Alerter.error(
             this.$translate.instant('domain_configuration_fetch_fail'),
             this.$scope.alerts.main,
           );
         })
-        .finally(() => { this.loading.changeOwner = false; });
+        .finally(() => {
+          this.loading.changeOwner = false;
+        });
     }
 
     const changeOwnerClassic = !includes(
@@ -208,21 +209,25 @@ export default class DomainTabGeneralInformationsCtrl {
       last(this.domain.name.split('.')),
     );
 
-    return this.User.getUrlOf(changeOwnerClassic ? 'changeOwner' : 'domainOrderChange')
+    return this.User.getUrlOf(
+      changeOwnerClassic ? 'changeOwner' : 'domainOrderChange',
+    )
       .then((changeOwnerUrl) => {
         if (changeOwnerClassic) {
           this.actions.changeOwner.href = changeOwnerUrl;
         } else {
-          this.actions.changeOwner.href = `${changeOwnerUrl}?domain=${
-            this.domain.name
-          }`;
+          this.actions.changeOwner.href = `${changeOwnerUrl}?domain=${this.domain.name}`;
         }
-      }).catch(() => {
+      })
+      .catch(() => {
         this.Alerter.error(
           this.$translate.instant('domain_configuration_fetch_fail'),
           this.$scope.alerts.main,
         );
-      }).finally(() => { this.loading.changeOwner = false; });
+      })
+      .finally(() => {
+        this.loading.changeOwner = false;
+      });
   }
 
   getAllDomInfos(serviceName) {
@@ -241,11 +246,13 @@ export default class DomainTabGeneralInformationsCtrl {
               isIncluded: domains.indexOf(domain) !== -1,
             }));
           })
-          .catch((err) => this.Alerter.alertFromSWS(
-            this.$translate.instant('domain_tab_GLUE_table_error'),
-            err,
-            this.$scope.alerts.page,
-          ))
+          .catch((err) =>
+            this.Alerter.alertFromSWS(
+              this.$translate.instant('domain_tab_GLUE_table_error'),
+              err,
+              this.$scope.alerts.page,
+            ),
+          )
           .finally(() => {
             this.loading.allDom = false;
           });
@@ -270,8 +277,9 @@ export default class DomainTabGeneralInformationsCtrl {
       .then(({ sites, hostingInfo }) => {
         this.vm.hosting.web.sites = sites;
         this.vm.hosting.web.selected.info = hostingInfo;
-        this.hasStart10mOffer = hostingInfo.offer
-            === this.constants.HOSTING.OFFERS.START_10_M.TYPE_VALUE;
+        this.hasStart10mOffer =
+          hostingInfo.offer ===
+          this.constants.HOSTING.OFFERS.START_10_M.TYPE_VALUE;
         this.displayFreeHosting = isEmpty(sites) || this.hasStart10mOffer;
       })
       .finally(() => {
@@ -284,10 +292,11 @@ export default class DomainTabGeneralInformationsCtrl {
     return this.Domain.getAllNameServer(serviceName)
       .then((nameServers) => {
         this.nameServers = nameServers;
-        return this.$q.all(map(
-          nameServers,
-          (nameServer) => this.Domain.getNameServerStatus(serviceName, nameServer.id),
-        ));
+        return this.$q.all(
+          map(nameServers, (nameServer) =>
+            this.Domain.getNameServerStatus(serviceName, nameServer.id),
+          ),
+        );
       })
       .then((nameServersStatus) => {
         if (!isEmpty(nameServersStatus)) {
@@ -296,11 +305,11 @@ export default class DomainTabGeneralInformationsCtrl {
             type: 'external',
           });
 
-          const lastUpdated = maxBy(
-            nameServersStatus,
-            (nameServer) => new Date(nameServer.usedSince).getTime(),
+          const lastUpdated = maxBy(nameServersStatus, (nameServer) =>
+            new Date(nameServer.usedSince).getTime(),
           );
-          this.dnsStatus.refreshAlert = moment().diff(lastUpdated.usedSince, 'days') <= 2;
+          this.dnsStatus.refreshAlert =
+            moment().diff(lastUpdated.usedSince, 'days') <= 2;
         }
       })
       .finally(() => {
@@ -315,12 +324,14 @@ export default class DomainTabGeneralInformationsCtrl {
     this.hasAssociatedHostings = this.associatedHostings.length > 0;
     const domainRegExp = new RegExp(this.domain.name);
 
-    return this.$q.all(
-      this.associatedHostings
-        .map((hosting) => this.HostingDomain.getAttachedDomains(hosting, {
-          returnErrorKey: '',
-        })),
-    )
+    return this.$q
+      .all(
+        this.associatedHostings.map((hosting) =>
+          this.HostingDomain.getAttachedDomains(hosting, {
+            returnErrorKey: '',
+          }),
+        ),
+      )
       .then((allAssociatedHosting) => allAssociatedHosting.flatten())
       .then((allAssociatedHosting) => {
         if (isArray(allAssociatedHosting) && !isEmpty(allAssociatedHosting)) {
@@ -329,16 +340,23 @@ export default class DomainTabGeneralInformationsCtrl {
           // I would say I should get the first item only,
           // but the api returns an array, so I assume there can be multiple attached domains.
           this.subdomainsAndMultisites = map(
-            Array.from(new Set(allAssociatedHosting
-              .filter((hosting) => domainRegExp.test(hosting)))),
+            Array.from(
+              new Set(
+                allAssociatedHosting.filter((hosting) =>
+                  domainRegExp.test(hosting),
+                ),
+              ),
+            ),
             (item) => ({
               name: item,
               url: `#/configuration/hosting/${item}`,
             }),
           );
 
-          this.firstSubdomainsAndMultisites = this.subdomainsAndMultisites
-            .slice(0, 10);
+          this.firstSubdomainsAndMultisites = this.subdomainsAndMultisites.slice(
+            0,
+            10,
+          );
         }
       })
       .catch((err) => {
@@ -358,24 +376,34 @@ export default class DomainTabGeneralInformationsCtrl {
   getAllOptionDetails(serviceName) {
     this.loading.options = true;
     return this.Domain.getOptions(serviceName)
-      .then((options) => this.$q.all(
-        map(options, (option) => this.Domain.getOption(serviceName, option)
-          .then((optionDetail) => ({
-            ...optionDetail,
-            optionActivated: optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE,
-          }))),
-      ))
+      .then((options) =>
+        this.$q.all(
+          map(options, (option) =>
+            this.Domain.getOption(serviceName, option).then((optionDetail) => ({
+              ...optionDetail,
+              optionActivated:
+                optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE,
+            })),
+          ),
+        ),
+      )
       .then((options) => {
-        this.options = reduce(options, (transformedOptions, option) => ({
-          ...transformedOptions,
-          [option.option]: option,
-        }), {});
+        this.options = reduce(
+          options,
+          (transformedOptions, option) => ({
+            ...transformedOptions,
+            [option.option]: option,
+          }),
+          {},
+        );
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('domain_configuration_web_hosting_fail'),
-        get(err, 'data'),
-        this.$scope.alerts.page,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('domain_configuration_web_hosting_fail'),
+          get(err, 'data'),
+          this.$scope.alerts.page,
+        ),
+      )
       .finally(() => {
         this.loading.options = false;
       });
@@ -384,8 +412,7 @@ export default class DomainTabGeneralInformationsCtrl {
   getScreenshoot(serviceName) {
     this.loading.screenshot = true;
     return this.OvhApiScreenshot.get({ url: serviceName })
-      .$promise
-      .then((screenshot) => {
+      .$promise.then((screenshot) => {
         this.screenshot = screenshot;
       })
       .finally(() => {
@@ -394,14 +421,18 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 
   setSwitchStates() {
-    this.vm.protection.uiSwitch.checked = this.domain.protection === 'locked'
-        || this.domain.protection === 'locking';
+    this.vm.protection.uiSwitch.checked =
+      this.domain.protection === 'locked' ||
+      this.domain.protection === 'locking';
     this.vm.protection.uiSwitch.pending = /ing$/i.test(this.domain.protection);
-    this.vm.protection.uiSwitch.disabled = /ing$/i.test(this.domain.protection)
-        || this.domain.protection === 'unavailable';
+    this.vm.protection.uiSwitch.disabled =
+      /ing$/i.test(this.domain.protection) ||
+      this.domain.protection === 'unavailable';
 
     this.vm.dnssec.uiSwitch.checked = /enable/i.test(this.domain.dnssecStatus);
-    this.vm.dnssec.uiSwitch.pending = /progress/i.test(this.domain.dnssecStatus);
+    this.vm.dnssec.uiSwitch.pending = /progress/i.test(
+      this.domain.dnssecStatus,
+    );
     this.vm.dnssec.uiSwitch.disabled = this.vm.dnssec.uiSwitch.pending;
   }
 
@@ -410,11 +441,14 @@ export default class DomainTabGeneralInformationsCtrl {
     if (has(domain, 'name') && has(domain, 'whoisOwner.id')) {
       ownerUrlInfo.target = `${this.constants.MANAGER_URLS.dedicated}${OWNER_CHANGE_URL}${domain.name}/${domain.whoisOwner.id}`;
     } else if (!has(domain, 'name')) {
-      ownerUrlInfo.error = this.$translate.instant('domain_tab_REDIRECTION_add_step4_server_cname_error');
+      ownerUrlInfo.error = this.$translate.instant(
+        'domain_tab_REDIRECTION_add_step4_server_cname_error',
+      );
     } else {
-      ownerUrlInfo.error = domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.PENDING
-        && domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.INVALID_CONTACT
-        && this.$translate.instant('domain_dashboard_whois_error');
+      ownerUrlInfo.error =
+        domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.PENDING &&
+        domain.whoisOwner !== this.DOMAIN.WHOIS_STATUS.INVALID_CONTACT &&
+        this.$translate.instant('domain_dashboard_whois_error');
     }
 
     if (ownerUrlInfo.error) {
@@ -426,19 +460,28 @@ export default class DomainTabGeneralInformationsCtrl {
 
   getRules() {
     this.loading.whoIs = true;
-    return this.$q.all({
-      obfuscationRules: this.OvhApiDomainRules.EmailsObfuscation().v6().query({
-        serviceName: this.domain.name,
-      }).$promise,
-      optinRules: this.OvhApiDomainRules.Optin().v6().query({
-        serviceName: this.domain.name,
-      }).$promise,
-    })
+    return this.$q
+      .all({
+        obfuscationRules: this.OvhApiDomainRules.EmailsObfuscation()
+          .v6()
+          .query({
+            serviceName: this.domain.name,
+          }).$promise,
+        optinRules: this.OvhApiDomainRules.Optin()
+          .v6()
+          .query({
+            serviceName: this.domain.name,
+          }).$promise,
+      })
       .then(({ obfuscationRules, optinRules }) => {
         this.isWhoisOptinAllowed = !isEmpty(optinRules);
         this.canObfuscateEmails = !isEmpty(obfuscationRules);
       })
-      .catch(() => this.Alerter.error(this.$translate.instant('domain_dashboard_whois_error')))
+      .catch(() =>
+        this.Alerter.error(
+          this.$translate.instant('domain_dashboard_whois_error'),
+        ),
+      )
       .finally(() => {
         this.loading.whoIs = false;
       });
@@ -481,6 +524,9 @@ export default class DomainTabGeneralInformationsCtrl {
   }
 }
 
-angular.module('App').controller(
-  'DomainTabGeneralInformationsCtrl', DomainTabGeneralInformationsCtrl,
-);
+angular
+  .module('App')
+  .controller(
+    'DomainTabGeneralInformationsCtrl',
+    DomainTabGeneralInformationsCtrl,
+  );

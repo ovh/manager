@@ -1,14 +1,13 @@
-export default
-class DnsZoneCtrl {
+export default class DnsZoneCtrl {
   /**
-       * Constructor
-       * @param $scope
-       * @param $stateParams
-       * @param $timeout
-       * @param Alerter
-       * @param Domain
-       * @param currentSection
-       */
+   * Constructor
+   * @param $scope
+   * @param $stateParams
+   * @param $timeout
+   * @param Alerter
+   * @param Domain
+   * @param currentSection
+   */
   /* @ngInject */
   constructor(
     $scope,
@@ -76,16 +75,20 @@ class DnsZoneCtrl {
           displayName: this.$stateParams.productId,
         };
 
-        return this.Domain.getZoneByZoneName(this.domain.name).then((zoneInfos) => {
-          this.domain.nameServers = zoneInfos.nameServers;
-          return this.domain;
-        });
+        return this.Domain.getZoneByZoneName(this.domain.name).then(
+          (zoneInfos) => {
+            this.domain.nameServers = zoneInfos.nameServers;
+            return this.domain;
+          },
+        );
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('domain_dashboard_loading_error'),
-        err,
-        this.$scope.alerts.page,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('domain_dashboard_loading_error'),
+          err,
+          this.$scope.alerts.page,
+        ),
+      )
       .finally(() => {
         this.loading.domainsInfos = false;
       });

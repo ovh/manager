@@ -9,8 +9,15 @@ import set from 'lodash/set';
 
 export default class SharepointUpdateRenewCtrl {
   /* @ngInject */
-  constructor($scope, $location, $q, $stateParams, $translate,
-    Alerter, MicrosoftSharepointLicenseService) {
+  constructor(
+    $scope,
+    $location,
+    $q,
+    $stateParams,
+    $translate,
+    Alerter,
+    MicrosoftSharepointLicenseService,
+  ) {
     this.$scope = $scope;
     this.$location = $location;
     this.$q = $q;
@@ -35,21 +42,35 @@ export default class SharepointUpdateRenewCtrl {
     this.getAccountIds();
 
     this.$scope.submit = () => {
-      this.$q.all(
-        map(this.buffer.changes, (sharepoint) => this.sharepointService.updateSharepointAccount(
-          this.$stateParams.exchangeId,
-          sharepoint.userPrincipalName,
-          {
-            deleteAtExpiration: sharepoint.deleteAtExpiration,
-          },
-        )),
-      )
+      this.$q
+        .all(
+          map(this.buffer.changes, (sharepoint) =>
+            this.sharepointService.updateSharepointAccount(
+              this.$stateParams.exchangeId,
+              sharepoint.userPrincipalName,
+              {
+                deleteAtExpiration: sharepoint.deleteAtExpiration,
+              },
+            ),
+          ),
+        )
         .then(() => {
-          this.alerter.success(this.$translate.instant('sharepoint_exchange_update_billing_periode_success'), this.$scope.alerts.main);
+          this.alerter.success(
+            this.$translate.instant(
+              'sharepoint_exchange_update_billing_periode_success',
+            ),
+            this.$scope.alerts.main,
+          );
         })
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_exchange_update_billing_periode_failure'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(
+            this.$translate.instant(
+              'sharepoint_exchange_update_billing_periode_failure',
+            ),
+            err,
+            this.$scope.alerts.main,
+          );
         })
         .finally(() => {
           this.$scope.reset();
@@ -76,14 +97,21 @@ export default class SharepointUpdateRenewCtrl {
     this.accountIds = null;
     this.bufferedAccounts = [];
 
-    return this.sharepointService.getAccounts(this.$stateParams.exchangeId, this.search.value)
+    return this.sharepointService
+      .getAccounts(this.$stateParams.exchangeId, this.search.value)
       .then((accountIds) => {
         this.accountIds = accountIds;
-      }).catch((err) => {
+      })
+      .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_accounts_err'),
+          err,
+          this.$scope.alerts.main,
+        );
         this.$scope.resetAction();
-      }).finally(() => {
+      })
+      .finally(() => {
         if (isEmpty(this.accountIds)) {
           this.loaders.init = false;
         }

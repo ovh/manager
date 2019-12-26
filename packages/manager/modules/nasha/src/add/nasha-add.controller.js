@@ -1,6 +1,12 @@
 export default class NashaAddCtrl {
   /* @ngInject */
-  constructor($translate, $state, CucCloudMessage, CucControllerHelper, NashaAddService) {
+  constructor(
+    $translate,
+    $state,
+    CucCloudMessage,
+    CucControllerHelper,
+    NashaAddService,
+  ) {
     this.$translate = $translate;
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
@@ -28,8 +34,9 @@ export default class NashaAddCtrl {
   }
 
   order() {
-    this.NashaAddService.order(this.data)
-      .then((response) => this.$state.go('nasha-order-complete', { orderUrl: response.url }));
+    this.NashaAddService.order(this.data).then((response) =>
+      this.$state.go('nasha-order-complete', { orderUrl: response.url }),
+    );
   }
 
   refreshMessage() {
@@ -37,7 +44,9 @@ export default class NashaAddCtrl {
   }
 
   isLoadingOfferData() {
-    return this.datacenters.loading || this.offers.loading || this.durations.loading;
+    return (
+      this.datacenters.loading || this.offers.loading || this.durations.loading
+    );
   }
 
   initLoaders() {
@@ -60,6 +69,11 @@ export default class NashaAddCtrl {
     this.messageHandler = this.CucCloudMessage.subscribe(stateName, {
       onMessage: () => this.refreshMessage(),
     });
-    this.CucCloudMessage.info(this.$translate.instant('nasha_order_datacenter_unavailable', { region: this.$translate.instant('nasha_order_datacenter_gra'), fallback: this.$translate.instant('nasha_order_datacenter_rbx') }));
+    this.CucCloudMessage.info(
+      this.$translate.instant('nasha_order_datacenter_unavailable', {
+        region: this.$translate.instant('nasha_order_datacenter_gra'),
+        fallback: this.$translate.instant('nasha_order_datacenter_rbx'),
+      }),
+    );
   }
 }

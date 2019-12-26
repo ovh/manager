@@ -1,7 +1,7 @@
 import angular from 'angular';
 import map from 'lodash/map';
 
-export default /* @ngInject */ function ($q, $uibModalInstance, data) {
+export default /* @ngInject */ function($q, $uibModalInstance, data) {
   const self = this;
 
   this.loading = {
@@ -18,13 +18,16 @@ export default /* @ngInject */ function ($q, $uibModalInstance, data) {
     this.removing = true;
     this.total = this.abbreviatedNumbers.length;
     this.progress = 0;
-    return $q.all(map(
-      self.abbreviatedNumbers,
-      (elt) => $q.when(self.removeCallback({ value: elt })).finally(() => {
-        self.progress += 1;
-      }),
-    )).finally(() => {
-      $uibModalInstance.close();
-    });
+    return $q
+      .all(
+        map(self.abbreviatedNumbers, (elt) =>
+          $q.when(self.removeCallback({ value: elt })).finally(() => {
+            self.progress += 1;
+          }),
+        ),
+      )
+      .finally(() => {
+        $uibModalInstance.close();
+      });
   };
 }

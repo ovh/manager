@@ -22,10 +22,16 @@ angular
     translate,
     'ui.bootstrap',
   ])
-  .controller('tucTelephonyBulkActionModalCtrl', tucTelephonyBulkActionModalCtrl)
+  .controller(
+    'tucTelephonyBulkActionModalCtrl',
+    tucTelephonyBulkActionModalCtrl,
+  )
   .controller('tucTelephonyBulkActionCtrl', tucTelephonyBulkActionCtrl)
   .component('tucTelephonyBulkAction', tucTelephonyBulkAction)
-  .factory('tucTelephonyBulkActionUpdatedServicesContainer', tucTelephonyBulkActionUpdatedServicesContainer)
+  .factory(
+    'tucTelephonyBulkActionUpdatedServicesContainer',
+    tucTelephonyBulkActionUpdatedServicesContainer,
+  )
   .service('tucTelephonyBulk', tucTelephonyBulk)
   .run(/* @ngTranslationsInject:json ./translations */);
 

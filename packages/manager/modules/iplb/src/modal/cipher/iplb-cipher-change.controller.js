@@ -1,6 +1,11 @@
 export default class IpLoadBalancerCipherChangeCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, serviceName, CucControllerHelper, IpLoadBalancerCipherService) {
+  constructor(
+    $uibModalInstance,
+    serviceName,
+    CucControllerHelper,
+    IpLoadBalancerCipherService,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
 
     this.serviceName = serviceName;
@@ -9,12 +14,16 @@ export default class IpLoadBalancerCipherChangeCtrl {
     this.IpLoadBalancerCipherService = IpLoadBalancerCipherService;
 
     this.cipher = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.IpLoadBalancerCipherService.getCipher(this.serviceName),
-      successHandler: () => { this.model.cipherType.value = this.cipher.data.type; },
+      loaderFunction: () =>
+        this.IpLoadBalancerCipherService.getCipher(this.serviceName),
+      successHandler: () => {
+        this.model.cipherType.value = this.cipher.data.type;
+      },
     });
 
     this.cipherTypes = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerCipherService.getCipherTypes(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerCipherService.getCipherTypes(this.serviceName),
     });
 
     this.model = {
@@ -31,8 +40,10 @@ export default class IpLoadBalancerCipherChangeCtrl {
 
   confirm() {
     this.saving = true;
-    return this.IpLoadBalancerCipherService
-      .updateCipher(this.serviceName, this.model.cipherType.value)
+    return this.IpLoadBalancerCipherService.updateCipher(
+      this.serviceName,
+      this.model.cipherType.value,
+    )
       .then((response) => this.$uibModalInstance.close(response))
       .catch((response) => this.$uibModalInstance.dismiss(response))
       .finally(() => {

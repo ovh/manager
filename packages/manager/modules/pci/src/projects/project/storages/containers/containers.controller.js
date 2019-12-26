@@ -1,9 +1,6 @@
 export default class PciStoragesContainersController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-  ) {
+  constructor($translate, CucCloudMessage) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
   }

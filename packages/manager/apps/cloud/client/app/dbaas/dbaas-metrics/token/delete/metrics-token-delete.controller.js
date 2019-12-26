@@ -7,7 +7,6 @@
       this.MetricService = MetricService;
     }
 
-
     confirm() {
       this.loading = true;
       return this.MetricService.deleteToken(this.serviceName, this.tokenID)
@@ -23,5 +22,7 @@
     }
   }
 
-  angular.module('managerApp').controller('MetricsTokenDeleteCtrl', MetricsTokenDeleteCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsTokenDeleteCtrl', MetricsTokenDeleteCtrl);
 })();

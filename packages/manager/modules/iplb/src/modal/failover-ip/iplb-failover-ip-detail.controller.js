@@ -1,7 +1,11 @@
 export default class IpLoadBalancerFailoverIpDetailCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, serviceName, CucControllerHelper,
-    IpLoadBalancerFailoverIpService) {
+  constructor(
+    $uibModalInstance,
+    serviceName,
+    CucControllerHelper,
+    IpLoadBalancerFailoverIpService,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
 
     this.serviceName = serviceName;
@@ -10,7 +14,8 @@ export default class IpLoadBalancerFailoverIpDetailCtrl {
     this.IpLoadBalancerFailoverIpService = IpLoadBalancerFailoverIpService;
 
     this.ips = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerFailoverIpService.getFailoverIps(this.serviceName),
+      loaderFunction: () =>
+        this.IpLoadBalancerFailoverIpService.getFailoverIps(this.serviceName),
     });
   }
 

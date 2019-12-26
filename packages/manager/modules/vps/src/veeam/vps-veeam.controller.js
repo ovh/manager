@@ -2,8 +2,15 @@ import has from 'lodash/has';
 
 export default class {
   /* @ngInject */
-  constructor($scope, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
-    VpsActionService, VpsService) {
+  constructor(
+    $scope,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    VpsActionService,
+    VpsService,
+  ) {
     this.$scope = $scope;
     this.serviceName = $stateParams.serviceName;
     this.$translate = $translate;
@@ -28,14 +35,16 @@ export default class {
 
   initLoaders() {
     this.veeam = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.VpsService.getVeeam(this.serviceName)
-        .then((data) => {
+      loaderFunction: () =>
+        this.VpsService.getVeeam(this.serviceName).then((data) => {
           if (has(data, 'accessInfos.restorePoint')) {
             return {
               ...data,
               accessInfos: {
                 ...data.accessInfos,
-                restorePointLabel: moment(data.accessInfos.restorePoint).format('LLL'),
+                restorePointLabel: moment(data.accessInfos.restorePoint).format(
+                  'LLL',
+                ),
               },
             };
           }
@@ -43,11 +52,14 @@ export default class {
         }),
     });
     this.veeamTab = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VpsService.getTabVeeam(this.serviceName, 'available', true)
-        .then((data) => data.map((id) => ({
-          id,
-          creationDate: moment(id).format('LLL'),
-        }))),
+      loaderFunction: () =>
+        this.VpsService.getTabVeeam(this.serviceName, 'available', true).then(
+          (data) =>
+            data.map((id) => ({
+              id,
+              creationDate: moment(id).format('LLL'),
+            })),
+        ),
     });
     this.vps = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.VpsService.getSelectedVps(this.serviceName),
@@ -90,7 +102,9 @@ export default class {
         }
       })
       .catch((err) => this.CucCloudMessage.error(err))
-      .finally(() => { this.veeamTab.loading = false; });
+      .finally(() => {
+        this.veeamTab.loading = false;
+      });
   }
 
   restore(restorePoint) {

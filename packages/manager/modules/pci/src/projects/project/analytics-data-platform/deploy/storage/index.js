@@ -5,9 +5,7 @@ import storageComponent from './storage.component';
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployStorageComponent';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .component('analyticsDataPlatformDeployStorageComponent', storageComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 

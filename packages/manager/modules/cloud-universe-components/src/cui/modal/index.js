@@ -11,8 +11,7 @@ import './index.less';
 const moduleName = 'cuiModal';
 
 angular
-  .module(moduleName, [
-  ])
+  .module(moduleName, [])
   .component('cuiModal', component)
   .component('cuiModalBody', bodyComponent)
   .component('cuiModalHeader', headerComponent)

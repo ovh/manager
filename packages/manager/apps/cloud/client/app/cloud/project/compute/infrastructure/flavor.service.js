@@ -10,8 +10,12 @@ import uniq from 'lodash/uniq';
   const oldFlavorRegex = /eg|sp|hg|vps-ssd/;
 
   class CloudFlavorService {
-    constructor($filter,
-      CLOUD_FLAVORTYPE_CATEGORY, CLOUD_INSTANCE_CPU_FREQUENCY, CLOUD_INSTANCE_NUMBER_OF_GPUS) {
+    constructor(
+      $filter,
+      CLOUD_FLAVORTYPE_CATEGORY,
+      CLOUD_INSTANCE_CPU_FREQUENCY,
+      CLOUD_INSTANCE_NUMBER_OF_GPUS,
+    ) {
       this.$filter = $filter;
 
       this.CLOUD_FLAVORTYPE_CATEGORY = CLOUD_FLAVORTYPE_CATEGORY;
@@ -35,7 +39,14 @@ import uniq from 'lodash/uniq';
       if (planHourly) {
         set(price, 'price', planHourly.price);
         // Set 3 digits for hourly price
-        set(price, 'price.text', get(price, 'price.text', '').replace(/\d+(?:[.,]\d+)?/, `${price.price.value.toFixed(3)}`));
+        set(
+          price,
+          'price.text',
+          get(price, 'price.text', '').replace(
+            /\d+(?:[.,]\d+)?/,
+            `${price.price.value.toFixed(3)}`,
+          ),
+        );
       }
       const planMonthly = prices[get(flavor, 'planCodes.monthly')];
       if (planMonthly) {
@@ -49,15 +60,22 @@ import uniq from 'lodash/uniq';
       const instanceQuota = get(quotaByRegion, 'instance', false);
       if (instanceQuota) {
         // set over quota reason
-        if (instanceQuota.maxInstances !== -1
-          && instanceQuota.usedInstances >= instanceQuota.maxInstances) {
+        if (
+          instanceQuota.maxInstances !== -1 &&
+          instanceQuota.usedInstances >= instanceQuota.maxInstances
+        ) {
           set(flavor, 'disabled', 'QUOTA_INSTANCE');
-        } else if (flavor.ram && instanceQuota.maxRam !== -1
-            && flavor.ram > instanceQuota.maxRam - instanceQuota.usedRAM) {
+        } else if (
+          flavor.ram &&
+          instanceQuota.maxRam !== -1 &&
+          flavor.ram > instanceQuota.maxRam - instanceQuota.usedRAM
+        ) {
           set(flavor, 'disabled', 'QUOTA_RAM');
-        } else if (flavor.vcpus
-            && instanceQuota.maxCores !== -1
-            && flavor.vcpus > instanceQuota.maxCores - instanceQuota.usedCores) {
+        } else if (
+          flavor.vcpus &&
+          instanceQuota.maxCores !== -1 &&
+          flavor.vcpus > instanceQuota.maxCores - instanceQuota.usedCores
+        ) {
           set(flavor, 'disabled', 'QUOTA_VCPUS');
         }
 
@@ -65,19 +83,42 @@ import uniq from 'lodash/uniq';
         if (instanceQuota.maxInstances === -1) {
           set(flavor, 'maxInstance', -1);
         } else {
-          set(flavor, 'maxInstance', instanceQuota.maxInstances - instanceQuota.usedInstances);
+          set(
+            flavor,
+            'maxInstance',
+            instanceQuota.maxInstances - instanceQuota.usedInstances,
+          );
         }
 
         if (instanceQuota.maxRam === -1) {
           set(flavor, 'maxInstance', Math.max(flavor.maxInstance, -1));
         } else {
-          set(flavor, 'maxInstance', Math.min(flavor.maxInstance > -1 ? flavor.maxInstance : 1000, Math.floor((instanceQuota.maxRam - instanceQuota.usedRAM) / flavor.ram)));
+          set(
+            flavor,
+            'maxInstance',
+            Math.min(
+              flavor.maxInstance > -1 ? flavor.maxInstance : 1000,
+              Math.floor(
+                (instanceQuota.maxRam - instanceQuota.usedRAM) / flavor.ram,
+              ),
+            ),
+          );
         }
 
         if (instanceQuota.maxCores === -1) {
           set(flavor, 'maxInstance', Math.max(flavor.maxInstance, -1));
         } else {
-          set(flavor, 'maxInstance', Math.min(flavor.maxInstance > -1 ? flavor.maxInstance : 1000, Math.floor((instanceQuota.maxCores - instanceQuota.usedCores) / flavor.vcpus)));
+          set(
+            flavor,
+            'maxInstance',
+            Math.min(
+              flavor.maxInstance > -1 ? flavor.maxInstance : 1000,
+              Math.floor(
+                (instanceQuota.maxCores - instanceQuota.usedCores) /
+                  flavor.vcpus,
+              ),
+            ),
+          );
         }
       }
 
@@ -107,11 +148,14 @@ import uniq from 'lodash/uniq';
     initFlavorNameFormatRules() {
       this.rules = [
         {
-          condition: ({ currentIndex, currentValue }) => currentIndex === 0 && `${currentValue}`.toUpperCase() === 'WIN',
+          condition: ({ currentIndex, currentValue }) =>
+            currentIndex === 0 && `${currentValue}`.toUpperCase() === 'WIN',
           mapping: () => '',
         },
         {
-          condition: ({ currentValue, inputParts, currentIndex }) => `${currentValue}`.toUpperCase() === 'FLEX' && inputParts.length - 1 === currentIndex,
+          condition: ({ currentValue, inputParts, currentIndex }) =>
+            `${currentValue}`.toUpperCase() === 'FLEX' &&
+            inputParts.length - 1 === currentIndex,
           mapping: (value) => ` - ${value[0].toUpperCase()}${value.substr(1)}`,
         },
         {
@@ -133,19 +177,26 @@ import uniq from 'lodash/uniq';
      */
     formatFlavorName(flavorName) {
       const inputParts = flavorName.split('-');
-      return [].concat(...inputParts
-        .map((currentValue, currentIndex) => {
-          const matchingRule = this.rules.find((rule) => rule.condition({
-            currentValue,
-            currentIndex,
-            inputParts,
-          }));
+      return []
+        .concat(
+          ...inputParts.map((currentValue, currentIndex) => {
+            const matchingRule = this.rules.find((rule) =>
+              rule.condition({
+                currentValue,
+                currentIndex,
+                inputParts,
+              }),
+            );
 
-          const rawReturnValue = matchingRule.mapping(currentValue);
-          return matchingRule.intermediateHyphen
-            ? [{ value: rawReturnValue, needsHyphen: true }, { isHyphen: true }]
-            : { value: rawReturnValue };
-        }))
+            const rawReturnValue = matchingRule.mapping(currentValue);
+            return matchingRule.intermediateHyphen
+              ? [
+                  { value: rawReturnValue, needsHyphen: true },
+                  { isHyphen: true },
+                ]
+              : { value: rawReturnValue };
+          }),
+        )
         .reduce((accumulator, currentValue, currentIndex, array) => {
           let valueToAppend = '';
           if (currentValue.isHyphen) {
@@ -175,7 +226,12 @@ import uniq from 'lodash/uniq';
         return {
           max: this.$filter('bytes')(instanceQuota.maxRam, 0, false, 'MB'),
           used: this.$filter('bytes')(instanceQuota.usedRAM, 0, false, 'MB'),
-          remaining: this.$filter('bytes')(instanceQuota.maxRam - instanceQuota.usedRAM, 0, false, 'MB'),
+          remaining: this.$filter('bytes')(
+            instanceQuota.maxRam - instanceQuota.usedRAM,
+            0,
+            false,
+            'MB',
+          ),
           required: this.$filter('bytes')(flavor.ram, 0, false, 'MB'),
         };
       }
@@ -187,8 +243,10 @@ import uniq from 'lodash/uniq';
         name: get(image, 'name', undefined),
         currentDisk: this.$filter('bytes')(flavor.disk, 2, false, 'GB'),
         currentRam: this.$filter('bytes')(flavor.ram, 2, false, 'MB'),
-        requiredDisk: this.$filter('bytes')(image.minDisk, 2, false, 'GB') || undefined,
-        requiredRam: this.$filter('bytes')(image.minRam, 2, false, 'MB') || undefined,
+        requiredDisk:
+          this.$filter('bytes')(image.minDisk, 2, false, 'GB') || undefined,
+        requiredRam:
+          this.$filter('bytes')(image.minRam, 2, false, 'MB') || undefined,
       };
     }
 
@@ -198,8 +256,12 @@ import uniq from 'lodash/uniq';
       }
 
       const augmentedFlavor = cloneDeep(flavor);
-      augmentedFlavor.frequency = this.CLOUD_INSTANCE_CPU_FREQUENCY[flavor.type];
-      augmentedFlavor.formattedName = this.formatFlavorName(augmentedFlavor.name);
+      augmentedFlavor.frequency = this.CLOUD_INSTANCE_CPU_FREQUENCY[
+        flavor.type
+      ];
+      augmentedFlavor.formattedName = this.formatFlavorName(
+        augmentedFlavor.name,
+      );
       if (/vps/.test(flavor.type)) {
         return {
           vps: true,
@@ -232,9 +294,16 @@ import uniq from 'lodash/uniq';
       }
 
       augmentedFlavor.flex = /flex$/.test(flavor.name);
-      augmentedFlavor.diskType = [/ssd/, /nvme/].some((regex) => regex.test(flavor.type)) ? 'ssd' : 'ceph';
+      augmentedFlavor.diskType = [/ssd/, /nvme/].some((regex) =>
+        regex.test(flavor.type),
+      )
+        ? 'ssd'
+        : 'ceph';
 
-      const flavorContainsGPUs = includes(['g1', 'g2', 'g3', 't1'], augmentedFlavor.shortType);
+      const flavorContainsGPUs = includes(
+        ['g1', 'g2', 'g3', 't1'],
+        augmentedFlavor.shortType,
+      );
       if (flavorContainsGPUs) {
         augmentedFlavor.gpuCardCount = get(
           this.CLOUD_INSTANCE_NUMBER_OF_GPUS,
@@ -245,17 +314,17 @@ import uniq from 'lodash/uniq';
 
       augmentedFlavor.isOldFlavor = CloudFlavorService.isOldFlavor(flavor.name);
 
-
       return augmentedFlavor;
     }
 
     getCategory(flavorType) {
-      return find(
-        this.CLOUD_FLAVORTYPE_CATEGORY,
-        (currentCategory) => includes(currentCategory.types, flavorType),
+      return find(this.CLOUD_FLAVORTYPE_CATEGORY, (currentCategory) =>
+        includes(currentCategory.types, flavorType),
       );
     }
   }
 
-  angular.module('managerApp').service('CloudFlavorService', CloudFlavorService);
+  angular
+    .module('managerApp')
+    .service('CloudFlavorService', CloudFlavorService);
 })();

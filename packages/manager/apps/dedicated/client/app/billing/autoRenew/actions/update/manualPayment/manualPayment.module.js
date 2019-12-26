@@ -2,8 +2,8 @@ import component from './manualPayment.component';
 
 const moduleName = 'ovhManagerBillingAutorenewUpdateManualPayment';
 
-angular.module(moduleName, [
-])
+angular
+  .module(moduleName, [])
   .component('billingAutorenewUpdateManualPayment', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

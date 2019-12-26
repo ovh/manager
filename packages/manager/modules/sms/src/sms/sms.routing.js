@@ -18,21 +18,33 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       initSms: ($q, $stateParams, TucSmsMediator) => {
         // init sms services
-        TucSmsMediator.initAll().then((smsDetails) => TucSmsMediator
-          .setCurrentSmsService(smsDetails[$stateParams.serviceName]));
+        TucSmsMediator.initAll().then((smsDetails) =>
+          TucSmsMediator.setCurrentSmsService(
+            smsDetails[$stateParams.serviceName],
+          ),
+        );
         return $q.when({ init: true });
       },
-      smsFeatureAvailability: /* @ngInject */ (user) => new FeatureAvailability(
-        user,
-        SMS_AVAILABILITY,
-      ),
+      smsFeatureAvailability: /* @ngInject */ (user) =>
+        new FeatureAvailability(user, SMS_AVAILABILITY),
       user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
-      $title: (translations, $translate, OvhApiSms, $stateParams) => OvhApiSms.v6()
-        .get({
-          serviceName: $stateParams.serviceName,
-        }).$promise
-        .then((data) => $translate.instant('sms_page_title', { name: data.description || $stateParams.serviceName }, null, null, 'escape'))
-        .catch(() => $translate('sms_page_title', { name: $stateParams.serviceName })),
+      $title: (translations, $translate, OvhApiSms, $stateParams) =>
+        OvhApiSms.v6()
+          .get({
+            serviceName: $stateParams.serviceName,
+          })
+          .$promise.then((data) =>
+            $translate.instant(
+              'sms_page_title',
+              { name: data.description || $stateParams.serviceName },
+              null,
+              null,
+              'escape',
+            ),
+          )
+          .catch(() =>
+            $translate('sms_page_title', { name: $stateParams.serviceName }),
+          ),
     },
     translations: {
       value: ['.'],

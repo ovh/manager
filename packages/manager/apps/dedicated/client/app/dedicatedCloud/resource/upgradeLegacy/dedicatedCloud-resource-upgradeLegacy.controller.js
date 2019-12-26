@@ -1,10 +1,9 @@
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 
-
-angular
-  .module('App')
-  .controller('DedicatedCloudHostToMonthlyLegacyCtrl', class {
+angular.module('App').controller(
+  'DedicatedCloudHostToMonthlyLegacyCtrl',
+  class {
     /* @ngInject */
     constructor(
       $q,
@@ -30,11 +29,14 @@ angular
 
     $onInit() {
       this.resourceId = this.$scope.currentActionData
-        ? this.$scope.currentActionData.id : null;
+        ? this.$scope.currentActionData.id
+        : null;
       this.resourceType = this.$scope.currentActionData
-        ? this.$scope.currentActionData.type : null;
+        ? this.$scope.currentActionData.type
+        : null;
       this.upgradeType = this.$scope.currentActionData
-        ? this.$scope.currentActionData.upgradeType : null;
+        ? this.$scope.currentActionData.upgradeType
+        : null;
 
       this.$scope.model = {
         capacity: null,
@@ -55,11 +57,9 @@ angular
       this.$scope.getResumePrice = (price) => this.getResumePrice(price);
       this.$scope.upgradedResource = () => this.upgradedResource();
 
-      return this.User
-        .getUser()
-        .then((user) => {
-          this.$scope.ovhSubsidiary = user.ovhSubsidiary;
-        });
+      return this.User.getUser().then((user) => {
+        this.$scope.ovhSubsidiary = user.ovhSubsidiary;
+      });
     }
 
     loadPrices(durations) {
@@ -68,17 +68,15 @@ angular
 
       angular.forEach(durations, (duration) => {
         queue.push(
-          this.DedicatedCloud
-            .getUpgradeResourceOrder(
-              this.$stateParams.productId,
-              this.upgradeType,
-              duration,
-              this.resourceType,
-              this.resourceId,
-            )
-            .then((details) => {
-              this.$scope.durations.details[duration] = details;
-            }),
+          this.DedicatedCloud.getUpgradeResourceOrder(
+            this.$stateParams.productId,
+            this.upgradeType,
+            duration,
+            this.resourceType,
+            this.resourceId,
+          ).then((details) => {
+            this.$scope.durations.details[duration] = details;
+          }),
         );
       });
 
@@ -90,7 +88,10 @@ angular
           this.$scope.loading.prices = false;
         },
         (data) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_order_loading_error'), data.data);
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('dedicatedCloud_order_loading_error'),
+            data.data,
+          );
           this.$scope.loading.durations = false;
         },
       );
@@ -103,37 +104,43 @@ angular
       };
       this.$scope.loading.durations = true;
 
-      this.DedicatedCloud
-        .getUpgradeResourceDurations(
-          this.$stateParams.productId,
-          this.upgradeType,
-          this.resourceType,
-          this.resourceId,
-        )
-        .then((durations) => {
-          this.$scope.loading.durations = false;
-          this.$scope.durations.available = durations;
-          this.loadPrices(durations);
-        });
+      this.DedicatedCloud.getUpgradeResourceDurations(
+        this.$stateParams.productId,
+        this.upgradeType,
+        this.resourceType,
+        this.resourceId,
+      ).then((durations) => {
+        this.$scope.loading.durations = false;
+        this.$scope.durations.available = durations;
+        this.loadPrices(durations);
+      });
     }
 
     loadContracts() {
       this.$scope.agree.value = false;
-      if (!this.$scope.durations.details[this.$scope.model.duration].contracts
-      || !this.$scope.durations.details[this.$scope.model.duration].contracts.length) {
+      if (
+        !this.$scope.durations.details[this.$scope.model.duration].contracts ||
+        !this.$scope.durations.details[this.$scope.model.duration].contracts
+          .length
+      ) {
         this.$rootScope.$broadcast('wizard-goToStep', 5);
       }
     }
 
     backToContracts() {
-      if (!this.$scope.durations.details[this.$scope.model.duration].contracts
-      || !this.$scope.durations.details[this.$scope.model.duration].contracts.length) {
+      if (
+        !this.$scope.durations.details[this.$scope.model.duration].contracts ||
+        !this.$scope.durations.details[this.$scope.model.duration].contracts
+          .length
+      ) {
         this.$rootScope.$broadcast('wizard-goToStep', 2);
       }
     }
 
     getResumePrice(price) {
-      return price.value === 0 ? this.$translate.instant('price_free') : this.$translate.instant('price_ht_label', { t0: price.text });
+      return price.value === 0
+        ? this.$translate.instant('price_free')
+        : this.$translate.instant('price_ht_label', { t0: price.text });
     }
 
     upgradedResource() {
@@ -143,27 +150,37 @@ angular
       // You cannot call window.open in an async call in safari (like the follow promise)
       // so hold a ref to a new window and set the url once it get it.
       const windowRef = this.$window.open();
-      this.DedicatedCloud
-        .upgradedResource(
-          this.$stateParams.productId,
-          this.upgradeType,
-          this.$scope.model.duration,
-          this.resourceType,
-          this.resourceId,
-        )
+      this.DedicatedCloud.upgradedResource(
+        this.$stateParams.productId,
+        this.upgradeType,
+        this.$scope.model.duration,
+        this.resourceType,
+        this.resourceId,
+      )
         .then((order) => {
-          const message = this.$translate.instant('dedicatedCloud_order_finish_success', {
-            t0: order.url,
-            t1: order.orderId,
-          });
+          const message = this.$translate.instant(
+            'dedicatedCloud_order_finish_success',
+            {
+              t0: order.url,
+              t1: order.orderId,
+            },
+          );
           this.$scope.setMessage(message, true);
-          this.Alerter.alertFromSWS(message, { idTask: order.orderId, state: 'OK' });
+          this.Alerter.alertFromSWS(message, {
+            idTask: order.orderId,
+            state: 'OK',
+          });
           orderUrl = order.url;
           this.$scope.resetAction();
         })
         .catch((data) => {
-          const message = this.$translate.instant('dedicatedCloud_order_finish_error');
-          this.$scope.setMessage(message, angular.extend(data, { type: 'ERROR' }));
+          const message = this.$translate.instant(
+            'dedicatedCloud_order_finish_error',
+          );
+          this.$scope.setMessage(
+            message,
+            angular.extend(data, { type: 'ERROR' }),
+          );
           this.Alerter.alertFromSWS(message, data.data);
         })
         .finally(() => {
@@ -175,4 +192,5 @@ angular
           }
         });
     }
-  });
+  },
+);

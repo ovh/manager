@@ -7,9 +7,7 @@ import service from './domain-webhosting-order.service';
 const moduleName = 'ovhManagerWebDomainWebhostingOrderModule';
 
 angular
-  .module(moduleName, [
-    steps,
-  ])
+  .module(moduleName, [steps])
   .component(component.name, component)
   .service('WebHostingOrder', service)
   .config(routing)

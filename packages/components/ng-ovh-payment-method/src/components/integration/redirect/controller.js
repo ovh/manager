@@ -1,12 +1,8 @@
 import get from 'lodash/get';
 
-import {
-  AVAILABLE_CALLBACK_STATUS_ENUM,
-} from '../constants'; // from integration constants
+import { AVAILABLE_CALLBACK_STATUS_ENUM } from '../constants'; // from integration constants
 
-import {
-  TYPE_INTEGRATION_ENUM,
-} from '../../../payment-method.constants';
+import { TYPE_INTEGRATION_ENUM } from '../../../payment-method.constants';
 
 export default class OvhPaymentMethodIntegrationRedirectCtrl {
   /* @ngInject */
@@ -16,16 +12,17 @@ export default class OvhPaymentMethodIntegrationRedirectCtrl {
   }
 
   submit() {
-    return this.integrationCtrl
-      .onIntegrationSubmit()
-      .then((response) => {
-        const { paymentMethodType } = this.integrationCtrl;
+    return this.integrationCtrl.onIntegrationSubmit().then((response) => {
+      const { paymentMethodType } = this.integrationCtrl;
 
-        if (paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT && response.url) {
-          this.$window.location = response.url;
-        }
-        return response;
-      });
+      if (
+        paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT &&
+        response.url
+      ) {
+        this.$window.location = response.url;
+      }
+      return response;
+    });
   }
 
   /* ============================
@@ -64,7 +61,9 @@ export default class OvhPaymentMethodIntegrationRedirectCtrl {
       }
     }
 
-    return this.integrationCtrl.onIntegrationInitialized(this.submit.bind(this));
+    return this.integrationCtrl.onIntegrationInitialized(
+      this.submit.bind(this),
+    );
   }
 
   /* -----  End of Hooks  ------ */

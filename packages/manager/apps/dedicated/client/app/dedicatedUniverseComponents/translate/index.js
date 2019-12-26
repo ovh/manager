@@ -6,9 +6,7 @@ import ducTranslateAltFilter from './translate-alt.filter';
 const moduleName = 'ducTranslate';
 
 angular
-  .module(moduleName, [
-    translate,
-  ])
+  .module(moduleName, [translate])
   .filter('ducTranslateAlt', ducTranslateAltFilter);
 
 export default moduleName;

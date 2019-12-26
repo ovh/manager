@@ -19,10 +19,18 @@ angular
   ])
   .controller('DetailsPopoverController', controller)
   .service('DetailsPopoverService', service)
-  .run(/* @ngInject */($templateCache) => {
-    $templateCache.put('pci/components/project/billing/details-popover/instance-details-popover.html', instanceTemplate);
-    $templateCache.put('pci/components/project/billing/details-popover/volume-details-popover.html', volumeTemplate);
-  })
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'pci/components/project/billing/details-popover/instance-details-popover.html',
+        instanceTemplate,
+      );
+      $templateCache.put(
+        'pci/components/project/billing/details-popover/volume-details-popover.html',
+        volumeTemplate,
+      );
+    },
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

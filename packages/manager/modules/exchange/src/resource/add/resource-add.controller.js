@@ -4,7 +4,14 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeAddResourceController {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangeResources, navigation, $translate, messaging) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangeResources,
+    navigation,
+    $translate,
+    messaging,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -49,7 +56,9 @@ export default class ExchangeAddResourceController {
         } else {
           this.services.navigation.resetAction();
           this.services.messaging.writeError(
-            this.services.$translate.instant('exchange_tab_RESOURCES_no_domain_warning'),
+            this.services.$translate.instant(
+              'exchange_tab_RESOURCES_no_domain_warning',
+            ),
             data,
           );
         }
@@ -57,7 +66,9 @@ export default class ExchangeAddResourceController {
       .catch((failure) => {
         this.services.navigation.resetAction();
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_RESOURCES_add_resource_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_RESOURCES_add_resource_failure',
+          ),
           failure,
         );
       });
@@ -76,13 +87,17 @@ export default class ExchangeAddResourceController {
     )
       .then((data) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_tab_RESOURCES_add_resource_success'),
+          this.services.$translate.instant(
+            'exchange_tab_RESOURCES_add_resource_success',
+          ),
           data,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_RESOURCES_add_resource_failure'),
+          this.services.$translate.instant(
+            'exchange_tab_RESOURCES_add_resource_failure',
+          ),
           failure,
         );
       })
@@ -96,15 +111,16 @@ export default class ExchangeAddResourceController {
       return '';
     }
 
-    return `${this.model.resourceEmailAddress}@${
-      this.model.resourceEmailDomain.name
-    }`.toLowerCase();
+    return `${this.model.resourceEmailAddress}@${this.model.resourceEmailDomain.name}`.toLowerCase();
   }
 
   checkTakenEmails() {
     this.takenEmailError = false;
 
-    if (!isEmpty(this.takenEmails) && !isEmpty(this.model.resourceEmailAddress)) {
+    if (
+      !isEmpty(this.takenEmails) &&
+      !isEmpty(this.model.resourceEmailAddress)
+    ) {
       forEach(this.takenEmails, (email) => {
         if (this.buildEmailAddress() === email.toLowerCase()) {
           this.takenEmailError = true;
@@ -121,23 +137,25 @@ export default class ExchangeAddResourceController {
       return false;
     }
 
-    const emailAddressIsCorrect = !isEmpty(this.model.resourceEmailAddress)
-      && this.model.resourceEmailAddress.length <= 64;
+    const emailAddressIsCorrect =
+      !isEmpty(this.model.resourceEmailAddress) &&
+      this.model.resourceEmailAddress.length <= 64;
     const resourceTypeIsSelected = !isEmpty(this.model.resourceType);
-    const displayNameIsCorrect = !isEmpty(this.model.displayName)
-      && this.model.displayName.length <= 256;
-    const capacityIsCorrect = this.model.capacity != null
-      && this.model.capacity >= 0
-      && this.model.capacity <= 1024;
+    const displayNameIsCorrect =
+      !isEmpty(this.model.displayName) && this.model.displayName.length <= 256;
+    const capacityIsCorrect =
+      this.model.capacity != null &&
+      this.model.capacity >= 0 &&
+      this.model.capacity <= 1024;
     const emailIsFree = !this.takenEmailError;
 
     return (
-      emailAddressIsCorrect
-      && resourceTypeIsSelected
-      && resourceTypeIsSelected
-      && displayNameIsCorrect
-      && capacityIsCorrect
-      && emailIsFree
+      emailAddressIsCorrect &&
+      resourceTypeIsSelected &&
+      resourceTypeIsSelected &&
+      displayNameIsCorrect &&
+      capacityIsCorrect &&
+      emailIsFree
     );
   }
 }

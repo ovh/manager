@@ -9,8 +9,15 @@ class ServerOrderTrafficService {
 
   getOrderables(productId) {
     return this.Server.getOrderables(productId, 'traffic')
-      .then((response) => this.acceptResponse(this.transformOrderables(response.traffic)))
-      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('server_order_traffic_loading_error')));
+      .then((response) =>
+        this.acceptResponse(this.transformOrderables(response.traffic)),
+      )
+      .catch((response) =>
+        this.rejectResponse(
+          response.data,
+          this.$translate.instant('server_order_traffic_loading_error'),
+        ),
+      );
   }
 
   getOrderableDurations(productId, traffic) {
@@ -21,7 +28,12 @@ class ServerOrderTrafficService {
       },
     })
       .then((response) => this.acceptResponse(response))
-      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('server_order_traffic_loading_error')));
+      .catch((response) =>
+        this.rejectResponse(
+          response.data,
+          this.$translate.instant('server_order_traffic_loading_error'),
+        ),
+      );
   }
 
   order(productId, traffic, duration) {
@@ -33,7 +45,12 @@ class ServerOrderTrafficService {
       },
     })
       .then((response) => this.acceptResponse(response))
-      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('server_order_traffic_error')));
+      .catch((response) =>
+        this.rejectResponse(
+          response.data,
+          this.$translate.instant('server_order_traffic_error'),
+        ),
+      );
   }
 
   getOption(productId) {
@@ -44,14 +61,26 @@ class ServerOrderTrafficService {
 
   cancelOption(productId) {
     return this.Server.cancelOption(productId, 'TRAFFIC')
-      .then((response) => this.acceptResponse(response, this.$translate.instant('server_cancel_traffic_cancel_success')))
-      .catch((response) => this.rejectResponse(response.data, this.$translate.instant('server_cancel_traffic_cancel_error')));
+      .then((response) =>
+        this.acceptResponse(
+          response,
+          this.$translate.instant('server_cancel_traffic_cancel_success'),
+        ),
+      )
+      .catch((response) =>
+        this.rejectResponse(
+          response.data,
+          this.$translate.instant('server_cancel_traffic_cancel_error'),
+        ),
+      );
   }
 
   transformOrderables(orderables) {
     return map(orderables, (orderable) => ({
       value: orderable,
-      text: this.$translate.instant(`server_order_traffic_orderable_label_${orderable}`),
+      text: this.$translate.instant(
+        `server_order_traffic_orderable_label_${orderable}`,
+      ),
     }));
   }
 
@@ -72,4 +101,6 @@ class ServerOrderTrafficService {
   }
 }
 
-angular.module('App').service('ServerOrderTrafficService', ServerOrderTrafficService);
+angular
+  .module('App')
+  .service('ServerOrderTrafficService', ServerOrderTrafficService);

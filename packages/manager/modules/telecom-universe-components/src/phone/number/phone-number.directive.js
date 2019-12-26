@@ -27,12 +27,14 @@ export default /* @ngInject */ ($q, OvhApiValidateAapi, TelephonyMediator) => ({
       }
 
       /** Just use TelephonyMediator instead */
-      return $q.when(TelephonyMediator.IsValidNumber(modelValue)).then((isValid) => {
-        if (isValid) {
-          return true;
-        }
-        return $q.reject(isValid);
-      });
+      return $q
+        .when(TelephonyMediator.IsValidNumber(modelValue))
+        .then((isValid) => {
+          if (isValid) {
+            return true;
+          }
+          return $q.reject(isValid);
+        });
     });
   },
 });

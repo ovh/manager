@@ -13,17 +13,20 @@ export default class VeeamCloudConnectUpdateOfferCtrl {
 
   $onInit() {
     this.actions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.VeeamCloudConnectService.getActions(this.serviceName),
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.getActions(this.serviceName),
     });
-    this.orderInfo = this.CucControllerHelper.request
-      .getArrayLoader(() => this.VeeamCloudConnectService
-        .getOrderableOfferPrices(this.serviceName));
+    this.orderInfo = this.CucControllerHelper.request.getArrayLoader(() =>
+      this.VeeamCloudConnectService.getOrderableOfferPrices(this.serviceName),
+    );
 
-    return this.orderInfo.load()
+    return this.orderInfo
+      .load()
       .then(() => {
         // Order will always return one element at the moment.  Therefore we take a shortcut.
         this.orderInfo.data = head(this.orderInfo.data);
-      }).catch((response) => {
+      })
+      .catch((response) => {
         this.orderInfo.data = {};
         this.$uibModalInstance.dismiss(response);
       })
@@ -40,28 +43,35 @@ export default class VeeamCloudConnectUpdateOfferCtrl {
 
   onConfirm() {
     this.isLoading = true;
-    this.orderPost = this.CucControllerHelper.request
-      .getArrayLoader({
-        loaderFunction: () => this.VeeamCloudConnectService
-          .updateOffer(this.serviceName, this.orderInfo.data.offer, this.orderInfo.data.duration),
-        successHandler: (response) => this.$uibModalInstance.close(response),
-        errorHandler: (response) => this.$uibModalInstance.dismiss(response),
-      });
-
-    this.orderPost.load().then((result) => {
-      this.VeeamCloudConnectService.unitOfWork.messages.push({
-        textHtml: result.message,
-        type: 'success',
-      });
-    }).catch((err) => {
-      this.VeeamCloudConnectService.unitOfWork.messages.push({
-        text: err.message,
-        type: 'error',
-      });
-    }).finally(() => {
-      this.isLoading = false;
-      this.goToDashboard();
+    this.orderPost = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.VeeamCloudConnectService.updateOffer(
+          this.serviceName,
+          this.orderInfo.data.offer,
+          this.orderInfo.data.duration,
+        ),
+      successHandler: (response) => this.$uibModalInstance.close(response),
+      errorHandler: (response) => this.$uibModalInstance.dismiss(response),
     });
+
+    this.orderPost
+      .load()
+      .then((result) => {
+        this.VeeamCloudConnectService.unitOfWork.messages.push({
+          textHtml: result.message,
+          type: 'success',
+        });
+      })
+      .catch((err) => {
+        this.VeeamCloudConnectService.unitOfWork.messages.push({
+          text: err.message,
+          type: 'error',
+        });
+      })
+      .finally(() => {
+        this.isLoading = false;
+        this.goToDashboard();
+      });
   }
 
   onCancel() {

@@ -8,9 +8,7 @@ import './editable-service-name.less';
 const moduleName = 'tucEditableServiceName';
 
 angular
-  .module(moduleName, [
-    translate,
-  ])
+  .module(moduleName, [translate])
   .controller('tucEditableServiceNameCtrl', tucEditableServiceNameCtrl)
   .directive('tucEditableServiceName', tucEditableServiceNameDirective);
 

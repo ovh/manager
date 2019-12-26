@@ -7,14 +7,15 @@ import './manager-preload.less';
 const moduleName = 'publicCloudManagerPreload';
 
 angular
-  .module(moduleName, [
-    translate,
-    uiRouter,
-  ])
+  .module(moduleName, [translate, uiRouter])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($rootScope, $transitions) => $transitions.onSuccess(
-    {},
-    () => Object.assign($rootScope, { managerPreloadHide: 'manager-preload-hide' }),
-  ));
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) =>
+      $transitions.onSuccess({}, () =>
+        Object.assign($rootScope, {
+          managerPreloadHide: 'manager-preload-hide',
+        }),
+      ),
+  );
 
 export default moduleName;

@@ -21,7 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         $state.go('app.account.billing.main.history');
       },
-      serviceName: /* @ngInject */ ($transition$) => $transition$.params().serviceName,
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().serviceName,
     },
   });
 };

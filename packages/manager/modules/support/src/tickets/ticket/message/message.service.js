@@ -2,10 +2,7 @@ import Message from './message.class';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $translate,
-    OvhApiSupport,
-  ) {
+  constructor($translate, OvhApiSupport) {
     this.$translate = $translate;
     this.OvhApiSupport = OvhApiSupport;
   }
@@ -22,13 +19,12 @@ export default class {
   }
 
   translateFrom(from) {
-    return this.$translate.instant(`ovhManagerSupport_ticket_message_from_${from}`);
+    return this.$translate.instant(
+      `ovhManagerSupport_ticket_message_from_${from}`,
+    );
   }
 
   query(ticketId) {
-    return this
-      .OvhApiSupport
-      .v6()
-      .queryMessages({ id: ticketId }).$promise;
+    return this.OvhApiSupport.v6().queryMessages({ id: ticketId }).$promise;
   }
 }

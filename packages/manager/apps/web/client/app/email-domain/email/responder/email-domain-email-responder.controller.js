@@ -14,7 +14,15 @@ angular.module('App').controller(
      * @param Alerter
      * @param WucEmails
      */
-    constructor($q, $scope, $stateParams, $timeout, $translate, Alerter, WucEmails) {
+    constructor(
+      $q,
+      $scope,
+      $stateParams,
+      $timeout,
+      $translate,
+      Alerter,
+      WucEmails,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -32,12 +40,13 @@ angular.module('App').controller(
 
       this.productId = this.$stateParams.productId;
 
-      this.$scope.$on(
-        'hosting.tabs.emails.responders.refresh',
-        () => this.refreshTableResponders(),
+      this.$scope.$on('hosting.tabs.emails.responders.refresh', () =>
+        this.refreshTableResponders(),
       );
 
-      this.$scope.$on('$destroy', () => this.WucEmails.killPollResponderTasks());
+      this.$scope.$on('$destroy', () =>
+        this.WucEmails.killPollResponderTasks(),
+      );
 
       this.refreshTableResponders();
     }
@@ -57,20 +66,26 @@ angular.module('App').controller(
         .then((data) => {
           this.responders = map(data.sort(), (account) => ({ account }));
         })
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_table_responders_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
-        .finally(() => { this.loading.responders = false; });
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_table_responders_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
+        .finally(() => {
+          this.loading.responders = false;
+        });
     }
 
     transformItem({ account }) {
       return this.WucEmails.getResponder(this.productId, account)
-        .then((responder) => this.$q.all([
-          responder,
-          this.WucEmails.getResponderTasks(this.productId, account),
-        ]))
+        .then((responder) =>
+          this.$q.all([
+            responder,
+            this.WucEmails.getResponderTasks(this.productId, account),
+          ]),
+        )
         .then(([responder, tasks]) => {
           const displayedResponder = clone(responder);
           const actionsDisabled = !isEmpty(tasks);
@@ -83,17 +98,19 @@ angular.module('App').controller(
     }
 
     pollResponder(responder) {
-      return this.WucEmails.pollResponderTasks(this.productId, responder.account)
-        .then(() => {
-          const newResponder = clone(responder);
-          const responderIndex = findIndex(
-            this.responders,
-            (item) => item.account === responder.account,
-          );
-          newResponder.actionsDisabled = false;
-          this.responders.splice(responderIndex, 1, newResponder);
-          return newResponder;
-        });
+      return this.WucEmails.pollResponderTasks(
+        this.productId,
+        responder.account,
+      ).then(() => {
+        const newResponder = clone(responder);
+        const responderIndex = findIndex(
+          this.responders,
+          (item) => item.account === responder.account,
+        );
+        newResponder.actionsDisabled = false;
+        this.responders.splice(responderIndex, 1, newResponder);
+        return newResponder;
+      });
     }
   },
 );

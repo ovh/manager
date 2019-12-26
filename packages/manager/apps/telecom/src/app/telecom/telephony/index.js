@@ -10,10 +10,7 @@ import service from './telephony.service';
 const moduleName = 'ovhManagerTelecomTelephony';
 
 angular
-  .module(moduleName, [
-    billingAccount,
-    carrierSip,
-  ])
+  .module(moduleName, [billingAccount, carrierSip])
   .config(routing)
   .component('telecomTelephony', component)
   .service('TelecomTelephonyService', service)

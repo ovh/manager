@@ -3,11 +3,13 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/settings',
     views: {
       'telephonyView@telecom.telephony': {
-        templateUrl: 'app/telecom/telephony/fax/fax/settings/telecom-telephony-fax-fax-settings.html',
+        templateUrl:
+          'app/telecom/telephony/fax/fax/settings/telecom-telephony-fax-fax-settings.html',
         noTranslations: true,
       },
       'faxSettingsView@telecom.telephony.billingAccount.fax.fax.settings': {
-        templateUrl: 'app/telecom/telephony/service/fax/settings/telecom-telephony-service-fax-settings.html',
+        templateUrl:
+          'app/telecom/telephony/service/fax/settings/telecom-telephony-service-fax-settings.html',
         controller: 'TelecomTelephonyServiceFaxSettingsCtrl',
         controllerAs: 'SettingsCtrl',
       },

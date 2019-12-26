@@ -8,9 +8,7 @@ import routing from './internet-access.routing';
 const moduleName = 'ovhManagerTelecomPackInternetAccess';
 
 angular
-  .module(moduleName, [
-    packs,
-  ])
+  .module(moduleName, [packs])
   .component('telecomPackInternetAccess', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -13,13 +13,11 @@
     }
   }
 
-  angular
-    .module('Billing.directives')
-    .component('billingRenewLabel', {
-      bindings: {
-        serviceInfos: '<',
-      },
-      controller,
-      templateUrl: 'billing/components/renewLabel/billing-renew-label.html',
-    });
+  angular.module('Billing.directives').component('billingRenewLabel', {
+    bindings: {
+      serviceInfos: '<',
+    },
+    controller,
+    templateUrl: 'billing/components/renewLabel/billing-renew-label.html',
+  });
 }

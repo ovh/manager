@@ -24,7 +24,13 @@ export default {
     const ctrl = integrationCtrl;
 
     // declare a DOM element insertion method to controller
-    ctrl.insertElement = (tagName, attributes = {}, events = {}, styles = {}, options = {}) => {
+    ctrl.insertElement = (
+      tagName,
+      attributes = {},
+      events = {},
+      styles = {},
+      options = {},
+    ) => {
       const element = document.createElement(tagName);
 
       // set attributes of dom element

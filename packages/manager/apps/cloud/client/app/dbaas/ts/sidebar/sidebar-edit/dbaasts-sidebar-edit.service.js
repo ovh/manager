@@ -1,6 +1,7 @@
 // used to ensure that we can only edit a single project at a time
-angular.module('managerApp')
-  .service('DBaasTsSidebarEditMediator', /* @ngInject */ ($rootScope) => {
+angular.module('managerApp').service(
+  'DBaasTsSidebarEditMediator',
+  /* @ngInject */ ($rootScope) => {
     let currentEditionScope = null;
     let watchScope = false; // true if we are already watching stateChanges
 
@@ -31,4 +32,5 @@ angular.module('managerApp')
         }
       },
     };
-  });
+  },
+);

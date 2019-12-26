@@ -29,7 +29,8 @@ import './microsoft.less';
 
 const moduleName = 'Module.microsoft';
 
-angular.module('Module.microsoft.controllers', [])
+angular
+  .module('Module.microsoft.controllers', [])
   .constant('OFFICE_LICENSE_CONSUMPTION', licenseConsumptionConstant)
   .controller('MicrosoftOfficeLicenseCtrl', licenseCtrl)
   .controller('MicrosoftOfficeLicenseTabsCtrl', licenseTabsCtrl)
@@ -42,29 +43,57 @@ angular.module('Module.microsoft.controllers', [])
   .controller('MicrosoftOfficeLicenseUserOrderCtrl', licenseUserOrderCtrl)
   .controller('MicrosoftOfficeLicenseUserUpdateCtrl', licenseUserUpdateCtrl);
 
-
-angular.module('Module.microsoft.services', [])
+angular
+  .module('Module.microsoft.services', [])
   .service('MicrosoftOfficeLicenseService', licenseService);
 
-angular.module(moduleName, [
-  'ngOvhUtils',
-  'ngRoute',
-  'ui.bootstrap',
-  'ngSanitize',
-  'Module.microsoft.controllers',
-  'Module.microsoft.services',
-]).config(routing)
+angular
+  .module(moduleName, [
+    'ngOvhUtils',
+    'ngRoute',
+    'ui.bootstrap',
+    'ngSanitize',
+    'Module.microsoft.controllers',
+    'Module.microsoft.services',
+  ])
+  .config(routing)
   .constant('MICROSOFT_GUIDE_URLS', {})
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('microsoft/office/license/consumption/CONSUMPTION.html', consumptionTpl);
-    $templateCache.put('microsoft/office/license/user/order/microsoft-office-license-user-order.html', userOrderTpl);
-    $templateCache.put('microsoft/office/license/user/update/microsoft-office-license-user-update.html', userUpdateTpl);
-    $templateCache.put('microsoft/office/license/user/delete/microsoft-office-license-user-delete.html', userDeleteTpl);
-    $templateCache.put('microsoft/office/license/user/USER.html', userTpl);
-    $templateCache.put('microsoft/office/license/user/add/microsoft-office-license-user-add.html', userAddTpl);
-    $templateCache.put('microsoft/office/license/edit/password/microsoft-office-edit-password.html', passwordEditTpl);
-    $templateCache.put('microsoft/office/license/edit/microsoft-office-license-edit.html', licenseEditTpl);
-    $templateCache.put('microsoft/office/license/microsoft-office-license.html', licenseTpl);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'microsoft/office/license/consumption/CONSUMPTION.html',
+        consumptionTpl,
+      );
+      $templateCache.put(
+        'microsoft/office/license/user/order/microsoft-office-license-user-order.html',
+        userOrderTpl,
+      );
+      $templateCache.put(
+        'microsoft/office/license/user/update/microsoft-office-license-user-update.html',
+        userUpdateTpl,
+      );
+      $templateCache.put(
+        'microsoft/office/license/user/delete/microsoft-office-license-user-delete.html',
+        userDeleteTpl,
+      );
+      $templateCache.put('microsoft/office/license/user/USER.html', userTpl);
+      $templateCache.put(
+        'microsoft/office/license/user/add/microsoft-office-license-user-add.html',
+        userAddTpl,
+      );
+      $templateCache.put(
+        'microsoft/office/license/edit/password/microsoft-office-edit-password.html',
+        passwordEditTpl,
+      );
+      $templateCache.put(
+        'microsoft/office/license/edit/microsoft-office-license-edit.html',
+        licenseEditTpl,
+      );
+      $templateCache.put(
+        'microsoft/office/license/microsoft-office-license.html',
+        licenseTpl,
+      );
+    },
+  );
 
 export default moduleName;

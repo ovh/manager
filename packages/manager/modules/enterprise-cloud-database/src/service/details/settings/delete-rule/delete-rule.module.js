@@ -7,7 +7,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsDeleteRule';
 
 angular
   .module(moduleName, [])
-  .component('enterpriseCloudDatabaseServiceDetailsSettingsDeleteRuleComponent', deleteRuleComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsSettingsDeleteRuleComponent',
+    deleteRuleComponent,
+  )
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

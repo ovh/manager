@@ -5,7 +5,8 @@ import routing from './edit-name.routing';
 
 const moduleName = 'ovhManagerPciProjectKubernetesServiceName';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('pciProjectKubernetesServiceName', component)
   .run(/* @ngTranslationsInject:json ./translations */);

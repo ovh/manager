@@ -6,21 +6,22 @@ import oclazyload from 'oclazyload';
 
 const moduleName = 'ovhManagerTelecomCarrierSipDashboardEndpointsLazyLoading';
 
-angular
-  .module(moduleName, [
-    oclazyload,
-    uiRouter,
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('telecom.telephony.billingAccount.carrierSip.endpoints.**', {
-      url: '/endpoints',
-      lazyLoad: ($transition$) => {
-        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+angular.module(moduleName, [oclazyload, uiRouter]).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'telecom.telephony.billingAccount.carrierSip.endpoints.**',
+      {
+        url: '/endpoints',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./endpoints.module')
-          .then((mod) => $ocLazyLoad.inject(mod.default || mod));
+          return import('./endpoints.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
       },
-    });
-  });
+    );
+  },
+);
 
 export default moduleName;

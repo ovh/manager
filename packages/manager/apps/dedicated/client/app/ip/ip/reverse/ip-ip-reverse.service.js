@@ -11,7 +11,9 @@ export default class IpReverse {
   }
 
   updateReverse(ipBlock, _ip, _reverse) {
-    const reverse = _reverse ? punycode.toASCII(_reverse.replace(/\s/g, '')) : '';
+    const reverse = _reverse
+      ? punycode.toASCII(_reverse.replace(/\s/g, ''))
+      : '';
     let ip = _ip;
 
     // For legacy VPS
@@ -20,34 +22,36 @@ export default class IpReverse {
         ip = this.IpExpandIpv6.expandIPv6Address(_ip);
       }
 
-      return this.OvhApiVpsIps.v6()
-        .put({
+      return this.OvhApiVpsIps.v6().put(
+        {
           serviceName: ipBlock.service.serviceName,
           ipAddress: ip,
-        }, {
+        },
+        {
           reverse,
-        }).$promise;
+        },
+      ).$promise;
     }
-
 
     if (!reverse) {
       return this.deleteReverse(ipBlock.ipBlock, ip);
     }
 
-    return this.OvhApiIp
-      .Reverse()
+    return this.OvhApiIp.Reverse()
       .v6()
-      .create({
-        ip: ipBlock.ipBlock,
-      }, {
-        ipReverse: ip,
-        reverse,
-      }).$promise;
+      .create(
+        {
+          ip: ipBlock.ipBlock,
+        },
+        {
+          ipReverse: ip,
+          reverse,
+        },
+      ).$promise;
   }
 
   getReverse(ipBlock, ip) {
-    return this.OvhApiIp
-      .Reverse()
+    return this.OvhApiIp.Reverse()
       .v6()
       .get({
         ip: window.encodeURIComponent(ipBlock),
@@ -56,8 +60,7 @@ export default class IpReverse {
   }
 
   deleteReverse(ipBlock, ip) {
-    return this.OvhApiIp
-      .Reverse()
+    return this.OvhApiIp.Reverse()
       .v6()
       .delete({
         ip: window.encodeURIComponent(ipBlock),
@@ -66,8 +69,7 @@ export default class IpReverse {
   }
 
   getDelegations(ipBlock) {
-    return this.OvhApiIp
-      .Delegation()
+    return this.OvhApiIp.Delegation()
       .v6()
       .query({
         ip: ipBlock,
@@ -75,8 +77,7 @@ export default class IpReverse {
   }
 
   getDelegation(ipBlock, target) {
-    return this.OvhApiIp
-      .Delegation()
+    return this.OvhApiIp.Delegation()
       .v6()
       .get({
         ip: ipBlock,
@@ -85,19 +86,20 @@ export default class IpReverse {
   }
 
   setDelegation(ipBlock, target) {
-    return this.OvhApiIp
-      .Delegation()
+    return this.OvhApiIp.Delegation()
       .v6()
-      .save({
-        ip: ipBlock,
-      }, {
-        target: window.encodeURIComponent(target),
-      }).$promise;
+      .save(
+        {
+          ip: ipBlock,
+        },
+        {
+          target: window.encodeURIComponent(target),
+        },
+      ).$promise;
   }
 
   deleteDelegation(ipBlock, target) {
-    return this.OvhApiIp
-      .Delegation()
+    return this.OvhApiIp.Delegation()
       .v6()
       .delete({
         ip: ipBlock,

@@ -4,25 +4,23 @@ import reduce from 'lodash/reduce';
 
 export default class {
   $onInit() {
-    this.columns = reduce(this.roles.roles, (model, { id }) => ({
-      ...model,
-      [id]: true,
-    }), {});
+    this.columns = reduce(
+      this.roles.roles,
+      (model, { id }) => ({
+        ...model,
+        [id]: true,
+      }),
+      {},
+    );
   }
 
   updateRolePermissions(role) {
-    this.services = map(
-      this.roles.services,
-      (service) => ({
-        name: service.name,
-        permissions: map(
-          service.permissions,
-          (permission) => ({
-            name: permission.name,
-            role: find(permission.roles, { id: role.id }),
-          }),
-        ),
-      }),
-    );
+    this.services = map(this.roles.services, (service) => ({
+      name: service.name,
+      permissions: map(service.permissions, (permission) => ({
+        name: permission.name,
+        role: find(permission.roles, { id: role.id }),
+      })),
+    }));
   }
 }

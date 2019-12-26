@@ -1,3 +1,3 @@
-angular.module('managerApp').controller('TelecomTelephonyLineConsumptionOutgoingCallsCtrl', () => {
-
-});
+angular
+  .module('managerApp')
+  .controller('TelecomTelephonyLineConsumptionOutgoingCallsCtrl', () => {});

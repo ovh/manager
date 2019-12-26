@@ -23,21 +23,23 @@ export const ALIGNMENT_URLS = {
 
 export const AUTORENEW_EVENT = 'billing.autorenew.changed';
 
-export const COLUMNS_CONFIG = [{
-  property: 'serviceId',
-},
-{
-  property: 'serviceType',
-},
-{
-  property: 'state',
-},
-{
-  property: 'status',
-},
-{
-  property: 'expiration',
-}];
+export const COLUMNS_CONFIG = [
+  {
+    property: 'serviceId',
+  },
+  {
+    property: 'serviceType',
+  },
+  {
+    property: 'state',
+  },
+  {
+    property: 'status',
+  },
+  {
+    property: 'expiration',
+  },
+];
 
 export const CONTRACTS_IDS = {
   CA: 1752,

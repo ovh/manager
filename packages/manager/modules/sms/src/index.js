@@ -12,18 +12,12 @@ import { SMS_AVAILABILITY } from './feature-availability/feature-availability.co
 
 const moduleName = 'ovhManagerSms';
 
-angular.module(moduleName, [
-  'ui.router',
-  'oc.lazyLoad',
-  'ovhManagerCore',
-  sms,
-])
+angular
+  .module(moduleName, ['ui.router', 'oc.lazyLoad', 'ovhManagerCore', sms])
   .config(routing)
   .component('ovhManagerSms', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
-export {
-  SMS_AVAILABILITY,
-};
+export { SMS_AVAILABILITY };
 
 export default moduleName;

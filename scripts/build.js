@@ -15,17 +15,19 @@ let i = 0;
 
 async function retrieveDependencies(_modules) {
   const packages = await Promise.all(
-    _modules.map((pck) => execa
-      .command(
-        `lerna list -alp --include-filtered-dependencies --json --scope="${pck.name}"`,
-        { shell: true },
-      )
-      .then(({ stdout }) => {
-        const dependents = JSON.parse(stdout).filter(
-          (p) => p.name !== pck.name,
-        );
-        return Object.assign(pck, { dependents });
-      })),
+    _modules.map((pck) =>
+      execa
+        .command(
+          `lerna list -alp --include-filtered-dependencies --json --scope="${pck.name}"`,
+          { shell: true },
+        )
+        .then(({ stdout }) => {
+          const dependents = JSON.parse(stdout).filter(
+            (p) => p.name !== pck.name,
+          );
+          return Object.assign(pck, { dependents });
+        }),
+    ),
   );
   return packages;
 }
@@ -56,32 +58,36 @@ function unstack() {
       const promise = program.dryRun
         ? Promise.resolve()
         : new Promise((resolve, reject) => {
-          const worker = new Worker(path.join(__dirname, '/worker/build_module.js'), {
-            workerData,
-          });
-
-          worker.on('online', () => {
-            console.log(
-              `Launching intensive build task for package ${workerData.name}`,
+            const worker = new Worker(
+              path.join(__dirname, '/worker/build_module.js'),
+              {
+                workerData,
+              },
             );
-          });
-          worker.on('message', (messageFromWorker) => {
-            console.log(messageFromWorker);
-          });
-          worker.on('error', reject);
-          worker.on('exit', (code) => {
-            if (code) {
-              reject(new Error(`Worker stopped with exit code ${code}`));
-            }
-            resolve();
-          });
-        });
 
-      return promise.then(() => {
-        remove(modules.doing, workerData);
-        modules.done.push(workerData);
-        myEmitter.emit('unstack');
-      })
+            worker.on('online', () => {
+              console.log(
+                `Launching intensive build task for package ${workerData.name}`,
+              );
+            });
+            worker.on('message', (messageFromWorker) => {
+              console.log(messageFromWorker);
+            });
+            worker.on('error', reject);
+            worker.on('exit', (code) => {
+              if (code) {
+                reject(new Error(`Worker stopped with exit code ${code}`));
+              }
+              resolve();
+            });
+          });
+
+      return promise
+        .then(() => {
+          remove(modules.doing, workerData);
+          modules.done.push(workerData);
+          myEmitter.emit('unstack');
+        })
         .catch(() => {
           process.exit(1);
         });
@@ -93,10 +99,20 @@ function unstack() {
 
 program
   .option('--dry-run', 'Launch the build script without creating dist')
-  .option('-p, --package [package]', 'Scope build to a specific package and its dependencies')
+  .option(
+    '-p, --package [package]',
+    'Scope build to a specific package and its dependencies',
+  )
   .action(() => {
     execa
-      .command(`lerna list -alp --json ${program.package ? `--scope=${program.package} --include-filtered-dependencies` : ''}`, { shell: true })
+      .command(
+        `lerna list -alp --json ${
+          program.package
+            ? `--scope=${program.package} --include-filtered-dependencies`
+            : ''
+        }`,
+        { shell: true },
+      )
       .then(({ stdout }) => retrieveDependencies(JSON.parse(stdout)))
       .then((todo) => {
         modules = {

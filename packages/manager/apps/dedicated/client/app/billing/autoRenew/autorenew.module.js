@@ -23,27 +23,28 @@ import service from './autorenew.service';
 
 const moduleName = 'ovhManagerBillingAutorenew';
 
-angular.module(moduleName, [
-  'ui.router',
-  activation,
-  agreements,
-  cancelResiliation,
-  debtBeforePaying,
-  deleteModule,
-  disable,
-  disableDomainsBulk,
-  exchangeRenew,
-  enable,
-  ssh,
-  terminateEmail,
-  terminateEnterpriseCloudDatabase,
-  terminateHostingWeb,
-  terminatePrivateDatabase,
-  terminateWebCoach,
-  update,
-  warnNicBilling,
-  warnPendingDebt,
-])
+angular
+  .module(moduleName, [
+    'ui.router',
+    activation,
+    agreements,
+    cancelResiliation,
+    debtBeforePaying,
+    deleteModule,
+    disable,
+    disableDomainsBulk,
+    exchangeRenew,
+    enable,
+    ssh,
+    terminateEmail,
+    terminateEnterpriseCloudDatabase,
+    terminateHostingWeb,
+    terminatePrivateDatabase,
+    terminateWebCoach,
+    update,
+    warnNicBilling,
+    warnPendingDebt,
+  ])
   .config(routing)
   .component('autoRenew', component)
   .service('BillingAutoRenew', service)

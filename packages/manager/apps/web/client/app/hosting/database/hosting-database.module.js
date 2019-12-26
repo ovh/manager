@@ -4,10 +4,6 @@ import orderPrivate from './order-private/hosting-database-order-private.module'
 
 const moduleName = 'ovhManagerHostingDatabase';
 
-angular
-  .module(moduleName, [
-    orderPrivate,
-  ])
-  .config(routing);
+angular.module(moduleName, [orderPrivate]).config(routing);
 
 export default moduleName;

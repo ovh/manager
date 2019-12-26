@@ -4,7 +4,14 @@ import set from 'lodash/set';
 angular.module('App').controller(
   'HostingDatabaseChangePasswordCtrl',
   class HostingDatabaseChangePasswordCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, Hosting, HostingDatabase) {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      Hosting,
+      HostingDatabase,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
@@ -26,16 +33,19 @@ angular.module('App').controller(
 
     shouldDisplayDifferentPasswordMessage() {
       return (
-        this.password.value
-        && this.password.confirmation
-        && this.password.value !== this.password.confirmation
+        this.password.value &&
+        this.password.confirmation &&
+        this.password.value !== this.password.confirmation
       );
     }
 
     validPassword(password, confirmation) {
-      const validPassword = this.Hosting.constructor.isPasswordValid(get(this.password, 'value'));
-      const validConfirmation = this.password.value
-        && this.password.value === this.password.confirmation;
+      const validPassword = this.Hosting.constructor.isPasswordValid(
+        get(this.password, 'value'),
+      );
+      const validConfirmation =
+        this.password.value &&
+        this.password.value === this.password.confirmation;
       password.$setValidity('password', validPassword);
       confirmation.$setValidity('confirm', validConfirmation);
     }
@@ -49,7 +59,9 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_DATABASES_configuration_update_password_success'),
+            this.$translate.instant(
+              'hosting_tab_DATABASES_configuration_update_password_success',
+            ),
             this.$scope.alerts.main,
           );
         })

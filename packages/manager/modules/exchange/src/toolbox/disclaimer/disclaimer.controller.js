@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ function ($scope) {
+export default /* @ngInject */ function($scope) {
   $scope.updateGroup = function updateGroup(ml) {
     if (ml.state === $scope.stateOk) {
       $scope.setAction('exchange/group/update/group-update', angular.copy(ml));
@@ -9,7 +9,10 @@ export default /* @ngInject */ function ($scope) {
 
   $scope.updateAccounts = function updateAccounts(ml) {
     if (ml.state === $scope.stateOk) {
-      $scope.setAction('exchange/group/accounts/group-accounts', angular.copy(ml));
+      $scope.setAction(
+        'exchange/group/accounts/group-accounts',
+        angular.copy(ml),
+      );
     }
   };
 
@@ -21,13 +24,19 @@ export default /* @ngInject */ function ($scope) {
 
   $scope.addGroupAlias = function addGroupAlias(ml) {
     if (ml.state === $scope.stateOk) {
-      $scope.setAction('exchange/group/alias/add/group-alias-add', angular.copy(ml));
+      $scope.setAction(
+        'exchange/group/alias/add/group-alias-add',
+        angular.copy(ml),
+      );
     }
   };
 
   $scope.groupDelegation = function groupDelegation(ml) {
     if (ml.state === $scope.stateOk) {
-      $scope.setAction('exchange/group/delegation/group-delegation', angular.copy(ml));
+      $scope.setAction(
+        'exchange/group/delegation/group-delegation',
+        angular.copy(ml),
+      );
     }
   };
 

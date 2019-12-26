@@ -8,9 +8,7 @@ import ovhManagerVpsCloudDatabaseOrder from './order';
 const moduleName = 'ovhManagerVpsCloudDatabase';
 
 angular
-  .module(moduleName, [
-    ovhManagerVpsCloudDatabaseOrder,
-  ])
+  .module(moduleName, [ovhManagerVpsCloudDatabaseOrder])
   .component(component.name, component)
   .filter('vpsDuration', durationFilter)
   .filter('vpsPrice', priceFilter)

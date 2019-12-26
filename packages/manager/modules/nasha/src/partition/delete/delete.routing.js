@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nasha.nasha-partitions.delete', {
     url: '/delete',
     views: {

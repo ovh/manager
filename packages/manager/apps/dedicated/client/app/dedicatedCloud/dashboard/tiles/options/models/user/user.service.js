@@ -5,27 +5,18 @@ export const name = 'ovhManagerPccDashboardOptionsUserService';
 
 export const OptionsUserService = class {
   /* @ngInject */
-  constructor(
-    OvhApiDedicatedCloud,
-  ) {
+  constructor(OvhApiDedicatedCloud) {
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
   }
 
   async isThereAtLeastOneTokenValidator(serviceName) {
-    const users = await this
-      .OvhApiDedicatedCloud
-      .User()
+    const users = await this.OvhApiDedicatedCloud.User()
       .Iceberg()
       .query()
       .expand('CachedObjectList-Pages')
       .execute({ serviceName }).$promise;
 
-    return !isEmpty(
-      find(
-        users,
-        { isTokenValidator: true },
-      ),
-    );
+    return !isEmpty(find(users, { isTokenValidator: true }));
   }
 };
 

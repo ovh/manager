@@ -14,10 +14,7 @@ export default class HostingDatabaseOrderPrivateCtrl {
   checkout() {
     this.checkoutLoading = true;
 
-    this.checkoutOrderCart(
-      this.autoPayWithPreferredPaymentMethod,
-      this.cartId,
-    );
+    this.checkoutOrderCart(this.autoPayWithPreferredPaymentMethod, this.cartId);
   }
 
   async initDurationStep() {
@@ -30,8 +27,9 @@ export default class HostingDatabaseOrderPrivateCtrl {
     }
 
     // Sort prices
-    const prices = this.catalogProduct.pricings
-      .filter(({ interval }) => interval > 0);
+    const prices = this.catalogProduct.pricings.filter(
+      ({ interval }) => interval > 0,
+    );
     this.$timeout(() => {
       this.catalogProduct.pricings = sortBy(prices, 'price');
       this.durationLoading = false;
@@ -43,8 +41,12 @@ export default class HostingDatabaseOrderPrivateCtrl {
   }
 
   getVersions(product) {
-    this.catalogProduct = find(this.catalogProducts, { planCode: product.planCode });
-    const engines = find(this.catalogProduct.configurations, { name: 'engine' });
+    this.catalogProduct = find(this.catalogProducts, {
+      planCode: product.planCode,
+    });
+    const engines = find(this.catalogProduct.configurations, {
+      name: 'engine',
+    });
 
     if (!engines || !engines.values) {
       return [];

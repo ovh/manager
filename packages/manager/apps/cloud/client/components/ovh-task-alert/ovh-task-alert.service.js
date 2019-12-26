@@ -4,8 +4,14 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 
 class OvhTaskAlertsService {
-  constructor($translate, CucControllerHelper, CucCloudMessage, OvhApiMeAlertsAapi, $http,
-    TranslateService) {
+  constructor(
+    $translate,
+    CucControllerHelper,
+    CucCloudMessage,
+    OvhApiMeAlertsAapi,
+    $http,
+    TranslateService,
+  ) {
     this.$translate = $translate;
     this.$http = $http;
     this.CucControllerHelper = CucControllerHelper;
@@ -15,25 +21,43 @@ class OvhTaskAlertsService {
   }
 
   getTaskInfo() {
-    return this.$http.get('/ovh-tasks', {
-      serviceType: 'aapi',
-    }).then((response) => {
-      if (response.data.alerts.length) {
-        forEach(response.data.alerts, (alert) => {
-          const tasks = map(get(response, 'data.tasks', []), (task) => {
-            set(task, 'comments', map(task.comments, (comment) => {
-              set(comment, 'comment_text', get(comment, 'comment_text', '').replace(/\\'/g, "'").replace(/\\"/g, '"'));
-              return comment;
-            }).reverse());
-            set(task, 'detailed_desc', get(task, 'detailed_desc', '').replace(/\\'/g, "'").replace(/\\"/g, '"'));
-            return task;
+    return this.$http
+      .get('/ovh-tasks', {
+        serviceType: 'aapi',
+      })
+      .then((response) => {
+        if (response.data.alerts.length) {
+          forEach(response.data.alerts, (alert) => {
+            const tasks = map(get(response, 'data.tasks', []), (task) => {
+              set(
+                task,
+                'comments',
+                map(task.comments, (comment) => {
+                  set(
+                    comment,
+                    'comment_text',
+                    get(comment, 'comment_text', '')
+                      .replace(/\\'/g, "'")
+                      .replace(/\\"/g, '"'),
+                  );
+                  return comment;
+                }).reverse(),
+              );
+              set(
+                task,
+                'detailed_desc',
+                get(task, 'detailed_desc', '')
+                  .replace(/\\'/g, "'")
+                  .replace(/\\"/g, '"'),
+              );
+              return task;
+            });
+            this.sendAlert(alert, tasks);
           });
-          this.sendAlert(alert, tasks);
-        });
-        return response.data;
-      }
-      return {};
-    });
+          return response.data;
+        }
+        return {};
+      });
   }
 
   sendAlert(alert, tasks) {
@@ -60,7 +84,8 @@ class OvhTaskAlertsService {
   showSubTasks(tasks) {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'components/ovh-task-alert/modal/ovh-task-follow-modal.html',
+        templateUrl:
+          'components/ovh-task-alert/modal/ovh-task-follow-modal.html',
         controller: 'ovhTaskFollowModalCtrl',
         controllerAs: '$ctrl',
         resolve: {
@@ -71,4 +96,6 @@ class OvhTaskAlertsService {
   }
 }
 
-angular.module('managerApp').service('OvhTaskAlertsService', OvhTaskAlertsService);
+angular
+  .module('managerApp')
+  .service('OvhTaskAlertsService', OvhTaskAlertsService);

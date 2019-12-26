@@ -9,10 +9,11 @@ export default class BetaPreference {
 
   isBetaActive() {
     const betaPreference = localStorage.getItem(BETA_PREFERENCE);
-    return (betaPreference ? this.$q.resolve(betaPreference)
-      : this.ovhUserPref.getValue(BETA_PREFERENCE)
-        .then(() => true)
-        .catch(() => false)
-    );
+    return betaPreference
+      ? this.$q.resolve(betaPreference)
+      : this.ovhUserPref
+          .getValue(BETA_PREFERENCE)
+          .then(() => true)
+          .catch(() => false);
   }
 }

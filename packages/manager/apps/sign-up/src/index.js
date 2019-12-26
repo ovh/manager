@@ -33,69 +33,88 @@ import './index.scss';
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
-  .module('ovhSignUpApp', [
-    __NG_APP_INJECTIONS__,
-    'ui.router',
-    'ngSanitize',
-    'pascalprecht.translate',
-    ovhManagerCore,
-    ngOvhSsoAuth,
-    signUpFormView,
-    detailsState,
-    activityState,
-    'ovhSignUp',
-  ].filter((value) => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
-  .config(/* @ngInject */ ($locationProvider, $urlRouterProvider) => {
-    $locationProvider.hashPrefix('');
-    $urlRouterProvider.otherwise('/');
-  })
-  .config(/* @ngInject */ ($translateProvider, TranslateServiceProvider) => {
-    const getQueryVariable = (variable) => {
-      const { hash } = window.location;
-      const query = hash.substring(hash.indexOf('?') + 1);
-      const vars = query.split('&');
-      for (let i = 0; i < vars.length; i += 1) {
-        const pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) === variable) {
-          return decodeURIComponent(pair[1]);
+  .module(
+    'ovhSignUpApp',
+    [
+      __NG_APP_INJECTIONS__,
+      'ui.router',
+      'ngSanitize',
+      'pascalprecht.translate',
+      ovhManagerCore,
+      ngOvhSsoAuth,
+      signUpFormView,
+      detailsState,
+      activityState,
+      'ovhSignUp',
+    ].filter((value) => value !== null),
+  ) // Remove null because __NG_APP_INJECTIONS__ can be null
+  .config(
+    /* @ngInject */ ($locationProvider, $urlRouterProvider) => {
+      $locationProvider.hashPrefix('');
+      $urlRouterProvider.otherwise('/');
+    },
+  )
+  .config(
+    /* @ngInject */ ($translateProvider, TranslateServiceProvider) => {
+      const getQueryVariable = (variable) => {
+        const { hash } = window.location;
+        const query = hash.substring(hash.indexOf('?') + 1);
+        const vars = query.split('&');
+        for (let i = 0; i < vars.length; i += 1) {
+          const pair = vars[i].split('=');
+          if (decodeURIComponent(pair[0]) === variable) {
+            return decodeURIComponent(pair[1]);
+          }
         }
-      }
-      return '';
-    };
+        return '';
+      };
 
-    const language = getQueryVariable('lang')
-      || window.navigator.language
-      || window.navigator.userLanguage
-      || 'en';
+      const language =
+        getQueryVariable('lang') ||
+        window.navigator.language ||
+        window.navigator.userLanguage ||
+        'en';
 
-    const userLocale = TranslateServiceProvider.findLanguage(language, language);
-    TranslateServiceProvider.setUserLocale(userLocale);
-    $translateProvider.use(userLocale);
-  })
-  .config(/* @ngInject */ (ssoAuthenticationProvider) => {
-    ssoAuthenticationProvider.allowIncompleteNic(true);
-  })
-  .config(/* @ngInject */ ($compileProvider) => {
-    // SECURITY: authorise only trusted hostname in href and img
-    // @see https://docs.angularjs.org/api/ng/provider/$compileProvider#aHrefSanitizationWhitelist
-    $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
-    $compileProvider.imgSrcSanitizationWhitelist(SANITIZATION.regex);
-  })
+      const userLocale = TranslateServiceProvider.findLanguage(
+        language,
+        language,
+      );
+      TranslateServiceProvider.setUserLocale(userLocale);
+      $translateProvider.use(userLocale);
+    },
+  )
+  .config(
+    /* @ngInject */ (ssoAuthenticationProvider) => {
+      ssoAuthenticationProvider.allowIncompleteNic(true);
+    },
+  )
+  .config(
+    /* @ngInject */ ($compileProvider) => {
+      // SECURITY: authorise only trusted hostname in href and img
+      // @see https://docs.angularjs.org/api/ng/provider/$compileProvider#aHrefSanitizationWhitelist
+      $compileProvider.aHrefSanitizationWhitelist(SANITIZATION.regex);
+      $compileProvider.imgSrcSanitizationWhitelist(SANITIZATION.regex);
+    },
+  )
   .config(registerState)
-  .run(/* @ngInject */ ($transitions) => {
-    $transitions.onBefore({}, (transition) => {
-      const fromLang = get(transition.params('from'), 'lang');
-      const toLang = get(transition.params('to'), 'lang');
+  .run(
+    /* @ngInject */ ($transitions) => {
+      $transitions.onBefore({}, (transition) => {
+        const fromLang = get(transition.params('from'), 'lang');
+        const toLang = get(transition.params('to'), 'lang');
 
-      if (fromLang && toLang && fromLang !== toLang) {
-        return window.location.reload();
-      }
+        if (fromLang && toLang && fromLang !== toLang) {
+          return window.location.reload();
+        }
 
-      return true;
-    });
-  })
-  .run(/* @ngInject */ ($rootScope, $transitions) => $transitions.onSuccess(
-    {},
-    () => Object.assign($rootScope, { appPreloadHide: 'app-preload-hide' }),
-  ))
+        return true;
+      });
+    },
+  )
+  .run(
+    /* @ngInject */ ($rootScope, $transitions) =>
+      $transitions.onSuccess({}, () =>
+        Object.assign($rootScope, { appPreloadHide: 'app-preload-hide' }),
+      ),
+  )
   .controller('SignUpCtrl', controller);

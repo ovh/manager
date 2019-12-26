@@ -6,12 +6,7 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor(
-    $transitions,
-    $translate,
-    Alerter,
-    dedicatedCloudDrp,
-  ) {
+  constructor($transitions, $translate, Alerter, dedicatedCloudDrp) {
     this.$transitions = $transitions;
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -19,8 +14,9 @@ export default class {
   }
 
   $onInit() {
-    this.drpInformations = { };
-    this.drpInformations.hasDatacenterWithoutHosts = this.datacenterHosts.length === 0;
+    this.drpInformations = {};
+    this.drpInformations.hasDatacenterWithoutHosts =
+      this.datacenterHosts.length === 0;
 
     this.initializeTransitions();
 
@@ -29,16 +25,19 @@ export default class {
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabling,
     ].includes(this.currentDrp.state);
 
-    this.isInstallationInError = this.currentDrp
-      .state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
+    this.isInstallationInError =
+      this.currentDrp.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
 
     if (!this.isDisablingDrp) {
       const drp = this.constructor.isDeliveredOrDelivering(
         this.currentDrp.state,
-      ) ? this.currentDrp : null;
-      const otherDrpInformations = drp !== null
-        ? this.formatPlanInformations(drp)
-        : this.storedDrpInformations;
+      )
+        ? this.currentDrp
+        : null;
+      const otherDrpInformations =
+        drp !== null
+          ? this.formatPlanInformations(drp)
+          : this.storedDrpInformations;
 
       if (otherDrpInformations != null) {
         this.drpInformations = {
@@ -54,26 +53,40 @@ export default class {
   }
 
   initializeTransitions() {
-    this.$transitions.onError({
-      from: 'app.dedicatedClouds.datacenter.drp.**.orderIp',
-    }, () => {
-      this.Alerter.error(this.$translate.instant('ip_order_finish_error'), 'dedicatedCloudDatacenterDrpAlert');
-    });
+    this.$transitions.onError(
+      {
+        from: 'app.dedicatedClouds.datacenter.drp.**.orderIp',
+      },
+      () => {
+        this.Alerter.error(
+          this.$translate.instant('ip_order_finish_error'),
+          'dedicatedCloudDatacenterDrpAlert',
+        );
+      },
+    );
   }
 
   selectDrpType() {
     this.drpInformations.drpType = this.selectedDrpType.id;
-    const stateToGo = this.drpInformations.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-      ? 'ovh.mainPccStep' : 'onPremise.ovhPccStep';
+    const stateToGo =
+      this.drpInformations.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+        ? 'ovh.mainPccStep'
+        : 'onPremise.ovhPccStep';
 
     return this.goToConfiguration(this.drpInformations, stateToGo);
   }
 
   formatPlanInformations({
-    datacenterId, drpType, localSiteInformation, remoteSiteInformation, state,
+    datacenterId,
+    drpType,
+    localSiteInformation,
+    remoteSiteInformation,
+    state,
   }) {
     const currentPccInformations = this.currentService;
-    const currentDatacenterInformations = this.datacenterList.find(({ id }) => id === datacenterId);
+    const currentDatacenterInformations = this.datacenterList.find(
+      ({ id }) => id === datacenterId,
+    );
 
     let primaryPcc;
     let primaryDatacenter;

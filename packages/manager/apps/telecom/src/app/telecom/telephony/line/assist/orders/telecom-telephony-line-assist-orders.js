@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/orders',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/service/assist/orders/telecom-telephony-service-assist-orders.html',
+        templateUrl:
+          'app/telecom/telephony/service/assist/orders/telecom-telephony-service-assist-orders.html',
         controller: 'TelecomTelephonyServiceAssistOrdersCtrl',
         controllerAs: 'OrdersCtrl',
       },

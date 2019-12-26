@@ -13,5 +13,8 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
     },
   });
 
-  $urlServiceProvider.rules.when('/billing/orders/:id/retract', '/billing/orders/retract/:id');
+  $urlServiceProvider.rules.when(
+    '/billing/orders/:id/retract',
+    '/billing/orders/retract/:id',
+  );
 };

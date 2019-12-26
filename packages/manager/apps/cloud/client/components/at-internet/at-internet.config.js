@@ -1,4 +1,5 @@
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .config((atInternetProvider, atInternetUiRouterPluginProvider, CONFIG) => {
     const trackingEnabled = CONFIG.env === 'production';
 
@@ -20,8 +21,9 @@ angular.module('managerApp')
       config.referrerSite = referrerSite;
     }
 
-    OvhApiMe.v6().get().$promise
-      .then((me) => {
+    OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
         config.countryCode = me.country;
         config.currencyCode = me.currency && me.currency.code;
         config.visitorId = me.customerCode;

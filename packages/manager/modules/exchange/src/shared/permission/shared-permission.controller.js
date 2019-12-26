@@ -2,7 +2,14 @@ import has from 'lodash/has';
 
 export default class ExchangeTabPublicFolderPermissionsCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangePublicFolders, messaging, navigation, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangePublicFolders,
+    messaging,
+    navigation,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -23,7 +30,8 @@ export default class ExchangeTabPublicFolderPermissionsCtrl {
       $scope.$broadcast('paginationServerSide.reload', 'permissionsTable');
     });
 
-    $scope.retrievingPermissions = (count, offset) => this.retrievingPermissions(count, offset);
+    $scope.retrievingPermissions = (count, offset) =>
+      this.retrievingPermissions(count, offset);
     $scope.getPermissionsList = () => this.permissionsList;
     $scope.getPermissionsLoading = () => this.permissionsLoading;
   }
@@ -52,7 +60,9 @@ export default class ExchangeTabPublicFolderPermissionsCtrl {
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_ACCOUNTS_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_ACCOUNTS_error_message',
+          ),
           failure,
         );
         this.permissionsError = true;

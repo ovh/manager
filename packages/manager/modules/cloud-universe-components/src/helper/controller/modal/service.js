@@ -16,11 +16,7 @@ import warningController from './warning/controller';
 
 export default class CucControllerModalHelper {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    $uibModal,
-  ) {
+  constructor($q, $translate, $uibModal) {
     this.$q = $q;
     this.$translate = $translate;
     this.$uibModal = $uibModal;
@@ -28,28 +24,33 @@ export default class CucControllerModalHelper {
   }
 
   showModal(config = {}) {
-    const modalConfig = assign({
-      windowTopClass: 'cui-modal',
-    }, config.modalConfig);
+    const modalConfig = assign(
+      {
+        windowTopClass: 'cui-modal',
+      },
+      config.modalConfig,
+    );
     const modalInstance = this.$uibModal.open(modalConfig);
 
     const deferred = this.$q.defer();
-    modalInstance.result.then((result) => {
-      if (config.successHandler) {
-        config.successHandler(result);
-      }
-      deferred.resolve(result);
-    }).catch((err) => {
-      // We check for backdrop click as error.
-      // It happens when we click a button behind the modal.
-      // We don't want an error message for that.
-      if (!includes(this.unhandledError, err)) {
-        if (config.errorHandler) {
-          config.errorHandler(err);
+    modalInstance.result
+      .then((result) => {
+        if (config.successHandler) {
+          config.successHandler(result);
         }
-        deferred.reject(err);
-      }
-    });
+        deferred.resolve(result);
+      })
+      .catch((err) => {
+        // We check for backdrop click as error.
+        // It happens when we click a button behind the modal.
+        // We don't want an error message for that.
+        if (!includes(this.unhandledError, err)) {
+          if (config.errorHandler) {
+            config.errorHandler(err);
+          }
+          deferred.reject(err);
+        }
+      });
 
     return deferred.promise;
   }
@@ -107,7 +108,11 @@ export default class CucControllerModalHelper {
   }
 
   showDeleteModal(config = {}) {
-    set(config, 'submitButtonText', config.submitButtonText || this.$translate.instant('cuc_helper_delete'));
+    set(
+      config,
+      'submitButtonText',
+      config.submitButtonText || this.$translate.instant('cuc_helper_delete'),
+    );
     return this.showConfirmationModal(config);
   }
 }

@@ -1,7 +1,9 @@
 class LogsOfferService {
   constructor($translate, CucControllerHelper, OvhApiDbaas, CucServiceHelper) {
     this.$translate = $translate;
-    this.OvhApiDbaasLogsOffer = OvhApiDbaas.Logs().Offer().v6();
+    this.OvhApiDbaasLogsOffer = OvhApiDbaas.Logs()
+      .Offer()
+      .v6();
     this.CucServiceHelper = CucServiceHelper;
     this.CucControllerHelper = CucControllerHelper;
   }
@@ -9,8 +11,9 @@ class LogsOfferService {
   getOffer(serviceName) {
     return this.OvhApiDbaasLogsOffer.get({
       serviceName,
-    }).$promise
-      .catch((err) => this.LogsHelperService.handleError('logs_offer_load_error', err, {}));
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_offer_load_error', err, {}),
+    );
   }
 
   getOfferDetail(offerCode) {

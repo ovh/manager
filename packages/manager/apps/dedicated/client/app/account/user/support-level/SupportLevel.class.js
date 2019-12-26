@@ -11,10 +11,10 @@ export default class SupportLevel {
 
   isAvailable(subsidiary) {
     return (
-      FULL_SUPPORT_LEVEL_SUBSIDIARIES.includes(subsidiary)
-      && this.isActive()
-    )
-      || AVAILABLE_SUPPORT_LEVEL.includes(this.level);
+      (FULL_SUPPORT_LEVEL_SUBSIDIARIES.includes(subsidiary) &&
+        this.isActive()) ||
+      AVAILABLE_SUPPORT_LEVEL.includes(this.level)
+    );
   }
 
   isActive() {

@@ -1,8 +1,16 @@
 import get from 'lodash/get';
 
-angular.module('App')
-  .controller('DedicatedCloudDatacentersCtrl', class DedicatedCloudDatacentersController {
-    constructor($q, $scope, $state, $stateParams, currentService, DedicatedCloud) {
+angular.module('App').controller(
+  'DedicatedCloudDatacentersCtrl',
+  class DedicatedCloudDatacentersController {
+    constructor(
+      $q,
+      $scope,
+      $state,
+      $stateParams,
+      currentService,
+      DedicatedCloud,
+    ) {
       this.$q = $q;
       this.$scope = $scope;
       this.$state = $state;
@@ -12,8 +20,11 @@ angular.module('App')
     }
 
     loadDatacenters({ offset, pageSize }) {
-      return this.DedicatedCloud
-        .getDatacentersInformations(this.$stateParams.productId, pageSize, offset - 1)
+      return this.DedicatedCloud.getDatacentersInformations(
+        this.$stateParams.productId,
+        pageSize,
+        offset - 1,
+      )
         .then((result) => ({
           data: get(result, 'list.results'),
           meta: {
@@ -22,10 +33,13 @@ angular.module('App')
         }))
         .catch((err) => {
           this.$scope.resetAction();
-          this.$scope.setMessage(this.$translate.instant('dedicatedCloud_datacenters_loading_error'), {
-            message: err.message,
-            type: 'ERROR',
-          });
+          this.$scope.setMessage(
+            this.$translate.instant('dedicatedCloud_datacenters_loading_error'),
+            {
+              message: err.message,
+              type: 'ERROR',
+            },
+          );
           return this.$q.reject(err);
         })
         .finally(() => {
@@ -39,7 +53,11 @@ angular.module('App')
           datacenterId: datacenter.id,
         });
       } else {
-        this.$scope.setAction('datacenter/datastore/orderLegacy/dedicatedCloud-datacenter-datastore-orderLegacy', datacenter, true);
+        this.$scope.setAction(
+          'datacenter/datastore/orderLegacy/dedicatedCloud-datacenter-datastore-orderLegacy',
+          datacenter,
+          true,
+        );
       }
     }
 
@@ -49,7 +67,12 @@ angular.module('App')
           datacenterId: datacenter.id,
         });
       } else {
-        this.$scope.setAction('datacenter/host/orderLegacy/dedicatedCloud-datacenter-host-orderLegacy', datacenter, true);
+        this.$scope.setAction(
+          'datacenter/host/orderLegacy/dedicatedCloud-datacenter-host-orderLegacy',
+          datacenter,
+          true,
+        );
       }
     }
-  });
+  },
+);

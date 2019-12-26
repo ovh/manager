@@ -1,6 +1,13 @@
 (() => {
   class MetricsDetailCtrl {
-    constructor($filter, $q, $scope, $stateParams, CucCloudMessage, MetricService) {
+    constructor(
+      $filter,
+      $q,
+      $scope,
+      $stateParams,
+      CucCloudMessage,
+      MetricService,
+    ) {
       this.$filter = $filter;
       this.$q = $q;
       this.$scope = $scope;
@@ -27,12 +34,17 @@
         .then((service) => {
           this.service = service.data;
         })
-        .finally(() => { this.loadingService = false; });
+        .finally(() => {
+          this.loadingService = false;
+        });
     }
 
     loadMessage() {
       this.CucCloudMessage.unSubscribe('dbaas.metrics.detail');
-      this.messageHandler = this.CucCloudMessage.subscribe('dbaas.metrics.detail', { onMessage: () => this.refreshMessage() });
+      this.messageHandler = this.CucCloudMessage.subscribe(
+        'dbaas.metrics.detail',
+        { onMessage: () => this.refreshMessage() },
+      );
     }
 
     refreshMessage() {
@@ -40,5 +52,7 @@
     }
   }
 
-  angular.module('managerApp').controller('MetricsDetailCtrl', MetricsDetailCtrl);
+  angular
+    .module('managerApp')
+    .controller('MetricsDetailCtrl', MetricsDetailCtrl);
 })();

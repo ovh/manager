@@ -4,8 +4,6 @@ import provider from './config.provider';
 
 const moduleName = 'coreConfig';
 
-angular
-  .module(moduleName, [])
-  .provider('coreConfig', provider);
+angular.module(moduleName, []).provider('coreConfig', provider);
 
 export default moduleName;

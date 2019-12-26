@@ -21,92 +21,113 @@ import IplbServerFormTemplate from './iplb-server-farm.html';
 const moduleName = 'ovhManagerIplbServerForm';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.server-farm', {
-        url: '/serverfarm',
-        redirectTo: 'network.iplb.detail.server-farm.home',
-        views: {
-          iplbHeader: {
-            template: IplbHeaderTemplate,
-            controller: 'IpLoadBalancerDashboardHeaderCtrl',
-            controllerAs: 'ctrl',
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider
+        .state('network.iplb.detail.server-farm', {
+          url: '/serverfarm',
+          redirectTo: 'network.iplb.detail.server-farm.home',
+          views: {
+            iplbHeader: {
+              template: IplbHeaderTemplate,
+              controller: 'IpLoadBalancerDashboardHeaderCtrl',
+              controllerAs: 'ctrl',
+            },
+            iplbContent: {
+              template: '<div data-ui-view="iplbFarms"><div>',
+            },
           },
-          iplbContent: {
-            template: '<div data-ui-view="iplbFarms"><div>',
+          translations: {
+            value: ['.', '../server'],
+            format: 'json',
           },
-        },
-        translations: {
-          value: ['.', '../server'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.server-farm.home', {
-        url: '/',
-        views: {
-          iplbFarms: {
-            template: IplbServerFormTemplate,
-            controller: 'IpLoadBalancerServerFarmCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.server-farm.home', {
+          url: '/',
+          views: {
+            iplbFarms: {
+              template: IplbServerFormTemplate,
+              controller: 'IpLoadBalancerServerFarmCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-      })
-      .state('network.iplb.detail.server-farm.add', {
-        url: '/add',
-        views: {
-          iplbFarms: {
-            template: IplbServerFormEditTemplate,
-            controller: 'IpLoadBalancerServerFarmEditCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.server-farm.add', {
+          url: '/add',
+          views: {
+            iplbFarms: {
+              template: IplbServerFormEditTemplate,
+              controller: 'IpLoadBalancerServerFarmEditCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-      })
-      .state('network.iplb.detail.server-farm.update', {
-        url: '/:farmId',
-        views: {
-          iplbFarms: {
-            template: IplbServerFormEditTemplate,
-            controller: 'IpLoadBalancerServerFarmEditCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.server-farm.update', {
+          url: '/:farmId',
+          views: {
+            iplbFarms: {
+              template: IplbServerFormEditTemplate,
+              controller: 'IpLoadBalancerServerFarmEditCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-      })
-      .state('network.iplb.detail.server-farm.server-add', {
-        url: '/:farmId/server/add',
-        views: {
-          iplbFarms: {
-            template: IplbServerEditTemplate,
-            controller: 'IpLoadBalancerServerEditCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.server-farm.server-add', {
+          url: '/:farmId/server/add',
+          views: {
+            iplbFarms: {
+              template: IplbServerEditTemplate,
+              controller: 'IpLoadBalancerServerEditCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-      })
-      .state('network.iplb.detail.server-farm.server-update', {
-        url: '/:farmId/server/:serverId',
-        views: {
-          iplbFarms: {
-            template: IplbServerEditTemplate,
-            controller: 'IpLoadBalancerServerEditCtrl',
-            controllerAs: 'ctrl',
+        })
+        .state('network.iplb.detail.server-farm.server-update', {
+          url: '/:farmId/server/:serverId',
+          views: {
+            iplbFarms: {
+              template: IplbServerEditTemplate,
+              controller: 'IpLoadBalancerServerEditCtrl',
+              controllerAs: 'ctrl',
+            },
           },
-        },
-      });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+        });
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .controller('IpLoadBalancerServerFarmCtrl', IpLoadBalancerServerFarmCtrl)
-  .controller('IpLoadBalancerServerFarmEditCtrl', IpLoadBalancerServerFarmEditCtrl)
-  .controller('IpLoadBalancerServerFarmProbeEditCtrl', IpLoadBalancerServerFarmProbeEditCtrl)
-  .controller('IpLoadBalancerServerFarmPreviewCtrl', IpLoadBalancerServerFarmPreviewCtrl)
-  .controller('IpLoadBalancerServerFarmDeleteCtrl', IpLoadBalancerServerFarmDeleteCtrl)
+  .controller(
+    'IpLoadBalancerServerFarmEditCtrl',
+    IpLoadBalancerServerFarmEditCtrl,
+  )
+  .controller(
+    'IpLoadBalancerServerFarmProbeEditCtrl',
+    IpLoadBalancerServerFarmProbeEditCtrl,
+  )
+  .controller(
+    'IpLoadBalancerServerFarmPreviewCtrl',
+    IpLoadBalancerServerFarmPreviewCtrl,
+  )
+  .controller(
+    'IpLoadBalancerServerFarmDeleteCtrl',
+    IpLoadBalancerServerFarmDeleteCtrl,
+  )
   .service('IpLoadBalancerServerFarmService', IpLoadBalancerServerFarmService)
   .service('IpLoadBalancerServerService', IpLoadBalancerServerService)
   .service('IpblServerStatusService', IpblServerStatusService)
   .controller('IpLoadBalancerServerEditCtrl', IpLoadBalancerServerEditCtrl)
-  .controller('IpLoadBalancerServerStatusDetailCtrl', IpLoadBalancerServerStatusDetailCtrl)
-  .controller('IpLoadBalancerServerPreviewCtrl', IpLoadBalancerServerPreviewCtrl)
+  .controller(
+    'IpLoadBalancerServerStatusDetailCtrl',
+    IpLoadBalancerServerStatusDetailCtrl,
+  )
+  .controller(
+    'IpLoadBalancerServerPreviewCtrl',
+    IpLoadBalancerServerPreviewCtrl,
+  )
   .controller('IpLoadBalancerServerDeleteCtrl', IpLoadBalancerServerDeleteCtrl)
   .component('iplbServerStatus', {
     template: `

@@ -1,5 +1,13 @@
-angular.module('managerApp')
-  .controller('CdaIpListCtrl', function CdaIpListCtrl($q, $stateParams, $uibModal, $translate, OvhApiDedicatedCeph, CucCloudMessage) {
+angular
+  .module('managerApp')
+  .controller('CdaIpListCtrl', function CdaIpListCtrl(
+    $q,
+    $stateParams,
+    $uibModal,
+    $translate,
+    OvhApiDedicatedCeph,
+    CucCloudMessage,
+  ) {
     const self = this;
 
     self.loading = false;
@@ -20,17 +28,27 @@ angular.module('managerApp')
     };
 
     function initIps() {
-      OvhApiDedicatedCeph.Acl().v6().resetAllCache();
-      return OvhApiDedicatedCeph.Acl().v6().query({
-        serviceName: $stateParams.serviceName,
-      }).$promise.then((ips) => {
-        self.datas.ips = ips;
-        return ips;
-      });
+      OvhApiDedicatedCeph.Acl()
+        .v6()
+        .resetAllCache();
+      return OvhApiDedicatedCeph.Acl()
+        .v6()
+        .query({
+          serviceName: $stateParams.serviceName,
+        })
+        .$promise.then((ips) => {
+          self.datas.ips = ips;
+          return ips;
+        });
     }
 
     function displayError(error) {
-      CucCloudMessage.error([$translate.instant('ceph_common_error'), (error.data && error.data.message) || ''].join(' '));
+      CucCloudMessage.error(
+        [
+          $translate.instant('ceph_common_error'),
+          (error.data && error.data.message) || '',
+        ].join(' '),
+      );
     }
 
     function init() {
@@ -49,7 +67,11 @@ angular.module('managerApp')
     };
 
     self.openDeleteModal = function openDeleteModal(ip) {
-      self.openModal(self.modals.remove.templateUrl, self.modals.remove.controller, { ip });
+      self.openModal(
+        self.modals.remove.templateUrl,
+        self.modals.remove.controller,
+        { ip },
+      );
     };
 
     self.openModal = function openModal(template, controller, params) {

@@ -40,19 +40,33 @@ class CdaIpAddCtrl {
 
   createIp() {
     this.saving = true;
-    return this.OvhApiDedicatedCeph.Acl().v6().post({
-      serviceName: this.serviceName,
-    }, {
-      aclList: [this.model.ip],
-    }).$promise
-      .then((result) => {
+    return this.OvhApiDedicatedCeph.Acl()
+      .v6()
+      .post(
+        {
+          serviceName: this.serviceName,
+        },
+        {
+          aclList: [this.model.ip],
+        },
+      )
+      .$promise.then((result) => {
         this.$uibModalInstance.close({ taskId: result.data });
-        this.CucCloudMessage.success(this.$translate.instant('cda_ip_add_success'));
+        this.CucCloudMessage.success(
+          this.$translate.instant('cda_ip_add_success'),
+        );
       })
       .catch((error) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('ceph_common_error')} ${(error.data && error.data.message) || ''}`, this.messageContainerName);
+        this.CucCloudMessage.error(
+          `${this.$translate.instant('ceph_common_error')} ${(error.data &&
+            error.data.message) ||
+            ''}`,
+          this.messageContainerName,
+        );
       })
-      .finally(() => { this.saving = false; });
+      .finally(() => {
+        this.saving = false;
+      });
   }
 
   closeModal() {

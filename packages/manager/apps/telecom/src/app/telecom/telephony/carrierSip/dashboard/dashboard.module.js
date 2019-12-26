@@ -11,12 +11,6 @@ import routing from './dashboard.routing';
 
 const moduleName = 'ovhManagerTelecomCarrierSipDashboard';
 
-angular
-  .module(moduleName, [
-    cdr,
-    endpoints,
-    uiRouter,
-  ])
-  .config(routing);
+angular.module(moduleName, [cdr, endpoints, uiRouter]).config(routing);
 
 export default moduleName;

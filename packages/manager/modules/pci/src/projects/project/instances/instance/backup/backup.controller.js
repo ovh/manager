@@ -16,33 +16,43 @@ export default class PciInstanceBackupController {
 
   $onInit() {
     this.backup = {
-      name: `${this.instance.name} ${this.$filter('date')(new Date(), 'short')}`,
+      name: `${this.instance.name} ${this.$filter('date')(
+        new Date(),
+        'short',
+      )}`,
     };
     this.isLoading = false;
   }
 
   createBackup() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .createBackup(this.projectId, this.instance, this.backup)
-      .then(() => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_backup_success_message',
-          {
-            backup: this.backup.name,
-          },
+    return this.PciProjectsProjectInstanceService.createBackup(
+      this.projectId,
+      this.instance,
+      this.backup,
+    )
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_backup_success_message',
+            {
+              backup: this.backup.name,
+            },
+          ),
         ),
-      ))
-      .catch((err) => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_backup_error_backup',
-          {
-            message: get(err, 'data.message', null),
-            backup: this.backup.name,
-          },
+      )
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_backup_error_backup',
+            {
+              message: get(err, 'data.message', null),
+              backup: this.backup.name,
+            },
+          ),
+          'error',
         ),
-        'error',
-      ))
+      )
       .finally(() => {
         this.isLoading = false;
       });

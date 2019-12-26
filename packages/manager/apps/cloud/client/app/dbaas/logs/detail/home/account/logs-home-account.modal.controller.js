@@ -8,14 +8,16 @@ class LogsHomeAccountModalCtrl {
   }
 
   openModal() {
-    this.CucControllerHelper.modal.showModal({
-      modalConfig: {
-        templateUrl: 'app/dbaas/logs/detail/home/account/logs-home-account.html',
-        controller: 'LogsHomeAccountCtrl',
-        controllerAs: 'ctrl',
-        backdrop: 'static',
-      },
-    })
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          templateUrl:
+            'app/dbaas/logs/detail/home/account/logs-home-account.html',
+          controller: 'LogsHomeAccountCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+        },
+      })
       .then(() => {
         this.$scope.$parent.$parent.$parent.$$prevSibling.ctrl.runLoaders();
         this.$scope.$parent.ctrl.runLoaders();
@@ -30,4 +32,6 @@ class LogsHomeAccountModalCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsHomeAccountModalCtrl', LogsHomeAccountModalCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsHomeAccountModalCtrl', LogsHomeAccountModalCtrl);

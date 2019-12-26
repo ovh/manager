@@ -19,46 +19,50 @@ export default class {
     this.monthInvalid = false;
     this.dowInvalid = false;
     this.cronValidator = new CronValidator();
-    this.WORKFLOW_SCHEDULES = [{
-      name: SCHEDULE_ENUM.ROTATE_7,
-      description: ROTATE_DESCRIPTION,
-      cronPattern: {
-        minutes: random(0, 11) * 5,
-        hour: DEFAULT_HOURS[random(0, DEFAULT_HOURS.length - 1)],
-        dom: DEFAULT_CRON_PATTERN_DOM,
-        month: DEFAULT_CRON_PATTERN_MONTH,
-        dow: DEFAULT_CRON_PATTERN_DOW,
+    this.WORKFLOW_SCHEDULES = [
+      {
+        name: SCHEDULE_ENUM.ROTATE_7,
+        description: ROTATE_DESCRIPTION,
+        cronPattern: {
+          minutes: random(0, 11) * 5,
+          hour: DEFAULT_HOURS[random(0, DEFAULT_HOURS.length - 1)],
+          dom: DEFAULT_CRON_PATTERN_DOM,
+          month: DEFAULT_CRON_PATTERN_MONTH,
+          dow: DEFAULT_CRON_PATTERN_DOW,
+        },
+        rotation: 7,
+        maxExecutionCount: 0,
+        valid: true,
       },
-      rotation: 7,
-      maxExecutionCount: 0,
-      valid: true,
-    }, {
-      name: SCHEDULE_ENUM.ROTATE_14,
-      description: ROTATE_DESCRIPTION,
-      cronPattern: {
-        minutes: random(0, 11) * 5,
-        hour: DEFAULT_HOURS[random(0, DEFAULT_HOURS.length - 1)],
-        dom: DEFAULT_CRON_PATTERN_DOM,
-        month: DEFAULT_CRON_PATTERN_MONTH,
-        dow: DEFAULT_CRON_PATTERN_DOW,
+      {
+        name: SCHEDULE_ENUM.ROTATE_14,
+        description: ROTATE_DESCRIPTION,
+        cronPattern: {
+          minutes: random(0, 11) * 5,
+          hour: DEFAULT_HOURS[random(0, DEFAULT_HOURS.length - 1)],
+          dom: DEFAULT_CRON_PATTERN_DOM,
+          month: DEFAULT_CRON_PATTERN_MONTH,
+          dow: DEFAULT_CRON_PATTERN_DOW,
+        },
+        rotation: 14,
+        maxExecutionCount: 0,
+        valid: true,
       },
-      rotation: 14,
-      maxExecutionCount: 0,
-      valid: true,
-    }, {
-      name: SCHEDULE_ENUM.CUSTOM,
-      description: CUSTOM_DESCRIPTION,
-      cronPattern: {
-        minutes: random(0, 59),
-        hour: random(0, 23),
-        dom: DEFAULT_CRON_PATTERN_DOM,
-        month: DEFAULT_CRON_PATTERN_MONTH,
-        dow: DEFAULT_CRON_PATTERN_DOW,
+      {
+        name: SCHEDULE_ENUM.CUSTOM,
+        description: CUSTOM_DESCRIPTION,
+        cronPattern: {
+          minutes: random(0, 59),
+          hour: random(0, 23),
+          dom: DEFAULT_CRON_PATTERN_DOM,
+          month: DEFAULT_CRON_PATTERN_MONTH,
+          dow: DEFAULT_CRON_PATTERN_DOW,
+        },
+        rotation: 1,
+        maxExecutionCount: 0,
+        valid: true,
       },
-      rotation: 1,
-      maxExecutionCount: 0,
-      valid: true,
-    }];
+    ];
     this.help = {
       openMonthHelp: false,
       openDowHelp: false,
@@ -86,7 +90,8 @@ export default class {
         this.help.openMonthHelp = !this.help.openMonthHelp;
         break;
       }
-      default: break;
+      default:
+        break;
     }
   }
 
@@ -95,27 +100,39 @@ export default class {
   }
 
   validateMinutes() {
-    this.minutesInvalid = !this.cronValidator.validateMinutes(`${this.schedule.cronPattern.minutes}`);
+    this.minutesInvalid = !this.cronValidator.validateMinutes(
+      `${this.schedule.cronPattern.minutes}`,
+    );
     this.schedule.valid = !this.minutesInvalid;
   }
 
   validateHour() {
-    this.hoursInvalid = !this.cronValidator.validateHours(`${this.schedule.cronPattern.hour}`);
+    this.hoursInvalid = !this.cronValidator.validateHours(
+      `${this.schedule.cronPattern.hour}`,
+    );
     this.schedule.valid = !this.hoursInvalid;
   }
 
   validateDom() {
-    this.domInvalid = !this.cronValidator.validateDays(`${this.schedule.cronPattern.dom}`);
+    this.domInvalid = !this.cronValidator.validateDays(
+      `${this.schedule.cronPattern.dom}`,
+    );
     this.schedule.valid = !this.domInvalid;
   }
 
   validateMonth() {
-    this.monthInvalid = !this.cronValidator.validateMonths(`${this.schedule.cronPattern.month}`, true);
+    this.monthInvalid = !this.cronValidator.validateMonths(
+      `${this.schedule.cronPattern.month}`,
+      true,
+    );
     this.schedule.valid = !this.monthInvalid;
   }
 
   validateDow() {
-    this.dowInvalid = !this.cronValidator.validateWeekdays(`${this.schedule.cronPattern.dow}`, true);
+    this.dowInvalid = !this.cronValidator.validateWeekdays(
+      `${this.schedule.cronPattern.dow}`,
+      true,
+    );
     this.schedule.valid = !this.dowInvalid;
   }
 }

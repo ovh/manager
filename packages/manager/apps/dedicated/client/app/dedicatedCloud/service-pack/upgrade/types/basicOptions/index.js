@@ -9,9 +9,7 @@ import {
 const moduleName = 'ovhManagerPccServicePackUpgradeBasicOptions';
 
 angular
-  .module(moduleName, [
-    ...steps,
-  ])
+  .module(moduleName, [...steps])
   .config(registerState)
   .run(/* @ngTranslationsInject:json ./translations */)
   .service(serviceName, UpgradeBasicOptionsService);

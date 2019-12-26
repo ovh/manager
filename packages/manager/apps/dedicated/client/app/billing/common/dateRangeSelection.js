@@ -4,7 +4,9 @@ angular.module('Billing.services').service('BillingdateRangeSelection', [
     const STORAGE_KEY_PREFIX = 'billingDateRangeSelection';
 
     function loadDateFromStorage(dateType, defaultDate) {
-      let date = moment($window.sessionStorage.getItem(`${STORAGE_KEY_PREFIX}_${dateType}`));
+      let date = moment(
+        $window.sessionStorage.getItem(`${STORAGE_KEY_PREFIX}_${dateType}`),
+      );
       if (!date.isValid()) {
         date = moment(defaultDate);
       }
@@ -37,7 +39,10 @@ angular.module('Billing.services').service('BillingdateRangeSelection', [
       set dateFrom(_dateFrom_) {
         if (dateFrom !== _dateFrom_) {
           dateFrom = moment(_dateFrom_);
-          $window.sessionStorage.setItem(`${STORAGE_KEY_PREFIX}_dateFrom`, dateFrom.toISOString());
+          $window.sessionStorage.setItem(
+            `${STORAGE_KEY_PREFIX}_dateFrom`,
+            dateFrom.toISOString(),
+          );
         }
       },
 
@@ -47,7 +52,10 @@ angular.module('Billing.services').service('BillingdateRangeSelection', [
       set dateTo(_dateTo_) {
         if (dateTo !== _dateTo_) {
           dateTo = moment(_dateTo_);
-          $window.sessionStorage.setItem(`${STORAGE_KEY_PREFIX}_dateTo`, dateTo.toISOString());
+          $window.sessionStorage.setItem(
+            `${STORAGE_KEY_PREFIX}_dateTo`,
+            dateTo.toISOString(),
+          );
         }
       },
     };

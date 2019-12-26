@@ -13,73 +13,76 @@ import './iplb-vrack.less';
 const moduleName = 'ovhManagerIplbVrack';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .config(/* @ngInject */($stateProvider) => {
-    $stateProvider
-      .state('network.iplb.detail.vrack', {
-        url: '/vrack',
-        redirectTo: 'network.iplb.detail.vrack.home',
-        views: {
-          iplbHeader: {
-            template: IplbHeaderTemplate,
-            controller: 'IpLoadBalancerDashboardHeaderCtrl',
-            controllerAs: 'ctrl',
+  .module(moduleName, ['ui.router'])
+  .config(
+    /* @ngInject */ ($stateProvider) => {
+      $stateProvider
+        .state('network.iplb.detail.vrack', {
+          url: '/vrack',
+          redirectTo: 'network.iplb.detail.vrack.home',
+          views: {
+            iplbHeader: {
+              template: IplbHeaderTemplate,
+              controller: 'IpLoadBalancerDashboardHeaderCtrl',
+              controllerAs: 'ctrl',
+            },
+            iplbContent: {
+              template: '<div data-ui-view="iplbVrack"><div>',
+            },
           },
-          iplbContent: {
-            template: '<div data-ui-view="iplbVrack"><div>',
+          translations: {
+            value: ['../frontends'],
+            format: 'json',
           },
-        },
-        translations: {
-          value: ['../frontends'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.vrack.home', {
-        url: '/',
-        views: {
-          iplbVrack: {
-            template: IplbVrackTemplate,
-            controller: 'IpLoadBalancerVrackCtrl',
-            controllerAs: '$ctrl',
+        })
+        .state('network.iplb.detail.vrack.home', {
+          url: '/',
+          views: {
+            iplbVrack: {
+              template: IplbVrackTemplate,
+              controller: 'IpLoadBalancerVrackCtrl',
+              controllerAs: '$ctrl',
+            },
           },
-        },
-        translations: {
-          value: ['../vrack'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.vrack.add', {
-        url: '/add',
-        views: {
-          iplbVrack: {
-            template: IplbVrackEditTemplate,
-            controller: 'IpLoadBalancerVrackEditCtrl',
-            controllerAs: '$ctrl',
+          translations: {
+            value: ['../vrack'],
+            format: 'json',
           },
-        },
-        translations: {
-          value: ['../frontends'],
-          format: 'json',
-        },
-      })
-      .state('network.iplb.detail.vrack.edit', {
-        url: '/:networkId',
-        views: {
-          iplbVrack: {
-            template: IplbVrackEditTemplate,
-            controller: 'IpLoadBalancerVrackEditCtrl',
-            controllerAs: '$ctrl',
+        })
+        .state('network.iplb.detail.vrack.add', {
+          url: '/add',
+          views: {
+            iplbVrack: {
+              template: IplbVrackEditTemplate,
+              controller: 'IpLoadBalancerVrackEditCtrl',
+              controllerAs: '$ctrl',
+            },
           },
-        },
-        translations: {
-          value: ['../frontends'],
-          format: 'json',
-        },
-      });
-  })
-  .controller('IpLoadBalancerDashboardHeaderCtrl', IpLoadBalancerDashboardHeaderCtrl)
+          translations: {
+            value: ['../frontends'],
+            format: 'json',
+          },
+        })
+        .state('network.iplb.detail.vrack.edit', {
+          url: '/:networkId',
+          views: {
+            iplbVrack: {
+              template: IplbVrackEditTemplate,
+              controller: 'IpLoadBalancerVrackEditCtrl',
+              controllerAs: '$ctrl',
+            },
+          },
+          translations: {
+            value: ['../frontends'],
+            format: 'json',
+          },
+        });
+    },
+  )
+  .controller(
+    'IpLoadBalancerDashboardHeaderCtrl',
+    IpLoadBalancerDashboardHeaderCtrl,
+  )
   .controller('IpLoadBalancerVrackEditCtrl', IpLoadBalancerVrackEditCtrl)
   .controller('IpLoadBalancerVrackCtrl', IpLoadBalancerVrackCtrl)
   .service('IpLoadBalancerVrackService', IpLoadBalancerVrackService)

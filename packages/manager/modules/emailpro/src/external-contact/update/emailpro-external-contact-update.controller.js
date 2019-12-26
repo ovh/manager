@@ -1,8 +1,13 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
-export default /* @ngInject */ ($scope, $stateParams, $translate,
-  EmailPro, EmailProExternalContacts) => {
+export default /* @ngInject */ (
+  $scope,
+  $stateParams,
+  $translate,
+  EmailPro,
+  EmailProExternalContacts,
+) => {
   $scope.model = {
     currentAccount: $scope.currentActionData,
     newAccount: angular.copy($scope.currentActionData),
@@ -10,30 +15,45 @@ export default /* @ngInject */ ($scope, $stateParams, $translate,
   };
 
   $scope.isEmailValid = function isEmailValid() {
-    return $scope.model.newAccount.externalEmailAddress
-      && EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress);
+    return (
+      $scope.model.newAccount.externalEmailAddress &&
+      EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress)
+    );
   };
 
   $scope.getPasswordInvalidClass = function getPasswordInvalidClass() {
-    return !$scope.model.newAccount.externalEmailAddress
-      || EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress) ? '' : 'error';
+    return !$scope.model.newAccount.externalEmailAddress ||
+      EmailPro.isEmailValid($scope.model.newAccount.externalEmailAddress)
+      ? ''
+      : 'error';
   };
 
   $scope.modifyContact = function modifyContact() {
     $scope.resetAction();
-    EmailProExternalContacts
-      .modifyContact(
-        $stateParams.organization,
-        $stateParams.productId,
-        $scope.model.currentAccount.externalEmailAddress,
-        $scope.model.newAccount,
-      )
-      .then(() => {
-        $scope.setMessage($translate.instant('emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_success'), { status: 'success' });
-      }, (err) => {
+    EmailProExternalContacts.modifyContact(
+      $stateParams.organization,
+      $stateParams.productId,
+      $scope.model.currentAccount.externalEmailAddress,
+      $scope.model.newAccount,
+    ).then(
+      () => {
+        $scope.setMessage(
+          $translate.instant(
+            'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_success',
+          ),
+          { status: 'success' },
+        );
+      },
+      (err) => {
         set(err, 'status', err.status || 'error');
-        $scope.setMessage($translate.instant('emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_fail'), err);
-      });
+        $scope.setMessage(
+          $translate.instant(
+            'emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_fail',
+          ),
+          err,
+        );
+      },
+    );
   };
 
   $scope.updateDisplayName = function updateDisplayName() {
@@ -61,7 +81,9 @@ export default /* @ngInject */ ($scope, $stateParams, $translate,
   };
 
   $scope.accountIsValid = function accountIsValid() {
-    return EmailProExternalContacts.isAccountValid($scope.model.newAccount)
-      && $scope.model.newAccount.displayName;
+    return (
+      EmailProExternalContacts.isAccountValid($scope.model.newAccount) &&
+      $scope.model.newAccount.displayName
+    );
   };
 };

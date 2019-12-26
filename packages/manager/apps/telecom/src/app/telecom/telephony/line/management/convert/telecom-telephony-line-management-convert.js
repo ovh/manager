@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/convert',
     views: {
       'lineView@telecom.telephony.billingAccount.line': {
-        templateUrl: 'app/telecom/telephony/line/management/convert/telecom-telephony-line-management-convert.html',
+        templateUrl:
+          'app/telecom/telephony/line/management/convert/telecom-telephony-line-management-convert.html',
         controller: 'TelecomTelephonyLineConvertCtrl',
         controllerAs: 'LineConvertCtrl',
       },

@@ -1,8 +1,4 @@
-module.exports = (
-  {
-    name,
-  },
-) => ({
+module.exports = ({ name }) => ({
   name: `@ovh-ux/manager-${name}-app`,
   version: '0.0.0',
   private: true,
@@ -10,9 +6,9 @@ module.exports = (
   author: 'OVH SAS',
   scripts: {
     build: 'yarn build:eu && yarn build:ca && yarn build:us',
-    'build:ca': 'webpack --env.production --env.region=\'CA\' && mv dist dist-CA',
+    'build:ca': "webpack --env.production --env.region='CA' && mv dist dist-CA",
     'build:eu': 'webpack --env.production && mv dist dist-EU',
-    'build:us': 'webpack --env.production --env.region=\'US\' && mv dist dist-US',
+    'build:us': "webpack --env.production --env.region='US' && mv dist dist-US",
     dev: 'webpack-dev-server',
     'dev:watch': 'yarn run dev',
     start: `lerna exec --stream --scope='@ovh-ux/manager-${name}-app' --include-filtered-dependencies -- npm run build --if-present`,

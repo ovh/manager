@@ -14,19 +14,28 @@ export default class ExchangePublicFolders {
     };
   }
 
-  retrievingPublicFolders(organization, serviceName, count = 10, offset = 0, search = '') {
-    return this.services.OvhHttp.get('/sws/exchange/{organization}/{exchange}/publicFolders', {
-      rootPath: '2api',
-      urlParams: {
-        organization,
-        exchange: serviceName,
+  retrievingPublicFolders(
+    organization,
+    serviceName,
+    count = 10,
+    offset = 0,
+    search = '',
+  ) {
+    return this.services.OvhHttp.get(
+      '/sws/exchange/{organization}/{exchange}/publicFolders',
+      {
+        rootPath: '2api',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+        },
+        params: {
+          count,
+          offset,
+          search,
+        },
       },
-      params: {
-        count,
-        offset,
-        search,
-      },
-    });
+    );
   }
 
   retrievingPublicFolderOptions(organization, serviceName) {
@@ -139,7 +148,13 @@ export default class ExchangePublicFolders {
     );
   }
 
-  retrievingPublicFoldersPermissions(organization, serviceName, path, count = 10, offset = 0) {
+  retrievingPublicFoldersPermissions(
+    organization,
+    serviceName,
+    path,
+    count = 10,
+    offset = 0,
+  ) {
     return this.services.OvhHttp.get(
       '/sws/exchange/{organization}/{exchange}/publicFolders/{path}/permissions',
       {
@@ -177,7 +192,12 @@ export default class ExchangePublicFolders {
     });
   }
 
-  updatingPublicFolderPermissions(organization, serviceName, path, permissions) {
+  updatingPublicFolderPermissions(
+    organization,
+    serviceName,
+    path,
+    permissions,
+  ) {
     return this.services.OvhHttp.put(
       '/sws/exchange/{organization}/{exchange}/publicFolders/{path}/permissions-update',
       {

@@ -3,7 +3,8 @@
  * @name managerApp.service:Toaster
  * @description Manage Toast notifications
  */
-angular.module('managerApp')
+angular
+  .module('managerApp')
   .service('Toaster', function Toaster($translate, Toast) {
     /**
      * @ngdoc function
@@ -18,7 +19,9 @@ angular.module('managerApp')
      *   ```Toaster.success("translation_id", { param: "optional" });```
      */
     this.success = function success(translationId, translationParams) {
-      return Toast.success($translate.instant(translationId, translationParams));
+      return Toast.success(
+        $translate.instant(translationId, translationParams),
+      );
     };
 
     /**
@@ -56,18 +59,31 @@ angular.module('managerApp')
      *   - An HTTP error message:
      *     ```Toaster.error(err, "custom_translation_id");```
      */
-    this.error = function error(translationIdOrHttpError, translationParamsOrTranslationId) {
+    this.error = function error(
+      translationIdOrHttpError,
+      translationParamsOrTranslationId,
+    ) {
       if (angular.isString(translationIdOrHttpError)) {
-        return Toast.error($translate.instant(
-          translationIdOrHttpError,
-          translationParamsOrTranslationId,
-        ));
-      } if (angular.isObject(translationIdOrHttpError)) {
-        return Toast.error([
-          $translate.instant(translationParamsOrTranslationId || 'an_error_occurred'),
-          `<br/>[${translationIdOrHttpError.status}]`,
-          (translationIdOrHttpError.data && translationIdOrHttpError.data.message) || translationIdOrHttpError.statusText || '',
-        ].join(' '));
+        return Toast.error(
+          $translate.instant(
+            translationIdOrHttpError,
+            translationParamsOrTranslationId,
+          ),
+        );
+      }
+      if (angular.isObject(translationIdOrHttpError)) {
+        return Toast.error(
+          [
+            $translate.instant(
+              translationParamsOrTranslationId || 'an_error_occurred',
+            ),
+            `<br/>[${translationIdOrHttpError.status}]`,
+            (translationIdOrHttpError.data &&
+              translationIdOrHttpError.data.message) ||
+              translationIdOrHttpError.statusText ||
+              '',
+          ].join(' '),
+        );
       }
       return null;
     };

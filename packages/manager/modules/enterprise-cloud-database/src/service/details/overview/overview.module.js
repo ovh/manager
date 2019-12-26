@@ -11,7 +11,10 @@ const moduleName = 'enterpriseCloudDatabaseServiceDetailsOverview';
 angular
   .module(moduleName, [connectionDetails, updateName, updatePassword])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsOverviewComponent', enterpriseCloudDatabaseServiceDetailsOverviewComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsOverviewComponent',
+    enterpriseCloudDatabaseServiceDetailsOverviewComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

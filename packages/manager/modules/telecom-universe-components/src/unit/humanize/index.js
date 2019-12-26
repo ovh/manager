@@ -6,9 +6,7 @@ import tucUnitHumanizeFilter from './unit-humanize.filter';
 const moduleName = 'tucUnitHumanize';
 
 angular
-  .module(moduleName, [
-    translate,
-  ])
+  .module(moduleName, [translate])
   .filter('tuc-unit-humanize', tucUnitHumanizeFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -1,10 +1,7 @@
 import find from 'lodash/find';
 import startsWith from 'lodash/startsWith';
 
-import {
-  HEADER_LOCALE,
-  ROUTES_PREFIX,
-} from './translate.constants';
+import { HEADER_LOCALE, ROUTES_PREFIX } from './translate.constants';
 
 export default /*  @ngInject  */ (TranslateService) => ({
   request: (config) => {

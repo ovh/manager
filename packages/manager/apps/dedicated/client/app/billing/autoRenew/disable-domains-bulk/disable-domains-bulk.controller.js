@@ -1,6 +1,12 @@
 export default class BillingAutorenewDisableDomainsBulkCtrl {
   /* @ngInject */
-  constructor($scope, $translate, atInternet, BillingAutoRenew, AUTORENEW_EVENT) {
+  constructor(
+    $scope,
+    $translate,
+    atInternet,
+    BillingAutoRenew,
+    AUTORENEW_EVENT,
+  ) {
     this.$scope = $scope;
     this.$translate = $translate;
 
@@ -11,7 +17,8 @@ export default class BillingAutorenewDisableDomainsBulkCtrl {
   }
 
   $onInit() {
-    this.$scope.disableAutoRenewForDomains = () => this.disableAutoRenewForDomains();
+    this.$scope.disableAutoRenewForDomains = () =>
+      this.disableAutoRenewForDomains();
   }
 
   disableAutoRenewForDomains() {
@@ -19,14 +26,21 @@ export default class BillingAutorenewDisableDomainsBulkCtrl {
 
     return this.disableDomainsBulk()
       .then(() => {
-        this.$scope.$emit(this.AUTORENEW_EVENT.DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS);
+        this.$scope.$emit(
+          this.AUTORENEW_EVENT.DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS,
+        );
         this.goBack(
-          this.$translate.instant('autorenew_service_disable_all_domains_success'),
+          this.$translate.instant(
+            'autorenew_service_disable_all_domains_success',
+          ),
         );
       })
       .catch(({ message }) => {
         this.goBack(
-          this.$translate.instant('autorenew_service_disable_all_domains_error', { message }),
+          this.$translate.instant(
+            'autorenew_service_disable_all_domains_error',
+            { message },
+          ),
           'danger',
         );
       })

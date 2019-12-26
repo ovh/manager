@@ -1,7 +1,8 @@
 import defaults from 'lodash/defaults';
 
 angular.module('managerApp').filter('pluralize', ($translate, $log) => {
-  const exist = (translateId) => $translate.instant(translateId) !== translateId;
+  const exist = (translateId) =>
+    $translate.instant(translateId) !== translateId;
 
   const validateId = (id) => (exist(id) ? id : undefined);
 

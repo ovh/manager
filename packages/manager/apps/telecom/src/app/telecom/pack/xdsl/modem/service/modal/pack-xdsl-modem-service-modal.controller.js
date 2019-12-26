@@ -1,4 +1,5 @@
-angular.module('managerApp').controller('XdslModemServiceModalCtrl',
+angular.module('managerApp').controller(
+  'XdslModemServiceModalCtrl',
   class XdslModemServiceModalCtrl {
     /* @ngInject */
     constructor($uibModalInstance) {
@@ -12,4 +13,5 @@ angular.module('managerApp').controller('XdslModemServiceModalCtrl',
     close() {
       this.$uibModalInstance.close('confirm');
     }
-  });
+  },
+);

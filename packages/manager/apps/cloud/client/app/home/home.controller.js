@@ -4,7 +4,13 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 
 class HomeCtrl {
-  constructor($q, DocsService, CucFeatureAvailabilityService, ovhUserPref, coreConfig) {
+  constructor(
+    $q,
+    DocsService,
+    CucFeatureAvailabilityService,
+    ovhUserPref,
+    coreConfig,
+  ) {
     this.$q = $q;
     this.DocsService = DocsService;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -23,20 +29,18 @@ class HomeCtrl {
   }
 
   setSections() {
-    const sectionsPromise = map(this.defaultSections, (section) => this.CucFeatureAvailabilityService.hasFeaturePromise(section, 'guides'));
+    const sectionsPromise = map(this.defaultSections, (section) =>
+      this.CucFeatureAvailabilityService.hasFeaturePromise(section, 'guides'),
+    );
 
-    return this.$q.all(sectionsPromise)
-      .then((sections) => {
-        this.guides.sections = map(
-          filter(
-            this.defaultSections,
-            (value, index) => sections[index],
-          ),
-          (section) => this.DocsService.getGuidesOfSection(section),
-        );
+    return this.$q.all(sectionsPromise).then((sections) => {
+      this.guides.sections = map(
+        filter(this.defaultSections, (value, index) => sections[index]),
+        (section) => this.DocsService.getGuidesOfSection(section),
+      );
 
-        return this.guides.sections;
-      });
+      return this.guides.sections;
+    });
   }
 
   onNewRegionsAvailableMessageDismiss() {
@@ -44,28 +48,26 @@ class HomeCtrl {
   }
 
   initNewRegionsAvailableMessage(key) {
-    this.getNewRegionsAvailableKey(key)
-      .then((newRegionsAvailableValue) => {
-        if (isEmpty(newRegionsAvailableValue)) {
-          // user visiting first time, show the message
-          this.showNewRegionsAvailableMessage = true;
-        } else if (!newRegionsAvailableValue.dismissed) {
-          // user has not dismissed the info message, show it
-          this.showNewRegionsAvailableMessage = true;
-        }
-      });
+    this.getNewRegionsAvailableKey(key).then((newRegionsAvailableValue) => {
+      if (isEmpty(newRegionsAvailableValue)) {
+        // user visiting first time, show the message
+        this.showNewRegionsAvailableMessage = true;
+      } else if (!newRegionsAvailableValue.dismissed) {
+        // user has not dismissed the info message, show it
+        this.showNewRegionsAvailableMessage = true;
+      }
+    });
   }
 
   getNewRegionsAvailableKey(key) {
-    return this.ovhUserPref.getValue(key)
-      .catch((err) => {
-        // check if key not found
-        if (err.status === 404 && includes(err.data.message, key)) {
-          // key is not found, add it
-          this.addNewRegionsAvailableKey(key);
-        }
-        return null;
-      });
+    return this.ovhUserPref.getValue(key).catch((err) => {
+      // check if key not found
+      if (err.status === 404 && includes(err.data.message, key)) {
+        // key is not found, add it
+        this.addNewRegionsAvailableKey(key);
+      }
+      return null;
+    });
   }
 
   addNewRegionsAvailableKey(key) {

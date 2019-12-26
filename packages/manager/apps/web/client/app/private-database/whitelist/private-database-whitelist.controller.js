@@ -41,9 +41,8 @@ angular.module('App').controller(
           this[`onWhitelistDelete${state}`].bind(this),
         );
       });
-      this.$scope.$on(
-        'privateDatabase.whitelist.update.done',
-        (opts) => (opts.serviceName === this.serviceName ? this.getList() : undefined),
+      this.$scope.$on('privateDatabase.whitelist.update.done', (opts) =>
+        opts.serviceName === this.serviceName ? this.getList() : undefined,
       );
 
       forEach(['done', 'error'], (state) => {
@@ -169,7 +168,9 @@ angular.module('App').controller(
           delete el.deleting;
 
           this.alerter.error(
-            this.$translate.instant('privateDatabase_modale_whitelist_delete_fail'),
+            this.$translate.instant(
+              'privateDatabase_modale_whitelist_delete_fail',
+            ),
             this.$scope.alerts.main,
           );
 

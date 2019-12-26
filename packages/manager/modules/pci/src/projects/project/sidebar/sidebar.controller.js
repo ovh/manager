@@ -46,8 +46,9 @@ export default class SidebarController {
   }
 
   isAvailableToUser(subItem) {
-    const allowedUsers = map(subItem.users,
-      (userType) => get(this.serviceInfo, get(USER_TYPES_MAP, userType)));
+    const allowedUsers = map(subItem.users, (userType) =>
+      get(this.serviceInfo, get(USER_TYPES_MAP, userType)),
+    );
     return !subItem.users || includes(allowedUsers, this.user.nichandle);
   }
 
@@ -62,27 +63,31 @@ export default class SidebarController {
 
     this.isLoading = true;
 
-    return this.$q.all([
-      this.getProjectInfo(serviceName),
-      this.getServiceInfo(serviceName),
-    ]).then(([project, serviceInfo]) => {
-      this.project = project;
-      this.serviceInfo = serviceInfo;
-    }).finally(() => {
-      this.$rootScope.$broadcast('sidebar:loaded');
-      this.isLoading = false;
-    });
+    return this.$q
+      .all([this.getProjectInfo(serviceName), this.getServiceInfo(serviceName)])
+      .then(([project, serviceInfo]) => {
+        this.project = project;
+        this.serviceInfo = serviceInfo;
+      })
+      .finally(() => {
+        this.$rootScope.$broadcast('sidebar:loaded');
+        this.isLoading = false;
+      });
   }
 
   $onInit() {
-    this.MENU = MENU
-      .filter(({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions))
-      .map((menu) => {
-        set(menu, 'subitems', menu
-          .subitems
-          .filter(({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions)));
-        return menu;
-      });
+    this.MENU = MENU.filter(
+      ({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions),
+    ).map((menu) => {
+      set(
+        menu,
+        'subitems',
+        menu.subitems.filter(
+          ({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions),
+        ),
+      );
+      return menu;
+    });
     let currentProjectId = this.$stateParams.projectId;
     this.setProject(this.$stateParams.projectId);
     this.$transitions.onSuccess({}, () => {

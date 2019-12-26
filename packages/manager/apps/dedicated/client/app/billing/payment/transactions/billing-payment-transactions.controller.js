@@ -25,29 +25,43 @@ export default class BillingPaymentTransactionsCtrl {
   ================================ */
 
   getTransactions($config) {
-    return this.OvhApiMe.Payment().Transaction().v6().query().$promise.then((transactions) => {
-      const transactionsInPage = transactions
-        .slice($config.offset - 1, $config.offset - 1 + $config.pageSize)
-        .map((id) => ({ transactionId: id }));
+    return this.OvhApiMe.Payment()
+      .Transaction()
+      .v6()
+      .query()
+      .$promise.then((transactions) => {
+        const transactionsInPage = transactions
+          .slice($config.offset - 1, $config.offset - 1 + $config.pageSize)
+          .map((id) => ({ transactionId: id }));
 
-      return {
-        data: get($config, 'sort.dir') === 1 ? transactionsInPage.reverse() : transactionsInPage,
-        meta: {
-          totalCount: transactions.length,
-        },
-      };
-    }).catch((error) => {
-      this.Alerter.error([
-        this.$translate.instant('billing_payment_transactions_init_error'),
-        get(error, 'data.message'),
-      ].join(' '), BillingPaymentTransactionsCtrl.ALERTER_ID);
-    });
+        return {
+          data:
+            get($config, 'sort.dir') === 1
+              ? transactionsInPage.reverse()
+              : transactionsInPage,
+          meta: {
+            totalCount: transactions.length,
+          },
+        };
+      })
+      .catch((error) => {
+        this.Alerter.error(
+          [
+            this.$translate.instant('billing_payment_transactions_init_error'),
+            get(error, 'data.message'),
+          ].join(' '),
+          BillingPaymentTransactionsCtrl.ALERTER_ID,
+        );
+      });
   }
 
   getTransaction({ transactionId }) {
-    return this.OvhApiMe.Payment().Transaction().v6().get({
-      transactionId,
-    }).$promise;
+    return this.OvhApiMe.Payment()
+      .Transaction()
+      .v6()
+      .get({
+        transactionId,
+      }).$promise;
   }
 
   /* -----  End of DATAGRID  ------ */

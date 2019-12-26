@@ -9,7 +9,6 @@ import 'ovh-api-services';
 
 import snapshotCreateVolume from './create-volume';
 
-
 import routing from './snapshot.routing';
 
 const moduleName = 'ovhManagerPciStoragesSnapshotsSnapshot';

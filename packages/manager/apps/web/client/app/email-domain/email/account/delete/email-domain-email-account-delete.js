@@ -27,15 +27,19 @@ angular.module('App').controller(
         this.$stateParams.productId,
         this.currentAccount.accountName,
       )
-        .then(() => this.Alerter.success(
-          this.$translate.instant('email_tab_modal_delete_account_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('email_tab_modal_delete_account_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant('email_tab_modal_delete_account_success'),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('email_tab_modal_delete_account_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => this.$scope.resetAction());
     }
   },

@@ -90,11 +90,18 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
           crosshairs: true,
           shared: true,
           formatter() {
-            let text = $filter('date')(new Date(this.x + offset), 'dd/MM - HH:mm:ss');
-            text += `<br/>${$translate.instant('server_configuration_mitigation_statistics_input')} : ${this.points[0].point.formatted.value} ${$translate.instant(
+            let text = $filter('date')(
+              new Date(this.x + offset),
+              'dd/MM - HH:mm:ss',
+            );
+            text += `<br/>${$translate.instant(
+              'server_configuration_mitigation_statistics_input',
+            )} : ${this.points[0].point.formatted.value} ${$translate.instant(
               `server_configuration_mitigation_statistics_unit_${this.points[0].point.formatted.unit}`,
             )}`;
-            text += `<br/>${$translate.instant('server_configuration_mitigation_statistics_output')} : ${this.points[1].point.formatted.value} ${$translate.instant(
+            text += `<br/>${$translate.instant(
+              'server_configuration_mitigation_statistics_output',
+            )} : ${this.points[1].point.formatted.value} ${$translate.instant(
               `server_configuration_mitigation_statistics_unit_${this.points[1].point.formatted.unit}`,
             )}`;
             return text;
@@ -135,25 +142,26 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
     };
     const realTimeStats = function realTimeStats() {
       clearTO();
-      if ($scope.statisticsScalesAvailable && $scope.statisticsScalesAvailable.length > 0) {
+      if (
+        $scope.statisticsScalesAvailable &&
+        $scope.statisticsScalesAvailable.length > 0
+      ) {
         $scope.statsLoading = true;
-        Server
-          .getMitigationRealTimeStatistics(
-            $scope.selectedIpAndBlock.block.ip,
-            $scope.selectedIpAndBlock.ip.ip,
-          )
-          .then(
-            (data) => {
-              $scope.data = data;
-              if ($scope.data.noData) {
-                clearTO();
-              }
-              $scope.statsLoading = false;
-            }, //
-            () => {
-              $scope.statsLoading = false;
-            },
-          );
+        Server.getMitigationRealTimeStatistics(
+          $scope.selectedIpAndBlock.block.ip,
+          $scope.selectedIpAndBlock.ip.ip,
+        ).then(
+          (data) => {
+            $scope.data = data;
+            if ($scope.data.noData) {
+              clearTO();
+            }
+            $scope.statsLoading = false;
+          }, //
+          () => {
+            $scope.statsLoading = false;
+          },
+        );
         timeout = $timeout(() => {
           realTimeStats();
         }, 10000);
@@ -185,22 +193,20 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
     $scope.getStatistics = function getStatistics() {
       if ($scope.model.from && $scope.model.scale) {
         $scope.statsLoading = true;
-        Server
-          .getMitigationStatistics(
-            $scope.selectedIpAndBlock.block.ip,
-            $scope.selectedIpAndBlock.ip.ip,
-            $scope.model.from.toISOString(),
-            $scope.model.scale,
-          )
-          .then(
-            (data) => {
-              $scope.data = data;
-              $scope.statsLoading = false;
-            }, //
-            () => {
-              $scope.statsLoading = false;
-            },
-          );
+        Server.getMitigationStatistics(
+          $scope.selectedIpAndBlock.block.ip,
+          $scope.selectedIpAndBlock.ip.ip,
+          $scope.model.from.toISOString(),
+          $scope.model.scale,
+        ).then(
+          (data) => {
+            $scope.data = data;
+            $scope.statsLoading = false;
+          }, //
+          () => {
+            $scope.statsLoading = false;
+          },
+        );
       }
     };
 

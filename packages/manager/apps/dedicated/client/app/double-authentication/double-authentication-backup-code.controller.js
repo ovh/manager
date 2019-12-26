@@ -29,16 +29,25 @@ angular.module('App').controller(
 
       this.$scope.resetAction = () => this.$scope.setAction(false);
 
-      this.$scope.getDoubleAuthBackupCode = () => this.OvhHttp.get('/me/accessRestriction/backupCode', {
-        rootPath: 'apiv6',
-      }).then((sotpAccount) => {
-        this.$scope.backupCodeStatus = sotpAccount;
-        if (this.$scope.backupCodeStatus.status === 'enabled' && this.$scope.backupCodeStatus.remaining <= 3) {
-          this.$scope.setAction('doubleAuthAlert', this.$scope.backupCodeStatus);
-        }
-      }).catch(() => {
-        this.$scope.backupCodeStatus = null;
-      });
+      this.$scope.getDoubleAuthBackupCode = () =>
+        this.OvhHttp.get('/me/accessRestriction/backupCode', {
+          rootPath: 'apiv6',
+        })
+          .then((sotpAccount) => {
+            this.$scope.backupCodeStatus = sotpAccount;
+            if (
+              this.$scope.backupCodeStatus.status === 'enabled' &&
+              this.$scope.backupCodeStatus.remaining <= 3
+            ) {
+              this.$scope.setAction(
+                'doubleAuthAlert',
+                this.$scope.backupCodeStatus,
+              );
+            }
+          })
+          .catch(() => {
+            this.$scope.backupCodeStatus = null;
+          });
 
       this.$scope.getDoubleAuthBackupCode();
     }

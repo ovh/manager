@@ -1,5 +1,10 @@
 class CloudProjectComputeVolumeDeleteCtrl {
-  constructor($uibModalInstance, OvhApiCloudProjectVolume, serviceName, volume) {
+  constructor(
+    $uibModalInstance,
+    OvhApiCloudProjectVolume,
+    serviceName,
+    volume,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
 
@@ -12,10 +17,10 @@ class CloudProjectComputeVolumeDeleteCtrl {
   }
 
   deleteVolume(volumeId) {
-    return this.OvhApiCloudProjectVolume
-      .v6()
-      .remove({ serviceName: this.serviceName, volumeId })
-      .$promise;
+    return this.OvhApiCloudProjectVolume.v6().remove({
+      serviceName: this.serviceName,
+      volumeId,
+    }).$promise;
   }
 
   confirm() {
@@ -33,4 +38,9 @@ class CloudProjectComputeVolumeDeleteCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectComputeVolumeDeleteCtrl', CloudProjectComputeVolumeDeleteCtrl);
+angular
+  .module('managerApp')
+  .controller(
+    'CloudProjectComputeVolumeDeleteCtrl',
+    CloudProjectComputeVolumeDeleteCtrl,
+  );

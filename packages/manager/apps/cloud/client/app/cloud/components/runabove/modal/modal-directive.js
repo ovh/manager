@@ -1,5 +1,5 @@
-angular.module('managerApp').directive('raModal',
-  [function raModal() {
+angular.module('managerApp').directive('raModal', [
+  function raModal() {
     return {
       restrict: 'A',
       scope: false,
@@ -28,4 +28,5 @@ angular.module('managerApp').directive('raModal',
         };
       },
     };
-  }]);
+  },
+]);

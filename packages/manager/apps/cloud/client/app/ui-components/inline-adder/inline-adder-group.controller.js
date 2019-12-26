@@ -17,4 +17,6 @@ class InlineAdderGroupCtrl {
   }
 }
 
-angular.module('managerApp').controller('InlineAdderGroupCtrl', InlineAdderGroupCtrl);
+angular
+  .module('managerApp')
+  .controller('InlineAdderGroupCtrl', InlineAdderGroupCtrl);

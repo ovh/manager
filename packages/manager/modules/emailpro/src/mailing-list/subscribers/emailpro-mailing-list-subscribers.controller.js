@@ -39,7 +39,10 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
     };
     this.search = { subscribers: '' };
 
-    this.$scope.$on('hosting.tabs.EmailProMXPlanMailingLists.subscribers.refresh', () => this.refreshTableSubscribers());
+    this.$scope.$on(
+      'hosting.tabs.EmailProMXPlanMailingLists.subscribers.refresh',
+      () => this.refreshTableSubscribers(),
+    );
     this.$scope.$on(
       'EmailProMXPlanMailingLists.subscribers.poll.start',
       (pollObject, task) => {
@@ -56,7 +59,12 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
       (pollObject, task) => {
         if (task.account === this.mailingList.name) {
           const action = task.action.split(':')[0];
-          if (indexOf(['mailinglist/addSubscriber', 'mailinglist/deleteSubscriber'], action) !== -1) {
+          if (
+            indexOf(
+              ['mailinglist/addSubscriber', 'mailinglist/deleteSubscriber'],
+              action,
+            ) !== -1
+          ) {
             this.runPolling().then((hasPolling) => {
               if (!hasPolling) {
                 this.subscribers.updating = false;
@@ -72,7 +80,9 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
       'EmailProMXPlanMailingLists.subscribers.sendListByEmail.poll.done',
       () => {
         this.Alerter.success(
-          this.$translate.instant('mailing_list_tab_modal_sendListByEmail_sent_success'),
+          this.$translate.instant(
+            'mailing_list_tab_modal_sendListByEmail_sent_success',
+          ),
           this.$scope.alerts.main,
         );
       },
@@ -82,15 +92,16 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
         namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
       });
       this.EmailProMXPlanMailingLists.killAllPolling({
-        namespace: 'EmailProMXPlanMailingLists.subscribers.sendListByEmail.poll',
+        namespace:
+          'EmailProMXPlanMailingLists.subscribers.sendListByEmail.poll',
       });
     });
 
-    this.EmailProMXPlanMailingLists
-      .getMailingListLimits(this.mailingList.options.moderatorMessage)
-      .then((limits) => {
-        this.mailingList.limits = limits;
-      });
+    this.EmailProMXPlanMailingLists.getMailingListLimits(
+      this.mailingList.options.moderatorMessage,
+    ).then((limits) => {
+      this.mailingList.limits = limits;
+    });
     this.refreshTableSubscribers();
     this.runPolling();
   }
@@ -140,7 +151,11 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
 
   applySelection(subscribers) {
     forEach(subscribers, (subscriber) => {
-      set(subscriber, 'selected', indexOf(this.subscribers.selected, subscriber.email) !== -1);
+      set(
+        subscriber,
+        'selected',
+        indexOf(this.subscribers.selected, subscriber.email) !== -1,
+      );
     });
   }
 
@@ -153,19 +168,24 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
     this.subscribers.ids = null;
     this.subscribers.selected = [];
 
-    return this.EmailProMXPlanMailingLists.getSubscribers(get(this.$scope, 'exchange.associatedDomainName'), {
-      name: this.mailingList.name,
-      email: this.search.subscribers ? `%${this.search.subscribers}%` : null,
-      forceRefresh,
-    })
+    return this.EmailProMXPlanMailingLists.getSubscribers(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        name: this.mailingList.name,
+        email: this.search.subscribers ? `%${this.search.subscribers}%` : null,
+        forceRefresh,
+      },
+    )
       .then((data) => {
         this.subscribers.ids = this.$filter('orderBy')(data);
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-        err,
-        this.$scope.alerts.main,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         if (isEmpty(this.subscribers.ids)) {
           this.loading.subscribers = false;
@@ -188,17 +208,23 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
   }
 
   runPolling() {
-    return this.EmailProMXPlanMailingLists.getTaskIds(this.$scope.exchange.associatedDomainName, {
-      account: this.mailingList.name,
-    })
+    return this.EmailProMXPlanMailingLists.getTaskIds(
+      this.$scope.exchange.associatedDomainName,
+      {
+        account: this.mailingList.name,
+      },
+    )
       .then((tasks) => {
         if (tasks.length > 0) {
-          this.EmailProMXPlanMailingLists.pollState(this.$scope.exchange.associatedDomainName, {
-            id: max(tasks),
-            mailingList: this.mailingList,
-            successStates: ['noState'],
-            namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
-          });
+          this.EmailProMXPlanMailingLists.pollState(
+            this.$scope.exchange.associatedDomainName,
+            {
+              id: max(tasks),
+              mailingList: this.mailingList,
+              successStates: ['noState'],
+              namespace: 'EmailProMXPlanMailingLists.subscribers.poll',
+            },
+          );
         }
         return tasks.length > 0;
       })
@@ -213,10 +239,14 @@ export default class EmailProMXPlanMailingListsSubscribersCtrl {
     const data = this.exportCsv.exportData({
       separator: ';',
       fileName: `export_${this.mailingList.name}`,
-      datas: `${this.$translate.instant('mailing_list_tab_table_header_subscriber_email')}\n${this.subscribers.ids.join('\n')}`,
+      datas: `${this.$translate.instant(
+        'mailing_list_tab_table_header_subscriber_email',
+      )}\n${this.subscribers.ids.join('\n')}`,
     });
     this.Alerter.success(
-      this.$translate.instant('mailing_list_tab_export_csv_success', { t0: data }),
+      this.$translate.instant('mailing_list_tab_export_csv_success', {
+        t0: data,
+      }),
       this.$scope.alerts.main,
     );
   }

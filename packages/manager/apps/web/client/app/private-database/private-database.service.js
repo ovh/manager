@@ -19,14 +19,7 @@ export default class PrivateDatabase {
    * @param OvhHttp
    * @param Poll
    */
-  constructor(
-    $rootScope,
-    $cacheFactory,
-    $http,
-    $q,
-    OvhHttp,
-    Poll,
-  ) {
+  constructor($rootScope, $cacheFactory, $http, $q, OvhHttp, Poll) {
     this.$rootScope = $rootScope;
     this.cach = $cacheFactory;
     this.$http = $http;
@@ -69,7 +62,9 @@ export default class PrivateDatabase {
    * Get order models
    */
   getOrderModels() {
-    return this.$http.get('apiv6/order.json', { cache: true }).then((response) => get(response, 'data.models', {}));
+    return this.$http
+      .get('apiv6/order.json', { cache: true })
+      .then((response) => get(response, 'data.models', {}));
   }
 
   /**
@@ -91,15 +86,16 @@ export default class PrivateDatabase {
    * Get hosting models
    */
   getModels() {
-    return this.OvhHttp
-      .get('/hosting/privateDatabase.json', {
-        rootPath: 'apiv6',
-      })
-      .then((schema) => schema.models);
+    return this.OvhHttp.get('/hosting/privateDatabase.json', {
+      rootPath: 'apiv6',
+    }).then((schema) => schema.models);
   }
 
   getAvailableVersions(serviceName) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/availableVersions`).then((database) => database.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/availableVersions`)
+      .then((database) => database.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   getHostingsLinked(serviceName) {
@@ -112,7 +108,10 @@ export default class PrivateDatabase {
   }
 
   getServiceInfos(dbName) {
-    return this.$http.get(`apiv6/hosting/privateDatabase/${dbName}/serviceInfos`).then((res) => res.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(`apiv6/hosting/privateDatabase/${dbName}/serviceInfos`)
+      .then((res) => res.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   getSelected(serviceName, forceRefresh) {
@@ -133,7 +132,10 @@ export default class PrivateDatabase {
       })
       .then((formerDatabase) => {
         const database = clone(formerDatabase);
-        database.capabilities = mapKeys(database.capabilities, (capability) => capability.object);
+        database.capabilities = mapKeys(
+          database.capabilities,
+          (capability) => capability.object,
+        );
         return database;
       })
       .then((formerDatabase) => {
@@ -167,13 +169,16 @@ export default class PrivateDatabase {
   }
 
   getUser(serviceName, user) {
-    return this.OvhHttp.get('/hosting/privateDatabase/{serviceName}/user/{userName}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-        userName: this.OvhHttp.encode(user),
+    return this.OvhHttp.get(
+      '/hosting/privateDatabase/{serviceName}/user/{userName}',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+          userName: this.OvhHttp.encode(user),
+        },
       },
-    });
+    );
   }
 
   /*
@@ -186,21 +191,30 @@ export default class PrivateDatabase {
         password,
         userName,
       })
-      .then((response) => {
-        // poll adding
-        this.polluserset(serviceName, {
-          taskId: response.data.id,
-          taskFunction: response.data.function.replace('privateDatabase/', ''),
-          userName,
-        });
+      .then(
+        (response) => {
+          // poll adding
+          this.polluserset(serviceName, {
+            taskId: response.data.id,
+            taskFunction: response.data.function.replace(
+              'privateDatabase/',
+              '',
+            ),
+            userName,
+          });
 
-        // return task id
-        return response.data.id;
-      }, (err) => this.$q.reject(err));
+          // return task id
+          return response.data.id;
+        },
+        (err) => this.$q.reject(err),
+      );
   }
 
   polluserset(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -208,7 +222,10 @@ export default class PrivateDatabase {
       taskId: opts.taskId,
       namespace,
       userName: opts.userName,
-    }).then(() => this.usersetSuccess(serviceName, options), () => this.usersetError(options));
+    }).then(
+      () => this.usersetSuccess(serviceName, options),
+      () => this.usersetError(options),
+    );
   }
 
   usersetSuccess(serviceName, opts) {
@@ -227,7 +244,11 @@ export default class PrivateDatabase {
   deleteUser(serviceName, userName) {
     this.resetCache();
     return this.$http
-      .delete(`${this.swsProxypassPath}/${serviceName}/user/${window.encodeURIComponent(userName)}`)
+      .delete(
+        `${
+          this.swsProxypassPath
+        }/${serviceName}/user/${window.encodeURIComponent(userName)}`,
+      )
       .then((response) => {
         // start poll
         this.polluserdelete(serviceName, {
@@ -243,7 +264,10 @@ export default class PrivateDatabase {
   }
 
   polluserdelete(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -271,35 +295,39 @@ export default class PrivateDatabase {
         MANAGE GRANT
     */
   getDatabases(serviceName) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/database`).then((res) => res.data);
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/database`)
+      .then((res) => res.data);
   }
 
   getUserGrant(serviceName, userName) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/user/${userName}/grant`);
+    return this.$http.get(
+      `${this.swsProxypassPath}/${serviceName}/user/${userName}/grant`,
+    );
   }
 
   getUserGrantDatabase(serviceName, userName, grantsBase) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/user/${userName}/grant/${grantsBase}`);
+    return this.$http.get(
+      `${this.swsProxypassPath}/${serviceName}/user/${userName}/grant/${grantsBase}`,
+    );
   }
 
   getUserGrants(serviceName, user) {
     const deferred = this.$q.defer();
     let returnGrant;
 
-
     // First get databases
     this.getDatabases(serviceName)
-      .then((resp) => mapKeys(
-        map(
-          resp,
-          (base) => ({
+      .then((resp) =>
+        mapKeys(
+          map(resp, (base) => ({
             virgin: true,
             dataBase: base,
             value: 'none',
-          }),
+          })),
+          (item) => item.dataBase,
         ),
-        (item) => item.dataBase,
-      ))
+      )
       .then((grants) => {
         if (!size(grants)) {
           return deferred.reject(grants);
@@ -310,17 +338,21 @@ export default class PrivateDatabase {
         return this.getUserGrant(serviceName, user);
       })
       .then((response) => response.data)
-      .then((data) => this.$q.all(map(
-        data,
-        (grantsBase) => this.getUserGrantDatabase(serviceName, user, grantsBase)
-          .then((result) => {
-            if (returnGrant[grantsBase]) {
-              returnGrant[grantsBase].value = result.data.grant;
-              returnGrant[grantsBase].virgin = false;
-            }
-            deferred.notify(returnGrant);
-          }),
-      )))
+      .then((data) =>
+        this.$q.all(
+          map(data, (grantsBase) =>
+            this.getUserGrantDatabase(serviceName, user, grantsBase).then(
+              (result) => {
+                if (returnGrant[grantsBase]) {
+                  returnGrant[grantsBase].value = result.data.grant;
+                  returnGrant[grantsBase].virgin = false;
+                }
+                deferred.notify(returnGrant);
+              },
+            ),
+          ),
+        ),
+      )
       .then(() => deferred.resolve(returnGrant))
       .catch(() => deferred.resolve(returnGrant));
 
@@ -346,7 +378,10 @@ export default class PrivateDatabase {
     }
 
     return this.$http
-      .post(`${this.swsProxypassPath}/${serviceName}/user/${userName}/${suffix}`, dataToSend)
+      .post(
+        `${this.swsProxypassPath}/${serviceName}/user/${userName}/${suffix}`,
+        dataToSend,
+      )
       .then((response) => {
         this.pollgrantset(serviceName, {
           taskId: response.data.id,
@@ -361,7 +396,9 @@ export default class PrivateDatabase {
   }
 
   pollgrantset(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.').replace(/\.create|\.update/g, '.set')}`;
+    const namespace = `privateDatabase.${opts.taskFunction
+      .replace(/\//g, '.')
+      .replace(/\.create|\.update/g, '.set')}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -370,7 +407,10 @@ export default class PrivateDatabase {
       userName: opts.userName,
       databaseName: opts.databaseName,
       namespace,
-    }).then(() => this.grantsetSuccess(serviceName, options), () => this.grantsetError(options));
+    }).then(
+      () => this.grantsetSuccess(serviceName, options),
+      () => this.grantsetError(options),
+    );
   }
 
   grantsetSuccess(serviceName, opts) {
@@ -389,36 +429,67 @@ export default class PrivateDatabase {
         ORDER
     */
   orderDuration(version, ram) {
-    return this.$http.get(`${this.swsProxypassOrderPath}/new`, { params: { version, ram } }).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.swsProxypassOrderPath}/new`, { params: { version, ram } })
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   orderPrice(version, ram, duration) {
-    return this.$http.get(`${this.swsProxypassOrderPath}/new/${duration}`, { params: { version, ram } }).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.swsProxypassOrderPath}/new/${duration}`, {
+        params: { version, ram },
+      })
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   orderPrivateDatabase(version, ram, duration, datacenter) {
-    return this.$http.post(`${this.swsProxypassOrderPath}/new/${duration}`, {
-      version, ram, offer: 'classic', datacenter,
-    }).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .post(`${this.swsProxypassOrderPath}/new/${duration}`, {
+        version,
+        ram,
+        offer: 'classic',
+        datacenter,
+      })
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   orderDBaaS(version, ram, duration, datacenter) {
-    return this.$http.post(`${this.swsProxypassOrderPath}/new/${duration}`, {
-      version, ram, offer: 'public', datacenter,
-    }).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .post(`${this.swsProxypassOrderPath}/new/${duration}`, {
+        version,
+        ram,
+        offer: 'public',
+        datacenter,
+      })
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   canOrder(serviceName) {
-    return this.$http.get(this.swsProxypassOrderPath)
-      .then((response) => findIndex(response.data, (service) => service === serviceName) !== -1)
+    return this.$http
+      .get(this.swsProxypassOrderPath)
+      .then(
+        (response) =>
+          findIndex(response.data, (service) => service === serviceName) !== -1,
+      )
       .catch(() => false);
   }
 
   canOrderRam(serviceName) {
     return this.canOrder(serviceName).then((canOrder) => {
       if (canOrder) {
-        return this.$http.get(`${this.swsProxypassOrderPath}/${serviceName}`)
-          .then((response) => findIndex(response.data, (service) => service === 'ram' || service === 'upgrade') !== -1);
+        return this.$http
+          .get(`${this.swsProxypassOrderPath}/${serviceName}`)
+          .then(
+            (response) =>
+              findIndex(
+                response.data,
+                (service) => service === 'ram' || service === 'upgrade',
+              ) !== -1,
+          );
       }
       return false;
     });
@@ -429,7 +500,9 @@ export default class PrivateDatabase {
       .get(`apiv6/order.json?d=${Date.now()}`)
       .then((response) => {
         if (get(response, 'data.models', false)) {
-          return response.data.models['hosting.PrivateDatabase.AvailableRamSizeEnum'].enum;
+          return response.data.models[
+            'hosting.PrivateDatabase.AvailableRamSizeEnum'
+          ].enum;
         }
         return [];
       })
@@ -441,7 +514,12 @@ export default class PrivateDatabase {
       let rtn;
 
       if (canOrderRam) {
-        rtn = this.$http.get(`${this.swsProxypassOrderPath}/${serviceName}/ram`, { params: { ram: opts.ram } }).then((response) => response.data || []).catch(() => []);
+        rtn = this.$http
+          .get(`${this.swsProxypassOrderPath}/${serviceName}/ram`, {
+            params: { ram: opts.ram },
+          })
+          .then((response) => response.data || [])
+          .catch(() => []);
       }
 
       return rtn;
@@ -456,18 +534,25 @@ export default class PrivateDatabase {
       .then((durations) => {
         defer.notify(durations);
 
-        return this.$q.all(map(durations, (duration) => this.$http
-          .get(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
-            params: {
-              ram: opts.ram,
-            },
-          })
-          .then((durationDetails) => {
-            const details = angular.copy(durationDetails.data);
-            details.duration = duration;
-            durationsTab.push(details);
-            defer.notify(durationsTab);
-          })));
+        return this.$q.all(
+          map(durations, (duration) =>
+            this.$http
+              .get(
+                `${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`,
+                {
+                  params: {
+                    ram: opts.ram,
+                  },
+                },
+              )
+              .then((durationDetails) => {
+                const details = angular.copy(durationDetails.data);
+                details.duration = duration;
+                durationsTab.push(details);
+                defer.notify(durationsTab);
+              }),
+          ),
+        );
       })
       .then(() => defer.resolve(durationsTab))
       .catch(() => defer.resolve(durationsTab));
@@ -483,15 +568,23 @@ export default class PrivateDatabase {
   }
 
   orderRam(serviceName, ram, duration) {
-    return this.$http.post(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, { ram }).then((response) => response.data);
+    return this.$http
+      .post(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
+        ram,
+      })
+      .then((response) => response.data);
   }
 
   /*
         ACTIONS
     */
   changePassword(serviceName, password, user, passwordType) {
-    const actionType = !passwordType || passwordType === 'root' ? 'changeRootPassword' : 'changeFtpPassword';
-    const action = user !== null ? `user/${user.userName}/changePassword` : actionType;
+    const actionType =
+      !passwordType || passwordType === 'root'
+        ? 'changeRootPassword'
+        : 'changeFtpPassword';
+    const action =
+      user !== null ? `user/${user.userName}/changePassword` : actionType;
 
     return this.$http
       .post(`${this.swsProxypassPath}/${serviceName}/${action}`, { password })
@@ -499,7 +592,10 @@ export default class PrivateDatabase {
         if (user) {
           this.polluserchangePassword(serviceName, {
             taskId: response.data.id,
-            taskFunction: response.data.function.replace('privateDatabase/', ''),
+            taskFunction: response.data.function.replace(
+              'privateDatabase/',
+              '',
+            ),
             userName: user.userName,
           });
         }
@@ -509,7 +605,10 @@ export default class PrivateDatabase {
   }
 
   polluserchangePassword(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -536,27 +635,47 @@ export default class PrivateDatabase {
   }
 
   changeVersion(serviceName, version) {
-    return this.$http.post(`${this.swsProxypassPath}/${serviceName}/changeVersion`, { version }).then((response) => response.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/changeVersion`, {
+        version,
+      })
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   refreshDatabase(serviceName) {
-    return this.$http.post(`${this.swsProxypassPath}/${serviceName}/refresh`).then((response) => response.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/refresh`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   restartDatabase(serviceName) {
-    return this.$http.post(`${this.swsProxypassPath}/${serviceName}/restart`).then((response) => response.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/restart`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   startDatabase(serviceName) {
-    return this.$http.post(`${this.swsProxypassPath}/${serviceName}/start`).then((response) => response.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/start`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   stopDatabase(serviceName) {
-    return this.$http.post(`${this.swsProxypassPath}/${serviceName}/stop`).then((response) => response.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/stop`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   getTasks(serviceName) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/tasks`).then((response) => response.data).catch((err) => this.$q.reject(err));
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/tasks`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err));
   }
 
   getTasksFiltered(serviceName, type, status) {
@@ -572,7 +691,10 @@ export default class PrivateDatabase {
   }
 
   getTaskDetails(serviceName, tasksId) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/tasks/${tasksId}`).then((response) => response.data).catch((err) => err.data);
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/tasks/${tasksId}`)
+      .then((response) => response.data)
+      .catch((err) => err.data);
   }
 
   getTasksWithStatus(serviceName, status) {
@@ -598,13 +720,21 @@ export default class PrivateDatabase {
       defer.resolve(filteredTask);
     };
 
-    this.$q.all(map(['init', 'doing', 'todo'], (status) => this.getTasksWithStatus(serviceName, status)
-      .then((response) => map(response, (tasksId) => this.getTaskDetails(serviceName, tasksId)))
-      .then((requests) => {
-        tasks = filter(requests, (request) => get(request, 'data'));
-      })
-      .then(doFilter())
-      .catch(doFilter())));
+    this.$q.all(
+      map(['init', 'doing', 'todo'], (status) =>
+        this.getTasksWithStatus(serviceName, status)
+          .then((response) =>
+            map(response, (tasksId) =>
+              this.getTaskDetails(serviceName, tasksId),
+            ),
+          )
+          .then((requests) => {
+            tasks = filter(requests, (request) => get(request, 'data'));
+          })
+          .then(doFilter())
+          .catch(doFilter()),
+      ),
+    );
     return defer.promise;
   }
 
@@ -614,7 +744,9 @@ export default class PrivateDatabase {
         let namespace = `privateDatabase.${task.function.replace(/\//g, '.')}`;
         namespace = namespace.replace(/\.create|\.update/g, '.set');
 
-        this[`poll${namespace.replace('privateDatabase.', '').replace('.', '')}`]({
+        this[
+          `poll${namespace.replace('privateDatabase.', '').replace('.', '')}`
+        ]({
           taskId: task.id,
           taskFunction: task.function,
           userName: task.userName,
@@ -632,17 +764,19 @@ export default class PrivateDatabase {
     this.$rootScope.$broadcast(`${opts.namespace}.start`, opts);
 
     // do poll
-    return this.Poll
-      .poll(`${this.swsProxypassPath}/${serviceName}/tasks/${opts.taskId}`, null, {
+    return this.Poll.poll(
+      `${this.swsProxypassPath}/${serviceName}/tasks/${opts.taskId}`,
+      null,
+      {
         namespace: opts.namespace,
-      })
-      .then(
-        (response) => {
-          this.resetCache();
-          return response;
-        },
-        (err) => this.$q.reject(err),
-      );
+      },
+    ).then(
+      (response) => {
+        this.resetCache();
+        return response;
+      },
+      (err) => this.$q.reject(err),
+    );
   }
 
   killPollAction() {
@@ -671,7 +805,10 @@ export default class PrivateDatabase {
    * @return {string[]}              [description]
    */
   getBDDSId(serviceName) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/database`).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/database`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   getBDDS(serviceName, forceRefresh) {
@@ -683,25 +820,36 @@ export default class PrivateDatabase {
     }
 
     this.getBDDSId(serviceName)
-      .then((response) => this.$q
-        .all(map(response, (bdd) => this.getBDD(serviceName, bdd).then((BDD) => {
-          bddsTab.push(BDD);
-          defer.notify(bddsTab);
-        })))
-        .then(() => defer.resolve(bddsTab))
-        .catch(() => defer.resolve(bddsTab)))
+      .then((response) =>
+        this.$q
+          .all(
+            map(response, (bdd) =>
+              this.getBDD(serviceName, bdd).then((BDD) => {
+                bddsTab.push(BDD);
+                defer.notify(bddsTab);
+              }),
+            ),
+          )
+          .then(() => defer.resolve(bddsTab))
+          .catch(() => defer.resolve(bddsTab)),
+      )
       .catch((err) => this.$q.reject(err.data));
 
     return defer.promise;
   }
 
   getBDD(serviceName, bdd) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/database/${bdd}`).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/database/${bdd}`)
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   deleteBDD(serviceName, databaseName) {
     return this.$http
-      .delete(`${this.swsProxypassPath}/${serviceName}/database/${databaseName}`)
+      .delete(
+        `${this.swsProxypassPath}/${serviceName}/database/${databaseName}`,
+      )
       .then((response) => {
         this.polldatabasedelete(serviceName, {
           taskId: response.data.id,
@@ -714,7 +862,10 @@ export default class PrivateDatabase {
   }
 
   polldatabasedelete(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -764,7 +915,8 @@ export default class PrivateDatabase {
   addBddWizard(serviceName, database) {
     this.resetCache();
 
-    return this.$http.post(`${this.swsProxypassPath}/${serviceName}/databaseWizard`, database)
+    return this.$http
+      .post(`${this.swsProxypassPath}/${serviceName}/databaseWizard`, database)
       .then((response) => {
         this.polldatabaseset(serviceName, {
           taskId: response.data.id,
@@ -778,18 +930,19 @@ export default class PrivateDatabase {
 
   polldatabaseset(serviceName, opts) {
     const options = angular.copy(opts);
-    options.namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    options.namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
 
-    return this
-      .poll(serviceName, {
-        taskId: opts.taskId,
-        namespace: options.namespace,
-        databaseName: opts.databaseName,
-      })
-      .then(
-        () => this.databasesetSuccess(serviceName, options),
-        () => this.databasesetError(options),
-      );
+    return this.poll(serviceName, {
+      taskId: opts.taskId,
+      namespace: options.namespace,
+      databaseName: opts.databaseName,
+    }).then(
+      () => this.databasesetSuccess(serviceName, options),
+      () => this.databasesetError(options),
+    );
   }
 
   databasesetSuccess(serviceName, opts) {
@@ -803,7 +956,12 @@ export default class PrivateDatabase {
   }
 
   getDumpsBDD(serviceName, databaseName) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump`).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(
+        `${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump`,
+      )
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   /**
@@ -822,18 +980,29 @@ export default class PrivateDatabase {
   }
 
   getDumpBDD(serviceName, databaseName, dumpId) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump/${dumpId}`).then((response) => response.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(
+        `${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump/${dumpId}`,
+      )
+      .then((response) => response.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   getDump(serviceName, dumpId) {
-    return this.$http.get(`${this.swsProxypassPath}/${serviceName}/dump/${dumpId}`).then((res) => res.data).catch((err) => this.$q.reject(err.data));
+    return this.$http
+      .get(`${this.swsProxypassPath}/${serviceName}/dump/${dumpId}`)
+      .then((res) => res.data)
+      .catch((err) => this.$q.reject(err.data));
   }
 
   dumpBDD(serviceName, databaseName, sendEmail) {
     return this.$http
-      .post(`${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump`, {
-        sendEmail,
-      })
+      .post(
+        `${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump`,
+        {
+          sendEmail,
+        },
+      )
       .then((response) => {
         this.polldatabasedump(serviceName, {
           taskId: response.data.id,
@@ -846,7 +1015,10 @@ export default class PrivateDatabase {
   }
 
   polldatabasedump(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -873,7 +1045,9 @@ export default class PrivateDatabase {
 
   restoreBDD(serviceName, databaseName, dumpId) {
     return this.$http
-      .post(`${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump/${dumpId}/restore`)
+      .post(
+        `${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump/${dumpId}/restore`,
+      )
       .then((response) => {
         this.pollDatabaseRestore(serviceName, {
           taskId: response.data.id,
@@ -898,7 +1072,10 @@ export default class PrivateDatabase {
   }
 
   pollDatabaseRestore(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -921,8 +1098,9 @@ export default class PrivateDatabase {
   }
 
   restoreBDDNoBDD(serviceName, databaseName, dumpId) {
-    return this.OvhHttp
-      .post('/hosting/privateDatabase/{serviceName}/dump/{dumpId}/restore', {
+    return this.OvhHttp.post(
+      '/hosting/privateDatabase/{serviceName}/dump/{dumpId}/restore',
+      {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
@@ -931,7 +1109,8 @@ export default class PrivateDatabase {
         data: {
           databaseName,
         },
-      })
+      },
+    )
       .then((resp) => {
         this.pollDatabaseRestore(serviceName, {
           taskId: resp.id,
@@ -955,7 +1134,9 @@ export default class PrivateDatabase {
 
   deleteDumpBDD(serviceName, databaseName, dumpId) {
     return this.$http
-      .delete(`${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump/${dumpId}`)
+      .delete(
+        `${this.swsProxypassPath}/${serviceName}/database/${databaseName}/dump/${dumpId}`,
+      )
       .then((response) => {
         this.pollDatabaseDumpDelete(serviceName, {
           taskId: response.data.id,
@@ -968,7 +1149,10 @@ export default class PrivateDatabase {
   }
 
   pollDatabaseDumpDelete(serviceName, opts) {
-    const namespace = `privateDatabase.${opts.taskFunction.replace(/\//g, '.')}`;
+    const namespace = `privateDatabase.${opts.taskFunction.replace(
+      /\//g,
+      '.',
+    )}`;
     const options = angular.copy(opts);
     options.namespace = namespace;
 
@@ -976,11 +1160,13 @@ export default class PrivateDatabase {
       taskId: opts.taskId,
       databaseName: opts.databaseName,
       namespace,
-    }).then(() => {
-      this.$rootScope.$broadcast(`${opts.namespace}.done`, opts);
-    }).catch(() => {
-      this.$rootScope.$broadcast(`${opts.namespace}.error`, opts);
-    });
+    })
+      .then(() => {
+        this.$rootScope.$broadcast(`${opts.namespace}.done`, opts);
+      })
+      .catch(() => {
+        this.$rootScope.$broadcast(`${opts.namespace}.error`, opts);
+      });
   }
 
   getConfigurationDetails(serviceName) {
@@ -993,18 +1179,25 @@ export default class PrivateDatabase {
   }
 
   changeConfigurationDetails(serviceName, data) {
-    return this.OvhHttp.post('/hosting/privateDatabase/{serviceName}/config/update', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
+    return this.OvhHttp.post(
+      '/hosting/privateDatabase/{serviceName}/config/update',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+        data,
       },
-      data,
-    });
+    );
   }
 
   pollConfigurationChange(serviceName) {
     const namespace = 'privateDatabase.configuration.change';
-    return this.getTasksFiltered(serviceName, encodeURI('configuration/update'), 'todo').then((tasks) => {
+    return this.getTasksFiltered(
+      serviceName,
+      encodeURI('configuration/update'),
+      'todo',
+    ).then((tasks) => {
       if (tasks.length) {
         return this.poll(serviceName, { taskId: tasks[0], namespace });
       }
@@ -1015,13 +1208,21 @@ export default class PrivateDatabase {
   static getStartTime(range) {
     switch (range) {
       case 'DAY':
-        return moment().subtract(1, 'days').valueOf();
+        return moment()
+          .subtract(1, 'days')
+          .valueOf();
       case 'WEEK':
-        return moment().subtract(1, 'weeks').valueOf();
+        return moment()
+          .subtract(1, 'weeks')
+          .valueOf();
       case 'MONTH':
-        return moment().subtract(1, 'months').valueOf();
+        return moment()
+          .subtract(1, 'months')
+          .valueOf();
       default:
-        return moment().subtract(1, 'days').valueOf();
+        return moment()
+          .subtract(1, 'days')
+          .valueOf();
     }
   }
 
@@ -1046,23 +1247,29 @@ export default class PrivateDatabase {
       serviceType: 'opentsdb',
       url: [opts.graphEndpoint.host, 'api/query'].join('/'),
       headers: {
-        Authorization: `Basic ${btoa(`privatedatabase:${opts.graphEndpoint.readToken}`)}`,
+        Authorization: `Basic ${btoa(
+          `privatedatabase:${opts.graphEndpoint.readToken}`,
+        )}`,
       },
       data: JSON.stringify({
         start: this.constructor.getStartTime(opts.range),
-        queries: [{
-          metric: 'dbaas.metrics.docker_container_mem_usage_percent',
-          aggregator: 'sum',
-          downsample: downSample,
-        }, {
-          metric: 'dbaas.metrics.mysql_connexion_count',
-          aggregator: 'sum',
-          downsample: downSample,
-        }, {
-          metric: 'dbaas.metrics.mysql_query_time_average',
-          aggregator: 'sum',
-          downsample: downSample,
-        }],
+        queries: [
+          {
+            metric: 'dbaas.metrics.docker_container_mem_usage_percent',
+            aggregator: 'sum',
+            downsample: downSample,
+          },
+          {
+            metric: 'dbaas.metrics.mysql_connexion_count',
+            aggregator: 'sum',
+            downsample: downSample,
+          },
+          {
+            metric: 'dbaas.metrics.mysql_query_time_average',
+            aggregator: 'sum',
+            downsample: downSample,
+          },
+        ],
       }),
     }).then((response) => response.data);
   }

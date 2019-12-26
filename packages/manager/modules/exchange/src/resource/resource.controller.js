@@ -38,14 +38,16 @@ export default class ExchangeTabResourcesCtrl {
 
     User.getUser().then((data) => {
       try {
-        this.urls.guides.resources = EXCHANGE_CONFIG.URLS.GUIDES.RESOURCES[data.ovhSubsidiary];
+        this.urls.guides.resources =
+          EXCHANGE_CONFIG.URLS.GUIDES.RESOURCES[data.ovhSubsidiary];
         return data;
       } catch (exception) {
         return '';
       }
     });
 
-    $scope.retrievingResources = (count, offset) => this.retrievingResources(count, offset);
+    $scope.retrievingResources = (count, offset) =>
+      this.retrievingResources(count, offset);
     this.debouncedRetrievingResources = debounce(this.retrievingResources, 300);
   }
 
@@ -55,7 +57,11 @@ export default class ExchangeTabResourcesCtrl {
 
   resetSearch() {
     this.searchValue = null;
-    this.services.$scope.$broadcast('paginationServerSide.loadPage', 1, 'resourcesTable');
+    this.services.$scope.$broadcast(
+      'paginationServerSide.loadPage',
+      1,
+      'resourcesTable',
+    );
   }
 
   addResource() {
@@ -78,7 +84,9 @@ export default class ExchangeTabResourcesCtrl {
       })
       .catch((err) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_tab_RESOURCES_error_message'),
+          this.services.$translate.instant(
+            'exchange_tab_RESOURCES_error_message',
+          ),
           err,
         );
       })

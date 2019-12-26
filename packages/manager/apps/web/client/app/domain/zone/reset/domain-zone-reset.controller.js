@@ -5,7 +5,16 @@ import map from 'lodash/map';
 angular.module('App').controller(
   'DomainZoneResetCtrl',
   class DomainZoneResetCtrl {
-    constructor($scope, $q, $translate, Alerter, Domain, DomainValidator, WucEmails, Hosting) {
+    constructor(
+      $scope,
+      $q,
+      $translate,
+      Alerter,
+      Domain,
+      DomainValidator,
+      WucEmails,
+      Hosting,
+    ) {
       this.$scope = $scope;
       this.$q = $q;
       this.$translate = $translate;
@@ -43,9 +52,9 @@ angular.module('App').controller(
     checkValidityA(input) {
       input.$setValidity(
         'ipv4',
-        this.aOpts.custom === null
-          || this.aOpts.custom === ''
-          || this.DomainValidator.isValidTarget(this.aOpts.custom, 'A'),
+        this.aOpts.custom === null ||
+          this.aOpts.custom === '' ||
+          this.DomainValidator.isValidTarget(this.aOpts.custom, 'A'),
       );
     }
 
@@ -56,22 +65,31 @@ angular.module('App').controller(
         dnsRecords.push({ fieldType: 'A', target: data.hosting.hostingIp });
       }
       if (isArray(data.email) && !isEmpty(data.email)) {
-        dnsRecords = dnsRecords.concat(map(
-          data.email.filter((dnsRecord) => dnsRecord.fieldType === 'MX' && !dnsRecord.subDomain),
-          (dnsRecord) => ({ fieldType: 'MX', target: dnsRecord.target }),
-        ));
+        dnsRecords = dnsRecords.concat(
+          map(
+            data.email.filter(
+              (dnsRecord) =>
+                dnsRecord.fieldType === 'MX' && !dnsRecord.subDomain,
+            ),
+            (dnsRecord) => ({ fieldType: 'MX', target: dnsRecord.target }),
+          ),
+        );
       }
       if (this.aOpts.custom) {
         dnsRecords.push({ fieldType: 'A', target: this.aOpts.custom });
       }
       if (this.mxOpts.custom) {
-        dnsRecords = dnsRecords.concat(map(
-          this.mxOpts.custom.filter((custom) => custom && custom.target !== ''),
-          (custom) => ({
-            fieldType: 'MX',
-            target: `${custom.priority} ${custom.target}`,
-          }),
-        ));
+        dnsRecords = dnsRecords.concat(
+          map(
+            this.mxOpts.custom.filter(
+              (custom) => custom && custom.target !== '',
+            ),
+            (custom) => ({
+              fieldType: 'MX',
+              target: `${custom.priority} ${custom.target}`,
+            }),
+          ),
+        );
       }
 
       return dnsRecords;
@@ -82,16 +100,21 @@ angular.module('App').controller(
       return this.$q
         .all({
           hostingList: this.Hosting.getHostings(),
-          email: this.WucEmails.getDomain(this.domain.name).catch(() => this.$q.resolve(null)),
+          email: this.WucEmails.getDomain(this.domain.name).catch(() =>
+            this.$q.resolve(null),
+          ),
         })
         .then((data) => {
           this.hostingList = data.hostingList;
           if (data.email) {
-            this.mxOpts.enum = data.email.offer === 'MXREDIRECT'
-              ? this.mxOpts.enum.filter((enumMx) => enumMx !== 'EMAILS')
-              : this.mxOpts.enum;
+            this.mxOpts.enum =
+              data.email.offer === 'MXREDIRECT'
+                ? this.mxOpts.enum.filter((enumMx) => enumMx !== 'EMAILS')
+                : this.mxOpts.enum;
           } else {
-            this.mxOpts.enum = this.mxOpts.enum.filter((enumMx) => enumMx !== 'EMAILS');
+            this.mxOpts.enum = this.mxOpts.enum.filter(
+              (enumMx) => enumMx !== 'EMAILS',
+            );
           }
         })
         .catch((err) => {
@@ -137,15 +160,21 @@ angular.module('App').controller(
             dnsRecords.length ? dnsRecords : null,
           );
         })
-        .then(() => this.Alerter.success(
-          this.$translate.instant('domain_configuration_zonedns_reset_success'),
-          this.$scope.alerts.main,
-        ))
-        .catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_configuration_zonedns_reset_error'),
-          err,
-          this.$scope.alerts.main,
-        ))
+        .then(() =>
+          this.Alerter.success(
+            this.$translate.instant(
+              'domain_configuration_zonedns_reset_success',
+            ),
+            this.$scope.alerts.main,
+          ),
+        )
+        .catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domain_configuration_zonedns_reset_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        )
         .finally(() => {
           this.loading = false;
           this.$scope.resetAction();

@@ -11,14 +11,15 @@ import routing from './executions.routing';
 
 const moduleName = 'ovhManagerPciProjectWorkflowExecutionsModule';
 
-angular.module(moduleName, [
-  'ngOvhCloudUniverseComponents',
-  'ngTranslateAsyncLoader',
-  'oui',
-  'ovh-api-services',
-  'pascalprecht.translate',
-  'ui.router',
-])
+angular
+  .module(moduleName, [
+    'ngOvhCloudUniverseComponents',
+    'ngTranslateAsyncLoader',
+    'oui',
+    'ovh-api-services',
+    'pascalprecht.translate',
+    'ui.router',
+  ])
   .config(routing)
   .component('ovhManagerPciProjectWorkflowExecutions', component);
 

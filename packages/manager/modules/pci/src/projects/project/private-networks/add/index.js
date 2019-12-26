@@ -27,8 +27,13 @@ angular
   .component('pciProjectPrivateNetworksAdd', component)
   .service('PciPrivateNetworksAdd', service)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put('pci/projects/project/network/private-networks/add/api-guide.popover.html', popoverTemplate);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(
+        'pci/projects/project/network/private-networks/add/api-guide.popover.html',
+        popoverTemplate,
+      );
+    },
+  );
 
 export default moduleName;

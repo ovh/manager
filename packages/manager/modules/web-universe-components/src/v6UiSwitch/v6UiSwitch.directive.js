@@ -104,8 +104,8 @@ export default () => {
     }
 
     if (
-      typeof Switch === 'object'
-      && Object.getPrototypeOf(Switch) === V6UiSwitchState.prototype
+      typeof Switch === 'object' &&
+      Object.getPrototypeOf(Switch) === V6UiSwitchState.prototype
     ) {
       return;
     }
@@ -143,23 +143,19 @@ export default () => {
         }
       }
 
-      html += ` data-ng-class="{ checked:${attrs.ngModel}.checked, disabled:${
-        attrs.ngModel
-      }.disabled, pending:${attrs.ngModel}.pending, partial:${
-        attrs.ngModel
-      }.partial}"`;
+      html += ` data-ng-class="{ checked:${attrs.ngModel}.checked, disabled:${attrs.ngModel}.disabled, pending:${attrs.ngModel}.pending, partial:${attrs.ngModel}.partial}"`;
       html += '>';
       html += '<small></small>';
 
       html += '<span class="v6us-switch-text">';
-      html
-        += '<span class="v6us-on"><span class="oui-icon oui-icon-success"></span></span>';
-      html
-        += '<span class="v6us-off"><span class="oui-icon oui-icon-error"></span></span>';
-      html
-        += '<span class="v6us-partial"><span class="oui-icon oui-icon-remove"></span></span>';
-      html
-        += '<span class="v6us-pending"><span class="fa fa-circle-o-notch fa-spin"></span></span>';
+      html +=
+        '<span class="v6us-on"><span class="oui-icon oui-icon-success"></span></span>';
+      html +=
+        '<span class="v6us-off"><span class="oui-icon oui-icon-error"></span></span>';
+      html +=
+        '<span class="v6us-partial"><span class="oui-icon oui-icon-remove"></span></span>';
+      html +=
+        '<span class="v6us-pending"><span class="fa fa-circle-o-notch fa-spin"></span></span>';
       html += '</button>';
 
       return html;

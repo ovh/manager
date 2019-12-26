@@ -7,10 +7,7 @@ import ducBytesFilter from './bytes.filter';
 const moduleName = 'ducBytes';
 
 angular
-  .module(moduleName, [
-    ngTranslateAsyncLoader,
-    translate,
-  ])
+  .module(moduleName, [ngTranslateAsyncLoader, translate])
   .filter('ducBytes', ducBytesFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 

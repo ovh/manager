@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/assist',
     views: {
       faxInnerView: {
-        templateUrl: 'app/telecom/telephony/fax/assist/telecom-telephony-fax-assist.html',
+        templateUrl:
+          'app/telecom/telephony/fax/assist/telecom-telephony-fax-assist.html',
         controller: 'TelecomTelephonyFaxAssistCtrl',
         controllerAs: '$ctrl',
       },

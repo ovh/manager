@@ -21,7 +21,9 @@ angular.module('App').controller(
 
     $onInit() {
       this.errors = [];
-      this.mailingList = angular.copy(this.$scope.currentActionData.mailingList);
+      this.mailingList = angular.copy(
+        this.$scope.currentActionData.mailingList,
+      );
       this.moderators = angular.copy(this.$scope.currentActionData.moderators);
       this.loading = false;
       this.selection = [];
@@ -45,11 +47,17 @@ angular.module('App').controller(
         .then((tasks) => {
           this.Alerter.alertFromSWSBatchResult(
             {
-              OK: this.$translate.instant(moderatorsToAdd.length === 1
-                ? 'mailing_list_tab_modal_create_moderator_success'
-                : 'mailing_list_tab_modal_create_moderators_success'),
-              PARTIAL: this.$translate.instant('mailing_list_tab_modal_create_moderators_error'),
-              ERROR: this.$translate.instant('mailing_list_tab_modal_create_moderators_error'),
+              OK: this.$translate.instant(
+                moderatorsToAdd.length === 1
+                  ? 'mailing_list_tab_modal_create_moderator_success'
+                  : 'mailing_list_tab_modal_create_moderators_success',
+              ),
+              PARTIAL: this.$translate.instant(
+                'mailing_list_tab_modal_create_moderators_error',
+              ),
+              ERROR: this.$translate.instant(
+                'mailing_list_tab_modal_create_moderators_error',
+              ),
             },
             tasks,
             this.$scope.alerts.main,
@@ -64,9 +72,11 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant(moderatorsToAdd.length === 1
-              ? 'mailing_list_tab_modal_create_moderator_error'
-              : 'mailing_list_tab_modal_create_moderators_error'),
+            this.$translate.instant(
+              moderatorsToAdd.length === 1
+                ? 'mailing_list_tab_modal_create_moderator_error'
+                : 'mailing_list_tab_modal_create_moderators_error',
+            ),
             err,
             this.$scope.alerts.main,
           );

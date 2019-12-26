@@ -24,7 +24,8 @@ export default class CucNameChangeModalCtrl {
     this.saving = true;
 
     if (this.params.onSave) {
-      return this.params.onSave(this.model.displayName.value, this.serviceName)
+      return this.params
+        .onSave(this.model.displayName.value, this.serviceName)
         .then((response) => this.$uibModalInstance.close(response))
         .catch((response) => this.$uibModalInstance.dismiss(response))
         .finally(() => {

@@ -4,8 +4,18 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 
 class LogsOptionsCtrl {
-  constructor($state, $stateParams, $window, CucControllerHelper, LogsConstants, LogsOfferService,
-    LogsOptionsService, CucCurrencyService, CucOrderHelperService, LogsDetailService) {
+  constructor(
+    $state,
+    $stateParams,
+    $window,
+    CucControllerHelper,
+    LogsConstants,
+    LogsOfferService,
+    LogsOptionsService,
+    CucCurrencyService,
+    CucOrderHelperService,
+    LogsDetailService,
+  ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$window = $window;
@@ -28,28 +38,33 @@ class LogsOptionsCtrl {
    */
   initLoaders() {
     this.options = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsService.getOptions(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsService.getOptions(this.serviceName),
     });
     this.currentOptions = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsOptionsService
-        .getSubscribedOptionsMapGrouped(this.serviceName),
+      loaderFunction: () =>
+        this.LogsOptionsService.getSubscribedOptionsMapGrouped(
+          this.serviceName,
+        ),
     });
     this.selectedOffer = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.LogsOptionsService.getOffer(this.serviceName),
     });
 
     this.service = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsDetailService.getServiceDetails(this.serviceName)
-        .then((service) => {
-          if (service.state !== this.LogsConstants.SERVICE_STATE_ENABLED) {
-            this.goToHomePage();
-          } else {
-            this.options.load();
-            this.currentOptions.load();
-            this.selectedOffer.load();
-          }
-          return service;
-        }),
+      loaderFunction: () =>
+        this.LogsDetailService.getServiceDetails(this.serviceName).then(
+          (service) => {
+            if (service.state !== this.LogsConstants.SERVICE_STATE_ENABLED) {
+              this.goToHomePage();
+            } else {
+              this.options.load();
+              this.currentOptions.load();
+              this.selectedOffer.load();
+            }
+            return service;
+          },
+        ),
     });
     this.service.load();
   }
@@ -63,7 +78,8 @@ class LogsOptionsCtrl {
   getTotalPrice() {
     return reduce(
       this.options.data,
-      (total, option) => total + option.quantity * option.price, 0,
+      (total, option) => total + option.quantity * option.price,
+      0,
     ).toFixed(2);
   }
 
@@ -74,11 +90,15 @@ class LogsOptionsCtrl {
    * @memberof LogsOptionsCtrl
    */
   getSelectedOptions() {
-    return this.LogsOptionsService.constructor.getOptionsToOrder(this.options.data);
+    return this.LogsOptionsService.constructor.getOptionsToOrder(
+      this.options.data,
+    );
   }
 
   updateOptionToOrder(newValue, selectedOption) {
-    const option = find(this.options.data, { planCode: selectedOption.planCode });
+    const option = find(this.options.data, {
+      planCode: selectedOption.planCode,
+    });
     if (!isEmpty(option)) {
       set(option, 'quantity', newValue);
     }
@@ -120,7 +140,10 @@ class LogsOptionsCtrl {
    */
   order() {
     this.CucOrderHelperService.openExpressOrderUrl(
-      this.LogsOptionsService.getOrderConfiguration(this.options.data, this.serviceName),
+      this.LogsOptionsService.getOrderConfiguration(
+        this.options.data,
+        this.serviceName,
+      ),
     );
   }
 

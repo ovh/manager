@@ -6,11 +6,9 @@ import 'script-loader!moment/min/moment-with-locales.min'; // eslint-disable-lin
 
 Environment.setRegion(__WEBPACK_REGION__);
 
-angular
-  .module('veeamCloudConnectApp', [
-    'ovhManagerVeeamCloudConnect',
-  ])
-  .config(/* @ngInject */ (TranslateServiceProvider) => {
+angular.module('veeamCloudConnectApp', ['ovhManagerVeeamCloudConnect']).config(
+  /* @ngInject */ (TranslateServiceProvider) => {
     const defaultLanguage = TranslateServiceProvider.getUserLocale(true);
     moment.locale(defaultLanguage);
-  });
+  },
+);

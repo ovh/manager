@@ -5,7 +5,8 @@ import routing from './upgrade-policy.routing';
 
 const moduleName = 'ovhManagerPciProjectKubernetesServiceUpgradePolicy';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('pciProjectKubernetesServiceUpgradePolicy', component)
   .run(/* @ngTranslationsInject:json ./translations */);

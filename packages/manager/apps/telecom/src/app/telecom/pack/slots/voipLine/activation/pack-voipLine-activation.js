@@ -3,7 +3,8 @@ angular.module('managerApp').config(($stateProvider) => {
     url: '/telephony/activation',
     views: {
       'packView@telecom.packs': {
-        templateUrl: 'app/telecom/pack/slots/voipLine/activation/pack-voipLine-activation.html',
+        templateUrl:
+          'app/telecom/pack/slots/voipLine/activation/pack-voipLine-activation.html',
         controller: 'PackVoipLineActivationCtrl',
         controllerAs: 'PackVoipLineActivationCtrl',
       },

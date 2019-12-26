@@ -47,12 +47,10 @@ export default class VpsVeeamOrderCtrl {
   ============================== */
 
   onVeeamOrderStepperFinish() {
-    let expressOrderUrl = get(
-      ORDER_EXPRESS_BASE_URL, [
-        this.coreConfig.getRegion(),
-        this.connectedUser.ovhSubsidiary,
-      ],
-    );
+    let expressOrderUrl = get(ORDER_EXPRESS_BASE_URL, [
+      this.coreConfig.getRegion(),
+      this.connectedUser.ovhSubsidiary,
+    ]);
     const expressParams = {
       productId: 'vps',
       serviceName: this.stateVps.name,
@@ -61,21 +59,25 @@ export default class VpsVeeamOrderCtrl {
       pricingMode: 'default',
       quantity: 1,
     };
-    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([expressParams])}`;
+    expressOrderUrl = `${expressOrderUrl}?products=${JSURL.stringify([
+      expressParams,
+    ])}`;
 
     this.$window.open(expressOrderUrl, '_blank');
 
     this.CucCloudMessage.success({
-      textHtml: this.$translate.instant('vps_configuration_veeam_order_success', {
-        url: expressOrderUrl,
-      }),
+      textHtml: this.$translate.instant(
+        'vps_configuration_veeam_order_success',
+        {
+          url: expressOrderUrl,
+        },
+      ),
     });
 
     return this.$onInit();
   }
 
   /* -----  End of EVENTS  ------ */
-
 
   /* =====================================
   =            INITIALIZATION            =
@@ -85,10 +87,13 @@ export default class VpsVeeamOrderCtrl {
     this.loading.init = true;
     this.hasInitError = false;
 
-    return this.OvhApiOrder.CartServiceOption().Vps().v6().get({
-      serviceName: this.stateVps.name,
-    }).$promise
-      .then((response) => {
+    return this.OvhApiOrder.CartServiceOption()
+      .Vps()
+      .v6()
+      .get({
+        serviceName: this.stateVps.name,
+      })
+      .$promise.then((response) => {
         // take the automatedBackup option from the list
         this.veeamOption = find(response, {
           family: 'automatedBackup',
@@ -98,7 +103,9 @@ export default class VpsVeeamOrderCtrl {
           this.hasInitError = true;
           return this.$q.reject({
             data: {
-              message: this.$translate.instant('vps_configuration_veeam_order_load_error_none'),
+              message: this.$translate.instant(
+                'vps_configuration_veeam_order_load_error_none',
+              ),
             },
           });
         }
@@ -106,10 +113,12 @@ export default class VpsVeeamOrderCtrl {
         return this.veeamOption;
       })
       .catch((error) => {
-        this.CucCloudMessage.error([
-          this.$translate.instant('vps_configuration_veeam_order_load_error'),
-          get(error, 'data.message'),
-        ].join(' '));
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vps_configuration_veeam_order_load_error'),
+            get(error, 'data.message'),
+          ].join(' '),
+        );
       })
       .finally(() => {
         this.loading.init = false;

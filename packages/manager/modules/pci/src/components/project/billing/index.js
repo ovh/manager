@@ -13,18 +13,17 @@ import volumeList from './volume-list';
 
 const moduleName = 'ovhManagerPciComponentsProjectBilling';
 
-angular
-  .module(moduleName, [
-    archiveStorageList,
-    details,
-    detailsPopover,
-    hourlyResourceList,
-    instanceList,
-    monthlyResourceList,
-    objectStorageList,
-    outgoingTrafic,
-    snapshotList,
-    volumeList,
-  ]);
+angular.module(moduleName, [
+  archiveStorageList,
+  details,
+  detailsPopover,
+  hourlyResourceList,
+  instanceList,
+  monthlyResourceList,
+  objectStorageList,
+  outgoingTrafic,
+  snapshotList,
+  volumeList,
+]);
 
 export default moduleName;

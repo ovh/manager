@@ -5,7 +5,15 @@ import set from 'lodash/set';
 
 class ServerOrderLegacyBandwidthVrackCtrl {
   /* @ngInject */
-  constructor($scope, $state, $stateParams, $translate, Alerter, User, BandwidthVrackOrderService) {
+  constructor(
+    $scope,
+    $state,
+    $stateParams,
+    $translate,
+    Alerter,
+    User,
+    BandwidthVrackOrderService,
+  ) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -34,45 +42,62 @@ class ServerOrderLegacyBandwidthVrackCtrl {
 
     this.steps = [
       {
-        isValid: () => !this.orderableBandwidths.loading
-          && this.orderableBandwidths.data.length > 0
-          && this.model.bandwidth,
+        isValid: () =>
+          !this.orderableBandwidths.loading &&
+          this.orderableBandwidths.data.length > 0 &&
+          this.model.bandwidth,
         isLoading: () => this.orderableBandwidths.loading,
-        load: () => this.handleAPIGet(() => this.BandwidthVrackOrderService
-          .getOrderableBandwidths(this.$stateParams.productId), this.orderableBandwidths)
-          .then(() => {
+        load: () =>
+          this.handleAPIGet(
+            () =>
+              this.BandwidthVrackOrderService.getOrderableBandwidths(
+                this.$stateParams.productId,
+              ),
+            this.orderableBandwidths,
+          ).then(() => {
             if (this.orderableBandwidths.data.length === 1) {
               this.model.bandwidth = head(this.orderableBandwidths.data);
             }
           }),
       },
       {
-        isValid: () => !this.orderableDurations.loading
-          && this.orderableDurations.data.length > 0
-          && this.model.duration,
+        isValid: () =>
+          !this.orderableDurations.loading &&
+          this.orderableDurations.data.length > 0 &&
+          this.model.duration,
         isLoading: () => this.orderableDurations.loading || this.user.loading,
         load: () => {
-          this.handleAPIGet(() => this.User.getUser().then((user) => ({ data: user })), this.user);
-          this.handleAPIGet(() => this.BandwidthVrackOrderService
-            .getOrderableBandwidthDurations(
-              this.$stateParams.productId,
-              this.model.bandwidth.value,
-            ), this.orderableDurations)
-            .then(() => {
-              if (this.orderableDurations.data.length === 1) {
-                this.model.duration = head(this.orderableDurations.data);
-              }
-            });
+          this.handleAPIGet(
+            () => this.User.getUser().then((user) => ({ data: user })),
+            this.user,
+          );
+          this.handleAPIGet(
+            () =>
+              this.BandwidthVrackOrderService.getOrderableBandwidthDurations(
+                this.$stateParams.productId,
+                this.model.bandwidth.value,
+              ),
+            this.orderableDurations,
+          ).then(() => {
+            if (this.orderableDurations.data.length === 1) {
+              this.model.duration = head(this.orderableDurations.data);
+            }
+          });
         },
       },
       {
         isValid: () => !this.bc.loading,
         isLoading: () => this.bc.loading,
-        load: () => this.handleAPIGet(() => this.BandwidthVrackOrderService.orderBandWidth(
-          this.$stateParams.productId,
-          this.model.bandwidth.value,
-          this.model.duration.durations,
-        ), this.bc),
+        load: () =>
+          this.handleAPIGet(
+            () =>
+              this.BandwidthVrackOrderService.orderBandWidth(
+                this.$stateParams.productId,
+                this.model.bandwidth.value,
+                this.model.duration.durations,
+              ),
+            this.bc,
+          ),
       },
     ];
 
@@ -88,13 +113,15 @@ class ServerOrderLegacyBandwidthVrackCtrl {
   }
 
   openBC() {
-    this.$state.go('^')
-      .then(() => {
-        this.Alerter.success(this.$translate.instant('server_order_bandwidth_vrack_success', {
+    this.$state.go('^').then(() => {
+      this.Alerter.success(
+        this.$translate.instant('server_order_bandwidth_vrack_success', {
           t0: this.bc.data.url,
-        }), 'server_dashboard_alert');
-        window.open(this.bc.data.url);
-      });
+        }),
+        'server_dashboard_alert',
+      );
+      window.open(this.bc.data.url);
+    });
   }
 
   handleAPIGet(promise, loadIntoStruct) {
@@ -105,17 +132,23 @@ class ServerOrderLegacyBandwidthVrackCtrl {
         set(loadIntoStruct, 'data', response.data);
 
         if (response.message) {
-          this.Alerter.success(this.$translate.instant('server_order_bandwidth_vrack_success', {
-            t0: this.bc.data.url,
-          }), 'server_dashboard_alert');
+          this.Alerter.success(
+            this.$translate.instant('server_order_bandwidth_vrack_success', {
+              t0: this.bc.data.url,
+            }),
+            'server_dashboard_alert',
+          );
         }
       })
       .catch((response) => {
         set(loadIntoStruct, 'hasError', true);
         set(loadIntoStruct, 'data', isArray(loadIntoStruct) ? [] : {});
 
-        this.$state.go('^')
-          .then(() => this.Alerter.error(response.message, 'server_dashboard_alert'));
+        this.$state
+          .go('^')
+          .then(() =>
+            this.Alerter.error(response.message, 'server_dashboard_alert'),
+          );
       })
       .finally(() => {
         set(loadIntoStruct, 'loading', false);
@@ -123,4 +156,9 @@ class ServerOrderLegacyBandwidthVrackCtrl {
   }
 }
 
-angular.module('App').controller('ServerOrderLegacyBandwidthVrackCtrl', ServerOrderLegacyBandwidthVrackCtrl);
+angular
+  .module('App')
+  .controller(
+    'ServerOrderLegacyBandwidthVrackCtrl',
+    ServerOrderLegacyBandwidthVrackCtrl,
+  );

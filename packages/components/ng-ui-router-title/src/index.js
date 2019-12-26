@@ -6,11 +6,8 @@ import has from 'lodash/has';
 
 const moduleName = 'ngUiRouterTitle';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-  ])
-  .run(/* @ngInject */ ($transitions) => {
+angular.module(moduleName, ['ui.router']).run(
+  /* @ngInject */ ($transitions) => {
     const initialTitle = document.title;
 
     $transitions.onSuccess({}, (transition) => {
@@ -28,9 +25,12 @@ angular
       const stateTitle = getStateTitle(transition.$to());
 
       transition.promise.finally(() => {
-        document.title = stateTitle ? transition.injector().get('$title') : initialTitle;
+        document.title = stateTitle
+          ? transition.injector().get('$title')
+          : initialTitle;
       });
     });
-  });
+  },
+);
 
 export default moduleName;

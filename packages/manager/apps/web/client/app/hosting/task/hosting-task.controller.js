@@ -31,14 +31,15 @@ angular.module('App').controller(
     }
 
     loadPaginated({ pageSize, offset }) {
-      return this.$q.all({
-        hosting: this.Hosting.getHosting(this.$stateParams.productId),
-        tasks: this.Hosting.getTasksList(
-          this.$stateParams.productId,
-          pageSize,
-          offset - 1,
-        ),
-      })
+      return this.$q
+        .all({
+          hosting: this.Hosting.getHosting(this.$stateParams.productId),
+          tasks: this.Hosting.getTasksList(
+            this.$stateParams.productId,
+            pageSize,
+            offset - 1,
+          ),
+        })
         .then(({ hosting, tasks }) => {
           this.hosting = hosting;
           this.tasksList = tasks;

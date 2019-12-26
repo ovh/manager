@@ -45,33 +45,30 @@ export default class ExchangeAccountAddController {
 
   fetchingAccountCreationOptions() {
     function transformAccountTypes(accountTypes) {
-      return map(
-        accountTypes,
-        (accountType) => ({
-          name: accountType,
-          displayName: this.exchangeAccountTypes.getDisplayValue(accountType),
-        }),
-      );
+      return map(accountTypes, (accountType) => ({
+        name: accountType,
+        displayName: this.exchangeAccountTypes.getDisplayValue(accountType),
+      }));
     }
 
-    return this.Exchange
-      .fetchingAccountCreationOptions(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-      )
+    return this.Exchange.fetchingAccountCreationOptions(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+    )
       .then((accountCreationOptions) => {
-        this.accountCreationOptions = assign(
-          accountCreationOptions,
-          {
-            availableTypes: transformAccountTypes.call(
-              this,
-              accountCreationOptions.availableTypes,
-            ),
-          },
-        );
+        this.accountCreationOptions = assign(accountCreationOptions, {
+          availableTypes: transformAccountTypes.call(
+            this,
+            accountCreationOptions.availableTypes,
+          ),
+        });
 
-        this.newAccount.accountType = head(this.accountCreationOptions.availableTypes);
-        this.newAccount.domain = head(this.accountCreationOptions.availableDomains);
+        this.newAccount.accountType = head(
+          this.accountCreationOptions.availableTypes,
+        );
+        this.newAccount.domain = head(
+          this.accountCreationOptions.availableDomains,
+        );
       })
       .catch((error) => {
         this.messaging.writeError(
@@ -91,7 +88,9 @@ export default class ExchangeAccountAddController {
     const emailAddressIsAlreadyTaken = !isEmpty(
       find(
         this.accountCreationOptions.takenEmails,
-        (emailAddress) => emailAddress === `${this.newAccount.login}@${this.newAccount.domain.name}`,
+        (emailAddress) =>
+          emailAddress ===
+          `${this.newAccount.login}@${this.newAccount.domain.name}`,
       ),
     );
 
@@ -103,7 +102,10 @@ export default class ExchangeAccountAddController {
 
   checkPasswordValidity() {
     if (this.newAccountForm.password.$error.required) {
-      this.newAccountForm.password.$setValidity('doesntRespectComplexityRules', true);
+      this.newAccountForm.password.$setValidity(
+        'doesntRespectComplexityRules',
+        true,
+      );
       this.newAccountForm.password.$setValidity('containsDisplayName', true);
       this.newAccountForm.password.$setValidity('isSameAsSAMAccountName', true);
       return;
@@ -112,12 +114,14 @@ export default class ExchangeAccountAddController {
     if (this.accountCreationOptions.passwordComplexityEnabled) {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordComplexityCheck(this.newAccount.password)
-        && this.ExchangePassword.passwordSimpleCheck(
+        this.ExchangePassword.passwordComplexityCheck(
           this.newAccount.password,
-          true,
-          this.accountCreationOptions.minPasswordLength,
-        ),
+        ) &&
+          this.ExchangePassword.passwordSimpleCheck(
+            this.newAccount.password,
+            true,
+            this.accountCreationOptions.minPasswordLength,
+          ),
       );
       this.newAccountForm.password.$setValidity(
         'containsDisplayName',
@@ -128,11 +132,11 @@ export default class ExchangeAccountAddController {
       );
       this.newAccountForm.password.$setValidity(
         'isSameAsSAMAccountName',
-        isEmpty(this.newAccount.samAccountName)
-          || (isString(this.newAccount.password)
-            && isString(this.newAccount.samAccountName)
-            && this.newAccount.password.toUpperCase()
-              !== this.newAccount.samAccountName.toUpperCase()),
+        isEmpty(this.newAccount.samAccountName) ||
+          (isString(this.newAccount.password) &&
+            isString(this.newAccount.samAccountName) &&
+            this.newAccount.password.toUpperCase() !==
+              this.newAccount.samAccountName.toUpperCase()),
       );
     } else {
       this.newAccountForm.password.$setValidity(
@@ -147,7 +151,9 @@ export default class ExchangeAccountAddController {
   }
 
   hide() {
-    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, { stateName: 'hide' });
+    this.$scope.$emit(this.exchangeAccount.EVENTS.CHANGE_STATE, {
+      stateName: 'hide',
+    });
   }
 
   switchBetweenPasswordAndTextInput() {
@@ -166,7 +172,10 @@ export default class ExchangeAccountAddController {
 
   onPasswordConfirmationChange() {
     if (this.newAccountForm.passwordConfirmation.$error.required) {
-      this.newAccountForm.passwordConfirmation.$setValidity('isDifferentToPassword', true);
+      this.newAccountForm.passwordConfirmation.$setValidity(
+        'isDifferentToPassword',
+        true,
+      );
     } else {
       this.newAccountForm.passwordConfirmation.$setValidity(
         'isDifferentToPassword',

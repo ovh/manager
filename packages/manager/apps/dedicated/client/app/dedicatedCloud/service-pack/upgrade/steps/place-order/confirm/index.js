@@ -9,8 +9,10 @@ angular
   .module(moduleName, [])
   .controller(CONTROLLER_NAME, controller)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($templateCache) => {
-    $templateCache.put(TEMPLATE_CACHE_KEY, template);
-  });
+  .run(
+    /* @ngInject */ ($templateCache) => {
+      $templateCache.put(TEMPLATE_CACHE_KEY, template);
+    },
+  );
 
 export default moduleName;

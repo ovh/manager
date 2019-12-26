@@ -4,8 +4,6 @@ import WucValidator from './validator.service';
 
 const moduleName = 'wucValidator';
 
-angular
-  .module(moduleName, [])
-  .service('WucValidator', WucValidator);
+angular.module(moduleName, []).service('WucValidator', WucValidator);
 
 export default moduleName;

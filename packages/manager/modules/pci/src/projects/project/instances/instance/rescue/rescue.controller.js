@@ -5,11 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class PciInstanceRescueController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    PciProjectsProjectInstanceService,
-  ) {
+  constructor($translate, CucCloudMessage, PciProjectsProjectInstanceService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
@@ -21,7 +17,9 @@ export default class PciInstanceRescueController {
       id: '',
       type: 'linux',
       user: 'root',
-      name: this.$translate.instant('pci_projects_project_instances_instance_rescue_image_default'),
+      name: this.$translate.instant(
+        'pci_projects_project_instances_instance_rescue_image_default',
+      ),
     };
 
     if (this.instance.isRescuableWithDefaultImage()) {
@@ -32,10 +30,7 @@ export default class PciInstanceRescueController {
       });
     }
 
-    this.imageList = [
-      this.ovhDefaultImage,
-      ...this.images,
-    ];
+    this.imageList = [this.ovhDefaultImage, ...this.images];
   }
 
   getInfosMessage(password = '') {
@@ -55,29 +50,37 @@ export default class PciInstanceRescueController {
 
   rescueInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService
-      .rescue(this.projectId, this.instance, this.selectedImage)
-      .then(({ adminPassword }) => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_rescue_success_message',
-          {
-            instance: this.instance.name,
-          },
+    return this.PciProjectsProjectInstanceService.rescue(
+      this.projectId,
+      this.instance,
+      this.selectedImage,
+    )
+      .then(({ adminPassword }) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_rescue_success_message',
+            {
+              instance: this.instance.name,
+            },
+          ),
+        ).then(() =>
+          this.CucCloudMessage.info({
+            textHtml: this.getInfosMessage(adminPassword),
+          }),
         ),
       )
-        .then(() => this.CucCloudMessage.info({
-          textHtml: this.getInfosMessage(adminPassword),
-        })))
-      .catch((err) => this.goBack(
-        this.$translate.instant(
-          'pci_projects_project_instances_instance_rescue_error_rescue',
-          {
-            message: get(err, 'data.message', null),
-            instance: this.instance.name,
-          },
+      .catch((err) =>
+        this.goBack(
+          this.$translate.instant(
+            'pci_projects_project_instances_instance_rescue_error_rescue',
+            {
+              message: get(err, 'data.message', null),
+              instance: this.instance.name,
+            },
+          ),
+          'error',
         ),
-        'error',
-      ))
+      )
       .finally(() => {
         this.isLoading = false;
       });

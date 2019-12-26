@@ -28,7 +28,14 @@ export default class ExchangeExportToCsvAccountsCtrl {
     };
 
     this.headers = {
-      external: ['externalEmailAddress', 'firstName', 'lastName', 'displayName', 'creationDate', 'hiddenFromGAL'],
+      external: [
+        'externalEmailAddress',
+        'firstName',
+        'lastName',
+        'displayName',
+        'creationDate',
+        'hiddenFromGAL',
+      ],
       group: [
         'displayName',
         'mailingListAddress',
@@ -38,7 +45,14 @@ export default class ExchangeExportToCsvAccountsCtrl {
         'members',
         'managers',
       ],
-      shared: ['primaryEmailAddress', 'quota', 'firstName', 'lastName', 'displayName', 'hiddenFromGAL'],
+      shared: [
+        'primaryEmailAddress',
+        'quota',
+        'firstName',
+        'lastName',
+        'displayName',
+        'hiddenFromGAL',
+      ],
     };
 
     this.$routerParams = Exchange.getParams();
@@ -116,16 +130,17 @@ export default class ExchangeExportToCsvAccountsCtrl {
               }
             });
 
-            csvContent += index < datas.accounts.length ? `${dataString}\n` : dataString;
+            csvContent +=
+              index < datas.accounts.length ? `${dataString}\n` : dataString;
           });
 
           const blob = new Blob([csvContent], {
             type: 'text/csv;charset=utf-8;',
           });
 
-          const fileName = `export_${this.csvExportType}_${this.exchange.displayName}_${moment().format(
-            'YYYY-MM-DD_HH:mm:ss',
-          )}.csv`;
+          const fileName = `export_${this.csvExportType}_${
+            this.exchange.displayName
+          }_${moment().format('YYYY-MM-DD_HH:mm:ss')}.csv`;
 
           if (navigator.msSaveBlob) {
             navigator.msSaveBlob(blob, fileName);
@@ -141,7 +156,9 @@ export default class ExchangeExportToCsvAccountsCtrl {
               link.click();
               document.body.removeChild(link);
             } else {
-              window.open(`data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`);
+              window.open(
+                `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`,
+              );
             }
           }
 
@@ -186,7 +203,8 @@ export default class ExchangeExportToCsvAccountsCtrl {
           exportOpts,
           offset,
           timeoutObject,
-        ); break;
+        );
+        break;
       case 'external':
         promise = this.services.ExchangeExternalContacts.prepareForCsv(
           this.$routerParams.organization,
@@ -194,7 +212,8 @@ export default class ExchangeExportToCsvAccountsCtrl {
           exportOpts,
           offset,
           timeoutObject,
-        ); break;
+        );
+        break;
       case 'shared':
         promise = this.services.ExchangeSharedAccounts.prepareForCsv(
           this.$routerParams.organization,
@@ -202,23 +221,38 @@ export default class ExchangeExportToCsvAccountsCtrl {
           exportOpts,
           offset,
           timeoutObject,
-        ); break;
-      default: break;
+        );
+        break;
+      default:
+        break;
     }
 
     return promise.then((datas) => {
       if (datas != null) {
         set(infos, 'accounts', infos.accounts.concat(datas.accounts));
-        set(infos, 'headers', isEmpty(infos.headers) ? datas.headers : infos.headers);
+        set(
+          infos,
+          'headers',
+          isEmpty(infos.headers) ? datas.headers : infos.headers,
+        );
 
         if (['group', 'external', 'shared'].includes(this.csvExportType)) {
           set(infos, 'headers', this.headers[this.csvExportType]);
         } else {
-          set(infos, 'headers', difference(datas.headers, exportOpts.rejectAttrs));
+          set(
+            infos,
+            'headers',
+            difference(datas.headers, exportOpts.rejectAttrs),
+          );
         }
 
         if (offset + exportOpts.count < exportOpts.total) {
-          return this.prepareForCsv(exportOpts, offset + exportOpts.count, infos, timeoutObject);
+          return this.prepareForCsv(
+            exportOpts,
+            offset + exportOpts.count,
+            infos,
+            timeoutObject,
+          );
         }
         return infos;
       }

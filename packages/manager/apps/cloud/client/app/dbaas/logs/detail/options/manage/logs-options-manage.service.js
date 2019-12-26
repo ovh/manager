@@ -1,6 +1,12 @@
 class LogsOptionsManageService {
-  constructor(LogsStreamsService, LogsAliasesService, LogsIndexService, LogsDashboardsService,
-    LogsInputsService, LogsRolesService) {
+  constructor(
+    LogsStreamsService,
+    LogsAliasesService,
+    LogsIndexService,
+    LogsDashboardsService,
+    LogsInputsService,
+    LogsRolesService,
+  ) {
     this.LogsAliasesService = LogsAliasesService;
     this.LogsStreamsService = LogsStreamsService;
     this.LogsIndexService = LogsIndexService;
@@ -34,4 +40,6 @@ class LogsOptionsManageService {
   }
 }
 
-angular.module('managerApp').service('LogsOptionsManageService', LogsOptionsManageService);
+angular
+  .module('managerApp')
+  .service('LogsOptionsManageService', LogsOptionsManageService);

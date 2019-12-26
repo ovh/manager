@@ -4,10 +4,7 @@ import { STATUS } from '../../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    enterpriseCloudDatabaseService,
-  ) {
+  constructor($translate, enterpriseCloudDatabaseService) {
     this.$translate = $translate;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
   }
@@ -25,19 +22,27 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurity
       .then(() => {
         this.enterpriseCloudDatabaseService.resetSecurityGroupDetailsCache();
         return this.goBack(
-          this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_rule_success', {
-            source: this.rule.source,
-          }),
+          this.$translate.instant(
+            'enterprise_cloud_database_service_details_settings_delete_rule_success',
+            {
+              source: this.rule.source,
+            },
+          ),
           STATUS.SUCCESS,
           this.securityGroup.id,
         );
       })
-      .catch((error) => this.goBack(
-        this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_rule_error', {
-          message: get(error, 'data.message'),
-        }),
-        STATUS.ERROR,
-      ))
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant(
+            'enterprise_cloud_database_service_details_settings_delete_rule_error',
+            {
+              message: get(error, 'data.message'),
+            },
+          ),
+          STATUS.ERROR,
+        ),
+      )
       .finally(() => {
         this.loaders.rule = false;
       });

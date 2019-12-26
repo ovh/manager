@@ -38,7 +38,8 @@ export default class ExchangeTabDiagnosticsCtrl {
 
     this.POLL_NAMESPACE = 'exchange.diagnostic.poll';
     this.exchange = Exchange.value;
-    this.newTicketUrl = get(NEW_TICKET_URL, constants.target, 'EU') + this.exchange.domain;
+    this.newTicketUrl =
+      get(NEW_TICKET_URL, constants.target, 'EU') + this.exchange.domain;
 
     this.states = {
       REQUESTING_NEW_DIAGNOSTIC: 'REQUESTING_NEW_DIAGNOSTIC',
@@ -65,7 +66,9 @@ export default class ExchangeTabDiagnosticsCtrl {
     };
 
     $scope.$on(`${this.POLL_NAMESPACE}.done`, () => this.writeDoneMessage());
-    $scope.$on(`${this.POLL_NAMESPACE}.error`, (error) => this.writeErrorMessage(error));
+    $scope.$on(`${this.POLL_NAMESPACE}.error`, (error) =>
+      this.writeErrorMessage(error),
+    );
 
     $scope.$on('$destroy', () => {
       diagnostic.killAllPolling({
@@ -105,7 +108,9 @@ export default class ExchangeTabDiagnosticsCtrl {
   writeErrorMessage(errorMessage) {
     this.loaders.diagnosticInProgress = false;
     this.services.messaging.writeError(
-      this.services.$translate.instant('exchange_DIAGNOSTIC_launch_diagnostic_failure'),
+      this.services.$translate.instant(
+        'exchange_DIAGNOSTIC_launch_diagnostic_failure',
+      ),
       errorMessage,
     );
   }
@@ -133,11 +138,17 @@ export default class ExchangeTabDiagnosticsCtrl {
 
     this.services.diagnostic
       .gettingTasks(email)
-      .then((taskIds) => this.services.$q.all(
-        map(taskIds, (taskId) => this.services.diagnostic.gettingTask(email, taskId)),
-      ))
+      .then((taskIds) =>
+        this.services.$q.all(
+          map(taskIds, (taskId) =>
+            this.services.diagnostic.gettingTask(email, taskId),
+          ),
+        ),
+      )
       .then((tasks) => {
-        const currentTask = find(tasks, (task) => includes(['todo', 'doing'], task.status));
+        const currentTask = find(tasks, (task) =>
+          includes(['todo', 'doing'], task.status),
+        );
 
         if (currentTask != null) {
           this.pollDiagnosticTask(currentTask);
@@ -148,7 +159,9 @@ export default class ExchangeTabDiagnosticsCtrl {
       })
       .catch((error) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_DIAGNOSTIC_launch_diagnostic_failure'),
+          this.services.$translate.instant(
+            'exchange_DIAGNOSTIC_launch_diagnostic_failure',
+          ),
           error,
         );
         this.loaders.diagnosticInProgress = false;
@@ -163,7 +176,9 @@ export default class ExchangeTabDiagnosticsCtrl {
       .then((task) => this.pollDiagnosticTask(task))
       .catch((error) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_DIAGNOSTIC_launch_diagnostic_failure'),
+          this.services.$translate.instant(
+            'exchange_DIAGNOSTIC_launch_diagnostic_failure',
+          ),
           error,
         );
         this.loaders.diagnosticInProgress = false;
@@ -194,7 +209,9 @@ export default class ExchangeTabDiagnosticsCtrl {
       })
       .catch((error) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_DIAGNOSTIC_get_diagnostic_result_failure'),
+          this.services.$translate.instant(
+            'exchange_DIAGNOSTIC_get_diagnostic_result_failure',
+          ),
           error,
         );
       })
@@ -237,23 +254,30 @@ export default class ExchangeTabDiagnosticsCtrl {
   statusMessage(status) {
     const suffix = this.isOK(status) ? '_ok' : '_not_ok';
 
-    return this.services.$translate.instant(`exchange_DIAGNOSTICS_status_${status}${suffix}`);
+    return this.services.$translate.instant(
+      `exchange_DIAGNOSTICS_status_${status}${suffix}`,
+    );
   }
 
-  /* eslint-disable class-methods-use-this */
+  // eslint-disable-next-line class-methods-use-this
   detailedMessageTemplateUrl(status) {
-    return `exchange/diagnostic/error/diagnostic-error-${kebabCase(status)}.html`;
+    return `exchange/diagnostic/error/diagnostic-error-${kebabCase(
+      status,
+    )}.html`;
   }
-  /* eslint-enable class-methods-use-this */
 
   fetchDiagnosticGuideUrl() {
     const defaultSubsidiary = 'FR';
 
     this.services.User.getUser()
       .then((data) => {
-        this.diagnosticGuideUrl = this.services
-          .EXCHANGE_CONFIG.URLS.GUIDES.DIAGNOSTIC[data.ovhSubsidiary]
-          || this.services.EXCHANGE_CONFIG.URLS.GUIDES.DIAGNOSTIC[defaultSubsidiary];
+        this.diagnosticGuideUrl =
+          this.services.EXCHANGE_CONFIG.URLS.GUIDES.DIAGNOSTIC[
+            data.ovhSubsidiary
+          ] ||
+          this.services.EXCHANGE_CONFIG.URLS.GUIDES.DIAGNOSTIC[
+            defaultSubsidiary
+          ];
       })
       .catch(() => {
         this.diagnosticGuideUrl = null;

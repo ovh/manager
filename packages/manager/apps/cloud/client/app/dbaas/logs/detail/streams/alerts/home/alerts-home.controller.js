@@ -64,53 +64,61 @@ class LogsStreamsAlertsHomeCtrl {
    */
   initLoaders() {
     this.alertIds = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsAlertsService
-        .getAlertIds(this.serviceName, this.streamId),
+      loaderFunction: () =>
+        this.LogsStreamsAlertsService.getAlertIds(
+          this.serviceName,
+          this.streamId,
+        ),
     });
     this.stream = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsService.getStream(this.serviceName, this.streamId),
+      loaderFunction: () =>
+        this.LogsStreamsService.getStream(this.serviceName, this.streamId),
     });
   }
 
   /**
-     * Loads a number of alerts specified by the pageSize, starting from the specified offset
-     *
-     * @param {any} offset
-     * @param {any} pageSize
-     * @returns promise which will be resolve to the loaded alerts data
-     * @memberof LogsStreamsAlertsHomeCtrl
-     */
+   * Loads a number of alerts specified by the pageSize, starting from the specified offset
+   *
+   * @param {any} offset
+   * @param {any} pageSize
+   * @returns promise which will be resolve to the loaded alerts data
+   * @memberof LogsStreamsAlertsHomeCtrl
+   */
   loadAlerts({ offset, pageSize }) {
     this.alerts = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.LogsStreamsAlertsService.getAlerts(
-        this.serviceName,
-        this.streamId,
-        this.alertIds.data.slice(offset - 1, offset + pageSize - 1),
-      ),
+      loaderFunction: () =>
+        this.LogsStreamsAlertsService.getAlerts(
+          this.serviceName,
+          this.streamId,
+          this.alertIds.data.slice(offset - 1, offset + pageSize - 1),
+        ),
     });
 
-    return this.alerts.load()
-      .then((alerts) => ({
-        data: alerts,
-        meta: {
-          totalCount: this.alertIds.data.length,
-        },
-      }));
+    return this.alerts.load().then((alerts) => ({
+      data: alerts,
+      meta: {
+        totalCount: this.alertIds.data.length,
+      },
+    }));
   }
 
   /**
-     * Shows the confirmation modal box for alert deletion confirmation
-     * and deletes the alert if the user confirms the deletion
-     *
-     * @param {any} alert - the alert object
-     * @memberof LogsStreamsAlertsHomeCtrl
-     */
+   * Shows the confirmation modal box for alert deletion confirmation
+   * and deletes the alert if the user confirms the deletion
+   *
+   * @param {any} alert - the alert object
+   * @memberof LogsStreamsAlertsHomeCtrl
+   */
   showDeleteConfirm(alert) {
     this.CucCloudMessage.flushChildMessage();
-    return this.CucControllerHelper.modal.showDeleteModal({
-      titleText: this.$translate.instant('streams_alerts_delete'),
-      textHtml: this.$translate.instant('streams_alerts_delete_message', { alert: alert.title }),
-    }).then(() => this.remove(alert));
+    return this.CucControllerHelper.modal
+      .showDeleteModal({
+        titleText: this.$translate.instant('streams_alerts_delete'),
+        textHtml: this.$translate.instant('streams_alerts_delete_message', {
+          alert: alert.title,
+        }),
+      })
+      .then(() => this.remove(alert));
   }
 
   /**
@@ -121,9 +129,12 @@ class LogsStreamsAlertsHomeCtrl {
    */
   remove(alert) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsStreamsAlertsService
-        .deleteAlert(this.serviceName, this.streamId, alert)
-        .then(() => this.runLoaders()),
+      loaderFunction: () =>
+        this.LogsStreamsAlertsService.deleteAlert(
+          this.serviceName,
+          this.streamId,
+          alert,
+        ).then(() => this.runLoaders()),
     });
     this.alertIds.loading = true;
     this.delete.load();
@@ -158,4 +169,6 @@ class LogsStreamsAlertsHomeCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsStreamsAlertsHomeCtrl', LogsStreamsAlertsHomeCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsStreamsAlertsHomeCtrl', LogsStreamsAlertsHomeCtrl);

@@ -6,10 +6,8 @@ import service from './disable.service';
 
 const moduleName = 'ovhManagerBillingAutorenewDisable';
 
-angular.module(moduleName, [
-  'ui.router',
-  bulk,
-])
+angular
+  .module(moduleName, ['ui.router', bulk])
   .config(routing)
   .component('billingAutorenewDisable', component)
   .service('BillingAutorenewDisable', service);

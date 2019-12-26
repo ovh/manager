@@ -9,10 +9,7 @@ import './index.less';
 const moduleName = 'ovhManagerPciComponentsProjectEmpty';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .component('pciProjectEmpty', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

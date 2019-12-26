@@ -149,7 +149,8 @@ angular
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({
-    request: (config) => { // eslint-disable-line
+    // eslint-disable-next-line no-shadow
+    request: (config) => {
       if (/^(\/?engine\/)?2api(-m)?\//.test(config.url)) {
         set(config, 'url', config.url.replace(/^(\/?engine\/)?2api(-m)?/, ''));
         set(config, 'serviceType', 'aapi');
@@ -174,19 +175,25 @@ angular
       $qProvider.errorOnUnhandledRejections(false);
     },
   ])
-  .config(/* @ngInject */ (ovhPaymentMethodProvider) => {
-    ovhPaymentMethodProvider.setPaymentMethodPageUrl(
-      config.constants.PAYMENT_METHOD_URL,
-    );
-  })
-  .config(/* @ngInject */(ovhProxyRequestProvider) => {
-    ovhProxyRequestProvider.proxy('$http');
-    ovhProxyRequestProvider.pathPrefix('apiv6');
-  })
+  .config(
+    /* @ngInject */ (ovhPaymentMethodProvider) => {
+      ovhPaymentMethodProvider.setPaymentMethodPageUrl(
+        config.constants.PAYMENT_METHOD_URL,
+      );
+    },
+  )
+  .config(
+    /* @ngInject */ (ovhProxyRequestProvider) => {
+      ovhProxyRequestProvider.proxy('$http');
+      ovhProxyRequestProvider.pathPrefix('apiv6');
+    },
+  )
   .config([
     'tmhDynamicLocaleProvider',
     (tmhDynamicLocaleProvider) => {
-      tmhDynamicLocaleProvider.localeLocationPattern('resources/angular/i18n/angular-locale_{{locale}}.js');
+      tmhDynamicLocaleProvider.localeLocationPattern(
+        'resources/angular/i18n/angular-locale_{{locale}}.js',
+      );
     },
   ])
   .config([
@@ -214,12 +221,17 @@ angular
     'atInternetUiRouterPluginProvider',
     'constants',
     (atInternetProvider, atInternetUiRouterPluginProvider, constants) => {
-      atInternetProvider.setEnabled(constants.prodMode && window.location.port.length <= 3);
+      atInternetProvider.setEnabled(
+        constants.prodMode && window.location.port.length <= 3,
+      );
       atInternetProvider.setDebug(!constants.prodMode);
 
-      atInternetUiRouterPluginProvider
-        .setTrackStateChange(constants.prodMode && window.location.port.length <= 3);
-      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => (routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : ''));
+      atInternetUiRouterPluginProvider.setTrackStateChange(
+        constants.prodMode && window.location.port.length <= 3,
+      );
+      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) =>
+        routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : '',
+      );
     },
   ])
   .constant('TRACKING', {
@@ -228,10 +240,12 @@ angular
     },
   })
   .run((atInternet, TRACKING, OvhApiMe) => {
-    const { config } = TRACKING; // eslint-disable-line
+    // eslint-disable-next-line no-shadow
+    const { config } = TRACKING;
 
-    OvhApiMe.v6().get().$promise
-      .then((me) => {
+    OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
         config.countryCode = me.country;
         config.currencyCode = me.currency && me.currency.code;
         config.visitorId = me.customerCode;
@@ -244,7 +258,10 @@ angular
       $locationProvider.hashPrefix('');
     },
   ])
-  .constant('URLS_REDIRECTED_TO_DEDICATED', [new RegExp('/useraccount/.*'), new RegExp('/billing/.*')])
+  .constant('URLS_REDIRECTED_TO_DEDICATED', [
+    new RegExp('/useraccount/.*'),
+    new RegExp('/billing/.*'),
+  ])
   .config([
     '$stateProvider',
     '$urlRouterProvider',
@@ -281,7 +298,11 @@ angular
           '$location',
           ($window, constants, $location) => {
             const lastPartOfUrl = $location.url().substring(1);
-            set($window, 'location', `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`);
+            set(
+              $window,
+              'location',
+              `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`,
+            );
           },
         ]);
       });
@@ -407,9 +428,8 @@ angular
     'URLS_REDIRECTED_TO_DEDICATED',
     (constants, $location, URLS_REDIRECTED_TO_DEDICATED) => {
       forEach(
-        filter(
-          URLS_REDIRECTED_TO_DEDICATED,
-          (url) => url.test(window.location.href),
+        filter(URLS_REDIRECTED_TO_DEDICATED, (url) =>
+          url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
@@ -437,7 +457,8 @@ angular
     '$rootScope',
     ($rootScope) => {
       $rootScope.$on('$locationChangeStart', () => {
-        delete $rootScope.isLeftMenuVisible; // eslint-disable-line
+        // eslint-disable-next-line no-param-reassign
+        delete $rootScope.isLeftMenuVisible;
       });
     },
   ])
@@ -474,8 +495,24 @@ angular
     set(editableOptions, 'theme', 'default');
 
     // overwrite submit button template
-    set(editableThemes, 'default.submitTpl', ['<button style="background:none;border:none" type="submit">', '<i class="fa fa-check green"></i>', '</button>'].join(''));
-    set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
+    set(
+      editableThemes,
+      'default.submitTpl',
+      [
+        '<button style="background:none;border:none" type="submit">',
+        '<i class="fa fa-check green"></i>',
+        '</button>',
+      ].join(''),
+    );
+    set(
+      editableThemes,
+      'default.cancelTpl',
+      [
+        '<button style="background:none;border:none" ng-click="$form.$cancel()">',
+        '<i class="fa fa-times red"></i>',
+        '</button>',
+      ].join(''),
+    );
   })
   .constant('UNIVERSE', 'WEB')
   .constant('MANAGER_URLS', {
@@ -488,15 +525,23 @@ angular
     partners: 'https://www.ovh.com/manager/partners/',
     labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
   })
-  .run(/* @ngInject */ ($state) => {
-    $state.defaultErrorHandler((error) => {
-      if (error.type === RejectType.ERROR) {
-        $state.go('app.error', {
-          detail: {
-            message: get(error.detail, 'data.message'),
-            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
-          },
-        }, { location: false });
-      }
-    });
-  });
+  .run(
+    /* @ngInject */ ($state) => {
+      $state.defaultErrorHandler((error) => {
+        if (error.type === RejectType.ERROR) {
+          $state.go(
+            'app.error',
+            {
+              detail: {
+                message: get(error.detail, 'data.message'),
+                code: has(error.detail, 'headers')
+                  ? error.detail.headers('x-ovh-queryId')
+                  : null,
+              },
+            },
+            { location: false },
+          );
+        }
+      });
+    },
+  );

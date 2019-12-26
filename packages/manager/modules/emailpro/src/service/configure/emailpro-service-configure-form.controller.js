@@ -1,4 +1,4 @@
-export default /* @ngInject */ function ($scope) {
+export default /* @ngInject */ function($scope) {
   const self = this;
   const intRegex = /^\d+$/;
 
@@ -17,13 +17,15 @@ export default /* @ngInject */ function ($scope) {
     if (value) {
       try {
         intValue = parseInt(value, 10);
-        if (intRegex.test(value) && !isNaN(intValue)) { // eslint-disable-line
+        // eslint-disable-next-line no-restricted-globals
+        if (intRegex.test(value) && !isNaN(intValue)) {
           if (intValue !== 0) {
             input.$setValidity('min', intValue >= 3);
           }
           input.$setValidity('max', intValue <= 14);
         } else {
-          throw 'NaN'; // eslint-disable-line
+          // eslint-disable-next-line no-throw-literal
+          throw 'NaN';
         }
       } catch (e) {
         input.$setValidity('mustBeInteger', false);
@@ -43,15 +45,20 @@ export default /* @ngInject */ function ($scope) {
     if (value !== undefined && value !== null) {
       try {
         intValue = parseInt(value, 10);
-        if (intRegex.test(value) && !isNaN(intValue)) { // eslint-disable-line
+        // eslint-disable-next-line no-restricted-globals
+        if (intRegex.test(value) && !isNaN(intValue)) {
           if ($scope.service.maxPasswordAge === 0) {
             input.$setValidity('min', intValue >= 0);
             input.$setValidity('max', intValue <= 90);
           } else if (intValue !== 0) {
-            input.$setValidity('minToBigForMax', intValue < +$scope.service.maxPasswordAge);
+            input.$setValidity(
+              'minToBigForMax',
+              intValue < +$scope.service.maxPasswordAge,
+            );
           }
         } else {
-          throw 'NaN'; // eslint-disable-line
+          // eslint-disable-next-line no-throw-literal
+          throw 'NaN';
         }
       } catch (e) {
         input.$setValidity('mustBeInteger', false);
@@ -71,15 +78,20 @@ export default /* @ngInject */ function ($scope) {
     if (value) {
       try {
         intValue = parseInt(value, 10);
-        if (intRegex.test(value) && !isNaN(intValue)) { // eslint-disable-line
+        // eslint-disable-next-line no-restricted-globals
+        if (intRegex.test(value) && !isNaN(intValue)) {
           input.$setValidity('min', intValue >= 0);
           input.$setValidity('max', intValue <= 90);
 
           if (intValue !== 0) {
-            input.$setValidity('maxToSmallForMin', intValue > +$scope.service.minPasswordAge);
+            input.$setValidity(
+              'maxToSmallForMin',
+              intValue > +$scope.service.minPasswordAge,
+            );
           }
         } else {
-          throw 'NaN'; // eslint-disable-line
+          // eslint-disable-next-line no-throw-literal
+          throw 'NaN';
         }
       } catch (e) {
         input.$setValidity('mustBeInteger', false);
@@ -106,19 +118,24 @@ export default /* @ngInject */ function ($scope) {
       } catch (err) {
         return input.$setValidity('number', false);
       }
-      if (intRegex.test(value) && !isNaN(intValue)) { // eslint-disable-line
+      // eslint-disable-next-line no-restricted-globals
+      if (intRegex.test(value) && !isNaN(intValue)) {
         input.$setValidity('min', intValue >= 0);
         input.$setValidity('max', intValue <= 14);
       } else {
         return input.$setValidity('number', false);
       }
     }
-    self.lockoutObservationWindowCheck($scope.serviceForm.lockoutObservationWindow);
+    self.lockoutObservationWindowCheck(
+      $scope.serviceForm.lockoutObservationWindow,
+    );
     self.lockoutDurationCheck($scope.serviceForm.lockoutDuration);
     return null;
   };
 
-  this.lockoutObservationWindowCheck = function lockoutObservationWindowCheck(input) {
+  this.lockoutObservationWindowCheck = function lockoutObservationWindowCheck(
+    input,
+  ) {
     if (!input) {
       return null;
     }
@@ -139,13 +156,20 @@ export default /* @ngInject */ function ($scope) {
         return input.$setValidity('number', false);
       }
       if ($scope.service.lockoutThreshold !== 0) {
-        if (isNaN(intValue)) { // eslint-disable-line
+        // eslint-disable-next-line no-restricted-globals
+        if (isNaN(intValue)) {
           input.$setValidity('number', false);
         } else if (intRegex.test(value)) {
           input.$setValidity('min', intValue >= 1);
           input.$setValidity('max', intValue <= 90);
-          if ($scope.service.lockoutDuration && $scope.service.lockoutDuration > 0) {
-            input.$setValidity('toBigForDuration', intValue <= $scope.service.lockoutDuration);
+          if (
+            $scope.service.lockoutDuration &&
+            $scope.service.lockoutDuration > 0
+          ) {
+            input.$setValidity(
+              'toBigForDuration',
+              intValue <= $scope.service.lockoutDuration,
+            );
           }
         } else {
           input.$setValidity('mustBeInteger', false);
@@ -177,10 +201,14 @@ export default /* @ngInject */ function ($scope) {
         return input.$setValidity('number', false);
       }
       if ($scope.service.lockoutThreshold !== 0) {
-        if (isNaN(intValue)) { // eslint-disable-line
+        // eslint-disable-next-line no-restricted-globals
+        if (isNaN(intValue)) {
           input.$setValidity('number', false);
         } else if (intRegex.test(value)) {
-          input.$setValidity('min', intValue >= $scope.service.lockoutObservationWindow && intValue > 0);
+          input.$setValidity(
+            'min',
+            intValue >= $scope.service.lockoutObservationWindow && intValue > 0,
+          );
           input.$setValidity('max', intValue <= 90);
         }
       } else {
@@ -190,7 +218,9 @@ export default /* @ngInject */ function ($scope) {
       input.$setValidity('number', true);
       input.$setValidity('required', true);
     }
-    self.lockoutObservationWindowCheck($scope.serviceForm.lockoutObservationWindow);
+    self.lockoutObservationWindowCheck(
+      $scope.serviceForm.lockoutObservationWindow,
+    );
     return null;
   };
 

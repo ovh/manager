@@ -4,8 +4,6 @@ import factory from './factory';
 
 const moduleName = 'cucOrderedHash';
 
-angular
-  .module(moduleName, [])
-  .factory('CucOrderedHashFactory', factory);
+angular.module(moduleName, []).factory('CucOrderedHashFactory', factory);
 
 export default moduleName;

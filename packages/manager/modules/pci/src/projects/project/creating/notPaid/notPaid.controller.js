@@ -30,14 +30,22 @@ export default class ProjectCreatingNotPaidCtrl {
     return this.projectCreating
       .cancelProjectCreation(this.projectId)
       .then(() => this.$state.go('app'))
-      .catch((error) => this.$state.go('pci.error', {
-        detail: {
-          message: get(error, 'data.message'),
-          code: has(error, 'headers') ? error.headers('x-ovh-queryId') : null,
-        },
-      }, {
-        location: false,
-      }))
+      .catch((error) =>
+        this.$state.go(
+          'pci.error',
+          {
+            detail: {
+              message: get(error, 'data.message'),
+              code: has(error, 'headers')
+                ? error.headers('x-ovh-queryId')
+                : null,
+            },
+          },
+          {
+            location: false,
+          },
+        ),
+      )
       .finally(() => {
         this.loading.cancel = false;
       });

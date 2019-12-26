@@ -24,9 +24,9 @@ class DualListProvider {
   }
 
   /**
-     * Set the translations for the dual list component
-     * @param {Object} translations a map of translations
-     */
+   * Set the translations for the dual list component
+   * @param {Object} translations a map of translations
+   */
   setTranslations(translations) {
     this.translations = translations;
     return this;

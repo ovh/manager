@@ -18,7 +18,11 @@ angular.module('Module.otrs.filters').filter('htmlStringLinky', [
     const { isObject } = angular;
     const { isString } = angular;
 
-    return function htmlStringLinkyFilterFunction(textParam, target, attributes) {
+    return function htmlStringLinkyFilterFunction(
+      textParam,
+      target,
+      attributes,
+    ) {
       let text = textParam;
       text = unescape(text);
       if (text == null || text === '') {
@@ -26,7 +30,11 @@ angular.module('Module.otrs.filters').filter('htmlStringLinky', [
       }
 
       if (!isString(text)) {
-        throw linkyMinErr('notstring', 'Expected string but received: {0}', text);
+        throw linkyMinErr(
+          'notstring',
+          'Expected string but received: {0}',
+          text,
+        );
       }
 
       let attributesFn = attributes;
@@ -54,7 +62,7 @@ angular.module('Module.otrs.filters').filter('htmlStringLinky', [
         }
         try {
           html.push($sanitize(_text));
-        } catch (error) { // eslint-disable-line no-unused-vars
+        } catch (error) {
           html.push(escape(_text));
         }
       }

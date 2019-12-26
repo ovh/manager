@@ -1,4 +1,4 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.privateNetwork.delete', {
     url: '/delete?networkId',
     views: {
@@ -11,7 +11,8 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       goBack: /* @ngInject */ (goToPrivateNetworks) => goToPrivateNetworks,
-      networkId: /* @ngInject */ ($transition$) => $transition$.params().networkId,
+      networkId: /* @ngInject */ ($transition$) =>
+        $transition$.params().networkId,
       breadcrumb: () => null,
     },
     layout: 'modal',

@@ -9,13 +9,7 @@ import routing from './dns-zone.routing';
 const moduleName = 'ovhManagerWebDomainDnsZone';
 
 angular
-  .module(moduleName, [
-    dashboard,
-    dynhost,
-    newDnsZone,
-    redirection,
-    tasks,
-  ])
+  .module(moduleName, [dashboard, dynhost, newDnsZone, redirection, tasks])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

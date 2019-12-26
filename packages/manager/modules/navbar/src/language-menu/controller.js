@@ -45,8 +45,9 @@ export default class {
   }
 
   getCurrentLang() {
-    return this.availableLangs
-      .find(({ key }) => key === this.TranslateService.getUserLocale());
+    return this.availableLangs.find(
+      ({ key }) => key === this.TranslateService.getUserLocale(),
+    );
   }
 
   formatCurrentLang() {

@@ -6,9 +6,20 @@ import set from 'lodash/set';
 
 class CloudProjectComputeCtrl {
   constructor(
-    $q, $scope, $state, $stateParams, $translate, $window, OvhApiCloudProject, CucCloudMessage,
+    $q,
+    $scope,
+    $state,
+    $stateParams,
+    $translate,
+    $window,
+    OvhApiCloudProject,
+    CucCloudMessage,
     CloudProjectOrchestrator,
-    CucUserPref, CucFeatureAvailabilityService, OvhApiMe, moment, PCI_ANNOUNCEMENTS,
+    CucUserPref,
+    CucFeatureAvailabilityService,
+    OvhApiMe,
+    moment,
+    PCI_ANNOUNCEMENTS,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -38,7 +49,10 @@ class CloudProjectComputeCtrl {
 
   loadMessage() {
     this.CucCloudMessage.unSubscribe('iaas.pci-project.compute');
-    this.messageHandler = this.CucCloudMessage.subscribe('iaas.pci-project.compute', { onMessage: () => this.refreshMessage() });
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'iaas.pci-project.compute',
+      { onMessage: () => this.refreshMessage() },
+    );
   }
 
   refreshMessage() {
@@ -55,9 +69,11 @@ class CloudProjectComputeCtrl {
   init() {
     this.loading = true;
 
-    this.OvhApiMe.v6().get().$promise.then((me) => {
-      this.loadAnnouncements(me.ovhSubsidiary);
-    });
+    this.OvhApiMe.v6()
+      .get()
+      .$promise.then((me) => {
+        this.loadAnnouncements(me.ovhSubsidiary);
+      });
 
     return this.shouldRedirectToProjectListView()
       .then((redirect) => {
@@ -73,14 +89,20 @@ class CloudProjectComputeCtrl {
       return this.$q.when(false);
     }
 
-    const hasTooMany = this.$q.all({
-      hasTooManyInstances: this.CloudProjectOrchestrator.hasTooManyInstances(
-        this.$stateParams.projectId,
-      ),
-      hasTooManyIps: this.CloudProjectOrchestrator.hasTooManyIps(this.$stateParams.projectId),
-    }).then((result) => result.hasTooManyInstances || result.hasTooManyIps);
+    const hasTooMany = this.$q
+      .all({
+        hasTooManyInstances: this.CloudProjectOrchestrator.hasTooManyInstances(
+          this.$stateParams.projectId,
+        ),
+        hasTooManyIps: this.CloudProjectOrchestrator.hasTooManyIps(
+          this.$stateParams.projectId,
+        ),
+      })
+      .then((result) => result.hasTooManyInstances || result.hasTooManyIps);
 
-    return this.CucUserPref.get(`cloud_project_${this.serviceName}_overview`).then((params) => {
+    return this.CucUserPref.get(
+      `cloud_project_${this.serviceName}_overview`,
+    ).then((params) => {
       if (params && params.hide) {
         return false;
       }
@@ -99,12 +121,8 @@ class CloudProjectComputeCtrl {
       }
     });
     this.$q.all(areDismissed).then((areDismissedMessages) => {
-      const messages = map(
-        areDismissedMessages,
-        (announcement) => this.augmentMessage(
-          announcement,
-          ovhSubsidiary,
-        ),
+      const messages = map(areDismissedMessages, (announcement) =>
+        this.augmentMessage(announcement, ovhSubsidiary),
       );
       forEach(messages, (message) => this.CucCloudMessage.info(message));
     });
@@ -120,11 +138,16 @@ class CloudProjectComputeCtrl {
       return augmentedMessage;
     }
     augmentedMessage.link = {};
-    augmentedMessage.link.value = message.linkURL[ovhSubsidiary] || message.linkURL.EN;
+    augmentedMessage.link.value =
+      message.linkURL[ovhSubsidiary] || message.linkURL.EN;
     if (message.hasLinkText) {
-      augmentedMessage.link.text = this.$translate.instant(`${message.messageId}_link`);
+      augmentedMessage.link.text = this.$translate.instant(
+        `${message.messageId}_link`,
+      );
     } else {
-      augmentedMessage.link.text = this.$translate.instant('cloud_message_pci_no_link');
+      augmentedMessage.link.text = this.$translate.instant(
+        'cloud_message_pci_no_link',
+      );
     }
     return augmentedMessage;
   }
@@ -141,4 +164,6 @@ class CloudProjectComputeCtrl {
   }
 }
 
-angular.module('managerApp').controller('CloudProjectComputeCtrl', CloudProjectComputeCtrl);
+angular
+  .module('managerApp')
+  .controller('CloudProjectComputeCtrl', CloudProjectComputeCtrl);

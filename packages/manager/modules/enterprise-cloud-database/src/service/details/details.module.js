@@ -23,7 +23,10 @@ angular
     settings,
   ])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsComponent', enterpriseCloudDatabaseServiceDetailsComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsComponent',
+    enterpriseCloudDatabaseServiceDetailsComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

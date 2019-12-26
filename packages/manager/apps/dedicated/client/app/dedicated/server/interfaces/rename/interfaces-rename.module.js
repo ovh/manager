@@ -4,9 +4,7 @@ import routing from './interfaces-rename.routing';
 const moduleName = 'ovhManagerDedicatedServerInterfacesRename';
 
 angular
-  .module(moduleName, [
-    'ui.router',
-  ])
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('dedicatedServerInterfacesRename', component);
 

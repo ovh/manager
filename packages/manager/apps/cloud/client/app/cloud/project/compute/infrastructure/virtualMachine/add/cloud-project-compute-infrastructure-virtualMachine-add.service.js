@@ -23,8 +23,16 @@ import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
 
 class CloudProjectVirtualMachineAddService {
-  constructor($q, $translate, CloudFlavorService, CloudImageService, CucControllerModalHelper,
-    OvhApiCloudProject, OvhApiCloudProjectInstance, OvhApiCloudProjectNetworkPrivateSubnet) {
+  constructor(
+    $q,
+    $translate,
+    CloudFlavorService,
+    CloudImageService,
+    CucControllerModalHelper,
+    OvhApiCloudProject,
+    OvhApiCloudProjectInstance,
+    OvhApiCloudProjectNetworkPrivateSubnet,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CloudFlavorService = CloudFlavorService;
@@ -36,19 +44,19 @@ class CloudProjectVirtualMachineAddService {
   }
 
   getAugmentedImages(images) {
-    return map(uniqBy(images, 'id'), this.CloudImageService.constructor.augmentImage);
+    return map(
+      uniqBy(images, 'id'),
+      this.CloudImageService.constructor.augmentImage,
+    );
   }
 
   filterFlavorsByType(flavors, type) {
     return filter(
       map(
-        filter(
-          flavors,
-          {
-            available: true,
-            osType: type,
-          },
-        ),
+        filter(flavors, {
+          available: true,
+          osType: type,
+        }),
         (flavor) => this.CloudFlavorService.augmentFlavor(flavor),
       ),
       {
@@ -59,78 +67,111 @@ class CloudProjectVirtualMachineAddService {
   }
 
   static getFilteredFlavorsByRegion(flavors, regionCode) {
-    const filteredFlavors = uniqBy(remove(flavors, { region: regionCode }), 'name');
+    const filteredFlavors = uniqBy(
+      remove(flavors, { region: regionCode }),
+      'name',
+    );
     const usedFlavorNames = uniq(map(filteredFlavors, (flavor) => flavor.name));
     const notAvailableFlavors = filter(
       flavors,
       (flavor) => !includes(usedFlavorNames, flavor.name),
     );
-    const outOfRegionFlavors = map(uniqBy(notAvailableFlavors, 'name'), (flavor) => {
-      set(flavor, 'regions', map(filter(notAvailableFlavors, (f) => f.name === flavor.name), 'region'));
-      set(flavor, 'disabled', 'NOT_AVAILABLE');
-      delete flavor.region; // eslint-disable-line
-      delete flavor.price; // eslint-disable-line
-      return flavor;
-    });
+    const outOfRegionFlavors = map(
+      uniqBy(notAvailableFlavors, 'name'),
+      (flavor) => {
+        set(
+          flavor,
+          'regions',
+          map(
+            filter(notAvailableFlavors, (f) => f.name === flavor.name),
+            'region',
+          ),
+        );
+        set(flavor, 'disabled', 'NOT_AVAILABLE');
+        // eslint-disable-next-line no-param-reassign
+        delete flavor.region;
+        // eslint-disable-next-line no-param-reassign
+        delete flavor.price;
+        return flavor;
+      },
+    );
 
     return filteredFlavors.concat(outOfRegionFlavors);
   }
 
-  static getFilteredPrivateNetworksByRegion(privateNetworks, regionCode, subNets = []) {
+  static getFilteredPrivateNetworksByRegion(
+    privateNetworks,
+    regionCode,
+    subNets = [],
+  ) {
     return map(
       sortBy(
-        filter(
-          privateNetworks,
-          (network) => {
-            if (!has(subNets, network.id)) {
-              return false;
-            }
-            return some(network.regions, {
-              region: regionCode,
-            });
-          },
-        ),
+        filter(privateNetworks, (network) => {
+          if (!has(subNets, network.id)) {
+            return false;
+          }
+          return some(network.regions, {
+            region: regionCode,
+          });
+        }),
         'vlanId',
       ),
-      (network) => assign(network, {
-        vlanId: padStart(network.vlanId, 4, '0'),
-      }),
+      (network) =>
+        assign(network, {
+          vlanId: padStart(network.vlanId, 4, '0'),
+        }),
     );
   }
 
-  /* eslint-disable no-nested-ternary */
   getImageApps(images) {
-    return uniqBy(forEach(this.CloudImageService.constructor.getApps(images), (app) => {
-      set(app, 'appName', get(app, 'name', '')
-        .replace(/^[a-z0-9\s]+ - /ig, '')
-        .replace(' - deprecated', ''));
-      delete app.region; // eslint-disable-line
-      delete app.id; // eslint-disable-line
-    }), 'name').sort((image1, image2) => (image1.appName < image2.appName ? -1 : image1.appName > image2.appName ? 1 : 0));
+    return uniqBy(
+      forEach(this.CloudImageService.constructor.getApps(images), (app) => {
+        set(
+          app,
+          'appName',
+          get(app, 'name', '')
+            .replace(/^[a-z0-9\s]+ - /gi, '')
+            .replace(' - deprecated', ''),
+        );
+        // eslint-disable-next-line no-param-reassign
+        delete app.region;
+        // eslint-disable-next-line no-param-reassign
+        delete app.id;
+      }),
+      'name',
+    ).sort((image1, image2) =>
+      // eslint-disable-next-line no-nested-ternary
+      image1.appName < image2.appName
+        ? -1
+        : image1.appName > image2.appName
+        ? 1
+        : 0,
+    );
   }
-  /* eslint-enable no-nested-ternary */
 
   static getMostRecentVm(vms) {
-    return filter(vms, { status: 'ACTIVE' }).sort((vm1, vm2) => new Date(vm2.created) - new Date(vm1.created))[0] || null;
+    return (
+      filter(vms, { status: 'ACTIVE' }).sort(
+        (vm1, vm2) => new Date(vm2.created) - new Date(vm1.created),
+      )[0] || null
+    );
   }
 
   getPrivateNetworksSubNets(serviceName, privateNetworks) {
     let networkIds = [];
     return thru(
       map(
-        tap(
-          map(
-            privateNetworks,
-            property('id'),
-          ),
-          (ids) => { networkIds = ids; },
-        ),
-        (networkId) => this.OvhApiCloudProjectNetworkPrivateSubnet
-          .v6()
-          .query({ serviceName, networkId })
-          .$promise,
+        tap(map(privateNetworks, property('id')), (ids) => {
+          networkIds = ids;
+        }),
+        (networkId) =>
+          this.OvhApiCloudProjectNetworkPrivateSubnet.v6().query({
+            serviceName,
+            networkId,
+          }).$promise,
       ),
-      (promises) => { // .mapKeys on a more recent lodash.
+      (promises) => {
+        // .mapKeys on a more recent lodash.
         const collection = {};
         forEach(promises, (promise, key) => {
           collection[networkIds[key]] = promise;
@@ -144,7 +185,10 @@ class CloudProjectVirtualMachineAddService {
 
   getRegionsByImageType(regions, allImages, imageType) {
     if (this.CloudImageService.constructor.isSnapshot(imageType)) {
-      return filter(regions, (region) => get(imageType, 'region', '') === region.microRegion.code);
+      return filter(
+        regions,
+        (region) => get(imageType, 'region', '') === region.microRegion.code,
+      );
     }
 
     const filteredImages = filter(cloneDeep(allImages), {
@@ -153,7 +197,10 @@ class CloudProjectVirtualMachineAddService {
       status: 'active',
     });
     const filteredRegions = uniq(map(filteredImages, (image) => image.region));
-    return filter(regions, (region) => indexOf(filteredRegions, region.microRegion.code) > -1);
+    return filter(
+      regions,
+      (region) => indexOf(filteredRegions, region.microRegion.code) > -1,
+    );
   }
 
   static groupRegionsByDatacenter(regions) {
@@ -173,14 +220,21 @@ class CloudProjectVirtualMachineAddService {
       reduce(
         flavorsTypes,
         (previousValues, flavorType) => {
-          const flavorsOfCurrentFlavorType = filter(flavors, { type: flavorType });
+          const flavorsOfCurrentFlavorType = filter(flavors, {
+            type: flavorType,
+          });
 
           if (isEmpty(flavorsOfCurrentFlavorType)) {
             return previousValues;
           }
 
-          const category = this.CloudFlavorService.getCategory(flavorType, true);
-          const categoryObject = find(previousValues, { category: category.id });
+          const category = this.CloudFlavorService.getCategory(
+            flavorType,
+            true,
+          );
+          const categoryObject = find(previousValues, {
+            category: category.id,
+          });
           const matchingFlavors = filter(flavors, { type: flavorType }).value();
 
           if (!categoryObject) {
@@ -193,7 +247,12 @@ class CloudProjectVirtualMachineAddService {
 
           categoryObject.flavors = categoryObject.flavors
             .concat(matchingFlavors)
-            .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+            .sort((a, b) =>
+              a.name.localeCompare(b.name, undefined, {
+                numeric: true,
+                sensitivity: 'base',
+              }),
+            );
 
           return previousValues;
         },
@@ -204,8 +263,9 @@ class CloudProjectVirtualMachineAddService {
   }
 
   hasVRack(serviceName) {
-    return this.OvhApiCloudProject.v6().vrack({ serviceName }).$promise
-      .then(() => true)
+    return this.OvhApiCloudProject.v6()
+      .vrack({ serviceName })
+      .$promise.then(() => true)
       .catch((err) => {
         if (get(err, 'status') === 404) {
           return false;
@@ -216,15 +276,22 @@ class CloudProjectVirtualMachineAddService {
 
   openSshKeyRegionModal(sshKey) {
     return this.CucControllerModalHelper.showConfirmationModal({
-      titleText: this.$translate.instant('cpcivm_add_step1_sshKey_regions_title'),
-      text: this.$translate.instant('cpcivm_add_step1_sshKey_regions_message', { sshKey }),
+      titleText: this.$translate.instant(
+        'cpcivm_add_step1_sshKey_regions_title',
+      ),
+      text: this.$translate.instant('cpcivm_add_step1_sshKey_regions_message', {
+        sshKey,
+      }),
     });
   }
 
   openQuotaModal(type, params = null) {
     this.CucControllerModalHelper.showWarningModal({
       title: this.$translate.instant(`cpcivm_add_step3_disabled_${type}`),
-      message: this.$translate.instant(`cpcivm_add_step3_disabled_message_${type}`, params),
+      message: this.$translate.instant(
+        `cpcivm_add_step3_disabled_message_${type}`,
+        params,
+      ),
     });
   }
 
@@ -242,10 +309,12 @@ class CloudProjectVirtualMachineAddService {
 
     if (data.number > 1) {
       postVm.number = data.number;
-      return this.OvhApiCloudProjectInstance.v6().bulk({ serviceName }, postVm).$promise;
+      return this.OvhApiCloudProjectInstance.v6().bulk({ serviceName }, postVm)
+        .$promise;
     }
 
-    return this.OvhApiCloudProjectInstance.v6().save({ serviceName }, postVm).$promise;
+    return this.OvhApiCloudProjectInstance.v6().save({ serviceName }, postVm)
+      .$promise;
   }
 
   static roundBandwidthValue(value) {
@@ -253,4 +322,9 @@ class CloudProjectVirtualMachineAddService {
   }
 }
 
-angular.module('managerApp').service('CloudProjectVirtualMachineAddService', CloudProjectVirtualMachineAddService);
+angular
+  .module('managerApp')
+  .service(
+    'CloudProjectVirtualMachineAddService',
+    CloudProjectVirtualMachineAddService,
+  );

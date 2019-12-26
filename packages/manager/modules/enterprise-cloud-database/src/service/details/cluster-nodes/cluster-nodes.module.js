@@ -8,12 +8,12 @@ import routing from './cluster-nodes.routing';
 const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSize';
 
 angular
-  .module(moduleName, [
-    addReplicas,
-    deleteReplicas,
-  ])
+  .module(moduleName, [addReplicas, deleteReplicas])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsClusterSizeComponent', enterpriseCloudDatabaseServiceDetailsClusterSizeComponent)
+  .component(
+    'enterpriseCloudDatabaseServiceDetailsClusterSizeComponent',
+    enterpriseCloudDatabaseServiceDetailsClusterSizeComponent,
+  )
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

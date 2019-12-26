@@ -14,7 +14,11 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       currentSection: () => 'zone',
-      navigationInformations: /* @ngInject */ (currentSection, Navigator, $rootScope) => {
+      navigationInformations: /* @ngInject */ (
+        currentSection,
+        Navigator,
+        $rootScope,
+      ) => {
         set($rootScope, 'currentSectionInformation', currentSection);
         return Navigator.setNavigationInformation({
           leftMenuVisible: true,

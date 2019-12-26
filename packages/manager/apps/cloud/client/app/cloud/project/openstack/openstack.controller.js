@@ -14,7 +14,10 @@
 
     loadMessages() {
       this.CucCloudMessage.unSubscribe('iaas.pci-project.compute.openstack');
-      this.messageHandler = this.CucCloudMessage.subscribe('iaas.pci-project.compute.openstack', { onMessage: () => this.refreshMessage() });
+      this.messageHandler = this.CucCloudMessage.subscribe(
+        'iaas.pci-project.compute.openstack',
+        { onMessage: () => this.refreshMessage() },
+      );
     }
 
     refreshMessage() {
@@ -22,5 +25,7 @@
     }
   }
 
-  angular.module('managerApp').controller('CloudProjectOpenstackCtrl', CloudProjectOpenstackCtrl);
+  angular
+    .module('managerApp')
+    .controller('CloudProjectOpenstackCtrl', CloudProjectOpenstackCtrl);
 })();

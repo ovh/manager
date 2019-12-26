@@ -53,7 +53,9 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * @return {number} number of pending tasks
      */
     self.countPendingTasks = function countPendingTasks() {
-      return self.countTotalTasks() - self.countDoneTasks() - self.countErrorTasks();
+      return (
+        self.countTotalTasks() - self.countDoneTasks() - self.countErrorTasks()
+      );
     };
 
     /**
@@ -78,7 +80,8 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
      * @return {number} number of tasks in theses states
      */
     self.countTasks = function countTasks() {
-      const states = arguments; // eslint-disable-line
+      // eslint-disable-next-line prefer-rest-params
+      const states = arguments;
       return reduce(
         values(taskQueues),
         (result, queue) => {
@@ -109,23 +112,30 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
     };
 
     function decorateTask(task) {
-      return $q.when()
+      return $q
+        .when()
         .then(() => {
           $rootScope.$broadcast('cloudStorageContainerTasksRunner:start_task');
           return task();
         })
         .then((result) => {
-          $rootScope.$broadcast('cloudStorageContainerTasksRunner:finish_task', {
-            status: 'success',
-            payload: result,
-          });
+          $rootScope.$broadcast(
+            'cloudStorageContainerTasksRunner:finish_task',
+            {
+              status: 'success',
+              payload: result,
+            },
+          );
           return result;
         })
         .catch((error) => {
-          $rootScope.$broadcast('cloudStorageContainerTasksRunner:finish_task', {
-            status: 'error',
-            payload: error,
-          });
+          $rootScope.$broadcast(
+            'cloudStorageContainerTasksRunner:finish_task',
+            {
+              status: 'error',
+              payload: error,
+            },
+          );
           return $q.reject(error);
         });
     }
@@ -206,5 +216,6 @@ angular.module('managerApp').service('CloudStorageContainerTasksRunner', [
 
       return defer.promise;
     };
-  }]);
+  },
+]);
 /* eslint-enable no-param-reassign, prefer-destructuring, consistent-return */

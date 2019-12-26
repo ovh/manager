@@ -11,7 +11,8 @@ import template from './template.html';
  * Handle switch session, opens the modal
  */
 export default function ssoAuthModalPluginFct() {
-  let translationPath = '../bower_components/ovh-angular-sso-auth-modal-plugin/dist/modal';
+  let translationPath =
+    '../bower_components/ovh-angular-sso-auth-modal-plugin/dist/modal';
   let deferredObj;
 
   /**
@@ -32,7 +33,9 @@ export default function ssoAuthModalPluginFct() {
       handleSwitchSession(ssoAuthentication) {
         if (!deferredObj) {
           const $q = $injector.get('$q');
-          const $uibModal = $injector.has('$uibModal') ? $injector.get('$uibModal') : $injector.get('$modal');
+          const $uibModal = $injector.has('$uibModal')
+            ? $injector.get('$uibModal')
+            : $injector.get('$modal');
 
           deferredObj = $q.defer();
 
@@ -70,7 +73,11 @@ export default function ssoAuthModalPluginFct() {
                 return angular.copy(modalDatas);
               },
             },
-            size: modalDatas.mode === 'DISCONNECTED_TO_CONNECTED' || modalDatas.mode === 'CONNECTED_TO_OTHER' ? 'lg' : undefined,
+            size:
+              modalDatas.mode === 'DISCONNECTED_TO_CONNECTED' ||
+              modalDatas.mode === 'CONNECTED_TO_OTHER'
+                ? 'lg'
+                : undefined,
             keyboard: false,
             backdrop: 'static',
             windowClass: 'sso-modal',

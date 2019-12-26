@@ -1,7 +1,9 @@
 angular.module('services').constant('BILLING_VANTIV', {
   SCRIPTS: {
-    PRELIVE: 'https://request.eprotect.vantivprelive.com/eProtect/js/eProtect-iframe-client.min.js',
-    PROD: 'https://request.eprotect.vantivcnp.com/eProtect/js/eProtect-iframe-client.min.js',
+    PRELIVE:
+      'https://request.eprotect.vantivprelive.com/eProtect/js/eProtect-iframe-client.min.js',
+    PROD:
+      'https://request.eprotect.vantivcnp.com/eProtect/js/eProtect-iframe-client.min.js',
   },
   RESPONSES_CODE: {
     SUCCESS: 870,

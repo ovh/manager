@@ -8,14 +8,16 @@ import signUpComponents from './components';
 const moduleName = 'ovhSignUp';
 
 angular
-  .module(moduleName, [
-    form,
-    signUpComponents,
-  ])
+  .module(moduleName, [form, signUpComponents])
   .service('signUp', service)
-  .filter('translateDefault', /* @ngInject */ ($translate) => (translationKey, fallbackKey) => {
-    const translation = $translate.instant(translationKey);
-    return translationKey === translation ? $translate.instant(fallbackKey) : translation;
-  });
+  .filter(
+    'translateDefault',
+    /* @ngInject */ ($translate) => (translationKey, fallbackKey) => {
+      const translation = $translate.instant(translationKey);
+      return translationKey === translation
+        ? $translate.instant(fallbackKey)
+        : translation;
+    },
+  );
 
 export default moduleName;

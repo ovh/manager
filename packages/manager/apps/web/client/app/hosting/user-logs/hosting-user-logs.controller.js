@@ -45,9 +45,7 @@ angular.module('App').controller(
         this.guide = get(guides, 'hostingStatsLogs');
       });
 
-      if (
-        ['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)
-      ) {
+      if (['gra1', 'gra2'].includes(this.$scope.hostingProxy.datacenter)) {
         // FOR GRAVELINE
         this.urlUrchin = URI.expand(this.constants.urchin_gra, {
           serviceName: this.$stateParams.productId,

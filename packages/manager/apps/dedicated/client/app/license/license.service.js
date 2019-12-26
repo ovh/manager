@@ -24,8 +24,9 @@ angular.module('Module.license').service('License', [
 
     this.types = filter(
       types,
-      (type) => !licenseFeatureAvailability.allowLicenseAgoraOrder()
-        || licenseFeatureAvailability.allowLicenseTypeAgoraOrder(type),
+      (type) =>
+        !licenseFeatureAvailability.allowLicenseAgoraOrder() ||
+        licenseFeatureAvailability.allowLicenseTypeAgoraOrder(type),
     );
 
     function init() {
@@ -42,8 +43,10 @@ angular.module('Module.license').service('License', [
             opts = b;
           }
 
-          return WucApi[operationType](url, opts)
-            .then((data) => data, (reason) => $q.reject(reason));
+          return WucApi[operationType](url, opts).then(
+            (data) => data,
+            (reason) => $q.reject(reason),
+          );
         };
       });
     }
@@ -51,7 +54,10 @@ angular.module('Module.license').service('License', [
     this.ips = function ips(opts) {
       const opts2api = assign({}, opts, { rootPath: '2api' });
 
-      return OvhHttp.get('/sws/license/availableIps', opts2api).then((data) => data, (reason) => $q.reject(reason));
+      return OvhHttp.get('/sws/license/availableIps', opts2api).then(
+        (data) => data,
+        (reason) => $q.reject(reason),
+      );
     };
 
     this.orderableVersion = function orderableVersion(ip) {
@@ -92,22 +98,31 @@ angular.module('Module.license').service('License', [
         },
         clearAllCache: true,
       }).then((dataResult) => {
-        $rootScope.$broadcast('paginationServerSide.reload', 'licensesPagination');
+        $rootScope.$broadcast(
+          'paginationServerSide.reload',
+          'licensesPagination',
+        );
         return dataResult;
       });
     };
 
     function hasOption(options, name) {
-      return options
-        && options[name] !== undefined
-        && options[name] !== null
-        && options[name].value !== null;
+      return (
+        options &&
+        options[name] !== undefined &&
+        options[name] !== null &&
+        options[name].value !== null
+      );
     }
 
     function setPleskOptions(opts, data) {
       if (data.options) {
         if (hasOption(data.options, 'languagePackNumber')) {
-          set(opts, 'languagePackNumber', data.options.languagePackNumber.value);
+          set(
+            opts,
+            'languagePackNumber',
+            data.options.languagePackNumber.value,
+          );
         }
 
         if (hasOption(data.options, 'antivirus')) {
@@ -177,7 +192,9 @@ angular.module('Module.license').service('License', [
       return (type || '').toLowerCase();
     }
 
-    this.getLicenseOrderForDuration = function getLicenseOrderForDuration(data) {
+    this.getLicenseOrderForDuration = function getLicenseOrderForDuration(
+      data,
+    ) {
       const opts = getOptsForLicenseOrderOrUpgrade(data);
       if (opts !== null) {
         return OvhHttp.get('/order/license/{type}/new/{duration}', {
@@ -192,23 +209,30 @@ angular.module('Module.license').service('License', [
       return $q.when(null);
     };
 
-    this.getLicenseUpgradeForDuration = function getLicenseUpgradeForDuration(data) {
+    this.getLicenseUpgradeForDuration = function getLicenseUpgradeForDuration(
+      data,
+    ) {
       const opts = getOptsForLicenseOrderOrUpgrade(data);
       if (opts !== null) {
-        return OvhHttp.get('/order/license/{type}/{serviceName}/upgrade/{duration}', {
-          rootPath: 'apiv6',
-          urlParams: {
-            type: getLicenseType(data.licenseType),
-            serviceName: data.id,
-            duration: data.duration,
+        return OvhHttp.get(
+          '/order/license/{type}/{serviceName}/upgrade/{duration}',
+          {
+            rootPath: 'apiv6',
+            urlParams: {
+              type: getLicenseType(data.licenseType),
+              serviceName: data.id,
+              duration: data.duration,
+            },
+            params: opts,
           },
-          params: opts,
-        });
+        );
       }
       return $q.when(null);
     };
 
-    this.orderLicenseOrderForDuration = function orderLicenseOrderForDuration(data) {
+    this.orderLicenseOrderForDuration = function orderLicenseOrderForDuration(
+      data,
+    ) {
       const opts = getOptsForLicenseOrderOrUpgrade(data);
       if (opts !== null) {
         return OvhHttp.post('/order/license/{type}/new/{duration}', {
@@ -223,18 +247,23 @@ angular.module('Module.license').service('License', [
       return $q.when(null);
     };
 
-    this.upgradeLicenseOrderForDuration = function upgradeLicenseOrderForDuration(data) {
+    this.upgradeLicenseOrderForDuration = function upgradeLicenseOrderForDuration(
+      data,
+    ) {
       const opts = getOptsForLicenseOrderOrUpgrade(data);
       if (opts !== null) {
-        return OvhHttp.post('/order/license/{type}/{serviceName}/upgrade/{duration}', {
-          rootPath: 'apiv6',
-          urlParams: {
-            type: getLicenseType(data.licenseType),
-            serviceName: data.id,
-            duration: data.duration,
+        return OvhHttp.post(
+          '/order/license/{type}/{serviceName}/upgrade/{duration}',
+          {
+            rootPath: 'apiv6',
+            urlParams: {
+              type: getLicenseType(data.licenseType),
+              serviceName: data.id,
+              duration: data.duration,
+            },
+            data: opts,
           },
-          data: opts,
-        });
+        );
       }
       return $q.when(null);
     };
@@ -281,7 +310,11 @@ angular.module('Module.license').service('License', [
       });
     };
 
-    this.canLicenceBeMovedTo = function canLicenceBeMovedTo({ type, id, destinationIp }) {
+    this.canLicenceBeMovedTo = function canLicenceBeMovedTo({
+      type,
+      id,
+      destinationIp,
+    }) {
       return OvhHttp.get('/license/{type}/{id}/canLicenseBeMovedTo', {
         rootPath: 'apiv6',
         urlParams: {
@@ -301,12 +334,15 @@ angular.module('Module.license').service('License', [
     };
 
     this.splaAddAvailableTypes = function splaAddAvailableTypes(server) {
-      return OvhHttp.get('/sws/license/server/{serverServiceName}/splaAvailableTypes', {
-        rootPath: '2api',
-        urlParams: {
-          serverServiceName: server,
+      return OvhHttp.get(
+        '/sws/license/server/{serverServiceName}/splaAvailableTypes',
+        {
+          rootPath: '2api',
+          urlParams: {
+            serverServiceName: server,
+          },
         },
-      }).then((data) => ({ availableTypes: data }));
+      ).then((data) => ({ availableTypes: data }));
     };
 
     this.splaAdd = function splaAdd(serviceName, data) {
@@ -335,7 +371,9 @@ angular.module('Module.license').service('License', [
       });
     };
 
-    this.deleteLicenseAtExpiration = function deleteLicenseAtExpiration(license) {
+    this.deleteLicenseAtExpiration = function deleteLicenseAtExpiration(
+      license,
+    ) {
       return OvhHttp.put('/license/{type}/{serviceName}/serviceInfos', {
         rootPath: 'apiv6',
         urlParams: {
@@ -365,17 +403,18 @@ angular.module('Module.license').service('License', [
       });
     };
 
-    this.tasks = (licence, action = '', status = '') => OvhHttp.get('/license/{type}/{serviceName}/tasks', {
-      rootPath: 'apiv6',
-      urlParams: {
-        type: getLicenseType(licence.type),
-        serviceName: licence.id,
-      },
-      data: {
-        action,
-        status,
-      },
-    });
+    this.tasks = (licence, action = '', status = '') =>
+      OvhHttp.get('/license/{type}/{serviceName}/tasks', {
+        rootPath: 'apiv6',
+        urlParams: {
+          type: getLicenseType(licence.type),
+          serviceName: licence.id,
+        },
+        data: {
+          action,
+          status,
+        },
+      });
 
     this.terminate = function terminate(serviceName, license) {
       return OvhHttp.post('/license/{licenseType}/{serviceName}/terminate', {

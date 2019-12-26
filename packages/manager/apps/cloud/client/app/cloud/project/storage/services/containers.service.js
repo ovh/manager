@@ -5,8 +5,12 @@ angular.module('managerApp').service('CloudStorageContainers', [
   'OvhApiCloudProjectStorage',
   'CloudStorageContainersConfiguration',
   'CloudStorageContainer',
-  function CloudStorageContainers($q, OvhApiCloudProjectStorage, storageContainerConfig,
-    storageContainer) {
+  function CloudStorageContainers(
+    $q,
+    OvhApiCloudProjectStorage,
+    storageContainerConfig,
+    storageContainer,
+  ) {
     const self = this;
 
     /**
@@ -16,16 +20,24 @@ angular.module('managerApp').service('CloudStorageContainers', [
      */
     self.list = function list(projectId) {
       function saveNameAndRegion(container) {
-        const data = storageContainerConfig.containerMetaCache.get(projectId, container.id);
+        const data = storageContainerConfig.containerMetaCache.get(
+          projectId,
+          container.id,
+        );
         if (!data) {
-          storageContainerConfig.containerMetaCache.set(projectId, container.id, pick(container, ['name', 'region']));
+          storageContainerConfig.containerMetaCache.set(
+            projectId,
+            container.id,
+            pick(container, ['name', 'region']),
+          );
         }
       }
 
-      return OvhApiCloudProjectStorage.v6().query({
-        projectId,
-      }).$promise
-        .then((containers) => {
+      return OvhApiCloudProjectStorage.v6()
+        .query({
+          projectId,
+        })
+        .$promise.then((containers) => {
           // Cache name and region of each container
           containers.forEach((container) => {
             saveNameAndRegion(container);
@@ -55,19 +67,25 @@ angular.module('managerApp').service('CloudStorageContainers', [
       }
 
       return OvhApiCloudProjectStorage.v6()
-        .save({
-          projectId,
-        }, data).$promise
-        .then((result) => {
+        .save(
+          {
+            projectId,
+          },
+          data,
+        )
+        .$promise.then((result) => {
           currentContainerId = result.id;
           containerData = result;
 
           // Make container a static hosting
           if (type === 'static') {
-            return OvhApiCloudProjectStorage.v6().static({
-              projectId,
-              containerId: currentContainerId,
-            }, {}).$promise;
+            return OvhApiCloudProjectStorage.v6().static(
+              {
+                projectId,
+                containerId: currentContainerId,
+              },
+              {},
+            ).$promise;
           }
 
           // Make container public
@@ -88,11 +106,12 @@ angular.module('managerApp').service('CloudStorageContainers', [
      * @return {Promise}
      */
     self.delete = function deleteFn(projectId, containerId) {
-      return OvhApiCloudProjectStorage.v6().get({
-        projectId,
-        containerId,
-      }).$promise
-        .then((containerData) => {
+      return OvhApiCloudProjectStorage.v6()
+        .get({
+          projectId,
+          containerId,
+        })
+        .$promise.then((containerData) => {
           if (containerData.objects.length) {
             return $q.reject('NON_EMPTY_CONTAINER');
           }
@@ -102,4 +121,5 @@ angular.module('managerApp').service('CloudStorageContainers', [
           }).$promise;
         });
     };
-  }]);
+  },
+]);

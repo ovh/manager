@@ -5,7 +5,14 @@ import isEmpty from 'lodash/isEmpty';
 
 export default class ExchangeExternalContactsModifyCtrl {
   /* @ngInject */
-  constructor($scope, Exchange, ExchangeExternalContacts, navigation, messaging, $translate) {
+  constructor(
+    $scope,
+    Exchange,
+    ExchangeExternalContacts,
+    navigation,
+    messaging,
+    $translate,
+  ) {
     this.services = {
       $scope,
       Exchange,
@@ -29,9 +36,10 @@ export default class ExchangeExternalContactsModifyCtrl {
 
   isEmailValid() {
     return (
-      has(this.model, 'newAccount.externalEmailAddress')
-      && this.services.Exchange.constructor
-        .isEmailValid(this.model.newAccount.externalEmailAddress)
+      has(this.model, 'newAccount.externalEmailAddress') &&
+      this.services.Exchange.constructor.isEmailValid(
+        this.model.newAccount.externalEmailAddress,
+      )
     );
   }
 
@@ -63,7 +71,10 @@ export default class ExchangeExternalContactsModifyCtrl {
   }
 
   updateDisplayName() {
-    if (this.model.newAccount != null && !this.model.hasDisplayNameBeenModified) {
+    if (
+      this.model.newAccount != null &&
+      !this.model.hasDisplayNameBeenModified
+    ) {
       const firstName = get(this.model.newAccount, 'firstName', '');
       const lastName = get(this.model.newAccount, 'lastName', '');
       const separator = !isEmpty(firstName) && !isEmpty(lastName) ? ' ' : '';
@@ -73,10 +84,14 @@ export default class ExchangeExternalContactsModifyCtrl {
   }
 
   updateDisplayNameFlag() {
-    this.model.hasDisplayNameBeenModified = !isEmpty(this.model.newAccount.displayName);
+    this.model.hasDisplayNameBeenModified = !isEmpty(
+      this.model.newAccount.displayName,
+    );
   }
 
   accountIsValid() {
-    return this.services.ExchangeExternalContacts.isAccountValid(this.model.newAccount);
+    return this.services.ExchangeExternalContacts.isAccountValid(
+      this.model.newAccount,
+    );
   }
 }

@@ -2,22 +2,14 @@ import { EVENT_NAMES } from './support.constants';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $scope,
-  ) {
+  constructor($scope) {
     this.$scope = $scope;
   }
 
   $onInit() {
-    this.$scope.$on(
-      EVENT_NAMES.startLoading,
-      () => this.startLoading(),
-    );
+    this.$scope.$on(EVENT_NAMES.startLoading, () => this.startLoading());
 
-    this.$scope.$on(
-      EVENT_NAMES.stopLoading,
-      () => this.stopLoading(),
-    );
+    this.$scope.$on(EVENT_NAMES.stopLoading, () => this.stopLoading());
   }
 
   startLoading() {

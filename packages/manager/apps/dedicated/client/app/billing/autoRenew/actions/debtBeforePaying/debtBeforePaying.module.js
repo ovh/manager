@@ -3,9 +3,8 @@ import routing from './debtBeforePaying.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewDebtBeforePaying';
 
-angular.module(moduleName, [
-  'ui.router',
-])
+angular
+  .module(moduleName, ['ui.router'])
   .config(routing)
   .component('billingAutorenewDebtBeforePaying', component);
 

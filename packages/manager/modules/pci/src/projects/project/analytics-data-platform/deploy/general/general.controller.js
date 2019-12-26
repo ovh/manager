@@ -1,8 +1,6 @@
 import replace from 'lodash/replace';
 
-import {
-  ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN,
-} from '../../analytics-data-platform.constants';
+import { ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN } from '../../analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */
@@ -17,7 +15,11 @@ export default class {
 
   dataChange() {
     if (this.data.selectedCapability) {
-      this.selectedAdpVersion = replace(this.data.selectedCapability.version, ' ', '');
+      this.selectedAdpVersion = replace(
+        this.data.selectedCapability.version,
+        ' ',
+        '',
+      );
     }
     this.onDataChange({ data: this.data });
   }

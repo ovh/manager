@@ -2,8 +2,15 @@ import forEach from 'lodash/forEach';
 import set from 'lodash/set';
 
 class LogsAccountPasswordCtrl {
-  constructor($q, $state, $stateParams, $uibModalInstance, CucControllerHelper, CucCloudMessage,
-    LogsAccountService) {
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    $uibModalInstance,
+    CucControllerHelper,
+    CucCloudMessage,
+    LogsAccountService,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
@@ -42,13 +49,12 @@ class LogsAccountPasswordCtrl {
     }
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsAccountService
-        .changePassword(
+      loaderFunction: () =>
+        this.LogsAccountService.changePassword(
           this.serviceName,
           this.newPassword,
           false,
-        )
-        .finally(() => {
+        ).finally(() => {
           this.resetPasswordRules();
           this.$uibModalInstance.close();
         }),
@@ -62,4 +68,6 @@ class LogsAccountPasswordCtrl {
   }
 }
 
-angular.module('managerApp').controller('LogsAccountPasswordCtrl', LogsAccountPasswordCtrl);
+angular
+  .module('managerApp')
+  .controller('LogsAccountPasswordCtrl', LogsAccountPasswordCtrl);

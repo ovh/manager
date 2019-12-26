@@ -5,11 +5,8 @@ export default class BannerService {
   }
 
   getBanner(locale) {
-    return this.OvhApiBanner
-      .Aapi()
-      .query({
-        locale,
-      })
-      .$promise;
+    return this.OvhApiBanner.Aapi().query({
+      locale,
+    }).$promise;
   }
 }

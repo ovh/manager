@@ -1,9 +1,6 @@
 export default class BreadcrumbService {
   /* @ngInject */
-  constructor(
-    $q,
-    $state,
-  ) {
+  constructor($q, $state) {
     this.$q = $q;
     this.$state = $state;
     this.breadcrumb = [];
@@ -21,7 +18,9 @@ export default class BreadcrumbService {
       let state = this.$state.$current;
 
       while (state.parent) {
-        const breadcrumbResolvable = state.resolvables.find((resolvable) => resolvable.token === 'breadcrumb');
+        const breadcrumbResolvable = state.resolvables.find(
+          (resolvable) => resolvable.token === 'breadcrumb',
+        );
 
         if (!state.self.abstract || breadcrumbResolvable) {
           const entry = {
@@ -31,7 +30,9 @@ export default class BreadcrumbService {
               : this.$q.when(state.name),
             url: state.self.abstract
               ? null
-              : this.$state.href(state.name, this.$state.params, { absolute: true }),
+              : this.$state.href(state.name, this.$state.params, {
+                  absolute: true,
+                }),
             active: this.$state.is(state.name),
           };
 
@@ -41,8 +42,9 @@ export default class BreadcrumbService {
             if (value) {
               entry.name = value;
             } else {
-              this.breadcrumb = this.breadcrumb
-                .filter((breadcrumbEntry) => breadcrumbEntry !== entry);
+              this.breadcrumb = this.breadcrumb.filter(
+                (breadcrumbEntry) => breadcrumbEntry !== entry,
+              );
             }
           });
         }
@@ -50,7 +52,8 @@ export default class BreadcrumbService {
         state = state.parent.self.$$state();
       }
 
-      return this.$q.all(this.breadcrumb.map((entry) => entry.promise))
+      return this.$q
+        .all(this.breadcrumb.map((entry) => entry.promise))
         .then(() => this.notifyAll())
         .then(() => this.breadcrumb);
     });

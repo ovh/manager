@@ -21,14 +21,19 @@ export default class OvhCloudPriceHelper {
   }
 
   getPrices(serviceName) {
-    return this.$q.all({
-      catalog: this.OvhApiMe.v6().get().$promise
-        .then((me) => this.OvhApiOrderCatalogPublic
-          .v6()
-          .get({ productName: 'cloud', ovhSubsidiary: me.ovhSubsidiary })
-          .$promise),
-      project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
-    })
+    return this.$q
+      .all({
+        catalog: this.OvhApiMe.v6()
+          .get()
+          .$promise.then(
+            (me) =>
+              this.OvhApiOrderCatalogPublic.v6().get({
+                productName: 'cloud',
+                ovhSubsidiary: me.ovhSubsidiary,
+              }).$promise,
+          ),
+        project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
+      })
       .then(({ catalog, project }) => {
         const projectPlan = find(catalog.plans, { planCode: project.planCode });
         if (!projectPlan) {

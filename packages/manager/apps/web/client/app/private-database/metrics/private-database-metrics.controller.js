@@ -11,12 +11,15 @@ import map from 'lodash/map';
 import merge from 'lodash/merge';
 import set from 'lodash/set';
 
-angular
-  .module('App')
-  .controller('PrivateDatabaseMetricsCtrl', class PrivateDatabaseMetricsCtrl {
+angular.module('App').controller(
+  'PrivateDatabaseMetricsCtrl',
+  class PrivateDatabaseMetricsCtrl {
     constructor(
-      $scope, $translate,
-      Alerter, WucChartjsFactory, PrivateDatabase,
+      $scope,
+      $translate,
+      Alerter,
+      WucChartjsFactory,
+      PrivateDatabase,
     ) {
       this.$scope = $scope;
       this.$translate = $translate;
@@ -68,36 +71,40 @@ angular
                 },
               },
               scales: {
-                yAxes: [{
-                  type: 'linear',
-                  display: true,
-                  position: 'left',
-                  scaleLabel: {
+                yAxes: [
+                  {
+                    type: 'linear',
                     display: true,
-                  },
-                  gridLines: {
-                    drawBorder: true,
-                    display: true,
-                  },
-                  ticks: {
-                    suggestedMin: 0,
-                    suggestedMax: 100,
-                    callback: (label) => `${label}%`,
-                  },
-                }],
-                xAxes: [{
-                  type: 'time',
-                  position: 'bottom',
-                  gridLines: {
-                    drawBorder: true,
-                    display: false,
-                  },
-                  time: {
-                    displayFormats: {
-                      hour: 'LT',
+                    position: 'left',
+                    scaleLabel: {
+                      display: true,
+                    },
+                    gridLines: {
+                      drawBorder: true,
+                      display: true,
+                    },
+                    ticks: {
+                      suggestedMin: 0,
+                      suggestedMax: 100,
+                      callback: (label) => `${label}%`,
                     },
                   },
-                }],
+                ],
+                xAxes: [
+                  {
+                    type: 'time',
+                    position: 'bottom',
+                    gridLines: {
+                      drawBorder: true,
+                      display: false,
+                    },
+                    time: {
+                      displayFormats: {
+                        hour: 'LT',
+                      },
+                    },
+                  },
+                ],
               },
             },
           },
@@ -114,35 +121,39 @@ angular
                 },
               },
               scales: {
-                yAxes: [{
-                  type: 'linear',
-                  display: true,
-                  position: 'left',
-                  scaleLabel: {
+                yAxes: [
+                  {
+                    type: 'linear',
                     display: true,
-                  },
-                  gridLines: {
-                    drawBorder: true,
-                    display: true,
-                  },
-                  ticks: {
-                    suggestedMin: 0,
-                    stepSize: 1,
-                  },
-                }],
-                xAxes: [{
-                  type: 'time',
-                  position: 'bottom',
-                  gridLines: {
-                    drawBorder: true,
-                    display: false,
-                  },
-                  time: {
-                    displayFormats: {
-                      hour: 'LT',
+                    position: 'left',
+                    scaleLabel: {
+                      display: true,
+                    },
+                    gridLines: {
+                      drawBorder: true,
+                      display: true,
+                    },
+                    ticks: {
+                      suggestedMin: 0,
+                      stepSize: 1,
                     },
                   },
-                }],
+                ],
+                xAxes: [
+                  {
+                    type: 'time',
+                    position: 'bottom',
+                    gridLines: {
+                      drawBorder: true,
+                      display: false,
+                    },
+                    time: {
+                      displayFormats: {
+                        hour: 'LT',
+                      },
+                    },
+                  },
+                ],
               },
             },
           },
@@ -159,35 +170,39 @@ angular
                 },
               },
               scales: {
-                yAxes: [{
-                  type: 'linear',
-                  display: true,
-                  position: 'left',
-                  scaleLabel: {
+                yAxes: [
+                  {
+                    type: 'linear',
                     display: true,
-                  },
-                  gridLines: {
-                    drawBorder: true,
-                    display: true,
-                  },
-                  ticks: {
-                    suggestedMin: 0,
-                    callback: (label) => `${label}ms`,
-                  },
-                }],
-                xAxes: [{
-                  type: 'time',
-                  position: 'bottom',
-                  gridLines: {
-                    drawBorder: true,
-                    display: false,
-                  },
-                  time: {
-                    displayFormats: {
-                      hour: 'LT',
+                    position: 'left',
+                    scaleLabel: {
+                      display: true,
+                    },
+                    gridLines: {
+                      drawBorder: true,
+                      display: true,
+                    },
+                    ticks: {
+                      suggestedMin: 0,
+                      callback: (label) => `${label}ms`,
                     },
                   },
-                }],
+                ],
+                xAxes: [
+                  {
+                    type: 'time',
+                    position: 'bottom',
+                    gridLines: {
+                      drawBorder: true,
+                      display: false,
+                    },
+                    time: {
+                      displayFormats: {
+                        hour: 'LT',
+                      },
+                    },
+                  },
+                ],
               },
             },
           },
@@ -196,7 +211,7 @@ angular
     }
 
     $onInit() {
-      this.charts = { };
+      this.charts = {};
 
       return this.fetchingMetrics();
     }
@@ -204,29 +219,31 @@ angular
     fetchingMetrics() {
       this.isFetchingMetrics = true;
 
-      return this.PrivateDatabase
-        .getGraphData({
-          graphEndpoint: this.$scope.database.graphEndpoint,
-          range: 'DAY',
-        })
+      return this.PrivateDatabase.getGraphData({
+        graphEndpoint: this.$scope.database.graphEndpoint,
+        range: 'DAY',
+      })
         .then((chartData) => {
           if (!isArray(chartData)) {
             throw new Error(this.$translate.instant('common_temporary_error'));
           }
 
-          const chartSettings = this.PRIVATE_DATABASE_METRICS.specificDatabaseVersionChartSelection[
+          const chartSettings = this.PRIVATE_DATABASE_METRICS
+            .specificDatabaseVersionChartSelection[
             this.$scope.database.version
           ];
 
           forEach(
             filter(
               this.PRIVATE_DATABASE_METRICS.specificChartSettings,
-              (currentChartSettings) => !isArray(chartSettings)
-                || includes(chartSettings, currentChartSettings.chartName),
+              (currentChartSettings) =>
+                !isArray(chartSettings) ||
+                includes(chartSettings, currentChartSettings.chartName),
             ),
             (currentChartSettings) => {
               const { chartName } = currentChartSettings;
-              const currentChartData = chartData[currentChartSettings.dataFromAPIIndex];
+              const currentChartData =
+                chartData[currentChartSettings.dataFromAPIIndex];
 
               if (!isObject(currentChartData)) {
                 this.charts[chartName] = {
@@ -237,10 +254,22 @@ angular
                 const settingsForAllCharts = cloneDeep(
                   this.PRIVATE_DATABASE_METRICS.settingsForAllCharts,
                 );
-                const settingsForCurrentChart = merge(settingsForAllCharts, currentChartSettings);
-                const chart = new this.WucChartjsFactory(settingsForCurrentChart);
-                const serieName = this.$translate.instant(`privateDatabase_metrics_${chartName}_graph_${currentChartData.metric.replace(/\./g, '_')}`);
-                const serieValue = this.constructor.getChartSeries(currentChartData);
+                const settingsForCurrentChart = merge(
+                  settingsForAllCharts,
+                  currentChartSettings,
+                );
+                const chart = new this.WucChartjsFactory(
+                  settingsForCurrentChart,
+                );
+                const serieName = this.$translate.instant(
+                  `privateDatabase_metrics_${chartName}_graph_${currentChartData.metric.replace(
+                    /\./g,
+                    '_',
+                  )}`,
+                );
+                const serieValue = this.constructor.getChartSeries(
+                  currentChartData,
+                );
 
                 chart.addSerie(
                   serieName,
@@ -259,7 +288,11 @@ angular
         })
         .catch((err) => {
           set(err, 'type', err.type || 'ERROR');
-          this.Alerter.alertFromSWS(this.$translate.instant('privateDatabase_dashboard_loading_error'), err, this.$scope.alerts.main);
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('privateDatabase_dashboard_loading_error'),
+            err,
+            this.$scope.alerts.main,
+          );
         })
         .finally(() => {
           this.isFetchingMetrics = false;
@@ -272,4 +305,5 @@ angular
         y: Math.round(data.dps[key] * 100) / 100,
       }));
     }
-  });
+  },
+);

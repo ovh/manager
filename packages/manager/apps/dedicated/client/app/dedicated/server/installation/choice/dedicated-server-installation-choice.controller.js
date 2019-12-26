@@ -10,9 +10,15 @@ angular.module('App').controller('ServerInstallationChoiceCtrl', [
 
     $scope.goInstall = function goInstall() {
       if ($scope.choice.value === $scope.choice.ovh) {
-        $scope.setAction('installation/ovh/dedicated-server-installation-ovh', $scope.currentActionData);
+        $scope.setAction(
+          'installation/ovh/dedicated-server-installation-ovh',
+          $scope.currentActionData,
+        );
       } else if ($scope.choice.value === $scope.choice.personal) {
-        $scope.setAction('installation/gabarit/dedicated-server-installation-gabarit', $scope.currentActionData);
+        $scope.setAction(
+          'installation/gabarit/dedicated-server-installation-gabarit',
+          $scope.currentActionData,
+        );
       }
     };
   },

@@ -4,8 +4,15 @@ import set from 'lodash/set';
 
 export default class UserAccountUsersCtrl {
   /* @ngInject */
-  constructor($scope, User, UseraccountUsersService, UseraccountGroupsService, $q, Alerter,
-    $translate) {
+  constructor(
+    $scope,
+    User,
+    UseraccountUsersService,
+    UseraccountGroupsService,
+    $q,
+    Alerter,
+    $translate,
+  ) {
     this.$scope = $scope;
     this.$q = $q;
     this.userService = User;
@@ -27,27 +34,39 @@ export default class UserAccountUsersCtrl {
     this.userIds = [];
     this.users = [];
     this.usersLoading = true;
-    this.userService.getUser()
+    this.userService
+      .getUser()
       .then((data) => {
         this.me = data;
-        return this.groupsService.getGroups()
-          .then((groups) => this.$q.all(map(
-            groups,
-            (groupName) => this.groupsService.getGroup(groupName),
-          )))
+        return this.groupsService
+          .getGroups()
+          .then((groups) =>
+            this.$q.all(
+              map(groups, (groupName) =>
+                this.groupsService.getGroup(groupName),
+              ),
+            ),
+          )
           .then((groupsArray) => {
             this.groups = groupsArray.reduce((result, item) => {
-              result[item.name] = item; // eslint-disable-line
+              // eslint-disable-next-line no-param-reassign
+              result[item.name] = item;
               return result;
             }, {});
-            return this.usersService.getUsers()
-              .then((userIds) => {
-                this.userIds = userIds;
-              });
+            return this.usersService.getUsers().then((userIds) => {
+              this.userIds = userIds;
+            });
           });
       })
       .catch((err) => {
-        this.alerter.error(`${this.$translate.instant('user_users_error')} ${get(err, 'message', err)}`, 'userUsers');
+        this.alerter.error(
+          `${this.$translate.instant('user_users_error')} ${get(
+            err,
+            'message',
+            err,
+          )}`,
+          'userUsers',
+        );
       })
       .finally(() => {
         this.usersLoading = false;
@@ -55,11 +74,10 @@ export default class UserAccountUsersCtrl {
   }
 
   onTransformItem(userId) {
-    return this.usersService.getUser(userId)
-      .then((user) => {
-        set(user, 'role', this.groups[user.group].role);
-        return user;
-      });
+    return this.usersService.getUser(userId).then((user) => {
+      set(user, 'role', this.groups[user.group].role);
+      return user;
+    });
   }
 
   onTransformItemDone() {

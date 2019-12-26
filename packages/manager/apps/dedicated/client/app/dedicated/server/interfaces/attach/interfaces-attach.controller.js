@@ -1,8 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor(
-    OvhApiVrack,
-  ) {
+  constructor(OvhApiVrack) {
     this.Vrack = OvhApiVrack;
   }
 
@@ -13,16 +11,23 @@ export default class {
   }
 
   attach() {
-    return this.Vrack.DedicatedServerInterface().v6().post({
-      serviceName: this.vrack,
-    }, {
-      dedicatedServerInterface: this.interface.id,
-    }).$promise
-      .then(() => {
+    return this.Vrack.DedicatedServerInterface()
+      .v6()
+      .post(
+        {
+          serviceName: this.vrack,
+        },
+        {
+          dedicatedServerInterface: this.interface.id,
+        },
+      )
+      .$promise.then(() => {
         this.goBack();
       })
       .catch((error) => {
-        this.goBack().then(() => this.alertError('server_error_vrack_attach', error.data));
+        this.goBack().then(() =>
+          this.alertError('server_error_vrack_attach', error.data),
+        );
       });
   }
 }

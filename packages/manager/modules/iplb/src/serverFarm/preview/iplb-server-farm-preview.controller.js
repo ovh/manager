@@ -1,6 +1,11 @@
 export default class IpLoadBalancerServerFarmPreviewCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, IpLoadBalancerServerFarmService, IpLoadBalancerZoneService, farm) {
+  constructor(
+    $uibModalInstance,
+    IpLoadBalancerServerFarmService,
+    IpLoadBalancerZoneService,
+    farm,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.IpLoadBalancerServerFarmService = IpLoadBalancerServerFarmService;
     this.IpLoadBalancerZoneService = IpLoadBalancerZoneService;
@@ -12,11 +17,15 @@ export default class IpLoadBalancerServerFarmPreviewCtrl {
   }
 
   getBalance() {
-    return this.IpLoadBalancerServerFarmService.humanizeBalance(this.farm.balance);
+    return this.IpLoadBalancerServerFarmService.humanizeBalance(
+      this.farm.balance,
+    );
   }
 
   getStickiness() {
-    return this.IpLoadBalancerServerFarmService.humanizeStickiness(this.farm.stickiness);
+    return this.IpLoadBalancerServerFarmService.humanizeStickiness(
+      this.farm.stickiness,
+    );
   }
 
   dismiss() {

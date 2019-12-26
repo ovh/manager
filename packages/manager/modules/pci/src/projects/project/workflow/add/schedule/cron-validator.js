@@ -43,11 +43,10 @@ export default class CronValidator {
   }
 
   static convertAliasToNumber(aliasName, aliasMap) {
-    const aliasNumber = aliasName.toLowerCase()
-      .replace(
-        /[a-z]{3}/g,
-        (match) => (aliasMap[match] === undefined
-          ? match : aliasMap[match]),
+    const aliasNumber = aliasName
+      .toLowerCase()
+      .replace(/[a-z]{3}/g, (match) =>
+        aliasMap[match] === undefined ? match : aliasMap[match],
       );
     return aliasNumber;
   }
@@ -60,15 +59,19 @@ export default class CronValidator {
     const sides = value.split('-');
     switch (sides.length) {
       case 1:
-        return this.isWildcard(value)
-            || this.constructor.isInRange(parseInt(value, 10), start, stop);
+        return (
+          this.isWildcard(value) ||
+          this.constructor.isInRange(parseInt(value, 10), start, stop)
+        );
       case 2: {
         const sidesmap = map(sides, (side) => parseInt(side, 10));
         const small = sidesmap[0];
         const big = sidesmap[1];
-        return small <= big
-            && this.constructor.isInRange(small, start, stop)
-            && this.constructor.isInRange(big, start, stop);
+        return (
+          small <= big &&
+          this.constructor.isInRange(small, start, stop) &&
+          this.constructor.isInRange(big, start, stop)
+        );
       }
       default:
         return false;
@@ -85,10 +88,12 @@ export default class CronValidator {
       if (splits.length > 2) {
         return false;
       }
-      const left = splits[0]; const
-        right = splits[1];
-      return this.validateRange(left, start, stop)
-        && this.constructor.isValidStep(right);
+      const left = splits[0];
+      const right = splits[1];
+      return (
+        this.validateRange(left, start, stop) &&
+        this.constructor.isValidStep(right)
+      );
     });
   }
 
@@ -114,7 +119,10 @@ export default class CronValidator {
       return false;
     }
     if (alias) {
-      const remappedMonths = this.constructor.convertAliasToNumber(months, this.monthAlias);
+      const remappedMonths = this.constructor.convertAliasToNumber(
+        months,
+        this.monthAlias,
+      );
       return this.validateRanges(remappedMonths, 1, 12);
     }
     return this.validateRanges(months, 1, 12);
@@ -126,7 +134,10 @@ export default class CronValidator {
       return false;
     }
     if (alias) {
-      const remappedWeekdays = this.constructor.convertAliasToNumber(weekdays, this.weekdaysAlias);
+      const remappedWeekdays = this.constructor.convertAliasToNumber(
+        weekdays,
+        this.weekdaysAlias,
+      );
       return this.validateRanges(remappedWeekdays, 0, 6);
     }
     return this.validateRanges(weekdays, 0, 6);

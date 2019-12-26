@@ -10,20 +10,20 @@ export default class CucCurrencyService {
   }
 
   getSubsidiary() {
-    return this.OvhApiMe.v6().get().$promise
-      .then((user) => user.ovhSubsidiary);
+    return this.OvhApiMe.v6()
+      .get()
+      .$promise.then((user) => user.ovhSubsidiary);
   }
 
   loadCurrency() {
-    return this.getSubsidiary()
-      .then((sub) => {
-        const symbol = CURRENCY_SUBSIDIARY[sub];
-        if (symbol) {
-          this.currency = symbol;
-        } else {
-          this.currency = CURRENCY_SUBSIDIARY[this.CucConfig.getRegion()];
-        }
-      });
+    return this.getSubsidiary().then((sub) => {
+      const symbol = CURRENCY_SUBSIDIARY[sub];
+      if (symbol) {
+        this.currency = symbol;
+      } else {
+        this.currency = CURRENCY_SUBSIDIARY[this.CucConfig.getRegion()];
+      }
+    });
   }
 
   getCurrentCurrency() {
@@ -31,6 +31,6 @@ export default class CucCurrencyService {
   }
 
   convertUcentsToCurrency(value, interval = 1) {
-    return (value / interval) / this.ucentsFactor;
+    return value / interval / this.ucentsFactor;
   }
 }

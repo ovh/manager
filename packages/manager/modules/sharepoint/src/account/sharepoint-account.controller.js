@@ -6,8 +6,15 @@ import set from 'lodash/set';
 export default class SharepointAccountsCtrl {
   /* @ngInject */
   constructor(
-    $scope, $location, $stateParams, $timeout, $translate,
-    Alerter, MicrosoftSharepointLicenseService, MicrosoftSharepointOrderService, Poller,
+    $scope,
+    $location,
+    $stateParams,
+    $timeout,
+    $translate,
+    Alerter,
+    MicrosoftSharepointLicenseService,
+    MicrosoftSharepointOrderService,
+    Poller,
   ) {
     this.$scope = $scope;
     this.$location = $location;
@@ -33,13 +40,16 @@ export default class SharepointAccountsCtrl {
       usesAgora: true,
     };
 
-    this.sharepointService.getAssociatedExchangeService(this.exchangeId)
+    this.sharepointService
+      .getAssociatedExchangeService(this.exchangeId)
       .catch(() => {
         this.isStandAlone = true;
       });
 
     this.getSharepoint()
-      .then(() => this.sharepointOrder.fetchingDoesServiceUseAgora(this.exchangeId))
+      .then(() =>
+        this.sharepointOrder.fetchingDoesServiceUseAgora(this.exchangeId),
+      )
       .then(({ billingMigrated }) => {
         this.usesAgora = billingMigrated;
       })
@@ -59,9 +69,21 @@ export default class SharepointAccountsCtrl {
   static setAccountProperties(account, userPrincipalName) {
     set(account, 'userPrincipalName', userPrincipalName);
     set(account, 'activated', true);
-    set(account, 'usedQuota', filesize(account.currentUsage, { standard: 'iec', output: 'object' }));
-    set(account, 'totalQuota', filesize(account.quota, { standard: 'iec', output: 'object' }));
-    set(account, 'percentUse', Math.round((account.currentUsage / account.quota) * 100));
+    set(
+      account,
+      'usedQuota',
+      filesize(account.currentUsage, { standard: 'iec', output: 'object' }),
+    );
+    set(
+      account,
+      'totalQuota',
+      filesize(account.quota, { standard: 'iec', output: 'object' }),
+    );
+    set(
+      account,
+      'percentUse',
+      Math.round((account.currentUsage / account.quota) * 100),
+    );
   }
 
   updateSearch() {
@@ -79,12 +101,18 @@ export default class SharepointAccountsCtrl {
       .then((sharepoint) => {
         this.sharepoint = sharepoint;
         if (isNull(this.sharepoint.url)) {
-          this.$location.path(`/configuration/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`);
+          this.$location.path(
+            `/configuration/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`,
+          );
         }
       })
       .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_dashboard_error'),
+          err,
+          this.$scope.alerts.main,
+        );
       });
   }
 
@@ -95,7 +123,12 @@ export default class SharepointAccountsCtrl {
         officeLicense,
       })
       .then(() => {
-        this.alerter.success(this.$translate.instant('sharepoint_accounts_action_success', { t0: account.userPrincipalName }), this.$scope.alerts.main);
+        this.alerter.success(
+          this.$translate.instant('sharepoint_accounts_action_success', {
+            t0: account.userPrincipalName,
+          }),
+          this.$scope.alerts.main,
+        );
         return this.sharepointService.getAccountSharepoint(
           this.exchangeId,
           account.userPrincipalName,
@@ -110,32 +143,47 @@ export default class SharepointAccountsCtrl {
             userPrincipalName: account.userPrincipalName,
           });
           if (index > -1) {
-            this.constructor.setAccountProperties(sharepoint, account.userPrincipalName);
+            this.constructor.setAccountProperties(
+              sharepoint,
+              account.userPrincipalName,
+            );
             this.accounts[index] = sharepoint;
           }
         }
       })
       .catch(() => {
-        this.alerter.error(this.$translate.instant('sharepoint_accounts_action_error', { t0: account.userPrincipalName }), this.$scope.alerts.main);
+        this.alerter.error(
+          this.$translate.instant('sharepoint_accounts_action_error', {
+            t0: account.userPrincipalName,
+          }),
+          this.$scope.alerts.main,
+        );
       });
   }
 
   startPoller(userPrincipalName) {
-    return this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`, null, {
-      interval: 15000,
-      successRule: { state: (account) => account.taskPendingId === 0 },
-      namespace: 'sharepoint.accounts.poll',
-    }).then((account) => {
-      const index = findIndex(this.accounts, { userPrincipalName });
-      if (index > -1) {
-        this.constructor.setAccountProperties(account, userPrincipalName);
-        this.accounts[index] = account;
-      }
-    }).catch(() => {
-      this.pollerService.kill({
-        namespace: 'sharepoint.accounts.poll',
+    return this.pollerService
+      .poll(
+        `apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`,
+        null,
+        {
+          interval: 15000,
+          successRule: { state: (account) => account.taskPendingId === 0 },
+          namespace: 'sharepoint.accounts.poll',
+        },
+      )
+      .then((account) => {
+        const index = findIndex(this.accounts, { userPrincipalName });
+        if (index > -1) {
+          this.constructor.setAccountProperties(account, userPrincipalName);
+          this.accounts[index] = account;
+        }
+      })
+      .catch(() => {
+        this.pollerService.kill({
+          namespace: 'sharepoint.accounts.poll',
+        });
       });
-    });
   }
 
   activateSharepointUser(account) {
@@ -156,7 +204,13 @@ export default class SharepointAccountsCtrl {
 
   activateSharepoint(account) {
     if (!account.taskPendingId) {
-      window.open(this.sharepointService.getSharepointAccountOrderUrl(this.$stateParams.productId, account.userPrincipalName), '_blank');
+      window.open(
+        this.sharepointService.getSharepointAccountOrderUrl(
+          this.$stateParams.productId,
+          account.userPrincipalName,
+        ),
+        '_blank',
+      );
     }
   }
 
@@ -174,7 +228,10 @@ export default class SharepointAccountsCtrl {
 
   deactivateSharepoint(account) {
     if (!account.taskPendingId) {
-      this.$scope.setAction('account/delete/sharepoint-account-delete', account);
+      this.$scope.setAction(
+        'account/delete/sharepoint-account-delete',
+        account,
+      );
     }
   }
 
@@ -186,13 +243,19 @@ export default class SharepointAccountsCtrl {
 
   updatePassword(account) {
     if (!account.taskPendingId) {
-      this.$scope.setAction('account/password/update/sharepoint-account-password-update', account);
+      this.$scope.setAction(
+        'account/password/update/sharepoint-account-password-update',
+        account,
+      );
     }
   }
 
   updateAccount(account) {
     if (!account.taskPendingId && this.isStandAlone) {
-      this.$scope.setAction('account/update/sharepoint-account-update', account);
+      this.$scope.setAction(
+        'account/update/sharepoint-account-update',
+        account,
+      );
     }
   }
 
@@ -204,13 +267,20 @@ export default class SharepointAccountsCtrl {
     this.loaders.search = true;
     this.accountIds = null;
 
-    return this.sharepointService.getAccounts(this.exchangeId, this.search.value)
+    return this.sharepointService
+      .getAccounts(this.exchangeId, this.search.value)
       .then((ids) => {
         this.accountIds = ids.map((accountId) => ({ accountId }));
-      }).catch((err) => {
+      })
+      .catch((err) => {
         set(err, 'type', err.type || 'ERROR');
-        this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);
-      }).finally(() => {
+        this.alerter.alertFromSWS(
+          this.$translate.instant('sharepoint_accounts_err'),
+          err,
+          this.$scope.alerts.main,
+        );
+      })
+      .finally(() => {
         if (isEmpty(this.accountIds)) {
           this.loaders.search = false;
         } else {
@@ -221,14 +291,16 @@ export default class SharepointAccountsCtrl {
   }
 
   onTranformItem(userPrincipalName) {
-    return this.sharepointService.getAccountSharepoint(this.exchangeId, userPrincipalName)
+    return this.sharepointService
+      .getAccountSharepoint(this.exchangeId, userPrincipalName)
       .then((sharepoint) => {
         this.constructor.setAccountProperties(sharepoint, userPrincipalName);
         if (sharepoint.taskPendingId > 0) {
           this.startPoller(userPrincipalName);
         }
         return sharepoint;
-      }).catch(() => ({
+      })
+      .catch(() => ({
         userPrincipalName,
         activated: false,
       }));

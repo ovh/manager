@@ -45,7 +45,8 @@ export default class DomainTabZoneDnsCtrl {
       this.selectedRecords = [];
       this.refreshTable();
     });
-    this.$scope.loadPaginated = (count, offset) => this.loadPaginated(count, offset);
+    this.$scope.loadPaginated = (count, offset) =>
+      this.loadPaginated(count, offset);
 
     this.checkAllowModification(this.domain.name);
     this.getZoneDns(this.domain.name);
@@ -73,18 +74,21 @@ export default class DomainTabZoneDnsCtrl {
   checkAllowModification(domainName) {
     return this.$q
       .all({
-        domainServiceInfo: this.Domain.getServiceInfo(domainName).catch(() => null),
+        domainServiceInfo: this.Domain.getServiceInfo(domainName).catch(
+          () => null,
+        ),
         zoneServiceInfo: this.Domain.getZoneServiceInfo(domainName),
         user: this.User.getUser(),
       })
       .then(({ domainServiceInfo, zoneServiceInfo, user }) => {
-        this.allowModification = user
-            && ((domainServiceInfo
-              && (domainServiceInfo.contactTech === user.nichandle
-                || domainServiceInfo.contactAdmin === user.nichandle))
-              || (zoneServiceInfo
-                && (zoneServiceInfo.contactTech === user.nichandle
-                  || zoneServiceInfo.contactAdmin === user.nichandle)));
+        this.allowModification =
+          user &&
+          ((domainServiceInfo &&
+            (domainServiceInfo.contactTech === user.nichandle ||
+              domainServiceInfo.contactAdmin === user.nichandle)) ||
+            (zoneServiceInfo &&
+              (zoneServiceInfo.contactTech === user.nichandle ||
+                zoneServiceInfo.contactAdmin === user.nichandle)));
       });
   }
 
@@ -118,12 +122,10 @@ export default class DomainTabZoneDnsCtrl {
         },
       )
       .finally(() => {
-        this.defaultsDns = get(
-          defaults,
-          'paginatedZone.records.results',
-          [],
-        )
-          .filter((data) => data.subDomain === '' && data.subDomainToDisplay === '')
+        this.defaultsDns = get(defaults, 'paginatedZone.records.results', [])
+          .filter(
+            (data) => data.subDomain === '' && data.subDomainToDisplay === '',
+          )
           .map((value) => value.targetToDisplay.slice(0, -1))
           .sort();
         this.activatedDns = get(activated, 'dns', [])
@@ -132,8 +134,8 @@ export default class DomainTabZoneDnsCtrl {
           .sort();
 
         if (
-          !isEmpty(this.defaultsDns)
-            && !isEqual(this.defaultsDns, this.activatedDns)
+          !isEmpty(this.defaultsDns) &&
+          !isEqual(this.defaultsDns, this.activatedDns)
         ) {
           this.useDefaultsDns = false;
         }
@@ -159,19 +161,24 @@ export default class DomainTabZoneDnsCtrl {
         }
         this.displayActivateZone = false;
         this.applySelection();
-        return this.Domain.getZoneStatus(this.domain.name).catch((err) => this.Alerter.alertFromSWS(
-          this.$translate.instant('domain_dashboard_loading_error'),
-          err,
-          this.$scope.alerts.main,
-        ));
+        return this.Domain.getZoneStatus(this.domain.name).catch((err) =>
+          this.Alerter.alertFromSWS(
+            this.$translate.instant('domain_dashboard_loading_error'),
+            err,
+            this.$scope.alerts.main,
+          ),
+        );
       })
       .then((data) => {
-        this.zoneStatusErrors = (data && !data.isDeployed && get(data, 'errors', [])) || [];
+        this.zoneStatusErrors =
+          (data && !data.isDeployed && get(data, 'errors', [])) || [];
         this.zoneStatusWarnings = get(data, 'warnings', []);
       })
       .catch((err) => {
         if (
-          /service(\s|\s\w+\s)expired/i.test(get(err, 'data.message', err.message || ''))
+          /service(\s|\s\w+\s)expired/i.test(
+            get(err, 'data.message', err.message || ''),
+          )
         ) {
           // A service expired here, is a temporary status, display the message: "service expired
           // in the page as general message is very confusing for customers.
@@ -205,16 +212,17 @@ export default class DomainTabZoneDnsCtrl {
 
   targetIsRelativeDomain(domain) {
     return (
-      domain.target
-        && indexOf(this.typesToCheck, domain.fieldType) !== -1
-        && /\..*[^.]$/.test(domain.target)
+      domain.target &&
+      indexOf(this.typesToCheck, domain.fieldType) !== -1 &&
+      /\..*[^.]$/.test(domain.target)
     );
   }
 
   // checboxes --------------------------------------------------------------
   applySelection() {
     forEach(get(this.zone, 'paginatedZone.records.results'), (item) => {
-        item.selected = indexOf(this.selectedRecords, item.id) !== -1; // eslint-disable-line
+      // eslint-disable-next-line no-param-reassign
+      item.selected = indexOf(this.selectedRecords, item.id) !== -1;
     });
   }
 

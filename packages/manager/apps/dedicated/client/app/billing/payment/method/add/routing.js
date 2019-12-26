@@ -43,37 +43,43 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         legacyBankAccount: {
           name: 'legacyBankAccount',
           position: 2,
-          isVisible: () => model.selectedPaymentMethodType.isLegacy()
-            && model.selectedPaymentMethodType.paymentType === OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
+          isVisible: () =>
+            model.selectedPaymentMethodType.isLegacy() &&
+            model.selectedPaymentMethodType.paymentType ===
+              OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
           isLastStep: () => false,
         },
         legacyBankAccountOwner: {
           name: 'legacyBankAccountOwner',
           position: 3,
-          isVisible: () => model.selectedPaymentMethodType.isLegacy()
-            && model.selectedPaymentMethodType.paymentType === OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
+          isVisible: () =>
+            model.selectedPaymentMethodType.isLegacy() &&
+            model.selectedPaymentMethodType.paymentType ===
+              OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT,
           isLastStep: () => true,
         },
-        billingContact: { // for US only
+        billingContact: {
+          // for US only
           name: 'billingContact',
           position: 2,
           loading: false,
-          isVisible: () => model.selectedPaymentMethodType.isRequiringContactId(),
+          isVisible: () =>
+            model.selectedPaymentMethodType.isRequiringContactId(),
           isLastStep: () => false,
         },
-        paymentMethodIntegration: { // for US only
+        paymentMethodIntegration: {
+          // for US only
           name: 'paymentMethodIntegration',
           position: 3,
           loading: false,
-          isVisible: () => model.selectedPaymentMethodType.isRequiringContactId(),
+          isVisible: () =>
+            model.selectedPaymentMethodType.isRequiringContactId(),
           isLastStep: () => true,
         },
       }),
 
-      getBackButtonHref: /* @ngInject */ (
-        $state,
-        $transition$,
-      ) => () => $state.href(get($transition$.params(), 'from', '^')),
+      getBackButtonHref: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href(get($transition$.params(), 'from', '^')),
 
       isLastStep: /* @ngInject */ (addSteps, model) => (stepName) => {
         const step = get(addSteps, stepName);
@@ -99,15 +105,18 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$,
         $translate,
         goPaymentList,
-      ) => () => goPaymentList({
-        type: 'success',
-        text: $translate.instant('billing_payment_method_add_success'),
-      }, get($transition$.params(), 'from', null)),
+      ) => () =>
+        goPaymentList(
+          {
+            type: 'success',
+            text: $translate.instant('billing_payment_method_add_success'),
+          },
+          get($transition$.params(), 'from', null),
+        ),
     },
   });
 
-  $urlRouterProvider.when(
-    /^\/billing\/mean\/add$/,
-    ($location, $state) => $state.go(name),
+  $urlRouterProvider.when(/^\/billing\/mean\/add$/, ($location, $state) =>
+    $state.go(name),
   );
 };

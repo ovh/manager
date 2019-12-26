@@ -4,7 +4,10 @@ export default class TelecomBillingAccountService {
     this.$state = $state;
   }
 
-  static getServiceState(billingAccount, { featureType, serviceName, serviceType }) {
+  static getServiceState(
+    billingAccount,
+    { featureType, serviceName, serviceType },
+  ) {
     const statePrefix = 'telecom.telephony.billingAccount.';
     let state = `${statePrefix}line`;
 

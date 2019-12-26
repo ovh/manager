@@ -1,8 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor(
-    FeedbackService,
-  ) {
+  constructor(FeedbackService) {
     this.FeedbackService = FeedbackService;
   }
 

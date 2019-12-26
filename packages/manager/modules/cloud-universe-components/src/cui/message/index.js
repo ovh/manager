@@ -7,10 +7,7 @@ import component from './component';
 const moduleName = 'cuiMessage';
 
 angular
-  .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
+  .module(moduleName, ['ngTranslateAsyncLoader', 'pascalprecht.translate'])
   .component('cuiMessageContainer', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

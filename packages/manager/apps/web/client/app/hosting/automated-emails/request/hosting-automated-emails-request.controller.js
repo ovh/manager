@@ -16,12 +16,20 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.automatedEmails = angular.copy(this.$scope.currentActionData.automatedEmails);
+      this.automatedEmails = angular.copy(
+        this.$scope.currentActionData.automatedEmails,
+      );
       this.action = this.$scope.currentActionData.action;
       this.titles = {
-        BLOCK: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_block_title'),
-        UNBLOCK: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_unblock_title'),
-        PURGE: this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_purge_title'),
+        BLOCK: this.$translate.instant(
+          'hosting_tab_AUTOMATED_EMAILS_block_title',
+        ),
+        UNBLOCK: this.$translate.instant(
+          'hosting_tab_AUTOMATED_EMAILS_unblock_title',
+        ),
+        PURGE: this.$translate.instant(
+          'hosting_tab_AUTOMATED_EMAILS_purge_title',
+        ),
       };
 
       this.isLoading = false;
@@ -39,13 +47,17 @@ angular.module('App').controller(
       )
         .then(() => {
           this.Alerter.success(
-            this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_request_success'),
+            this.$translate.instant(
+              'hosting_tab_AUTOMATED_EMAILS_request_success',
+            ),
             this.$scope.alerts.main,
           );
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_request_error'),
+            this.$translate.instant(
+              'hosting_tab_AUTOMATED_EMAILS_request_error',
+            ),
             err,
             this.$scope.alerts.main,
           );

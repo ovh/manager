@@ -11,8 +11,15 @@
     }
 
     isAutoRenew() {
-      return this.serviceInfos.renew.automatic || this.serviceInfos.renew.forced;
+      return (
+        this.serviceInfos.renew.automatic || this.serviceInfos.renew.forced
+      );
     }
   }
-  angular.module('directives').controller('ServiceExpirationLabelComponentCtrl', ServiceExpirationLabelComponentCtrl);
+  angular
+    .module('directives')
+    .controller(
+      'ServiceExpirationLabelComponentCtrl',
+      ServiceExpirationLabelComponentCtrl,
+    );
 })();

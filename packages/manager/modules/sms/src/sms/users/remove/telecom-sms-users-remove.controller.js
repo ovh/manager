@@ -26,25 +26,30 @@ export default class {
   }
 
   /**
-     * Remove sms api user api.
-     * @return {Promise}
-     */
+   * Remove sms api user api.
+   * @return {Promise}
+   */
   remove() {
     this.loading.removeUser = true;
-    return this.$q.all([
-      this.api.sms.users.delete({
-        serviceName: this.$stateParams.serviceName,
-        login: this.model.user.login,
-      }).$promise,
-      this.$timeout(angular.noop, 1000),
-    ]).then(() => {
-      this.loading.removeUser = false;
-      this.removed = true;
-      return this.$timeout(() => this.close(), 1500);
-    }).catch((error) => this.cancel({
-      type: 'API',
-      msg: error,
-    }));
+    return this.$q
+      .all([
+        this.api.sms.users.delete({
+          serviceName: this.$stateParams.serviceName,
+          login: this.model.user.login,
+        }).$promise,
+        this.$timeout(angular.noop, 1000),
+      ])
+      .then(() => {
+        this.loading.removeUser = false;
+        this.removed = true;
+        return this.$timeout(() => this.close(), 1500);
+      })
+      .catch((error) =>
+        this.cancel({
+          type: 'API',
+          msg: error,
+        }),
+      );
   }
 
   cancel(message) {

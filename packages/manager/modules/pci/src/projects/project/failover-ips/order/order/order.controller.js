@@ -8,10 +8,7 @@ import { ORDER_URL } from './order.constants';
 
 export default class FailoverIpController {
   /* @ngInject */
-  constructor(
-    $window,
-    OvhApiOrderCloudProjectIp,
-  ) {
+  constructor($window, OvhApiOrderCloudProjectIp) {
     this.$window = $window;
     this.OvhApiOrderCloudProjectIp = OvhApiOrderCloudProjectIp;
   }
@@ -32,7 +29,11 @@ export default class FailoverIpController {
 
   static getMaximumQuantity(product) {
     const configuration = get(product, 'details.product.default');
-    const productWithMaxQuantity = filter(configuration, (p) => isNumber(p), 'maximumQuantity');
+    const productWithMaxQuantity = filter(
+      configuration,
+      (p) => isNumber(p),
+      'maximumQuantity',
+    );
     return get(
       min(productWithMaxQuantity, 'maximumQuantity'),
       'maximumQuantity',
@@ -45,16 +46,20 @@ export default class FailoverIpController {
       productId: 'ip',
       pricingMode: 'default',
       quantity: this.ip.quantity,
-      configuration: [{
-        label: 'country',
-        value: this.ip.region,
-      }, {
-        label: 'destination',
-        value: this.projectId,
-      }, {
-        label: 'nexthop',
-        value: this.ip.instance.id,
-      }],
+      configuration: [
+        {
+          label: 'country',
+          value: this.ip.region,
+        },
+        {
+          label: 'destination',
+          value: this.projectId,
+        },
+        {
+          label: 'nexthop',
+          value: this.ip.instance.id,
+        },
+      ],
     };
     this.$window.open(`${ORDER_URL}${JSURL.stringify([order])}`, '_blank');
     this.goBack();

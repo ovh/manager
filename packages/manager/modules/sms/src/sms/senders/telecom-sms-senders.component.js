@@ -8,26 +8,21 @@ import add from './add';
 
 const moduleName = 'ovhManagerSmsSendersComponent';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    add,
-  ])
-  .config(($stateProvider) => {
-    $stateProvider.state('sms.service.senders', {
-      url: '/senders',
-      views: {
-        smsInnerView: {
-          template,
-          controller,
-          controllerAs: 'SmsSendersCtrl',
-        },
+angular.module(moduleName, ['ui.router', add]).config(($stateProvider) => {
+  $stateProvider.state('sms.service.senders', {
+    url: '/senders',
+    views: {
+      smsInnerView: {
+        template,
+        controller,
+        controllerAs: 'SmsSendersCtrl',
       },
-      translations: {
-        value: ['.', './add'],
-        format: 'json',
-      },
-    });
+    },
+    translations: {
+      value: ['.', './add'],
+      format: 'json',
+    },
   });
+});
 
 export default moduleName;

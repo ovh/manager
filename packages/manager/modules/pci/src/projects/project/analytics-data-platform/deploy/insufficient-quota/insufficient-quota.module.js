@@ -5,7 +5,8 @@ import routing from './insufficient-quota.routing';
 
 const moduleName = 'adpDeployInsufficientQuota';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [])
   .config(routing)
   .component('analyticsDataPlatformDeployInsufficientQuota', component)
   .run(/* @ngTranslationsInject:json ./translations */);

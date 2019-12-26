@@ -15,9 +15,12 @@ export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
    */
   init() {
     // call onIntegrationInitialized callback from parent controller to get render options
-    const renderOptions = merge({
-      locale: this.TranslateService.getUserLocale(),
-    }, this.inContextCtrl.integrationCtrl.onIntegrationInitialized());
+    const renderOptions = merge(
+      {
+        locale: this.TranslateService.getUserLocale(),
+      },
+      this.inContextCtrl.integrationCtrl.onIntegrationInitialized(),
+    );
 
     this.render(renderOptions); // defined in directive's link function
   }
@@ -29,17 +32,19 @@ export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
    */
   onAuthorize() {
     const finalizeData = {
-      formSessionId: get(this, 'inContextCtrl.integrationCtrl.paymentValidation.formSessionId'),
+      formSessionId: get(
+        this,
+        'inContextCtrl.integrationCtrl.paymentValidation.formSessionId',
+      ),
     };
 
-    return this.$timeout(() => this.inContextCtrl
-      .integrationCtrl
-      .onIntegrationFinalize(finalizeData));
+    return this.$timeout(() =>
+      this.inContextCtrl.integrationCtrl.onIntegrationFinalize(finalizeData),
+    );
   }
 
   submit() {
-    return this.inContextCtrl
-      .integrationCtrl
+    return this.inContextCtrl.integrationCtrl
       .onIntegrationSubmit()
       .then(({ formSessionId }) => formSessionId);
   }

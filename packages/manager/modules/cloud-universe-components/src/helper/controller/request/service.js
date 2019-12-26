@@ -4,9 +4,7 @@ import keys from 'lodash/keys';
 
 export default class CucControllerRequestHelper {
   /* @ngInject */
-  constructor(
-    $q,
-  ) {
+  constructor($q) {
     this.$q = $q;
   }
 
@@ -45,7 +43,8 @@ export default class CucControllerRequestHelper {
       if (isArray(initialData.data) || keys(initialData.data).length === 0) {
         loader.loading = true;
       }
-      const promise = this.$q.when(config.loaderFunction())
+      const promise = this.$q
+        .when(config.loaderFunction())
         .then((response) => {
           loader.data = response.data || response;
           loader.hasErrors = false;

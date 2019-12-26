@@ -1,5 +1,5 @@
-angular.module('App')
-  .config(/* @ngInject */($stateProvider) => {
+angular.module('App').config(
+  /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('app.dedicated.server.dashboard.edit-display-name', {
       url: '/display-name',
       controller: 'DisplayNameCtrl',
@@ -7,4 +7,5 @@ angular.module('App')
       layout: 'modal',
       translations: { value: ['.'], format: 'json' },
     });
-  });
+  },
+);

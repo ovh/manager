@@ -7,9 +7,13 @@ class LogsDetailService {
   }
 
   getServiceDetails(serviceName) {
-    return this.LogsLexiService.logDetail({ serviceName })
-      .$promise
-      .catch(this.CucServiceHelper.errorHandler('logs_details_error', undefined, 'data.message'));
+    return this.LogsLexiService.logDetail({ serviceName }).$promise.catch(
+      this.CucServiceHelper.errorHandler(
+        'logs_details_error',
+        undefined,
+        'data.message',
+      ),
+    );
   }
 }
 

@@ -11,7 +11,13 @@ import xor from 'lodash/xor';
 
 export default class EmailProMXPlanMailingListsModeratorsCtrl {
   /* @ngInject */
-  constructor($scope, $filter, $translate, Alerter, EmailProMXPlanMailingLists) {
+  constructor(
+    $scope,
+    $filter,
+    $translate,
+    Alerter,
+    EmailProMXPlanMailingLists,
+  ) {
     this.$scope = $scope;
     this.$filter = $filter;
     this.$translate = $translate;
@@ -31,13 +37,21 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
     };
     this.search = { moderators: '' };
 
-    this.$scope.$on('hosting.tabs.EmailProMXPlanMailingLists.moderators.refresh', () => this.refreshTableModerators());
+    this.$scope.$on(
+      'hosting.tabs.EmailProMXPlanMailingLists.moderators.refresh',
+      () => this.refreshTableModerators(),
+    );
     this.$scope.$on(
       'EmailProMXPlanMailingLists.moderators.poll.start',
       (pollObject, task) => {
         if (task.account === this.mailingList.name) {
           const action = task.action.split(':')[0];
-          if (indexOf(['mailinglist/addModerator', 'mailinglist/deleteModerator'], action) !== -1) {
+          if (
+            indexOf(
+              ['mailinglist/addModerator', 'mailinglist/deleteModerator'],
+              action,
+            ) !== -1
+          ) {
             this.moderators.updating = true;
           }
         }
@@ -48,7 +62,12 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
       (pollObject, task) => {
         if (task.account === this.mailingList.name) {
           const action = task.action.split(':')[0];
-          if (indexOf(['mailinglist/addModerator', 'mailinglist/deleteModerator'], action) !== -1) {
+          if (
+            indexOf(
+              ['mailinglist/addModerator', 'mailinglist/deleteModerator'],
+              action,
+            ) !== -1
+          ) {
             this.runPolling().then((hasPolling) => {
               if (!hasPolling) {
                 this.moderators.updating = false;
@@ -115,7 +134,11 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
 
   applySelection(moderators) {
     forEach(moderators, (moderator) => {
-      set(moderator, 'selected', indexOf(this.moderators.selected, moderator.email) !== -1);
+      set(
+        moderator,
+        'selected',
+        indexOf(this.moderators.selected, moderator.email) !== -1,
+      );
     });
   }
 
@@ -128,19 +151,24 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
     this.moderators.ids = null;
     this.moderators.selected = [];
 
-    return this.EmailProMXPlanMailingLists.getModerators(get(this.$scope, 'exchange.associatedDomainName'), {
-      name: this.mailingList.name,
-      email: this.search.moderators ? `%${this.search.moderators}%` : null,
-      forceRefresh,
-    })
+    return this.EmailProMXPlanMailingLists.getModerators(
+      get(this.$scope, 'exchange.associatedDomainName'),
+      {
+        name: this.mailingList.name,
+        email: this.search.moderators ? `%${this.search.moderators}%` : null,
+        forceRefresh,
+      },
+    )
       .then((data) => {
         this.moderators.ids = this.$filter('orderBy')(data);
       })
-      .catch((err) => this.Alerter.alertFromSWS(
-        this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
-        err,
-        this.$scope.alerts.main,
-      ))
+      .catch((err) =>
+        this.Alerter.alertFromSWS(
+          this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
+          err,
+          this.$scope.alerts.main,
+        ),
+      )
       .finally(() => {
         if (isEmpty(this.moderators.ids)) {
           this.loading.moderators = false;
@@ -163,17 +191,23 @@ export default class EmailProMXPlanMailingListsModeratorsCtrl {
   }
 
   runPolling() {
-    return this.EmailProMXPlanMailingLists.getTaskIds(this.$scope.exchange.associatedDomainName, {
-      account: this.mailingList.name,
-    })
+    return this.EmailProMXPlanMailingLists.getTaskIds(
+      this.$scope.exchange.associatedDomainName,
+      {
+        account: this.mailingList.name,
+      },
+    )
       .then((tasks) => {
         if (tasks.length > 0) {
-          this.EmailProMXPlanMailingLists.pollState(this.$scope.exchange.associatedDomainName, {
-            id: max(tasks),
-            mailingList: this.mailingList,
-            successStates: ['noState'],
-            namespace: 'EmailProMXPlanMailingLists.moderators.poll',
-          });
+          this.EmailProMXPlanMailingLists.pollState(
+            this.$scope.exchange.associatedDomainName,
+            {
+              id: max(tasks),
+              mailingList: this.mailingList,
+              successStates: ['noState'],
+              namespace: 'EmailProMXPlanMailingLists.moderators.poll',
+            },
+          );
         }
         return tasks.length > 0;
       })

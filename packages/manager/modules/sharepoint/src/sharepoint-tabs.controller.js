@@ -5,7 +5,12 @@ import kebabCase from 'lodash/kebabCase';
 
 export default class SharepointTabsCtrl {
   /* @ngInject */
-  constructor($location, MicrosoftSharepointLicenseService, $stateParams, $scope) {
+  constructor(
+    $location,
+    MicrosoftSharepointLicenseService,
+    $stateParams,
+    $scope,
+  ) {
     this.$location = $location;
     this.sharepointService = MicrosoftSharepointLicenseService;
     this.$stateParams = $stateParams;
@@ -18,7 +23,6 @@ export default class SharepointTabsCtrl {
     this.$scope.toKebabCase = kebabCase;
     this.$scope.tabs = ['INFORMATION', 'ACCOUNT', 'TASK'];
 
-
     this.$scope.setSelectedTab = (tab) => {
       if (!isEmpty(tab)) {
         this.$scope.selectedTab = tab;
@@ -28,14 +32,17 @@ export default class SharepointTabsCtrl {
       this.$location.search('tab', this.$scope.selectedTab);
     };
 
-    this.sharepointService.getAssociatedExchangeService(this.$stateParams.exchangeId)
+    this.sharepointService
+      .getAssociatedExchangeService(this.$stateParams.exchangeId)
       .catch(() => this.$scope.tabs.splice(1, 0, 'DOMAIN'))
       .finally(() => {
-        if (!isNull(this.$stateParams.tab)
-          && some(
+        if (
+          !isNull(this.$stateParams.tab) &&
+          some(
             this.$scope.tabs,
             (item) => item === this.$stateParams.tab.toUpperCase(),
-          )) {
+          )
+        ) {
           this.$scope.setSelectedTab(this.$stateParams.tab.toUpperCase());
         } else {
           this.$scope.setSelectedTab(this.defaultTab);

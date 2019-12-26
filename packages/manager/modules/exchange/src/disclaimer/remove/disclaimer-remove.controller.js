@@ -27,13 +27,17 @@ export default class ExchangeRemoveDisclaimerCtrl {
     )
       .then((success) => {
         this.services.messaging.writeSuccess(
-          this.services.$translate.instant('exchange_ACTION_delete_disclaimer_success'),
+          this.services.$translate.instant(
+            'exchange_ACTION_delete_disclaimer_success',
+          ),
           success,
         );
       })
       .catch((failure) => {
         this.services.messaging.writeError(
-          this.services.$translate.instant('exchange_ACTION_delete_disclaimer_failure'),
+          this.services.$translate.instant(
+            'exchange_ACTION_delete_disclaimer_failure',
+          ),
           failure,
         );
       })

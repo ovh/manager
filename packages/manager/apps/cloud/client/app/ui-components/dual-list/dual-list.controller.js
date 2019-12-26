@@ -6,19 +6,27 @@ class DualListCtrl {
   }
 
   $onInit() {
-    this.sourceListLabel = this.sourceListLabel
-      || this.dualListProvider.translations.sourceListLabel;
-    this.targetListLabel = this.targetListLabel
-      || this.dualListProvider.translations.targetListLabel;
-    this.moveAllLabel = this.moveAllLabel || this.dualListProvider.translations.moveAllLabel;
-    this.removeAllLabel = this.removeAllLabel || this.dualListProvider.translations.removeAllLabel;
-    this.sourceListEmptyLabel = this.sourceListEmptyLabel
-      || this.dualListProvider.translations.sourceListEmptyLabel;
-    this.targetListEmptyLabel = this.targetListEmptyLabel
-      || this.dualListProvider.translations.targetListEmptyLabel;
-    this.addLabel = this.addLabel || this.dualListProvider.translations.addLabel;
+    this.sourceListLabel =
+      this.sourceListLabel ||
+      this.dualListProvider.translations.sourceListLabel;
+    this.targetListLabel =
+      this.targetListLabel ||
+      this.dualListProvider.translations.targetListLabel;
+    this.moveAllLabel =
+      this.moveAllLabel || this.dualListProvider.translations.moveAllLabel;
+    this.removeAllLabel =
+      this.removeAllLabel || this.dualListProvider.translations.removeAllLabel;
+    this.sourceListEmptyLabel =
+      this.sourceListEmptyLabel ||
+      this.dualListProvider.translations.sourceListEmptyLabel;
+    this.targetListEmptyLabel =
+      this.targetListEmptyLabel ||
+      this.dualListProvider.translations.targetListEmptyLabel;
+    this.addLabel =
+      this.addLabel || this.dualListProvider.translations.addLabel;
     this.height = this.height || this.dualListProvider.height;
-    this.bulkActionEnabled = this.bulkActionEnabled || this.dualListProvider.bulkActionEnabled;
+    this.bulkActionEnabled =
+      this.bulkActionEnabled || this.dualListProvider.bulkActionEnabled;
     this.sourceList = this.sourceList || [];
     this.targetList = this.targetList || [];
     this.onAdd = this.onAdd || null;
@@ -70,7 +78,9 @@ class DualListCtrl {
     if (!this.property) {
       return item;
     }
-    return this.property.split('.').reduce((prev, curr) => (prev ? prev[curr] : undefined), item);
+    return this.property
+      .split('.')
+      .reduce((prev, curr) => (prev ? prev[curr] : undefined), item);
   }
 
   isLoading(item) {
@@ -91,7 +101,8 @@ class DualListCtrl {
       return this.$q.reject(false);
     }
     this.sourceListLoading = true;
-    return this.$q.when(this.sourceList)
+    return this.$q
+      .when(this.sourceList)
       .then((items) => {
         this.sourceList = items.data ? items.data : items;
       })
@@ -105,7 +116,8 @@ class DualListCtrl {
       return this.$q.reject(false);
     }
     this.targetListLoading = true;
-    return this.$q.when(this.targetList)
+    return this.$q
+      .when(this.targetList)
       .then((items) => {
         this.targetList = items.data ? items.data : items;
       })
@@ -164,11 +176,12 @@ class DualListCtrl {
       this.sourceList.splice(newIndex, 1);
     });
     if (this.onAdd) {
-      this.onAdd({ items: list })
-        .then(() => {
+      this.onAdd({ items: list }).then(
+        () => {
           // all items successfully moved, remove loading
           list.forEach((item) => this.setLoading(item, false));
-        }, (failedItems) => {
+        },
+        (failedItems) => {
           // some or all items failed to move
           failedItems.forEach((item) => {
             // move back to source list and remove loading
@@ -180,7 +193,8 @@ class DualListCtrl {
           });
           // remove loading for all successfull items
           list.forEach((item) => this.setLoading(item, false));
-        });
+        },
+      );
     }
   }
 
@@ -198,11 +212,12 @@ class DualListCtrl {
       this.targetList.splice(newIndex, 1);
     });
     if (this.onAdd) {
-      this.onAdd({ items: list })
-        .then(() => {
+      this.onAdd({ items: list }).then(
+        () => {
           // all items successfully moved, remove loading
           list.forEach((item) => this.setLoading(item, false));
-        }, (failedItems) => {
+        },
+        (failedItems) => {
           // some or all items failed to move
           failedItems.forEach((item) => {
             // move back to target list and remove loading
@@ -214,7 +229,8 @@ class DualListCtrl {
           });
           // remove loading for all successfull items
           list.forEach((item) => this.setLoading(item, false));
-        });
+        },
+      );
     }
   }
 }
