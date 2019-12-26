@@ -8,5 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
         component: component.name,
       },
     },
+    resolve: {
+      goToVeeamRestore: /* @ngInject */ ($state) => (restorePoint) =>
+        $state.go('vps.detail.veeam.restore', { restorePoint }),
+      goToVeeamMount: /* @ngInject */ ($state) => (restorePoint, mount) =>
+        $state.go('vps.detail.veeam.mount', { restorePoint, mount }),
+      goBack: /* @ngInject */ ($state) => () => $state.go('vps.detail.veeam'),
+    },
   });
 };
