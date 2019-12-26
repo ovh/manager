@@ -1,9 +1,8 @@
 export default class {
   /* @ngInject */
-  constructor($stateParams, CucControllerHelper, VpsActionService, VpsService) {
+  constructor($stateParams, CucControllerHelper, VpsService) {
     this.serviceName = $stateParams.serviceName;
     this.CucControllerHelper = CucControllerHelper;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
   }
 
@@ -30,27 +29,5 @@ export default class {
         this.vps.load();
       }
     });
-  }
-
-  add() {
-    this.VpsActionService.addBackupStorage(this.serviceName).then(() =>
-      this.backup.load(),
-    );
-  }
-
-  resetPassword() {
-    this.VpsActionService.resetPasswordBackupStorage(this.serviceName);
-  }
-
-  deleteOne(access) {
-    this.VpsActionService.deleteBackupStorage(this.serviceName, access).then(
-      () => this.backup.load(),
-    );
-  }
-
-  editOne(row) {
-    this.VpsActionService.editBackupStorage(this.serviceName, row).then(() =>
-      this.backup.load(),
-    );
   }
 }
