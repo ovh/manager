@@ -6,24 +6,30 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-loading="$ctrl.loader">
-
-        <oui-field data-label="{{ :: $ctrl.model.isUSorCA ? 'cpb_rights_table_email' : 'cpb_rights_table_nichandle' | translate }}">
-            <input type="text"
+        data-loading="$ctrl.loader"
+    >
+        <oui-field
+            data-label="{{ :: $ctrl.model.isUSorCA ? 'cpb_rights_table_email' : 'cpb_rights_table_nichandle' | translate }}"
+        >
+            <input
+                type="text"
                 id="billingContactInput"
                 name="billingContactInput"
                 class="oui-input"
                 data-ng-model="$ctrl.right.contact"
-                required>
+                required
+            />
         </oui-field>
         <oui-field data-label="{{ ::'cpb_rights_table_rights' | translate }}">
-            <oui-select name="selectRightType"
-                    id="selectRightType"
-                    data-model="$ctrl.right"
-                    data-items="$ctrl.availableRights"
-                    data-match="label"
-                    required
-                    data-align="start">
+            <oui-select
+                name="selectRightType"
+                id="selectRightType"
+                data-model="$ctrl.right"
+                data-items="$ctrl.availableRights"
+                data-match="label"
+                required
+                data-align="start"
+            >
             </oui-select>
         </oui-field>
     </oui-modal>

@@ -1,20 +1,21 @@
-<form class="pci-projects-new-credits"
-      name="newProjectCreditForm">
+<form class="pci-projects-new-credits" name="newProjectCreditForm">
+    <h2
+        class="oui-heading_underline"
+        data-translate="pci_projects_new_credits_title"
+    ></h2>
 
-    <h2 class="oui-heading_underline"
-        data-translate="pci_projects_new_credits_title">
-    </h2>
-
-    <p class="mb-0"
-       data-translate="pci_projects_new_credits_explain1">
-    </p>
+    <p class="mb-0" data-translate="pci_projects_new_credits_explain1"></p>
     <p data-translate="pci_projects_new_credits_explain2"></p>
 
-    <div class="oui-field"
-         data-ng-class="{ 'oui-field_error': !newProjectCreditForm.creditAmount.$pristine && newProjectCreditForm.creditAmount.$invalid }">
-        <label class="oui-field__label oui-label"
-               for="creditAmount"
-               data-translate="pci_projects_new_credits_amount">
+    <div
+        class="oui-field"
+        data-ng-class="{ 'oui-field_error': !newProjectCreditForm.creditAmount.$pristine && newProjectCreditForm.creditAmount.$invalid }"
+    >
+        <label
+            class="oui-field__label oui-label"
+            for="creditAmount"
+            data-translate="pci_projects_new_credits_amount"
+        >
         </label>
         <div class="oui-field__control">
             <input
@@ -24,30 +25,38 @@
                 name="creditAmount"
                 data-ng-model="$ctrl.creditModel.value"
                 required
-                min="{{ $ctrl.creditMinPrice.value }}" />
+                min="{{ $ctrl.creditMinPrice.value }}"
+            />
         </div>
-        <div class="oui-field__error"
-             data-ng-if="newProjectCreditForm.creditAmount.$invalid">
-            <span role="alert"
-                  data-ng-if="!newProjectCreditForm.creditAmount.$pristine && (newProjectCreditForm.creditAmount.$error.min || newProjectCreditForm.creditAmount.$error.required)">
+        <div
+            class="oui-field__error"
+            data-ng-if="newProjectCreditForm.creditAmount.$invalid"
+        >
+            <span
+                role="alert"
+                data-ng-if="!newProjectCreditForm.creditAmount.$pristine && (newProjectCreditForm.creditAmount.$error.min || newProjectCreditForm.creditAmount.$error.required)"
+            >
                 <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span data-translate="{{ newProjectCreditForm.creditAmount.$error.min ? 'pci_projects_new_credits_amount_min_error' : 'pci_projects_new_credits_amount_min' }}"
-                      data-translate-values="{ amount: $ctrl.creditMinPrice.text }">
+                <span
+                    data-translate="{{ newProjectCreditForm.creditAmount.$error.min ? 'pci_projects_new_credits_amount_min_error' : 'pci_projects_new_credits_amount_min' }}"
+                    data-translate-values="{ amount: $ctrl.creditMinPrice.text }"
+                >
                 </span>
             </span>
         </div>
-        <div class="oui-field__helper"
-             data-ng-if="newProjectCreditForm.creditAmount.$pristine || !newProjectCreditForm.creditAmount.$error.required"
-             data-translate="pci_projects_new_credits_amount_min"
-             data-translate-values="{ amount: $ctrl.creditMinPrice.text }">
-        </div>
+        <div
+            class="oui-field__helper"
+            data-ng-if="newProjectCreditForm.creditAmount.$pristine || !newProjectCreditForm.creditAmount.$error.required"
+            data-translate="pci_projects_new_credits_amount_min"
+            data-translate-values="{ amount: $ctrl.creditMinPrice.text }"
+        ></div>
     </div>
 
-    <small class="d-block"
-           data-translate="pci_projects_new_credits_condition1">
+    <small class="d-block" data-translate="pci_projects_new_credits_condition1">
     </small>
-    <small class="d-block mb-3"
-           data-translate="pci_projects_new_credits_condition2">
+    <small
+        class="d-block mb-3"
+        data-translate="pci_projects_new_credits_condition2"
+    >
     </small>
-
 </form>

@@ -1,148 +1,221 @@
-<div class="row tab-content"
-     data-ng-controller="HostingUpgradeOfferCtrl as $ctrl">
+<div
+    class="row tab-content"
+    data-ng-controller="HostingUpgradeOfferCtrl as $ctrl"
+>
     <div class="col-md-8">
         <oui-back-button data-sref="^">
             <span data-translate="hosting_order_upgrade_modal_header"></span>
         </oui-back-button>
 
         <oui-spinner
-          data-size="l"
-          data-ng-if="$ctrl.loading.availableOffers || $ctrl.loading.validation">
+            data-size="l"
+            data-ng-if="$ctrl.loading.availableOffers || $ctrl.loading.validation"
+        >
         </oui-spinner>
 
         <oui-message
-          data-type="warning"
-          data-ng-if="!$ctrl.loading.availableOffers
+            data-type="warning"
+            data-ng-if="!$ctrl.loading.availableOffers
                       && !$ctrl.loading.validation
                       && $ctrl.availableOffers.length === 0"
-          data-dismissable="false">
+            data-dismissable="false"
+        >
             <span data-translate="hosting_order_upgrade_no_offer"></span>
         </oui-message>
 
-        <oui-stepper data-ng-if="!$ctrl.loading.availableOffers
+        <oui-stepper
+            data-ng-if="!$ctrl.loading.availableOffers
                                  && !$ctrl.loading.validation
                                  && $ctrl.availableOffers.length > 0"
-                     data-on-finish="$ctrl.orderUpgrade()">
-            <oui-step-form data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}">
-                <oui-field data-label="{{::'hostin_order_select_offer' | translate}}"
-                           data-size="m"
-                           data-label-popover="{{:: ($ctrl.hosting.isCloudWeb
+            data-on-finish="$ctrl.orderUpgrade()"
+        >
+            <oui-step-form
+                data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}"
+            >
+                <oui-field
+                    data-label="{{::'hostin_order_select_offer' | translate}}"
+                    data-size="m"
+                    data-label-popover="{{:: ($ctrl.hosting.isCloudWeb
                                                     ? 'hosting_order_upgrade_select_noduration_cloudweb'
-                                                    : 'hosting_order_upgrade_select_noduration') | translate }}">
+                                                    : 'hosting_order_upgrade_select_noduration') | translate }}"
+                >
                     <oui-select
-                      data-required
-                      data-placeholder="{{::'select_placeholder' | translate}}"
-                      data-name="availableOffer"
-                      data-model="$ctrl.model.offer"
-                      data-items="$ctrl.availableOffers"
-                      data-match="name">
+                        data-required
+                        data-placeholder="{{::'select_placeholder' | translate}}"
+                        data-name="availableOffer"
+                        data-model="$ctrl.model.offer"
+                        data-items="$ctrl.availableOffers"
+                        data-match="name"
+                    >
                         <span data-ng-bind="$item.name"></span>
                     </oui-select>
                 </oui-field>
                 <oui-message
-                  data-type="info"
-                  data-dismissable="false"
-                  data-ng-if="$ctrl.hosting.isCloudWeb">
-                    <span data-translate="hosting_order_upgrade_select_noduration_cloudweb_explanation"></span>
+                    data-type="info"
+                    data-dismissable="false"
+                    data-ng-if="$ctrl.hosting.isCloudWeb"
+                >
+                    <span
+                        data-translate="hosting_order_upgrade_select_noduration_cloudweb_explanation"
+                    ></span>
                 </oui-message>
-                <oui-field data-ng-if="$ctrl.model.offer && $ctrl.model.offer.value === 'KS'"
-                           data-label="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015' | translate }}">
+                <oui-field
+                    data-ng-if="$ctrl.model.offer && $ctrl.model.offer.value === 'KS'"
+                    data-label="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015' | translate }}"
+                >
                     <oui-checkbox
-                      data-required
-                      data-model="$ctrl.model.downgradeAgree"
-                      data-text="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree' | translate }}">
+                        data-required
+                        data-model="$ctrl.model.downgradeAgree"
+                        data-text="{{:: 'hosting_dashboard_service_offer_downgrade_KIMSUFI_2015_agree' | translate }}"
+                    >
                     </oui-checkbox>
                 </oui-field>
             </oui-step-form>
 
-            <oui-step-form data-header="{{:: 'hosting_order_upgrade_step_header_duration' | translate }}"
-                           data-description="{{:: 'hosting_order_upgrade_select_duration' | translate }}"
-                           data-on-focus="$ctrl.getDurations()"
-                           data-loading="$ctrl.loading.durations">
-                <oui-radio-group data-required
-                                 data-model="$ctrl.model.duration">
-                    <oui-radio data-ng-repeat="duration in ($ctrl.durations.available | orderBy: 'duration': false) track by $index"
-                               data-value="duration">
-                        <span data-ng-bind="duration.duration | wucDuration: 'longDate'"></span>&nbsp;:
-                        <span data-ng-bind-html="duration.prices | price: $ctrl.ovhSubsidiary"></span>
+            <oui-step-form
+                data-header="{{:: 'hosting_order_upgrade_step_header_duration' | translate }}"
+                data-description="{{:: 'hosting_order_upgrade_select_duration' | translate }}"
+                data-on-focus="$ctrl.getDurations()"
+                data-loading="$ctrl.loading.durations"
+            >
+                <oui-radio-group
+                    data-required
+                    data-model="$ctrl.model.duration"
+                >
+                    <oui-radio
+                        data-ng-repeat="duration in ($ctrl.durations.available | orderBy: 'duration': false) track by $index"
+                        data-value="duration"
+                    >
+                        <span
+                            data-ng-bind="duration.duration | wucDuration: 'longDate'"
+                        ></span
+                        >&nbsp;:
+                        <span
+                            data-ng-bind-html="duration.prices | price: $ctrl.ovhSubsidiary"
+                        ></span>
                     </oui-radio>
                 </oui-radio-group>
             </oui-step-form>
 
-            <oui-step-form data-header="{{:: 'hosting_order_upgrade_step_header_start_time' | translate }}"
-                           data-position="3"
-                           data-ng-if="$ctrl.hosting.isCloudWeb">
-                <oui-field data-label="{{:: 'hosting_order_upgrade_start_time_label' | translate }}"
-                           data-label-popover="{{:: 'hosting_order_upgrade_start_time_explain' | translate }}">
+            <oui-step-form
+                data-header="{{:: 'hosting_order_upgrade_step_header_start_time' | translate }}"
+                data-position="3"
+                data-ng-if="$ctrl.hosting.isCloudWeb"
+            >
+                <oui-field
+                    data-label="{{:: 'hosting_order_upgrade_start_time_label' | translate }}"
+                    data-label-popover="{{:: 'hosting_order_upgrade_start_time_explain' | translate }}"
+                >
                     <oui-timepicker
-                      data-inline
-                      data-format="H:i:S"
-                      data-model="$ctrl.model.startTime">
+                        data-inline
+                        data-format="H:i:S"
+                        data-model="$ctrl.model.startTime"
+                    >
                     </oui-timepicker>
-                    <p data-ng-bind="$ctrl.formatTime($ctrl.model.startTime)"></p>
+                    <p
+                        data-ng-bind="$ctrl.formatTime($ctrl.model.startTime)"
+                    ></p>
                 </oui-field>
-                <oui-message data-type="info"
-                             data-dismissable="false">
-                    <span data-translate="hosting_order_upgrade_start_time_info"></span>
+                <oui-message data-type="info" data-dismissable="false">
+                    <span
+                        data-translate="hosting_order_upgrade_start_time_info"
+                    ></span>
                 </oui-message>
             </oui-step-form>
 
-            <oui-step-form data-header="{{:: 'hosting_order_upgrade_step_header_contracts' | translate }}"
-                           data-valid="$ctrl.model.agree">
-                <div data-contracts="$ctrl.model.duration.contracts"
-                     data-full-text="false"
-                     data-ng-model="$ctrl.model.agree">
-                </div>
+            <oui-step-form
+                data-header="{{:: 'hosting_order_upgrade_step_header_contracts' | translate }}"
+                data-valid="$ctrl.model.agree"
+            >
+                <div
+                    data-contracts="$ctrl.model.duration.contracts"
+                    data-full-text="false"
+                    data-ng-model="$ctrl.model.agree"
+                ></div>
             </oui-step-form>
 
-            <oui-step-form data-header="{{:: 'hosting_order_upgrade_resume' | translate }}">
+            <oui-step-form
+                data-header="{{:: 'hosting_order_upgrade_resume' | translate }}"
+            >
                 <table class="table table-condensed">
                     <tbody>
-                        <tr data-ng-repeat="detail in $ctrl.model.duration.details track by $index">
-                            <th class="font-weight-normal" scope="row"
-                                data-ng-bind="detail.description"></th>
+                        <tr
+                            data-ng-repeat="detail in $ctrl.model.duration.details track by $index"
+                        >
+                            <th
+                                class="font-weight-normal"
+                                scope="row"
+                                data-ng-bind="detail.description"
+                            ></th>
                             <td class="text-nowrap text-right">
-                                <strong data-ng-bind-html="$ctrl.formatPrice(detail.totalPrice)"></strong>
+                                <strong
+                                    data-ng-bind-html="$ctrl.formatPrice(detail.totalPrice)"
+                                ></strong>
                             </td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="text-right"
+                            <th
+                                class="text-right"
                                 scope="row"
-                                data-translate="hosting_order_upgrade_price_HT"></th>
-                            <td class="font-weight-bold text-right"
-                                data-ng-bind="$ctrl.model.duration.prices.withoutTax.text"></td>
+                                data-translate="hosting_order_upgrade_price_HT"
+                            ></th>
+                            <td
+                                class="font-weight-bold text-right"
+                                data-ng-bind="$ctrl.model.duration.prices.withoutTax.text"
+                            ></td>
                         </tr>
                         <tr>
-                            <th scope="row"
+                            <th
+                                scope="row"
                                 class="text-right"
-                                data-translate="hosting_order_upgrade_price_TTC"></th>
-                            <td class="font-weight-bold text-right"
-                                data-ng-bind="$ctrl.model.duration.prices.withTax.text"></td>
+                                data-translate="hosting_order_upgrade_price_TTC"
+                            ></th>
+                            <td
+                                class="font-weight-bold text-right"
+                                data-ng-bind="$ctrl.model.duration.prices.withTax.text"
+                            ></td>
                         </tr>
                     </tfoot>
                 </table>
-                <oui-message data-type="info"
-                             data-dismissable="false">
-                    <span data-translate="hosting_order_upgrade_do_order"
-                          data-ng-if="!$ctrl.hosting.isCloudWeb"></span>
-                    <span data-translate="hosting_order_upgrade_do_order_cloudweb"
-                          data-ng-if="$ctrl.hosting.isCloudWeb"></span>
+                <oui-message data-type="info" data-dismissable="false">
+                    <span
+                        data-translate="hosting_order_upgrade_do_order"
+                        data-ng-if="!$ctrl.hosting.isCloudWeb"
+                    ></span>
+                    <span
+                        data-translate="hosting_order_upgrade_do_order_cloudweb"
+                        data-ng-if="$ctrl.hosting.isCloudWeb"
+                    ></span>
                 </oui-message>
-                <oui-message data-type="warning"
-                             data-dismissable="false"
-                             data-ng-if="!$ctrl.hosting.isCloudWeb">
-                    <strong data-translate="hosting_order_upgrade_freedom_warning"></strong>
-                    <span data-translate="hosting_order_upgrade_freedom_warning_text"></span>
+                <oui-message
+                    data-type="warning"
+                    data-dismissable="false"
+                    data-ng-if="!$ctrl.hosting.isCloudWeb"
+                >
+                    <strong
+                        data-translate="hosting_order_upgrade_freedom_warning"
+                    ></strong>
+                    <span
+                        data-translate="hosting_order_upgrade_freedom_warning_text"
+                    ></span>
                 </oui-message>
                 <p>
-                    <strong data-translate="hosting_order_upgrade_do_order_upgrade"></strong>
-                    <span data-translate="hosting_order_upgrade_do_order_upgrade_text"></span>
+                    <strong
+                        data-translate="hosting_order_upgrade_do_order_upgrade"
+                    ></strong>
+                    <span
+                        data-translate="hosting_order_upgrade_do_order_upgrade_text"
+                    ></span>
                 </p>
                 <p data-ng-if="!$ctrl.hosting.isCloudWeb">
-                    <strong data-translate="hosting_order_upgrade_do_order_downgrade"></strong>
-                    <span data-translate="hosting_order_upgrade_do_order_downgrade_text"></span>
+                    <strong
+                        data-translate="hosting_order_upgrade_do_order_downgrade"
+                    ></strong>
+                    <span
+                        data-translate="hosting_order_upgrade_do_order_downgrade_text"
+                    ></span>
                 </p>
             </oui-step-form>
         </oui-stepper>

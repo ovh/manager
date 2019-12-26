@@ -1,20 +1,26 @@
 <div class="popover-menu">
-    <button class="btn btn-link" type="button"
-            data-ng-bind="user.waitChangePassword ? ('privateDatabase_action_changepassword_doing' | translate) : ('privateDatabase_action_changepassword' | translate)"
-            data-ng-click="setAction('user/update/password/user/private-database-user-update-password-user', {user : user, database: database})"
-            data-ng-disabled="!database.capabilities.user.update || database.state !== 'started' || taskState.changeVersion || lockAction || user.waitChangePassword"
-            title="{{!database.capabilities.user.update ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_changepassword' | translate) }}">
-    </button>
-    <button class="btn btn-link" type="button"
-            data-translate="privateDatabase_action_grants"
-            data-ng-click="goToGrants(user)"
-            data-ng-disabled="!database.capabilities.grant.update || database.state !== 'started' || taskState.changeVersion || lockAction"
-            title="{{!database.capabilities.grant.update ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_grants' | translate) }}">
-    </button>
-    <button class="btn btn-link" type="button"
-            data-translate="privateDatabase_action_delete_user"
-            data-ng-click="setAction('user/delete/private-database-user-delete', user)"
-            data-ng-disabled="!database.capabilities.user.delete || database.state !== 'started' || taskState.changeVersion || lockAction"
-            title="{{!database.capabilities.user.delete ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_delete_user' | translate) }}">
-    </button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-ng-bind="user.waitChangePassword ? ('privateDatabase_action_changepassword_doing' | translate) : ('privateDatabase_action_changepassword' | translate)"
+        data-ng-click="setAction('user/update/password/user/private-database-user-update-password-user', {user : user, database: database})"
+        data-ng-disabled="!database.capabilities.user.update || database.state !== 'started' || taskState.changeVersion || lockAction || user.waitChangePassword"
+        title="{{!database.capabilities.user.update ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_changepassword' | translate) }}"
+    ></button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="privateDatabase_action_grants"
+        data-ng-click="goToGrants(user)"
+        data-ng-disabled="!database.capabilities.grant.update || database.state !== 'started' || taskState.changeVersion || lockAction"
+        title="{{!database.capabilities.grant.update ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_grants' | translate) }}"
+    ></button>
+    <button
+        class="btn btn-link"
+        type="button"
+        data-translate="privateDatabase_action_delete_user"
+        data-ng-click="setAction('user/delete/private-database-user-delete', user)"
+        data-ng-disabled="!database.capabilities.user.delete || database.state !== 'started' || taskState.changeVersion || lockAction"
+        title="{{!database.capabilities.user.delete ? ('privateDatabase_capability_disabled_explanation' | translate): ('privateDatabase_action_delete_user' | translate) }}"
+    ></button>
 </div>

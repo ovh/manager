@@ -1,77 +1,94 @@
-<div class="form-group"
-     data-ng-if="!isPleskVersion10(license)">
-    <label for="version"
-           class="control-label"
-           data-translate="license_order_step2_option_PLESK_version">
+<div class="form-group" data-ng-if="!isPleskVersion10(license)">
+    <label
+        for="version"
+        class="control-label"
+        data-translate="license_order_step2_option_PLESK_version"
+    >
     </label>
-    <select class="form-control"
-            id="version"
-            name="version"
-            data-ng-options="(('license_designation_PLESK_version_'+optionVersion.value) | translate) for optionVersion in getOptionVersions()"
-            data-ng-model="selected.options['PLESK'].version">
-        <option value=""
-                data-translate="license_upgrade_common_no_change">
+    <select
+        class="form-control"
+        id="version"
+        name="version"
+        data-ng-options="(('license_designation_PLESK_version_'+optionVersion.value) | translate) for optionVersion in getOptionVersions()"
+        data-ng-model="selected.options['PLESK'].version"
+    >
+        <option value="" data-translate="license_upgrade_common_no_change">
         </option>
     </select>
 </div>
 
-<div class="form-group"
-     data-ng-if="isPleskVersion10(license)">
-    <label for="domainNumber"
-           class="control-label"
-           data-translate="license_order_step2_option_PLESK_domainNumber">
+<div class="form-group" data-ng-if="isPleskVersion10(license)">
+    <label
+        for="domainNumber"
+        class="control-label"
+        data-translate="license_order_step2_option_PLESK_domainNumber"
+    >
     </label>
-    <select class="form-control"
-            id="domainNumber"
-            name="domainNumber"
-            data-ng-options="domainNumber.value for domainNumber in selected.version.options"
-            data-ng-model="selected.options['PLESK'].domainNumber.value">
-        <option value=""
-                data-translate="license_upgrade_common_no_change">
+    <select
+        class="form-control"
+        id="domainNumber"
+        name="domainNumber"
+        data-ng-options="domainNumber.value for domainNumber in selected.version.options"
+        data-ng-model="selected.options['PLESK'].domainNumber.value"
+    >
+        <option value="" data-translate="license_upgrade_common_no_change">
         </option>
     </select>
 </div>
 
-<div class="form-group"
-     data-ng-show="selected.version.more.compliantLanguagePack && selected.version.more.compliantLanguagePack.length > 0">
-    <label for="languagePackNumber"
-           class="control-label"
-           data-translate="license_order_step2_option_PLESK_language_pack">
+<div
+    class="form-group"
+    data-ng-show="selected.version.more.compliantLanguagePack && selected.version.more.compliantLanguagePack.length > 0"
+>
+    <label
+        for="languagePackNumber"
+        class="control-label"
+        data-translate="license_order_step2_option_PLESK_language_pack"
+    >
     </label>
-    <select class="form-control"
-            id="languagePackNumber"
-            name="languagePackNumber"
-            data-ng-options="languagePack for languagePack in selected.version.more.compliantLanguagePack"
-            data-ng-model="selected.options['PLESK'].languagePackNumber.value">
-        <option value=""
-                data-translate="license_upgrade_common_no_change">
+    <select
+        class="form-control"
+        id="languagePackNumber"
+        name="languagePackNumber"
+        data-ng-options="languagePack for languagePack in selected.version.more.compliantLanguagePack"
+        data-ng-model="selected.options['PLESK'].languagePackNumber.value"
+    >
+        <option value="" data-translate="license_upgrade_common_no_change">
         </option>
     </select>
 </div>
 
-<div class="form-group"
-     data-ng-show="selected.version.more.compliantAntivirus && selected.version.more.compliantAntivirus.length > 0">
-    <label for="antivirus"
-           class="control-label"
-           data-translate="license_order_step2_option_PLESK_antivirus">
+<div
+    class="form-group"
+    data-ng-show="selected.version.more.compliantAntivirus && selected.version.more.compliantAntivirus.length > 0"
+>
+    <label
+        for="antivirus"
+        class="control-label"
+        data-translate="license_order_step2_option_PLESK_antivirus"
+    >
     </label>
-    <select class="form-control"
-            id="antivirus"
-            name="antivirus"
-            data-ng-options="antivirus as (('license_designation_PLESK_options_antivirus_' + antivirus) | translate) for antivirus in selected.version.more.compliantAntivirus"
-            data-ng-model="selected.options['PLESK'].antivirus.value">
-        <option value=""
-                data-translate="license_upgrade_common_no_change">
+    <select
+        class="form-control"
+        id="antivirus"
+        name="antivirus"
+        data-ng-options="antivirus as (('license_designation_PLESK_options_antivirus_' + antivirus) | translate) for antivirus in selected.version.more.compliantAntivirus"
+        data-ng-model="selected.options['PLESK'].antivirus.value"
+    >
+        <option value="" data-translate="license_upgrade_common_no_change">
         </option>
     </select>
 </div>
 
-<div class="checkbox"
-     data-ng-show="selected.version.more.canHavePowerPack">
+<div class="checkbox" data-ng-show="selected.version.more.canHavePowerPack">
     <label>
-        <input type="checkbox"
-               name="powerpack"
-               data-ng-model="selected.options['PLESK'].powerpack.value" />
-        <span data-translate="license_order_step2_option_PLESK_powerpack"></span>
+        <input
+            type="checkbox"
+            name="powerpack"
+            data-ng-model="selected.options['PLESK'].powerpack.value"
+        />
+        <span
+            data-translate="license_order_step2_option_PLESK_powerpack"
+        ></span>
     </label>
 </div>

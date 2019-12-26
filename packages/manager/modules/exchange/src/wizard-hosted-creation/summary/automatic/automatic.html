@@ -1,22 +1,32 @@
 <div data-ng-controller="exchangeWizardHostedCreationAutoController as $ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-hide-cancel-button="hideCancelButton()"
-         data-wizard-on-finish="resetAction"
-         data-wizard-confirm-button-text="'exchange_wizardHostedCreation_lastDialog_closeButton' | translate"
-         data-wizard-title="'exchange_wizardHostedCreation_ending_dialog' | translate">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-hide-cancel-button="hideCancelButton()"
+        data-wizard-on-finish="resetAction"
+        data-wizard-confirm-button-text="'exchange_wizardHostedCreation_lastDialog_closeButton' | translate"
+        data-wizard-title="'exchange_wizardHostedCreation_ending_dialog' | translate"
+    >
         <div data-wizard-step>
-            <span data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_auto_explanation1' | translate:{ t0: $ctrl.domainName }"></span>
+            <span
+                data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_auto_explanation1' | translate:{ t0: $ctrl.domainName }"
+            ></span>
             <a
                 data-ng-href="https://{{:: $ctrl.webUrl }}"
                 target="_blank"
                 rel="noopener"
-                class="oui-link_icon">
+                class="oui-link_icon"
+            >
                 https://<span data-ng-bind=":: $ctrl.webUrl"></span>
-                <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                <span
+                    class="oui-icon oui-icon-external_link"
+                    aria-hidden="true"
+                ></span>
                 <span class="sr-only" data-translate="common_newtab"></span>
             </a>
-            <span data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_auto_explanation2' | translate"></span>
+            <span
+                data-ng-bind-html="'exchange_wizardHostedCreation_configureDNSZone_auto_explanation2' | translate"
+            ></span>
         </div>
     </div>
 </div>

@@ -1,216 +1,378 @@
 <div data-ng-controller="EmailProUpdateAccountCtrl as $ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateExchangeAccount"
-         data-wizard-title="$ctrl.exchange.billingPlan + '_ACTION_update_account_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="$ctrl.needsUpdate()"
-             data-wizard-step-on-load="$ctrl.loadAccountOptions()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateExchangeAccount"
+        data-wizard-title="$ctrl.exchange.billingPlan + '_ACTION_update_account_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="$ctrl.needsUpdate()"
+            data-wizard-step-on-load="$ctrl.loadAccountOptions()"
+        >
             <div class="text-center" data-ng-if="!$ctrl.newAccountOptions">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div class="alert" role="alert"
-                 data-ng-class="alertType"
-                 data-ng-if="$ctrl.noDomainMessage">
-                <span class="close icon-remove" data-ng-click="$ctrl.resetAction"></span>
+            <div
+                class="alert"
+                role="alert"
+                data-ng-class="alertType"
+                data-ng-if="$ctrl.noDomainMessage"
+            >
+                <span
+                    class="close icon-remove"
+                    data-ng-click="$ctrl.resetAction"
+                ></span>
                 <span data-ng-bind-html="$ctrl.noDomainMessage"></span>
             </div>
 
-            <form class="form-horizontal" name="emailProUpdateAccountForm"
-                   data-ng-hide="$ctrl.noDomainMessage">
-                <div class="form-group"
-                     data-ng-class="{ 'has-error': emailProUpdateAccountForm.login.$dirty && (emailProUpdateAccountForm.login.$invalid || takenEmailError) }">
-                    <label for="login" class="col-md-12 control-label text-left required"
-                           data-translate="emailpro_ACTION_add_account_step1_email_label"></label>
+            <form
+                class="form-horizontal"
+                name="emailProUpdateAccountForm"
+                data-ng-hide="$ctrl.noDomainMessage"
+            >
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': emailProUpdateAccountForm.login.$dirty && (emailProUpdateAccountForm.login.$invalid || takenEmailError) }"
+                >
+                    <label
+                        for="login"
+                        class="col-md-12 control-label text-left required"
+                        data-translate="emailpro_ACTION_add_account_step1_email_label"
+                    ></label>
                     <div class="col-md-12">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="login" name="login" required
-                                   data-ng-change="$ctrl.checkTakenEmails()"
-                                   data-ng-disabled="!$ctrl.canChangePrimary()"
-                                   data-ng-model="$ctrl.selectedAccount.login"
-                                   data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="login"
+                                name="login"
+                                required
+                                data-ng-change="$ctrl.checkTakenEmails()"
+                                data-ng-disabled="!$ctrl.canChangePrimary()"
+                                data-ng-model="$ctrl.selectedAccount.login"
+                                data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/"
+                            />
                             <span class="input-group-addon">@</span>
-                            <select class="form-control" required
-                                    data-ng-change="$ctrl.checkTakenEmails()"
-                                    data-ng-disabled="!$ctrl.canChangePrimary()"
-                                    data-ng-model="$ctrl.selectedAccount.completeDomain"
-                                    data-ng-options="domain.displayName for domain in $ctrl.newAccountOptions.availableDomains | orderBy:'formattedName'">
+                            <select
+                                class="form-control"
+                                required
+                                data-ng-change="$ctrl.checkTakenEmails()"
+                                data-ng-disabled="!$ctrl.canChangePrimary()"
+                                data-ng-model="$ctrl.selectedAccount.completeDomain"
+                                data-ng-options="domain.displayName for domain in $ctrl.newAccountOptions.availableDomains | orderBy:'formattedName'"
+                            >
                             </select>
                         </div>
-                        <small class="help-block"
-                               data-translate="emailpro_tab_ALIAS_taken_error_message"
-                               data-ng-if="$ctrl.takenEmailError">
+                        <small
+                            class="help-block"
+                            data-translate="emailpro_tab_ALIAS_taken_error_message"
+                            data-ng-if="$ctrl.takenEmailError"
+                        >
                         </small>
-                        <small class="help-block"
-                               data-ng-repeat="(error, value) in emailProUpdateAccountForm.login.$error"
-                               data-ng-bind="('emailpro_ACTION_account_error_' + error | translate) || error">
+                        <small
+                            class="help-block"
+                            data-ng-repeat="(error, value) in emailProUpdateAccountForm.login.$error"
+                            data-ng-bind="('emailpro_ACTION_account_error_' + error | translate) || error"
+                        >
                         </small>
                     </div>
                 </div>
-                <div class="form-group"
-                     data-ng-show="!$ctrl.selectedAccount.is25g && $ctrl.newAccountOptions.availableTypes.length > 1">
-                    <label for="accountLicense" class="col-md-3 control-label"
-                           data-translate="emailpro_ACTION_update_account_step1_type_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-show="!$ctrl.selectedAccount.is25g && $ctrl.newAccountOptions.availableTypes.length > 1"
+                >
+                    <label
+                        for="accountLicense"
+                        class="col-md-3 control-label"
+                        data-translate="emailpro_ACTION_update_account_step1_type_label"
+                    ></label>
                     <div class="col-md-9">
-                        <select class="form-control" id="accountLicense" name="accountLicense"
-                                data-ng-options="('emailpro_ACTION_update_account_step1_type_' + type | translate) for type in $ctrl.newAccountOptions.availableTypes"
-                                data-ng-model="$ctrl.selectedAccount.accountLicense"
-                                data-required>
+                        <select
+                            class="form-control"
+                            id="accountLicense"
+                            name="accountLicense"
+                            data-ng-options="('emailpro_ACTION_update_account_step1_type_' + type | translate) for type in $ctrl.newAccountOptions.availableTypes"
+                            data-ng-model="$ctrl.selectedAccount.accountLicense"
+                            data-required
+                        >
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="firstname" class="col-md-3 control-label"
-                           data-translate="emailpro_ACTION_update_account_step1_first_name_label"></label>
+                    <label
+                        for="firstname"
+                        class="col-md-3 control-label"
+                        data-translate="emailpro_ACTION_update_account_step1_first_name_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="firstname" name="firstname" maxlength="64"
-                               data-ng-model="$ctrl.selectedAccount.firstName"
-                               data-ng-change="$ctrl.selectedAccount.displayName = $ctrl.selectedAccount.firstName + ' ' + $ctrl.selectedAccount.lastName">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="firstname"
+                            name="firstname"
+                            maxlength="64"
+                            data-ng-model="$ctrl.selectedAccount.firstName"
+                            data-ng-change="$ctrl.selectedAccount.displayName = $ctrl.selectedAccount.firstName + ' ' + $ctrl.selectedAccount.lastName"
+                        />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lastname" class="col-md-3 control-label"
-                           data-translate="emailpro_ACTION_update_account_step1_last_name_label"></label>
+                    <label
+                        for="lastname"
+                        class="col-md-3 control-label"
+                        data-translate="emailpro_ACTION_update_account_step1_last_name_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="lastname" name="lastname" maxlength="64"
-                               data-ng-model="$ctrl.selectedAccount.lastName"
-                               data-ng-change="$ctrl.selectedAccount.displayName = $ctrl.selectedAccount.firstName + ' ' + $ctrl.selectedAccount.lastName">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="lastname"
+                            name="lastname"
+                            maxlength="64"
+                            data-ng-model="$ctrl.selectedAccount.lastName"
+                            data-ng-change="$ctrl.selectedAccount.displayName = $ctrl.selectedAccount.firstName + ' ' + $ctrl.selectedAccount.lastName"
+                        />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="displayname" class="col-md-3 control-label"
-                           data-translate="emailpro_ACTION_update_account_step1_display_name_label"></label>
+                    <label
+                        for="displayname"
+                        class="col-md-3 control-label"
+                        data-translate="emailpro_ACTION_update_account_step1_display_name_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="displayname" name="displayname"
-                               data-ng-model="$ctrl.selectedAccount.displayName"
-                               data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="displayname"
+                            name="displayname"
+                            data-ng-model="$ctrl.selectedAccount.displayName"
+                            data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
+                        />
                     </div>
                 </div>
-                <div class="form-group"
-                     data-ng-class="{
+                <div
+                    class="form-group"
+                    data-ng-class="{
                         'has-error': $ctrl.simplePasswordFlag
                                   || $ctrl.containsNameFlag
                                   || $ctrl.containsSamAccountNameFlag
                                   || $ctrl.containsSpace
-                    }">
-                    <label for="password" class="col-md-3 control-label"
-                           data-ng-class="{ 'required': !$ctrl.selectedAccount.canBeConfigured }"
-                           data-translate="emailpro_ACTION_update_account_step1_password_label"></label>
+                    }"
+                >
+                    <label
+                        for="password"
+                        class="col-md-3 control-label"
+                        data-ng-class="{ 'required': !$ctrl.selectedAccount.canBeConfigured }"
+                        data-translate="emailpro_ACTION_update_account_step1_password_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="password" class="form-control" id="password" name="password"
-                               placeholder="{{$ctrl.getPasswordPlaceholder()}}"
-                               data-ng-model="$ctrl.selectedAccount.password"
-                               data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
-                               data-oui-tooltip="{{:: $ctrl.passwordTooltip }}"
-                               data-oui-tooltip-placement="top">
-                        <span class="help-block" data-ng-if="$ctrl.simplePasswordFlag"
-                              data-translate="emailpro_ACTION_update_account_step1_password_weak"></span>
-                        <span class="help-block" data-ng-if="$ctrl.containsNameFlag"
-                             data-translate="{{ exchange.billingPlan + '_ACTION_update_account_step1_password_contains_name' }}"></span>
-                        <span class="help-block" data-ng-if="$ctrl.containsSamAccountNameFlag"
-                             data-ng-bind="$ctrl.containsSamAccountNameLabel"></span>
-                        <span class="help-block"
-                              data-ng-if="$ctrl.containsSpace"
-                              data-translate="emailpro_ACTION_update_account_step1_password_contains_space"></span>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="{{$ctrl.getPasswordPlaceholder()}}"
+                            data-ng-model="$ctrl.selectedAccount.password"
+                            data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
+                            data-oui-tooltip="{{:: $ctrl.passwordTooltip }}"
+                            data-oui-tooltip-placement="top"
+                        />
+                        <span
+                            class="help-block"
+                            data-ng-if="$ctrl.simplePasswordFlag"
+                            data-translate="emailpro_ACTION_update_account_step1_password_weak"
+                        ></span>
+                        <span
+                            class="help-block"
+                            data-ng-if="$ctrl.containsNameFlag"
+                            data-translate="{{ exchange.billingPlan + '_ACTION_update_account_step1_password_contains_name' }}"
+                        ></span>
+                        <span
+                            class="help-block"
+                            data-ng-if="$ctrl.containsSamAccountNameFlag"
+                            data-ng-bind="$ctrl.containsSamAccountNameLabel"
+                        ></span>
+                        <span
+                            class="help-block"
+                            data-ng-if="$ctrl.containsSpace"
+                            data-translate="emailpro_ACTION_update_account_step1_password_contains_space"
+                        ></span>
                     </div>
                 </div>
-                <div class="form-group"
-                     data-ng-class="{ 'has-error': $ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag }">
-                    <label for="passwordConfirmation" class="col-md-3 control-label"
-                           data-ng-class="{ 'required': !$ctrl.selectedAccount.canBeConfigured }"
-                           data-translate="emailpro_ACTION_update_account_step1_password_confirmation_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': $ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag }"
+                >
+                    <label
+                        for="passwordConfirmation"
+                        class="col-md-3 control-label"
+                        data-ng-class="{ 'required': !$ctrl.selectedAccount.canBeConfigured }"
+                        data-translate="emailpro_ACTION_update_account_step1_password_confirmation_label"
+                    ></label>
                     <div class="col-md-9">
-                        <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation"
-                                placeholder="{{ $ctrl.getPasswordPlaceholder() }}"
-                                data-ng-model="$ctrl.selectedAccount.passwordConfirmation"
-                                data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
-                                data-oui-tooltip="{{:: $ctrl.passwordTooltip }}"
-                                data-oui-tooltip-placement="top">
-                        <span class="help-block"
-                              data-ng-if="$ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag"
-                              data-translate="emailpro_ACTION_update_account_step1_password_different"></span>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="passwordConfirmation"
+                            name="passwordConfirmation"
+                            placeholder="{{ $ctrl.getPasswordPlaceholder() }}"
+                            data-ng-model="$ctrl.selectedAccount.passwordConfirmation"
+                            data-ng-change="$ctrl.setPasswordsFlag($ctrl.selectedAccount)"
+                            data-oui-tooltip="{{:: $ctrl.passwordTooltip }}"
+                            data-oui-tooltip-placement="top"
+                        />
+                        <span
+                            class="help-block"
+                            data-ng-if="$ctrl.selectedAccount.passwordConfirmation && $ctrl.differentPasswordFlag"
+                            data-translate="emailpro_ACTION_update_account_step1_password_different"
+                        ></span>
                     </div>
                 </div>
-                <div class="form-group"
-                     data-ng-show="!$ctrl.selectedAccount.is25g && $ctrl.newAccountOptions && $ctrl.exchange.offer == $ctrl.accountTypeProvider">
-                    <label for="quota" class="col-md-3 control-label"
-                           data-translate="emailpro_ACTION_update_account_step1_quota_label"></label>
+                <div
+                    class="form-group"
+                    data-ng-show="!$ctrl.selectedAccount.is25g && $ctrl.newAccountOptions && $ctrl.exchange.offer == $ctrl.accountTypeProvider"
+                >
+                    <label
+                        for="quota"
+                        class="col-md-3 control-label"
+                        data-translate="emailpro_ACTION_update_account_step1_quota_label"
+                    ></label>
                     <div class="col-md-9">
-                        <select class="form-control w-75 pull-left" data-ng-attr-id="{{ :: 'quota' }}" required
-                                data-ng-options="quota for quota in $ctrl.newAccountOptions.quotaArray"
-                                data-ng-model="$ctrl.selectedAccount.quota">
+                        <select
+                            class="form-control w-75 pull-left"
+                            data-ng-attr-id="{{ :: 'quota' }}"
+                            required
+                            data-ng-options="quota for quota in $ctrl.newAccountOptions.quotaArray"
+                            data-ng-model="$ctrl.selectedAccount.quota"
+                        >
                             <option value="quota" data-ng-bind="quota"></option>
                         </select>
-                        <span class="vertical-middle ml-3" data-translate="unit_size_GB"></span>
+                        <span
+                            class="vertical-middle ml-3"
+                            data-translate="unit_size_GB"
+                        ></span>
                     </div>
                 </div>
-                <div class="form-group"
-                     data-ng-if="$ctrl.isMxPlan()">
-                    <label for="quota" class="col-md-3 control-label"
-                           data-translate="emailpro_ACTION_update_account_step1_quota_label"></label>
+                <div class="form-group" data-ng-if="$ctrl.isMxPlan()">
+                    <label
+                        for="quota"
+                        class="col-md-3 control-label"
+                        data-translate="emailpro_ACTION_update_account_step1_quota_label"
+                    ></label>
                     <div class="col-md-9">
-                        <select class="form-control w-75 pull-left" data-ng-attr-id="{{ :: 'quota' }}" required
-                                data-ng-options="$ctrl.convertBytesSize(quota, 'GB', 2) for quota in $ctrl.mxPlan.quotaArray"
-                                data-ng-model="$ctrl.selectedAccount.quota">
+                        <select
+                            class="form-control w-75 pull-left"
+                            data-ng-attr-id="{{ :: 'quota' }}"
+                            required
+                            data-ng-options="$ctrl.convertBytesSize(quota, 'GB', 2) for quota in $ctrl.mxPlan.quotaArray"
+                            data-ng-model="$ctrl.selectedAccount.quota"
+                        >
                         </select>
                     </div>
                 </div>
             </form>
             <div data-wizard-step-help>
-                <h3 data-translate="{{ $ctrl.exchange.billingPlan + '_ACTION_update_account_helpwizard_title' }}"></h3>
-                <p data-translate="{{ $ctrl.exchange.billingPlan + '_ACTION_update_account_helpwizard_intro' }}"></p>
-                <strong data-translate="emailpro_ACTION_update_account_helpwizard_password_title"></strong>
-                <p data-ng-show="$ctrl.newAccountOptions.passwordComplexityEnabled"
-                   data-ng-bind-html="'emailpro_ACTION_update_account_helpwizard_password' | translate: { t0: $ctrl.newAccountOptions.minPasswordLength }"></p>
-                <p data-ng-hide="$ctrl.newAccountOptions.passwordComplexityEnabled"
-                   data-ng-bind-html="'emailpro_ACTION_update_account_helpwizard_password_simple' | translate: { t0: $ctrl.newAccountOptions.minPasswordLength }"></p>
+                <h3
+                    data-translate="{{ $ctrl.exchange.billingPlan + '_ACTION_update_account_helpwizard_title' }}"
+                ></h3>
+                <p
+                    data-translate="{{ $ctrl.exchange.billingPlan + '_ACTION_update_account_helpwizard_intro' }}"
+                ></p>
+                <strong
+                    data-translate="emailpro_ACTION_update_account_helpwizard_password_title"
+                ></strong>
+                <p
+                    data-ng-show="$ctrl.newAccountOptions.passwordComplexityEnabled"
+                    data-ng-bind-html="'emailpro_ACTION_update_account_helpwizard_password' | translate: { t0: $ctrl.newAccountOptions.minPasswordLength }"
+                ></p>
+                <p
+                    data-ng-hide="$ctrl.newAccountOptions.passwordComplexityEnabled"
+                    data-ng-bind-html="'emailpro_ACTION_update_account_helpwizard_password_simple' | translate: { t0: $ctrl.newAccountOptions.minPasswordLength }"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="emailpro_ACTION_update_account_step2_confirmation_intro"></p>
+            <p
+                data-translate="emailpro_ACTION_update_account_step2_confirmation_intro"
+            ></p>
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="emailpro_ACTION_update_account_step2_email_label"></dt>
-                <dd data-ng-bind="$ctrl.selectedAccount.login + '@' + $ctrl.selectedAccount.completeDomain.displayName"></dd>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step2_email_label"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.selectedAccount.login + '@' + $ctrl.selectedAccount.completeDomain.displayName"
+                ></dd>
 
-                <div data-ng-if="$ctrl.newAccountOptions.availableTypes.length > 1">
-                    <dt data-translate="emailpro_ACTION_update_account_step1_type_label"></dt>
-                    <dd data-ng-bind="'emailpro_ACTION_update_account_step1_type_' + $ctrl.selectedAccount.accountLicense | translate"></dd>
+                <div
+                    data-ng-if="$ctrl.newAccountOptions.availableTypes.length > 1"
+                >
+                    <dt
+                        data-translate="emailpro_ACTION_update_account_step1_type_label"
+                    ></dt>
+                    <dd
+                        data-ng-bind="'emailpro_ACTION_update_account_step1_type_' + $ctrl.selectedAccount.accountLicense | translate"
+                    ></dd>
                 </div>
 
-                <dt data-translate="emailpro_ACTION_update_account_step2_first_name_label"></dt>
-                <dd data-ng-if="$ctrl.selectedAccount.firstName"
-                    data-ng-bind="$ctrl.selectedAccount.firstName"></dd>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step2_first_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="$ctrl.selectedAccount.firstName"
+                    data-ng-bind="$ctrl.selectedAccount.firstName"
+                ></dd>
                 <dd data-ng-if="!$ctrl.selectedAccount.firstName">-</dd>
 
-                <dt data-translate="emailpro_ACTION_update_account_step2_last_name_label"></dt>
-                <dd data-ng-if="$ctrl.selectedAccount.lastName"
-                    data-ng-bind="$ctrl.selectedAccount.lastName"></dd>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step2_last_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="$ctrl.selectedAccount.lastName"
+                    data-ng-bind="$ctrl.selectedAccount.lastName"
+                ></dd>
                 <dd data-ng-if="!$ctrl.selectedAccount.lastName">-</dd>
 
-                <dt data-translate="emailpro_ACTION_update_account_step2_display_name_label"></dt>
-                <dd data-ng-if="$ctrl.selectedAccount.displayName"
-                    data-ng-bind="$ctrl.selectedAccount.displayName"></dd>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step2_display_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="$ctrl.selectedAccount.displayName"
+                    data-ng-bind="$ctrl.selectedAccount.displayName"
+                ></dd>
                 <dd data-ng-if="!$ctrl.selectedAccount.displayName">-</dd>
 
-                <dt data-translate="emailpro_ACTION_update_account_step2_password_label"
-                    data-ng-if="$ctrl.selectedAccount.password"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step2_password_label"
+                    data-ng-if="$ctrl.selectedAccount.password"
+                ></dt>
                 <dd data-ng-if="$ctrl.selectedAccount.password">
-                    <span data-ng-repeat="x in $ctrl.selectedAccount.password track by $index">*</span>
+                    <span
+                        data-ng-repeat="x in $ctrl.selectedAccount.password track by $index"
+                        >*</span
+                    >
                 </dd>
 
-                <dt data-translate="emailpro_ACTION_update_account_step1_quota_label"
-                    data-ng-if="!$ctrl.selectedAccount.is25g && exchange.offer == $ctrl.accountTypeProvider"></dt>
-                <dd data-ng-if="!$ctrl.selectedAccount.is25g && exchange.offer == $ctrl.accountTypeProvider">
-                    <span data-ng-bind="$ctrl.selectedAccount.quota"></span> <span data-translate="unit_size_GB"></span>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step1_quota_label"
+                    data-ng-if="!$ctrl.selectedAccount.is25g && exchange.offer == $ctrl.accountTypeProvider"
+                ></dt>
+                <dd
+                    data-ng-if="!$ctrl.selectedAccount.is25g && exchange.offer == $ctrl.accountTypeProvider"
+                >
+                    <span data-ng-bind="$ctrl.selectedAccount.quota"></span>
+                    <span data-translate="unit_size_GB"></span>
                 </dd>
-                <dt data-translate="emailpro_ACTION_update_account_step1_quota_label"
-                    data-ng-if="$ctrl.isMxPlan()"></dt>
+                <dt
+                    data-translate="emailpro_ACTION_update_account_step1_quota_label"
+                    data-ng-if="$ctrl.isMxPlan()"
+                ></dt>
                 <dd data-ng-if="$ctrl.isMxPlan()">
-                    <span data-ng-bind="$ctrl.selectedAccount.quota"></span> <span data-translate="unit_size_GB"></span>
+                    <span data-ng-bind="$ctrl.selectedAccount.quota"></span>
+                    <span data-translate="unit_size_GB"></span>
                 </dd>
             </dl>
         </div>

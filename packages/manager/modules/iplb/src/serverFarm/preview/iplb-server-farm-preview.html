@@ -1,60 +1,113 @@
 <oui-modal
     data-title="{{ ::'iplb_farm_preview_title' | translate }}"
-    data-on-dismiss="IpLoadBalancerServerFarmPreviewCtrl.dismiss()">
+    data-on-dismiss="IpLoadBalancerServerFarmPreviewCtrl.dismiss()"
+>
     <dl class="preview-list preview-list_no-margin">
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_name"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.displayName"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_protocol"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.type"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_port"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.port"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_datacenter"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.zone.microRegion.text"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_balance"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.getBalance()"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_stickiness"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.getStickiness()"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_probe"></dt>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_name"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.displayName"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_protocol"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.type"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_port"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.port"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_datacenter"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.zone.microRegion.text"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_balance"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.getBalance()"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_stickiness"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.getStickiness()"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_probe"
+        ></dt>
         <dd class="preview-list__definition">
-            <div data-ng-if="IpLoadBalancerServerFarmPreviewCtrl.farm.probe.type">
-                <span data-translate="{{:: 'iplb_farm_edit_probe_type_' + IpLoadBalancerServerFarmPreviewCtrl.farm.probe.type }}"></span>
+            <div
+                data-ng-if="IpLoadBalancerServerFarmPreviewCtrl.farm.probe.type"
+            >
+                <span
+                    data-translate="{{:: 'iplb_farm_edit_probe_type_' + IpLoadBalancerServerFarmPreviewCtrl.farm.probe.type }}"
+                ></span>
                 <dl>
                     <dt data-translate="iplb_farm_preview_probe_url"></dt>
-                    <dd data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.url || '-')"></dd>
+                    <dd
+                        data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.url || '-')"
+                    ></dd>
                     <dt data-translate="iplb_farm_edit_probe_forceSsl"></dt>
-                    <dd data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.forceSsl || '-')"></dd>
+                    <dd
+                        data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.forceSsl || '-')"
+                    ></dd>
                     <dt data-translate="iplb_farm_preview_probe_port"></dt>
-                    <dd data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.port || '-')"></dd>
+                    <dd
+                        data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.port || '-')"
+                    ></dd>
                     <dt data-translate="iplb_farm_preview_probe_method"></dt>
-                    <dd data-translate="{{:: 'iplb_farm_edit_probe_method_' + IpLoadBalancerServerFarmPreviewCtrl.farm.probe.method }}"></dd>
+                    <dd
+                        data-translate="{{:: 'iplb_farm_edit_probe_method_' + IpLoadBalancerServerFarmPreviewCtrl.farm.probe.method }}"
+                    ></dd>
                     <dt data-translate="iplb_farm_preview_probe_match"></dt>
-                    <dd data-translate="{{:: 'iplb_farm_edit_probe_match_' + IpLoadBalancerServerFarmPreviewCtrl.farm.probe.match }}"></dd>
+                    <dd
+                        data-translate="{{:: 'iplb_farm_edit_probe_match_' + IpLoadBalancerServerFarmPreviewCtrl.farm.probe.match }}"
+                    ></dd>
                     <dt data-translate="iplb_farm_preview_probe_pattern"></dt>
-                    <dd data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.pattern || '-')"></dd>
+                    <dd
+                        data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.pattern || '-')"
+                    ></dd>
                     <dt data-translate="iplb_farm_preview_probe_interval"></dt>
-                    <dd data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.interval || '-')"></dd>
+                    <dd
+                        data-ng-bind=":: (IpLoadBalancerServerFarmPreviewCtrl.farm.probe.interval || '-')"
+                    ></dd>
                 </dl>
             </div>
-            <div data-ng-if="!IpLoadBalancerServerFarmPreviewCtrl.farm.probe.type">
-                <span data-translate="{{:: 'iplb_farm_preview_probe_none' | translate }}"></span>
+            <div
+                data-ng-if="!IpLoadBalancerServerFarmPreviewCtrl.farm.probe.type"
+            >
+                <span
+                    data-translate="{{:: 'iplb_farm_preview_probe_none' | translate }}"
+                ></span>
             </div>
         </dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_farm_preview_id"></dt>
-        <dd class="preview-list__definition"
-                data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.farmId"></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_farm_preview_id"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerFarmPreviewCtrl.farm.farmId"
+        ></dd>
     </dl>
 </oui-modal>

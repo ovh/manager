@@ -1,55 +1,88 @@
 <div class="cui-message-container" data-ng-if="$ctrl.hasMessageToDisplay()">
-      <div data-ng-repeat="messageCategory in $ctrl.groupedMessages | orderBy: 'priority' track by messageCategory.key">
-            <oui-message data-ng-if="!$ctrl.constructor.shouldDisplayGroupedMessages(messageCategory) && !message.dismissed"
-                  data-ng-repeat="message in messageCategory.values | orderBy: 'messageOrder' track by $index"
-                  data-type="{{ messageCategory.key }}"
-                  data-dismissable="message.dismissable"
-                  data-on-dismissed="$ctrl.constructor.onDismiss(message)">
-                  <span data-ng-bind="message.text" data-ng-if="message.text"></span>
-                  <span data-ng-bind-html="message.textHtml" data-ng-if="message.textHtml"></span>
-                  <span data-ng-switch="message.link.type">
-                      <a role="button"
-                         data-ng-switch-when="action"
-                         data-ng-bind="message.link.text"
-                         data-ng-click="message.link.action()"></a>
-                      <a data-ng-switch-when="state"
-                         data-ng-bind="message.link.text"
-                         data-ui-sref="{{:: message.link.state}}"></a>
-                      <a data-ng-switch-when="download"
-                         data-ng-bind="message.link.text"
-                         href="{{:: message.link.value}}"
-                         download="{{:: message.link.download }}"></a>
-                      <a data-ng-switch-default
-                         data-ng-bind="message.link.text"
-                         href="{{:: message.link.value}}"
-                         target="_blank"></a>
-                  </span>
-            </oui-message>
-            <oui-message data-ng-if="$ctrl.constructor.shouldDisplayGroupedMessages(messageCategory) && $ctrl.hasGroupMessageToDisplay(messageCategory.key)"
-                         data-type="{{ messageCategory.key }}"
-                         data-dismissable="messageCategory.dismissable"
-                         data-on-dismissed="$ctrl.constructor.onGroupDismiss(messageCategory)">
-                  <span data-translate="{{ 'message_container_multiple_' + messageCategory.key }}"></span>
-                  <ul>
-                        <li data-ng-repeat="message in messageCategory.values | orderBy: 'messageOrder' track by $index"
-                            data-ng-if="!message.dismissed">
-                              <span data-ng-bind="message.text" data-ng-if="message.text"></span>
-                              <span data-ng-bind-html="message.textHtml" data-ng-if="message.textHtml"></span>
-                              <span data-ng-switch="message.link.type">
-                                  <a role="button"
-                                     data-ng-switch-when="action"
-                                     data-ng-bind="message.link.text"
-                                     data-ng-click="message.link.action()"></a>
-                                  <a data-ng-switch-when="state"
-                                     data-ng-bind="message.link.text"
-                                     data-ui-sref="{{:: message.link.state}}"></a>
-                                  <a data-ng-switch-default
-                                     data-ng-bind="message.link.text"
-                                     href="{{:: message.link.value}}"
-                                     target="_blank"></a>
-                              </span>
-                        </li>
-                  </ul>
-            </oui-message>
-      </div>
+    <div
+        data-ng-repeat="messageCategory in $ctrl.groupedMessages | orderBy: 'priority' track by messageCategory.key"
+    >
+        <oui-message
+            data-ng-if="!$ctrl.constructor.shouldDisplayGroupedMessages(messageCategory) && !message.dismissed"
+            data-ng-repeat="message in messageCategory.values | orderBy: 'messageOrder' track by $index"
+            data-type="{{ messageCategory.key }}"
+            data-dismissable="message.dismissable"
+            data-on-dismissed="$ctrl.constructor.onDismiss(message)"
+        >
+            <span data-ng-bind="message.text" data-ng-if="message.text"></span>
+            <span
+                data-ng-bind-html="message.textHtml"
+                data-ng-if="message.textHtml"
+            ></span>
+            <span data-ng-switch="message.link.type">
+                <a
+                    role="button"
+                    data-ng-switch-when="action"
+                    data-ng-bind="message.link.text"
+                    data-ng-click="message.link.action()"
+                ></a>
+                <a
+                    data-ng-switch-when="state"
+                    data-ng-bind="message.link.text"
+                    data-ui-sref="{{:: message.link.state}}"
+                ></a>
+                <a
+                    data-ng-switch-when="download"
+                    data-ng-bind="message.link.text"
+                    href="{{:: message.link.value}}"
+                    download="{{:: message.link.download }}"
+                ></a>
+                <a
+                    data-ng-switch-default
+                    data-ng-bind="message.link.text"
+                    href="{{:: message.link.value}}"
+                    target="_blank"
+                ></a>
+            </span>
+        </oui-message>
+        <oui-message
+            data-ng-if="$ctrl.constructor.shouldDisplayGroupedMessages(messageCategory) && $ctrl.hasGroupMessageToDisplay(messageCategory.key)"
+            data-type="{{ messageCategory.key }}"
+            data-dismissable="messageCategory.dismissable"
+            data-on-dismissed="$ctrl.constructor.onGroupDismiss(messageCategory)"
+        >
+            <span
+                data-translate="{{ 'message_container_multiple_' + messageCategory.key }}"
+            ></span>
+            <ul>
+                <li
+                    data-ng-repeat="message in messageCategory.values | orderBy: 'messageOrder' track by $index"
+                    data-ng-if="!message.dismissed"
+                >
+                    <span
+                        data-ng-bind="message.text"
+                        data-ng-if="message.text"
+                    ></span>
+                    <span
+                        data-ng-bind-html="message.textHtml"
+                        data-ng-if="message.textHtml"
+                    ></span>
+                    <span data-ng-switch="message.link.type">
+                        <a
+                            role="button"
+                            data-ng-switch-when="action"
+                            data-ng-bind="message.link.text"
+                            data-ng-click="message.link.action()"
+                        ></a>
+                        <a
+                            data-ng-switch-when="state"
+                            data-ng-bind="message.link.text"
+                            data-ui-sref="{{:: message.link.state}}"
+                        ></a>
+                        <a
+                            data-ng-switch-default
+                            data-ng-bind="message.link.text"
+                            href="{{:: message.link.value}}"
+                            target="_blank"
+                        ></a>
+                    </span>
+                </li>
+            </ul>
+        </oui-message>
+    </div>
 </div>

@@ -1,32 +1,63 @@
-<div class="alert alert-info" role="alert"
-     data-translate="cron_step2_expert_toocomplicated"
-     data-ng-if="isTooComplicatedForSimpleMode"></div>
+<div
+    class="alert alert-info"
+    role="alert"
+    data-translate="cron_step2_expert_toocomplicated"
+    data-ng-if="isTooComplicatedForSimpleMode"
+></div>
 
 <div data-ng-show="expertInlineView">
     <form class="row mt-5" name="expertInlineForm">
         <div class="form-group col-md-2 col-md-offset-1">
             <label class="control-label" for="cronExpertM">M</label>
-            <input type="text" class="form-control" id="cronExpertM" disabled>
+            <input type="text" class="form-control" id="cronExpertM" disabled />
         </div>
-        <div class="form-group col-md-2" data-ng-class="{'has-error': !cronExpertValueIsValid('h')}">
+        <div
+            class="form-group col-md-2"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('h')}"
+        >
             <label class="control-label" for="cronExpertH">H</label>
-            <input type="text" class="form-control" id="cronExpertH"
-                   data-ng-model="cron.expert.h">
+            <input
+                type="text"
+                class="form-control"
+                id="cronExpertH"
+                data-ng-model="cron.expert.h"
+            />
         </div>
-        <div class="form-group col-md-2" data-ng-class="{'has-error': !cronExpertValueIsValid('dom')}">
+        <div
+            class="form-group col-md-2"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('dom')}"
+        >
             <label class="control-label" for="cronExpertDom">DOM</label>
-            <input type="text" class="form-control" id="cronExpertDom"
-                   data-ng-model="cron.expert.dom">
+            <input
+                type="text"
+                class="form-control"
+                id="cronExpertDom"
+                data-ng-model="cron.expert.dom"
+            />
         </div>
-        <div class="form-group col-md-2" data-ng-class="{'has-error': !cronExpertValueIsValid('mon')}">
+        <div
+            class="form-group col-md-2"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('mon')}"
+        >
             <label class="control-label" for="cronExpertMon">MON</label>
-            <input type="text" class="form-control" id="cronExpertMon"
-                   data-ng-model="cron.expert.mon">
+            <input
+                type="text"
+                class="form-control"
+                id="cronExpertMon"
+                data-ng-model="cron.expert.mon"
+            />
         </div>
-        <div class="form-group col-md-2" data-ng-class="{'has-error': !cronExpertValueIsValid('dow')}">
+        <div
+            class="form-group col-md-2"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('dow')}"
+        >
             <label class="control-label" for="cronExpertDow">DOW</label>
-            <input type="text" class="form-control" id="cronExpertDow"
-                   data-ng-model="cron.expert.dow">
+            <input
+                type="text"
+                class="form-control"
+                id="cronExpertDow"
+                data-ng-model="cron.expert.dow"
+            />
         </div>
     </form>
 </div>
@@ -34,41 +65,91 @@
 <div data-ng-show="!expertInlineView">
     <form class="form-horizontal mt-5" name="expertColumnForm">
         <div class="form-group">
-            <label class="control-label col-md-2" for="cronExpertColumnM">M</label>
+            <label class="control-label col-md-2" for="cronExpertColumnM"
+                >M</label
+            >
             <div class="col-md-9">
-                <input type="text" class="form-control" id="cronExpertColumnM" name="cronExpertColumnM" disabled>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cronExpertColumnM"
+                    name="cronExpertColumnM"
+                    disabled
+                />
             </div>
         </div>
-        <div class="form-group" data-ng-class="{'has-error': !cronExpertValueIsValid('h')}">
-            <label class="control-label col-md-2" for="cronExpertColumnH">H</label>
+        <div
+            class="form-group"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('h')}"
+        >
+            <label class="control-label col-md-2" for="cronExpertColumnH"
+                >H</label
+            >
             <div class="col-md-9">
-                <input type="text" class="form-control" id="cronExpertColumnH" name="cronExpertColumnH"
-                       data-ng-model="cron.expert.h">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cronExpertColumnH"
+                    name="cronExpertColumnH"
+                    data-ng-model="cron.expert.h"
+                />
             </div>
         </div>
-        <div class="form-group" data-ng-class="{'has-error': !cronExpertValueIsValid('dom')}">
-            <label class="control-label col-md-2" for="cronExpertColumnDom">DOM</label>
+        <div
+            class="form-group"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('dom')}"
+        >
+            <label class="control-label col-md-2" for="cronExpertColumnDom"
+                >DOM</label
+            >
             <div class="col-md-9">
-                <input type="text" class="form-control" id="cronExpertColumnDom" name="cronExpertColumnDom"
-                       data-ng-model="cron.expert.dom">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cronExpertColumnDom"
+                    name="cronExpertColumnDom"
+                    data-ng-model="cron.expert.dom"
+                />
             </div>
         </div>
-        <div class="form-group" data-ng-class="{'has-error': !cronExpertValueIsValid('mon')}">
-            <label class="control-label col-md-2" for="cronExpertColumnMon">MON</label>
+        <div
+            class="form-group"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('mon')}"
+        >
+            <label class="control-label col-md-2" for="cronExpertColumnMon"
+                >MON</label
+            >
             <div class="col-md-9">
-                <input type="text" class="form-control" id="cronExpertColumnMon" name="cronExpertColumnMon"
-                       data-ng-model="cron.expert.mon">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cronExpertColumnMon"
+                    name="cronExpertColumnMon"
+                    data-ng-model="cron.expert.mon"
+                />
             </div>
         </div>
-        <div class="form-group" data-ng-class="{'has-error': !cronExpertValueIsValid('dow')}">
-            <label class="control-label col-md-2" for="cronExpertColumnDow">DOW</label>
+        <div
+            class="form-group"
+            data-ng-class="{'has-error': !cronExpertValueIsValid('dow')}"
+        >
+            <label class="control-label col-md-2" for="cronExpertColumnDow"
+                >DOW</label
+            >
             <div class="col-md-9">
-                <input type="text" class="form-control" id="cronExpertColumnDow" name="cronExpertColumnDow"
-                       data-ng-model="cron.expert.dow">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cronExpertColumnDow"
+                    name="cronExpertColumnDow"
+                    data-ng-model="cron.expert.dow"
+                />
             </div>
         </div>
     </form>
 </div>
 
-<p class="font-italic mt-5 text-muted"
-   data-ng-bind="('cron_step2_expert_help' | translate: { t0: 'H', t1: 'DOM', t2: 'MON', t3: 'DOW' }) + ' ' + ('cron_step2_help_subtitle2' | translate)"></p>
+<p
+    class="font-italic mt-5 text-muted"
+    data-ng-bind="('cron_step2_expert_help' | translate: { t0: 'H', t1: 'DOM', t2: 'MON', t3: 'DOW' }) + ' ' + ('cron_step2_help_subtitle2' | translate)"
+></p>

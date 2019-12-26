@@ -9,18 +9,26 @@
     </div>
     <div class="metrics__row">
         <oui-datagrid data-rows="MetricsPlatformCtrl.platforms">
-            <oui-column data-title="'metrics_platform_proto' | translate"
-                    data-property="proto"
-                    data-sortable="asc"></oui-column>
-            <oui-column data-title="'metrics_platform_address' | translate"
-                    data-property="address">
+            <oui-column
+                data-title="'metrics_platform_proto' | translate"
+                data-property="proto"
+                data-sortable="asc"
+            ></oui-column>
+            <oui-column
+                data-title="'metrics_platform_address' | translate"
+                data-property="address"
+            >
                 <oui-clipboard data-model="$row.address"></oui-clipboard>
             </oui-column>
-            <oui-column data-title="'metrics_platform_doc' | translate"
-                        data-property="doc">
-                <a class="metrics-guidelink"
-                   href="{{ $row.doc }}"
-                   target="_blank">
+            <oui-column
+                data-title="'metrics_platform_doc' | translate"
+                data-property="doc"
+            >
+                <a
+                    class="metrics-guidelink"
+                    href="{{ $row.doc }}"
+                    target="_blank"
+                >
                     <span data-translate="metrics_guide"></span>
                     <i class="fa fa-icon fa-external-link"></i>
                 </a>

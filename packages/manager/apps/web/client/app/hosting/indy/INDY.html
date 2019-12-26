@@ -1,26 +1,50 @@
-<div class="container-fluid px-0" data-ng-controller="HostingIndyTabCtrl as ctrlHostingIndyTab">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="HostingIndyTabCtrl as ctrlHostingIndyTab"
+>
     <div data-ovh-alert="{{alerts.main}}"></div>
 
     <h2 data-translate="hosting_tab_INDY"></h2>
 
     <div class="mb-3">
-        <form class="form-inline d-md-flex justify-content-md-end" name="searchIndyForm">
+        <form
+            class="form-inline d-md-flex justify-content-md-end"
+            name="searchIndyForm"
+        >
             <div class="form-group">
-                <label class="sr-only" for="searchIndy"
-                       data-translate="common_search"></label>
+                <label
+                    class="sr-only"
+                    for="searchIndy"
+                    data-translate="common_search"
+                ></label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="searchIndy" name="searchIndy" placeholder="{{:: 'hosting_tab_DOMAINS_search_placeholder' | translate }}"
-                           data-ng-change="ctrlHostingIndyTab.goSearch()"
-                           data-ng-model="ctrlHostingIndyTab.filter.login"
-                           data-ng-model-options="{ debounce: 800 }">
-                    <div class="input-group-btn" data-ng-if="ctrlHostingIndyTab.filter.login">
-                        <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                data-ng-click="ctrlHostingIndyTab.resetSearch()">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchIndy"
+                        name="searchIndy"
+                        placeholder="{{:: 'hosting_tab_DOMAINS_search_placeholder' | translate }}"
+                        data-ng-change="ctrlHostingIndyTab.goSearch()"
+                        data-ng-model="ctrlHostingIndyTab.filter.login"
+                        data-ng-model-options="{ debounce: 800 }"
+                    />
+                    <div
+                        class="input-group-btn"
+                        data-ng-if="ctrlHostingIndyTab.filter.login"
+                    >
+                        <button
+                            class="btn btn-default"
+                            type="button"
+                            aria-label="{{ 'common_cancel' | translate }}"
+                            data-ng-click="ctrlHostingIndyTab.resetSearch()"
+                        >
                             <span class="fa fa-times" aria-hidden="true"></span>
                         </button>
                     </div>
-                    <span class="input-group-addon"
-                          data-ng-if="!ctrlHostingIndyTab.filter.login">
+                    <span
+                        class="input-group-addon"
+                        data-ng-if="!ctrlHostingIndyTab.filter.login"
+                    >
                         <span class="fa fa-search" aria-hidden="true"></span>
                     </span>
                 </div>
@@ -33,15 +57,35 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col" data-translate="hosting_tab_INDY_table_header_login"></th>
-                    <th scope="col" data-translate="hosting_tab_INDY_table_header_home"></th>
-                    <th class="text-center" scope="col" data-translate="hosting_tab_INDY_table_header_state"></th>
-                    <th scope="col" data-translate="hosting_tab_INDY_table_header_domains"></th>
+                    <th
+                        scope="col"
+                        data-translate="hosting_tab_INDY_table_header_login"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="hosting_tab_INDY_table_header_home"
+                    ></th>
+                    <th
+                        class="text-center"
+                        scope="col"
+                        data-translate="hosting_tab_INDY_table_header_state"
+                    ></th>
+                    <th
+                        scope="col"
+                        data-translate="hosting_tab_INDY_table_header_domains"
+                    ></th>
                     <th class="min-width text-right" scope="col">
-                        <button class="btn btn-icon" type="button" title="{{:: 'emails_tab_table_header_refresh' | translate }}"
-                                data-ng-click="ctrlHostingIndyTab.refreshTableIndys(true)"
-                                data-ng-disabled="ctrlHostingIndyTab.loading">
-                            <span class="fa fa-refresh" aria-hidden="true"></span>
+                        <button
+                            class="btn btn-icon"
+                            type="button"
+                            title="{{:: 'emails_tab_table_header_refresh' | translate }}"
+                            data-ng-click="ctrlHostingIndyTab.refreshTableIndys(true)"
+                            data-ng-disabled="ctrlHostingIndyTab.loading"
+                        >
+                            <span
+                                class="fa fa-refresh"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </th>
                 </tr>
@@ -57,31 +101,47 @@
             </tbody>
 
             <!-- no indy -->
-            <tbody data-ng-if="!ctrlHostingIndyTab.loading && !ctrlHostingIndyTab.indys.length">
+            <tbody
+                data-ng-if="!ctrlHostingIndyTab.loading && !ctrlHostingIndyTab.indys.length"
+            >
                 <tr>
-                    <td class="text-center" colspan="5"
-                        data-translate="hosting_tab_INDY_table_empty"></td>
+                    <td
+                        class="text-center"
+                        colspan="5"
+                        data-translate="hosting_tab_INDY_table_empty"
+                    ></td>
                 </tr>
             </tbody>
 
             <!-- indys -->
-            <tbody data-ng-if="!ctrlHostingIndyTab.loading && ctrlHostingIndyTab.indys.length > 0">
-                <tr data-ng-repeat="indy in ctrlHostingIndyTab.indys track by $index">
+            <tbody
+                data-ng-if="!ctrlHostingIndyTab.loading && ctrlHostingIndyTab.indys.length > 0"
+            >
+                <tr
+                    data-ng-repeat="indy in ctrlHostingIndyTab.indys track by $index"
+                >
                     <th scope="row" data-ng-bind="::indy.login"></th>
                     <td data-ng-bind="::indy.home"></td>
                     <td class="text-center">
-                        <span class="label" data-ng-class="{
+                        <span
+                            class="label"
+                            data-ng-class="{
                                 'label-danger': indy.state === 'off',
                                 'label-success': indy.state === 'rw'}"
-                              data-ng-bind=":: 'hosting_tab_INDY_state_' + indy.state | translate"></span>
+                            data-ng-bind=":: 'hosting_tab_INDY_state_' + indy.state | translate"
+                        ></span>
                     </td>
                     <td colspan="2">
                         <ul class="list-unstyled">
-                            <li data-ng-repeat="domain in (indy.attachedDomains | orderBy) track by domain">
-                                <button class="btn btn-link p-0" type="button"
-                                        data-ng-bind="domain"
-                                        data-ng-click="ctrlHostingIndyTab.selectAttachedDomain(domain)">
-                               </button>
+                            <li
+                                data-ng-repeat="domain in (indy.attachedDomains | orderBy) track by domain"
+                            >
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-ng-bind="domain"
+                                    data-ng-click="ctrlHostingIndyTab.selectAttachedDomain(domain)"
+                                ></button>
                             </li>
                         </ul>
                     </td>
@@ -90,19 +150,19 @@
         </table>
     </div>
 
-    <div class="clearfix"
-         data-ng-if="ctrlHostingIndyTab.indyIds">
-        <div data-pagination-front
-             data-items="ctrlHostingIndyTab.indyIds"
-             data-paginated-items="ctrlHostingIndyTab.indys"
-             data-current-page="currentPage"
-             data-nb-pages="nbPages"
-             data-items-per-page="itemsPerPage"
-             data-transform-item="ctrlHostingIndyTab.transformItem(item)"
-             data-on-transform-item-done="ctrlHostingIndyTab.onTransformItemDone(items)"
-             data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
-             data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-             data-ng-show="!ctrlHostingIndyTab.loading && ctrlHostingIndyTab.indys.length > 0">
-        </div>
+    <div class="clearfix" data-ng-if="ctrlHostingIndyTab.indyIds">
+        <div
+            data-pagination-front
+            data-items="ctrlHostingIndyTab.indyIds"
+            data-paginated-items="ctrlHostingIndyTab.indys"
+            data-current-page="currentPage"
+            data-nb-pages="nbPages"
+            data-items-per-page="itemsPerPage"
+            data-transform-item="ctrlHostingIndyTab.transformItem(item)"
+            data-on-transform-item-done="ctrlHostingIndyTab.onTransformItemDone(items)"
+            data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
+            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+            data-ng-show="!ctrlHostingIndyTab.loading && ctrlHostingIndyTab.indys.length > 0"
+        ></div>
     </div>
 </div>

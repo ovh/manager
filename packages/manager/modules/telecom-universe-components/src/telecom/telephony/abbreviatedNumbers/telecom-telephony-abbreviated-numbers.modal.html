@@ -1,25 +1,33 @@
-<form name="abbreviatedNumberForm"
-      id="abbreviatedNumberForm"
-      novalidate
-      data-ng-submit="abbreviatedNumberForm.$valid && AbbreviatedNumberModal.send()">
-
+<form
+    name="abbreviatedNumberForm"
+    id="abbreviatedNumberForm"
+    novalidate
+    data-ng-submit="abbreviatedNumberForm.$valid && AbbreviatedNumberModal.send()"
+>
     <oui-modal
         data-primary-label="{{:: 'telephony_abbreviated_numbers_common_add' | translate }}"
         data-secondary-action="AbbreviatedNumberModal.cancel()"
         data-secondary-label="{{:: 'telephony_abbreviated_numbers_cancel' | translate }}"
         data-on-dismiss="AbbreviatedNumberModal.cancel()"
-        data-loading="AbbreviatedNumberModal.loading.updating">
-
-        <oui-message data-type="error" data-ng-if="AbbreviatedNumberModal.errorMessage">
+        data-loading="AbbreviatedNumberModal.loading.updating"
+    >
+        <oui-message
+            data-type="error"
+            data-ng-if="AbbreviatedNumberModal.errorMessage"
+        >
             <span>{{AbbreviatedNumberModal.errorMessage}}</span>
         </oui-message>
 
-        <h2 class="oui-modal__title" data-ng-bind=":: AbbreviatedNumberModal.title"></h2>
+        <h2
+            class="oui-modal__title"
+            data-ng-bind=":: AbbreviatedNumberModal.title"
+        ></h2>
 
         <oui-field
             data-label="{{:: 'telephony_abbreviated_numbers_id' | translate }}"
             data-error-messages="{ pattern: AbbreviatedNumberModal.pattern.errorMessage }"
-            data-help-text="{{:: 'telephony_abbreviated_numbers_id_help' | translate: { digit:AbbreviatedNumberModal.pattern.startDigit } }}">
+            data-help-text="{{:: 'telephony_abbreviated_numbers_id_help' | translate: { digit:AbbreviatedNumberModal.pattern.startDigit } }}"
+        >
             <input
                 type="text"
                 name="abbreviatedNumber"
@@ -28,13 +36,15 @@
                 data-ng-pattern="AbbreviatedNumberModal.pattern.regexp"
                 required
                 data-ng-readonly="AbbreviatedNumberModal.readOnly.abbreviatedNumber"
-                data-ng-model="AbbreviatedNumberModal.data.abbreviatedNumber">
+                data-ng-model="AbbreviatedNumberModal.data.abbreviatedNumber"
+            />
         </oui-field>
 
         <oui-field
             data-label="{{:: 'telephony_abbreviated_numbers_number' | translate }}"
             data-error-messages="{pattern: ('telephony_abbreviated_numbers_number_error' | translate) }"
-            data-help-text="{{:: 'telephony_abbreviated_numbers_number_help' | translate }}">
+            data-help-text="{{:: 'telephony_abbreviated_numbers_number_help' | translate }}"
+        >
             <input
                 type="text"
                 name="destinationNumber"
@@ -43,11 +53,13 @@
                 data-ng-pattern="AbbreviatedNumberModal.numberPattern"
                 required
                 data-ng-readonly="AbbreviatedNumberModal.readOnly.destinationNumber"
-                data-ng-model="AbbreviatedNumberModal.data.destinationNumber">
+                data-ng-model="AbbreviatedNumberModal.data.destinationNumber"
+            />
         </oui-field>
 
         <oui-field
-            data-label="{{:: 'telephony_abbreviated_numbers_surname' | translate }}">
+            data-label="{{:: 'telephony_abbreviated_numbers_surname' | translate }}"
+        >
             <input
                 type="text"
                 name="surname"
@@ -57,11 +69,13 @@
                 data-ng-pattern="AbbreviatedNumberModal.namePattern"
                 required
                 data-ng-readonly="AbbreviatedNumberModal.readOnly.surname"
-                data-ng-model="AbbreviatedNumberModal.data.surname">
+                data-ng-model="AbbreviatedNumberModal.data.surname"
+            />
         </oui-field>
 
         <oui-field
-            data-label="{{:: 'telephony_abbreviated_numbers_name' | translate }}">
+            data-label="{{:: 'telephony_abbreviated_numbers_name' | translate }}"
+        >
             <input
                 type="text"
                 name="name"
@@ -71,7 +85,8 @@
                 data-ng-pattern="AbbreviatedNumberModal.namePattern"
                 required
                 data-ng-readonly="AbbreviatedNumberModal.readOnly.name"
-                data-ng-model="AbbreviatedNumberModal.data.name">
+                data-ng-model="AbbreviatedNumberModal.data.name"
+            />
         </oui-field>
     </oui-modal>
 </form>

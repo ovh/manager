@@ -1,42 +1,83 @@
 <div data-ng-controller="ExchangeGroupAccountsCtrl as $ctrl">
-    <oui-modal data-heading="{{:: 'exchange_GROUPS_accounts_title' | translate }}"
-               data-primary-action="$ctrl.updateAccounts()"
-               data-primary-label="{{:: 'exchange_common_confirm' | translate }}"
-               data-secondary-action="resetAction()"
-               data-secondary-label="{{:: 'exchange_common_cancel' | translate }}"
-               data-on-dismiss="resetAction()"
-               data-loading="$ctrl.loadingDomains">
-
+    <oui-modal
+        data-heading="{{:: 'exchange_GROUPS_accounts_title' | translate }}"
+        data-primary-action="$ctrl.updateAccounts()"
+        data-primary-label="{{:: 'exchange_common_confirm' | translate }}"
+        data-secondary-action="resetAction()"
+        data-secondary-label="{{:: 'exchange_common_cancel' | translate }}"
+        data-on-dismiss="resetAction()"
+        data-loading="$ctrl.loadingDomains"
+    >
         <p data-translate="exchange_GROUPS_accounts_step1_intro"></p>
-        <oui-message data-type="warning" data-ng-if="$ctrl.accountsList.list.messages.length > 0">
+        <oui-message
+            data-type="warning"
+            data-ng-if="$ctrl.accountsList.list.messages.length > 0"
+        >
             <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
             <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
         </oui-message>
 
-        <oui-datagrid data-rows-loader="$ctrl.getAccounts($config)" data-page-size="10" data-row-loader="$ctrl.applySelection($row)" id="group-accounts">
-            <oui-column data-title=":: 'exchange_GROUPS_delegation_step1_email_header' | translate" data-type="string" data-searchable>
+        <oui-datagrid
+            data-rows-loader="$ctrl.getAccounts($config)"
+            data-page-size="10"
+            data-row-loader="$ctrl.applySelection($row)"
+            id="group-accounts"
+        >
+            <oui-column
+                data-title=":: 'exchange_GROUPS_delegation_step1_email_header' | translate"
+                data-type="string"
+                data-searchable
+            >
                 <p data-ng-if="$row.message">
-                    <span class="oui-icon oui-icon-warning_circle mr-2" aria-hidden="true"></span>
-                    <span class="sr-only" data-translate="exchange_tab_ACCOUNTS_warning"></span>
+                    <span
+                        class="oui-icon oui-icon-warning_circle mr-2"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        class="sr-only"
+                        data-translate="exchange_tab_ACCOUNTS_warning"
+                    ></span>
                     <span data-ng-bind="::$row.id"></span>
                 </p>
-                <span class="word-break" data-ng-bind="$row.displayAddress | wucSliceContent: 150"></span>
+                <span
+                    class="word-break"
+                    data-ng-bind="$row.displayAddress | wucSliceContent: 150"
+                ></span>
             </oui-column>
-            <oui-column data-title=":: 'exchange_tab_GROUPS_all_table_manager' | translate">
-                <oui-checkbox data-ng-if="$row.type === 'ACCOUNT' || $row.type === 'CONTACT'" data-model="$row.manager" data-disabled="$row.type === 'CONTACT'" data-on-change="$ctrl.updateManagersList(modelValue, $row)"></oui-checkbox>
+            <oui-column
+                data-title=":: 'exchange_tab_GROUPS_all_table_manager' | translate"
+            >
+                <oui-checkbox
+                    data-ng-if="$row.type === 'ACCOUNT' || $row.type === 'CONTACT'"
+                    data-model="$row.manager"
+                    data-disabled="$row.type === 'CONTACT'"
+                    data-on-change="$ctrl.updateManagersList(modelValue, $row)"
+                ></oui-checkbox>
             </oui-column>
-            <oui-column data-title=":: 'exchange_tab_GROUPS_all_table_user' | translate">
-                <oui-checkbox data-ng-if="!$row.message" data-model="$row.member" data-on-change="$ctrl.updateMembersList(modelValue, $row)"></oui-checkbox>
+            <oui-column
+                data-title=":: 'exchange_tab_GROUPS_all_table_user' | translate"
+            >
+                <oui-checkbox
+                    data-ng-if="!$row.message"
+                    data-model="$row.member"
+                    data-on-change="$ctrl.updateMembersList(modelValue, $row)"
+                ></oui-checkbox>
             </oui-column>
             <extra-top>
                 <form class="form-inline d-md-flex justify-content-md-end mb-3">
-                    <oui-spinner data-size="s" data-ng-if="$ctrl.loadingDomains"></oui-spinner>
-                    <oui-select class="select-domain oui-select_inline" data-ng-if="!$ctrl.loadingDomains"
+                    <oui-spinner
+                        data-size="s"
+                        data-ng-if="$ctrl.loadingDomains"
+                    ></oui-spinner>
+                    <oui-select
+                        class="select-domain oui-select_inline"
+                        data-ng-if="!$ctrl.loadingDomains"
                         data-model="$ctrl.selectedDomain"
                         data-items="$ctrl.availableDomains"
                         data-match="displayName"
                         data-align="start"
-                        data-on-change="$ctrl.onDomainValueChange(modelValue)">
+                        data-on-change="$ctrl.onDomainValueChange(modelValue)"
+                    >
                         <span data-ng-bind="$item.displayName"></span>
                     </oui-select>
                 </form>
@@ -44,7 +85,9 @@
         </oui-datagrid>
 
         <oui-message data-type="info">
-            <span data-translate="exchange_GROUPS_add_group_contact_as_manager_info"></span>
+            <span
+                data-translate="exchange_GROUPS_add_group_contact_as_manager_info"
+            ></span>
         </oui-message>
     </oui-modal>
 </div>

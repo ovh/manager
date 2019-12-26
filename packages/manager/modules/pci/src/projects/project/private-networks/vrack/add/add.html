@@ -6,18 +6,28 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_network_private_vrack_create_cancel' | translate }}"
         data-loading="$ctrl.isLoading"
-        data-on-dismiss="$ctrl.goBack()">
-
-        <oui-radio-toggle-group data-model="$ctrl.shouldCreateNewVrack" class="mb-2">
+        data-on-dismiss="$ctrl.goBack()"
+    >
+        <oui-radio-toggle-group
+            data-model="$ctrl.shouldCreateNewVrack"
+            class="mb-2"
+        >
             <oui-radio data-value="true">
-                <span data-translate="pci_projects_project_network_private_vrack_create_new"></span>
+                <span
+                    data-translate="pci_projects_project_network_private_vrack_create_new"
+                ></span>
             </oui-radio>
             <oui-radio data-value="false">
-                <span data-translate="pci_projects_project_network_private_vrack_create_existing"></span>
+                <span
+                    data-translate="pci_projects_project_network_private_vrack_create_existing"
+                ></span>
             </oui-radio>
         </oui-radio-toggle-group>
 
-        <p data-ng-if="$ctrl.shouldCreateNewVrack" data-translate="pci_projects_project_network_private_vrack_create_description"></p>
+        <p
+            data-ng-if="$ctrl.shouldCreateNewVrack"
+            data-translate="pci_projects_project_network_private_vrack_create_description"
+        ></p>
 
         <oui-field data-ng-if="!$ctrl.shouldCreateNewVrack" data-size="l">
             <oui-select
@@ -26,10 +36,10 @@
                 placeholder="{{ :: 'pci_projects_project_network_private_vrack_create_choose' | translate }}"
                 data-items="$ctrl.vracks"
                 data-match="displayName"
-                required>
+                required
+            >
                 <span data-ng-bind="$item.displayName"></span>
             </oui-select>
         </oui-field>
-
     </oui-modal>
 </form>

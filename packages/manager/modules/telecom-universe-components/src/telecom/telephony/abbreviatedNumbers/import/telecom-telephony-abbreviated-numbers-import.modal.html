@@ -1,134 +1,185 @@
-<form name="abbreviatedNumberForm"
-      id="abbreviatedNumberForm"
-      class="import-abbr"
-      data-ng-submit="AbbreviatedNumberModal.send()">
-
+<form
+    name="abbreviatedNumberForm"
+    id="abbreviatedNumberForm"
+    class="import-abbr"
+    data-ng-submit="AbbreviatedNumberModal.send()"
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                aria-label="{{:: 'telephony_abbreviated_numbers_cancel' | translate }}"
-                data-ng-click="AbbreviatedNumberModal.cancel()">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{:: 'telephony_abbreviated_numbers_cancel' | translate }}"
+            data-ng-click="AbbreviatedNumberModal.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div data-ng-if="!AbbreviatedNumberModal.importing">
-
         <div class="modal-body">
-
-            <h3 class="modal-title"
-                data-translate="telephony_abbreviated_numbers_import_modal_tile">
-            </h3>
+            <h3
+                class="modal-title"
+                data-translate="telephony_abbreviated_numbers_import_modal_tile"
+            ></h3>
 
             <div class="form-group">
-                <tuc-input-file data-ng-model="AbbreviatedNumberModal.uploadedFile"
-                            data-change="AbbreviatedNumberModal.loadCsv(file)"
-                            data-ng-accept="text/csv">
+                <tuc-input-file
+                    data-ng-model="AbbreviatedNumberModal.uploadedFile"
+                    data-change="AbbreviatedNumberModal.loadCsv(file)"
+                    data-ng-accept="text/csv"
+                >
                     <i class="fa fa-upload mr-1" aria-hidden="true"></i>
-                    <span data-translate="telephony_abbreviated_numbers_import_button_label"></span>
+                    <span
+                        data-translate="telephony_abbreviated_numbers_import_button_label"
+                    ></span>
                 </tuc-input-file>
-                <div class="alert alert-danger mt-2"
-                     data-ng-if="AbbreviatedNumberModal.errorLoading"
-                     role="alert">
+                <div
+                    class="alert alert-danger mt-2"
+                    data-ng-if="AbbreviatedNumberModal.errorLoading"
+                    role="alert"
+                >
                     <p data-ng-bind="AbbreviatedNumberModal.errorLoading"></p>
                 </div>
             </div>
 
-            <oui-datagrid data-rows="AbbreviatedNumberModal.sample" data-ng-if="AbbreviatedNumberModal.sample.length">
-                <oui-column data-title="'telephony_abbreviated_numbers_id' | translate" data-property="abbreviatedNumber.value">
-                    <span data-ng-if="$row.isValid"
-                          data-ng-class="{'text-danger': !$row.abbreviatedNumber.isValid}"
-                          data-ng-bind="$row.abbreviatedNumber.value"></span>
-                    <del data-ng-if="!$row.isValid"
-                         data-ng-class="{'text-danger': !$row.abbreviatedNumber.isValid}"
-                         data-ng-bind="$row.abbreviatedNumber.value"></del>
+            <oui-datagrid
+                data-rows="AbbreviatedNumberModal.sample"
+                data-ng-if="AbbreviatedNumberModal.sample.length"
+            >
+                <oui-column
+                    data-title="'telephony_abbreviated_numbers_id' | translate"
+                    data-property="abbreviatedNumber.value"
+                >
+                    <span
+                        data-ng-if="$row.isValid"
+                        data-ng-class="{'text-danger': !$row.abbreviatedNumber.isValid}"
+                        data-ng-bind="$row.abbreviatedNumber.value"
+                    ></span>
+                    <del
+                        data-ng-if="!$row.isValid"
+                        data-ng-class="{'text-danger': !$row.abbreviatedNumber.isValid}"
+                        data-ng-bind="$row.abbreviatedNumber.value"
+                    ></del>
                 </oui-column>
-                <oui-column data-title="'telephony_abbreviated_numbers_number' | translate" data-property="destinationNumber.value">
-                    <span data-ng-if="$row.isValid"
-                          data-ng-class="{'text-danger': !$row.destinationNumber.isValid}"
-                          data-ng-bind="$row.destinationNumber.value"></span>
-                    <del data-ng-if="!$row.isValid"
-                         data-ng-class="{'text-danger': !$row.destinationNumber.isValid}"
-                         data-ng-bind="$row.id.value"></del>
+                <oui-column
+                    data-title="'telephony_abbreviated_numbers_number' | translate"
+                    data-property="destinationNumber.value"
+                >
+                    <span
+                        data-ng-if="$row.isValid"
+                        data-ng-class="{'text-danger': !$row.destinationNumber.isValid}"
+                        data-ng-bind="$row.destinationNumber.value"
+                    ></span>
+                    <del
+                        data-ng-if="!$row.isValid"
+                        data-ng-class="{'text-danger': !$row.destinationNumber.isValid}"
+                        data-ng-bind="$row.id.value"
+                    ></del>
                 </oui-column>
-                <oui-column data-title="'telephony_abbreviated_numbers_name' | translate" data-property="name.value">
-                    <span data-ng-if="$row.isValid"
-                          data-ng-class="{'text-danger': !$row.name.isValid}"
-                          data-ng-bind="$row.name.value"></span>
-                    <del data-ng-if="!$row.isValid"
-                         data-ng-class="{'text-danger': !$row.name.isValid}"
-                         data-ng-bind="$row.name.value"></del>
+                <oui-column
+                    data-title="'telephony_abbreviated_numbers_name' | translate"
+                    data-property="name.value"
+                >
+                    <span
+                        data-ng-if="$row.isValid"
+                        data-ng-class="{'text-danger': !$row.name.isValid}"
+                        data-ng-bind="$row.name.value"
+                    ></span>
+                    <del
+                        data-ng-if="!$row.isValid"
+                        data-ng-class="{'text-danger': !$row.name.isValid}"
+                        data-ng-bind="$row.name.value"
+                    ></del>
                 </oui-column>
-                <oui-column data-title="'telephony_abbreviated_numbers_surname' | translate" data-property="surname.value">
-                    <span data-ng-if="$row.isValid"
-                          data-ng-class="{'text-danger': !$row.surname.isValid}"
-                          data-ng-bind="$row.surname.value"></span>
-                    <del data-ng-if="!$row.isValid"
-                         data-ng-class="{'text-danger': !$row.surname.isValid}"
-                         data-ng-bind="$row.surname.value"></del>
+                <oui-column
+                    data-title="'telephony_abbreviated_numbers_surname' | translate"
+                    data-property="surname.value"
+                >
+                    <span
+                        data-ng-if="$row.isValid"
+                        data-ng-class="{'text-danger': !$row.surname.isValid}"
+                        data-ng-bind="$row.surname.value"
+                    ></span>
+                    <del
+                        data-ng-if="!$row.isValid"
+                        data-ng-class="{'text-danger': !$row.surname.isValid}"
+                        data-ng-bind="$row.surname.value"
+                    ></del>
                 </oui-column>
             </oui-datagrid>
-
         </div>
     </div>
 
-     <div class="modal-body"
-          data-ng-if="AbbreviatedNumberModal.loading.getFile && !AbbreviatedNumberModal.errorLoading">
+    <div
+        class="modal-body"
+        data-ng-if="AbbreviatedNumberModal.loading.getFile && !AbbreviatedNumberModal.errorLoading"
+    >
         <div class="text-center">
             <oui-spinner></oui-spinner>
         </div>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="AbbreviatedNumberModal.loading.getFile && !AbbreviatedNumberModal.errorLoading">
+    <div
+        class="modal-body"
+        data-ng-if="AbbreviatedNumberModal.loading.getFile && !AbbreviatedNumberModal.errorLoading"
+    >
         <oui-progress data-max-value="{{AbbreviatedNumberModal.total}}">
-            <oui-progress-bar data-type="info" data-value="AbbreviatedNumberModal.progress"></oui-progress-bar>
+            <oui-progress-bar
+                data-type="info"
+                data-value="AbbreviatedNumberModal.progress"
+            ></oui-progress-bar>
         </oui-progress>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="AbbreviatedNumberModal.importing">
+    <div class="modal-body" data-ng-if="AbbreviatedNumberModal.importing">
         <oui-progress data-max-value="{{AbbreviatedNumberModal.total}}">
-            <oui-progress-bar data-type="info" data-value="AbbreviatedNumberModal.progress">{{AbbreviatedNumberModal.progress}}</oui-progress-bar>
+            <oui-progress-bar
+                data-type="info"
+                data-value="AbbreviatedNumberModal.progress"
+                >{{AbbreviatedNumberModal.progress}}</oui-progress-bar
+            >
         </oui-progress>
         <div>
-            <span data-translate="telephony_abbreviated_numbers_import_item_imported"></span>
+            <span
+                data-translate="telephony_abbreviated_numbers_import_item_imported"
+            ></span>
             <span data-ng-bind="AbbreviatedNumberModal.imported.length"></span>
         </div>
-        <div class="alert alert-danger mt-2"
-             data-ng-if="AbbreviatedNumberModal.rejected"
-             role="alert">
-            <span data-translate="telephony_abbreviated_numbers_import_item_rejected"></span>
+        <div
+            class="alert alert-danger mt-2"
+            data-ng-if="AbbreviatedNumberModal.rejected"
+            role="alert"
+        >
+            <span
+                data-translate="telephony_abbreviated_numbers_import_item_rejected"
+            ></span>
             <span data-ng-bind="AbbreviatedNumberModal.rejected"></span>
         </div>
     </div>
 
-    <div class="modal-footer"
-         data-ng-if="!AbbreviatedNumberModal.done">
+    <div class="modal-footer" data-ng-if="!AbbreviatedNumberModal.done">
         <button
             type="reset"
             class="btn btn-default"
             data-ng-disabled="AbbreviatedNumberModal.importing"
             data-ng-click="AbbreviatedNumberModal.cancel()"
-            data-translate="telephony_abbreviated_numbers_cancel">
-        </button>
+            data-translate="telephony_abbreviated_numbers_cancel"
+        ></button>
         <button
             type="telephony_abbreviated_numbers_submit"
             class="btn btn-primary"
             data-ng-disabled="AbbreviatedNumberModal.importing || !AbbreviatedNumberModal.canImport || abbreviatedNumberForm.$invalid"
-            data-translate="telephony_abbreviated_numbers_submit">
-        </button>
+            data-translate="telephony_abbreviated_numbers_submit"
+        ></button>
     </div>
 
-    <div class="modal-footer"
-         data-ng-if="AbbreviatedNumberModal.done">
+    <div class="modal-footer" data-ng-if="AbbreviatedNumberModal.done">
         <button
             type="button"
             class="btn btn-primary"
             data-ng-click="AbbreviatedNumberModal.close()"
             data-translate="telephony_abbreviated_numbers_close"
-            data-ng-disabled="abbreviatedNumberForm.$invalid">
-        </button>
+            data-ng-disabled="abbreviatedNumberForm.$invalid"
+        ></button>
     </div>
-
 </form>

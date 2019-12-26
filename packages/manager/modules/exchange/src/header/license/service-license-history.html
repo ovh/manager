@@ -4,15 +4,10 @@
         data-wizard-hide-confirm-button
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="resetAction"
-        data-wizard-title="'exchange_action_license_history_title' | translate">
-
-        <div
-            data-wizard-step
-            data-wizard-step-on-load="loadMonitoring">
-
-            <div
-                class="text-center"
-                data-ng-if="$ctrl.loading">
+        data-wizard-title="'exchange_action_license_history_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-on-load="loadMonitoring">
+            <div class="text-center" data-ng-if="$ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
@@ -23,21 +18,25 @@
                             class="oui-select__input"
                             data-ng-change="$ctrl.loadMonitoring()"
                             data-ng-model="$ctrl.selectedPeriod"
-                            data-ng-options="period.displayValue for period in $ctrl.exchangeHeaderLicence.PERIODS track by period.displayValue"></select>
+                            data-ng-options="period.displayValue for period in $ctrl.exchangeHeaderLicence.PERIODS track by period.displayValue"
+                        ></select>
                         <span
                             class="oui-icon oui-icon-chevron-down"
-                            aria-hidden="true"></span>
+                            aria-hidden="true"
+                        ></span>
                     </label>
                 </form>
 
                 <p
                     class="font-weight-bold text-center"
-                    data-translate="exchange_action_license_history_button"></p>
+                    data-translate="exchange_action_license_history_button"
+                ></p>
 
                 <div
                     class="chart-container"
                     style="height: 320px;"
-                    data-wuc-chartjs="$ctrl.chart"></div>
+                    data-wuc-chartjs="$ctrl.chart"
+                ></div>
             </div>
         </div>
     </div>

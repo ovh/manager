@@ -1,69 +1,76 @@
-<section class="telecom-legacy telecom-sms"
-         data-ui-view="smsView">
-
+<section class="telecom-legacy telecom-sms" data-ui-view="smsView">
     <!-- LOADING -->
     <div class="text-center" data-ng-if="TelecomSmsCtrl.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-header"
-         data-ng-if="!TelecomSmsCtrl.loading.init">
-
+    <div
+        class="telecom-section-header"
+        data-ng-if="!TelecomSmsCtrl.loading.init"
+    >
         <!-- TITLE -->
-        <header class="page-header"
-                role="banner">
-            <tuc-editable-service-name data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
-                                   data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
-                                   data-tuc-editable-service-name-service-name="TelecomSmsCtrl.service.name"
-                                   data-maxlength="25">
+        <header class="page-header" role="banner">
+            <tuc-editable-service-name
+                data-tuc-editable-service-name-title="TelecomSmsCtrl.service.getDisplayedName()"
+                data-tuc-editable-service-name-title-on-save="TelecomSmsCtrl.serviceNameSave"
+                data-tuc-editable-service-name-service-name="TelecomSmsCtrl.service.name"
+                data-maxlength="25"
+            >
             </tuc-editable-service-name>
         </header>
 
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_common_home' | translate }}"
-                data-state="sms.service.dashboard">
+                data-state="sms.service.dashboard"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_sms' | translate }}"
-                data-state="sms.service.sms">
+                data-state="sms.service.sms"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_contacts' | translate }}"
-                data-state="sms.service.receivers">
+                data-state="sms.service.receivers"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_phonebooks' | translate }}"
-                data-state="sms.service.phonebooks">
+                data-state="sms.service.phonebooks"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_senders' | translate }}"
-                data-state="sms.service.senders">
+                data-state="sms.service.senders"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_api_users' | translate }}"
-                data-state="sms.service.users">
+                data-state="sms.service.users"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_options' | translate }}"
-                data-state="sms.service.options">
+                data-state="sms.service.options"
+            >
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{:: 'sms_tabs_guides' | translate }}"
-                data-state="sms.service.guides">
+                data-state="sms.service.guides"
+            >
             </oui-header-tabs-item>
         </oui-header-tabs>
-
     </div>
     <!-- .telecom-section-header -->
 
     <main class="telecom-section-content" role="main">
-          <tuc-toast-message></tuc-toast-message>
-          <div data-ng-if="!TelecomSmsCtrl.loading.init"
-               data-ui-view="smsInnerView">
-          </div>
+        <tuc-toast-message></tuc-toast-message>
+        <div
+            data-ng-if="!TelecomSmsCtrl.loading.init"
+            data-ui-view="smsInnerView"
+        ></div>
     </main>
     <!-- .telecom-section-content -->
-
 </section>
 <!-- /.telecom-sms -->

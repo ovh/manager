@@ -1,17 +1,29 @@
 <div data-ng-controller="DomainRenewCtrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="'wizard_order' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="displayBC"
-         data-wizard-title="'domain_configuration_renew_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'wizard_order' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="displayBC"
+        data-wizard-title="'domain_configuration_renew_title' | translate"
+    >
         <div data-wizard-step>
-            <p class="mb-2" data-ng-bind-html="'domain_configuration_renew_step1_question' | translate: { t0: ctrl.domainToRenew.displayName }"></p>
-            <p class="mb-2" data-translate="domain_configuration_renew_step1_confirmation"></p>
-            <p class="mb-2" data-translate="domain_configuration_renew_step1_information"></p>
-            <div class="alert alert-info" role="alert"
-                 data-translate="domain_configuration_renew_step1_alert">
-           </div>
+            <p
+                class="mb-2"
+                data-ng-bind-html="'domain_configuration_renew_step1_question' | translate: { t0: ctrl.domainToRenew.displayName }"
+            ></p>
+            <p
+                class="mb-2"
+                data-translate="domain_configuration_renew_step1_confirmation"
+            ></p>
+            <p
+                class="mb-2"
+                data-translate="domain_configuration_renew_step1_information"
+            ></p>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="domain_configuration_renew_step1_alert"
+            ></div>
         </div>
     </div>
 </div>

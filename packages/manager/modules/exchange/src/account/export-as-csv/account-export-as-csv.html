@@ -1,11 +1,11 @@
 <div data-ng-controller="ExchangeExportToCsvAccountsCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="cancelExport"
-         data-wizard-on-finish="exportAccounts"
-         data-wizard-title="'exchange_ACTION_export_accounts_button' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancelExport"
+        data-wizard-on-finish="exportAccounts"
+        data-wizard-title="'exchange_ACTION_export_accounts_button' | translate"
+    >
         <div data-wizard-step>
-
             <oui-spinner data-ng-if="ctrl.loading.exportCsv"></oui-spinner>
 
             <div data-ng-if="!ctrl.loading.exportCsv">

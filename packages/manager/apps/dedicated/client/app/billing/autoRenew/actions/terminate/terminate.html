@@ -1,4 +1,3 @@
-
 <oui-modal
     data-heading="{{ $ctrl.title }}"
     data-primary-action="$ctrl.terminate()"
@@ -6,6 +5,7 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'autorenew_service_terminate_cancel' | translate }}"
     data-loading="$ctrl.isDeleting"
-    data-on-dismiss="$ctrl.goBack()">
+    data-on-dismiss="$ctrl.goBack()"
+>
     <div data-ng-transclude></div>
 </oui-modal>

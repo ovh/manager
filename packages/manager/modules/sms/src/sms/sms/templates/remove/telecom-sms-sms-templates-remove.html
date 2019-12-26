@@ -1,18 +1,21 @@
-<oui-modal data-heading="{{:: 'sms_sms_templates_remove' | translate }}"
-           data-primary-action="$ctrl.remove()"
-           data-primary-label="{{:: 'submit' | translate }}"
-           data-primary-disabled="$ctrl.loading.removeTemplate || $ctrl.removed"
-           data-secondary-action="$ctrl.cancel()"
-           data-secondary-label="{{:: 'cancel' | translate }}"
-           data-secondary-disabled="$ctrl.loading.removeTemplate || $ctrl.removed"
-           data-on-dismiss="$ctrl.cancel()"
-           data-loading="$ctrl.loading.removeTemplate && !$ctrl.removed">
-    <dl class="dl-horizontal"
-        data-ng-if="!$ctrl.loading.removeTemplate && !$ctrl.removed">
+<oui-modal
+    data-heading="{{:: 'sms_sms_templates_remove' | translate }}"
+    data-primary-action="$ctrl.remove()"
+    data-primary-label="{{:: 'submit' | translate }}"
+    data-primary-disabled="$ctrl.loading.removeTemplate || $ctrl.removed"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'cancel' | translate }}"
+    data-secondary-disabled="$ctrl.loading.removeTemplate || $ctrl.removed"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.loading.removeTemplate && !$ctrl.removed"
+>
+    <dl
+        class="dl-horizontal"
+        data-ng-if="!$ctrl.loading.removeTemplate && !$ctrl.removed"
+    >
         <!-- NAME -->
         <dt data-translate="sms_sms_templates_list_title_name"></dt>
-        <dd class="word-break"
-            data-ng-bind="::$ctrl.template.name"></dd>
+        <dd class="word-break" data-ng-bind="::$ctrl.template.name"></dd>
 
         <!-- DATETIME -->
         <dt data-translate="sms_sms_templates_list_title_date"></dt>
@@ -24,8 +27,7 @@
 
         <!-- DESCRIPTION -->
         <dt data-translate="sms_sms_templates_list_title_description"></dt>
-        <dd class="word-break"
-            data-ng-bind="::$ctrl.template.description"></dd>
+        <dd class="word-break" data-ng-bind="::$ctrl.template.description"></dd>
     </dl>
 
     <div data-ng-if="$ctrl.removed">

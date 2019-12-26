@@ -1,50 +1,66 @@
-<form name="importTimeConditionForm"
-      id="importTimeConditionForm"
-      data-ng-submit="TimeConditionImportCtrl.importConfiguration()">
-
+<form
+    name="importTimeConditionForm"
+    id="importTimeConditionForm"
+    data-ng-submit="TimeConditionImportCtrl.importConfiguration()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="TimeConditionImportCtrl.cancel()">
+            data-ng-click="TimeConditionImportCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <!-- /.modal-header -->
 
-    <div class="modal-body"
-         data-ng-if="!TimeConditionImportCtrl.isLoading">
-        <h3 class="modal-title"
-            data-translate="telephony_common_time_condition_import_configuration_title">
-        </h3>
+    <div class="modal-body" data-ng-if="!TimeConditionImportCtrl.isLoading">
+        <h3
+            class="modal-title"
+            data-translate="telephony_common_time_condition_import_configuration_title"
+        ></h3>
         <!-- FILE -->
-        <div class="form-group clearfix"
-             data-ng-class="{ 'has-error': !TimeConditionImportCtrl.validFormatFile }">
-            <tuc-input-file data-ng-model="TimeConditionImportCtrl.uploadedFile"
-                        data-ng-accept="application/json"
-                        data-ng-accept-filter="TimeConditionImportCtrl.checkValidFileExtention(file)">
+        <div
+            class="form-group clearfix"
+            data-ng-class="{ 'has-error': !TimeConditionImportCtrl.validFormatFile }"
+        >
+            <tuc-input-file
+                data-ng-model="TimeConditionImportCtrl.uploadedFile"
+                data-ng-accept="application/json"
+                data-ng-accept-filter="TimeConditionImportCtrl.checkValidFileExtention(file)"
+            >
                 <i class="fa fa-upload mr-2" aria-hidden="true"></i>
-                <span data-translate="telephony_common_time_condition_import_configuration_action"></span>
+                <span
+                    data-translate="telephony_common_time_condition_import_configuration_action"
+                ></span>
             </tuc-input-file>
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="!TimeConditionImportCtrl.validFormatFile && TimeConditionImportCtrl.hasChecked"
-                  data-translate="telephony_common_time_condition_import_configuration_invalid_format">
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="!TimeConditionImportCtrl.validFormatFile && TimeConditionImportCtrl.hasChecked"
+                data-translate="telephony_common_time_condition_import_configuration_invalid_format"
+            >
             </span>
         </div>
         <div class="form-group clearfix">
-            <label class="service-title"
-                   data-translate="telephony_common_time_condition_import_configuration_file_format">
+            <label
+                class="service-title"
+                data-translate="telephony_common_time_condition_import_configuration_file_format"
+            >
             </label>
         </div>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body text-center"
-         data-ng-if="TimeConditionImportCtrl.isLoading">
+    <div
+        class="modal-body text-center"
+        data-ng-if="TimeConditionImportCtrl.isLoading"
+    >
         <oui-spinner></oui-spinner>
-        <h4 data-translate="telephony_common_time_condition_import_configuration_processing"></h4>
+        <h4
+            data-translate="telephony_common_time_condition_import_configuration_processing"
+        ></h4>
     </div>
 
     <div class="modal-footer">
@@ -52,14 +68,14 @@
             type="button"
             class="btn btn-default"
             data-ng-click="TimeConditionImportCtrl.cancel()"
-            data-translate="cancel">
-        </button>
+            data-translate="cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="!TimeConditionImportCtrl.validFormatFile || !TimeConditionImportCtrl.uploadedFile || TimeConditionImportCtrl.isLoading"
-            data-translate="submit">
-        </button>
+            data-translate="submit"
+        ></button>
     </div>
     <!-- /.modal-footer -->
 </form>

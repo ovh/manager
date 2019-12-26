@@ -1,37 +1,46 @@
-<form name="removeUserForm"
-      id="removeUserForm"
-      data-ng-submit="UsersRemoveCtrl.remove()">
-
+<form
+    name="removeUserForm"
+    id="removeUserForm"
+    data-ng-submit="UsersRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="UsersRemoveCtrl.cancel()">
+            data-ng-click="UsersRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!UsersRemoveCtrl.loading.removeUser && !UsersRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="sms_users_remove_user_title">
-        </h3>
-        <p class="word-break"
-           data-translate="sms_users_remove_user_confirm"
-           data-translate-values="{ user: UsersRemoveCtrl.user.login }">
-        </p>
+    <div
+        class="modal-body"
+        data-ng-if="!UsersRemoveCtrl.loading.removeUser && !UsersRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_users_remove_user_title"
+        ></h3>
+        <p
+            class="word-break"
+            data-translate="sms_users_remove_user_confirm"
+            data-translate-values="{ user: UsersRemoveCtrl.user.login }"
+        ></p>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="UsersRemoveCtrl.loading.removeUser">
+    <div
+        class="modal-body text-center"
+        data-ng-if="UsersRemoveCtrl.loading.removeUser"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_users_remove_user_removing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="UsersRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="UsersRemoveCtrl.removed">
+    <div class="modal-body" data-ng-if="UsersRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="UsersRemoveCtrl.removed"
+        >
             <h4 data-translate="sms_users_remove_user_removed"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -42,14 +51,13 @@
             class="btn btn-default"
             data-ng-click="UsersRemoveCtrl.cancel()"
             data-translate="sms_cancel"
-            data-ng-disabled="UsersRemoveCtrl.loading.removeUser || UsersRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="UsersRemoveCtrl.loading.removeUser || UsersRemoveCtrl.removed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-translate="sms_submit"
-            data-ng-disabled="UsersRemoveCtrl.loading.removeUser || UsersRemoveCtrl.removed">
-        </button>
+            data-ng-disabled="UsersRemoveCtrl.loading.removeUser || UsersRemoveCtrl.removed"
+        ></button>
     </div>
-
 </form>

@@ -1,31 +1,55 @@
 <div data-ng-controller="HostingUserLogsModifyCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="modifyUser"
-         data-wizard-title="'hosting_tab_USER_LOGS_configuration_user_modify_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="modifyUser"
+        data-wizard-title="'hosting_tab_USER_LOGS_configuration_user_modify_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step1_question"></p>
+            <p
+                data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step1_question"
+            ></p>
 
             <form name="hostingUserModifyForm">
-                <label class="oui-label" for="hostingUserModifyLogin"
-                       data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step1_user"></label>
-                <input type="text" class="oui-input" id="hostingUserModifyLogin" readonly
-                       data-ng-model="ctrl.model.user.login">
-                <label class="oui-label" for="hostingUserModifyDesc"
-                       data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step1_desc_label"></label>
-                <textarea class="oui-textarea" id="hostingUserModifyDesc" rows="5"
-                          data-ng-model="ctrl.model.user.description"></textarea>
+                <label
+                    class="oui-label"
+                    for="hostingUserModifyLogin"
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step1_user"
+                ></label>
+                <input
+                    type="text"
+                    class="oui-input"
+                    id="hostingUserModifyLogin"
+                    readonly
+                    data-ng-model="ctrl.model.user.login"
+                />
+                <label
+                    class="oui-label"
+                    for="hostingUserModifyDesc"
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step1_desc_label"
+                ></label>
+                <textarea
+                    class="oui-textarea"
+                    id="hostingUserModifyDesc"
+                    rows="5"
+                    data-ng-model="ctrl.model.user.description"
+                ></textarea>
             </form>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step2_question"></p>
+            <p
+                data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step2_question"
+            ></p>
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step2_user"></dt>
+                <dt
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step2_user"
+                ></dt>
                 <dd data-ng-bind="ctrl.model.user.login"></dd>
 
-                <dt data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step2_desc_label"></dt>
+                <dt
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_modify_step2_desc_label"
+                ></dt>
                 <dd data-ng-bind="ctrl.model.user.description"></dd>
             </dl>
         </div>

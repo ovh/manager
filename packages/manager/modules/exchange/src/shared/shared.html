@@ -1,34 +1,66 @@
-<div class="container-fluid px-0" data-ng-controller="ExchangeTabPublicFolderCtrl as ctrl">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="ExchangeTabPublicFolderCtrl as ctrl"
+>
     <div class="row" data-ng-if="ctrl.showPublicFolders">
         <div class="col-md-9">
             <form class="form-inline d-md-flex justify-content-md-end mb-3">
                 <div class="form-group">
-                    <label class="sr-only" for="groupSearch"
-                           data-translate="common_search"></label>
+                    <label
+                        class="sr-only"
+                        for="groupSearch"
+                        data-translate="common_search"
+                    ></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="groupSearch" maxlength="256" placeholder="{{'exchange_tab_SHARED_header_path' | translate}}"
-                               data-ng-change="ctrl.onSearch()"
-                               data-ng-disabled="ctrl.loading"
-                               data-ng-model="ctrl.search.value">
-                        <div class="input-group-btn" data-ng-if="ctrl.search.value">
-                            <button class="btn btn-default" type="button" aria-label="{{'common_cancel' | translate}}"
-                                    data-ng-click="ctrl.resetSearch()"
-                                    data-ng-disabled="ctrl.loading">
-                                <span class="fa fa-times" aria-hidden="true"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="groupSearch"
+                            maxlength="256"
+                            placeholder="{{'exchange_tab_SHARED_header_path' | translate}}"
+                            data-ng-change="ctrl.onSearch()"
+                            data-ng-disabled="ctrl.loading"
+                            data-ng-model="ctrl.search.value"
+                        />
+                        <div
+                            class="input-group-btn"
+                            data-ng-if="ctrl.search.value"
+                        >
+                            <button
+                                class="btn btn-default"
+                                type="button"
+                                aria-label="{{'common_cancel' | translate}}"
+                                data-ng-click="ctrl.resetSearch()"
+                                data-ng-disabled="ctrl.loading"
+                            >
+                                <span
+                                    class="fa fa-times"
+                                    aria-hidden="true"
+                                ></span>
                             </button>
                         </div>
-                        <span class="input-group-addon"
-                              data-ng-if="!ctrl.search.value">
-                            <span class="fa fa-search" aria-hidden="true"></span>
+                        <span
+                            class="input-group-addon"
+                            data-ng-if="!ctrl.search.value"
+                        >
+                            <span
+                                class="fa fa-search"
+                                aria-hidden="true"
+                            ></span>
                         </span>
                     </div>
                 </div>
             </form>
 
-            <div class="alert alert-info" role="alert"
-                 data-ng-if="ctrl.publicFoldersList.list.messages.length > 0 && !ctrl.loading">
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-ng-if="ctrl.publicFoldersList.list.messages.length > 0 && !ctrl.loading"
+            >
                 <div>
-                    <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
+                    <strong
+                        data-translate="exchange_tab_ACCOUNTS_warning"
+                    ></strong>
                     <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
                 </div>
             </div>
@@ -37,11 +69,30 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" data-translate="exchange_tab_SHARED_header_path"></th>
-                            <th class="text-center" scope="col" data-translate="exchange_tab_SHARED_header_type"></th>
-                            <th class="text-right" scope="col" data-translate="exchange_tab_SHARED_permissions_header_quota"></th>
-                            <th class="text-center" scope="col" data-translate="exchange_tab_SHARED_header_access"></th>
-                            <th class="text-center" scope="col" data-translate="exchange_tab_GROUPS_all_table_status"></th>
+                            <th
+                                scope="col"
+                                data-translate="exchange_tab_SHARED_header_path"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_SHARED_header_type"
+                            ></th>
+                            <th
+                                class="text-right"
+                                scope="col"
+                                data-translate="exchange_tab_SHARED_permissions_header_quota"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_SHARED_header_access"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
+                                data-translate="exchange_tab_GROUPS_all_table_status"
+                            ></th>
                             <th class="min-width" scope="col"></th>
                         </tr>
                     </thead>
@@ -54,89 +105,130 @@
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="ctrl.publicFoldersList.list.results.length === 0 && ctrl.publicFoldersList.list.messages.length === 0 && !ctrl.loading && ctrl.search.value == null">
+                    <tbody
+                        data-ng-if="ctrl.publicFoldersList.list.results.length === 0 && ctrl.publicFoldersList.list.messages.length === 0 && !ctrl.loading && ctrl.search.value == null"
+                    >
                         <tr>
-                            <td colspan="6"
-                                data-translate="exchange_tab_SHARED_table_empty"></td>
+                            <td
+                                colspan="6"
+                                data-translate="exchange_tab_SHARED_table_empty"
+                            ></td>
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="ctrl.publicFoldersList.list.results.length === 0 && ctrl.publicFoldersList.list.messages.length === 0 && !ctrl.loading && ctrl.search.value != null">
+                    <tbody
+                        data-ng-if="ctrl.publicFoldersList.list.results.length === 0 && ctrl.publicFoldersList.list.messages.length === 0 && !ctrl.loading && ctrl.search.value != null"
+                    >
                         <tr>
-                            <td colspan="6"
-                                data-translate="exchange_tab_SHARED_table_empty_search"></td>
+                            <td
+                                colspan="6"
+                                data-translate="exchange_tab_SHARED_table_empty_search"
+                            ></td>
                         </tr>
                     </tbody>
 
-                    <tbody data-ng-if="ctrl.publicFoldersList.list.results.length > 0 && !ctrl.loading">
-                        <tr data-ng-repeat="folder in (ctrl.publicFoldersList.list.results | orderBy : 'displayName' : false) track by $index">
-
+                    <tbody
+                        data-ng-if="ctrl.publicFoldersList.list.results.length > 0 && !ctrl.loading"
+                    >
+                        <tr
+                            data-ng-repeat="folder in (ctrl.publicFoldersList.list.results | orderBy : 'displayName' : false) track by $index"
+                        >
                             <td data-ng-bind="folder.path"></td>
-                            <td class="text-center"
-                                data-ng-bind="('exchange_tab_SHARED_header_access_' + folder.type) | translate"></td>
-                            <td class="text-right"
-                                data-ng-bind="folder.quota.value + ' ' + ('unit_size_' + folder.quota.unit) | translate"></td>
+                            <td
+                                class="text-center"
+                                data-ng-bind="('exchange_tab_SHARED_header_access_' + folder.type) | translate"
+                            ></td>
+                            <td
+                                class="text-right"
+                                data-ng-bind="folder.quota.value + ' ' + ('unit_size_' + folder.quota.unit) | translate"
+                            ></td>
                             <td class="text-center">
-                                <button class="btn btn-danger btn-xs" type="button"
-                                        data-ng-bind="folder.permissions"
-                                        data-ng-click="ctrl.displayPermissions(folder)">
-                                </button>
+                                <button
+                                    class="btn btn-danger btn-xs"
+                                    type="button"
+                                    data-ng-bind="folder.permissions"
+                                    data-ng-click="ctrl.displayPermissions(folder)"
+                                ></button>
                             </td>
                             <td class="text-center">
-                                <span class="label label-info"
-                                      data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(folder)">
+                                <span
+                                    class="label label-info"
+                                    data-translate="exchange_tab_ACCOUNTS_state_CREATING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(folder)"
+                                >
                                 </span>
-                                <span class="label label-danger"
-                                      data-translate="exchange_tab_ACCOUNTS_state_DELETING"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(folder)">
+                                <span
+                                    class="label label-danger"
+                                    data-translate="exchange_tab_ACCOUNTS_state_DELETING"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isDeleting(folder)"
+                                >
                                 </span>
-                                <span class="fa fa-hourglass-half"
-                                      data-ng-if="ctrl.services.exchangeStates.constructor.isOk(folder) && folder.taskPendingId"
-                                      data-oui-tooltip="{{'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}">
+                                <span
+                                    class="fa fa-hourglass-half"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isOk(folder) && folder.taskPendingId"
+                                    data-oui-tooltip="{{'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"
+                                >
                                 </span>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-icon" type="button" title="{{'exchange_tab_ACCOUNTS_menu_account_tooltip' | translate}}"
-                                        data-linkedpopover="exchange/shared/popover/shared-popover.html"
-                                        data-linkedpopover-placement="left"
-                                        data-linkedpopover-single="true"
-                                        data-linkedpopover-remote="true"
-                                        data-linkedpopover-title="{{'common_actions' | translate}}">
-                                    <span class="oui-icon oui-icon-gear_line oui-icon_small" aria-hidden="true"></span>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{'exchange_tab_ACCOUNTS_menu_account_tooltip' | translate}}"
+                                    data-linkedpopover="exchange/shared/popover/shared-popover.html"
+                                    data-linkedpopover-placement="left"
+                                    data-linkedpopover-single="true"
+                                    data-linkedpopover-remote="true"
+                                    data-linkedpopover-title="{{'common_actions' | translate}}"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-gear_line oui-icon_small"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </td>
                         </tr>
 
-                        <tr data-ng-if="ctrl.publicFoldersList.list.messages"
-                            data-ng-repeat="folder in ctrl.publicFoldersList.list.messages track by $index | orderBy: 'id':false">
+                        <tr
+                            data-ng-if="ctrl.publicFoldersList.list.messages"
+                            data-ng-repeat="folder in ctrl.publicFoldersList.list.messages track by $index | orderBy: 'id':false"
+                        >
                             <td colspan="6">
-                                <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
-                                <span data-ng-bind="folder.id"
-                                      data-oui-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}"></span>
+                                <span
+                                    class="fa fa-exclamation-triangle mr-2"
+                                    aria-hidden="true"
+                                ></span>
+                                <span
+                                    data-ng-bind="folder.id"
+                                    data-oui-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}"
+                                ></span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="clearfix"
-                 data-pagination-server-side="publicFoldersTable"
-                 data-pagination-server-side-function="retrievingMailingLists"
-                 data-pagination-server-side-paginated-stuff="getPublicFoldersList()"
-                 data-pagination-server-side-table-loading="getLoading()">
-            </div>
+            <div
+                class="clearfix"
+                data-pagination-server-side="publicFoldersTable"
+                data-pagination-server-side-function="retrievingMailingLists"
+                data-pagination-server-side-paginated-stuff="getPublicFoldersList()"
+                data-pagination-server-side-table-loading="getLoading()"
+            ></div>
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0">
-            <button class="btn btn-block btn-default" type="button"
-                    data-translate="exchange_tab_SHARED_button_add"
-                    data-ng-click="ctrl.newShared()">
-            </button>
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-translate="exchange_tab_SHARED_button_add"
+                data-ng-click="ctrl.newShared()"
+            ></button>
         </div>
     </div>
 
-    <div data-ng-if="ctrl.showPermissions"
-         data-ng-include="'exchange/shared/permission/shared-permission.html'">
-    </div>
+    <div
+        data-ng-if="ctrl.showPermissions"
+        data-ng-include="'exchange/shared/permission/shared-permission.html'"
+    ></div>
 </div>

@@ -1,67 +1,93 @@
 <div data-ui-view>
-    <oui-page-header data-heading="{{:: 'pci_workflow_title' | translate }}" class="mb-3">
-        <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-            <oui-guide-menu-item
-                href="{{ $ctrl.guideUrl }}"
-                data-external>
-                <span data-translate="pci_project_guides_header_all_guides"></span>
+    <oui-page-header
+        data-heading="{{:: 'pci_workflow_title' | translate }}"
+        class="mb-3"
+    >
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
+        >
+            <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
+                <span
+                    data-translate="pci_project_guides_header_all_guides"
+                ></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-page-header>
     <div class="container-fluid px-0">
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-        <oui-datagrid data-rows="$ctrl.workflows"
-            data-row-loader="$ctrl.getInstance($row)">
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+        <oui-datagrid
+            data-rows="$ctrl.workflows"
+            data-row-loader="$ctrl.getInstance($row)"
+        >
             <oui-column
                 data-title=":: 'pci_workflow_name' | translate"
                 data-property="name"
                 data-searchable
                 data-filterable
                 data-sortable="asc"
-                data-type="string">
+                data-type="string"
+            >
                 <span class="text-truncate" data-ng-bind="::$row.name"></span>
             </oui-column>
-            <oui-column data-title=":: 'pci_workflow_type' | translate"
+            <oui-column
+                data-title=":: 'pci_workflow_type' | translate"
                 data-property="type"
                 data-searchable
                 data-filterable
                 data-sortable
-                data-type="string">
-                <span data-ng-bind="::'pci_workflow_type_' + $row.type + '_title' | translate"></span>
+                data-type="string"
+            >
+                <span
+                    data-ng-bind="::'pci_workflow_type_' + $row.type + '_title' | translate"
+                ></span>
             </oui-column>
-            <oui-column data-title=":: 'pci_workflow_resource' | translate"
+            <oui-column
+                data-title=":: 'pci_workflow_resource' | translate"
                 data-property="instanceName"
                 data-searchable
                 data-filterable
                 data-sortable
-                data-type="string">
+                data-type="string"
+            >
                 <button
                     type="button"
                     class="oui-button oui-button_link p-0"
-                    data-ng-click="$ctrl.goToInstancePage($row.instanceId)">
+                    data-ng-click="$ctrl.goToInstancePage($row.instanceId)"
+                >
                     <span data-ng-bind="::$row.instanceName"></span>
                 </button>
             </oui-column>
-            <oui-column data-title=":: 'pci_workflow_schedule' | translate"
+            <oui-column
+                data-title=":: 'pci_workflow_schedule' | translate"
                 data-property="cron"
                 data-searchable
                 data-filterable
                 data-sortable
-                data-type="string">
+                data-type="string"
+            >
             </oui-column>
-            <oui-column data-title=":: 'pci_workflow_last_execution' | translate"
+            <oui-column
+                data-title=":: 'pci_workflow_last_execution' | translate"
                 data-property="executions"
                 data-sortable
                 data-searchable
                 data-filterable
-                data-type="date">
-                <span data-ng-if="$row.executions && $row.executions.length"
-                    data-ng-bind="$row.executions[$row.executions.length - 1].executedAt | date: 'medium' : 'UTC'"></span>
+                data-type="date"
+            >
+                <span
+                    data-ng-if="$row.executions && $row.executions.length"
+                    data-ng-bind="$row.executions[$row.executions.length - 1].executedAt | date: 'medium' : 'UTC'"
+                ></span>
             </oui-column>
-            <oui-column data-title=":: 'pci_workflow_last_execution_status' | translate"
+            <oui-column
+                data-title=":: 'pci_workflow_last_execution_status' | translate"
                 data-property="executions"
-                data-type="string">
-                <span class="oui-status"
+                data-type="string"
+            >
+                <span
+                    class="oui-status"
                     data-ng-if="$row.executions && $row.executions.length"
                     data-ng-init="execution = $row.executions[$row.executions.length - 1]"
                     data-ng-class="{
@@ -69,23 +95,35 @@
                         'oui-status_warning': execution.state === 'PAUSED',
                         'oui-status_error': execution.state === 'ERROR',
                         'oui-status_info': execution.state === execution.status,
-                    }">
-                    <span data-ng-bind=":: 'pci_workflow_execution_status_' + execution.state | translate"></span>
+                    }"
+                >
+                    <span
+                        data-ng-bind=":: 'pci_workflow_execution_status_' + execution.state | translate"
+                    ></span>
                 </span>
             </oui-column>
             <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item
                     data-ng-if="$row.executions && $row.executions.length"
                     data-text="{{ ::'pci_workflow_view_executions' | translate }}"
-                    data-on-click="$ctrl.goToExecutionsPage($row)">
+                    data-on-click="$ctrl.goToExecutionsPage($row)"
+                >
                 </oui-action-menu-item>
-                <oui-action-menu-item data-text="{{ ::'pci_workflow_delete' | translate }}"
-                    data-on-click="$ctrl.goToDeleteWorkflowPage($row)">
+                <oui-action-menu-item
+                    data-text="{{ ::'pci_workflow_delete' | translate }}"
+                    data-on-click="$ctrl.goToDeleteWorkflowPage($row)"
+                >
                 </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
-                <button data-ng-click="$ctrl.add()" class="oui-button oui-button_secondary oui-button_icon-left mb-2">
-                    <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
+                <button
+                    data-ng-click="$ctrl.add()"
+                    class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+                >
+                    <span
+                        class="oui-icon oui-icon-add"
+                        aria-hidden="true"
+                    ></span>
                     <span data-translate="pci_workflow_add"></span>
                 </button>
             </extra-top>

@@ -1,163 +1,234 @@
-<div class="telephonyCallsFilteringTable"
-     data-ng-if="$ctrl.isInitialized">
-
+<div class="telephonyCallsFilteringTable" data-ng-if="$ctrl.isInitialized">
     <div class="clearfix mb-3">
         <div class="float-left">
-            <button class="btn btn-default"
-                    type="button"
-                    data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.screenLists.isDeleting"
-                    data-ng-click="$ctrl.removeSelectedScreenLists()">
-                <oui-spinner class="mr-2"
-                             data-ng-if="$ctrl.screenLists.isDeleting"
-                             data-size="s">
+            <button
+                class="btn btn-default"
+                type="button"
+                data-ng-disabled="$ctrl.getSelection().length === 0 || $ctrl.screenLists.isDeleting"
+                data-ng-click="$ctrl.removeSelectedScreenLists()"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.screenLists.isDeleting"
+                    data-size="s"
+                >
                 </oui-spinner>
                 <i class="ovh-font ovh-font-bin mr-2"></i>
-                <span data-ng-if="$ctrl.getSelection().length <= 1"
-                      data-translate="telephony_calls_filtering_table_delete">
+                <span
+                    data-ng-if="$ctrl.getSelection().length <= 1"
+                    data-translate="telephony_calls_filtering_table_delete"
+                >
                 </span>
-                <span data-ng-if="$ctrl.getSelection().length > 1"
-                      data-translate="telephony_calls_filtering_table_delete_plural"
-                      data-translate-values="{ nb: $ctrl.getSelection().length }">
+                <span
+                    data-ng-if="$ctrl.getSelection().length > 1"
+                    data-translate="telephony_calls_filtering_table_delete_plural"
+                    data-translate-values="{ nb: $ctrl.getSelection().length }"
+                >
                 </span>
             </button>
-            <button class="btn btn-default"
-                    type="button"
-                    data-ng-disabled="$ctrl.getSelection().length === 0"
-                    data-ng-csv="$ctrl.exportSelection()"
-                    data-csv-header="[
+            <button
+                class="btn btn-default"
+                type="button"
+                data-ng-disabled="$ctrl.getSelection().length === 0"
+                data-ng-csv="$ctrl.exportSelection()"
+                data-csv-header="[
                         'callNumber',
                         'nature',
                         'type'
                     ]"
-                    data-filename="{{:: ('telephony_calls_filtering_table_csv_filename' | translate) + $ctrl.serviceName | tucSlugify }}.csv">
-                <span data-translate="telephony_calls_filtering_table_export"></span>
+                data-filename="{{:: ('telephony_calls_filtering_table_csv_filename' | translate) + $ctrl.serviceName | tucSlugify }}.csv"
+            >
+                <span
+                    data-translate="telephony_calls_filtering_table_export"
+                ></span>
             </button>
         </div>
         <div class="float-right">
-            <select class="form-control"
-                    data-ng-change="$ctrl.sortScreenLists()"
-                    data-ng-model="$ctrl.screenLists.filterBy.list"
-                    required>
-                <option value="" data-translate="telephony_calls_filtering_table_list"></option>
-                <option value="white" data-translate="telephony_calls_filtering_table_list_white"></option>
-                <option value="black" data-translate="telephony_calls_filtering_table_list_black"></option>
+            <select
+                class="form-control"
+                data-ng-change="$ctrl.sortScreenLists()"
+                data-ng-model="$ctrl.screenLists.filterBy.list"
+                required
+            >
+                <option
+                    value=""
+                    data-translate="telephony_calls_filtering_table_list"
+                ></option>
+                <option
+                    value="white"
+                    data-translate="telephony_calls_filtering_table_list_white"
+                ></option>
+                <option
+                    value="black"
+                    data-translate="telephony_calls_filtering_table_list_black"
+                ></option>
             </select>
         </div>
         <div class="float-right mr-1">
-            <select class="form-control"
-                    data-ng-change="$ctrl.sortScreenLists()"
-                    data-ng-model="$ctrl.screenLists.filterBy.type"
-                    required>
-                <option value="" data-translate="telephony_calls_filtering_table_type"></option>
-                <option value="incoming" data-translate="telephony_calls_filtering_table_type_incoming"></option>
-                <option value="outgoing" data-translate="telephony_calls_filtering_table_type_outgoing"></option>
+            <select
+                class="form-control"
+                data-ng-change="$ctrl.sortScreenLists()"
+                data-ng-model="$ctrl.screenLists.filterBy.type"
+                required
+            >
+                <option
+                    value=""
+                    data-translate="telephony_calls_filtering_table_type"
+                ></option>
+                <option
+                    value="incoming"
+                    data-translate="telephony_calls_filtering_table_type_incoming"
+                ></option>
+                <option
+                    value="outgoing"
+                    data-translate="telephony_calls_filtering_table_type_outgoing"
+                ></option>
             </select>
         </div>
     </div>
 
     <!-- TABLE -->
     <div class="table-responsive">
-        <table class="table"
-               data-ng-class="{
+        <table
+            class="table"
+            data-ng-class="{
                    'table-hover table-striped': $ctrl.screenLists.raw.length > 1
-               }">
+               }"
+        >
             <thead>
                 <tr>
                     <th>
-                        <input type="checkbox"
-                               data-ng-if="$ctrl.screenLists.paginated.length"
-                               data-ng-disabled="$ctrl.screenLists.isDeleting"
-                               data-ovh-checkbox-table
-                               data-ovh-checkbox-table-ids-all="$ctrl.screenLists.raw"
-                               data-ovh-checkbox-table-ids-page="$ctrl.screenLists.paginated"
-                               data-ovh-checkbox-table-ids-selected="$ctrl.screenLists.selected"
-                               data-ovh-checkbox-table-id="id" />
+                        <input
+                            type="checkbox"
+                            data-ng-if="$ctrl.screenLists.paginated.length"
+                            data-ng-disabled="$ctrl.screenLists.isDeleting"
+                            data-ovh-checkbox-table
+                            data-ovh-checkbox-table-ids-all="$ctrl.screenLists.raw"
+                            data-ovh-checkbox-table-ids-page="$ctrl.screenLists.paginated"
+                            data-ovh-checkbox-table-ids-selected="$ctrl.screenLists.selected"
+                            data-ovh-checkbox-table-id="id"
+                        />
                     </th>
                     <th>
-                        <button class="btn btn-link p-0"
-                                type="button"
-                                data-ng-disabled="!$ctrl.screenLists.paginated.length"
-                                data-ng-click="$ctrl.orderScreenListsBy('callNumber')">
-                            <span data-translate="telephony_calls_filtering_table_number"></span>
-                            <span class="oui-icon align-baseline"
-                                  aria-hidden="true"
-                                  data-ng-class="{
+                        <button
+                            class="btn btn-link p-0"
+                            type="button"
+                            data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                            data-ng-click="$ctrl.orderScreenListsBy('callNumber')"
+                        >
+                            <span
+                                data-translate="telephony_calls_filtering_table_number"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'callNumber',
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'callNumber' && $ctrl.screenLists.orderDesc,
                                       'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'callNumber' && !$ctrl.screenLists.orderDesc
-                                  }">
+                                  }"
+                            >
                             </span>
                         </button>
                     </th>
                     <th>
-                        <button class="btn btn-link p-0"
-                                type="button"
-                                data-ng-disabled="!$ctrl.screenLists.paginated.length"
-                                data-ng-click="$ctrl.orderScreenListsBy('nature')">
-                            <span data-translate="telephony_calls_filtering_table_nature"></span>
-                            <span class="oui-icon align-baseline"
-                                  aria-hidden="true"
-                                  data-ng-class="{
+                        <button
+                            class="btn btn-link p-0"
+                            type="button"
+                            data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                            data-ng-click="$ctrl.orderScreenListsBy('nature')"
+                        >
+                            <span
+                                data-translate="telephony_calls_filtering_table_nature"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'nature',
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'nature' && $ctrl.screenLists.orderDesc,
                                       'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'nature' && !$ctrl.screenLists.orderDesc
-                                  }">
+                                  }"
+                            >
                             </span>
                         </button>
                     </th>
                     <th>
-                        <button class="btn btn-link p-0"
-                                type="button"
-                                data-ng-disabled="!$ctrl.screenLists.paginated.length"
-                                data-ng-click="$ctrl.orderScreenListsBy('type')">
-                            <span data-translate="telephony_calls_filtering_table_type"></span>
-                            <span class="oui-icon align-baseline"
-                                  aria-hidden="true"
-                                  data-ng-class="{
+                        <button
+                            class="btn btn-link p-0"
+                            type="button"
+                            data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                            data-ng-click="$ctrl.orderScreenListsBy('type')"
+                        >
+                            <span
+                                data-translate="telephony_calls_filtering_table_type"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'type',
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'type' && $ctrl.screenLists.orderDesc,
                                       'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'type' && !$ctrl.screenLists.orderDesc
-                                  }">
+                                  }"
+                            >
                             </span>
                         </button>
                     </th>
                     <th>
-                        <button class="btn btn-link p-0"
-                                type="button"
-                                data-ng-disabled="!$ctrl.screenLists.paginated.length"
-                                data-ng-click="$ctrl.orderScreenListsBy('list')">
-                            <span data-translate="telephony_calls_filtering_table_list"></span>
-                            <span class="oui-icon align-baseline"
-                                  aria-hidden="true"
-                                  data-ng-class="{
+                        <button
+                            class="btn btn-link p-0"
+                            type="button"
+                            data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                            data-ng-click="$ctrl.orderScreenListsBy('list')"
+                        >
+                            <span
+                                data-translate="telephony_calls_filtering_table_list"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'list',
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'list' && $ctrl.screenLists.orderDesc,
                                       'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'list' && !$ctrl.screenLists.orderDesc
-                                  }">
+                                  }"
+                            >
                             </span>
                         </button>
                     </th>
                     <th>
-                        <button class="btn btn-link p-0"
-                                type="button"
-                                data-ng-disabled="!$ctrl.screenLists.paginated.length"
-                                data-ng-click="$ctrl.orderScreenListsBy('status')">
-                            <span data-translate="telephony_calls_filtering_table_status"></span>
-                            <span class="oui-icon align-baseline"
-                                  aria-hidden="true"
-                                  data-ng-class="{
+                        <button
+                            class="btn btn-link p-0"
+                            type="button"
+                            data-ng-disabled="!$ctrl.screenLists.paginated.length"
+                            data-ng-click="$ctrl.orderScreenListsBy('status')"
+                        >
+                            <span
+                                data-translate="telephony_calls_filtering_table_status"
+                            ></span>
+                            <span
+                                class="oui-icon align-baseline"
+                                aria-hidden="true"
+                                data-ng-class="{
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy !== 'status',
                                       'oui-icon-arrow-down': $ctrl.screenLists.orderBy === 'status' && $ctrl.screenLists.orderDesc,
                                       'oui-icon-arrow-up': $ctrl.screenLists.orderBy === 'status' && !$ctrl.screenLists.orderDesc
-                                  }">
+                                  }"
+                            >
                             </span>
                         </button>
-                        <button class="btn btn-link p-0 float-right"
-                                type="button"
-                                title="{{:: 'telephony_calls_filtering_table_status_refresh' | translate }}"
-                                data-ng-disabled="$ctrl.screenLists.isDeleting"
-                                data-ng-click="$ctrl.refresh()">
-                            <i class="text-default fa fa-refresh" aria-hidden="true"></i>
+                        <button
+                            class="btn btn-link p-0 float-right"
+                            type="button"
+                            title="{{:: 'telephony_calls_filtering_table_status_refresh' | translate }}"
+                            data-ng-disabled="$ctrl.screenLists.isDeleting"
+                            data-ng-click="$ctrl.refresh()"
+                        >
+                            <i
+                                class="text-default fa fa-refresh"
+                                aria-hidden="true"
+                            ></i>
                         </button>
                     </th>
                 </tr>
@@ -165,29 +236,45 @@
             <tbody data-ng-if="!$ctrl.isLoading">
                 <tr data-ng-repeat="screen in $ctrl.screenLists.paginated">
                     <td>
-                        <input type="checkbox"
-                               data-ng-if="screen.status !== 'delete'"
-                               data-ng-disabled="$ctrl.screenLists.isDeleting"
-                               data-ng-model="$ctrl.screenLists.selected[screen.id]" />
+                        <input
+                            type="checkbox"
+                            data-ng-if="screen.status !== 'delete'"
+                            data-ng-disabled="$ctrl.screenLists.isDeleting"
+                            data-ng-model="$ctrl.screenLists.selected[screen.id]"
+                        />
                     </td>
                     <td data-ng-bind="screen.callNumber | tucPhoneNumber"></td>
-                    <td data-ng-bind="'telephony_calls_filtering_table_nature_' + screen.nature | translate"></td>
-                    <td data-ng-bind="'telephony_calls_filtering_table_type_' + screen.shortType | translate"></td>
-                    <td data-ng-bind="'telephony_calls_filtering_table_list_' + screen.list | translate"></td>
+                    <td
+                        data-ng-bind="'telephony_calls_filtering_table_nature_' + screen.nature | translate"
+                    ></td>
+                    <td
+                        data-ng-bind="'telephony_calls_filtering_table_type_' + screen.shortType | translate"
+                    ></td>
+                    <td
+                        data-ng-bind="'telephony_calls_filtering_table_list_' + screen.list | translate"
+                    ></td>
                     <td>
                         <span>
-                            <span data-ng-if="screen.status === 'new'"
-                                  data-translate="telephony_calls_filtering_table_status_new">
+                            <span
+                                data-ng-if="screen.status === 'new'"
+                                data-translate="telephony_calls_filtering_table_status_new"
+                            >
                             </span>
-                            <span data-ng-if="screen.status === 'delete'"
-                                  data-translate="telephony_calls_filtering_table_status_delete">
+                            <span
+                                data-ng-if="screen.status === 'delete'"
+                                data-translate="telephony_calls_filtering_table_status_delete"
+                            >
                             </span>
-                            <i class="text-success ovh-font ovh-font-success"
-                               data-ng-if="screen.status === 'active'">
+                            <i
+                                class="text-success ovh-font ovh-font-success"
+                                data-ng-if="screen.status === 'active'"
+                            >
                             </i>
-                            <oui-spinner class="ml-1"
-                                         data-ng-if="screen.status !== 'active'"
-                                         data-size="s">
+                            <oui-spinner
+                                class="ml-1"
+                                data-ng-if="screen.status !== 'active'"
+                                data-size="s"
+                            >
                             </oui-spinner>
                         </span>
                     </td>
@@ -202,25 +289,29 @@
                     </td>
                 </tr>
             </tbody>
-            <tbody data-ng-if="!$ctrl.isLoading && !$ctrl.screenLists.paginated.length">
+            <tbody
+                data-ng-if="!$ctrl.isLoading && !$ctrl.screenLists.paginated.length"
+            >
                 <tr>
-                    <td colspan="6"
-                       class="text-center"
-                       data-translate="telephony_calls_filtering_table_empty">
-                    </td>
+                    <td
+                        colspan="6"
+                        class="text-center"
+                        data-translate="telephony_calls_filtering_table_empty"
+                    ></td>
                 </tr>
             </tbody>
         </table>
-        <div class="mt-2"
-             data-ng-if="!$ctrl.screenLists.isLoading && $ctrl.screenLists.raw.length"
-             data-pagination-front
-             data-items="$ctrl.screenLists.sorted"
-             data-paginated-items="$ctrl.screenLists.paginated"
-             data-current-page="currentPage"
-             data-nb-pages="nbPages"
-             data-items-per-page="itemsPerPage"
-             data-page-placeholder="{{'telephony_calls_filtering_pagination_page' | translate: {currentPage:currentPage, nbPages:nbPages} }}"
-             data-item-per-page-placeholder="{{'telephony_calls_filtering_pagination_display' | translate}}">
-        </div>
+        <div
+            class="mt-2"
+            data-ng-if="!$ctrl.screenLists.isLoading && $ctrl.screenLists.raw.length"
+            data-pagination-front
+            data-items="$ctrl.screenLists.sorted"
+            data-paginated-items="$ctrl.screenLists.paginated"
+            data-current-page="currentPage"
+            data-nb-pages="nbPages"
+            data-items-per-page="itemsPerPage"
+            data-page-placeholder="{{'telephony_calls_filtering_pagination_page' | translate: {currentPage:currentPage, nbPages:nbPages} }}"
+            data-item-per-page-placeholder="{{'telephony_calls_filtering_pagination_display' | translate}}"
+        ></div>
     </div>
 </div>

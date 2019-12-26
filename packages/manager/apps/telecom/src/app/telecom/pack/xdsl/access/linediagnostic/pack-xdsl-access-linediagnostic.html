@@ -1,13 +1,15 @@
 <div class="xdsl-line-diagnostic">
-
-    <div class="text-center" data-ng-if="PackxdslaccesslinediagnosticCtrl.loading.init">
+    <div
+        class="text-center"
+        data-ng-if="PackxdslaccesslinediagnosticCtrl.loading.init"
+    >
         <oui-spinner></oui-spinner>
     </div>
 
-    <div data-ng-if="!PackxdslaccesslinediagnosticCtrl.loading.init && PackxdslaccesslinediagnosticCtrl.isVIP"
-         data-line-diagnostics="{{ PackxdslaccesslinediagnosticCtrl.lineNumber }}"
-         data-line-diagnostics-type="{{ PackxdslaccesslinediagnosticCtrl.diagnosticType }}"
-         data-line-diagnostics-service-name="{{ PackxdslaccesslinediagnosticCtrl.serviceName }}">
-    </div>
-
+    <div
+        data-ng-if="!PackxdslaccesslinediagnosticCtrl.loading.init && PackxdslaccesslinediagnosticCtrl.isVIP"
+        data-line-diagnostics="{{ PackxdslaccesslinediagnosticCtrl.lineNumber }}"
+        data-line-diagnostics-type="{{ PackxdslaccesslinediagnosticCtrl.diagnosticType }}"
+        data-line-diagnostics-service-name="{{ PackxdslaccesslinediagnosticCtrl.serviceName }}"
+    ></div>
 </div>

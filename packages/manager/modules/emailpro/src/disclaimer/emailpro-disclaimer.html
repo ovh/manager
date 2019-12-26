@@ -1,47 +1,78 @@
 <div class="container-fluid px-0" data-ng-controller="EmailProDisclaimerCtrl">
-    <div class="alert alert-warning" role="alert"
-         data-ng-if="tasksList && tasksList.list.messages.length > 0">
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-ng-if="tasksList && tasksList.list.messages.length > 0"
+    >
         <strong data-translate="emailpro_tab_TASKS_warning"></strong>
         <span data-translate="emailpro_tab_TASKS_partial"></span>
     </div>
 
-    <div class="alert alert-info" role="alert"
-         data-translate="emailpro_tab_DISCLAIMER_table_no_domain"
-         data-ng-if="addDomainMessageFlag">
-    </div>
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-translate="emailpro_tab_DISCLAIMER_table_no_domain"
+        data-ng-if="addDomainMessageFlag"
+    ></div>
 
     <oui-datagrid data-rows-loader="loadPaginated($config)">
-        <oui-column data-title="'emailpro_tab_DISCLAIMER_associated_domains' | translate" data-property="domain.displayName"></oui-column>
-        <oui-column data-title="'emailpro_tab_DISCLAIMER_disclaimer_content' | translate" data-property="strippedContent">
-            <span data-ng-bind="$row.strippedContent | wucSliceContent:60"></span>
+        <oui-column
+            data-title="'emailpro_tab_DISCLAIMER_associated_domains' | translate"
+            data-property="domain.displayName"
+        ></oui-column>
+        <oui-column
+            data-title="'emailpro_tab_DISCLAIMER_disclaimer_content' | translate"
+            data-property="strippedContent"
+        >
+            <span
+                data-ng-bind="$row.strippedContent | wucSliceContent:60"
+            ></span>
         </oui-column>
-        <oui-column data-title="'emailpro_tab_DISCLAIMER_disclaimer_outside_only' | translate">
-            <span data-translate="emailpro_tab_DISCLAIMER_disclaimer_outside_only_true"
-                  data-ng-if="$row.outsideOnly"
-                  data-oui-tooltip="{{:: 'emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip' | translate }}"></span>
-            <span data-translate="emailpro_tab_DISCLAIMER_disclaimer_outside_only_false"
-                  data-ng-if="!$row.outsideOnly"></span>
+        <oui-column
+            data-title="'emailpro_tab_DISCLAIMER_disclaimer_outside_only' | translate"
+        >
+            <span
+                data-translate="emailpro_tab_DISCLAIMER_disclaimer_outside_only_true"
+                data-ng-if="$row.outsideOnly"
+                data-oui-tooltip="{{:: 'emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip' | translate }}"
+            ></span>
+            <span
+                data-translate="emailpro_tab_DISCLAIMER_disclaimer_outside_only_false"
+                data-ng-if="!$row.outsideOnly"
+            ></span>
         </oui-column>
-        <oui-column data-title="'emailpro_tab_DISCLAIMER_state_header' | translate">
-            <span class="fa fa-hourglass-half"
-                  data-ng-if="$row.taskPendingId"
-                  data-oui-tooltip="{{:: 'emailpro_tab_DISCLAIMER_state_doing_tooltip' | translate }}"></span>
-            <span class="oui-status oui-status_warning"
-                  data-translate="common_not_configurated"
-                  data-ng-if="$row.emptySlotFlag"></span>
+        <oui-column
+            data-title="'emailpro_tab_DISCLAIMER_state_header' | translate"
+        >
+            <span
+                class="fa fa-hourglass-half"
+                data-ng-if="$row.taskPendingId"
+                data-oui-tooltip="{{:: 'emailpro_tab_DISCLAIMER_state_doing_tooltip' | translate }}"
+            ></span>
+            <span
+                class="oui-status oui-status_warning"
+                data-translate="common_not_configurated"
+                data-ng-if="$row.emptySlotFlag"
+            ></span>
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item data-text="{{ 'emailpro_tab_DISCLAIMER_menu_settings' | translate }}"
-                                  data-on-click="updateDisclaimer($row)"
-                                  data-ng-if="!$row.emptySlotFlag"
-                                  data-disabled="$row.taskPendingId"></oui-action-menu-item>
-            <oui-action-menu-item data-text="{{ 'emailpro_tab_DISCLAIMER_menu_delete' | translate }}"
-                                  data-on-click="deleteDisclaimer($row)"
-                                  data-ng-if="!$row.emptySlotFlag"
-                                  data-disabled="$row.taskPendingId"></oui-action-menu-item>
-            <oui-action-menu-item data-text="{{ 'common_configure' | translate }}"
-                                  data-on-click="addDisclaimer($row)"
-                                  data-ng-if="$row.emptySlotFlag"></oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{ 'emailpro_tab_DISCLAIMER_menu_settings' | translate }}"
+                data-on-click="updateDisclaimer($row)"
+                data-ng-if="!$row.emptySlotFlag"
+                data-disabled="$row.taskPendingId"
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{ 'emailpro_tab_DISCLAIMER_menu_delete' | translate }}"
+                data-on-click="deleteDisclaimer($row)"
+                data-ng-if="!$row.emptySlotFlag"
+                data-disabled="$row.taskPendingId"
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{ 'common_configure' | translate }}"
+                data-on-click="addDisclaimer($row)"
+                data-ng-if="$row.emptySlotFlag"
+            ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
 </div>

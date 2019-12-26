@@ -1,45 +1,56 @@
-<form id="memberAddForm"
-      name="memberAddForm"
-      data-ng-submit="$ctrl.addMembers(memberAddForm)"
-      data-ng-if="$ctrl.isInitialized"
-      novalidate>
-
+<form
+    id="memberAddForm"
+    name="memberAddForm"
+    data-ng-submit="$ctrl.addMembers(memberAddForm)"
+    data-ng-if="$ctrl.isInitialized"
+    novalidate
+>
     <!-- NUMBER -->
     <div class="form-group">
-        <label for="memberNumber"
-               class="control-label"
-               data-translate="telephony_alias_members_number"></label>
-        <div class="input-group"
-             data-ng-repeat="number in $ctrl.addMemberForm.numbers track by $index">
-            <input id="memberNumber"
-                   class="form-control"
-                   type="text"
-                   placeholder="{{:: 'telephony_alias_members_number_placeholder' | translate }}"
-                   required
-                   data-ng-pattern="/^.*$/"
-                   data-ng-model="$ctrl.addMemberForm.numbers[$index]" />
+        <label
+            for="memberNumber"
+            class="control-label"
+            data-translate="telephony_alias_members_number"
+        ></label>
+        <div
+            class="input-group"
+            data-ng-repeat="number in $ctrl.addMemberForm.numbers track by $index"
+        >
+            <input
+                id="memberNumber"
+                class="form-control"
+                type="text"
+                placeholder="{{:: 'telephony_alias_members_number_placeholder' | translate }}"
+                required
+                data-ng-pattern="/^.*$/"
+                data-ng-model="$ctrl.addMemberForm.numbers[$index]"
+            />
             <span class="input-group-btn">
-                <button type="button"
-                        class="btn btn-default"
-                        aria-label="{{:: 'common_search' | translate }}"
-                        data-voip-service-choice-popover="{
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    aria-label="{{:: 'common_search' | translate }}"
+                    data-voip-service-choice-popover="{
                             popoverPlacement: 'auto left',
                             popoverClass: 'pretty-popover telephony-service-choice-popover',
                             popoverAppendToBody: true,
                             popoverIsOpen: false
                         }"
-                        data-choice-args="$index"
-                        data-exclude-services="$ctrl.getServicesToExclude()"
-                        data-available-types="['sip', 'number', 'plugAndFax']"
-                        data-on-choice-validated="$ctrl.onChooseServicePopover"
-                        data-on-choice-cancel="">
+                    data-choice-args="$index"
+                    data-exclude-services="$ctrl.getServicesToExclude()"
+                    data-available-types="['sip', 'number', 'plugAndFax']"
+                    data-on-choice-validated="$ctrl.onChooseServicePopover"
+                    data-on-choice-cancel=""
+                >
                     <i class="ovh-font ovh-font-search"></i>
                 </button>
-                <button type="button"
-                        class="btn btn-default"
-                        aria-label="{{:: 'delete' | translate }}"
-                        data-ng-disabled="$index === 0 && !$ctrl.addMemberForm.numbers[0]"
-                        data-ng-click="$ctrl.removeMemberAt($index)">
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    aria-label="{{:: 'delete' | translate }}"
+                    data-ng-disabled="$index === 0 && !$ctrl.addMemberForm.numbers[0]"
+                    data-ng-click="$ctrl.removeMemberAt($index)"
+                >
                     <i class="ovh-font ovh-font-wrong"></i>
                 </button>
             </span>
@@ -47,75 +58,95 @@
     </div>
 
     <!-- ADD MORE NUMBERS -->
-    <div class="form-group"
-         data-ng-if="$ctrl.addMemberForm.numbers[0]">
-        <button type="button"
-                class="btn btn-default"
-                data-ng-click="$ctrl.addMemberForm.numbers.push(null)"
-                data-translate="telephony_alias_members_number_add"
-                data-ng-disabled="!$ctrl.addMemberForm.numbers[$ctrl.addMemberForm.numbers.length - 1]">
-        </button>
+    <div class="form-group" data-ng-if="$ctrl.addMemberForm.numbers[0]">
+        <button
+            type="button"
+            class="btn btn-default"
+            data-ng-click="$ctrl.addMemberForm.numbers.push(null)"
+            data-translate="telephony_alias_members_number_add"
+            data-ng-disabled="!$ctrl.addMemberForm.numbers[$ctrl.addMemberForm.numbers.length - 1]"
+        ></button>
     </div>
 
     <!-- TIMEOUT -->
     <div class="form-group">
-        <label for="timeoutInput"
-               class="control-label"
-               data-translate="telephony_alias_members_timeout"></label>
-        <oui-numeric class="d-inline-block text-left"
-                              id="timeoutInput"
-                              data-model="$ctrl.addMemberForm.options.timeout"
-                              min="1"
-                              max="99999">
+        <label
+            for="timeoutInput"
+            class="control-label"
+            data-translate="telephony_alias_members_timeout"
+        ></label>
+        <oui-numeric
+            class="d-inline-block text-left"
+            id="timeoutInput"
+            data-model="$ctrl.addMemberForm.options.timeout"
+            min="1"
+            max="99999"
+        >
         </oui-numeric>
     </div>
 
     <!-- WRAP UP TIME -->
     <div class="form-group">
-        <label for="wrapUpTimeInput"
-               class="control-label"
-               data-translate="telephony_alias_members_wrap_up_time"></label>
-        <oui-numeric class="d-inline-block text-left"
-                              id="wrapUpTimeInput"
-                              data-model="$ctrl.addMemberForm.options.wrapUpTime"
-                              min="0"
-                              max="99999">
+        <label
+            for="wrapUpTimeInput"
+            class="control-label"
+            data-translate="telephony_alias_members_wrap_up_time"
+        ></label>
+        <oui-numeric
+            class="d-inline-block text-left"
+            id="wrapUpTimeInput"
+            data-model="$ctrl.addMemberForm.options.wrapUpTime"
+            min="0"
+            max="99999"
+        >
         </oui-numeric>
     </div>
 
     <!-- SIMULTANEOUS LINES -->
     <div class="form-group">
-        <label for="simultaneousLinesInput"
-               class="control-label"
-               data-translate="telephony_alias_members_simultaneous_lines"></label>
-        <oui-numeric class="d-inline-block text-left"
-                              id="simultaneousLinesInput"
-                              data-model="$ctrl.addMemberForm.options.simultaneousLines"
-                              min="1"
-                              max="10">
+        <label
+            for="simultaneousLinesInput"
+            class="control-label"
+            data-translate="telephony_alias_members_simultaneous_lines"
+        ></label>
+        <oui-numeric
+            class="d-inline-block text-left"
+            id="simultaneousLinesInput"
+            data-model="$ctrl.addMemberForm.options.simultaneousLines"
+            min="1"
+            max="10"
+        >
         </oui-numeric>
     </div>
 
     <div class="form-group">
-        <button type="button"
-                class="btn btn-default"
-                data-translate="cancel"
-                data-ng-click="$ctrl.resetMemberAddForm()"
-                data-ng-if="$ctrl.addMemberForm.numbers[0]">
-        </button>
-        <button type="submit"
-                class="btn btn-primary"
-                data-ng-disabled="memberAddForm.$invalid || $ctrl.loaders.adding">
-            <oui-spinner class="mr-2"
-                         data-ng-if="$ctrl.loaders.adding"
-                         data-size="s">
+        <button
+            type="button"
+            class="btn btn-default"
+            data-translate="cancel"
+            data-ng-click="$ctrl.resetMemberAddForm()"
+            data-ng-if="$ctrl.addMemberForm.numbers[0]"
+        ></button>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            data-ng-disabled="memberAddForm.$invalid || $ctrl.loaders.adding"
+        >
+            <oui-spinner
+                class="mr-2"
+                data-ng-if="$ctrl.loaders.adding"
+                data-size="s"
+            >
             </oui-spinner>
-            <span data-ng-if="$ctrl.addMemberForm.numbers.length <= 1"
-                  data-translate="telephony_alias_members_add"></span>
-            <span data-ng-if="$ctrl.addMemberForm.numbers.length > 1"
-                  data-translate="telephony_alias_members_add_multiple"
-                  data-translate-values="{ count: $ctrl.addMemberForm.numbers.length }"></span>
+            <span
+                data-ng-if="$ctrl.addMemberForm.numbers.length <= 1"
+                data-translate="telephony_alias_members_add"
+            ></span>
+            <span
+                data-ng-if="$ctrl.addMemberForm.numbers.length > 1"
+                data-translate="telephony_alias_members_add_multiple"
+                data-translate-values="{ count: $ctrl.addMemberForm.numbers.length }"
+            ></span>
         </button>
     </div>
-
 </form>

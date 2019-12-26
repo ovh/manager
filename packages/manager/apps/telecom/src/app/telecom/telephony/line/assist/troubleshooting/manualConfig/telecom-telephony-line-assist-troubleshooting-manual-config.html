@@ -1,270 +1,417 @@
 <section class="telecom-troubleshooting-step widget-presentation">
-
     <header class="widget-presentation-header">
-        <h2 class="widget-presentation-title"
-            data-translate="telephony_line_assist_troubleshooting_manual_config_title">
-        </h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="telephony_line_assist_troubleshooting_manual_config_title"
+        ></h2>
     </header>
 
     <div data-ng-switch="ManualConfigCtrl.process.phoneType">
-
         <div data-ng-switch-when="gigaset">
-
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step1"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step2"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step3"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step4"></p>
-
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step1"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step2"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step3"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_gigaset_step4"
+            ></p>
         </div>
 
         <div data-ng-switch-when="siemens">
-
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step1"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step2"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step3"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step4"></p>
-            <p data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step5"></p>
-
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step1"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step2"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step3"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step4"
+            ></p>
+            <p
+                data-translate="telephony_line_assist_troubleshooting_manual_config_siemens_step5"
+            ></p>
         </div>
 
-        <ol class="troubleshooting-list"
-            data-ng-switch-default>
-
+        <ol class="troubleshooting-list" data-ng-switch-default>
             <li>
-                <h4 class="mb-3 lead"
-                    data-translate="telephony_line_assist_troubleshooting_manual_config_factory_reset">
-                </h4>
+                <h4
+                    class="mb-3 lead"
+                    data-translate="telephony_line_assist_troubleshooting_manual_config_factory_reset"
+                ></h4>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || (ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand === 'phone.cisco.spa112')">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step3"></p>
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || (ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand === 'phone.cisco.spa112')"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step3"
+                    ></p>
                 </div>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand !== 'phone.cisco.spa112'">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step3"
-                       data-translate-compile>
-                    </p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step4"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step5"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step6"></p>
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand !== 'phone.cisco.spa112'"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step3"
+                        data-translate-compile
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step4"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step5"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step6"
+                    ></p>
                 </div>
 
                 <div data-ng-if="ManualConfigCtrl.process.phoneType === 'lg'">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step3"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step4"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step5"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step6"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step7"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step8"></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step3"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step4"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step5"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step6"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step7"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step8"
+                    ></p>
                 </div>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'thomson'">
-                    <p data-ng-if="ManualConfigCtrl.process.line.phone.brand !== 'phone.thomson.st2030'"
-                       data-translate="{{'telephony_line_assist_troubleshooting_manual_config_thomson_factory_reset_step1'}}"></p>
-                    <p data-ng-if="ManualConfigCtrl.process.line.phone.brand === 'phone.thomson.st2030'"
-                       data-translate="{{'telephony_line_assist_troubleshooting_manual_config_thomson_st2030_factory_reset_step1'}}"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_thomson_factory_reset_step2"></p>
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'thomson'"
+                >
+                    <p
+                        data-ng-if="ManualConfigCtrl.process.line.phone.brand !== 'phone.thomson.st2030'"
+                        data-translate="{{'telephony_line_assist_troubleshooting_manual_config_thomson_factory_reset_step1'}}"
+                    ></p>
+                    <p
+                        data-ng-if="ManualConfigCtrl.process.line.phone.brand === 'phone.thomson.st2030'"
+                        data-translate="{{'telephony_line_assist_troubleshooting_manual_config_thomson_st2030_factory_reset_step1'}}"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_thomson_factory_reset_step2"
+                    ></p>
                 </div>
             </li>
 
             <li>
-                <h4 class="mb-3 lead"
-                    data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip">
-                </h4>
+                <h4
+                    class="mb-3 lead"
+                    data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip"
+                ></h4>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || (ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand === 'phone.cisco.spa112')">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step3"></p>
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || (ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand === 'phone.cisco.spa112')"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step3"
+                    ></p>
                 </div>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand !== 'phone.cisco.spa112'">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step2"
-                       data-translate-compile>
-                    </p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step3"></p>
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand !== 'phone.cisco.spa112'"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step2"
+                        data-translate-compile
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step3"
+                    ></p>
                 </div>
 
                 <div data-ng-if="ManualConfigCtrl.process.phoneType === 'lg'">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_find_ip_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_lg_find_ip_step2"></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_find_ip_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_lg_find_ip_step2"
+                    ></p>
                 </div>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'thomson'">
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_thomson_find_ip_step1"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_thomson_find_ip_step2"></p>
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'thomson'"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_thomson_find_ip_step1"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_thomson_find_ip_step2"
+                    ></p>
                 </div>
 
-                <form data-ng-submit="ManualConfigCtrl.continueManualConfig()"
-                      name="manualConfigForm"
-                      novalidate>
-
+                <form
+                    data-ng-submit="ManualConfigCtrl.continueManualConfig()"
+                    name="manualConfigForm"
+                    novalidate
+                >
                     <div class="form-group">
-                        <label for="privateIp"
-                               class="d-block troubleshooting-outside-label"
-                               data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip_step4">
+                        <label
+                            for="privateIp"
+                            class="d-block troubleshooting-outside-label"
+                            data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip_step4"
+                        >
                         </label>
-                        <input type="text"
-                               name="privateIp"
-                               id="privateIp"
-                               class="form-control"
-                               data-ng-model="ManualConfigCtrl.model.privateIp"
-                               data-ng-disabled="ManualConfigCtrl.status === 'OK'"
-                               data-ui-validate="{ isPrivateIPv4: 'ManualConfigCtrl.validator.tucIsPrivateIPv4($value)' }"
-                               data-translate-attr="{ placeholder: 'telephony_line_assist_troubleshooting_manual_config_find_ip_step4_placeholder' }" />
+                        <input
+                            type="text"
+                            name="privateIp"
+                            id="privateIp"
+                            class="form-control"
+                            data-ng-model="ManualConfigCtrl.model.privateIp"
+                            data-ng-disabled="ManualConfigCtrl.status === 'OK'"
+                            data-ui-validate="{ isPrivateIPv4: 'ManualConfigCtrl.validator.tucIsPrivateIPv4($value)' }"
+                            data-translate-attr="{ placeholder: 'telephony_line_assist_troubleshooting_manual_config_find_ip_step4_placeholder' }"
+                        />
                     </div>
                     <div class="form-group">
-                        <button type="reset"
-                                class="btn btn-default"
-                                data-ng-if="ManualConfigCtrl.status === 'OK'"
-                                data-ng-click="ManualConfigCtrl.resetIp()"
-                                data-ng-disabled="!ManualConfigCtrl.step.active"
-                                data-translate="modify">
-                        </button>
-                        <button type="submit"
-                                class="btn btn-primary"
-                                data-ng-if="ManualConfigCtrl.status === 'CHECKIP'"
-                                data-ng-disabled="!ManualConfigCtrl.model.privateIp || !manualConfigForm.$valid"
-                                data-translate="contract_next">
-                        </button>
-                        <div class="help-block"
-                             role="alert"
-                             data-ng-messages="manualConfigForm.privateIp.$error"
-                             data-ng-if="manualConfigForm.privateIp.$dirty && manualConfigForm.privateIp.$touched">
-                            <label for="privateIp"
-                                   data-ng-message="isPrivateIPv4"
-                                   data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip_step4_invalid_private_ip">
+                        <button
+                            type="reset"
+                            class="btn btn-default"
+                            data-ng-if="ManualConfigCtrl.status === 'OK'"
+                            data-ng-click="ManualConfigCtrl.resetIp()"
+                            data-ng-disabled="!ManualConfigCtrl.step.active"
+                            data-translate="modify"
+                        ></button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-ng-if="ManualConfigCtrl.status === 'CHECKIP'"
+                            data-ng-disabled="!ManualConfigCtrl.model.privateIp || !manualConfigForm.$valid"
+                            data-translate="contract_next"
+                        ></button>
+                        <div
+                            class="help-block"
+                            role="alert"
+                            data-ng-messages="manualConfigForm.privateIp.$error"
+                            data-ng-if="manualConfigForm.privateIp.$dirty && manualConfigForm.privateIp.$touched"
+                        >
+                            <label
+                                for="privateIp"
+                                data-ng-message="isPrivateIPv4"
+                                data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip_step4_invalid_private_ip"
+                            >
                             </label>
                         </div>
                     </div>
-
                 </form>
             </li>
-            <li data-ng-if="ManualConfigCtrl.status === 'OK'"
+            <li
+                data-ng-if="ManualConfigCtrl.status === 'OK'"
                 data-smooth-scroll
-                data-offset="55">
-                <h4 class="mb-3 lead"
-                    data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip">
-                </h4>
+                data-offset="55"
+            >
+                <h4
+                    class="mb-3 lead"
+                    data-translate="telephony_line_assist_troubleshooting_manual_config_find_ip"
+                ></h4>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType !== 'thomson'">
-
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType !== 'thomson'"
+                >
                     <div class="row">
-
                         <div class="col-md-6">
                             <div class="content-container">
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step1"
-                                   data-translate-values="{ href: ManualConfigCtrl.getWebInterfaceAddress() }">
-                                </p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step1"
+                                    data-translate-values="{ href: ManualConfigCtrl.getWebInterfaceAddress() }"
+                                ></p>
                             </div>
                         </div>
 
                         <div class="col-md-6 text-center">
                             <div class="image-container">
-                                <img data-ng-src="assets/images/troubleshooting/{{ :: ManualConfigCtrl.process.phoneType }}/{{ ManualConfigCtrl.getWebInterfaceImageName() }}.png"
-                                     alt=""
-                                     data-ng-attr-alt="{{ ManualConfigCtrl.process.line.phone.description }}"
-                                     data-ng-attr-title="{{ ManualConfigCtrl.process.line.phone.description }}" />
+                                <img
+                                    data-ng-src="assets/images/troubleshooting/{{ :: ManualConfigCtrl.process.phoneType }}/{{ ManualConfigCtrl.getWebInterfaceImageName() }}.png"
+                                    alt=""
+                                    data-ng-attr-alt="{{ ManualConfigCtrl.process.line.phone.description }}"
+                                    data-ng-attr-title="{{ ManualConfigCtrl.process.line.phone.description }}"
+                                />
                             </div>
                         </div>
-
                     </div>
 
                     <div class="row mt-3">
-
                         <div class="col-md-6">
-                            <div class="content-container"
-                                 data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || ManualConfigCtrl.process.phoneType === 'linksys'">
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step2_cisco"></p>
-                                <p class="mb-3"
-                                   data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step2">
-                                </p>
+                            <div
+                                class="content-container"
+                                data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || ManualConfigCtrl.process.phoneType === 'linksys'"
+                            >
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step2_cisco"
+                                ></p>
+                                <p
+                                    class="mb-3"
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step2"
+                                ></p>
 
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step3"></p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step3"
+                                ></p>
 
-                                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || (ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand === 'phone.cisco.spa112')">
-                                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step4_cisco"></p>
-                                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step5_cisco"></p>
+                                <div
+                                    data-ng-if="ManualConfigCtrl.process.phoneType === 'cisco' || (ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand === 'phone.cisco.spa112')"
+                                >
+                                    <p
+                                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step4_cisco"
+                                    ></p>
+                                    <p
+                                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step5_cisco"
+                                    ></p>
                                 </div>
 
-                                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand !== 'phone.cisco.spa112'">
-                                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step4_linksys"></p>
-                                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step5_linksys"></p>
+                                <div
+                                    data-ng-if="ManualConfigCtrl.process.phoneType === 'linksys' && ManualConfigCtrl.process.line.phone.brand !== 'phone.cisco.spa112'"
+                                >
+                                    <p
+                                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step4_linksys"
+                                    ></p>
+                                    <p
+                                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step5_linksys"
+                                    ></p>
                                 </div>
                             </div>
 
-                            <div class="content-container"
-                                 data-ng-if="ManualConfigCtrl.process.phoneType === 'lg'">
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step1"></p>
-                                <p class="p-0 m-0"
-                                   data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2">
-                                </p>
+                            <div
+                                class="content-container"
+                                data-ng-if="ManualConfigCtrl.process.phoneType === 'lg'"
+                            >
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step1"
+                                ></p>
+                                <p
+                                    class="p-0 m-0"
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2"
+                                ></p>
                                 <ul class="troubleshooting-list">
                                     <li>
-                                        <span data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2_user"></span>
+                                        <span
+                                            data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2_user"
+                                        ></span>
                                     </li>
                                     <li>
-                                        <span data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2_password"></span>
+                                        <span
+                                            data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2_password"
+                                        ></span>
                                     </li>
                                 </ul>
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step3"></p>
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step4"></p>
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step5"
-                                   data-translate-values="{ model: ManualConfigCtrl.getLgModel() }">
-                               </p>
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step6"></p>
-                                <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step7"></p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step3"
+                                ></p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step4"
+                                ></p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step5"
+                                    data-translate-values="{ model: ManualConfigCtrl.getLgModel() }"
+                                ></p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step6"
+                                ></p>
+                                <p
+                                    data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step7"
+                                ></p>
                             </div>
                         </div>
 
                         <div class="col-md-6 text-center">
                             <div class="image-container">
-                                <img data-ng-src="assets/images/troubleshooting/{{ :: ManualConfigCtrl.process.phoneType }}/{{ ManualConfigCtrl.getConfigurationPageImageName() }}.png"
-                                     alt=""
-                                     data-ng-attr-alt="{{ ManualConfigCtrl.process.line.phone.description }}"
-                                     data-ng-attr-title="{{ ManualConfigCtrl.process.line.phone.description }}" />
+                                <img
+                                    data-ng-src="assets/images/troubleshooting/{{ :: ManualConfigCtrl.process.phoneType }}/{{ ManualConfigCtrl.getConfigurationPageImageName() }}.png"
+                                    alt=""
+                                    data-ng-attr-alt="{{ ManualConfigCtrl.process.line.phone.description }}"
+                                    data-ng-attr-title="{{ ManualConfigCtrl.process.line.phone.description }}"
+                                />
                             </div>
                         </div>
-
                     </div>
                 </div>
 
-                <div data-ng-if="ManualConfigCtrl.process.phoneType === 'thomson'">
+                <div
+                    data-ng-if="ManualConfigCtrl.process.phoneType === 'thomson'"
+                >
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step1"
+                        data-translate-values="{ href: ManualConfigCtrl.getWebInterfaceAddress() }"
+                    ></p>
 
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_step1"
-                       data-translate-values="{ href: ManualConfigCtrl.getWebInterfaceAddress() }">
-                    </p>
-
-                    <p class="p-0 m-0"
-                       data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1">
-                    </p>
+                    <p
+                        class="p-0 m-0"
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1"
+                    ></p>
                     <ul class="troubleshooting-list mb-3">
                         <li>
-                            <span data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1_user"></span>
+                            <span
+                                data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1_user"
+                            ></span>
                         </li>
                         <li>
-                            <span data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1_password"></span>
+                            <span
+                                data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1_password"
+                            ></span>
                         </li>
                     </ul>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step2"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step3"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step4"
-                       data-translate-values="{ server: ManualConfigCtrl.getServerAddress() }">
-                    </p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step5"></p>
-                    <p data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step6"></p>
-
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step2"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step3"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step4"
+                        data-translate-values="{ server: ManualConfigCtrl.getServerAddress() }"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step5"
+                    ></p>
+                    <p
+                        data-translate="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step6"
+                    ></p>
                 </div>
             </li>
-
         </ol>
-
     </div>
-
 </section>

@@ -1,11 +1,14 @@
 <div data-ng-controller="PrivateDatabaseDeleteUserCtrl as deleteUserCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteUser"
-         data-wizard-title="'privateDatabase_delete_user_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteUser"
+        data-wizard-title="'privateDatabase_delete_user_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'privateDatabase_delete_user_confirm' | translate: { t0: '<strong>' + deleteUserCtrl.userToDelete.userName + '</strong>' }"></p>
+            <p
+                data-ng-bind-html="'privateDatabase_delete_user_confirm' | translate: { t0: '<strong>' + deleteUserCtrl.userToDelete.userName + '</strong>' }"
+            ></p>
         </div>
     </div>
 </div>

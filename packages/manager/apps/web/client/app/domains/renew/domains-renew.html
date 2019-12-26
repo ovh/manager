@@ -1,26 +1,39 @@
 <div data-ng-controller="DomainsRenewCtrl as ctrlDomainsRenew">
-    <div data-wizard
-         data-wizard-confirm-button-text="'wizard_order' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="displayBC"
-         data-wizard-title="('domains_configuration_renew_title' | translate) + ' (' + ctrlDomainsRenew.domainsToRenew.length + ')'">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrlDomainsRenew.domainsToRenew.length > 0">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'wizard_order' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="displayBC"
+        data-wizard-title="('domains_configuration_renew_title' | translate) + ' (' + ctrlDomainsRenew.domainsToRenew.length + ')'"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrlDomainsRenew.domainsToRenew.length > 0"
+        >
             <div data-ng-if="ctrlDomainsRenew.domainsToRenew">
-                <p data-ng-bind-html="'domains_configuration_renew_step1_question' | translate"></p>
+                <p
+                    data-ng-bind-html="'domains_configuration_renew_step1_question' | translate"
+                ></p>
                 <p class="mb-5">
-                    <strong data-translate="domains_configuration_renew_step1_confirmation"></strong><br>
-                    <span data-translate="domains_configuration_renew_step1_information"></span>
+                    <strong
+                        data-translate="domains_configuration_renew_step1_confirmation"
+                    ></strong
+                    ><br />
+                    <span
+                        data-translate="domains_configuration_renew_step1_information"
+                    ></span>
                 </p>
-                <div class="alert alert-info" role="alert"
-                     data-translate="domains_configuration_renew_step1_alert">
-                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="domains_configuration_renew_step1_alert"
+                ></div>
             </div>
 
-            <p data-ng-if="!ctrlDomainsRenew.domainsToRenew"
-               data-translate="domains_configuration_renew_step1_no_selected_domains"></p>
+            <p
+                data-ng-if="!ctrlDomainsRenew.domainsToRenew"
+                data-translate="domains_configuration_renew_step1_no_selected_domains"
+            ></p>
         </div>
     </div>
 </div>

@@ -1,138 +1,216 @@
 <div data-ng-controller="ExchangeOrderAccountCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-confirm-button-text="'wizard_pay' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="addExchangeAccount"
-         data-wizard-title="'exchange_ACTION_order_accounts_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isValid()">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text="'wizard_pay' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="addExchangeAccount"
+        data-wizard-title="'exchange_ACTION_order_accounts_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="isValid()">
             <oui-spinner data-ng-if="!ctrl.ordersList"></oui-spinner>
 
-            <div class="oui-message oui-message_info" role="alert" data-ng-if="ctrl.numConfigureMeAccount">
-                <i class="oui-icon oui-icon-info_circle oui-icon_bicolor" aria-hidden="true"></i>
-                <p class="oui-message__body" data-translate="exchange_ACTION_order_accounts_step1_not_configured_account_message"></p>
+            <div
+                class="oui-message oui-message_info"
+                role="alert"
+                data-ng-if="ctrl.numConfigureMeAccount"
+            >
+                <i
+                    class="oui-icon oui-icon-info_circle oui-icon_bicolor"
+                    aria-hidden="true"
+                ></i>
+                <p
+                    class="oui-message__body"
+                    data-translate="exchange_ACTION_order_accounts_step1_not_configured_account_message"
+                ></p>
             </div>
 
             <div data-ng-if="ctrl.ordersList">
-                <p data-translate="exchange_ACTION_order_accounts_step1_intro"></p>
+                <p
+                    data-translate="exchange_ACTION_order_accounts_step1_intro"
+                ></p>
 
                 <form name="ctrl.orderAccountForm">
-
-                    <div class="form-group"
-                         data-ng-if="ctrl.services.exchangeServiceInfrastructure.isHosted() || ctrl.services.exchangeServiceInfrastructure.isProvider()">
-                        <label for="orderAccountAccountType"
-                               data-translate="exchange_ACTION_order_accounts_step1_account_type"></label>
+                    <div
+                        class="form-group"
+                        data-ng-if="ctrl.services.exchangeServiceInfrastructure.isHosted() || ctrl.services.exchangeServiceInfrastructure.isProvider()"
+                    >
+                        <label
+                            for="orderAccountAccountType"
+                            data-translate="exchange_ACTION_order_accounts_step1_account_type"
+                        ></label>
                         <div class="oui-select oui-select_inline">
-                            <select class="oui-select__input" id="orderAccountAccountType" name="orderAccountAccountType"
-                                    data-ng-change="ctrl.loadOrderList(ctrl.selectedAccountType.value)"
-                                    data-ng-model="ctrl.selectedAccountType.value"
-                                    data-ng-options="accountType as accountType.label for accountType in ctrl.accountsTypes | orderBy:'reference'">
+                            <select
+                                class="oui-select__input"
+                                id="orderAccountAccountType"
+                                name="orderAccountAccountType"
+                                data-ng-change="ctrl.loadOrderList(ctrl.selectedAccountType.value)"
+                                data-ng-model="ctrl.selectedAccountType.value"
+                                data-ng-options="accountType as accountType.label for accountType in ctrl.accountsTypes | orderBy:'reference'"
+                            >
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label data-translate="exchange_ACTION_order_accounts_step1_pay_type"></label>
-                        <oui-spinner data-ng-if="!ctrl.ordersList.length"></oui-spinner>
-                        <div class="oui-radio"
-                             data-ng-repeat="orderAvailable in (ctrl.ordersList | orderBy:'duration') track by $index">
-                            <input type="radio" class="oui-radio__input" id="payTypeGroup-{{$index}}" name="payTypeGroup[{{$index}}]"
-                                   data-ng-model="ctrl.accountsToAdd.duration"
-                                   data-ng-value="orderAvailable.duration">
-                            <label class="oui-radio__label-container" for="payTypeGroup-{{$index}}">
+                        <label
+                            data-translate="exchange_ACTION_order_accounts_step1_pay_type"
+                        ></label>
+                        <oui-spinner
+                            data-ng-if="!ctrl.ordersList.length"
+                        ></oui-spinner>
+                        <div
+                            class="oui-radio"
+                            data-ng-repeat="orderAvailable in (ctrl.ordersList | orderBy:'duration') track by $index"
+                        >
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="payTypeGroup-{{$index}}"
+                                name="payTypeGroup[{{$index}}]"
+                                data-ng-model="ctrl.accountsToAdd.duration"
+                                data-ng-value="orderAvailable.duration"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="payTypeGroup-{{$index}}"
+                            >
                                 <span class="oui-radio__label">
-                                    <span data-ng-bind-html="('exchange_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration) | translate"></span>
+                                    <span
+                                        data-ng-bind-html="('exchange_ACTION_order_accounts_step1_pay_type_' + orderAvailable.duration) | translate"
+                                    ></span>
                                     (<span
                                         data-ng-if="!ctrl.showPriceWithTaxOnly"
                                         class="text-danger"
                                         data-translate="exchange_ACTION_order_accounts_step1_price"
-                                        data-translate-values="{ t0: orderAvailable.prices.withoutTax.text, t1: orderAvailable.prices.withTax.text }">
+                                        data-translate-values="{ t0: orderAvailable.prices.withoutTax.text, t1: orderAvailable.prices.withTax.text }"
+                                    >
                                     </span>
-                                     <span
+                                    <span
                                         data-ng-if="ctrl.showPriceWithTaxOnly"
                                         class="text-danger"
                                         data-translate="exchange_ACTION_order_accounts_step1_price_with_tax_only"
-                                        data-translate-values="{ t0: orderAvailable.prices.withTax.localizedText }">
-                                    </span>)
+                                        data-translate-values="{ t0: orderAvailable.prices.withTax.localizedText }"
+                                    >
+                                    </span
+                                    >)
                                 </span>
                             </label>
                         </div>
                     </div>
 
-                    <div class="form-group"
-                         data-ng-class="{'has-error oui-field_error': ctrl.orderAccountForm.accountNumber.$invalid}">
-                        <label class="oui-label required" for="accountNumber"
-                               data-translate="exchange_ACTION_order_accounts_step1_number"></label>
-                        <input type="number" class="oui-input oui-input_inline" id="accountNumber" name="accountNumber" required
-                               data-ng-class="{'oui-input_error': ctrl.orderAccountForm.accountNumber.$invalid}"
-                               data-ng-min="1" min="1"
-                               data-ng-max="100" max="100"
-                               data-ng-model="ctrl.accountsToAdd.accountsNumber"
-                               data-ng-pattern="/^\d+$/"
-                               data-oui-tooltip="{{'exchange_ACTION_order_accounts_step1_number_tooltip' | translate}}">
-                        <small class="help-block"
-                               data-translate="exchange_ACTION_order_accounts_step1_number_not_valid"
-                               data-ng-if="ctrl.orderAccountForm.accountNumber.$invalid"></small>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error oui-field_error': ctrl.orderAccountForm.accountNumber.$invalid}"
+                    >
+                        <label
+                            class="oui-label required"
+                            for="accountNumber"
+                            data-translate="exchange_ACTION_order_accounts_step1_number"
+                        ></label>
+                        <input
+                            type="number"
+                            class="oui-input oui-input_inline"
+                            id="accountNumber"
+                            name="accountNumber"
+                            required
+                            data-ng-class="{'oui-input_error': ctrl.orderAccountForm.accountNumber.$invalid}"
+                            data-ng-min="1"
+                            min="1"
+                            data-ng-max="100"
+                            max="100"
+                            data-ng-model="ctrl.accountsToAdd.accountsNumber"
+                            data-ng-pattern="/^\d+$/"
+                            data-oui-tooltip="{{'exchange_ACTION_order_accounts_step1_number_tooltip' | translate}}"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="exchange_ACTION_order_accounts_step1_number_not_valid"
+                            data-ng-if="ctrl.orderAccountForm.accountNumber.$invalid"
+                        ></small>
                     </div>
 
-                    <oui-checkbox id="worldPart-eu"
+                    <oui-checkbox
+                        id="worldPart-eu"
                         data-ng-if="ctrl.worldPart === 'EU'"
                         data-model="ctrl.valid.legalWarning"
-                        data-text="{{::'exchange_ACTION_add_account_legal_warning' | translate}}">
+                        data-text="{{::'exchange_ACTION_add_account_legal_warning' | translate}}"
+                    >
                     </oui-checkbox>
                 </form>
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="order"
-             data-wizard-step-valid="getPreviewOrder()">
-
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="order"
+            data-wizard-step-valid="getPreviewOrder()"
+        >
             <div class="text-center" data-ng-if="!ctrl.previewOrder">
                 <oui-spinner></oui-spinner>
-                <span data-translate="exchange_ACTION_order_accounts_step2_loader"></span>
+                <span
+                    data-translate="exchange_ACTION_order_accounts_step2_loader"
+                ></span>
             </div>
 
             <div data-ng-if="ctrl.previewOrder">
-                <p data-translate="exchange_ACTION_order_accounts_step2_intro"></p>
+                <p
+                    data-translate="exchange_ACTION_order_accounts_step2_intro"
+                ></p>
                 <dl class="dl-horizontal dl-lg">
-                    <dt data-translate="exchange_ACTION_order_accounts_step2_pay_type"></dt>
-                    <dd data-ng-bind="('exchange_ACTION_order_accounts_step1_pay_type_' + ctrl.accountsToAdd.duration) | translate"></dd>
+                    <dt
+                        data-translate="exchange_ACTION_order_accounts_step2_pay_type"
+                    ></dt>
+                    <dd
+                        data-ng-bind="('exchange_ACTION_order_accounts_step1_pay_type_' + ctrl.accountsToAdd.duration) | translate"
+                    ></dd>
 
-                    <dt data-translate="exchange_ACTION_order_accounts_step2_number"></dt>
+                    <dt
+                        data-translate="exchange_ACTION_order_accounts_step2_number"
+                    ></dt>
                     <dd data-ng-bind="ctrl.accountsToAdd.accountsNumber"></dd>
 
-                    <dt data-translate="exchange_ACTION_order_accounts_step2_total"></dt>
-                    <dd class="text-danger"
+                    <dt
+                        data-translate="exchange_ACTION_order_accounts_step2_total"
+                    ></dt>
+                    <dd
+                        class="text-danger"
                         data-translate="exchange_ACTION_order_accounts_step2_price"
                         data-translate-values="{
                             t0: ctrl.previewOrder.prices.withoutTax.text,
                             t1: ctrl.previewOrder.prices.withTax.text
-                        }"></dd>
+                        }"
+                    ></dd>
                 </dl>
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="getURL()">
-
+        <div data-wizard-step data-wizard-step-valid="getURL()">
             <div class="text-center" data-ng-if="!ctrl.url">
                 <oui-spinner></oui-spinner>
-                <span data-translate="exchange_ACTION_order_accounts_step3_generation_bc"></span>
+                <span
+                    data-translate="exchange_ACTION_order_accounts_step3_generation_bc"
+                ></span>
             </div>
 
             <div data-ng-if="ctrl.url">
                 <p data-translate="exchange_ACTION_order_accounts_step3_bc"></p>
-                <p class="font-weight-bold"
-                   data-translate="exchange_ACTION_order_accounts_step3_continue"></p>
-                <p data-translate="exchange_ACTION_order_accounts_step3_explication2"></p>
-                <div class="alert alert-info" role="alert"
-                     data-translate="exchange_ACTION_order_accounts_step3_explication">
-                </div>
+                <p
+                    class="font-weight-bold"
+                    data-translate="exchange_ACTION_order_accounts_step3_continue"
+                ></p>
+                <p
+                    data-translate="exchange_ACTION_order_accounts_step3_explication2"
+                ></p>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="exchange_ACTION_order_accounts_step3_explication"
+                ></div>
             </div>
         </div>
     </div>

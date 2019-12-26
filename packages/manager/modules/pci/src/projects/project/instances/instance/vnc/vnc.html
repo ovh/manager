@@ -1,18 +1,34 @@
-<p data-translate="pci_projects_project_instances_instance_vnc_focus_message"></p>
+<p
+    data-translate="pci_projects_project_instances_instance_vnc_focus_message"
+></p>
 <oui-message
     data-type="info"
-    data-ng-if="$ctrl.instance.image.type === 'linux'">
-    <span data-translate="pci_projects_project_instances_instance_vnc_linux_message"></span>
+    data-ng-if="$ctrl.instance.image.type === 'linux'"
+>
+    <span
+        data-translate="pci_projects_project_instances_instance_vnc_linux_message"
+    ></span>
 </oui-message>
 
-<div class="embed-responsive embed-responsive-16by9 h-50"
-    data-ng-if="$ctrl.vncInfos.url">
-    <iframe class="embed-responsive-item" data-ng-src="{{ $ctrl.vncInfos.url }}" seamless cuc-autofocus></iframe>
+<div
+    class="embed-responsive embed-responsive-16by9 h-50"
+    data-ng-if="$ctrl.vncInfos.url"
+>
+    <iframe
+        class="embed-responsive-item"
+        data-ng-src="{{ $ctrl.vncInfos.url }}"
+        seamless
+        cuc-autofocus
+    ></iframe>
 </div>
 
-<a data-ng-href="{{ $ctrl.vncInfos.url }}"
+<a
+    data-ng-href="{{ $ctrl.vncInfos.url }}"
     class="oui-link_icon"
-    target="_blank">
-    <span data-translate="pci_projects_project_instances_instance_vnc_open_in_new_window"></span>
+    target="_blank"
+>
+    <span
+        data-translate="pci_projects_project_instances_instance_vnc_open_in_new_window"
+    ></span>
     <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
 </a>

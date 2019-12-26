@@ -1,41 +1,48 @@
 <section class="cui-page__content">
-    <cui-page-content-title data-text=":: 'iplb_configuration_title' | translate"></cui-page-content-title>
+    <cui-page-content-title
+        data-text=":: 'iplb_configuration_title' | translate"
+    ></cui-page-content-title>
     <p data-translate="iplb_configuration_intro"></p>
 
-    <div
-        class="text-center"
-        data-ng-if="$ctrl.zones.loading">
+    <div class="text-center" data-ng-if="$ctrl.zones.loading">
         <oui-spinner></oui-spinner>
     </div>
 
     <oui-datagrid
         data-ng-if="!$ctrl.zones.loading"
         data-rows="$ctrl.zones.data"
-        data-selectable-rows>
+        data-selectable-rows
+    >
         <extra-top>
             <oui-button
                 class="mb-3"
                 data-variant="secondary"
                 data-text="{{:: 'iplb_configuration_action_apply' | translate }}"
                 data-on-click="$ctrl.applyChanges($selectedRows)"
-                data-disabled="!$selectedRows.length"></oui-button>
+                data-disabled="!$selectedRows.length"
+            ></oui-button>
         </extra-top>
         <oui-column
             data-title=":: 'iplb_configuration_datacenter' | translate"
             data-property="name"
-            data-sortable="asc"></oui-column>
+            data-sortable="asc"
+        ></oui-column>
         <oui-column
             data-title=":: 'iplb_configuration_progress' | translate"
-            data-sortable>
+            data-sortable
+        >
             <span
                 data-ng-if="$row.task.progress === 100 && $ctrl.applications[$row.id]"
-                data-translate="iplb_configuration_changesApplied"></span>
+                data-translate="iplb_configuration_changesApplied"
+            ></span>
             <oui-progress
                 data-compact
-                data-ng-if="$row.task && $row.task.progress !== 100">
+                data-ng-if="$row.task && $row.task.progress !== 100"
+            >
                 <oui-progress-bar
                     data-type="{{:: $ctrl.ServiceHelper.constructor.getTaskProgressType($row.task.status) }}"
-                    data-value="$row.task.progress"></oui-progress-bar>
+                    data-value="$row.task.progress"
+                ></oui-progress-bar>
             </oui-progress>
         </oui-column>
         <oui-column data-title=":: 'iplb_configuration_status' | translate">
@@ -51,16 +58,19 @@
                     '0': ('iplb_configuration_changes_0' | translate),
                     '1': ('iplb_configuration_changes_1' | translate),
                     'other': ('iplb_configuration_changes_count' | translate: { count: $row.changes }),
-                }"></span>
+                }"
+            ></span>
         </oui-column>
         <oui-action-menu
             data-align="end"
             data-disabled="!$isSelected"
-            data-compact>
+            data-compact
+        >
             <oui-action-menu-item
                 data-text="{{:: 'iplb_configuration_action_apply' | translate}}"
                 data-on-click="$ctrl.applyChanges($row.id)"
-                data-disabled="$row.task.status && $row.task.status !== 'done'">
+                data-disabled="$row.task.status && $row.task.status !== 'done'"
+            >
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

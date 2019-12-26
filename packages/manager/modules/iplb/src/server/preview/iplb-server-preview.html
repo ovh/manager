@@ -1,54 +1,103 @@
 <oui-modal
     data-title="{{ ::'iplb_server_preview_title' | translate }}"
-    data-on-dismiss="IpLoadBalancerServerPreviewCtrl.dismiss()">
+    data-on-dismiss="IpLoadBalancerServerPreviewCtrl.dismiss()"
+>
     <dl class="preview-list preview-list_no-margin">
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_name"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.displayName"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_address"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.address"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_port"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.port"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_backup"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.backup"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_probe"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.probe"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_ssl"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.ssl"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_cookie"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.cookie"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_chain"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.chain"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_proxyProtocolVersion"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.proxyProtocolVersion"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_weight"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.weight"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_active"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.status"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_server_preview_id"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.serverId"></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_name"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.displayName"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_address"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.address"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_port"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.port"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_backup"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.backup"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_probe"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.probe"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_ssl"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.ssl"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_cookie"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.cookie"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_chain"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.chain"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_proxyProtocolVersion"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.proxyProtocolVersion"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_weight"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.weight"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_active"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.status"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_server_preview_id"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind=":: IpLoadBalancerServerPreviewCtrl.server.serverId"
+        ></dd>
     </dl>
 </oui-modal>

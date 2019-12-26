@@ -1,135 +1,263 @@
 <div id="dbaasts-project-details-edit" class="row dbaasts-project">
     <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-
         <!-- Init loader -->
-        <div data-ng-if="DBaasTsProjectDetailsSettingsCtrl.loaders.init" class="text-center">
+        <div
+            data-ng-if="DBaasTsProjectDetailsSettingsCtrl.loaders.init"
+            class="text-center"
+        >
             <spinner name="bubbles-222-fff-32"></spinner>
         </div>
 
         <div data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.loaders.init">
-
             <!-- Header -->
             <header class="page-header">
                 <h3>
-                    <span data-translate="{{DBaasTsProjectDetailsSettingsCtrl.titleKey}}" data-translate-values="{ name: DBaasTsProjectDetailsSettingsCtrl.model.displayName }"></span>
-                    <spinner ng-if="DBaasTsProjectDetailsSettingsCtrl.model.status === 'CREATION'"></spinner>
+                    <span
+                        data-translate="{{DBaasTsProjectDetailsSettingsCtrl.titleKey}}"
+                        data-translate-values="{ name: DBaasTsProjectDetailsSettingsCtrl.model.displayName }"
+                    ></span>
+                    <spinner
+                        ng-if="DBaasTsProjectDetailsSettingsCtrl.model.status === 'CREATION'"
+                    ></spinner>
                 </h3>
             </header>
 
-            <form name="TpdsForm" class="form-horizontal" data-ng-submit="DBaasTsProjectDetailsSettingsCtrl.editProject()">
-
+            <form
+                name="TpdsForm"
+                class="form-horizontal"
+                data-ng-submit="DBaasTsProjectDetailsSettingsCtrl.editProject()"
+            >
                 <div class="well dbaasts-form clearfix">
-
                     <!-- Project name -->
-                    <div class="form-group" data-ng-class="{'has-error': TpdsForm.name.$invalid}">
-                        <label class="col-md-4 control-label" for="name" data-translate="dtpds_name"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': TpdsForm.name.$invalid}"
+                    >
+                        <label
+                            class="col-md-4 control-label"
+                            for="name"
+                            data-translate="dtpds_name"
+                        ></label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="name" name="name"
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
                                 data-ng-required="true"
                                 data-ng-maxlength="255"
                                 data-ng-pattern="'[a-zA-Z0-9-._ ]*'"
-                                data-ng-model="DBaasTsProjectDetailsSettingsCtrl.model.displayName" />
+                                data-ng-model="DBaasTsProjectDetailsSettingsCtrl.model.displayName"
+                            />
                         </div>
-                        <div class="form-error col-md-offset-4 col-md-8" data-ng-messages="TpdsForm.name.$error">
-                            <div class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="maxlength">
-                                <span translate="dtpds_name_error"></span><br/>
-                                <span translate="dtpds_name_error1" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error2" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error3"></span><br/>
+                        <div
+                            class="form-error col-md-offset-4 col-md-8"
+                            data-ng-messages="TpdsForm.name.$error"
+                        >
+                            <div
+                                class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                data-ng-message="maxlength"
+                            >
+                                <span translate="dtpds_name_error"></span><br />
+                                <span
+                                    translate="dtpds_name_error1"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span
+                                    translate="dtpds_name_error2"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span translate="dtpds_name_error3"></span
+                                ><br />
                                 <span translate="dtpds_name_error4"></span>
                             </div>
-                            <div class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="pattern">
-                                <span translate="dtpds_name_error"></span><br/>
-                                <span translate="dtpds_name_error1" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error2" translate-values="{min: 1, max: 255}"></span><br/>
-                                <span translate="dtpds_name_error3"></span><br/>
+                            <div
+                                class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                data-ng-message="pattern"
+                            >
+                                <span translate="dtpds_name_error"></span><br />
+                                <span
+                                    translate="dtpds_name_error1"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span
+                                    translate="dtpds_name_error2"
+                                    translate-values="{min: 1, max: 255}"
+                                ></span
+                                ><br />
+                                <span translate="dtpds_name_error3"></span
+                                ><br />
                                 <span translate="dtpds_name_error4"></span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Config when already setup -->
-                    <div data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.initialConfig">
+                    <div
+                        data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.initialConfig"
+                    >
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="region-ro" data-translate="dtpds_region"></label>
+                            <label
+                                class="col-md-4 control-label"
+                                for="region-ro"
+                                data-translate="dtpds_region"
+                            ></label>
                             <div class="col-md-8">
-                                <input type="text" id="region-ro" class="form-control" readonly
-                                       value="{{DBaasTsProjectDetailsSettingsCtrl.region.displayName}}"/>
+                                <input
+                                    type="text"
+                                    id="region-ro"
+                                    class="form-control"
+                                    readonly
+                                    value="{{DBaasTsProjectDetailsSettingsCtrl.region.displayName}}"
+                                />
                             </div>
                         </div>
                     </div>
 
                     <!-- Initial project setup -->
-                    <div data-ng-if="DBaasTsProjectDetailsSettingsCtrl.initialConfig">
-
+                    <div
+                        data-ng-if="DBaasTsProjectDetailsSettingsCtrl.initialConfig"
+                    >
                         <!-- Import an existing Runabove project -->
-                        <div data-ng-if="DBaasTsProjectDetailsSettingsCtrl.importRunabove">
-                            <div class="help-block col-md-8 col-md-offset-4" data-translate="dtpds_import_ra_help"></div>
+                        <div
+                            data-ng-if="DBaasTsProjectDetailsSettingsCtrl.importRunabove"
+                        >
+                            <div
+                                class="help-block col-md-8 col-md-offset-4"
+                                data-translate="dtpds_import_ra_help"
+                            ></div>
 
-                            <div class="form-group" data-ng-class="{'has-error': TpdsForm.raTokenId.$invalid && TpdsForm.raTokenId.$dirty}">
-                                <label class="control-label col-md-4" for="raTokenId" data-translate="dtpds_ra_token_id"></label>
+                            <div
+                                class="form-group"
+                                data-ng-class="{'has-error': TpdsForm.raTokenId.$invalid && TpdsForm.raTokenId.$dirty}"
+                            >
+                                <label
+                                    class="control-label col-md-4"
+                                    for="raTokenId"
+                                    data-translate="dtpds_ra_token_id"
+                                ></label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" id="raTokenId" name="raTokenId"
-                                           data-ng-required="true"
-                                           data-ng-maxlength="255"
-                                           data-ng-model="DBaasTsProjectDetailsSettingsCtrl.model.raTokenId" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="raTokenId"
+                                        name="raTokenId"
+                                        data-ng-required="true"
+                                        data-ng-maxlength="255"
+                                        data-ng-model="DBaasTsProjectDetailsSettingsCtrl.model.raTokenId"
+                                    />
                                 </div>
                             </div>
 
-                            <div class="form-group" data-ng-class="{'has-error': TpdsForm.raTokenKey.$invalid && TpdsForm.raTokenKey.$dirty}">
-                                <label class="col-md-4 control-label" for="raTokenKey" data-translate="dtpds_ra_token_key"></label>
+                            <div
+                                class="form-group"
+                                data-ng-class="{'has-error': TpdsForm.raTokenKey.$invalid && TpdsForm.raTokenKey.$dirty}"
+                            >
+                                <label
+                                    class="col-md-4 control-label"
+                                    for="raTokenKey"
+                                    data-translate="dtpds_ra_token_key"
+                                ></label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" id="raTokenKey" name="raTokenKey"
-                                           data-ng-required="true"
-                                           data-ng-maxlength="255"
-                                           data-ng-pattern="'[a-zA-Z0-9-_ ]*'"
-                                           data-ng-model="DBaasTsProjectDetailsSettingsCtrl.model.raTokenKey" />
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="raTokenKey"
+                                        name="raTokenKey"
+                                        data-ng-required="true"
+                                        data-ng-maxlength="255"
+                                        data-ng-pattern="'[a-zA-Z0-9-_ ]*'"
+                                        data-ng-model="DBaasTsProjectDetailsSettingsCtrl.model.raTokenKey"
+                                    />
                                 </div>
                             </div>
 
                             <div class="col-md-8 col-md-offset-4">
-                                <a href data-ng-click="DBaasTsProjectDetailsSettingsCtrl.importRunabove = false">
-                                    &larr; <span data-translate="dtpds_import_ra_back"></span>
+                                <a
+                                    href
+                                    data-ng-click="DBaasTsProjectDetailsSettingsCtrl.importRunabove = false"
+                                >
+                                    &larr;
+                                    <span
+                                        data-translate="dtpds_import_ra_back"
+                                    ></span>
                                 </a>
                             </div>
                         </div>
 
                         <!-- Configure a regular project -->
-                        <div data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.importRunabove">
+                        <div
+                            data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.importRunabove"
+                        >
+                            <div
+                                class="col-md-8 col-md-offset-4 help-block"
+                                data-ng-if="DBaasTsProjectDetailsSettingsCtrl.initialConfig"
+                                data-translate="dtpds_region_help"
+                            ></div>
 
-                            <div class="col-md-8 col-md-offset-4 help-block" data-ng-if="DBaasTsProjectDetailsSettingsCtrl.initialConfig"
-                               data-translate="dtpds_region_help"></div>
-
-                            <div class="form-group" data-ng-class="{'has-error': TpdsForm.region.$invalid && TpdsForm.region.$dirty}">
-                                <label class="col-md-4 control-label" for="region" data-translate="dtpds_region"></label>
+                            <div
+                                class="form-group"
+                                data-ng-class="{'has-error': TpdsForm.region.$invalid && TpdsForm.region.$dirty}"
+                            >
+                                <label
+                                    class="col-md-4 control-label"
+                                    for="region"
+                                    data-translate="dtpds_region"
+                                ></label>
                                 <div class="col-md-8">
-                                    <select class="form-control col-md-8"
-                                            name="region"
-                                            id="region"
-                                            data-ng-required="true"
-                                            data-ng-model="DBaasTsProjectDetailsSettingsCtrl.region"
-                                            data-ng-options="region.displayName for region in DBaasTsProjectDetailsSettingsCtrl.regions track by region.id">
-                                        <option value="" data-translate="dtpds_choose_region"></option>
+                                    <select
+                                        class="form-control col-md-8"
+                                        name="region"
+                                        id="region"
+                                        data-ng-required="true"
+                                        data-ng-model="DBaasTsProjectDetailsSettingsCtrl.region"
+                                        data-ng-options="region.displayName for region in DBaasTsProjectDetailsSettingsCtrl.regions track by region.id"
+                                    >
+                                        <option
+                                            value=""
+                                            data-translate="dtpds_choose_region"
+                                        ></option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="form-error col-md-offset-4 col-md-8" data-ng-messages="TpdsForm.region.$error" data-ng-if="TpdsForm.region.$dirty">
-                                <div class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="required">
-                                    <span data-translate="dtpds_region_required"></span>
+                            <div
+                                class="form-error col-md-offset-4 col-md-8"
+                                data-ng-messages="TpdsForm.region.$error"
+                                data-ng-if="TpdsForm.region.$dirty"
+                            >
+                                <div
+                                    class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave"
+                                    data-ng-message="required"
+                                >
+                                    <span
+                                        data-translate="dtpds_region_required"
+                                    ></span>
                                 </div>
                             </div>
 
-                            <div data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.payAsYouGo"
-                                 class="help-block col-md-8 col-md-offset-4"
-                                 data-translate="dtpds_import_ra_payg">
-                            </div>
+                            <div
+                                data-ng-if="!DBaasTsProjectDetailsSettingsCtrl.payAsYouGo"
+                                class="help-block col-md-8 col-md-offset-4"
+                                data-translate="dtpds_import_ra_payg"
+                            ></div>
 
-                            <div data-ng-if="DBaasTsProjectDetailsSettingsCtrl.payAsYouGo"
-                                 class="col-md-8 col-md-offset-4 help-block">
+                            <div
+                                data-ng-if="DBaasTsProjectDetailsSettingsCtrl.payAsYouGo"
+                                class="col-md-8 col-md-offset-4 help-block"
+                            >
                                 <span data-translate="dtpds_import_ra1"></span>
-                                <a href data-ng-click="DBaasTsProjectDetailsSettingsCtrl.importRunabove = true">
-                                    <span data-translate="dtpds_import_ra2"></span> &rarr;
+                                <a
+                                    href
+                                    data-ng-click="DBaasTsProjectDetailsSettingsCtrl.importRunabove = true"
+                                >
+                                    <span
+                                        data-translate="dtpds_import_ra2"
+                                    ></span>
+                                    &rarr;
                                 </a>
                             </div>
                         </div>
@@ -143,10 +271,12 @@
                             <div class="form-group no-space">
                                 <div class="col-md-offset-4 col-md-8">
                                     <!-- Submit -->
-                                    <button type="submit" class="btn btn-primary btn-lg"
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary btn-lg"
                                         data-ng-disabled="$parent.TpdsForm.$invalid"
-                                        data-translate="dtpds_edit_project">
-                                    </button>
+                                        data-translate="dtpds_edit_project"
+                                    ></button>
                                 </div>
                             </div>
                         </div>

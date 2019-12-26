@@ -1,36 +1,46 @@
-<form name="callbackUserForm"
-      id="callbackUserForm"
-      data-ng-submit="UsersCallbackCtrl.setUrl()">
-
+<form
+    name="callbackUserForm"
+    id="callbackUserForm"
+    data-ng-submit="UsersCallbackCtrl.setUrl()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="UsersCallbackCtrl.cancel()">
+            data-ng-click="UsersCallbackCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!UsersCallbackCtrl.loading.changePasswordUser && !UsersCallbackCtrl.changed">
-        <h3 class="modal-title"
-            data-translate="sms_users_action_url_callback">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!UsersCallbackCtrl.loading.changePasswordUser && !UsersCallbackCtrl.changed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_users_action_url_callback"
+        ></h3>
 
-        <p class="word-break"
-           data-translate="sms_users_callback_user_info"
-           data-translate-values="{ login: UsersCallbackCtrl.model.user.login }">
-        </p>
+        <p
+            class="word-break"
+            data-translate="sms_users_callback_user_info"
+            data-translate-values="{ login: UsersCallbackCtrl.model.user.login }"
+        ></p>
 
         <!-- URL callback -->
-        <div class="form-group"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-class="{
                  'has-error': callbackUserForm.callBack.$touched && callbackUserForm.callBack.$invalid
-             }">
-            <label for="callBack"
-                   class="control-label"
-                   data-translate="sms_users_action_url_callback">
+             }"
+        >
+            <label
+                for="callBack"
+                class="control-label"
+                data-translate="sms_users_action_url_callback"
+            >
             </label>
             <input
                 type="url"
@@ -40,34 +50,45 @@
                 autofocus
                 placeholder="{{ ::'sms_users_action_url_callback' | translate }}"
                 data-ng-pattern="UsersCallbackCtrl.urlPattern"
-                data-ng-model="UsersCallbackCtrl.model.user.callBack" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="callbackUserForm.callBack.$touched"
-                  data-ng-messages="callbackUserForm.callBack.$error">
-                <span data-ng-message="required"
-                      data-translate="sms_users_callback_user_url_required">
+                data-ng-model="UsersCallbackCtrl.model.user.callBack"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="callbackUserForm.callBack.$touched"
+                data-ng-messages="callbackUserForm.callBack.$error"
+            >
+                <span
+                    data-ng-message="required"
+                    data-translate="sms_users_callback_user_url_required"
+                >
                 </span>
-                <span data-ng-message="pattern"
-                      data-translate="sms_users_callback_user_url_error_pattern">
+                <span
+                    data-ng-message="pattern"
+                    data-translate="sms_users_callback_user_url_error_pattern"
+                >
                 </span>
-                <span data-ng-message="url"
-                      data-translate="sms_users_callback_user_url_error_url">
+                <span
+                    data-ng-message="url"
+                    data-translate="sms_users_callback_user_url_error_url"
+                >
                 </span>
             </span>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="UsersCallbackCtrl.loading.changePasswordUser && !UsersCallbackCtrl.changed">
+    <div
+        class="modal-body text-center"
+        data-ng-if="UsersCallbackCtrl.loading.changePasswordUser && !UsersCallbackCtrl.changed"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_users_callback_user_adding"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="UsersCallbackCtrl.changed">
-        <tuc-success-drawing-check data-draw-success-check="UsersCallbackCtrl.changed">
+    <div class="modal-body" data-ng-if="UsersCallbackCtrl.changed">
+        <tuc-success-drawing-check
+            data-draw-success-check="UsersCallbackCtrl.changed"
+        >
             <h4 data-translate="sms_users_callback_user_added"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -79,8 +100,8 @@
             data-ng-click="UsersCallbackCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="UsersCallbackCtrl.loading.changePasswordUser ||
-                              UsersCallbackCtrl.changed">
-        </button>
+                              UsersCallbackCtrl.changed"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -88,7 +109,7 @@
                               !UsersCallbackCtrl.hasChanged() ||
                               UsersCallbackCtrl.loading.changePasswordUser ||
                               UsersCallbackCtrl.changed"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

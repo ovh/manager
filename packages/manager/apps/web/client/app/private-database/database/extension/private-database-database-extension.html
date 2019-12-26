@@ -5,24 +5,37 @@
         <span data-translate="common_back"></span>
     </oui-back-button>
 
-    <h2 data-ng-bind-html="'privateDatabase_tabs_list_extensions_info' | translate: { t0: '<strong>' + extensionCtrl.bdd.databaseName + '</strong>' }"></h2>
+    <h2
+        data-ng-bind-html="'privateDatabase_tabs_list_extensions_info' | translate: { t0: '<strong>' + extensionCtrl.bdd.databaseName + '</strong>' }"
+    ></h2>
 
-    <oui-datagrid data-rows="extensionCtrl.extensions"
-                  data-row-loader="extensionCtrl.transformItem($row)">
-        <oui-column data-title="'privateDatabase_tabs_list_extensions_extension' | translate" data-property="extensionName"></oui-column>
-        <oui-column data-title="'privateDatabase_tabs_list_extensions_enabled' | translate" data-property="status">
-            <label class="oui-switch"
-                   data-ng-show="$row.transformed">
-                <input type="checkbox"
-                       class="oui-switch__checkbox"
-                       data-ng-model="$row.enabled"
-                       data-ng-change="extensionCtrl.toggleExtension($row)">
+    <oui-datagrid
+        data-rows="extensionCtrl.extensions"
+        data-row-loader="extensionCtrl.transformItem($row)"
+    >
+        <oui-column
+            data-title="'privateDatabase_tabs_list_extensions_extension' | translate"
+            data-property="extensionName"
+        ></oui-column>
+        <oui-column
+            data-title="'privateDatabase_tabs_list_extensions_enabled' | translate"
+            data-property="status"
+        >
+            <label class="oui-switch" data-ng-show="$row.transformed">
+                <input
+                    type="checkbox"
+                    class="oui-switch__checkbox"
+                    data-ng-model="$row.enabled"
+                    data-ng-change="extensionCtrl.toggleExtension($row)"
+                />
                 <div class="oui-switch__slider"></div>
                 <i class="oui-icon oui-icon-success" aria-hidden="true"></i>
                 <i class="oui-icon oui-icon-error" aria-hidden="true"></i>
             </label>
         </oui-column>
-        <oui-column data-title="'privateDatabase_tabs_list_extensions_description' | translate" data-property="description"></oui-column>
+        <oui-column
+            data-title="'privateDatabase_tabs_list_extensions_description' | translate"
+            data-property="description"
+        ></oui-column>
     </oui-datagrid>
-
 </div>

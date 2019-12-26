@@ -9,26 +9,40 @@
             data-label="{{ ::'pci_workflow_create_schedule_' + schedule.name + '_title' | translate }}"
             data-values="[schedule]"
             data-variant="light"
-            data-required>
+            data-required
+        >
         </oui-select-picker>
     </div>
     <div data-ng-if="$ctrl.schedule && $ctrl.schedule.name === 'custom'">
-        <span data-translate="pci_workflow_create_cron_title" class="font-weight-bold d-inline-block pr-1"></span>
-        (<span class="pr-1" data-translate="pci_workflow_create_cron_timezone"></span>)
-        <button type="button"
+        <span
+            data-translate="pci_workflow_create_cron_title"
+            class="font-weight-bold d-inline-block pr-1"
+        ></span>
+        (<span
+            class="pr-1"
+            data-translate="pci_workflow_create_cron_timezone"
+        ></span
+        >)
+        <button
+            type="button"
             class="oui-popover-button"
             data-oui-popover
             data-oui-popover-open="$ctrl.help.openCronHelp"
             data-oui-popover-on-close="$ctrl.help.openCronHelp = false"
             data-ng-click="$ctrl.openHelp('cron')"
             data-oui-popover-scope="$ctrl"
-            data-oui-popover-template="cron-help.html">
-        </button>
+            data-oui-popover-template="cron-help.html"
+        ></button>
         <section class="cron-form d-flex">
-            <div class="oui-field pr-3" data-ng-class="{ 'oui-field_error': $ctrl.minutesInvalid }">
-                <label for="cron-minutes"
+            <div
+                class="oui-field pr-3"
+                data-ng-class="{ 'oui-field_error': $ctrl.minutesInvalid }"
+            >
+                <label
+                    for="cron-minutes"
                     class="sr-only oui-field__label oui-label"
-                    data-translate="pci_workflow_create_cron_minutes"></label>
+                    data-translate="pci_workflow_create_cron_minutes"
+                ></label>
                 <div class="oui-field__control oui-field__control_xs">
                     <input
                         class="oui-input"
@@ -38,20 +52,37 @@
                         name="cron-minutes"
                         required
                         data-ng-model="$ctrl.schedule.cronPattern.minutes"
-                        data-ng-blur="$ctrl.validateMinutes()" />
+                        data-ng-blur="$ctrl.validateMinutes()"
+                    />
                 </div>
-                <div class="oui-field__error pr-2" data-ng-if="$ctrl.minutesInvalid">
+                <div
+                    class="oui-field__error pr-2"
+                    data-ng-if="$ctrl.minutesInvalid"
+                >
                     <span role="alert">
-                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                        <span data-translate="pci_workflow_create_cron_invalid"></span>
+                        <span
+                            class="oui-icon oui-icon-error"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-translate="pci_workflow_create_cron_invalid"
+                        ></span>
                     </span>
                 </div>
-                <div class="oui-field__helper" data-translate="pci_workflow_create_cron_minutes"></div>
+                <div
+                    class="oui-field__helper"
+                    data-translate="pci_workflow_create_cron_minutes"
+                ></div>
             </div>
-            <div class="oui-field pr-3" data-ng-class="{ 'oui-field_error': $ctrl.hoursInvalid }">
-                <label for="cron-hours"
+            <div
+                class="oui-field pr-3"
+                data-ng-class="{ 'oui-field_error': $ctrl.hoursInvalid }"
+            >
+                <label
+                    for="cron-hours"
                     class="sr-only oui-field__label oui-label"
-                    data-translate="pci_workflow_create_cron_hour"></label>
+                    data-translate="pci_workflow_create_cron_hour"
+                ></label>
                 <div class="oui-field__control oui-field__control_xs">
                     <input
                         class="oui-input"
@@ -61,20 +92,37 @@
                         name="cron-hours"
                         required
                         data-ng-model="$ctrl.schedule.cronPattern.hour"
-                        data-ng-blur="$ctrl.validateHour()" />
+                        data-ng-blur="$ctrl.validateHour()"
+                    />
                 </div>
-                <div class="oui-field__error pr-2" data-ng-if="$ctrl.hoursInvalid">
+                <div
+                    class="oui-field__error pr-2"
+                    data-ng-if="$ctrl.hoursInvalid"
+                >
                     <span role="alert">
-                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                        <span data-translate="pci_workflow_create_cron_invalid"></span>
+                        <span
+                            class="oui-icon oui-icon-error"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-translate="pci_workflow_create_cron_invalid"
+                        ></span>
                     </span>
                 </div>
-                <div class="oui-field__helper" data-translate="pci_workflow_create_cron_hour"></div>
+                <div
+                    class="oui-field__helper"
+                    data-translate="pci_workflow_create_cron_hour"
+                ></div>
             </div>
-            <div class="oui-field pr-3" data-ng-class="{ 'oui-field_error': $ctrl.domInvalid }">
-                <label for="cron-dom"
+            <div
+                class="oui-field pr-3"
+                data-ng-class="{ 'oui-field_error': $ctrl.domInvalid }"
+            >
+                <label
+                    for="cron-dom"
                     class="sr-only oui-field__label oui-label"
-                    data-translate="pci_workflow_create_cron_dom"></label>
+                    data-translate="pci_workflow_create_cron_dom"
+                ></label>
                 <div class="oui-field__control oui-field__control_xs">
                     <input
                         class="oui-input"
@@ -84,20 +132,37 @@
                         name="cron-dom"
                         required
                         data-ng-model="$ctrl.schedule.cronPattern.dom"
-                        data-ng-blur="$ctrl.validateDom()" />
+                        data-ng-blur="$ctrl.validateDom()"
+                    />
                 </div>
-                <div class="oui-field__error pr-2" data-ng-if="$ctrl.domInvalid">
+                <div
+                    class="oui-field__error pr-2"
+                    data-ng-if="$ctrl.domInvalid"
+                >
                     <span role="alert">
-                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                        <span data-translate="pci_workflow_create_cron_invalid"></span>
+                        <span
+                            class="oui-icon oui-icon-error"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-translate="pci_workflow_create_cron_invalid"
+                        ></span>
                     </span>
                 </div>
-                <div class="oui-field__helper" data-translate="pci_workflow_create_cron_dom"></div>
+                <div
+                    class="oui-field__helper"
+                    data-translate="pci_workflow_create_cron_dom"
+                ></div>
             </div>
-            <div class="oui-field pr-3" data-ng-class="{ 'oui-field_error': $ctrl.monthInvalid }">
-                <label for="cron-month"
+            <div
+                class="oui-field pr-3"
+                data-ng-class="{ 'oui-field_error': $ctrl.monthInvalid }"
+            >
+                <label
+                    for="cron-month"
                     class="sr-only oui-field__label oui-label"
-                    data-translate="pci_workflow_create_cron_month"></label>
+                    data-translate="pci_workflow_create_cron_month"
+                ></label>
                 <div class="oui-field__control oui-field__control_xs">
                     <input
                         class="oui-input"
@@ -107,17 +172,29 @@
                         name="cron-month"
                         required
                         data-ng-model="$ctrl.schedule.cronPattern.month"
-                        data-ng-blur="$ctrl.validateMonth()" />
+                        data-ng-blur="$ctrl.validateMonth()"
+                    />
                 </div>
-                <div class="oui-field__error pr-2" data-ng-if="$ctrl.monthInvalid">
+                <div
+                    class="oui-field__error pr-2"
+                    data-ng-if="$ctrl.monthInvalid"
+                >
                     <span role="alert">
-                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                        <span data-translate="pci_workflow_create_cron_invalid"></span>
+                        <span
+                            class="oui-icon oui-icon-error"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-translate="pci_workflow_create_cron_invalid"
+                        ></span>
                     </span>
                 </div>
                 <div class="oui-field__helper">
-                    <span data-translate="pci_workflow_create_cron_month"></span>
-                    <button type="button"
+                    <span
+                        data-translate="pci_workflow_create_cron_month"
+                    ></span>
+                    <button
+                        type="button"
                         class="oui-popover-button"
                         data-oui-popover
                         data-oui-popover-scope="$ctrl"
@@ -125,13 +202,19 @@
                         data-oui-popover-open="$ctrl.help.openMonthHelp"
                         data-oui-popover-on-close="$ctrl.help.openMonthHelp = false"
                         data-ng-click="$ctrl.openHelp('month')"
-                        data-oui-popover-template="cron-month-help.html"></button>
+                        data-oui-popover-template="cron-month-help.html"
+                    ></button>
                 </div>
             </div>
-            <div class="oui-field pr-3" data-ng-class="{ 'oui-field_error': $ctrl.dowInvalid }">
-                <label for="cron-dow"
+            <div
+                class="oui-field pr-3"
+                data-ng-class="{ 'oui-field_error': $ctrl.dowInvalid }"
+            >
+                <label
+                    for="cron-dow"
                     class="sr-only oui-field__label oui-label"
-                    data-translate="pci_workflow_create_cron_dow"></label>
+                    data-translate="pci_workflow_create_cron_dow"
+                ></label>
                 <div class="oui-field__control oui-field__control_xs">
                     <input
                         class="oui-input"
@@ -141,39 +224,61 @@
                         name="cron-dow"
                         required
                         data-ng-model="$ctrl.schedule.cronPattern.dow"
-                        data-ng-blur="$ctrl.validateDow()" />
+                        data-ng-blur="$ctrl.validateDow()"
+                    />
                 </div>
-                <div class="oui-field__error pr-2" data-ng-if="$ctrl.dowInvalid">
+                <div
+                    class="oui-field__error pr-2"
+                    data-ng-if="$ctrl.dowInvalid"
+                >
                     <span role="alert">
-                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                        <span data-translate="pci_workflow_create_cron_invalid"></span>
+                        <span
+                            class="oui-icon oui-icon-error"
+                            aria-hidden="true"
+                        ></span>
+                        <span
+                            data-translate="pci_workflow_create_cron_invalid"
+                        ></span>
                     </span>
                 </div>
                 <div class="oui-field__helper">
                     <span data-translate="pci_workflow_create_cron_dow"></span>
-                    <button type="button"
+                    <button
+                        type="button"
                         class="oui-popover-button"
                         data-oui-popover
                         data-oui-popover-scope="$ctrl"
                         data-oui-popover-open="$ctrl.help.openDowHelp"
                         data-oui-popover-on-close="$ctrl.help.openDowHelp = false"
                         data-ng-click="$ctrl.openHelp('dow')"
-                        data-oui-popover-template="cron-dow-help.html"></button>
+                        data-oui-popover-template="cron-dow-help.html"
+                    ></button>
                 </div>
             </div>
         </section>
         <section>
-            <oui-field data-label="{{ ::'pci_workflow_create_rotate' | translate}}"
-                data-help-text="{{ ::'pci_workflow_create_rotate_description' | translate}}">
-                <oui-numeric id="rotate" name="rotate" data-model="$ctrl.schedule.rotation" min="1">
+            <oui-field
+                data-label="{{ ::'pci_workflow_create_rotate' | translate}}"
+                data-help-text="{{ ::'pci_workflow_create_rotate_description' | translate}}"
+            >
+                <oui-numeric
+                    id="rotate"
+                    name="rotate"
+                    data-model="$ctrl.schedule.rotation"
+                    min="1"
+                >
                 </oui-numeric>
             </oui-field>
-            <oui-field data-label="{{ ::'pci_workflow_create_execution_count' | translate}}"
-                data-help-text="{{ ::'pci_workflow_create_execution_count_description' | translate}}">
-                <oui-numeric id="execution-count"
+            <oui-field
+                data-label="{{ ::'pci_workflow_create_execution_count' | translate}}"
+                data-help-text="{{ ::'pci_workflow_create_execution_count_description' | translate}}"
+            >
+                <oui-numeric
+                    id="execution-count"
                     name="execution-count"
                     data-model="$ctrl.schedule.maxExecutionCount"
-                    min="0">
+                    min="0"
+                >
                 </oui-numeric>
             </oui-field>
         </section>
@@ -187,7 +292,8 @@
             data-name="{{ $ctrl.schedule.name }}"
             data-model="$ctrl.schedule"
             data-label="{{ ('pci_workflow_create_schedule_' + $ctrl.schedule.name + '_title' | translate) + ' (' + $ctrl.getCronPattern() + ')' }}"
-            data-values="[$ctrl.schedule]">
+            data-values="[$ctrl.schedule]"
+        >
         </oui-select-picker>
     </div>
 </div>

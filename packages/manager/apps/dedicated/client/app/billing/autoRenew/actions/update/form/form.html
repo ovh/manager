@@ -3,7 +3,8 @@
 <label
     for="renew-type"
     class="oui-label"
-    data-translate="billing_autorenew_service_update_form_service_renewal">
+    data-translate="billing_autorenew_service_update_form_service_renewal"
+>
 </label>
 <oui-select
     class="oui-select_m"
@@ -12,14 +13,16 @@
     data-model="$ctrl.model.renewalType"
     data-match="label"
     data-items="$ctrl.RENEWAL_TYPES"
-    data-on-change="$ctrl.onRenewalTypeChange(modelValue)">
+    data-on-change="$ctrl.onRenewalTypeChange(modelValue)"
+>
     <span data-ng-bind="$item.label"></span>
 </oui-select>
 <div data-ng-if="$ctrl.service.hasAutomaticRenew()">
     <label
         for="period"
         class="oui-label"
-        data-translate="billing_autorenew_service_update_form_service_period">
+        data-translate="billing_autorenew_service_update_form_service_period"
+    >
     </label>
     <oui-select
         class="oui-select_m"
@@ -28,12 +31,14 @@
         data-model="$ctrl.model.period"
         data-items="$ctrl.PERIODS"
         data-match="label"
-        data-on-change="$ctrl.onPeriodChange(modelValue)">
+        data-on-change="$ctrl.onPeriodChange(modelValue)"
+    >
         <span data-ng-bind="$item.label"></span>
     </oui-select>
 </div>
-<div data-ng-if="$ctrl.autorenewAgreements.length > 0"
+<div
+    data-ng-if="$ctrl.autorenewAgreements.length > 0"
     data-contracts="$ctrl.autorenewAgreements"
     data-full-text="false"
-    data-ng-model="$ctrl.hasAgreed">
-</div>
+    data-ng-model="$ctrl.hasAgreed"
+></div>

@@ -1,11 +1,23 @@
 <section class="widget-presentation table-router">
     <header class="widget-presentation-header">
-        <h2 class="widget-presentation-title" data-translate="xdsl_modem_network_config"></h2>
+        <h2
+            class="widget-presentation-title"
+            data-translate="xdsl_modem_network_config"
+        ></h2>
     </header>
 
-    <div data-ui-view="routerLanView" data-ng-class="{ 'disabled' : !RouterCtrl.mediator.capabilities.canChangeLAN }"></div>
+    <div
+        data-ui-view="routerLanView"
+        data-ng-class="{ 'disabled' : !RouterCtrl.mediator.capabilities.canChangeLAN }"
+    ></div>
 
-    <div data-ui-view="routerDhcpView" data-ng-class="{ 'disabled' : !RouterCtrl.mediator.capabilities.canChangeDHCP }"></div>
+    <div
+        data-ui-view="routerDhcpView"
+        data-ng-class="{ 'disabled' : !RouterCtrl.mediator.capabilities.canChangeDHCP }"
+    ></div>
 
-    <div data-ui-view="routerPortView" data-ng-class="{ 'disabled' : !RouterCtrl.mediator.capabilities.canChangePortMapping }"></div>
+    <div
+        data-ui-view="routerPortView"
+        data-ng-class="{ 'disabled' : !RouterCtrl.mediator.capabilities.canChangePortMapping }"
+    ></div>
 </section>

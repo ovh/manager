@@ -9,14 +9,19 @@
         data-model="commitmentPeriod"
         data-selected="$ctrl.selectedCommitmentPeriod === commitmentPeriod"
         data-on-change="$ctrl.onCommitmentPeriodSelect(modelValue)"
-        data-disabled="!$ctrl.allowEdit">
+        data-disabled="!$ctrl.allowEdit"
+    >
         <enterprise-cloud-database-card-footer>
-            <div class="mt-2" data-translate="enterprise_cloud_database_create_choose_commitment_total_price"></div>
+            <div
+                class="mt-2"
+                data-translate="enterprise_cloud_database_create_choose_commitment_total_price"
+            ></div>
             <div class="mb-2">
                 <enterprise-cloud-database-price-component
                     data-price="$ctrl.databasePrice.price * commitmentPeriod.months"
                     data-tax="$ctrl.databasePrice.tax * commitmentPeriod.months"
-                    data-user="$ctrl.user">
+                    data-user="$ctrl.user"
+                >
                 </enterprise-cloud-database-price-component>
             </div>
         </enterprise-cloud-database-card-footer>

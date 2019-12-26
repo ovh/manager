@@ -1,54 +1,63 @@
 <section class="telecom-orders-accessories">
-
     <header>
         <h1 data-translate="telecom_orders_accessories_title"></h1>
     </header>
 
-    <div class="text-center" data-ng-if="AccessoriesOrderCtrl.loading.init || AccessoriesOrderCtrl.loading.submit">
+    <div
+        class="text-center"
+        data-ng-if="AccessoriesOrderCtrl.loading.init || AccessoriesOrderCtrl.loading.submit"
+    >
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="telecom-section-content"
-         data-ng-if="!AccessoriesOrderCtrl.loading.init && !AccessoriesOrderCtrl.loading.submit">
-
+    <div
+        class="telecom-section-content"
+        data-ng-if="!AccessoriesOrderCtrl.loading.init && !AccessoriesOrderCtrl.loading.submit"
+    >
         <div class="widget-presentation row">
             <div class="col-xs-12 col-md-6">
                 <div class="widget-presentation-header">
-                    <h2 class="widget-presentation-title"
-                        data-translate="telecom_orders_accessories_group_choice">
-                    </h2>
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="telecom_orders_accessories_group_choice"
+                    ></h2>
                 </div>
 
-                <form novalidate
-                      name="accessoriesOrderForm">
-                    <div class="form-group"
-                         data-ng-class="{
+                <form novalidate name="accessoriesOrderForm">
+                    <div
+                        class="form-group"
+                        data-ng-class="{
                              'has-error': (accessoriesOrderForm.billingAccount.$touched && accessoriesOrderForm.billingAccount.$invalid) || AccessoriesOrderCtrl.orderError !== null
-                         }">
-                        <label for="billingAccountSelect"
-                               class="control-label"
-                               data-translate="telecom_orders_accessories_group_choice_label">
+                         }"
+                    >
+                        <label
+                            for="billingAccountSelect"
+                            class="control-label"
+                            data-translate="telecom_orders_accessories_group_choice_label"
+                        >
                         </label>
-                        <select class="form-control"
-                               id="billingAccountSelect"
-                               name="billingAccount"
-                               data-ng-model="AccessoriesOrderCtrl.model.billingAccount"
-                               data-ng-change="AccessoriesOrderCtrl.orderAccessories()"
-                               data-ng-options="billingAccount as billingAccount.label for billingAccount in AccessoriesOrderCtrl.billingAccounts track by billingAccount.billingAccount">
+                        <select
+                            class="form-control"
+                            id="billingAccountSelect"
+                            name="billingAccount"
+                            data-ng-model="AccessoriesOrderCtrl.model.billingAccount"
+                            data-ng-change="AccessoriesOrderCtrl.orderAccessories()"
+                            data-ng-options="billingAccount as billingAccount.label for billingAccount in AccessoriesOrderCtrl.billingAccounts track by billingAccount.billingAccount"
+                        >
                         </select>
-                        <span class="help-block"
-                              role="alert"
-                              data-ng-if="AccessoriesOrderCtrl.orderError !== null"
-                              data-translate="telecom_orders_accessories_order_error">
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="AccessoriesOrderCtrl.orderError !== null"
+                            data-translate="telecom_orders_accessories_order_error"
+                        >
                         </span>
                     </div>
                 </form>
             </div>
         </div>
         <!-- /.widget-presentation -->
-
     </div>
     <!-- /.telecom-section-content -->
-
 </section>
 <!-- /.telecom-orders-accessories -->

@@ -1,50 +1,63 @@
 <div>
     <div class="modal-header">
-        <h3 class="modal-title float-left"
-            data-translate="telephony_alias_configuration_mode_calls_action_intercept">
-        </h3>
-        <button type="button"
-                class="close float-right"
-                aria-label="{{ ::'cancel' | translate }}"
-                data-ng-click="$ctrl.cancel()">
+        <h3
+            class="modal-title float-left"
+            data-translate="telephony_alias_configuration_mode_calls_action_intercept"
+        ></h3>
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{ ::'cancel' | translate }}"
+            data-ng-click="$ctrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body">
-        <p class="alert alert-info"
-           role="alert"
-           data-translate="telephony_alias_configuration_mode_calls_action_intercept_help">
-        </p>
-        <form name="interceptForm"
-              data-ng-submit="$ctrl.submit()"
-              novalidate>
+        <p
+            class="alert alert-info"
+            role="alert"
+            data-translate="telephony_alias_configuration_mode_calls_action_intercept_help"
+        ></p>
+        <form name="interceptForm" data-ng-submit="$ctrl.submit()" novalidate>
             <div class="form-group">
-                <label for="number"
-                       class="control-label"
-                       data-translate="telephony_alias_configuration_mode_calls_action_intercept_number">
+                <label
+                    for="number"
+                    class="control-label"
+                    data-translate="telephony_alias_configuration_mode_calls_action_intercept_number"
+                >
                 </label>
-                <input type="text"
-                       id="number"
-                       name="number"
-                       class="form-control"
-                       data-ng-model="$ctrl.number"
-                       data-ng-pattern="/^\+?\d+$/"
-                       autofocus
-                       required />
-                <p class="alert alert-danger mt-3"
-                   role="alert"
-                   data-ng-if="$ctrl.error"
-                   data-ng-bind="$ctrl.error">
-                </p>
-                <button type="submit"
-                        class="btn btn-primary float-right mt-2"
-                        data-ng-disabled="interceptForm.$invalid">
-                    <oui-spinner class="mr-2"
-                                 data-ng-if="$ctrl.isSubmitting"
-                                 data-size="s">
+                <input
+                    type="text"
+                    id="number"
+                    name="number"
+                    class="form-control"
+                    data-ng-model="$ctrl.number"
+                    data-ng-pattern="/^\+?\d+$/"
+                    autofocus
+                    required
+                />
+                <p
+                    class="alert alert-danger mt-3"
+                    role="alert"
+                    data-ng-if="$ctrl.error"
+                    data-ng-bind="$ctrl.error"
+                ></p>
+                <button
+                    type="submit"
+                    class="btn btn-primary float-right mt-2"
+                    data-ng-disabled="interceptForm.$invalid"
+                >
+                    <oui-spinner
+                        class="mr-2"
+                        data-ng-if="$ctrl.isSubmitting"
+                        data-size="s"
+                    >
                     </oui-spinner>
-                    <span data-translate="telephony_alias_configuration_mode_calls_action_intercept_confirm"></span>
+                    <span
+                        data-translate="telephony_alias_configuration_mode_calls_action_intercept_confirm"
+                    ></span>
                 </button>
             </div>
         </form>
@@ -52,5 +65,4 @@
 
     <!-- spacing -->
     <div class="modal-footer"></div>
-
 </div>

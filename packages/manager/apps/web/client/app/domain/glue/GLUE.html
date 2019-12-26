@@ -1,23 +1,39 @@
-<div class="container-fluid px-0" data-ng-controller="controllers.Domain.Glue as ctrlDomainGlue">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="controllers.Domain.Glue as ctrlDomainGlue"
+>
     <div class="row">
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
 
-            <p class="font-weight-bold" data-translate="domain_tab_GLUE_heading"></p>
+            <p
+                class="font-weight-bold"
+                data-translate="domain_tab_GLUE_heading"
+            ></p>
             <p data-translate="domain_tab_GLUE_info"></p>
 
-            <oui-datagrid data-rows="ctrlDomainGlue.glueHosts"
-                row-loader="ctrlDomainGlue.transformItem($row)">
-                <oui-column data-property="hostToDisplay"
-                    data-title="'domain_tab_GLUE_host' | translate"></oui-column>
-                <oui-column data-property="ips"
-                    data-title="'domain_tab_GLUE_ip' | translate"></oui-column>
+            <oui-datagrid
+                data-rows="ctrlDomainGlue.glueHosts"
+                row-loader="ctrlDomainGlue.transformItem($row)"
+            >
+                <oui-column
+                    data-property="hostToDisplay"
+                    data-title="'domain_tab_GLUE_host' | translate"
+                ></oui-column>
+                <oui-column
+                    data-property="ips"
+                    data-title="'domain_tab_GLUE_ip' | translate"
+                ></oui-column>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-text="{{ 'table_modify_entry' | translate }}"
-                        data-on-click="setAction('glue/add/domain-glue-add-or-edit', { editedGlueRecord: $row, domain: ctrlDomainGlue.domain })">
+                    <oui-action-menu-item
+                        data-text="{{ 'table_modify_entry' | translate }}"
+                        data-on-click="setAction('glue/add/domain-glue-add-or-edit', { editedGlueRecord: $row, domain: ctrlDomainGlue.domain })"
+                    >
                     </oui-action-menu-item>
-                    <oui-action-menu-item data-text="{{ 'table_delete_entry' | translate }}"
-                        data-on-click="setAction('glue/delete/domain-glue-delete', $row)">
+                    <oui-action-menu-item
+                        data-text="{{ 'table_delete_entry' | translate }}"
+                        data-on-click="setAction('glue/delete/domain-glue-delete', $row)"
+                    >
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>
@@ -25,16 +41,19 @@
 
         <div class="col-md-3 mt-5 mt-lg-0">
             <div class="mb-5">
-                <button class="btn btn-block btn-default" type="button"
-                        data-translate="domain_tab_GLUE_butt_add"
-                        data-ng-click="setAction('glue/add/domain-glue-add-or-edit', { domain: ctrlDomainGlue.domain })">
-                </button>
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="domain_tab_GLUE_butt_add"
+                    data-ng-click="setAction('glue/add/domain-glue-add-or-edit', { domain: ctrlDomainGlue.domain })"
+                ></button>
             </div>
-            <div data-wuc-guides
-                 data-wuc-guides-list="'glue'"
-                 data-wuc-guides-title="'guide_domain_subtitle' | translate"
-                 data-tr="tr">
-            </div>
+            <div
+                data-wuc-guides
+                data-wuc-guides-list="'glue'"
+                data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                data-tr="tr"
+            ></div>
         </div>
     </div>
 </div>

@@ -1,22 +1,38 @@
 <div class="oui-tile__item" data-ng-if="!$ctrl.loading">
     <dl class="oui-tile__definition">
         <dt class="oui-tile__term">
-            <div data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew() && $ctrl.shouldDeleteAtExpiration()">
-                <span data-translate="status_action_resiliation_date_label"></span>
+            <div
+                data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew() && $ctrl.shouldDeleteAtExpiration()"
+            >
+                <span
+                    data-translate="status_action_resiliation_date_label"
+                ></span>
             </div>
-            <div data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew() && !$ctrl.shouldDeleteAtExpiration()">
+            <div
+                data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew() && !$ctrl.shouldDeleteAtExpiration()"
+            >
                 <span data-translate="status_action_renew_date_label"></span>
             </div>
             <div data-ng-if="$ctrl.isExpired() || !$ctrl.isInAutoRenew()">
-                <span data-translate="{{ ::$ctrl.isExpired() ? 'status_action_resiliation_date_label' : 'status_action_expiration_date_label' }}"></span>
+                <span
+                    data-translate="{{ ::$ctrl.isExpired() ? 'status_action_resiliation_date_label' : 'status_action_expiration_date_label' }}"
+                ></span>
             </div>
         </dt>
         <dd class="oui-tile__description">
-            <div data-ng-if="!$ctrl.shouldDeleteAtExpiration() && $ctrl.isInAutoRenew()">
-                <span data-ng-bind=" ::$ctrl.serviceInfos.expiration | date:'MMM yyyy'"></span>
+            <div
+                data-ng-if="!$ctrl.shouldDeleteAtExpiration() && $ctrl.isInAutoRenew()"
+            >
+                <span
+                    data-ng-bind=" ::$ctrl.serviceInfos.expiration | date:'MMM yyyy'"
+                ></span>
             </div>
-            <div data-ng-if="$ctrl.shouldDeleteAtExpiration() || $ctrl.isExpired() || !$ctrl.isInAutoRenew()">
-                <span data-ng-bind=" ::$ctrl.getDate() | date:'mediumDate'"></span>
+            <div
+                data-ng-if="$ctrl.shouldDeleteAtExpiration() || $ctrl.isExpired() || !$ctrl.isInAutoRenew()"
+            >
+                <span
+                    data-ng-bind=" ::$ctrl.getDate() | date:'mediumDate'"
+                ></span>
             </div>
         </dd>
     </dl>
@@ -25,24 +41,32 @@
             data-ng-if="$ctrl.isExpired() || !$ctrl.isInAutoRenew()"
             data-aria-label="{{ ::'status_action_wizard_renew' | translate }}"
             data-href="{{ $ctrl.orderUrl }}"
-            data-external>
+            data-external
+        >
             <span data-translate="status_action_wizard_renew"></span>
         </oui-action-menu-item>
         <oui-action-menu-item
             data-ng-if="!$ctrl.isExpired() && $ctrl.isInAutoRenew() && $ctrl.shouldDeleteAtExpiration()"
             data-aria-label="{{ ::'status_action_resiliation_cancel_label' | translate }}"
-            data-ng-href="{{ $ctrl.getAutoRenewUrl() }}">
-            <span data-translate="status_action_resiliation_cancel_label"></span>
+            data-ng-href="{{ $ctrl.getAutoRenewUrl() }}"
+        >
+            <span
+                data-translate="status_action_resiliation_cancel_label"
+            ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
             data-aria-label="{{ ::'status_action_renew_management' | translate }}"
-            data-href="{{ $ctrl.getAutoRenewUrl() }}">
+            data-href="{{ $ctrl.getAutoRenewUrl() }}"
+        >
             <span data-translate="status_action_renew_management"></span>
         </oui-action-menu-item>
         <oui-action-menu-item
             data-aria-label="{{ ::'status_action_expiration_delete_cancel_label' | translate }}"
-            data-href="{{ $ctrl.getAutoRenewUrl() }}">
-            <span data-translate="status_action_expiration_delete_cancel_label"></span>
+            data-href="{{ $ctrl.getAutoRenewUrl() }}"
+        >
+            <span
+                data-translate="status_action_expiration_delete_cancel_label"
+            ></span>
         </oui-action-menu-item>
     </oui-action-menu>
 </div>

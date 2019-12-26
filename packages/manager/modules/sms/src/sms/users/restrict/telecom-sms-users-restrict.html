@@ -1,37 +1,47 @@
-<form name="restrictUserForm"
-      id="restrictUserForm"
-      data-ng-submit="UsersRestrictByIpCtrl.restrict()">
-
+<form
+    name="restrictUserForm"
+    id="restrictUserForm"
+    data-ng-submit="UsersRestrictByIpCtrl.restrict()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="UsersRestrictByIpCtrl.cancel()">
+            data-ng-click="UsersRestrictByIpCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!UsersRestrictByIpCtrl.loading.restrictByIpUser && !UsersRestrictByIpCtrl.restricted">
-        <h3 class="modal-title"
-            data-translate="sms_users_restrict_user_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!UsersRestrictByIpCtrl.loading.restrictByIpUser && !UsersRestrictByIpCtrl.restricted"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_users_restrict_user_title"
+        ></h3>
 
-        <p class="word-break"
-           data-translate="sms_users_restrict_user_info"
-           data-translate-values="{ login: UsersRestrictByIpCtrl.model.user.login }">
-        </p>
+        <p
+            class="word-break"
+            data-translate="sms_users_restrict_user_info"
+            data-translate-values="{ login: UsersRestrictByIpCtrl.model.user.login }"
+        ></p>
 
-        <div class="form-group"
-             data-ng-repeat="ip in UsersRestrictByIpCtrl.model.user.ipRestrictions track by $index"
-             data-ng-class="{
+        <div
+            class="form-group"
+            data-ng-repeat="ip in UsersRestrictByIpCtrl.model.user.ipRestrictions track by $index"
+            data-ng-class="{
                  'has-error': restrictUserForm['restriction' + $index].$touched && restrictUserForm['restriction' + $index].$invalid
-             }">
-            <label for="restriction{{ $index }}"
-                   class="control-label"
-                   data-translate="sms_users_restrict_user_restrict_label"
-                   data-translate-values="{ index: $index + 1 }">
+             }"
+        >
+            <label
+                for="restriction{{ $index }}"
+                class="control-label"
+                data-translate="sms_users_restrict_user_restrict_label"
+                data-translate-values="{ index: $index + 1 }"
+            >
             </label>
             <input
                 type="text"
@@ -42,28 +52,35 @@
                 data-ng-model="UsersRestrictByIpCtrl.model.user.ipRestrictions[$index]"
                 data-ng-pattern="UsersRestrictByIpCtrl.ipRestrictions.pattern"
                 data-translate-attr="{ placeholder: 'sms_users_restrict_user_restrict_placeholder' }"
-                data-translate-values="{ index: $index + 1 }" />
-            <span class="help-block"
-                  role="alert"
-                  data-ng-if="restrictUserForm['restriction' + $index].$touched"
-                  data-ng-messages="restrictUserForm['restriction' + $index].$error">
-                <span data-ng-message="pattern"
-                      data-translate="sms_users_restrict_user_restrict_error_pattern">
+                data-translate-values="{ index: $index + 1 }"
+            />
+            <span
+                class="help-block"
+                role="alert"
+                data-ng-if="restrictUserForm['restriction' + $index].$touched"
+                data-ng-messages="restrictUserForm['restriction' + $index].$error"
+            >
+                <span
+                    data-ng-message="pattern"
+                    data-translate="sms_users_restrict_user_restrict_error_pattern"
+                >
                 </span>
             </span>
         </div>
-
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="UsersRestrictByIpCtrl.loading.restrictByIpUser && !UsersRestrictByIpCtrl.restricted">
+    <div
+        class="modal-body text-center"
+        data-ng-if="UsersRestrictByIpCtrl.loading.restrictByIpUser && !UsersRestrictByIpCtrl.restricted"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_users_restrict_user_adding"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="UsersRestrictByIpCtrl.restricted">
-        <tuc-success-drawing-check data-draw-success-check="UsersRestrictByIpCtrl.restricted">
+    <div class="modal-body" data-ng-if="UsersRestrictByIpCtrl.restricted">
+        <tuc-success-drawing-check
+            data-draw-success-check="UsersRestrictByIpCtrl.restricted"
+        >
             <h4 data-translate="sms_users_restrict_user_added"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -75,8 +92,8 @@
             data-ng-click="UsersRestrictByIpCtrl.cancel()"
             data-translate="sms_cancel"
             data-ng-disabled="UsersRestrictByIpCtrl.loading.restrictByIpUser ||
-                              UsersRestrictByIpCtrl.restricted">
-        </button>
+                              UsersRestrictByIpCtrl.restricted"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
@@ -84,7 +101,7 @@
                               !UsersRestrictByIpCtrl.hasChanged() ||
                               UsersRestrictByIpCtrl.loading.restrictByIpUser ||
                               UsersRestrictByIpCtrl.restricted"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
 </form>

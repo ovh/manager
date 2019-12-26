@@ -1,47 +1,57 @@
-<form class="editable-service-name"
-      name="editableServiceNameForm"
-      data-ng-submit="$ctrl.saveServiceName()">
+<form
+    class="editable-service-name"
+    name="editableServiceNameForm"
+    data-ng-submit="$ctrl.saveServiceName()"
+>
     <h1>
         <!-- NOT IN EDITION -->
         <span data-ng-if="!$ctrl.inEdition">
-            <span data-ng-bind="$ctrl.title"
-                  class="editable-service-name-title d-inline-block align-middle">
+            <span
+                data-ng-bind="$ctrl.title"
+                class="editable-service-name-title d-inline-block align-middle"
+            >
             </span>
-            <button type="button"
-                    class="btn btn-editable d-inline-block align-middle"
-                    data-ng-click="$ctrl.startEdition()"
-                    data-ng-disabled="$ctrl.disabled"
-                    title="{{$ctrl.getTitle()}}">
+            <button
+                type="button"
+                class="btn btn-editable d-inline-block align-middle"
+                data-ng-click="$ctrl.startEdition()"
+                data-ng-disabled="$ctrl.disabled"
+                title="{{$ctrl.getTitle()}}"
+            >
                 <i class="oui-icon oui-icon-pen_line" aria-hidden="true"></i>
             </button>
         </span>
 
         <!-- IN EDITION -->
-        <span data-ng-if="$ctrl.inEdition"
-              class="clearfix">
-            <input class="service-name-edit-input d-inline-block align-middle"
-                   name="editableServiceNameInput"
-                   data-ng-maxlength="$ctrl.maxlength"
-                   data-ng-model="$ctrl.model.serviceName"
-                   data-ng-readonly="$ctrl.loading.save"
-                   type="text"/>
+        <span data-ng-if="$ctrl.inEdition" class="clearfix">
+            <input
+                class="service-name-edit-input d-inline-block align-middle"
+                name="editableServiceNameInput"
+                data-ng-maxlength="$ctrl.maxlength"
+                data-ng-model="$ctrl.model.serviceName"
+                data-ng-readonly="$ctrl.loading.save"
+                type="text"
+            />
 
             <span class="edit-button-container d-inline-block align-middle">
-                <button type="submit"
-                        class="btn btn-editable"
-                        data-ng-disabled="$ctrl.loading.save || !editableServiceNameForm.editableServiceNameInput.$valid">
+                <button
+                    type="submit"
+                    class="btn btn-editable"
+                    data-ng-disabled="$ctrl.loading.save || !editableServiceNameForm.editableServiceNameInput.$valid"
+                >
                     <i class="ovh-font ovh-font-check"></i>
                 </button>
 
-                <button type="button"
-                        class="btn btn-editable"
-                        data-ng-click="$ctrl.cancelEdition()"
-                        data-ng-disabled="$ctrl.loading.save">
+                <button
+                    type="button"
+                    class="btn btn-editable"
+                    data-ng-click="$ctrl.cancelEdition()"
+                    data-ng-disabled="$ctrl.loading.save"
+                >
                     <i class="ovh-font ovh-font-wrong"></i>
                 </button>
             </span>
         </span>
     </h1>
-    <em class="align-middle"
-        data-ng-bind="$ctrl.serviceName"></em>
+    <em class="align-middle" data-ng-bind="$ctrl.serviceName"></em>
 </form>

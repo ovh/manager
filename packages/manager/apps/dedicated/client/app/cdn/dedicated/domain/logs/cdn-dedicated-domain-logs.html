@@ -1,18 +1,33 @@
 <tail-logs>
-    <div class="row ml-0"
-         data-ng-repeat="log in $ctrl.logger.logs track by $index"
-         data-ng-class="{
+    <div
+        class="row ml-0"
+        data-ng-repeat="log in $ctrl.logger.logs track by $index"
+        data-ng-class="{
             'text-primary' : log.message.status >= 200 && log.message.status < 300,
             'text-warning' : log.message.status >= 300 && log.message.status < 499,
             'text-danger'  : log.message.status > 499
-        }">
-        <span data-ng-bind="log.message.source" title="ip_source" class="col-md-1"></span>
+        }"
+    >
+        <span
+            data-ng-bind="log.message.source"
+            title="ip_source"
+            class="col-md-1"
+        ></span>
         <span title="ident">-</span>
         <span data-ng-bind="log.message.user" title="user"></span>
-        [<span data-ng-bind="log.message.timestamp | date:'short'" title="date"></span>]
-        "<span data-ng-bind="log.message.method" title="method"></span>
-        <span data-ng-if="log.message.is_ssl === 'NO'" title="schema">http://</span><span data-ng-if="log.message.is_ssl === 'YES'" title="schema">https://</span><span data-ng-bind="log.message.vhost" title="vhost"></span><span data-ng-bind="log.message.uri" title="uri"></span>
-        <span data-ng-bind="log.message.client_protocol" title="protocol"></span>"
+        [<span
+            data-ng-bind="log.message.timestamp | date:'short'"
+            title="date"
+        ></span
+        >] "<span data-ng-bind="log.message.method" title="method"></span>
+        <span data-ng-if="log.message.is_ssl === 'NO'" title="schema"
+            >http://</span
+        ><span data-ng-if="log.message.is_ssl === 'YES'" title="schema"
+            >https://</span
+        ><span data-ng-bind="log.message.vhost" title="vhost"></span
+        ><span data-ng-bind="log.message.uri" title="uri"></span>
+        <span data-ng-bind="log.message.client_protocol" title="protocol"></span
+        >"
         <span data-ng-bind="log.message.status" title="status"></span>
         <span data-ng-bind="log.message.content_size_int" title="size"></span>
         "<span data-ng-bind="log.message.referer" title="referer"></span>"
@@ -20,6 +35,8 @@
         <span data-ng-bind="log.message.cache_varnishd" title="cache"></span>
     </div>
 
-    <div data-translate="cdn_tabs_logs_list_no_logs"
-         data-ng-if="$ctrl.logger.logs.length === 0"></div>
+    <div
+        data-translate="cdn_tabs_logs_list_no_logs"
+        data-ng-if="$ctrl.logger.logs.length === 0"
+    ></div>
 </tail-logs>

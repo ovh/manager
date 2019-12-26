@@ -1,12 +1,19 @@
 <div data-ng-controller="EmailsDeleteFilterCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteFilter"
-         data-wizard-title="'email_tab_modal_delete_filter_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteFilter"
+        data-wizard-title="'email_tab_modal_delete_filter_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-translate="email_tab_modal_delete_filter_heading" data-translate-values="{ t0: ctrl.filter.name }"></p>
-            <p class="font-weight-bold" data-translate="emails_common_continue_question"></p>
+            <p
+                data-translate="email_tab_modal_delete_filter_heading"
+                data-translate-values="{ t0: ctrl.filter.name }"
+            ></p>
+            <p
+                class="font-weight-bold"
+                data-translate="emails_common_continue_question"
+            ></p>
         </div>
     </div>
 </div>

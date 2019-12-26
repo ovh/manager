@@ -1,16 +1,20 @@
-<oui-modal data-heading="{{:: ($ctrl.itemCount === 1 ? 'telephony_alias_configuration_calls_filtering_delete_one_question_title' : 'telephony_alias_configuration_calls_filtering_delete_all_question_title') | translate }}"
-           data-primary-action="$ctrl.$uibModalInstance.close()"
-           data-primary-label="{{:: 'common_confirm' | translate }}"
-           data-secondary-label="{{:: 'cancel' | translate }}"
-           data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
-           data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
-           data-type="warning">
-    <span data-ng-pluralize
-          data-count="$ctrl.itemCount"
-          data-when="{
+<oui-modal
+    data-heading="{{:: ($ctrl.itemCount === 1 ? 'telephony_alias_configuration_calls_filtering_delete_one_question_title' : 'telephony_alias_configuration_calls_filtering_delete_all_question_title') | translate }}"
+    data-primary-action="$ctrl.$uibModalInstance.close()"
+    data-primary-label="{{:: 'common_confirm' | translate }}"
+    data-secondary-label="{{:: 'cancel' | translate }}"
+    data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
+    data-on-dismiss="$ctrl.$uibModalInstance.dismiss()"
+    data-type="warning"
+>
+    <span
+        data-ng-pluralize
+        data-count="$ctrl.itemCount"
+        data-when="{
               '0': ('telephony_alias_configuration_calls_filtering_delete_all_question' | translate),
               'one': ('telephony_alias_configuration_calls_filtering_delete_one_question' | translate),
               'other': ('telephony_alias_configuration_calls_filtering_delete_all_question' | translate)
-          }">
+          }"
+    >
     </span>
 </oui-modal>

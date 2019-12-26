@@ -1,12 +1,18 @@
 <div data-ng-controller="EmailsDeleteAclCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteAcl"
-         data-wizard-title="'email_tab_modal_delete_acl_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteAcl"
+        data-wizard-title="'email_tab_modal_delete_acl_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'email_tab_modal_delete_acl_heading' | translate: { t0: ctrl.acl.accountId }"></p>
-            <p class="font-weight-bold" data-translate="emails_common_continue_question"></p>
+            <p
+                data-ng-bind-html="'email_tab_modal_delete_acl_heading' | translate: { t0: ctrl.acl.accountId }"
+            ></p>
+            <p
+                class="font-weight-bold"
+                data-translate="emails_common_continue_question"
+            ></p>
         </div>
     </div>
 </div>

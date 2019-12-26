@@ -1,18 +1,18 @@
 <div class="telecom-pack-xdsl-access-ip">
-
     <div class="widget-presentation">
         <h2 class="widget-presentation-title">
-            {{::'pack_xdsl_access_ip_title' | translate }}
-            -
+            {{::'pack_xdsl_access_ip_title' | translate }} -
             {{XdslAccessIp.ipBlock}}
         </h2>
 
         <div class="row">
             <div class="col-md-8 table-responsive">
-                <table class="table table-action-buttons"
-                       data-ng-class="{
+                <table
+                    class="table table-action-buttons"
+                    data-ng-class="{
                            'table-hover table-striped': ConfigWifiCtrl.wifis.length > 1
-                       }">
+                       }"
+                >
                     <caption class="sr-only">
                         <span data-translate="pack_xdsl_access_ip_title"></span>
                         <span> - </span>
@@ -21,47 +21,64 @@
                     <thead>
                         <tr>
                             <th scope="col">
-                                <button type="button"
-                                        class="btn btn-link p-0"
-                                        data-ng-click="XdslAccessIp.sortBy = 'ipReverse'; XdslAccessIp.revertSort=!XdslAccessIp.revertSort;XdslAccessIp.refresh();">
-                                        <span data-translate="pack_xdsl_access_ip_ip"></span>
-                                        <span class="oui-icon oui-icon-arrow-down align-baseline"
-                                              aria-hidden="true"
-                                              data-ng-class="{
+                                <button
+                                    type="button"
+                                    class="btn btn-link p-0"
+                                    data-ng-click="XdslAccessIp.sortBy = 'ipReverse'; XdslAccessIp.revertSort=!XdslAccessIp.revertSort;XdslAccessIp.refresh();"
+                                >
+                                    <span
+                                        data-translate="pack_xdsl_access_ip_ip"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-arrow-down align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
                                                 'oui-icon-arrow-down': XdslAccessIp.sortBy === 'ipReverse',
                                                 'oui-icon-arrow-down': !XdslAccessIp.revertSort && XdslAccessIp.sortBy === 'ipReverse',
                                                 'oui-icon-arrow-up': XdslAccessIp.revertSort && XdslAccessIp.sortBy === 'ipReverse'
-                                        }">
-                                        </span>
+                                        }"
+                                    >
+                                    </span>
                                 </button>
                             </th>
                             <th scope="col">
-                                <button type="button"
-                                        class="btn btn-link p-0"
-                                        data-ng-click="XdslAccessIp.sortBy = 'reverse'; XdslAccessIp.revertSort=!XdslAccessIp.revertSort;XdslAccessIp.refresh();">
-                                        <span data-translate="pack_xdsl_access_ip_dns"></span>
-                                        <span class="oui-icon oui-icon-arrow-down align-baseline"
-                                              aria-hidden="true"
-                                              data-ng-class="{
+                                <button
+                                    type="button"
+                                    class="btn btn-link p-0"
+                                    data-ng-click="XdslAccessIp.sortBy = 'reverse'; XdslAccessIp.revertSort=!XdslAccessIp.revertSort;XdslAccessIp.refresh();"
+                                >
+                                    <span
+                                        data-translate="pack_xdsl_access_ip_dns"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-arrow-down align-baseline"
+                                        aria-hidden="true"
+                                        data-ng-class="{
                                                 'oui-icon-arrow-down': XdslAccessIp.sortBy === 'reverse',
                                                 'oui-icon-arrow-down': !XdslAccessIp.revertSort && XdslAccessIp.sortBy === 'reverse',
                                                 'oui-icon-arrow-up': XdslAccessIp.revertSort && XdslAccessIp.sortBy === 'reverse'
-                                        }">
-                                        </span>
+                                        }"
+                                    >
+                                    </span>
                                 </button>
                             </th>
-                            <th>
-                            </th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-ng-repeat="ip in XdslAccessIp.ips track by ip.ipReverse"
-                            data-ng-if="!XdslAccessIp.loading && !ip.default">
+                        <tr
+                            data-ng-repeat="ip in XdslAccessIp.ips track by ip.ipReverse"
+                            data-ng-if="!XdslAccessIp.loading && !ip.default"
+                        >
                             <th scope="row">
-                                <span data-ng-if="!ip.editing" data-ng-bind="ip.ipReverse"></span>
+                                <span
+                                    data-ng-if="!ip.editing"
+                                    data-ng-bind="ip.ipReverse"
+                                ></span>
 
                                 <div data-ng-if="ip.editing">
-                                    <input name="ipReverse"
+                                    <input
+                                        name="ipReverse"
                                         data-ng-disabled="ip.updating"
                                         aria-labelledby="ipReverse"
                                         type="text"
@@ -69,11 +86,15 @@
                                         data-ng-model="ip.ipReverse"
                                         data-ui-validate="'XdslAccessIp.checkIp($value)'"
                                         placeholder="IP"
-                                        maxlength="40"/>
+                                        maxlength="40"
+                                    />
                                 </div>
                             </th>
                             <td>
-                                <span data-ng-if="!ip.editing" data-ng-bind="ip.reverse"></span>
+                                <span
+                                    data-ng-if="!ip.editing"
+                                    data-ng-bind="ip.reverse"
+                                ></span>
 
                                 <div data-ng-if="ip.editing">
                                     <input
@@ -84,37 +105,53 @@
                                         class="form-control input-sm"
                                         data-ng-model="ip.reverse"
                                         placeholder="reverse DNS"
-                                        maxlength="40"/>
+                                        maxlength="40"
+                                    />
                                 </div>
                             </td>
                             <td class="text-right">
-                                <button type="button"
-                                        data-ng-show="ip.editing"
-                                        data-ng-disabled="ip.updating || !ip.ipReverse"
-                                        class="btn btn-primary"
-                                        title="{{ip.ipReverse}} {{::'common_table_validate_entry' | translate}}"
-                                        data-ng-click="XdslAccessIp.create(ip)">
-                                    <span class="fa fa-check" aria-hidden="true"></span>
+                                <button
+                                    type="button"
+                                    data-ng-show="ip.editing"
+                                    data-ng-disabled="ip.updating || !ip.ipReverse"
+                                    class="btn btn-primary"
+                                    title="{{ip.ipReverse}} {{::'common_table_validate_entry' | translate}}"
+                                    data-ng-click="XdslAccessIp.create(ip)"
+                                >
+                                    <span
+                                        class="fa fa-check"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
-                                <button type="button"
-                                        data-ng-show="ip.editing"
-                                        data-ng-disabled="ip.updating"
-                                        class="btn btn-default"
-                                        title="{{ip.ipReverse}} {{::'common_table_cancel_entry' | translate}}"
-                                        data-ng-click="XdslAccessIp.undo(ip)">
-                                    <span class="fa fa-times" aria-hidden="true"></span>
+                                <button
+                                    type="button"
+                                    data-ng-show="ip.editing"
+                                    data-ng-disabled="ip.updating"
+                                    class="btn btn-default"
+                                    title="{{ip.ipReverse}} {{::'common_table_cancel_entry' | translate}}"
+                                    data-ng-click="XdslAccessIp.undo(ip)"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
-                                <button type="button"
-                                        data-ng-hide="ip.editing"
-                                        data-ng-disabled="ip.updating"
-                                        class="btn btn-link py-0"
-                                        title="{{ip.ipReverse}} {{::'common_table_delete' | translate}}"
-                                        data-ng-really-click="XdslAccessIp.delete(ip)"
-                                        data-ng-really-message="{{ 'pack_xdsl_access_ip_delete_really' | translate:ip }}"
-                                        data-ng-really-confirm="{{::'ok' | translate }}"
-                                        data-ng-really-cancel="{{::'cancel' | translate }}"
-                                        data-ng-really-window-class="revert-really-buttons">
-                                    <span class="ovh-font ovh-font-bin" aria-hidden="true"></span>
+                                <button
+                                    type="button"
+                                    data-ng-hide="ip.editing"
+                                    data-ng-disabled="ip.updating"
+                                    class="btn btn-link py-0"
+                                    title="{{ip.ipReverse}} {{::'common_table_delete' | translate}}"
+                                    data-ng-really-click="XdslAccessIp.delete(ip)"
+                                    data-ng-really-message="{{ 'pack_xdsl_access_ip_delete_really' | translate:ip }}"
+                                    data-ng-really-confirm="{{::'ok' | translate }}"
+                                    data-ng-really-cancel="{{::'cancel' | translate }}"
+                                    data-ng-really-window-class="revert-really-buttons"
+                                >
+                                    <span
+                                        class="ovh-font ovh-font-bin"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </td>
                         </tr>
@@ -122,12 +159,17 @@
                     <tfoot>
                         <tr data-ng-if="!XdslAccessIp.loading">
                             <td colspan="3">
-                                <button type="button"
-                                        class="btn btn-primary"
-                                        data-translate-attr="{title : 'pack_xdsl_access_ip_add_entry'}"
-                                        data-ng-disabled="!XdslAccessIp.canAdd()"
-                                        data-ng-click="XdslAccessIp.add()">
-                                    <span class="fa fa-plus" aria-hidden="true"></span>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-translate-attr="{title : 'pack_xdsl_access_ip_add_entry'}"
+                                    data-ng-disabled="!XdslAccessIp.canAdd()"
+                                    data-ng-click="XdslAccessIp.add()"
+                                >
+                                    <span
+                                        class="fa fa-plus"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </td>
                         </tr>
@@ -141,5 +183,4 @@
             </div>
         </div>
     </div>
-
 </div>

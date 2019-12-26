@@ -2,7 +2,8 @@
     name="{{:: $ctrl.name }}"
     data-ng-if="$ctrl.contracts"
     data-model="$ctrl.model"
-    data-required>
+    data-required
+>
     <span data-translate="order_contracts_label"></span>
 </oui-checkbox>
 
@@ -12,10 +13,17 @@
             class="oui-link_icon"
             data-ng-href="{{:: contract.url }}"
             rel="noopener"
-            target="_blank">
+            target="_blank"
+        >
             <span data-ng-bind="contract.name"></span>
-            <span class="oui-icon oui-icon_external-link" aria-hidden="true"></span>
-            <span class="sr-only" data-translate="order_contracts_label_new_tab"></span>
+            <span
+                class="oui-icon oui-icon_external-link"
+                aria-hidden="true"
+            ></span>
+            <span
+                class="sr-only"
+                data-translate="order_contracts_label_new_tab"
+            ></span>
         </a>
     </li>
 </ul>

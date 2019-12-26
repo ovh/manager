@@ -1,111 +1,155 @@
-<div class="telephonyCallsFilteringAdd"
-     data-ng-if="$ctrl.isInitialized">
-
+<div class="telephonyCallsFilteringAdd" data-ng-if="$ctrl.isInitialized">
     <div class="clearfix mb-2">
-        <tuc-file-reader class="float-right"
-                     data-ng-model="$ctrl.csv"
-                     data-ng-accept=".csv"
-                     data-ng-accept-filter="$ctrl.checkValidCSV(file)"
-                     data-ng-read="$ctrl.importCSV(data)">
-            <span data-translate="telephony_calls_filtering_add_csv_import"></span>
+        <tuc-file-reader
+            class="float-right"
+            data-ng-model="$ctrl.csv"
+            data-ng-accept=".csv"
+            data-ng-accept-filter="$ctrl.checkValidCSV(file)"
+            data-ng-read="$ctrl.importCSV(data)"
+        >
+            <span
+                data-translate="telephony_calls_filtering_add_csv_import"
+            ></span>
         </tuc-file-reader>
-        <button type="button"
-                class="btn btn-default float-right mr-1"
-                data-ng-click="$ctrl.openHelper()"
-                data-ng-disabled="$ctrl.helperModalOpened"
-                data-translate="telephony_calls_filtering_helper">
-        </button>
+        <button
+            type="button"
+            class="btn btn-default float-right mr-1"
+            data-ng-click="$ctrl.openHelper()"
+            data-ng-disabled="$ctrl.helperModalOpened"
+            data-translate="telephony_calls_filtering_helper"
+        ></button>
     </div>
 
-    <form name="filteringAddForm"
-          data-ng-submit="$ctrl.addScreen(filteringAddForm)">
-
+    <form
+        name="filteringAddForm"
+        data-ng-submit="$ctrl.addScreen(filteringAddForm)"
+    >
         <!-- NATURE -->
-        <div class="form-group"
-             data-ng-if="!$ctrl.disableNature">
-            <label class="control-label"
-                   for="numberNature"
-                   data-translate="telephony_calls_filtering_nature">
+        <div class="form-group" data-ng-if="!$ctrl.disableNature">
+            <label
+                class="control-label"
+                for="numberNature"
+                data-translate="telephony_calls_filtering_nature"
+            >
             </label>
-            <select class="form-control"
-                    id="numberNature"
-                    name="numberNature"
-                    data-ng-model="$ctrl.screenListToAdd.nature"
-                    data-ng-disabled="$ctrl.screenListToAdd.isAdding || $ctrl.disableNature"
-                    data-ng-change="$ctrl.screenListToAdd.callNumber = ''"
-                    required>
-                <option value="fax" data-translate="telephony_calls_filtering_table_nature_fax"></option>
-                <option value="international" data-translate="telephony_calls_filtering_table_nature_international"></option>
-                <option value="services" data-translate="telephony_calls_filtering_table_nature_services"></option>
-                <option value="special" data-translate="telephony_calls_filtering_table_nature_special"></option>
-                <option value="voicemail" data-translate="telephony_calls_filtering_table_nature_voicemail"></option>
+            <select
+                class="form-control"
+                id="numberNature"
+                name="numberNature"
+                data-ng-model="$ctrl.screenListToAdd.nature"
+                data-ng-disabled="$ctrl.screenListToAdd.isAdding || $ctrl.disableNature"
+                data-ng-change="$ctrl.screenListToAdd.callNumber = ''"
+                required
+            >
+                <option
+                    value="fax"
+                    data-translate="telephony_calls_filtering_table_nature_fax"
+                ></option>
+                <option
+                    value="international"
+                    data-translate="telephony_calls_filtering_table_nature_international"
+                ></option>
+                <option
+                    value="services"
+                    data-translate="telephony_calls_filtering_table_nature_services"
+                ></option>
+                <option
+                    value="special"
+                    data-translate="telephony_calls_filtering_table_nature_special"
+                ></option>
+                <option
+                    value="voicemail"
+                    data-translate="telephony_calls_filtering_table_nature_voicemail"
+                ></option>
             </select>
         </div>
 
         <!-- TYPE -->
         <div class="form-group">
-            <label class="control-label"
-                   for="numberType"
-                   data-translate="telephony_calls_filtering_list">
+            <label
+                class="control-label"
+                for="numberType"
+                data-translate="telephony_calls_filtering_list"
+            >
             </label>
-            <select class="form-control"
-                    id="numberType"
-                    name="numberType"
-                    data-ng-model="$ctrl.screenListToAdd.type"
-                    data-ng-disabled="$ctrl.screenListToAdd.isAdding"
-                    required>
-                <option value="incomingWhiteList" data-translate="telephony_calls_filtering_type_incomingWhiteList"></option>
-                <option value="incomingBlackList" data-translate="telephony_calls_filtering_type_incomingBlackList"></option>
-                <option data-ng-if="!$ctrl.disableOutgoing"
-                        value="outgoingWhiteList"
-                        data-translate="telephony_calls_filtering_type_outgoingWhiteList"></option>
-                <option data-ng-if="!$ctrl.disableOutgoing"
-                        value="outgoingBlackList"
-                        data-translate="telephony_calls_filtering_type_outgoingBlackList"></option>
+            <select
+                class="form-control"
+                id="numberType"
+                name="numberType"
+                data-ng-model="$ctrl.screenListToAdd.type"
+                data-ng-disabled="$ctrl.screenListToAdd.isAdding"
+                required
+            >
+                <option
+                    value="incomingWhiteList"
+                    data-translate="telephony_calls_filtering_type_incomingWhiteList"
+                ></option>
+                <option
+                    value="incomingBlackList"
+                    data-translate="telephony_calls_filtering_type_incomingBlackList"
+                ></option>
+                <option
+                    data-ng-if="!$ctrl.disableOutgoing"
+                    value="outgoingWhiteList"
+                    data-translate="telephony_calls_filtering_type_outgoingWhiteList"
+                ></option>
+                <option
+                    data-ng-if="!$ctrl.disableOutgoing"
+                    value="outgoingBlackList"
+                    data-translate="telephony_calls_filtering_type_outgoingBlackList"
+                ></option>
             </select>
         </div>
 
         <!-- NUMBER -->
-        <div class="form-group"
-             data-ng-if="$ctrl.screenListToAdd.nature !== 'services' && $ctrl.screenListToAdd.nature !== 'voicemail' && $ctrl.screenListToAdd.nature !== 'fax'">
-            <label class="control-label"
-                   for="callNumber">
+        <div
+            class="form-group"
+            data-ng-if="$ctrl.screenListToAdd.nature !== 'services' && $ctrl.screenListToAdd.nature !== 'voicemail' && $ctrl.screenListToAdd.nature !== 'fax'"
+        >
+            <label class="control-label" for="callNumber">
                 <span data-translate="telephony_calls_filtering_number"></span>
-                <i class="ovh-font ovh-font-question ml-1"
-                   data-ng-if="$ctrl.screenListToAdd.nature === 'international' && !$ctrl.disableNature"
-                   data-uib-tooltip="{{ 'telephony_calls_filtering_number_info' | translate }}"></i>
+                <i
+                    class="ovh-font ovh-font-question ml-1"
+                    data-ng-if="$ctrl.screenListToAdd.nature === 'international' && !$ctrl.disableNature"
+                    data-uib-tooltip="{{ 'telephony_calls_filtering_number_info' | translate }}"
+                ></i>
             </label>
-            <input type="text"
-                   id="callNumber"
-                   name="callNumber"
-                   class="form-control"
-                   placeholder="{{ $ctrl.disableNature ? '' : ($ctrl.screenListToAdd.nature === 'international' ? 'telephony_calls_filtering_number_international' : 'telephony_calls_filtering_table_nature_special' | translate) }}"
-                   data-ng-pattern="$ctrl.getNumberValidationPattern()"
-                   data-ng-model="$ctrl.screenListToAdd.callNumber"
-                   required />
+            <input
+                type="text"
+                id="callNumber"
+                name="callNumber"
+                class="form-control"
+                placeholder="{{ $ctrl.disableNature ? '' : ($ctrl.screenListToAdd.nature === 'international' ? 'telephony_calls_filtering_number_international' : 'telephony_calls_filtering_table_nature_special' | translate) }}"
+                data-ng-pattern="$ctrl.getNumberValidationPattern()"
+                data-ng-model="$ctrl.screenListToAdd.callNumber"
+                required
+            />
         </div>
 
-        <div class="alert alert-danger"
-             role="alert"
-             data-ng-if="$ctrl.isScreenListsAlreadyExisting()">
+        <div
+            class="alert alert-danger"
+            role="alert"
+            data-ng-if="$ctrl.isScreenListsAlreadyExisting()"
+        >
             <span data-translate="telephony_calls_filtering_add_already_exist">
             </span>
         </div>
 
         <!-- SUBMIT BUTTON -->
         <div class="form-group">
-            <button type="submit"
-                    class="btn btn-primary"
-                    data-ng-disabled="$ctrl.screenListToAdd.isAdding || filteringAddForm.$invalid || $ctrl.isScreenListsAlreadyExisting()">
-                <oui-spinner class="mr-2"
-                             data-ng-if="$ctrl.screenListToAdd.isAdding"
-                             data-size="s">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                data-ng-disabled="$ctrl.screenListToAdd.isAdding || filteringAddForm.$invalid || $ctrl.isScreenListsAlreadyExisting()"
+            >
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="$ctrl.screenListToAdd.isAdding"
+                    data-size="s"
+                >
                 </oui-spinner>
                 <span data-translate="telephony_calls_filtering_add"></span>
             </button>
         </div>
-
     </form>
-
-
 </div>

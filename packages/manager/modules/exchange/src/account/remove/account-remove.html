@@ -1,20 +1,29 @@
 <div data-ng-controller="ExchangeRemoveAccountCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="getTitle()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="getTitle()"
+    >
         <div data-wizard-step>
-            <p data-ng-bind="(ctrl.removeAccountInsteadOfReset ? 'exchange_tab_account_remove_title': 'exchange_tab_account_reset_title') | translate"></p>
+            <p
+                data-ng-bind="(ctrl.removeAccountInsteadOfReset ? 'exchange_tab_account_remove_title': 'exchange_tab_account_reset_title') | translate"
+            ></p>
             <dl class="dl-horizontal">
-                <dt data-translate="exchange_tab_account_remove_email_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.account.primaryEmailDisplayName | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_tab_account_remove_email_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.account.primaryEmailDisplayName | wucSliceContent: 150"
+                ></dd>
             </dl>
-            <div class="alert alert-info" role="alert"
-                 data-translate="exchange_tab_account_reset_email_info"
-                 data-ng-if="!ctrl.removeAccountInsteadOfReset">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="exchange_tab_account_reset_email_info"
+                data-ng-if="!ctrl.removeAccountInsteadOfReset"
+            ></div>
         </div>
     </div>
 </div>

@@ -1,39 +1,48 @@
-<form name="deletePhonebookForm"
-      id="deletePhonebookForm"
-      data-ng-submit="ContactDeleteCtrl.delete()">
-
+<form
+    name="deletePhonebookForm"
+    id="deletePhonebookForm"
+    data-ng-submit="ContactDeleteCtrl.delete()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="ContactDeleteCtrl.cancel()">
+            data-ng-click="ContactDeleteCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <!-- /.modal-header -->
 
-    <div class="modal-body"
-         data-ng-if="!ContactDeleteCtrl.isDeleting && !ContactDeleteCtrl.deleted">
-        <h3 class="modal-title"
-            data-translate="sms_phonebooks_phonebook_contact_delete">
-        </h3>
-        <p data-translate="sms_phonebooks_phonebook_contact_delete_confirm"
-           data-translate-values="{ name: ContactDeleteCtrl.getContactName() }">
-        </p>
+    <div
+        class="modal-body"
+        data-ng-if="!ContactDeleteCtrl.isDeleting && !ContactDeleteCtrl.deleted"
+    >
+        <h3
+            class="modal-title"
+            data-translate="sms_phonebooks_phonebook_contact_delete"
+        ></h3>
+        <p
+            data-translate="sms_phonebooks_phonebook_contact_delete_confirm"
+            data-translate-values="{ name: ContactDeleteCtrl.getContactName() }"
+        ></p>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body text-center"
-         data-ng-if="ContactDeleteCtrl.isDeleting">
+    <div
+        class="modal-body text-center"
+        data-ng-if="ContactDeleteCtrl.isDeleting"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="sms_phonebooks_phonebook_contact_deleting"></h4>
     </div>
     <!-- /.modal-body -->
 
-    <div class="modal-body"
-         data-ng-if="ContactDeleteCtrl.deleted">
-        <tuc-success-drawing-check data-draw-success-check="ContactDeleteCtrl.deleted">
+    <div class="modal-body" data-ng-if="ContactDeleteCtrl.deleted">
+        <tuc-success-drawing-check
+            data-draw-success-check="ContactDeleteCtrl.deleted"
+        >
             <h4 data-translate="sms_phonebooks_phonebook_contact_deleted"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -45,14 +54,14 @@
             class="btn btn-default"
             data-ng-click="ContactDeleteCtrl.cancel()"
             data-ng-disabled="ContactDeleteCtrl.isDeleting || ContactDeleteCtrl.deleted"
-            data-translate="sms_cancel">
-        </button>
+            data-translate="sms_cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="ContactDeleteCtrl.isDeleting || ContactDeleteCtrl.deleted"
-            data-translate="sms_submit">
-        </button>
+            data-translate="sms_submit"
+        ></button>
     </div>
     <!-- /.modal-footer -->
 </form>

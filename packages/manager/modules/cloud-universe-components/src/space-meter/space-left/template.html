@@ -1,10 +1,12 @@
-<span class="cloud-space-meter-space-left__text"
+<span
+    class="cloud-space-meter-space-left__text"
     data-ng-class="{
         'cloud-space-meter-space-left__text_hoverable': $ctrl.tooltip,
         'cloud-space-meter-space-left__text_strong': $ctrl.strong
     }"
     data-tooltip-class="cloud-space-meter-space-left__tooltip"
     data-tooltip-enable="{{ $ctrl.tooltip ? 'true' : 'false' }}"
-    data-uib-tooltip-template="'cucCloudSpaceMeterSpaceLeft/tooltip.html'">
+    data-uib-tooltip-template="'cucCloudSpaceMeterSpaceLeft/tooltip.html'"
+>
     {{ $ctrl.usage | cucSpaceMeterSpaceLeft }}
 </span>

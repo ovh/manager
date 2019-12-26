@@ -1,57 +1,72 @@
-<div class="service-item"
-     data-ng-class="{'main-service' : $ctrl.action.main}">
-
+<div class="service-item" data-ng-class="{'main-service' : $ctrl.action.main}">
     <!-- DISABLED -->
-    <button type="button"
-            class="btn service-button disabled"
-            data-ng-if="$ctrl.action.disabled"
-            data-ng-disabled="true"
-            title="{{ $ctrl.action.text }}">
+    <button
+        type="button"
+        class="btn service-button disabled"
+        data-ng-if="$ctrl.action.disabled"
+        data-ng-disabled="true"
+        title="{{ $ctrl.action.text }}"
+    >
         <span class="service-button-description">
-            <i class="action-icon ovh-font mr-3"
-               aria-hidden="true"
-               data-ng-if="$ctrl.action.picto"
-               data-ng-class="[$ctrl.action.picto]">
+            <i
+                class="action-icon ovh-font mr-3"
+                aria-hidden="true"
+                data-ng-if="$ctrl.action.picto"
+                data-ng-class="[$ctrl.action.picto]"
+            >
             </i>
             {{ $ctrl.action.text }}
         </span>
     </button>
 
     <!-- URL -->
-    <a class="service-button"
-       data-ng-if="!$ctrl.action.disabled && $ctrl.action.url"
-       target="_blank"
-       data-ng-href="{{ $ctrl.action.url }}"
-       title="{{ $ctrl.action.tip || $ctrl.action.text }}">
+    <a
+        class="service-button"
+        data-ng-if="!$ctrl.action.disabled && $ctrl.action.url"
+        target="_blank"
+        data-ng-href="{{ $ctrl.action.url }}"
+        title="{{ $ctrl.action.tip || $ctrl.action.text }}"
+    >
         <span class="service-button-description">
-            <i class="action-icon ovh-font mr-3"
-               aria-hidden="true"
-               data-ng-if="$ctrl.action.picto"
-               data-ng-class="[$ctrl.action.picto]"></i>
+            <i
+                class="action-icon ovh-font mr-3"
+                aria-hidden="true"
+                data-ng-if="$ctrl.action.picto"
+                data-ng-class="[$ctrl.action.picto]"
+            ></i>
             {{ $ctrl.action.text }}
-            <i class="ovh-font ml-2"
-               aria-hidden="true"
-               data-ng-class="$ctrl.action.isExternal ? 'ovh-font-newtab' : 'ovh-font-backToV4'">
+            <i
+                class="ovh-font ml-2"
+                aria-hidden="true"
+                data-ng-class="$ctrl.action.isExternal ? 'ovh-font-newtab' : 'ovh-font-backToV4'"
+            >
             </i>
         </span>
-        <span class="service-button-icon service-button-right-icon ovh-font ovh-font-arrow-right"
-              aria-hidden="true"></span>
+        <span
+            class="service-button-icon service-button-right-icon ovh-font ovh-font-arrow-right"
+            aria-hidden="true"
+        ></span>
     </a>
 
     <!-- SREF -->
-    <a class="service-button"
-       data-ng-if="!$ctrl.action.disabled && $ctrl.action.sref"
-       data-ui-sref="{{ $ctrl.action.sref }}"
-       title="{{ $ctrl.action.tip || $ctrl.action.text }}">
+    <a
+        class="service-button"
+        data-ng-if="!$ctrl.action.disabled && $ctrl.action.sref"
+        data-ui-sref="{{ $ctrl.action.sref }}"
+        title="{{ $ctrl.action.tip || $ctrl.action.text }}"
+    >
         <span class="service-button-description">
-            <i class="action-icon ovh-font mr-3"
-               aria-hidden="true"
-               data-ng-if="$ctrl.action.picto"
-               data-ng-class="[$ctrl.action.picto]"></i>
+            <i
+                class="action-icon ovh-font mr-3"
+                aria-hidden="true"
+                data-ng-if="$ctrl.action.picto"
+                data-ng-class="[$ctrl.action.picto]"
+            ></i>
             {{ $ctrl.action.text }}
         </span>
-        <span class="service-button-icon service-button-right-icon ovh-font ovh-font-arrow-right"
-              aria-hidden="true"></span>
+        <span
+            class="service-button-icon service-button-right-icon ovh-font ovh-font-arrow-right"
+            aria-hidden="true"
+        ></span>
     </a>
-
 </div>

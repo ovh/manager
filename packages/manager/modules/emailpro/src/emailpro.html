@@ -1,48 +1,89 @@
-<div class="text-center"
-     data-ng-if="loadingEmailProInformations && !loadingEmailProError">
+<div
+    class="text-center"
+    data-ng-if="loadingEmailProInformations && !loadingEmailProError"
+>
     <oui-spinner data-size="l"></oui-spinner>
 </div>
 
-<div class="page-header"
-     data-ng-if="!loadingEmailProInformations && !loadingEmailProError">
+<div
+    class="page-header"
+    data-ng-if="!loadingEmailProInformations && !loadingEmailProError"
+>
     <div class="row">
         <div class="col-sm-9">
             <form name="formEditDisplayName" novalidate>
                 <div class="mb-3" data-ng-show="!edit.active">
                     <div class="d-flex">
-                        <h1 class="d-inline-block mb-0" data-ng-bind="exchange.displayName"></h1>
-                        <button class="btn btn-icon my-auto ml-2" type="button" title="{{ 'wizard_modify' | translate }}"
-                                data-ng-click="edit.active = !edit.active">
-                            <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
+                        <h1
+                            class="d-inline-block mb-0"
+                            data-ng-bind="exchange.displayName"
+                        ></h1>
+                        <button
+                            class="btn btn-icon my-auto ml-2"
+                            type="button"
+                            title="{{ 'wizard_modify' | translate }}"
+                            data-ng-click="edit.active = !edit.active"
+                        >
+                            <span
+                                class="oui-icon oui-icon-pen_line oui-icon_small"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </div>
-                    <span class="font-italic"
-                          data-ng-bind="exchange.domain"
-                          data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"></span>
+                    <span
+                        class="font-italic"
+                        data-ng-bind="exchange.domain"
+                        data-ng-if="exchange.displayName != null && exchange.displayName !== exchange.domain"
+                    ></span>
                 </div>
                 <div class="form-group" data-ng-show="edit.active">
                     <div class="oui-input-group">
-                        <input type="text" class="form-control" name="txtDisplayName" required
-                               data-ng-minlength="5"
-                               data-ng-maxlength="250"
-                               data-ng-model="newDisplayName.value">
-                        <button class="oui-button oui-button_small-width" type="submit" title="{{ 'common_confirm' | translate }}"
-                                data-ng-click="saveDisplayName()"
-                                data-ng-disabled="formEditDisplayName.$invalid">
-                            <span class="oui-icon oui-icon-success oui-icon_small" aria-hidden="true"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="txtDisplayName"
+                            required
+                            data-ng-minlength="5"
+                            data-ng-maxlength="250"
+                            data-ng-model="newDisplayName.value"
+                        />
+                        <button
+                            class="oui-button oui-button_small-width"
+                            type="submit"
+                            title="{{ 'common_confirm' | translate }}"
+                            data-ng-click="saveDisplayName()"
+                            data-ng-disabled="formEditDisplayName.$invalid"
+                        >
+                            <span
+                                class="oui-icon oui-icon-success oui-icon_small"
+                                aria-hidden="true"
+                            ></span>
                         </button>
-                        <button class="oui-button oui-button_small-width" type="button" title="{{ 'common_cancel' | translate }}"
-                                data-ng-click="edit.active = false">
-                            <span class="oui-icon oui-icon-error oui-icon_small" aria-hidden="true"></span>
+                        <button
+                            class="oui-button oui-button_small-width"
+                            type="button"
+                            title="{{ 'common_cancel' | translate }}"
+                            data-ng-click="edit.active = false"
+                        >
+                            <span
+                                class="oui-icon oui-icon-error oui-icon_small"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </div>
-                    <div class="help-block"
-                         data-ng-if="formEditDisplayName.txtDisplayName.$dirty"
-                         data-ng-messages="formEditDisplayName.txtDisplayName.$error">
-                        <span data-translate="emailpro_displayName_maxlength"
-                              data-ng-message="maxlength"></span>
-                        <span data-translate="emailpro_displayName_required"
-                              data-ng-message="required"></span>
+                    <div
+                        class="help-block"
+                        data-ng-if="formEditDisplayName.txtDisplayName.$dirty"
+                        data-ng-messages="formEditDisplayName.txtDisplayName.$error"
+                    >
+                        <span
+                            data-translate="emailpro_displayName_maxlength"
+                            data-ng-message="maxlength"
+                        ></span>
+                        <span
+                            data-translate="emailpro_displayName_required"
+                            data-ng-message="required"
+                        ></span>
                     </div>
                 </div>
             </form>
@@ -50,97 +91,168 @@
 
         <div class="col-sm-3 text-right">
             <div class="btn-group mt-4">
-                <button class="oui-button oui-button_dropdown mb-0" type="button" aria-haspopup="true" aria-expanded="false"
-                        data-toggle="dropdown">
+                <button
+                    class="oui-button oui-button_dropdown mb-0"
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-toggle="dropdown"
+                >
                     <span data-translate="common_actions"></span>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
-                  <li data-ng-if="!exchange.isMXPlan">
-                    <i class="oui-icon oui-icon-page_line" aria-hidden="true"></i>
-                    <button class="btn btn-link" type="button"
-                              data-ng-if="exchange.renewOptionAvailable || is25g()"
-                              data-ng-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
-                              data-translate="emailpro_update_billing_button_title">
-                    </button>
-                  </li>
-                  <li class="dropdown-divider" data-ng-if="!exchange.isMXPlan">
-                      <i class="oui-icon oui-icon-power_line" aria-hidden="true"></i>
-                      <button class="btn btn-link" type="button"
-                              data-ng-if="exchange.deleteOptionAvailable"
-                              data-ng-click="setAction('emailpro/remove/emailpro-remove', exchange)">
-                          <span data-translate="emailpro_resilitation_action_button" data-ng-if="!exchange.renewType.deleteAtExpiration"></span>
-                          <span data-translate="emailpro_resilitation_action_button_cancel" data-ng-if="exchange.renewType.deleteAtExpiration"></span>
-                      </button>
-                  </li>
-                  <li data-ng-if="exchange.isMXPlan">
-                    <a
-                        class="btn btn-link"
-                        target="_blank"
-                        data-ng-href="#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText={{ exchange.associatedDomainName }}">
-                        <span data-translate="emailpro_delete_action_button"></span>
-                        <span class="fa fa-external-link ml-2" aria-hidden="true"></span>
-                        <span class="sr-only" data-translate="common_open_new_tab"></span>
-                    </a>
-                  </li>
+                    <li data-ng-if="!exchange.isMXPlan">
+                        <i
+                            class="oui-icon oui-icon-page_line"
+                            aria-hidden="true"
+                        ></i>
+                        <button
+                            class="btn btn-link"
+                            type="button"
+                            data-ng-if="exchange.renewOptionAvailable || is25g()"
+                            data-ng-click="setAction('emailpro/update/renew/emailpro-update-renew', exchange)"
+                            data-translate="emailpro_update_billing_button_title"
+                        ></button>
+                    </li>
+                    <li
+                        class="dropdown-divider"
+                        data-ng-if="!exchange.isMXPlan"
+                    >
+                        <i
+                            class="oui-icon oui-icon-power_line"
+                            aria-hidden="true"
+                        ></i>
+                        <button
+                            class="btn btn-link"
+                            type="button"
+                            data-ng-if="exchange.deleteOptionAvailable"
+                            data-ng-click="setAction('emailpro/remove/emailpro-remove', exchange)"
+                        >
+                            <span
+                                data-translate="emailpro_resilitation_action_button"
+                                data-ng-if="!exchange.renewType.deleteAtExpiration"
+                            ></span>
+                            <span
+                                data-translate="emailpro_resilitation_action_button_cancel"
+                                data-ng-if="exchange.renewType.deleteAtExpiration"
+                            ></span>
+                        </button>
+                    </li>
+                    <li data-ng-if="exchange.isMXPlan">
+                        <a
+                            class="btn btn-link"
+                            target="_blank"
+                            data-ng-href="#/billing/autoRenew?selectedType=EMAIL_DOMAIN&searchText={{ exchange.associatedDomainName }}"
+                        >
+                            <span
+                                data-translate="emailpro_delete_action_button"
+                            ></span>
+                            <span
+                                class="fa fa-external-link ml-2"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="common_open_new_tab"
+                            ></span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 
-<div data-ng-controller="EmailProTabsCtrl"
-     data-ng-if="!loadingEmailProInformations && !loadingEmailProError && !exchange.isExpired">
-    <wuc-ovh-tabs tabs="tabs"
-              selected-tab="selectedTab"
-              change-tab="setSelectedTab"
-              product="exchange"
-              tr="tr"
-              menu="tabMenu"></wuc-ovh-tabs>
+<div
+    data-ng-controller="EmailProTabsCtrl"
+    data-ng-if="!loadingEmailProInformations && !loadingEmailProError && !exchange.isExpired"
+>
+    <wuc-ovh-tabs
+        tabs="tabs"
+        selected-tab="selectedTab"
+        change-tab="setSelectedTab"
+        product="exchange"
+        tr="tr"
+        menu="tabMenu"
+    ></wuc-ovh-tabs>
     <div class="tab-content">
-        <div class="alert alert-dismissible" role="alert"
-             data-ng-class="alertType"
-             data-ng-if="!loadingEmailProError && message">
-            <button class="close" type="button" data-ng-click="resetMessages()"></button>
+        <div
+            class="alert alert-dismissible"
+            role="alert"
+            data-ng-class="alertType"
+            data-ng-if="!loadingEmailProError && message"
+        >
+            <button
+                class="close"
+                type="button"
+                data-ng-click="resetMessages()"
+            ></button>
             <span data-ng-bind-html="message"></span>
-            <div data-ng-show="messageDetails"
-                 data-linkedpopover="emailpro/emailpro-error-messages.popover.html"
-                 data-linkedpopover-placement="bottom"
-                 data-linkedpopover-single="false"
-                 data-linkedpopover-remote="true">
-                <strong class="pointer underline"
-                        data-translate="emailpro_dashboard_message_see_more"
-                        data-ng-if="messageDetails.length > 0"></strong>
+            <div
+                data-ng-show="messageDetails"
+                data-linkedpopover="emailpro/emailpro-error-messages.popover.html"
+                data-linkedpopover-placement="bottom"
+                data-linkedpopover-single="false"
+                data-linkedpopover-remote="true"
+            >
+                <strong
+                    class="pointer underline"
+                    data-translate="emailpro_dashboard_message_see_more"
+                    data-ng-if="messageDetails.length > 0"
+                ></strong>
             </div>
         </div>
-        <div class="tab-pane active platform"
-             data-ng-include="selectedTab && 'emailpro/' + kebabCase(selectedTab) + '/emailpro-' + kebabCase(selectedTab) + '.html'"></div>
+        <div
+            class="tab-pane active platform"
+            data-ng-include="selectedTab && 'emailpro/' + kebabCase(selectedTab) + '/emailpro-' + kebabCase(selectedTab) + '.html'"
+        ></div>
     </div>
 </div>
 
-<div class="oui-message oui-message_error oui-message_l" role="alert"
-     data-ng-if="loadingEmailProError && message">
+<div
+    class="oui-message oui-message_error oui-message_l"
+    role="alert"
+    data-ng-if="loadingEmailProError && message"
+>
     <span class="oui-message_l-icon" aria-hidden="true"></span>
-    <h1 class="oui-message__title" data-translate="emailpro_dashboard_service_expired"></h1>
+    <h1
+        class="oui-message__title"
+        data-translate="emailpro_dashboard_service_expired"
+    ></h1>
     <div class="oui-message__body">
         <span data-ng-bind-html="message"></span>
-        <div data-ng-if="messageDetails"
-             data-linkedpopover="emailpro/emailpro-error-messages.popover.html"
-             data-linkedpopover-placement="bottom"
-             data-linkedpopover-single="false"
-             data-linkedpopover-remote="true">
-            <strong class="pointer underline"
-                    data-translate="emailpro_dashboard_message_see_more"
-                    data-ng-if="messageDetails.length > 0"></strong>
+        <div
+            data-ng-if="messageDetails"
+            data-linkedpopover="emailpro/emailpro-error-messages.popover.html"
+            data-linkedpopover-placement="bottom"
+            data-linkedpopover-single="false"
+            data-linkedpopover-remote="true"
+        >
+            <strong
+                class="pointer underline"
+                data-translate="emailpro_dashboard_message_see_more"
+                data-ng-if="messageDetails.length > 0"
+            ></strong>
         </div>
     </div>
 </div>
 
 <!-- Migration to Exchange 2016. Display a link to follow the status of the migration -->
-<div class="alert alert-warning mt-5 mx-5" role="alert"
-     data-ng-if="exchange.serverDiagnostic.individual2010"
-     data-ng-show="!loadingEmailProInformations && !loadingEmailProError">
-    <a href="http://migrationstatus.mail.ovh.net" target="_blank" title="{{ 'emailpro_dashboard_2016_migration' | translate }} ({{ 'emailpro_dashboard_new_window' | translate }})">
+<div
+    class="alert alert-warning mt-5 mx-5"
+    role="alert"
+    data-ng-if="exchange.serverDiagnostic.individual2010"
+    data-ng-show="!loadingEmailProInformations && !loadingEmailProError"
+>
+    <a
+        href="http://migrationstatus.mail.ovh.net"
+        target="_blank"
+        title="{{ 'emailpro_dashboard_2016_migration' | translate }} ({{ 'emailpro_dashboard_new_window' | translate }})"
+    >
         <span data-translate="emailpro_dashboard_2016_migration"></span>
         <span class="fa fa-external-link ml-2" aria-hidden="true"></span>
     </a>
@@ -148,7 +260,11 @@
 
 <div id="currentAction" class="modal fade currentAction" role="dialog">
     <div class="modal-dialog">
-        <div id="modal-container" class="modal-content" data-ng-include="stepPath"></div>
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="stepPath"
+        ></div>
         <div id="modal-help" class="help4wizards"></div>
     </div>
 </div>

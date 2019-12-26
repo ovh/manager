@@ -4,15 +4,17 @@
             type="button"
             class="close float-right"
             aria-label="{{ 'sms_cancel' | translate }}"
-            data-ng-click="ComposeTipsCtrl.close()">
+            data-ng-click="ComposeTipsCtrl.close()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body">
-        <h3 class="modal-title"
-            data-translate="sms_sms_compose_tip_compose_title">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="sms_sms_compose_tip_compose_title"
+        ></h3>
         <p data-translate="sms_sms_compose_tip_size_paragraphe_1"></p>
         <p data-translate="sms_sms_compose_tip_size_paragraphe_2"></p>
         <p data-translate="sms_sms_compose_tip_size_paragraphe_3"></p>
@@ -20,7 +22,10 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th colspan="8" data-translate="sms_sms_compose_tip_size_characters_basics"></th>
+                        <th
+                            colspan="8"
+                            data-translate="sms_sms_compose_tip_size_characters_basics"
+                        ></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +33,10 @@
                         <td width="12.5%">@</td>
                         <td width="12.5%">Δ</td>
                         <td width="12.5%">
-                            <span data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_space' | translate }}">&lt;SP&gt;</span>
+                            <span
+                                data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_space' | translate }}"
+                                >&lt;SP&gt;</span
+                            >
                         </td>
                         <td width="12.5%">0</td>
                         <td width="12.5%">¡</td>
@@ -128,7 +136,10 @@
                     </tr>
                     <tr>
                         <td width="12.5%">
-                            <span data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_line_feed' | translate }}">&lt;LF&gt;</span>
+                            <span
+                                data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_line_feed' | translate }}"
+                                >&lt;LF&gt;</span
+                            >
                         </td>
                         <td width="12.5%">Ξ</td>
                         <td width="12.5%">*</td>
@@ -141,7 +152,10 @@
                     <tr>
                         <td width="12.5%">Ø</td>
                         <td width="12.5%">
-                            <span data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_escape' | translate }}">&lt;ESC&gt;</span>
+                            <span
+                                data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_escape' | translate }}"
+                                >&lt;ESC&gt;</span
+                            >
                         </td>
                         <td width="12.5%">+</td>
                         <td width="12.5%">;</td>
@@ -162,7 +176,10 @@
                     </tr>
                     <tr>
                         <td width="12.5%">
-                            <span data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_carriage_return' | translate }}">&lt;CR&gt;</span>
+                            <span
+                                data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_carriage_return' | translate }}"
+                                >&lt;CR&gt;</span
+                            >
                         </td>
                         <td width="12.5%">æ</td>
                         <td width="12.5%">-</td>
@@ -199,14 +216,20 @@
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
-                        <th colspan="5" data-translate="sms_sms_compose_tip_size_characters_extensions"></th>
+                        <th
+                            colspan="5"
+                            data-translate="sms_sms_compose_tip_size_characters_extensions"
+                        ></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td width="20%">€</td>
                         <td width="20%">
-                            <span data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_form_feed' | translate }}">&lt;FF&gt;</span>
+                            <span
+                                data-oui-tooltip="{{:: 'sms_sms_compose_tip_size_tooltip_characters_label' | translate }} {{:: 'sms_sms_compose_tip_size_tooltip_form_feed' | translate }}"
+                                >&lt;FF&gt;</span
+                            >
                         </td>
                         <td width="20%">[</td>
                         <td width="20%">\</td>
@@ -229,7 +252,7 @@
             type="button"
             class="btn btn-primary"
             data-ng-click="ComposeTipsCtrl.close()"
-            data-ng-bind="'sms_ok' | translate">
-        </button>
+            data-ng-bind="'sms_ok' | translate"
+        ></button>
     </div>
 </div>

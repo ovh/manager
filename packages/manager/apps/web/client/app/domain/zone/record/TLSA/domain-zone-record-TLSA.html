@@ -1,53 +1,109 @@
 <form class="form-horizontal" name="ctrl.zoneRecordForm">
-
     <div data-ng-include="'domain/zone/record/header.html'"></div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.usage.$dirty && ctrl.zoneRecordForm.usage.$invalid }">
-        <label class="control-label col-md-3 required" for="usage"
-               data-translate="domain_configuration_dns_entry_add_tlsa_usage"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.usage.$dirty && ctrl.zoneRecordForm.usage.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="usage"
+            data-translate="domain_configuration_dns_entry_add_tlsa_usage"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="usage" name="usage" step="1" required
-                   data-ng-change="ctrl.setTargetValue('TLSA')"
-                   data-ng-model="ctrl.model.target.usage"
-                   data-ng-min="0" min="0"
-                   data-ng-max="3" max="3">
+            <input
+                type="number"
+                class="form-control"
+                id="usage"
+                name="usage"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('TLSA')"
+                data-ng-model="ctrl.model.target.usage"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="3"
+                max="3"
+            />
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.selector.$dirty && ctrl.zoneRecordForm.selector.$invalid }">
-        <label class="control-label col-md-3 required" for="selector"
-               data-translate="domain_configuration_dns_entry_add_tlsa_selector"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.selector.$dirty && ctrl.zoneRecordForm.selector.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="selector"
+            data-translate="domain_configuration_dns_entry_add_tlsa_selector"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="selector" name="selector" step="1" required
-                   data-ng-change="ctrl.setTargetValue('TLSA')"
-                   data-ng-model="ctrl.model.target.selector"
-                   data-ng-min="0" min="0"
-                   data-ng-max="1" max="1">
+            <input
+                type="number"
+                class="form-control"
+                id="selector"
+                name="selector"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('TLSA')"
+                data-ng-model="ctrl.model.target.selector"
+                data-ng-min="0"
+                min="0"
+                data-ng-max="1"
+                max="1"
+            />
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.matchingType.$dirty && ctrl.zoneRecordForm.matchingType.$invalid }">
-         <label class="control-label col-md-3 required" for="matchingType"
-                data-translate="domain_configuration_dns_entry_add_tlsa_matching_type"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.matchingType.$dirty && ctrl.zoneRecordForm.matchingType.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="matchingType"
+            data-translate="domain_configuration_dns_entry_add_tlsa_matching_type"
+        ></label>
         <div class="col-md-3">
-            <input type="number" class="form-control" id="matchingType" name="matchingType" step="1" required
-                   data-ng-change="ctrl.setTargetValue('TLSA')"
-                   data-ng-model="ctrl.model.target.matchingType"
-                   data-ng-min="1" min="1"
-                   data-ng-max="2" max="2">
+            <input
+                type="number"
+                class="form-control"
+                id="matchingType"
+                name="matchingType"
+                step="1"
+                required
+                data-ng-change="ctrl.setTargetValue('TLSA')"
+                data-ng-model="ctrl.model.target.matchingType"
+                data-ng-min="1"
+                min="1"
+                data-ng-max="2"
+                max="2"
+            />
         </div>
     </div>
 
-    <div class="form-group" data-ng-class="{ 'has-error': ctrl.zoneRecordForm.certificateData.$dirty && ctrl.zoneRecordForm.certificateData.$invalid }">
-         <label class="control-label col-md-3 required" for="certificateData"
-                data-translate="domain_configuration_dns_entry_add_tlsa_certificate_data"></label>
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.certificateData.$dirty && ctrl.zoneRecordForm.certificateData.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="certificateData"
+            data-translate="domain_configuration_dns_entry_add_tlsa_certificate_data"
+        ></label>
         <div class="col-md-9">
-            <input type="text" class="form-control" id="certificateData" name="certificateData" required
-                   data-ng-change="ctrl.setTargetValue('TLSA')"
-                   data-ng-minlength="(ctrl.model.target.matchingType || 0) * 64"
-                   data-ng-maxlength="(ctrl.model.target.matchingType || 0) * 64"
-                   data-ng-model="ctrl.model.target.certificateData"
-                   data-ng-model-options="{ allowInvalid: true }">
+            <input
+                type="text"
+                class="form-control"
+                id="certificateData"
+                name="certificateData"
+                required
+                data-ng-change="ctrl.setTargetValue('TLSA')"
+                data-ng-minlength="(ctrl.model.target.matchingType || 0) * 64"
+                data-ng-maxlength="(ctrl.model.target.matchingType || 0) * 64"
+                data-ng-model="ctrl.model.target.certificateData"
+                data-ng-model-options="{ allowInvalid: true }"
+            />
         </div>
     </div>
 

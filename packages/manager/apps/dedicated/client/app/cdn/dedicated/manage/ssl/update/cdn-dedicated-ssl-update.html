@@ -1,64 +1,79 @@
-<form class="cdn-dedicated-ssl-update"
-      name="$ctrl.cdnSslUpdateForm"
-      novalidate
-      data-ng-submit="$ctrl.onCdnSslUpdateFormSubmit()">
-
-    <oui-modal data-title="{{ :: 'cdn_dedicated_ssl_update' | translate }}"
-               data-primary-label="{{ ($ctrl.actionEnabled ? 'wizard_confirm' : 'global_OK') | translate }}"
-               data-secondary-label="{{ $ctrl.actionEnabled ? ('wizard_cancel' | translate) : '' }}"
-               data-secondary-action="$ctrl.$state.go('^')"
-               data-on-dismiss="$ctrl.$state.go('^')"
-               data-loading="$ctrl.loading.init || $ctrl.loading.update"
-               data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}">
-
+<form
+    class="cdn-dedicated-ssl-update"
+    name="$ctrl.cdnSslUpdateForm"
+    novalidate
+    data-ng-submit="$ctrl.onCdnSslUpdateFormSubmit()"
+>
+    <oui-modal
+        data-title="{{ :: 'cdn_dedicated_ssl_update' | translate }}"
+        data-primary-label="{{ ($ctrl.actionEnabled ? 'wizard_confirm' : 'global_OK') | translate }}"
+        data-secondary-label="{{ $ctrl.actionEnabled ? ('wizard_cancel' | translate) : '' }}"
+        data-secondary-action="$ctrl.$state.go('^')"
+        data-on-dismiss="$ctrl.$state.go('^')"
+        data-loading="$ctrl.loading.init || $ctrl.loading.update"
+        data-type="{{ !$ctrl.actionEnabled ? 'warning' : '' }}"
+    >
         <div data-ng-if="!$ctrl.actionEnabled">
-            <p data-ng-if="!$ctrl.ssl"
-               data-translate="cdn_dedicated_ssl_update_no_ssl_warning">
-            </p>
+            <p
+                data-ng-if="!$ctrl.ssl"
+                data-translate="cdn_dedicated_ssl_update_no_ssl_warning"
+            ></p>
 
-            <p data-ng-if="$ctrl.ssl"
-               data-translate="cdn_dedicated_ssl_update_operation_warning">
-            </p>
+            <p
+                data-ng-if="$ctrl.ssl"
+                data-translate="cdn_dedicated_ssl_update_operation_warning"
+            ></p>
         </div>
-
-
 
         <div data-ng-if="$ctrl.actionEnabled">
             <p data-translate="cdn_dedicated_ssl_update_explain"></p>
 
             <!-- SSL certificate -->
-            <oui-field data-label="{{ :: 'cdn_dedicated_ssl_certificate' | translate }}">
-                <textarea class="oui-textarea"
-                          name="certificate"
-                          id="update-certificate"
-                          rows="5"
-                          data-required
-                          data-ng-model="$ctrl.model.certificate">
+            <oui-field
+                data-label="{{ :: 'cdn_dedicated_ssl_certificate' | translate }}"
+            >
+                <textarea
+                    class="oui-textarea"
+                    name="certificate"
+                    id="update-certificate"
+                    rows="5"
+                    data-required
+                    data-ng-model="$ctrl.model.certificate"
+                >
                 </textarea>
-            </oui-field> <!-- End of SSL certificate -->
+            </oui-field>
+            <!-- End of SSL certificate -->
 
             <!-- SSL key -->
-            <oui-field data-label="{{ :: 'cdn_dedicated_ssl_key' | translate }}">
-                <textarea class="oui-textarea"
-                          name="key"
-                          id="update-key"
-                          rows="5"
-                          data-required
-                          data-ng-model="$ctrl.model.key">
+            <oui-field
+                data-label="{{ :: 'cdn_dedicated_ssl_key' | translate }}"
+            >
+                <textarea
+                    class="oui-textarea"
+                    name="key"
+                    id="update-key"
+                    rows="5"
+                    data-required
+                    data-ng-model="$ctrl.model.key"
+                >
                 </textarea>
-            </oui-field> <!-- End of SSL key -->
+            </oui-field>
+            <!-- End of SSL key -->
 
             <!-- SSL chain -->
-            <oui-field data-label="{{ :: 'cdn_dedicated_ssl_chain' | translate }}">
-                <textarea class="oui-textarea"
-                          name="chain"
-                          id="update-chain"
-                          rows="5"
-                          data-ng-model="$ctrl.model.chain">
+            <oui-field
+                data-label="{{ :: 'cdn_dedicated_ssl_chain' | translate }}"
+            >
+                <textarea
+                    class="oui-textarea"
+                    name="chain"
+                    id="update-chain"
+                    rows="5"
+                    data-ng-model="$ctrl.model.chain"
+                >
                 </textarea>
-            </oui-field> <!-- End of SSL chain -->
+            </oui-field>
+            <!-- End of SSL chain -->
         </div>
-
     </oui-modal>
-
 </form>

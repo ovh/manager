@@ -1,68 +1,105 @@
 <div data-ng-controller="HostingModuleCreateCtrl">
-    <div data-wizard
-         data-wizard-bread-crumb="advancedMode.value"
-         data-wizard-next-button-text="(advancedMode.value ? 'common_next' : 'common_install') | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="createModule"
-         data-wizard-title="'hosting_configuration_tab_modules_module_add' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="loadModuleTemplates"
-             data-wizard-step-on-next="onNextStep"
-             data-wizard-step-valid="model.templateSelected">
-
-            <div class="text-center"
-                 data-ng-if="!model.moduleTemplates">
+    <div
+        data-wizard
+        data-wizard-bread-crumb="advancedMode.value"
+        data-wizard-next-button-text="(advancedMode.value ? 'common_next' : 'common_install') | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="createModule"
+        data-wizard-title="'hosting_configuration_tab_modules_module_add' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadModuleTemplates"
+            data-wizard-step-on-next="onNextStep"
+            data-wizard-step-valid="model.templateSelected"
+        >
+            <div class="text-center" data-ng-if="!model.moduleTemplates">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div data-ng-if="model.moduleTemplates && model.moduleTemplates.length > 0">
-                <p data-translate="hosting_configuration_tab_modules_create_step1_question"
-                   data-ng-if="model.domains.length > 1"></p>
-                <p data-translate="hosting_configuration_tab_modules_create_step1_question_domain"
-                   data-translate-values="{ t0: model.domain }"
-                   data-ng-if="model.domains.length === 1"></p>
+            <div
+                data-ng-if="model.moduleTemplates && model.moduleTemplates.length > 0"
+            >
+                <p
+                    data-translate="hosting_configuration_tab_modules_create_step1_question"
+                    data-ng-if="model.domains.length > 1"
+                ></p>
+                <p
+                    data-translate="hosting_configuration_tab_modules_create_step1_question_domain"
+                    data-translate-values="{ t0: model.domain }"
+                    data-ng-if="model.domains.length === 1"
+                ></p>
 
-                <span data-translate="hosting_configuration_tab_modules_create_step1_module_type"></span>
+                <span
+                    data-translate="hosting_configuration_tab_modules_create_step1_module_type"
+                ></span>
                 <ul class="d-flex flex-wrap list-unstyled">
-                    <li class="w-25"
+                    <li
+                        class="w-25"
                         data-ng-repeat="template in model.moduleTemplates track by $index"
-                        data-ng-if="model.moduleTemplates[$index].name">
-                        <button class="module-thumbnail" type="button"
-                                data-ng-class="{'selected': model.moduleTemplates[$index] === model.templateSelected}"
-                                data-ng-click="model.templateSelected = model.moduleTemplates[$index]">
-                            <img class="mw-100" alt="{{ 'hosting_configuration_tab_modules_create_step1_module_type_select' | translate }} {{model.moduleTemplates[$index].name}} {{model.moduleTemplates[$index].version}}"
-                                 data-ng-src="assets/images/logos/{{model.moduleTemplates[$index].name}}.png"/>
+                        data-ng-if="model.moduleTemplates[$index].name"
+                    >
+                        <button
+                            class="module-thumbnail"
+                            type="button"
+                            data-ng-class="{'selected': model.moduleTemplates[$index] === model.templateSelected}"
+                            data-ng-click="model.templateSelected = model.moduleTemplates[$index]"
+                        >
+                            <img
+                                class="mw-100"
+                                alt="{{ 'hosting_configuration_tab_modules_create_step1_module_type_select' | translate }} {{model.moduleTemplates[$index].name}} {{model.moduleTemplates[$index].version}}"
+                                data-ng-src="assets/images/logos/{{model.moduleTemplates[$index].name}}.png"
+                            />
                         </button>
                     </li>
                 </ul>
 
-                <div data-ng-if="model.templateSelected && model.domains.length > 1 && !advancedMode.value">
-                    <label class="oui-label" for="module-domain"
-                           data-translate="hosting_configuration_tab_modules_create_step1_module_domain"></label>
+                <div
+                    data-ng-if="model.templateSelected && model.domains.length > 1 && !advancedMode.value"
+                >
+                    <label
+                        class="oui-label"
+                        for="module-domain"
+                        data-translate="hosting_configuration_tab_modules_create_step1_module_domain"
+                    ></label>
                     <div class="oui-select mb-0">
-                        <select class="oui-select__input" id="module-domain" required
-                                data-ng-model="model.domain"
-                                data-ng-options="domain for domain in model.domains track by domain">
+                        <select
+                            class="oui-select__input"
+                            id="module-domain"
+                            required
+                            data-ng-model="model.domain"
+                            data-ng-options="domain for domain in model.domains track by domain"
+                        >
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
-                    <p class="help-block"
-                       data-ng-bind-html="'hosting_configuration_tab_modules_create_step1_module_default_path' | translate: { t0: defaultInstallationPath }"></p>
+                    <p
+                        class="help-block"
+                        data-ng-bind-html="'hosting_configuration_tab_modules_create_step1_module_default_path' | translate: { t0: defaultInstallationPath }"
+                    ></p>
                 </div>
 
                 <div class="mt-5" data-ng-if="model.templateSelected">
-                    <oui-checkbox id="advancedMode" name="advancedMode"
+                    <oui-checkbox
+                        id="advancedMode"
+                        name="advancedMode"
                         data-model="advancedMode.value"
-                        data-text="{{:: 'hosting_configuration_tab_modules_create_step1_module_advanced_mode' | translate }}">
+                        data-text="{{:: 'hosting_configuration_tab_modules_create_step1_module_advanced_mode' | translate }}"
+                    >
                     </oui-checkbox>
                     <div class="alert alert-info" role="alert">
                         <div>
-                            <p data-translate="hosting_configuration_tab_modules_create_step1_module_advancedMode_info"></p>
+                            <p
+                                data-translate="hosting_configuration_tab_modules_create_step1_module_advancedMode_info"
+                            ></p>
                             <ul>
-                                <li data-ng-repeat="i in [1,2,3] track by $index"
-                                    data-ng-bind="'hosting_configuration_tab_modules_create_step1_module_advancedMode_info_option' + i | translate">
-                                </li>
+                                <li
+                                    data-ng-repeat="i in [1,2,3] track by $index"
+                                    data-ng-bind="'hosting_configuration_tab_modules_create_step1_module_advancedMode_info_option' + i | translate"
+                                ></li>
                             </ul>
                         </div>
                     </div>
@@ -70,159 +107,279 @@
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="loadDatabases"
-             data-wizard-step-valid="isStep2Valid()">
-
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="loadDatabases"
+            data-wizard-step-valid="isStep2Valid()"
+        >
             <oui-spinner data-ng-if="loading.databases"></oui-spinner>
 
             <div data-ng-if="!loading.databases">
-
-                <div class="alert alert-warning" role="alert"
-                     data-ng-if="!model.databases || model.databases.length <= 0">
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    data-ng-if="!model.databases || model.databases.length <= 0"
+                >
                     <div>
-                        <p data-translate="hosting_configuration_tab_modules_create_step2_no_db_intro"></p>
+                        <p
+                            data-translate="hosting_configuration_tab_modules_create_step2_no_db_intro"
+                        ></p>
                         <ul>
                             <li>
-                                <button class="btn btn-link p-0" type="button"
-                                        data-translate="hosting_configuration_tab_modules_create_step2_no_db_go_to_create_db"
-                                        data-ng-click="setAction('database/add/hosting-database-add')">
-                                </button>
+                                <button
+                                    class="btn btn-link p-0"
+                                    type="button"
+                                    data-translate="hosting_configuration_tab_modules_create_step2_no_db_go_to_create_db"
+                                    data-ng-click="setAction('database/add/hosting-database-add')"
+                                ></button>
                             </li>
-                            <li data-translate="hosting_configuration_tab_modules_create_step2_no_db_use_db_perso"></li>
+                            <li
+                                data-translate="hosting_configuration_tab_modules_create_step2_no_db_use_db_perso"
+                            ></li>
                         </ul>
                     </div>
                 </div>
 
-                <label class="oui-label" for="select-hosted-database"
-                       data-translate="hosting_configuration_tab_modules_create_step2_db_select"></label>
+                <label
+                    class="oui-label"
+                    for="select-hosted-database"
+                    data-translate="hosting_configuration_tab_modules_create_step2_db_select"
+                ></label>
                 <div class="oui-select">
-                    <select class="oui-select__input" id="select-hosted-database"
-                            data-ng-change="selectDatabase()"
-                            data-ng-model="model.databaseHostedSelected">
-                        <option data-ng-repeat="db in model.databases track by db"
-                                data-ng-bind="::db"
-                                data-ng-value="db"></option>
-                        <option value="" data-translate="hosting_configuration_tab_modules_create_step2_db_custom"></option>
+                    <select
+                        class="oui-select__input"
+                        id="select-hosted-database"
+                        data-ng-change="selectDatabase()"
+                        data-ng-model="model.databaseHostedSelected"
+                    >
+                        <option
+                            data-ng-repeat="db in model.databases track by db"
+                            data-ng-bind="::db"
+                            data-ng-value="db"
+                        ></option>
+                        <option
+                            value=""
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_custom"
+                        ></option>
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </div>
 
-                <p data-translate="hosting_configuration_tab_modules_create_step2_db_info"></p>
+                <p
+                    data-translate="hosting_configuration_tab_modules_create_step2_db_info"
+                ></p>
 
                 <oui-spinner data-ng-if="loading.databaseInfos"></oui-spinner>
 
-                <form class="form-horizontal mt-4" name="formModuleDB"
-                      data-ng-if="!loading.databaseInfos">
+                <form
+                    class="form-horizontal mt-4"
+                    name="formModuleDB"
+                    data-ng-if="!loading.databaseInfos"
+                >
                     <p>
                         <small class="text-danger">*</small>
                         <small data-translate="required_fields"></small>
                     </p>
 
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="db-server"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_server"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="db-server"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_server"
+                        ></label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="db-server" required
-                                   data-ng-disabled="model.databaseHostedSelected"
-                                   data-ng-model="model.databaseSelected.server">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="db-server"
+                                required
+                                data-ng-disabled="model.databaseHostedSelected"
+                                data-ng-model="model.databaseSelected.server"
+                            />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="db-name"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_name"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="db-name"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_name"
+                        ></label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="db-name" required
-                                   data-ng-disabled="model.databaseHostedSelected"
-                                   data-ng-model="model.databaseSelected.name">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="db-name"
+                                required
+                                data-ng-disabled="model.databaseHostedSelected"
+                                data-ng-model="model.databaseSelected.name"
+                            />
                         </div>
                     </div>
 
-                    <div class="form-group" data-ng-class="{'has-error': !portValid}">
-                        <label class="control-label col-md-4 required" for="db-port"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_port"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': !portValid}"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="db-port"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_port"
+                        ></label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="db-port" required
-                                   data-ng-disabled="model.databaseHostedSelected"
-                                   data-ng-model="model.databaseSelected.port">
-                            <small class="help-block"
-                                   data-translate="hosting_configuration_tab_modules_create_step2_db_port_error"
-                                   data-ng-if="!portValid"></small>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="db-port"
+                                required
+                                data-ng-disabled="model.databaseHostedSelected"
+                                data-ng-model="model.databaseSelected.port"
+                            />
+                            <small
+                                class="help-block"
+                                data-translate="hosting_configuration_tab_modules_create_step2_db_port_error"
+                                data-ng-if="!portValid"
+                            ></small>
                         </div>
                     </div>
 
-                    <div class="form-group" data-ng-if="databasesType.length > 1">
-                        <label class="control-label col-md-4 required" for="db-type"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_type"></label>
+                    <div
+                        class="form-group"
+                        data-ng-if="databasesType.length > 1"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="db-type"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_type"
+                        ></label>
                         <div class="col-md-6">
                             <div class="oui-select mb-0">
-                                <select class="oui-select__input" id="db-type" required
-                                        data-ng-disabled="model.databaseHostedSelected"
-                                        data-ng-model="model.databaseSelected.type"
-                                        data-ng-options="type as type for type in databasesType track by type">
+                                <select
+                                    class="oui-select__input"
+                                    id="db-type"
+                                    required
+                                    data-ng-disabled="model.databaseHostedSelected"
+                                    data-ng-model="model.databaseSelected.type"
+                                    data-ng-options="type as type for type in databasesType track by type"
+                                >
                                 </select>
-                                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                                <span
+                                    class="oui-icon oui-icon-chevron-down"
+                                    aria-hidden="true"
+                                ></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-4 required" for="db-user"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_user"></label>
+                        <label
+                            class="control-label col-md-4 required"
+                            for="db-user"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_user"
+                        ></label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="db-user" required
-                                   data-ng-disabled="model.databaseHostedSelected"
-                                   data-ng-model="model.databaseSelected.user">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="db-user"
+                                required
+                                data-ng-disabled="model.databaseHostedSelected"
+                                data-ng-model="model.databaseSelected.user"
+                            />
                         </div>
                     </div>
 
-                    <div class="form-group"
-                         data-ng-class="{'has-error': formModuleDB.dbPasswd.$dirty && formModuleDB.dbPasswd.$invalid}">
-                        <label class="control-label col-md-4 required" for="dbPasswd"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_passwd"></label>
+                    <div
+                        class="form-group"
+                        data-ng-class="{'has-error': formModuleDB.dbPasswd.$dirty && formModuleDB.dbPasswd.$invalid}"
+                    >
+                        <label
+                            class="control-label col-md-4 required"
+                            for="dbPasswd"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_passwd"
+                        ></label>
                         <div class="col-md-6">
-                            <input type="password" autocomplete="off" class="form-control" id="dbPasswd" name="dbPasswd" required
-                                   data-ng-minlength="model.databasePasswordMinLength"
-                                   data-ng-maxlength="model.databasePasswordMaxLength"
-                                   data-ng-model="model.databaseSelected.password"
-                                   data-ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/">
-                            <small class="help-block" data-ng-if="!formModuleDB.dbPasswd.$valid"
-                                   data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: model.databasePasswordMinLength, t1: model.databasePasswordMaxLength }"></small>
+                            <input
+                                type="password"
+                                autocomplete="off"
+                                class="form-control"
+                                id="dbPasswd"
+                                name="dbPasswd"
+                                required
+                                data-ng-minlength="model.databasePasswordMinLength"
+                                data-ng-maxlength="model.databasePasswordMaxLength"
+                                data-ng-model="model.databaseSelected.password"
+                                data-ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/"
+                            />
+                            <small
+                                class="help-block"
+                                data-ng-if="!formModuleDB.dbPasswd.$valid"
+                                data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: model.databasePasswordMinLength, t1: model.databasePasswordMaxLength }"
+                            ></small>
                         </div>
                     </div>
                 </form>
             </div>
 
             <div data-wizard-step-help>
-                <h3 data-translate="hosting_configuration_tab_modules_db_help_title"></h3>
+                <h3
+                    data-translate="hosting_configuration_tab_modules_db_help_title"
+                ></h3>
 
-                <h4 data-translate="hosting_configuration_tab_modules_db_help_addr_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_db_help_addr_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_db_help_addr_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_db_help_addr_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_db_help_name_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_db_help_name_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_db_help_name_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_db_help_name_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_db_help_port_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_db_help_port_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_db_help_port_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_db_help_port_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_db_help_type_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_db_help_type_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_db_help_type_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_db_help_type_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_db_help_username_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_db_help_username_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_db_help_username_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_db_help_username_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_db_help_passwd_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_db_help_passwd_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_db_help_passwd_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_db_help_passwd_desc"
+                ></p>
             </div>
-
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="isStep3Valid()">
-
-            <strong data-translate="hosting_configuration_tab_modules_create_step3_intro"></strong>
-            <p data-translate="hosting_configuration_tab_modules_create_step3_infos_title"></p>
+        <div data-wizard-step data-wizard-step-valid="isStep3Valid()">
+            <strong
+                data-translate="hosting_configuration_tab_modules_create_step3_intro"
+            ></strong>
+            <p
+                data-translate="hosting_configuration_tab_modules_create_step3_infos_title"
+            ></p>
 
             <form class="form-horizontal" name="formModule">
                 <p>
@@ -230,157 +387,289 @@
                     <small data-translate="required_fields"></small>
                 </p>
 
-                <div class="form-group" data-ng-class="{'has-error': !adminNameValid}">
-                    <label class="control-label col-md-4 required" for="module-admin-name"
-                           data-ng-bind="model.templateSelected.adminNameType === 'email' ?
-                            ('hosting_configuration_tab_modules_create_step3_infos_admin_mail' | translate) : ('hosting_configuration_tab_modules_create_step3_infos_admin_name' | translate)">
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !adminNameValid}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="module-admin-name"
+                        data-ng-bind="model.templateSelected.adminNameType === 'email' ?
+                            ('hosting_configuration_tab_modules_create_step3_infos_admin_mail' | translate) : ('hosting_configuration_tab_modules_create_step3_infos_admin_name' | translate)"
+                    >
                     </label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" id="module-admin-name" name="module-admin-name" required
-                               data-ng-attr-placeholder="{{model.templateSelected.adminNameType === 'email' && 'me@example.com' || ''}}"
-                               data-ng-model="model.adminName">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="module-admin-name"
+                            name="module-admin-name"
+                            required
+                            data-ng-attr-placeholder="{{model.templateSelected.adminNameType === 'email' && 'me@example.com' || ''}}"
+                            data-ng-model="model.adminName"
+                        />
 
                         <!-- adminNameType email -->
-                        <div class="help-block"
-                             data-ng-if="model.templateSelected.adminNameType === 'email' && !adminNameValid">
-                            <small class="d-block"
-                                   data-translate="hosting_configuration_tab_modules_create_step3_infos_email_admin_error"></small>
-                            <small class="d-block"
-                                   data-translate="hosting_configuration_tab_modules_create_step2_db_admin_error"></small>
+                        <div
+                            class="help-block"
+                            data-ng-if="model.templateSelected.adminNameType === 'email' && !adminNameValid"
+                        >
+                            <small
+                                class="d-block"
+                                data-translate="hosting_configuration_tab_modules_create_step3_infos_email_admin_error"
+                            ></small>
+                            <small
+                                class="d-block"
+                                data-translate="hosting_configuration_tab_modules_create_step2_db_admin_error"
+                            ></small>
                         </div>
-                        <small class="help-block"
-                               data-translate="hosting_configuration_tab_modules_create_step3_info_admin_error"
-                               data-ng-if="model.templateSelected.adminNameType === 'string' && !adminNameValid"></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_configuration_tab_modules_create_step3_info_admin_error"
+                            data-ng-if="model.templateSelected.adminNameType === 'string' && !adminNameValid"
+                        ></small>
                     </div>
                 </div>
 
-                <div class="form-group" data-ng-class="{'has-error': !adminPassValid}">
-                    <label class="control-label col-md-4 required" for="module-admin-password"
-                           data-translate="hosting_configuration_tab_modules_create_step3_infos_admin_password"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !adminPassValid}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="module-admin-password"
+                        data-translate="hosting_configuration_tab_modules_create_step3_infos_admin_password"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" autocomplete="off" class="form-control" id="module-admin-password" aria-describedby="adminPasswordDesc" required
-                               data-ng-model="model.adminPassword">
-                        <small class="help-block"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_passwd_error"
-                               data-ng-if="!adminPassValid"></small>
+                        <input
+                            type="password"
+                            autocomplete="off"
+                            class="form-control"
+                            id="module-admin-password"
+                            aria-describedby="adminPasswordDesc"
+                            required
+                            data-ng-model="model.adminPassword"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_passwd_error"
+                            data-ng-if="!adminPassValid"
+                        ></small>
                     </div>
                 </div>
 
-                <div class="form-group" data-ng-class="{'has-error': !adminPassValid || !adminPassMatchValid}">
-                    <label class="control-label col-md-4 required" for="module-admin-password-confirm"
-                           data-translate="hosting_configuration_tab_modules_create_step3_infos_admin_password_confirm"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !adminPassValid || !adminPassMatchValid}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="module-admin-password-confirm"
+                        data-translate="hosting_configuration_tab_modules_create_step3_infos_admin_password_confirm"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" autocomplete="off" class="form-control" id="module-admin-password-confirm" required
-                               data-ng-model="model.adminPasswordConfirm">
-                        <small class="help-block"
-                               data-translate="hosting_configuration_tab_modules_create_step2_db_passwd_error"
-                               data-ng-if="!adminPassValid"></small>
-                        <small class="help-block"
-                               data-translate="hosting_configuration_tab_modules_create_step3_infos_admin_password_error"
-                               data-ng-if="!adminPassMatchValid"></small>
+                        <input
+                            type="password"
+                            autocomplete="off"
+                            class="form-control"
+                            id="module-admin-password-confirm"
+                            required
+                            data-ng-model="model.adminPasswordConfirm"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="hosting_configuration_tab_modules_create_step2_db_passwd_error"
+                            data-ng-if="!adminPassValid"
+                        ></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_configuration_tab_modules_create_step3_infos_admin_password_error"
+                            data-ng-if="!adminPassMatchValid"
+                        ></small>
                     </div>
                 </div>
 
-                <div class="row font-italic"
-                     data-ng-show="!adminPassValid">
-                    <small class="col-md-8 col-md-offset-4" id="adminPasswordDesc"
-                           data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: model.minPasswdLength, t1: model.maxPasswdLength }"></small>
+                <div class="row font-italic" data-ng-show="!adminPassValid">
+                    <small
+                        class="col-md-8 col-md-offset-4"
+                        id="adminPasswordDesc"
+                        data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: model.minPasswdLength, t1: model.maxPasswdLength }"
+                    ></small>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4 required" for="search-domain"
-                           data-translate="hosting_configuration_tab_modules_create_step3_infos_domain"></label>
+                    <label
+                        class="control-label col-md-4 required"
+                        for="search-domain"
+                        data-translate="hosting_configuration_tab_modules_create_step3_infos_domain"
+                    ></label>
                     <div class="col-md-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="search-domain" placeholder="{{ 'hosting_tab_DOMAINS_configuration_add_step1_ovh_search_placeholder' | translate }}"
-                                   data-ng-change="model.domain = null"
-                                   data-ng-model="model.searchDomain">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="search-domain"
+                                placeholder="{{ 'hosting_tab_DOMAINS_configuration_add_step1_ovh_search_placeholder' | translate }}"
+                                data-ng-change="model.domain = null"
+                                data-ng-model="model.searchDomain"
+                            />
                             <div class="input-group-btn" data-ng-if="search">
-                                <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                        data-ng-click="search = ''">
-                                    <span class="fa fa-times" aria-hidden="true"></span>
+                                <button
+                                    class="btn btn-default"
+                                    type="button"
+                                    aria-label="{{ 'common_cancel' | translate }}"
+                                    data-ng-click="search = ''"
+                                >
+                                    <span
+                                        class="fa fa-times"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </div>
-                            <span class="input-group-addon"
-                                  data-ng-if="!search">
-                                <span class="fa fa-search" aria-hidden="true"></span>
+                            <span
+                                class="input-group-addon"
+                                data-ng-if="!search"
+                            >
+                                <span
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></span>
                             </span>
                         </div>
 
                         <ul class="list-unstyled selectList w-100">
-                            <li data-ng-repeat="domain in (model.domains | filter:model.searchDomain) track by $index"
+                            <li
+                                data-ng-repeat="domain in (model.domains | filter:model.searchDomain) track by $index"
                                 data-ng-bind="domain"
                                 data-ng-click="model.domain = domain"
-                                data-ng-class="{'lineSelected': model.domain == domain}">
-                            </li>
-                            <li data-ng-show="(model.domains | filter:model.searchDomain).length === 0"
-                                data-translate="hosting_tab_DOMAINS_configuration_add_step1_ovh_search_no_result_found"></li>
+                                data-ng-class="{'lineSelected': model.domain == domain}"
+                            ></li>
+                            <li
+                                data-ng-show="(model.domains | filter:model.searchDomain).length === 0"
+                                data-translate="hosting_tab_DOMAINS_configuration_add_step1_ovh_search_no_result_found"
+                            ></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-md-4 required" for="module-lang"
-                           data-translate="hosting_configuration_tab_modules_create_step3_infos_lang"></label>
+                    <label
+                        class="control-label col-md-4 required"
+                        for="module-lang"
+                        data-translate="hosting_configuration_tab_modules_create_step3_infos_lang"
+                    ></label>
                     <div class="col-md-6">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="module-lang" required
-                                    data-ng-model="model.language"
-                                    data-ng-options="lang as ('language_' + lang.toLowerCase() | translate) for lang in model.templateSelected.language track by lang">
-                                <option value="" disabled
-                                        data-translate="select_placeholder"></option>
+                            <select
+                                class="oui-select__input"
+                                id="module-lang"
+                                required
+                                data-ng-model="model.language"
+                                data-ng-options="lang as ('language_' + lang.toLowerCase() | translate) for lang in model.templateSelected.language track by lang"
+                            >
+                                <option
+                                    value=""
+                                    disabled
+                                    data-translate="select_placeholder"
+                                ></option>
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group" data-ng-class="{'has-error': !pathValid}">
-                    <label class="control-label col-md-4" for="hostingUserCreateHome"
-                           data-translate="hosting_configuration_tab_modules_create_step3_infos_path"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': !pathValid}"
+                >
+                    <label
+                        class="control-label col-md-4"
+                        for="hostingUserCreateHome"
+                        data-translate="hosting_configuration_tab_modules_create_step3_infos_path"
+                    ></label>
                     <div class="col-md-8">
                         <div class="input-group w-100">
-                            <span class="input-group-addon"
-                                  data-ng-bind="rootPathPrefix + pathPrefix"></span>
-                            <input type="text" class="form-control" id="hostingUserCreateHome" required
-                                   data-ng-model="model.path">
+                            <span
+                                class="input-group-addon"
+                                data-ng-bind="rootPathPrefix + pathPrefix"
+                            ></span>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="hostingUserCreateHome"
+                                required
+                                data-ng-model="model.path"
+                            />
                         </div>
-                        <small class="help-block"
-                               data-translate="hosting_common_path_help_inline"
-                               data-ng-if="!pathValid"></small>
+                        <small
+                            class="help-block"
+                            data-translate="hosting_common_path_help_inline"
+                            data-ng-if="!pathValid"
+                        ></small>
                     </div>
                 </div>
             </form>
 
             <div data-wizard-step-help>
-                <h3 data-translate="hosting_configuration_tab_modules_create_step3_help_title"></h3>
+                <h3
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_title"
+                ></h3>
 
-                <h4 data-translate="hosting_configuration_tab_modules_create_step3_help_admin_name_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_create_step3_help_admin_name_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_admin_name_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_admin_name_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_create_step3_help_domain_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_create_step3_help_domain_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_domain_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_domain_desc"
+                ></p>
 
-                <h4 data-translate="hosting_configuration_tab_modules_create_step3_help_path_title"></h4>
-                <p data-translate="hosting_configuration_tab_modules_create_step3_help_path_desc"></p>
+                <h4
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_path_title"
+                ></h4>
+                <p
+                    data-translate="hosting_configuration_tab_modules_create_step3_help_path_desc"
+                ></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="hosting_configuration_tab_modules_create_step4_intro"></p>
+            <p
+                data-translate="hosting_configuration_tab_modules_create_step4_intro"
+            ></p>
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="hosting_configuration_tab_modules_create_step4_module"></dt>
+                <dt
+                    data-translate="hosting_configuration_tab_modules_create_step4_module"
+                ></dt>
                 <dd data-ng-bind="model.templateSelected.name"></dd>
-                <dt data-translate="hosting_configuration_tab_modules_create_step4_version"></dt>
+                <dt
+                    data-translate="hosting_configuration_tab_modules_create_step4_version"
+                ></dt>
                 <dd data-ng-bind="model.templateSelected.version"></dd>
-                <dt data-translate="hosting_configuration_tab_modules_create_step4_domain"></dt>
+                <dt
+                    data-translate="hosting_configuration_tab_modules_create_step4_domain"
+                ></dt>
                 <dd data-ng-bind="model.domain"></dd>
-                <dt data-translate="hosting_configuration_tab_modules_create_step4_path"></dt>
+                <dt
+                    data-translate="hosting_configuration_tab_modules_create_step4_path"
+                ></dt>
                 <dd data-ng-bind="pathPrefix + model.path"></dd>
-                <dt data-translate="hosting_configuration_tab_modules_create_step4_db"></dt>
+                <dt
+                    data-translate="hosting_configuration_tab_modules_create_step4_db"
+                ></dt>
                 <dd data-ng-bind="model.databaseSelected.name"></dd>
             </dl>
-            <p data-translate="hosting_configuration_tab_modules_create_step4_infos_title"></p>
+            <p
+                data-translate="hosting_configuration_tab_modules_create_step4_infos_title"
+            ></p>
         </div>
     </div>
 </div>

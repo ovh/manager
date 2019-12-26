@@ -1,113 +1,161 @@
 <div class="telecom-telephony-service-fax-campaigns-read">
-
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="CampaignsReadCtrl.close()">
+            data-ng-click="CampaignsReadCtrl.close()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body" data-ng-if="!CampaignsReadCtrl.loading.init">
-        <h3 class="modal-title"
-            data-translate="telephony_service_fax_campaigns_read_campaign_title">
-        </h3>
+        <h3
+            class="modal-title"
+            data-translate="telephony_service_fax_campaigns_read_campaign_title"
+        ></h3>
         <dl class="dl-horizontal">
             <!-- NAME -->
-            <dt data-translate="telephony_service_fax_campaigns_add_campaign_label_name"></dt>
+            <dt
+                data-translate="telephony_service_fax_campaigns_add_campaign_label_name"
+            ></dt>
             <dd data-ng-bind="CampaignsReadCtrl.campaign.name"></dd>
 
             <!-- REFERENCE -->
-            <dt data-translate="telephony_service_fax_campaigns_read_campaign_reference"></dt>
+            <dt
+                data-translate="telephony_service_fax_campaigns_read_campaign_reference"
+            ></dt>
             <dd>
-                <span class="word-break"
-                      data-ng-bind="CampaignsReadCtrl.campaign.reference | date:'short'"></span>
+                <span
+                    class="word-break"
+                    data-ng-bind="CampaignsReadCtrl.campaign.reference | date:'short'"
+                ></span>
             </dd>
 
             <!-- SUCCESS -->
-            <dt data-translate="telephony_service_fax_campaigns_list_title_success"></dt>
-            <dd data-ng-if="CampaignsReadCtrl.campaign.dateEnd"
-                data-translate="telephony_service_fax_campaigns_success">
-            </dd>
-            <dd data-ng-if="!CampaignsReadCtrl.campaign.dateEnd && (CampaignsReadCtrl.campaign.countSuccess > 0 || CampaignsReadCtrl.campaign.countTotal > 0)"
-                data-translate="telephony_service_fax_campaigns_success_partial">
-            </dd>
-            <dd data-ng-if="CampaignsReadCtrl.campaign.countSuccess === 0 && CampaignsReadCtrl.campaign.countFailed === 0 && CampaignsReadCtrl.campaign.countTotal === 0"
-                data-translate="telephony_service_fax_campaigns_success_not_available">
-            </dd>
+            <dt
+                data-translate="telephony_service_fax_campaigns_list_title_success"
+            ></dt>
+            <dd
+                data-ng-if="CampaignsReadCtrl.campaign.dateEnd"
+                data-translate="telephony_service_fax_campaigns_success"
+            ></dd>
+            <dd
+                data-ng-if="!CampaignsReadCtrl.campaign.dateEnd && (CampaignsReadCtrl.campaign.countSuccess > 0 || CampaignsReadCtrl.campaign.countTotal > 0)"
+                data-translate="telephony_service_fax_campaigns_success_partial"
+            ></dd>
+            <dd
+                data-ng-if="CampaignsReadCtrl.campaign.countSuccess === 0 && CampaignsReadCtrl.campaign.countFailed === 0 && CampaignsReadCtrl.campaign.countTotal === 0"
+                data-translate="telephony_service_fax_campaigns_success_not_available"
+            ></dd>
 
             <!-- STATUS -->
-            <dt data-translate="telephony_service_fax_campaigns_list_title_status"></dt>
-            <dd data-ng-if="CampaignsReadCtrl.campaign.status" data-ng-bind="'telephony_service_fax_campaigns_status_' + CampaignsReadCtrl.campaign.status | translate"></dd>
+            <dt
+                data-translate="telephony_service_fax_campaigns_list_title_status"
+            ></dt>
+            <dd
+                data-ng-if="CampaignsReadCtrl.campaign.status"
+                data-ng-bind="'telephony_service_fax_campaigns_status_' + CampaignsReadCtrl.campaign.status | translate"
+            ></dd>
             <dd data-ng-if="!CampaignsReadCtrl.campaign.status">-</dd>
 
             <!-- MESSAGE -->
-            <dt data-ng-if="CampaignsReadCtrl.campaign.status === 'error'"
-                data-translate="telephony_service_fax_campaigns_read_campaign_message">
-            </dt>
-            <dd data-ng-if="CampaignsReadCtrl.campaign.status === 'error'"
-                data-translate="telephony_service_fax_campaigns_read_campaign_message_error_download">
-            </dd>
+            <dt
+                data-ng-if="CampaignsReadCtrl.campaign.status === 'error'"
+                data-translate="telephony_service_fax_campaigns_read_campaign_message"
+            ></dt>
+            <dd
+                data-ng-if="CampaignsReadCtrl.campaign.status === 'error'"
+                data-translate="telephony_service_fax_campaigns_read_campaign_message_error_download"
+            ></dd>
 
             <!-- DATE START -->
-            <dt data-ng-if="CampaignsReadCtrl.campaign.dateStart && CampaignsReadCtrl.campaign.dateEnd || CampaignsReadCtrl.campaign.status === 'error'"
-                data-translate="telephony_service_fax_campaigns_read_campaign_date_start">
-            </dt>
-            <dt data-ng-if="CampaignsReadCtrl.campaign.dateStart && !CampaignsReadCtrl.campaign.dateEnd && CampaignsReadCtrl.campaign.status !== 'error'"
-                data-translate="telephony_service_fax_campaigns_read_campaign_date_start_scheduled">
-            </dt>
-            <dd data-ng-if="CampaignsReadCtrl.campaign.dateStart"
-                data-ng-bind="CampaignsReadCtrl.campaign.dateStart | date:'short'">
-            </dd>
+            <dt
+                data-ng-if="CampaignsReadCtrl.campaign.dateStart && CampaignsReadCtrl.campaign.dateEnd || CampaignsReadCtrl.campaign.status === 'error'"
+                data-translate="telephony_service_fax_campaigns_read_campaign_date_start"
+            ></dt>
+            <dt
+                data-ng-if="CampaignsReadCtrl.campaign.dateStart && !CampaignsReadCtrl.campaign.dateEnd && CampaignsReadCtrl.campaign.status !== 'error'"
+                data-translate="telephony_service_fax_campaigns_read_campaign_date_start_scheduled"
+            ></dt>
+            <dd
+                data-ng-if="CampaignsReadCtrl.campaign.dateStart"
+                data-ng-bind="CampaignsReadCtrl.campaign.dateStart | date:'short'"
+            ></dd>
             <dd data-ng-if="!CampaignsReadCtrl.campaign.dateStart">-</dd>
 
             <!-- DATE END -->
-            <dt data-translate="telephony_service_fax_campaigns_read_campaign_date_end"></dt>
-            <dd data-ng-if="CampaignsReadCtrl.campaign.dateEnd"
-                data-ng-bind="CampaignsReadCtrl.campaign.dateEnd | date:'short'">
-            </dd>
+            <dt
+                data-translate="telephony_service_fax_campaigns_read_campaign_date_end"
+            ></dt>
+            <dd
+                data-ng-if="CampaignsReadCtrl.campaign.dateEnd"
+                data-ng-bind="CampaignsReadCtrl.campaign.dateEnd | date:'short'"
+            ></dd>
             <dd data-ng-if="!CampaignsReadCtrl.campaign.dateEnd">-</dd>
 
             <!-- TOTAL -->
-            <dt data-translate="telephony_service_fax_campaigns_read_campaign_count_total"></dt>
+            <dt
+                data-translate="telephony_service_fax_campaigns_read_campaign_count_total"
+            ></dt>
             <dd data-ng-bind="CampaignsReadCtrl.campaign.countTotal"></dd>
 
             <!-- DETAILS TODO -->
-            <dt data-translate="telephony_service_fax_campaigns_read_campaign_details_todo"></dt>
+            <dt
+                data-translate="telephony_service_fax_campaigns_read_campaign_details_todo"
+            ></dt>
             <dd data-ng-bind="CampaignsReadCtrl.details.todo.length || 0"></dd>
 
             <!-- DETAILS SUCCESS -->
-            <dt data-translate="telephony_service_fax_campaigns_read_campaign_details_success"></dt>
-            <dd data-ng-bind="CampaignsReadCtrl.details.success.length || 0"></dd>
+            <dt
+                data-translate="telephony_service_fax_campaigns_read_campaign_details_success"
+            ></dt>
+            <dd
+                data-ng-bind="CampaignsReadCtrl.details.success.length || 0"
+            ></dd>
 
             <!-- DETAILS FAILED -->
-            <dt data-translate="telephony_service_fax_campaigns_read_campaign_details_failed"></dt>
-            <dd data-ng-bind="CampaignsReadCtrl.details.failed.length || 0"></dd>
+            <dt
+                data-translate="telephony_service_fax_campaigns_read_campaign_details_failed"
+            ></dt>
+            <dd
+                data-ng-bind="CampaignsReadCtrl.details.failed.length || 0"
+            ></dd>
         </dl>
 
-        <div class="row mb-2"
-             data-ng-if="CampaignsReadCtrl.details.todo.length">
+        <div
+            class="row mb-2"
+            data-ng-if="CampaignsReadCtrl.details.todo.length"
+        >
             <div class="col-xs-12">
                 <button
                     type="button"
                     class="btn btn-link p-0 telecom-link"
-                    data-ng-click="CampaignsReadCtrl.list.todo = !CampaignsReadCtrl.list.todo">
-                    <i class="ovh-font"
-                       aria-hidden="true"
-                       data-ng-class="{
+                    data-ng-click="CampaignsReadCtrl.list.todo = !CampaignsReadCtrl.list.todo"
+                >
+                    <i
+                        class="ovh-font"
+                        aria-hidden="true"
+                        data-ng-class="{
                            'ovh-font-disclosure-right': !CampaignsReadCtrl.list.todo,
                            'ovh-font-disclosure-down': CampaignsReadCtrl.list.todo
-                    }"></i>
-                    <span data-translate="telephony_service_fax_campaigns_read_campaign_details_todo"></span>
+                    }"
+                    ></i>
+                    <span
+                        data-translate="telephony_service_fax_campaigns_read_campaign_details_todo"
+                    ></span>
                 </button>
-                <ul class="list-group mt-4"
-                    data-ng-show="CampaignsReadCtrl.list.todo">
+                <ul
+                    class="list-group mt-4"
+                    data-ng-show="CampaignsReadCtrl.list.todo"
+                >
                     <li class="list-group-item">
                         <div class="row todos-list">
-                            <div class="col-xs-6 col-sm-3 text-center"
-                                 data-ng-repeat="number in CampaignsReadCtrl.details.todo track by $index">
+                            <div
+                                class="col-xs-6 col-sm-3 text-center"
+                                data-ng-repeat="number in CampaignsReadCtrl.details.todo track by $index"
+                            >
                                 <span data-ng-bind="number"></span>
                             </div>
                         </div>
@@ -116,27 +164,38 @@
             </div>
         </div>
 
-        <div class="row mb-2"
-             data-ng-if="CampaignsReadCtrl.details.success.length">
+        <div
+            class="row mb-2"
+            data-ng-if="CampaignsReadCtrl.details.success.length"
+        >
             <div class="col-xs-12">
                 <button
                     type="button"
                     class="btn btn-link p-0 telecom-link"
-                    data-ng-click="CampaignsReadCtrl.list.success = !CampaignsReadCtrl.list.success">
-                    <i class="ovh-font"
-                       aria-hidden="true"
-                       data-ng-class="{
+                    data-ng-click="CampaignsReadCtrl.list.success = !CampaignsReadCtrl.list.success"
+                >
+                    <i
+                        class="ovh-font"
+                        aria-hidden="true"
+                        data-ng-class="{
                            'ovh-font-disclosure-right': !CampaignsReadCtrl.list.success,
                            'ovh-font-disclosure-down': CampaignsReadCtrl.list.success
-                    }"></i>
-                    <span data-translate="telephony_service_fax_campaigns_read_campaign_details_success"></span>
+                    }"
+                    ></i>
+                    <span
+                        data-translate="telephony_service_fax_campaigns_read_campaign_details_success"
+                    ></span>
                 </button>
-                <ul class="list-group mt-2"
-                    data-ng-show="CampaignsReadCtrl.list.success">
+                <ul
+                    class="list-group mt-2"
+                    data-ng-show="CampaignsReadCtrl.list.success"
+                >
                     <li class="list-group-item">
                         <div class="row todos-list">
-                            <div class="col-xs-6 col-sm-3 text-center"
-                                 data-ng-repeat="number in CampaignsReadCtrl.details.success track by $index">
+                            <div
+                                class="col-xs-6 col-sm-3 text-center"
+                                data-ng-repeat="number in CampaignsReadCtrl.details.success track by $index"
+                            >
                                 <span data-ng-bind="number"></span>
                             </div>
                         </div>
@@ -145,27 +204,38 @@
             </div>
         </div>
 
-        <div class="row mb-2"
-             data-ng-if="CampaignsReadCtrl.details.failed.length">
+        <div
+            class="row mb-2"
+            data-ng-if="CampaignsReadCtrl.details.failed.length"
+        >
             <div class="col-xs-12">
                 <button
                     type="button"
                     class="btn btn-link p-0 telecom-link"
-                    data-ng-click="CampaignsReadCtrl.list.failed = !CampaignsReadCtrl.list.failed">
-                    <i class="ovh-font"
-                       aria-hidden="true"
-                       data-ng-class="{
+                    data-ng-click="CampaignsReadCtrl.list.failed = !CampaignsReadCtrl.list.failed"
+                >
+                    <i
+                        class="ovh-font"
+                        aria-hidden="true"
+                        data-ng-class="{
                            'ovh-font-disclosure-right': !CampaignsReadCtrl.list.failed,
                            'ovh-font-disclosure-down': CampaignsReadCtrl.list.failed
-                    }"></i>
-                    <span data-translate="telephony_service_fax_campaigns_read_campaign_details_failed"></span>
+                    }"
+                    ></i>
+                    <span
+                        data-translate="telephony_service_fax_campaigns_read_campaign_details_failed"
+                    ></span>
                 </button>
-                <ul class="list-group mt-2"
-                    data-ng-show="CampaignsReadCtrl.list.failed">
+                <ul
+                    class="list-group mt-2"
+                    data-ng-show="CampaignsReadCtrl.list.failed"
+                >
                     <li class="list-group-item">
                         <div class="row todos-list">
-                            <div class="col-xs-6 col-sm-3 text-center"
-                                 data-ng-repeat="number in CampaignsReadCtrl.details.failed track by $index">
+                            <div
+                                class="col-xs-6 col-sm-3 text-center"
+                                data-ng-repeat="number in CampaignsReadCtrl.details.failed track by $index"
+                            >
                                 <span data-ng-bind="number"></span>
                             </div>
                         </div>
@@ -175,8 +245,10 @@
         </div>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="CampaignsReadCtrl.loading.init">
+    <div
+        class="modal-body text-center"
+        data-ng-if="CampaignsReadCtrl.loading.init"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="loading"></h4>
     </div>
@@ -186,8 +258,8 @@
             type="button"
             class="btn btn-primary"
             data-translate="ok"
-            data-ng-click="CampaignsReadCtrl.close()">
-        </button>
+            data-ng-click="CampaignsReadCtrl.close()"
+        ></button>
     </div>
-
-</div><!-- .telecom-telephony-service-fax-campaigns-read -->
+</div>
+<!-- .telecom-telephony-service-fax-campaigns-read -->

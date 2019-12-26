@@ -1,191 +1,255 @@
-<div class="telecom-telephony-alias-members"
-     data-ng-if="$ctrl.isInitialized">
+<div class="telecom-telephony-alias-members" data-ng-if="$ctrl.isInitialized">
+    <p
+        class="text-center mt-5"
+        data-ng-if="$ctrl.members.length === 0"
+        data-translate="telephony_alias_members_empty"
+    ></p>
 
-    <p class="text-center mt-5"
-       data-ng-if="$ctrl.members.length === 0"
-       data-translate="telephony_alias_members_empty"></p>
-
-    <p class="text-info mb-5"
-       data-ng-if="$ctrl.members.length >= 2">
+    <p class="text-info mb-5" data-ng-if="$ctrl.members.length >= 2">
         <i class="ovh-font ovh-font-info line-height-normal ml-2"></i>
         <span data-translate="telephony_alias_members_drag1"></span>
         <i class="ovh-font ovh-font-grip"></i>
         <span data-translate="telephony_alias_members_drag2"></span>
     </p>
 
-    <ul class="mt-2"
+    <ul
+        class="mt-2"
         data-ng-if="$ctrl.members.length > 0"
         data-ui-sortable="$ctrl.sortableMembersOpts"
-        data-ng-model="$ctrl.members">
-
+        data-ng-model="$ctrl.members"
+    >
         <!-- MEMBER -->
-        <li class="well"
+        <li
+            class="well"
             data-position="{{ $index }}"
-            data-ng-repeat="member in $ctrl.members track by member.agentId">
-
+            data-ng-repeat="member in $ctrl.members track by member.agentId"
+        >
             <!-- CONTROLS -->
             <div class="float-left">
-                <button class="btn btn-link p-0"
-                        data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
-                        data-ng-disabled="$index === 0 || $ctrl.sortableMembersOpts.disabled"
-                        data-ng-click="$ctrl.onSwapMembers(member, $ctrl.members[$index - 1])">
+                <button
+                    class="btn btn-link p-0"
+                    data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
+                    data-ng-disabled="$index === 0 || $ctrl.sortableMembersOpts.disabled"
+                    data-ng-click="$ctrl.onSwapMembers(member, $ctrl.members[$index - 1])"
+                >
                     <i class="ovh-font ovh-font-arrow-up d-block"></i>
                 </button>
-                <i class="ovh-font ovh-font-grip cursor-move d-block my-2 text-center"
-                   data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"></i>
-                <button class="btn btn-link p-0"
-                        data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
-                        data-ng-disabled="$index === $ctrl.members.length - 1 || $ctrl.sortableMembersOpts.disabled"
-                        data-ng-click="$ctrl.onSwapMembers(member, $ctrl.members[$index + 1])">
+                <i
+                    class="ovh-font ovh-font-grip cursor-move d-block my-2 text-center"
+                    data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
+                ></i>
+                <button
+                    class="btn btn-link p-0"
+                    data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
+                    data-ng-disabled="$index === $ctrl.members.length - 1 || $ctrl.sortableMembersOpts.disabled"
+                    data-ng-click="$ctrl.onSwapMembers(member, $ctrl.members[$index + 1])"
+                >
                     <i class="ovh-font ovh-font-arrow-down d-block"></i>
                 </button>
             </div>
             <div class="float-right">
-                <button class="btn btn-link"
-                        data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
-                        data-ng-click="$ctrl.startMemberEdition(member)">
+                <button
+                    class="btn btn-link"
+                    data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
+                    data-ng-click="$ctrl.startMemberEdition(member)"
+                >
                     <i class="ovh-font ovh-font-editer"></i>
                 </button>
-                <button class="btn btn-link"
-                        data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
-                        data-ng-click="$ctrl.memberToDelete = member">
+                <button
+                    class="btn btn-link"
+                    data-ng-if="!$ctrl.memberInEdition && !$ctrl.memberToDelete"
+                    data-ng-click="$ctrl.memberToDelete = member"
+                >
                     <i class="ovh-font ovh-font-bin"></i>
                 </button>
             </div>
 
             <!-- MEMBER CONTENTS -->
-            <div class="px-3"
-                 data-in-view="$ctrl.updateMemberDescription(member)"
-                 data-ng-class="{'pl-5': !$ctrl.memberInEdition && !$ctrl.memberToDelete}">
-                <strong class="member-description my-3  align-middle"
-                        data-ng-class="{'px-4': !$ctrl.memberInEdition && !$ctrl.memberToDelete}">
-                    <oui-spinner data-ng-if="member.description === undefined"
-                                 data-size="s">
+            <div
+                class="px-3"
+                data-in-view="$ctrl.updateMemberDescription(member)"
+                data-ng-class="{'pl-5': !$ctrl.memberInEdition && !$ctrl.memberToDelete}"
+            >
+                <strong
+                    class="member-description my-3  align-middle"
+                    data-ng-class="{'px-4': !$ctrl.memberInEdition && !$ctrl.memberToDelete}"
+                >
+                    <oui-spinner
+                        data-ng-if="member.description === undefined"
+                        data-size="s"
+                    >
                     </oui-spinner>
-                    <span data-ng-if="member.description !== undefined"
-                          data-ng-bind="member.description || ('telephony_alias_members_number_' + member.type | translate)"></span>
+                    <span
+                        data-ng-if="member.description !== undefined"
+                        data-ng-bind="member.description || ('telephony_alias_members_number_' + member.type | translate)"
+                    ></span>
                 </strong>
-                <strong class="memberPhoneNumber px-4" data-ng-bind="member.number | tucPhoneNumber"></strong>
-                <div class="row mt-3"
-                     data-ng-if="!$ctrl.memberInEdition || $ctrl.memberInEdition.agentId !== member.agentId">
-                    <small class="col-md-3 text-nowrap text-capitalize font-weight-bold"
-                           data-ng-class="{
+                <strong
+                    class="memberPhoneNumber px-4"
+                    data-ng-bind="member.number | tucPhoneNumber"
+                ></strong>
+                <div
+                    class="row mt-3"
+                    data-ng-if="!$ctrl.memberInEdition || $ctrl.memberInEdition.agentId !== member.agentId"
+                >
+                    <small
+                        class="col-md-3 text-nowrap text-capitalize font-weight-bold"
+                        data-ng-class="{
                                'text-success': member.status === 'available',
                                'text-info': member.status === 'onBreak',
                                'text-danger': member.status === 'loggedOut'
                            }"
-                           data-ng-bind="'telephony_alias_members_status_' + member.status | translate"></small>
-                    <small class="col-md-3 text-nowrap"
-                           data-translate="telephony_alias_members_timeout_val"
-                           data-translate-values="{ timeout: member.timeout }"></small>
-                    <small class="col-md-3 text-nowrap"
-                           data-translate="telephony_alias_members_wrap_up_time_val"
-                           data-translate-values="{ time: member.wrapUpTime }"></small>
-                    <small class="col-md-2 text-nowrap"
-                           data-translate="telephony_alias_members_simultaneous_lines_val"
-                           data-translate-values="{ count: member.simultaneousLines }"></small>
+                        data-ng-bind="'telephony_alias_members_status_' + member.status | translate"
+                    ></small>
+                    <small
+                        class="col-md-3 text-nowrap"
+                        data-translate="telephony_alias_members_timeout_val"
+                        data-translate-values="{ timeout: member.timeout }"
+                    ></small>
+                    <small
+                        class="col-md-3 text-nowrap"
+                        data-translate="telephony_alias_members_wrap_up_time_val"
+                        data-translate-values="{ time: member.wrapUpTime }"
+                    ></small>
+                    <small
+                        class="col-md-2 text-nowrap"
+                        data-translate="telephony_alias_members_simultaneous_lines_val"
+                        data-translate-values="{ count: member.simultaneousLines }"
+                    ></small>
                 </div>
 
                 <!-- MEMBER EDITION -->
-                <form id="memberEditForm"
-                      name="memberEditForm"
-                      data-ng-if="$ctrl.memberInEdition.agentId === member.agentId"
-                      data-ng-submit="$ctrl.submitMemberChanges()">
-
+                <form
+                    id="memberEditForm"
+                    name="memberEditForm"
+                    data-ng-if="$ctrl.memberInEdition.agentId === member.agentId"
+                    data-ng-submit="$ctrl.submitMemberChanges()"
+                >
                     <!-- STATUS -->
                     <div class="form-group">
-                        <label for="editStatusInput"
-                               class="control-label"
-                               data-translate="telephony_alias_members_status"></label>
-                        <select class="form-control"
-                                data-ng-model="$ctrl.memberInEdition.status">
-                            <option data-ng-repeat="opt in ['available', 'loggedOut']"
-                                    value="{{:: opt }}">
-                                <span>{{:: 'telephony_alias_members_status_' + opt | translate }}</span>
+                        <label
+                            for="editStatusInput"
+                            class="control-label"
+                            data-translate="telephony_alias_members_status"
+                        ></label>
+                        <select
+                            class="form-control"
+                            data-ng-model="$ctrl.memberInEdition.status"
+                        >
+                            <option
+                                data-ng-repeat="opt in ['available', 'loggedOut']"
+                                value="{{:: opt }}"
+                            >
+                                <span
+                                    >{{:: 'telephony_alias_members_status_' +
+                                    opt | translate }}</span
+                                >
                             </option>
                         </select>
                     </div>
 
                     <!-- TIMEOUT -->
                     <div class="form-group">
-                        <label for="editTimeoutInput"
-                               class="control-label"
-                               data-translate="telephony_alias_members_timeout"></label>
-                        <oui-numeric id="editTimeoutInput"
-                                              class="d-inline-block text-left"
-                                              data-model="$ctrl.memberInEdition.timeout"
-                                              min="1"
-                                              max="99999">
+                        <label
+                            for="editTimeoutInput"
+                            class="control-label"
+                            data-translate="telephony_alias_members_timeout"
+                        ></label>
+                        <oui-numeric
+                            id="editTimeoutInput"
+                            class="d-inline-block text-left"
+                            data-model="$ctrl.memberInEdition.timeout"
+                            min="1"
+                            max="99999"
+                        >
                         </oui-numeric>
                     </div>
 
                     <!-- WRAP UP TIME -->
                     <div class="form-group">
-                        <label for="editWrapUpTimeInput"
-                               class="control-label"
-                               data-translate="telephony_alias_members_wrap_up_time"></label>
-                        <oui-numeric id="editWrapUpTimeInput"
-                                              class="d-inline-block text-left"
-                                              data-model="$ctrl.memberInEdition.wrapUpTime"
-                                              min="0"
-                                              max="99999">
+                        <label
+                            for="editWrapUpTimeInput"
+                            class="control-label"
+                            data-translate="telephony_alias_members_wrap_up_time"
+                        ></label>
+                        <oui-numeric
+                            id="editWrapUpTimeInput"
+                            class="d-inline-block text-left"
+                            data-model="$ctrl.memberInEdition.wrapUpTime"
+                            min="0"
+                            max="99999"
+                        >
                         </oui-numeric>
                     </div>
 
                     <!-- SIMULTANEOUS LINES -->
                     <div class="form-group">
-                        <label for="editSimultaneousLinesInput"
-                               class="control-label"
-                               data-translate="telephony_alias_members_simultaneous_lines"></label>
-                        <oui-numeric id="editSimultaneousLinesInput"
-                                              class="d-inline-block text-left"
-                                              data-model="$ctrl.memberInEdition.simultaneousLines"
-                                              min="1"
-                                              max="10">
+                        <label
+                            for="editSimultaneousLinesInput"
+                            class="control-label"
+                            data-translate="telephony_alias_members_simultaneous_lines"
+                        ></label>
+                        <oui-numeric
+                            id="editSimultaneousLinesInput"
+                            class="d-inline-block text-left"
+                            data-model="$ctrl.memberInEdition.simultaneousLines"
+                            min="1"
+                            max="10"
+                        >
                         </oui-numeric>
                     </div>
 
                     <div class="my-3">
-                        <button type="submit"
-                                class="btn btn-primary"
-                                data-ng-disabled="$ctrl.loaders.editing">
-                            <oui-spinner class="mr-2"
-                                         data-ng-if="$ctrl.loaders.editing"
-                                         data-size="s">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-ng-disabled="$ctrl.loaders.editing"
+                        >
+                            <oui-spinner
+                                class="mr-2"
+                                data-ng-if="$ctrl.loaders.editing"
+                                data-size="s"
+                            >
                             </oui-spinner>
                             <span data-translate="submit"></span>
                         </button>
-                        <button type="button"
-                                class="btn btn-default"
-                                data-ng-click="$ctrl.cancelMemberEdition()"
-                                data-ng-disabled="$ctrl.loaders.editing"
-                                data-translate="cancel">
-                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-default"
+                            data-ng-click="$ctrl.cancelMemberEdition()"
+                            data-ng-disabled="$ctrl.loaders.editing"
+                            data-translate="cancel"
+                        ></button>
                     </div>
                 </form>
 
                 <!-- CONFIRM DELETION -->
-                <div class="my-3"
-                     data-ng-if="$ctrl.memberToDelete === member">
-                    <button type="button"
-                            class="btn btn-danger"
-                            data-ng-click="$ctrl.deleteMember(member)"
-                            data-ng-disabled="$ctrl.loaders.deleting">
-                        <oui-spinner class="mr-2"
-                                     data-ng-if="$ctrl.loaders.deleting"
-                                     data-size="s">
+                <div class="my-3" data-ng-if="$ctrl.memberToDelete === member">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-ng-click="$ctrl.deleteMember(member)"
+                        data-ng-disabled="$ctrl.loaders.deleting"
+                    >
+                        <oui-spinner
+                            class="mr-2"
+                            data-ng-if="$ctrl.loaders.deleting"
+                            data-size="s"
+                        >
                         </oui-spinner>
                         <span data-translate="delete"></span>
                     </button>
-                    <button type="button"
-                            class="btn btn-default"
-                            data-ng-click="$ctrl.memberToDelete = null"
-                            data-ng-disabled="$ctrl.loaders.deleting"
-                            data-translate="cancel">
-                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        data-ng-click="$ctrl.memberToDelete = null"
+                        data-ng-disabled="$ctrl.loaders.deleting"
+                        data-translate="cancel"
+                    ></button>
                 </div>
-            </div><!-- member contents -->
-
+            </div>
+            <!-- member contents -->
         </li>
     </ul>
-</div><!-- members list -->
+</div>
+<!-- members list -->

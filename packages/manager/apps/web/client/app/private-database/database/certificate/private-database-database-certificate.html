@@ -1,16 +1,22 @@
 <div data-ng-controller="PrivateDatabaseCertificateCtrl as certificateCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-cancel-button-text="'privateDatabase_modale_oom_close_button' | translate"
-         data-wizard-hide-confirm-button
-         data-wizard-title="'privateDatabase_dashboard_certificate' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-cancel-button-text="'privateDatabase_modale_oom_close_button' | translate"
+        data-wizard-hide-confirm-button
+        data-wizard-title="'privateDatabase_dashboard_certificate' | translate"
+    >
         <div data-wizard-step>
             <div class="form-group">
-                <textarea type="text" rows="20" style="font-family: monospace;font-size: 0.7em;line-height: 1.0;font-weight: normal;"
-                          class="form-control" id="certificateTextArea"
-                          readonly data-ng-value="certificateCtrl.database.tlsCa"></textarea>
+                <textarea
+                    type="text"
+                    rows="20"
+                    style="font-family: monospace;font-size: 0.7em;line-height: 1.0;font-weight: normal;"
+                    class="form-control"
+                    id="certificateTextArea"
+                    readonly
+                    data-ng-value="certificateCtrl.database.tlsCa"
+                ></textarea>
             </div>
         </div>
     </div>

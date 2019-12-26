@@ -1,26 +1,32 @@
 <div data-ng-controller="ExchangeSslRenewCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submitting"
-         data-wizard-title="'exchange_ACTION_renew_ssl_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.model.name">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submitting"
+        data-wizard-title="'exchange_ACTION_renew_ssl_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.model.name">
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
             <div data-ng-if="!ctrl.loading">
-                <p data-ng-bind-html="'exchange_ACTION_renew_ssl_intro' | translate"></p>
-                    <ul class="selectList">
-                        <li data-ng-repeat="domain in ctrl.availableDomains | filter:search | orderBy:'formattedName' track by $index"
-                            data-ng-bind="domain.displayName"
-                            data-ng-click="ctrl.model.name = domain.name; ctrl.model.displayName = domain.displayName;"
-                            data-ng-class="{'lineSelected': ctrl.model.name === domain.name}">
-                        </li>
-                        <li data-ng-if="(ctrl.availableDomains | filter:search).length === 0">
-                            <span data-translate="exchange_tab_domain_add_step1_domain_none"></span>
-                        </li>
-                    </ul>
+                <p
+                    data-ng-bind-html="'exchange_ACTION_renew_ssl_intro' | translate"
+                ></p>
+                <ul class="selectList">
+                    <li
+                        data-ng-repeat="domain in ctrl.availableDomains | filter:search | orderBy:'formattedName' track by $index"
+                        data-ng-bind="domain.displayName"
+                        data-ng-click="ctrl.model.name = domain.name; ctrl.model.displayName = domain.displayName;"
+                        data-ng-class="{'lineSelected': ctrl.model.name === domain.name}"
+                    ></li>
+                    <li
+                        data-ng-if="(ctrl.availableDomains | filter:search).length === 0"
+                    >
+                        <span
+                            data-translate="exchange_tab_domain_add_step1_domain_none"
+                        ></span>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -29,16 +35,22 @@
 
             <dl class="dl-horizontal dl-lg">
                 <dt data-translate="exchange_dashboard_name"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.exchange.domain | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.exchange.domain | wucSliceContent: 150"
+                ></dd>
 
                 <dt data-translate="exchange_dashboard_hostname"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.exchange.hostname | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.exchange.hostname | wucSliceContent: 150"
+                ></dd>
 
                 <dt data-translate="exchange_ACTION_renew_ssl_dcv_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.model.displayName | wucSliceContent: 150"></dd>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.model.displayName | wucSliceContent: 150"
+                ></dd>
             </dl>
         </div>
     </div>

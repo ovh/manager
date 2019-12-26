@@ -1,18 +1,28 @@
 <section class="cui-page__content iplb-vrack">
-    <cui-page-content-title text="'iplb_vrack_title' | translate"></cui-page-content-title>
+    <cui-page-content-title
+        text="'iplb_vrack_title' | translate"
+    ></cui-page-content-title>
     <p>
-        <span data-ng-if="!$ctrl.creationRules.data.vrackEligibility && $ctrl.creationRules.data.status !== 'active'"
-            data-translate="iplb_vrack_intro_not_eligible">
+        <span
+            data-ng-if="!$ctrl.creationRules.data.vrackEligibility && $ctrl.creationRules.data.status !== 'active'"
+            data-translate="iplb_vrack_intro_not_eligible"
+        >
         </span>
-        <span data-ng-if="$ctrl.creationRules.data.vrackEligibility && $ctrl.creationRules.data.status === 'active'">
+        <span
+            data-ng-if="$ctrl.creationRules.data.vrackEligibility && $ctrl.creationRules.data.status === 'active'"
+        >
             <span data-translate="iplb_vrack_intro_text"></span>
-            <span data-ng-if="$ctrl.creationRules.data.remainingNetworks <= 1"
+            <span
+                data-ng-if="$ctrl.creationRules.data.remainingNetworks <= 1"
                 data-translate="iplb_vrack_intro_text2_single"
-                data-translate-values="$ctrl.creationRules.data">
+                data-translate-values="$ctrl.creationRules.data"
+            >
             </span>
-            <span data-ng-if="$ctrl.creationRules.data.remainingNetworks > 1"
+            <span
+                data-ng-if="$ctrl.creationRules.data.remainingNetworks > 1"
                 data-translate="iplb_vrack_intro_text2_plural"
-                data-translate-values="$ctrl.creationRules.data">
+                data-translate-values="$ctrl.creationRules.data"
+            >
             </span>
         </span>
     </p>
@@ -20,41 +30,82 @@
         <dl class="mr-auto iplb-vrack__box-dl">
             <dt data-translate="iplb_vrack_box_title"></dt>
             <dd>
-                <oui-skeleton data-ng-if="$ctrl.creationRules.loading"></oui-skeleton>
+                <oui-skeleton
+                    data-ng-if="$ctrl.creationRules.loading"
+                ></oui-skeleton>
                 <span data-ng-if="!$ctrl.creationRules.loading">
-                    <span data-translate="{{ 'iplb_vrack_box_status_' + $ctrl.creationRules.data.status }}"></span>
-                    <small data-ng-if="$ctrl.creationRules.data.status === 'active'">({{ $ctrl.creationRules.data.displayName }})</small>
+                    <span
+                        data-translate="{{ 'iplb_vrack_box_status_' + $ctrl.creationRules.data.status }}"
+                    ></span>
+                    <small
+                        data-ng-if="$ctrl.creationRules.data.status === 'active'"
+                        >({{ $ctrl.creationRules.data.displayName }})</small
+                    >
                 </span>
             </dd>
         </dl>
-        <oui-button data-ng-if="$ctrl.actions.activateVrack.isAvailable()"
+        <oui-button
+            data-ng-if="$ctrl.actions.activateVrack.isAvailable()"
             data-text="{{::$ctrl.actions.activateVrack.text}}"
             data-on-click="$ctrl.actions.activateVrack.callback()"
-            data-variant="secondary">
+            data-variant="secondary"
+        >
         </oui-button>
-        <oui-button data-ng-if="$ctrl.actions.deActivateVrack.isAvailable()"
+        <oui-button
+            data-ng-if="$ctrl.actions.deActivateVrack.isAvailable()"
             data-text="{{::$ctrl.actions.deActivateVrack.text}}"
             data-on-click="$ctrl.actions.deActivateVrack.callback()"
-            data-variant="secondary">
+            data-variant="secondary"
+        >
         </oui-button>
     </div>
     <oui-button
         data-text="{{::$ctrl.actions.addPrivateNetwork.text}}"
         data-on-click="$ctrl.actions.addPrivateNetwork.callback()"
         data-disabled="$ctrl.actions.addPrivateNetwork.isAvailable && !$ctrl.actions.addPrivateNetwork.isAvailable()"
-        data-variant="secondary">
+        data-variant="secondary"
+    >
     </oui-button>
     <oui-datagrid data-rows="$ctrl.privateNetworks.data">
-        <oui-column data-title="'iplb_vrack_list_col_private_network' | translate" data-property="displayName" data-sortable></oui-column>
-        <oui-column data-title="'iplb_vrack_list_col_vlan_id' | translate" data-property="vlan" data-sortable></oui-column>
-        <oui-column data-title="'iplb_vrack_list_col_subnet' | translate" data-property="subnet" data-sortable></oui-column>
-        <oui-column data-title="'iplb_vrack_list_col_nat_ip' | translate" data-property="natIp" data-sortable></oui-column>
-        <oui-column data-title="'iplb_vrack_list_col_farms' | translate" data-property="farmId">
-            <span class="oui-chip" data-ng-repeat="farm in $row.farmId track by $index" data-ng-bind="farm.displayName || farm.farmId"></span>
+        <oui-column
+            data-title="'iplb_vrack_list_col_private_network' | translate"
+            data-property="displayName"
+            data-sortable
+        ></oui-column>
+        <oui-column
+            data-title="'iplb_vrack_list_col_vlan_id' | translate"
+            data-property="vlan"
+            data-sortable
+        ></oui-column>
+        <oui-column
+            data-title="'iplb_vrack_list_col_subnet' | translate"
+            data-property="subnet"
+            data-sortable
+        ></oui-column>
+        <oui-column
+            data-title="'iplb_vrack_list_col_nat_ip' | translate"
+            data-property="natIp"
+            data-sortable
+        ></oui-column>
+        <oui-column
+            data-title="'iplb_vrack_list_col_farms' | translate"
+            data-property="farmId"
+        >
+            <span
+                class="oui-chip"
+                data-ng-repeat="farm in $row.farmId track by $index"
+                data-ng-bind="farm.displayName || farm.farmId"
+            ></span>
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item data-text="{{ $ctrl.actions.editPrivateNetwork.text }}" data-on-click="$ctrl.actions.editPrivateNetwork.callback($row)"></oui-action-menu-item>
-            <oui-action-menu-item data-text="{{ $ctrl.actions.deletePrivateNetwork.text }}" data-on-click="$ctrl.actions.deletePrivateNetwork.callback($row)"></oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{ $ctrl.actions.editPrivateNetwork.text }}"
+                data-on-click="$ctrl.actions.editPrivateNetwork.callback($row)"
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                data-text="{{ $ctrl.actions.deletePrivateNetwork.text }}"
+                data-on-click="$ctrl.actions.deletePrivateNetwork.callback($row)"
+            ></oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
 </section>

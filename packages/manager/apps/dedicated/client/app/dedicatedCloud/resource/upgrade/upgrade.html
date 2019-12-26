@@ -5,21 +5,31 @@
     data-secondary-action=":: $dismiss()"
     data-secondary-label="{{:: 'ovhManagerPccResourceUpgrade_cancelButton' | translate }}"
     data-on-dismiss=":: $dismiss()"
-    data-loading="$ctrl.bindings.isLoading">
-    <h2 data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading"></h2>
+    data-loading="$ctrl.bindings.isLoading"
+>
+    <h2
+        data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_heading"
+    ></h2>
     <dl data-ng-if="!$ctrl.bindings.isLoading">
-        <dd data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod"></dd>
-        <dt data-translate="{{:: 'ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_' + $ctrl.bindings.renewalPeriod.intervalUnit }}"></dt>
-        <dd data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price"></dd>
+        <dd
+            data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod"
+        ></dd>
+        <dt
+            data-translate="{{:: 'ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_renewalPeriod_' + $ctrl.bindings.renewalPeriod.intervalUnit }}"
+        ></dt>
+        <dd
+            data-translate="ovhManagerPccResourceUpgrade_onlyOneRenewalPeriod_price"
+        ></dd>
         <dt data-ng-bind=":: $ctrl.bindings.renewalPeriod.price.text"></dt>
     </dl>
 
-     <p
+    <p
         data-translate="ovhManagerPccResourceUpgrade_clickOnValidateToPlaceYourOrder"
-        data-translate-values="{ validateButtonText: '<strong>' + ('ovhManagerPccResourceUpgrade_validateButton' | translate) + '</strong>' }"></p>
-    <oui-message
-        data-type="info"
-        data-dismissable="false">
-        <p data-translate="ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect"></p>
+        data-translate-values="{ validateButtonText: '<strong>' + ('ovhManagerPccResourceUpgrade_validateButton' | translate) + '</strong>' }"
+    ></p>
+    <oui-message data-type="info" data-dismissable="false">
+        <p
+            data-translate="ovhManagerPccResourceUpgrade_willOpenNewTabAndRedirect"
+        ></p>
     </oui-message>
 </oui-modal>

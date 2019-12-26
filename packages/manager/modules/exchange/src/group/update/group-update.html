@@ -1,13 +1,15 @@
 <div data-ng-controller="ExchangeUpdateGroupCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateExchangeGroup"
-         data-wizard-title="'exchange_GROUPS_settings_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="retrievingOptionsToCreateNewGroup"
-             data-wizard-step-valid="groupIsValid()">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateExchangeGroup"
+        data-wizard-title="'exchange_GROUPS_settings_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="retrievingOptionsToCreateNewGroup"
+            data-wizard-step-valid="groupIsValid()"
+        >
             <oui-spinner data-ng-if="!ctrl.groupOptions"></oui-spinner>
 
             <form name="ctrl.updateGroupForm">
@@ -16,161 +18,294 @@
                     <small data-translate="required_fields"></small>
                 </p>
 
-                <fieldset class="form-group"
-                          data-ng-class="{'has-error': ctrl.updateGroupForm.selectedGroupAddress.$dirty && (ctrl.updateGroupForm.selectedGroupAddress.$invalid || ctrl.takenEmailError)}">
-                    <label class="control-label required" for="selectedGroupAddress"
-                           data-translate="exchange_GROUPS_add_group_email_label"></label>
+                <fieldset
+                    class="form-group"
+                    data-ng-class="{'has-error': ctrl.updateGroupForm.selectedGroupAddress.$dirty && (ctrl.updateGroupForm.selectedGroupAddress.$invalid || ctrl.takenEmailError)}"
+                >
+                    <label
+                        class="control-label required"
+                        for="selectedGroupAddress"
+                        data-translate="exchange_GROUPS_add_group_email_label"
+                    ></label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="selectedGroupAddress" maxlength="256" name="selectedGroupAddress" required
-                               data-ng-model="ctrl.selectedGroup.address"
-                               data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="selectedGroupAddress"
+                            maxlength="256"
+                            name="selectedGroupAddress"
+                            required
+                            data-ng-model="ctrl.selectedGroup.address"
+                            data-ng-pattern="/^[-_a-zA-Z0-9]+((\.|\+)[-_a-zA-Z0-9]+)*$/"
+                        />
                         <span class="input-group-addon">@</span>
-                        <select class="form-control" required
-                                data-ng-disabled="ctrl.groupOptions == null"
-                                data-ng-model="ctrl.selectedGroup.completeDomain"
-                                data-ng-options="domain.displayName for domain in ctrl.groupOptions.availableDomains | orderBy:'formattedName'">
+                        <select
+                            class="form-control"
+                            required
+                            data-ng-disabled="ctrl.groupOptions == null"
+                            data-ng-model="ctrl.selectedGroup.completeDomain"
+                            data-ng-options="domain.displayName for domain in ctrl.groupOptions.availableDomains | orderBy:'formattedName'"
+                        >
                         </select>
                     </div>
-                    <small class="help-block"
-                           data-translate="exchange_tab_ALIAS_taken_error_message"
-                           data-ng-if="ctrl.takenEmailError"></small>
+                    <small
+                        class="help-block"
+                        data-translate="exchange_tab_ALIAS_taken_error_message"
+                        data-ng-if="ctrl.takenEmailError"
+                    ></small>
                 </fieldset>
 
                 <div class="form-group">
-                    <label class="control-label" for="selectedGroupDisplayName"
-                           data-translate="exchange_GROUPS_add_group_name_label"></label>
-                    <input type="text" class="form-control" id="selectedGroupDisplayName" maxlength="256" name="selectedGroupDisplayName"
-                           data-ng-model="ctrl.selectedGroup.displayName">
+                    <label
+                        class="control-label"
+                        for="selectedGroupDisplayName"
+                        data-translate="exchange_GROUPS_add_group_name_label"
+                    ></label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="selectedGroupDisplayName"
+                        maxlength="256"
+                        name="selectedGroupDisplayName"
+                        data-ng-model="ctrl.selectedGroup.displayName"
+                    />
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="selectedGroupMaxReceiveSize"
-                           data-translate="exchange_GROUPS_add_group_receive_size_label"></label>
+                    <label
+                        class="control-label"
+                        for="selectedGroupMaxReceiveSize"
+                        data-translate="exchange_GROUPS_add_group_receive_size_label"
+                    ></label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" id="selectedGroupMaxReceiveSize" name="selectedGroupMaxReceiveSize"
-                               data-ng-disabled="ctrl.selectedGroup.receiveSizeUnlimited"
-                               data-ng-min="0" min="0"
-                               data-ng-max="100" max="100"
-                               data-ng-model="ctrl.selectedGroup.maxReceiveSize"
-                               data-oui-tooltip="{{'exchange_GROUPS_add_group_receive_size_tooltip' | translate}}">
-                        <span class="input-group-addon" data-translate="unit_size_MB"></span>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="selectedGroupMaxReceiveSize"
+                            name="selectedGroupMaxReceiveSize"
+                            data-ng-disabled="ctrl.selectedGroup.receiveSizeUnlimited"
+                            data-ng-min="0"
+                            min="0"
+                            data-ng-max="100"
+                            max="100"
+                            data-ng-model="ctrl.selectedGroup.maxReceiveSize"
+                            data-oui-tooltip="{{'exchange_GROUPS_add_group_receive_size_tooltip' | translate}}"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="unit_size_MB"
+                        ></span>
                     </div>
 
-                    <oui-checkbox id="receiveSizeUnlimited"
+                    <oui-checkbox
+                        id="receiveSizeUnlimited"
                         data-model="ctrl.selectedGroup.receiveSizeUnlimited"
                         data-on-change="ctrl.onReceiveSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}">
+                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
+                    >
                     </oui-checkbox>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="selectedGroupMaxSendSize"
-                           data-translate="exchange_GROUPS_add_group_sent_size_label"></label>
+                    <label
+                        class="control-label"
+                        for="selectedGroupMaxSendSize"
+                        data-translate="exchange_GROUPS_add_group_sent_size_label"
+                    ></label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" id="selectedGroupMaxSendSize" name="selectedGroupMaxSendSize"
-                               data-ng-disabled="ctrl.selectedGroup.sentSizeUnlimited"
-                               data-ng-min="0" min="0"
-                               data-ng-max="100" max="100"
-                               data-ng-model="ctrl.selectedGroup.maxSendSize"
-                               data-oui-tooltip="{{'exchange_GROUPS_add_group_sent_size_tooltip' | translate}}">
-                        <span class="input-group-addon" data-translate="unit_size_MB"></span>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="selectedGroupMaxSendSize"
+                            name="selectedGroupMaxSendSize"
+                            data-ng-disabled="ctrl.selectedGroup.sentSizeUnlimited"
+                            data-ng-min="0"
+                            min="0"
+                            data-ng-max="100"
+                            max="100"
+                            data-ng-model="ctrl.selectedGroup.maxSendSize"
+                            data-oui-tooltip="{{'exchange_GROUPS_add_group_sent_size_tooltip' | translate}}"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="unit_size_MB"
+                        ></span>
                     </div>
 
-                    <oui-checkbox id="sentSizeUnlimited"
+                    <oui-checkbox
+                        id="sentSizeUnlimited"
                         data-model="ctrl.selectedGroup.sentSizeUnlimited"
                         data-on-change="ctrl.onSentSizeChange()"
-                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}">
+                        data-text="{{::'exchange_GROUPS_add_group_size_unlimited' | translate}}"
+                    >
                     </oui-checkbox>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label required" for="selectedGroupJoinRestriction"
-                           data-translate="exchange_GROUPS_add_group_subscribe_label"></label>
+                    <label
+                        class="control-label required"
+                        for="selectedGroupJoinRestriction"
+                        data-translate="exchange_GROUPS_add_group_subscribe_label"
+                    ></label>
                     <div class="oui-select">
-                        <select class="oui-select__input" id="selectedGroupJoinRestriction" name="ctrl.selectedGroup.joinRestriction" required
-                                data-ng-disabled="ctrl.groupOptions == null"
-                                data-ng-model="ctrl.selectedGroup.joinRestriction"
-                                data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.groupOptions.availableJoinRestrictions">
+                        <select
+                            class="oui-select__input"
+                            id="selectedGroupJoinRestriction"
+                            name="ctrl.selectedGroup.joinRestriction"
+                            required
+                            data-ng-disabled="ctrl.groupOptions == null"
+                            data-ng-model="ctrl.selectedGroup.joinRestriction"
+                            data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.groupOptions.availableJoinRestrictions"
+                        >
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label required" for="selectedGroupDepartRestriction"
-                           data-translate="exchange_GROUPS_add_group_unsubscribe_label"></label>
+                    <label
+                        class="control-label required"
+                        for="selectedGroupDepartRestriction"
+                        data-translate="exchange_GROUPS_add_group_unsubscribe_label"
+                    ></label>
                     <div class="oui-select">
-                        <select class="oui-select__input" id="selectedGroupDepartRestriction" name="ctrl.selectedGroup.departRestriction" required
-                                data-ng-disabled="ctrl.groupOptions == null"
-                                data-ng-model="ctrl.selectedGroup.departRestriction"
-                                data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.groupOptions.availableDepartRestrictions">
+                        <select
+                            class="oui-select__input"
+                            id="selectedGroupDepartRestriction"
+                            name="ctrl.selectedGroup.departRestriction"
+                            required
+                            data-ng-disabled="ctrl.groupOptions == null"
+                            data-ng-model="ctrl.selectedGroup.departRestriction"
+                            data-ng-options="('exchange_GROUPS_add_group_retriction_' + restriction) | translate for restriction in ctrl.groupOptions.availableDepartRestrictions"
+                        >
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
 
-                <oui-checkbox id="hiddenFromGAL"
+                <oui-checkbox
+                    id="hiddenFromGAL"
                     data-model="ctrl.selectedGroup.hiddenFromGAL"
-                    data-text="{{::'exchange_GROUPS_add_group_hide_label' | translate}}">
+                    data-text="{{::'exchange_GROUPS_add_group_hide_label' | translate}}"
+                >
                 </oui-checkbox>
 
-                <oui-checkbox id="senderAuthentification"
+                <oui-checkbox
+                    id="senderAuthentification"
                     data-model="ctrl.selectedGroup.senderAuthentification"
-                    data-text="{{::'exchange_GROUPS_add_group_auth_label' | translate}}">
+                    data-text="{{::'exchange_GROUPS_add_group_auth_label' | translate}}"
+                >
                 </oui-checkbox>
             </form>
 
             <div data-wizard-step-help>
                 <h3 data-translate="exchange_GROUPS_settings_title"></h3>
-                <p data-ng-bind-html="'exchange_GROUPS_add_group_help_intro' | translate"></p>
-                <h4 data-translate="exchange_GROUPS_add_group_help_size_header"></h4>
-                <p data-ng-bind-html="'exchange_GROUPS_add_group_help_size_text' | translate"></p>
-                <h4 data-translate="exchange_GROUPS_add_group_help_subscription_header"></h4>
-                <p data-ng-bind-html="'exchange_GROUPS_add_group_help_subscription_text' | translate"></p>
-                <h4 data-translate="exchange_GROUPS_add_group_help_directory_header"></h4>
-                <p data-ng-bind-html="'exchange_GROUPS_add_group_help_directory_text' | translate"></p>
-                <h4 data-translate="exchange_GROUPS_add_group_help_security_header"></h4>
-                <p data-ng-bind-html="'exchange_GROUPS_add_group_help_security_text' | translate"></p>
-             </div>
+                <p
+                    data-ng-bind-html="'exchange_GROUPS_add_group_help_intro' | translate"
+                ></p>
+                <h4
+                    data-translate="exchange_GROUPS_add_group_help_size_header"
+                ></h4>
+                <p
+                    data-ng-bind-html="'exchange_GROUPS_add_group_help_size_text' | translate"
+                ></p>
+                <h4
+                    data-translate="exchange_GROUPS_add_group_help_subscription_header"
+                ></h4>
+                <p
+                    data-ng-bind-html="'exchange_GROUPS_add_group_help_subscription_text' | translate"
+                ></p>
+                <h4
+                    data-translate="exchange_GROUPS_add_group_help_directory_header"
+                ></h4>
+                <p
+                    data-ng-bind-html="'exchange_GROUPS_add_group_help_directory_text' | translate"
+                ></p>
+                <h4
+                    data-translate="exchange_GROUPS_add_group_help_security_header"
+                ></h4>
+                <p
+                    data-ng-bind-html="'exchange_GROUPS_add_group_help_security_text' | translate"
+                ></p>
+            </div>
         </div>
 
         <div data-wizard-step>
             <dl class="dl-horizontal dl-lg">
                 <dt data-translate="exchange_GROUPS_add_group_email_label"></dt>
-                <dd data-ng-bind="ctrl.selectedGroup.address + '@' + ctrl.selectedGroup.completeDomain.displayName"></dd>
+                <dd
+                    data-ng-bind="ctrl.selectedGroup.address + '@' + ctrl.selectedGroup.completeDomain.displayName"
+                ></dd>
 
-                <dt data-ng-if="ctrl.selectedGroup.displayName"
-                    data-translate="exchange_GROUPS_add_group_name_label"></dt>
-                <dd data-ng-if="ctrl.selectedGroup.displayName"
-                    data-ng-bind="ctrl.selectedGroup.displayName | wucSliceContent: 150" class="word-break"></dd>
+                <dt
+                    data-ng-if="ctrl.selectedGroup.displayName"
+                    data-translate="exchange_GROUPS_add_group_name_label"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.selectedGroup.displayName"
+                    data-ng-bind="ctrl.selectedGroup.displayName | wucSliceContent: 150"
+                    class="word-break"
+                ></dd>
 
-                <dt data-translate="exchange_GROUPS_add_group_receive_size_label"></dt>
+                <dt
+                    data-translate="exchange_GROUPS_add_group_receive_size_label"
+                ></dt>
                 <dd>
-                    <span data-ng-if="!ctrl.selectedGroup.receiveSizeUnlimited"
-                          data-ng-bind="ctrl.selectedGroup.maxReceiveSize"></span>
-                    <span data-ng-if="ctrl.selectedGroup.receiveSizeUnlimited"
-                          data-translate="exchange_GROUPS_add_group_size_unlimited"></span>
+                    <span
+                        data-ng-if="!ctrl.selectedGroup.receiveSizeUnlimited"
+                        data-ng-bind="ctrl.selectedGroup.maxReceiveSize"
+                    ></span>
+                    <span
+                        data-ng-if="ctrl.selectedGroup.receiveSizeUnlimited"
+                        data-translate="exchange_GROUPS_add_group_size_unlimited"
+                    ></span>
                 </dd>
 
-                <dt data-translate="exchange_GROUPS_add_group_sent_size_label"></dt>
+                <dt
+                    data-translate="exchange_GROUPS_add_group_sent_size_label"
+                ></dt>
                 <dd>
-                    <span data-ng-if="!ctrl.selectedGroup.sentSizeUnlimited"
-                          data-ng-bind="ctrl.selectedGroup.maxSendSize"></span>
-                    <span data-ng-if="ctrl.selectedGroup.sentSizeUnlimited"
-                          data-translate="exchange_GROUPS_add_group_size_unlimited"></span>
+                    <span
+                        data-ng-if="!ctrl.selectedGroup.sentSizeUnlimited"
+                        data-ng-bind="ctrl.selectedGroup.maxSendSize"
+                    ></span>
+                    <span
+                        data-ng-if="ctrl.selectedGroup.sentSizeUnlimited"
+                        data-translate="exchange_GROUPS_add_group_size_unlimited"
+                    ></span>
                 </dd>
 
-                <dt data-translate="exchange_GROUPS_add_group_subscribe_label"></dt>
-                <dd data-ng-bind="('exchange_GROUPS_add_group_retriction_' + ctrl.selectedGroup.joinRestriction) | translate"></dd>
+                <dt
+                    data-translate="exchange_GROUPS_add_group_subscribe_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_GROUPS_add_group_retriction_' + ctrl.selectedGroup.joinRestriction) | translate"
+                ></dd>
 
-                <dt data-translate="exchange_GROUPS_add_group_unsubscribe_label"></dt>
-                <dd data-ng-bind="('exchange_GROUPS_add_group_retriction_' + ctrl.selectedGroup.departRestriction) | translate"></dd>
+                <dt
+                    data-translate="exchange_GROUPS_add_group_unsubscribe_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_GROUPS_add_group_retriction_' + ctrl.selectedGroup.departRestriction) | translate"
+                ></dd>
 
                 <dt data-translate="exchange_GROUPS_add_group_hide_label"></dt>
-                <dd data-ng-bind="('exchange_ACTION_add_account_GAL_' + ctrl.selectedGroup.hiddenFromGAL) | translate"></dd>
+                <dd
+                    data-ng-bind="('exchange_ACTION_add_account_GAL_' + ctrl.selectedGroup.hiddenFromGAL) | translate"
+                ></dd>
 
-                <dt data-translate="exchange_GROUPS_add_group_confirmation_auth_label"></dt>
-                <dd data-ng-bind="('exchange_GROUPS_add_group_auth_' + ctrl.selectedGroup.senderAuthentification) | translate"></dd>
+                <dt
+                    data-translate="exchange_GROUPS_add_group_confirmation_auth_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_GROUPS_add_group_auth_' + ctrl.selectedGroup.senderAuthentification) | translate"
+                ></dd>
             </dl>
         </div>
     </div>

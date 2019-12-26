@@ -5,43 +5,64 @@
 <form
     name="$ctrl.emailObfuscationForm"
     data-ng-submit="$ctrl.emailObfuscationForm.$valid && $ctrl.regenerateEmails()"
-    novalidate>
+    novalidate
+>
     <p class="h5 mb-4" data-translate="domain_email_obfuscation_label"></p>
 
     <div class="text-center">
-        <oui-spinner data-size="m" data-ng-if="$ctrl.loading.contacts"></oui-spinner>
+        <oui-spinner
+            data-size="m"
+            data-ng-if="$ctrl.loading.contacts"
+        ></oui-spinner>
     </div>
 
     <div class="row" data-ng-if="!$ctrl.loading.contacts">
-        <div class="col-md-4"  data-ng-repeat="contact in $ctrl.contactTypes track by $index">
-
-            <p class="font-weight-bold" data-translate="{{:: 'domain_email_obfuscation_contact_' + contact }}"></p>
+        <div
+            class="col-md-4"
+            data-ng-repeat="contact in $ctrl.contactTypes track by $index"
+        >
+            <p
+                class="font-weight-bold"
+                data-translate="{{:: 'domain_email_obfuscation_contact_' + contact }}"
+            ></p>
 
             <div class="d-flex flex-row">
                 <label for="{:: contact.type }}" class="oui-select mw-25">
                     <select
                         class="oui-select__input"
                         data-ng-model="$ctrl.model[contact]"
-                        name="{{:: contact.type }}">
-                        <option data-ng-value="true" data-translate="domain_email_obfuscation_active"></option>
-                        <option data-ng-value="false" data-translate="domain_email_obfuscation_inactive"></option>
+                        name="{{:: contact.type }}"
+                    >
+                        <option
+                            data-ng-value="true"
+                            data-translate="domain_email_obfuscation_active"
+                        ></option>
+                        <option
+                            data-ng-value="false"
+                            data-translate="domain_email_obfuscation_inactive"
+                        ></option>
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </label>
-                <span class="ml-2 pt-1" data-translate="domain_email_obfuscation_mail"></span>
+                <span
+                    class="ml-2 pt-1"
+                    data-translate="domain_email_obfuscation_mail"
+                ></span>
             </div>
 
             <oui-checkbox
                 data-ng-if="$ctrl.configuration[contact] && $ctrl.model[contact]"
-                data-on-change="$ctrl.updateRegeneration(modelValue, contact)">
+                data-on-change="$ctrl.updateRegeneration(modelValue, contact)"
+            >
                 <span data-translate="domain_email_obfuscation_refresh"></span>
             </oui-checkbox>
         </div>
     </div>
 
-    <oui-button
-        data-variant="primary"
-        type="submit">
+    <oui-button data-variant="primary" type="submit">
         <span data-translate="domain_email_obfuscation_regenerate"></span>
     </oui-button>
 </form>

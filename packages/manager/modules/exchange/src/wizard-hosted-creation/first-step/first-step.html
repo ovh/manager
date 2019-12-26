@@ -1,7 +1,13 @@
-<exchange-wizard-hosted-creation-header data-ng-if="$ctrl.homepage.navigationState === ''"
-                                        data-display-component="$ctrl.displayComponent(componentName)"></exchange-wizard-hosted-creation-header>
+<exchange-wizard-hosted-creation-header
+    data-ng-if="$ctrl.homepage.navigationState === ''"
+    data-display-component="$ctrl.displayComponent(componentName)"
+></exchange-wizard-hosted-creation-header>
 
-<exchange-wizard-hosted-creation-domain-configuration data-ng-if="$ctrl.homepage.navigationState === 'domain-configuration' || $ctrl.homepage.navigationState === 'email-creation'"
-                                                      data-display-component="$ctrl.displayComponent(componentName)"></exchange-wizard-hosted-creation-domain-configuration>
+<exchange-wizard-hosted-creation-domain-configuration
+    data-ng-if="$ctrl.homepage.navigationState === 'domain-configuration' || $ctrl.homepage.navigationState === 'email-creation'"
+    data-display-component="$ctrl.displayComponent(componentName)"
+></exchange-wizard-hosted-creation-domain-configuration>
 
-<exchange-wizard-hosted-creation-email-creation data-ng-if="$ctrl.homepage.navigationState === 'email-creation'"></exchange-wizard-hosted-creation-email-creation>
+<exchange-wizard-hosted-creation-email-creation
+    data-ng-if="$ctrl.homepage.navigationState === 'email-creation'"
+></exchange-wizard-hosted-creation-email-creation>

@@ -1,118 +1,190 @@
-<h1 class="oui-header_3 oui-header_underline title-underlined"
-    data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header' | translate"></h1>
+<h1
+    class="oui-header_3 oui-header_underline title-underlined"
+    data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header' | translate"
+></h1>
 
-<span data-ng-bind-html="'exchange_wizardHostedCreation_emailCreation_introduction_1' | translate:{ t0: $ctrl.homepage.numberOfAvailableAccounts }"
-      data-ng-if="$ctrl.homepage.numberOfAvailableAccounts > 0"></span>
-<p class="mb-4" data-ng-bind-html="'exchange_wizardHostedCreation_emailCreation_introduction_2' | translate"></p>
+<span
+    data-ng-bind-html="'exchange_wizardHostedCreation_emailCreation_introduction_1' | translate:{ t0: $ctrl.homepage.numberOfAvailableAccounts }"
+    data-ng-if="$ctrl.homepage.numberOfAvailableAccounts > 0"
+></span>
+<p
+    class="mb-4"
+    data-ng-bind-html="'exchange_wizardHostedCreation_emailCreation_introduction_2' | translate"
+></p>
 
 <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
 
-<div data-ng-show="!$ctrl.isLoading" class="mb-5 pb-5" id="email-creation-main-container">
-    <button class="oui-button oui-button_secondary mb-4"
-            type="button"
-            data-ng-if="$ctrl.homepage.numberOfAvailableAccounts > 0"
-            data-ng-click="$ctrl.navigation.setAction('exchange/wizard-hosted-creation/first-step/email-creation/add/add', {
+<div
+    data-ng-show="!$ctrl.isLoading"
+    class="mb-5 pb-5"
+    id="email-creation-main-container"
+>
+    <button
+        class="oui-button oui-button_secondary mb-4"
+        type="button"
+        data-ng-if="$ctrl.homepage.numberOfAvailableAccounts > 0"
+        data-ng-click="$ctrl.navigation.setAction('exchange/wizard-hosted-creation/first-step/email-creation/add/add', {
                 formerEmailAddress: $ctrl.homepage.availableAccounts[0],
                 domainName: $ctrl.homepage.domainName
-            })">
-        <span data-ng-bind="'exchange_wizardHostedCreation_emailCreation_personnalizeButton' | translate"></span>
+            })"
+    >
+        <span
+            data-ng-bind="'exchange_wizardHostedCreation_emailCreation_personnalizeButton' | translate"
+        ></span>
     </button>
 
     <div data-ng-if="$ctrl.homepage.otherAccounts.count !== 0">
         <table class="oui-datagrid oui-datagrid_responsive">
             <thead class="oui-datagrid__headers">
                 <tr>
-                    <th scope="col" class="oui-datagrid__header" data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header_email' | translate"></th>
-                    <th scope="col" class="oui-datagrid__header" data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header_displayName' | translate"></th>
-                    <th scope="col" class="oui-datagrid__header" data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header_state' | translate"></th>
+                    <th
+                        scope="col"
+                        class="oui-datagrid__header"
+                        data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header_email' | translate"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-datagrid__header"
+                        data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header_displayName' | translate"
+                    ></th>
+                    <th
+                        scope="col"
+                        class="oui-datagrid__header"
+                        data-ng-bind="'exchange_wizardHostedCreation_emailCreation_header_state' | translate"
+                    ></th>
                     <th scope="col" class="oui-datagrid__header">
-                        <button class="btn btn-icon"
-                                type="button"
-                                title="{{'refresh' | translate}}"
-                                data-ng-click="$ctrl.refreshTable()"
-                                data-ng-disabled="$ctrl.isLoading">
-                            <span class="fa fa-refresh" aria-hidden="true"></span>
+                        <button
+                            class="btn btn-icon"
+                            type="button"
+                            title="{{'refresh' | translate}}"
+                            data-ng-click="$ctrl.refreshTable()"
+                            data-ng-disabled="$ctrl.isLoading"
+                        >
+                            <span
+                                class="fa fa-refresh"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </th>
                 </tr>
             </thead>
 
             <tbody class="oui-datagrid__body">
-                <tr class="oui-datagrid__row" data-ng-repeat="account in $ctrl.homepage.otherAccounts.list.results | orderBy:'login': false track by $index">
-                    <th scope="row" class="oui-datagrid__cell word-break" data-ng-bind-template="{{account.login}}@{{$ctrl.homepage.domainName}}"></th>
+                <tr
+                    class="oui-datagrid__row"
+                    data-ng-repeat="account in $ctrl.homepage.otherAccounts.list.results | orderBy:'login': false track by $index"
+                >
+                    <th
+                        scope="row"
+                        class="oui-datagrid__cell word-break"
+                        data-ng-bind-template="{{account.login}}@{{$ctrl.homepage.domainName}}"
+                    ></th>
 
-                    <td class="oui-datagrid__cell" data-ng-bind="$ctrl.constructor.getDisplayName(account)"></td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-bind="$ctrl.constructor.getDisplayName(account)"
+                    ></td>
 
                     <td class="oui-datagrid__cell">
-                        <span class="fa fa-hourglass-half"
-                              title="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isInError(account)"></span>
-                        <span class="fa fa-hourglass-half"
-                              title="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"
-                              data-ng-if="($ctrl.exchangeStates.constructor.isOk(account) && account.taskPendingId !== 0) || $ctrl.exchangeStates.constructor.isDoing(account)"></span>
-                        <span class="label label-info"
-                              data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isCreating(account)"></span>
-                        <span class="label label-danger"
-                              data-translate="exchange_tab_ACCOUNTS_state_DELETING"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isDeleting(account)"></span>
-                        <span class="label label-warning"
-                              data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isSuspended(account)"></span>
-                        <span class="label label-warning"
-                              data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isSuspending(account)"></span>
-                        <span class="label label-info"
-                              data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isReopening(account)"></span>
-                        <span class="label label-info"
-                              data-translate="exchange_tab_ACCOUNTS_state_MIGRATING"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isMigrating(account)"></span>
-                        <span class="label label-success"
-                              data-translate="exchange_tab_ACCOUNTS_state_OK"
-                              data-ng-if="$ctrl.exchangeStates.constructor.isOk(account) && account.taskPendingId === 0"></span>
+                        <span
+                            class="fa fa-hourglass-half"
+                            title="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_ERROR' | translate}}"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isInError(account)"
+                        ></span>
+                        <span
+                            class="fa fa-hourglass-half"
+                            title="{{:: 'exchange_tab_ACCOUNTS_state_TASK_ON_DOING' | translate}}"
+                            data-ng-if="($ctrl.exchangeStates.constructor.isOk(account) && account.taskPendingId !== 0) || $ctrl.exchangeStates.constructor.isDoing(account)"
+                        ></span>
+                        <span
+                            class="label label-info"
+                            data-translate="exchange_tab_ACCOUNTS_state_CREATING"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isCreating(account)"
+                        ></span>
+                        <span
+                            class="label label-danger"
+                            data-translate="exchange_tab_ACCOUNTS_state_DELETING"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isDeleting(account)"
+                        ></span>
+                        <span
+                            class="label label-warning"
+                            data-translate="exchange_tab_ACCOUNTS_state_SUSPENDED"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isSuspended(account)"
+                        ></span>
+                        <span
+                            class="label label-warning"
+                            data-translate="exchange_tab_ACCOUNTS_state_SUSPENDING"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isSuspending(account)"
+                        ></span>
+                        <span
+                            class="label label-info"
+                            data-translate="exchange_tab_ACCOUNTS_state_REOPENING"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isReopening(account)"
+                        ></span>
+                        <span
+                            class="label label-info"
+                            data-translate="exchange_tab_ACCOUNTS_state_MIGRATING"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isMigrating(account)"
+                        ></span>
+                        <span
+                            class="label label-success"
+                            data-translate="exchange_tab_ACCOUNTS_state_OK"
+                            data-ng-if="$ctrl.exchangeStates.constructor.isOk(account) && account.taskPendingId === 0"
+                        ></span>
                     </td>
 
                     <td class="oui-datagrid__cell oui-datagrid__cell_action">
-                        <button class="btn btn-icon"
-                                type="button"
-                                title="{{:: 'exchange_tab_ACCOUNTS_edit_account_tooltip' | translate }}"
-                                data-ng-disabled="!($ctrl.exchangeStates.constructor.isOk(account) || this.services.exchangeStates.constructor.isInError(account)) || account.taskPendingId !== 0"
-                                data-ng-click="$ctrl.updateEmailAccount(account)">
-                            <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
+                        <button
+                            class="btn btn-icon"
+                            type="button"
+                            title="{{:: 'exchange_tab_ACCOUNTS_edit_account_tooltip' | translate }}"
+                            data-ng-disabled="!($ctrl.exchangeStates.constructor.isOk(account) || this.services.exchangeStates.constructor.isInError(account)) || account.taskPendingId !== 0"
+                            data-ng-click="$ctrl.updateEmailAccount(account)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-pen_line oui-icon_small"
+                                aria-hidden="true"
+                            ></span>
                         </button>
 
-                        <button class="btn btn-icon"
-                                type="button"
-                                title="{{:: 'exchange_tab_ACCOUNTS_popover_delete' | translate }}"
-                                data-ng-disabled="!($ctrl.exchangeStates.constructor.isOk(account) || this.services.exchangeStates.constructor.isInError(account)) || account.taskPendingId !== 0"
-                                data-ng-click="$ctrl.removeEmailAccount(account)">
-                            <span class="oui-icon oui-icon-trash_line oui-icon_small" aria-hidden="true"></span>
+                        <button
+                            class="btn btn-icon"
+                            type="button"
+                            title="{{:: 'exchange_tab_ACCOUNTS_popover_delete' | translate }}"
+                            data-ng-disabled="!($ctrl.exchangeStates.constructor.isOk(account) || this.services.exchangeStates.constructor.isInError(account)) || account.taskPendingId !== 0"
+                            data-ng-click="$ctrl.removeEmailAccount(account)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-trash_line oui-icon_small"
+                                aria-hidden="true"
+                            ></span>
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="clearfix"
-             data-pagination-server-side="emailAccountsTable"
-             data-pagination-server-side-function="retrievingEmailAccounts"
-             data-pagination-server-side-paginated-stuff="getEmailAccounts()"
-             data-pagination-server-side-table-loading="getIsLoading()">
-        </div>
+        <div
+            class="clearfix"
+            data-pagination-server-side="emailAccountsTable"
+            data-pagination-server-side-function="retrievingEmailAccounts"
+            data-pagination-server-side-paginated-stuff="getEmailAccounts()"
+            data-pagination-server-side-table-loading="getIsLoading()"
+        ></div>
 
-        <p role="alert"
-           class="alert alert-info mt-5"
-           data-ng-if="$ctrl.thereAreOperationsPending()"
-           data-ng-bind="'exchange_wizardHostedCreation_emailCreation_operationInProgress' | translate">
-        </p>
+        <p
+            role="alert"
+            class="alert alert-info mt-5"
+            data-ng-if="$ctrl.thereAreOperationsPending()"
+            data-ng-bind="'exchange_wizardHostedCreation_emailCreation_operationInProgress' | translate"
+        ></p>
 
-        <button class="oui-button oui-button_primary mt-5"
-                type="button"
-                data-ng-if="$ctrl.atLeastOneEmailIsCustomized()"
-                data-ng-click="$ctrl.goToSummary()"
-                data-ng-bind="'exchange_wizardHostedCreation_emailCreation_add_nextStepButton' | translate">
-        </button>
+        <button
+            class="oui-button oui-button_primary mt-5"
+            type="button"
+            data-ng-if="$ctrl.atLeastOneEmailIsCustomized()"
+            data-ng-click="$ctrl.goToSummary()"
+            data-ng-bind="'exchange_wizardHostedCreation_emailCreation_add_nextStepButton' | translate"
+        ></button>
     </div>
 </div>
-

@@ -1,33 +1,50 @@
-<section class="cui-page__content vps-veeam"
-         data-ui-view>
-    <div class="text-center" data-ng-if="$ctrl.veeam.loading || $ctrl.vps.loading">
+<section class="cui-page__content vps-veeam" data-ui-view>
+    <div
+        class="text-center"
+        data-ng-if="$ctrl.veeam.loading || $ctrl.vps.loading"
+    >
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <div data-ng-if="!$ctrl.veeam.loading">
         <div data-ng-if="$ctrl.veeam.data.state !== 'disabled'">
-            <p data-ng-if="!$ctrl.veeam.data.accessInfos.restorePoint" data-translate="vps_tab_VEEAM_dashboard_no_current_restore_point"></p>
+            <p
+                data-ng-if="!$ctrl.veeam.data.accessInfos.restorePoint"
+                data-translate="vps_tab_VEEAM_dashboard_no_current_restore_point"
+            ></p>
             <div data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint">
-                <p data-translate="vps_tab_VEEAM_dashboard_current_restore_point"></p>
+                <p
+                    data-translate="vps_tab_VEEAM_dashboard_current_restore_point"
+                ></p>
                 <dl>
                     <dt data-translate="vps_tab_VEEAM_dashboard_state"></dt>
-                    <dd class="label"
+                    <dd
+                        class="label"
                         data-ng-class="{'label-success': $ctrl.veeam.data.state === 'enabled', 'label-info': $ctrl.veeam.data.state !== 'enabled'}"
-                        data-ng-bind="('vps_tab_VEEAM_dashboard_state_' + $ctrl.veeam.data.state) | translate"></dd>
+                        data-ng-bind="('vps_tab_VEEAM_dashboard_state_' + $ctrl.veeam.data.state) | translate"
+                    ></dd>
 
-                    <dt data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint"
-                        data-translate="vps_tab_VEEAM_dashboard_current_restore_point_creationTime"></dt>
-                    <dd data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint"
-                        data-ng-bind="$ctrl.veeam.data.accessInfos.restorePointLabel"></dd>
+                    <dt
+                        data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint"
+                        data-translate="vps_tab_VEEAM_dashboard_current_restore_point_creationTime"
+                    ></dt>
+                    <dd
+                        data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint"
+                        data-ng-bind="$ctrl.veeam.data.accessInfos.restorePointLabel"
+                    ></dd>
                 </dl>
             </div>
 
-            <button class="oui-button oui-button_secondary"
-                    type="button"
-                    data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint"
-                    data-ng-click="$ctrl.unmount($ctrl.veeam.data.accessInfos.restorePoint)"
-                    data-ng-diabled="$ctrl.loaders.polling">
-                <span data-translate="vps_configuration_veeam_umount_title_button"></span>
+            <button
+                class="oui-button oui-button_secondary"
+                type="button"
+                data-ng-if="$ctrl.veeam.data.accessInfos.restorePoint"
+                data-ng-click="$ctrl.unmount($ctrl.veeam.data.accessInfos.restorePoint)"
+                data-ng-diabled="$ctrl.loaders.polling"
+            >
+                <span
+                    data-translate="vps_configuration_veeam_umount_title_button"
+                ></span>
             </button>
 
             <!--Show table is loading-->
@@ -35,28 +52,51 @@
                 <oui-spinner></oui-spinner>
             </div>
             <!--Show table-->
-            <oui-datagrid data-rows="$ctrl.veeamTab.data"
-                          data-ng-if="!$ctrl.veeamTab.loading && $ctrl.veeamTab.data">
-                <oui-column data-title="'vps_tab_VEEAM_dashboard_table_header_date' | translate" data-property="id" data-sortable>
+            <oui-datagrid
+                data-rows="$ctrl.veeamTab.data"
+                data-ng-if="!$ctrl.veeamTab.loading && $ctrl.veeamTab.data"
+            >
+                <oui-column
+                    data-title="'vps_tab_VEEAM_dashboard_table_header_date' | translate"
+                    data-property="id"
+                    data-sortable
+                >
                     <span data-ng-bind="$row.creationDate"></span>
                 </oui-column>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-text="{{'vps_tab_VEEAM_dashboard_table_header_restore' | translate}}"
-                                          data-on-click="$ctrl.restore($row.id)"></oui-action-menu-item>
-                    <oui-action-menu-item data-text="{{'vps_tab_VEEAM_dashboard_table_header_mount' | translate}}"
-                                          data-on-click="$ctrl.mount($row.id)"></oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-text="{{'vps_tab_VEEAM_dashboard_table_header_restore' | translate}}"
+                        data-on-click="$ctrl.restore($row.id)"
+                    ></oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-text="{{'vps_tab_VEEAM_dashboard_table_header_mount' | translate}}"
+                        data-on-click="$ctrl.mount($row.id)"
+                    ></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>
         </div>
 
-        <div data-ng-if="$ctrl.veeam.data.state == 'disabled' && !$ctrl.vps.loading">
-            <p data-ng-if="$ctrl.vps.data.hasVeeam && $ctrl.vps.data.canOrder" data-translate="vps_tab_VEEAM_dashboard_not_activated"></p>
-            <button class="oui-button oui-button_primary"
-                    data-translate="vps_configuration_veeam_order_title_button"
-                    data-ui-sref="vps.detail.veeam.order"
-                    data-ng-if="$ctrl.vps.data.hasVeeam && $ctrl.vps.data.canOrder"></button>
-            <p data-ng-if="!$ctrl.vps.data.hasVeeam" data-translate="vps_tab_VEEAM_dashboard_veeam_unavailable"></p>
-            <p data-ng-if="!$ctrl.vps.data.canOrder" data-translate="vps_tab_VEEAM_dashboard_not_able_to_order"></p>
+        <div
+            data-ng-if="$ctrl.veeam.data.state == 'disabled' && !$ctrl.vps.loading"
+        >
+            <p
+                data-ng-if="$ctrl.vps.data.hasVeeam && $ctrl.vps.data.canOrder"
+                data-translate="vps_tab_VEEAM_dashboard_not_activated"
+            ></p>
+            <button
+                class="oui-button oui-button_primary"
+                data-translate="vps_configuration_veeam_order_title_button"
+                data-ui-sref="vps.detail.veeam.order"
+                data-ng-if="$ctrl.vps.data.hasVeeam && $ctrl.vps.data.canOrder"
+            ></button>
+            <p
+                data-ng-if="!$ctrl.vps.data.hasVeeam"
+                data-translate="vps_tab_VEEAM_dashboard_veeam_unavailable"
+            ></p>
+            <p
+                data-ng-if="!$ctrl.vps.data.canOrder"
+                data-translate="vps_tab_VEEAM_dashboard_not_able_to_order"
+            ></p>
         </div>
     </div>
 </section>

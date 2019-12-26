@@ -1,30 +1,35 @@
-<div id="main-container"
-     data-ui-view="dedicatedCloudView">
-
-    <div class="text-center mt-5"
-         data-ng-if="loadingInformations && !loadingError">
+<div id="main-container" data-ui-view="dedicatedCloudView">
+    <div
+        class="text-center mt-5"
+        data-ng-if="loadingInformations && !loadingError"
+    >
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <div data-ng-if="!loadingInformations">
-
-        <header class="page-header"
-                role="banner">
+        <header class="page-header" role="banner">
             <div class="row">
                 <div class="col-md-9">
-                    <form name="formEditDisplayName"
-                          novalidate>
-                        <div class="mb-3"
-                             data-ng-if="!dedicatedCloudDescription.editMode">
+                    <form name="formEditDisplayName" novalidate>
+                        <div
+                            class="mb-3"
+                            data-ng-if="!dedicatedCloudDescription.editMode"
+                        >
                             <div class="d-flex">
-                                <h1 class="oui-header_2 d-inline-block mb-0 word-break"
-                                    data-ng-bind="dedicatedCloud.description">
-                                </h1>
-                                <button type="button"
-                                        title="{{ 'wizard_modify' | translate }}"
-                                        class="btn btn-icon my-auto ml-2"
-                                        data-ng-click="editDescription(dedicatedCloud.description)">
-                                    <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
+                                <h1
+                                    class="oui-header_2 d-inline-block mb-0 word-break"
+                                    data-ng-bind="dedicatedCloud.description"
+                                ></h1>
+                                <button
+                                    type="button"
+                                    title="{{ 'wizard_modify' | translate }}"
+                                    class="btn btn-icon my-auto ml-2"
+                                    data-ng-click="editDescription(dedicatedCloud.description)"
+                                >
+                                    <span
+                                        class="oui-icon oui-icon-pen_line oui-icon_small"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </div>
                             <em data-ng-bind="dedicatedCloud.serviceName"></em>
@@ -36,63 +41,80 @@
 
         <!-- Tabs -->
         <responsive-tabs>
-            <responsive-tab data-state="app.dedicatedClouds"
-                            data-dropdown-title="{{ 'dedicatedCloud_tab_dashboard' | translate }}">
+            <responsive-tab
+                data-state="app.dedicatedClouds"
+                data-dropdown-title="{{ 'dedicatedCloud_tab_dashboard' | translate }}"
+            >
                 <span data-translate="dedicatedCloud_tab_dashboard"></span>
             </responsive-tab>
-            <responsive-tab data-state="app.dedicatedClouds.datacenters"
-                            data-dropdown-title="{{ 'dedicatedCloud_tab_datacenter' | translate }}"
-                            data-ng-if="!dedicatedCloud.isExpired">
+            <responsive-tab
+                data-state="app.dedicatedClouds.datacenters"
+                data-dropdown-title="{{ 'dedicatedCloud_tab_datacenter' | translate }}"
+                data-ng-if="!dedicatedCloud.isExpired"
+            >
                 <span data-translate="dedicatedCloud_tab_datacenter"></span>
             </responsive-tab>
-            <responsive-tab data-state="app.dedicatedClouds.users"
-                            data-dropdown-title="{{ 'dedicatedCloud_tab_user' | translate }}"
-                            data-ng-if="!dedicatedCloud.isExpired">
+            <responsive-tab
+                data-state="app.dedicatedClouds.users"
+                data-dropdown-title="{{ 'dedicatedCloud_tab_user' | translate }}"
+                data-ng-if="!dedicatedCloud.isExpired"
+            >
                 <span data-translate="dedicatedCloud_tab_user"></span>
             </responsive-tab>
-            <responsive-tab data-state="app.dedicatedClouds.security"
-                            data-dropdown-title="{{ 'dedicatedCloud_tab_security' | translate }}"
-                            data-ng-if="!dedicatedCloud.isExpired">
+            <responsive-tab
+                data-state="app.dedicatedClouds.security"
+                data-dropdown-title="{{ 'dedicatedCloud_tab_security' | translate }}"
+                data-ng-if="!dedicatedCloud.isExpired"
+            >
                 <span data-translate="dedicatedCloud_tab_security"></span>
             </responsive-tab>
-            <responsive-tab data-state="app.dedicatedClouds.operation"
-                            data-dropdown-title="{{ 'dedicatedCloud_tab_operation' | translate }}"
-                            data-ng-if="!dedicatedCloud.isExpired">
+            <responsive-tab
+                data-state="app.dedicatedClouds.operation"
+                data-dropdown-title="{{ 'dedicatedCloud_tab_operation' | translate }}"
+                data-ng-if="!dedicatedCloud.isExpired"
+            >
                 <span data-translate="dedicatedCloud_tab_operation"></span>
             </responsive-tab>
-            <responsive-tab data-state="app.dedicatedClouds.license"
-                            data-dropdown-title="{{ 'dedicatedCloud_tab_license' | translate }}">
+            <responsive-tab
+                data-state="app.dedicatedClouds.license"
+                data-dropdown-title="{{ 'dedicatedCloud_tab_license' | translate }}"
+            >
                 <span data-translate="dedicatedCloud_tab_license"></span>
             </responsive-tab>
             <responsive-tab-more>
                 <i class="fa fa-plus"></i>
             </responsive-tab-more>
-        </responsive-tabs> <!-- End of Tabs -->
+        </responsive-tabs>
+        <!-- End of Tabs -->
 
         <div class="tab-content">
-
-            <div class="alert alert-dismissible"
-                 data-ng-class="alertType"
-                 data-ng-if="message != null">
+            <div
+                class="alert alert-dismissible"
+                data-ng-class="alertType"
+                data-ng-if="message != null"
+            >
                 <button
                     type="button"
                     class="close icon-remove"
                     aria-label="{{:: 'dedicatedCloud_alert_close' | translate }}"
-                    data-ng-click="resetMessage()"></button>
+                    data-ng-click="resetMessage()"
+                ></button>
 
                 <span data-ng-bind-html="message"></span>
             </div>
 
             <div data-ui-view="pccView"></div>
-
         </div>
     </div>
 
     <div id="currentAction" class="modal fade currentAction" role="dialog">
         <div class="modal-dialog">
-            <div id="modal-container" class="modal-content" data-ng-include="stepPath"></div>
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="stepPath"
+            ></div>
             <div id="modal-help" class="help4wizards"></div>
         </div>
     </div>
-
 </div>

@@ -1,21 +1,40 @@
 <div data-ng-controller="DomainLockEnableCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetSwitchAndAction"
-         data-wizard-on-finish="lockDomain"
-         data-wizard-title="'domain_configuration_protection_activate_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetSwitchAndAction"
+        data-wizard-on-finish="lockDomain"
+        data-wizard-title="'domain_configuration_protection_activate_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'domain_configuration_protection_activate_step1_question' | translate: { t0: ctrl.domain.displayName }"></p>
+            <p
+                data-ng-bind-html="'domain_configuration_protection_activate_step1_question' | translate: { t0: ctrl.domain.displayName }"
+            ></p>
 
             <div data-wizard-step-help>
-                <h3 data-translate="domain_configuration_protection_activate_step1_helpwizard_title"></h3>
-                <p data-translate="domain_configuration_protection_activate_step1_helpwizard_desc"></p>
-                <h4 data-translate="domain_configuration_protection_activate_step1_helpwizard_question1"></h4>
-                <p data-ng-bind-html="'domain_configuration_protection_activate_step1_helpwizard_question1_answer' | translate"></p>
-                <h4 data-translate="domain_configuration_protection_activate_step1_helpwizard_question2"></h4>
-                <p data-translate="domain_configuration_protection_activate_step1_helpwizard_question2_answer"></p>
-                <span data-ng-bind-html="'domain_configuration_protection_activate_step1_helpwizard_note' | translate"></span>
-                <p data-translate="domain_configuration_protection_activate_step1_helpwizard_note_desc"></p>
+                <h3
+                    data-translate="domain_configuration_protection_activate_step1_helpwizard_title"
+                ></h3>
+                <p
+                    data-translate="domain_configuration_protection_activate_step1_helpwizard_desc"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_protection_activate_step1_helpwizard_question1"
+                ></h4>
+                <p
+                    data-ng-bind-html="'domain_configuration_protection_activate_step1_helpwizard_question1_answer' | translate"
+                ></p>
+                <h4
+                    data-translate="domain_configuration_protection_activate_step1_helpwizard_question2"
+                ></h4>
+                <p
+                    data-translate="domain_configuration_protection_activate_step1_helpwizard_question2_answer"
+                ></p>
+                <span
+                    data-ng-bind-html="'domain_configuration_protection_activate_step1_helpwizard_note' | translate"
+                ></span>
+                <p
+                    data-translate="domain_configuration_protection_activate_step1_helpwizard_note_desc"
+                ></p>
             </div>
         </div>
     </div>

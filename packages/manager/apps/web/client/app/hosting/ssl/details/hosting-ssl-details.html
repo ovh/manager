@@ -1,11 +1,12 @@
 <div data-ng-controller="hostingSSLDetailsController as $ctrl">
-    <div data-wizard
-         data-wizard-hide-cancel-button="true"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="resetAction"
-         data-wizard-confirm-button-text="'hosting_dashboard_ssl_details_confirm_button' | translate"
-         data-wizard-title="'hosting_dashboard_ssl_details_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-hide-cancel-button="true"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="resetAction"
+        data-wizard-confirm-button-text="'hosting_dashboard_ssl_details_confirm_button' | translate"
+        data-wizard-title="'hosting_dashboard_ssl_details_title' | translate"
+    >
         <div data-wizard-step>
             <div class="text-center" data-ng-if="$ctrl.isLoading">
                 <oui-spinner></oui-spinner>
@@ -14,32 +15,70 @@
             <div data-ng-if="!$ctrl.isLoading">
                 <div class="oui-list_steps oui-list_separated">
                     <ul class="oui-list__items">
-                        <li class="oui-list__item" data-ng-repeat="sslReportEntry in $ctrl.sslReport track by sslReportEntry.name" data-ng-class="{
+                        <li
+                            class="oui-list__item"
+                            data-ng-repeat="sslReportEntry in $ctrl.sslReport track by sslReportEntry.name"
+                            data-ng-class="{
                             'oui-list__item_checked': sslReportEntry.value !== 'completed',
                             'oui-list__item_complete': sslReportEntry.value === 'completed',
-                        }">
-                            <span class="oui-list__header" data-ng-bind="'hosting_dashboard_ssl_details_entry_' + sslReportEntry.name | translate"></span>
-                            <div class="oui-list__description" data-ng-switch="sslReportEntry.value" data-ng-if="sslReportEntry.value !== 'completed' && sslReportEntry.value !== 'not-provided'">
-                                <span data-ng-switch-when="in-progress" data-translate="hosting_dashboard_ssl_details_explanation_in-progress"></span>
-                                <span data-ng-switch-default data-ng-bind-html="'hosting_dashboard_ssl_details_entry_' + sslReportEntry.name + '_error' | translate"></span>
+                        }"
+                        >
+                            <span
+                                class="oui-list__header"
+                                data-ng-bind="'hosting_dashboard_ssl_details_entry_' + sslReportEntry.name | translate"
+                            ></span>
+                            <div
+                                class="oui-list__description"
+                                data-ng-switch="sslReportEntry.value"
+                                data-ng-if="sslReportEntry.value !== 'completed' && sslReportEntry.value !== 'not-provided'"
+                            >
+                                <span
+                                    data-ng-switch-when="in-progress"
+                                    data-translate="hosting_dashboard_ssl_details_explanation_in-progress"
+                                ></span>
+                                <span
+                                    data-ng-switch-default
+                                    data-ng-bind-html="'hosting_dashboard_ssl_details_entry_' + sslReportEntry.name + '_error' | translate"
+                                ></span>
                             </div>
                         </li>
                     </ul>
                 </div>
 
                 <div class="oui-message oui-message_warning oui-message_icon-m">
-                    <span class="oui-icon oui-icon-warning_circle oui-icon_bicolor" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-warning_circle oui-icon_bicolor"
+                        aria-hidden="true"
+                    ></span>
                     <p class="oui-message__body">
-                        <span data-ng-bind-html="'hosting_dashboard_ssl_details_support_1' | translate"></span>
-                        <a data-ng-href="{{:: $ctrl.comodoConstants.knowledgebase }}" target="_blank">
-                            <span aria-hidden="true"
-                                  title="{{:: 'hosting_dashboard_ssl_details_support_new_window' | translate }}"
-                                  class="fa fa-external-link"></span>
-                            <span class="sr-only" data-translate="hosting_dashboard_ssl_details_support_new_window"></span>
+                        <span
+                            data-ng-bind-html="'hosting_dashboard_ssl_details_support_1' | translate"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: $ctrl.comodoConstants.knowledgebase }}"
+                            target="_blank"
+                        >
+                            <span
+                                aria-hidden="true"
+                                title="{{:: 'hosting_dashboard_ssl_details_support_new_window' | translate }}"
+                                class="fa fa-external-link"
+                            ></span>
+                            <span
+                                class="sr-only"
+                                data-translate="hosting_dashboard_ssl_details_support_new_window"
+                            ></span>
                         </a>
-                        <span data-ng-bind-html="'hosting_dashboard_ssl_details_support_2' | translate"></span>
-                        <a data-ng-href="{{:: 'mailto:' + $ctrl.comodoConstants.contactEmail }}" target="_blank" data-ng-bind="$ctrl.comodoConstants.contactEmail"></a>
-                        <span data-ng-bind-html="'hosting_dashboard_ssl_details_support_3' | translate: { t0: $ctrl.orderNumber }"></span>
+                        <span
+                            data-ng-bind-html="'hosting_dashboard_ssl_details_support_2' | translate"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: 'mailto:' + $ctrl.comodoConstants.contactEmail }}"
+                            target="_blank"
+                            data-ng-bind="$ctrl.comodoConstants.contactEmail"
+                        ></a>
+                        <span
+                            data-ng-bind-html="'hosting_dashboard_ssl_details_support_3' | translate: { t0: $ctrl.orderNumber }"
+                        ></span>
                     </p>
                 </div>
             </div>

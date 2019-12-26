@@ -1,14 +1,24 @@
-<div data-ng-controller="exchangeWizardHostedCreationEmailCreationDeleteController as $ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleting"
-         data-wizard-title="'exchange_wizardHostedCreation_emailCreation_delete_title' | translate">
-
+<div
+    data-ng-controller="exchangeWizardHostedCreationEmailCreationDeleteController as $ctrl"
+>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleting"
+        data-wizard-title="'exchange_wizardHostedCreation_emailCreation_delete_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind="'exchange_tab_account_remove_title' | translate"></p>
+            <p
+                data-ng-bind="'exchange_tab_account_remove_title' | translate"
+            ></p>
             <dl class="dl-horizontal">
-                <dt data-translate="exchange_tab_account_remove_email_label"></dt>
-                <dd data-ng-bind="$ctrl.account.primaryEmailDisplayName | wucSliceContent: 150" class="word-break"></dd>
+                <dt
+                    data-translate="exchange_tab_account_remove_email_label"
+                ></dt>
+                <dd
+                    data-ng-bind="$ctrl.account.primaryEmailDisplayName | wucSliceContent: 150"
+                    class="word-break"
+                ></dd>
             </dl>
         </div>
     </div>

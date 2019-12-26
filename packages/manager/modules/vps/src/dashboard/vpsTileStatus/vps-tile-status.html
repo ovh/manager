@@ -1,9 +1,12 @@
-<div class="vps-tile-status"
-     data-ng-if="$ctrl.item"
-     data-ng-class="{ 'vps-tile-status_grey' : $ctrl.striped}">
-    <span class="oui-icon vps-tile-status__icon"
-       data-ng-class="{ 'oui-icon-success vps-tile-status__icon_success': $ctrl.item === 'OK',
-                        'oui-icon-error vps-tile-status__icon_error': $ctrl.item === 'KO'}"></span>
-    <span class="vps-tile-status__text"
-          data-ng-bind="::$ctrl.text"></span>
+<div
+    class="vps-tile-status"
+    data-ng-if="$ctrl.item"
+    data-ng-class="{ 'vps-tile-status_grey' : $ctrl.striped}"
+>
+    <span
+        class="oui-icon vps-tile-status__icon"
+        data-ng-class="{ 'oui-icon-success vps-tile-status__icon_success': $ctrl.item === 'OK',
+                        'oui-icon-error vps-tile-status__icon_error': $ctrl.item === 'KO'}"
+    ></span>
+    <span class="vps-tile-status__text" data-ng-bind="::$ctrl.text"></span>
 </div>

@@ -1,108 +1,155 @@
 <section>
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
     <h1 data-translate="pci_projects_project_instances_backup_add_title"></h1>
 
-    <form novalidate name="addBackupInstanceForm"
-        data-ng-submit="addBackupInstanceForm.$valid && $ctrl.create()">
+    <form
+        novalidate
+        name="addBackupInstanceForm"
+        data-ng-submit="addBackupInstanceForm.$valid && $ctrl.create()"
+    >
         <div class="oui-field oui-field_error">
-            <label for="backup-region" class="oui-field__label oui-label"
-                data-translate="pci_projects_project_instances_backup_add_region_label"></label>
-            <div class="oui-field__control"
-                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region)"></div>
+            <label
+                for="backup-region"
+                class="oui-field__label oui-label"
+                data-translate="pci_projects_project_instances_backup_add_region_label"
+            ></label>
+            <div
+                class="oui-field__control"
+                data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region)"
+            ></div>
         </div>
 
         <div class="oui-field oui-field_error">
-            <label for="backup-region" class="oui-field__label oui-label"
-                data-translate="pci_projects_project_instances_backup_add_image_label"></label>
-            <div class="oui-field__control"
-                data-ng-bind="$ctrl.backup.name"></div>
+            <label
+                for="backup-region"
+                class="oui-field__label oui-label"
+                data-translate="pci_projects_project_instances_backup_add_image_label"
+            ></label>
+            <div
+                class="oui-field__control"
+                data-ng-bind="$ctrl.backup.name"
+            ></div>
         </div>
 
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_flavor_label' | translate }}"
-            data-size="auto">
+            data-size="auto"
+        >
             <pci-project-flavors-list
                 data-service-name="{{:: $ctrl.projectId }}"
                 data-selected-flavor="$ctrl.model.flavorGroup"
                 data-region="$ctrl.region"
                 data-image="$ctrl.backup"
-                data-on-change="$ctrl.onFlavorChange(flavor)">
+                data-on-change="$ctrl.onFlavorChange(flavor)"
+            >
             </pci-project-flavors-list>
         </oui-field>
 
-        <oui-field data-label="{{ 'pci_projects_project_instances_backup_add_numInstances_label' | translate }}"
-            data-label-popover="{{ 'pci_projects_project_instances_backup_add_same_numInstances_configuration' | translate }}">
-            <oui-numeric id="modelNumber"
+        <oui-field
+            data-label="{{ 'pci_projects_project_instances_backup_add_numInstances_label' | translate }}"
+            data-label-popover="{{ 'pci_projects_project_instances_backup_add_same_numInstances_configuration' | translate }}"
+        >
+            <oui-numeric
+                id="modelNumber"
                 data-name="number"
                 data-min="1"
                 data-max="$ctrl.maxQuota"
-                data-model="$ctrl.model.number">
+                data-model="$ctrl.model.number"
+            >
             </oui-numeric>
 
             <div class="oui-field__helper" data-ng-if="$ctrl.flavor">
-                <span data-translate="pci_projects_project_instances_backup_add_numInstances_help"
+                <span
+                    data-translate="pci_projects_project_instances_backup_add_numInstances_help"
                     data-translate-values="{
                         num: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor),
                         flavor: $ctrl.flavor.name,
                         region: $ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.backup.region),
-                    }"></span>
-                <a data-ng-href="{{:: $ctrl.quotaLink }}"
-                    data-translate="pci_projects_project_instances_backup_add_numInstances_quotaLink_label"></a>
+                    }"
+                ></span>
+                <a
+                    data-ng-href="{{:: $ctrl.quotaLink }}"
+                    data-translate="pci_projects_project_instances_backup_add_numInstances_quotaLink_label"
+                ></a>
             </div>
         </oui-field>
 
         <div
             class="d-flex align-items-center"
-            data-ng-if="$ctrl.canSwitchToFlex()">
+            data-ng-if="$ctrl.canSwitchToFlex()"
+        >
             <oui-checkbox
                 class="position-relative"
                 id="instance-flex"
                 name="instance-flex"
                 data-model="$ctrl.model.isInstanceFlex"
-                data-on-change="$ctrl.onFlexChange(modelValue)">
-                <span data-translate="pci_projects_project_instances_backup_add_flex"></span>
+                data-on-change="$ctrl.onFlexChange(modelValue)"
+            >
+                <span
+                    data-translate="pci_projects_project_instances_backup_add_flex"
+                ></span>
             </oui-checkbox>
-            <button type="button" class="oui-popover-button mb-1" oui-popover="{{:: 'pci_projects_project_instances_backup_add_flex_help' | translate }}"></button>
+            <button
+                type="button"
+                class="oui-popover-button mb-1"
+                oui-popover="{{:: 'pci_projects_project_instances_backup_add_flex_help' | translate }}"
+            ></button>
         </div>
 
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_name_label' | translate }}"
-            data-size="xl">
-            <input class="oui-input" type="text" id="name" name="name"
+            data-size="xl"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
                 ng-model="$ctrl.instance.name"
                 ng-pattern="$ctrl.instanceNamePattern"
-                required>
+                required
+            />
 
-            <div class="oui-field__helper" data-translate="pci_projects_project_instances_backup_add_name_help"></div>
+            <div
+                class="oui-field__helper"
+                data-translate="pci_projects_project_instances_backup_add_name_help"
+            ></div>
         </oui-field>
 
         <pci-project-instance-ssh-keys
             data-ng-if="$ctrl.backup.type === 'linux'"
             data-region="$ctrl.backup.region"
             data-selected-key="$ctrl.model.sshKey"
-            data-service-name="{{:: $ctrl.projectId }}">
+            data-service-name="{{:: $ctrl.projectId }}"
+        >
         </pci-project-instance-ssh-keys>
 
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_private_network_label' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <oui-select
                 data-name="privateNetwork"
                 data-model="$ctrl.model.privateNetwork"
                 data-items="$ctrl.availablePrivateNetworks"
                 data-match="name"
                 data-searchable
-                data-on-change="$ctrl.onPrivateNetworkChange(modelValue)">
+                data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
+            >
             </oui-select>
         </oui-field>
 
         <oui-field
-            data-label="{{ :: 'pci_projects_project_instances_backup_add_billing_label' | translate }}">
+            data-label="{{ :: 'pci_projects_project_instances_backup_add_billing_label' | translate }}"
+        >
             <pci-project-flavor-billing
                 data-flavor="$ctrl.flavor"
                 data-number="$ctrl.model.number"
-                data-monthly-billing="$ctrl.instance.monthlyBilling">
+                data-monthly-billing="$ctrl.instance.monthlyBilling"
+            >
             </pci-project-flavor-billing>
         </oui-field>
 
@@ -110,10 +157,12 @@
             <oui-spinner></oui-spinner>
             <p
                 data-ng-if="$ctrl.model.number === 1"
-                data-translate="pci_projects_project_instances_backup_add_save_form"></p>
+                data-translate="pci_projects_project_instances_backup_add_save_form"
+            ></p>
             <p
                 data-ng-if="$ctrl.model.number > 1"
-                data-translate="pci_projects_project_instances_backup_add_save_multiple_form"></p>
+                data-translate="pci_projects_project_instances_backup_add_save_multiple_form"
+            ></p>
         </div>
 
         <oui-form-actions
@@ -121,7 +170,8 @@
             data-on-cancel="$ctrl.goBack()"
             data-disabled="!addBackupInstanceForm.$valid"
             data-submit-text="{{:: 'pci_projects_project_instances_backup_add' | translate }}"
-            data-cancel-text="{{:: 'pci_projects_project_instances_backup_add_cancel' | translate }}">
+            data-cancel-text="{{:: 'pci_projects_project_instances_backup_add_cancel' | translate }}"
+        >
         </oui-form-actions>
     </form>
 </section>

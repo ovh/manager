@@ -1,9 +1,11 @@
-<oui-modal data-heading="{{:: $ctrl.title }}"
-           data-primary-action="$ctrl.$uibModalInstance.close('confirm')"
-           data-primary-label="{{:: 'common_confirm' | translate }}"
-           data-secondary-label="{{:: 'cancel' | translate }}"
-           data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
-           data-on-dismiss="$ctrl.cancel()"
-           data-type="warning">
+<oui-modal
+    data-heading="{{:: $ctrl.title }}"
+    data-primary-action="$ctrl.$uibModalInstance.close('confirm')"
+    data-primary-label="{{:: 'common_confirm' | translate }}"
+    data-secondary-label="{{:: 'cancel' | translate }}"
+    data-secondary-action="$ctrl.$uibModalInstance.dismiss()"
+    data-on-dismiss="$ctrl.cancel()"
+    data-type="warning"
+>
     <p data-ng-bind=":: $ctrl.question"></p>
 </oui-modal>

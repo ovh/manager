@@ -1,4 +1,6 @@
-<div class="container-fluid h-100 w-100 position-absolute overflow-auto ovh-manager-error-page">
+<div
+    class="container-fluid h-100 w-100 position-absolute overflow-auto ovh-manager-error-page"
+>
     <div class="row minh-100 justify-content-md-center d-flex">
         <div class="col-md-7 p-4 p-md-5 bg-white minh-100">
             <div class="p-0 p-md-5">
@@ -6,43 +8,52 @@
                     <img
                         data-ng-src="{{ :: $ctrl.image || $ctrl.DEFAULT_ASSET }}"
                         class="mw-100"
-                        alt="" />
+                        alt=""
+                    />
                 </div>
 
-                <h1 class="oui-heading_4"
-                    data-translate="manager_error_page_title">
-                </h1>
+                <h1
+                    class="oui-heading_4"
+                    data-translate="manager_error_page_title"
+                ></h1>
 
-                <oui-message
-                    class="mb-3"
-                    data-type="error">
-                    <span data-ng-bind-html=":: $ctrl.message || ( 'manager_error_page_default' | translate)"></span>
+                <oui-message class="mb-3" data-type="error">
+                    <span
+                        data-ng-bind-html=":: $ctrl.message || ( 'manager_error_page_default' | translate)"
+                    ></span>
                     <strong
                         class="d-block"
                         data-ng-if="$ctrl.error.detail.message"
-                        data-ng-bind="::$ctrl.error.detail.message"></strong>
+                        data-ng-bind="::$ctrl.error.detail.message"
+                    ></strong>
                     <p
                         data-ng-if="$ctrl.error.detail.code"
                         data-translate="manager_error_page_detail_code"
-                        data-translate-values="$ctrl.error.detail">
-                    </p>
+                        data-translate-values="$ctrl.error.detail"
+                    ></p>
                 </oui-message>
                 <div class="d-flex flex-row-reverse">
                     <oui-button
                         data-ng-if="$ctrl.submitAction"
                         data-variant="primary"
-                        data-on-click="$ctrl.submitAction()">
-                        <span data-ng-bind=":: $ctrl.submitLabel || ('manager_error_page_action_reload_label' | translate)"></span>
+                        data-on-click="$ctrl.submitAction()"
+                    >
+                        <span
+                            data-ng-bind=":: $ctrl.submitLabel || ('manager_error_page_action_reload_label' | translate)"
+                        ></span>
                     </oui-button>
                     <a
                         class="oui-button oui-button_primary"
                         data-ng-if="$ctrl.submitLink"
                         data-ng-href="{{:: $ctrl.submitLink }}"
-                        data-ng-bind="$ctrl.submitLabel || ('manager_error_page_action_reload_label' | translate)">
+                        data-ng-bind="$ctrl.submitLabel || ('manager_error_page_action_reload_label' | translate)"
+                    >
                     </a>
-                    <a class="oui-button oui-button_link"
+                    <a
+                        class="oui-button oui-button_link"
                         data-ng-bind=":: $ctrl.cancelLabel || ('manager_error_page_action_home_label' | translate )"
-                        data-ng-href="{{:: $ctrl.cancelLink }}"></a>
+                        data-ng-href="{{:: $ctrl.cancelLink }}"
+                    ></a>
                 </div>
             </div>
         </div>

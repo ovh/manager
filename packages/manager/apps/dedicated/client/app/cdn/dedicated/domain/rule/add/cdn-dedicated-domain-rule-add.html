@@ -1,112 +1,149 @@
 <div data-ng-controller="CacherulesCreateCtrl">
-
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="create"
-         data-wizard-title=":: 'cdn_domain_configuration_cacherule_create_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isValidRule()"
-             data-wizard-step-on-load="loadCacheRulesInfos">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="create"
+        data-wizard-title=":: 'cdn_domain_configuration_cacherule_create_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="isValidRule()"
+            data-wizard-step-on-load="loadCacheRulesInfos"
+        >
             <div class="text-center" data-ng-if="!infos">
                 <oui-spinner></oui-spinner>
             </div>
 
             <div data-ng-if="infos">
-                <p data-translate="cdn_domain_configuration_cacherule_create_step1_question"></p>
+                <p
+                    data-translate="cdn_domain_configuration_cacherule_create_step1_question"
+                ></p>
                 <div class="form-group">
-                    <label for="fileType"
-                           class="control-label"
-                           data-translate="cdn_domain_configuration_cacherule_create_filetype">
+                    <label
+                        for="fileType"
+                        class="control-label"
+                        data-translate="cdn_domain_configuration_cacherule_create_filetype"
+                    >
                     </label>
-                    <select class="form-control"
-                            id="fileType"
-                            name="fileType"
-                            data-ng-options="type as ('cdn_domain_configuration_cacherule_create_filetype_' + type | translate) for type in infos.fileTypes"
-                            data-ng-model="entry.fileType">
-                        <option value=""
-                                disabled
-                                selected
-                                data-translate="cdn_domain_configuration_cacherule_create_filetype_default">
+                    <select
+                        class="form-control"
+                        id="fileType"
+                        name="fileType"
+                        data-ng-options="type as ('cdn_domain_configuration_cacherule_create_filetype_' + type | translate) for type in infos.fileTypes"
+                        data-ng-model="entry.fileType"
+                    >
+                        <option
+                            value=""
+                            disabled
+                            selected
+                            data-translate="cdn_domain_configuration_cacherule_create_filetype_default"
+                        >
                         </option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="fileMatch"
-                           class="control-label"
-                           data-translate="cdn_domain_configuration_cacherule_create_filematch">
+                    <label
+                        for="fileMatch"
+                        class="control-label"
+                        data-translate="cdn_domain_configuration_cacherule_create_filematch"
+                    >
                     </label>
-                    <input type="text"
-                           class="form-control"
-                           id="fileMatch"
-                           name="fileMatch"
-                           data-ng-model="entry.fileMatch" />
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fileMatch"
+                        name="fileMatch"
+                        data-ng-model="entry.fileMatch"
+                    />
                 </div>
                 <div class="form-group">
-                    <label class="control-label"
-                           data-translate="cdn_domain_configuration_cacherule_create_cachetype">
+                    <label
+                        class="control-label"
+                        data-translate="cdn_domain_configuration_cacherule_create_cachetype"
+                    >
                     </label>
-                    <div class="radio"
-                         data-ng-repeat="cachetype in infos.cacheTypes track by $index">
+                    <div
+                        class="radio"
+                        data-ng-repeat="cachetype in infos.cacheTypes track by $index"
+                    >
                         <label>
-                            <input type="radio"
-                                   id="cachetype-{{ cachetype }}"
-                                   name="cachetype"
-                                   value="{{ cachetype }}"
-                                   data-ng-model="entry.cacheType" />
-                            <span data-translate="{{ 'cdn_domain_configuration_cacherule_create_cachetype_' + cachetype }}"></span>
+                            <input
+                                type="radio"
+                                id="cachetype-{{ cachetype }}"
+                                name="cachetype"
+                                value="{{ cachetype }}"
+                                data-ng-model="entry.cacheType"
+                            />
+                            <span
+                                data-translate="{{ 'cdn_domain_configuration_cacherule_create_cachetype_' + cachetype }}"
+                            ></span>
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ttl"
-                           class="control-label"
-                           data-translate="cdn_domain_configuration_cacherule_create_ttl">
+                    <label
+                        for="ttl"
+                        class="control-label"
+                        data-translate="cdn_domain_configuration_cacherule_create_ttl"
+                    >
                     </label>
                     <div class="input-group">
-                        <input type="number"
-                               class="form-control"
-                               id="ttl"
-                               name="ttl"
-                               min="1"
-                               max="214783647"
-                               data-ng-model="entry.ttl"
-                              data-ng-disabled="entry.cacheType == 'NO_CACHE'" />
-                        <span class="input-group-addon"
-                              data-translate="cdn_domain_configuration_cacherule_create_ttl_unit">
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="ttl"
+                            name="ttl"
+                            min="1"
+                            max="214783647"
+                            data-ng-model="entry.ttl"
+                            data-ng-disabled="entry.cacheType == 'NO_CACHE'"
+                        />
+                        <span
+                            class="input-group-addon"
+                            data-translate="cdn_domain_configuration_cacherule_create_ttl_unit"
+                        >
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div class="text-danger"
-                 data-ng-if="entry.fileType"
-                 data-translate="{{ 'cdn_domain_configuration_cacherule_create_step1_information_' + entry.fileType }}">
-            </div>
-
+            <div
+                class="text-danger"
+                data-ng-if="entry.fileType"
+                data-translate="{{ 'cdn_domain_configuration_cacherule_create_step1_information_' + entry.fileType }}"
+            ></div>
         </div>
 
         <div data-wizard-step>
-
-            <p data-translate="cdn_domain_configuration_cacherule_create_step2_question"></p>
+            <p
+                data-translate="cdn_domain_configuration_cacherule_create_step2_question"
+            ></p>
             <dl>
-                <dt data-translate="cdn_domain_configuration_cacherule_create_filetype"></dt>
-                <dd data-translate="{{ 'cdn_domain_configuration_cacherule_create_filetype_' + entry.fileType }}"></dd>
-                <dt data-translate="cdn_domain_configuration_cacherule_create_filematch"></dt>
+                <dt
+                    data-translate="cdn_domain_configuration_cacherule_create_filetype"
+                ></dt>
+                <dd
+                    data-translate="{{ 'cdn_domain_configuration_cacherule_create_filetype_' + entry.fileType }}"
+                ></dd>
+                <dt
+                    data-translate="cdn_domain_configuration_cacherule_create_filematch"
+                ></dt>
                 <dd data-ng-bind="entry.fileMatch"></dd>
-                <dt data-translate="cdn_domain_configuration_cacherule_create_cachetype"></dt>
-                <dd data-translate="{{ 'cdn_domain_configuration_cacherule_create_cachetype_' + entry.cacheType }}"></dd>
-                <dt data-translate="cdn_domain_configuration_cacherule_create_ttl"
-                    data-ng-if="entry.cacheType !== 'NO_CACHE'">
-                </dt>
-                <dd data-ng-bind="entry.ttl"
-                    data-ng-if="entry.cacheType !== 'NO_CACHE'">
-                </dd>
+                <dt
+                    data-translate="cdn_domain_configuration_cacherule_create_cachetype"
+                ></dt>
+                <dd
+                    data-translate="{{ 'cdn_domain_configuration_cacherule_create_cachetype_' + entry.cacheType }}"
+                ></dd>
+                <dt
+                    data-translate="cdn_domain_configuration_cacherule_create_ttl"
+                    data-ng-if="entry.cacheType !== 'NO_CACHE'"
+                ></dt>
+                <dd
+                    data-ng-bind="entry.ttl"
+                    data-ng-if="entry.cacheType !== 'NO_CACHE'"
+                ></dd>
             </dl>
-
         </div>
-
     </div>
-
 </div>

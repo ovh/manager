@@ -1,16 +1,23 @@
 <div data-ng-controller="ExchangeRemoveResourceCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="'exchange_tab_RESOURCES_remove_resource_confirm' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="submit"
-         data-wizard-title="'exchange_tab_RESOURCES_remove_resource' | translate">
-
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'exchange_tab_RESOURCES_remove_resource_confirm' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="submit"
+        data-wizard-title="'exchange_tab_RESOURCES_remove_resource' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'exchange_tab_RESOURCES_remove_resource_title' | translate"></p>
+            <p
+                data-ng-bind-html="'exchange_tab_RESOURCES_remove_resource_title' | translate"
+            ></p>
             <dl class="dl-horizontal">
-                <dt data-translate="exchange_tab_account_remove_email_label"></dt>
-                <dd class="word-break"
-                    data-ng-bind="ctrl.resource.resourceEmailDisplayName | wucSliceContent: 150"></dd>
+                <dt
+                    data-translate="exchange_tab_account_remove_email_label"
+                ></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.resource.resourceEmailDisplayName | wucSliceContent: 150"
+                ></dd>
             </dl>
         </div>
     </div>

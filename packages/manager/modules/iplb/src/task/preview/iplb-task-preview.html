@@ -1,26 +1,47 @@
 <oui-modal
     data-title="{{ ::'iplb_task_preview_title' | translate }}"
-    data-on-dismiss="$ctrl.dismiss()">
+    data-on-dismiss="$ctrl.dismiss()"
+>
     <dl class="preview-list preview-list_no_margin">
-        <dt class="preview-list__term"
-            data-translate="iplb_task_preview_creation_date"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::$ctrl.task.creationDate"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_task_preview_task"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::$ctrl.task.action"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_task_preview_progress"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::$ctrl.task.progress"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_task_preview_status"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::$ctrl.task.status"></dd>
-        <dt class="preview-list__term"
-            data-translate="iplb_task_preview_id"></dt>
-        <dd class="preview-list__definition"
-            data-ng-bind="::$ctrl.task.id"></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_task_preview_creation_date"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.task.creationDate"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_task_preview_task"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.task.action"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_task_preview_progress"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.task.progress"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_task_preview_status"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.task.status"
+        ></dd>
+        <dt
+            class="preview-list__term"
+            data-translate="iplb_task_preview_id"
+        ></dt>
+        <dd
+            class="preview-list__definition"
+            data-ng-bind="::$ctrl.task.id"
+        ></dd>
     </dl>
 </oui-modal>

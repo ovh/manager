@@ -1,14 +1,19 @@
 <div data-ng-controller="HostingModuleDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteModule"
-         data-wizard-title="'hosting_configuration_tab_modules_delete_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteModule"
+        data-wizard-title="'hosting_configuration_tab_modules_delete_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'hosting_configuration_tab_modules_delete_question' | translate: { t0: '<strong>' + ctrl.moduleToDelete.template.name + '</strong>' }"></p>
-            <div class="alert alert-warning" role="alert"
-                 data-translate="hosting_configuration_tab_modules_delete_information">
-            </div>
+            <p
+                data-ng-bind-html="'hosting_configuration_tab_modules_delete_question' | translate: { t0: '<strong>' + ctrl.moduleToDelete.template.name + '</strong>' }"
+            ></p>
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="hosting_configuration_tab_modules_delete_information"
+            ></div>
         </div>
     </div>
 </div>

@@ -5,18 +5,23 @@
         data-primary-label="{{:: 'pci_projects_project_kubernetes_details_service_name_edit' | translate}}"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_kubernetes_details_service_name_cancel' | translate}}"
-        data-loading="$ctrl.isEditing">
-        <p data-translate="pci_projects_project_kubernetes_details_service_name_default"
-           data-translate-values="{ name: $ctrl.cluster.id }">
-        </p>
-        <oui-field data-label="{{::'pci_projects_project_kubernetes_details_service_name_custom' | translate}}">
+        data-loading="$ctrl.isEditing"
+    >
+        <p
+            data-translate="pci_projects_project_kubernetes_details_service_name_default"
+            data-translate-values="{ name: $ctrl.cluster.id }"
+        ></p>
+        <oui-field
+            data-label="{{::'pci_projects_project_kubernetes_details_service_name_custom' | translate}}"
+        >
             <input
                 type="text"
                 id="clusterName"
                 name="clusterName"
                 class="oui-input"
                 data-ng-model="$ctrl.name"
-                required>
+                required
+            />
         </oui-field>
     </oui-modal>
 </form>

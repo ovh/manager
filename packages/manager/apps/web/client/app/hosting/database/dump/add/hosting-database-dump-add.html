@@ -1,44 +1,68 @@
 <div data-ng-controller="HostingDatabaseDumpAddCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="dumpDatabase"
-         data-wizard-title="'hosting_tab_DATABASES_configuration_dump_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.model.date">
-
-            <p data-ng-bind-html="'hosting_tab_DATABASES_configuration_dump_step1_question' | translate: { t0: '<strong>' + ctrl.entryToDump + '</strong>' }"></p>
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="dumpDatabase"
+        data-wizard-title="'hosting_tab_DATABASES_configuration_dump_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.model.date">
+            <p
+                data-ng-bind-html="'hosting_tab_DATABASES_configuration_dump_step1_question' | translate: { t0: '<strong>' + ctrl.entryToDump + '</strong>' }"
+            ></p>
 
             <oui-spinner data-ng-if="!ctrl.model.options"></oui-spinner>
 
             <form data-ng-if="ctrl.model.options">
-                <label class="oui-label" for="dumpDate"
-                       data-translate="hosting_tab_DATABASES_configuration_dump_step1_date"></label>
+                <label
+                    class="oui-label"
+                    for="dumpDate"
+                    data-translate="hosting_tab_DATABASES_configuration_dump_step1_date"
+                ></label>
                 <div class="oui-select oui-select_inline align-middle mb-0">
-                    <select class="oui-select__input" id="dumpDate"
-                            data-ng-model="ctrl.model.date"
-                            data-ng-options="date as (('hosting_tab_DATABASES_configuration_dump_date_' + date | translate)) for date in ctrl.model.options.dumpDates track by date">
-                        <option value="" disabled
-                                data-translate="select_placeholder"></option>
+                    <select
+                        class="oui-select__input"
+                        id="dumpDate"
+                        data-ng-model="ctrl.model.date"
+                        data-ng-options="date as (('hosting_tab_DATABASES_configuration_dump_date_' + date | translate)) for date in ctrl.model.options.dumpDates track by date"
+                    >
+                        <option
+                            value=""
+                            disabled
+                            data-translate="select_placeholder"
+                        ></option>
                     </select>
-                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
                 </div>
-                <span class="ml-2"
-                      data-ng-bind="'(' + (ctrl.constructor.getDate(ctrl.model.date) | date:'short') + ')'"
-                      data-ng-if="ctrl.model.date"></span>
+                <span
+                    class="ml-2"
+                    data-ng-bind="'(' + (ctrl.constructor.getDate(ctrl.model.date) | date:'short') + ')'"
+                    data-ng-if="ctrl.model.date"
+                ></span>
             </form>
         </div>
 
         <div data-wizard-step>
-            <p data-ng-bind-html="'hosting_tab_DATABASES_configuration_dump_step2_question' | translate: { t0: '<strong>' + ctrl.entryToDump + '</strong>' }"></p>
+            <p
+                data-ng-bind-html="'hosting_tab_DATABASES_configuration_dump_step2_question' | translate: { t0: '<strong>' + ctrl.entryToDump + '</strong>' }"
+            ></p>
             <div class="my-4">
-                <strong class="mr-3" data-translate="hosting_tab_DATABASES_configuration_dump_step2_date"></strong>
-                <span data-ng-bind="'hosting_tab_DATABASES_configuration_dump_date_' + ctrl.model.date | translate"></span>
+                <strong
+                    class="mr-3"
+                    data-translate="hosting_tab_DATABASES_configuration_dump_step2_date"
+                ></strong>
+                <span
+                    data-ng-bind="'hosting_tab_DATABASES_configuration_dump_date_' + ctrl.model.date | translate"
+                ></span>
             </div>
-            <div class="alert alert-info" role="alert"
-                 data-translate="hosting_tab_DATABASES_configuration_dump_step2_information">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="hosting_tab_DATABASES_configuration_dump_step2_information"
+            ></div>
         </div>
     </div>
 </div>

@@ -1,36 +1,45 @@
-<form name="removeTelephonyFaxCampaignForm"
-      id="removeTelephonyFaxCampaignForm"
-      data-ng-submit="CampaignsRemoveCtrl.remove()">
-
+<form
+    name="removeTelephonyFaxCampaignForm"
+    id="removeTelephonyFaxCampaignForm"
+    data-ng-submit="CampaignsRemoveCtrl.remove()"
+>
     <div class="modal-header">
         <button
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="CampaignsRemoveCtrl.cancel()">
+            data-ng-click="CampaignsRemoveCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!CampaignsRemoveCtrl.loading.removeCampaign && !CampaignsRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="telephony_service_fax_campaigns_remove">
-        </h3>
-        <p data-translate="telephony_service_fax_campaigns_remove_campaign_confirm"
-           data-translate-values="{ campaign: CampaignsRemoveCtrl.campaign.name }">
-        </p>
+    <div
+        class="modal-body"
+        data-ng-if="!CampaignsRemoveCtrl.loading.removeCampaign && !CampaignsRemoveCtrl.removed"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_service_fax_campaigns_remove"
+        ></h3>
+        <p
+            data-translate="telephony_service_fax_campaigns_remove_campaign_confirm"
+            data-translate-values="{ campaign: CampaignsRemoveCtrl.campaign.name }"
+        ></p>
     </div>
 
-    <div class="modal-body text-center"
-         data-ng-if="CampaignsRemoveCtrl.loading.removeCampaign && !CampaignsRemoveCtrl.removed">
+    <div
+        class="modal-body text-center"
+        data-ng-if="CampaignsRemoveCtrl.loading.removeCampaign && !CampaignsRemoveCtrl.removed"
+    >
         <oui-spinner></oui-spinner>
         <h4 data-translate="telephony_service_fax_campaigns_removing"></h4>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="CampaignsRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="CampaignsRemoveCtrl.removed">
+    <div class="modal-body" data-ng-if="CampaignsRemoveCtrl.removed">
+        <tuc-success-drawing-check
+            data-draw-success-check="CampaignsRemoveCtrl.removed"
+        >
             <h4 data-translate="telephony_service_fax_campaigns_removed"></h4>
         </tuc-success-drawing-check>
     </div>
@@ -41,14 +50,13 @@
             class="btn btn-default"
             data-ng-click="CampaignsRemoveCtrl.cancel()"
             data-ng-disabled="CampaignsRemoveCtrl.loading.removeCampaign || CampaignsRemoveCtrl.removed"
-            data-translate="cancel">
-        </button>
+            data-translate="cancel"
+        ></button>
         <button
             type="submit"
             class="btn btn-primary"
             data-ng-disabled="removeTelephonyFaxCampaignForm.$invalid || CampaignsRemoveCtrl.loading.removeCampaign || CampaignsRemoveCtrl.removed"
-            data-translate="submit">
-        </button>
+            data-translate="submit"
+        ></button>
     </div>
-
 </form>

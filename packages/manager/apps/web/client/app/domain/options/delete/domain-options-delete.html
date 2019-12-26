@@ -1,20 +1,25 @@
 <div data-ng-controller="controllers.Domain.Options.Delete as ctrl">
     <oui-modal
-      data-heading="{{:: ('domain_tab_options_delete_'+ctrl.option.option+'_title') | translate }}"
-      data-loading="ctrl.loading"
-      data-on-dismiss="ctrl.closeModal()"
-      data-primary-action="ctrl.deleteDomain()"
-      data-primary-disabled="ctrl.loading"
-      data-primary-label="{{:: 'domain_tab_options_delete_confirm_button' | translate }}"
-      data-secondary-action="ctrl.closeModal()"
-      data-secondary-disabled="ctrl.loading"
-      data-secondary-label="{{:: 'domain_tab_options_delete_cancel' | translate }}">
+        data-heading="{{:: ('domain_tab_options_delete_'+ctrl.option.option+'_title') | translate }}"
+        data-loading="ctrl.loading"
+        data-on-dismiss="ctrl.closeModal()"
+        data-primary-action="ctrl.deleteDomain()"
+        data-primary-disabled="ctrl.loading"
+        data-primary-label="{{:: 'domain_tab_options_delete_confirm_button' | translate }}"
+        data-secondary-action="ctrl.closeModal()"
+        data-secondary-disabled="ctrl.loading"
+        data-secondary-label="{{:: 'domain_tab_options_delete_cancel' | translate }}"
+    >
         <p data-translate="domain_tab_options_delete_confirm"></p>
-        <p data-ng-if="ctrl.option.expirationDate"
-           data-translate="domain_tab_options_delete_expiry"
-           data-translate-values="{ date: (ctrl.option.expirationDate | date:'mediumDate') }"></p>
+        <p
+            data-ng-if="ctrl.option.expirationDate"
+            data-translate="domain_tab_options_delete_expiry"
+            data-translate-values="{ date: (ctrl.option.expirationDate | date:'mediumDate') }"
+        ></p>
         <oui-message type="warning">
-            <span data-translate="domain_tab_options_delete_confirm_warning"></span>
+            <span
+                data-translate="domain_tab_options_delete_confirm_warning"
+            ></span>
         </oui-message>
     </oui-modal>
 </div>

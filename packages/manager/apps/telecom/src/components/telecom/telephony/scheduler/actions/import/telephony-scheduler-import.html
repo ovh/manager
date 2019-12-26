@@ -1,64 +1,83 @@
-<form class="telecom-scheduler-import"
-      name="schdulerImportForm"
-      data-ng-submit="SchedulerImportCtrl.startImport()">
-
+<form
+    class="telecom-scheduler-import"
+    name="schdulerImportForm"
+    data-ng-submit="SchedulerImportCtrl.startImport()"
+>
     <div class="modal-header">
-        <button type="button"
-                class="close float-right"
-                aria-label="{{'cancel'|translate}}"
-                data-ng-click="SchedulerImportCtrl.cancel()">
+        <button
+            type="button"
+            class="close float-right"
+            aria-label="{{'cancel'|translate}}"
+            data-ng-click="SchedulerImportCtrl.cancel()"
+        >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
-    <div class="modal-body"
-         data-ng-if="!SchedulerImportCtrl.loading.import && !SchedulerImportCtrl.status.uploaded">
-        <h3 class="modal-title"
-            data-translate="telephony_scheduler_import_title">
-        </h3>
+    <div
+        class="modal-body"
+        data-ng-if="!SchedulerImportCtrl.loading.import && !SchedulerImportCtrl.status.uploaded"
+    >
+        <h3
+            class="modal-title"
+            data-translate="telephony_scheduler_import_title"
+        ></h3>
 
         <div class="form-group">
-            <label data-translate="telephony_scheduler_import_select_file"></label>
-            <tuc-input-file data-ng-model="SchedulerImportCtrl.model.icsFile"
-                        data-change="SchedulerImportCtrl.checkIcsFileType(file)"
-                        data-ng-accept="text/calendar">
+            <label
+                data-translate="telephony_scheduler_import_select_file"
+            ></label>
+            <tuc-input-file
+                data-ng-model="SchedulerImportCtrl.model.icsFile"
+                data-change="SchedulerImportCtrl.checkIcsFileType(file)"
+                data-ng-accept="text/calendar"
+            >
                 <i class="fa fa-upload mr-2"></i>
-                <span data-translate="telephony_scheduler_import_ics_file"></span>
+                <span
+                    data-translate="telephony_scheduler_import_ics_file"
+                ></span>
             </tuc-input-file>
-            <div class="text-danger"
-                 data-ng-if="SchedulerImportCtrl.isFileExtentionInvalid">
-                <span data-translate="telephony_scheduler_import_ics_file_format_error"></span>
+            <div
+                class="text-danger"
+                data-ng-if="SchedulerImportCtrl.isFileExtentionInvalid"
+            >
+                <span
+                    data-translate="telephony_scheduler_import_ics_file_format_error"
+                ></span>
             </div>
         </div>
-
     </div>
 
     <div class="modal-body">
-        <div class="text-center"
-             data-ng-if="SchedulerImportCtrl.loading.import && !SchedulerImportCtrl.status.uploaded">
+        <div
+            class="text-center"
+            data-ng-if="SchedulerImportCtrl.loading.import && !SchedulerImportCtrl.status.uploaded"
+        >
             <oui-spinner data-size="m"></oui-spinner>
             <h4 data-translate="telephony_scheduler_import_upload_doing"></h4>
         </div>
-        <tuc-success-drawing-check data-draw-success-check="SchedulerImportCtrl.status.uploaded"
-                               data-ng-if="SchedulerImportCtrl.status.uploaded">
+        <tuc-success-drawing-check
+            data-draw-success-check="SchedulerImportCtrl.status.uploaded"
+            data-ng-if="SchedulerImportCtrl.status.uploaded"
+        >
             <h4 data-translate="telephony_scheduler_import_upload_success"></h4>
         </tuc-success-drawing-check>
     </div>
 
     <div class="modal-footer mt-2">
-        <button type="submit"
-                class="btn btn-primary float-right ml-2"
-                data-translate="telephony_scheduler_import_button"
-                data-ng-disabled="!SchedulerImportCtrl.model.icsFile || SchedulerImportCtrl.isFileExtentionInvalid || schdulerImportForm.$invalid || SchedulerImportCtrl.loading.import || SchedulerImportCtrl.status.uploaded">
-        </button>
+        <button
+            type="submit"
+            class="btn btn-primary float-right ml-2"
+            data-translate="telephony_scheduler_import_button"
+            data-ng-disabled="!SchedulerImportCtrl.model.icsFile || SchedulerImportCtrl.isFileExtentionInvalid || schdulerImportForm.$invalid || SchedulerImportCtrl.loading.import || SchedulerImportCtrl.status.uploaded"
+        ></button>
 
-        <button type="button"
-                class="btn btn-default float-right"
-                data-ng-click="SchedulerImportCtrl.cancel()"
-                data-translate="cancel"
-                data-ng-disabled="SchedulerImportCtrl.loading.import || SchedulerImportCtrl.status.uploaded">
-        </button>
-
+        <button
+            type="button"
+            class="btn btn-default float-right"
+            data-ng-click="SchedulerImportCtrl.cancel()"
+            data-translate="cancel"
+            data-ng-disabled="SchedulerImportCtrl.loading.import || SchedulerImportCtrl.status.uploaded"
+        ></button>
     </div>
-
 </form>

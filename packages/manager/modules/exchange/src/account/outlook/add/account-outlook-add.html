@@ -1,74 +1,113 @@
 <div data-ng-controller="ExchangeAddOutlookCtrl as ctrl">
-    <div data-wizard
-         data-wizard-confirm-button-text="'wizard_pay' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="displayOutlookOrder"
-         data-wizard-title="'exchange_ACTION_add_outlook_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="isStep1Valid()"
-             data-wizard-step-on-load="loadOptionsList">
-
-            <p data-translate="exchange_ACTION_add_outlook_into_label" data-translate-values="{ t0: ctrl.selectedAccount.primaryEmailDisplayName }"></p>
+    <div
+        data-wizard
+        data-wizard-confirm-button-text="'wizard_pay' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="displayOutlookOrder"
+        data-wizard-title="'exchange_ACTION_add_outlook_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="isStep1Valid()"
+            data-wizard-step-on-load="loadOptionsList"
+        >
+            <p
+                data-translate="exchange_ACTION_add_outlook_into_label"
+                data-translate-values="{ t0: ctrl.selectedAccount.primaryEmailDisplayName }"
+            ></p>
 
             <oui-spinner data-ng-if="!ctrl.optionsList"></oui-spinner>
 
             <div data-ng-show="ctrl.optionsList">
                 <form name="orderAccountForm">
                     <div class="mb-4">
-                        <label class="oui-label"
-                               data-translate="exchange_ACTION_add_outlook_duration_label"></label>
-                        <div class="oui-radio"
-                             data-ng-repeat="option in ctrl.selectedVersion.options track by $index">
-                            <input type="radio" class="oui-radio__input" id="duration-{{$index}}" name="durationTypeGroup"
-                                   data-ng-click="ctrl.selectDuration(option)"
-                                   data-ng-disabled="ctrl.selectedVersion === null"
-                                   data-ng-model="ctrl.model.duration"
-                                   data-ng-value="option.duration.duration">
-                            <label class="oui-radio__label-container" for="duration-{{$index}}">
-                                <span class="oui-radio__label"
-                                      data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + option.duration.duration) | translate"></span>
+                        <label
+                            class="oui-label"
+                            data-translate="exchange_ACTION_add_outlook_duration_label"
+                        ></label>
+                        <div
+                            class="oui-radio"
+                            data-ng-repeat="option in ctrl.selectedVersion.options track by $index"
+                        >
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="duration-{{$index}}"
+                                name="durationTypeGroup"
+                                data-ng-click="ctrl.selectDuration(option)"
+                                data-ng-disabled="ctrl.selectedVersion === null"
+                                data-ng-model="ctrl.model.duration"
+                                data-ng-value="option.duration.duration"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="duration-{{$index}}"
+                            >
+                                <span
+                                    class="oui-radio__label"
+                                    data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + option.duration.duration) | translate"
+                                ></span>
                             </label>
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <label class="oui-label"
-                               data-translate="exchange_ACTION_add_outlook_price_withoutIVA_label"
-                               data-ng-if="ctrl.getTarget() === 'EU'"></label>
-                        <label class="oui-label"
-                               data-translate="exchange_ACTION_add_outlook_price_label"
-                               data-ng-if="ctrl.getTarget() === 'CA'"></label>
+                        <label
+                            class="oui-label"
+                            data-translate="exchange_ACTION_add_outlook_price_withoutIVA_label"
+                            data-ng-if="ctrl.getTarget() === 'EU'"
+                        ></label>
+                        <label
+                            class="oui-label"
+                            data-translate="exchange_ACTION_add_outlook_price_label"
+                            data-ng-if="ctrl.getTarget() === 'CA'"
+                        ></label>
                         <div data-ng-if="!ctrl.selectedOption">-</div>
-                        <div class="text-danger"
-                             data-ng-bind="ctrl.selectedOption.order.prices.withoutTax.text"
-                             data-ng-if="ctrl.selectedOption"></div>
+                        <div
+                            class="text-danger"
+                            data-ng-bind="ctrl.selectedOption.order.prices.withoutTax.text"
+                            data-ng-if="ctrl.selectedOption"
+                        ></div>
                     </div>
 
-                    <div class="mb-4"
-                         data-ng-if="ctrl.getTarget() === 'EU'">
-                        <label class="oui-label"
-                               data-translate="exchange_ACTION_add_outlook_price_withIVA_label"></label>
+                    <div class="mb-4" data-ng-if="ctrl.getTarget() === 'EU'">
+                        <label
+                            class="oui-label"
+                            data-translate="exchange_ACTION_add_outlook_price_withIVA_label"
+                        ></label>
                         <div data-ng-if="!ctrl.selectedOption">-</div>
-                        <div class="text-danger"
-                             data-ng-bind="ctrl.selectedOption.order.prices.withTax.text"
-                             data-ng-show="ctrl.selectedOption"></div>
+                        <div
+                            class="text-danger"
+                            data-ng-bind="ctrl.selectedOption.order.prices.withTax.text"
+                            data-ng-show="ctrl.selectedOption"
+                        ></div>
                     </div>
 
-                    <div class="mb-4" data-ng-show="ctrl.selectedOption.order.contracts.length > 0">
-                        <label class="oui-label"
-                               data-translate="exchange_ACTION_add_outlook_contracts_label"></label>
-                        <oui-checkbox id="contractsValidated"
+                    <div
+                        class="mb-4"
+                        data-ng-show="ctrl.selectedOption.order.contracts.length > 0"
+                    >
+                        <label
+                            class="oui-label"
+                            data-translate="exchange_ACTION_add_outlook_contracts_label"
+                        ></label>
+                        <oui-checkbox
+                            id="contractsValidated"
                             data-model="ctrl.selectedOption.contractsValidated"
-                            data-text="{{::'exchange_ACTION_add_outlook_contracts__checkbox' | translate}}">
+                            data-text="{{::'exchange_ACTION_add_outlook_contracts__checkbox' | translate}}"
+                        >
                         </oui-checkbox>
 
                         <ul class="list-unstyled mt-2">
-                            <li data-ng-repeat="contract in ctrl.selectedOption.order.contracts track by $index">
-                                <a target="_blank"
-                                   data-ng-bind="::contract.name | translate"
-                                   data-ng-href="{{contract.url}}"
-                                   rel="noopener"></a>
+                            <li
+                                data-ng-repeat="contract in ctrl.selectedOption.order.contracts track by $index"
+                            >
+                                <a
+                                    target="_blank"
+                                    data-ng-bind="::contract.name | translate"
+                                    data-ng-href="{{contract.url}}"
+                                    rel="noopener"
+                                ></a>
                             </li>
                         </ul>
                     </div>
@@ -76,46 +115,79 @@
             </div>
 
             <div data-wizard-step-help>
-                <h3 data-translate="exchange_ACTION_add_outlook_wizard_help_title"></h3>
-                <h4 data-translate="exchange_ACTION_add_outlook_wizard_help_title"></h4>
+                <h3
+                    data-translate="exchange_ACTION_add_outlook_wizard_help_title"
+                ></h3>
+                <h4
+                    data-translate="exchange_ACTION_add_outlook_wizard_help_title"
+                ></h4>
                 <p data-translate="exchange_ACTION_add_outlook_wizard_help"></p>
             </div>
         </div>
 
         <div data-wizard-step>
-            <p data-translate="exchange_ACTION_add_outlook_intro_step2_label" data-translate-values="{ t0: ctrl.selectedAccount.primaryEmailDisplayName }"></p>
+            <p
+                data-translate="exchange_ACTION_add_outlook_intro_step2_label"
+                data-translate-values="{ t0: ctrl.selectedAccount.primaryEmailDisplayName }"
+            ></p>
 
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="exchange_ACTION_add_outlook_duration_label"></dt>
-                <dd data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + ctrl.model.duration) | translate"></dd>
+                <dt
+                    data-translate="exchange_ACTION_add_outlook_duration_label"
+                ></dt>
+                <dd
+                    data-ng-bind="('exchange_ACTION_add_outlook_duration_type_' + ctrl.model.duration) | translate"
+                ></dd>
 
-                <dt data-ng-if="ctrl.getTarget() === 'EU'"
-                    data-translate="exchange_ACTION_add_outlook_price_withoutIVA_label"></dt>
-                <dt data-ng-if="ctrl.getTarget() === 'CA'"
-                    data-translate="exchange_ACTION_add_outlook_price_label"></dt>
-                <dd data-ng-bind="ctrl.selectedOption.order.prices.withoutTax.text"></dd>
+                <dt
+                    data-ng-if="ctrl.getTarget() === 'EU'"
+                    data-translate="exchange_ACTION_add_outlook_price_withoutIVA_label"
+                ></dt>
+                <dt
+                    data-ng-if="ctrl.getTarget() === 'CA'"
+                    data-translate="exchange_ACTION_add_outlook_price_label"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.selectedOption.order.prices.withoutTax.text"
+                ></dd>
 
-                <dt data-ng-if="ctrl.getTarget() === 'EU'"
-                    data-translate="exchange_ACTION_add_outlook_price_withIVA_label"></dt>
-                <dd data-ng-if="ctrl.getTarget() === 'EU'"
-                    data-ng-bind="ctrl.selectedOption.order.prices.withTax.text"></dd>
+                <dt
+                    data-ng-if="ctrl.getTarget() === 'EU'"
+                    data-translate="exchange_ACTION_add_outlook_price_withIVA_label"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.getTarget() === 'EU'"
+                    data-ng-bind="ctrl.selectedOption.order.prices.withTax.text"
+                ></dd>
             </dl>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-load="orderOutlook"
-             data-wizard-step-valid="isStep2Valid()">
-
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="orderOutlook"
+            data-wizard-step-valid="isStep2Valid()"
+        >
             <div class="text-center" data-ng-if="!ctrl.previewOrder.url">
                 <oui-spinner></oui-spinner>
-                <span data-translate="exchange_ACTION_add_outlook_order_step2_generation_bc"></span>
+                <span
+                    data-translate="exchange_ACTION_add_outlook_order_step2_generation_bc"
+                ></span>
             </div>
 
             <div data-ng-if="ctrl.previewOrder.url">
-                <span data-translate="exchange_ACTION_add_outlook_order_step2_bc_ok"></span>
-                <strong data-translate="exchange_ACTION_add_outlook_order_step2_continue"></strong>
-                <span data-translate="exchange_ACTION_add_outlook_order_step2_explication"></span>
-                <div class="font-italic" data-translate="exchange_ACTION_add_outlook_order_step2_explication2"></div>
+                <span
+                    data-translate="exchange_ACTION_add_outlook_order_step2_bc_ok"
+                ></span>
+                <strong
+                    data-translate="exchange_ACTION_add_outlook_order_step2_continue"
+                ></strong>
+                <span
+                    data-translate="exchange_ACTION_add_outlook_order_step2_explication"
+                ></span>
+                <div
+                    class="font-italic"
+                    data-translate="exchange_ACTION_add_outlook_order_step2_explication2"
+                ></div>
             </div>
         </div>
     </div>

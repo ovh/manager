@@ -1,18 +1,19 @@
 <div data-ng-controller="DomainDynHostDeleteCtrl as ctrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="deleteDynHost"
-         data-wizard-title="'domain_tab_DYNHOST_delete_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="!ctrl.loading">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="deleteDynHost"
+        data-wizard-title="'domain_tab_DYNHOST_delete_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="!ctrl.loading">
             <div class="text-center" data-ng-if="ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <p data-ng-bind-html="'domain_tab_DYNHOST_delete_dynhosts_confirm' | translate: { t0: ctrl.dynHost.subDomain + '.' + ctrl.zoneName, t1: ctrl.dynHost.ip }"
-               data-ng-if="!ctrl.loading"></p>
+            <p
+                data-ng-bind-html="'domain_tab_DYNHOST_delete_dynhosts_confirm' | translate: { t0: ctrl.dynHost.subDomain + '.' + ctrl.zoneName, t1: ctrl.dynHost.ip }"
+                data-ng-if="!ctrl.loading"
+            ></p>
         </div>
     </div>
 </div>

@@ -1,11 +1,16 @@
-<div data-ng-controller="DomainsDnssecSimpleActivateCtrl as ctrlDomainsDnssecActivate">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updateDnssec"
-         data-wizard-title="'domains_configuration_dnssec_simple_activate_title' | translate">
-
+<div
+    data-ng-controller="DomainsDnssecSimpleActivateCtrl as ctrlDomainsDnssecActivate"
+>
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updateDnssec"
+        data-wizard-title="'domains_configuration_dnssec_simple_activate_title' | translate"
+    >
         <div data-wizard-step>
-            <p data-ng-bind-html="'domains_configuration_dnssec_simple_activate_step1_question' | translate: { t0: ctrlDomainsDnssecActivate.selectedDomain.displayName }"></p>
+            <p
+                data-ng-bind-html="'domains_configuration_dnssec_simple_activate_step1_question' | translate: { t0: ctrlDomainsDnssecActivate.selectedDomain.displayName }"
+            ></p>
         </div>
     </div>
 </div>

@@ -6,13 +6,17 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_instances_instance_attach-private-network_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    data-loading="$ctrl.isLoading"
+>
+    <cui-message-container
+        data-messages="$ctrl.messages"
+    ></cui-message-container>
 
     <div data-ng-if="$ctrl.privateNetworks.length === 0">
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_instances_instance_attach-private-network_error_no_compatible_network"></span>
+            <span
+                data-translate="pci_projects_project_instances_instance_attach-private-network_error_no_compatible_network"
+            ></span>
         </oui-message>
     </div>
     <div data-ng-if="$ctrl.privateNetworks.length > 0">
@@ -24,7 +28,8 @@
             data-match="name"
             data-searchable
             data-multiple
-            data-disabled="$ctrl.isLoading">
+            data-disabled="$ctrl.isLoading"
+        >
         </oui-select>
     </div>
 </oui-modal>

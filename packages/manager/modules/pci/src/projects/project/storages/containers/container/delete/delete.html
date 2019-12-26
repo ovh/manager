@@ -6,17 +6,22 @@
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.isLoading">
-
+    data-loading="$ctrl.isLoading"
+>
     <div data-ng-if="$ctrl.container">
-        <p data-translate="pci_projects_project_storages_containers_container_delete_content"
-            data-translate-values="{ container: $ctrl.container.name }"></p>
+        <p
+            data-translate="pci_projects_project_storages_containers_container_delete_content"
+            data-translate-values="{ container: $ctrl.container.name }"
+        ></p>
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_storages_containers_container_delete_archive_erase_message"
-                data-ng-if="$ctrl.archive"></span>
-            <span data-translate="pci_projects_project_storages_containers_container_delete_object_erase_message"
-                data-ng-if="!$ctrl.archive"></span>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_delete_archive_erase_message"
+                data-ng-if="$ctrl.archive"
+            ></span>
+            <span
+                data-translate="pci_projects_project_storages_containers_container_delete_object_erase_message"
+                data-ng-if="!$ctrl.archive"
+            ></span>
         </oui-message>
     </div>
-
 </oui-modal>

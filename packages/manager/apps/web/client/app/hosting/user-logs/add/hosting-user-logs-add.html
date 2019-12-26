@@ -1,90 +1,151 @@
 <div data-ng-controller="HostingUserLogsCreateCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="createUser"
-         data-wizard-title="'hosting_tab_USER_LOGS_configuration_user_create_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.isUserValid()">
-            <p data-ng-bind-html="'hosting_tab_USER_LOGS_configuration_user_create_step1_question' | translate"></p>
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="createUser"
+        data-wizard-title="'hosting_tab_USER_LOGS_configuration_user_create_title' | translate"
+    >
+        <div data-wizard-step data-wizard-step-valid="ctrl.isUserValid()">
+            <p
+                data-ng-bind-html="'hosting_tab_USER_LOGS_configuration_user_create_step1_question' | translate"
+            ></p>
 
             <form name="hostingUserCreateForm">
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreateLogin.$dirty && !ctrl.isUserValid()}">
-                    <label class="control-label required" for="hostingUserCreateLogin"
-                           data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_user">
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreateLogin.$dirty && !ctrl.isUserValid()}"
+                >
+                    <label
+                        class="control-label required"
+                        for="hostingUserCreateLogin"
+                        data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_user"
+                    >
                     </label>
-                    <input type="text" class="form-control" id="hostingUserCreateLogin" name="hostingUserCreateLogin" maxlength="200" required
-                           data-ng-minlength="{{ctrl.model.minUserLength}}"
-                           data-ng-maxlength="{{ctrl.model.maxUserLength}}"
-                           data-ng-model="ctrl.model.selected.login">
-                    <small class="help-block"
-                           data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_user_error"
-                           data-ng-if="ctrl.model.selected.login && !ctrl.isUserValid()"></small>
-                    <small class="help-block"
-                           data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_user_condition"
-                           data-translate-values="{ t0: ctrl.model.minUserLength, t1: ctrl.model.maxUserLength }"></small>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="hostingUserCreateLogin"
+                        name="hostingUserCreateLogin"
+                        maxlength="200"
+                        required
+                        data-ng-minlength="{{ctrl.model.minUserLength}}"
+                        data-ng-maxlength="{{ctrl.model.maxUserLength}}"
+                        data-ng-model="ctrl.model.selected.login"
+                    />
+                    <small
+                        class="help-block"
+                        data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_user_error"
+                        data-ng-if="ctrl.model.selected.login && !ctrl.isUserValid()"
+                    ></small>
+                    <small
+                        class="help-block"
+                        data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_user_condition"
+                        data-translate-values="{ t0: ctrl.model.minUserLength, t1: ctrl.model.maxUserLength }"
+                    ></small>
                 </div>
 
-                <label class="oui-label" for="hostingUserLogsCreateDesc"
-                       data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label">
+                <label
+                    class="oui-label"
+                    for="hostingUserLogsCreateDesc"
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_create_step1_desc_label"
+                >
                 </label>
-                <textarea class="oui-textarea" id="hostingUserLogsCreateDesc" rows="5"
-                          data-ng-model="ctrl.model.selected.description"></textarea>
+                <textarea
+                    class="oui-textarea"
+                    id="hostingUserLogsCreateDesc"
+                    rows="5"
+                    data-ng-model="ctrl.model.selected.description"
+                ></textarea>
             </form>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-valid="ctrl.isPasswordValid()">
-            <p data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_question"></p>
+        <div data-wizard-step data-wizard-step-valid="ctrl.isPasswordValid()">
+            <p
+                data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_question"
+            ></p>
 
             <form class="form-horizontal" name="hostingUserCreateForm">
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePassword.$dirty && (hostingUserCreateForm.hostingUserCreatePassword.$invalid || ctrl.isPasswordInvalid())}">
-                    <label class="control-label col-md-4 required" for="hostingUserCreatePassword"
-                           data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_password"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePassword.$dirty && (hostingUserCreateForm.hostingUserCreatePassword.$invalid || ctrl.isPasswordInvalid())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="hostingUserCreatePassword"
+                        data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_password"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" autocomplete="off" class="form-control" id="hostingUserCreatePassword" name="hostingUserCreatePassword" required
-                               data-ng-minlength="{{ctrl.condition.min}}"
-                               data-ng-maxlength="{{ctrl.condition.max}}"
-                               data-ng-model="ctrl.model.selected.password.value">
+                        <input
+                            type="password"
+                            autocomplete="off"
+                            class="form-control"
+                            id="hostingUserCreatePassword"
+                            name="hostingUserCreatePassword"
+                            required
+                            data-ng-minlength="{{ctrl.condition.min}}"
+                            data-ng-maxlength="{{ctrl.condition.max}}"
+                            data-ng-model="ctrl.model.selected.password.value"
+                        />
                     </div>
                 </div>
 
-                <div class="form-group"
-                     data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePasswordConfirm.$dirty && (hostingUserCreateForm.hostingUserCreatePasswordConfirm.$invalid || ctrl.isPasswordConfirmationInvalid())}">
-                    <label class="control-label col-md-4 required" for="hostingUserCreatePasswordConfirm"
-                           data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_confirmation"></label>
+                <div
+                    class="form-group"
+                    data-ng-class="{'has-error': hostingUserCreateForm.hostingUserCreatePasswordConfirm.$dirty && (hostingUserCreateForm.hostingUserCreatePasswordConfirm.$invalid || ctrl.isPasswordConfirmationInvalid())}"
+                >
+                    <label
+                        class="control-label col-md-4 required"
+                        for="hostingUserCreatePasswordConfirm"
+                        data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_confirmation"
+                    ></label>
                     <div class="col-md-6">
-                        <input type="password" autocomplete="off" class="form-control" id="hostingUserCreatePasswordConfirm" name="hostingUserCreatePasswordConfirm" required
-                               data-ng-minlength="{{ctrl.condition.min}}"
-                               data-ng-maxlength="{{ctrl.condition.max}}"
-                               data-ng-model="ctrl.model.selected.password.confirmation">
-                        <small class="help-block"
-                               data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_error"
-                               data-ng-if="ctrl.shouldDisplayDifferentPasswordMessage()"></small>
+                        <input
+                            type="password"
+                            autocomplete="off"
+                            class="form-control"
+                            id="hostingUserCreatePasswordConfirm"
+                            name="hostingUserCreatePasswordConfirm"
+                            required
+                            data-ng-minlength="{{ctrl.condition.min}}"
+                            data-ng-maxlength="{{ctrl.condition.max}}"
+                            data-ng-model="ctrl.model.selected.password.confirmation"
+                        />
+                        <small
+                            class="help-block"
+                            data-translate="hosting_tab_USER_LOGS_configuration_user_create_step2_password_error"
+                            data-ng-if="ctrl.shouldDisplayDifferentPasswordMessage()"
+                        ></small>
                     </div>
                 </div>
             </form>
 
             <div class="row">
-                <small class="col-md-8 col-md-offset-4"
-                       data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: ctrl.condition.min, t1: ctrl.condition.max }"></small>
+                <small
+                    class="col-md-8 col-md-offset-4"
+                    data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: ctrl.condition.min, t1: ctrl.condition.max }"
+                ></small>
             </div>
         </div>
 
-
         <div data-wizard-step>
-            <p data-translate="hosting_tab_USER_LOGS_configuration_user_create_step3_question"></p>
+            <p
+                data-translate="hosting_tab_USER_LOGS_configuration_user_create_step3_question"
+            ></p>
             <dl class="dl-horizontal dl-lg">
-                <dt data-translate="hosting_tab_USER_LOGS_configuration_user_create_step3_user"></dt>
+                <dt
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_create_step3_user"
+                ></dt>
                 <dd data-ng-bind="ctrl.model.selected.login"></dd>
 
-                <dt data-translate="hosting_tab_USER_LOGS_configuration_user_create_step3_desc_label"
-                    data-ng-if="ctrl.model.selected.description"></dt>
-                <dd data-ng-bind="ctrl.model.selected.description"
-                    data-ng-if="ctrl.model.selected.description"></dd>
+                <dt
+                    data-translate="hosting_tab_USER_LOGS_configuration_user_create_step3_desc_label"
+                    data-ng-if="ctrl.model.selected.description"
+                ></dt>
+                <dd
+                    data-ng-bind="ctrl.model.selected.description"
+                    data-ng-if="ctrl.model.selected.description"
+                ></dd>
             </dl>
         </div>
     </div>

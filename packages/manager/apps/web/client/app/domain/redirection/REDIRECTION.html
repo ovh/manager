@@ -1,59 +1,109 @@
-<div class="container-fluid px-0" data-ng-controller="controllers.Domain.Redirection as ctrlDomainRedirect">
+<div
+    class="container-fluid px-0"
+    data-ng-controller="controllers.Domain.Redirection as ctrlDomainRedirect"
+>
     <div data-ovh-alert="domain_tab_redirection"></div>
 
     <div class="text-center" data-ng-if="ctrlDomainRedirect.loading.init">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="alert alert-info" role="alert"
-         data-translate="domain_tab_ZONE_empty_zone"
-         data-ng-if="!ctrlDomainRedirect.hasZoneDns"></div>
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-translate="domain_tab_ZONE_empty_zone"
+        data-ng-if="!ctrlDomainRedirect.hasZoneDns"
+    ></div>
 
-    <div class="row" data-ng-show="ctrlDomainRedirect.hasZoneDns && !ctrlDomainRedirect.loading.init">
+    <div
+        class="row"
+        data-ng-show="ctrlDomainRedirect.hasZoneDns && !ctrlDomainRedirect.loading.init"
+    >
         <div class="col-md-9">
             <div data-ovh-alert="{{alerts.main}}"></div>
 
             <p data-translate="domain_tab_REDIRECTION_title"></p>
 
-            <div class="alert alert-info" role="alert"
-                 data-translate="domain_tab_ZONE_empty_zone"
-                 data-ng-if="!ctrlDomainRedirect.hasResult"></div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="domain_tab_ZONE_empty_zone"
+                data-ng-if="!ctrlDomainRedirect.hasResult"
+            ></div>
 
             <div data-ng-if="ctrlDomainRedirect.hasResult">
                 <div class="mb-3 mt-5">
-                    <form class="form-inline d-md-flex justify-content-md-end" name="searchSubDomainForm">
+                    <form
+                        class="form-inline d-md-flex justify-content-md-end"
+                        name="searchSubDomainForm"
+                    >
                         <div class="oui-select oui-select_inline mr-md-2">
-                            <label class="sr-only"
-                                    for="subDomainFilter"
-                                    data-translate="table_filter"></label>
-                            <select class="oui-select__input" id="subDomainFilter"
-                                    data-ng-change="ctrlDomainRedirect.goSearch()"
-                                    data-ng-model="ctrlDomainRedirect.search.filter"
-                                    data-ng-options="type as ('domain_tab_REDIRECTION_type_' + type | translate) for type in ctrlDomainRedirect.redirectionList.recordTypes track by type">
-                                <option value="" selected
-                                        data-translate="domain_tab_ZONE_type_all"></option>
+                            <label
+                                class="sr-only"
+                                for="subDomainFilter"
+                                data-translate="table_filter"
+                            ></label>
+                            <select
+                                class="oui-select__input"
+                                id="subDomainFilter"
+                                data-ng-change="ctrlDomainRedirect.goSearch()"
+                                data-ng-model="ctrlDomainRedirect.search.filter"
+                                data-ng-options="type as ('domain_tab_REDIRECTION_type_' + type | translate) for type in ctrlDomainRedirect.redirectionList.recordTypes track by type"
+                            >
+                                <option
+                                    value=""
+                                    selected
+                                    data-translate="domain_tab_ZONE_type_all"
+                                ></option>
                             </select>
-                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            <span
+                                class="oui-icon oui-icon-chevron-down"
+                                aria-hidden="true"
+                            ></span>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only"
-                                    for="subDomainSearch"
-                                    data-translate="common_search"></label>
+                            <label
+                                class="sr-only"
+                                for="subDomainSearch"
+                                data-translate="common_search"
+                            ></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="subDomainSearch" name="subDomainSearch" placeholder="{{:: 'domain_tab_REDIRECTION_search_placeholder' | translate }}"
-                                        data-ng-change="ctrlDomainRedirect.goSearch()"
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="subDomainSearch"
+                                    name="subDomainSearch"
+                                    placeholder="{{:: 'domain_tab_REDIRECTION_search_placeholder' | translate }}"
+                                    data-ng-change="ctrlDomainRedirect.goSearch()"
+                                    data-ng-disabled="ctrlDomainRedirect.loading.search"
+                                    data-ng-model="ctrlDomainRedirect.search.value"
+                                    data-ng-model-options="{ debounce: 800 }"
+                                />
+                                <div
+                                    class="input-group-btn"
+                                    data-ng-if="ctrlDomainRedirect.search.value"
+                                >
+                                    <button
+                                        class="btn btn-default"
+                                        type="button"
+                                        aria-label="{{ 'common_cancel' | translate }}"
+                                        data-ng-click="ctrlDomainRedirect.emptySearch()"
                                         data-ng-disabled="ctrlDomainRedirect.loading.search"
-                                        data-ng-model="ctrlDomainRedirect.search.value"
-                                        data-ng-model-options="{ debounce: 800 }">
-                                <div class="input-group-btn" data-ng-if="ctrlDomainRedirect.search.value">
-                                    <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                            data-ng-click="ctrlDomainRedirect.emptySearch()"
-                                            data-ng-disabled="ctrlDomainRedirect.loading.search">
-                                        <span class="fa fa-times" aria-hidden="true"></span>
+                                    >
+                                        <span
+                                            class="fa fa-times"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
                                 </div>
-                                <span class="input-group-addon" data-ng-if="!ctrlDomainRedirect.search.value">
-                                    <span class="fa fa-search" aria-hidden="true"></span>
+                                <span
+                                    class="input-group-addon"
+                                    data-ng-if="!ctrlDomainRedirect.search.value"
+                                >
+                                    <span
+                                        class="fa fa-search"
+                                        aria-hidden="true"
+                                    ></span>
                                 </span>
                             </div>
                         </div>
@@ -65,13 +115,29 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="min-width"></th>
-                                <th scope="col" data-translate="domain_tab_REDIRECTION_table_headers_field"></th>
-                                <th scope="col" data-translate="domain_tab_REDIRECTION_table_headers_type"></th>
-                                <th scope="col" data-translate="domain_tab_REDIRECTION_table_headers_target"></th>
+                                <th
+                                    scope="col"
+                                    data-translate="domain_tab_REDIRECTION_table_headers_field"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="domain_tab_REDIRECTION_table_headers_type"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    data-translate="domain_tab_REDIRECTION_table_headers_target"
+                                ></th>
                                 <th scope="col" class="min-width text-right">
-                                    <button class="btn btn-icon" type="button" title="{{ 'refresh' | translate }}"
-                                            data-ng-click="ctrlDomainRedirect.reloadRedirectTable()">
-                                        <span class="fa fa-refresh" aria-hidden="true"></span>
+                                    <button
+                                        class="btn btn-icon"
+                                        type="button"
+                                        title="{{ 'refresh' | translate }}"
+                                        data-ng-click="ctrlDomainRedirect.reloadRedirectTable()"
+                                    >
+                                        <span
+                                            class="fa fa-refresh"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
                                 </th>
                             </tr>
@@ -87,37 +153,79 @@
                         </tbody>
 
                         <!-- Empty table -->
-                        <tbody data-ng-if="!ctrlDomainRedirect.loading.search && !ctrlDomainRedirect.redirectionList.list.results.length">
+                        <tbody
+                            data-ng-if="!ctrlDomainRedirect.loading.search && !ctrlDomainRedirect.redirectionList.list.results.length"
+                        >
                             <tr>
-                                <td class="text-center" colspan="5" data-translate="table_search_noresult"></td>
+                                <td
+                                    class="text-center"
+                                    colspan="5"
+                                    data-translate="table_search_noresult"
+                                ></td>
                             </tr>
                         </tbody>
 
                         <!-- Data -->
-                        <tbody data-ng-if="!ctrlDomainRedirect.loading.search && ctrlDomainRedirect.redirectionList.list.results.length">
-                            <tr data-ng-repeat="redirection in ctrlDomainRedirect.redirectionList.list.results track by $index">
+                        <tbody
+                            data-ng-if="!ctrlDomainRedirect.loading.search && ctrlDomainRedirect.redirectionList.list.results.length"
+                        >
+                            <tr
+                                data-ng-repeat="redirection in ctrlDomainRedirect.redirectionList.list.results track by $index"
+                            >
                                 <td class="text-center">
-                                    <abbr title="{{ 'domain_tab_REDIRECTION_type_visible' | translate }}" data-ng-if="redirection.fieldDisplayType === 'visible'">
-                                        <span class="oui-icon oui-icon-eye oui-icon_small" aria-hidden="true"></span>
+                                    <abbr
+                                        title="{{ 'domain_tab_REDIRECTION_type_visible' | translate }}"
+                                        data-ng-if="redirection.fieldDisplayType === 'visible'"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye oui-icon_small"
+                                            aria-hidden="true"
+                                        ></span>
                                     </abbr>
 
-                                    <abbr title="{{ 'domain_tab_REDIRECTION_type_visiblePermanent' | translate }}" data-ng-if="redirection.fieldDisplayType === 'visiblePermanent'">
-                                        <span class="oui-icon oui-icon-eye oui-icon_small" aria-hidden="true"></span>
+                                    <abbr
+                                        title="{{ 'domain_tab_REDIRECTION_type_visiblePermanent' | translate }}"
+                                        data-ng-if="redirection.fieldDisplayType === 'visiblePermanent'"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye oui-icon_small"
+                                            aria-hidden="true"
+                                        ></span>
                                     </abbr>
 
-                                    <abbr title="{{ 'domain_tab_REDIRECTION_type_invisible' | translate }}" data-ng-if="redirection.fieldDisplayType !== 'visible' && redirection.fieldDisplayType !== 'visiblePermanent'">
-                                        <span class="oui-icon oui-icon-eye-blocked oui-icon_small" aria-hidden="true"></span>
+                                    <abbr
+                                        title="{{ 'domain_tab_REDIRECTION_type_invisible' | translate }}"
+                                        data-ng-if="redirection.fieldDisplayType !== 'visible' && redirection.fieldDisplayType !== 'visiblePermanent'"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-eye-blocked oui-icon_small"
+                                            aria-hidden="true"
+                                        ></span>
                                     </abbr>
                                 </td>
-                                <td data-ng-bind="ctrlDomainRedirect.constructor.getDomain(redirection)"></td>
-                                <td data-ng-bind="'domain_tab_REDIRECTION_type_' + redirection.fieldDisplayType | translate"></td>
-                                <td class="word-break" data-ng-bind="redirection.targetDisplayName"></td>
+                                <td
+                                    data-ng-bind="ctrlDomainRedirect.constructor.getDomain(redirection)"
+                                ></td>
+                                <td
+                                    data-ng-bind="'domain_tab_REDIRECTION_type_' + redirection.fieldDisplayType | translate"
+                                ></td>
+                                <td
+                                    class="word-break"
+                                    data-ng-bind="redirection.targetDisplayName"
+                                ></td>
                                 <td class="text-right">
-                                    <oui-action-menu data-compact data-align="end">
-                                            <oui-action-menu-item data-text="{{:: 'table_modify_entry' | translate }}"
-                                                                  data-on-click="setAction('redirection/edit/domain-redirection-edit', { redirection: redirection, displayName: ctrlDomainRedirect.constructor.getDomain(redirection) })"></oui-action-menu-item>
-                                            <oui-action-menu-item data-text="{{:: 'table_delete_entry' | translate }}"
-                                                                  data-on-click="setAction('redirection/delete/domain-redirection-delete', { redirection: redirection, displayName: ctrlDomainRedirect.constructor.getDomain(redirection) })"></oui-action-menu-item>
+                                    <oui-action-menu
+                                        data-compact
+                                        data-align="end"
+                                    >
+                                        <oui-action-menu-item
+                                            data-text="{{:: 'table_modify_entry' | translate }}"
+                                            data-on-click="setAction('redirection/edit/domain-redirection-edit', { redirection: redirection, displayName: ctrlDomainRedirect.constructor.getDomain(redirection) })"
+                                        ></oui-action-menu-item>
+                                        <oui-action-menu-item
+                                            data-text="{{:: 'table_delete_entry' | translate }}"
+                                            data-on-click="setAction('redirection/delete/domain-redirection-delete', { redirection: redirection, displayName: ctrlDomainRedirect.constructor.getDomain(redirection) })"
+                                        ></oui-action-menu-item>
                                     </oui-action-menu>
                                 </td>
                             </tr>
@@ -126,34 +234,42 @@
                 </div>
             </div>
 
-            <div class="clearfix"
-                 data-ng-show="ctrlDomainRedirect.hasResult"
-                 data-pagination-server-side="redirectionTable"
-                 data-pagination-server-side-function="loadRedirection"
-                 data-pagination-server-side-paginated-stuff="ctrlDomainRedirect.redirectionList"
-                 data-pagination-server-side-table-loading="ctrlDomainRedirect.loading.search"></div>
-
+            <div
+                class="clearfix"
+                data-ng-show="ctrlDomainRedirect.hasResult"
+                data-pagination-server-side="redirectionTable"
+                data-pagination-server-side-function="loadRedirection"
+                data-pagination-server-side-paginated-stuff="ctrlDomainRedirect.redirectionList"
+                data-pagination-server-side-table-loading="ctrlDomainRedirect.loading.search"
+            ></div>
         </div>
 
         <div class="col-md-3 mt-5 mt-lg-0">
             <div class="mb-5">
-                <button class="btn btn-block btn-default" type="button"
-                        data-translate="domain_tab_REDIRECTION_add_button"
-                        data-ng-click="setAction('redirection/add/domain-redirection-add', ctrlDomainRedirect.domain)"
-                        data-oui-tooltip="{{:: 'domain_tab_REDIRECTION_add_info' | translate }}">
-                </button>
-                <button class="btn btn-block btn-default" type="button"
-                        data-export-csv="ctrlDomainRedirect.getDatasToExport();"
-                        data-export-csv-separator=";"
-                        data-ng-disabled="ctrlDomainRedirect.loading.exportCSV">
-                        {{ 'domain_tab_REDIRECTION_csv_button' | translate }}
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-translate="domain_tab_REDIRECTION_add_button"
+                    data-ng-click="setAction('redirection/add/domain-redirection-add', ctrlDomainRedirect.domain)"
+                    data-oui-tooltip="{{:: 'domain_tab_REDIRECTION_add_info' | translate }}"
+                ></button>
+                <button
+                    class="btn btn-block btn-default"
+                    type="button"
+                    data-export-csv="ctrlDomainRedirect.getDatasToExport();"
+                    data-export-csv-separator=";"
+                    data-ng-disabled="ctrlDomainRedirect.loading.exportCSV"
+                >
+                    {{ 'domain_tab_REDIRECTION_csv_button' | translate }}
                 </button>
             </div>
 
-            <div data-wuc-guides
-                 data-wuc-guides-list="'redirection'"
-                 data-wuc-guides-title="'guide_domain_subtitle' | translate"
-                 data-tr="tr"></div>
+            <div
+                data-wuc-guides
+                data-wuc-guides-list="'redirection'"
+                data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                data-tr="tr"
+            ></div>
         </div>
     </div>
 </div>

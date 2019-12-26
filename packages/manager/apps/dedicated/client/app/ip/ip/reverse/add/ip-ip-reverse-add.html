@@ -2,32 +2,35 @@
     data-ng-controller="IpAddIpv6Ctrl"
     name="addIpv6ReverseForm"
     novalidate
-    data-ng-submit="isValid.all() && addIpv6()">
+    data-ng-submit="isValid.all() && addIpv6()"
+>
     <oui-modal
         data-heading="{{:: 'ip_table_manage_add_ipv6block_reverse' | translate }}"
         data-primary-label="{{:: 'ip_table_manage_add_ipv6block_validate' | translate }}"
         data-secondary-action="resetAction()"
         data-secondary-label="{{:: 'ip_table_manage_add_ipv6block_cancel' | translate }}"
         data-loading="$ctrl.isLoading"
-        data-on-dismiss="resetAction()">
-        <oui-message
-            data-type="info">
-            <span data-translate="ip_table_manage_add_ipv6block_question"></span>
+        data-on-dismiss="resetAction()"
+    >
+        <oui-message data-type="info">
+            <span
+                data-translate="ip_table_manage_add_ipv6block_question"
+            ></span>
         </oui-message>
-        <oui-field
-            data-label="{{:: 'ip_ipblock' | translate }}"
-            data-size="xl">
+        <oui-field data-label="{{:: 'ip_ipblock' | translate }}" data-size="xl">
             <input
                 class="oui-input"
                 type="text"
                 id="ipBlock"
                 name="ipBlock"
                 data-ng-model="data.ipBlock.ipBlock"
-                disabled>
+                disabled
+            />
         </oui-field>
         <oui-field
             data-label="{{:: 'ip_table_header_ip_address' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <input
                 class="oui-input"
                 type="text"
@@ -37,17 +40,27 @@
                 required
                 data-ng-class="{
                     'oui-input_error': model.ipv6 && !isValid.ipv6()
-                }">
-            <div class="oui-field__error d-block" data-ng-if="model.ipv6 && !isValid.ipv6()">
+                }"
+            />
+            <div
+                class="oui-field__error d-block"
+                data-ng-if="model.ipv6 && !isValid.ipv6()"
+            >
                 <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                    <span data-translate="ip_table_header_ip_address_invalid"></span>
+                    <span
+                        class="oui-icon oui-icon-error"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-translate="ip_table_header_ip_address_invalid"
+                    ></span>
                 </span>
             </div>
         </oui-field>
         <oui-field
             data-label="{{:: 'ip_table_header_reverse' | translate }}"
-            data-size="xl">
+            data-size="xl"
+        >
             <input
                 class="oui-input"
                 type="text"
@@ -57,11 +70,20 @@
                 required
                 data-ng-class="{
                         'oui-input_error': model.reverse && !isValid.reverse()
-                }">
-            <div class="oui-field__error d-block" data-ng-if="model.reverse && !isValid.reverse()">
+                }"
+            />
+            <div
+                class="oui-field__error d-block"
+                data-ng-if="model.reverse && !isValid.reverse()"
+            >
                 <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                    <span data-translate="ip_table_header_reverse_invalid"></span>
+                    <span
+                        class="oui-icon oui-icon-error"
+                        aria-hidden="true"
+                    ></span>
+                    <span
+                        data-translate="ip_table_header_reverse_invalid"
+                    ></span>
                 </span>
             </div>
         </oui-field>

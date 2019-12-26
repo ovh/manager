@@ -1,98 +1,153 @@
 <div data-ng-controller="ExchangeDisplayOutlookCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-confirm-button-text="'exchange_ACTION_display_outlook_step2_close_button' | translate"
-         data-wizard-on-cancel="exitWizard"
-         data-wizard-on-finish="exitWizard"
-         data-wizard-title="'exchange_ACTION_display_outlook_title' | translate">
-
-        <div data-wizard-step
-             data-wizard-step-on-load="step1OnLoad"
-             data-wizard-step-valid="isStep1Valid()">
-
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text="'exchange_ACTION_display_outlook_step2_close_button' | translate"
+        data-wizard-on-cancel="exitWizard"
+        data-wizard-on-finish="exitWizard"
+        data-wizard-title="'exchange_ACTION_display_outlook_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="step1OnLoad"
+            data-wizard-step-valid="isStep1Valid()"
+        >
             <div data-ng-if="ctrl.displayWaitMessage">
-                <div class="alert alert-info" role="alert"
-                     data-translate="exchange_ACTION_display_outlook_step1_wait_label">
-                </div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="exchange_ACTION_display_outlook_step1_wait_label"
+                ></div>
                 <div data-ng-if="ctrl.outlook">
-                    <p data-ng-bind-html="'exchange_ACTION_display_outlook_step2_intro_label' | translate:{ t0: '<strong>' + ctrl.selectedAccount.primaryEmailDisplayName + '</strong>' }"></p>
+                    <p
+                        data-ng-bind-html="'exchange_ACTION_display_outlook_step2_intro_label' | translate:{ t0: '<strong>' + ctrl.selectedAccount.primaryEmailDisplayName + '</strong>' }"
+                    ></p>
                     <dl class="dl-horizontal">
-                        <dt data-translate="exchange_ACTION_display_outlook_serial_label"></dt>
+                        <dt
+                            data-translate="exchange_ACTION_display_outlook_serial_label"
+                        ></dt>
                         <dd data-ng-bind="ctrl.outlook.serial"></dd>
 
-                        <dt data-translate="exchange_ACTION_display_outlook_url_label"></dt>
+                        <dt
+                            data-translate="exchange_ACTION_display_outlook_url_label"
+                        ></dt>
                         <dd>
-                            <a class="word-break" target="_blank"
-                               data-ng-bind="ctrl.outlook.url"
-                               data-ng-href="{{ctrl.outlook.url}}"></a>
+                            <a
+                                class="word-break"
+                                target="_blank"
+                                data-ng-bind="ctrl.outlook.url"
+                                data-ng-href="{{ctrl.outlook.url}}"
+                            ></a>
                         </dd>
                     </dl>
                 </div>
             </div>
 
             <div data-ng-if="!ctrl.displayWaitMessage">
-                <p data-translate="exchange_ACTION_display_outlook_step1_intro_label"></p>
+                <p
+                    data-translate="exchange_ACTION_display_outlook_step1_intro_label"
+                ></p>
 
                 <div class="mb-4">
-                    <label class="oui-label required" for="addOutlookType"
-                           data-translate="exchange_ACTION_add_outlook_type_label"></label>
+                    <label
+                        class="oui-label required"
+                        for="addOutlookType"
+                        data-translate="exchange_ACTION_add_outlook_type_label"
+                    ></label>
                     <div class="oui-select">
-                        <select class="oui-select__input" id="addOutlookType" required
-                                data-ng-disabled="ctrl.versionsList === null"
-                                data-ng-model="ctrl.model.licenceVersion"
-                                data-ng-options="version as ('exchange_ACTION_add_outlook_type_' + (version | uppercase) | translate) for version in ctrl.versionsList track by version">
+                        <select
+                            class="oui-select__input"
+                            id="addOutlookType"
+                            required
+                            data-ng-disabled="ctrl.versionsList === null"
+                            data-ng-model="ctrl.model.licenceVersion"
+                            data-ng-options="version as ('exchange_ACTION_add_outlook_type_' + (version | uppercase) | translate) for version in ctrl.versionsList track by version"
+                        >
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label class="control-label required" for="addOutlookLanguage"
-                           data-translate="exchange_ACTION_display_outlook_step1_language_label"></label>
+                    <label
+                        class="control-label required"
+                        for="addOutlookLanguage"
+                        data-translate="exchange_ACTION_display_outlook_step1_language_label"
+                    ></label>
                     <div class="oui-select">
-                        <select class="oui-select__input" id="addOutlookLanguage" required
-                                data-ng-disabled="ctrl.languageList === null"
-                                data-ng-model="ctrl.model.languageIndex"
-                                data-ng-options="lang as ('exchange_ACTION_display_outlook_language_' + (lang | uppercase) | translate) disable when ctrl.isLanguageDisabled(lang) for lang in ctrl.languageList track by lang">
-                            <option value="" disabled
-                                    data-translate="select_placeholder"></option>
+                        <select
+                            class="oui-select__input"
+                            id="addOutlookLanguage"
+                            required
+                            data-ng-disabled="ctrl.languageList === null"
+                            data-ng-model="ctrl.model.languageIndex"
+                            data-ng-options="lang as ('exchange_ACTION_display_outlook_language_' + (lang | uppercase) | translate) disable when ctrl.isLanguageDisabled(lang) for lang in ctrl.languageList track by lang"
+                        >
+                            <option
+                                value=""
+                                disabled
+                                data-translate="select_placeholder"
+                            ></option>
                         </select>
-                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
                     </div>
                 </div>
 
                 <oui-spinner data-ng-if="!ctrl.versionsList"></oui-spinner>
 
-                <div class="alert alert-warning mt-5" role="alert"
-                     data-ng-bind-html="'exchange_ACTION_display_outlook_step1_extra_label' | translate"
-                     data-ng-if="ctrl.versionsList">
-                </div>
+                <div
+                    class="alert alert-warning mt-5"
+                    role="alert"
+                    data-ng-bind-html="'exchange_ACTION_display_outlook_step1_extra_label' | translate"
+                    data-ng-if="ctrl.versionsList"
+                ></div>
             </div>
         </div>
 
-        <div data-wizard-step
-             data-wizard-step-on-previous="previous"
-             data-wizard-step-on-load="generateOutlookLicence">
-
+        <div
+            data-wizard-step
+            data-wizard-step-on-previous="previous"
+            data-wizard-step-on-load="generateOutlookLicence"
+        >
             <div class="text-center" data-ng-if="!ctrl.outlook">
                 <oui-spinner></oui-spinner>
-                <span data-translate="exchange_ACTION_display_outlook_step2_loading_label"></span>
+                <span
+                    data-translate="exchange_ACTION_display_outlook_step2_loading_label"
+                ></span>
             </div>
 
             <div data-ng-if="ctrl.outlook">
-                <p data-translate="exchange_ACTION_display_outlook_step2_intro_label" data-translate-values="{ t0: ctrl.selectedAccount.primaryEmailDisplayName }"></p>
+                <p
+                    data-translate="exchange_ACTION_display_outlook_step2_intro_label"
+                    data-translate-values="{ t0: ctrl.selectedAccount.primaryEmailDisplayName }"
+                ></p>
 
                 <dl class="dl-horizontal">
-                    <dt data-translate="exchange_ACTION_display_outlook_serial_label"></dt>
+                    <dt
+                        data-translate="exchange_ACTION_display_outlook_serial_label"
+                    ></dt>
                     <dd data-ng-bind="ctrl.outlook.serial"></dd>
 
-                    <dt data-translate="exchange_ACTION_display_outlook_url_label"></dt>
+                    <dt
+                        data-translate="exchange_ACTION_display_outlook_url_label"
+                    ></dt>
                     <dd>
-                        <a class="word-break" target="_blank"
-                           data-ng-bind="ctrl.outlook.url"
-                           data-ng-href="{{ctrl.outlook.url}}"></a>
+                        <a
+                            class="word-break"
+                            target="_blank"
+                            data-ng-bind="ctrl.outlook.url"
+                            data-ng-href="{{ctrl.outlook.url}}"
+                        ></a>
                     </dd>
                 </dl>
-                <p data-translate="exchange_ACTION_display_outlook_step2_extra_label"></p>
+                <p
+                    data-translate="exchange_ACTION_display_outlook_step2_extra_label"
+                ></p>
             </div>
         </div>
     </div>

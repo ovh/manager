@@ -7,9 +7,11 @@
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_streams_stream_delete_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isLoading">
-
-        <p data-translate="pci_projects_project_streams_stream_delete_content"
-            data-translate-values="{ stream: $ctrl.stream.name }"></p>
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            data-translate="pci_projects_project_streams_stream_delete_content"
+            data-translate-values="{ stream: $ctrl.stream.name }"
+        ></p>
     </oui-modal>
 </form>

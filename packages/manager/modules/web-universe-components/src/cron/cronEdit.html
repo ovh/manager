@@ -3,22 +3,32 @@
 
     <div class="row" data-ng-init="mode.active = 'simple'">
         <div class="col-md-6">
-            <button class="btn btn-block btn-default btn-lg" data-ng-class="{'active': mode.active === 'simple'}"
-                    data-translate="cron_simple_mode"
-                    data-ng-click="switchToSimpleMode()"></button>
+            <button
+                class="btn btn-block btn-default btn-lg"
+                data-ng-class="{'active': mode.active === 'simple'}"
+                data-translate="cron_simple_mode"
+                data-ng-click="switchToSimpleMode()"
+            ></button>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-block btn-default btn-lg" data-ng-class="{'active': mode.active === 'expert'}"
-                    data-translate="cron_expert_mode"
-                    data-ng-click="switchToExpertMode()"></button>
+            <button
+                class="btn btn-block btn-default btn-lg"
+                data-ng-class="{'active': mode.active === 'expert'}"
+                data-translate="cron_expert_mode"
+                data-ng-click="switchToExpertMode()"
+            ></button>
         </div>
     </div>
 
     <!-- MODE SIMPLE -->
-    <div data-ng-show="mode.active === 'simple'"
-         data-ng-include="'wucCron_cronSimple.html'"></div>
+    <div
+        data-ng-show="mode.active === 'simple'"
+        data-ng-include="'wucCron_cronSimple.html'"
+    ></div>
 
     <!-- MODE EXPERT -->
-    <div data-ng-show="mode.active === 'expert'"
-         data-ng-include="'wucCron_cronExpert.html'"></div>
+    <div
+        data-ng-show="mode.active === 'expert'"
+        data-ng-include="'wucCron_cronExpert.html'"
+    ></div>
 </div>

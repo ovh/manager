@@ -1,43 +1,66 @@
 <div data-ng-controller="ExchangeUpdatePublicFolderPermissionCtrl as ctrl">
-    <div data-wizard
-         data-wizard-bread-crumb
-         data-wizard-title="'exchange_action_SHARED_permissions_update_title' | translate"
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="updatingPermissions">
-
-        <div data-wizard-step
-             data-wizard-step-valid="hasBufferChanged()">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-title="'exchange_action_SHARED_permissions_update_title' | translate"
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="updatingPermissions"
+    >
+        <div data-wizard-step data-wizard-step-valid="hasBufferChanged()">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-translate="exchange_GROUPS_delegation_step1_email_header"></th>
+                        <th
+                            scope="col"
+                            data-translate="exchange_GROUPS_delegation_step1_email_header"
+                        ></th>
                         <th>
-                            <input type="checkbox" data-tri-state-checkbox="editorPermissionCheckbox"
+                            <input
+                                type="checkbox"
+                                data-tri-state-checkbox="editorPermissionCheckbox"
                                 data-tsc-ids-all="ctrl.permissions.ids"
                                 data-tsc-ids-selected="ctrl.permissions.selectedPermissions.EDITOR"
-                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'EDITOR')">
-                            <span data-translate="exchange_tab_SHARED_permissions_type_EDITOR"></span>
+                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'EDITOR')"
+                            />
+                            <span
+                                data-translate="exchange_tab_SHARED_permissions_type_EDITOR"
+                            ></span>
                         </th>
                         <th>
-                            <input type="checkbox" data-tri-state-checkbox="reviewerPermissionCheckbox"
+                            <input
+                                type="checkbox"
+                                data-tri-state-checkbox="reviewerPermissionCheckbox"
                                 data-tsc-ids-all="ctrl.permissions.ids"
                                 data-tsc-ids-selected="ctrl.permissions.selectedPermissions.REVIEWER"
-                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'REVIEWER')">
-                            <span data-translate="exchange_tab_SHARED_permissions_type_REVIEWER"></span>
+                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'REVIEWER')"
+                            />
+                            <span
+                                data-translate="exchange_tab_SHARED_permissions_type_REVIEWER"
+                            ></span>
                         </th>
                         <th>
-                            <input type="checkbox" data-tri-state-checkbox="nonePermissionCheckbox"
+                            <input
+                                type="checkbox"
+                                data-tri-state-checkbox="nonePermissionCheckbox"
                                 data-tsc-ids-all="ctrl.permissions.ids"
                                 data-tsc-ids-selected="ctrl.permissions.selectedPermissions.NONE"
-                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'NONE')">
-                            <span data-translate="exchange_tab_SHARED_permissions_type_NONE"></span>
+                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'NONE')"
+                            />
+                            <span
+                                data-translate="exchange_tab_SHARED_permissions_type_NONE"
+                            ></span>
                         </th>
                         <th>
-                            <input type="checkbox" data-tri-state-checkbox="defaultPermissionCheckbox"
+                            <input
+                                type="checkbox"
+                                data-tri-state-checkbox="defaultPermissionCheckbox"
                                 data-tsc-ids-all="ctrl.permissions.ids"
                                 data-tsc-ids-selected="ctrl.permissions.selectedPermissions.DEFAULT"
-                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'DEFAULT')">
-                            <span data-translate="exchange_tab_SHARED_permissions_type_DEFAULT"></span>
+                                data-tsc-on-click="ctrl.onCheckboxStateClick(state, 'DEFAULT')"
+                            />
+                            <span
+                                data-translate="exchange_tab_SHARED_permissions_type_DEFAULT"
+                            ></span>
                         </th>
                     </tr>
                 </thead>
@@ -50,93 +73,131 @@
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="ctrl.permissions.former.list.results.length === 0 && ctrl.permissions.messages.length === 0 && !ctrl.isLoading">
+                <tbody
+                    data-ng-if="ctrl.permissions.former.list.results.length === 0 && ctrl.permissions.messages.length === 0 && !ctrl.isLoading"
+                >
                     <tr>
                         <td colspan="5">
-                            <div class="text-center"
-                                 data-translate="exchange_ACTION_delegation_table_empty"
-                                 data-ng-if="ctrl.searchValue == null"></div>
-                            <div class="text-center"
-                                 data-translate="exchange_ACTION_delegation_table_empty_search"
-                                 data-ng-if="ctrl.searchValue != null"></div>
+                            <div
+                                class="text-center"
+                                data-translate="exchange_ACTION_delegation_table_empty"
+                                data-ng-if="ctrl.searchValue == null"
+                            ></div>
+                            <div
+                                class="text-center"
+                                data-translate="exchange_ACTION_delegation_table_empty_search"
+                                data-ng-if="ctrl.searchValue != null"
+                            ></div>
                         </td>
                     </tr>
                 </tbody>
 
-                <tbody data-ng-if="ctrl.permissions.former.list.results.length > 0 && ctrl.permissions.messages.length === 0 && !ctrl.isLoading">
-                    <tr data-ng-repeat="account in ctrl.permissions.current.list.results track by $index">
+                <tbody
+                    data-ng-if="ctrl.permissions.former.list.results.length > 0 && ctrl.permissions.messages.length === 0 && !ctrl.isLoading"
+                >
+                    <tr
+                        data-ng-repeat="account in ctrl.permissions.current.list.results track by $index"
+                    >
                         <th scope="row">
-                            <span data-ng-bind="account.primaryAddressDisplayName"></span>
+                            <span
+                                data-ng-bind="account.primaryAddressDisplayName"
+                            ></span>
                         </th>
 
                         <td data-ng-if="!account.partial">
-                            <input type="radio"
-                                   name="{{'account' + $index}}"
-                                   data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
-                                   data-ng-value="'EDITOR'"
-                                   data-ng-model="account.accessRights"
-                                   data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)">
+                            <input
+                                type="radio"
+                                name="{{'account' + $index}}"
+                                data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
+                                data-ng-value="'EDITOR'"
+                                data-ng-model="account.accessRights"
+                                data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)"
+                            />
                         </td>
 
                         <td data-ng-if="!account.partial">
-                            <input type="radio"
-                                   name="{{'account' + $index}}"
-                                   data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
-                                   data-ng-value="'REVIEWER'"
-                                   data-ng-model="account.accessRights"
-                                   data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)">
+                            <input
+                                type="radio"
+                                name="{{'account' + $index}}"
+                                data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
+                                data-ng-value="'REVIEWER'"
+                                data-ng-model="account.accessRights"
+                                data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)"
+                            />
                         </td>
 
                         <td data-ng-if="!account.partial">
-                            <input type="radio"
-                                   name="{{'account' + $index}}"
-                                   data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
-                                   data-ng-value="'NONE'"
-                                   data-ng-model="account.accessRights"
-                                   data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)">
+                            <input
+                                type="radio"
+                                name="{{'account' + $index}}"
+                                data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
+                                data-ng-value="'NONE'"
+                                data-ng-model="account.accessRights"
+                                data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)"
+                            />
                         </td>
 
                         <td data-ng-if="!account.partial">
-                            <input type="radio"
-                                   name="{{'account' + $index}}"
-                                   data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
-                                   data-ng-value="'DEFAULT'"
-                                   data-ng-model="account.accessRights"
-                                   data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)">
+                            <input
+                                type="radio"
+                                name="{{'account' + $index}}"
+                                data-ng-change="ctrl.onSinglePermissionChange(account.primaryAddressDisplayName, account.accessRights)"
+                                data-ng-value="'DEFAULT'"
+                                data-ng-model="account.accessRights"
+                                data-ng-disabled="!ctrl.services.exchangeStates.constructor.isOk(account)"
+                            />
                         </td>
                     </tr>
 
-                    <tr data-ng-repeat="message in originalList.list.messages track by $index">
-                        <td colspan="5"
-                            data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: message.message } }}">
-                            <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
+                    <tr
+                        data-ng-repeat="message in originalList.list.messages track by $index"
+                    >
+                        <td
+                            colspan="5"
+                            data-oui-tooltip="{{ 'exchange_GROUPS_partial_account' | translate: { t0: message.message } }}"
+                        >
+                            <span
+                                class="fa fa-exclamation-triangle mr-2"
+                                aria-hidden="true"
+                            ></span>
                             <span data-ng-bind="message.id"></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="clearfix"
-                 data-pagination-server-side="updatingPermissionTable"
-                 data-pagination-server-side-function="retrievingPermissions"
-                 data-pagination-server-side-paginated-stuff="getCurrentPermissions()"
-                 data-pagination-server-side-table-loading="getIsLoading()">
-            </div>
+            <div
+                class="clearfix"
+                data-pagination-server-side="updatingPermissionTable"
+                data-pagination-server-side-function="retrievingPermissions"
+                data-pagination-server-side-paginated-stuff="getCurrentPermissions()"
+                data-pagination-server-side-table-loading="getIsLoading()"
+            ></div>
         </div>
 
         <div data-wizard-step>
-            <p data-ng-bind-html="'exchange_action_SHARED_permissions_update_resume_intro' | translate:{ t0: ctrl.folder.path }"></p>
+            <p
+                data-ng-bind-html="'exchange_action_SHARED_permissions_update_resume_intro' | translate:{ t0: ctrl.folder.path }"
+            ></p>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th data-translate="exchange_GROUPS_delegation_step2_email_header"></th>
-                        <th data-translate="exchange_tab_SHARED_permissions_header_type"></th>
+                        <th
+                            data-translate="exchange_GROUPS_delegation_step2_email_header"
+                        ></th>
+                        <th
+                            data-translate="exchange_tab_SHARED_permissions_header_type"
+                        ></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr	data-ng-repeat="accountName in ctrl.constructor.getKeys(ctrl.permissions.changes) track by $index">
+                    <tr
+                        data-ng-repeat="accountName in ctrl.constructor.getKeys(ctrl.permissions.changes) track by $index"
+                    >
                         <td data-ng-bind="accountName"></td>
-                        <td data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.permissions.changes[accountName]) | translate"></td>
+                        <td
+                            data-ng-bind="('exchange_tab_SHARED_permissions_type_' + ctrl.permissions.changes[accountName]) | translate"
+                        ></td>
                     </tr>
                 </tbody>
             </table>

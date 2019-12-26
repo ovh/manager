@@ -1,37 +1,56 @@
 <div class="cui-page__content">
-    <oui-back-button data-heading="{{ ::'iplb_ssl_add_title' | translate }}"
-                     data-on-click="ctrl.$state.go('network.iplb.detail.ssl-certificate')">
+    <oui-back-button
+        data-heading="{{ ::'iplb_ssl_add_title' | translate }}"
+        data-on-click="ctrl.$state.go('network.iplb.detail.ssl-certificate')"
+    >
     </oui-back-button>
 
     <form novalidate name="ctrl.form" data-ng-submit="ctrl.create()">
         <oui-field label="{{ ::'iplb_ssl_edit_name' | translate }}" size="l">
-            <input type="text"
-                   id="displayName"
-                   name="displayName"
-                   class="oui-input"
-                   data-ng-model="ctrl.ssl.displayName">
+            <input
+                type="text"
+                id="displayName"
+                name="displayName"
+                class="oui-input"
+                data-ng-model="ctrl.ssl.displayName"
+            />
         </oui-field>
 
-        <oui-field label="{{ ::'iplb_ssl_edit_private_key' | translate }}" size="xl">
-            <oui-textarea id="key" name="key" required
-                data-model="ctrl.ssl.key">
+        <oui-field
+            label="{{ ::'iplb_ssl_edit_private_key' | translate }}"
+            size="xl"
+        >
+            <oui-textarea
+                id="key"
+                name="key"
+                required
+                data-model="ctrl.ssl.key"
+            >
             </oui-textarea>
         </oui-field>
 
-        <oui-field label="{{ ::'iplb_ssl_edit_certificate' | translate }}" size="xl">
-            <oui-textarea id="certificate" name="certificate" required
-                data-model="ctrl.ssl.certificate">
+        <oui-field
+            label="{{ ::'iplb_ssl_edit_certificate' | translate }}"
+            size="xl"
+        >
+            <oui-textarea
+                id="certificate"
+                name="certificate"
+                required
+                data-model="ctrl.ssl.certificate"
+            >
             </oui-textarea>
         </oui-field>
 
         <oui-field label="{{ ::'iplb_ssl_edit_chain' | translate }}" size="xl">
-            <oui-textarea id="chain" name="chain"
-                data-model="ctrl.ssl.chain">
+            <oui-textarea id="chain" name="chain" data-model="ctrl.ssl.chain">
             </oui-textarea>
         </oui-field>
 
-        <oui-form-actions data-on-cancel="ctrl.$state.go('network.iplb.detail.ssl-certificate')"
-                          data-submit-text="{{ ::'iplb_ssl_add_confirm' | translate }}"
-                          data-cancel-text="{{ ::'iplb_ssl_add_cancel' | translate }}"></oui-form-actions>
+        <oui-form-actions
+            data-on-cancel="ctrl.$state.go('network.iplb.detail.ssl-certificate')"
+            data-submit-text="{{ ::'iplb_ssl_add_confirm' | translate }}"
+            data-cancel-text="{{ ::'iplb_ssl_add_cancel' | translate }}"
+        ></oui-form-actions>
     </form>
 </div>

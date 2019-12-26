@@ -1,29 +1,30 @@
 <div class="telecom-v4-links">
-
-
-    <div class="main-actions-container"
-         data-ng-if="$ctrl.actionRows.main && $ctrl.actionRows.main.length">
-
-        <div class="row"
-             data-ng-repeat="actionsRow in $ctrl.actionRows.main track by $index">
-
-            <tuc-telecom-v4-link class="col-xs-12 col-md-6"
-                             data-ng-repeat="action in actionsRow track by $index"
-                             data-action="action">
+    <div
+        class="main-actions-container"
+        data-ng-if="$ctrl.actionRows.main && $ctrl.actionRows.main.length"
+    >
+        <div
+            class="row"
+            data-ng-repeat="actionsRow in $ctrl.actionRows.main track by $index"
+        >
+            <tuc-telecom-v4-link
+                class="col-xs-12 col-md-6"
+                data-ng-repeat="action in actionsRow track by $index"
+                data-action="action"
+            >
             </tuc-telecom-v4-link>
-
         </div>
-
     </div>
 
-    <div class="row"
-         data-ng-repeat="actionsRow in $ctrl.actionRows.normal track by $index">
-
-        <tuc-telecom-v4-link class="col-xs-12 col-md-4"
-                         data-ng-repeat="action in actionsRow track by $index"
-                         data-action="action">
+    <div
+        class="row"
+        data-ng-repeat="actionsRow in $ctrl.actionRows.normal track by $index"
+    >
+        <tuc-telecom-v4-link
+            class="col-xs-12 col-md-4"
+            data-ng-repeat="action in actionsRow track by $index"
+            data-action="action"
+        >
         </tuc-telecom-v4-link>
-
     </div>
-
 </div>

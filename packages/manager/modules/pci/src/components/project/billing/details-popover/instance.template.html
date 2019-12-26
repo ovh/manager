@@ -1,17 +1,41 @@
-<div class="details-popover-ctnr" data-ng-controller="DetailsPopoverController as ctrl">
+<div
+    class="details-popover-ctnr"
+    data-ng-controller="DetailsPopoverController as ctrl"
+>
     <div class="details-popover-content" data-ng-click="ctrl.closePopover()">
         <div>
             <p>
-                <strong><span  data-translate="cpbc_server_details_popover_region"></span> : </strong>
-                <span data-ng-bind=":: ctrl.CucRegionService.getTranslatedMicroRegion(ctrl.details.region)"></span>
+                <strong
+                    ><span
+                        data-translate="cpbc_server_details_popover_region"
+                    ></span>
+                    :
+                </strong>
+                <span
+                    data-ng-bind=":: ctrl.CucRegionService.getTranslatedMicroRegion(ctrl.details.region)"
+                ></span>
             </p>
             <p>
-                <strong><span data-translate="cpbc_server_details_popover_image_type"></span> : </strong>
-                <span data-translate="{{ :: ctrl.details.imageType ? ('cpbc_server_details_popover_imagetype_' + ctrl.details.imageType) : '-'}}"></span>
+                <strong
+                    ><span
+                        data-translate="cpbc_server_details_popover_image_type"
+                    ></span>
+                    :
+                </strong>
+                <span
+                    data-translate="{{ :: ctrl.details.imageType ? ('cpbc_server_details_popover_imagetype_' + ctrl.details.imageType) : '-'}}"
+                ></span>
             </p>
             <p>
-                <strong><span data-translate="cpbc_server_details_popover_vm_type"></span> : </strong>
-                <span data-translate="{{ :: ctrl.details.vmType ? ctrl.details.vmType : '-' }}"></span>
+                <strong
+                    ><span
+                        data-translate="cpbc_server_details_popover_vm_type"
+                    ></span>
+                    :
+                </strong>
+                <span
+                    data-translate="{{ :: ctrl.details.vmType ? ctrl.details.vmType : '-' }}"
+                ></span>
             </p>
         </div>
     </div>

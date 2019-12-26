@@ -1,34 +1,39 @@
 <section class="telecom-freefax-voicemail">
-
     <header>
         <tuc-section-back-link
-            data-tuc-section-back-link-to-state="freefaxes.freefax"></tuc-section-back-link>
-        <h1 data-translate="freefax_voicemail_configuration_title"
-            data-translate-values="{ serviceName: VoicemailConf.serviceName }">
-        </h1>
+            data-tuc-section-back-link-to-state="freefaxes.freefax"
+        ></tuc-section-back-link>
+        <h1
+            data-translate="freefax_voicemail_configuration_title"
+            data-translate-values="{ serviceName: VoicemailConf.serviceName }"
+        ></h1>
     </header>
 
-    <main class="telecom-section-content"
-          role="main">
-
+    <main class="telecom-section-content" role="main">
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
             <div class="col-md-8">
-
                 <div class="widget-presentation">
-                    <h2 class="widget-presentation-title"
-                        data-translate="freefax_voicemail_parameters">
-                    </h2>
-                    <form name="voicemailConfigurationForm"
-                          data-ng-submit="VoicemailConf.saveConfiguration(VoicemailConf.voiceMail)">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="freefax_voicemail_parameters"
+                    ></h2>
+                    <form
+                        name="voicemailConfigurationForm"
+                        data-ng-submit="VoicemailConf.saveConfiguration(VoicemailConf.voiceMail)"
+                    >
                         <!-- active -->
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"
-                                       data-ng-model="VoicemailConf.voiceMail.activateVoiceMail"
-                                       data-ng-disabled="!VoicemailConf.editMode" />
-                                <span data-translate="freefax_voicemail_activation"></span>
+                                <input
+                                    type="checkbox"
+                                    data-ng-model="VoicemailConf.voiceMail.activateVoiceMail"
+                                    data-ng-disabled="!VoicemailConf.editMode"
+                                />
+                                <span
+                                    data-translate="freefax_voicemail_activation"
+                                ></span>
                             </label>
                         </div>
                         <!-- automatic delete -->
@@ -39,18 +44,25 @@
                                     data-ng-model="VoicemailConf.voiceMail.keepMessage"
                                     data-ng-true-value="false"
                                     data-ng-false-value="true"
-                                    data-ng-disabled="!VoicemailConf.editMode" />
-                                <span data-translate="freefax_voicemail_keep_messages"></span>
+                                    data-ng-disabled="!VoicemailConf.editMode"
+                                />
+                                <span
+                                    data-translate="freefax_voicemail_keep_messages"
+                                ></span>
                             </label>
                         </div>
                         <!-- define password -->
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': (voicemailConfigurationForm.voicemailPassword.$touched && voicemailConfigurationForm.voicemailPassword.$invalid) || VoicemailConf.password[0] !== VoicemailConf.password[1]
-                             }">
-                            <label for="voicemailPassword"
-                                   class="control-label"
-                                   data-translate="freefax_voicemail_password">
+                             }"
+                        >
+                            <label
+                                for="voicemailPassword"
+                                class="control-label"
+                                data-translate="freefax_voicemail_password"
+                            >
                             </label>
                             <input
                                 class="form-control"
@@ -61,7 +73,8 @@
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-model="VoicemailConf.password[0]"
                                 data-ui-validate="VoicemailConf.validPassword($value)"
-                                data-translate-attr="{ 'placeholder': 'freefax_voicemail_change_password' }" />
+                                data-translate-attr="{ 'placeholder': 'freefax_voicemail_change_password' }"
+                            />
                             <input
                                 class="mt-2 form-control"
                                 name="voicemailPasswordConfirm"
@@ -70,7 +83,8 @@
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-model="VoicemailConf.password[1]"
                                 data-ui-validate="VoicemailConf.validPassword($value)"
-                                data-translate-attr="{ 'placeholder': 'freefax_voicemail_change_password_confirm' }" />
+                                data-translate-attr="{ 'placeholder': 'freefax_voicemail_change_password_confirm' }"
+                            />
                             <div data-ng-if="!VoicemailConf.editMode">
                                 ****
                             </div>
@@ -84,19 +98,26 @@
                                     data-ng-model="VoicemailConf.voiceMail.forcePassword"
                                     data-ng-true-value="false"
                                     data-ng-false-value="true"
-                                    data-ng-disabled="!VoicemailConf.editMode" />
-                                <span data-translate="freefax_voicemail_always_ask_password"></span>
+                                    data-ng-disabled="!VoicemailConf.editMode"
+                                />
+                                <span
+                                    data-translate="freefax_voicemail_always_ask_password"
+                                ></span>
                             </label>
                         </div>
 
                         <!-- sender -->
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': voicemailConfigurationForm.fromName.$touched && voicemailConfigurationForm.fromName.$invalid
-                             }">
-                            <label for="fromName"
-                                   class="control-label"
-                                   data-translate="freefax_voicemail_sender_name">
+                             }"
+                        >
+                            <label
+                                for="fromName"
+                                class="control-label"
+                                data-translate="freefax_voicemail_sender_name"
+                            >
                             </label>
                             <input
                                 class="form-control"
@@ -107,20 +128,26 @@
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-model="VoicemailConf.voiceMail.fromName"
                                 data-translate-attr="{ 'placeholder': 'freefax_voicemail_sender_name' }"
-                                data-ui-validate="VoicemailConf.validName($value)" />
-                            <div data-ng-if="!VoicemailConf.editMode"
-                                 data-ng-bind="VoicemailConf.voiceMail.fromName">
-                            </div>
+                                data-ui-validate="VoicemailConf.validName($value)"
+                            />
+                            <div
+                                data-ng-if="!VoicemailConf.editMode"
+                                data-ng-bind="VoicemailConf.voiceMail.fromName"
+                            ></div>
                         </div>
 
                         <!-- sender email -->
-                        <div class="form-group"
-                             data-ng-class="{
+                        <div
+                            class="form-group"
+                            data-ng-class="{
                                  'has-error': voicemailConfigurationForm.fromEmail.$touched && voicemailConfigurationForm.fromEmail.$invalid
-                             }">
-                            <label for="fromEmail"
-                                   class="control-label"
-                                   data-translate="freefax_voicemail_sender_email">
+                             }"
+                        >
+                            <label
+                                for="fromEmail"
+                                class="control-label"
+                                data-translate="freefax_voicemail_sender_email"
+                            >
                             </label>
                             <input
                                 id="fromEmail"
@@ -130,17 +157,21 @@
                                 maxlength="50"
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-model="VoicemailConf.voiceMail.fromEmail"
-                                data-translate-attr="{ 'placeholder': 'freefax_voicemail_redirection_email' }" />
-                            <div data-ng-if="!VoicemailConf.editMode"
-                                 data-ng-bind="VoicemailConf.voiceMail.fromEmail">
-                            </div>
+                                data-translate-attr="{ 'placeholder': 'freefax_voicemail_redirection_email' }"
+                            />
+                            <div
+                                data-ng-if="!VoicemailConf.editMode"
+                                data-ng-bind="VoicemailConf.voiceMail.fromEmail"
+                            ></div>
                         </div>
 
                         <!-- audio format -->
                         <div class="form-group">
-                            <label for="audioFormat"
-                                   class="control-label"
-                                   data-translate="freefax_voicemail_audio_format">
+                            <label
+                                for="audioFormat"
+                                class="control-label"
+                                data-translate="freefax_voicemail_audio_format"
+                            >
                             </label>
                             <select
                                 class="form-control"
@@ -150,11 +181,13 @@
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-model="VoicemailConf.voiceMail.audioFormat"
                                 data-ng-options="format as format.label for format in VoicemailConf.audioFormatList"
-                                data-ng-required="true">
+                                data-ng-required="true"
+                            >
                             </select>
-                            <div data-ng-if="!VoicemailConf.editMode"
-                                 data-ng-bind="VoicemailConf.voiceMail.audioFormat.label">
-                            </div>
+                            <div
+                                data-ng-if="!VoicemailConf.editMode"
+                                data-ng-bind="VoicemailConf.voiceMail.audioFormat.label"
+                            ></div>
                         </div>
                         <div class="form-group">
                             <button
@@ -163,40 +196,39 @@
                                 data-ng-if="!VoicemailConf.editMode"
                                 data-ng-click="VoicemailConf.enterEditMode()"
                                 data-ng-disabled="VoicemailConf.loading "
-                                data-translate="freefax_voicemail_edit">
-                            </button>
+                                data-translate="freefax_voicemail_edit"
+                            ></button>
                             <button
                                 class="btn btn-primary no-transition"
                                 type="submit"
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-disabled="voicemailConfigurationForm.$invalid || VoicemailConf.loading "
-                                data-translate="freefax_voicemail_submit">
-                            </button>
+                                data-translate="freefax_voicemail_submit"
+                            ></button>
                             <button
                                 class="btn btn-default no-transition"
                                 type="reset"
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-click="VoicemailConf.cancelEditMode()"
                                 data-ng-disabled="VoicemailConf.loading"
-                                data-translate="freefax_voicemail_cancel">
-                            </button>
+                                data-translate="freefax_voicemail_cancel"
+                            ></button>
                             <div class="text-center">
-                                <oui-spinner class="ml-2"
-                                             data-ng-show="VoicemailConf.loading"
-                                             data-size="s">
+                                <oui-spinner
+                                    class="ml-2"
+                                    data-ng-show="VoicemailConf.loading"
+                                    data-size="s"
+                                >
                                 </oui-spinner>
                             </div>
                         </div>
                     </form>
                 </div>
                 <!-- /.widget-presentation -->
-
             </div>
         </div>
         <!-- /.row -->
-
     </main>
     <!-- /.telecom-section-content -->
-
 </section>
 <!-- /.telecom-freefax-voicemail -->

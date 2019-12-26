@@ -1,34 +1,54 @@
 <div data-ng-controller="PrivateDatabaseOomCtrl as oomCtrl">
-    <div data-wizard
-         data-wizard-on-cancel="resetAction"
-         data-wizard-on-finish="orderMoreRam"
-         data-wizard-confirm-button-text="'privateDatabase_modale_oom_confirm_button' | translate"
-         data-wizard-cancel-button-text="'privateDatabase_modale_oom_close_button' | translate"
-         data-wizard-hide-confirm-button="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError"
-         data-wizard-title="'privateDatabase_modale_oom_title' | translate">
-
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="orderMoreRam"
+        data-wizard-confirm-button-text="'privateDatabase_modale_oom_confirm_button' | translate"
+        data-wizard-cancel-button-text="'privateDatabase_modale_oom_close_button' | translate"
+        data-wizard-hide-confirm-button="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError"
+        data-wizard-title="'privateDatabase_modale_oom_title' | translate"
+    >
         <div data-wizard-step>
-
-            <p data-ng-bind-html="'privateDatabase_modale_oom_info' | translate: { t0: oomCtrl.NB_DAY_OOM, t1: oomCtrl.NB_MAX_OOM }"></p>
-            <oui-datagrid data-rows="oomCtrl.oomList"
-                          data-row-loader="oomCtrl.transformItem($row)">
-                <oui-column data-title="'privateDatabase_modale_oom_tab_event_date' | translate" data-property="date">
+            <p
+                data-ng-bind-html="'privateDatabase_modale_oom_info' | translate: { t0: oomCtrl.NB_DAY_OOM, t1: oomCtrl.NB_MAX_OOM }"
+            ></p>
+            <oui-datagrid
+                data-rows="oomCtrl.oomList"
+                data-row-loader="oomCtrl.transformItem($row)"
+            >
+                <oui-column
+                    data-title="'privateDatabase_modale_oom_tab_event_date' | translate"
+                    data-property="date"
+                >
                     <span data-ng-bind="$row.date | date:'medium'"></span>
                 </oui-column>
-                <oui-column data-title="'privateDatabase_modale_oom_tab_size_reached' | translate">
-                    <span data-ng-bind="$row.overflow.value + ('unit_size_' + $row.overflow.symbol | translate)"></span>
+                <oui-column
+                    data-title="'privateDatabase_modale_oom_tab_size_reached' | translate"
+                >
+                    <span
+                        data-ng-bind="$row.overflow.value + ('unit_size_' + $row.overflow.symbol | translate)"
+                    ></span>
                 </oui-column>
-                <oui-column data-title="'privateDatabase_modale_oom_tab_uptime' | translate" data-property="uptime">
-                    <span data-ng-if="$row.uptime !== -1"
-                          data-ng-bind="$row.uptime"></span>
-                    <span class="text-center" data-ng-if="$row.uptime === -1">-</span>
+                <oui-column
+                    data-title="'privateDatabase_modale_oom_tab_uptime' | translate"
+                    data-property="uptime"
+                >
+                    <span
+                        data-ng-if="$row.uptime !== -1"
+                        data-ng-bind="$row.uptime"
+                    ></span>
+                    <span class="text-center" data-ng-if="$row.uptime === -1"
+                        >-</span
+                    >
                 </oui-column>
             </oui-datagrid>
 
-            <div class="alert alert-info mt-3" role="alert"
-                 data-ng-bind-html="'privateDatabase_modale_oom_info_order' | translate: { t0: oomCtrl.displayType[oomCtrl.database.offer].value }"
-                 data-ng-if="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError">
-            </div>
+            <div
+                class="alert alert-info mt-3"
+                role="alert"
+                data-ng-bind-html="'privateDatabase_modale_oom_info_order' | translate: { t0: oomCtrl.displayType[oomCtrl.database.offer].value }"
+                data-ng-if="oomCtrl.database.oom.realList.length >= oomCtrl.database.oom.nbOomError"
+            ></div>
         </div>
     </div>
 </div>

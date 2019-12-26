@@ -6,10 +6,17 @@
         data-secondary-action="$ctrl.cancel()"
         data-secondary-label="{{ ::'common_cancel' | translate }}"
         data-on-dismiss="$ctrl.cancel()"
-        data-loading="$ctrl.isLoading">
-        <p class="oui-modal__text" data-translate="cpb_vouchers_add_credit_info"></p>
-        <oui-field data-label="{{ ::'cpb_vouchers_add_credit_amount' | translate }}">
-            <input type="number"
+        data-loading="$ctrl.isLoading"
+    >
+        <p
+            class="oui-modal__text"
+            data-translate="cpb_vouchers_add_credit_info"
+        ></p>
+        <oui-field
+            data-label="{{ ::'cpb_vouchers_add_credit_amount' | translate }}"
+        >
+            <input
+                type="number"
                 class="oui-input"
                 id="amount"
                 name="amount"
@@ -17,7 +24,8 @@
                 placeholder="{{ ::'cpb_vouchers_add_credit_amount' | translate}}"
                 data-ng-model="$ctrl.amount"
                 min="1"
-                required />
+                required
+            />
         </oui-field>
     </oui-modal>
 </form>

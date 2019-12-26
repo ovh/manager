@@ -1,49 +1,90 @@
-<div class="row" data-ng-controller="DomainDynHostLoginCtrl as ctrlDomainDynHostLogin">
+<div
+    class="row"
+    data-ng-controller="DomainDynHostLoginCtrl as ctrlDomainDynHostLogin"
+>
     <div class="col-md-9">
         <div data-ovh-alert="{{alerts.main}}"></div>
 
-        <div class="text-center" data-ng-if="ctrlDomainDynHostLogin.loading.init">
+        <div
+            class="text-center"
+            data-ng-if="ctrlDomainDynHostLogin.loading.init"
+        >
             <oui-spinner data-size="l"></oui-spinner>
         </div>
 
-        <div data-ng-if="!ctrlDomainDynHostLogin.loading.init && !ctrlDomainDynHostLogin.hasResult">
+        <div
+            data-ng-if="!ctrlDomainDynHostLogin.loading.init && !ctrlDomainDynHostLogin.hasResult"
+        >
             <div>
-                <oui-back-button data-on-click="ctrlDomainDynHost.resetInitialView()">
-                        <span data-translate="common_back"></span>
+                <oui-back-button
+                    data-on-click="ctrlDomainDynHost.resetInitialView()"
+                >
+                    <span data-translate="common_back"></span>
                 </oui-back-button>
             </div>
-            <div class="alert alert-info" role="alert"
-                 data-translate="domain_tab_DYNHOSTLOGIN_table_empty">
-            </div>
+            <div
+                class="alert alert-info"
+                role="alert"
+                data-translate="domain_tab_DYNHOSTLOGIN_table_empty"
+            ></div>
         </div>
 
         <div data-ng-if="ctrlDomainDynHostLogin.hasResult">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <oui-back-button data-on-click="ctrlDomainDynHost.resetInitialView()">
-                            <span data-translate="common_back"></span>
+                    <oui-back-button
+                        data-on-click="ctrlDomainDynHost.resetInitialView()"
+                    >
+                        <span data-translate="common_back"></span>
                     </oui-back-button>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <form class="form-inline d-md-flex justify-content-md-end" name="searchDynhostLoginForm">
+                    <form
+                        class="form-inline d-md-flex justify-content-md-end"
+                        name="searchDynhostLoginForm"
+                    >
                         <div class="form-group">
-                            <label class="sr-only" for="searchDynhostLogin"></label>
+                            <label
+                                class="sr-only"
+                                for="searchDynhostLogin"
+                            ></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="searchDynhostLogin" name="searchDynhostLogin" placeholder="{{:: 'domain_tab_DYNHOSTLOGIN_table_search' | translate }}"
-                                       data-ng-change="ctrlDomainDynHostLogin.refreshTableDynHostsLogin()"
-                                       data-ng-disabled="ctrlDomainDynHostLogin.loading.login"
-                                       data-ng-model="ctrlDomainDynHostLogin.search.login"
-                                       data-ng-model-options="{ debounce: 800 }">
-                                <div class="input-group-btn" data-ng-if="ctrlDomainDynHostLogin.search.login">
-                                    <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
-                                            data-ng-click="ctrlDomainDynHostLogin.emptySearch()"
-                                            data-ng-disabled="ctrlDomainDynHostLogin.loading.login">
-                                        <span class="fa fa-times" aria-hidden="true"></span>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="searchDynhostLogin"
+                                    name="searchDynhostLogin"
+                                    placeholder="{{:: 'domain_tab_DYNHOSTLOGIN_table_search' | translate }}"
+                                    data-ng-change="ctrlDomainDynHostLogin.refreshTableDynHostsLogin()"
+                                    data-ng-disabled="ctrlDomainDynHostLogin.loading.login"
+                                    data-ng-model="ctrlDomainDynHostLogin.search.login"
+                                    data-ng-model-options="{ debounce: 800 }"
+                                />
+                                <div
+                                    class="input-group-btn"
+                                    data-ng-if="ctrlDomainDynHostLogin.search.login"
+                                >
+                                    <button
+                                        class="btn btn-default"
+                                        type="button"
+                                        aria-label="{{ 'common_cancel' | translate }}"
+                                        data-ng-click="ctrlDomainDynHostLogin.emptySearch()"
+                                        data-ng-disabled="ctrlDomainDynHostLogin.loading.login"
+                                    >
+                                        <span
+                                            class="fa fa-times"
+                                            aria-hidden="true"
+                                        ></span>
                                     </button>
                                 </div>
-                                <span class="input-group-addon"
-                                      data-ng-if="!ctrlDomainDynHostLogin.search.login">
-                                    <span class="fa fa-search" aria-hidden="true"></span>
+                                <span
+                                    class="input-group-addon"
+                                    data-ng-if="!ctrlDomainDynHostLogin.search.login"
+                                >
+                                    <span
+                                        class="fa fa-search"
+                                        aria-hidden="true"
+                                    ></span>
                                 </span>
                             </div>
                         </div>
@@ -55,13 +96,29 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col" data-translate="domain_tab_DYNHOSTLOGIN_table_header_login"></th>
-                            <th scope="col" data-translate="domain_tab_DYNHOSTLOGIN_table_header_zone"></th>
-                            <th scope="col" data-translate="domain_tab_DYNHOSTLOGIN_table_header_subDomain"></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DYNHOSTLOGIN_table_header_login"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DYNHOSTLOGIN_table_header_zone"
+                            ></th>
+                            <th
+                                scope="col"
+                                data-translate="domain_tab_DYNHOSTLOGIN_table_header_subDomain"
+                            ></th>
                             <th class="min-width text-right" scope="col">
-                                <button class="btn btn-icon" type="button" title="{{ 'refresh' | translate }}"
-                                        data-ng-click="ctrlDomainDynHostLogin.refreshTableDynHostsLogin()">
-                                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                                <button
+                                    class="btn btn-icon"
+                                    type="button"
+                                    title="{{ 'refresh' | translate }}"
+                                    data-ng-click="ctrlDomainDynHostLogin.refreshTableDynHostsLogin()"
+                                >
+                                    <span
+                                        class="fa fa-refresh"
+                                        aria-hidden="true"
+                                    ></span>
                                 </button>
                             </th>
                         </tr>
@@ -77,26 +134,43 @@
                     </tbody>
 
                     <!-- no login -->
-                    <tbody data-ng-if="!ctrlDomainDynHostLogin.loading.login && !ctrlDomainDynHostLogin.dynHostsLogin.length">
+                    <tbody
+                        data-ng-if="!ctrlDomainDynHostLogin.loading.login && !ctrlDomainDynHostLogin.dynHostsLogin.length"
+                    >
                         <tr>
-                            <td class="text-center" colspan="4" data-translate="table_search_noresult"></td>
+                            <td
+                                class="text-center"
+                                colspan="4"
+                                data-translate="table_search_noresult"
+                            ></td>
                         </tr>
                     </tbody>
 
                     <!-- login -->
-                    <tbody data-ng-if="!ctrlDomainDynHostLogin.loading.login && ctrlDomainDynHostLogin.dynHostsLogin.length > 0">
-                        <tr data-ng-repeat="login in (ctrlDomainDynHostLogin.dynHostsLoginDetails | orderBy:'subDomain') track by login.login">
+                    <tbody
+                        data-ng-if="!ctrlDomainDynHostLogin.loading.login && ctrlDomainDynHostLogin.dynHostsLogin.length > 0"
+                    >
+                        <tr
+                            data-ng-repeat="login in (ctrlDomainDynHostLogin.dynHostsLoginDetails | orderBy:'subDomain') track by login.login"
+                        >
                             <th scope="row" data-ng-bind="login.login"></th>
                             <td data-ng-bind="login.zone"></td>
                             <td data-ng-bind="login.subDomain"></td>
                             <td class="text-right">
-                                <oui-action-menu data-compact
-                                                 data-align="end">
-                                    <oui-action-menu-item data-on-click="setAction('dynhost/login/edit/domain-dynhost-login-edit', {login: login, product: ctrlDomainDynHostLogin.product})">
-                                        <span data-translate="table_modify_entry"></span>
+                                <oui-action-menu data-compact data-align="end">
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('dynhost/login/edit/domain-dynhost-login-edit', {login: login, product: ctrlDomainDynHostLogin.product})"
+                                    >
+                                        <span
+                                            data-translate="table_modify_entry"
+                                        ></span>
                                     </oui-action-menu-item>
-                                    <oui-action-menu-item data-on-click="setAction('dynhost/login/delete/domain-dynhost-login-delete', {login: login.login, zoneName: ctrlDomainDynHostLogin.product.name})">
-                                        <span data-translate="table_delete_entry"></span>
+                                    <oui-action-menu-item
+                                        data-on-click="setAction('dynhost/login/delete/domain-dynhost-login-delete', {login: login.login, zoneName: ctrlDomainDynHostLogin.product.name})"
+                                    >
+                                        <span
+                                            data-translate="table_delete_entry"
+                                        ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>
                             </td>
@@ -106,27 +180,29 @@
             </div>
         </div>
 
-        <div class="clearfix"
-             data-ng-if="ctrlDomainDynHostLogin.dynHostsLogin">
-            <div data-pagination-front
-                 data-items="ctrlDomainDynHostLogin.dynHostsLogin"
-                 data-paginated-items="ctrlDomainDynHostLogin.dynHostsLoginDetails"
-                 data-current-page="currentPageDynHostsLogin"
-                 data-nb-pages="nbPages"
-                 data-items-per-page="itemsPerPage"
-                 data-transform-item="ctrlDomainDynHostLogin.transformItem(item)"
-                 data-on-transform-item-done="ctrlDomainDynHostLogin.onTransformItemDone(items)"
-                 data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageSubscribers, last: nbPages } }}"
-                 data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-                 data-ng-show="!ctrlDomainDynHostLogin.loading.login && ctrlDomainDynHostLogin.dynHostsLoginDetails.length > 0">
-            </div>
+        <div class="clearfix" data-ng-if="ctrlDomainDynHostLogin.dynHostsLogin">
+            <div
+                data-pagination-front
+                data-items="ctrlDomainDynHostLogin.dynHostsLogin"
+                data-paginated-items="ctrlDomainDynHostLogin.dynHostsLoginDetails"
+                data-current-page="currentPageDynHostsLogin"
+                data-nb-pages="nbPages"
+                data-items-per-page="itemsPerPage"
+                data-transform-item="ctrlDomainDynHostLogin.transformItem(item)"
+                data-on-transform-item-done="ctrlDomainDynHostLogin.onTransformItemDone(items)"
+                data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPageSubscribers, last: nbPages } }}"
+                data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+                data-ng-show="!ctrlDomainDynHostLogin.loading.login && ctrlDomainDynHostLogin.dynHostsLoginDetails.length > 0"
+            ></div>
         </div>
     </div>
 
     <div class="col-md-3 mt-5 mt-lg-0">
-        <button class="btn btn-block btn-default" type="button"
-                data-translate="domain_tab_DYNHOST_add_login_create"
-                data-ng-click="setAction('dynhost/login/add/domain-dynhost-login-add', {product: ctrlDomainDynHostLogin.product})">
-        </button>
+        <button
+            class="btn btn-block btn-default"
+            type="button"
+            data-translate="domain_tab_DYNHOST_add_login_create"
+            data-ng-click="setAction('dynhost/login/add/domain-dynhost-login-add', {product: ctrlDomainDynHostLogin.product})"
+        ></button>
     </div>
 </div>
