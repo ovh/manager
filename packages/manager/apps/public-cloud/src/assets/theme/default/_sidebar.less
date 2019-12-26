@@ -2,7 +2,7 @@
 @import '~ovh-ui-kit/packages/oui-responsive/_variables.less';
 @import './_variables.less';
 
-cloud-sidebar { /* stylelint-disable-line */
+cloud-sidebar {
   background-color: @background-color;
   color: @text-color;
   width: 100%;
@@ -63,7 +63,7 @@ cloud-sidebar { /* stylelint-disable-line */
     width: 50px;
   }
 
-  oui-clipboard { /* stylelint-disable-line */
+  oui-clipboard {
     margin-bottom: 0;
 
     .oui-clipboard__control {
@@ -128,7 +128,7 @@ cloud-sidebar { /* stylelint-disable-line */
       }
     }
 
-    oui-clipboard { /* stylelint-disable-line */
+    oui-clipboard {
       .oui-clipboard__control,
       .oui-clipboard__button {
         color: #fff;
@@ -179,7 +179,7 @@ cloud-sidebar { /* stylelint-disable-line */
     }
 
     .oui-sidebar-link_active,
-    .oui-sidebar-link[aria-expanded="true"] {
+    .oui-sidebar-link[aria-expanded='true'] {
       background-color: #fff;
     }
   }
@@ -208,7 +208,7 @@ cloud-sidebar { /* stylelint-disable-line */
         min-height: inherit;
       }
 
-      &[aria-expanded="true"] {
+      &[aria-expanded='true'] {
         + .oui-sidebar-menu .oui-sidebar-list {
           padding: 4pt 0;
         }
@@ -227,7 +227,8 @@ cloud-sidebar { /* stylelint-disable-line */
       background-color: @background-color;
       padding: 0;
 
-      .oui-sidebar-list { /* stylelint-disable-line */
+      /* stylelint-disable-next-line no-descending-specificity */
+      .oui-sidebar-list {
         max-height: none;
 
         .oui-sidebar-list__item {

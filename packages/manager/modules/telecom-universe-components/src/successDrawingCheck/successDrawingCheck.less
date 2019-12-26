@@ -1,7 +1,7 @@
-@import "~bootstrap/less/mixins/clearfix";
-@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import '~bootstrap/less/mixins/clearfix';
+@import '~ovh-ui-kit/packages/oui-color/_variables';
 
-tuc-success-drawing-check { /* stylelint-disable-line */
+tuc-success-drawing-check {
   @success-drawing-check-size: 50px;
   @success-drawing-check-height: @success-drawing-check-size;
   @success-drawing-check-width: @success-drawing-check-size;
@@ -55,7 +55,9 @@ tuc-success-drawing-check { /* stylelint-disable-line */
     &.draw {
       polyline {
         display: inline-block;
-        animation: succesDrawingCheckAnim @success-drawing-check-animation-duration ease-in 1;
+        animation:
+          succesDrawingCheckAnim
+          @success-drawing-check-animation-duration ease-in 1;
       }
     }
   }

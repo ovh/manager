@@ -1,5 +1,6 @@
 @CLOUD_ADDOREDIT_VM_POPOVER_Z_INDEX_AT_MEDIUM: 1040;
-@CLOUD_ADDOREDIT_VM_POPOVER_Z_INDEX_AT_SMALL: @CLOUD_ADDOREDIT_VM_POPOVER_Z_INDEX_AT_MEDIUM - 1;
+@CLOUD_ADDOREDIT_VM_POPOVER_Z_INDEX_AT_SMALL: @CLOUD_ADDOREDIT_VM_POPOVER_Z_INDEX_AT_MEDIUM -
+  1;
 @CLOUD_VM_POPOVER_WIDTH: 450px;
 
 .cloud-vm-popover {
@@ -64,7 +65,8 @@
       min-height: 40px;
       font-size: 1.2em;
 
-      span { /* stylelint-disable-line */
+      /* stylelint-disable-next-line no-descending-specificity */
+      span {
         vertical-align: middle;
       }
     }
@@ -76,7 +78,8 @@
       line-height: 40px;
       border-bottom: @cloud_green_1 solid 1px;
 
-      span { /* stylelint-disable-line */
+      /* stylelint-disable-next-line no-descending-specificity */
+      span {
         vertical-align: middle;
       }
 

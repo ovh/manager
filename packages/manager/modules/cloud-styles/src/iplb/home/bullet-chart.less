@@ -14,11 +14,13 @@
   background-color: white;
   text-align: center;
 
-  .iplb-bullet-chart-modifiers(@i: length(@iplb-bullet-chart-modifiers)) when (@i > 0) {
+  .iplb-bullet-chart-modifiers(@i: length(@iplb-bullet-chart-modifiers))
+  when
+  (@i > 0) {
     .iplb-bullet-chart-modifiers(@i - 1);
     @current-modifier: extract(@iplb-bullet-chart-modifiers, @i);
-    @foreground-color: "iplb-bullet-chart-foreground-@{current-modifier}";
-    @background-color: "iplb-bullet-chart-background-@{current-modifier}";
+    @foreground-color: 'iplb-bullet-chart-foreground-@{current-modifier}';
+    @background-color: 'iplb-bullet-chart-background-@{current-modifier}';
 
     &_@{current-modifier} {
       .iplb-bullet-chart__content {

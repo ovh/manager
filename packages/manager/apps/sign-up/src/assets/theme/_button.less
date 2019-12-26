@@ -81,8 +81,8 @@
   fill: @primary-color;
 }
 
-.oui-action-button[aria-expanded="true"],
-.oui-action-menu-button[aria-expanded="true"],
+.oui-action-button[aria-expanded='true'],
+.oui-action-menu-button[aria-expanded='true'],
 .oui-action-button:hover,
 .oui-action-button:focus,
 .oui-action-menu-button:hover,
@@ -108,7 +108,8 @@
 }
 
 .oui-button-group {
-  .oui-button { /* stylelint-disable-line */
+  /* stylelint-disable-next-line no-descending-specificity */
+  .oui-button {
     border: 0;
     border-radius: @border-radius-default;
   }

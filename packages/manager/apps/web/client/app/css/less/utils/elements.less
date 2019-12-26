@@ -108,8 +108,8 @@
   opacity: @opacity;
   @opperc: @opacity * 100;
 
-  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
-  filter: ~"alpha(opacity=@{opperc})";
+  -ms-filter: ~'progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})';
+  filter: ~'alpha(opacity=@{opperc})';
 }
 
 .transition-duration(@duration: 0.2s) {

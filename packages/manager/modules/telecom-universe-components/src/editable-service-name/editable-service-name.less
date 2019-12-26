@@ -1,9 +1,12 @@
-@import "~bootstrap/less/variables";
-@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import '~bootstrap/less/variables';
+@import '~ovh-ui-kit/packages/oui-color/_variables';
 
-tuc-editable-service-name { /* stylelint-disable-line */
+tuc-editable-service-name {
   @editable-service-name-button-bg-color: fadeout(@oui-color-secondary, 85%);
-  @editable-service-name-button-bg-color-hover: fadeout(@oui-color-secondary, 60%);
+  @editable-service-name-button-bg-color-hover: fadeout(
+    @oui-color-secondary,
+    60%
+  );
 
   .editable-service-name {
     h1 {

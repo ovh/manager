@@ -131,7 +131,7 @@
                 background-color: @gray-dark;
 
                 &::after {
-                  content: "";
+                  content: '';
                   display: block;
                   width: 0;
                   height: 0;
@@ -162,7 +162,7 @@
 
             &::before,
             &::after {
-              content: "";
+              content: '';
               display: block;
               width: 1.2em;
               height: 1.2em;
@@ -172,9 +172,13 @@
               left: -0.5em;
             }
 
-            &::before { top: 0; }
+            &::before {
+              top: 0;
+            }
 
-            &::after { bottom: 0; }
+            &::after {
+              bottom: 0;
+            }
           }
         }
 
@@ -306,7 +310,7 @@
 
                 &::before {
                   display: block;
-                  content: "";
+                  content: '';
                   height: 1px;
                   width: 100%;
                   background-color: @gray-dark;
@@ -358,7 +362,9 @@
                 top: -0.5em;
               }
 
-              &::before { left: -1.2em; }
+              &::before {
+                left: -1.2em;
+              }
 
               &::after {
                 right: -1.2em;
