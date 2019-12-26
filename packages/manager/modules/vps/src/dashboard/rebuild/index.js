@@ -1,3 +1,6 @@
+import angular from 'angular';
+import '@uirouter/angularjs';
+
 import component from './vps-rebuild.component';
 import routing from './vps-rebuild.routing';
 import service from './vps-rebuild.service';
@@ -5,7 +8,7 @@ import service from './vps-rebuild.service';
 const moduleName = 'ovhManagerVpsRebuild';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, ['ui.router'])
   .component(component.name, component)
   .config(routing)
   .service('vpsRebuild', service)

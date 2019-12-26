@@ -1,0 +1,5 @@
+{
+  "dedicated_vps_kvm_novnc_status_connecting": "Verbindung wird hergestellt",
+  "dedicated_vps_kvm_novnc_status_connected": "Verbunden: {{ desktopName }}",
+  "dedicated_vps_kvm_novnc_status_disconnecting": "Getrennt"
+}

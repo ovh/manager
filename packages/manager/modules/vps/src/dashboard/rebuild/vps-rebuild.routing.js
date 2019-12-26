@@ -34,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName,
           }),
         ),
-      goBackToDashboard: /* @ngInject */ ($state) => () => $state.go('^'),
+      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       sshKeys: /* @ngInject */ (VpsReinstallService) =>
         VpsReinstallService.getSshKeys().then((sshKeys) => sshKeys.sort()),
     },
