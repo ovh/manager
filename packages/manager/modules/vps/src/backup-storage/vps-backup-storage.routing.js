@@ -8,5 +8,17 @@ export default /* @ngInject */ ($stateProvider) => {
         component: component.name,
       },
     },
+    resolve: {
+      goToAddBackupStorage: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.backup-storage.add'),
+      goToDeleteBackupStorage: /* @ngInject */ ($state) => (access) =>
+        $state.go('vps.detail.backup-storage.delete', { access }),
+      goToEditBackupStorage: /* @ngInject */ ($state) => (row) =>
+        $state.go('vps.detail.backup-storage.edit', { row }),
+      goToPassword: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.backup-storage.password'),
+      goBack: /* @ngInject */ ($state) => () =>
+        $state.go('vps.detail.backup-storage'),
+    },
   });
 };
