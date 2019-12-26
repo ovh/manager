@@ -3,19 +3,11 @@ import map from 'lodash/map';
 
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $stateParams,
-    $translate,
-    CucCloudMessage,
-    VpsActionService,
-    VpsService,
-  ) {
+  constructor($q, $stateParams, $translate, CucCloudMessage, VpsService) {
     this.$q = $q;
     this.serviceName = $stateParams.serviceName;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.VpsActionService = VpsActionService;
     this.VpsService = VpsService;
 
     this.loaders = {
