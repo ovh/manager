@@ -18,14 +18,14 @@
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-contacts.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -cw --environment BUILD:development",
     "lint": "run-p lint:*",
     "lint:html": "htmlhint 'src/**/*.html'",
     "lint:css": "stylelint \"src/**/*.{css,scss}\" --fix",
     "lint:js": "eslint --quiet --fix --format=pretty src",
     "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "prepare": "rollup -c",
+    "prepare": "yarn run build",
     "test": "eslint --quiet src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
