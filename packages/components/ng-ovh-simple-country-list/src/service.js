@@ -41,7 +41,7 @@ export default class {
     }
     this.data.asArray = map(
       this.data.list,
-      country => get(
+      (country) => get(
         country,
         `lang.${this.data.selectedLanguage}`,
         get(country, 'lang.iso'),
@@ -71,7 +71,7 @@ export default class {
     }
     this.data.asObject = mapValues(
       this.data.list,
-      country => get(
+      (country) => get(
         country,
         `lang.${this.data.selectedLanguage}`,
         get(country, 'lang.iso'),
