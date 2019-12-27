@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-swimming-poll
+$ yarn add @ovh-ux/ng-ovh-swimming-poll
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-swimming-poll
 import angular from 'angular';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 
-angular
-  .module('myApp', [
-    ngOvhSwimmingPoll,
-  ]);
+angular.module('myApp', [ngOvhSwimmingPoll]);
 ```
 
 ### Features
@@ -104,7 +101,7 @@ You can do a polling on listing request. In this case:
  * promise will return error when one element or more in the list is in error state and all other are in success state
  * else, promise will send a notify with the http response
 
-```javascript
+```js
 function createPoller(Poller) {
   const url = '/ip';
   Poller.poll(
@@ -143,7 +140,7 @@ function createPoller(Poller) {
 
 You can specify the interval as a fix value or a function
 
-```javascript
+```js
 function createPoller(Poller) {
   const url = '/task/42';
   Poller.poll(
@@ -170,7 +167,7 @@ function createPoller(Poller) {
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
