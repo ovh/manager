@@ -1,13 +1,13 @@
 # ng-ovh-contacts
 
-> Help you to manage OVH contacts
+> Help you to manage OVHcloud contacts
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-contacts)](https://npmjs.com/package/@ovh-ux/ng-ovh-contacts?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-contacts
+$ yarn add @ovh-ux/ng-ovh-contacts
 ```
 
 ## Usage
@@ -17,15 +17,13 @@ import angular from 'angular';
 import ngOvhContacts from '@ovh-ux/ng-ovh-contacts';
 
 // Add the ngOvhContacts module as dependency of your angular project
-angular.module('myApp', [
-  ngOvhContacts,
-]);
+angular.module('myApp', [ngOvhContacts]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
