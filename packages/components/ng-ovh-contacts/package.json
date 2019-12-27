@@ -62,5 +62,8 @@
     "ovh-ui-angular": "^2.23.x",
     "ovh-ui-kit": "^2.23.x",
     "ui-select": "^0.19.8"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
