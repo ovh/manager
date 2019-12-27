@@ -47,5 +47,8 @@
   },
   "peerDependencies": {
     "angular": "~1.6.10"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
