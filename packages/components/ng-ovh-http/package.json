@@ -3,7 +3,9 @@
   "version": "4.0.5",
   "description": "Simple HTTP provider for OVH API.",
   "keywords": [
-    "angular",
+    "angularjs",
+    "ovh",
+    "ovhcloud",
     "http",
     "provider"
   ],

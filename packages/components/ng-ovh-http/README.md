@@ -1,23 +1,24 @@
 # ng-ovh-http
 
-> Simple HTTP provider for OVH API.
+> Simple HTTP provider for OVHcloud API.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-http
+$ yarn add @ovh-ux/ng-ovh-http
 ```
 
 ## Usage
 
 ```js
 import angular from 'angular';
+import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import set from 'lodash/set';
 
 angular
-  .module('myApp', [])
+  .module('myApp', [ngOvhHttp])
   .config(/* @ngInject */ (OvhHttpProvider, constants) => {
     // URL prefix
     set(OvhHttpProvider, 'rootPath', constants.swsRootPath);
@@ -61,10 +62,10 @@ const options = {
   // cache key (String)
   cache,
   // (String, String[], boolean)
-  // clear cache of this url (boolean) or specifique cache (String or String[])
+  // clear cache for this URL (boolean) or specific cache (String or String[])
   clearCache,
   // (String, String[], boolean)
-  // clear all cache of this cache (boolean) or specifique cache (String or String[])
+  // clear all cache of this cache (boolean) or specific cache (String or String[])
   clearAllCache,
   // Encode params
   encodeParams,
@@ -88,9 +89,10 @@ const options = {
 
 ```js
 import angular from 'angular';
+import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 
 angular
-  .module('myApp', [])
+  .module('myApp', [ngOvhHttp])
   .controller('MyCtrl', class MyCtrl {
     /* @ngInject */
     constructor(OvhHttp) {
@@ -124,7 +126,7 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
