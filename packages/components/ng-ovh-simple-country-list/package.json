@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "OVH simple country list provide a 'full' (ISO-3166-1) list of countries with translation possibility.",
   "keywords": [
-    "angular",
+    "angularjs",
     "country",
-    "ovh"
+    "ovh",
+    "ovhcloud"
   ],
   "repository": "ovh-ux/ng-ovh-simple-country-list",
   "license": "BSD-3-Clause",

@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-simple-country-list
+$ yarn add @ovh-ux/ng-ovh-simple-country-list
 ```
 
 ## Usage
@@ -17,28 +17,32 @@ import angular from 'angular';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
 angular
-  .module('myApp', [
-    ngOvhSimpleCountryList,
-  ])
+  .module('myApp', [ngOvhSimpleCountryList])
   .controller('myController', /* @ngInject */ (OvhSimpleCountryList) => {
-    // set the disired language. Default is iso/en
+    // Set the desired language (default is iso/en).
     OvhSimpleCountryList.setLanguage('en_GB');
 
-    const countryListAsValueLabel = OvhSimpleCountryList.asDataForSelect; // lazy builded property
-    // [{'value':'AD', 'label': 'ANDORRA'}, {'value':'AE', 'label': 'UNITED ARAB EMIRATES'}, ... ]
+    console.log(OvhSimpleCountryList.asDataForSelect);
+    /*
+    [
+      {'value':'AD', 'label': 'ANDORRA'},
+      {'value':'AE', 'label': 'UNITED ARAB EMIRATES'},
+      ...
+    ]
+    */
 
-    const countryListAsSimpleArray = OvhSimpleCountryList.asArray; // lazy builded property
-    // ['ANDORRA', 'UNITED ARAB EMIRATES', 'AFGHANISTAN', ...]
+    console.log(OvhSimpleCountryList.asArray);
+    //= > ['ANDORRA', 'UNITED ARAB EMIRATES', 'AFGHANISTAN', ...]
 
-    const countryListAsSimpleOject = OvhSimpleCountryList.asObject; // lazy builded property
-    // {'AD': 'ANDORRA', 'AE': 'UNITED ARAB EMIRATES', ... }
+    console.log(OvhSimpleCountryList.asObject);
+    //= > {'AD': 'ANDORRA', 'AE': 'UNITED ARAB EMIRATES', ... }
   });
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
