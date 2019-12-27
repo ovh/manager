@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-stop-event
+$ yarn add @ovh-ux/ng-ovh-stop-event
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-stop-event
 import angular from 'angular';
 import ngOvhStopEvent from '@ovh-ux/ng-ovh-stop-event';
 
-angular
-  .module('myApp', [
-    ngOvhStopEvent,
-  ]);
+angular.module('myApp', [ngOvhStopEvent]);
 ```
 
 ```html
@@ -29,7 +26,7 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
