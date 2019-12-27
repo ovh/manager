@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-export-csv
+$ yarn add @ovh-ux/ng-ovh-export-csv
 ```
 
 ## Usage
@@ -16,16 +16,13 @@ yarn add @ovh-ux/ng-ovh-export-csv
 import angular from 'angular';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 
-angular
-  .module('myApp', [
-    ngOvhExportCsv,
-  ]);
+angular.module('myApp', [ngOvhExportCsv]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing

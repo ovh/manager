@@ -5,7 +5,9 @@
   "keywords": [
     "angularjs",
     "csv",
-    "export"
+    "export",
+    "ovh",
+    "ovhcloud"
   ],
   "homepage": "https://github.com/ovh-ux/ng-ovh-export-csv/tree/master#readme",
   "bugs": {
