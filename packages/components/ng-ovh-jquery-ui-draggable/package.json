@@ -46,5 +46,8 @@
   "peerDependencies": {
     "angular": "~1.6",
     "jquery": "~2.1"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
