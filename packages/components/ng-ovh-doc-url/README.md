@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-doc-url
+$ yarn add @ovh-ux/ng-ovh-doc-url
 ```
 
 ## Usage
@@ -17,9 +17,7 @@ import angular from 'angular';
 import ngOvhDocUrl from '@ovh-ux/ng-ovh-doc-url';
 
 angular
-  .module('myApp', [
-    ngOvhDocUrl,
-  ])
+  .module('myApp', [ngOvhDocUrl])
   .config(/* @ngInject */(ovhDocUrlProvider, TranslateServiceProvider) => {
     // User locale configuration
     ovhDocUrlProvider.setUserLocale(TranslateServiceProvider.getUserLocale());
@@ -47,7 +45,7 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
