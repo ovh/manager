@@ -7,25 +7,22 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-pagination-front
+$ yarn add @ovh-ux/ng-pagination-front
 ```
 
 ## Usage
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-pagination-front';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 
-angular
-  .module('myApp', [
-    'ngPaginationFront',
-  ]);
+angular.module('myApp', [ngPaginationFront]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
