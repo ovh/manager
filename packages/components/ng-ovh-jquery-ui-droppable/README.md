@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-jquery-ui-droppable
+$ yarn add @ovh-ux/ng-ovh-jquery-ui-droppable
 ```
 
 ## Usage
@@ -16,16 +16,13 @@ yarn add @ovh-ux/ng-ovh-jquery-ui-droppable
 import angular from 'angular';
 import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 
-angular
-  .module('myModule', [
-    ngOvhJqueryUiDroppable,
-  ]);
+angular.module('myModule', [ngOvhJqueryUiDroppable]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing

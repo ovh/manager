@@ -5,7 +5,10 @@
   "keywords": [
     "angularjs",
     "droppable",
-    "jquery"
+    "jquery",
+    "jquery-ui",
+    "ovh",
+    "ovhcloud"
   ],
   "repository": "ovh-ux/ng-ovh-jquery-ui-droppable",
   "license": "BSD-3-Clause",
