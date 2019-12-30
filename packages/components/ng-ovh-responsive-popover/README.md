@@ -7,19 +7,16 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-responsive-popover
+$ yarn add @ovh-ux/ng-ovh-responsive-popover
 ```
 
 ## Usage
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-responsive-popover';
+import ngOvhResponsivePopover from '@ovh-ux/ng-ovh-responsive-popover';
 
-angular
-  .module('myApp', [
-    'ngOvhResponsivePopover',
-  ]);
+angular.module('myApp', [ngOvhResponsivePopover]);
 ```
 
 The two major directives are:
@@ -31,16 +28,6 @@ The two major directives are:
 Then inject responsivePopover module in your module declaration:
 
 ## Documentation
-
-For a full documentation of the module, launch:
-
-```sh
-grunt ngdocs && grunt connect
-```
-
-Then go on `http://localhost:9090`.
-
-Or simply follow the md version of documentation:
 
 ### <a name="responsivePopover_directive_responsivePopover"></a>`responsivePopover` - directive
 
@@ -121,7 +108,7 @@ Get the current configured media query. It is used to detect the popover display
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Related
