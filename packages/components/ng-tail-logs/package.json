@@ -51,5 +51,8 @@
   "peerDependencies": {
     "angular": "1.6.10",
     "angularjs-scroll-glue": "^2.2.0"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
