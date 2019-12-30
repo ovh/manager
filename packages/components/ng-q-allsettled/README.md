@@ -7,25 +7,22 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-q-allsettled
+$ yarn add @ovh-ux/ng-q-allsettled
 ```
 
 ## Usage
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-q-allsettled';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 
-angular
-  .module('myApp', [
-    'ngQAllSettled',
-  ]);
+angular.module('myApp', [ngQAllSettled]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing

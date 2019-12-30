@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Copy of kriskowal/q for ovh control panels",
   "keywords": [
-    "angular",
+    "angularjs",
     "ovh",
+    "ovhcloud",
     "promise"
   ],
   "repository": "ovh-ux/ng-q-allsettled",
