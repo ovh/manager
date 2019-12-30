@@ -38,20 +38,20 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-angular": "^8.1.0",
-    "@ovh-ux/component-rollup-config": "^6.0.2",
-    "eslint": "^6.2.2",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-angular": "^8.2.0",
+    "@ovh-ux/component-rollup-config": "^7.0.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-formatter-pretty": "^2.1.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-formatter-pretty": "^3.0.1",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-markdown": "^1.0.1",
     "htmlhint": "^0.11.0",
-    "husky": "^3.0.1",
-    "lint-staged": "^9.2.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "npm-run-all": "^4.1.5",
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0"
+    "stylelint": "^12.0.1",
+    "stylelint-config-standard": "^19.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
