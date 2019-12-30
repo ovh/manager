@@ -3,9 +3,12 @@
   "version": "2.0.0",
   "description": "Poll a log API for displaying messages",
   "keywords": [
-    "angular",
+    "angularjs",
+    "api",
     "log",
-    "ovh"
+    "ovh",
+    "ovhcloud",
+    "poll"
   ],
   "repository": "ovh-ux/ng-tail-logs",
   "license": "BSD-3-Clause",

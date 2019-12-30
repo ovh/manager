@@ -9,17 +9,17 @@ Poll a log API for displaying messages
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-tail-logs
+$ yarn add @ovh-ux/ng-tail-logs
 ```
 
 ## Usage
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-tail-logs';
+import ngTailLogs from '@ovh-ux/ng-tail-logs';
 
 angular
-  .module('myApp', ['ngTailLogs'])
+  .module('myApp', [ngTailLogs])
   .controller('MyCtrl', /* @ngInject */ ($q, TailLogs) => {
     this.logger = new TailLogs({
       source: () => $q.when('http://my-log-url'),
@@ -41,7 +41,7 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
