@@ -1,33 +1,28 @@
 # ng-ovh-contact
 
-> OVH Contact
+> Helps you dealing with OVHcloud contacts from [/me/contact](https://api.ovh.com/console/#/me/contact#GET) API.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-contact)](https://npmjs.com/package/@ovh-ux/ng-ovh-contact) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-contact)](https://npmjs.com/package/@ovh-ux/ng-ovh-contact?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-contact)](https://npmjs.com/package/@ovh-ux/ng-ovh-contact?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/ng-ovh-contact)](https://npmjs.com/package/@ovh-ux/ng-ovh-contact) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-contact)](https://npmjs.com/package/@ovh-ux/ng-ovh-contact?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-contact)](https://npmjs.com/package/@ovh-ux/ng-ovh-contact?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-ng-ovh-contact helps you dealing with ovh contacts from [/me/contact](https://api.ovh.com/console/#/me/contact#GET) API.
-
-## Installation
+## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-contact
+$ yarn add @ovh-ux/ng-ovh-contact
 ```
 
-Then inject actionsMenu module in your module declaration:
+## Usage
 
 ```js
 import angular from 'angular';
 import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
-angular
-  .module('myApp', [
-    ngOvhContact,
-  ]);
+angular.module('myApp', [ngOvhContact]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
