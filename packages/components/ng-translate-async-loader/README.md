@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-translate-async-loader
+$ yarn add @ovh-ux/ng-translate-async-loader
 ```
 
 ## Usage
@@ -16,17 +16,18 @@ yarn add @ovh-ux/ng-translate-async-loader
 import angular from 'angular';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
-angular
-  .module('myApp', [
-    ngTranslateAsyncLoader,
-  ]);
+angular.module('myApp', [ngTranslateAsyncLoader]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
+
+## Related
+
+- [angular-translate-loader-partial](https://github.com/angular-translate/bower-angular-translate-loader-partial) - A plugin for Angular Translate
 
 ## Contributing
 
