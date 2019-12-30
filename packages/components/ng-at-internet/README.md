@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-at-internet
+$ yarn add @ovh-ux/ng-at-internet
 ```
 
 ## Usage
@@ -18,10 +18,7 @@ Before using this component please make sure that ATInternet JS library: smartta
 import angular from 'angular';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 
-angular
-  .module('myApp', [
-    ngAtInternet,
-  ]);
+angular.module('myApp', [ngAtInternet]);
 ```
 
 ### Provider configuration
@@ -89,10 +86,10 @@ Attributes
 
 ```html
 <button id="btnAction" data-track-on="click"></button>
-Tracking result: {name: "btnAction-click", type: "action"...}
+<!-- Tracking result: {name: "btnAction-click", type: "action"...} -->
 
 <button data-track-on="mouseover" data-track-name="MyAction" data-track-type="navigation"></button>
-Tracking result: {name: "MyAction", type: "navigation"...}
+<!-- Tracking result: {name: "MyAction", type: "navigation"...} -->
 
 ```
 
@@ -135,7 +132,7 @@ atInternet.trackEvent({
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
