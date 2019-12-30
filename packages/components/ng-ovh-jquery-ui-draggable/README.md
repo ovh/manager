@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-jquery-ui-draggable
+$ yarn add @ovh-ux/ng-ovh-jquery-ui-draggable
 ```
 
 ## Usage
@@ -16,16 +16,13 @@ yarn add @ovh-ux/ng-ovh-jquery-ui-draggable
 import angular from 'angular';
 import ngOvhJqueryUiDraggable from '@ovh-ux/ng-ovh-jquery-ui-draggable';
 
-angular
-  .module('myApp', [
-    ngOvhJqueryUiDraggable,
-  ]);
+angular.module('myApp', [ngOvhJqueryUiDraggable]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing

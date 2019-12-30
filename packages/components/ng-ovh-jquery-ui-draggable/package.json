@@ -4,7 +4,11 @@
   "description": "Make elements draggable",
   "keywords": [
     "angularjs",
-    "draggable"
+    "draggable",
+    "jquery",
+    "jquery-ui",
+    "ovh",
+    "ovhcloud"
   ],
   "repository": "ovh-ux/ng-ovh-jquery-ui-draggable",
   "license": "BSD-3-Clause",
