@@ -17,7 +17,7 @@ Toaster is a component to show an in-app notification, like a [toast](http://dev
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-toaster
+$ yarn add @ovh-ux/ng-ovh-toaster
 ```
 
 ## Usage
@@ -88,7 +88,7 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing

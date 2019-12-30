@@ -3,8 +3,9 @@
   "version": "1.0.3",
   "description": "Show a hot toast for user",
   "keywords": [
-    "angular",
+    "angularjs",
     "ovh",
+    "ovhcloud",
     "toast"
   ],
   "repository": "ovh-ux/ng-ovh-toaster",
