@@ -3,9 +3,11 @@
   "version": "1.0.3",
   "description": "Multi checkbox management for table",
   "keywords": [
-    "angular",
-    "http",
-    "provider"
+    "angularjs",
+    "checkbox",
+    "ovh",
+    "ovhcloud",
+    "table"
   ],
   "repository": "ovh-ux/ng-ovh-checkbox-table",
   "license": "BSD-3-Clause",

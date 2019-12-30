@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-checkbox-table
+$ yarn add @ovh-ux/ng-ovh-checkbox-table
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-checkbox-table
 import angular from 'angular';
 import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 
-angular
-  .module('myApp', [
-    ngOvhCheckboxTable,
-  ]);
+angular.module('myApp', [ngOvhCheckboxTable]);
 ```
 
 ```html
@@ -61,7 +58,7 @@ angular
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
