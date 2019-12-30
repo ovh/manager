@@ -4,8 +4,9 @@
   "description": "Form Design for v6 manager",
   "keywords": [
     "angularjs",
+    "form-design",
     "ovh",
-    "form-design"
+    "ovhcloud"
   ],
   "repository": "ovh-ux/ng-ovh-form-flat",
   "license": "BSD-3-Clause",

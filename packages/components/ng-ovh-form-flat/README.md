@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-form-flat
+$ yarn add @ovh-ux/ng-ovh-form-flat
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-form-flat
 import angular from 'angular';
 import ngOvhFormFlat from '@ovh-ux/ng-ovh-form-flat';
 
-angular
-  .module('myModule', [
-    ngOvhFormFlat,
-  ]);
+angular.module('myModule', [ngOvhFormFlat]);
 ```
 
 ## Example
@@ -187,7 +184,7 @@ To combine an input and a select, you have to frame your `input` and `select` ta
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
