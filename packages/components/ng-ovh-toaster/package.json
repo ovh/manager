@@ -44,5 +44,8 @@
     "angular": "~1.6",
     "angular-sanitize": "~1.6",
     "messenger": "HubSpot/messenger#~1.4.1"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
