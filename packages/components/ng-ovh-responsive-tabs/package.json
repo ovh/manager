@@ -54,5 +54,8 @@
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-ui-bootstrap": "~1.3.3"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
