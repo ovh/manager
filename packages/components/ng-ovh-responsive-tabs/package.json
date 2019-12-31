@@ -3,10 +3,11 @@
   "version": "5.0.2",
   "description": "Wrapper for Angular UI Bootstrap directive 'Tabs'",
   "keywords": [
-    "bootstrap",
     "ovh",
+    "ovhcloud",
     "responsive",
-    "tabs"
+    "tabs",
+    "ui-bootstrap"
   ],
   "repository": "ovh-ux/ng-ovh-responsive-tabs",
   "license": "BSD-3-Clause",

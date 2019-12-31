@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-responsive-tabs
+$ yarn add @ovh-ux/ng-ovh-responsive-tabs
 ```
 
 ## Usage
@@ -16,16 +16,13 @@ yarn add @ovh-ux/ng-ovh-responsive-tabs
 import angular from 'angular';
 import ngOvhResponsiveTabs from '@ovh-ux/ng-ovh-responsive-tabs';
 
-angular
-  .module('myApp', [
-    ngOvhResponsiveTabs,
-  ]);
+angular.module('myApp', [ngOvhResponsiveTabs]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
