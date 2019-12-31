@@ -5,5 +5,9 @@
   "*.js": [
     "eslint --fix",
     "git add"
+  ],
+  "*.less": [
+    "stylelint --fix",
+    "git add"
   ]
 }
