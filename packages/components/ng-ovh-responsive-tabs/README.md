@@ -25,6 +25,10 @@ angular.module('myApp', [ngOvhResponsiveTabs]);
 $ yarn test
 ```
 
+## Related
+
+- [angular-ui/bootstrap](https://github.com/angular-ui/bootstrap) - AngularJS directives specific to Bootstrap
+
 ## Contributing
 
 Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-responsive-tabs/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-responsive-tabs/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
