@@ -3,9 +3,12 @@
   "version": "3.0.3",
   "description": "Module to diagnose OVH telecoms lines.",
   "keywords": [
-    "angular",
+    "angularjs",
+    "diagnostics",
+    "line",
     "ovh",
-    "diagnostics"
+    "ovhcloud",
+    "telecom"
   ],
   "homepage": "https://github.com/ovh-ux/ng-ovh-line-diagnostics/tree/master#readme",
   "bugs": {

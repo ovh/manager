@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-line-diagnostics
+$ yarn add @ovh-ux/ng-ovh-line-diagnostics
 ```
 ## Usage
 
@@ -15,16 +15,13 @@ yarn add @ovh-ux/ng-ovh-line-diagnostics
 import angular from 'angular';
 import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
 
-angular
-  .module('myApp', [
-    ngOvhLineDiagnostics,
-  ]);
+angular.module('myApp', [ngOvhLineDiagnostics]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
