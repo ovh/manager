@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-user-pref
+$ yarn add @ovh-ux/ng-ovh-user-pref
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-user-pref
 import angular from 'angular';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 
-angular
-  .module('myApp', [
-    ngOvhUserPref,
-  ]);
+angular.module('myApp', [ngOvhUserPref]);
 ```
 
 - Create an user preference on api.ovh.com.
@@ -35,7 +32,7 @@ Format:
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing

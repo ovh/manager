@@ -1,9 +1,13 @@
 {
   "name": "@ovh-ux/ng-ovh-user-pref",
   "version": "1.0.1",
-  "description": "An angular service to create/get/delete user preferences",
+  "description": "An AngularJS service to create/get/delete user preferences",
   "keywords": [
-    "angular"
+    "angularjs",
+    "ovh",
+    "ovhcloud",
+    "preferences",
+    "user"
   ],
   "repository": "ovh-ux/ng-ovh-user-pref",
   "license": "BSD-3-Clause",
