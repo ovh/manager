@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Price ex. VAT: ",
   "mxPlan_price_with_tax": "Price incl. VAT: ",
   "mxPlan_order_action": "Order",
-  "mxPlan_order_error_payment": "An error occurred while loading available payment methods"
+  "mxPlan_order_error_payment": "An error occurred while loading available payment methods",
+  "mxPlan_order_activate": "Enable"
 }

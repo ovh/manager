@@ -9,7 +9,7 @@
   "mxPlan_order_step2_product_description": "Pour plus d'informations, veuillez consulter la <a href=\"{{t0}}\" target=\"{{t1}}\">description de nos produits. {{t2}}</a>",
   "mxPlan_order_step2_duration_fail": "Une erreur est survenue lors de la récupération des durées disponibles.",
   "mxPlan_order_step2_price_fail": "Une erreur est survenue lors de la récupération des prix pour cette durée.",
-  "mxPlan_order_step2_duration": "Veuillez régler le bon de commande et le service sera rattaché à votre nom de domaine sans demande de renouvellement.",
+  "mxPlan_order_step2_duration": "Vous réglez le bon de commande et le service sera rattaché à votre nom de domaine sans demande de renouvellement.",
   "mxPlan_order_step3_title": "3. Validation",
   "mxPlan_order_step3_contracts_check": "J'ai lu et j'accepte les contrats.",
   "mxPlan_order_step3_question": "Cliquez sur \"Générer le bon de commande\" pour commander votre MX Plan.",
