@@ -135,6 +135,10 @@ atInternet.trackEvent({
 $ yarn test
 ```
 
+## Related
+
+- [ng-at-internet-ui-router-plugin](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin) - Plugin for AT Internet when using UI-Router
+
 ## Contributing
 
 Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-at-internet/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-at-internet/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
