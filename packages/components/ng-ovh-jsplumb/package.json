@@ -4,7 +4,9 @@
   "description": "Allow to draw links between elements using [jsplumb toolkit](http://www.jsplumb.org/).",
   "keywords": [
     "angularjs",
-    "jsplumb"
+    "jsplumb",
+    "ovh",
+    "ovhcloud"
   ],
   "repository": "ovh-ux/ng-ovh-jsplumb",
   "license": "BSD-3-Clause",

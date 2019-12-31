@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-jsplumb
+$ yarn add @ovh-ux/ng-ovh-jsplumb
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-ovh-jsplumb
 import angular from 'angular';
 import ngOvhJsplumb from '@ovh-ux/ng-ovh-jsplumb';
 
-angular
-  .module('myApp', [
-    ngOvhJsplumb,
-  ]);
+angular.module('myApp', [ngOvhJsplumb]);
 ```
 
 For jQuery UI, we only need draggable and droppable functionalities (and the few core functionalities). So we can load only these files.
@@ -70,7 +67,7 @@ Create an instance of `ng-ovh-jsplumb` with the `jsplumbInstance` directive:
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
