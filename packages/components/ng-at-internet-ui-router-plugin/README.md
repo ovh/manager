@@ -1,13 +1,13 @@
 # ng-at-internet-ui-router-plugin
 
-> Plugin for ATInternet when using ui-router.
+> Plugin for ATInternet when using UI-Router.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-at-internet-ui-router-plugin
+$ yarn add @ovh-ux/ng-at-internet-ui-router-plugin
 ```
 
 ## Usage
@@ -16,10 +16,7 @@ yarn add @ovh-ux/ng-at-internet-ui-router-plugin
 import angular from 'angular';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
-angular
-  .module('myApp', [
-    ngAtInternetUiRouterPlugin,
-  ]);
+angular.module('myApp', [ngAtInternetUiRouterPlugin]);
 ```
 
 Follow [at-internet installation](https://github.com/ovh-ux/ng-at-internet/blob/master/README.md)
@@ -82,7 +79,7 @@ app.config(/* @ngInject */ (atInternetUiRouterPluginProvider) => {
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
