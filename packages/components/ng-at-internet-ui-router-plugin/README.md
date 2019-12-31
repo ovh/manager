@@ -1,6 +1,6 @@
 # ng-at-internet-ui-router-plugin
 
-> Plugin for ATInternet when using UI-Router.
+> Plugin for AT Internet when using UI-Router.
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-at-internet-ui-router-plugin)](https://npmjs.com/package/@ovh-ux/ng-at-internet-ui-router-plugin?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
@@ -81,6 +81,10 @@ app.config(/* @ngInject */ (atInternetUiRouterPluginProvider) => {
 ```sh
 $ yarn test
 ```
+
+## Related
+
+- [ng-at-internet](https://github.com/ovh-ux/ng-at-internet) - AT Internet tracking js library wrapper for AngularJS
 
 ## Contributing
 
