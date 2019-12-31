@@ -18,13 +18,13 @@
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-responsive-tabs.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -cw --environment BUILD:development",
     "lint": "run-p lint:html lint:js lint:md",
     "lint:html": "htmlhint 'src/**/*.html'",
     "lint:js": "eslint --quiet --fix --format=pretty src",
     "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "prepare": "rollup -c",
+    "prepare": "yarn run build",
     "test": "yarn run lint",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
