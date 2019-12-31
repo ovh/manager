@@ -1,16 +1,24 @@
-import configGenerator from '@ovh-ux/component-rollup-config';
+import rollupConfig from '@ovh-ux/component-rollup-config';
 
-const config = configGenerator({
+const config = rollupConfig({
   input: './src/index.js',
 });
 
-export default [
-  config.cjs(),
-  config.umd({
+const outputs = [config.es({
+  output: {
+    sourcemap: false,
+  },
+})];
+
+if (process.env.BUILD === 'production') {
+  outputs.push(config.cjs());
+  outputs.push(config.umd({
     output: {
       globals: {
         angular: 'angular',
       },
     },
-  }),
-];
+  }));
+}
+
+export default outputs;
