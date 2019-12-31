@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-slider
+$ yarn add @ovh-ux/ng-ovh-slider
 ```
 
 ## Usage
@@ -16,16 +16,13 @@ yarn add @ovh-ux/ng-ovh-slider
 import angular from 'angular';
 import ngOvhSlider from '@ovh-ux/ng-ovh-slider';
 
-angular
-  .module('myModule', [
-    ngOvhSlider,
-  ]);
+angular.module('myModule', [ngOvhSlider]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
