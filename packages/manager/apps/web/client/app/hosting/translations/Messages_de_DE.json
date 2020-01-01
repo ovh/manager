@@ -1386,5 +1386,17 @@
   "hosting_dashboard_service_activate_cdn": "CDN aktivieren",
   "hosting_dashboard_cdn_order_success_activation": "Deine Aktivierung war erfolgreich. Ihr Produkt wird in wenigen Minuten aktiviert.",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Bestellen Sie eine private SQL-Datenbank",
-  "hosting_tab_DATABASES_configuration_order_title_private": "Bestellen Sie eine private SQL-Datenbank"
+  "hosting_tab_DATABASES_configuration_order_title_private": "Bestellen Sie eine private SQL-Datenbank",
+  "hosting_tab_DATABASES_configuration_create_sgbd_mysql": "MySQL",
+  "hosting_tab_DATABASES_configuration_create_sgbd_postgresql": "PostgreSQL",
+  "hosting_tab_DATABASES_configuration_create_sgbd_mongodb": "MongoDB",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_sql_perso": "SQL Basic {{t0}} {{t1}}: {{t2}} verbleibend",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_sql_pro": "SQL Pro {{t0}} {{t1}}: {{t2}} verbleibend",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_sql_local": "In Ihrer Cloud Web Instanz gespeichert",
+  "hosting_tab_DATABASES_configuration_create_step1_select_type_extra_sql_perso": "Extra SQL Basic {{t0}} {{t1}}: {{t2}} verbleibend",
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_perso": "SQL Basic {{t0}} {{t1}}",
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_pro": "SQL Pro {{t0}} {{t1}}",
+  "hosting_tab_DATABASES_configuration_create_step3_type_extra_sql_perso": "Extra SQL Basic {{t0}} {{t1}}",
+  "hosting_tab_DATABASES_configuration_create_step3_type_sql_local": "In Ihrer Cloud Web Instanz gespeichert",
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Bitte verwenden Sie den bereitgestellten Hostnamen, um eine Verbindung zu Ihrer Instanz herzustellen, da sich die damit verbundene IP-Adresse im Laufe der Zeit ändern kann."
 }

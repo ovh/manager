@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Preis zzgl. MwSt.: ",
   "mxPlan_price_with_tax": "Preis inkl. MwSt.: ",
   "mxPlan_order_action": "Bestellen",
-  "mxPlan_order_error_payment": "Beim Laden Ihrer Zahlungsmittel ist ein Fehler aufgetreten."
+  "mxPlan_order_error_payment": "Beim Laden Ihrer Zahlungsmittel ist ein Fehler aufgetreten.",
+  "mxPlan_order_activate": "Aktivieren"
 }
