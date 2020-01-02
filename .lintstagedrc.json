@@ -1,7 +1,8 @@
 {
   "*.html": [
     "htmlhint --ignore \"**/dist/**,**/dist-EU/**,**/dist-CA/**,**/dist-US/**\" \"packages/**/*.html\"",
-    "prettier --write"
+    "prettier --write",
+    "git add"
   ],
   "*.js": [
     "eslint --fix",
