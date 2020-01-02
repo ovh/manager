@@ -26,7 +26,10 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
             serviceType: 'apiv6',
           },
         )
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
     };
 
     this.deleteRestriction = function deleteRestriction(restriction) {
@@ -34,7 +37,10 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
         .delete(['/me/accessRestriction/ip', restriction.id].join('/'), {
           serviceType: 'apiv6',
         })
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
     };
 
     this.addRestriction = function addRestriction(restriction) {
@@ -50,7 +56,10 @@ angular.module('UserAccount').service('UserAccount.services.ipRestrictions', [
             serviceType: 'apiv6',
           },
         )
-        .then((data) => data.data, (http) => $q.reject(http.data));
+        .then(
+          (data) => data.data,
+          (http) => $q.reject(http.data),
+        );
     };
 
     this.getDefaultRule = function getDefaultRule() {

@@ -1846,7 +1846,8 @@ angular
             if (flavorIsValid(flexSsd)) {
               return (
                 self.currentFlavor &&
-                (self.currentFlavor.flex === false && !self.currentFlavor.vps)
+                self.currentFlavor.flex === false &&
+                !self.currentFlavor.vps
               );
             }
             self.model.flex = false;
@@ -1855,7 +1856,8 @@ angular
           if (flavorIsValid(flexCeph)) {
             return (
               self.currentFlavor &&
-              (self.currentFlavor.flex === false && !self.currentFlavor.vps)
+              self.currentFlavor.flex === false &&
+              !self.currentFlavor.vps
             );
           }
           self.model.flex = false;
@@ -1864,7 +1866,8 @@ angular
         if (flavorIsValid(flexSsd) && flavorIsValid(flexCeph)) {
           return (
             self.currentFlavor &&
-            (self.currentFlavor.flex === false && !self.currentFlavor.vps)
+            self.currentFlavor.flex === false &&
+            !self.currentFlavor.vps
           );
         }
         self.model.flex = false;

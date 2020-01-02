@@ -181,8 +181,8 @@ angular.module('App').controller(
       input.$setValidity(
         'passwordCheck',
         !!this.account.password &&
-          (!/^\s/.test(this.account.password) &&
-            !/\s$/.test(this.account.password)) &&
+          !/^\s/.test(this.account.password) &&
+          !/\s$/.test(this.account.password) &&
           !this.account.password.match(
             /[ÂÃÄÀÁÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ]/,
           ),

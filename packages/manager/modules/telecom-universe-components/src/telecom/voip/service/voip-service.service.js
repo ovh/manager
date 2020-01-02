@@ -70,7 +70,8 @@ export default class {
             (res) =>
               has(res, 'value') ||
               (withError &&
-                (keys(res.value).length && has(res.value, 'message'))),
+                keys(res.value).length &&
+                has(res.value, 'message')),
           ),
           (res) => {
             const billingAccount = get(res.path.split('/'), '[2]');

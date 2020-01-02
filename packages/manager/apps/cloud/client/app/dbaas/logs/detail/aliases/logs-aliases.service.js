@@ -133,9 +133,11 @@ class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   getAlias(serviceName, aliasId) {
-    return this.AliasApiService.get({ serviceName, aliasId }).$promise.catch(
-      (err) =>
-        this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
+    return this.AliasApiService.get({
+      serviceName,
+      aliasId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
     );
   }
 
@@ -176,9 +178,11 @@ class LogsAliasesService {
    * @memberof LogsAliasesService
    */
   getAapiAlias(serviceName, aliasId) {
-    return this.AliasAapiService.get({ serviceName, aliasId }).$promise.catch(
-      (err) =>
-        this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
+    return this.AliasAapiService.get({
+      serviceName,
+      aliasId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_alias_get_error', err, {}),
     );
   }
 

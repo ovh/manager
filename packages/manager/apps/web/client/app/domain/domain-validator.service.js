@@ -482,7 +482,8 @@ angular.module('services').service(
             if (
               splitted[1] < 0 ||
               splitted[1] > 65535 ||
-              (splitted[2] < 0 || splitted[2] > 65535) ||
+              splitted[2] < 0 ||
+              splitted[2] > 65535 ||
               !this.regex.NAPTR_service.test(splitted[4])
             ) {
               isValid = false;
@@ -581,8 +582,10 @@ angular.module('services').service(
             if (
               splitted[1] < 0 ||
               splitted[1] > 65535 ||
-              (splitted[2] < 0 || splitted[2] > 65535) ||
-              (splitted[3] < 0 || splitted[3] > 65535)
+              splitted[2] < 0 ||
+              splitted[2] > 65535 ||
+              splitted[3] < 0 ||
+              splitted[3] > 65535
             ) {
               isValid = false;
               break;
