@@ -93,9 +93,10 @@ class LogsIndexService {
   }
 
   getIndexDetails(serviceName, indexId) {
-    return this.IndexAapiService.get({ serviceName, indexId }).$promise.then(
-      (index) => this.constructor.transformAapiIndex(index),
-    );
+    return this.IndexAapiService.get({
+      serviceName,
+      indexId,
+    }).$promise.then((index) => this.constructor.transformAapiIndex(index));
   }
 
   static transformAapiIndex(index) {

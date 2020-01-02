@@ -137,7 +137,8 @@ angular
         const port = parseInt($scope.model.databaseSelected.port, 10);
         return (
           $scope.model.databaseSelected.port.toString().match(/^\d+$/) &&
-          (port >= 1024 && port <= 49151)
+          port >= 1024 &&
+          port <= 49151
         );
       }
 

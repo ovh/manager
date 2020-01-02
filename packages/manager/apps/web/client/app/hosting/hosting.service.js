@@ -542,7 +542,10 @@ import union from 'lodash/union';
                 namespace: 'hosting.cdn.flush.refresh',
                 interval: 30000,
               },
-            ).then((resp) => resp, (err) => err),
+            ).then(
+              (resp) => resp,
+              (err) => err,
+            ),
           ),
         );
       }

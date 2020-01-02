@@ -178,19 +178,22 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getMaintenanceWindow(clusterId) {
-    return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise.catch(
-      (error) => (error.status === 404 ? null : this.$q.reject(error)),
+    return this.OvhApiCloudDBEnterpriseWindow.get({
+      clusterId,
+    }).$promise.catch((error) =>
+      error.status === 404 ? null : this.$q.reject(error),
     );
   }
 
   getRegionDetails(name) {
-    return this.OvhApiCloudDBEnterpriseRegion.get({ name }).$promise.then(
-      (regionInfo) =>
-        set(
-          regionInfo,
-          'maintenanceDuration',
-          get(regionInfo, 'maintenanceDuration', 1) * 60,
-        ),
+    return this.OvhApiCloudDBEnterpriseRegion.get({
+      name,
+    }).$promise.then((regionInfo) =>
+      set(
+        regionInfo,
+        'maintenanceDuration',
+        get(regionInfo, 'maintenanceDuration', 1) * 60,
+      ),
     );
   }
 
@@ -246,8 +249,10 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getUser(clusterId) {
-    return this.OvhApiCloudDBEnterpriseUser.get({ clusterId }).$promise.catch(
-      (error) => (error.status === 404 ? null : this.$q.reject(error)),
+    return this.OvhApiCloudDBEnterpriseUser.get({
+      clusterId,
+    }).$promise.catch((error) =>
+      error.status === 404 ? null : this.$q.reject(error),
     );
   }
 
@@ -339,9 +344,9 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getLogs(clusterId) {
-    return this.OvhApiCloudDBEnterpriseLogs.query({ clusterId }).$promise.then(
-      (ids) => map(ids, (id) => ({ id })),
-    );
+    return this.OvhApiCloudDBEnterpriseLogs.query({
+      clusterId,
+    }).$promise.then((ids) => map(ids, (id) => ({ id })));
   }
 
   getLogDetails(clusterId, logsId) {

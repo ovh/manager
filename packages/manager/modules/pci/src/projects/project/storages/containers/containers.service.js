@@ -198,11 +198,12 @@ export default class PciStoragesContainersService {
   }
 
   getContainerMetaData(projectId, container) {
-    return this.requestContainer(projectId, container, { method: 'HEAD' }).then(
-      (metadata) =>
-        pickBy(metadata.headers(), (value, key) =>
-          X_CONTAINER_HEADERS_REGEX.test(key),
-        ),
+    return this.requestContainer(projectId, container, {
+      method: 'HEAD',
+    }).then((metadata) =>
+      pickBy(metadata.headers(), (value, key) =>
+        X_CONTAINER_HEADERS_REGEX.test(key),
+      ),
     );
   }
 

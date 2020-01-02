@@ -69,9 +69,9 @@ export default /* @ngInject */ ($stateProvider) => {
               : 'PCI_ERROR_REFUSED_PAYMENT',
           });
 
-          return PciProjectNewService.cancelProjectCreation(projectId).then(
-            () => $window.location.reload(),
-          );
+          return PciProjectNewService.cancelProjectCreation(
+            projectId,
+          ).then(() => $window.location.reload());
         }
 
         return true;

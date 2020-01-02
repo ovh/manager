@@ -60,13 +60,15 @@ class LogsTokensService {
    * @memberof LogsTokensService
    */
   getToken(serviceName, tokenId) {
-    return this.TokenApiService.get({ serviceName, tokenId }).$promise.catch(
-      (err) =>
-        this.LogsHelperService.handleError(
-          'logs_tokens_get_detail_error',
-          err,
-          {},
-        ),
+    return this.TokenApiService.get({
+      serviceName,
+      tokenId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError(
+        'logs_tokens_get_detail_error',
+        err,
+        {},
+      ),
     );
   }
 

@@ -192,9 +192,11 @@ class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getStream(serviceName, streamId) {
-    return this.StreamsApiService.get({ serviceName, streamId }).$promise.catch(
-      (err) =>
-        this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
+    return this.StreamsApiService.get({
+      serviceName,
+      streamId,
+    }).$promise.catch((err) =>
+      this.LogsHelperService.handleError('logs_stream_get_error', err, {}),
     );
   }
 

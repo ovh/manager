@@ -297,9 +297,9 @@ angular.module('services').service(
      */
     dumpDatabaseOptions() {
       return this.Hosting.getModels().then((models) => ({
-        dumpDates: models.models['hosting.web.database.dump.DateEnum'].enum.map(
-          (model) => this.WucJavaEnum.tr(model),
-        ),
+        dumpDates: models.models[
+          'hosting.web.database.dump.DateEnum'
+        ].enum.map((model) => this.WucJavaEnum.tr(model)),
       }));
     }
 
