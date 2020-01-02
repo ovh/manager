@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerPciProjectBillingHistoryLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.project.billing.history.**', {
-      url: '/history',
+      url: '/history/:year/:month',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

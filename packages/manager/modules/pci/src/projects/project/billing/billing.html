@@ -4,18 +4,21 @@
 >
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-state="pci.projects.project.billing"
+            data-href="{{:: BillingCtrl.billingLink }}"
+            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.billingLink"
             data-text="{{:: 'cpbc_tab_consumption' | translate }}"
         >
             <span data-translate="cpbc_tab_consumption"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-state="pci.projects.project.billing.estimate"
+            data-href="{{:: BillingCtrl.estimateLink }}"
+            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.estimateLink"
             data-text="{{:: 'cpbc_tab_forecast' | translate }}"
         >
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-state="pci.projects.project.billing.history"
+            data-href="{{:: BillingCtrl.historyLink }}"
+            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.historyLink"
             data-text="{{:: 'cpbc_tab_history' | translate }}"
         >
         </oui-header-tabs-item>
