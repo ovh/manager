@@ -65,18 +65,24 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <oui-tile
-                    heading="{{ ::'cpbhd_monthly_header' | translate:$ctrl.getBillingDateInfo() }}"
-                >
+                <oui-tile>
+                    <span
+                        class="oui-heading_4 oui-tile__title"
+                        data-translate="cpbhd_hourly_header"
+                        data-translate-values="$ctrl.getBillingDateInfo()"
+                    ></span>
                     <monthly-resource-list
                         resources="$ctrl.data.details"
                     ></monthly-resource-list>
                 </oui-tile>
             </div>
             <div class="col-lg-6">
-                <oui-tile
-                    heading="{{ ::'cpbhd_hourly_header' | translate:$ctrl.getBillingDateInfo() }}"
-                >
+                <oui-tile>
+                    <span
+                        class="oui-heading_4 oui-tile__title"
+                        data-translate="cpbhd_hourly_header"
+                        data-translate-values="$ctrl.getBillingDateInfo()"
+                    ></span>
                     <hourly-resource-list
                         resources="$ctrl.data.details"
                         show-additional-instance-details="true"
