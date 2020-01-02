@@ -4,8 +4,12 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     $q,
     $translate,
     $state,
+    billingLink,
+    estimateLink,
     CucCloudMessage,
     CloudProjectBilling,
+    currentActiveLink,
+    historyLink,
     guideUrl,
     OvhApiCloudProjectUsageCurrent,
     projectId,
@@ -13,6 +17,10 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     this.$state = $state;
     this.projectId = projectId;
     this.data = {};
+    this.billingLink = billingLink;
+    this.estimateLink = estimateLink;
+    this.historyLink = historyLink;
+    this.currentActiveLink = currentActiveLink;
 
     this.CucCloudMessage = CucCloudMessage;
     this.guideUrl = guideUrl;
