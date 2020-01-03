@@ -89,11 +89,9 @@ module.exports = (env = {}) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
     },
-    // resolve: {
-    //   alias: {
-    //     jquery: path.resolve(__dirname, 'node_modules/jquery'),
-    //   },
-    // },
+    resolve: {
+      mainFields: ['module', 'browser', 'main'],
+    },
     plugins: [
       new webpack.DefinePlugin({
         __WEBPACK_REGION__: `'${env.region.toUpperCase()}'`,
