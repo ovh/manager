@@ -77,7 +77,8 @@ angular
           },
           {
             name: 'line_resume_offer',
-            disabled: offerCount === 0 || self.line.isTrunk(),
+            disabled:
+              offerCount === 0 || self.line.isTrunk() || !self.group.isNicAdmin,
             sref: 'telecom.telephony.billingAccount.line.offerChange',
             text: $translate.instant(
               'telephony_line_management_actions_line_resume_offer',
@@ -86,7 +87,8 @@ angular
           {
             name: 'line_to_number',
             sref: 'telecom.telephony.billingAccount.line.convert',
-            disabled: isInXdslPack || self.line.isVoicefax(),
+            disabled:
+              isInXdslPack || self.line.isVoicefax() || !self.group.isNicAdmin,
             text: $translate.instant(
               'telephony_line_management_actions_line_to_number',
             ),
@@ -105,6 +107,7 @@ angular
           actions.push({
             name: 'line_delete_line_new',
             sref: 'telecom.telephony.billingAccount.line.terminate',
+            disabled: !self.group.isNicAdmin,
             text: $translate.instant(
               'telephony_line_management_actions_line_delete_line_new',
             ),
@@ -138,6 +141,7 @@ angular
 
         return TelephonyMediator.getGroup($stateParams.billingAccount).then(
           (group) => {
+            self.group = group;
             self.line = group.getLine($stateParams.serviceName);
 
             return $q

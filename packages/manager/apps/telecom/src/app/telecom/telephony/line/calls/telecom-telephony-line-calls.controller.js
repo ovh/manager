@@ -82,7 +82,9 @@ angular
               'telephony_line_calls_actions_line_simultaneouslines',
             ),
             display: true,
-            enable: ['sipfax', 'priceplan', 'trunk'],
+            enable: self.group.isNicAdmin
+              ? ['sipfax', 'priceplan', 'trunk']
+              : [],
           },
           {
             name: 'line_manage_slots',
@@ -146,7 +148,10 @@ angular
 
       function init() {
         return TelephonyMediator.getGroup($stateParams.billingAccount)
-          .then((group) => group.getLine($stateParams.serviceName))
+          .then((group) => {
+            self.group = group;
+            return group.getLine($stateParams.serviceName);
+          })
           .then((line) => {
             self.line = line;
 

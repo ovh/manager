@@ -75,6 +75,7 @@ angular
           {
             name: 'line_phone_order_plug_and_phone',
             sref: 'telecom.telephony.billingAccount.line.phone.order',
+            disabled: !self.billingAccount.isNicAdmin,
             text: self.line.hasPhone
               ? $translate.instant(
                   'telephony_line_phone_actions_line_phone_change_plug_and_phone',

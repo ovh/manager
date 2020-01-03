@@ -26,7 +26,6 @@ angular
       TucToast,
       OvhApiOrder,
       OvhApiTelephony,
-      OvhApiMe,
     ) {
       const self = this;
 
@@ -157,10 +156,6 @@ angular
               return $q.reject(error);
             },
           ),
-          OvhApiMe.v6().get().$promise,
-          OvhApiTelephony.v6().getServiceInfos({
-            billingAccount: $stateParams.billingAccount,
-          }).$promise,
           OvhApiOrder.Telephony()
             .v6()
             .billingAccounts()
@@ -170,18 +165,9 @@ angular
                 -1;
               return self.canOrderAlias;
             }),
-        ])
-          .then((result) => {
-            const me = result[1];
-            const serviceInfo = result[2];
-            self.group.isNicAdmin = me.nichandle === serviceInfo.contactAdmin;
-            self.group.isNicTech = me.nichandle === serviceInfo.contactTech;
-            self.group.isNicBilling =
-              me.nichandle === serviceInfo.contactBilling;
-          })
-          .finally(() => {
-            self.loading.init = false;
-          });
+        ]).finally(() => {
+          self.loading.init = false;
+        });
       }
 
       /* -----  End of INITIALIZATION  ------*/

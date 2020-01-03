@@ -10,6 +10,7 @@ angular
     TelephonyGroupLine,
     TelephonyGroupNumber,
     TelephonyGroupFax,
+    OvhApiMe,
   ) {
     const self = this;
 
@@ -17,6 +18,8 @@ angular
      * Fetch all telephony services and billing account using API V7
      */
     self.fetchAll = function fetchAll() {
+      const me = OvhApiMe.v6().get();
+
       const groups = {}; // indexed by billing accounts
 
       // fetch all billing accounts
@@ -30,6 +33,19 @@ angular
               // how should we handle errors ?
               const telephonyGroup = new TelephonyGroup(item.value);
               groups[telephonyGroup.billingAccount] = telephonyGroup;
+
+              OvhApiTelephony.v6()
+                .getServiceInfos({
+                  billingAccount: telephonyGroup.billingAccount,
+                })
+                .$promise.then((serviceInfo) => {
+                  telephonyGroup.isNicAdmin =
+                    me.nichandle === serviceInfo.contactAdmin;
+                  telephonyGroup.isNicTech =
+                    me.nichandle === serviceInfo.contactTech;
+                  telephonyGroup.isNicBilling =
+                    me.nichandle === serviceInfo.contactBilling;
+                });
             }
           });
 
