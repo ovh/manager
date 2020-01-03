@@ -22,6 +22,7 @@ export default class BlockStorage {
           'backing-up',
           'restoring-backup',
           'snapshotting',
+          'awaiting-transfer',
         ],
         this.status,
       )
