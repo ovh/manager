@@ -4,7 +4,6 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   plugins: [
-    '@typescript-eslint/eslint-plugin',
     'angular',
     'markdown',
     'prettier',
