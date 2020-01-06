@@ -43,10 +43,9 @@ export default class {
   }
 
   deleteOne(access) {
-    this.VpsActionService.deleteBackupStorage(
-      this.serviceName,
-      access,
-    ).then(() => this.backup.load());
+    this.VpsActionService.deleteBackupStorage(this.serviceName, access).then(
+      () => this.backup.load(),
+    );
   }
 
   editOne(row) {

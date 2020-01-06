@@ -49,15 +49,17 @@ export default class TicketService {
     return this.get(id)
       .then((ticketFromApi) => this.buildFromApi(ticketFromApi))
       .then((ticket) =>
-        this.ticketMessageService.query(id).then((messagesFromApi) =>
-          set(
-            ticket,
-            'messages',
-            map(messagesFromApi, (messageFromApi) =>
-              this.ticketMessageService.buildFromApi(messageFromApi),
+        this.ticketMessageService
+          .query(id)
+          .then((messagesFromApi) =>
+            set(
+              ticket,
+              'messages',
+              map(messagesFromApi, (messageFromApi) =>
+                this.ticketMessageService.buildFromApi(messageFromApi),
+              ),
             ),
           ),
-        ),
       );
   }
 

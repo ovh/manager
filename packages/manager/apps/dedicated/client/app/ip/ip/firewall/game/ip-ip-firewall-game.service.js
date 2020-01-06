@@ -54,10 +54,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
             ].join('/'),
           ].join('/'),
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getRules = function getRules(ipBlock, ip) {
@@ -73,10 +70,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
             ].join('/'),
           ].join('/'),
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getRule = function getRule(ipBlock, ip, ruleId) {
@@ -93,10 +87,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
             ruleId,
           ].join('/'),
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.postRule = function postRule(ipBlock, ip, rule) {
@@ -113,10 +104,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
           ].join('/'),
           rule,
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.deleteRule = function deleteRule(ipBlock, ip, ruleId) {
@@ -133,10 +121,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
             ruleId,
           ].join('/'),
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.putFirewall = function putFirewall(ipBlock, ip, enable) {
@@ -154,10 +139,7 @@ angular.module('Module.ip.services').service('IpGameFirewall', [
             firewallModeEnabled: enable,
           },
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
   },
 ]);

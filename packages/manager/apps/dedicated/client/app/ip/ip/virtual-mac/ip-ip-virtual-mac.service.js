@@ -51,10 +51,7 @@ angular.module('Module.ip.services').service('IpVirtualMac', [
           `${swsProxypassPath}/dedicated/server/${serviceName}/virtualMac`,
           { ipAddress, type, virtualMachineName },
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
 
     this.addIpToVirtualMac = (
       serviceName,
@@ -67,20 +64,14 @@ angular.module('Module.ip.services').service('IpVirtualMac', [
           `${swsProxypassPath}/dedicated/server/${serviceName}/virtualMac/${macAddress}/virtualAddress`,
           { ipAddress, virtualMachineName },
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
 
     this.deleteVirtualMac = (serviceName, macAddress, ipAddress) =>
       $http
         .delete(
           `${swsProxypassPath}/dedicated/server/${serviceName}/virtualMac/${macAddress}/virtualAddress/${ipAddress}`,
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
 
     this.getVirtualMacDetails = (serviceName, macAddress, ipAddress) => {
       const queue = [];
@@ -89,20 +80,14 @@ angular.module('Module.ip.services').service('IpVirtualMac', [
           .get(
             `${swsProxypassPath}/dedicated/server/${serviceName}/virtualMac/${macAddress}`,
           )
-          .then(
-            (data) => data.data,
-            (http) => $q.reject(http.data),
-          ),
+          .then((data) => data.data, (http) => $q.reject(http.data)),
       );
       queue.push(
         $http
           .get(
             `${swsProxypassPath}/dedicated/server/${serviceName}/virtualMac/${macAddress}/virtualAddress/${ipAddress}`,
           )
-          .then(
-            (data) => data.data,
-            (http) => $q.reject(http.data),
-          ),
+          .then((data) => data.data, (http) => $q.reject(http.data)),
       );
 
       return $q.all(queue).then((details) => {

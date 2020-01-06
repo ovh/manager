@@ -125,10 +125,7 @@ export default class DedicatedServerInterfacesService {
   getTasks(serverName) {
     return this.$http
       .get(`/dedicated/server/${serverName}/task?function=${INTERFACE_TASK}`)
-      .then(
-        (response) => response.data,
-        () => [],
-      )
+      .then((response) => response.data, () => [])
       .then((taskIds) => ({
         promise: this.waitAllTasks(
           serverName,

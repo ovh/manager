@@ -81,12 +81,11 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
       ) =>
-        PciProjectsProjectInstanceService.getAllInstanceDetails(
-          projectId,
-        ).then((instances) =>
-          filter(instances, ({ ipAddresses }) =>
-            find(ipAddresses, { type: 'public' }),
-          ),
+        PciProjectsProjectInstanceService.getAllInstanceDetails(projectId).then(
+          (instances) =>
+            filter(instances, ({ ipAddresses }) =>
+              find(ipAddresses, { type: 'public' }),
+            ),
         ),
     },
   });

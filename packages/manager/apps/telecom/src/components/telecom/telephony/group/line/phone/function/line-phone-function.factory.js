@@ -158,10 +158,7 @@ angular
 
             return $q
               .all(requests)
-              .then(
-                () => resultKeys,
-                () => resultKeys,
-              )
+              .then(() => resultKeys, () => resultKeys)
               .finally(() => resultKeys);
           },
           () => $q.when(resultKeys),

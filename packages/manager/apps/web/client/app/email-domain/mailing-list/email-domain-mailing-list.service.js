@@ -189,10 +189,9 @@ angular.module('services').service(
         const users = drop(opts.users, limit);
 
         if (size(users) > 0) {
-          return this.addSubscribers(
-            serviceName,
-            assign(opts, { users }),
-          ).then((d) => [data].concat(d));
+          return this.addSubscribers(serviceName, assign(opts, { users })).then(
+            (d) => [data].concat(d),
+          );
         }
 
         return [data];

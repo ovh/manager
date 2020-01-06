@@ -47,9 +47,9 @@ angular.module('managerApp').controller(
         period: 'preview',
       };
 
-      const PingStatsPromise = this.getPingStatistics(
-        this.ping.period,
-      ).then(() => this.getTrafficStatistics(this.traffic.period));
+      const PingStatsPromise = this.getPingStatistics(this.ping.period).then(
+        () => this.getTrafficStatistics(this.traffic.period),
+      );
 
       if (!this.$scope.access.xdsl.isFiber) {
         return this.$q.all([

@@ -36,10 +36,7 @@ angular.module('services').service('User', [
         );
       }
 
-      return userPromise.then(
-        () => user,
-        (error) => $q.reject(error),
-      );
+      return userPromise.then(() => user, (error) => $q.reject(error));
     };
 
     this.getUser();

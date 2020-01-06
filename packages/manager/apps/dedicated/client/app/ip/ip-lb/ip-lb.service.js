@@ -120,10 +120,7 @@ angular.module('Module.ip.services').service('Iplb', [
         {
           namespace: opts.namespace,
         },
-      ).then(
-        (resp) => resp,
-        (err) => $q.reject(err),
-      );
+      ).then((resp) => resp, (err) => $q.reject(err));
     };
 
     this.killAllPolling = function killAllPolling() {
@@ -140,19 +137,18 @@ angular.module('Module.ip.services').service('Iplb', [
     // ---
 
     this.getList = function getList() {
-      return $http.get([swsProxypassPath, 'ip/loadBalancing'].join('/')).then(
-        (response) => response.data || [],
-        (http) => $q.reject(http.data),
-      );
+      return $http
+        .get([swsProxypassPath, 'ip/loadBalancing'].join('/'))
+        .then(
+          (response) => response.data || [],
+          (http) => $q.reject(http.data),
+        );
     };
 
     this.getDetails = function getDetails(serviceName) {
       return $http
         .get([swsProxypassPath, 'ip/loadBalancing', serviceName].join('/'))
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getServiceInfos = function getServiceInfos(serviceName) {
@@ -165,10 +161,7 @@ angular.module('Module.ip.services').service('Iplb', [
             'serviceInfos',
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getInternalNatIp = function getInternalNatIp(serviceName, zone) {
@@ -267,10 +260,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ),
           { params: { domain } },
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.postOrderSsl = function postOrderSsl(serviceName, domain) {
       return $http
@@ -280,10 +270,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ),
           { domain },
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     // Import ssl
@@ -390,10 +377,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ),
           { params: { pop } },
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.postOrderPop = function postOrderPop(serviceName, pop) {
       return $http
@@ -403,10 +387,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ),
           { pop },
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     /* / ZONE */
@@ -420,10 +401,7 @@ angular.module('Module.ip.services').service('Iplb', [
             '/',
           ),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getBackend = function getBackend(serviceName, backend) {
@@ -437,10 +415,7 @@ angular.module('Module.ip.services').service('Iplb', [
             backend,
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.putBackend = function putBackend(serviceName, backend, data) {
       return $http
@@ -454,10 +429,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ].join('/'),
           data,
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.deleteBackend = function deleteBackend(serviceName, backend) {
       return $http
@@ -470,10 +442,7 @@ angular.module('Module.ip.services').service('Iplb', [
             backend,
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.addBackend = function addBackend(serviceName, data) {
       return $http
@@ -483,10 +452,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ),
           data,
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     function pollWithParam(opts, paramNotif) {
@@ -528,10 +494,7 @@ angular.module('Module.ip.services').service('Iplb', [
             'allowedBackends',
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.setWeight = function setWeight(serviceName, backend, weight) {
@@ -547,10 +510,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ].join('/'),
           { weight },
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.pollsetWeight = this.pollBackendList;
 
@@ -567,10 +527,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ].join('/'),
           data,
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.pollbackupStateSet = this.pollBackendList;
     this.pollbackupStateUnset = this.pollBackendList;
@@ -630,10 +587,7 @@ angular.module('Module.ip.services').service('Iplb', [
             'portsRedirection',
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
 
     this.getPortsRedirection = function getPortsRedirection(
@@ -650,10 +604,7 @@ angular.module('Module.ip.services').service('Iplb', [
             srcPort,
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.addPortsRedirection = function addPortsRedirection(serviceName, data) {
       return $http
@@ -666,10 +617,7 @@ angular.module('Module.ip.services').service('Iplb', [
           ].join('/'),
           data,
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
     this.deletePortsRedirection = function deletePortsRedirection(
       serviceName,
@@ -685,10 +633,7 @@ angular.module('Module.ip.services').service('Iplb', [
             srcPort,
           ].join('/'),
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
     };
   },
 ]);
