@@ -32,7 +32,6 @@
     "@commitlint/cli": "^8.3.3",
     "@commitlint/config-angular": "^8.2.0",
     "@ovh-ux/codename-generator": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.3.0",
     "babel-eslint": "^10.0.3",
     "commander": "^2.20.0",
     "concat-stream": "^2.0.0",
