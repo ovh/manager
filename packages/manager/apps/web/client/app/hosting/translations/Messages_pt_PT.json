@@ -1397,5 +1397,6 @@
   "hosting_dashboard_service_activate_cdn": "Ativar uma CDN",
   "hosting_dashboard_cdn_order_success_activation": "Sua ativação foi concluída com êxito. O seu produto ficará ativo dentro de alguns instantes.",
   "hosting_tab_DATABASES_configuration_order_title_button_private": "Encomendar uma base de dados SQL privada",
-  "hosting_tab_DATABASES_configuration_order_title_private": "Encomendar uma base de dados SQL privada"
+  "hosting_tab_DATABASES_configuration_order_title_private": "Encomendar uma base de dados SQL privada",
+  "hosting_tab_DATABASES_table_header_server_address_tooltip": "Utilize o nome do host fornecido para se ligar à sua instância, o endereço IP associado pode evoluir ao longo do tempo."
 }
