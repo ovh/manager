@@ -528,12 +528,26 @@ angular
           $scope.getReverseDelegations(ipBlock);
         }
 
-        Ip.getIpsForIpBlock(
-          ipBlock.ipBlock,
-          ipBlock.service.serviceName,
-          ipBlock.service.category,
-        ).then((data) => {
-          set(ipBlock, 'ips', data);
+        const isUniqueIp = ipBlock.isUniq;
+        const updateReversePromise = isUniqueIp
+          ? loadService(ipBlock.service)
+          : Ip.getIpsForIpBlock(
+              ipBlock.ipBlock,
+              ipBlock.service.serviceName,
+              ipBlock.service.category,
+            );
+
+        return updateReversePromise.then((serviceIpBlock) => {
+          if (isUniqueIp) {
+            const updatedIpBlock = find(serviceIpBlock, {
+              ipBlock: ipBlock.ipBlock,
+            });
+
+            set(ipBlock, 'ips', updatedIpBlock.ips);
+          } else {
+            set(ipBlock, 'ips', serviceIpBlock);
+          }
+
           checkIps(ipBlock);
           set(ipBlock, 'refreshing', false);
         });
