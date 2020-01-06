@@ -38,14 +38,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
       ) =>
-        PciProjectsProjectInstanceService.getPrivateNetworks(
-          projectId,
-        ).then((networks) =>
-          filter(
-            networks,
-            ({ status, regions }) =>
-              status === 'ACTIVE' && find(regions, { region: backup.region }),
-          ),
+        PciProjectsProjectInstanceService.getPrivateNetworks(projectId).then(
+          (networks) =>
+            filter(
+              networks,
+              ({ status, regions }) =>
+                status === 'ACTIVE' && find(regions, { region: backup.region }),
+            ),
         ),
 
       goBack: /* @ngInject */ (goToInstanceBackups) => goToInstanceBackups,

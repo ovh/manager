@@ -53,10 +53,9 @@ class LogsInputsAddEditCtrl {
     if (this.editMode) {
       this.input = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsInputsService.getInput(
-            this.serviceName,
-            this.inputId,
-          ).then((input) => this.LogsInputsService.transformInput(input)),
+          this.LogsInputsService.getInput(this.serviceName, this.inputId).then(
+            (input) => this.LogsInputsService.transformInput(input),
+          ),
       });
     }
     this.details = this.CucControllerHelper.request.getHashLoader({

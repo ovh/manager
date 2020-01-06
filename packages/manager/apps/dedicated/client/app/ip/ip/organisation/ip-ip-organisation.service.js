@@ -28,10 +28,9 @@ angular.module('Module.ip.services').service('IpOrganisation', [
               }),
             );
           });
-          return $q.all(queue).then(
-            () => organisations,
-            (http) => $q.reject(http.data),
-          );
+          return $q
+            .all(queue)
+            .then(() => organisations, (http) => $q.reject(http.data));
         },
         (http) => $q.reject(http.data),
       );
@@ -53,10 +52,7 @@ angular.module('Module.ip.services').service('IpOrganisation', [
             ovhSubsidiary,
           },
         })
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.postOrganisation = function postOrganisation(params) {

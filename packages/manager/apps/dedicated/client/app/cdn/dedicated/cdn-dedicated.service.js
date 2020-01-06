@@ -137,10 +137,7 @@ angular
           }
           return $q.reject(cdn);
         })
-        .then(
-          () => result,
-          (http) => $q.reject(http.data),
-        );
+        .then(() => result, (http) => $q.reject(http.data));
     };
 
     /*
@@ -517,10 +514,7 @@ angular
           }
           return $q.reject(cdn);
         })
-        .then(
-          () => result,
-          (http) => $q.reject(http.data),
-        );
+        .then(() => result, (http) => $q.reject(http.data));
     };
 
     /*

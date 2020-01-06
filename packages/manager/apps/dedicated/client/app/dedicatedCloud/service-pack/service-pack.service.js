@@ -230,14 +230,13 @@ export const ServicePackService = class ServicePack {
   }
 
   getHosts(serviceName) {
-    return this.DedicatedCloud.getDatacentersInformations(
-      serviceName,
-    ).then((datacenters) =>
-      reduce(
-        map(datacenters.list.results, 'hosts'),
-        (acc, host) => flatten([...acc, values(host)]),
-        [],
-      ),
+    return this.DedicatedCloud.getDatacentersInformations(serviceName).then(
+      (datacenters) =>
+        reduce(
+          map(datacenters.list.results, 'hosts'),
+          (acc, host) => flatten([...acc, values(host)]),
+          [],
+        ),
     );
   }
 };

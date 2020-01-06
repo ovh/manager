@@ -133,14 +133,13 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
           this.clusterDetails.id,
           this.data.clusterPassword,
         ),
-        this.getSecurityGroup(
-          this.data.securityGroupName,
-        ).then((securityGroup) =>
-          this.enterpriseCloudDatabaseService.createRule(
-            this.clusterDetails.id,
-            securityGroup.id,
-            this.data.rule,
-          ),
+        this.getSecurityGroup(this.data.securityGroupName).then(
+          (securityGroup) =>
+            this.enterpriseCloudDatabaseService.createRule(
+              this.clusterDetails.id,
+              securityGroup.id,
+              this.data.rule,
+            ),
         ),
       ])
       .then(() => {

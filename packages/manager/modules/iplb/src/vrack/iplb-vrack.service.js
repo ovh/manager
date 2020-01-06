@@ -108,10 +108,9 @@ export default class IpLoadBalancerVrackService {
     return this.CucCloudPoll.pollArray({
       items: tasksObject,
       pollFunction: (task) =>
-        this.IpLoadBalancerTaskService.getTask(
-          serviceName,
-          task.id,
-        ).catch(() => ({ status: 'done' })),
+        this.IpLoadBalancerTaskService.getTask(serviceName, task.id).catch(
+          () => ({ status: 'done' }),
+        ),
       stopCondition: (item) =>
         item.status === 'done' || item.status === 'error',
     });
@@ -149,14 +148,12 @@ export default class IpLoadBalancerVrackService {
   }
 
   getPrivateNetworkFarms(serviceName, networkId) {
-    return this.getPrivateNetwork(
-      serviceName,
-      networkId,
-    ).then((privateNetwork) =>
-      this.IpLoadBalancerServerFarmService.getServerFarms(
-        serviceName,
-        privateNetwork.vrackNetworkId,
-      ),
+    return this.getPrivateNetwork(serviceName, networkId).then(
+      (privateNetwork) =>
+        this.IpLoadBalancerServerFarmService.getServerFarms(
+          serviceName,
+          privateNetwork.vrackNetworkId,
+        ),
     );
   }
 

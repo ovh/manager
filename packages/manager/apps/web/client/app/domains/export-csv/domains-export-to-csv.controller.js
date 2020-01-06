@@ -139,10 +139,7 @@ angular.module('App').controller(
         ),
       );
       const requestsNeeded = uniq(
-        map(
-          filter(choices, (opt) => opt.target),
-          (opt) => opt.target,
-        ),
+        map(filter(choices, (opt) => opt.target), (opt) => opt.target),
       );
 
       this.Domain.getDomains()

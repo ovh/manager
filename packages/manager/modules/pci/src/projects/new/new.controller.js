@@ -81,10 +81,9 @@ export default class PciProjectNewCtrl {
     if (currentStep.name === 'description') {
       return this.region !== 'US'
         ? this.getStateLink('next')
-        : get(
-            PCI_URLS,
-            'US.website_order["cloud-resell-eu"].US',
-          )(currentStep.model.name || '');
+        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(
+            currentStep.model.name || '',
+          );
     }
 
     return this.paymentMethodUrl;

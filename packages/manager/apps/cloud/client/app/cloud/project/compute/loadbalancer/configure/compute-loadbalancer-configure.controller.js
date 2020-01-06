@@ -80,10 +80,9 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
     // Get loadbalancer pending tasks and define poller
     this.tasks = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
-        this.IpLoadBalancerTaskService.getTasks(
-          this.loadbalancerId,
-        ).then((tasks) =>
-          filter(tasks, (task) => includes(['todo', 'doing'], task.status)),
+        this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then(
+          (tasks) =>
+            filter(tasks, (task) => includes(['todo', 'doing'], task.status)),
         ),
       successHandler: () => this.startTaskPolling(),
     });

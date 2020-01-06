@@ -100,10 +100,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
             serviceType: 'apiv6',
           },
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.toggleFirewall = function toggleFirewall(ipBlock, ip, enabled) {
@@ -120,10 +117,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
             serviceType: 'apiv6',
           },
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.getFirewallDetails = function getFirewallDetails(ipBlock, ip) {
@@ -133,10 +127,9 @@ angular.module('Module.ip.services').service('IpFirewall', [
         'firewall',
         ip,
       ].join('/');
-      return $http.get(url, { serviceType: 'apiv6' }).then(
-        (result) => result.data,
-        (http) => $q.reject(http.data),
-      );
+      return $http
+        .get(url, { serviceType: 'apiv6' })
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.getFirewallRuleConstants = function getFirewallRuleConstants() {
@@ -171,10 +164,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
             serviceType: 'aapi',
           },
         )
-        .then(
-          (result) => result.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((result) => result.data, (http) => $q.reject(http.data));
     };
 
     this.addFirewallRule = function addFirewallRule(ipBlock, ip, rule) {
@@ -225,10 +215,7 @@ angular.module('Module.ip.services').service('IpFirewall', [
           ].join('/'),
           { serviceType: 'apiv6' },
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
   },
 ]);

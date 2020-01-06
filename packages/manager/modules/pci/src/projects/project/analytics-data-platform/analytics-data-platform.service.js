@@ -214,11 +214,9 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   getNewToken(publicCloudId, userId, password) {
-    return this.generateUserToken(
-      publicCloudId,
-      userId,
-      password,
-    ).then((token) => get(token, 'X-Auth-Token'));
+    return this.generateUserToken(publicCloudId, userId, password).then(
+      (token) => get(token, 'X-Auth-Token'),
+    );
   }
 
   /**

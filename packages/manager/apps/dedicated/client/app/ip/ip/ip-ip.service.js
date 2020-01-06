@@ -25,10 +25,7 @@ angular
           [swsProxypassPath, 'ip', window.encodeURIComponent(block)].join('/'),
           { cache: true },
         )
-        .then(
-          (response) => response.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((response) => response.data, (http) => $q.reject(http.data));
 
     this.checkTaskUnique = (ipBlock, fct) => {
       const queue = [];
@@ -351,10 +348,9 @@ angular
         =============================== */
 
     this.getDedicatedServicesList = function getDedicatedServicesList() {
-      return $http.get([swsProxypassPath, 'dedicated/server'].join('/')).then(
-        (data) => data.data.sort(),
-        (http) => $q.reject(http.data),
-      );
+      return $http
+        .get([swsProxypassPath, 'dedicated/server'].join('/'))
+        .then((data) => data.data.sort(), (http) => $q.reject(http.data));
     };
 
     this.checkIfIpCanBeMovedTo = function checkIfIpCanBeMovedTo(
@@ -367,10 +363,7 @@ angular
             ip,
           )}`,
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.moveIpBlock = function moveIpBlock(serviceName, block, nexthop) {
@@ -379,19 +372,13 @@ angular
           `${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`,
           { to: serviceName, nexthop },
         )
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
     };
 
     this.moveIpBlockToPark = (block) =>
       $http
         .post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/park`)
-        .then(
-          (data) => data.data,
-          (http) => $q.reject(http.data),
-        );
+        .then((data) => data.data, (http) => $q.reject(http.data));
 
     this.getIpMove = (block) =>
       $http

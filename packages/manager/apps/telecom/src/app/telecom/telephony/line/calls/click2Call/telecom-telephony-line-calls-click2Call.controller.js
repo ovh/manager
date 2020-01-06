@@ -30,10 +30,9 @@ angular
 
         return $q
           .all([
-            self.clickToCall.call(self.numberToCall).then(
-              () => true,
-              (error) => error,
-            ),
+            self.clickToCall
+              .call(self.numberToCall)
+              .then(() => true, (error) => error),
             $timeout(angular.noop, 1000),
           ])
           .then((responses) => {

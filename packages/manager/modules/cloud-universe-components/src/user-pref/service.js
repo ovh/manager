@@ -3,10 +3,9 @@ import isString from 'lodash/isString';
 export default /* @ngInject */ function($q, ovhUserPref) {
   this.get = function get(key) {
     if (isString(key)) {
-      return ovhUserPref.getValue(key.toUpperCase()).then(
-        (data) => $q.when(data || {}),
-        () => ({}),
-      );
+      return ovhUserPref
+        .getValue(key.toUpperCase())
+        .then((data) => $q.when(data || {}), () => ({}));
     }
     return $q.reject('UserPref key must be of type String');
   };
