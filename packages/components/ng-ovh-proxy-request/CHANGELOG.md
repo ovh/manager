@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-proxy-request/compare/v1.0.0...v1.0.1) (2020-01-07)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-proxy-request/compare/v0.1.0...v1.0.0) (2019-10-22)
 
 
