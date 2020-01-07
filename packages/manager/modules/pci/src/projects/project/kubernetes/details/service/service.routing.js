@@ -46,6 +46,9 @@ export default /* @ngInject */ ($stateProvider) => {
           { kubeId, projectId },
         ),
 
+      isVersionSupported: /* @ngInject */ (clusterMinorVersion, versions) =>
+        versions.includes(clusterMinorVersion.toString()),
+
       breadcrumb: () => false,
     },
   });
