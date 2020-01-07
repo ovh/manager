@@ -154,6 +154,11 @@ export default class TelecomTelephonyAliasPortabilitiesCtrl {
   }
 
   checkPortabilityStatus(index) {
+    // If portability first step is toDo, lastStepDone isn't initialized
+    if (!this.numbers[index].lastStepDone) {
+      return false;
+    }
+
     return [
       PORTABILITY_STATUS.formSent,
       PORTABILITY_STATUS.formReceived,
