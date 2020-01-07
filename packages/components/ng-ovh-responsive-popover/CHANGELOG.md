@@ -1,3 +1,7 @@
+## [5.0.1](https://github.com/ovh-ux/ng-ovh-responsive-popover/compare/v5.0.0...v5.0.1) (2020-01-07)
+
+
+
 # [5.0.0](https://github.com/ovh-ux/ng-ovh-responsive-popover/compare/v5.0.0-beta.0...v5.0.0) (2019-10-22)
 
 
