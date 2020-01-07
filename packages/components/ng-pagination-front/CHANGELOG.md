@@ -1,3 +1,7 @@
+## [8.0.1](https://github.com/ovh-ux/ng-pagination-front/compare/v8.0.0...v8.0.1) (2020-01-07)
+
+
+
 # [8.0.0](https://github.com/ovh-ux/ng-pagination-front/compare/v8.0.0-alpha.0...v8.0.0) (2019-10-23)
 
 
