@@ -1,3 +1,12 @@
+# [8.5.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.5...v8.5.0) (2020-01-07)
+
+
+### Features
+
+* **list:** allow an item to be hidden ([#111](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/111)) ([5dd5cf2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/5dd5cf2e5f089dea22716fe5d9e878353f713252))
+
+
+
 ## [8.4.5](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.4.4...v8.4.5) (2019-11-08)
 
 
