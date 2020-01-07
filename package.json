@@ -26,7 +26,9 @@
     "release": "scripts/release.js",
     "split": "scripts/split.js",
     "test": "yarn lint",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "vuepress:build": "vuepress build docs",
+    "vuepress:dev": "vuepress dev docs"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.3",
@@ -48,6 +50,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "execa": "^2.0.5",
     "find-free-port": "^2.0.0",
+    "get-monorepo-packages": "^1.2.0",
     "git-raw-commits": "^2.0.2",
     "git-url-parse": "^11.1.2",
     "htmlhint": "^0.11.0",
@@ -72,7 +75,8 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.13.0",
-    "tcp-port-used": "^1.0.1"
+    "tcp-port-used": "^1.0.1",
+    "vuepress": "^1.2.0"
   },
   "engines": {
     "node": ">=12.13",

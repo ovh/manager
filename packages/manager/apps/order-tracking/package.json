@@ -2,6 +2,11 @@
   "name": "@ovh-ux/order-tracking-app",
   "version": "1.0.2",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/order-tracking"
+  },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
