@@ -13,5 +13,6 @@
   "mxPlan_price_without_tax": "Prezzo IVA esclusa: ",
   "mxPlan_price_with_tax": "Prezzo IVA inclusa: ",
   "mxPlan_order_action": "Ordina",
-  "mxPlan_order_error_payment": "Si è verificato un errore durante il caricamento dei metodi di pagamento."
+  "mxPlan_order_error_payment": "Si è verificato un errore durante il caricamento dei metodi di pagamento.",
+  "mxPlan_order_activate": "Attiva"
 }
