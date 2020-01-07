@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-sidebar-menu
+$ yarn add @ovh-ux/ng-ovh-sidebar-menu
 ```
 
 ## Usage
@@ -16,29 +16,23 @@ yarn add @ovh-ux/ng-ovh-sidebar-menu
 import angular from 'angular';
 import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 
-angular
-  .module('myApp', [
-    ngOvhSidebarMenu,
-  ]);
+angular.module('myApp', [ngOvhSidebarMenu]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
-## TODO
+## Roadmap
 
-- [ ] custom styles on scroll bar;
-- [ ] virtual scroll;
-- [ ] search into sections;
-- [ ] display show all button when more than 10 items.
+To know what is going on, click [here](./ROADMAP.md).
 
 ## Related
 
-- [ng-ovh-actions-menu](https://github.com/ovh-ux/ng-ovh-actions-menu)
-- [ng-slide-down](https://github.com/TheRusskiy/ng-slide-down)
+- [ng-ovh-actions-menu](https://github.com/ovh-ux/ng-ovh-actions-menu) - Group a set of actions for a specific context under a single menu
+- [ng-slide-down](https://github.com/TheRusskiy/ng-slide-down) - AngularJS directive for slide-down animation
 
 ## Contributing
 

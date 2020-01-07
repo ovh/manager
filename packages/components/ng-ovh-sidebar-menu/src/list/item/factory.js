@@ -148,6 +148,7 @@ export default /* @ngInject */ function ($q, $timeout) {
 
     this.isOpen = false;
     this.isActive = false;
+    this.shouldHide = null;
 
     // string to perform search on
     this.searchable = options.searchable !== false;
@@ -564,6 +565,22 @@ export default /* @ngInject */ function ($q, $timeout) {
       return self;
     };
   }());
+
+  /**
+     *  @ngdoc method
+     *  @name sidebarMenu.object:SidebarMenuListItem#hide
+     *  @methodOf sidebarMenu.object:SidebarMenuListItem
+     *
+     *  @description
+     *  Hide item.
+     *
+     *  @returns {SidebarMenuListItem} Current instance of menu item.
+     */
+  SidebarMenuListItem.prototype.hide = function hide() {
+    const self = this;
+    self.shouldHide = true;
+    return self;
+  };
 
   /* -----  End of PROTOTYPE METHODS  ------*/
 

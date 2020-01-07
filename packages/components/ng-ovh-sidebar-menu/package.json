@@ -3,7 +3,11 @@
   "version": "8.4.5",
   "description": "Manage and display a left menu tree",
   "keywords": [
-    "angular"
+    "angularjs",
+    "menu",
+    "ovh",
+    "ovhcloud",
+    "sidebar"
   ],
   "repository": "ovh-ux/ng-ovh-sidebar-menu",
   "license": "BSD-3-Clause",
@@ -15,14 +19,14 @@
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-sidebar-menu.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -cw --environment BUILD:development",
     "lint": "run-p lint:html lint:css lint:js lint:md",
     "lint:css": "stylelint 'src/**/*.less' --fix",
     "lint:html": "htmlhint 'src/**/*.html'",
     "lint:js": "eslint --quiet --fix --format=pretty src",
     "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
-    "prepare": "rollup -c",
+    "prepare": "yarn run build",
     "test": "yarn run lint",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
@@ -34,17 +38,17 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-angular": "^8.2.0",
     "@ovh-ux/component-rollup-config": "^7.0.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-formatter-pretty": "^2.1.1",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-formatter-pretty": "^3.0.1",
+    "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-markdown": "^1.0.1",
     "htmlhint": "^0.11.0",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "npm-run-all": "^4.1.5",
-    "ovh-ui-kit": "^2.35.3",
-    "stylelint": "^11.1.1",
+    "ovh-ui-kit": "^2.36.1",
+    "stylelint": "^12.0.1",
     "stylelint-config-standard": "^19.0.0"
   },
   "peerDependencies": {
@@ -53,5 +57,8 @@
     "angular": "1.6.10",
     "angular-translate": "^2.17.0",
     "ng-slide-down": "^0.4.2"
+  },
+  "resolutions": {
+    "set-value": "^2.0.1"
   }
 }
