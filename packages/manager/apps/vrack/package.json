@@ -2,6 +2,11 @@
   "name": "@ovh-ux/manager-vrack-app",
   "version": "0.3.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/vrack"
+  },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {

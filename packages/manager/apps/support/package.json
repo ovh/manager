@@ -2,6 +2,11 @@
   "name": "@ovh-ux/manager-support-app",
   "version": "0.1.2",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/support"
+  },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
