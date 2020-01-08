@@ -1,3 +1,12 @@
+## [13.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.1...@ovh-ux/manager-web@13.39.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **web:** hosting tabs ([#2039](https://github.com/ovh/manager/issues/2039)) ([33b462e](https://github.com/ovh/manager/commit/33b462e725b86f689f3f81f78b50bab450c318b4))
+
+
+
 ## [13.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.0...@ovh-ux/manager-web@13.39.1) (2019-12-24)
 
 
