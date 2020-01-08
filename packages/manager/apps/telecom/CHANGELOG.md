@@ -1,3 +1,15 @@
+## [11.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.1...@ovh-ux/manager-telecom@11.3.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+* **telephony:** remove height rule on img ([#2028](https://github.com/ovh/manager/issues/2028)) ([dbe1432](https://github.com/ovh/manager/commit/dbe14322955b6b1776b8a0fb4e660cf286e06e08))
+* **telephony.alias.config:** remove agent number edition in agents list ([#2010](https://github.com/ovh/manager/issues/2010)) ([f04336a](https://github.com/ovh/manager/commit/f04336a239881ecc60d2aecd2890b2ca5227eabc))
+* **telephony.line.phone.programmablekeys.edit:** set consistent order ([#2019](https://github.com/ovh/manager/issues/2019)) ([daee22a](https://github.com/ovh/manager/commit/daee22a6eed8a094d77fe21854d401594a09f724))
+
+
+
 ## [11.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@11.3.0...@ovh-ux/manager-telecom@11.3.1) (2019-12-19)
 
 
