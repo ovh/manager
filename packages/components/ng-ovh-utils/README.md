@@ -1,40 +1,34 @@
 # ng-ovh-utils
 
-![ng-ovh-utils deprecated](https://user-images.githubusercontent.com/3379410/27423263-520b94d8-5731-11e7-996a-f8579e70c33b.png)
+> A collection of directives for AngularJS.
 
-![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh-ux/ng-ovh-utils.svg)](https://travis-ci.org/ovh-ux/ng-ovh-utils)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-utils)](https://npmjs.com/package/@ovh-ux/ng-ovh-utils?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/@ovh-ux/ng-ovh-utils.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@ovh-ux/ng-ovh-utils/)
-
-> OVH Utils Angular.
-
-## Installation
-
-### NPM
+## Install
 
 ```sh
-$ npm install @ovh-ux/ng-ovh-utils --save # or yarn add @ovh-ux/ng-ovh-utils
+$ yarn add @ovh-ux/ng-ovh-utils
 ```
 
-## Get the sources
+## Usage
+
+```js
+import angular from 'angular';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
+
+angular.module('myModule', [ngOvhUtils]);
+```
+
+## Test
 
 ```sh
-$ git clone https://github.com/ovh-ux/ng-ovh-utils.git
-$ cd ng-ovh-utils
-$ npm install # or yarn
+$ yarn test
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Contributing
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ng-ovh-utils/blob/master/CONTRIBUTING.md)
-
-## Related links
-
-* Contribute: https://github.com/ovh-ux/ng-ovh-utils/blob/master/CONTRIBUTING.md
-* Report bugs: https://github.com/ovh-ux/ng-ovh-utils/issues
-* Get latest version: https://github.com/ovh-ux/ng-ovh-utils
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-utils/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-utils/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
-See https://github.com/ovh-ux/ng-ovh-utils/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
