@@ -1,3 +1,7 @@
+## [5.0.4](https://github.com/ovh-ux/ng-ovh-actions-menu/compare/v5.0.3...v5.0.4) (2020-01-08)
+
+
+
 ## [5.0.3](https://github.com/ovh-ux/ng-ovh-actions-menu/compare/v5.0.2...v5.0.3) (2019-10-25)
 
 
