@@ -5,6 +5,7 @@ export default {
   bindings: {
     drpInformations: '=',
     setDisableSuccessAlertPreference: '<',
+    setupConfiguration: '<',
     storeZertoOptionOrderInUserPref: '<',
 
     displayErrorMessage: '<',

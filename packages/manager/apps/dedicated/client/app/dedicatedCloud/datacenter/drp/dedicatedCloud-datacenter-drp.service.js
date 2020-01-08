@@ -417,7 +417,7 @@ export default class {
       ? this.disableDrpOvh(drpInformations)
       : this.disableDrpOnPremise(drpInformations)
     ).then(() =>
-      Promise.allSettled([
+      this.$q.allSettled([
         this.deleteZertoOptionOrderInUserPref(drpPccId),
         this.deleteDisableSuccessAlertPreference(drpPccId),
       ]),

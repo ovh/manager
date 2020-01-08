@@ -19,6 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
+        configurationStepName: () => 'ovhPccStep',
         datacenterId: /* @ngInject */ ($transition$) =>
           $transition$.params().datacenterId,
         defaultLocalVraNetwork: /* @ngInject */ (
@@ -51,6 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
     .state(
       'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.legacyOrderIp',
       {
+        url: '/legacy-order-ip',
         controller: 'IpLegacyOrderCtrl',
         template: legacyTemplate,
         layout: 'modal',
@@ -58,6 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     )
     .state('app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.orderIp', {
+      url: '/order-ip',
       controller: 'agoraIpOrderCtrl',
       template,
       layout: 'modal',

@@ -44,18 +44,11 @@ export default class {
       ].includes(ip),
     );
 
-    this.orderIpStateRef = {
-      newGeneration:
-        this.drpInformations.drpType ===
-        DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-          ? 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.orderIp'
-          : 'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.orderIp',
-      legacy:
-        this.drpInformations.drpType ===
-        DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-          ? 'app.dedicatedClouds.datacenter.drp.ovh.mainPccStep.legacyOrderIp'
-          : 'app.dedicatedClouds.datacenter.drp.onPremise.ovhPccStep.legacyOrderIp',
-    };
+    this.ipOrderLink = this.getIpOrderLink(
+      this.drpInformations.drpType,
+      this.ipFeatureAvailability.allowIPFailoverOrder(),
+      this.configurationStepName,
+    );
   }
 
   getAvailableAddresses(ipAddressDetails) {
