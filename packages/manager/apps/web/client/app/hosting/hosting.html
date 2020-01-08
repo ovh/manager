@@ -89,7 +89,7 @@
         <oui-header-tabs>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.tabs"
-                data-ng-repeat="tab in $ctrl.tabs track by $index"
+                data-ng-repeat="tab in $ctrl.tabs"
                 data-text="{{:: 'hosting_tab_' + tab | translate }}"
                 data-href="{{:: $ctrl.$state.href('app.hosting', { 'tab': tab }) }}"
                 data-active="$ctrl.selectedTab === tab"
@@ -99,7 +99,7 @@
                 data-ng-if="$ctrl.tabMenu"
                 data-text="{{:: $ctrl.tabMenu.title }}">
                 <oui-header-tabs-item
-                    data-ng-repeat-start="item in $ctrl.tabMenu.items track by $index"
+                    data-ng-repeat-start="item in $ctrl.tabMenu.items track by item.target"
                     data-ng-if="item.type === 'SWITCH_TABS'"
                     data-text="{{:: item.label }}"
                     data-href="{{:: $ctrl.$state.href('app.hosting', { 'tab': item.target }) }}"
