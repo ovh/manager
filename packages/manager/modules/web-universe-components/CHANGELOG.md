@@ -1,3 +1,12 @@
+## [7.2.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.2.0...@ovh-ux/ng-ovh-web-universe-components@7.2.1) (2020-01-08)
+
+
+### Bug Fixes
+
+* **wuc:** order cart service ([#2043](https://github.com/ovh/manager/issues/2043)) ([aa1048b](https://github.com/ovh/manager/commit/aa1048bd36f765d262459777a0d129db018a5612))
+
+
+
 # [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.1.5...@ovh-ux/ng-ovh-web-universe-components@7.2.0) (2019-12-19)
 
 
