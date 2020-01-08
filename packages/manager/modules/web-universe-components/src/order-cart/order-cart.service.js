@@ -124,7 +124,7 @@ export default class OrderCartService {
           {
             paymentMean: 'fidelityAccount',
           },
-        );
+        ).$promise;
     }
 
     return order;
