@@ -1,3 +1,7 @@
+## [6.0.3](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v6.0.2...v6.0.3) (2020-01-08)
+
+
+
 ## [6.0.2](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v6.0.1...v6.0.2) (2019-11-05)
 
 
