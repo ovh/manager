@@ -1,3 +1,22 @@
+# [13.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.2...@ovh-ux/manager-web@13.40.0) (2020-01-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 200] ([203d3f0](https://github.com/ovh/manager/commit/203d3f0294981f9e3dcc79d9734d9dda38f168d6))
+* **i18n:** add missing translations [CDS 211] ([788d450](https://github.com/ovh/manager/commit/788d4509c296e6fc26c2817ab6668326c0f18a7c))
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+* **i18n:** add missing translations [CDS 214] ([4625fd2](https://github.com/ovh/manager/commit/4625fd28ba8402012f4a940a0669ec6674168b32))
+* **i18n:** add missing translations [CDS 217] ([8adccb0](https://github.com/ovh/manager/commit/8adccb0aee9ad8feb761101f7567953da8f1b73e))
+* **i18n:** add missing translations [CDS 218] ([0017718](https://github.com/ovh/manager/commit/0017718ac372db563f858ba8d0ef818528a9c7aa))
+
+
+### Features
+
+* **web.hosting:** add database hostname popover about ip ([2bf395c](https://github.com/ovh/manager/commit/2bf395c84f4da954d857b3a1ff52fb709bffb0a1))
+
+
+
 ## [13.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@13.39.1...@ovh-ux/manager-web@13.39.2) (2020-01-08)
 
 

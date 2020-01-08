@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "private": true,
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-chatbot": "^2.0.2",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.5.0",
     "@ovh-ux/ng-ovh-contacts": "^2.0.2",
-    "@ovh-ux/ng-ovh-payment-method": "^5.1.1",
+    "@ovh-ux/ng-ovh-payment-method": "^5.2.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0",

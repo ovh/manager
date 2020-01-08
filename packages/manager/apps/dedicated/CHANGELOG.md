@@ -1,3 +1,18 @@
+## [11.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.1...@ovh-ux/manager-dedicated@11.3.2) (2020-01-08)
+
+
+### Bug Fixes
+
+* **dedicated:** set right favicon path ([#2018](https://github.com/ovh/manager/issues/2018)) ([b910316](https://github.com/ovh/manager/commit/b910316232027dd6b81f0c3f9231344f86f3b14b)), closes [#1686](https://github.com/ovh/manager/issues/1686)
+* **dedicated:** use new github link ([#2026](https://github.com/ovh/manager/issues/2026)) ([9be61d5](https://github.com/ovh/manager/commit/9be61d52df72029df821e299ab5387ea8db8db15))
+* **i18n:** add missing translations [CDS 199] ([24691eb](https://github.com/ovh/manager/commit/24691eb7a3ef41321610c4e724c540aabd91d3db))
+* **i18n:** add missing translations [CDS 200] ([203d3f0](https://github.com/ovh/manager/commit/203d3f0294981f9e3dcc79d9734d9dda38f168d6))
+* **i18n:** add missing translations [CDS 206] ([ccc5e5c](https://github.com/ovh/manager/commit/ccc5e5c80c99443c90d6c6f703de6c4289c783f8))
+* **i18n:** add missing translations [CDS 212] ([1f85592](https://github.com/ovh/manager/commit/1f8559205e170279929e29e4e52d8e255d688b3d))
+* **ip:** refresh correctly ip if not ip block ([#2041](https://github.com/ovh/manager/issues/2041)) ([466eeeb](https://github.com/ovh/manager/commit/466eeeb935a11b0b4b5188f3e9b272ebe35f0f2d))
+
+
+
 ## [11.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.3.0...@ovh-ux/manager-dedicated@11.3.1) (2019-12-19)
 
 
