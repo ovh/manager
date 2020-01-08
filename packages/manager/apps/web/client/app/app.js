@@ -530,7 +530,7 @@ angular
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
           $state.go(
-            'app.error',
+            'error',
             {
               detail: {
                 message: get(error.detail, 'data.message'),
