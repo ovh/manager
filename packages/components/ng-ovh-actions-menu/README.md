@@ -8,21 +8,16 @@ menu.
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-actions-menu
+$ yarn add @ovh-ux/ng-ovh-actions-menu
 ```
 
 ## Usage
 
-Then inject actionsMenu module in your module declaration:
-
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-actions-menu';
+import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 
-angular
-  .module('myApp', [
-    'ngOvhActionsMenu',
-  ]);
+angular.module('myApp', [ngOvhActionsMenu]);
 ```
 
 ## TODO
@@ -32,16 +27,6 @@ angular
 - actions with confirmation.
 
 ## Documentation
-
-For a full documentation of the module, launch:
-
-```sh
-grunt ngdocs && grunt connect
-```
-
-Then go on `http://localhost:9090`.
-
-Or simply follow the md version of documentation:
 
 ### <a name="actionsMenu_directive_actionsMenu"></a>`actionsMenu` - directive
 
@@ -86,10 +71,11 @@ angular
 And in your html view:
 
 ```html
-<actions-menu data-ng-ovh-actions-menu-options="actionsOptions"
-             data-ng-ovh-actions-menu-popover-settings="popoverSettings">
-   <i class="my-font my-font-actions"></i>
-   Button actions
+<actions-menu
+    data-ng-ovh-actions-menu-options="actionsOptions"
+    data-ng-ovh-actions-menu-popover-settings="popoverSettings">
+    <span class="my-font my-font-actions" aria-hidden="true"></span>
+    Button actions
 </actions-menu>
 ```
 
@@ -279,7 +265,7 @@ Load the translation file from the configured path.
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Related
