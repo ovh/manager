@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-mondial-relay
+$ yarn add @ovh-ux/ng-ovh-mondial-relay
 ```
 
 ## Usage
@@ -16,16 +16,13 @@ yarn add @ovh-ux/ng-ovh-mondial-relay
 import angular from 'angular';
 import ngOvhMondialRelay from '@ovh-ux/ng-ovh-mondial-relay';
 
-angular
-  .module('myApp', [
-    ngOvhMondialRelay,
-  ]);
+angular.module('myApp', [ngOvhMondialRelay]);
 ```
 
 ## Test
 
 ```sh
-yarn test
+$ yarn test
 ```
 
 ## Contributing
